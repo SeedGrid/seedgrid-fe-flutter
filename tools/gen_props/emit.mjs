@@ -33,6 +33,8 @@ const stripOpt = (t) => t.replace(/\s*\|\s*(undefined|null)/g, "").trim();
 const isIdent = (s) => /^[A-Za-z_][A-Za-z0-9_]*$/.test(s);
 
 function enumMember(v, used) {
+  // Sigla toda em maiuscula (BR, US) vira minuscula inteira (br, us), nao bR.
+  if (/^[A-Z]{2,}$/.test(v)) v = v.toLowerCase();
   let id = v.replace(/[^A-Za-z0-9]+(.)?/g, (_, c) => (c ? c.toUpperCase() : ""));
   if (!id) id = "empty";
   if (/^[0-9]/.test(id)) id = "v" + id;

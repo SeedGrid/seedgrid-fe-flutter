@@ -48,26 +48,21 @@ void main() {
     },
   );
 
-  // Defeito do React (src/i18n/*.ts): acentos viraram "?" dentro de palavra (ex.: "Pr?c?dent",
-  // "C?digo ?nico"). O porte e fiel ao React, entao a mensagem sai errada ate o fonte ser corrigido.
-  // O teste abaixo e a verificacao real; fica pulado para nao esconder nem travar a suite.
-  test(
-    'sem "?" no lugar de acento dentro de palavra',
-    () {
-      final bad = RegExp(r'[A-Za-z]\?[A-Za-z]');
-      final found = <String, int>{
-        for (final e in _builtins.entries)
-          e.key: e.value.values.where(bad.hasMatch).length,
-      }..removeWhere((_, v) => v == 0);
-      expect(
-        found,
-        isEmpty,
-        reason: 'mensagens com acento corrompido por idioma: $found',
-      );
-    },
-    skip:
-        'defeito conhecido no React: acentos viram "?" em fr, pt-BR, pt-PT e es (ver relatorio da T1.7)',
-  );
+  // Defeito que existiu no React (src/i18n/*.ts, corrigido em 2026-10-23): acento virou "?" dentro de palavra ou foi
+  // duplamente codificado. O porte e fiel ao React; este teste impede a volta do defeito.
+  test('sem "?" no lugar de acento dentro de palavra', () {
+    // "?" no lugar de letra acentuada, ou acento duplamente codificado (U+00C3/U+00C2 + continuacao).
+    final bad = RegExp('[A-Za-z]\\?[A-Za-z]|[\\u00C3\\u00C2][\\u0080-\\u00BF]');
+    final found = <String, int>{
+      for (final e in _builtins.entries)
+        e.key: e.value.values.where(bad.hasMatch).length,
+    }..removeWhere((_, v) => v == 0);
+    expect(
+      found,
+      isEmpty,
+      reason: 'mensagens com acento corrompido por idioma: $found',
+    );
+  });
 
   group('locale', () {
     test('normalizeComponentsLocale == TS', () {

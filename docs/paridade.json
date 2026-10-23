@@ -2,9 +2,9 @@
  "versaoReact": "2026.7.1",
  "resumo": {
   "total": 89,
-  "portado": 2,
-  "parcial": 1,
-  "pendente": 86,
+  "portado": 11,
+  "parcial": 16,
+  "pendente": 62,
   "naoAplicavel": 0
  },
  "componentes": [
@@ -31,9 +31,9 @@
   {
    "componente": "SgAvatar",
    "onda": 1,
-   "status": "pendente",
+   "status": "portado",
    "motivo": "",
-   "onde": "",
+   "onde": "packages/seedgrid_components/lib/src/commons/sg_avatar.dart",
    "props": 14,
    "propsOmitidas": 0,
    "propsGenericas": 2
@@ -41,9 +41,9 @@
   {
    "componente": "SgAvatarGroup",
    "onda": 1,
-   "status": "pendente",
+   "status": "portado",
    "motivo": "",
-   "onde": "",
+   "onde": "packages/seedgrid_components/lib/src/commons/sg_avatar.dart",
    "props": 9,
    "propsOmitidas": 0,
    "propsGenericas": 1
@@ -51,9 +51,9 @@
   {
    "componente": "SgBadge",
    "onda": 1,
-   "status": "pendente",
+   "status": "portado",
    "motivo": "",
-   "onde": "",
+   "onde": "packages/seedgrid_components/lib/src/commons/sg_badge.dart",
    "props": 24,
    "propsOmitidas": 2,
    "propsGenericas": 4
@@ -61,9 +61,9 @@
   {
    "componente": "SgBadgeOverlay",
    "onda": 1,
-   "status": "pendente",
+   "status": "portado",
    "motivo": "",
-   "onde": "",
+   "onde": "packages/seedgrid_components/lib/src/commons/sg_badge_overlay.dart",
    "props": 5,
    "propsOmitidas": 2,
    "propsGenericas": 0
@@ -121,9 +121,9 @@
   {
    "componente": "SgCheckboxGroup",
    "onda": 1,
-   "status": "pendente",
-   "motivo": "",
-   "onde": "",
+   "status": "parcial",
+   "motivo": "destaque e relevo aproximados (bordas por Transform); groupBoxProps vira SgChoiceGroupBoxProps; SgChoiceBox provisorio ate o SgGroupBox (T3.1); goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50)",
+   "onde": "packages/seedgrid_components/lib/src/inputs/choice/sg_checkbox_group.dart",
    "props": 23,
    "propsOmitidas": 3,
    "propsGenericas": 6
@@ -341,9 +341,9 @@
   {
    "componente": "SgInputBirthDate",
    "onda": 1,
-   "status": "pendente",
-   "motivo": "",
-   "onde": "",
+   "status": "parcial",
+   "motivo": "o React usa input type=date nativo; aqui campo com mascara por idioma e calendario proprio: data impossivel (31/02) mostra Data invalida (no nativo o valor vira vazio) e alwaysFloat nao tem efeito; recriar por key perde o foco (precisa de controller externo no SgInputText); pegadinha de fuso do validateBirthDate mantida",
+   "onde": "packages/seedgrid_components/lib/src/inputs/masked/sg_input_birth_date.dart",
    "props": 50,
    "propsOmitidas": 3,
    "propsGenericas": 15
@@ -351,9 +351,9 @@
   {
    "componente": "SgInputCNPJ",
    "onda": 1,
-   "status": "pendente",
-   "motivo": "",
-   "onde": "",
+   "status": "parcial",
+   "motivo": "consulta de rede por cliente injetavel (SgViaCepResult no lugar do ViaCepResponse que lanca erro; SgHttpClient no CNPJ); placeholder por pais do React nunca e usado e nao foi portado; goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50)",
+   "onde": "packages/seedgrid_components/lib/src/inputs/masked/sg_input_cnpj.dart",
    "props": 53,
    "propsOmitidas": 3,
    "propsGenericas": 17
@@ -361,9 +361,9 @@
   {
    "componente": "SgInputCPF",
    "onda": 1,
-   "status": "pendente",
+   "status": "portado",
    "motivo": "",
-   "onde": "",
+   "onde": "packages/seedgrid_components/lib/src/inputs/masked/sg_input_cpf.dart",
    "props": 48,
    "propsOmitidas": 3,
    "propsGenericas": 14
@@ -371,9 +371,9 @@
   {
    "componente": "SgInputCPFCNPJ",
    "onda": 1,
-   "status": "pendente",
+   "status": "portado",
    "motivo": "",
-   "onde": "",
+   "onde": "packages/seedgrid_components/lib/src/inputs/masked/sg_input_cpfcnpj.dart",
    "props": 48,
    "propsOmitidas": 3,
    "propsGenericas": 14
@@ -381,9 +381,9 @@
   {
    "componente": "SgInputCurrency",
    "onda": 1,
-   "status": "pendente",
-   "motivo": "",
-   "onde": "",
+   "status": "parcial",
+   "motivo": "sem Intl no Dart: simbolo, posicao e separadores vem de tabela gerada do Node (pt-BR, pt-PT, en-US, es, fr, de-DE; 162 moedas), locale fora da lista cai em en-US; o React trata tecla e o Flutter recebe diferenca de texto (formatter converte); goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50)",
+   "onde": "packages/seedgrid_components/lib/src/inputs/number/sg_input_currency.dart",
    "props": 49,
    "propsOmitidas": 3,
    "propsGenericas": 13
@@ -391,9 +391,9 @@
   {
    "componente": "SgInputDate",
    "onda": 1,
-   "status": "pendente",
-   "motivo": "",
-   "onde": "",
+   "status": "parcial",
+   "motivo": "o React usa input type=date nativo; aqui campo com mascara por idioma e calendario proprio: data impossivel (31/02) mostra Data invalida (no nativo o valor vira vazio) e alwaysFloat nao tem efeito; recriar por key perde o foco (precisa de controller externo no SgInputText); pegadinha de fuso do validateBirthDate mantida",
+   "onde": "packages/seedgrid_components/lib/src/inputs/masked/sg_input_date.dart",
    "props": 48,
    "propsOmitidas": 3,
    "propsGenericas": 15
@@ -401,9 +401,9 @@
   {
    "componente": "SgInputEmail",
    "onda": 1,
-   "status": "pendente",
-   "motivo": "",
-   "onde": "",
+   "status": "parcial",
+   "motivo": "inputProps/textareaProps ignorados; commonPasswordList sem efeito (igual ao React); usa SgFormController interno quando nao ha name+control; goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50)",
+   "onde": "packages/seedgrid_components/lib/src/inputs/text/sg_input_email.dart",
    "props": 48,
    "propsOmitidas": 3,
    "propsGenericas": 14
@@ -411,9 +411,9 @@
   {
    "componente": "SgInputNumber",
    "onda": 1,
-   "status": "pendente",
-   "motivo": "",
-   "onde": "",
+   "status": "parcial",
+   "motivo": "sem Intl no Dart: simbolo, posicao e separadores vem de tabela gerada do Node (pt-BR, pt-PT, en-US, es, fr, de-DE; 162 moedas), locale fora da lista cai em en-US; o React trata tecla e o Flutter recebe diferenca de texto (formatter converte); goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50)",
+   "onde": "packages/seedgrid_components/lib/src/inputs/number/sg_input_number.dart",
    "props": 46,
    "propsOmitidas": 3,
    "propsGenericas": 14
@@ -431,9 +431,9 @@
   {
    "componente": "SgInputPassword",
    "onda": 1,
-   "status": "pendente",
-   "motivo": "",
-   "onde": "",
+   "status": "parcial",
+   "motivo": "inputProps/textareaProps ignorados; commonPasswordList sem efeito (igual ao React); usa SgFormController interno quando nao ha name+control; goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50)",
+   "onde": "packages/seedgrid_components/lib/src/inputs/text/sg_input_password.dart",
    "props": 60,
    "propsOmitidas": 3,
    "propsGenericas": 14
@@ -441,9 +441,9 @@
   {
    "componente": "SgInputPhone",
    "onda": 1,
-   "status": "pendente",
+   "status": "portado",
    "motivo": "",
-   "onde": "",
+   "onde": "packages/seedgrid_components/lib/src/inputs/masked/sg_input_phone.dart",
    "props": 48,
    "propsOmitidas": 3,
    "propsGenericas": 14
@@ -451,9 +451,9 @@
   {
    "componente": "SgInputPostalCode",
    "onda": 1,
-   "status": "pendente",
-   "motivo": "",
-   "onde": "",
+   "status": "parcial",
+   "motivo": "consulta de rede por cliente injetavel (SgViaCepResult no lugar do ViaCepResponse que lanca erro; SgHttpClient no CNPJ); placeholder por pais do React nunca e usado e nao foi portado; goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50)",
+   "onde": "packages/seedgrid_components/lib/src/inputs/masked/sg_input_postal_code.dart",
    "props": 54,
    "propsOmitidas": 3,
    "propsGenericas": 17
@@ -471,9 +471,9 @@
   {
    "componente": "SgInputTextArea",
    "onda": 1,
-   "status": "pendente",
-   "motivo": "",
-   "onde": "",
+   "status": "parcial",
+   "motivo": "inputProps/textareaProps ignorados; commonPasswordList sem efeito (igual ao React); usa SgFormController interno quando nao ha name+control; goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50)",
+   "onde": "packages/seedgrid_components/lib/src/inputs/text/sg_input_text_area.dart",
    "props": 43,
    "propsOmitidas": 3,
    "propsGenericas": 13
@@ -481,9 +481,9 @@
   {
    "componente": "SgInputTextSearch",
    "onda": 1,
-   "status": "pendente",
-   "motivo": "",
-   "onde": "",
+   "status": "parcial",
+   "motivo": "inputProps/textareaProps ignorados; commonPasswordList sem efeito (igual ao React); usa SgFormController interno quando nao ha name+control; goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50)",
+   "onde": "packages/seedgrid_components/lib/src/inputs/text/sg_input_text_search.dart",
    "props": 49,
    "propsOmitidas": 3,
    "propsGenericas": 15
@@ -641,9 +641,9 @@
   {
    "componente": "SgRadioGroup",
    "onda": 1,
-   "status": "pendente",
-   "motivo": "",
-   "onde": "",
+   "status": "parcial",
+   "motivo": "destaque e relevo aproximados (bordas por Transform); groupBoxProps vira SgChoiceGroupBoxProps; SgChoiceBox provisorio ate o SgGroupBox (T3.1); goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50)",
+   "onde": "packages/seedgrid_components/lib/src/inputs/choice/sg_radio_group.dart",
    "props": 20,
    "propsOmitidas": 3,
    "propsGenericas": 6
@@ -651,9 +651,9 @@
   {
    "componente": "SgRating",
    "onda": 1,
-   "status": "pendente",
-   "motivo": "",
-   "onde": "",
+   "status": "parcial",
+   "motivo": "color/emptyColor aceitam texto (#hex, rgb(), hsl(var(--token))) porque o contrato gerado fixa String; value nulo = nao controlado; teclado e extra do Flutter; goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50)",
+   "onde": "packages/seedgrid_components/lib/src/inputs/choice/sg_rating.dart",
    "props": 26,
    "propsOmitidas": 3,
    "propsGenericas": 4
@@ -711,9 +711,9 @@
   {
    "componente": "SgSkeleton",
    "onda": 1,
-   "status": "pendente",
+   "status": "portado",
    "motivo": "",
-   "onde": "",
+   "onde": "packages/seedgrid_components/lib/src/commons/sg_skeleton.dart",
    "props": 6,
    "propsOmitidas": 0,
    "propsGenericas": 4
@@ -721,9 +721,9 @@
   {
    "componente": "SgSlider",
    "onda": 1,
-   "status": "pendente",
-   "motivo": "",
-   "onde": "",
+   "status": "parcial",
+   "motivo": "e o Slider do Material tematizado, nao CustomPainter (o React usa o controle nativo do navegador); goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50)",
+   "onde": "packages/seedgrid_components/lib/src/inputs/choice/sg_slider.dart",
    "props": 17,
    "propsOmitidas": 2,
    "propsGenericas": 5
@@ -751,9 +751,9 @@
   {
    "componente": "SgStepperInput",
    "onda": 1,
-   "status": "pendente",
+   "status": "portado",
    "motivo": "",
-   "onde": "",
+   "onde": "packages/seedgrid_components/lib/src/inputs/number/sg_stepper_input.dart",
    "props": 19,
    "propsOmitidas": 3,
    "propsGenericas": 5
@@ -811,9 +811,9 @@
   {
    "componente": "SgToggleSwitch",
    "onda": 1,
-   "status": "pendente",
-   "motivo": "",
-   "onde": "",
+   "status": "parcial",
+   "motivo": "enabled virou disabled (ADR 50); goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50)",
+   "onde": "packages/seedgrid_components/lib/src/inputs/choice/sg_toggle_switch.dart",
    "props": 27,
    "propsOmitidas": 3,
    "propsGenericas": 7

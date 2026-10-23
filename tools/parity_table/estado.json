@@ -7,5 +7,65 @@
   "SgInputText": {
     "status": "parcial",
     "motivo": "sem inputProps (atributos do <input> nao tem equivalente; props nomeadas cobrem), value controlado so por initialValue/control, golden com fonte de teste (sem comparacao visual com o React), nao testado em IME/dispositivo; i18n so das mensagens de validacao"
+  },
+  "SgCheckboxGroup": {
+    "status": "parcial",
+    "motivo": "destaque e relevo aproximados (bordas por Transform); groupBoxProps vira SgChoiceGroupBoxProps; SgChoiceBox provisorio ate o SgGroupBox (T3.1); goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50)"
+  },
+  "SgRadioGroup": {
+    "status": "parcial",
+    "motivo": "destaque e relevo aproximados (bordas por Transform); groupBoxProps vira SgChoiceGroupBoxProps; SgChoiceBox provisorio ate o SgGroupBox (T3.1); goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50)"
+  },
+  "SgToggleSwitch": {
+    "status": "parcial",
+    "motivo": "enabled virou disabled (ADR 50); goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50)"
+  },
+  "SgSlider": {
+    "status": "parcial",
+    "motivo": "e o Slider do Material tematizado, nao CustomPainter (o React usa o controle nativo do navegador); goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50)"
+  },
+  "SgRating": {
+    "status": "parcial",
+    "motivo": "color/emptyColor aceitam texto (#hex, rgb(), hsl(var(--token))) porque o contrato gerado fixa String; value nulo = nao controlado; teclado e extra do Flutter; goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50)"
+  },
+  "SgInputTextArea": {
+    "status": "parcial",
+    "motivo": "inputProps/textareaProps ignorados; commonPasswordList sem efeito (igual ao React); usa SgFormController interno quando nao ha name+control; goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50)"
+  },
+  "SgInputTextSearch": {
+    "status": "parcial",
+    "motivo": "inputProps/textareaProps ignorados; commonPasswordList sem efeito (igual ao React); usa SgFormController interno quando nao ha name+control; goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50)"
+  },
+  "SgInputEmail": {
+    "status": "parcial",
+    "motivo": "inputProps/textareaProps ignorados; commonPasswordList sem efeito (igual ao React); usa SgFormController interno quando nao ha name+control; goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50)"
+  },
+  "SgInputPassword": {
+    "status": "parcial",
+    "motivo": "inputProps/textareaProps ignorados; commonPasswordList sem efeito (igual ao React); usa SgFormController interno quando nao ha name+control; goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50)"
+  },
+  "SgInputDate": {
+    "status": "parcial",
+    "motivo": "o React usa input type=date nativo; aqui campo com mascara por idioma e calendario proprio: data impossivel (31/02) mostra Data invalida (no nativo o valor vira vazio) e alwaysFloat nao tem efeito; recriar por key perde o foco (precisa de controller externo no SgInputText); pegadinha de fuso do validateBirthDate mantida"
+  },
+  "SgInputBirthDate": {
+    "status": "parcial",
+    "motivo": "o React usa input type=date nativo; aqui campo com mascara por idioma e calendario proprio: data impossivel (31/02) mostra Data invalida (no nativo o valor vira vazio) e alwaysFloat nao tem efeito; recriar por key perde o foco (precisa de controller externo no SgInputText); pegadinha de fuso do validateBirthDate mantida"
+  },
+  "SgInputPostalCode": {
+    "status": "parcial",
+    "motivo": "consulta de rede por cliente injetavel (SgViaCepResult no lugar do ViaCepResponse que lanca erro; SgHttpClient no CNPJ); placeholder por pais do React nunca e usado e nao foi portado; goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50)"
+  },
+  "SgInputCNPJ": {
+    "status": "parcial",
+    "motivo": "consulta de rede por cliente injetavel (SgViaCepResult no lugar do ViaCepResponse que lanca erro; SgHttpClient no CNPJ); placeholder por pais do React nunca e usado e nao foi portado; goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50)"
+  },
+  "SgInputNumber": {
+    "status": "parcial",
+    "motivo": "sem Intl no Dart: simbolo, posicao e separadores vem de tabela gerada do Node (pt-BR, pt-PT, en-US, es, fr, de-DE; 162 moedas), locale fora da lista cai em en-US; o React trata tecla e o Flutter recebe diferenca de texto (formatter converte); goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50)"
+  },
+  "SgInputCurrency": {
+    "status": "parcial",
+    "motivo": "sem Intl no Dart: simbolo, posicao e separadores vem de tabela gerada do Node (pt-BR, pt-PT, en-US, es, fr, de-DE; 162 moedas), locale fora da lista cai em en-US; o React trata tecla e o Flutter recebe diferenca de texto (formatter converte); goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50)"
   }
 }

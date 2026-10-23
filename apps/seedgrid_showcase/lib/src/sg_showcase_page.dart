@@ -431,6 +431,7 @@ class _SgPlaygroundState extends State<SgPlayground> {
     if (s.values != null) {
       return DropdownButtonFormField<String?>(
         key: ValueKey('pg-${s.name}'),
+        isExpanded: true,
         initialValue: _values[s.name] as String?,
         decoration: InputDecoration(labelText: s.name, isDense: true),
         items: [

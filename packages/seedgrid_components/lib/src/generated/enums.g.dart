@@ -2109,13 +2109,13 @@ enum SgInputPhoneTextInputType {
 
 /// Valores aceitos pelo React: `BR`, `PT`, `US`, `ES`, `UY`, `AR`, `PY`.
 enum SgInputPostalCodeCountry {
-  bR('BR'),
-  pT('PT'),
-  uS('US'),
-  eS('ES'),
-  uY('UY'),
-  aR('AR'),
-  pY('PY');
+  br('BR'),
+  pt('PT'),
+  us('US'),
+  es('ES'),
+  uy('UY'),
+  ar('AR'),
+  py('PY');
 
   const SgInputPostalCodeCountry(this.value);
 
@@ -2886,11 +2886,11 @@ enum SgPanelContentJustify {
 
 /// Valores aceitos pelo React: `ALL`, `CUSTOM`, `TODAY`, `YESTERDAY`, `TOMORROW`, `THIS_WEEK`, `THIS_QUINZENA`, `THIS_MONTH`, `THIS_QUARTER`, `THIS_SEMESTER`, `THIS_YEAR`, `LAST_WEEK`, `LAST_QUINZENA`, `LAST_MONTH`, `LAST_QUARTER`, `LAST_SEMESTER`, `LAST_YEAR`, `NEXT_WEEK`, `NEXT_QUINZENA`, `NEXT_MONTH`, `NEXT_QUARTER`, `NEXT_SEMESTER`, `NEXT_YEAR`.
 enum SgPeriodSelectorValue {
-  aLL('ALL'),
-  cUSTOM('CUSTOM'),
-  tODAY('TODAY'),
-  yESTERDAY('YESTERDAY'),
-  tOMORROW('TOMORROW'),
+  all('ALL'),
+  custom('CUSTOM'),
+  today('TODAY'),
+  yesterday('YESTERDAY'),
+  tomorrow('TOMORROW'),
   tHISWEEK('THIS_WEEK'),
   tHISQUINZENA('THIS_QUINZENA'),
   tHISMONTH('THIS_MONTH'),
