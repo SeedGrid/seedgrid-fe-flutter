@@ -77,15 +77,35 @@ if (problemas.length) {
   console.error("problemas:\n  " + problemas.join("\n  "));
   process.exit(1);
 }
+// Catalogo para o menu e a pagina inicial do showcase (o app nao le arquivos em tempo de execucao).
+const catalogFile = path.join(root, "apps/seedgrid_showcase/lib/src/catalog.g.dart");
+const catalogLines = [
+  "// dart format off",
+  "// GERADO por tools/parity_table/generate.mjs. NAO EDITE A MAO.",
+  "// Catalogo dos componentes do React com categoria, onda e estado do porte (menu e pagina inicial do showcase).",
+  "",
+  "typedef CatalogEntry = ({String name, String category, int wave, String status});",
+  "",
+  `const String kCatalogReactVersion = '${spec.versaoReact}';`,
+  "",
+  "const List<CatalogEntry> kCatalog = <CatalogEntry>[",
+  ...[...rows]
+    .sort((a, b) => a.componente.localeCompare(b.componente))
+    .map((r) => `  (name: '${r.componente}', category: '${spec.components[r.componente].category ?? "outros"}', wave: ${r.onda}, status: '${r.status}'),`),
+  "];",
+  "",
+];
+const catalog = catalogLines.join("\n");
 const mdFile = path.join(root, "docs/PARIDADE.md");
 const jsonFile = path.join(root, "docs/paridade.json");
 if (process.argv.includes("--check")) {
-  const ok = fs.existsSync(mdFile) && fs.readFileSync(mdFile, "utf8") === md && fs.readFileSync(jsonFile, "utf8") === json;
+  const ok = fs.existsSync(mdFile) && fs.readFileSync(mdFile, "utf8") === md && fs.readFileSync(jsonFile, "utf8") === json && fs.existsSync(catalogFile) && fs.readFileSync(catalogFile, "utf8") === catalog;
   if (!ok) { console.error("docs/PARIDADE.md desatualizado: rode node tools/parity_table/generate.mjs"); process.exit(1); }
   console.log(`paridade em dia (${rows.length} componentes)`);
 } else {
   fs.mkdirSync(path.dirname(mdFile), { recursive: true });
   fs.writeFileSync(mdFile, md);
   fs.writeFileSync(jsonFile, json);
+  fs.writeFileSync(catalogFile, catalog);
   console.log(`paridade: ${rows.length} componentes (${count("portado")} portados, ${count("parcial")} parciais, ${count("pendente")} pendentes, ${count("nao-aplicavel")} nao aplicaveis)`);
 }

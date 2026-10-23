@@ -29,8 +29,9 @@ class _SgWhistleHostPageState extends State<SgWhistleHostPage> {
 
   void _publish(Map<String, Object?> values) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (mounted && !mapEquals(_cfg.value, values))
+      if (mounted && !mapEquals(_cfg.value, values)) {
         _cfg.value = Map.of(values);
+      }
     });
   }
 

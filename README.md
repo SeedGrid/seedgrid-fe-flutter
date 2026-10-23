@@ -57,3 +57,10 @@ Ferramentas (Node 22; leem o repositório React, que **não é alterado**):
 4. Testes em `packages/seedgrid_components/test/widgets/<comp>_test.dart` (cada prop pública, estados, formulário, golden quando indicado no plano).
 5. Página de showcase: `apps/seedgrid_showcase/lib/pages/<snake>_page.dart` com `class <Comp>Page extends StatelessWidget` (construtor `const` sem argumentos) usando `SgShowcasePage`, exemplos com `// #region <id>` ... `// #endregion` (o código mostrado é o renderizado) e `SgPlayground`. Depois: `node tools/showcase_snippets/extract.mjs`. Os testes de âncoras, props e código 1:1 rodam sozinhos para toda página (`test/all_pages_test.dart`).
 6. `dart format lib test` **antes** de `extract.mjs`; `bash tools/ci.sh` verde.
+
+## Showcase (apps/seedgrid_showcase)
+
+- Menu lateral agrupado por categoria do React, com busca. Mostra os 89 componentes do React; os ainda não portados aparecem esmaecidos com a marca "pendente" (catálogo gerado por `tools/parity_table/generate.mjs`).
+- Página inicial com o andamento do porte; painel "Tema" (cor semente e raio) e botão claro/escuro.
+- URL por caminho com âncora: `/sg-button#exemplo-3` abre a página já rolada e a barra de endereços acompanha os links do cabeçalho. **Em produção o servidor precisa devolver `index.html` para qualquer caminho** (fallback de SPA); sem isso, abrir `/sg-button` direto dá 404.
+- Rodar: `cd apps/seedgrid_showcase && flutter run -d chrome`; build: `flutter build web --release`.

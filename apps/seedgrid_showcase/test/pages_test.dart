@@ -75,16 +75,7 @@ void main() {
       await settle(t);
       expect(primaryBg(), dark.btnPrimaryBg);
       // O menu e uma lista longa e preguicosa: rolar ate o item aparecer.
-      await t.scrollUntilVisible(
-        find.byKey(const ValueKey('nav-SgInputText')),
-        200,
-        scrollable: find
-            .descendant(
-              of: find.byType(ListView),
-              matching: find.byType(Scrollable),
-            )
-            .first,
-      );
+      await revealInMenu(t, find.byKey(const ValueKey('nav-SgInputText')));
       await t.tap(find.byKey(const ValueKey('nav-SgInputText')));
       await settle(t);
       expect(find.text('Exemplo 1 — Básico'), findsOneWidget);

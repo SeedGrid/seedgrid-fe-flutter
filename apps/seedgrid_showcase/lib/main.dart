@@ -4,7 +4,10 @@ import 'package:flutter/services.dart';
 import 'package:seedgrid_theme/seedgrid_theme.dart';
 
 import 'pages/pages.g.dart';
+import 'src/home_page.dart';
 import 'src/sg_showcase_page.dart';
+import 'src/showcase_menu.dart';
+import 'src/theme_panel.dart';
 import 'src/url_strategy.dart';
 
 void main() {
@@ -45,7 +48,8 @@ class ShowcaseHome extends StatefulWidget {
 }
 
 class _ShowcaseHomeState extends State<ShowcaseHome> {
-  late int _index;
+  /// Nome da pagina aberta; nulo = pagina inicial.
+  String? _page;
   String? _anchor;
 
   @override
@@ -56,11 +60,11 @@ class _ShowcaseHomeState extends State<ShowcaseHome> {
         ? null
         : uri.pathSegments.last;
     final found = slug == null
-        ? -1
-        : kShowcasePages.indexWhere((p) => showcaseSlug(p.name) == slug);
-    _index = found < 0 ? 0 : found;
+        ? null
+        : kShowcasePages.where((p) => showcaseSlug(p.name) == slug).firstOrNull;
+    _page = found?.name;
     // Ancora so vale se a pagina da URL existe.
-    _anchor = found < 0 || uri == null || uri.fragment.isEmpty
+    _anchor = found == null || uri == null || uri.fragment.isEmpty
         ? null
         : uri.fragment;
   }
@@ -69,7 +73,7 @@ class _ShowcaseHomeState extends State<ShowcaseHome> {
   void _syncUrl() {
     SystemNavigator.routeInformationUpdated(
       uri: Uri(
-        path: '/${showcaseSlug(kShowcasePages[_index].name)}',
+        path: _page == null ? '/' : '/${showcaseSlug(_page!)}',
         fragment: _anchor,
       ),
       replace: true,
@@ -90,46 +94,45 @@ class _ShowcaseHomeState extends State<ShowcaseHome> {
         sg.currentMode == Brightness.dark ? Brightness.light : Brightness.dark,
       ),
     );
-    final page = ShowcaseLocation(
-      anchor: _anchor,
-      onAnchorChanged: (id) {
-        _anchor = id;
-        _syncUrl();
-      },
-      child: KeyedSubtree(
-        key: ValueKey(_index),
-        child: kShowcasePages[_index].builder(context),
-      ),
-    );
-    final menu = ListView(
-      children: [
-        for (var i = 0; i < kShowcasePages.length; i++)
-          ListTile(
-            key: ValueKey('nav-${kShowcasePages[i].name}'),
-            title: Text(kShowcasePages[i].name),
-            selected: i == _index,
-            onTap: () {
-              setState(() {
-                _index = i;
-                _anchor = null;
-              });
+    final entry = _page == null
+        ? null
+        : kShowcasePages.where((p) => p.name == _page).firstOrNull;
+    final Widget content = entry == null
+        ? const ShowcaseHomePage()
+        : ShowcaseLocation(
+            anchor: _anchor,
+            onAnchorChanged: (id) {
+              _anchor = id;
               _syncUrl();
-              if (!wide) Navigator.of(context).maybePop();
             },
-          ),
-      ],
+            child: KeyedSubtree(
+              key: ValueKey(entry.name),
+              child: entry.builder(context),
+            ),
+          );
+    final menu = ShowcaseMenu(
+      selected: entry?.name,
+      footer: const ShowcaseThemePanel(),
+      onSelect: (name) {
+        setState(() {
+          _page = name;
+          _anchor = null;
+        });
+        _syncUrl();
+        if (!wide) Navigator.of(context).maybePop();
+      },
     );
     return Scaffold(
       appBar: wide
           ? null
-          : AppBar(title: Text(kShowcasePages[_index].name), actions: [toggle]),
+          : AppBar(title: Text(entry?.name ?? 'Início'), actions: [toggle]),
       drawer: wide ? null : Drawer(child: SafeArea(child: menu)),
       body: SafeArea(
         child: wide
             ? Row(
                 children: [
                   SizedBox(
-                    width: 220,
+                    width: 260,
                     child: Column(
                       children: [
                         Expanded(child: menu),
@@ -138,10 +141,10 @@ class _ShowcaseHomeState extends State<ShowcaseHome> {
                     ),
                   ),
                   const VerticalDivider(width: 1),
-                  Expanded(child: page),
+                  Expanded(child: content),
                 ],
               )
-            : page,
+            : content,
       ),
     );
   }

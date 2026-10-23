@@ -75,16 +75,19 @@ void main() {
   });
 
   testWidgets(
-    'pagina inexistente cai na primeira e ancora desconhecida nao quebra',
+    'pagina inexistente cai na pagina inicial e ancora desconhecida nao quebra',
     (t) async {
       setSize(t, kSizes.values.last);
       await t.pumpWidget(
         ShowcaseApp(initialUri: Uri.parse('/nao-existe#exemplo-2')),
       );
       await settle(t);
-      expect(find.byKey(const ValueKey('link-exemplo-1')), findsOneWidget);
+      expect(find.byKey(const ValueKey('home-resumo')), findsOneWidget);
       await t.pumpWidget(
-        ShowcaseApp(initialUri: Uri.parse('/sg-button#exemplo-99')),
+        ShowcaseApp(
+          key: UniqueKey(),
+          initialUri: Uri.parse('/sg-button#exemplo-99'),
+        ),
       );
       await settle(t);
       expect(find.byKey(const ValueKey('link-exemplo-1')), findsOneWidget);
@@ -101,16 +104,7 @@ void main() {
       expect(urls.last, '/sg-button#exemplo-2');
       await tapLink(t, const ValueKey('link-props-reference'));
       expect(urls.last, '/sg-button#props-reference');
-      await t.scrollUntilVisible(
-        find.byKey(const ValueKey('nav-SgInputText')),
-        200,
-        scrollable: find
-            .descendant(
-              of: find.byType(ListView),
-              matching: find.byType(Scrollable),
-            )
-            .first,
-      );
+      await revealInMenu(t, find.byKey(const ValueKey('nav-SgInputText')));
       await t.tap(find.byKey(const ValueKey('nav-SgInputText')));
       await settle(t);
       expect(

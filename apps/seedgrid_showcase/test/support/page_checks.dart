@@ -33,6 +33,20 @@ Future<void> settle(WidgetTester t) async {
   }
 }
 
+/// Leva um item do menu lateral para a area visivel: o menu e uma lista preguicosa (grupos distantes
+/// nao existem na arvore ate rolar), entao primeiro rola ate o item ser construido e depois o traz para a tela.
+Future<void> revealInMenu(WidgetTester t, Finder item) async {
+  final menu = find
+      .descendant(
+        of: find.byKey(const ValueKey('menu-lista')),
+        matching: find.byType(Scrollable),
+      )
+      .first;
+  await t.scrollUntilVisible(item, 300, scrollable: menu);
+  await t.ensureVisible(item);
+  await settle(t);
+}
+
 Future<void> tapLink(WidgetTester t, ValueKey<String> key) async {
   final f = find.byKey(key);
   await t.ensureVisible(f);

@@ -238,10 +238,11 @@ class _SgWizardDemoPageState extends State<SgWizardDemoPage> {
         ),
         codeBuilder: (v) {
           final args = <String>['onFinish: () {}'];
-          if (v['stepper'] != null)
+          if (v['stepper'] != null) {
             args.add(
               'stepper: SgWizardStepper.${SgWizardStepper.fromValue(v['stepper'] as String)!.name}',
             );
+          }
           if (v['stepNavigation'] != null) {
             args.add(
               'stepNavigation: SgWizardStepNavigation.${SgWizardStepNavigation.fromValue(v['stepNavigation'] as String)!.name}',
