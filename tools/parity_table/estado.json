@@ -67,5 +67,61 @@
   "SgInputCurrency": {
     "status": "parcial",
     "motivo": "sem Intl no Dart: simbolo, posicao e separadores vem de tabela gerada do Node (pt-BR, pt-PT, en-US, es, fr, de-DE; 162 moedas), locale fora da lista cai em en-US; o React trata tecla e o Flutter recebe diferenca de texto (formatter converte); goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50)"
+  },
+  "SgDockLayout": {
+    "status": "parcial",
+    "motivo": "no React o SgDockLayout guarda o estado das toolbars encaixaveis (nao e motor de layout) e nao ha divisores arrastaveis; persistencia por SgDockLayoutStore plugavel (sem ele, so memoria); a toolbar se registra por registerToolbar(id, key) em vez de achar pelo DOM; SgToolBar ainda nao portada (exemplos usam botoes); className/style nao existem; golden com fonte de teste"
+  },
+  "SgDockZone": {
+    "status": "parcial",
+    "motivo": "no React o SgDockLayout guarda o estado das toolbars encaixaveis (nao e motor de layout) e nao ha divisores arrastaveis; persistencia por SgDockLayoutStore plugavel (sem ele, so memoria); a toolbar se registra por registerToolbar(id, key) em vez de achar pelo DOM; SgToolBar ainda nao portada (exemplos usam botoes); className/style nao existem; golden com fonte de teste"
+  },
+  "SgDockScreen": {
+    "status": "parcial",
+    "motivo": "no React o SgDockLayout guarda o estado das toolbars encaixaveis (nao e motor de layout) e nao ha divisores arrastaveis; persistencia por SgDockLayoutStore plugavel (sem ele, so memoria); a toolbar se registra por registerToolbar(id, key) em vez de achar pelo DOM; SgToolBar ainda nao portada (exemplos usam botoes); className/style nao existem; golden com fonte de teste"
+  },
+  "SgWizard": {
+    "status": "parcial",
+    "motivo": "valida a etapa por SgFormController.trigger(fields) (SgWizardPage.fields e SgWizard.control sao extras): o React foca e sai de cada input e conta [data-sg-error]; erros internos do SgInputText que nao passam pelo formulario nao bloqueiam a etapa"
+  },
+  "SgRealtimeProvider": {
+    "status": "parcial",
+    "motivo": "o cliente entra por connectionFactory (SgPulseConnection injetavel; sem ele o status fica unavailable; adaptador do SDK Pulse em lib/src/providers/PULSE_ADAPTER.md, nao ligado por dependencia); tokenEndpoint precisa de URL absoluta; enabled virou disabled, children virou child; hooks viraram widget e funcao"
+  },
+  "SgDialog": {
+    "status": "parcial",
+    "motivo": "lockBodyScroll sem efeito (o fundo modal ja bloqueia); props de classe CSS aceitas sem efeito; acento do topo e uma faixa de 4 px; icones padrao do SgConfirmationDialog sao do Material; zIndex so cumpre o contrato (a ordem e a do Overlay); anchorRef virou GlobalKey; sem arrastar/redimensionar (o React nao tem); golden com fonte de teste"
+  },
+  "SgConfirmationDialog": {
+    "status": "parcial",
+    "motivo": "lockBodyScroll sem efeito (o fundo modal ja bloqueia); props de classe CSS aceitas sem efeito; acento do topo e uma faixa de 4 px; icones padrao do SgConfirmationDialog sao do Material; zIndex so cumpre o contrato (a ordem e a do Overlay); anchorRef virou GlobalKey; sem arrastar/redimensionar (o React nao tem); golden com fonte de teste"
+  },
+  "SgPopup": {
+    "status": "parcial",
+    "motivo": "lockBodyScroll sem efeito (o fundo modal ja bloqueia); props de classe CSS aceitas sem efeito; acento do topo e uma faixa de 4 px; icones padrao do SgConfirmationDialog sao do Material; zIndex so cumpre o contrato (a ordem e a do Overlay); anchorRef virou GlobalKey; sem arrastar/redimensionar (o React nao tem); golden com fonte de teste"
+  },
+  "SgGrid": {
+    "status": "parcial",
+    "motivo": "breakpoints medem a janela como o @media; span/rowSpan so lidos de filhos SgPanel e rowSpan aproximado; grow so vale com pai Flex e stretch so iguala irmaos com eixo transversal fixo; scrollable so na vertical e scrollbarGutter/contentClassName sem efeito; gap/padding/width aceitam numero, Npx e Nrem (calc/vh/vw ignorados)"
+  },
+  "SgStack": {
+    "status": "parcial",
+    "motivo": "breakpoints medem a janela como o @media; span/rowSpan so lidos de filhos SgPanel e rowSpan aproximado; grow so vale com pai Flex e stretch so iguala irmaos com eixo transversal fixo; scrollable so na vertical e scrollbarGutter/contentClassName sem efeito; gap/padding/width aceitam numero, Npx e Nrem (calc/vh/vw ignorados)"
+  },
+  "SgPanel": {
+    "status": "parcial",
+    "motivo": "breakpoints medem a janela como o @media; span/rowSpan so lidos de filhos SgPanel e rowSpan aproximado; grow so vale com pai Flex e stretch so iguala irmaos com eixo transversal fixo; scrollable so na vertical e scrollbarGutter/contentClassName sem efeito; gap/padding/width aceitam numero, Npx e Nrem (calc/vh/vw ignorados)"
+  },
+  "SgCard": {
+    "status": "parcial",
+    "motivo": "posicao arrastada (dragPersistKey/id) so em memoria (SgCardPositionStore) ate haver shared_preferences no uso; onPositionChange dispara na montagem como no React; golden com fonte de teste"
+  },
+  "SgBreadcrumb": {
+    "status": "parcial",
+    "motivo": "href nao navega (sem url_launcher): item com href ou onClick e clicavel e dispara onClick e onNavigate"
+  },
+  "SgCarousel": {
+    "status": "parcial",
+    "motivo": "extras do Flutter (deslizar o dedo, pausar o autoplay ao tocar); no modo vertical os botoes e indicadores ocupam 20 px em cima/baixo e 24 px a direita (toque fora da area do pai nao chega); vertical sem height usa 300 (o React colapsaria a 0)"
   }
 }

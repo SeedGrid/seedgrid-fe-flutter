@@ -13,6 +13,27 @@ import 'package:seedgrid_components/seedgrid_components.dart';
 /// Respiro minimo, em pixels, entre a borda superior da area de conteudo e o titulo da secao.
 const double kAnchorGap = 12;
 
+/// Local atual do showcase (pagina e ancora), fornecido por quem guarda a URL. A pagina le a
+/// ancora inicial daqui (ao abrir a URL com #exemplo-3) e avisa [onAnchorChanged] quando o usuario toca num link.
+class ShowcaseLocation extends InheritedWidget {
+  const ShowcaseLocation({
+    super.key,
+    required this.anchor,
+    required this.onAnchorChanged,
+    required super.child,
+  });
+
+  /// Id da ancora da URL (exemplo-3, playground ou props-reference) ou nulo.
+  final String? anchor;
+  final ValueChanged<String> onAnchorChanged;
+
+  static ShowcaseLocation? maybeOf(BuildContext context) =>
+      context.getInheritedWidgetOfExactType<ShowcaseLocation>();
+
+  @override
+  bool updateShouldNotify(ShowcaseLocation old) => old.anchor != anchor;
+}
+
 /// Um exemplo de componente. [code] deve vir de `Snippets` (extraido do mesmo fonte de [preview]).
 class ShowcaseExample {
   const ShowcaseExample({
@@ -114,6 +135,44 @@ class SgShowcasePageState extends State<SgShowcasePage> {
       scrollToKey(_exampleKeys[number - 1]);
   Future<void> scrollToProps() => scrollToKey(_propsKey);
 
+  /// Chave da secao pelo id da ancora (`exemplo-N`, `playground`, `props-reference`), ou nulo.
+  GlobalKey? _keyForAnchor(String id) {
+    if (id == 'props-reference') return _propsKey;
+    if (id == 'playground') {
+      return widget.playground == null ? null : _playgroundKey;
+    }
+    final m = RegExp(r'^exemplo-(\d+)$').firstMatch(id);
+    if (m == null) return null;
+    final n = int.parse(m.group(1)!);
+    return n >= 1 && n <= _exampleKeys.length ? _exampleKeys[n - 1] : null;
+  }
+
+  /// Rola ate a ancora pelo id (usado ao abrir a pagina com `#exemplo-3` na URL).
+  Future<void> scrollToAnchor(String id, {bool animate = true}) async {
+    final key = _keyForAnchor(id);
+    if (key != null) await scrollToKey(key, animate: animate);
+  }
+
+  /// Toque num link do cabecalho: rola e avisa quem guarda a URL (`ShowcaseLocation`).
+  Future<void> _go(String id) async {
+    ShowcaseLocation.maybeOf(context)?.onAnchorChanged(id);
+    await scrollToAnchor(id);
+  }
+
+  bool _initialAnchorDone = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final anchor = ShowcaseLocation.maybeOf(context)?.anchor;
+    if (_initialAnchorDone || anchor == null) return;
+    _initialAnchorDone = true;
+    // Depois do primeiro quadro (o conteudo ja tem tamanho) e sem animacao, para abrir ja no lugar.
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      if (mounted) await scrollToAnchor(anchor, animate: false);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -122,18 +181,18 @@ class SgShowcasePageState extends State<SgShowcasePage> {
         _AnchorLink(
           key: ValueKey('link-exemplo-${i + 1}'),
           label: 'Exemplo ${i + 1}',
-          onTap: () => scrollToExample(i + 1),
+          onTap: () => _go('exemplo-${i + 1}'),
         ),
       if (widget.playground != null)
         _AnchorLink(
           key: const ValueKey('link-playground'),
           label: 'Playground',
-          onTap: () => scrollToKey(_playgroundKey),
+          onTap: () => _go('playground'),
         ),
       _AnchorLink(
         key: const ValueKey('link-props-reference'),
         label: 'Props Reference',
-        onTap: scrollToProps,
+        onTap: () => _go('props-reference'),
       ),
     ];
 

@@ -1,0 +1,117 @@
+// dart format off
+// GERADO por tools/showcase_snippets/extract.mjs. NAO EDITE A MAO.
+// Cada constante e o trecho entre `// #region` e `// #endregion` de sg_confirmation_dialog_page.dart: o mesmo codigo que a pagina renderiza.
+
+abstract final class SgConfirmationDialogPageSnippets {
+  /// Region `sg-confirmation-dialog-basico`.
+  static const String sgConfirmationDialogBasico = r'''
+Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    SgButton(
+      label: const Text('Excluir registro'),
+      severity: SgSeverity.danger,
+      onClick: () => setState(() => _basico = true),
+    ),
+    if (_resultado.isNotEmpty) Text(_resultado),
+    SgConfirmationDialog(
+      open: _basico,
+      onOpenChange: (open) => setState(() => _basico = open),
+      title: const Text('Excluir registro?'),
+      message: const Text('Esta ação não pode ser desfeita.'),
+      onConfirm: () => setState(() => _resultado = 'Confirmado'),
+      onCancel: () => setState(() => _resultado = 'Cancelado'),
+    ),
+  ],
+)
+''';
+
+  /// Region `sg-confirmation-dialog-botoes`.
+  static const String sgConfirmationDialogBotoes = r'''
+Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    SgButton(
+      label: const Text('Sair sem salvar'),
+      appearance: SgAppearance.outline,
+      onClick: () => setState(() => _botoes = true),
+    ),
+    SgConfirmationDialog(
+      open: _botoes,
+      onOpenChange: (open) => setState(() => _botoes = open),
+      severity: SgDialogSeverity.danger,
+      title: const Text('Descartar alterações?'),
+      message: const Text(
+        'As alterações não salvas serão perdidas.',
+      ),
+      cancelButton: const SgConfirmationDialogButtonConfig(
+        label: Text('Continuar editando'),
+        icon: Icon(Icons.edit),
+      ),
+      confirmButton: const SgConfirmationDialogButtonConfig(
+        label: Text('Descartar'),
+        icon: Icon(Icons.delete),
+        appearance: SgAppearance.outline,
+      ),
+    ),
+  ],
+)
+''';
+
+  /// Region `sg-confirmation-dialog-icone`.
+  static const String sgConfirmationDialogIcone = r'''
+Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    SgButton(
+      label: const Text('Publicar'),
+      severity: SgSeverity.success,
+      onClick: () => setState(() => _icone = true),
+    ),
+    SgConfirmationDialog(
+      open: _icone,
+      onOpenChange: (open) => setState(() => _icone = open),
+      severity: SgDialogSeverity.success,
+      iconPlacement: SgConfirmationDialogIconPlacement.top,
+      icon: const Icon(Icons.rocket_launch, size: 28),
+      closeable: true,
+      title: const Text('Publicar agora?'),
+      message: const Text('A versão ficará visível para todos.'),
+    ),
+  ],
+)
+''';
+
+  /// Region `sg-confirmation-dialog-severidade`.
+  static const String sgConfirmationDialogSeveridade = r'''
+Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    Wrap(
+      spacing: 8,
+      runSpacing: 8,
+      children: [
+        for (final s in SgDialogSeverity.values)
+          SgButton(
+            label: Text(s.value),
+            appearance: SgAppearance.outline,
+            size: SgSize.sm,
+            onClick: () => setState(() {
+              _sev = s;
+              _severidade = true;
+            }),
+          ),
+      ],
+    ),
+    SgConfirmationDialog(
+      open: _severidade,
+      onOpenChange: (open) => setState(() => _severidade = open),
+      severity: _sev,
+      showSeverityAccent: true,
+      title: Text('Severidade ${_sev.value}'),
+      message: const Text('Veja o ícone e o botão de confirmar.'),
+    ),
+  ],
+)
+''';
+}

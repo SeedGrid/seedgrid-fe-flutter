@@ -57,7 +57,10 @@ for (const f of files) {
   out = out.replace(/\n\n$/, "\n") + "}\n";
   outputs.set(path.join(pagesDir, base + "_page.snippets.g.dart"), out);
 
-  registry.push({ name: classMatch[1], cls: classMatch[1] + "Page", file: `lib/pages/${f}`, importPath: f, examples: found.size });
+  // Colisao de nome (ex.: SgWizardPage e o widget da etapa): `// showcase-name: SgWizard` no topo do arquivo
+  // define o nome da pagina no menu/URL sem mudar o nome da classe.
+  const override = /^\/\/ showcase-name: (\w+)\s*$/m.exec(text);
+  registry.push({ name: override ? override[1] : classMatch[1], cls: classMatch[1] + "Page", file: `lib/pages/${f}`, importPath: f, examples: found.size });
 }
 
 registry.sort((a, b) => {

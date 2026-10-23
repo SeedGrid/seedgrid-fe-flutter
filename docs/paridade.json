@@ -2,18 +2,18 @@
  "versaoReact": "2026.7.1",
  "resumo": {
   "total": 89,
-  "portado": 11,
-  "parcial": 16,
-  "pendente": 62,
+  "portado": 23,
+  "parcial": 30,
+  "pendente": 36,
   "naoAplicavel": 0
  },
  "componentes": [
   {
    "componente": "SgAccordion",
    "onda": 2,
-   "status": "pendente",
+   "status": "portado",
    "motivo": "",
-   "onde": "",
+   "onde": "packages/seedgrid_components/lib/src/layout/containers/sg_accordion.dart",
    "props": 17,
    "propsOmitidas": 0,
    "propsGenericas": 7
@@ -71,9 +71,9 @@
   {
    "componente": "SgBreadcrumb",
    "onda": 2,
-   "status": "pendente",
-   "motivo": "",
-   "onde": "",
+   "status": "parcial",
+   "motivo": "href nao navega (sem url_launcher): item com href ou onClick e clicavel e dispara onClick e onNavigate",
+   "onde": "packages/seedgrid_components/lib/src/layout/containers/sg_breadcrumb.dart",
    "props": 15,
    "propsOmitidas": 2,
    "propsGenericas": 3
@@ -101,9 +101,9 @@
   {
    "componente": "SgCard",
    "onda": 2,
-   "status": "pendente",
-   "motivo": "",
-   "onde": "",
+   "status": "parcial",
+   "motivo": "posicao arrastada (dragPersistKey/id) so em memoria (SgCardPositionStore) ate haver shared_preferences no uso; onPositionChange dispara na montagem como no React; golden com fonte de teste",
+   "onde": "packages/seedgrid_components/lib/src/layout/containers/sg_card.dart",
    "props": 30,
    "propsOmitidas": 0,
    "propsGenericas": 4
@@ -111,9 +111,9 @@
   {
    "componente": "SgCarousel",
    "onda": 2,
-   "status": "pendente",
-   "motivo": "",
-   "onde": "",
+   "status": "parcial",
+   "motivo": "extras do Flutter (deslizar o dedo, pausar o autoplay ao tocar); no modo vertical os botoes e indicadores ocupam 20 px em cima/baixo e 24 px a direita (toque fora da area do pai nao chega); vertical sem height usa 300 (o React colapsaria a 0)",
+   "onde": "packages/seedgrid_components/lib/src/layout/containers/sg_carousel.dart",
    "props": 18,
    "propsOmitidas": 2,
    "propsGenericas": 5
@@ -191,9 +191,9 @@
   {
    "componente": "SgConfirmationDialog",
    "onda": 2,
-   "status": "pendente",
-   "motivo": "",
-   "onde": "",
+   "status": "parcial",
+   "motivo": "lockBodyScroll sem efeito (o fundo modal ja bloqueia); props de classe CSS aceitas sem efeito; acento do topo e uma faixa de 4 px; icones padrao do SgConfirmationDialog sao do Material; zIndex so cumpre o contrato (a ordem e a do Overlay); anchorRef virou GlobalKey; sem arrastar/redimensionar (o React nao tem); golden com fonte de teste",
+   "onde": "packages/seedgrid_components/lib/src/overlay/sg_confirmation_dialog.dart",
    "props": 39,
    "propsOmitidas": 2,
    "propsGenericas": 9
@@ -211,9 +211,9 @@
   {
    "componente": "SgDialog",
    "onda": 2,
-   "status": "pendente",
-   "motivo": "",
-   "onde": "",
+   "status": "parcial",
+   "motivo": "lockBodyScroll sem efeito (o fundo modal ja bloqueia); props de classe CSS aceitas sem efeito; acento do topo e uma faixa de 4 px; icones padrao do SgConfirmationDialog sao do Material; zIndex so cumpre o contrato (a ordem e a do Overlay); anchorRef virou GlobalKey; sem arrastar/redimensionar (o React nao tem); golden com fonte de teste",
+   "onde": "packages/seedgrid_components/lib/src/overlay/sg_dialog.dart",
    "props": 33,
    "propsOmitidas": 2,
    "propsGenericas": 6
@@ -231,9 +231,9 @@
   {
    "componente": "SgDockLayout",
    "onda": 2,
-   "status": "pendente",
-   "motivo": "",
-   "onde": "",
+   "status": "parcial",
+   "motivo": "no React o SgDockLayout guarda o estado das toolbars encaixaveis (nao e motor de layout) e nao ha divisores arrastaveis; persistencia por SgDockLayoutStore plugavel (sem ele, so memoria); a toolbar se registra por registerToolbar(id, key) em vez de achar pelo DOM; SgToolBar ainda nao portada (exemplos usam botoes); className/style nao existem; golden com fonte de teste",
+   "onde": "packages/seedgrid_components/lib/src/layout/dock/sg_dock_layout.dart",
    "props": 5,
    "propsOmitidas": 2,
    "propsGenericas": 1
@@ -251,9 +251,9 @@
   {
    "componente": "SgDockScreen",
    "onda": 2,
-   "status": "pendente",
-   "motivo": "",
-   "onde": "",
+   "status": "parcial",
+   "motivo": "no React o SgDockLayout guarda o estado das toolbars encaixaveis (nao e motor de layout) e nao ha divisores arrastaveis; persistencia por SgDockLayoutStore plugavel (sem ele, so memoria); a toolbar se registra por registerToolbar(id, key) em vez de achar pelo DOM; SgToolBar ainda nao portada (exemplos usam botoes); className/style nao existem; golden com fonte de teste",
+   "onde": "packages/seedgrid_components/lib/src/layout/dock/sg_dock_screen.dart",
    "props": 9,
    "propsOmitidas": 0,
    "propsGenericas": 4
@@ -261,9 +261,9 @@
   {
    "componente": "SgDockZone",
    "onda": 2,
-   "status": "pendente",
-   "motivo": "",
-   "onde": "",
+   "status": "parcial",
+   "motivo": "no React o SgDockLayout guarda o estado das toolbars encaixaveis (nao e motor de layout) e nao ha divisores arrastaveis; persistencia por SgDockLayoutStore plugavel (sem ele, so memoria); a toolbar se registra por registerToolbar(id, key) em vez de achar pelo DOM; SgToolBar ainda nao portada (exemplos usam botoes); className/style nao existem; golden com fonte de teste",
+   "onde": "packages/seedgrid_components/lib/src/layout/dock/sg_dock_zone.dart",
    "props": 4,
    "propsOmitidas": 2,
    "propsGenericas": 0
@@ -271,9 +271,9 @@
   {
    "componente": "SgEnvironmentProvider",
    "onda": 0,
-   "status": "pendente",
+   "status": "portado",
    "motivo": "",
-   "onde": "",
+   "onde": "packages/seedgrid_components/lib/src/providers/sg_environment_provider.dart",
    "props": 2,
    "propsOmitidas": 0,
    "propsGenericas": 1
@@ -281,9 +281,9 @@
   {
    "componente": "SgExpandablePanel",
    "onda": 2,
-   "status": "pendente",
+   "status": "portado",
    "motivo": "",
-   "onde": "",
+   "onde": "packages/seedgrid_components/lib/src/layout/containers/sg_expandable_panel.dart",
    "props": 30,
    "propsOmitidas": 2,
    "propsGenericas": 4
@@ -321,9 +321,9 @@
   {
    "componente": "SgGrid",
    "onda": 2,
-   "status": "pendente",
-   "motivo": "",
-   "onde": "",
+   "status": "parcial",
+   "motivo": "breakpoints medem a janela como o @media; span/rowSpan so lidos de filhos SgPanel e rowSpan aproximado; grow so vale com pai Flex e stretch so iguala irmaos com eixo transversal fixo; scrollable so na vertical e scrollbarGutter/contentClassName sem efeito; gap/padding/width aceitam numero, Npx e Nrem (calc/vh/vw ignorados)",
+   "onde": "packages/seedgrid_components/lib/src/layout/basic/sg_grid.dart",
    "props": 9,
    "propsOmitidas": 0,
    "propsGenericas": 5
@@ -331,9 +331,9 @@
   {
    "componente": "SgGroupBox",
    "onda": 2,
-   "status": "pendente",
+   "status": "portado",
    "motivo": "",
-   "onde": "",
+   "onde": "packages/seedgrid_components/lib/src/layout/basic/sg_group_box.dart",
    "props": 6,
    "propsOmitidas": 2,
    "propsGenericas": 2
@@ -561,9 +561,9 @@
   {
    "componente": "SgPageControl",
    "onda": 2,
-   "status": "pendente",
+   "status": "portado",
    "motivo": "",
-   "onde": "",
+   "onde": "packages/seedgrid_components/lib/src/layout/containers/sg_page_control.dart",
    "props": 21,
    "propsOmitidas": 2,
    "propsGenericas": 3
@@ -571,9 +571,9 @@
   {
    "componente": "SgPageControlPage",
    "onda": 2,
-   "status": "pendente",
+   "status": "portado",
    "motivo": "",
-   "onde": "",
+   "onde": "packages/seedgrid_components/lib/src/layout/containers/sg_page_control.dart",
    "props": 11,
    "propsOmitidas": 2,
    "propsGenericas": 0
@@ -581,9 +581,9 @@
   {
    "componente": "SgPanel",
    "onda": 2,
-   "status": "pendente",
-   "motivo": "",
-   "onde": "",
+   "status": "parcial",
+   "motivo": "breakpoints medem a janela como o @media; span/rowSpan so lidos de filhos SgPanel e rowSpan aproximado; grow so vale com pai Flex e stretch so iguala irmaos com eixo transversal fixo; scrollable so na vertical e scrollbarGutter/contentClassName sem efeito; gap/padding/width aceitam numero, Npx e Nrem (calc/vh/vw ignorados)",
+   "onde": "packages/seedgrid_components/lib/src/layout/basic/sg_panel.dart",
    "props": 20,
    "propsOmitidas": 0,
    "propsGenericas": 7
@@ -611,9 +611,9 @@
   {
    "componente": "SgPopup",
    "onda": 2,
-   "status": "pendente",
-   "motivo": "",
-   "onde": "",
+   "status": "parcial",
+   "motivo": "lockBodyScroll sem efeito (o fundo modal ja bloqueia); props de classe CSS aceitas sem efeito; acento do topo e uma faixa de 4 px; icones padrao do SgConfirmationDialog sao do Material; zIndex so cumpre o contrato (a ordem e a do Overlay); anchorRef virou GlobalKey; sem arrastar/redimensionar (o React nao tem); golden com fonte de teste",
+   "onde": "packages/seedgrid_components/lib/src/overlay/sg_popup.dart",
    "props": 21,
    "propsOmitidas": 2,
    "propsGenericas": 6
@@ -661,9 +661,9 @@
   {
    "componente": "SgRealtimeProvider",
    "onda": 2,
-   "status": "pendente",
-   "motivo": "",
-   "onde": "",
+   "status": "parcial",
+   "motivo": "o cliente entra por connectionFactory (SgPulseConnection injetavel; sem ele o status fica unavailable; adaptador do SDK Pulse em lib/src/providers/PULSE_ADAPTER.md, nao ligado por dependencia); tokenEndpoint precisa de URL absoluta; enabled virou disabled, children virou child; hooks viraram widget e funcao",
+   "onde": "packages/seedgrid_components/lib/src/providers/sg_realtime_provider.dart",
    "props": 8,
    "propsOmitidas": 0,
    "propsGenericas": 4
@@ -681,9 +681,9 @@
   {
    "componente": "SgScreen",
    "onda": 2,
-   "status": "pendente",
+   "status": "portado",
    "motivo": "",
-   "onde": "",
+   "onde": "packages/seedgrid_components/lib/src/layout/basic/sg_screen.dart",
    "props": 5,
    "propsOmitidas": 0,
    "propsGenericas": 3
@@ -741,9 +741,9 @@
   {
    "componente": "SgStack",
    "onda": 2,
-   "status": "pendente",
-   "motivo": "",
-   "onde": "",
+   "status": "parcial",
+   "motivo": "breakpoints medem a janela como o @media; span/rowSpan so lidos de filhos SgPanel e rowSpan aproximado; grow so vale com pai Flex e stretch so iguala irmaos com eixo transversal fixo; scrollable so na vertical e scrollbarGutter/contentClassName sem efeito; gap/padding/width aceitam numero, Npx e Nrem (calc/vh/vw ignorados)",
+   "onde": "packages/seedgrid_components/lib/src/layout/basic/sg_stack.dart",
    "props": 7,
    "propsOmitidas": 0,
    "propsGenericas": 1
@@ -791,9 +791,9 @@
   {
    "componente": "SgToastHost",
    "onda": 2,
-   "status": "pendente",
+   "status": "portado",
    "motivo": "",
-   "onde": "",
+   "onde": "packages/seedgrid_components/lib/src/feedback/sg_toaster.dart",
    "props": 8,
    "propsOmitidas": 0,
    "propsGenericas": 1
@@ -801,9 +801,9 @@
   {
    "componente": "SgToaster",
    "onda": 2,
-   "status": "pendente",
+   "status": "portado",
    "motivo": "",
-   "onde": "",
+   "onde": "packages/seedgrid_components/lib/src/feedback/sg_toaster.dart",
    "props": 8,
    "propsOmitidas": 0,
    "propsGenericas": 1
@@ -851,9 +851,9 @@
   {
    "componente": "SgWhistleHost",
    "onda": 2,
-   "status": "pendente",
+   "status": "portado",
    "motivo": "",
-   "onde": "",
+   "onde": "packages/seedgrid_components/lib/src/feedback/sg_whistler.dart",
    "props": 6,
    "propsOmitidas": 0,
    "propsGenericas": 1
@@ -861,9 +861,9 @@
   {
    "componente": "SgWhistler",
    "onda": 2,
-   "status": "pendente",
+   "status": "portado",
    "motivo": "",
-   "onde": "",
+   "onde": "packages/seedgrid_components/lib/src/feedback/sg_whistler.dart",
    "props": 6,
    "propsOmitidas": 0,
    "propsGenericas": 1
@@ -871,9 +871,9 @@
   {
    "componente": "SgWizard",
    "onda": 2,
-   "status": "pendente",
-   "motivo": "",
-   "onde": "",
+   "status": "parcial",
+   "motivo": "valida a etapa por SgFormController.trigger(fields) (SgWizardPage.fields e SgWizard.control sao extras): o React foca e sai de cada input e conta [data-sg-error]; erros internos do SgInputText que nao passam pelo formulario nao bloqueiam a etapa",
+   "onde": "packages/seedgrid_components/lib/src/feedback/sg_wizard.dart",
    "props": 13,
    "propsOmitidas": 2,
    "propsGenericas": 6
@@ -881,9 +881,9 @@
   {
    "componente": "SgWizardPage",
    "onda": 2,
-   "status": "pendente",
+   "status": "portado",
    "motivo": "",
-   "onde": "",
+   "onde": "packages/seedgrid_components/lib/src/feedback/sg_wizard.dart",
    "props": 5,
    "propsOmitidas": 2,
    "propsGenericas": 0

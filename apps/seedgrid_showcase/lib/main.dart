@@ -1,12 +1,28 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:seedgrid_theme/seedgrid_theme.dart';
 
 import 'pages/pages.g.dart';
+import 'src/sg_showcase_page.dart';
+import 'src/url_strategy.dart';
 
-void main() => runApp(const ShowcaseApp());
+void main() {
+  configureUrlStrategy();
+  runApp(const ShowcaseApp());
+}
+
+/// Slug da pagina na URL: `SgInputText` -> `sg-input-text`.
+String showcaseSlug(String name) => name
+    .replaceAllMapped(RegExp(r'([a-z0-9])([A-Z])'), (m) => '${m[1]}-${m[2]}')
+    .replaceAllMapped(RegExp(r'([A-Z]+)([A-Z][a-z])'), (m) => '${m[1]}-${m[2]}')
+    .toLowerCase();
 
 class ShowcaseApp extends StatelessWidget {
-  const ShowcaseApp({super.key});
+  const ShowcaseApp({super.key, this.initialUri});
+
+  /// URL de entrada (`/sg-button#exemplo-3`). Padrao: a URL do navegador na web.
+  final Uri? initialUri;
 
   // O SeedThemeProvider fica abaixo do MaterialApp (builder): assim o SgTheme entra no ThemeData
   // que os widgets leem e o claro/escuro troca em tempo de execucao.
@@ -15,21 +31,50 @@ class ShowcaseApp extends StatelessWidget {
     title: 'SeedGrid Flutter',
     theme: ThemeData(useMaterial3: true),
     builder: (context, child) => SeedThemeProvider(child: child!),
-    home: const ShowcaseHome(),
+    home: ShowcaseHome(initialUri: initialUri ?? (kIsWeb ? Uri.base : Uri())),
   );
 }
 
 class ShowcaseHome extends StatefulWidget {
-  const ShowcaseHome({super.key, this.initial = 0});
+  const ShowcaseHome({super.key, this.initialUri});
 
-  final int initial;
+  final Uri? initialUri;
 
   @override
   State<ShowcaseHome> createState() => _ShowcaseHomeState();
 }
 
 class _ShowcaseHomeState extends State<ShowcaseHome> {
-  late int _index = widget.initial;
+  late int _index;
+  String? _anchor;
+
+  @override
+  void initState() {
+    super.initState();
+    final uri = widget.initialUri;
+    final slug = uri == null || uri.pathSegments.isEmpty
+        ? null
+        : uri.pathSegments.last;
+    final found = slug == null
+        ? -1
+        : kShowcasePages.indexWhere((p) => showcaseSlug(p.name) == slug);
+    _index = found < 0 ? 0 : found;
+    // Ancora so vale se a pagina da URL existe.
+    _anchor = found < 0 || uri == null || uri.fragment.isEmpty
+        ? null
+        : uri.fragment;
+  }
+
+  /// Escreve `/pagina#ancora` na barra de enderecos (web), sem empilhar historico.
+  void _syncUrl() {
+    SystemNavigator.routeInformationUpdated(
+      uri: Uri(
+        path: '/${showcaseSlug(kShowcasePages[_index].name)}',
+        fragment: _anchor,
+      ),
+      replace: true,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,9 +90,16 @@ class _ShowcaseHomeState extends State<ShowcaseHome> {
         sg.currentMode == Brightness.dark ? Brightness.light : Brightness.dark,
       ),
     );
-    final page = KeyedSubtree(
-      key: ValueKey(_index),
-      child: kShowcasePages[_index].builder(context),
+    final page = ShowcaseLocation(
+      anchor: _anchor,
+      onAnchorChanged: (id) {
+        _anchor = id;
+        _syncUrl();
+      },
+      child: KeyedSubtree(
+        key: ValueKey(_index),
+        child: kShowcasePages[_index].builder(context),
+      ),
     );
     final menu = ListView(
       children: [
@@ -57,7 +109,11 @@ class _ShowcaseHomeState extends State<ShowcaseHome> {
             title: Text(kShowcasePages[i].name),
             selected: i == _index,
             onTap: () {
-              setState(() => _index = i);
+              setState(() {
+                _index = i;
+                _anchor = null;
+              });
+              _syncUrl();
               if (!wide) Navigator.of(context).maybePop();
             },
           ),

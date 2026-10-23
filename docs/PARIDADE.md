@@ -2,14 +2,14 @@
 
 > Gerado por `node tools/parity_table/generate.mjs` a partir do @seedgrid/fe-components 2026.7.1. Não edite à mão.
 
-**89 componentes**: 11 portados, 16 parciais, 62 pendentes, 0 não aplicáveis.
+**89 componentes**: 23 portados, 30 parciais, 36 pendentes, 0 não aplicáveis.
 
 "Props omitidas" = props do React que não existem no Flutter de propósito (`className`, `style`, `register`, HTML; ver ADR 50). "Props genéricas" = props cujo tipo Dart do contrato ainda é genérico (função, união, tipo a portar; ver `tools/gen_props/excecoes.json`).
 
 | Onda | Componente | Estado | Props | Omitidas | Genéricas | Onde / motivo |
 |---|---|---|---|---|---|---|
 | 0 | SgComponentsI18nProvider | portado | 3 | 0 | 2 | packages/seedgrid_components/lib/src/i18n/i18n.dart (SgComponentsI18nProvider, useComponentsI18n) |
-| 0 | SgEnvironmentProvider | pendente | 2 | 0 | 1 |  |
+| 0 | SgEnvironmentProvider | portado | 2 | 0 | 1 | packages/seedgrid_components/lib/src/providers/sg_environment_provider.dart |
 | 1 | SgAvatar | portado | 14 | 0 | 2 | packages/seedgrid_components/lib/src/commons/sg_avatar.dart |
 | 1 | SgAvatarGroup | portado | 9 | 0 | 1 | packages/seedgrid_components/lib/src/commons/sg_avatar.dart |
 | 1 | SgBadge | portado | 24 | 2 | 4 | packages/seedgrid_components/lib/src/commons/sg_badge.dart |
@@ -36,31 +36,31 @@
 | 1 | SgSlider | parcial | 17 | 2 | 5 | packages/seedgrid_components/lib/src/inputs/choice/sg_slider.dart — e o Slider do Material tematizado, nao CustomPainter (o React usa o controle nativo do navegador); goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50) |
 | 1 | SgStepperInput | portado | 19 | 3 | 5 | packages/seedgrid_components/lib/src/inputs/number/sg_stepper_input.dart |
 | 1 | SgToggleSwitch | parcial | 27 | 3 | 7 | packages/seedgrid_components/lib/src/inputs/choice/sg_toggle_switch.dart — enabled virou disabled (ADR 50); goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50) |
-| 2 | SgAccordion | pendente | 17 | 0 | 7 |  |
-| 2 | SgBreadcrumb | pendente | 15 | 2 | 3 |  |
-| 2 | SgCard | pendente | 30 | 0 | 4 |  |
-| 2 | SgCarousel | pendente | 18 | 2 | 5 |  |
-| 2 | SgConfirmationDialog | pendente | 39 | 2 | 9 |  |
-| 2 | SgDialog | pendente | 33 | 2 | 6 |  |
-| 2 | SgDockLayout | pendente | 5 | 2 | 1 |  |
-| 2 | SgDockScreen | pendente | 9 | 0 | 4 |  |
-| 2 | SgDockZone | pendente | 4 | 2 | 0 |  |
-| 2 | SgExpandablePanel | pendente | 30 | 2 | 4 |  |
-| 2 | SgGrid | pendente | 9 | 0 | 5 |  |
-| 2 | SgGroupBox | pendente | 6 | 2 | 2 |  |
-| 2 | SgPageControl | pendente | 21 | 2 | 3 |  |
-| 2 | SgPageControlPage | pendente | 11 | 2 | 0 |  |
-| 2 | SgPanel | pendente | 20 | 0 | 7 |  |
-| 2 | SgPopup | pendente | 21 | 2 | 6 |  |
-| 2 | SgRealtimeProvider | pendente | 8 | 0 | 4 |  |
-| 2 | SgScreen | pendente | 5 | 0 | 3 |  |
-| 2 | SgStack | pendente | 7 | 0 | 1 |  |
-| 2 | SgToaster | pendente | 8 | 0 | 1 |  |
-| 2 | SgToastHost | pendente | 8 | 0 | 1 |  |
-| 2 | SgWhistleHost | pendente | 6 | 0 | 1 |  |
-| 2 | SgWhistler | pendente | 6 | 0 | 1 |  |
-| 2 | SgWizard | pendente | 13 | 2 | 6 |  |
-| 2 | SgWizardPage | pendente | 5 | 2 | 0 |  |
+| 2 | SgAccordion | portado | 17 | 0 | 7 | packages/seedgrid_components/lib/src/layout/containers/sg_accordion.dart |
+| 2 | SgBreadcrumb | parcial | 15 | 2 | 3 | packages/seedgrid_components/lib/src/layout/containers/sg_breadcrumb.dart — href nao navega (sem url_launcher): item com href ou onClick e clicavel e dispara onClick e onNavigate |
+| 2 | SgCard | parcial | 30 | 0 | 4 | packages/seedgrid_components/lib/src/layout/containers/sg_card.dart — posicao arrastada (dragPersistKey/id) so em memoria (SgCardPositionStore) ate haver shared_preferences no uso; onPositionChange dispara na montagem como no React; golden com fonte de teste |
+| 2 | SgCarousel | parcial | 18 | 2 | 5 | packages/seedgrid_components/lib/src/layout/containers/sg_carousel.dart — extras do Flutter (deslizar o dedo, pausar o autoplay ao tocar); no modo vertical os botoes e indicadores ocupam 20 px em cima/baixo e 24 px a direita (toque fora da area do pai nao chega); vertical sem height usa 300 (o React colapsaria a 0) |
+| 2 | SgConfirmationDialog | parcial | 39 | 2 | 9 | packages/seedgrid_components/lib/src/overlay/sg_confirmation_dialog.dart — lockBodyScroll sem efeito (o fundo modal ja bloqueia); props de classe CSS aceitas sem efeito; acento do topo e uma faixa de 4 px; icones padrao do SgConfirmationDialog sao do Material; zIndex so cumpre o contrato (a ordem e a do Overlay); anchorRef virou GlobalKey; sem arrastar/redimensionar (o React nao tem); golden com fonte de teste |
+| 2 | SgDialog | parcial | 33 | 2 | 6 | packages/seedgrid_components/lib/src/overlay/sg_dialog.dart — lockBodyScroll sem efeito (o fundo modal ja bloqueia); props de classe CSS aceitas sem efeito; acento do topo e uma faixa de 4 px; icones padrao do SgConfirmationDialog sao do Material; zIndex so cumpre o contrato (a ordem e a do Overlay); anchorRef virou GlobalKey; sem arrastar/redimensionar (o React nao tem); golden com fonte de teste |
+| 2 | SgDockLayout | parcial | 5 | 2 | 1 | packages/seedgrid_components/lib/src/layout/dock/sg_dock_layout.dart — no React o SgDockLayout guarda o estado das toolbars encaixaveis (nao e motor de layout) e nao ha divisores arrastaveis; persistencia por SgDockLayoutStore plugavel (sem ele, so memoria); a toolbar se registra por registerToolbar(id, key) em vez de achar pelo DOM; SgToolBar ainda nao portada (exemplos usam botoes); className/style nao existem; golden com fonte de teste |
+| 2 | SgDockScreen | parcial | 9 | 0 | 4 | packages/seedgrid_components/lib/src/layout/dock/sg_dock_screen.dart — no React o SgDockLayout guarda o estado das toolbars encaixaveis (nao e motor de layout) e nao ha divisores arrastaveis; persistencia por SgDockLayoutStore plugavel (sem ele, so memoria); a toolbar se registra por registerToolbar(id, key) em vez de achar pelo DOM; SgToolBar ainda nao portada (exemplos usam botoes); className/style nao existem; golden com fonte de teste |
+| 2 | SgDockZone | parcial | 4 | 2 | 0 | packages/seedgrid_components/lib/src/layout/dock/sg_dock_zone.dart — no React o SgDockLayout guarda o estado das toolbars encaixaveis (nao e motor de layout) e nao ha divisores arrastaveis; persistencia por SgDockLayoutStore plugavel (sem ele, so memoria); a toolbar se registra por registerToolbar(id, key) em vez de achar pelo DOM; SgToolBar ainda nao portada (exemplos usam botoes); className/style nao existem; golden com fonte de teste |
+| 2 | SgExpandablePanel | portado | 30 | 2 | 4 | packages/seedgrid_components/lib/src/layout/containers/sg_expandable_panel.dart |
+| 2 | SgGrid | parcial | 9 | 0 | 5 | packages/seedgrid_components/lib/src/layout/basic/sg_grid.dart — breakpoints medem a janela como o @media; span/rowSpan so lidos de filhos SgPanel e rowSpan aproximado; grow so vale com pai Flex e stretch so iguala irmaos com eixo transversal fixo; scrollable so na vertical e scrollbarGutter/contentClassName sem efeito; gap/padding/width aceitam numero, Npx e Nrem (calc/vh/vw ignorados) |
+| 2 | SgGroupBox | portado | 6 | 2 | 2 | packages/seedgrid_components/lib/src/layout/basic/sg_group_box.dart |
+| 2 | SgPageControl | portado | 21 | 2 | 3 | packages/seedgrid_components/lib/src/layout/containers/sg_page_control.dart |
+| 2 | SgPageControlPage | portado | 11 | 2 | 0 | packages/seedgrid_components/lib/src/layout/containers/sg_page_control.dart |
+| 2 | SgPanel | parcial | 20 | 0 | 7 | packages/seedgrid_components/lib/src/layout/basic/sg_panel.dart — breakpoints medem a janela como o @media; span/rowSpan so lidos de filhos SgPanel e rowSpan aproximado; grow so vale com pai Flex e stretch so iguala irmaos com eixo transversal fixo; scrollable so na vertical e scrollbarGutter/contentClassName sem efeito; gap/padding/width aceitam numero, Npx e Nrem (calc/vh/vw ignorados) |
+| 2 | SgPopup | parcial | 21 | 2 | 6 | packages/seedgrid_components/lib/src/overlay/sg_popup.dart — lockBodyScroll sem efeito (o fundo modal ja bloqueia); props de classe CSS aceitas sem efeito; acento do topo e uma faixa de 4 px; icones padrao do SgConfirmationDialog sao do Material; zIndex so cumpre o contrato (a ordem e a do Overlay); anchorRef virou GlobalKey; sem arrastar/redimensionar (o React nao tem); golden com fonte de teste |
+| 2 | SgRealtimeProvider | parcial | 8 | 0 | 4 | packages/seedgrid_components/lib/src/providers/sg_realtime_provider.dart — o cliente entra por connectionFactory (SgPulseConnection injetavel; sem ele o status fica unavailable; adaptador do SDK Pulse em lib/src/providers/PULSE_ADAPTER.md, nao ligado por dependencia); tokenEndpoint precisa de URL absoluta; enabled virou disabled, children virou child; hooks viraram widget e funcao |
+| 2 | SgScreen | portado | 5 | 0 | 3 | packages/seedgrid_components/lib/src/layout/basic/sg_screen.dart |
+| 2 | SgStack | parcial | 7 | 0 | 1 | packages/seedgrid_components/lib/src/layout/basic/sg_stack.dart — breakpoints medem a janela como o @media; span/rowSpan so lidos de filhos SgPanel e rowSpan aproximado; grow so vale com pai Flex e stretch so iguala irmaos com eixo transversal fixo; scrollable so na vertical e scrollbarGutter/contentClassName sem efeito; gap/padding/width aceitam numero, Npx e Nrem (calc/vh/vw ignorados) |
+| 2 | SgToaster | portado | 8 | 0 | 1 | packages/seedgrid_components/lib/src/feedback/sg_toaster.dart |
+| 2 | SgToastHost | portado | 8 | 0 | 1 | packages/seedgrid_components/lib/src/feedback/sg_toaster.dart |
+| 2 | SgWhistleHost | portado | 6 | 0 | 1 | packages/seedgrid_components/lib/src/feedback/sg_whistler.dart |
+| 2 | SgWhistler | portado | 6 | 0 | 1 | packages/seedgrid_components/lib/src/feedback/sg_whistler.dart |
+| 2 | SgWizard | parcial | 13 | 2 | 6 | packages/seedgrid_components/lib/src/feedback/sg_wizard.dart — valida a etapa por SgFormController.trigger(fields) (SgWizardPage.fields e SgWizard.control sao extras): o React foca e sai de cada input e conta [data-sg-error]; erros internos do SgInputText que nao passam pelo formulario nao bloqueiam a etapa |
+| 2 | SgWizardPage | portado | 5 | 2 | 0 | packages/seedgrid_components/lib/src/feedback/sg_wizard.dart |
 | 3 | SgAutocomplete | pendente | 72 | 3 | 26 |  |
 | 3 | SgCalendar | pendente | 18 | 0 | 11 |  |
 | 3 | SgCombobox | pendente | 56 | 3 | 21 |  |
