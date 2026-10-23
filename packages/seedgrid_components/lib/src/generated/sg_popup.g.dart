@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -13,58 +14,40 @@ import '../props/sg_prop_spec.dart';
 abstract interface class SgPopupProps {
   /// Lista de acoes contextuais renderizadas no popup. Tipo TS: `SgPopupAction[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get actions;
-
   /// Padrão: `start`.
   SgPopupAlign? get align;
-
   /// Elemento ancora usado para posicionar o popup. Tipo TS: `React.RefObject&lt;HTMLElement&gt;` (sem tradução exata; ver excecoes.json).
   Object get anchorRef;
-
   /// No React e `children`.
   Widget? get child;
-
   /// Padrão: `true`.
   bool? get closeOnEscape;
-
   /// Fecha o popup quando o usuario clica fora dele. Padrão: `true`.
   bool? get closeOnOutsideClick;
-
   /// Padrão: `false`.
   bool? get defaultOpen;
-
   /// Padrão: `180`. Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get minWidth;
-
   /// Padrão: `8`.
   num? get offset;
-
   /// Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onClose;
-
   /// Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onOpen;
-
   /// Callback disparado quando o estado de abertura muda. Tipo TS: `((open: boolean) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onOpenChange;
-
   /// Controla a visibilidade do popup em modo controlado.
   bool? get open;
-
   /// Padrão: `8`.
   num? get padding;
-
   /// Posicionamento principal do popup em relacao a ancora. Padrão: `auto`.
   SgPopupPlacement? get placement;
-
   /// Padrão: `right`.
   SgPopupPreferPlacement? get preferPlacement;
-
   /// Subtitulo opcional do popup.
   String? get subtitle;
-
   /// Titulo opcional do popup.
   String? get title;
-
   /// Padrão: `60`.
   num? get zIndex;
 }

@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -10,21 +11,16 @@ import '../props/sg_prop_spec.dart';
 /// O widget deve declarar `implements SgToastHostProps`.
 abstract interface class SgToastHostProps {
   bool? get closeButton;
-
   /// Tipo TS: `Partial&lt;Record&lt;SgToastType, SgToasterTypeColors&gt;&gt;` (sem tradução exata; ver excecoes.json).
   Object? get customColors;
-
   /// Duracao padrao aplicada aos toasts deste host. Padrão: `4000`.
   num? get duration;
-
   /// Posicao dos toasts renderizados por este host. Padrão: `top-right`.
   SgToasterPosition? get position;
   bool? get richColors;
-
   /// Arredonda os cantos de cada toast (rounded-md). Desligue para cantos retos.
   bool? get rounded;
   num? get transparency;
-
   /// Quantidade maxima de toasts visiveis. Padrão: `6`.
   num? get visibleToasts;
 }
@@ -63,14 +59,7 @@ const List<SgPropSpec> sgToastHostPropSpecs = <SgPropSpec>[
     required: false,
     defaultValue: 'top-right',
     description: 'Posicao dos toasts renderizados por este host.',
-    values: <String>[
-      'top-left',
-      'top-right',
-      'bottom-left',
-      'bottom-right',
-      'top-center',
-      'bottom-center',
-    ],
+    values: <String>['top-left', 'top-right', 'bottom-left', 'bottom-right', 'top-center', 'bottom-center'],
   ),
   SgPropSpec(
     name: 'richColors',
@@ -85,8 +74,7 @@ const List<SgPropSpec> sgToastHostPropSpecs = <SgPropSpec>[
     type: 'bool?',
     tsType: 'boolean',
     required: false,
-    description:
-        'Arredonda os cantos de cada toast (rounded-md). Desligue para cantos retos.',
+    description: 'Arredonda os cantos de cada toast (rounded-md). Desligue para cantos retos.',
   ),
   SgPropSpec(
     name: 'transparency',

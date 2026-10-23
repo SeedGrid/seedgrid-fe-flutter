@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -14,40 +15,29 @@ abstract interface class SgQRCodeProps {
   /// Cor de fundo do QR Code. Padrão: `#FFFFFF`.
   String? get bgColor;
   Widget? get emptyFallback;
-
   /// Padrão: `H`.
   SgQRCodeErrorCorrectionLevel? get errorCorrectionLevel;
-
   /// Cor principal do QR Code. Padrão: `#000000`.
   String? get fgColor;
   String? get imageClassName;
-
   /// Padrão: `Logo`.
   String? get logoAlt;
-
   /// Padrão: `#FFFFFF`.
   String? get logoBackgroundColor;
-
   /// Padrão: `12`.
   num? get logoBorderRadius;
   String? get logoClassName;
-
   /// Padrão: `6`.
   num? get logoPadding;
   num? get logoSize;
-
   /// URL da logo exibida no centro do QR.
   String? get logoSrc;
-
   /// Padrão: `2`.
   num? get margin;
-
   /// Tipo TS: `((error: Error) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onGenerateError;
-
   /// Tamanho do QR em pixels. Padrão: `220`.
   num? get size;
-
   /// Valor textual codificado no QR Code.
   String? get value;
 }

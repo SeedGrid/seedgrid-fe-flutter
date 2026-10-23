@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -13,100 +14,74 @@ import '../props/sg_prop_spec.dart';
 abstract interface class SgAutocompleteProps {
   /// Permite valor fora da lista. Padrão: `false`.
   bool? get allowCustomValue;
-
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get borderRadius;
-
   /// Padrão: `true`.
   bool? get cacheEnabled;
-
   /// Padrão: `5 * 60 * 1000`.
   num? get cacheTTL;
   bool? get clearButton;
-
   /// Padrão: `false`.
   bool? get clearOnSelect;
-
   /// Tipo TS: `any` (sem tradução exata; ver excecoes.json).
   Object? get control;
-
   /// Debounce da pesquisa em milissegundos. Padrão: `300`.
   num? get delay;
   SgAutocompleteElevation? get elevation;
-
   /// No React a prop se chama `enabled` (valor invertido); ver ADR 50.
   bool? get disabled;
   String? get error;
   bool? get filled;
-
   /// Tipo TS: `((item: SgAutocompleteItem) =&gt; string)` (sem tradução exata; ver excecoes.json).
   Function? get formatSelection;
   bool? get grouped;
   bool? get groupped;
   String? get hintText;
-
   /// Tipo TS: `React.ReactNode[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get iconButtons;
-
   /// Identificador unico do campo.
   String get id;
-
   /// Tipo TS: `(React.InputHTMLAttributes&lt;HTMLInputElement&gt; & { ref?: React.Ref&lt;HTMLInputElement&gt;; })` (sem tradução exata; ver excecoes.json).
   Object? get inputProps;
-
   /// Tipo TS: `((item: SgAutocompleteItem) =&gt; React.ReactNode)` (sem tradução exata; ver excecoes.json).
   Function? get itemTooltip;
-
   /// Rotulo exibido ao usuario.
   String? get label;
   SgAutocompleteLabelAlign? get labelAlign;
   SgAutocompleteLabelPosition? get labelPosition;
   String? get labelText;
-
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get labelWidth;
   String? get loadingText;
-
   /// Tipo TS: `((raw: T) =&gt; SgAutocompleteItem)` (sem tradução exata; ver excecoes.json).
   Function? get mapItem;
   num? get maxLength;
   String? get maxLengthMessage;
-
   /// Limite de resultados exibidos. Padrão: `50`.
   num? get maxResult;
   num? get minLength;
-
   /// Quantidade minima de caracteres para buscar. Padrão: `2`.
   num? get minLengthForSearch;
   String? get minLengthMessage;
   num? get minNumberOfWords;
   String? get minNumberOfWordsMessage;
   String? get name;
-
   /// Tipo TS: `((value: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onChange;
-
   /// Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onClear;
-
   /// Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onEnter;
-
   /// Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onExit;
-
   /// Tipo TS: `((open: boolean) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onOpenChange;
-
   /// Tipo TS: `((query: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onSearch;
-
   /// Callback disparado ao selecionar item. Tipo TS: `((item: SgAutocompleteItem) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onSelect;
-
   /// Tipo TS: `((message: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onValidation;
-
   /// Abre a lista ao focar; com um item ja selecionado abre a lista completa. Padrão: `false`.
   bool? get openOnFocus;
   String? get placeholder;
@@ -114,44 +89,33 @@ abstract interface class SgAutocompleteProps {
   Widget? get prefixIcon;
   String? get prefixText;
   bool? get readOnly;
-
   /// Tipo TS: `((query: string) =&gt; React.ReactNode)` (sem tradução exata; ver excecoes.json).
   Function? get renderEmpty;
-
   /// Tipo TS: `((query: string, hasResults: boolean) =&gt; React.ReactNode)` (sem tradução exata; ver excecoes.json).
   Function? get renderFooter;
-
   /// Tipo TS: `((group: string) =&gt; React.ReactNode)` (sem tradução exata; ver excecoes.json).
   Function? get renderGroupHeader;
-
   /// Tipo TS: `((item: SgAutocompleteItem, isActive: boolean) =&gt; React.ReactNode)` (sem tradução exata; ver excecoes.json).
   Function? get renderItem;
-
   /// Tipo TS: `((item: SgAutocompleteItem) =&gt; React.ReactNode)` (sem tradução exata; ver excecoes.json).
   Function? get renderValue;
   bool? get required;
   String? get requiredMessage;
-
   /// Tipo TS: `RegisterOptions&lt;any&gt;` (sem tradução exata; ver excecoes.json).
   Object? get rules;
   bool? get showCharCounter;
-
   /// Exibe o botao que abre/fecha a lista. Abre a lista completa quando o texto e uma selecao; preserva o filtro quando o usuario digitou. Padrão: `false`.
   bool? get showDropDownButton;
-
   /// Fonte de resultados para busca. Tipo TS: `SgAutocompleteSource&lt;T&gt;` (sem tradução exata; ver excecoes.json).
   Function get source;
   String? get suffixText;
   SgAutocompleteTextInputType? get textInputType;
-
   /// Tipo TS: `React.HTMLInputTypeAttribute` (sem tradução exata; ver excecoes.json).
   Object? get type;
   bool? get validateOnBlur;
-
   /// Tipo TS: `((value: string) =&gt; string)` (sem tradução exata; ver excecoes.json).
   Function? get validation;
   String? get value;
-
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get width;
   bool? get withBorder;
@@ -302,8 +266,7 @@ const List<SgPropSpec> sgAutocompletePropSpecs = <SgPropSpec>[
     name: 'inputProps',
     reactName: 'inputProps',
     type: 'Object?',
-    tsType:
-        '(React.InputHTMLAttributes<HTMLInputElement> & { ref?: React.Ref<HTMLInputElement>; })',
+    tsType: '(React.InputHTMLAttributes<HTMLInputElement> & { ref?: React.Ref<HTMLInputElement>; })',
     required: false,
     exact: false,
   ),
@@ -508,8 +471,7 @@ const List<SgPropSpec> sgAutocompletePropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description:
-        'Abre a lista ao focar; com um item ja selecionado abre a lista completa.',
+    description: 'Abre a lista ao focar; com um item ja selecionado abre a lista completa.',
   ),
   SgPropSpec(
     name: 'placeholder',
@@ -574,8 +536,7 @@ const List<SgPropSpec> sgAutocompletePropSpecs = <SgPropSpec>[
     name: 'renderItem',
     reactName: 'renderItem',
     type: 'Function?',
-    tsType:
-        '((item: SgAutocompleteItem, isActive: boolean) => React.ReactNode)',
+    tsType: '((item: SgAutocompleteItem, isActive: boolean) => React.ReactNode)',
     required: false,
     exact: false,
   ),
@@ -623,8 +584,7 @@ const List<SgPropSpec> sgAutocompletePropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description:
-        'Exibe o botao que abre/fecha a lista. Abre a lista completa quando o texto e uma selecao; preserva o filtro quando o usuario digitou.',
+    description: 'Exibe o botao que abre/fecha a lista. Abre a lista completa quando o texto e uma selecao; preserva o filtro quando o usuario digitou.',
   ),
   SgPropSpec(
     name: 'source',
@@ -646,19 +606,9 @@ const List<SgPropSpec> sgAutocompletePropSpecs = <SgPropSpec>[
     name: 'textInputType',
     reactName: 'textInputType',
     type: 'SgAutocompleteTextInputType?',
-    tsType:
-        '"none" | "email" | "search" | "tel" | "text" | "url" | "numeric" | "decimal"',
+    tsType: '"none" | "email" | "search" | "tel" | "text" | "url" | "numeric" | "decimal"',
     required: false,
-    values: <String>[
-      'none',
-      'email',
-      'search',
-      'tel',
-      'text',
-      'url',
-      'numeric',
-      'decimal',
-    ],
+    values: <String>['none', 'email', 'search', 'tel', 'text', 'url', 'numeric', 'decimal'],
   ),
   SgPropSpec(
     name: 'type',

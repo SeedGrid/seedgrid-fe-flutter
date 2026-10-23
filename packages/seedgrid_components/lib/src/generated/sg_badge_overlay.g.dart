@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -13,10 +14,8 @@ import '../props/sg_prop_spec.dart';
 abstract interface class SgBadgeOverlayProps {
   /// Conteudo do indicador exibido sobre o elemento base.
   Widget get badge;
-
   /// Elemento base que recebera o badge sobreposto. No React e `children`.
   Widget get child;
-
   /// Posicao do badge sobreposto. Padrão: `top-right`.
   SgBadgeOverlayPlacement? get placement;
 }
@@ -47,15 +46,6 @@ const List<SgPropSpec> sgBadgeOverlayPropSpecs = <SgPropSpec>[
     required: false,
     defaultValue: 'top-right',
     description: 'Posicao do badge sobreposto.',
-    values: <String>[
-      'top',
-      'left',
-      'top-left',
-      'top-right',
-      'bottom-left',
-      'bottom-right',
-      'right',
-      'bottom',
-    ],
+    values: <String>['top', 'left', 'top-left', 'top-right', 'bottom-left', 'bottom-right', 'right', 'bottom'],
   ),
 ];

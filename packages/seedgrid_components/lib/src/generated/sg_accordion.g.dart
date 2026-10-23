@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -11,45 +12,32 @@ import '../props/sg_prop_spec.dart';
 abstract interface class SgAccordionProps {
   /// Estado controlado dos paineis abertos. Tipo TS: `number | number[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get activeIndex;
-
   /// Padrão: `220`.
   num? get animationDuration;
-
   /// Permite fechar um painel ja ativo. Padrão: `true`.
   bool? get collapsible;
   String? get contentClassName;
-
   /// Estado inicial dos paineis abertos. Tipo TS: `number | number[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get defaultActiveIndex;
-
   /// Padrão: `true`.
   bool? get defaultOpenFirst;
-
   /// Cor base dos headers do accordion.
   String? get headerBackgroundColor;
   String? get headerClassName;
-
   /// Padrão: `52`. Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get horizontalHeaderWidth;
-
   /// Padrão: `220`. Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get horizontalMinHeight;
-
   /// Colecao de secoes renderizadas pelo accordion. Tipo TS: `SgAccordionItem[]` (sem tradução exata; ver excecoes.json).
   List<Object?> get items;
-
   /// Padrão: `true`.
   bool? get keepMounted;
-
   /// Permite manter varios paineis abertos simultaneamente. Padrão: `false`.
   bool? get multiple;
-
   /// Callback disparado quando o conjunto de paineis abertos muda. Tipo TS: `((indexes: number[]) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onActiveIndexChange;
-
   /// Tipo TS: `((index: number, isOpen: boolean) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onItemToggle;
-
   /// Direcao de expansao dos paineis. Padrão: `vertical`.
   SgAccordionOrientation? get orientation;
   String? get panelClassName;
@@ -172,8 +160,7 @@ const List<SgPropSpec> sgAccordionPropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '((indexes: number[]) => void)',
     required: false,
-    description:
-        'Callback disparado quando o conjunto de paineis abertos muda.',
+    description: 'Callback disparado quando o conjunto de paineis abertos muda.',
     exact: false,
   ),
   SgPropSpec(

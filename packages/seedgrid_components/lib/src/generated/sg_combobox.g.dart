@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -13,43 +14,33 @@ import '../props/sg_prop_spec.dart';
 abstract interface class SgComboboxProps {
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get borderRadius;
-
   /// Tipo TS: `any` (sem tradução exata; ver excecoes.json).
   Object? get control;
   SgComboboxElevation? get elevation;
   String? get emptyText;
-
   /// No React a prop se chama `enabled` (valor invertido); ver ADR 50.
   bool? get disabled;
   String? get error;
   bool? get filled;
-
   /// Agrupa resultados por categoria. Padrão: `false`.
   bool? get grouped;
   bool? get groupped;
   String? get hintText;
-
   /// Identificador unico do campo.
   String get id;
-
   /// Tipo TS: `(React.InputHTMLAttributes&lt;HTMLInputElement&gt; & { ref?: React.Ref&lt;HTMLInputElement&gt;; })` (sem tradução exata; ver excecoes.json).
   Object? get inputProps;
-
   /// Tipo TS: `((item: SgAutocompleteItem) =&gt; React.ReactNode)` (sem tradução exata; ver excecoes.json).
   Function? get itemTooltip;
-
   /// Rotulo exibido ao usuario.
   String? get label;
   SgComboboxLabelAlign? get labelAlign;
   SgComboboxLabelPosition? get labelPosition;
   String? get labelText;
-
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get labelWidth;
-
   /// Texto exibido durante carregamento.
   String? get loadingText;
-
   /// Tipo TS: `((raw: T) =&gt; SgAutocompleteItem)` (sem tradução exata; ver excecoes.json).
   Function? get mapItem;
   num? get maxLength;
@@ -59,61 +50,45 @@ abstract interface class SgComboboxProps {
   num? get minNumberOfWords;
   String? get minNumberOfWordsMessage;
   String? get name;
-
   /// Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onClear;
-
   /// Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onEnter;
-
   /// Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onExit;
-
   /// Callback ao selecionar item. Tipo TS: `((value: T) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onSelect;
-
   /// Tipo TS: `((message: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onValidation;
-
   /// Callback de mudanca de valor. Tipo TS: `((value: ComboboxValue) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onValueChange;
-
   /// Abre lista ao focar. Padrão: `false`.
   bool? get openOnFocus;
   String? get placeholder;
   Widget? get prefixIcon;
   String? get prefixText;
-
   /// Tipo TS: `((query: string, hasResults: boolean) =&gt; React.ReactNode)` (sem tradução exata; ver excecoes.json).
   Function? get renderFooter;
-
   /// Tipo TS: `((group: string) =&gt; React.ReactNode)` (sem tradução exata; ver excecoes.json).
   Function? get renderGroupHeader;
-
   /// Tipo TS: `((item: SgAutocompleteItem, isActive: boolean) =&gt; React.ReactNode)` (sem tradução exata; ver excecoes.json).
   Function? get renderItem;
-
   /// Tipo TS: `((item: SgAutocompleteItem) =&gt; React.ReactNode)` (sem tradução exata; ver excecoes.json).
   Function? get renderValue;
   bool? get required;
   String? get requiredMessage;
-
   /// Tipo TS: `RegisterOptions&lt;any&gt;` (sem tradução exata; ver excecoes.json).
   Object? get rules;
   bool? get showCharCounter;
-
   /// Fonte de itens. Tipo TS: `SgComboboxSource&lt;T&gt;` (sem tradução exata; ver excecoes.json).
   Object get source;
   String? get suffixText;
   SgComboboxTextInputType? get textInputType;
   bool? get validateOnBlur;
-
   /// Tipo TS: `((value: string) =&gt; string)` (sem tradução exata; ver excecoes.json).
   Function? get validation;
-
   /// Valor selecionado. Tipo TS: `ComboboxValue` (sem tradução exata; ver excecoes.json).
   Object? get value;
-
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get width;
   bool? get withBorder;
@@ -208,8 +183,7 @@ const List<SgPropSpec> sgComboboxPropSpecs = <SgPropSpec>[
     name: 'inputProps',
     reactName: 'inputProps',
     type: 'Object?',
-    tsType:
-        '(React.InputHTMLAttributes<HTMLInputElement> & { ref?: React.Ref<HTMLInputElement>; })',
+    tsType: '(React.InputHTMLAttributes<HTMLInputElement> & { ref?: React.Ref<HTMLInputElement>; })',
     required: false,
     exact: false,
   ),
@@ -425,8 +399,7 @@ const List<SgPropSpec> sgComboboxPropSpecs = <SgPropSpec>[
     name: 'renderItem',
     reactName: 'renderItem',
     type: 'Function?',
-    tsType:
-        '((item: SgAutocompleteItem, isActive: boolean) => React.ReactNode)',
+    tsType: '((item: SgAutocompleteItem, isActive: boolean) => React.ReactNode)',
     required: false,
     exact: false,
   ),
@@ -487,19 +460,9 @@ const List<SgPropSpec> sgComboboxPropSpecs = <SgPropSpec>[
     name: 'textInputType',
     reactName: 'textInputType',
     type: 'SgComboboxTextInputType?',
-    tsType:
-        '"none" | "email" | "search" | "tel" | "text" | "url" | "numeric" | "decimal"',
+    tsType: '"none" | "email" | "search" | "tel" | "text" | "url" | "numeric" | "decimal"',
     required: false,
-    values: <String>[
-      'none',
-      'email',
-      'search',
-      'tel',
-      'text',
-      'url',
-      'numeric',
-      'decimal',
-    ],
+    values: <String>['none', 'email', 'search', 'tel', 'text', 'url', 'numeric', 'decimal'],
   ),
   SgPropSpec(
     name: 'validateOnBlur',

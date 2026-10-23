@@ -63,6 +63,12 @@ class SgInputText extends StatefulWidget implements SgInputTextProps {
     this.width,
     this.withBorder,
     this.initialValue,
+    this.inputFormatters,
+    this.autofocus = false,
+    this.autofillHints,
+    this.textInputAction,
+    this.onSubmitted,
+    this.focusNode,
   });
 
   @override
@@ -168,13 +174,31 @@ class SgInputText extends StatefulWidget implements SgInputTextProps {
   /// Valor inicial quando nao ha `control` (no React, `inputProps.defaultValue`).
   final String? initialValue;
 
+  /// Lista fechada que substitui `inputProps` do React (ADR 50): formatadores de entrada (mascaras).
+  final List<TextInputFormatter>? inputFormatters;
+
+  /// `autoFocus` do <input>.
+  final bool autofocus;
+
+  /// `autoComplete` do <input>.
+  final Iterable<String>? autofillHints;
+
+  /// `enterKeyHint` do <input>.
+  final TextInputAction? textInputAction;
+
+  /// Tecla Enter / acao do teclado (o `onKeyDown` com Enter no React); recebe o valor completo.
+  final ValueChanged<String>? onSubmitted;
+
+  /// Foco externo (`ref` do <input> no React).
+  final FocusNode? focusNode;
+
   @override
   State<SgInputText> createState() => _SgInputTextState();
 }
 
 class _SgInputTextState extends State<SgInputText> {
   late final TextEditingController _text = TextEditingController();
-  final FocusNode _focus = FocusNode();
+  late final FocusNode _focus = widget.focusNode ?? FocusNode();
   SgFormController? _form;
   String? _internalError;
   bool _interacted = false;
@@ -185,10 +209,12 @@ class _SgInputTextState extends State<SgInputText> {
 
   String _strip(Object? v) {
     var s = v == null ? '' : '$v';
-    if (_prefix.isNotEmpty && s.startsWith(_prefix))
+    if (_prefix.isNotEmpty && s.startsWith(_prefix)) {
       s = s.substring(_prefix.length);
-    if (_suffix.isNotEmpty && s.endsWith(_suffix))
+    }
+    if (_suffix.isNotEmpty && s.endsWith(_suffix)) {
       s = s.substring(0, s.length - _suffix.length);
+    }
     return s;
   }
 
@@ -249,7 +275,7 @@ class _SgInputTextState extends State<SgInputText> {
   @override
   void dispose() {
     _form?.removeListener(_syncFromForm);
-    _focus.dispose();
+    if (widget.focusNode == null) _focus.dispose();
     _text.dispose();
     super.dispose();
   }
@@ -298,8 +324,9 @@ class _SgInputTextState extends State<SgInputText> {
     if (_focus.hasFocus) {
       widget.onEnter?.call();
     } else {
-      if ((widget.validateOnBlur ?? true) || _interacted)
+      if ((widget.validateOnBlur ?? true) || _interacted) {
         _runValidation(_text.text);
+      }
       if (_bound) {
         _form!.markTouched(widget.name!);
         _form!.trigger([widget.name!]);
@@ -383,9 +410,16 @@ class _SgInputTextState extends State<SgInputText> {
       obscureText: w.type == 'password',
       keyboardType: _keyboard(),
       onChanged: _onChanged,
+      autofocus: w.autofocus,
+      autofillHints: w.autofillHints,
+      textInputAction: w.textInputAction,
+      onSubmitted: w.onSubmitted == null
+          ? null
+          : (raw) => w.onSubmitted!(_full(raw)),
       inputFormatters: [
         if (w.type == 'password')
           FilteringTextInputFormatter.deny(RegExp(r'\n')),
+        ...?w.inputFormatters,
       ],
       style: TextStyle(
         color: (w.disabled ?? false) ? t.inputDisabledFg : t.inputFg,
@@ -514,11 +548,12 @@ class _SgInputTextState extends State<SgInputText> {
           ),
           SgInputTextLabelPosition.float => decorated,
         };
-        if (width != null)
+        if (width != null) {
           out = Align(
             alignment: Alignment.centerLeft,
             child: SizedBox(width: width, child: out),
           ); // Align afrouxa a restricao do pai
+        }
         return Semantics(label: labelStr, textField: true, child: out);
       },
     );

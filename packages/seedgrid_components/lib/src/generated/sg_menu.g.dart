@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -12,124 +13,87 @@ import '../props/sg_prop_spec.dart';
 /// O widget deve declarar `implements SgMenuProps`.
 abstract interface class SgMenuProps {
   String? get ariaLabel;
-
   /// Padrão: `true`.
   bool? get border;
-
   /// Bloco de marca no topo do menu. Tipo TS: `SgMenuBrand` (sem tradução exata; ver excecoes.json).
   Object? get brand;
   bool? get closeOnNavigate;
-
   /// Controla o estado colapsado do menu.
   bool? get collapsed;
-
   /// Padrão: `72`. Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get collapsedWidth;
-
   /// Padrão: `false`.
   bool? get defaultCollapsed;
-
   /// Padrão: `[]`. Tipo TS: `string[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get defaultExpandedIds;
-
   /// Padrão: `false`.
   bool? get defaultOpen;
-
   /// Padrão: `false`.
   bool? get defaultPinned;
-
   /// Padrão: `comfortable`.
   SgMenuDensity? get density;
-
   /// Padrão: `false`.
   bool? get dockable;
   SgDockZoneId? get dockZone;
-
   /// Padrão: `false`.
   bool? get draggable;
-
   /// Padrão: `none`.
   SgMenuElevation? get elevation;
-
   /// Tipo TS: `string[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get expandedIds;
-
   /// Padrão: `280`. Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get expandedWidth;
   Widget? get footer;
   String? get id;
-
   /// Padrão: `16`.
   num? get indent;
-
   /// Padrão: `true`.
   bool? get keyboardNavigation;
-
   /// Arvore de itens e subitens do menu. Tipo TS: `SgMenuNode[]` (sem tradução exata; ver excecoes.json).
   List<Object?> get menu;
-
   /// Modo estrutural do menu. Padrão: `sidebar`.
   SgMenuMenuStyle? get menuStyle;
-
   /// Variante visual e comportamental do menu. Padrão: `panel`.
   SgMenuMenuVariantStyle? get menuVariantStyle;
-
   /// Padrão: `multiple`.
   SgMenuMode? get mode;
-
   /// Tipo TS: `((node: SgMenuNode) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onAction;
-
   /// Tipo TS: `((value: boolean) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onCollapsedChange;
-
   /// Tipo TS: `((ids: string[]) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onExpandedIdsChange;
-
   /// Tipo TS: `((node: SgMenuNode) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onItemClick;
-
   /// Callback disparado na navegacao por um item. Tipo TS: `((node: SgMenuNode) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onNavigate;
-
   /// Tipo TS: `((value: boolean) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onOpenChange;
-
   /// Tipo TS: `((value: boolean) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onPinnedChange;
   bool? get open;
-
   /// Padrão: `false`.
   bool? get openSubmenuOnHover;
   SgMenuOrientationDirection? get orientationDirection;
   bool? get overlayBackdrop;
-
   /// Tipo TS: `SgExpandablePanelSize` (sem tradução exata; ver excecoes.json).
   Object? get overlaySize;
   bool? get pinned;
-
   /// Padrão: `left`.
   SgMenuPosition? get position;
-
   /// Configuracao opcional de busca integrada. Tipo TS: `{ enabled: boolean; placeholder?: string; }` (sem tradução exata; ver excecoes.json).
   Object? get search;
-
   /// Selecao ativa por id ou url. Tipo TS: `SgMenuSelection` (sem tradução exata; ver excecoes.json).
   Object? get selection;
-
   /// Padrão: `false`.
   bool? get showCollapseButton;
-
   /// Padrão: `false`.
   bool? get showPinButton;
-
   /// Bloco de usuario exibido no menu. Tipo TS: `SgMenuUser` (sem tradução exata; ver excecoes.json).
   Object? get user;
-
   /// Tipo TS: `SgMenuNode[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get userMenu;
   String? get userSectionClassName;
-
   /// Tipo TS: `React.CSSProperties` (sem tradução exata; ver excecoes.json).
   Object? get userSectionStyle;
 }
@@ -333,16 +297,7 @@ const List<SgPropSpec> sgMenuPropSpecs = <SgPropSpec>[
     required: false,
     defaultValue: 'panel',
     description: 'Variante visual e comportamental do menu.',
-    values: <String>[
-      'panel',
-      'tiered',
-      'mega-horizontal',
-      'mega-vertical',
-      'PanelMenu',
-      'Tiered',
-      'MegaMenuHorizontal',
-      'MegaMenuVertical',
-    ],
+    values: <String>['panel', 'tiered', 'mega-horizontal', 'mega-vertical', 'PanelMenu', 'Tiered', 'MegaMenuHorizontal', 'MegaMenuVertical'],
   ),
   SgPropSpec(
     name: 'mode',
@@ -431,13 +386,7 @@ const List<SgPropSpec> sgMenuPropSpecs = <SgPropSpec>[
     type: 'SgMenuOrientationDirection?',
     tsType: 'SgMenuOrientationDirection',
     required: false,
-    values: <String>[
-      'horizontal-left',
-      'horizontal-right',
-      'vertical-up',
-      'vertical-top',
-      'vertical-down',
-    ],
+    values: <String>['horizontal-left', 'horizontal-right', 'vertical-up', 'vertical-top', 'vertical-down'],
   ),
   SgPropSpec(
     name: 'overlayBackdrop',

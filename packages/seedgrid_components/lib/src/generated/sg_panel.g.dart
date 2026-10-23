@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -13,43 +14,33 @@ import '../props/sg_prop_spec.dart';
 abstract interface class SgPanelProps {
   /// Posicionamento relativo ao container pai em cenarios de dock. Padrão: `client`.
   SgPanelAlign? get align;
-
   /// Estilo visual da borda do container. Padrão: `dashed`.
   SgPanelBorderStyle? get borderStyle;
-
   /// Conteudo livre ou outros elementos de layout aninhados. No React e `children`.
   Widget? get child;
   SgPanelContentAlign? get contentAlign;
   String? get contentClassName;
   SgPanelContentDirection? get contentDirection;
-
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get contentGap;
   SgPanelContentJustify? get contentJustify;
-
   /// Espacamento interno entre a borda e o conteudo. Padrão: `0`. Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get contentPadding;
-
   /// Tipo TS: `React.CSSProperties` (sem tradução exata; ver excecoes.json).
   Object? get contentStyle;
   bool? get contentWrap;
-
   /// Altura do painel quando dockado ou usado em composicoes controladas. Tipo TS: `SgDockPercent` (sem tradução exata; ver excecoes.json).
   Object? get height;
   num? get minHeightPx;
   num? get minWidthPx;
-
   /// Espacamento externo do painel em relacao ao slot recebido do pai. Padrão: `0`. Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get padding;
   num? get rowSpan;
-
   /// Habilita scroll apenas quando desejado. Padrão: `false`. Tipo TS: `SgPanelScrollable` (sem tradução exata; ver excecoes.json).
   Object? get scrollable;
-
   /// Reserva espaco visual para scrollbar. Padrão: `false`.
   bool? get scrollbarGutter;
   num? get span;
-
   /// Largura do painel quando dockado ou usado em composicoes controladas. Tipo TS: `SgDockPercent` (sem tradução exata; ver excecoes.json).
   Object? get width;
 }
@@ -63,8 +54,7 @@ const List<SgPropSpec> sgPanelPropSpecs = <SgPropSpec>[
     tsType: 'SgDockAlign',
     required: false,
     defaultValue: 'client',
-    description:
-        'Posicionamento relativo ao container pai em cenarios de dock.',
+    description: 'Posicionamento relativo ao container pai em cenarios de dock.',
     values: <String>['top', 'left', 'right', 'bottom', 'client'],
   ),
   SgPropSpec(
@@ -155,8 +145,7 @@ const List<SgPropSpec> sgPanelPropSpecs = <SgPropSpec>[
     type: 'Object?',
     tsType: 'SgDockPercent',
     required: false,
-    description:
-        'Altura do painel quando dockado ou usado em composicoes controladas.',
+    description: 'Altura do painel quando dockado ou usado em composicoes controladas.',
     exact: false,
   ),
   SgPropSpec(
@@ -180,8 +169,7 @@ const List<SgPropSpec> sgPanelPropSpecs = <SgPropSpec>[
     tsType: 'string | number',
     required: false,
     defaultValue: '0',
-    description:
-        'Espacamento externo do painel em relacao ao slot recebido do pai.',
+    description: 'Espacamento externo do painel em relacao ao slot recebido do pai.',
     exact: false,
   ),
   SgPropSpec(
@@ -223,8 +211,7 @@ const List<SgPropSpec> sgPanelPropSpecs = <SgPropSpec>[
     type: 'Object?',
     tsType: 'SgDockPercent',
     required: false,
-    description:
-        'Largura do painel quando dockado ou usado em composicoes controladas.',
+    description: 'Largura do painel quando dockado ou usado em composicoes controladas.',
     exact: false,
   ),
 ];

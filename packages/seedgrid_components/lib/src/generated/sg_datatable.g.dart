@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -10,99 +11,70 @@ import '../props/sg_prop_spec.dart';
 /// O widget deve declarar `implements SgDatatableProps`.
 abstract interface class SgDatatableProps {
   String? get columnManagerLabel;
-
   /// Padrão: `320`. Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get columnManagerMaxHeight;
-
   /// Definicao das colunas da tabela. Tipo TS: `SgDatatableColumn&lt;T&gt;[]` (sem tradução exata; ver excecoes.json).
   List<Object?> get columns;
   String? get dataKey;
   String? get emptyMessage;
-
   /// Tipo TS: `Record&lt;string, string&gt;` (sem tradução exata; ver excecoes.json).
   Object? get filters;
   num? get first;
   String? get globalFilter;
   String? get globalFilterPlaceholder;
-
   /// Padrão: `{}`. Tipo TS: `(Omit&lt;Partial&lt;SgGroupBoxProps&gt;, "title" | "children"&gt; & { title?: string; })` (sem tradução exata; ver excecoes.json).
   Object? get groupBoxProps;
-
   /// Padrão: `true`.
   bool? get hoverableRows;
-
   /// Identificador da tabela usado para DOM e persistencia do layout de colunas.
   String? get id;
-
   /// Padrão: `false`.
   bool? get lazy;
-
   /// Indica estado de carregamento. Padrão: `false`.
   bool? get loading;
-
   /// Tipo TS: `((event: SgDatatableFilterEvent) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onFilter;
-
   /// Tipo TS: `((value: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onGlobalFilterChange;
-
   /// Callback de paginacao. Tipo TS: `((event: SgDatatablePageEvent) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onPage;
-
   /// Tipo TS: `((selection: SgDatatableSelection&lt;T&gt;) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onSelectionChange;
-
   /// Callback de ordenacao. Tipo TS: `((event: SgDatatableSortEvent) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onSort;
-
   /// Ativa paginacao. Padrão: `false`.
   bool? get paginator;
-
   /// Padrão: `true`.
   bool? get removableSort;
-
   /// Tipo TS: `string | ((rowData: T, rowIndex: number) =&gt; string)` (sem tradução exata; ver excecoes.json).
   Object? get rowClassName;
-
   /// Linhas por pagina quando a paginacao esta ativa (os dados vao em value). Padrão: `10`.
   num? get rows;
-
   /// Tipo TS: `number[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get rowsPerPageOptions;
-
   /// Tipo TS: `SgDatatableSelection&lt;T&gt;` (sem tradução exata; ver excecoes.json).
   Object? get selection;
-
   /// Modo de selecao de linhas.
   SgDatatableSelectionMode? get selectionMode;
-
   /// Padrão: `false`.
   bool? get showClearFiltersButton;
-
   /// Padrão: `false`.
   bool? get showColumnFilters;
-
   /// Padrão: `true`.
   bool? get showColumnManager;
-
   /// Padrão: `false`.
   bool? get showGlobalFilter;
-
   /// Padrão: `false`.
   bool? get showGridlines;
   String? get sortField;
-
   /// Tipo TS: `SgDatatableSortOrder` (sem tradução exata; ver excecoes.json).
   Object? get sortOrder;
-
   /// Padrão: `false`.
   bool? get stripedRows;
-
   /// Padrão: ``.
   String? get tableClassName;
   String? get title;
   num? get totalRecords;
-
   /// Tipo TS: `T[]` (sem tradução exata; ver excecoes.json).
   List<Object?> get value;
 }
@@ -181,8 +153,7 @@ const List<SgPropSpec> sgDatatablePropSpecs = <SgPropSpec>[
     name: 'groupBoxProps',
     reactName: 'groupBoxProps',
     type: 'Object?',
-    tsType:
-        '(Omit<Partial<SgGroupBoxProps>, "title" | "children"> & { title?: string; })',
+    tsType: '(Omit<Partial<SgGroupBoxProps>, "title" | "children"> & { title?: string; })',
     required: false,
     defaultValue: '{}',
     exact: false,
@@ -201,8 +172,7 @@ const List<SgPropSpec> sgDatatablePropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description:
-        'Identificador da tabela usado para DOM e persistencia do layout de colunas.',
+    description: 'Identificador da tabela usado para DOM e persistencia do layout de colunas.',
   ),
   SgPropSpec(
     name: 'lazy',
@@ -295,8 +265,7 @@ const List<SgPropSpec> sgDatatablePropSpecs = <SgPropSpec>[
     tsType: 'number',
     required: false,
     defaultValue: '10',
-    description:
-        'Linhas por pagina quando a paginacao esta ativa (os dados vao em value).',
+    description: 'Linhas por pagina quando a paginacao esta ativa (os dados vao em value).',
   ),
   SgPropSpec(
     name: 'rowsPerPageOptions',

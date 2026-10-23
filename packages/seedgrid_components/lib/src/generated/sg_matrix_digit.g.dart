@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -10,31 +11,22 @@ import '../props/sg_prop_spec.dart';
 abstract interface class SgMatrixDigitProps {
   /// Cor do fundo do display. Padrão: `#0b1220`.
   String? get backgroundColor;
-
   /// Gap between characters in pixels. Padrão: `7`.
   num? get charGap;
-
   /// Cor principal do digito. Padrão: `#22d3ee`.
   String? get color;
-
   /// Dot size in pixels. Padrão: `9`.
   num? get dotSize;
-
   /// Gap between dots in pixels. Padrão: `3`.
   num? get gap;
-
   /// Add a subtle glow around active dots. Padrão: `true`.
   bool? get glow;
-
   /// Color of inactive dots. Padrão: `rgba(148, 163, 184, 0.22)`.
   String? get offColor;
-
   /// Internal padding in pixels. Padrão: `8`.
   num? get padding;
-
   /// Border radius of the matrix container in pixels. Padrão: `10`.
   num? get rounded;
-
   /// Caractere exibido na matriz.
   String get value;
 }

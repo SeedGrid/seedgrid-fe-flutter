@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -13,44 +14,32 @@ import '../props/sg_prop_spec.dart';
 abstract interface class SgPageControlProps {
   /// Indice ativo em modo controlado.
   num? get activeIndex;
-
   /// Id da pagina ativa em modo controlado.
   String? get activePageId;
   String? get ariaLabel;
-
   /// Paginas filhas definidas por SgPageControlPage. No React e `children`.
   Widget get child;
-
   /// Padrão: `0`.
   num? get defaultActiveIndex;
   String? get defaultActivePageId;
   Widget? get emptyMessage;
-
   /// Distribui as abas em larguras iguais a partir do tablet; no celular elas mantem a largura natural e a lista rola. Padrão: `false`.
   bool? get fullWidthTabs;
-
   /// Tipo TS: `string[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get hiddenPageIds;
-
   /// Mantem paineis inativos montados no DOM. Padrão: `false`.
   bool? get keepMounted;
-
   /// Padrão: `true`.
   bool? get keyboardNavigation;
-
   /// Comportamento no celular: rolagem horizontal das abas ou troca por um select nativo. Padrão: `scroll`.
   SgPageControlMobilePageControl? get mobilePageControl;
-
   /// Tipo TS: `((index: number, context: { pageId: string; page: SgPageControlPageProps; }) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onActiveIndexChange;
-
   /// Callback disparado quando a pagina ativa muda. Tipo TS: `((pageId: string, context: { index: number; page: SgPageControlPageProps; }) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onActivePageIdChange;
-
   /// Estilo visual da lista de abas. Padrão: `underline`.
   SgPageControlPageControlStyle? get pageControlStyle;
   String? get panelClassName;
-
   /// Escala visual das abas. Padrão: `md`.
   SgPageControlSize? get size;
   String? get tabClassName;
@@ -119,8 +108,7 @@ const List<SgPropSpec> sgPageControlPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description:
-        'Distribui as abas em larguras iguais a partir do tablet; no celular elas mantem a largura natural e a lista rola.',
+    description: 'Distribui as abas em larguras iguais a partir do tablet; no celular elas mantem a largura natural e a lista rola.',
   ),
   SgPropSpec(
     name: 'hiddenPageIds',
@@ -154,16 +142,14 @@ const List<SgPropSpec> sgPageControlPropSpecs = <SgPropSpec>[
     tsType: '"scroll" | "select"',
     required: false,
     defaultValue: 'scroll',
-    description:
-        'Comportamento no celular: rolagem horizontal das abas ou troca por um select nativo.',
+    description: 'Comportamento no celular: rolagem horizontal das abas ou troca por um select nativo.',
     values: <String>['scroll', 'select'],
   ),
   SgPropSpec(
     name: 'onActiveIndexChange',
     reactName: 'onActiveIndexChange',
     type: 'Function?',
-    tsType:
-        '((index: number, context: { pageId: string; page: SgPageControlPageProps; }) => void)',
+    tsType: '((index: number, context: { pageId: string; page: SgPageControlPageProps; }) => void)',
     required: false,
     exact: false,
   ),
@@ -171,8 +157,7 @@ const List<SgPropSpec> sgPageControlPropSpecs = <SgPropSpec>[
     name: 'onActivePageIdChange',
     reactName: 'onActivePageIdChange',
     type: 'Function?',
-    tsType:
-        '((pageId: string, context: { index: number; page: SgPageControlPageProps; }) => void)',
+    tsType: '((pageId: string, context: { index: number; page: SgPageControlPageProps; }) => void)',
     required: false,
     description: 'Callback disparado quando a pagina ativa muda.',
     exact: false,

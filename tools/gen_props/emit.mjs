@@ -108,7 +108,8 @@ function dartType(comp, p) {
 fs.mkdirSync(outDir, { recursive: true });
 for (const f of fs.readdirSync(outDir)) if (f.endsWith(".g.dart") || f === "generated.dart") fs.unlinkSync(path.join(outDir, f));
 
-const header = `// GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components ${spec.versaoReact}. NAO EDITE A MAO.\n// Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato\n// estao em tools/gen_props/excecoes.json.\n// ignore_for_file: constant_identifier_names\n\n`;
+const header = `// dart format off
+// GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components ${spec.versaoReact}. NAO EDITE A MAO.\n// Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato\n// estao em tools/gen_props/excecoes.json.\n// ignore_for_file: constant_identifier_names\n\n`;
 const barrel = [];
 const emittedEnums = new Set();
 const enumSrc = (name, vals) => {

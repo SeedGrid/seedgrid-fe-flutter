@@ -3,11 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
-import '../snippets.g.dart';
+import 'sg_button_page.snippets.g.dart';
 import '../src/sg_showcase_page.dart';
-
-/// Quantidade de exemplos (o teste confere: links = exemplos).
-const int kSgButtonExampleCount = 5;
 
 class SgButtonPage extends StatelessWidget {
   const SgButtonPage({super.key});
@@ -58,7 +55,7 @@ class SgButtonPage extends StatelessWidget {
               ],
             ),
         // #endregion
-        code: Snippets.sgButtonSeveridades,
+        code: SgButtonPageSnippets.sgButtonSeveridades,
       ),
       ShowcaseExample(
         title: 'Aparências',
@@ -82,7 +79,7 @@ class SgButtonPage extends StatelessWidget {
               ],
             ),
         // #endregion
-        code: Snippets.sgButtonAparencias,
+        code: SgButtonPageSnippets.sgButtonAparencias,
       ),
       ShowcaseExample(
         title: 'Tamanhos, formas e sombra',
@@ -122,7 +119,7 @@ class SgButtonPage extends StatelessWidget {
               ],
             ),
         // #endregion
-        code: Snippets.sgButtonTamanhos,
+        code: SgButtonPageSnippets.sgButtonTamanhos,
       ),
       ShowcaseExample(
         title: 'Ícones, loading e desabilitado',
@@ -149,7 +146,7 @@ class SgButtonPage extends StatelessWidget {
               ],
             ),
         // #endregion
-        code: Snippets.sgButtonIcones,
+        code: SgButtonPageSnippets.sgButtonIcones,
       ),
       ShowcaseExample(
         title: 'Cores customizadas',
@@ -166,7 +163,7 @@ class SgButtonPage extends StatelessWidget {
               onClick: () {},
             ),
         // #endregion
-        code: Snippets.sgButtonCores,
+        code: SgButtonPageSnippets.sgButtonCores,
       ),
     ];
 

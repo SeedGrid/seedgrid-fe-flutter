@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -14,88 +15,66 @@ abstract interface class SgInputTextProps {
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get borderRadius;
   bool? get clearButton;
-
   /// Tipo TS: `any` (sem tradução exata; ver excecoes.json).
   Object? get control;
   SgInputTextElevation? get elevation;
-
   /// No React a prop se chama `enabled` (valor invertido); ver ADR 50.
   bool? get disabled;
   String? get error;
   bool? get filled;
   String? get hintText;
-
   /// Tipo TS: `React.ReactNode[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get iconButtons;
-
   /// Identificador unico do campo.
   String get id;
-
   /// Tipo TS: `(React.InputHTMLAttributes&lt;HTMLInputElement&gt; & { ref?: React.Ref&lt;HTMLInputElement&gt;; })` (sem tradução exata; ver excecoes.json).
   Object? get inputProps;
-
   /// Rotulo principal exibido ao usuario.
   String? get label;
   SgInputTextLabelAlign? get labelAlign;
   SgInputTextLabelPosition? get labelPosition;
   String? get labelText;
-
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get labelWidth;
-
   /// Limite maximo de caracteres.
   num? get maxLength;
   String? get maxLengthMessage;
-
   /// Limite minimo de caracteres.
   num? get minLength;
   String? get minLengthMessage;
   num? get minNumberOfWords;
   String? get minNumberOfWordsMessage;
-
   /// Nome do campo para formularios.
   String? get name;
-
   /// Callback com o valor textual atual. Tipo TS: `((value: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onChange;
-
   /// Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onClear;
-
   /// Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onEnter;
-
   /// Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onExit;
-
   /// Tipo TS: `((message: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onValidation;
-
   /// Texto de apoio dentro do input.
   String? get placeholder;
   Widget? get prefixIcon;
   String? get prefixText;
-
   /// Impede edicao mantendo foco e leitura. Padrão: `false`.
   bool? get readOnly;
-
   /// Marca o campo como obrigatorio. Padrão: `false`.
   bool? get required;
   String? get requiredMessage;
-
   /// Tipo TS: `RegisterOptions&lt;any&gt;` (sem tradução exata; ver excecoes.json).
   Object? get rules;
   bool? get showCharCounter;
   String? get suffixText;
   SgInputTextTextInputType? get textInputType;
-
   /// Tipo TS: `React.HTMLInputTypeAttribute` (sem tradução exata; ver excecoes.json).
   Object? get type;
   bool? get validateOnBlur;
-
   /// Tipo TS: `((value: string) =&gt; string)` (sem tradução exata; ver excecoes.json).
   Function? get validation;
-
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get width;
   bool? get withBorder;
@@ -182,8 +161,7 @@ const List<SgPropSpec> sgInputTextPropSpecs = <SgPropSpec>[
     name: 'inputProps',
     reactName: 'inputProps',
     type: 'Object?',
-    tsType:
-        '(React.InputHTMLAttributes<HTMLInputElement> & { ref?: React.Ref<HTMLInputElement>; })',
+    tsType: '(React.InputHTMLAttributes<HTMLInputElement> & { ref?: React.Ref<HTMLInputElement>; })',
     required: false,
     exact: false,
   ),
@@ -392,19 +370,9 @@ const List<SgPropSpec> sgInputTextPropSpecs = <SgPropSpec>[
     name: 'textInputType',
     reactName: 'textInputType',
     type: 'SgInputTextTextInputType?',
-    tsType:
-        '"none" | "email" | "search" | "tel" | "text" | "url" | "numeric" | "decimal"',
+    tsType: '"none" | "email" | "search" | "tel" | "text" | "url" | "numeric" | "decimal"',
     required: false,
-    values: <String>[
-      'none',
-      'email',
-      'search',
-      'tel',
-      'text',
-      'url',
-      'numeric',
-      'decimal',
-    ],
+    values: <String>['none', 'email', 'search', 'tel', 'text', 'url', 'numeric', 'decimal'],
   ),
   SgPropSpec(
     name: 'type',

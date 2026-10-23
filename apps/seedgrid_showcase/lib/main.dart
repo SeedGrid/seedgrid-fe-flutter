@@ -1,18 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:seedgrid_theme/seedgrid_theme.dart';
 
-import 'pages/modelo_page.dart';
-import 'pages/sg_button_page.dart';
-import 'pages/sg_input_text_page.dart';
+import 'pages/pages.g.dart';
 
 void main() => runApp(const ShowcaseApp());
-
-/// Paginas do showcase. Cada componente portado ganha uma entrada aqui.
-final List<({String name, WidgetBuilder builder})> kShowcasePages = [
-  (name: 'SgButton', builder: (_) => const SgButtonPage()),
-  (name: 'SgInputText', builder: (_) => const SgInputTextPage()),
-  (name: 'Página-modelo', builder: (_) => const ModeloPage()),
-];
 
 class ShowcaseApp extends StatelessWidget {
   const ShowcaseApp({super.key});

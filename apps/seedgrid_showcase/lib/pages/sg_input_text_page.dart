@@ -3,10 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
-import '../snippets.g.dart';
+import 'sg_input_text_page.snippets.g.dart';
 import '../src/sg_showcase_page.dart';
-
-const int kSgInputTextExampleCount = 5;
 
 class SgInputTextPage extends StatefulWidget {
   const SgInputTextPage({super.key});
@@ -39,7 +37,7 @@ class _SgInputTextPageState extends State<SgInputTextPage> {
               placeholder: 'Digite seu nome',
             ),
         // #endregion
-        code: Snippets.sgInputTextBasico,
+        code: SgInputTextPageSnippets.sgInputTextBasico,
       ),
       ShowcaseExample(
         title: 'Posição do rótulo',
@@ -62,7 +60,7 @@ class _SgInputTextPageState extends State<SgInputTextPage> {
               ],
             ),
         // #endregion
-        code: Snippets.sgInputTextRotulo,
+        code: SgInputTextPageSnippets.sgInputTextRotulo,
       ),
       ShowcaseExample(
         title: 'Prefixo, sufixo e contador',
@@ -79,7 +77,7 @@ class _SgInputTextPageState extends State<SgInputTextPage> {
               showCharCounter: true,
             ),
         // #endregion
-        code: Snippets.sgInputTextAfixos,
+        code: SgInputTextPageSnippets.sgInputTextAfixos,
       ),
       ShowcaseExample(
         title: 'Validação',
@@ -109,7 +107,7 @@ class _SgInputTextPageState extends State<SgInputTextPage> {
               ],
             ),
         // #endregion
-        code: Snippets.sgInputTextValidacao,
+        code: SgInputTextPageSnippets.sgInputTextValidacao,
       ),
       ShowcaseExample(
         title: 'Dentro de um formulário',
@@ -144,7 +142,7 @@ class _SgInputTextPageState extends State<SgInputTextPage> {
               ],
             ),
         // #endregion
-        code: Snippets.sgInputTextFormulario,
+        code: SgInputTextPageSnippets.sgInputTextFormulario,
       ),
     ];
 

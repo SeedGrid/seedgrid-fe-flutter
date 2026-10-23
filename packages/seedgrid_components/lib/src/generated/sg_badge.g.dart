@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -13,53 +14,39 @@ import '../props/sg_prop_spec.dart';
 abstract interface class SgBadgeProps {
   /// No React e `aria-label` (Semantics no Flutter).
   String? get semanticLabel;
-
   /// Padrão: `false`.
   bool? get autoRemove;
-
   /// Variante visual do badge. Padrão: `solid`.
   SgBadgeBadgeStyle? get badgeStyle;
-
   /// Tipo TS: `SgBadgeCustomColors` (sem tradução exata; ver excecoes.json).
   Object? get customColors;
   bool? get disabled;
-
   /// Exibe um pequeno marcador visual adicional. Padrão: `false`.
   bool? get dot;
   String? get hint;
   Widget? get leftIcon;
   num? get max;
-
   /// Callback disparado quando o badge e clicado. Tipo TS: `((e: React.MouseEvent) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onClick;
-
   /// Callback disparado ao remover o badge. Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onRemove;
-
   /// Tipo TS: `SgBadgePartsClassName` (sem tradução exata; ver excecoes.json).
   Object? get partsClassName;
-
   /// Padrão: `false`.
   bool? get pulse;
-
   /// Permite remover o badge com um botao interno. Padrão: `false`.
   bool? get removable;
   String? get removeAriaLabel;
   Widget? get rightIcon;
-
   /// Padrão: `true`.
   bool? get rounded;
-
   /// Tom semantico do indicador. Padrão: `primary`.
   SgBadgeSeverity? get severity;
-
   /// Padrão: `true`.
   bool? get showZero;
-
   /// Escala visual do badge. Padrão: `md`.
   SgBadgeSize? get size;
   String? get title;
-
   /// Conteudo principal exibido dentro do badge.
   Widget? get value;
 }
@@ -209,16 +196,7 @@ const List<SgPropSpec> sgBadgePropSpecs = <SgPropSpec>[
     required: false,
     defaultValue: 'primary',
     description: 'Tom semantico do indicador.',
-    values: <String>[
-      'primary',
-      'secondary',
-      'success',
-      'warning',
-      'danger',
-      'info',
-      'neutral',
-      'custom',
-    ],
+    values: <String>['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'neutral', 'custom'],
   ),
   SgPropSpec(
     name: 'showZero',

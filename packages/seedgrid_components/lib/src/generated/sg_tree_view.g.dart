@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -11,80 +12,56 @@ import '../props/sg_prop_spec.dart';
 abstract interface class SgTreeViewProps {
   /// Padrão: `toggle`.
   SgTreeViewBranchLabelBehavior? get branchLabelBehavior;
-
   /// Padrão: `false`.
   bool? get checkable;
-
   /// Cabecalho da coluna do checkbox principal -- so' e' desenhado quando `tracks` tambem esta' presente (e' o cabecalho de colunas como um todo que fica ambiguo com 2+ controles por linha, nao o checkbox sozinho).
   String? get checkableLabel;
-
   /// Nos marcados em cenarios de checkbox tree. Tipo TS: `string[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get checkedIds;
-
   /// Padrão: `live`.
   SgTreeViewCheckMode? get checkMode;
-
   /// Tipo TS: `SgTreeConfirmBar` (sem tradução exata; ver excecoes.json).
   Object? get confirmBar;
-
   /// Padrão: `leafOnly`.
   SgTreeViewConfirmSelection? get confirmSelection;
-
   /// Tipo TS: `string[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get defaultCheckedIds;
-
   /// Tipo TS: `string[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get defaultExpandedIds;
   String? get defaultSearchValue;
-
   /// Padrão: `normal`.
   SgTreeViewDensity? get density;
   String? get emptyText;
-
   /// Tipo TS: `string[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get expandedIds;
-
   /// Padrão: `true`.
   bool? get expandMatchesOnSearch;
-
   /// Padrão: `default`.
   SgTreeViewIconTone? get iconTone;
-
   /// Padrão: `max-h-[60vh]`.
   String? get maxHeightClassName;
-
   /// Lista hierarquica de nos exibidos pela arvore. Tipo TS: `SgTreeNode[]` (sem tradução exata; ver excecoes.json).
   List<Object?> get nodes;
-
   /// Tipo TS: `((ids: string[]) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onCheckedChange;
-
   /// Tipo TS: `((node: SgTreeNode) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onCollapse;
-
   /// Tipo TS: `((node: SgTreeNode) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onExpand;
-
   /// Tipo TS: `((ids: string[]) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onExpandedChange;
-
   /// Tipo TS: `((id: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onLeafClick;
-
   /// Tipo TS: `((v: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onSearchChange;
-
   /// Habilita campo interno de busca para filtrar nos. Padrão: `false`.
   bool? get searchable;
   String? get searchPlaceholder;
   String? get searchValue;
-
   /// Escala visual da arvore e dos itens. Padrão: `md`.
   SgTreeViewSize? get size;
-
   /// Padrão: `default`.
   SgTreeViewTone? get tone;
-
   /// Trilhas de selecao extras, uma por coluna de controle na linha -- ver SgTreeTrack. Tipo TS: `SgTreeTrack[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get tracks;
 }
@@ -114,8 +91,7 @@ const List<SgPropSpec> sgTreeViewPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description:
-        'Cabecalho da coluna do checkbox principal -- so\' e\' desenhado quando `tracks` tambem esta\' presente (e\' o cabecalho de colunas como um todo que fica ambiguo com 2+ controles por linha, nao o checkbox sozinho).',
+    description: 'Cabecalho da coluna do checkbox principal -- so\' e\' desenhado quando `tracks` tambem esta\' presente (e\' o cabecalho de colunas como um todo que fica ambiguo com 2+ controles por linha, nao o checkbox sozinho).',
   ),
   SgPropSpec(
     name: 'checkedIds',
@@ -329,8 +305,7 @@ const List<SgPropSpec> sgTreeViewPropSpecs = <SgPropSpec>[
     type: 'List<Object?>?',
     tsType: 'SgTreeTrack[]',
     required: false,
-    description:
-        'Trilhas de selecao extras, uma por coluna de controle na linha -- ver SgTreeTrack.',
+    description: 'Trilhas de selecao extras, uma por coluna de controle na linha -- ver SgTreeTrack.',
     exact: false,
   ),
 ];

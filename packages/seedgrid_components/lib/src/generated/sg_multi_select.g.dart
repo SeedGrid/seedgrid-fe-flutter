@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -13,87 +14,66 @@ import '../props/sg_prop_spec.dart';
 abstract interface class SgMultiSelectProps {
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get borderRadius;
-
   /// Exibe botao para limpar toda a selecao. Padrão: `false`.
   bool? get clearable;
-
   /// Tipo TS: `any` (sem tradução exata; ver excecoes.json).
   Object? get control;
   SgMultiSelectElevation? get elevation;
   String? get emptyText;
-
   /// No React a prop se chama `enabled` (valor invertido); ver ADR 50.
   bool? get disabled;
   String? get error;
   bool? get filled;
   String? get hintText;
-
   /// Identificador unico do campo.
   String get id;
-
   /// Rotulo exibido ao usuario.
   String? get label;
   SgMultiSelectLabelAlign? get labelAlign;
   SgMultiSelectLabelPosition? get labelPosition;
   String? get labelText;
-
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get labelWidth;
   String? get maxLengthMessage;
-
   /// Limite maximo de itens selecionaveis.
   num? get maxSelected;
   String? get minLengthMessage;
   num? get minNumberOfWords;
   String? get minNumberOfWordsMessage;
   String? get name;
-
   /// Callback com o array atualizado de valores. Tipo TS: `((value: SgMultiSelectOptionValue[]) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onChange;
-
   /// Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onClear;
-
   /// Disparado ao focar o campo. Tipo TS: `((() =&gt; void) & (() =&gt; void))` (sem tradução exata; ver excecoes.json).
   Function? get onEnter;
-
   /// Disparado ao sair do campo. Tipo TS: `((() =&gt; void) & (() =&gt; void))` (sem tradução exata; ver excecoes.json).
   Function? get onExit;
-
   /// Tipo TS: `((message: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onValidation;
-
   /// Lista de opcoes disponiveis. `label` aparece na lista; `chipLabel` (opcional) e' o texto curto do item ja' selecionado (o resumo do campo), ex.: label "3 - Filial Centro" e chipLabel "3". Tipo TS: `SgMultiSelectOption[]` (sem tradução exata; ver excecoes.json).
   List<Object?> get options;
-
   /// Texto exibido quando nada esta selecionado.
   String? get placeholder;
   Widget? get prefixIcon;
   String? get prefixText;
-
   /// Marca o campo como obrigatorio. Padrão: `false`.
   bool? get required;
   String? get requiredMessage;
-
   /// Tipo TS: `RegisterOptions&lt;any&gt;` (sem tradução exata; ver excecoes.json).
   Object? get rules;
-
   /// Exibe campo de busca no topo do dropdown. Padrão: `false`.
   bool? get searchable;
   String? get searchPlaceholder;
   String? get suffixText;
-
   /// Quantidade de rotulos antes de mostrar 'N selecionadas'. Padrão: `2`.
   num? get summaryThreshold;
   SgMultiSelectTextInputType? get textInputType;
   bool? get validateOnBlur;
-
   /// Tipo TS: `((value: string) =&gt; string)` (sem tradução exata; ver excecoes.json).
   Function? get validation;
-
   /// Array de valores selecionados. Tipo TS: `SgMultiSelectOptionValue[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get value;
-
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get width;
   bool? get withBorder;
@@ -308,8 +288,7 @@ const List<SgPropSpec> sgMultiSelectPropSpecs = <SgPropSpec>[
     type: 'List<Object?>',
     tsType: 'SgMultiSelectOption[]',
     required: true,
-    description:
-        'Lista de opcoes disponiveis. `label` aparece na lista; `chipLabel` (opcional) e\' o texto curto do item ja\' selecionado (o resumo do campo), ex.: label "3 - Filial Centro" e chipLabel "3".',
+    description: 'Lista de opcoes disponiveis. `label` aparece na lista; `chipLabel` (opcional) e\' o texto curto do item ja\' selecionado (o resumo do campo), ex.: label "3 - Filial Centro" e chipLabel "3".',
     exact: false,
   ),
   SgPropSpec(
@@ -394,19 +373,9 @@ const List<SgPropSpec> sgMultiSelectPropSpecs = <SgPropSpec>[
     name: 'textInputType',
     reactName: 'textInputType',
     type: 'SgMultiSelectTextInputType?',
-    tsType:
-        '"none" | "email" | "search" | "tel" | "text" | "url" | "numeric" | "decimal"',
+    tsType: '"none" | "email" | "search" | "tel" | "text" | "url" | "numeric" | "decimal"',
     required: false,
-    values: <String>[
-      'none',
-      'email',
-      'search',
-      'tel',
-      'text',
-      'url',
-      'numeric',
-      'decimal',
-    ],
+    values: <String>['none', 'email', 'search', 'tel', 'text', 'url', 'numeric', 'decimal'],
   ),
   SgPropSpec(
     name: 'validateOnBlur',

@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -14,25 +15,18 @@ abstract interface class SgToolbarIconButtonProps {
   /// Desabilita interacao. Padrão: `false`.
   bool? get disabled;
   bool? get hideLabel;
-
   /// Texto auxiliar usado como dica contextual.
   String? get hint;
-
   /// Icone principal exibido no botao.
   Widget? get icon;
-
   /// Rotulo textual da acao.
   String? get label;
-
   /// Indica processamento em andamento. Padrão: `false`.
   bool? get loading;
-
   /// Callback executado ao clicar no item. Tipo TS: `(() =&gt; void | Promise&lt;void&gt;)` (sem tradução exata; ver excecoes.json).
   Function? get onClick;
-
   /// Tom visual do botao de toolbar. Padrão: `plain`.
   SgToolbarIconButtonSeverity? get severity;
-
   /// Exibe o rotulo junto do icone quando suportado pela toolbar. Padrão: `false`.
   bool? get showLabel;
 }
@@ -105,16 +99,7 @@ const List<SgPropSpec> sgToolbarIconButtonPropSpecs = <SgPropSpec>[
     required: false,
     defaultValue: 'plain',
     description: 'Tom visual do botao de toolbar.',
-    values: <String>[
-      'primary',
-      'secondary',
-      'success',
-      'warning',
-      'danger',
-      'info',
-      'help',
-      'plain',
-    ],
+    values: <String>['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'help', 'plain'],
   ),
   SgPropSpec(
     name: 'showLabel',

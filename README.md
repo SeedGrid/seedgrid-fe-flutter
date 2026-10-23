@@ -48,3 +48,12 @@ Ferramentas (Node 22; leem o repositório React, que **não é alterado**):
 - Sem `className`/`style`; `enabled` vira `disabled`; eventos mantêm o nome do React (ADR 50).
 - Sem referência a PrimeFaces/PrimeReact em exemplos.
 - Arquivos em UTF-8.
+
+## Como portar um componente (Onda 1 em diante)
+
+1. Ler o componente React (`../seedgrid-fe-components/packages/seedgrid-fe-components/src/<grupo>/<Comp>.tsx`) e o contrato gerado em `packages/seedgrid_components/lib/src/generated/<comp>.g.dart`.
+2. Escrever o widget em `packages/seedgrid_components/lib/src/<grupo>/` com `implements <Comp>Props`; exportar no **barril do grupo** (`lib/src/commons/commons.dart`, `lib/src/inputs/{text,masked,number,choice}_inputs.dart`), nunca no arquivo raiz.
+3. Props que o React herda do HTML (`onClick`, `disabled`, `children`...) entram como lista fechada (ADR 50). `className`/`style` não existem.
+4. Testes em `packages/seedgrid_components/test/widgets/<comp>_test.dart` (cada prop pública, estados, formulário, golden quando indicado no plano).
+5. Página de showcase: `apps/seedgrid_showcase/lib/pages/<snake>_page.dart` com `class <Comp>Page extends StatelessWidget` (construtor `const` sem argumentos) usando `SgShowcasePage`, exemplos com `// #region <id>` ... `// #endregion` (o código mostrado é o renderizado) e `SgPlayground`. Depois: `node tools/showcase_snippets/extract.mjs`. Os testes de âncoras, props e código 1:1 rodam sozinhos para toda página (`test/all_pages_test.dart`).
+6. `dart format lib test` **antes** de `extract.mjs`; `bash tools/ci.sh` verde.

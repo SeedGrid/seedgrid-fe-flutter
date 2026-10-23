@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -11,34 +12,24 @@ import '../props/sg_prop_spec.dart';
 abstract interface class SgStringAnimatorProps {
   /// Alinhamento do texto animado. Padrão: `left`.
   SgStringAnimatorAlignTo? get alignTo;
-
   /// Se true, inicia a animacao automaticamente quando o componente monta e sempre que targetString mudar. Padrão: `false`.
   bool? get autoStart;
-
   /// Cor de fundo — aplicada nos estilos "neon", "fade", "discard" e "matrix".
   String? get backgroundColor;
-
   /// Conjunto de caracteres validos para o SgRoller3DDigit. Deve conter todos os caracteres que podem aparecer em sourceString, targetString e emptyChar. Ignorado quando style != "roller3d". Padrão: `SG_STRING_ANIMATOR_DEFAULT_CHARSET`. Tipo TS: `string[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get charset;
-
   /// Cor principal do texto/ponto — aplicada nos estilos "neon", "fade", "discard" e "matrix".
   String? get color;
-
   /// Caractere utilizado para preencher as posicoes extras quando sourceString e targetString possuem comprimentos diferentes. Padrão: ` `.
   String? get emptyChar;
-
   /// Escala visual do display. Padrão: `28`.
   num? get fontSize;
-
   /// Texto inicial da animacao.
   String get sourceString;
-
   /// Estilo visual usado na transicao. Padrão: `roller3d`.
   SgStringAnimatorStringAnimatorStyle? get stringAnimatorStyle;
-
   /// Texto final da animacao.
   String get targetString;
-
   /// Velocidade de 1 (muito lento) a 100 (muito rapido). Controla o intervalo de tempo entre a troca de cada caractere. Padrão: `50`.
   num? get velocity;
 }
@@ -62,8 +53,7 @@ const List<SgPropSpec> sgStringAnimatorPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description:
-        'Se true, inicia a animacao automaticamente quando o componente monta e sempre que targetString mudar.',
+    description: 'Se true, inicia a animacao automaticamente quando o componente monta e sempre que targetString mudar.',
   ),
   SgPropSpec(
     name: 'backgroundColor',
@@ -71,8 +61,7 @@ const List<SgPropSpec> sgStringAnimatorPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description:
-        'Cor de fundo — aplicada nos estilos "neon", "fade", "discard" e "matrix".',
+    description: 'Cor de fundo — aplicada nos estilos "neon", "fade", "discard" e "matrix".',
   ),
   SgPropSpec(
     name: 'charset',
@@ -81,8 +70,7 @@ const List<SgPropSpec> sgStringAnimatorPropSpecs = <SgPropSpec>[
     tsType: 'string[]',
     required: false,
     defaultValue: 'SG_STRING_ANIMATOR_DEFAULT_CHARSET',
-    description:
-        'Conjunto de caracteres validos para o SgRoller3DDigit. Deve conter todos os caracteres que podem aparecer em sourceString, targetString e emptyChar. Ignorado quando style != "roller3d".',
+    description: 'Conjunto de caracteres validos para o SgRoller3DDigit. Deve conter todos os caracteres que podem aparecer em sourceString, targetString e emptyChar. Ignorado quando style != "roller3d".',
     exact: false,
   ),
   SgPropSpec(
@@ -91,8 +79,7 @@ const List<SgPropSpec> sgStringAnimatorPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description:
-        'Cor principal do texto/ponto — aplicada nos estilos "neon", "fade", "discard" e "matrix".',
+    description: 'Cor principal do texto/ponto — aplicada nos estilos "neon", "fade", "discard" e "matrix".',
   ),
   SgPropSpec(
     name: 'emptyChar',
@@ -101,8 +88,7 @@ const List<SgPropSpec> sgStringAnimatorPropSpecs = <SgPropSpec>[
     tsType: 'string',
     required: false,
     defaultValue: ' ',
-    description:
-        'Caractere utilizado para preencher as posicoes extras quando sourceString e targetString possuem comprimentos diferentes.',
+    description: 'Caractere utilizado para preencher as posicoes extras quando sourceString e targetString possuem comprimentos diferentes.',
   ),
   SgPropSpec(
     name: 'fontSize',
@@ -146,7 +132,6 @@ const List<SgPropSpec> sgStringAnimatorPropSpecs = <SgPropSpec>[
     tsType: 'number',
     required: false,
     defaultValue: '50',
-    description:
-        'Velocidade de 1 (muito lento) a 100 (muito rapido). Controla o intervalo de tempo entre a troca de cada caractere.',
+    description: 'Velocidade de 1 (muito lento) a 100 (muito rapido). Controla o intervalo de tempo entre a troca de cada caractere.',
   ),
 ];

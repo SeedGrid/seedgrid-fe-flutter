@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -13,7 +14,6 @@ import '../props/sg_prop_spec.dart';
 abstract interface class SgDockZoneProps {
   /// Conteudo renderizado dentro da zona. No React e `children`.
   Widget? get child;
-
   /// Identificador da zona dentro do dock layout.
   SgDockZoneId get zone;
 }

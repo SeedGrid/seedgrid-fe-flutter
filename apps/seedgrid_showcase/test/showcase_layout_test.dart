@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:seedgrid_showcase/pages/modelo_page.dart';
-import 'package:seedgrid_showcase/snippets.g.dart';
+import 'package:seedgrid_showcase/pages/modelo_page.snippets.g.dart';
 import 'package:seedgrid_showcase/src/sg_showcase_page.dart';
 
 Widget _app() => const MaterialApp(
@@ -36,6 +36,8 @@ Future<void> _tapLink(WidgetTester t, ValueKey<String> key) async {
   await t.tap(f);
   await t.pumpAndSettle();
 }
+
+const kModeloExampleCount = 6;
 
 const sizes = {
   'mobile 390x800': Size(390, 800),
@@ -187,12 +189,12 @@ void main() {
     }
 
     final pairs = <String, String>{
-      'modelo-texto': Snippets.modeloTexto,
-      'modelo-botoes': Snippets.modeloBotoes,
-      'modelo-alto': Snippets.modeloAlto,
-      'modelo-coluna': Snippets.modeloColuna,
-      'modelo-alto-2': Snippets.modeloAlto2,
-      'modelo-ultimo': Snippets.modeloUltimo,
+      'modelo-texto': ModeloPageSnippets.modeloTexto,
+      'modelo-botoes': ModeloPageSnippets.modeloBotoes,
+      'modelo-alto': ModeloPageSnippets.modeloAlto,
+      'modelo-coluna': ModeloPageSnippets.modeloColuna,
+      'modelo-alto-2': ModeloPageSnippets.modeloAlto2,
+      'modelo-ultimo': ModeloPageSnippets.modeloUltimo,
     };
     pairs.forEach((id, code) {
       test(id, () => expect(norm(code), norm(region(id))));
@@ -201,8 +203,8 @@ void main() {
     testWidgets('o bloco de codigo exibido na tela e o Snippet', (t) async {
       await _setSize(t, sizes.values.last);
       await t.pumpWidget(_app());
-      expect(find.text(Snippets.modeloTexto), findsOneWidget);
-      expect(find.text(Snippets.modeloBotoes), findsOneWidget);
+      expect(find.text(ModeloPageSnippets.modeloTexto), findsOneWidget);
+      expect(find.text(ModeloPageSnippets.modeloBotoes), findsOneWidget);
     });
 
     test(

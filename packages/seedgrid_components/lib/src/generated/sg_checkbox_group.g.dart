@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -13,52 +14,37 @@ import '../props/sg_prop_spec.dart';
 abstract interface class SgCheckboxGroupProps {
   Widget? get checkAllIcon;
   String? get checkAllLabel;
-
   /// Tipo TS: `any` (sem tradução exata; ver excecoes.json).
   Object? get control;
-
   /// Padrão: `false`.
   bool? get disabled;
   String? get error;
-
   /// Padrão: `{}`. Tipo TS: `(Omit&lt;Partial&lt;SgGroupBoxProps&gt;, "title" | "children"&gt; & { title?: string; })` (sem tradução exata; ver excecoes.json).
   Object? get groupBoxProps;
-
   /// Padrão: `false`.
   bool? get iconOnly;
   String? get id;
   String? get name;
-
   /// Callback de mudanca. Tipo TS: `((value: (string | number)[]) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onChange;
-
   /// Padrão: ``.
   String? get optionClassName;
-
   /// Orientacao visual do grupo. Padrão: `vertical`.
   SgCheckboxGroupOrientation? get orientation;
-
   /// Padrão: `false`.
   bool? get readOnly;
-
   /// Marca o grupo como obrigatorio. Padrão: `false`.
   bool? get required;
-
   /// Tipo TS: `RegisterOptions&lt;any&gt;` (sem tradução exata; ver excecoes.json).
   Object? get rules;
-
   /// Estilo visual de selecao. Padrão: `checkbox`.
   SgCheckboxGroupSelectionStyle? get selectionStyle;
-
   /// Exibe acao de marcar todos. Padrão: `false`.
   bool? get showCheckAll;
-
   /// Opcoes disponiveis. Tipo TS: `SgCheckboxGroupOption[]` (sem tradução exata; ver excecoes.json).
   List<Object?> get source;
-
   /// Titulo do grupo.
   String? get title;
-
   /// Valores selecionados. Tipo TS: `(string | number)[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get value;
 }
@@ -106,8 +92,7 @@ const List<SgPropSpec> sgCheckboxGroupPropSpecs = <SgPropSpec>[
     name: 'groupBoxProps',
     reactName: 'groupBoxProps',
     type: 'Object?',
-    tsType:
-        '(Omit<Partial<SgGroupBoxProps>, "title" | "children"> & { title?: string; })',
+    tsType: '(Omit<Partial<SgGroupBoxProps>, "title" | "children"> & { title?: string; })',
     required: false,
     defaultValue: '{}',
     exact: false,

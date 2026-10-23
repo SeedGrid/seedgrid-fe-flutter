@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -11,89 +12,61 @@ import '../props/sg_prop_spec.dart';
 abstract interface class SgLinearGaugeProps {
   /// Padrão: `true`.
   bool? get animate;
-
   /// Padrão: `350`.
   num? get animationDuration;
   String? get ariaLabel;
-
   /// Padrão: `hsl(var(--border))`.
   String? get axisColor;
-
   /// Padrão: `10`.
   num? get axisThickness;
-
   /// Padrão: `hsl(var(--primary))`.
   String? get barColor;
-
   /// Padrão: `true`.
   bool? get barPointer;
-
   /// Padrão: `8`.
   num? get barThickness;
-
   /// Padrão: `min`.
   num? get defaultValue;
-
   /// Padrão: `orientation === "horizontal" ? 120 : 360`.
   num? get height;
-
   /// Padrão: `false`.
   bool? get isAxisInversed;
-
   /// Tipo TS: `((value: number) =&gt; React.ReactNode)` (sem tradução exata; ver excecoes.json).
   Function? get labelFormatter;
-
   /// Padrão: `5`.
   num? get majorTickCount;
-
   /// Valor maximo da escala. Padrão: `100`.
   num? get max;
-
   /// Valor minimo da escala. Padrão: `0`.
   num? get min;
-
   /// Padrão: `1`.
   num? get minorTicksPerInterval;
-
   /// Tipo TS: `((pointerId: string, value: number, pointer: SgLinearGaugePointer) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onPointerValueChange;
-
   /// Callback do ponteiro principal. Tipo TS: `((value: number) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onValueChange;
-
   /// Orientacao do gauge. Padrão: `horizontal`.
   SgLinearGaugeOrientation? get orientation;
-
   /// Ponteiros adicionais renderizados sobre o eixo. Padrão: ``. Tipo TS: `SgLinearGaugePointer[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get pointers;
-
   /// Padrão: `hsl(var(--primary))`.
   String? get primaryPointerColor;
-
   /// Permite arrastar o ponteiro principal. Padrão: `false`.
   bool? get primaryPointerDraggable;
-
   /// Padrão: `triangle`.
   SgLinearGaugePrimaryPointerShape? get primaryPointerShape;
-
   /// Padrão: `11`.
   num? get primaryPointerSize;
-
   /// Faixas coloridas aplicadas sobre a escala. Padrão: ``. Tipo TS: `SgLinearGaugeRange[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get ranges;
-
   /// Exibe rotulos da escala. Padrão: `true`.
   bool? get showLabels;
-
   /// Padrão: `true`.
   bool? get showPrimaryPointer;
-
   /// Exibe ticks da escala. Padrão: `true`.
   bool? get showTicks;
-
   /// Valor do ponteiro principal.
   num? get value;
-
   /// Padrão: `orientation === "horizontal" ? 360 : 140`.
   num? get width;
 }
@@ -233,8 +206,7 @@ const List<SgPropSpec> sgLinearGaugePropSpecs = <SgPropSpec>[
     name: 'onPointerValueChange',
     reactName: 'onPointerValueChange',
     type: 'Function?',
-    tsType:
-        '((pointerId: string, value: number, pointer: SgLinearGaugePointer) => void)',
+    tsType: '((pointerId: string, value: number, pointer: SgLinearGaugePointer) => void)',
     required: false,
     exact: false,
   ),
@@ -291,13 +263,7 @@ const List<SgPropSpec> sgLinearGaugePropSpecs = <SgPropSpec>[
     tsType: 'SgLinearGaugePointerShape',
     required: false,
     defaultValue: 'triangle',
-    values: <String>[
-      'circle',
-      'triangle',
-      'inverted-triangle',
-      'diamond',
-      'rect',
-    ],
+    values: <String>['circle', 'triangle', 'inverted-triangle', 'diamond', 'rect'],
   ),
   SgPropSpec(
     name: 'primaryPointerSize',

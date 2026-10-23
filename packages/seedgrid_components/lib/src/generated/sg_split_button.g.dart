@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -13,37 +14,26 @@ import '../props/sg_prop_spec.dart';
 abstract interface class SgSplitButtonProps {
   /// Variante visual base do split button. Padrão: `solid`.
   SgAppearance? get appearance;
-
   /// Tipo TS: `SgButtonCustomColors` (sem tradução exata; ver excecoes.json).
   Object? get customColors;
-
   /// Desabilita a acao principal e o menu secundario. Padrão: `false`.
   bool? get disabled;
-
   /// Padrão: `none`.
   SgElevation? get elevation;
-
   /// Lista de acoes secundarias exibidas no menu dropdown. Tipo TS: `SgSplitButtonItem[]` (sem tradução exata; ver excecoes.json).
   List<Object?> get items;
-
   /// Conteudo textual principal da acao.
   String? get label;
-
   /// Icone exibido junto do label principal.
   Widget? get leftIcon;
-
   /// Exibe estado de carregamento na acao principal. Padrão: `false`.
   bool? get loading;
-
   /// Callback disparado na acao principal. Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onClick;
-
   /// Peso visual e semantico da acao principal. Padrão: `primary`.
   SgSeverity? get severity;
-
   /// Padrão: `default`.
   SgSplitButtonShape? get shape;
-
   /// Padrão: `md`.
   SgSize? get size;
 }
@@ -137,15 +127,7 @@ const List<SgPropSpec> sgSplitButtonPropSpecs = <SgPropSpec>[
     required: false,
     defaultValue: 'primary',
     description: 'Peso visual e semantico da acao principal.',
-    values: <String>[
-      'primary',
-      'secondary',
-      'success',
-      'warning',
-      'danger',
-      'info',
-      'help',
-    ],
+    values: <String>['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'help'],
   ),
   SgPropSpec(
     name: 'shape',

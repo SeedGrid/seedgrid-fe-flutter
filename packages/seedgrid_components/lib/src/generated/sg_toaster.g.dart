@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -11,25 +12,18 @@ import '../props/sg_prop_spec.dart';
 abstract interface class SgToasterProps {
   /// Exibe botao de fechar em cada toast. Padrão: `true`.
   bool? get closeButton;
-
   /// Tipo TS: `Partial&lt;Record&lt;SgToastType, SgToasterTypeColors&gt;&gt;` (sem tradução exata; ver excecoes.json).
   Object? get customColors;
-
   /// Duracao padrao dos toasts em milissegundos. Padrão: `4000`.
   num? get duration;
-
   /// Posicao global do stack de toasts. Padrão: `top-right`.
   SgToasterPosition? get position;
-
   /// Ativa paleta visual rica por tipo de toast. Padrão: `true`.
   bool? get richColors;
-
   /// Arredonda os cantos de cada toast (desligue para cantos retos). Padrão: `true`.
   bool? get rounded;
-
   /// Padrão: `0`.
   num? get transparency;
-
   /// Quantidade maxima de toasts visiveis simultaneamente. Padrão: `6`.
   num? get visibleToasts;
 }
@@ -70,14 +64,7 @@ const List<SgPropSpec> sgToasterPropSpecs = <SgPropSpec>[
     required: false,
     defaultValue: 'top-right',
     description: 'Posicao global do stack de toasts.',
-    values: <String>[
-      'top-left',
-      'top-right',
-      'bottom-left',
-      'bottom-right',
-      'top-center',
-      'bottom-center',
-    ],
+    values: <String>['top-left', 'top-right', 'bottom-left', 'bottom-right', 'top-center', 'bottom-center'],
   ),
   SgPropSpec(
     name: 'richColors',
@@ -95,8 +82,7 @@ const List<SgPropSpec> sgToasterPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'true',
-    description:
-        'Arredonda os cantos de cada toast (desligue para cantos retos).',
+    description: 'Arredonda os cantos de cada toast (desligue para cantos retos).',
   ),
   SgPropSpec(
     name: 'transparency',

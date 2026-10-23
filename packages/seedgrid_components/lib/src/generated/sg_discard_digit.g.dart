@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -11,34 +12,24 @@ import '../props/sg_prop_spec.dart';
 abstract interface class SgDiscardDigitProps {
   /// Ativa animacao de descarte quando o valor muda. Padrão: `true`.
   bool? get animateOnChange;
-
   /// Cor do fundo do card. Padrão: `#f8fafc`.
   String? get backgroundColor;
-
   /// Estrategia de animacao para mudancas por prop `value`. Padrão: `discard`.
   SgDiscardDigitChangeAnimationMode? get changeAnimationMode;
-
   /// Cor do caractere. Padrão: `#0f172a`.
   String? get color;
-
   /// Fonte (font-family) usada no texto.
   String? get font;
-
   /// Escala visual do digito. Padrão: `72`.
   num? get fontSize;
-
   /// Peso da fonte. Padrão: `700`. Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get fontWeight;
-
   /// Quantidade de folhas visiveis na pilha (min 2, max 30). Ignorado se totalNumberPages for definido. Padrão: `20`.
   num? get stackDepth;
-
   /// Total de paginas do monte. Quando definido, a pilha visual encolhe a cada increasePage().
   num? get totalNumberPages;
-
   /// Duracao total da animacao em ms. Padrão: `640`.
   num? get transitionMs;
-
   /// Caractere exibido no display.
   String get value;
 }
@@ -116,8 +107,7 @@ const List<SgPropSpec> sgDiscardDigitPropSpecs = <SgPropSpec>[
     tsType: 'number',
     required: false,
     defaultValue: '20',
-    description:
-        'Quantidade de folhas visiveis na pilha (min 2, max 30). Ignorado se totalNumberPages for definido.',
+    description: 'Quantidade de folhas visiveis na pilha (min 2, max 30). Ignorado se totalNumberPages for definido.',
   ),
   SgPropSpec(
     name: 'totalNumberPages',
@@ -125,8 +115,7 @@ const List<SgPropSpec> sgDiscardDigitPropSpecs = <SgPropSpec>[
     type: 'num?',
     tsType: 'number',
     required: false,
-    description:
-        'Total de paginas do monte. Quando definido, a pilha visual encolhe a cada increasePage().',
+    description: 'Total de paginas do monte. Quando definido, a pilha visual encolhe a cada increasePage().',
   ),
   SgPropSpec(
     name: 'transitionMs',

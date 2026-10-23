@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -13,98 +14,68 @@ import '../props/sg_prop_spec.dart';
 abstract interface class SgRadialGaugeProps {
   /// Padrão: `true`.
   bool? get animate;
-
   /// Padrão: `350`.
   num? get animationDuration;
-
   /// Anotacoes posicionadas por valor ou angulo. Padrão: ``. Tipo TS: `SgRadialGaugeAnnotation[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get annotations;
   String? get ariaLabel;
-
   /// Padrão: `hsl(var(--border))`.
   String? get axisColor;
-
   /// Padrão: `14`.
   num? get axisWidth;
   Widget? get centerContent;
-
   /// Padrão: `min`.
   num? get defaultValue;
-
   /// Angulo final do arco. Padrão: `45`.
   num? get endAngle;
-
   /// Padrão: `300`.
   num? get height;
-
   /// Padrão: `false`.
   bool? get isAxisInversed;
-
   /// Tipo TS: `((value: number) =&gt; React.ReactNode)` (sem tradução exata; ver excecoes.json).
   Function? get labelFormatter;
-
   /// Padrão: `5`.
   num? get majorTickCount;
-
   /// Valor maximo da escala. Padrão: `100`.
   num? get max;
-
   /// Valor minimo da escala. Padrão: `0`.
   num? get min;
-
   /// Padrão: `1`.
   num? get minorTicksPerInterval;
-
   /// Tipo TS: `((pointerId: string, value: number, pointer: SgRadialGaugePointer) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onPointerValueChange;
-
   /// Callback do ponteiro principal. Tipo TS: `((value: number) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onValueChange;
-
   /// Ponteiros adicionais do tipo needle, marker ou range. Padrão: ``. Tipo TS: `SgRadialGaugePointer[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get pointers;
-
   /// Padrão: `hsl(var(--primary))`.
   String? get primaryPointerColor;
-
   /// Padrão: `false`.
   bool? get primaryPointerDraggable;
   Widget? get primaryPointerLabel;
-
   /// Padrão: `circle`.
   SgRadialGaugePrimaryPointerShape? get primaryPointerShape;
-
   /// Padrão: `12`.
   num? get primaryPointerSize;
-
   /// Tipo visual do ponteiro principal. Padrão: `needle`.
   SgRadialGaugePrimaryPointerType? get primaryPointerType;
-
   /// Padrão: `3`.
   num? get primaryPointerWidth;
-
   /// Padrão: `0.9`.
   num? get radiusFactor;
-
   /// Faixas coloridas sobre o arco principal. Padrão: ``. Tipo TS: `SgRadialGaugeRange[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get ranges;
   num? get ringThickness;
-
   /// Padrão: `true`.
   bool? get showLabels;
-
   /// Padrão: `true`.
   bool? get showPrimaryPointer;
-
   /// Padrão: `true`.
   bool? get showTicks;
-
   /// Angulo inicial do arco. Padrão: `135`.
   num? get startAngle;
-
   /// Valor do ponteiro principal.
   num? get value;
-
   /// Padrão: `300`.
   num? get width;
 }
@@ -246,8 +217,7 @@ const List<SgPropSpec> sgRadialGaugePropSpecs = <SgPropSpec>[
     name: 'onPointerValueChange',
     reactName: 'onPointerValueChange',
     type: 'Function?',
-    tsType:
-        '((pointerId: string, value: number, pointer: SgRadialGaugePointer) => void)',
+    tsType: '((pointerId: string, value: number, pointer: SgRadialGaugePointer) => void)',
     required: false,
     exact: false,
   ),

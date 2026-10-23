@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -13,26 +14,19 @@ import '../props/sg_prop_spec.dart';
 abstract interface class SgButtonProps {
   /// Variante visual base do botao. Padrão: `solid`.
   SgAppearance? get appearance;
-
   /// Tipo TS: `SgButtonCustomColors` (sem tradução exata; ver excecoes.json).
   Object? get customColors;
-
   /// Padrão: `none`.
   SgElevation? get elevation;
   bool? get iconOnly;
-
   /// Conteudo textual principal do botao.
   Widget? get label;
-
   /// Icone exibido antes do label.
   Widget? get leftIcon;
-
   /// Exibe spinner e bloqueia interacao enquanto a acao esta em progresso. Padrão: `false`.
   bool? get loading;
-
   /// Icone exibido depois do label.
   Widget? get rightIcon;
-
   /// Define o peso visual e semantico da acao. Padrão: `primary`.
   SgSeverity? get severity;
   SgButtonShape? get shape;
@@ -98,8 +92,7 @@ const List<SgPropSpec> sgButtonPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description:
-        'Exibe spinner e bloqueia interacao enquanto a acao esta em progresso.',
+    description: 'Exibe spinner e bloqueia interacao enquanto a acao esta em progresso.',
   ),
   SgPropSpec(
     name: 'rightIcon',
@@ -117,15 +110,7 @@ const List<SgPropSpec> sgButtonPropSpecs = <SgPropSpec>[
     required: false,
     defaultValue: 'primary',
     description: 'Define o peso visual e semantico da acao.',
-    values: <String>[
-      'primary',
-      'secondary',
-      'success',
-      'warning',
-      'danger',
-      'info',
-      'help',
-    ],
+    values: <String>['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'help'],
   ),
   SgPropSpec(
     name: 'shape',

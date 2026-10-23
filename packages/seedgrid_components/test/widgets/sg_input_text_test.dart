@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 import 'package:seedgrid_theme/seedgrid_theme.dart';
@@ -391,6 +392,8 @@ void main() {
     );
   });
 
+  extrasTests();
+
   testWidgets('[golden] estados do campo', (t) async {
     t.view.physicalSize = const Size(480, 520);
     t.view.devicePixelRatio = 1;
@@ -445,4 +448,50 @@ void main() {
       matchesGoldenFile('goldens/sg_input_text_estados.png'),
     );
   });
+}
+
+// Extensoes da lista fechada que substitui `inputProps` (ADR 50): base das mascaras (Onda 1).
+void extrasTests() {
+  testWidgets(
+    'inputFormatters aplicam a mascara e onChange recebe o texto formatado',
+    (t) async {
+      final changes = <String>[];
+      await t.pumpWidget(
+        host(
+          SgInputText(
+            id: 'm',
+            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+            onChange: changes.add,
+          ),
+        ),
+      );
+      await t.enterText(field('m'), 'a1b2');
+      expect(changes.last, '12');
+    },
+  );
+
+  testWidgets(
+    'onSubmitted recebe o valor completo; focusNode externo e usado; autofocus',
+    (t) async {
+      final submitted = <String>[];
+      final node = FocusNode();
+      addTearDown(node.dispose);
+      await t.pumpWidget(
+        host(
+          SgInputText(
+            id: 's',
+            prefixText: r'R$ ',
+            focusNode: node,
+            autofocus: true,
+            onSubmitted: submitted.add,
+          ),
+        ),
+      );
+      await t.pump();
+      expect(node.hasFocus, isTrue);
+      await t.enterText(field('s'), '9');
+      await t.testTextInput.receiveAction(TextInputAction.done);
+      expect(submitted, [r'R$ 9']);
+    },
+  );
 }

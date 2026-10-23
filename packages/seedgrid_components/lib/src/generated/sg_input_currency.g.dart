@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -12,14 +13,11 @@ import '../props/sg_prop_spec.dart';
 /// O widget deve declarar `implements SgInputCurrencyProps`.
 abstract interface class SgInputCurrencyProps {
   bool? get allowNegative;
-
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get borderRadius;
   bool? get clearButton;
-
   /// Tipo TS: `any` (sem tradução exata; ver excecoes.json).
   Object? get control;
-
   /// Codigo ou configuracao de moeda usada na formatacao.
   String? get currency;
   SgInputCurrencyCurrencyDisplay? get currencyDisplay;
@@ -27,22 +25,17 @@ abstract interface class SgInputCurrencyProps {
   SgInputCurrencyCurrencySymbolPlacement? get currencySymbolPlacement;
   num? get decimals;
   SgInputCurrencyEmptyValue? get emptyValue;
-
   /// No React a prop se chama `enabled` (valor invertido); ver ADR 50.
   bool? get disabled;
   String? get error;
   bool? get filled;
   String? get hintText;
-
   /// Tipo TS: `React.ReactNode[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get iconButtons;
-
   /// Identificador unico do campo monetario.
   String get id;
-
   /// Tipo TS: `(React.InputHTMLAttributes&lt;HTMLInputElement&gt; & { ref?: React.Ref&lt;HTMLInputElement&gt;; })` (sem tradução exata; ver excecoes.json).
   Object? get inputProps;
-
   /// Rotulo principal exibido ao usuario.
   String? get label;
   String? get labelText;
@@ -51,47 +44,36 @@ abstract interface class SgInputCurrencyProps {
   String? get maxValueMessage;
   num? get minValue;
   String? get minValueMessage;
-
   /// Nome do campo para formularios.
   String? get name;
-
   /// Callback com o valor monetario normalizado. Tipo TS: `((value: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onChange;
-
   /// Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onClear;
-
   /// Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onEnter;
-
   /// Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onExit;
-
   /// Tipo TS: `((message: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onValidation;
   String? get placeholder;
   Widget? get prefixIcon;
   String? get prefixText;
   bool? get readOnly;
-
   /// Marca o campo como obrigatorio. Padrão: `false`.
   bool? get required;
   String? get requiredMessage;
-
   /// Tipo TS: `RegisterOptions&lt;any&gt;` (sem tradução exata; ver excecoes.json).
   Object? get rules;
   bool? get showCurrencySymbol;
   String? get suffixText;
   SgInputCurrencyTextInputType? get textInputType;
-
   /// Tipo TS: `React.HTMLInputTypeAttribute` (sem tradução exata; ver excecoes.json).
   Object? get type;
   bool? get useGrouping;
   bool? get validateOnBlur;
-
   /// Tipo TS: `((value: string) =&gt; string)` (sem tradução exata; ver excecoes.json).
   Function? get validation;
-
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get width;
   bool? get withBorder;
@@ -223,8 +205,7 @@ const List<SgPropSpec> sgInputCurrencyPropSpecs = <SgPropSpec>[
     name: 'inputProps',
     reactName: 'inputProps',
     type: 'Object?',
-    tsType:
-        '(React.InputHTMLAttributes<HTMLInputElement> & { ref?: React.Ref<HTMLInputElement>; })',
+    tsType: '(React.InputHTMLAttributes<HTMLInputElement> & { ref?: React.Ref<HTMLInputElement>; })',
     required: false,
     exact: false,
   ),
@@ -397,19 +378,9 @@ const List<SgPropSpec> sgInputCurrencyPropSpecs = <SgPropSpec>[
     name: 'textInputType',
     reactName: 'textInputType',
     type: 'SgInputCurrencyTextInputType?',
-    tsType:
-        '"none" | "email" | "search" | "tel" | "text" | "url" | "numeric" | "decimal"',
+    tsType: '"none" | "email" | "search" | "tel" | "text" | "url" | "numeric" | "decimal"',
     required: false,
-    values: <String>[
-      'none',
-      'email',
-      'search',
-      'tel',
-      'text',
-      'url',
-      'numeric',
-      'decimal',
-    ],
+    values: <String>['none', 'email', 'search', 'tel', 'text', 'url', 'numeric', 'decimal'],
   ),
   SgPropSpec(
     name: 'type',

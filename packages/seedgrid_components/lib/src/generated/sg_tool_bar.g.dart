@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -13,44 +14,31 @@ import '../props/sg_prop_spec.dart';
 abstract interface class SgToolBarProps {
   String? get bgColor;
   String? get bgColorTitle;
-
   /// Quantidade de botoes distribuidos por direcao.
   num? get buttonsPerDirection;
-
   /// Botoes e elementos de acao da toolbar. No React e `children`.
   Widget? get child;
   bool? get collapsed;
-
   /// Permite recolher a toolbar. Padrão: `true`.
   bool? get collapsible;
-
   /// Padrão: `false`.
   bool? get defaultCollapsed;
-
   /// Tipo TS: `{ x: number; y: number; }` (sem tradução exata; ver excecoes.json).
   Object? get defaultPosition;
-
   /// Zona de encaixe da toolbar. Padrão: `free`.
   SgToolBarDockZone? get dockZone;
-
   /// Permite arrastar a toolbar. Padrão: `false`.
   bool? get draggable;
-
   /// Padrão: `false`.
   bool? get freeDrag;
-
   /// Identificador estavel da toolbar.
   String get id;
-
   /// Tipo TS: `((collapsed: boolean) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onCollapsedChange;
-
   /// Direcao e orientacao da toolbar.
   SgToolBarOrientationDirection? get orientationDirection;
-
   /// Tipo TS: `SgToolBarSize` (sem tradução exata; ver excecoes.json).
   Object? get size;
-
   /// Titulo opcional exibido na barra.
   Widget? get title;
 }
@@ -169,12 +157,7 @@ const List<SgPropSpec> sgToolBarPropSpecs = <SgPropSpec>[
     tsType: 'SgToolBarOrientationDirection',
     required: false,
     description: 'Direcao e orientacao da toolbar.',
-    values: <String>[
-      'horizontal-left',
-      'horizontal-right',
-      'vertical-up',
-      'vertical-down',
-    ],
+    values: <String>['horizontal-left', 'horizontal-right', 'vertical-up', 'vertical-down'],
   ),
   SgPropSpec(
     name: 'size',

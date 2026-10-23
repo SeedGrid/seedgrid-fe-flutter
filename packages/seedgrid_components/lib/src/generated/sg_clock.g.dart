@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -15,35 +16,25 @@ abstract interface class SgClockProps {
   Object? get cardProps;
   Widget? get cardTitle;
   Widget? get centerOverlay;
-
   /// Modo principal de exibicao do relogio. Padrão: `digital`.
   SgClockClockStyle? get clockStyle;
-
   /// Estilo visual do relogio digital. Padrão: `default`.
   SgClockDigitalStyle? get digitalStyle;
-
   /// Formato horario do relogio. Padrão: `24h`.
   SgClockFormat? get format;
   String? get initialServerTime;
-
   /// Padrão: `pt-BR`.
   String? get locale;
-
   /// Padrão: `step`.
   SgClockSecondHandMode? get secondHandMode;
-
   /// Exibe ou oculta os segundos. Padrão: `true`.
   bool? get showSeconds;
-
   /// Escala visual do relogio. Padrão: `md`. Tipo TS: `number | "sm" | "md" | "lg"` (sem tradução exata; ver excecoes.json).
   Object? get size;
-
   /// Tipo TS: `SgClockTheme` (sem tradução exata; ver excecoes.json).
   Object? get theme;
-
   /// Tema visual aplicado ao relogio. Padrão: `classic`.
   String? get themeId;
-
   /// Timezone usada no calculo da hora exibida.
   String? get timezone;
 }
@@ -90,17 +81,7 @@ const List<SgPropSpec> sgClockPropSpecs = <SgPropSpec>[
     required: false,
     defaultValue: 'default',
     description: 'Estilo visual do relogio digital.',
-    values: <String>[
-      'default',
-      'segment',
-      'sevenSegment',
-      'roller3d',
-      'flip',
-      'fade',
-      'matrix',
-      'neon',
-      'discard',
-    ],
+    values: <String>['default', 'segment', 'sevenSegment', 'roller3d', 'flip', 'fade', 'matrix', 'neon', 'discard'],
   ),
   SgPropSpec(
     name: 'format',

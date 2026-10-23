@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -12,10 +13,8 @@ import '../props/sg_prop_spec.dart';
 abstract interface class SgComponentsI18nProviderProps {
   /// Arvore de componentes que consome o contexto de i18n. No React e `children`.
   Widget get child;
-
   /// Locale aplicado aos componentes dentro do provider. Padrão: `en-US`. Tipo TS: `SgComponentsLocale` (sem tradução exata; ver excecoes.json).
   Object? get locale;
-
   /// Mapa de mensagens customizadas ou sobrescritas. Tipo TS: `SgComponentsMessages | SgComponentsMessagesByNamespace` (sem tradução exata; ver excecoes.json).
   Object? get messages;
 }

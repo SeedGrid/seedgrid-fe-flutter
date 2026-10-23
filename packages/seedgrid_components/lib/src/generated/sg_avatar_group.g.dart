@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -13,28 +14,20 @@ import '../props/sg_prop_spec.dart';
 abstract interface class SgAvatarGroupProps {
   /// Padrão: `true`.
   bool? get bordered;
-
   /// Lista de avatares exibidos no agrupamento. No React e `children`.
   Widget get child;
-
   /// Quantidade maxima de avatares visiveis antes do contador de overflow.
   num? get max;
-
   /// Tipo TS: `((remaining: number) =&gt; React.ReactNode)` (sem tradução exata; ver excecoes.json).
   Function? get moreLabel;
-
   /// Padrão: `neutral`.
   SgAvatarSeverity? get moreSeverity;
-
   /// Nivel de sobreposicao entre os avatares. Padrão: `md`.
   SgAvatarGroupOverlap? get overlap;
-
   /// Forma visual aplicada ao grupo de avatares. Padrão: `circle`.
   SgAvatarShape? get shape;
-
   /// Escala aplicada aos avatares do grupo. Padrão: `md`.
   SgAvatarSize? get size;
-
   /// Quantidade total de participantes para calculo do overflow.
   num? get total;
 }
@@ -63,8 +56,7 @@ const List<SgPropSpec> sgAvatarGroupPropSpecs = <SgPropSpec>[
     type: 'num?',
     tsType: 'number',
     required: false,
-    description:
-        'Quantidade maxima de avatares visiveis antes do contador de overflow.',
+    description: 'Quantidade maxima de avatares visiveis antes do contador de overflow.',
   ),
   SgPropSpec(
     name: 'moreLabel',
@@ -81,16 +73,7 @@ const List<SgPropSpec> sgAvatarGroupPropSpecs = <SgPropSpec>[
     tsType: 'SgAvatarSeverity',
     required: false,
     defaultValue: 'neutral',
-    values: <String>[
-      'primary',
-      'secondary',
-      'success',
-      'warning',
-      'danger',
-      'info',
-      'neutral',
-      'custom',
-    ],
+    values: <String>['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'neutral', 'custom'],
   ),
   SgPropSpec(
     name: 'overlap',

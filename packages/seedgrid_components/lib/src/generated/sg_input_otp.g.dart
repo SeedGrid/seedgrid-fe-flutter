@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -11,68 +12,49 @@ abstract interface class SgInputOTPProps {
   /// Tipo TS: `any` (sem tradução exata; ver excecoes.json).
   Object? get control;
   String? get defaultValue;
-
   /// Padrão: `true`. No React a prop se chama `enabled` (valor invertido); ver ADR 50.
   bool? get disabled;
   String? get error;
   String? get groupClassName;
   String? get hintText;
-
   /// Identificador unico do componente.
   String get id;
-
   /// Tipo TS: `(Omit&lt;React.InputHTMLAttributes&lt;HTMLInputElement&gt;, "defaultValue" | "value"&gt; & { ref?: React.Ref&lt;HTMLInputElement&gt;; })` (sem tradução exata; ver excecoes.json).
   Object? get inputProps;
-
   /// Rotulo exibido ao usuario.
   String? get label;
-
   /// Mascara de slots para o codigo. Padrão: `999999`.
   String? get mask;
-
   /// Nome do campo em formularios.
   String? get name;
-
   /// Tipo TS: `((maskedValue: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onChange;
-
   /// Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onClear;
-
   /// Callback disparado ao completar o codigo. Tipo TS: `((value: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onComplete;
-
   /// Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onEnter;
-
   /// Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onExit;
-
   /// Callback com o valor bruto do codigo. Tipo TS: `((rawValue: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onRawChange;
-
   /// Callback para estado de validacao. Tipo TS: `((message: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onValidation;
-
   /// Padrão: `false`.
   bool? get readOnly;
-
   /// Marca o campo como obrigatorio. Padrão: `false`.
   bool? get required;
   String? get requiredMessage;
-
   /// Tipo TS: `RegisterOptions&lt;any&gt;` (sem tradução exata; ver excecoes.json).
   Object? get rules;
   String? get separatorClassName;
   String? get slotClassName;
-
   /// Executa validacao no blur. Padrão: `true`.
   bool? get validateOnBlur;
-
   /// Tipo TS: `((rawValue: string, maskedValue: string) =&gt; string)` (sem tradução exata; ver excecoes.json).
   Function? get validation;
   String? get value;
-
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get width;
 }
@@ -135,8 +117,7 @@ const List<SgPropSpec> sgInputOTPPropSpecs = <SgPropSpec>[
     name: 'inputProps',
     reactName: 'inputProps',
     type: 'Object?',
-    tsType:
-        '(Omit<React.InputHTMLAttributes<HTMLInputElement>, "defaultValue" | "value"> & { ref?: React.Ref<HTMLInputElement>; })',
+    tsType: '(Omit<React.InputHTMLAttributes<HTMLInputElement>, "defaultValue" | "value"> & { ref?: React.Ref<HTMLInputElement>; })',
     required: false,
     exact: false,
   ),

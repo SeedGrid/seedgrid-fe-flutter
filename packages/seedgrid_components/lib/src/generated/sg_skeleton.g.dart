@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -11,19 +12,14 @@ import '../props/sg_prop_spec.dart';
 abstract interface class SgSkeletonProps {
   /// Animacao aplicada ao placeholder. Padrão: `wave`.
   SgSkeletonAnimation? get animation;
-
   /// Raio de borda customizado. Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get borderRadius;
-
   /// Altura do placeholder. Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get height;
-
   /// Forma visual base do placeholder. Padrão: `text`.
   SgSkeletonShape? get shape;
-
   /// Tamanho unico para placeholders quadrados ou circulares. Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get size;
-
   /// Largura do placeholder. Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get width;
 }

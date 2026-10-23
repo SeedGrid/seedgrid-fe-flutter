@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -13,22 +14,16 @@ import '../props/sg_prop_spec.dart';
 abstract interface class SgStackProps {
   /// Alinhamento dos itens no eixo cruzado. Padrão: `stretch`.
   SgStackAlign? get align;
-
   /// Itens renderizados dentro do stack. No React e `children`.
   Widget? get child;
-
   /// Direcao principal do empilhamento. Padrão: `column`.
   SgStackDirection? get direction;
-
   /// Espacamento entre os itens. Padrão: `0`. Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get gap;
-
   /// Permite que o stack cresca ocupando espaco disponivel. Padrão: `false`.
   bool? get grow;
-
   /// Distribuicao dos itens no eixo principal. Padrão: `start`.
   SgStackJustify? get justify;
-
   /// Permite quebra de linha quando necessario. Padrão: `false`.
   bool? get wrap;
 }

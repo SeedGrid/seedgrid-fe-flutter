@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -13,39 +14,28 @@ import '../props/sg_prop_spec.dart';
 abstract interface class SgAvatarProps {
   /// Texto alternativo da imagem do avatar.
   String? get alt;
-
   /// Padrão: `true`.
   bool? get bordered;
-
   /// No React e `children`.
   Widget? get child;
-
   /// Tipo TS: `SgAvatarCustomColors` (sem tradução exata; ver excecoes.json).
   Object? get customColors;
-
   /// Padrão: `false`.
   bool? get disabled;
-
   /// Conteudo de fallback quando nao ha imagem.
   Widget? get fallback;
   Widget? get icon;
   String? get imageClassName;
-
   /// Conteudo textual usado como iniciais ou identificacao visual.
   Widget? get label;
-
   /// Tipo TS: `((event: React.SyntheticEvent&lt;HTMLImageElement, Event&gt;) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onImageError;
-
   /// Tom visual do avatar quando nao ha imagem. Padrão: `primary`.
   SgAvatarSeverity? get severity;
-
   /// Forma visual do avatar. Padrão: `circle`.
   SgAvatarShape? get shape;
-
   /// Escala visual do avatar. Padrão: `md`.
   SgAvatarSize? get size;
-
   /// URL da imagem principal do avatar.
   String? get src;
 }
@@ -119,8 +109,7 @@ const List<SgPropSpec> sgAvatarPropSpecs = <SgPropSpec>[
     type: 'Widget?',
     tsType: 'React.ReactNode',
     required: false,
-    description:
-        'Conteudo textual usado como iniciais ou identificacao visual.',
+    description: 'Conteudo textual usado como iniciais ou identificacao visual.',
   ),
   SgPropSpec(
     name: 'onImageError',
@@ -138,16 +127,7 @@ const List<SgPropSpec> sgAvatarPropSpecs = <SgPropSpec>[
     required: false,
     defaultValue: 'primary',
     description: 'Tom visual do avatar quando nao ha imagem.',
-    values: <String>[
-      'primary',
-      'secondary',
-      'success',
-      'warning',
-      'danger',
-      'info',
-      'neutral',
-      'custom',
-    ],
+    values: <String>['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'neutral', 'custom'],
   ),
   SgPropSpec(
     name: 'shape',

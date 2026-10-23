@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -14,38 +15,29 @@ abstract interface class SgInputCPFCNPJProps {
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get borderRadius;
   bool? get clearButton;
-
   /// Tipo TS: `any` (sem tradução exata; ver excecoes.json).
   Object? get control;
   SgInputCPFCNPJElevation? get elevation;
-
   /// No React a prop se chama `enabled` (valor invertido); ver ADR 50.
   bool? get disabled;
   String? get error;
   bool? get filled;
   String? get hintText;
-
   /// Tipo TS: `React.ReactNode[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get iconButtons;
-
   /// Identificador unico do campo.
   String get id;
-
   /// Tipo TS: `(React.InputHTMLAttributes&lt;HTMLInputElement&gt; & { ref?: React.Ref&lt;HTMLInputElement&gt;; })` (sem tradução exata; ver excecoes.json).
   Object? get inputProps;
-
   /// Mensagem para documento invalido.
   String? get invalidMessage;
-
   /// Rotulo exibido ao usuario.
   String? get label;
   SgInputCPFCNPJLabelAlign? get labelAlign;
   SgInputCPFCNPJLabelPosition? get labelPosition;
   String? get labelText;
-
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get labelWidth;
-
   /// Mensagem para comprimento invalido.
   String? get lengthMessage;
   num? get maxLength;
@@ -54,48 +46,36 @@ abstract interface class SgInputCPFCNPJProps {
   String? get minLengthMessage;
   num? get minNumberOfWords;
   String? get minNumberOfWordsMessage;
-
   /// Nome do campo em formularios.
   String? get name;
-
   /// Tipo TS: `((value: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onChange;
-
   /// Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onClear;
-
   /// Disparado ao receber foco — padrao seedgrid. Tipo TS: `((() =&gt; void) & (() =&gt; void))` (sem tradução exata; ver excecoes.json).
   Function? get onEnter;
-
   /// Disparado ao perder o foco (apos validacao) — padrao seedgrid. Tipo TS: `((() =&gt; void) & (() =&gt; void))` (sem tradução exata; ver excecoes.json).
   Function? get onExit;
-
   /// Callback para estado de validacao. Tipo TS: `(((message: string) =&gt; void) & ((message: string) =&gt; void))` (sem tradução exata; ver excecoes.json).
   Function? get onValidation;
   String? get placeholder;
   Widget? get prefixIcon;
   String? get prefixText;
   bool? get readOnly;
-
   /// Marca o campo como obrigatorio. Padrão: `false`.
   bool? get required;
   String? get requiredMessage;
-
   /// Tipo TS: `RegisterOptions&lt;any&gt;` (sem tradução exata; ver excecoes.json).
   Object? get rules;
   bool? get showCharCounter;
   String? get suffixText;
   SgInputCPFCNPJTextInputType? get textInputType;
-
   /// Tipo TS: `React.HTMLInputTypeAttribute` (sem tradução exata; ver excecoes.json).
   Object? get type;
-
   /// Executa validacao no blur. Padrão: `true`.
   bool? get validateOnBlur;
-
   /// Validacao customizada adicional. Tipo TS: `(((value: string) =&gt; string) & ((value: string) =&gt; string))` (sem tradução exata; ver excecoes.json).
   Function? get validation;
-
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get width;
   bool? get withBorder;
@@ -182,8 +162,7 @@ const List<SgPropSpec> sgInputCPFCNPJPropSpecs = <SgPropSpec>[
     name: 'inputProps',
     reactName: 'inputProps',
     type: 'Object?',
-    tsType:
-        '(React.InputHTMLAttributes<HTMLInputElement> & { ref?: React.Ref<HTMLInputElement>; })',
+    tsType: '(React.InputHTMLAttributes<HTMLInputElement> & { ref?: React.Ref<HTMLInputElement>; })',
     required: false,
     exact: false,
   ),
@@ -323,8 +302,7 @@ const List<SgPropSpec> sgInputCPFCNPJPropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '((() => void) & (() => void))',
     required: false,
-    description:
-        'Disparado ao perder o foco (apos validacao) — padrao seedgrid.',
+    description: 'Disparado ao perder o foco (apos validacao) — padrao seedgrid.',
     exact: false,
   ),
   SgPropSpec(
@@ -406,19 +384,9 @@ const List<SgPropSpec> sgInputCPFCNPJPropSpecs = <SgPropSpec>[
     name: 'textInputType',
     reactName: 'textInputType',
     type: 'SgInputCPFCNPJTextInputType?',
-    tsType:
-        '"none" | "email" | "search" | "tel" | "text" | "url" | "numeric" | "decimal"',
+    tsType: '"none" | "email" | "search" | "tel" | "text" | "url" | "numeric" | "decimal"',
     required: false,
-    values: <String>[
-      'none',
-      'email',
-      'search',
-      'tel',
-      'text',
-      'url',
-      'numeric',
-      'decimal',
-    ],
+    values: <String>['none', 'email', 'search', 'tel', 'text', 'url', 'numeric', 'decimal'],
   ),
   SgPropSpec(
     name: 'type',

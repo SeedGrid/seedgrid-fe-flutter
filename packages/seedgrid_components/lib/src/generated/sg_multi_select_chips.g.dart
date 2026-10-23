@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -10,57 +11,41 @@ import '../props/sg_prop_spec.dart';
 abstract interface class SgMultiSelectChipsProps {
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get borderRadius;
-
   /// Exibe botao para limpar toda a selecao. Padrão: `false`.
   bool? get clearable;
-
   /// Tipo TS: `any` (sem tradução exata; ver excecoes.json).
   Object? get control;
   String? get emptyText;
-
   /// No React a prop se chama `enabled` (valor invertido); ver ADR 50.
   bool? get disabled;
   String? get error;
-
   /// Identificador unico do campo.
   String get id;
-
   /// Rotulo exibido ao usuario.
   String? get label;
   String? get labelText;
-
   /// Limite maximo de itens selecionaveis.
   num? get maxSelected;
   String? get name;
-
   /// Callback com o array atualizado de valores. Tipo TS: `((value: SgMultiSelectOptionValue[]) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onChange;
-
   /// Disparado ao focar o campo. Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onEnter;
-
   /// Disparado ao sair do campo. Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onExit;
-
   /// Lista de opcoes disponiveis. `label` aparece na lista; `chipLabel` (opcional) e' o texto curto do item ja' selecionado (o chip), ex.: label "3 - Filial Centro" e chipLabel "3". Tipo TS: `SgMultiSelectOption[]` (sem tradução exata; ver excecoes.json).
   List<Object?> get options;
-
   /// Texto exibido quando nada esta selecionado.
   String? get placeholder;
-
   /// Marca o campo como obrigatorio. Padrão: `false`.
   bool? get required;
-
   /// Tipo TS: `RegisterOptions&lt;any&gt;` (sem tradução exata; ver excecoes.json).
   Object? get rules;
-
   /// Exibe campo de busca no topo do dropdown. Padrão: `false`.
   bool? get searchable;
   String? get searchPlaceholder;
-
   /// Array de valores selecionados. Tipo TS: `SgMultiSelectOptionValue[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get value;
-
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get width;
 }
@@ -184,8 +169,7 @@ const List<SgPropSpec> sgMultiSelectChipsPropSpecs = <SgPropSpec>[
     type: 'List<Object?>',
     tsType: 'SgMultiSelectOption[]',
     required: true,
-    description:
-        'Lista de opcoes disponiveis. `label` aparece na lista; `chipLabel` (opcional) e\' o texto curto do item ja\' selecionado (o chip), ex.: label "3 - Filial Centro" e chipLabel "3".',
+    description: 'Lista de opcoes disponiveis. `label` aparece na lista; `chipLabel` (opcional) e\' o texto curto do item ja\' selecionado (o chip), ex.: label "3 - Filial Centro" e chipLabel "3".',
     exact: false,
   ),
   SgPropSpec(

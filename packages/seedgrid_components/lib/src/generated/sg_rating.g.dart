@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -13,66 +14,46 @@ import '../props/sg_prop_spec.dart';
 abstract interface class SgRatingProps {
   /// Enable half stars Padrão: `false`.
   bool? get allowHalf;
-
   /// Show cancel button Padrão: `true`.
   bool? get cancel;
-
   /// Custom icon for cancel button
   Widget? get cancelIcon;
-
   /// Color for filled stars Padrão: `hsl(var(--primary))`.
   String? get color;
-
   /// Tipo TS: `any` (sem tradução exata; ver excecoes.json).
   Object? get control;
-
   /// Desabilita interacao. Padrão: `false`.
   bool? get disabled;
-
   /// Color for empty stars Padrão: `hsl(var(--muted-foreground))`.
   String? get emptyColor;
   String? get error;
-
   /// Identificador unico do componente.
   String? get id;
-
   /// Rotulo do campo.
   String? get label;
   String? get name;
-
   /// Custom icon for empty state
   Widget? get offIcon;
-
   /// Callback de mudanca. Tipo TS: `((value: number) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onChange;
-
   /// Callback when hovering over stars Tipo TS: `((value: number) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onHover;
-
   /// Custom icon for filled state
   Widget? get onIcon;
-
   /// Impede alteracao da nota. Padrão: `false`.
   bool? get readOnly;
-
   /// Required field Padrão: `false`.
   bool? get required;
-
   /// Required message
   String? get requiredMessage;
-
   /// Tipo TS: `RegisterOptions&lt;any&gt;` (sem tradução exata; ver excecoes.json).
   Object? get rules;
-
   /// Show tooltips with value Padrão: `false`.
   bool? get showTooltip;
-
   /// Tamanho visual do controle. Padrão: `md`.
   SgRatingSize? get size;
-
   /// Number of stars Padrão: `5`.
   num? get stars;
-
   /// Nota atual. Padrão: `0`.
   num? get value;
 }

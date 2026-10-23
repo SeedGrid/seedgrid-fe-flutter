@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -12,25 +13,18 @@ import '../props/sg_prop_spec.dart';
 abstract interface class SgRealtimeProviderProps {
   /// Channels que a aplicacao quer ouvir (ex.: ["backup"]). Tipo TS: `string[]` (sem tradução exata; ver excecoes.json).
   List<Object?> get channels;
-
   /// Arvore que ouve os avisos com useSgRealtimeEvent. No React e `children`.
   Widget get child;
-
   /// Opções avançadas do cliente do Pulse (reconexão, `webSocketImpl` em testes...). Tipo TS: `Omit&lt;ConnectInput, "getToken" | "accountKey" | "baseUrl"&gt;` (sem tradução exata; ver excecoes.json).
   Object? get connectOptions;
-
   /// Liga/desliga (ex.: false enquanto nao ha usuario logado). Padrão: `true`. No React a prop se chama `enabled` (valor invertido); ver ADR 50.
   bool? get disabled;
-
   /// Substitui o pedido de token inteiro (apps sem BFF, testes). Tipo TS: `(() =&gt; Promise&lt;SgRealtimeConnectResponse&gt;)` (sem tradução exata; ver excecoes.json).
   Function? get fetchToken;
-
   /// Endereço do Pulse, usado quando o token não traz `connectUrl` (Pulse sem endereço público).
   String? get pulseUrl;
-
   /// Rota que entrega o token de conexao do usuario logado (a BFF, na mesma origem). Padrão: `/api/realtime/connect`.
   String? get tokenEndpoint;
-
   /// Opções do `fetch` do token (ex.: `headers: { Authorization: ... }` quando não há cookie). Tipo TS: `RequestInit` (sem tradução exata; ver excecoes.json).
   Object? get tokenRequestInit;
 }
@@ -60,8 +54,7 @@ const List<SgPropSpec> sgRealtimeProviderPropSpecs = <SgPropSpec>[
     type: 'Object?',
     tsType: 'Omit<ConnectInput, "getToken" | "accountKey" | "baseUrl">',
     required: false,
-    description:
-        'Opções avançadas do cliente do Pulse (reconexão, `webSocketImpl` em testes...).',
+    description: 'Opções avançadas do cliente do Pulse (reconexão, `webSocketImpl` em testes...).',
     exact: false,
   ),
   SgPropSpec(
@@ -88,8 +81,7 @@ const List<SgPropSpec> sgRealtimeProviderPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description:
-        'Endereço do Pulse, usado quando o token não traz `connectUrl` (Pulse sem endereço público).',
+    description: 'Endereço do Pulse, usado quando o token não traz `connectUrl` (Pulse sem endereço público).',
   ),
   SgPropSpec(
     name: 'tokenEndpoint',
@@ -98,8 +90,7 @@ const List<SgPropSpec> sgRealtimeProviderPropSpecs = <SgPropSpec>[
     tsType: 'string',
     required: false,
     defaultValue: '/api/realtime/connect',
-    description:
-        'Rota que entrega o token de conexao do usuario logado (a BFF, na mesma origem).',
+    description: 'Rota que entrega o token de conexao do usuario logado (a BFF, na mesma origem).',
   ),
   SgPropSpec(
     name: 'tokenRequestInit',
@@ -107,8 +98,7 @@ const List<SgPropSpec> sgRealtimeProviderPropSpecs = <SgPropSpec>[
     type: 'Object?',
     tsType: 'RequestInit',
     required: false,
-    description:
-        'Opções do `fetch` do token (ex.: `headers: { Authorization: ... }` quando não há cookie).',
+    description: 'Opções do `fetch` do token (ex.: `headers: { Authorization: ... }` quando não há cookie).',
     exact: false,
   ),
 ];

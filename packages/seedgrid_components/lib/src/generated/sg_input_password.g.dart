@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -14,48 +15,36 @@ abstract interface class SgInputPasswordProps {
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get borderRadius;
   bool? get clearButton;
-
   /// Bloqueia senhas comuns. Padrão: `true`.
   bool? get commonPasswordCheck;
-
   /// Tipo TS: `string[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get commonPasswordList;
   String? get commonPasswordMessage;
-
   /// Tipo TS: `any` (sem tradução exata; ver excecoes.json).
   Object? get control;
-
   /// Exibe um botao para gerar automaticamente uma senha forte aleatoria (respeita as regras de politica). Padrão: `false`.
   bool? get createNewPasswordButton;
   SgInputPasswordElevation? get elevation;
-
   /// No React a prop se chama `enabled` (valor invertido); ver ADR 50.
   bool? get disabled;
   String? get error;
   bool? get filled;
-
   /// Oculta a senha inicialmente. Padrão: `true`.
   bool? get hidePassword;
   String? get hintText;
-
   /// Tipo TS: `React.ReactNode[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get iconButtons;
-
   /// Identificador unico do campo.
   String get id;
-
   /// Tipo TS: `(React.InputHTMLAttributes&lt;HTMLInputElement&gt; & { ref?: React.Ref&lt;HTMLInputElement&gt;; })` (sem tradução exata; ver excecoes.json).
   Object? get inputProps;
-
   /// Rotulo exibido ao usuario.
   String? get label;
   SgInputPasswordLabelAlign? get labelAlign;
   SgInputPasswordLabelPosition? get labelPosition;
   String? get labelText;
-
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get labelWidth;
-
   /// Padrão: `true`.
   bool? get lowerRequired;
   num? get maxLength;
@@ -64,70 +53,51 @@ abstract interface class SgInputPasswordProps {
   String? get minLengthMessage;
   num? get minNumberOfWords;
   String? get minNumberOfWordsMessage;
-
   /// Tamanho minimo esperado da senha. Padrão: `8`.
   num? get minSize;
-
   /// Nome do campo em formularios.
   String? get name;
-
   /// Comprimento da senha gerada pelo `createNewPasswordButton`. Default: `minSize`.  NAO derive isto de `maxLength`: `maxLength` existe para nao truncar o que o usuario digita (frase-senha), e costuma ser folgado (128, 512). Usar o teto como alvo fazia o botao gerar uma senha de 128 caracteres.
   num? get newPasswordLength;
-
   /// Padrão: `true`.
   bool? get numberRequired;
-
   /// Tipo TS: `((value: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onChange;
-
   /// Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onClear;
-
   /// Disparado ao receber foco — padrao seedgrid. Tipo TS: `((() =&gt; void) & (() =&gt; void))` (sem tradução exata; ver excecoes.json).
   Function? get onEnter;
-
   /// Disparado ao perder o foco (apos validacao) — padrao seedgrid. Tipo TS: `((() =&gt; void) & (() =&gt; void))` (sem tradução exata; ver excecoes.json).
   Function? get onExit;
-
   /// Callback para estado de validacao. Tipo TS: `(((message: string) =&gt; void) & ((message: string) =&gt; void))` (sem tradução exata; ver excecoes.json).
   Function? get onValidation;
   String? get placeholder;
   Widget? get prefixIcon;
   String? get prefixText;
-
   /// Padrão: `true`.
   bool? get prohibitsRepeatedCharactersInSequence;
-
   /// Padrão: `true`.
   bool? get prohibitsSequentialAscCharacters;
-
   /// Padrão: `true`.
   bool? get prohibitsSequentialDescCharacters;
   bool? get readOnly;
-
   /// Marca o campo como obrigatorio. Padrão: `false`.
   bool? get required;
   String? get requiredMessage;
-
   /// Tipo TS: `RegisterOptions&lt;any&gt;` (sem tradução exata; ver excecoes.json).
   Object? get rules;
   bool? get showCharCounter;
-
   /// Exibe barra de forca da senha. Padrão: `true`.
   bool? get showStrengthBar;
-
   /// Padrão: `true`.
   bool? get specialCharacterRequired;
   String? get suffixText;
   SgInputPasswordTextInputType? get textInputType;
-
   /// Padrão: `true`.
   bool? get upperRequired;
   bool? get validateOnBlur;
-
   /// Tipo TS: `((value: string) =&gt; string)` (sem tradução exata; ver excecoes.json).
   Function? get validation;
-
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get width;
   bool? get withBorder;
@@ -189,8 +159,7 @@ const List<SgPropSpec> sgInputPasswordPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description:
-        'Exibe um botao para gerar automaticamente uma senha forte aleatoria (respeita as regras de politica).',
+    description: 'Exibe um botao para gerar automaticamente uma senha forte aleatoria (respeita as regras de politica).',
   ),
   SgPropSpec(
     name: 'elevation',
@@ -257,8 +226,7 @@ const List<SgPropSpec> sgInputPasswordPropSpecs = <SgPropSpec>[
     name: 'inputProps',
     reactName: 'inputProps',
     type: 'Object?',
-    tsType:
-        '(React.InputHTMLAttributes<HTMLInputElement> & { ref?: React.Ref<HTMLInputElement>; })',
+    tsType: '(React.InputHTMLAttributes<HTMLInputElement> & { ref?: React.Ref<HTMLInputElement>; })',
     required: false,
     exact: false,
   ),
@@ -374,8 +342,7 @@ const List<SgPropSpec> sgInputPasswordPropSpecs = <SgPropSpec>[
     type: 'num?',
     tsType: 'number',
     required: false,
-    description:
-        'Comprimento da senha gerada pelo `createNewPasswordButton`. Default: `minSize`.  NAO derive isto de `maxLength`: `maxLength` existe para nao truncar o que o usuario digita (frase-senha), e costuma ser folgado (128, 512). Usar o teto como alvo fazia o botao gerar uma senha de 128 caracteres.',
+    description: 'Comprimento da senha gerada pelo `createNewPasswordButton`. Default: `minSize`.  NAO derive isto de `maxLength`: `maxLength` existe para nao truncar o que o usuario digita (frase-senha), e costuma ser folgado (128, 512). Usar o teto como alvo fazia o botao gerar uma senha de 128 caracteres.',
   ),
   SgPropSpec(
     name: 'numberRequired',
@@ -416,8 +383,7 @@ const List<SgPropSpec> sgInputPasswordPropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '((() => void) & (() => void))',
     required: false,
-    description:
-        'Disparado ao perder o foco (apos validacao) — padrao seedgrid.',
+    description: 'Disparado ao perder o foco (apos validacao) — padrao seedgrid.',
     exact: false,
   ),
   SgPropSpec(
@@ -540,19 +506,9 @@ const List<SgPropSpec> sgInputPasswordPropSpecs = <SgPropSpec>[
     name: 'textInputType',
     reactName: 'textInputType',
     type: 'SgInputPasswordTextInputType?',
-    tsType:
-        '"none" | "email" | "search" | "tel" | "text" | "url" | "numeric" | "decimal"',
+    tsType: '"none" | "email" | "search" | "tel" | "text" | "url" | "numeric" | "decimal"',
     required: false,
-    values: <String>[
-      'none',
-      'email',
-      'search',
-      'tel',
-      'text',
-      'url',
-      'numeric',
-      'decimal',
-    ],
+    values: <String>['none', 'email', 'search', 'tel', 'text', 'url', 'numeric', 'decimal'],
   ),
   SgPropSpec(
     name: 'upperRequired',

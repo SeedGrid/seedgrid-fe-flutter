@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -13,34 +14,24 @@ import '../props/sg_prop_spec.dart';
 abstract interface class SgWizardProps {
   /// Paginas do wizard renderizadas em ordem. No React e `children`.
   Widget get child;
-
   /// Indice inicial da etapa ativa. Padrão: `0`.
   num? get initialStep;
-
   /// Tipo TS: `Partial&lt;SgWizardLabels&gt;` (sem tradução exata; ver excecoes.json).
   Object? get labels;
-
   /// Desabilita o avanco de forma declarativa: o botao Proximo fica desabilitado e o stepper para de oferecer as etapas seguintes. Use quando o bloqueio JA e conhecido (ex.: uma checagem assincrona ja resolveu que a etapa nao pode avancar) — onBeforeNext/validateStep so agem no clique e deixam o botao com aparencia de clicavel. Nao afeta o botao da ultima etapa; para isso use onBeforeFinish. Padrão: `false`.
   bool? get nextDisabled;
-
   /// Roda ao clicar em concluir; devolver false impede a finalizacao. Tipo TS: `((index: number) =&gt; boolean | Promise&lt;boolean&gt;)` (sem tradução exata; ver excecoes.json).
   Function? get onBeforeFinish;
-
   /// Roda ao clicar em Proximo; devolver false (ou uma Promise&lt;false&gt;) impede o avanco. Enquanto e aguardado, o botao fica desabilitado. Tipo TS: `((index: number) =&gt; boolean | Promise&lt;boolean&gt;)` (sem tradução exata; ver excecoes.json).
   Function? get onBeforeNext;
-
   /// Acao executada ao concluir o wizard. Tipo TS: `() =&gt; void | Promise&lt;void&gt;` (sem tradução exata; ver excecoes.json).
   Function get onFinish;
-
   /// Callback disparado ao trocar de etapa. Tipo TS: `((index: number) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onStepChange;
-
   /// Define quais etapas podem ser acessadas clicando no stepper. Padrão: `previous-and-next`.
   SgWizardStepNavigation? get stepNavigation;
-
   /// Modo visual do stepper. Padrão: `none`.
   SgWizardStepper? get stepper;
-
   /// Valida a etapa atual antes de avancar. Tipo TS: `((index: number) =&gt; boolean | Promise&lt;boolean&gt;)` (sem tradução exata; ver excecoes.json).
   Function? get validateStep;
 }
@@ -79,8 +70,7 @@ const List<SgPropSpec> sgWizardPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description:
-        'Desabilita o avanco de forma declarativa: o botao Proximo fica desabilitado e o stepper para de oferecer as etapas seguintes. Use quando o bloqueio JA e conhecido (ex.: uma checagem assincrona ja resolveu que a etapa nao pode avancar) — onBeforeNext/validateStep so agem no clique e deixam o botao com aparencia de clicavel. Nao afeta o botao da ultima etapa; para isso use onBeforeFinish.',
+    description: 'Desabilita o avanco de forma declarativa: o botao Proximo fica desabilitado e o stepper para de oferecer as etapas seguintes. Use quando o bloqueio JA e conhecido (ex.: uma checagem assincrona ja resolveu que a etapa nao pode avancar) — onBeforeNext/validateStep so agem no clique e deixam o botao com aparencia de clicavel. Nao afeta o botao da ultima etapa; para isso use onBeforeFinish.',
   ),
   SgPropSpec(
     name: 'onBeforeFinish',
@@ -88,8 +78,7 @@ const List<SgPropSpec> sgWizardPropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '((index: number) => boolean | Promise<boolean>)',
     required: false,
-    description:
-        'Roda ao clicar em concluir; devolver false impede a finalizacao.',
+    description: 'Roda ao clicar em concluir; devolver false impede a finalizacao.',
     exact: false,
   ),
   SgPropSpec(
@@ -98,8 +87,7 @@ const List<SgPropSpec> sgWizardPropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '((index: number) => boolean | Promise<boolean>)',
     required: false,
-    description:
-        'Roda ao clicar em Proximo; devolver false (ou uma Promise<false>) impede o avanco. Enquanto e aguardado, o botao fica desabilitado.',
+    description: 'Roda ao clicar em Proximo; devolver false (ou uma Promise<false>) impede o avanco. Enquanto e aguardado, o botao fica desabilitado.',
     exact: false,
   ),
   SgPropSpec(

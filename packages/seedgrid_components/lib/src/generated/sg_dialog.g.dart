@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -16,71 +17,51 @@ abstract interface class SgDialogProps {
   String? get ariaLabel;
   num? get autoCloseMs;
   String? get bodyClassName;
-
   /// Conteudo principal do corpo do dialog. No React e `children`.
   Widget? get child;
-
   /// Padrão: `true`.
   bool? get closeable;
-
   /// Padrão: `true`.
   bool? get closeOnEsc;
-
   /// Fecha o dialog ao clicar fora do conteudo. Padrão: `true`.
   bool? get closeOnOverlayClick;
   String? get contentClassName;
-
   /// Tipo TS: `Property.BackgroundColor` (sem tradução exata; ver excecoes.json).
   Object? get customColor;
-
   /// Padrão: `false`.
   bool? get defaultOpen;
-
   /// Tipo TS: `"sm" | "md" | "lg" | Property.BoxShadow` (sem tradução exata; ver excecoes.json).
   Object? get elevation;
   Widget? get footer;
   String? get footerClassName;
   String? get headerClassName;
-
   /// Tipo TS: `React.RefObject&lt;HTMLElement&gt;` (sem tradução exata; ver excecoes.json).
   Object? get initialFocusRef;
   Widget? get leading;
-
   /// Padrão: `true`.
   bool? get lockBodyScroll;
-
   /// Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onClose;
-
   /// Callback disparado quando o estado de abertura muda. Tipo TS: `((open: boolean) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onOpenChange;
-
   /// Controla a abertura do dialog em modo controlado.
   bool? get open;
   String? get overlayClassName;
-
   /// Padrão: `true`.
   bool? get restoreFocus;
-
   /// Tom semantico do cabecalho e acentos visuais. Padrão: `plain`.
   SgDialogSeverity? get severity;
-
   /// Tipo TS: `Property.BoxShadow` (sem tradução exata; ver excecoes.json).
   Object? get shadow;
-
   /// Padrão: `true`.
   bool? get showTopAccent;
-
   /// Escala do container modal. Padrão: `md`.
   SgDialogSize? get size;
-
   /// Subtitulo complementar do dialog.
   Widget? get subtitle;
-
   /// Titulo principal do dialog.
   Widget? get title;
   Widget? get trailing;
-
   /// Padrão: `160`.
   num? get transitionMs;
 }
@@ -273,16 +254,7 @@ const List<SgPropSpec> sgDialogPropSpecs = <SgPropSpec>[
     required: false,
     defaultValue: 'plain',
     description: 'Tom semantico do cabecalho e acentos visuais.',
-    values: <String>[
-      'primary',
-      'secondary',
-      'success',
-      'warning',
-      'danger',
-      'info',
-      'help',
-      'plain',
-    ],
+    values: <String>['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'help', 'plain'],
   ),
   SgPropSpec(
     name: 'shadow',

@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -10,28 +11,20 @@ import '../props/sg_prop_spec.dart';
 abstract interface class SgClockThemePickerProps {
   /// Abre a lista inicialmente no primeiro render. Padrão: `false`.
   bool? get defaultOpen;
-
   /// Tema usado quando o valor atual nao pode ser resolvido. Padrão: `classic`.
   String? get fallbackThemeId;
-
   /// Filtro adicional sobre a lista de temas disponiveis. Tipo TS: `((theme: SgClockTheme) =&gt; boolean)` (sem tradução exata; ver excecoes.json).
   Function? get filter;
-
   /// Rotulo opcional exibido acima do seletor.
   String? get label;
-
   /// Callback disparado quando um novo tema e escolhido. Tipo TS: `(id: string) =&gt; void` (sem tradução exata; ver excecoes.json).
   Function get onChange;
-
   /// Texto exibido quando nenhum tema valido esta resolvido.
   String? get placeholder;
-
   /// Tamanho do preview visual de cada tema. Padrão: `56`.
   num? get previewSize;
-
   /// Ativa busca textual na lista de temas. Padrão: `true`.
   bool? get searchable;
-
   /// ID do tema atualmente selecionado.
   String get value;
 }

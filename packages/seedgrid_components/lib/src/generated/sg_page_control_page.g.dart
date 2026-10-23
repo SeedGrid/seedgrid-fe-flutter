@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -12,26 +13,19 @@ import '../props/sg_prop_spec.dart';
 abstract interface class SgPageControlPageProps {
   /// Conteudo exibido no painel desta pagina. No React e `children`.
   Widget get child;
-
   /// Desabilita a selecao da pagina. Padrão: `false`.
   bool? get disabled;
-
   /// Oculta a pagina sem remove-la da estrutura. Padrão: `false`.
   bool? get hidden;
-
   /// Descricao curta associada a aba.
   String? get hint;
-
   /// Icone opcional da aba.
   Widget? get icon;
-
   /// Identificador estavel da pagina.
   String? get id;
-
   /// Padrão: `false`.
   bool? get keepMounted;
   String? get tabClassName;
-
   /// Titulo exibido na aba da pagina.
   Widget get title;
 }

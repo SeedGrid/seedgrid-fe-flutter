@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -11,49 +12,34 @@ import '../props/sg_prop_spec.dart';
 abstract interface class SgDockMenuProps {
   /// Background color Padrão: `rgb(var(--sg-surface, 248 250 252) / 0.9)`.
   String? get backgroundColor;
-
   /// Border radius Padrão: `16`.
   num? get borderRadius;
-
   /// ID for persisting drag position
   String? get dragId;
-
   /// Shadow elevation Padrão: `lg`.
   SgDockMenuElevation? get elevation;
-
   /// Permite reposicionamento manual do dock. Padrão: `false`.
   bool? get enableDragDrop;
-
   /// Espacamento entre os itens do dock. Padrão: `16`.
   num? get gap;
-
   /// Unique identifier for the dock
   String? get id;
-
   /// Custom class name for items Padrão: ``.
   String? get itemClassName;
-
   /// Itens exibidos no dock com icone, label, badge e acao. Tipo TS: `SgDockMenuItem[]` (sem tradução exata; ver excecoes.json).
   List<Object?> get items;
-
   /// Tamanho visual padrao dos itens do dock. Padrão: `48`.
   num? get itemSize;
-
   /// Ativa efeito de ampliacao ao passar o mouse. Padrão: `true`.
   bool? get magnify;
-
   /// Magnification scale Padrão: `1.5`.
   num? get magnifyScale;
-
   /// Offset from the edge Tipo TS: `{ x?: number; y?: number; }` (sem tradução exata; ver excecoes.json).
   Object? get offset;
-
   /// Posicionamento principal do dock na area alvo. Padrão: `center-bottom`.
   SgDockMenuPosition? get position;
-
   /// Exibe labels contextuais dos itens. Padrão: `true`.
   bool? get showLabels;
-
   /// Camada visual usada quando o dock esta sobreposto. Padrão: `50`.
   num? get zIndex;
 }
@@ -184,16 +170,7 @@ const List<SgPropSpec> sgDockMenuPropSpecs = <SgPropSpec>[
     required: false,
     defaultValue: 'center-bottom',
     description: 'Posicionamento principal do dock na area alvo.',
-    values: <String>[
-      'left-top',
-      'left-center',
-      'left-bottom',
-      'center-top',
-      'center-bottom',
-      'right-top',
-      'right-center',
-      'right-bottom',
-    ],
+    values: <String>['left-top', 'left-center', 'left-bottom', 'center-top', 'center-bottom', 'right-top', 'right-center', 'right-bottom'],
   ),
   SgPropSpec(
     name: 'showLabels',

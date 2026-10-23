@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -14,37 +15,29 @@ abstract interface class SgInputTextAreaProps {
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get borderRadius;
   bool? get clearButton;
-
   /// Tipo TS: `any` (sem tradução exata; ver excecoes.json).
   Object? get control;
   SgInputTextAreaElevation? get elevation;
-
   /// No React a prop se chama `enabled` (valor invertido); ver ADR 50.
   bool? get disabled;
   String? get error;
   bool? get filled;
-
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get height;
   String? get hintText;
-
   /// Identificador unico do campo multi-linha.
   String get id;
-
   /// Rotulo principal exibido ao usuario.
   String? get label;
   SgInputTextAreaLabelAlign? get labelAlign;
   SgInputTextAreaLabelPosition? get labelPosition;
   String? get labelText;
-
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get labelWidth;
-
   /// Limite maximo de caracteres.
   num? get maxLength;
   String? get maxLengthMessage;
   num? get maxLines;
-
   /// Limite minimo de caracteres.
   num? get minLength;
   String? get minLengthMessage;
@@ -52,41 +45,30 @@ abstract interface class SgInputTextAreaProps {
   String? get minLinesMessage;
   num? get minNumberOfWords;
   String? get minNumberOfWordsMessage;
-
   /// Nome do campo para formularios.
   String? get name;
-
   /// Callback com o texto multi-linha atual. Tipo TS: `((value: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onChange;
-
   /// Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onClear;
-
   /// Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onEnter;
-
   /// Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onExit;
-
   /// Tipo TS: `((message: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onValidation;
   Widget? get prefixIcon;
-
   /// Marca o campo como obrigatorio. Padrão: `false`.
   bool? get required;
   String? get requiredMessage;
-
   /// Tipo TS: `RegisterOptions&lt;any&gt;` (sem tradução exata; ver excecoes.json).
   Object? get rules;
   bool? get showCharCounter;
-
   /// Tipo TS: `(React.TextareaHTMLAttributes&lt;HTMLTextAreaElement&gt; & { ref?: React.Ref&lt;HTMLTextAreaElement&gt;; })` (sem tradução exata; ver excecoes.json).
   Object? get textareaProps;
   bool? get validateOnBlur;
-
   /// Tipo TS: `((value: string) =&gt; string)` (sem tradução exata; ver excecoes.json).
   Function? get validation;
-
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get width;
   bool? get withBorder;
@@ -364,8 +346,7 @@ const List<SgPropSpec> sgInputTextAreaPropSpecs = <SgPropSpec>[
     name: 'textareaProps',
     reactName: 'textareaProps',
     type: 'Object?',
-    tsType:
-        '(React.TextareaHTMLAttributes<HTMLTextAreaElement> & { ref?: React.Ref<HTMLTextAreaElement>; })',
+    tsType: '(React.TextareaHTMLAttributes<HTMLTextAreaElement> & { ref?: React.Ref<HTMLTextAreaElement>; })',
     required: false,
     exact: false,
   ),

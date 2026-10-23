@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -11,84 +12,60 @@ import '../props/sg_prop_spec.dart';
 abstract interface class SgPickListProps {
   /// Tipo TS: `any` (sem tradução exata; ver excecoes.json).
   Object? get control;
-
   /// Desabilita interacao. Padrão: `false`.
   bool? get disabled;
-
   /// Padrão: `true`.
   bool? get draggable;
   String? get emptyMessage;
   String? get error;
-
   /// Padrão: `contains`.
   SgPickListFilterMatchMode? get filterMatchMode;
-
   /// Padrão: `{}`. Tipo TS: `(Omit&lt;Partial&lt;SgGroupBoxProps&gt;, "title" | "children"&gt; & { title?: string; })` (sem tradução exata; ver excecoes.json).
   Object? get groupBoxProps;
-
   /// Identificador unico do componente.
   String? get id;
-
   /// Padrão: ``.
   String? get itemClassName;
-
   /// Tipo TS: `((item: SgPickListItem, state: { index: number; selected: boolean; disabled: boolean; list: SgPickListListName; }) =&gt; React.ReactNode)` (sem tradução exata; ver excecoes.json).
   Function? get itemTemplate;
-
   /// Padrão: ``.
   String? get listClassName;
   String? get name;
-
   /// Callback ao mover itens. Tipo TS: `((event: SgPickListChangeEvent) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onChange;
-
   /// Tipo TS: `((values: (string | number)[]) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onSourceSelectionChange;
-
   /// Tipo TS: `((values: (string | number)[]) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onTargetSelectionChange;
-
   /// Padrão: `false`.
   bool? get readOnly;
-
   /// Tipo TS: `RegisterOptions&lt;any&gt;` (sem tradução exata; ver excecoes.json).
   Object? get rules;
-
   /// Modo de selecao nas listas. Padrão: `multiple`.
   SgPickListSelectionMode? get selectionMode;
-
   /// Padrão: `true`.
   bool? get showSourceControls;
-
   /// Padrão: `false`.
   bool? get showSourceFilter;
-
   /// Padrão: `true`.
   bool? get showTargetControls;
-
   /// Padrão: `false`.
   bool? get showTargetFilter;
-
   /// Padrão: `true`.
   bool? get showTransferControls;
-
   /// Tipo TS: `SgPickListItem[]` (sem tradução exata; ver excecoes.json).
   List<Object?> get source;
   String? get sourceFilterPlaceholder;
   String? get sourceHeader;
-
   /// Tipo TS: `(string | number)[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get sourceSelection;
-
   /// Tipo TS: `SgPickListItem[]` (sem tradução exata; ver excecoes.json).
   List<Object?> get target;
   String? get targetFilterPlaceholder;
   String? get targetHeader;
-
   /// Tipo TS: `(string | number)[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get targetSelection;
   String? get title;
-
   /// Estado atual das listas. Tipo TS: `SgPickListValue` (sem tradução exata; ver excecoes.json).
   Object? get value;
 }
@@ -147,8 +124,7 @@ const List<SgPropSpec> sgPickListPropSpecs = <SgPropSpec>[
     name: 'groupBoxProps',
     reactName: 'groupBoxProps',
     type: 'Object?',
-    tsType:
-        '(Omit<Partial<SgGroupBoxProps>, "title" | "children"> & { title?: string; })',
+    tsType: '(Omit<Partial<SgGroupBoxProps>, "title" | "children"> & { title?: string; })',
     required: false,
     defaultValue: '{}',
     exact: false,
@@ -173,8 +149,7 @@ const List<SgPropSpec> sgPickListPropSpecs = <SgPropSpec>[
     name: 'itemTemplate',
     reactName: 'itemTemplate',
     type: 'Function?',
-    tsType:
-        '((item: SgPickListItem, state: { index: number; selected: boolean; disabled: boolean; list: SgPickListListName; }) => React.ReactNode)',
+    tsType: '((item: SgPickListItem, state: { index: number; selected: boolean; disabled: boolean; list: SgPickListListName; }) => React.ReactNode)',
     required: false,
     exact: false,
   ),

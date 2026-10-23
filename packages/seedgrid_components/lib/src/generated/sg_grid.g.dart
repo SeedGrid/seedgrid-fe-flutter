@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -12,26 +13,19 @@ import '../props/sg_prop_spec.dart';
 /// O widget deve declarar `implements SgGridProps`.
 abstract interface class SgGridProps {
   SgGridAlign? get align;
-
   /// Itens renderizados dentro da grade. No React e `children`.
   Widget? get child;
-
   /// Define a quantidade de colunas base e por breakpoint. Tipo TS: `SgGridColumns` (sem tradução exata; ver excecoes.json).
   Object? get columns;
-
   /// Ativa preenchimento denso do fluxo de grade. Padrão: `false`.
   bool? get dense;
-
   /// Espacamento entre os itens da grade. Padrão: `0`. Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get gap;
   SgGridJustify? get justify;
-
   /// Largura minima dos itens em modo auto-fit. Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get minItemWidth;
-
   /// Espacamento interno do container grid. Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get padding;
-
   /// Altura automatica das linhas da grade. Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get rowHeight;
 }
@@ -86,18 +80,9 @@ const List<SgPropSpec> sgGridPropSpecs = <SgPropSpec>[
     name: 'justify',
     reactName: 'justify',
     type: 'SgGridJustify?',
-    tsType:
-        '"start" | "center" | "end" | "stretch" | "between" | "around" | "evenly"',
+    tsType: '"start" | "center" | "end" | "stretch" | "between" | "around" | "evenly"',
     required: false,
-    values: <String>[
-      'start',
-      'center',
-      'end',
-      'stretch',
-      'between',
-      'around',
-      'evenly',
-    ],
+    values: <String>['start', 'center', 'end', 'stretch', 'between', 'around', 'evenly'],
   ),
   SgPropSpec(
     name: 'minItemWidth',

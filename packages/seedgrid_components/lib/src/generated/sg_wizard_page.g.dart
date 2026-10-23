@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -12,10 +13,8 @@ import '../props/sg_prop_spec.dart';
 abstract interface class SgWizardPageProps {
   /// Conteudo da etapa. No React e `children`.
   Widget get child;
-
   /// Icone opcional exibido quando o wizard usa stepper por icones.
   Widget? get icon;
-
   /// Titulo exibido no stepper do wizard.
   String? get title;
 }
@@ -36,8 +35,7 @@ const List<SgPropSpec> sgWizardPagePropSpecs = <SgPropSpec>[
     type: 'Widget?',
     tsType: 'React.ReactNode',
     required: false,
-    description:
-        'Icone opcional exibido quando o wizard usa stepper por icones.',
+    description: 'Icone opcional exibido quando o wizard usa stepper por icones.',
   ),
   SgPropSpec(
     name: 'title',

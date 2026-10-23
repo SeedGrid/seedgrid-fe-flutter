@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -16,32 +17,23 @@ abstract interface class SgCardProps {
   String? get bgColorFooter;
   String? get bgColorTitle;
   String? get bodyClassName;
-
   /// Estilo visual da superficie do card. Padrão: `default`.
   SgCardCardStyle? get cardStyle;
-
   /// Transforma o card em superficie clicavel. Padrão: `false`.
   bool? get clickable;
   Widget? get collapseIcon;
-
   /// Padrão: `18`.
   num? get collapseIconSize;
-
   /// Padrão: `left`.
   SgCardCollapseToggleAlign? get collapseToggleAlign;
-
   /// Permite recolher e expandir o conteudo do card. Padrão: `false`.
   bool? get collapsible;
-
   /// Padrão: `true`.
   bool? get defaultOpen;
-
   /// Tipo TS: `SgCardPosition` (sem tradução exata; ver excecoes.json).
   Object? get defaultPosition;
-
   /// Descricao ou subtitulo complementar do cabecalho.
   Widget? get description;
-
   /// Padrão: `false`.
   bool? get disabled;
   String? get dragPersistKey;
@@ -50,23 +42,17 @@ abstract interface class SgCardProps {
   Widget? get header;
   String? get headerClassName;
   Widget? get leading;
-
   /// Callback disparado quando o card e acionado. Tipo TS: `React.MouseEventHandler&lt;HTMLElement&gt;` (sem tradução exata; ver excecoes.json).
   Function? get onClick;
-
   /// Tipo TS: `((open: boolean) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onOpenChange;
-
   /// Tipo TS: `((position: SgCardPosition) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onPositionChange;
   bool? get open;
-
   /// Escala geral de espacos e dimensoes do card. Padrão: `md`.
   SgCardSize? get size;
-
   /// Titulo principal do card.
   Widget? get title;
-
   /// Padrão: `true`.
   bool? get toggleOnHeaderClick;
   Widget? get trailer;

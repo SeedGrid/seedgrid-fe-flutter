@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -10,43 +11,30 @@ import '../props/sg_prop_spec.dart';
 abstract interface class SgNeonDigitProps {
   /// Enables fade-out/fade-in animation when value changes. Padrão: `true`.
   bool? get animateOnChange;
-
   /// Cor de fundo do display. Padrão: `#120f2b`.
   String? get backgroundColor;
-
   /// Cor luminosa principal. Padrão: `#e2e8f0`.
   String? get color;
-
   /// Font family alias (same effect as fontFamily).
   String? get font;
-
   /// Custom font family.
   String? get fontFamily;
-
   /// Escala visual do digito. Padrão: `72`.
   num? get fontSize;
-
   /// Font weight of the text. Padrão: `600`. Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get fontWeight;
-
   /// Letter spacing in pixels. Padrão: `0`.
   num? get letterSpacing;
-
   /// Internal padding in pixels. Padrão: `14`.
   num? get padding;
-
   /// Border radius in pixels. Padrão: `12`.
   num? get rounded;
-
   /// Glow/shadow color around the text.
   String? get shadowColor;
-
   /// Extra intensity factor for the glow effect. Padrão: `1`.
   num? get shadowStrength;
-
   /// Total animation time in milliseconds when value changes. Padrão: `320`.
   num? get transitionMs;
-
   /// Caractere exibido no display.
   String get value;
 }

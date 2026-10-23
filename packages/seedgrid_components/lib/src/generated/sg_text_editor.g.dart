@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -10,43 +11,32 @@ import '../props/sg_prop_spec.dart';
 abstract interface class SgTextEditorProps {
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get borderRadius;
-
   /// Tipo TS: `any` (sem tradução exata; ver excecoes.json).
   Object? get control;
   String? get cssEditorLabel;
-
   /// Padrão: ``.
   String? get cssText;
   String? get defaultValueHtml;
   bool? get disabled;
   String? get error;
   String? get fileName;
-
   /// Altura do editor. Padrão: `320`.
   num? get height;
-
   /// Identificador unico do editor.
   String get id;
   String? get name;
-
   /// Tipo TS: `((htmlBody: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onChangeHtml;
-
   /// Tipo TS: `((cssText: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onCssTextChange;
-
   /// Tipo TS: `((meta: SgTextEditorSaveMeta) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onLoad;
-
   /// Callback de persistencia do conteudo. Tipo TS: `((file: File, meta: SgTextEditorSaveMeta) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onSave;
-
   /// Texto de ajuda inicial.
   String? get placeholder;
-
   /// Tipo TS: `RegisterOptions&lt;any&gt;` (sem tradução exata; ver excecoes.json).
   Object? get rules;
-
   /// Padrão: `false`.
   bool? get showCssEditor;
   String? get valueHtml;

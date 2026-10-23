@@ -4,11 +4,8 @@
 import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
-import '../snippets.g.dart';
+import 'modelo_page.snippets.g.dart';
 import '../src/sg_showcase_page.dart';
-
-/// Quantidade de exemplos da pagina-modelo (o teste confere: links = exemplos).
-const int kModeloExampleCount = 6;
 
 class ModeloPage extends StatelessWidget {
   const ModeloPage({super.key});
@@ -23,7 +20,7 @@ class ModeloPage extends StatelessWidget {
             // #region modelo-texto
             const Text('Olá, SeedGrid'),
         // #endregion
-        code: Snippets.modeloTexto,
+        code: ModeloPageSnippets.modeloTexto,
       ),
       ShowcaseExample(
         title: 'Linha de botões',
@@ -37,7 +34,7 @@ class ModeloPage extends StatelessWidget {
               ],
             ),
         // #endregion
-        code: Snippets.modeloBotoes,
+        code: ModeloPageSnippets.modeloBotoes,
       ),
       ShowcaseExample(
         title: 'Bloco alto',
@@ -49,7 +46,7 @@ class ModeloPage extends StatelessWidget {
               child: Center(child: Text('Conteúdo alto')),
             ),
         // #endregion
-        code: Snippets.modeloAlto,
+        code: ModeloPageSnippets.modeloAlto,
       ),
       ShowcaseExample(
         title: 'Coluna',
@@ -60,7 +57,7 @@ class ModeloPage extends StatelessWidget {
               children: [Text('Linha 1'), Text('Linha 2'), Text('Linha 3')],
             ),
         // #endregion
-        code: Snippets.modeloColuna,
+        code: ModeloPageSnippets.modeloColuna,
       ),
       ShowcaseExample(
         title: 'Outro bloco alto',
@@ -71,7 +68,7 @@ class ModeloPage extends StatelessWidget {
               child: Center(child: Text('Mais conteúdo')),
             ),
         // #endregion
-        code: Snippets.modeloAlto2,
+        code: ModeloPageSnippets.modeloAlto2,
       ),
       ShowcaseExample(
         title: 'Último exemplo',
@@ -79,7 +76,7 @@ class ModeloPage extends StatelessWidget {
             // #region modelo-ultimo
             const Chip(label: Text('Fim')),
         // #endregion
-        code: Snippets.modeloUltimo,
+        code: ModeloPageSnippets.modeloUltimo,
       ),
     ];
 

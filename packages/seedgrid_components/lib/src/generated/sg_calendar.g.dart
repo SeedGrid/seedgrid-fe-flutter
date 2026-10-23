@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -14,52 +15,36 @@ abstract interface class SgCalendarProps {
   /// Tipo TS: `Omit&lt;SgCardProps, "title" | "children"&gt;` (sem tradução exata; ver excecoes.json).
   Object? get cardProps;
   Widget? get cardTitle;
-
   /// Tipo TS: `string | Date` (sem tradução exata; ver excecoes.json).
   Object? get defaultViewDate;
-
   /// Tipo TS: `((date: Date) =&gt; boolean)` (sem tradução exata; ver excecoes.json).
   Function? get isDateDisabled;
-
   /// Locale usado para formatacao de mes e dias. Padrão: `pt-BR`.
   String? get locale;
-
   /// Limite maximo de selecao. Tipo TS: `string | Date` (sem tradução exata; ver excecoes.json).
   Object? get maxDate;
-
   /// Limite minimo de selecao. Tipo TS: `string | Date` (sem tradução exata; ver excecoes.json).
   Object? get minDate;
-
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get monthMinWidth;
-
   /// Padrão: `3`.
   num? get monthsPerLine;
-
   /// Quantidade de meses visiveis ao mesmo tempo. Padrão: `1`.
   num? get numberOfMonths;
-
   /// Callback disparado ao selecionar uma data. Tipo TS: `((date: Date) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onValueChange;
-
   /// Tipo TS: `((viewDate: Date) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onViewDateChange;
-
   /// Padrão: `true`.
   bool? get showAdjacentMonths;
-
   /// Padrão: `true`.
   bool? get showTodayShortcut;
-
   /// Data selecionada de forma controlada. Tipo TS: `string | Date` (sem tradução exata; ver excecoes.json).
   Object? get value;
-
   /// Mes visivel de forma controlada. Tipo TS: `string | Date` (sem tradução exata; ver excecoes.json).
   Object? get viewDate;
-
   /// Padrão: `narrow`.
   SgCalendarWeekdayFormat? get weekdayFormat;
-
   /// Primeiro dia da semana. Padrão: `0`. Tipo TS: `0 | 1 | 2 | 3 | 4 | 5 | 6` (sem tradução exata; ver excecoes.json).
   Object? get weekStartsOn;
 }

@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -11,50 +12,36 @@ import '../props/sg_prop_spec.dart';
 abstract interface class SgPeriodSelectorProps {
   /// Habilita a opcao Periodo (intervalo customizado). Padrão: `true`.
   bool? get allowCustomPeriod;
-
   /// Integracao react-hook-form (opcional). Tipo TS: `Control&lt;FieldValues&gt;` (sem tradução exata; ver excecoes.json).
   Object? get control;
   bool? get disabled;
   String? get error;
-
   /// Identificador unico do campo. Padrão: `sg-period-selector`.
   String? get id;
-
   /// Rotulo exibido ao usuario.
   String? get label;
-
   /// Locale usado nos labels e formatacao. Padrão: `pt-BR`.
   String? get locale;
-
   /// Limite superior aplicado como clamp no intervalo. Tipo TS: `Date` (sem tradução exata; ver excecoes.json).
   Object? get maxDate;
-
   /// Limite inferior aplicado como clamp no intervalo. Tipo TS: `Date` (sem tradução exata; ver excecoes.json).
   Object? get minDate;
   String? get name;
-
   /// Callback com o preset e intervalo resolvido. Tipo TS: `((period: ResolvedPeriod) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onChange;
-
   /// Habilita a opcao Todos (sem limites de data). Padrão: `true`.
   bool? get permitAll;
-
   /// Habilita o grupo de periodos atuais. Padrão: `true`.
   bool? get permitCurrent;
-
   /// Habilita o grupo de periodos futuros. Padrão: `true`.
   bool? get permitFuture;
-
   /// Habilita o grupo de periodos passados. Padrão: `true`.
   bool? get permitPast;
-
   /// Data de referencia para resolver os presets (default: agora). Util em testes. Tipo TS: `Date` (sem tradução exata; ver excecoes.json).
   Object? get referenceDate;
   bool? get required;
-
   /// Tipo TS: `RegisterOptions` (sem tradução exata; ver excecoes.json).
   Object? get rules;
-
   /// Preset selecionado (modo controlado).
   SgPeriodSelectorValue? get value;
 }
@@ -195,8 +182,7 @@ const List<SgPropSpec> sgPeriodSelectorPropSpecs = <SgPropSpec>[
     type: 'Object?',
     tsType: 'Date',
     required: false,
-    description:
-        'Data de referencia para resolver os presets (default: agora). Util em testes.',
+    description: 'Data de referencia para resolver os presets (default: agora). Util em testes.',
     exact: false,
   ),
   SgPropSpec(
@@ -221,30 +207,6 @@ const List<SgPropSpec> sgPeriodSelectorPropSpecs = <SgPropSpec>[
     tsType: 'PeriodPreset',
     required: false,
     description: 'Preset selecionado (modo controlado).',
-    values: <String>[
-      'ALL',
-      'CUSTOM',
-      'TODAY',
-      'YESTERDAY',
-      'TOMORROW',
-      'THIS_WEEK',
-      'THIS_QUINZENA',
-      'THIS_MONTH',
-      'THIS_QUARTER',
-      'THIS_SEMESTER',
-      'THIS_YEAR',
-      'LAST_WEEK',
-      'LAST_QUINZENA',
-      'LAST_MONTH',
-      'LAST_QUARTER',
-      'LAST_SEMESTER',
-      'LAST_YEAR',
-      'NEXT_WEEK',
-      'NEXT_QUINZENA',
-      'NEXT_MONTH',
-      'NEXT_QUARTER',
-      'NEXT_SEMESTER',
-      'NEXT_YEAR',
-    ],
+    values: <String>['ALL', 'CUSTOM', 'TODAY', 'YESTERDAY', 'TOMORROW', 'THIS_WEEK', 'THIS_QUINZENA', 'THIS_MONTH', 'THIS_QUARTER', 'THIS_SEMESTER', 'THIS_YEAR', 'LAST_WEEK', 'LAST_QUINZENA', 'LAST_MONTH', 'LAST_QUARTER', 'LAST_SEMESTER', 'LAST_YEAR', 'NEXT_WEEK', 'NEXT_QUINZENA', 'NEXT_MONTH', 'NEXT_QUARTER', 'NEXT_SEMESTER', 'NEXT_YEAR'],
   ),
 ];

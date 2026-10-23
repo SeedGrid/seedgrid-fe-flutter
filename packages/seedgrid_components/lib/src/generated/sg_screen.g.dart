@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -12,16 +13,12 @@ import '../props/sg_prop_spec.dart';
 abstract interface class SgScreenProps {
   /// Conteudo estrutural da tela, normalmente com panels dockados. No React e `children`.
   Widget? get child;
-
   /// Define se a tela ocupa toda a viewport. Padrão: `true`.
   bool? get fullscreen;
-
   /// Altura explicita quando a tela nao for fullscreen. Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get height;
-
   /// Espacamento interno aplicado ao root da tela. Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get padding;
-
   /// Largura explicita quando a tela nao for fullscreen. Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get width;
 }
@@ -34,8 +31,7 @@ const List<SgPropSpec> sgScreenPropSpecs = <SgPropSpec>[
     type: 'Widget?',
     tsType: 'React.ReactNode',
     required: false,
-    description:
-        'Conteudo estrutural da tela, normalmente com panels dockados.',
+    description: 'Conteudo estrutural da tela, normalmente com panels dockados.',
   ),
   SgPropSpec(
     name: 'fullscreen',

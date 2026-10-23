@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -15,75 +16,55 @@ abstract interface class SgConfirmationDialogProps {
   String? get ariaLabel;
   num? get autoCloseMs;
   String? get bodyClassName;
-
   /// Configuracao visual e comportamental do botao de cancelamento. Tipo TS: `SgConfirmationDialogButtonConfig` (sem tradução exata; ver excecoes.json).
   Object? get cancelButton;
-
   /// Padrão: `false`.
   bool? get closeable;
-
   /// Padrão: `true`.
   bool? get closeOnCancel;
-
   /// Padrão: `true`.
   bool? get closeOnConfirm;
   bool? get closeOnEsc;
   bool? get closeOnOverlayClick;
-
   /// Configuracao visual e comportamental do botao de confirmacao. Tipo TS: `SgConfirmationDialogButtonConfig` (sem tradução exata; ver excecoes.json).
   Object? get confirmButton;
   String? get contentClassName;
-
   /// Tipo TS: `Property.BackgroundColor` (sem tradução exata; ver excecoes.json).
   Object? get customColor;
-
   /// Padrão: `false`.
   bool? get defaultOpen;
-
   /// Tipo TS: `"sm" | "md" | "lg" | Property.BoxShadow` (sem tradução exata; ver excecoes.json).
   Object? get elevation;
   String? get footerClassName;
   String? get headerClassName;
   Widget? get icon;
-
   /// Padrão: `left`.
   SgConfirmationDialogIconPlacement? get iconPlacement;
-
   /// Tipo TS: `React.RefObject&lt;HTMLElement&gt;` (sem tradução exata; ver excecoes.json).
   Object? get initialFocusRef;
   Widget? get leading;
   bool? get lockBodyScroll;
-
   /// Mensagem principal explicando o risco ou decisao.
   Widget? get message;
-
   /// Callback disparado quando o usuario cancela a acao. Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onCancel;
-
   /// Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onClose;
-
   /// Callback disparado quando o usuario confirma a acao. Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onConfirm;
-
   /// Tipo TS: `((open: boolean) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onOpenChange;
-
   /// Controla a abertura do dialog de confirmacao.
   bool? get open;
   String? get overlayClassName;
   bool? get restoreFocus;
-
   /// Tom semantico da confirmacao. Padrão: `warning`.
   SgDialogSeverity? get severity;
-
   /// Padrão: `false`.
   bool? get showSeverityAccent;
-
   /// Padrão: `sm`.
   SgDialogSize? get size;
   Widget? get subtitle;
-
   /// Titulo principal da confirmacao.
   Widget? get title;
   Widget? get trailing;
@@ -127,8 +108,7 @@ const List<SgPropSpec> sgConfirmationDialogPropSpecs = <SgPropSpec>[
     type: 'Object?',
     tsType: 'SgConfirmationDialogButtonConfig',
     required: false,
-    description:
-        'Configuracao visual e comportamental do botao de cancelamento.',
+    description: 'Configuracao visual e comportamental do botao de cancelamento.',
     exact: false,
   ),
   SgPropSpec(
@@ -175,8 +155,7 @@ const List<SgPropSpec> sgConfirmationDialogPropSpecs = <SgPropSpec>[
     type: 'Object?',
     tsType: 'SgConfirmationDialogButtonConfig',
     required: false,
-    description:
-        'Configuracao visual e comportamental do botao de confirmacao.',
+    description: 'Configuracao visual e comportamental do botao de confirmacao.',
     exact: false,
   ),
   SgPropSpec(
@@ -334,16 +313,7 @@ const List<SgPropSpec> sgConfirmationDialogPropSpecs = <SgPropSpec>[
     required: false,
     defaultValue: 'warning',
     description: 'Tom semantico da confirmacao.',
-    values: <String>[
-      'primary',
-      'secondary',
-      'success',
-      'warning',
-      'danger',
-      'info',
-      'help',
-      'plain',
-    ],
+    values: <String>['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'help', 'plain'],
   ),
   SgPropSpec(
     name: 'showSeverityAccent',

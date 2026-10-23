@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -10,19 +11,14 @@ import '../props/sg_prop_spec.dart';
 abstract interface class SgWhistlerProps {
   /// Tipo TS: `Partial&lt;Record&lt;SgWhistleSeverity, SgWhistleColors&gt;&gt;` (sem tradução exata; ver excecoes.json).
   Object? get customColors;
-
   /// Duracao padrao dos whistles em milissegundos (mesmo default do SgToaster). Cada whistle sobrescreve com options.duration, que tem prioridade; use 0 (ou negativo) para que nada suma sozinho. Whistle 'loading' nunca expira. Padrão: `4000`.
   num? get duration;
-
   /// Espacamento entre os avisos renderizados. Padrão: `12`.
   num? get gap;
-
   /// Quantidade maxima de whistle items visiveis. Padrão: `4`.
   num? get max;
-
   /// Inverte a ordem visual para mostrar os mais novos primeiro. Padrão: `false`.
   bool? get newestOnTop;
-
   /// Arredonda os cantos de cada whistle (desligue para cantos retos). Padrão: `true`.
   bool? get rounded;
 }
@@ -44,8 +40,7 @@ const List<SgPropSpec> sgWhistlerPropSpecs = <SgPropSpec>[
     tsType: 'number',
     required: false,
     defaultValue: '4000',
-    description:
-        'Duracao padrao dos whistles em milissegundos (mesmo default do SgToaster). Cada whistle sobrescreve com options.duration, que tem prioridade; use 0 (ou negativo) para que nada suma sozinho. Whistle \'loading\' nunca expira.',
+    description: 'Duracao padrao dos whistles em milissegundos (mesmo default do SgToaster). Cada whistle sobrescreve com options.duration, que tem prioridade; use 0 (ou negativo) para que nada suma sozinho. Whistle \'loading\' nunca expira.',
   ),
   SgPropSpec(
     name: 'gap',
@@ -81,7 +76,6 @@ const List<SgPropSpec> sgWhistlerPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'true',
-    description:
-        'Arredonda os cantos de cada whistle (desligue para cantos retos).',
+    description: 'Arredonda os cantos de cada whistle (desligue para cantos retos).',
   ),
 ];

@@ -11,3 +11,8 @@ export 'src/form/sg_form.dart';
 export 'src/form/sg_rules.dart';
 export 'src/inputs/sg_input_text.dart';
 export 'src/theme_access.dart';
+export 'src/commons/commons.dart';
+export 'src/inputs/choice_inputs.dart';
+export 'src/inputs/masked_inputs.dart';
+export 'src/inputs/number_inputs.dart';
+export 'src/inputs/text_inputs.dart';

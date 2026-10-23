@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -11,40 +12,28 @@ import '../props/sg_prop_spec.dart';
 abstract interface class SgSevenSegmentDigitProps {
   /// Cor do fundo do display.
   String? get backgroundColor;
-
   /// Cor dos segmentos ativos.
   String? get color;
-
   /// Enables glow effect on active segments. Padrão: `true`.
   bool? get glow;
-
   /// Color of inactive segments.
   String? get offColor;
-
   /// Internal panel padding in pixels. Padrão: `10`.
   num? get padding;
-
   /// Preset visual palette for active, inactive and background colors. Padrão: `red`.
   SgSevenSegmentDigitPalette? get palette;
-
   /// Border radius of the panel in pixels. Padrão: `12`.
   num? get rounded;
-
   /// Component height in pixels. Padrão: `108`.
   num? get size;
-
   /// Applies a subtle skew to mimic classic LED displays. Padrão: `-8`.
   num? get skew;
-
   /// Segment thickness in pixels. Padrão: `14`.
   num? get thickness;
-
   /// Segment transition duration in milliseconds. Padrão: `180`.
   num? get transitionMs;
-
   /// Caractere exibido no display.
   String get value;
-
   /// Component width in pixels. By default, derived from `size`.
   num? get width;
 }
@@ -100,8 +89,7 @@ const List<SgPropSpec> sgSevenSegmentDigitPropSpecs = <SgPropSpec>[
     tsType: 'SgSevenSegmentDigitPalette',
     required: false,
     defaultValue: 'red',
-    description:
-        'Preset visual palette for active, inactive and background colors.',
+    description: 'Preset visual palette for active, inactive and background colors.',
     values: <String>['blue', 'green', 'red', 'white', 'yellow'],
   ),
   SgPropSpec(

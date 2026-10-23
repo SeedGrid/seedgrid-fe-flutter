@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -15,24 +16,18 @@ abstract interface class SgExpandablePanelProps {
   Object? get animation;
   String? get ariaLabel;
   String? get bodyClassName;
-
   /// Padrão: `true`.
   bool? get border;
-
   /// Conteudo principal do painel. No React e `children`.
   Widget get child;
-
   /// Padrão: `true`.
   bool? get closeOnEsc;
   bool? get closeOnOutsideClick;
   String? get contentClassName;
-
   /// Padrão: `false`.
   bool? get defaultOpen;
-
   /// Padrão: `md`.
   SgExpandablePanelElevation? get elevation;
-
   /// Direcao para a qual o painel se expande.
   SgExpandablePanelExpandTo get expandTo;
   Widget? get footer;
@@ -40,33 +35,24 @@ abstract interface class SgExpandablePanelProps {
   Widget? get handle;
   Widget? get header;
   String? get headerClassName;
-
   /// Modo de renderizacao do painel. Padrão: `inline`.
   SgExpandablePanelMode? get mode;
-
   /// Callback disparado ao abrir ou fechar o painel. Tipo TS: `((open: boolean) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onOpenChange;
-
   /// Tipo TS: `((size: number | string) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onSizeChange;
-
   /// Controla a abertura do painel.
   bool? get open;
   String? get overlayClassName;
-
   /// Padrão: `start`.
   SgExpandablePanelPlacement? get placement;
-
   /// Permite redimensionar o painel. Padrão: `false`.
   bool? get resizable;
   SgExpandablePanelRole? get role;
-
   /// Padrão: `lg`.
   SgExpandablePanelRounded? get rounded;
-
   /// Padrão: `true`.
   bool? get showBackdrop;
-
   /// Configuracao de tamanho minimo, maximo e padrao. Tipo TS: `SgExpandablePanelSize` (sem tradução exata; ver excecoes.json).
   Object? get size;
   bool? get trapFocus;

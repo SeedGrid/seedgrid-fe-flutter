@@ -1,3 +1,4 @@
+// dart format off
 // GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
 // Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
 // estao em tools/gen_props/excecoes.json.
@@ -12,10 +13,8 @@ import '../props/sg_prop_spec.dart';
 abstract interface class SgDockLayoutProps {
   /// Zonas, toolbars e conteudo estrutural do layout. No React e `children`.
   Widget get child;
-
   /// Estado inicial das toolbars e zonas do layout. Tipo TS: `SgDockLayoutState` (sem tradução exata; ver excecoes.json).
   Object? get defaultState;
-
   /// Identificador do layout usado para persistencia e coordenacao interna.
   String get id;
 }
@@ -45,7 +44,6 @@ const List<SgPropSpec> sgDockLayoutPropSpecs = <SgPropSpec>[
     type: 'String',
     tsType: 'string',
     required: true,
-    description:
-        'Identificador do layout usado para persistencia e coordenacao interna.',
+    description: 'Identificador do layout usado para persistencia e coordenacao interna.',
   ),
 ];
