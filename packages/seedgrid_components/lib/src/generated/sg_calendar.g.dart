@@ -15,6 +15,8 @@ abstract interface class SgCalendarProps {
   /// Tipo TS: `Omit&lt;SgCardProps, "title" | "children"&gt;` (sem tradução exata; ver excecoes.json).
   Object? get cardProps;
   Widget? get cardTitle;
+  /// Tipo TS: `((string | number | readonly string[]) & (string | Date))` (sem tradução exata; ver excecoes.json).
+  Object? get defaultValue;
   /// Tipo TS: `string | Date` (sem tradução exata; ver excecoes.json).
   Object? get defaultViewDate;
   /// Tipo TS: `((date: Date) =&gt; boolean)` (sem tradução exata; ver excecoes.json).
@@ -65,6 +67,14 @@ const List<SgPropSpec> sgCalendarPropSpecs = <SgPropSpec>[
     type: 'Widget?',
     tsType: 'React.ReactNode',
     required: false,
+  ),
+  SgPropSpec(
+    name: 'defaultValue',
+    reactName: 'defaultValue',
+    type: 'Object?',
+    tsType: '((string | number | readonly string[]) & (string | Date))',
+    required: false,
+    exact: false,
   ),
   SgPropSpec(
     name: 'defaultViewDate',

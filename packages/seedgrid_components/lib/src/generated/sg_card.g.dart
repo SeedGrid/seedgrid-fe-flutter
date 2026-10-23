@@ -19,6 +19,8 @@ abstract interface class SgCardProps {
   String? get bodyClassName;
   /// Estilo visual da superficie do card. Padrão: `default`.
   SgCardCardStyle? get cardStyle;
+  /// Conteudo principal exibido dentro do card. No React e `children`.
+  Widget? get child;
   /// Transforma o card em superficie clicavel. Padrão: `false`.
   bool? get clickable;
   Widget? get collapseIcon;
@@ -36,6 +38,8 @@ abstract interface class SgCardProps {
   Widget? get description;
   /// Padrão: `false`.
   bool? get disabled;
+  /// Padrão: `false`.
+  bool? get draggable;
   String? get dragPersistKey;
   Widget? get footer;
   String? get footerClassName;
@@ -107,6 +111,14 @@ const List<SgPropSpec> sgCardPropSpecs = <SgPropSpec>[
     values: <String>['default', 'outlined', 'flat', 'elevated'],
   ),
   SgPropSpec(
+    name: 'child',
+    reactName: 'children',
+    type: 'Widget?',
+    tsType: 'React.ReactNode',
+    required: false,
+    description: 'Conteudo principal exibido dentro do card.',
+  ),
+  SgPropSpec(
     name: 'clickable',
     reactName: 'clickable',
     type: 'bool?',
@@ -175,6 +187,14 @@ const List<SgPropSpec> sgCardPropSpecs = <SgPropSpec>[
   SgPropSpec(
     name: 'disabled',
     reactName: 'disabled',
+    type: 'bool?',
+    tsType: 'boolean',
+    required: false,
+    defaultValue: 'false',
+  ),
+  SgPropSpec(
+    name: 'draggable',
+    reactName: 'draggable',
     type: 'bool?',
     tsType: 'boolean',
     required: false,

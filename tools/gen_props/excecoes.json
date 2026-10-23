@@ -47,6 +47,11 @@
    "motivo": "estilo: React-only (ADR 50)"
   },
   {
+   "componente": "SgCard",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
    "componente": "SgCarousel",
    "prop": "className",
    "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
@@ -1037,6 +1042,12 @@
    "prop": "cardProps",
    "motivo": "uniao",
    "ts": "Omit<SgCardProps, \"title\" | \"children\">"
+  },
+  {
+   "componente": "SgCalendar",
+   "prop": "defaultValue",
+   "motivo": "uniao",
+   "ts": "((string | number | readonly string[]) & (string | Date))"
   },
   {
    "componente": "SgCalendar",
@@ -4071,6 +4082,12 @@
    "motivo": "ADR 50"
   },
   {
+   "componente": "SgCard",
+   "de": "children",
+   "para": "child",
+   "motivo": "ADR 50"
+  },
+  {
    "componente": "SgClockThemeProvider",
    "de": "children",
    "para": "child",
@@ -4318,11 +4335,11 @@
   }
  ],
  "resumo": {
-  "omitidas": 153,
-  "renomeadas": 46,
+  "omitidas": 154,
+  "renomeadas": 47,
   "tipoGenerico": {
    "lista": 62,
-   "uniao": 115,
+   "uniao": 116,
    "funcao": 225,
    "tipo-nomeado-a-portar": 143
   }

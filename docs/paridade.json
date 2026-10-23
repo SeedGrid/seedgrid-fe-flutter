@@ -2,9 +2,9 @@
  "versaoReact": "2026.7.1",
  "resumo": {
   "total": 89,
-  "portado": 23,
-  "parcial": 30,
-  "pendente": 36,
+  "portado": 24,
+  "parcial": 40,
+  "pendente": 25,
   "naoAplicavel": 0
  },
  "componentes": [
@@ -14,16 +14,16 @@
    "status": "portado",
    "motivo": "",
    "onde": "packages/seedgrid_components/lib/src/layout/containers/sg_accordion.dart",
-   "props": 17,
+   "props": 18,
    "propsOmitidas": 0,
    "propsGenericas": 7
   },
   {
    "componente": "SgAutocomplete",
    "onda": 3,
-   "status": "pendente",
-   "motivo": "",
-   "onde": "",
+   "status": "parcial",
+   "motivo": "renderValue cobre o texto com um conteiner opaco (o React usa texto transparente); itemTooltip vira Tooltip por toque longo, nao por hover; inputProps ignorado (ADR 50); o texto passa por um SgFormController interno porque o SgInputText so aceita valor de fora por formulario; sem autocorrect/spellCheck; nao testado em IME nem em dispositivo; golden com fonte de teste",
+   "onde": "packages/seedgrid_components/lib/src/inputs/select/sg_autocomplete.dart",
    "props": 72,
    "propsOmitidas": 3,
    "propsGenericas": 26
@@ -91,12 +91,12 @@
   {
    "componente": "SgCalendar",
    "onda": 3,
-   "status": "pendente",
-   "motivo": "",
-   "onde": "",
-   "props": 18,
+   "status": "parcial",
+   "motivo": "so 9 locales com dados (pt-BR, pt-PT, pt, en-US, en, es, fr, de-DE, de), outro cai em en-US; cardProps vira SgCalendarCardProps (subconjunto do SgCard); datas em texto so ISO 8601; prop extra today para fixar o hoje; defaultValue acrescentado a mao ate o gerador passar a manter props redeclaradas (ja mantem); icones SVG viraram CustomPaint; golden com fonte de teste",
+   "onde": "packages/seedgrid_components/lib/src/gadgets/calendar/sg_calendar.dart",
+   "props": 19,
    "propsOmitidas": 0,
-   "propsGenericas": 11
+   "propsGenericas": 12
   },
   {
    "componente": "SgCard",
@@ -104,8 +104,8 @@
    "status": "parcial",
    "motivo": "posicao arrastada (dragPersistKey/id) so em memoria (SgCardPositionStore) ate haver shared_preferences no uso; onPositionChange dispara na montagem como no React; golden com fonte de teste",
    "onde": "packages/seedgrid_components/lib/src/layout/containers/sg_card.dart",
-   "props": 30,
-   "propsOmitidas": 0,
+   "props": 33,
+   "propsOmitidas": 1,
    "propsGenericas": 4
   },
   {
@@ -171,9 +171,9 @@
   {
    "componente": "SgCombobox",
    "onda": 3,
-   "status": "pendente",
-   "motivo": "",
-   "onde": "",
+   "status": "parcial",
+   "motivo": "value nulo = nao controlado (Dart nao distingue null de indefinido); em tela estreita a lista e um painel de baixo (nao showModalBottomSheet, que tiraria o foco do campo); inputProps ignorado (ADR 50); o texto passa por um SgFormController interno porque o SgInputText so aceita valor de fora por formulario; sem autocorrect/spellCheck; nao testado em IME nem em dispositivo; golden com fonte de teste",
+   "onde": "packages/seedgrid_components/lib/src/inputs/select/sg_combobox.dart",
    "props": 56,
    "propsOmitidas": 3,
    "propsGenericas": 21
@@ -421,9 +421,9 @@
   {
    "componente": "SgInputOTP",
    "onda": 3,
-   "status": "pendente",
-   "motivo": "",
-   "onde": "",
+   "status": "parcial",
+   "motivo": "slot vazio guarda um caractere invisivel (U+200B) para o teclado virtual avisar o Backspace; colar 1 caractere num slot cheio e tratado como digitar (o React limparia os seguintes); inputProps e *ClassName aceitos sem efeito; nao testado em IME nem em dispositivo; golden com fonte de teste",
+   "onde": "packages/seedgrid_components/lib/src/inputs/otp/sg_input_otp.dart",
    "props": 30,
    "propsOmitidas": 2,
    "propsGenericas": 12
@@ -521,9 +521,9 @@
   {
    "componente": "SgMultiSelect",
    "onda": 3,
-   "status": "pendente",
-   "motivo": "",
-   "onde": "",
+   "status": "parcial",
+   "motivo": "o React nao foca o campo ao tocar e o Flutter foca; a lista ancorada se alinha ao SgInputText inteiro; onClear/maxLengthMessage/minLengthMessage aceitos sem efeito (igual ao React); superficie do dropdown duplicada com a do Combobox (unificar depois); inputProps ignorado (ADR 50); o texto passa por um SgFormController interno porque o SgInputText so aceita valor de fora por formulario; sem autocorrect/spellCheck; nao testado em IME nem em dispositivo; golden com fonte de teste",
+   "onde": "packages/seedgrid_components/lib/src/inputs/multi/sg_multi_select.dart",
    "props": 46,
    "propsOmitidas": 3,
    "propsGenericas": 13
@@ -531,9 +531,9 @@
   {
    "componente": "SgMultiSelectChips",
    "onda": 3,
-   "status": "pendente",
-   "motivo": "",
-   "onde": "",
+   "status": "parcial",
+   "motivo": "o item ativo da lista rola ate ficar visivel (o React nao faz); superficie do dropdown duplicada com a do Combobox; inputProps ignorado (ADR 50); o texto passa por um SgFormController interno porque o SgInputText so aceita valor de fora por formulario; sem autocorrect/spellCheck; nao testado em IME nem em dispositivo; golden com fonte de teste",
+   "onde": "packages/seedgrid_components/lib/src/inputs/multi/sg_multi_select_chips.dart",
    "props": 25,
    "propsOmitidas": 3,
    "propsGenericas": 9
@@ -551,9 +551,9 @@
   {
    "componente": "SgOrderList",
    "onda": 3,
-   "status": "pendente",
-   "motivo": "",
-   "onde": "",
+   "status": "parcial",
+   "motivo": "arrastar por toque longo (LongPressDraggable, cerca de 150 ms) no lugar do arrastar nativo do navegador; PickList: mover pelo duplo toque em ate 300 ms; reinicio do estado ao trocar source/target compara por identidade dos itens; rotulos Top/Up/Down/Bottom do OrderList ficam em ingles como no React; listClassName/itemClassName sem efeito; groupBoxProps vira SgListGroupBoxProps",
+   "onde": "packages/seedgrid_components/lib/src/inputs/lists/sg_order_list.dart",
    "props": 25,
    "propsOmitidas": 3,
    "propsGenericas": 9
@@ -591,9 +591,9 @@
   {
    "componente": "SgPeriodSelector",
    "onda": 3,
-   "status": "pendente",
-   "motivo": "",
-   "onde": "",
+   "status": "parcial",
+   "motivo": "value nulo = nao controlado (o Combobox nao distingue null de indefinido): limpar o preset por fora nao limpa o campo; o campo de data de Periodo e o SgInputDate do Flutter (mascara com calendario proprio), que segue o locale do i18n global e nao a prop locale do seletor; os rotulos vem de mapas ASCII embutidos sem acento, iguais ao React (nao passam pelo i18n)",
+   "onde": "packages/seedgrid_components/lib/src/inputs/period/sg_period_selector.dart",
    "props": 20,
    "propsOmitidas": 1,
    "propsGenericas": 6
@@ -601,9 +601,9 @@
   {
    "componente": "SgPickList",
    "onda": 3,
-   "status": "pendente",
-   "motivo": "",
-   "onde": "",
+   "status": "parcial",
+   "motivo": "arrastar por toque longo (LongPressDraggable, cerca de 150 ms) no lugar do arrastar nativo do navegador; PickList: mover pelo duplo toque em ate 300 ms; reinicio do estado ao trocar source/target compara por identidade dos itens; rotulos Top/Up/Down/Bottom do OrderList ficam em ingles como no React; listClassName/itemClassName sem efeito; groupBoxProps vira SgListGroupBoxProps",
+   "onde": "packages/seedgrid_components/lib/src/inputs/lists/sg_pick_list.dart",
    "props": 36,
    "propsOmitidas": 3,
    "propsGenericas": 12
@@ -841,9 +841,9 @@
   {
    "componente": "SgTreeView",
    "onda": 3,
-   "status": "pendente",
-   "motivo": "",
-   "onde": "",
+   "status": "parcial",
+   "motivo": "o React nao tem navegacao por teclado propria (o Flutter tem setas, Home/End, Enter, Espaco e * como extra); maxHeightClassName vira maxHeight em px (padrao 60% da altura da tela); SgTreeConfirmBar.sticky sem efeito; layout de celular proprio (busca em linha, barra empilhada); medido com 10.100 nos em debug de teste: primeira construcao 142 ms, 19 linhas construidas, quadro de rolagem medio 59,6 ms (release, dispositivo e GPU nao medidos)",
+   "onde": "packages/seedgrid_components/lib/src/layout/tree/sg_tree_view.dart",
    "props": 31,
    "propsOmitidas": 2,
    "propsGenericas": 13
@@ -891,9 +891,9 @@
   {
    "componente": "SgYearPartSelector",
    "onda": 3,
-   "status": "pendente",
+   "status": "portado",
    "motivo": "",
-   "onde": "",
+   "onde": "packages/seedgrid_components/lib/src/inputs/period/sg_year_part_selector.dart",
    "props": 11,
    "propsOmitidas": 1,
    "propsGenericas": 3

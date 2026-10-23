@@ -123,5 +123,45 @@
   "SgCarousel": {
     "status": "parcial",
     "motivo": "extras do Flutter (deslizar o dedo, pausar o autoplay ao tocar); no modo vertical os botoes e indicadores ocupam 20 px em cima/baixo e 24 px a direita (toque fora da area do pai nao chega); vertical sem height usa 300 (o React colapsaria a 0)"
+  },
+  "SgAutocomplete": {
+    "status": "parcial",
+    "motivo": "renderValue cobre o texto com um conteiner opaco (o React usa texto transparente); itemTooltip vira Tooltip por toque longo, nao por hover; inputProps ignorado (ADR 50); o texto passa por um SgFormController interno porque o SgInputText so aceita valor de fora por formulario; sem autocorrect/spellCheck; nao testado em IME nem em dispositivo; golden com fonte de teste"
+  },
+  "SgCombobox": {
+    "status": "parcial",
+    "motivo": "value nulo = nao controlado (Dart nao distingue null de indefinido); em tela estreita a lista e um painel de baixo (nao showModalBottomSheet, que tiraria o foco do campo); inputProps ignorado (ADR 50); o texto passa por um SgFormController interno porque o SgInputText so aceita valor de fora por formulario; sem autocorrect/spellCheck; nao testado em IME nem em dispositivo; golden com fonte de teste"
+  },
+  "SgMultiSelect": {
+    "status": "parcial",
+    "motivo": "o React nao foca o campo ao tocar e o Flutter foca; a lista ancorada se alinha ao SgInputText inteiro; onClear/maxLengthMessage/minLengthMessage aceitos sem efeito (igual ao React); superficie do dropdown duplicada com a do Combobox (unificar depois); inputProps ignorado (ADR 50); o texto passa por um SgFormController interno porque o SgInputText so aceita valor de fora por formulario; sem autocorrect/spellCheck; nao testado em IME nem em dispositivo; golden com fonte de teste"
+  },
+  "SgMultiSelectChips": {
+    "status": "parcial",
+    "motivo": "o item ativo da lista rola ate ficar visivel (o React nao faz); superficie do dropdown duplicada com a do Combobox; inputProps ignorado (ADR 50); o texto passa por um SgFormController interno porque o SgInputText so aceita valor de fora por formulario; sem autocorrect/spellCheck; nao testado em IME nem em dispositivo; golden com fonte de teste"
+  },
+  "SgPickList": {
+    "status": "parcial",
+    "motivo": "arrastar por toque longo (LongPressDraggable, cerca de 150 ms) no lugar do arrastar nativo do navegador; PickList: mover pelo duplo toque em ate 300 ms; reinicio do estado ao trocar source/target compara por identidade dos itens; rotulos Top/Up/Down/Bottom do OrderList ficam em ingles como no React; listClassName/itemClassName sem efeito; groupBoxProps vira SgListGroupBoxProps"
+  },
+  "SgOrderList": {
+    "status": "parcial",
+    "motivo": "arrastar por toque longo (LongPressDraggable, cerca de 150 ms) no lugar do arrastar nativo do navegador; PickList: mover pelo duplo toque em ate 300 ms; reinicio do estado ao trocar source/target compara por identidade dos itens; rotulos Top/Up/Down/Bottom do OrderList ficam em ingles como no React; listClassName/itemClassName sem efeito; groupBoxProps vira SgListGroupBoxProps"
+  },
+  "SgTreeView": {
+    "status": "parcial",
+    "motivo": "o React nao tem navegacao por teclado propria (o Flutter tem setas, Home/End, Enter, Espaco e * como extra); maxHeightClassName vira maxHeight em px (padrao 60% da altura da tela); SgTreeConfirmBar.sticky sem efeito; layout de celular proprio (busca em linha, barra empilhada); medido com 10.100 nos em debug de teste: primeira construcao 142 ms, 19 linhas construidas, quadro de rolagem medio 59,6 ms (release, dispositivo e GPU nao medidos)"
+  },
+  "SgCalendar": {
+    "status": "parcial",
+    "motivo": "so 9 locales com dados (pt-BR, pt-PT, pt, en-US, en, es, fr, de-DE, de), outro cai em en-US; cardProps vira SgCalendarCardProps (subconjunto do SgCard); datas em texto so ISO 8601; prop extra today para fixar o hoje; defaultValue acrescentado a mao ate o gerador passar a manter props redeclaradas (ja mantem); icones SVG viraram CustomPaint; golden com fonte de teste"
+  },
+  "SgInputOTP": {
+    "status": "parcial",
+    "motivo": "slot vazio guarda um caractere invisivel (U+200B) para o teclado virtual avisar o Backspace; colar 1 caractere num slot cheio e tratado como digitar (o React limparia os seguintes); inputProps e *ClassName aceitos sem efeito; nao testado em IME nem em dispositivo; golden com fonte de teste"
+  },
+  "SgPeriodSelector": {
+    "status": "parcial",
+    "motivo": "value nulo = nao controlado (o Combobox nao distingue null de indefinido): limpar o preset por fora nao limpa o campo; o campo de data de Periodo e o SgInputDate do Flutter (mascara com calendario proprio), que segue o locale do i18n global e nao a prop locale do seletor; os rotulos vem de mapas ASCII embutidos sem acento, iguais ao React (nao passam pelo i18n)"
   }
 }

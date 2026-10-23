@@ -56,6 +56,7 @@ class SgAccordion extends StatefulWidget implements SgAccordionProps {
     this.headerBackgroundColor,
     this.headerClassName,
     this.horizontalHeaderWidth = 52,
+    this.id,
     this.horizontalMinHeight = 220,
     this.keepMounted = true,
     this.multiple = false,
@@ -64,6 +65,10 @@ class SgAccordion extends StatefulWidget implements SgAccordionProps {
     this.orientation = SgAccordionOrientation.vertical,
     this.panelClassName,
   });
+
+  /// `id` do elemento no React. Aceito para cumprir o contrato; sem efeito visual no Flutter.
+  @override
+  final String? id;
 
   @override
   final List<SgAccordionItem> items;

@@ -123,7 +123,7 @@ for (const name of [...valueExports].sort()) {
   if (sigs.length && sigs[0].parameters.length) {
     const pType = checker.getTypeOfSymbolAtLocation(sigs[0].parameters[0], decl);
     for (const p of checker.getPropertiesOfType(pType)) {
-      const d = p.valueDeclaration ?? p.declarations?.[0];
+      const d = (p.declarations ?? []).find(isOurs) ?? p.valueDeclaration ?? p.declarations?.[0]; // redeclarada no src: conta, mesmo que o HTML tenha a mesma
       if (!d || !isOurs(d)) continue; // herdadas de HTML/React ficam de fora
       const pt = checker.getTypeOfSymbolAtLocation(p, d);
       const info = describeType(pt, d);

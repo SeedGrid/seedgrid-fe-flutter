@@ -81,6 +81,22 @@ void main() {
       },
     );
 
+    test(
+      'validate roda ate com valor vazio (como no RHF); as demais regras nao',
+      () async {
+        final e = await validateRules(
+          SgRules(minLength: 3, validate: (v) => 'sempre'),
+          '',
+        );
+        expect(e?.type, 'validate');
+        expect(e?.message, 'sempre');
+        expect(
+          await validateRules(SgRules(minLength: 3, validate: (v) => true), ''),
+          isNull,
+        );
+      },
+    );
+
     test('ordem: required antes de min', () async {
       final e = await validateRules(const SgRules(required: 'r', min: 5), null);
       expect(e?.type, 'required');

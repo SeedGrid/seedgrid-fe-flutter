@@ -87,6 +87,12 @@
      "defaultFonte": "codigo"
     },
     {
+     "name": "id",
+     "optional": true,
+     "ts": "string | undefined",
+     "alias": null
+    },
+    {
      "name": "items",
      "optional": false,
      "ts": "SgAccordionItem[]",
@@ -1449,6 +1455,12 @@
      "alias": "ReactNode"
     },
     {
+     "name": "defaultValue",
+     "optional": true,
+     "ts": "((string | number | readonly string[]) & (string | Date)) | undefined",
+     "alias": null
+    },
+    {
      "name": "defaultViewDate",
      "optional": true,
      "ts": "string | Date | undefined",
@@ -1633,6 +1645,20 @@
      "semanticRole": "appearance"
     },
     {
+     "name": "children",
+     "optional": true,
+     "ts": "React.ReactNode",
+     "alias": "ReactNode",
+     "description": "Conteudo principal exibido dentro do card.",
+     "semanticRole": "data"
+    },
+    {
+     "name": "className",
+     "optional": true,
+     "ts": "string | undefined",
+     "alias": null
+    },
+    {
      "name": "clickable",
      "optional": true,
      "ts": "boolean | undefined",
@@ -1700,6 +1726,14 @@
     },
     {
      "name": "disabled",
+     "optional": true,
+     "ts": "boolean | undefined",
+     "alias": null,
+     "default": "false",
+     "defaultFonte": "codigo"
+    },
+    {
+     "name": "draggable",
      "optional": true,
      "ts": "boolean | undefined",
      "alias": null,

@@ -1,0 +1,2039 @@
+{
+ "icu": "77.1",
+ "locales": {
+  "pt-BR": {
+   "monthYear": [
+    {
+     "date": "2026-01-01",
+     "year": 2026,
+     "label": "Janeiro de 2026"
+    },
+    {
+     "date": "2026-02-01",
+     "year": 2026,
+     "label": "Fevereiro de 2026"
+    },
+    {
+     "date": "2026-03-01",
+     "year": 2026,
+     "label": "Março de 2026"
+    },
+    {
+     "date": "2026-04-01",
+     "year": 2026,
+     "label": "Abril de 2026"
+    },
+    {
+     "date": "2026-05-01",
+     "year": 2026,
+     "label": "Maio de 2026"
+    },
+    {
+     "date": "2026-06-01",
+     "year": 2026,
+     "label": "Junho de 2026"
+    },
+    {
+     "date": "2026-07-01",
+     "year": 2026,
+     "label": "Julho de 2026"
+    },
+    {
+     "date": "2026-08-01",
+     "year": 2026,
+     "label": "Agosto de 2026"
+    },
+    {
+     "date": "2026-09-01",
+     "year": 2026,
+     "label": "Setembro de 2026"
+    },
+    {
+     "date": "2026-10-01",
+     "year": 2026,
+     "label": "Outubro de 2026"
+    },
+    {
+     "date": "2026-11-01",
+     "year": 2026,
+     "label": "Novembro de 2026"
+    },
+    {
+     "date": "2026-12-01",
+     "year": 2026,
+     "label": "Dezembro de 2026"
+    },
+    {
+     "date": "2026-01-01",
+     "year": 2027,
+     "label": "Janeiro de 2027"
+    },
+    {
+     "date": "2026-02-01",
+     "year": 2027,
+     "label": "Fevereiro de 2027"
+    }
+   ],
+   "selected": [
+    {
+     "date": "2026-01-01",
+     "label": "Quinta-feira, 1 de janeiro"
+    },
+    {
+     "date": "2026-03-01",
+     "label": "Domingo, 1 de março"
+    },
+    {
+     "date": "2026-03-08",
+     "label": "Domingo, 8 de março"
+    },
+    {
+     "date": "2026-06-30",
+     "label": "Terça-feira, 30 de junho"
+    },
+    {
+     "date": "2026-10-24",
+     "label": "Sábado, 24 de outubro"
+    },
+    {
+     "date": "2026-12-31",
+     "label": "Quinta-feira, 31 de dezembro"
+    },
+    {
+     "date": "2027-02-28",
+     "label": "Domingo, 28 de fevereiro"
+    },
+    {
+     "date": "2028-02-29",
+     "label": "Terça-feira, 29 de fevereiro"
+    },
+    {
+     "date": "2026-07-04",
+     "label": "Sábado, 4 de julho"
+    },
+    {
+     "date": "2026-08-15",
+     "label": "Sábado, 15 de agosto"
+    }
+   ],
+   "weekdays": {
+    "narrow-0": [
+     "D",
+     "S",
+     "T",
+     "Q",
+     "Q",
+     "S",
+     "S"
+    ],
+    "narrow-1": [
+     "S",
+     "T",
+     "Q",
+     "Q",
+     "S",
+     "S",
+     "D"
+    ],
+    "narrow-2": [
+     "T",
+     "Q",
+     "Q",
+     "S",
+     "S",
+     "D",
+     "S"
+    ],
+    "narrow-6": [
+     "S",
+     "D",
+     "S",
+     "T",
+     "Q",
+     "Q",
+     "S"
+    ],
+    "short-0": [
+     "Dom.",
+     "Seg.",
+     "Ter.",
+     "Qua.",
+     "Qui.",
+     "Sex.",
+     "Sáb."
+    ],
+    "short-1": [
+     "Seg.",
+     "Ter.",
+     "Qua.",
+     "Qui.",
+     "Sex.",
+     "Sáb.",
+     "Dom."
+    ],
+    "short-2": [
+     "Ter.",
+     "Qua.",
+     "Qui.",
+     "Sex.",
+     "Sáb.",
+     "Dom.",
+     "Seg."
+    ],
+    "short-6": [
+     "Sáb.",
+     "Dom.",
+     "Seg.",
+     "Ter.",
+     "Qua.",
+     "Qui.",
+     "Sex."
+    ],
+    "long-0": [
+     "Domingo",
+     "Segunda-feira",
+     "Terça-feira",
+     "Quarta-feira",
+     "Quinta-feira",
+     "Sexta-feira",
+     "Sábado"
+    ],
+    "long-1": [
+     "Segunda-feira",
+     "Terça-feira",
+     "Quarta-feira",
+     "Quinta-feira",
+     "Sexta-feira",
+     "Sábado",
+     "Domingo"
+    ],
+    "long-2": [
+     "Terça-feira",
+     "Quarta-feira",
+     "Quinta-feira",
+     "Sexta-feira",
+     "Sábado",
+     "Domingo",
+     "Segunda-feira"
+    ],
+    "long-6": [
+     "Sábado",
+     "Domingo",
+     "Segunda-feira",
+     "Terça-feira",
+     "Quarta-feira",
+     "Quinta-feira",
+     "Sexta-feira"
+    ]
+   }
+  },
+  "pt-PT": {
+   "monthYear": [
+    {
+     "date": "2026-01-01",
+     "year": 2026,
+     "label": "Janeiro de 2026"
+    },
+    {
+     "date": "2026-02-01",
+     "year": 2026,
+     "label": "Fevereiro de 2026"
+    },
+    {
+     "date": "2026-03-01",
+     "year": 2026,
+     "label": "Março de 2026"
+    },
+    {
+     "date": "2026-04-01",
+     "year": 2026,
+     "label": "Abril de 2026"
+    },
+    {
+     "date": "2026-05-01",
+     "year": 2026,
+     "label": "Maio de 2026"
+    },
+    {
+     "date": "2026-06-01",
+     "year": 2026,
+     "label": "Junho de 2026"
+    },
+    {
+     "date": "2026-07-01",
+     "year": 2026,
+     "label": "Julho de 2026"
+    },
+    {
+     "date": "2026-08-01",
+     "year": 2026,
+     "label": "Agosto de 2026"
+    },
+    {
+     "date": "2026-09-01",
+     "year": 2026,
+     "label": "Setembro de 2026"
+    },
+    {
+     "date": "2026-10-01",
+     "year": 2026,
+     "label": "Outubro de 2026"
+    },
+    {
+     "date": "2026-11-01",
+     "year": 2026,
+     "label": "Novembro de 2026"
+    },
+    {
+     "date": "2026-12-01",
+     "year": 2026,
+     "label": "Dezembro de 2026"
+    },
+    {
+     "date": "2026-01-01",
+     "year": 2027,
+     "label": "Janeiro de 2027"
+    },
+    {
+     "date": "2026-02-01",
+     "year": 2027,
+     "label": "Fevereiro de 2027"
+    }
+   ],
+   "selected": [
+    {
+     "date": "2026-01-01",
+     "label": "Quinta-feira, 1 de janeiro"
+    },
+    {
+     "date": "2026-03-01",
+     "label": "Domingo, 1 de março"
+    },
+    {
+     "date": "2026-03-08",
+     "label": "Domingo, 8 de março"
+    },
+    {
+     "date": "2026-06-30",
+     "label": "Terça-feira, 30 de junho"
+    },
+    {
+     "date": "2026-10-24",
+     "label": "Sábado, 24 de outubro"
+    },
+    {
+     "date": "2026-12-31",
+     "label": "Quinta-feira, 31 de dezembro"
+    },
+    {
+     "date": "2027-02-28",
+     "label": "Domingo, 28 de fevereiro"
+    },
+    {
+     "date": "2028-02-29",
+     "label": "Terça-feira, 29 de fevereiro"
+    },
+    {
+     "date": "2026-07-04",
+     "label": "Sábado, 4 de julho"
+    },
+    {
+     "date": "2026-08-15",
+     "label": "Sábado, 15 de agosto"
+    }
+   ],
+   "weekdays": {
+    "narrow-0": [
+     "D",
+     "S",
+     "T",
+     "Q",
+     "Q",
+     "S",
+     "S"
+    ],
+    "narrow-1": [
+     "S",
+     "T",
+     "Q",
+     "Q",
+     "S",
+     "S",
+     "D"
+    ],
+    "narrow-2": [
+     "T",
+     "Q",
+     "Q",
+     "S",
+     "S",
+     "D",
+     "S"
+    ],
+    "narrow-6": [
+     "S",
+     "D",
+     "S",
+     "T",
+     "Q",
+     "Q",
+     "S"
+    ],
+    "short-0": [
+     "Domingo",
+     "Segunda",
+     "Terça",
+     "Quarta",
+     "Quinta",
+     "Sexta",
+     "Sábado"
+    ],
+    "short-1": [
+     "Segunda",
+     "Terça",
+     "Quarta",
+     "Quinta",
+     "Sexta",
+     "Sábado",
+     "Domingo"
+    ],
+    "short-2": [
+     "Terça",
+     "Quarta",
+     "Quinta",
+     "Sexta",
+     "Sábado",
+     "Domingo",
+     "Segunda"
+    ],
+    "short-6": [
+     "Sábado",
+     "Domingo",
+     "Segunda",
+     "Terça",
+     "Quarta",
+     "Quinta",
+     "Sexta"
+    ],
+    "long-0": [
+     "Domingo",
+     "Segunda-feira",
+     "Terça-feira",
+     "Quarta-feira",
+     "Quinta-feira",
+     "Sexta-feira",
+     "Sábado"
+    ],
+    "long-1": [
+     "Segunda-feira",
+     "Terça-feira",
+     "Quarta-feira",
+     "Quinta-feira",
+     "Sexta-feira",
+     "Sábado",
+     "Domingo"
+    ],
+    "long-2": [
+     "Terça-feira",
+     "Quarta-feira",
+     "Quinta-feira",
+     "Sexta-feira",
+     "Sábado",
+     "Domingo",
+     "Segunda-feira"
+    ],
+    "long-6": [
+     "Sábado",
+     "Domingo",
+     "Segunda-feira",
+     "Terça-feira",
+     "Quarta-feira",
+     "Quinta-feira",
+     "Sexta-feira"
+    ]
+   }
+  },
+  "pt": {
+   "monthYear": [
+    {
+     "date": "2026-01-01",
+     "year": 2026,
+     "label": "Janeiro de 2026"
+    },
+    {
+     "date": "2026-02-01",
+     "year": 2026,
+     "label": "Fevereiro de 2026"
+    },
+    {
+     "date": "2026-03-01",
+     "year": 2026,
+     "label": "Março de 2026"
+    },
+    {
+     "date": "2026-04-01",
+     "year": 2026,
+     "label": "Abril de 2026"
+    },
+    {
+     "date": "2026-05-01",
+     "year": 2026,
+     "label": "Maio de 2026"
+    },
+    {
+     "date": "2026-06-01",
+     "year": 2026,
+     "label": "Junho de 2026"
+    },
+    {
+     "date": "2026-07-01",
+     "year": 2026,
+     "label": "Julho de 2026"
+    },
+    {
+     "date": "2026-08-01",
+     "year": 2026,
+     "label": "Agosto de 2026"
+    },
+    {
+     "date": "2026-09-01",
+     "year": 2026,
+     "label": "Setembro de 2026"
+    },
+    {
+     "date": "2026-10-01",
+     "year": 2026,
+     "label": "Outubro de 2026"
+    },
+    {
+     "date": "2026-11-01",
+     "year": 2026,
+     "label": "Novembro de 2026"
+    },
+    {
+     "date": "2026-12-01",
+     "year": 2026,
+     "label": "Dezembro de 2026"
+    },
+    {
+     "date": "2026-01-01",
+     "year": 2027,
+     "label": "Janeiro de 2027"
+    },
+    {
+     "date": "2026-02-01",
+     "year": 2027,
+     "label": "Fevereiro de 2027"
+    }
+   ],
+   "selected": [
+    {
+     "date": "2026-01-01",
+     "label": "Quinta-feira, 1 de janeiro"
+    },
+    {
+     "date": "2026-03-01",
+     "label": "Domingo, 1 de março"
+    },
+    {
+     "date": "2026-03-08",
+     "label": "Domingo, 8 de março"
+    },
+    {
+     "date": "2026-06-30",
+     "label": "Terça-feira, 30 de junho"
+    },
+    {
+     "date": "2026-10-24",
+     "label": "Sábado, 24 de outubro"
+    },
+    {
+     "date": "2026-12-31",
+     "label": "Quinta-feira, 31 de dezembro"
+    },
+    {
+     "date": "2027-02-28",
+     "label": "Domingo, 28 de fevereiro"
+    },
+    {
+     "date": "2028-02-29",
+     "label": "Terça-feira, 29 de fevereiro"
+    },
+    {
+     "date": "2026-07-04",
+     "label": "Sábado, 4 de julho"
+    },
+    {
+     "date": "2026-08-15",
+     "label": "Sábado, 15 de agosto"
+    }
+   ],
+   "weekdays": {
+    "narrow-0": [
+     "D",
+     "S",
+     "T",
+     "Q",
+     "Q",
+     "S",
+     "S"
+    ],
+    "narrow-1": [
+     "S",
+     "T",
+     "Q",
+     "Q",
+     "S",
+     "S",
+     "D"
+    ],
+    "narrow-2": [
+     "T",
+     "Q",
+     "Q",
+     "S",
+     "S",
+     "D",
+     "S"
+    ],
+    "narrow-6": [
+     "S",
+     "D",
+     "S",
+     "T",
+     "Q",
+     "Q",
+     "S"
+    ],
+    "short-0": [
+     "Dom.",
+     "Seg.",
+     "Ter.",
+     "Qua.",
+     "Qui.",
+     "Sex.",
+     "Sáb."
+    ],
+    "short-1": [
+     "Seg.",
+     "Ter.",
+     "Qua.",
+     "Qui.",
+     "Sex.",
+     "Sáb.",
+     "Dom."
+    ],
+    "short-2": [
+     "Ter.",
+     "Qua.",
+     "Qui.",
+     "Sex.",
+     "Sáb.",
+     "Dom.",
+     "Seg."
+    ],
+    "short-6": [
+     "Sáb.",
+     "Dom.",
+     "Seg.",
+     "Ter.",
+     "Qua.",
+     "Qui.",
+     "Sex."
+    ],
+    "long-0": [
+     "Domingo",
+     "Segunda-feira",
+     "Terça-feira",
+     "Quarta-feira",
+     "Quinta-feira",
+     "Sexta-feira",
+     "Sábado"
+    ],
+    "long-1": [
+     "Segunda-feira",
+     "Terça-feira",
+     "Quarta-feira",
+     "Quinta-feira",
+     "Sexta-feira",
+     "Sábado",
+     "Domingo"
+    ],
+    "long-2": [
+     "Terça-feira",
+     "Quarta-feira",
+     "Quinta-feira",
+     "Sexta-feira",
+     "Sábado",
+     "Domingo",
+     "Segunda-feira"
+    ],
+    "long-6": [
+     "Sábado",
+     "Domingo",
+     "Segunda-feira",
+     "Terça-feira",
+     "Quarta-feira",
+     "Quinta-feira",
+     "Sexta-feira"
+    ]
+   }
+  },
+  "en-US": {
+   "monthYear": [
+    {
+     "date": "2026-01-01",
+     "year": 2026,
+     "label": "January 2026"
+    },
+    {
+     "date": "2026-02-01",
+     "year": 2026,
+     "label": "February 2026"
+    },
+    {
+     "date": "2026-03-01",
+     "year": 2026,
+     "label": "March 2026"
+    },
+    {
+     "date": "2026-04-01",
+     "year": 2026,
+     "label": "April 2026"
+    },
+    {
+     "date": "2026-05-01",
+     "year": 2026,
+     "label": "May 2026"
+    },
+    {
+     "date": "2026-06-01",
+     "year": 2026,
+     "label": "June 2026"
+    },
+    {
+     "date": "2026-07-01",
+     "year": 2026,
+     "label": "July 2026"
+    },
+    {
+     "date": "2026-08-01",
+     "year": 2026,
+     "label": "August 2026"
+    },
+    {
+     "date": "2026-09-01",
+     "year": 2026,
+     "label": "September 2026"
+    },
+    {
+     "date": "2026-10-01",
+     "year": 2026,
+     "label": "October 2026"
+    },
+    {
+     "date": "2026-11-01",
+     "year": 2026,
+     "label": "November 2026"
+    },
+    {
+     "date": "2026-12-01",
+     "year": 2026,
+     "label": "December 2026"
+    },
+    {
+     "date": "2026-01-01",
+     "year": 2027,
+     "label": "January 2027"
+    },
+    {
+     "date": "2026-02-01",
+     "year": 2027,
+     "label": "February 2027"
+    }
+   ],
+   "selected": [
+    {
+     "date": "2026-01-01",
+     "label": "Thursday, January 1"
+    },
+    {
+     "date": "2026-03-01",
+     "label": "Sunday, March 1"
+    },
+    {
+     "date": "2026-03-08",
+     "label": "Sunday, March 8"
+    },
+    {
+     "date": "2026-06-30",
+     "label": "Tuesday, June 30"
+    },
+    {
+     "date": "2026-10-24",
+     "label": "Saturday, October 24"
+    },
+    {
+     "date": "2026-12-31",
+     "label": "Thursday, December 31"
+    },
+    {
+     "date": "2027-02-28",
+     "label": "Sunday, February 28"
+    },
+    {
+     "date": "2028-02-29",
+     "label": "Tuesday, February 29"
+    },
+    {
+     "date": "2026-07-04",
+     "label": "Saturday, July 4"
+    },
+    {
+     "date": "2026-08-15",
+     "label": "Saturday, August 15"
+    }
+   ],
+   "weekdays": {
+    "narrow-0": [
+     "S",
+     "M",
+     "T",
+     "W",
+     "T",
+     "F",
+     "S"
+    ],
+    "narrow-1": [
+     "M",
+     "T",
+     "W",
+     "T",
+     "F",
+     "S",
+     "S"
+    ],
+    "narrow-2": [
+     "T",
+     "W",
+     "T",
+     "F",
+     "S",
+     "S",
+     "M"
+    ],
+    "narrow-6": [
+     "S",
+     "S",
+     "M",
+     "T",
+     "W",
+     "T",
+     "F"
+    ],
+    "short-0": [
+     "Sun",
+     "Mon",
+     "Tue",
+     "Wed",
+     "Thu",
+     "Fri",
+     "Sat"
+    ],
+    "short-1": [
+     "Mon",
+     "Tue",
+     "Wed",
+     "Thu",
+     "Fri",
+     "Sat",
+     "Sun"
+    ],
+    "short-2": [
+     "Tue",
+     "Wed",
+     "Thu",
+     "Fri",
+     "Sat",
+     "Sun",
+     "Mon"
+    ],
+    "short-6": [
+     "Sat",
+     "Sun",
+     "Mon",
+     "Tue",
+     "Wed",
+     "Thu",
+     "Fri"
+    ],
+    "long-0": [
+     "Sunday",
+     "Monday",
+     "Tuesday",
+     "Wednesday",
+     "Thursday",
+     "Friday",
+     "Saturday"
+    ],
+    "long-1": [
+     "Monday",
+     "Tuesday",
+     "Wednesday",
+     "Thursday",
+     "Friday",
+     "Saturday",
+     "Sunday"
+    ],
+    "long-2": [
+     "Tuesday",
+     "Wednesday",
+     "Thursday",
+     "Friday",
+     "Saturday",
+     "Sunday",
+     "Monday"
+    ],
+    "long-6": [
+     "Saturday",
+     "Sunday",
+     "Monday",
+     "Tuesday",
+     "Wednesday",
+     "Thursday",
+     "Friday"
+    ]
+   }
+  },
+  "en": {
+   "monthYear": [
+    {
+     "date": "2026-01-01",
+     "year": 2026,
+     "label": "January 2026"
+    },
+    {
+     "date": "2026-02-01",
+     "year": 2026,
+     "label": "February 2026"
+    },
+    {
+     "date": "2026-03-01",
+     "year": 2026,
+     "label": "March 2026"
+    },
+    {
+     "date": "2026-04-01",
+     "year": 2026,
+     "label": "April 2026"
+    },
+    {
+     "date": "2026-05-01",
+     "year": 2026,
+     "label": "May 2026"
+    },
+    {
+     "date": "2026-06-01",
+     "year": 2026,
+     "label": "June 2026"
+    },
+    {
+     "date": "2026-07-01",
+     "year": 2026,
+     "label": "July 2026"
+    },
+    {
+     "date": "2026-08-01",
+     "year": 2026,
+     "label": "August 2026"
+    },
+    {
+     "date": "2026-09-01",
+     "year": 2026,
+     "label": "September 2026"
+    },
+    {
+     "date": "2026-10-01",
+     "year": 2026,
+     "label": "October 2026"
+    },
+    {
+     "date": "2026-11-01",
+     "year": 2026,
+     "label": "November 2026"
+    },
+    {
+     "date": "2026-12-01",
+     "year": 2026,
+     "label": "December 2026"
+    },
+    {
+     "date": "2026-01-01",
+     "year": 2027,
+     "label": "January 2027"
+    },
+    {
+     "date": "2026-02-01",
+     "year": 2027,
+     "label": "February 2027"
+    }
+   ],
+   "selected": [
+    {
+     "date": "2026-01-01",
+     "label": "Thursday, January 1"
+    },
+    {
+     "date": "2026-03-01",
+     "label": "Sunday, March 1"
+    },
+    {
+     "date": "2026-03-08",
+     "label": "Sunday, March 8"
+    },
+    {
+     "date": "2026-06-30",
+     "label": "Tuesday, June 30"
+    },
+    {
+     "date": "2026-10-24",
+     "label": "Saturday, October 24"
+    },
+    {
+     "date": "2026-12-31",
+     "label": "Thursday, December 31"
+    },
+    {
+     "date": "2027-02-28",
+     "label": "Sunday, February 28"
+    },
+    {
+     "date": "2028-02-29",
+     "label": "Tuesday, February 29"
+    },
+    {
+     "date": "2026-07-04",
+     "label": "Saturday, July 4"
+    },
+    {
+     "date": "2026-08-15",
+     "label": "Saturday, August 15"
+    }
+   ],
+   "weekdays": {
+    "narrow-0": [
+     "S",
+     "M",
+     "T",
+     "W",
+     "T",
+     "F",
+     "S"
+    ],
+    "narrow-1": [
+     "M",
+     "T",
+     "W",
+     "T",
+     "F",
+     "S",
+     "S"
+    ],
+    "narrow-2": [
+     "T",
+     "W",
+     "T",
+     "F",
+     "S",
+     "S",
+     "M"
+    ],
+    "narrow-6": [
+     "S",
+     "S",
+     "M",
+     "T",
+     "W",
+     "T",
+     "F"
+    ],
+    "short-0": [
+     "Sun",
+     "Mon",
+     "Tue",
+     "Wed",
+     "Thu",
+     "Fri",
+     "Sat"
+    ],
+    "short-1": [
+     "Mon",
+     "Tue",
+     "Wed",
+     "Thu",
+     "Fri",
+     "Sat",
+     "Sun"
+    ],
+    "short-2": [
+     "Tue",
+     "Wed",
+     "Thu",
+     "Fri",
+     "Sat",
+     "Sun",
+     "Mon"
+    ],
+    "short-6": [
+     "Sat",
+     "Sun",
+     "Mon",
+     "Tue",
+     "Wed",
+     "Thu",
+     "Fri"
+    ],
+    "long-0": [
+     "Sunday",
+     "Monday",
+     "Tuesday",
+     "Wednesday",
+     "Thursday",
+     "Friday",
+     "Saturday"
+    ],
+    "long-1": [
+     "Monday",
+     "Tuesday",
+     "Wednesday",
+     "Thursday",
+     "Friday",
+     "Saturday",
+     "Sunday"
+    ],
+    "long-2": [
+     "Tuesday",
+     "Wednesday",
+     "Thursday",
+     "Friday",
+     "Saturday",
+     "Sunday",
+     "Monday"
+    ],
+    "long-6": [
+     "Saturday",
+     "Sunday",
+     "Monday",
+     "Tuesday",
+     "Wednesday",
+     "Thursday",
+     "Friday"
+    ]
+   }
+  },
+  "es": {
+   "monthYear": [
+    {
+     "date": "2026-01-01",
+     "year": 2026,
+     "label": "Enero de 2026"
+    },
+    {
+     "date": "2026-02-01",
+     "year": 2026,
+     "label": "Febrero de 2026"
+    },
+    {
+     "date": "2026-03-01",
+     "year": 2026,
+     "label": "Marzo de 2026"
+    },
+    {
+     "date": "2026-04-01",
+     "year": 2026,
+     "label": "Abril de 2026"
+    },
+    {
+     "date": "2026-05-01",
+     "year": 2026,
+     "label": "Mayo de 2026"
+    },
+    {
+     "date": "2026-06-01",
+     "year": 2026,
+     "label": "Junio de 2026"
+    },
+    {
+     "date": "2026-07-01",
+     "year": 2026,
+     "label": "Julio de 2026"
+    },
+    {
+     "date": "2026-08-01",
+     "year": 2026,
+     "label": "Agosto de 2026"
+    },
+    {
+     "date": "2026-09-01",
+     "year": 2026,
+     "label": "Septiembre de 2026"
+    },
+    {
+     "date": "2026-10-01",
+     "year": 2026,
+     "label": "Octubre de 2026"
+    },
+    {
+     "date": "2026-11-01",
+     "year": 2026,
+     "label": "Noviembre de 2026"
+    },
+    {
+     "date": "2026-12-01",
+     "year": 2026,
+     "label": "Diciembre de 2026"
+    },
+    {
+     "date": "2026-01-01",
+     "year": 2027,
+     "label": "Enero de 2027"
+    },
+    {
+     "date": "2026-02-01",
+     "year": 2027,
+     "label": "Febrero de 2027"
+    }
+   ],
+   "selected": [
+    {
+     "date": "2026-01-01",
+     "label": "Jueves, 1 de enero"
+    },
+    {
+     "date": "2026-03-01",
+     "label": "Domingo, 1 de marzo"
+    },
+    {
+     "date": "2026-03-08",
+     "label": "Domingo, 8 de marzo"
+    },
+    {
+     "date": "2026-06-30",
+     "label": "Martes, 30 de junio"
+    },
+    {
+     "date": "2026-10-24",
+     "label": "Sábado, 24 de octubre"
+    },
+    {
+     "date": "2026-12-31",
+     "label": "Jueves, 31 de diciembre"
+    },
+    {
+     "date": "2027-02-28",
+     "label": "Domingo, 28 de febrero"
+    },
+    {
+     "date": "2028-02-29",
+     "label": "Martes, 29 de febrero"
+    },
+    {
+     "date": "2026-07-04",
+     "label": "Sábado, 4 de julio"
+    },
+    {
+     "date": "2026-08-15",
+     "label": "Sábado, 15 de agosto"
+    }
+   ],
+   "weekdays": {
+    "narrow-0": [
+     "D",
+     "L",
+     "M",
+     "X",
+     "J",
+     "V",
+     "S"
+    ],
+    "narrow-1": [
+     "L",
+     "M",
+     "X",
+     "J",
+     "V",
+     "S",
+     "D"
+    ],
+    "narrow-2": [
+     "M",
+     "X",
+     "J",
+     "V",
+     "S",
+     "D",
+     "L"
+    ],
+    "narrow-6": [
+     "S",
+     "D",
+     "L",
+     "M",
+     "X",
+     "J",
+     "V"
+    ],
+    "short-0": [
+     "Dom",
+     "Lun",
+     "Mar",
+     "Mié",
+     "Jue",
+     "Vie",
+     "Sáb"
+    ],
+    "short-1": [
+     "Lun",
+     "Mar",
+     "Mié",
+     "Jue",
+     "Vie",
+     "Sáb",
+     "Dom"
+    ],
+    "short-2": [
+     "Mar",
+     "Mié",
+     "Jue",
+     "Vie",
+     "Sáb",
+     "Dom",
+     "Lun"
+    ],
+    "short-6": [
+     "Sáb",
+     "Dom",
+     "Lun",
+     "Mar",
+     "Mié",
+     "Jue",
+     "Vie"
+    ],
+    "long-0": [
+     "Domingo",
+     "Lunes",
+     "Martes",
+     "Miércoles",
+     "Jueves",
+     "Viernes",
+     "Sábado"
+    ],
+    "long-1": [
+     "Lunes",
+     "Martes",
+     "Miércoles",
+     "Jueves",
+     "Viernes",
+     "Sábado",
+     "Domingo"
+    ],
+    "long-2": [
+     "Martes",
+     "Miércoles",
+     "Jueves",
+     "Viernes",
+     "Sábado",
+     "Domingo",
+     "Lunes"
+    ],
+    "long-6": [
+     "Sábado",
+     "Domingo",
+     "Lunes",
+     "Martes",
+     "Miércoles",
+     "Jueves",
+     "Viernes"
+    ]
+   }
+  },
+  "fr": {
+   "monthYear": [
+    {
+     "date": "2026-01-01",
+     "year": 2026,
+     "label": "Janvier 2026"
+    },
+    {
+     "date": "2026-02-01",
+     "year": 2026,
+     "label": "Février 2026"
+    },
+    {
+     "date": "2026-03-01",
+     "year": 2026,
+     "label": "Mars 2026"
+    },
+    {
+     "date": "2026-04-01",
+     "year": 2026,
+     "label": "Avril 2026"
+    },
+    {
+     "date": "2026-05-01",
+     "year": 2026,
+     "label": "Mai 2026"
+    },
+    {
+     "date": "2026-06-01",
+     "year": 2026,
+     "label": "Juin 2026"
+    },
+    {
+     "date": "2026-07-01",
+     "year": 2026,
+     "label": "Juillet 2026"
+    },
+    {
+     "date": "2026-08-01",
+     "year": 2026,
+     "label": "Août 2026"
+    },
+    {
+     "date": "2026-09-01",
+     "year": 2026,
+     "label": "Septembre 2026"
+    },
+    {
+     "date": "2026-10-01",
+     "year": 2026,
+     "label": "Octobre 2026"
+    },
+    {
+     "date": "2026-11-01",
+     "year": 2026,
+     "label": "Novembre 2026"
+    },
+    {
+     "date": "2026-12-01",
+     "year": 2026,
+     "label": "Décembre 2026"
+    },
+    {
+     "date": "2026-01-01",
+     "year": 2027,
+     "label": "Janvier 2027"
+    },
+    {
+     "date": "2026-02-01",
+     "year": 2027,
+     "label": "Février 2027"
+    }
+   ],
+   "selected": [
+    {
+     "date": "2026-01-01",
+     "label": "Jeudi 1 janvier"
+    },
+    {
+     "date": "2026-03-01",
+     "label": "Dimanche 1 mars"
+    },
+    {
+     "date": "2026-03-08",
+     "label": "Dimanche 8 mars"
+    },
+    {
+     "date": "2026-06-30",
+     "label": "Mardi 30 juin"
+    },
+    {
+     "date": "2026-10-24",
+     "label": "Samedi 24 octobre"
+    },
+    {
+     "date": "2026-12-31",
+     "label": "Jeudi 31 décembre"
+    },
+    {
+     "date": "2027-02-28",
+     "label": "Dimanche 28 février"
+    },
+    {
+     "date": "2028-02-29",
+     "label": "Mardi 29 février"
+    },
+    {
+     "date": "2026-07-04",
+     "label": "Samedi 4 juillet"
+    },
+    {
+     "date": "2026-08-15",
+     "label": "Samedi 15 août"
+    }
+   ],
+   "weekdays": {
+    "narrow-0": [
+     "D",
+     "L",
+     "M",
+     "M",
+     "J",
+     "V",
+     "S"
+    ],
+    "narrow-1": [
+     "L",
+     "M",
+     "M",
+     "J",
+     "V",
+     "S",
+     "D"
+    ],
+    "narrow-2": [
+     "M",
+     "M",
+     "J",
+     "V",
+     "S",
+     "D",
+     "L"
+    ],
+    "narrow-6": [
+     "S",
+     "D",
+     "L",
+     "M",
+     "M",
+     "J",
+     "V"
+    ],
+    "short-0": [
+     "Dim.",
+     "Lun.",
+     "Mar.",
+     "Mer.",
+     "Jeu.",
+     "Ven.",
+     "Sam."
+    ],
+    "short-1": [
+     "Lun.",
+     "Mar.",
+     "Mer.",
+     "Jeu.",
+     "Ven.",
+     "Sam.",
+     "Dim."
+    ],
+    "short-2": [
+     "Mar.",
+     "Mer.",
+     "Jeu.",
+     "Ven.",
+     "Sam.",
+     "Dim.",
+     "Lun."
+    ],
+    "short-6": [
+     "Sam.",
+     "Dim.",
+     "Lun.",
+     "Mar.",
+     "Mer.",
+     "Jeu.",
+     "Ven."
+    ],
+    "long-0": [
+     "Dimanche",
+     "Lundi",
+     "Mardi",
+     "Mercredi",
+     "Jeudi",
+     "Vendredi",
+     "Samedi"
+    ],
+    "long-1": [
+     "Lundi",
+     "Mardi",
+     "Mercredi",
+     "Jeudi",
+     "Vendredi",
+     "Samedi",
+     "Dimanche"
+    ],
+    "long-2": [
+     "Mardi",
+     "Mercredi",
+     "Jeudi",
+     "Vendredi",
+     "Samedi",
+     "Dimanche",
+     "Lundi"
+    ],
+    "long-6": [
+     "Samedi",
+     "Dimanche",
+     "Lundi",
+     "Mardi",
+     "Mercredi",
+     "Jeudi",
+     "Vendredi"
+    ]
+   }
+  },
+  "de-DE": {
+   "monthYear": [
+    {
+     "date": "2026-01-01",
+     "year": 2026,
+     "label": "Januar 2026"
+    },
+    {
+     "date": "2026-02-01",
+     "year": 2026,
+     "label": "Februar 2026"
+    },
+    {
+     "date": "2026-03-01",
+     "year": 2026,
+     "label": "März 2026"
+    },
+    {
+     "date": "2026-04-01",
+     "year": 2026,
+     "label": "April 2026"
+    },
+    {
+     "date": "2026-05-01",
+     "year": 2026,
+     "label": "Mai 2026"
+    },
+    {
+     "date": "2026-06-01",
+     "year": 2026,
+     "label": "Juni 2026"
+    },
+    {
+     "date": "2026-07-01",
+     "year": 2026,
+     "label": "Juli 2026"
+    },
+    {
+     "date": "2026-08-01",
+     "year": 2026,
+     "label": "August 2026"
+    },
+    {
+     "date": "2026-09-01",
+     "year": 2026,
+     "label": "September 2026"
+    },
+    {
+     "date": "2026-10-01",
+     "year": 2026,
+     "label": "Oktober 2026"
+    },
+    {
+     "date": "2026-11-01",
+     "year": 2026,
+     "label": "November 2026"
+    },
+    {
+     "date": "2026-12-01",
+     "year": 2026,
+     "label": "Dezember 2026"
+    },
+    {
+     "date": "2026-01-01",
+     "year": 2027,
+     "label": "Januar 2027"
+    },
+    {
+     "date": "2026-02-01",
+     "year": 2027,
+     "label": "Februar 2027"
+    }
+   ],
+   "selected": [
+    {
+     "date": "2026-01-01",
+     "label": "Donnerstag, 1. Januar"
+    },
+    {
+     "date": "2026-03-01",
+     "label": "Sonntag, 1. März"
+    },
+    {
+     "date": "2026-03-08",
+     "label": "Sonntag, 8. März"
+    },
+    {
+     "date": "2026-06-30",
+     "label": "Dienstag, 30. Juni"
+    },
+    {
+     "date": "2026-10-24",
+     "label": "Samstag, 24. Oktober"
+    },
+    {
+     "date": "2026-12-31",
+     "label": "Donnerstag, 31. Dezember"
+    },
+    {
+     "date": "2027-02-28",
+     "label": "Sonntag, 28. Februar"
+    },
+    {
+     "date": "2028-02-29",
+     "label": "Dienstag, 29. Februar"
+    },
+    {
+     "date": "2026-07-04",
+     "label": "Samstag, 4. Juli"
+    },
+    {
+     "date": "2026-08-15",
+     "label": "Samstag, 15. August"
+    }
+   ],
+   "weekdays": {
+    "narrow-0": [
+     "S",
+     "M",
+     "D",
+     "M",
+     "D",
+     "F",
+     "S"
+    ],
+    "narrow-1": [
+     "M",
+     "D",
+     "M",
+     "D",
+     "F",
+     "S",
+     "S"
+    ],
+    "narrow-2": [
+     "D",
+     "M",
+     "D",
+     "F",
+     "S",
+     "S",
+     "M"
+    ],
+    "narrow-6": [
+     "S",
+     "S",
+     "M",
+     "D",
+     "M",
+     "D",
+     "F"
+    ],
+    "short-0": [
+     "So",
+     "Mo",
+     "Di",
+     "Mi",
+     "Do",
+     "Fr",
+     "Sa"
+    ],
+    "short-1": [
+     "Mo",
+     "Di",
+     "Mi",
+     "Do",
+     "Fr",
+     "Sa",
+     "So"
+    ],
+    "short-2": [
+     "Di",
+     "Mi",
+     "Do",
+     "Fr",
+     "Sa",
+     "So",
+     "Mo"
+    ],
+    "short-6": [
+     "Sa",
+     "So",
+     "Mo",
+     "Di",
+     "Mi",
+     "Do",
+     "Fr"
+    ],
+    "long-0": [
+     "Sonntag",
+     "Montag",
+     "Dienstag",
+     "Mittwoch",
+     "Donnerstag",
+     "Freitag",
+     "Samstag"
+    ],
+    "long-1": [
+     "Montag",
+     "Dienstag",
+     "Mittwoch",
+     "Donnerstag",
+     "Freitag",
+     "Samstag",
+     "Sonntag"
+    ],
+    "long-2": [
+     "Dienstag",
+     "Mittwoch",
+     "Donnerstag",
+     "Freitag",
+     "Samstag",
+     "Sonntag",
+     "Montag"
+    ],
+    "long-6": [
+     "Samstag",
+     "Sonntag",
+     "Montag",
+     "Dienstag",
+     "Mittwoch",
+     "Donnerstag",
+     "Freitag"
+    ]
+   }
+  },
+  "de": {
+   "monthYear": [
+    {
+     "date": "2026-01-01",
+     "year": 2026,
+     "label": "Januar 2026"
+    },
+    {
+     "date": "2026-02-01",
+     "year": 2026,
+     "label": "Februar 2026"
+    },
+    {
+     "date": "2026-03-01",
+     "year": 2026,
+     "label": "März 2026"
+    },
+    {
+     "date": "2026-04-01",
+     "year": 2026,
+     "label": "April 2026"
+    },
+    {
+     "date": "2026-05-01",
+     "year": 2026,
+     "label": "Mai 2026"
+    },
+    {
+     "date": "2026-06-01",
+     "year": 2026,
+     "label": "Juni 2026"
+    },
+    {
+     "date": "2026-07-01",
+     "year": 2026,
+     "label": "Juli 2026"
+    },
+    {
+     "date": "2026-08-01",
+     "year": 2026,
+     "label": "August 2026"
+    },
+    {
+     "date": "2026-09-01",
+     "year": 2026,
+     "label": "September 2026"
+    },
+    {
+     "date": "2026-10-01",
+     "year": 2026,
+     "label": "Oktober 2026"
+    },
+    {
+     "date": "2026-11-01",
+     "year": 2026,
+     "label": "November 2026"
+    },
+    {
+     "date": "2026-12-01",
+     "year": 2026,
+     "label": "Dezember 2026"
+    },
+    {
+     "date": "2026-01-01",
+     "year": 2027,
+     "label": "Januar 2027"
+    },
+    {
+     "date": "2026-02-01",
+     "year": 2027,
+     "label": "Februar 2027"
+    }
+   ],
+   "selected": [
+    {
+     "date": "2026-01-01",
+     "label": "Donnerstag, 1. Januar"
+    },
+    {
+     "date": "2026-03-01",
+     "label": "Sonntag, 1. März"
+    },
+    {
+     "date": "2026-03-08",
+     "label": "Sonntag, 8. März"
+    },
+    {
+     "date": "2026-06-30",
+     "label": "Dienstag, 30. Juni"
+    },
+    {
+     "date": "2026-10-24",
+     "label": "Samstag, 24. Oktober"
+    },
+    {
+     "date": "2026-12-31",
+     "label": "Donnerstag, 31. Dezember"
+    },
+    {
+     "date": "2027-02-28",
+     "label": "Sonntag, 28. Februar"
+    },
+    {
+     "date": "2028-02-29",
+     "label": "Dienstag, 29. Februar"
+    },
+    {
+     "date": "2026-07-04",
+     "label": "Samstag, 4. Juli"
+    },
+    {
+     "date": "2026-08-15",
+     "label": "Samstag, 15. August"
+    }
+   ],
+   "weekdays": {
+    "narrow-0": [
+     "S",
+     "M",
+     "D",
+     "M",
+     "D",
+     "F",
+     "S"
+    ],
+    "narrow-1": [
+     "M",
+     "D",
+     "M",
+     "D",
+     "F",
+     "S",
+     "S"
+    ],
+    "narrow-2": [
+     "D",
+     "M",
+     "D",
+     "F",
+     "S",
+     "S",
+     "M"
+    ],
+    "narrow-6": [
+     "S",
+     "S",
+     "M",
+     "D",
+     "M",
+     "D",
+     "F"
+    ],
+    "short-0": [
+     "So",
+     "Mo",
+     "Di",
+     "Mi",
+     "Do",
+     "Fr",
+     "Sa"
+    ],
+    "short-1": [
+     "Mo",
+     "Di",
+     "Mi",
+     "Do",
+     "Fr",
+     "Sa",
+     "So"
+    ],
+    "short-2": [
+     "Di",
+     "Mi",
+     "Do",
+     "Fr",
+     "Sa",
+     "So",
+     "Mo"
+    ],
+    "short-6": [
+     "Sa",
+     "So",
+     "Mo",
+     "Di",
+     "Mi",
+     "Do",
+     "Fr"
+    ],
+    "long-0": [
+     "Sonntag",
+     "Montag",
+     "Dienstag",
+     "Mittwoch",
+     "Donnerstag",
+     "Freitag",
+     "Samstag"
+    ],
+    "long-1": [
+     "Montag",
+     "Dienstag",
+     "Mittwoch",
+     "Donnerstag",
+     "Freitag",
+     "Samstag",
+     "Sonntag"
+    ],
+    "long-2": [
+     "Dienstag",
+     "Mittwoch",
+     "Donnerstag",
+     "Freitag",
+     "Samstag",
+     "Sonntag",
+     "Montag"
+    ],
+    "long-6": [
+     "Samstag",
+     "Sonntag",
+     "Montag",
+     "Dienstag",
+     "Mittwoch",
+     "Donnerstag",
+     "Freitag"
+    ]
+   }
+  }
+ }
+}

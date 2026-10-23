@@ -84,8 +84,8 @@ Future<SgFieldError?> validateRules(SgRules rules, Object? value) async {
   if (req != null && req != false && _isEmpty(value)) {
     return SgFieldError('required', req is String ? req : '');
   }
-  // As demais regras so rodam com valor preenchido (como no RHF).
-  if (_isEmpty(value)) return null;
+  // min/max/minLength/maxLength/pattern so rodam com valor preenchido; `validate` roda sempre (como no RHF).
+  if (_isEmpty(value)) return _runValidate(rules, value);
 
   if (rules.min != null || rules.max != null) {
     final n = value is num ? value : num.tryParse('$value');
@@ -117,10 +117,13 @@ Future<SgFieldError?> validateRules(SgRules rules, Object? value) async {
     final (RegExp re, String? m) = _unwrap<RegExp>(rules.pattern);
     if (!re.hasMatch(value)) return SgFieldError('pattern', m ?? '');
   }
-  if (rules.validate != null) {
-    final r = await rules.validate!(value);
-    if (r is String && r.isNotEmpty) return SgFieldError('validate', r);
-    if (r == false) return const SgFieldError('validate');
-  }
+  return _runValidate(rules, value);
+}
+
+Future<SgFieldError?> _runValidate(SgRules rules, Object? value) async {
+  if (rules.validate == null) return null;
+  final r = await rules.validate!(value);
+  if (r is String && r.isNotEmpty) return SgFieldError('validate', r);
+  if (r == false) return const SgFieldError('validate');
   return null;
 }

@@ -118,6 +118,7 @@ class SgCard extends StatefulWidget implements SgCardProps {
   final String? dragPersistKey;
 
   /// `draggable` do React: o cabecalho arrasta o cartao.
+  @override
   final bool draggable;
   @override
   final Widget? footer;
@@ -155,6 +156,7 @@ class SgCard extends StatefulWidget implements SgCardProps {
   final Widget? trailing;
 
   /// `children` no React: o corpo do cartao.
+  @override
   final Widget? child;
 
   @override

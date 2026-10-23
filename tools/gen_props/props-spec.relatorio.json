@@ -2,13 +2,6 @@
  "semProps": [],
  "diffNomes": [
   {
-   "componente": "SgAccordion",
-   "soNoCompilador": [],
-   "soNoGeneratedProps": [
-    "id"
-   ]
-  },
-  {
    "componente": "SgAutocomplete",
    "soNoCompilador": [
     "borderRadius",
@@ -55,19 +48,11 @@
    "soNoGeneratedProps": []
   },
   {
-   "componente": "SgCalendar",
-   "soNoCompilador": [],
-   "soNoGeneratedProps": [
-    "defaultValue"
-   ]
-  },
-  {
    "componente": "SgCard",
-   "soNoCompilador": [],
-   "soNoGeneratedProps": [
-    "children",
-    "draggable"
-   ]
+   "soNoCompilador": [
+    "className"
+   ],
+   "soNoGeneratedProps": []
   },
   {
    "componente": "SgCarousel",

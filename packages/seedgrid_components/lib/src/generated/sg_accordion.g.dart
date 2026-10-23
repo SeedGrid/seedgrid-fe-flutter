@@ -28,6 +28,7 @@ abstract interface class SgAccordionProps {
   Object? get horizontalHeaderWidth;
   /// Padrão: `220`. Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get horizontalMinHeight;
+  String? get id;
   /// Colecao de secoes renderizadas pelo accordion. Tipo TS: `SgAccordionItem[]` (sem tradução exata; ver excecoes.json).
   List<Object?> get items;
   /// Padrão: `true`.
@@ -127,6 +128,13 @@ const List<SgPropSpec> sgAccordionPropSpecs = <SgPropSpec>[
     required: false,
     defaultValue: '220',
     exact: false,
+  ),
+  SgPropSpec(
+    name: 'id',
+    reactName: 'id',
+    type: 'String?',
+    tsType: 'string',
+    required: false,
   ),
   SgPropSpec(
     name: 'items',
