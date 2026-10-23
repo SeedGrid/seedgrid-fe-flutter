@@ -1,0 +1,902 @@
+{
+ "versaoReact": "2026.7.1",
+ "resumo": {
+  "total": 89,
+  "portado": 2,
+  "parcial": 1,
+  "pendente": 86,
+  "naoAplicavel": 0
+ },
+ "componentes": [
+  {
+   "componente": "SgAccordion",
+   "onda": 2,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 17,
+   "propsOmitidas": 0,
+   "propsGenericas": 7
+  },
+  {
+   "componente": "SgAutocomplete",
+   "onda": 3,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 72,
+   "propsOmitidas": 3,
+   "propsGenericas": 26
+  },
+  {
+   "componente": "SgAvatar",
+   "onda": 1,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 14,
+   "propsOmitidas": 0,
+   "propsGenericas": 2
+  },
+  {
+   "componente": "SgAvatarGroup",
+   "onda": 1,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 9,
+   "propsOmitidas": 0,
+   "propsGenericas": 1
+  },
+  {
+   "componente": "SgBadge",
+   "onda": 1,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 24,
+   "propsOmitidas": 2,
+   "propsGenericas": 4
+  },
+  {
+   "componente": "SgBadgeOverlay",
+   "onda": 1,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 5,
+   "propsOmitidas": 2,
+   "propsGenericas": 0
+  },
+  {
+   "componente": "SgBreadcrumb",
+   "onda": 2,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 15,
+   "propsOmitidas": 2,
+   "propsGenericas": 3
+  },
+  {
+   "componente": "SgButton",
+   "onda": 1,
+   "status": "portado",
+   "motivo": "",
+   "onde": "packages/seedgrid_components/lib/src/buttons/sg_button.dart",
+   "props": 11,
+   "propsOmitidas": 0,
+   "propsGenericas": 1
+  },
+  {
+   "componente": "SgCalendar",
+   "onda": 3,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 18,
+   "propsOmitidas": 0,
+   "propsGenericas": 11
+  },
+  {
+   "componente": "SgCard",
+   "onda": 2,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 30,
+   "propsOmitidas": 0,
+   "propsGenericas": 4
+  },
+  {
+   "componente": "SgCarousel",
+   "onda": 2,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 18,
+   "propsOmitidas": 2,
+   "propsGenericas": 5
+  },
+  {
+   "componente": "SgCheckboxGroup",
+   "onda": 1,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 23,
+   "propsOmitidas": 3,
+   "propsGenericas": 6
+  },
+  {
+   "componente": "SgClock",
+   "onda": 4,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 16,
+   "propsOmitidas": 2,
+   "propsGenericas": 3
+  },
+  {
+   "componente": "SgClockThemePicker",
+   "onda": 4,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 10,
+   "propsOmitidas": 1,
+   "propsGenericas": 2
+  },
+  {
+   "componente": "SgClockThemePreview",
+   "onda": 4,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 3,
+   "propsOmitidas": 1,
+   "propsGenericas": 1
+  },
+  {
+   "componente": "SgClockThemeProvider",
+   "onda": 4,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 2,
+   "propsOmitidas": 0,
+   "propsGenericas": 1
+  },
+  {
+   "componente": "SgCombobox",
+   "onda": 3,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 56,
+   "propsOmitidas": 3,
+   "propsGenericas": 21
+  },
+  {
+   "componente": "SgComponentsI18nProvider",
+   "onda": 0,
+   "status": "portado",
+   "motivo": "",
+   "onde": "packages/seedgrid_components/lib/src/i18n/i18n.dart (SgComponentsI18nProvider, useComponentsI18n)",
+   "props": 3,
+   "propsOmitidas": 0,
+   "propsGenericas": 2
+  },
+  {
+   "componente": "SgConfirmationDialog",
+   "onda": 2,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 39,
+   "propsOmitidas": 2,
+   "propsGenericas": 9
+  },
+  {
+   "componente": "SgDatatable",
+   "onda": 5,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 41,
+   "propsOmitidas": 3,
+   "propsGenericas": 14
+  },
+  {
+   "componente": "SgDialog",
+   "onda": 2,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 33,
+   "propsOmitidas": 2,
+   "propsGenericas": 6
+  },
+  {
+   "componente": "SgDiscardDigit",
+   "onda": 4,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 13,
+   "propsOmitidas": 2,
+   "propsGenericas": 1
+  },
+  {
+   "componente": "SgDockLayout",
+   "onda": 2,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 5,
+   "propsOmitidas": 2,
+   "propsGenericas": 1
+  },
+  {
+   "componente": "SgDockMenu",
+   "onda": 5,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 18,
+   "propsOmitidas": 2,
+   "propsGenericas": 2
+  },
+  {
+   "componente": "SgDockScreen",
+   "onda": 2,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 9,
+   "propsOmitidas": 0,
+   "propsGenericas": 4
+  },
+  {
+   "componente": "SgDockZone",
+   "onda": 2,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 4,
+   "propsOmitidas": 2,
+   "propsGenericas": 0
+  },
+  {
+   "componente": "SgEnvironmentProvider",
+   "onda": 0,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 2,
+   "propsOmitidas": 0,
+   "propsGenericas": 1
+  },
+  {
+   "componente": "SgExpandablePanel",
+   "onda": 2,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 30,
+   "propsOmitidas": 2,
+   "propsGenericas": 4
+  },
+  {
+   "componente": "SgFadeDigit",
+   "onda": 4,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 6,
+   "propsOmitidas": 1,
+   "propsGenericas": 0
+  },
+  {
+   "componente": "SgFlipDigit",
+   "onda": 4,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 5,
+   "propsOmitidas": 1,
+   "propsGenericas": 0
+  },
+  {
+   "componente": "SgFloatActionButton",
+   "onda": 5,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 32,
+   "propsOmitidas": 2,
+   "propsGenericas": 3
+  },
+  {
+   "componente": "SgGrid",
+   "onda": 2,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 9,
+   "propsOmitidas": 0,
+   "propsGenericas": 5
+  },
+  {
+   "componente": "SgGroupBox",
+   "onda": 2,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 6,
+   "propsOmitidas": 2,
+   "propsGenericas": 2
+  },
+  {
+   "componente": "SgInputBirthDate",
+   "onda": 1,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 50,
+   "propsOmitidas": 3,
+   "propsGenericas": 15
+  },
+  {
+   "componente": "SgInputCNPJ",
+   "onda": 1,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 53,
+   "propsOmitidas": 3,
+   "propsGenericas": 17
+  },
+  {
+   "componente": "SgInputCPF",
+   "onda": 1,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 48,
+   "propsOmitidas": 3,
+   "propsGenericas": 14
+  },
+  {
+   "componente": "SgInputCPFCNPJ",
+   "onda": 1,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 48,
+   "propsOmitidas": 3,
+   "propsGenericas": 14
+  },
+  {
+   "componente": "SgInputCurrency",
+   "onda": 1,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 49,
+   "propsOmitidas": 3,
+   "propsGenericas": 13
+  },
+  {
+   "componente": "SgInputDate",
+   "onda": 1,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 48,
+   "propsOmitidas": 3,
+   "propsGenericas": 15
+  },
+  {
+   "componente": "SgInputEmail",
+   "onda": 1,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 48,
+   "propsOmitidas": 3,
+   "propsGenericas": 14
+  },
+  {
+   "componente": "SgInputNumber",
+   "onda": 1,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 46,
+   "propsOmitidas": 3,
+   "propsGenericas": 14
+  },
+  {
+   "componente": "SgInputOTP",
+   "onda": 3,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 30,
+   "propsOmitidas": 2,
+   "propsGenericas": 12
+  },
+  {
+   "componente": "SgInputPassword",
+   "onda": 1,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 60,
+   "propsOmitidas": 3,
+   "propsGenericas": 14
+  },
+  {
+   "componente": "SgInputPhone",
+   "onda": 1,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 48,
+   "propsOmitidas": 3,
+   "propsGenericas": 14
+  },
+  {
+   "componente": "SgInputPostalCode",
+   "onda": 1,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 54,
+   "propsOmitidas": 3,
+   "propsGenericas": 17
+  },
+  {
+   "componente": "SgInputText",
+   "onda": 1,
+   "status": "parcial",
+   "motivo": "sem inputProps (atributos do <input> nao tem equivalente; props nomeadas cobrem), value controlado so por initialValue/control, golden com fonte de teste (sem comparacao visual com o React), nao testado em IME/dispositivo; i18n so das mensagens de validacao",
+   "onde": "packages/seedgrid_components/lib/src/inputs/sg_input_text.dart",
+   "props": 46,
+   "propsOmitidas": 3,
+   "propsGenericas": 14
+  },
+  {
+   "componente": "SgInputTextArea",
+   "onda": 1,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 43,
+   "propsOmitidas": 3,
+   "propsGenericas": 13
+  },
+  {
+   "componente": "SgInputTextSearch",
+   "onda": 1,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 49,
+   "propsOmitidas": 3,
+   "propsGenericas": 15
+  },
+  {
+   "componente": "SgLinearGauge",
+   "onda": 4,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 32,
+   "propsOmitidas": 2,
+   "propsGenericas": 5
+  },
+  {
+   "componente": "SgMatrixDigit",
+   "onda": 4,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 12,
+   "propsOmitidas": 2,
+   "propsGenericas": 0
+  },
+  {
+   "componente": "SgMenu",
+   "onda": 5,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 49,
+   "propsOmitidas": 2,
+   "propsGenericas": 19
+  },
+  {
+   "componente": "SgMultiSelect",
+   "onda": 3,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 46,
+   "propsOmitidas": 3,
+   "propsGenericas": 13
+  },
+  {
+   "componente": "SgMultiSelectChips",
+   "onda": 3,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 25,
+   "propsOmitidas": 3,
+   "propsGenericas": 9
+  },
+  {
+   "componente": "SgNeonDigit",
+   "onda": 4,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 16,
+   "propsOmitidas": 2,
+   "propsGenericas": 1
+  },
+  {
+   "componente": "SgOrderList",
+   "onda": 3,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 25,
+   "propsOmitidas": 3,
+   "propsGenericas": 9
+  },
+  {
+   "componente": "SgPageControl",
+   "onda": 2,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 21,
+   "propsOmitidas": 2,
+   "propsGenericas": 3
+  },
+  {
+   "componente": "SgPageControlPage",
+   "onda": 2,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 11,
+   "propsOmitidas": 2,
+   "propsGenericas": 0
+  },
+  {
+   "componente": "SgPanel",
+   "onda": 2,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 20,
+   "propsOmitidas": 0,
+   "propsGenericas": 7
+  },
+  {
+   "componente": "SgPeriodSelector",
+   "onda": 3,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 20,
+   "propsOmitidas": 1,
+   "propsGenericas": 6
+  },
+  {
+   "componente": "SgPickList",
+   "onda": 3,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 36,
+   "propsOmitidas": 3,
+   "propsGenericas": 12
+  },
+  {
+   "componente": "SgPopup",
+   "onda": 2,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 21,
+   "propsOmitidas": 2,
+   "propsGenericas": 6
+  },
+  {
+   "componente": "SgQRCode",
+   "onda": 4,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 16,
+   "propsOmitidas": 0,
+   "propsGenericas": 1
+  },
+  {
+   "componente": "SgRadialGauge",
+   "onda": 4,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 37,
+   "propsOmitidas": 2,
+   "propsGenericas": 6
+  },
+  {
+   "componente": "SgRadioGroup",
+   "onda": 1,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 20,
+   "propsOmitidas": 3,
+   "propsGenericas": 6
+  },
+  {
+   "componente": "SgRating",
+   "onda": 1,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 26,
+   "propsOmitidas": 3,
+   "propsGenericas": 4
+  },
+  {
+   "componente": "SgRealtimeProvider",
+   "onda": 2,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 8,
+   "propsOmitidas": 0,
+   "propsGenericas": 4
+  },
+  {
+   "componente": "SgRoller3DDigit",
+   "onda": 4,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 5,
+   "propsOmitidas": 1,
+   "propsGenericas": 1
+  },
+  {
+   "componente": "SgScreen",
+   "onda": 2,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 5,
+   "propsOmitidas": 0,
+   "propsGenericas": 3
+  },
+  {
+   "componente": "SgSegmentDigit",
+   "onda": 4,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 5,
+   "propsOmitidas": 2,
+   "propsGenericas": 0
+  },
+  {
+   "componente": "SgSevenSegmentDigit",
+   "onda": 4,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 15,
+   "propsOmitidas": 2,
+   "propsGenericas": 0
+  },
+  {
+   "componente": "SgSkeleton",
+   "onda": 1,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 6,
+   "propsOmitidas": 0,
+   "propsGenericas": 4
+  },
+  {
+   "componente": "SgSlider",
+   "onda": 1,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 17,
+   "propsOmitidas": 2,
+   "propsGenericas": 5
+  },
+  {
+   "componente": "SgSplitButton",
+   "onda": 5,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 14,
+   "propsOmitidas": 2,
+   "propsGenericas": 3
+  },
+  {
+   "componente": "SgStack",
+   "onda": 2,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 7,
+   "propsOmitidas": 0,
+   "propsGenericas": 1
+  },
+  {
+   "componente": "SgStepperInput",
+   "onda": 1,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 19,
+   "propsOmitidas": 3,
+   "propsGenericas": 5
+  },
+  {
+   "componente": "SgStringAnimator",
+   "onda": 4,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 12,
+   "propsOmitidas": 1,
+   "propsGenericas": 1
+  },
+  {
+   "componente": "SgTextEditor",
+   "onda": 6,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 22,
+   "propsOmitidas": 3,
+   "propsGenericas": 7
+  },
+  {
+   "componente": "SgTimeProvider",
+   "onda": 4,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 2,
+   "propsOmitidas": 0,
+   "propsGenericas": 0
+  },
+  {
+   "componente": "SgToastHost",
+   "onda": 2,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 8,
+   "propsOmitidas": 0,
+   "propsGenericas": 1
+  },
+  {
+   "componente": "SgToaster",
+   "onda": 2,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 8,
+   "propsOmitidas": 0,
+   "propsGenericas": 1
+  },
+  {
+   "componente": "SgToggleSwitch",
+   "onda": 1,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 27,
+   "propsOmitidas": 3,
+   "propsGenericas": 7
+  },
+  {
+   "componente": "SgToolBar",
+   "onda": 5,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 18,
+   "propsOmitidas": 2,
+   "propsGenericas": 3
+  },
+  {
+   "componente": "SgToolbarIconButton",
+   "onda": 5,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 11,
+   "propsOmitidas": 2,
+   "propsGenericas": 1
+  },
+  {
+   "componente": "SgTreeView",
+   "onda": 3,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 31,
+   "propsOmitidas": 2,
+   "propsGenericas": 13
+  },
+  {
+   "componente": "SgWhistleHost",
+   "onda": 2,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 6,
+   "propsOmitidas": 0,
+   "propsGenericas": 1
+  },
+  {
+   "componente": "SgWhistler",
+   "onda": 2,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 6,
+   "propsOmitidas": 0,
+   "propsGenericas": 1
+  },
+  {
+   "componente": "SgWizard",
+   "onda": 2,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 13,
+   "propsOmitidas": 2,
+   "propsGenericas": 6
+  },
+  {
+   "componente": "SgWizardPage",
+   "onda": 2,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 5,
+   "propsOmitidas": 2,
+   "propsGenericas": 0
+  },
+  {
+   "componente": "SgYearPartSelector",
+   "onda": 3,
+   "status": "pendente",
+   "motivo": "",
+   "onde": "",
+   "props": 11,
+   "propsOmitidas": 1,
+   "propsGenericas": 3
+  }
+ ]
+}

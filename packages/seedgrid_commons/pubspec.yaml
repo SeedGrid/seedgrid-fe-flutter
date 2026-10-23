@@ -1,0 +1,16 @@
+name: seedgrid_commons
+description: "Mascaras, validadores e clientes (CEP, CNPJ) da SeedGrid para Flutter."
+version: 2026.7.1
+publish_to: none
+resolution: workspace
+environment:
+  sdk: ^3.10.4
+  flutter: ">=3.38.0"
+dependencies:
+  flutter:
+    sdk: flutter
+  http: ^1.2.0
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0

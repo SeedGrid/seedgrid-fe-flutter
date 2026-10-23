@@ -1,0 +1,16 @@
+name: seedgrid_theme
+description: "Tema SeedGrid para Flutter: tokens, escala de cor por hex, claro e escuro."
+version: 2026.7.1
+publish_to: none
+resolution: workspace
+environment:
+  sdk: ^3.10.4
+  flutter: ">=3.38.0"
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0

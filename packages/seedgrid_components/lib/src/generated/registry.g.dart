@@ -1,0 +1,188 @@
+// GERADO por tools/gen_props/emit.mjs a partir de @seedgrid/fe-components 2026.7.1. NAO EDITE A MAO.
+// Fonte: tools/gen_props/props-spec.json (compilador TypeScript + *.meta.ts). Tipos que nao viraram tipo exato
+// estao em tools/gen_props/excecoes.json.
+// ignore_for_file: constant_identifier_names
+
+import '../props/sg_prop_spec.dart';
+import 'sg_accordion.g.dart';
+import 'sg_autocomplete.g.dart';
+import 'sg_avatar.g.dart';
+import 'sg_avatar_group.g.dart';
+import 'sg_badge.g.dart';
+import 'sg_badge_overlay.g.dart';
+import 'sg_breadcrumb.g.dart';
+import 'sg_button.g.dart';
+import 'sg_calendar.g.dart';
+import 'sg_card.g.dart';
+import 'sg_carousel.g.dart';
+import 'sg_checkbox_group.g.dart';
+import 'sg_clock.g.dart';
+import 'sg_clock_theme_picker.g.dart';
+import 'sg_clock_theme_preview.g.dart';
+import 'sg_clock_theme_provider.g.dart';
+import 'sg_combobox.g.dart';
+import 'sg_components_i18n_provider.g.dart';
+import 'sg_confirmation_dialog.g.dart';
+import 'sg_datatable.g.dart';
+import 'sg_dialog.g.dart';
+import 'sg_discard_digit.g.dart';
+import 'sg_dock_layout.g.dart';
+import 'sg_dock_menu.g.dart';
+import 'sg_dock_screen.g.dart';
+import 'sg_dock_zone.g.dart';
+import 'sg_environment_provider.g.dart';
+import 'sg_expandable_panel.g.dart';
+import 'sg_fade_digit.g.dart';
+import 'sg_flip_digit.g.dart';
+import 'sg_float_action_button.g.dart';
+import 'sg_grid.g.dart';
+import 'sg_group_box.g.dart';
+import 'sg_input_birth_date.g.dart';
+import 'sg_input_cnpj.g.dart';
+import 'sg_input_cpf.g.dart';
+import 'sg_input_cpfcnpj.g.dart';
+import 'sg_input_currency.g.dart';
+import 'sg_input_date.g.dart';
+import 'sg_input_email.g.dart';
+import 'sg_input_number.g.dart';
+import 'sg_input_otp.g.dart';
+import 'sg_input_password.g.dart';
+import 'sg_input_phone.g.dart';
+import 'sg_input_postal_code.g.dart';
+import 'sg_input_text.g.dart';
+import 'sg_input_text_area.g.dart';
+import 'sg_input_text_search.g.dart';
+import 'sg_linear_gauge.g.dart';
+import 'sg_matrix_digit.g.dart';
+import 'sg_menu.g.dart';
+import 'sg_multi_select.g.dart';
+import 'sg_multi_select_chips.g.dart';
+import 'sg_neon_digit.g.dart';
+import 'sg_order_list.g.dart';
+import 'sg_page_control.g.dart';
+import 'sg_page_control_page.g.dart';
+import 'sg_panel.g.dart';
+import 'sg_period_selector.g.dart';
+import 'sg_pick_list.g.dart';
+import 'sg_popup.g.dart';
+import 'sg_qr_code.g.dart';
+import 'sg_radial_gauge.g.dart';
+import 'sg_radio_group.g.dart';
+import 'sg_rating.g.dart';
+import 'sg_realtime_provider.g.dart';
+import 'sg_roller3_d_digit.g.dart';
+import 'sg_screen.g.dart';
+import 'sg_segment_digit.g.dart';
+import 'sg_seven_segment_digit.g.dart';
+import 'sg_skeleton.g.dart';
+import 'sg_slider.g.dart';
+import 'sg_split_button.g.dart';
+import 'sg_stack.g.dart';
+import 'sg_stepper_input.g.dart';
+import 'sg_string_animator.g.dart';
+import 'sg_text_editor.g.dart';
+import 'sg_time_provider.g.dart';
+import 'sg_toast_host.g.dart';
+import 'sg_toaster.g.dart';
+import 'sg_toggle_switch.g.dart';
+import 'sg_tool_bar.g.dart';
+import 'sg_toolbar_icon_button.g.dart';
+import 'sg_tree_view.g.dart';
+import 'sg_whistle_host.g.dart';
+import 'sg_whistler.g.dart';
+import 'sg_wizard.g.dart';
+import 'sg_wizard_page.g.dart';
+import 'sg_year_part_selector.g.dart';
+
+/// Props de todos os componentes, por nome do widget (showcase e playground).
+const Map<String, List<SgPropSpec>> sgPropSpecs = <String, List<SgPropSpec>>{
+  'SgAccordion': sgAccordionPropSpecs,
+  'SgAutocomplete': sgAutocompletePropSpecs,
+  'SgAvatar': sgAvatarPropSpecs,
+  'SgAvatarGroup': sgAvatarGroupPropSpecs,
+  'SgBadge': sgBadgePropSpecs,
+  'SgBadgeOverlay': sgBadgeOverlayPropSpecs,
+  'SgBreadcrumb': sgBreadcrumbPropSpecs,
+  'SgButton': sgButtonPropSpecs,
+  'SgCalendar': sgCalendarPropSpecs,
+  'SgCard': sgCardPropSpecs,
+  'SgCarousel': sgCarouselPropSpecs,
+  'SgCheckboxGroup': sgCheckboxGroupPropSpecs,
+  'SgClock': sgClockPropSpecs,
+  'SgClockThemePicker': sgClockThemePickerPropSpecs,
+  'SgClockThemePreview': sgClockThemePreviewPropSpecs,
+  'SgClockThemeProvider': sgClockThemeProviderPropSpecs,
+  'SgCombobox': sgComboboxPropSpecs,
+  'SgComponentsI18nProvider': sgComponentsI18nProviderPropSpecs,
+  'SgConfirmationDialog': sgConfirmationDialogPropSpecs,
+  'SgDatatable': sgDatatablePropSpecs,
+  'SgDialog': sgDialogPropSpecs,
+  'SgDiscardDigit': sgDiscardDigitPropSpecs,
+  'SgDockLayout': sgDockLayoutPropSpecs,
+  'SgDockMenu': sgDockMenuPropSpecs,
+  'SgDockScreen': sgDockScreenPropSpecs,
+  'SgDockZone': sgDockZonePropSpecs,
+  'SgEnvironmentProvider': sgEnvironmentProviderPropSpecs,
+  'SgExpandablePanel': sgExpandablePanelPropSpecs,
+  'SgFadeDigit': sgFadeDigitPropSpecs,
+  'SgFlipDigit': sgFlipDigitPropSpecs,
+  'SgFloatActionButton': sgFloatActionButtonPropSpecs,
+  'SgGrid': sgGridPropSpecs,
+  'SgGroupBox': sgGroupBoxPropSpecs,
+  'SgInputBirthDate': sgInputBirthDatePropSpecs,
+  'SgInputCNPJ': sgInputCNPJPropSpecs,
+  'SgInputCPF': sgInputCPFPropSpecs,
+  'SgInputCPFCNPJ': sgInputCPFCNPJPropSpecs,
+  'SgInputCurrency': sgInputCurrencyPropSpecs,
+  'SgInputDate': sgInputDatePropSpecs,
+  'SgInputEmail': sgInputEmailPropSpecs,
+  'SgInputNumber': sgInputNumberPropSpecs,
+  'SgInputOTP': sgInputOTPPropSpecs,
+  'SgInputPassword': sgInputPasswordPropSpecs,
+  'SgInputPhone': sgInputPhonePropSpecs,
+  'SgInputPostalCode': sgInputPostalCodePropSpecs,
+  'SgInputText': sgInputTextPropSpecs,
+  'SgInputTextArea': sgInputTextAreaPropSpecs,
+  'SgInputTextSearch': sgInputTextSearchPropSpecs,
+  'SgLinearGauge': sgLinearGaugePropSpecs,
+  'SgMatrixDigit': sgMatrixDigitPropSpecs,
+  'SgMenu': sgMenuPropSpecs,
+  'SgMultiSelect': sgMultiSelectPropSpecs,
+  'SgMultiSelectChips': sgMultiSelectChipsPropSpecs,
+  'SgNeonDigit': sgNeonDigitPropSpecs,
+  'SgOrderList': sgOrderListPropSpecs,
+  'SgPageControl': sgPageControlPropSpecs,
+  'SgPageControlPage': sgPageControlPagePropSpecs,
+  'SgPanel': sgPanelPropSpecs,
+  'SgPeriodSelector': sgPeriodSelectorPropSpecs,
+  'SgPickList': sgPickListPropSpecs,
+  'SgPopup': sgPopupPropSpecs,
+  'SgQRCode': sgQRCodePropSpecs,
+  'SgRadialGauge': sgRadialGaugePropSpecs,
+  'SgRadioGroup': sgRadioGroupPropSpecs,
+  'SgRating': sgRatingPropSpecs,
+  'SgRealtimeProvider': sgRealtimeProviderPropSpecs,
+  'SgRoller3DDigit': sgRoller3DDigitPropSpecs,
+  'SgScreen': sgScreenPropSpecs,
+  'SgSegmentDigit': sgSegmentDigitPropSpecs,
+  'SgSevenSegmentDigit': sgSevenSegmentDigitPropSpecs,
+  'SgSkeleton': sgSkeletonPropSpecs,
+  'SgSlider': sgSliderPropSpecs,
+  'SgSplitButton': sgSplitButtonPropSpecs,
+  'SgStack': sgStackPropSpecs,
+  'SgStepperInput': sgStepperInputPropSpecs,
+  'SgStringAnimator': sgStringAnimatorPropSpecs,
+  'SgTextEditor': sgTextEditorPropSpecs,
+  'SgTimeProvider': sgTimeProviderPropSpecs,
+  'SgToastHost': sgToastHostPropSpecs,
+  'SgToaster': sgToasterPropSpecs,
+  'SgToggleSwitch': sgToggleSwitchPropSpecs,
+  'SgToolBar': sgToolBarPropSpecs,
+  'SgToolbarIconButton': sgToolbarIconButtonPropSpecs,
+  'SgTreeView': sgTreeViewPropSpecs,
+  'SgWhistleHost': sgWhistleHostPropSpecs,
+  'SgWhistler': sgWhistlerPropSpecs,
+  'SgWizard': sgWizardPropSpecs,
+  'SgWizardPage': sgWizardPagePropSpecs,
+  'SgYearPartSelector': sgYearPartSelectorPropSpecs,
+};

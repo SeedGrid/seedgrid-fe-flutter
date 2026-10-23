@@ -1,0 +1,4330 @@
+{
+ "versaoReact": "2026.7.1",
+ "omitidas": [
+  {
+   "componente": "SgAutocomplete",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgAutocomplete",
+   "prop": "labelClassName",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgAutocomplete",
+   "prop": "register",
+   "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
+  },
+  {
+   "componente": "SgBadge",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgBadge",
+   "prop": "style",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgBadgeOverlay",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgBadgeOverlay",
+   "prop": "style",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgBreadcrumb",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgBreadcrumb",
+   "prop": "style",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgCarousel",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgCarousel",
+   "prop": "style",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgCheckboxGroup",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgCheckboxGroup",
+   "prop": "register",
+   "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
+  },
+  {
+   "componente": "SgCheckboxGroup",
+   "prop": "style",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgClock",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgClock",
+   "prop": "style",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgClockThemePicker",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgClockThemePreview",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgCombobox",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgCombobox",
+   "prop": "labelClassName",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgCombobox",
+   "prop": "register",
+   "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
+  },
+  {
+   "componente": "SgConfirmationDialog",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgConfirmationDialog",
+   "prop": "style",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgDatatable",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgDatatable",
+   "prop": "ref",
+   "motivo": "React-only: vira controller/GlobalKey por componente"
+  },
+  {
+   "componente": "SgDatatable",
+   "prop": "style",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgDialog",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgDialog",
+   "prop": "style",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgDiscardDigit",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgDiscardDigit",
+   "prop": "style",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgDockLayout",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgDockLayout",
+   "prop": "style",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgDockMenu",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgDockMenu",
+   "prop": "style",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgDockZone",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgDockZone",
+   "prop": "style",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgExpandablePanel",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgExpandablePanel",
+   "prop": "style",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgFadeDigit",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgFlipDigit",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgFloatActionButton",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgFloatActionButton",
+   "prop": "style",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgGroupBox",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgGroupBox",
+   "prop": "style",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgInputBirthDate",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgInputBirthDate",
+   "prop": "labelClassName",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgInputBirthDate",
+   "prop": "register",
+   "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
+  },
+  {
+   "componente": "SgInputCNPJ",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgInputCNPJ",
+   "prop": "labelClassName",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgInputCNPJ",
+   "prop": "register",
+   "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
+  },
+  {
+   "componente": "SgInputCPF",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgInputCPF",
+   "prop": "labelClassName",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgInputCPF",
+   "prop": "register",
+   "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
+  },
+  {
+   "componente": "SgInputCPFCNPJ",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgInputCPFCNPJ",
+   "prop": "labelClassName",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgInputCPFCNPJ",
+   "prop": "register",
+   "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
+  },
+  {
+   "componente": "SgInputCurrency",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgInputCurrency",
+   "prop": "labelClassName",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgInputCurrency",
+   "prop": "register",
+   "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
+  },
+  {
+   "componente": "SgInputDate",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgInputDate",
+   "prop": "labelClassName",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgInputDate",
+   "prop": "register",
+   "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
+  },
+  {
+   "componente": "SgInputEmail",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgInputEmail",
+   "prop": "labelClassName",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgInputEmail",
+   "prop": "register",
+   "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
+  },
+  {
+   "componente": "SgInputNumber",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgInputNumber",
+   "prop": "labelClassName",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgInputNumber",
+   "prop": "register",
+   "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
+  },
+  {
+   "componente": "SgInputOTP",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgInputOTP",
+   "prop": "register",
+   "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
+  },
+  {
+   "componente": "SgInputPassword",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgInputPassword",
+   "prop": "labelClassName",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgInputPassword",
+   "prop": "register",
+   "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
+  },
+  {
+   "componente": "SgInputPhone",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgInputPhone",
+   "prop": "labelClassName",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgInputPhone",
+   "prop": "register",
+   "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
+  },
+  {
+   "componente": "SgInputPostalCode",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgInputPostalCode",
+   "prop": "labelClassName",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgInputPostalCode",
+   "prop": "register",
+   "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
+  },
+  {
+   "componente": "SgInputText",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgInputText",
+   "prop": "labelClassName",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgInputText",
+   "prop": "register",
+   "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
+  },
+  {
+   "componente": "SgInputTextArea",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgInputTextArea",
+   "prop": "labelClassName",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgInputTextArea",
+   "prop": "register",
+   "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
+  },
+  {
+   "componente": "SgInputTextSearch",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgInputTextSearch",
+   "prop": "labelClassName",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgInputTextSearch",
+   "prop": "register",
+   "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
+  },
+  {
+   "componente": "SgLinearGauge",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgLinearGauge",
+   "prop": "style",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgMatrixDigit",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgMatrixDigit",
+   "prop": "style",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgMenu",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgMenu",
+   "prop": "style",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgMultiSelect",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgMultiSelect",
+   "prop": "labelClassName",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgMultiSelect",
+   "prop": "register",
+   "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
+  },
+  {
+   "componente": "SgMultiSelectChips",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgMultiSelectChips",
+   "prop": "labelClassName",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgMultiSelectChips",
+   "prop": "register",
+   "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
+  },
+  {
+   "componente": "SgNeonDigit",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgNeonDigit",
+   "prop": "style",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgOrderList",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgOrderList",
+   "prop": "register",
+   "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
+  },
+  {
+   "componente": "SgOrderList",
+   "prop": "style",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgPageControl",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgPageControl",
+   "prop": "style",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgPageControlPage",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgPageControlPage",
+   "prop": "style",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgPeriodSelector",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgPickList",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgPickList",
+   "prop": "register",
+   "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
+  },
+  {
+   "componente": "SgPickList",
+   "prop": "style",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgPopup",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgPopup",
+   "prop": "style",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgRadialGauge",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgRadialGauge",
+   "prop": "style",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgRadioGroup",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgRadioGroup",
+   "prop": "register",
+   "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
+  },
+  {
+   "componente": "SgRadioGroup",
+   "prop": "style",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgRating",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgRating",
+   "prop": "register",
+   "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
+  },
+  {
+   "componente": "SgRating",
+   "prop": "style",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgRoller3DDigit",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgSegmentDigit",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgSegmentDigit",
+   "prop": "style",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgSevenSegmentDigit",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgSevenSegmentDigit",
+   "prop": "style",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgSlider",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgSlider",
+   "prop": "register",
+   "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
+  },
+  {
+   "componente": "SgSplitButton",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgSplitButton",
+   "prop": "style",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgStepperInput",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgStepperInput",
+   "prop": "inputClassName",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgStepperInput",
+   "prop": "register",
+   "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
+  },
+  {
+   "componente": "SgStringAnimator",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgTextEditor",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgTextEditor",
+   "prop": "register",
+   "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
+  },
+  {
+   "componente": "SgTextEditor",
+   "prop": "style",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgToggleSwitch",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgToggleSwitch",
+   "prop": "labelClassName",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgToggleSwitch",
+   "prop": "register",
+   "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
+  },
+  {
+   "componente": "SgToolBar",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgToolBar",
+   "prop": "style",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgToolbarIconButton",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgToolbarIconButton",
+   "prop": "style",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgTreeView",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgTreeView",
+   "prop": "style",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgWizard",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgWizard",
+   "prop": "style",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgWizardPage",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgWizardPage",
+   "prop": "style",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgYearPartSelector",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  }
+ ],
+ "tipoGenerico": [
+  {
+   "componente": "SgAccordion",
+   "prop": "activeIndex",
+   "motivo": "lista",
+   "ts": "number | number[]"
+  },
+  {
+   "componente": "SgAccordion",
+   "prop": "defaultActiveIndex",
+   "motivo": "lista",
+   "ts": "number | number[]"
+  },
+  {
+   "componente": "SgAccordion",
+   "prop": "horizontalHeaderWidth",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgAccordion",
+   "prop": "horizontalMinHeight",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgAccordion",
+   "prop": "items",
+   "motivo": "lista",
+   "ts": "SgAccordionItem[]"
+  },
+  {
+   "componente": "SgAccordion",
+   "prop": "onActiveIndexChange",
+   "motivo": "funcao",
+   "ts": "((indexes: number[]) => void)"
+  },
+  {
+   "componente": "SgAccordion",
+   "prop": "onItemToggle",
+   "motivo": "funcao",
+   "ts": "((index: number, isOpen: boolean) => void)"
+  },
+  {
+   "componente": "SgAutocomplete",
+   "prop": "borderRadius",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgAutocomplete",
+   "prop": "control",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "any"
+  },
+  {
+   "componente": "SgAutocomplete",
+   "prop": "formatSelection",
+   "motivo": "funcao",
+   "ts": "((item: SgAutocompleteItem) => string)"
+  },
+  {
+   "componente": "SgAutocomplete",
+   "prop": "iconButtons",
+   "motivo": "lista",
+   "ts": "React.ReactNode[]"
+  },
+  {
+   "componente": "SgAutocomplete",
+   "prop": "inputProps",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "(React.InputHTMLAttributes<HTMLInputElement> & { ref?: React.Ref<HTMLInputElement>; })"
+  },
+  {
+   "componente": "SgAutocomplete",
+   "prop": "itemTooltip",
+   "motivo": "funcao",
+   "ts": "((item: SgAutocompleteItem) => React.ReactNode)"
+  },
+  {
+   "componente": "SgAutocomplete",
+   "prop": "labelWidth",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgAutocomplete",
+   "prop": "mapItem",
+   "motivo": "funcao",
+   "ts": "((raw: T) => SgAutocompleteItem)"
+  },
+  {
+   "componente": "SgAutocomplete",
+   "prop": "onChange",
+   "motivo": "funcao",
+   "ts": "((value: string) => void)"
+  },
+  {
+   "componente": "SgAutocomplete",
+   "prop": "onClear",
+   "motivo": "funcao",
+   "ts": "(() => void)"
+  },
+  {
+   "componente": "SgAutocomplete",
+   "prop": "onEnter",
+   "motivo": "funcao",
+   "ts": "(() => void)"
+  },
+  {
+   "componente": "SgAutocomplete",
+   "prop": "onExit",
+   "motivo": "funcao",
+   "ts": "(() => void)"
+  },
+  {
+   "componente": "SgAutocomplete",
+   "prop": "onOpenChange",
+   "motivo": "funcao",
+   "ts": "((open: boolean) => void)"
+  },
+  {
+   "componente": "SgAutocomplete",
+   "prop": "onSearch",
+   "motivo": "funcao",
+   "ts": "((query: string) => void)"
+  },
+  {
+   "componente": "SgAutocomplete",
+   "prop": "onSelect",
+   "motivo": "funcao",
+   "ts": "((item: SgAutocompleteItem) => void)"
+  },
+  {
+   "componente": "SgAutocomplete",
+   "prop": "onValidation",
+   "motivo": "funcao",
+   "ts": "((message: string) => void)"
+  },
+  {
+   "componente": "SgAutocomplete",
+   "prop": "renderEmpty",
+   "motivo": "funcao",
+   "ts": "((query: string) => React.ReactNode)"
+  },
+  {
+   "componente": "SgAutocomplete",
+   "prop": "renderFooter",
+   "motivo": "funcao",
+   "ts": "((query: string, hasResults: boolean) => React.ReactNode)"
+  },
+  {
+   "componente": "SgAutocomplete",
+   "prop": "renderGroupHeader",
+   "motivo": "funcao",
+   "ts": "((group: string) => React.ReactNode)"
+  },
+  {
+   "componente": "SgAutocomplete",
+   "prop": "renderItem",
+   "motivo": "funcao",
+   "ts": "((item: SgAutocompleteItem, isActive: boolean) => React.ReactNode)"
+  },
+  {
+   "componente": "SgAutocomplete",
+   "prop": "renderValue",
+   "motivo": "funcao",
+   "ts": "((item: SgAutocompleteItem) => React.ReactNode)"
+  },
+  {
+   "componente": "SgAutocomplete",
+   "prop": "rules",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "RegisterOptions<any>"
+  },
+  {
+   "componente": "SgAutocomplete",
+   "prop": "source",
+   "motivo": "funcao",
+   "ts": "SgAutocompleteSource<T>"
+  },
+  {
+   "componente": "SgAutocomplete",
+   "prop": "type",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "React.HTMLInputTypeAttribute"
+  },
+  {
+   "componente": "SgAutocomplete",
+   "prop": "validation",
+   "motivo": "funcao",
+   "ts": "((value: string) => string)"
+  },
+  {
+   "componente": "SgAutocomplete",
+   "prop": "width",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgAvatar",
+   "prop": "customColors",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "SgAvatarCustomColors"
+  },
+  {
+   "componente": "SgAvatar",
+   "prop": "onImageError",
+   "motivo": "funcao",
+   "ts": "((event: React.SyntheticEvent<HTMLImageElement, Event>) => void)"
+  },
+  {
+   "componente": "SgAvatarGroup",
+   "prop": "moreLabel",
+   "motivo": "funcao",
+   "ts": "((remaining: number) => React.ReactNode)"
+  },
+  {
+   "componente": "SgBadge",
+   "prop": "customColors",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "SgBadgeCustomColors"
+  },
+  {
+   "componente": "SgBadge",
+   "prop": "onClick",
+   "motivo": "funcao",
+   "ts": "((e: React.MouseEvent) => void)"
+  },
+  {
+   "componente": "SgBadge",
+   "prop": "onRemove",
+   "motivo": "funcao",
+   "ts": "(() => void)"
+  },
+  {
+   "componente": "SgBadge",
+   "prop": "partsClassName",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "SgBadgePartsClassName"
+  },
+  {
+   "componente": "SgBreadcrumb",
+   "prop": "items",
+   "motivo": "lista",
+   "ts": "SgBreadcrumbItem[]"
+  },
+  {
+   "componente": "SgBreadcrumb",
+   "prop": "onNavigate",
+   "motivo": "funcao",
+   "ts": "((item: SgBreadcrumbItem, index: number) => void)"
+  },
+  {
+   "componente": "SgBreadcrumb",
+   "prop": "separator",
+   "motivo": "uniao",
+   "ts": "string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<AwaitedReactNode>"
+  },
+  {
+   "componente": "SgButton",
+   "prop": "customColors",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "SgButtonCustomColors"
+  },
+  {
+   "componente": "SgCalendar",
+   "prop": "cardProps",
+   "motivo": "uniao",
+   "ts": "Omit<SgCardProps, \"title\" | \"children\">"
+  },
+  {
+   "componente": "SgCalendar",
+   "prop": "defaultViewDate",
+   "motivo": "uniao",
+   "ts": "string | Date"
+  },
+  {
+   "componente": "SgCalendar",
+   "prop": "isDateDisabled",
+   "motivo": "funcao",
+   "ts": "((date: Date) => boolean)"
+  },
+  {
+   "componente": "SgCalendar",
+   "prop": "maxDate",
+   "motivo": "uniao",
+   "ts": "string | Date"
+  },
+  {
+   "componente": "SgCalendar",
+   "prop": "minDate",
+   "motivo": "uniao",
+   "ts": "string | Date"
+  },
+  {
+   "componente": "SgCalendar",
+   "prop": "monthMinWidth",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgCalendar",
+   "prop": "onValueChange",
+   "motivo": "funcao",
+   "ts": "((date: Date) => void)"
+  },
+  {
+   "componente": "SgCalendar",
+   "prop": "onViewDateChange",
+   "motivo": "funcao",
+   "ts": "((viewDate: Date) => void)"
+  },
+  {
+   "componente": "SgCalendar",
+   "prop": "value",
+   "motivo": "uniao",
+   "ts": "string | Date"
+  },
+  {
+   "componente": "SgCalendar",
+   "prop": "viewDate",
+   "motivo": "uniao",
+   "ts": "string | Date"
+  },
+  {
+   "componente": "SgCalendar",
+   "prop": "weekStartsOn",
+   "motivo": "uniao",
+   "ts": "0 | 1 | 2 | 3 | 4 | 5 | 6"
+  },
+  {
+   "componente": "SgCard",
+   "prop": "defaultPosition",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "SgCardPosition"
+  },
+  {
+   "componente": "SgCard",
+   "prop": "onClick",
+   "motivo": "funcao",
+   "ts": "React.MouseEventHandler<HTMLElement>"
+  },
+  {
+   "componente": "SgCard",
+   "prop": "onOpenChange",
+   "motivo": "funcao",
+   "ts": "((open: boolean) => void)"
+  },
+  {
+   "componente": "SgCard",
+   "prop": "onPositionChange",
+   "motivo": "funcao",
+   "ts": "((position: SgCardPosition) => void)"
+  },
+  {
+   "componente": "SgCarousel",
+   "prop": "customNavigators",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "{ prev?: React.ReactNode; next?: React.ReactNode; }"
+  },
+  {
+   "componente": "SgCarousel",
+   "prop": "height",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgCarousel",
+   "prop": "items",
+   "motivo": "lista",
+   "ts": "React.ReactNode[]"
+  },
+  {
+   "componente": "SgCarousel",
+   "prop": "onIndexChange",
+   "motivo": "funcao",
+   "ts": "((index: number) => void)"
+  },
+  {
+   "componente": "SgCarousel",
+   "prop": "width",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgCheckboxGroup",
+   "prop": "control",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "any"
+  },
+  {
+   "componente": "SgCheckboxGroup",
+   "prop": "groupBoxProps",
+   "motivo": "uniao",
+   "ts": "(Omit<Partial<SgGroupBoxProps>, \"title\" | \"children\"> & { title?: string; })"
+  },
+  {
+   "componente": "SgCheckboxGroup",
+   "prop": "onChange",
+   "motivo": "funcao",
+   "ts": "((value: (string | number)[]) => void)"
+  },
+  {
+   "componente": "SgCheckboxGroup",
+   "prop": "rules",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "RegisterOptions<any>"
+  },
+  {
+   "componente": "SgCheckboxGroup",
+   "prop": "source",
+   "motivo": "lista",
+   "ts": "SgCheckboxGroupOption[]"
+  },
+  {
+   "componente": "SgCheckboxGroup",
+   "prop": "value",
+   "motivo": "lista",
+   "ts": "(string | number)[]"
+  },
+  {
+   "componente": "SgClock",
+   "prop": "cardProps",
+   "motivo": "uniao",
+   "ts": "Omit<SgCardProps, \"title\" | \"children\">"
+  },
+  {
+   "componente": "SgClock",
+   "prop": "size",
+   "motivo": "uniao",
+   "ts": "number | \"sm\" | \"md\" | \"lg\""
+  },
+  {
+   "componente": "SgClock",
+   "prop": "theme",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "SgClockTheme"
+  },
+  {
+   "componente": "SgClockThemePicker",
+   "prop": "filter",
+   "motivo": "funcao",
+   "ts": "((theme: SgClockTheme) => boolean)"
+  },
+  {
+   "componente": "SgClockThemePicker",
+   "prop": "onChange",
+   "motivo": "funcao",
+   "ts": "(id: string) => void"
+  },
+  {
+   "componente": "SgClockThemePreview",
+   "prop": "theme",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "SgClockTheme"
+  },
+  {
+   "componente": "SgClockThemeProvider",
+   "prop": "value",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "SgClockThemeProviderValue"
+  },
+  {
+   "componente": "SgCombobox",
+   "prop": "borderRadius",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgCombobox",
+   "prop": "control",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "any"
+  },
+  {
+   "componente": "SgCombobox",
+   "prop": "inputProps",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "(React.InputHTMLAttributes<HTMLInputElement> & { ref?: React.Ref<HTMLInputElement>; })"
+  },
+  {
+   "componente": "SgCombobox",
+   "prop": "itemTooltip",
+   "motivo": "funcao",
+   "ts": "((item: SgAutocompleteItem) => React.ReactNode)"
+  },
+  {
+   "componente": "SgCombobox",
+   "prop": "labelWidth",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgCombobox",
+   "prop": "mapItem",
+   "motivo": "funcao",
+   "ts": "((raw: T) => SgAutocompleteItem)"
+  },
+  {
+   "componente": "SgCombobox",
+   "prop": "onClear",
+   "motivo": "funcao",
+   "ts": "(() => void)"
+  },
+  {
+   "componente": "SgCombobox",
+   "prop": "onEnter",
+   "motivo": "funcao",
+   "ts": "(() => void)"
+  },
+  {
+   "componente": "SgCombobox",
+   "prop": "onExit",
+   "motivo": "funcao",
+   "ts": "(() => void)"
+  },
+  {
+   "componente": "SgCombobox",
+   "prop": "onSelect",
+   "motivo": "funcao",
+   "ts": "((value: T) => void)"
+  },
+  {
+   "componente": "SgCombobox",
+   "prop": "onValidation",
+   "motivo": "funcao",
+   "ts": "((message: string) => void)"
+  },
+  {
+   "componente": "SgCombobox",
+   "prop": "onValueChange",
+   "motivo": "funcao",
+   "ts": "((value: ComboboxValue) => void)"
+  },
+  {
+   "componente": "SgCombobox",
+   "prop": "renderFooter",
+   "motivo": "funcao",
+   "ts": "((query: string, hasResults: boolean) => React.ReactNode)"
+  },
+  {
+   "componente": "SgCombobox",
+   "prop": "renderGroupHeader",
+   "motivo": "funcao",
+   "ts": "((group: string) => React.ReactNode)"
+  },
+  {
+   "componente": "SgCombobox",
+   "prop": "renderItem",
+   "motivo": "funcao",
+   "ts": "((item: SgAutocompleteItem, isActive: boolean) => React.ReactNode)"
+  },
+  {
+   "componente": "SgCombobox",
+   "prop": "renderValue",
+   "motivo": "funcao",
+   "ts": "((item: SgAutocompleteItem) => React.ReactNode)"
+  },
+  {
+   "componente": "SgCombobox",
+   "prop": "rules",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "RegisterOptions<any>"
+  },
+  {
+   "componente": "SgCombobox",
+   "prop": "source",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "SgComboboxSource<T>"
+  },
+  {
+   "componente": "SgCombobox",
+   "prop": "validation",
+   "motivo": "funcao",
+   "ts": "((value: string) => string)"
+  },
+  {
+   "componente": "SgCombobox",
+   "prop": "value",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "ComboboxValue"
+  },
+  {
+   "componente": "SgCombobox",
+   "prop": "width",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgComponentsI18nProvider",
+   "prop": "locale",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "SgComponentsLocale"
+  },
+  {
+   "componente": "SgComponentsI18nProvider",
+   "prop": "messages",
+   "motivo": "uniao",
+   "ts": "SgComponentsMessages | SgComponentsMessagesByNamespace"
+  },
+  {
+   "componente": "SgConfirmationDialog",
+   "prop": "cancelButton",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "SgConfirmationDialogButtonConfig"
+  },
+  {
+   "componente": "SgConfirmationDialog",
+   "prop": "confirmButton",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "SgConfirmationDialogButtonConfig"
+  },
+  {
+   "componente": "SgConfirmationDialog",
+   "prop": "customColor",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "Property.BackgroundColor"
+  },
+  {
+   "componente": "SgConfirmationDialog",
+   "prop": "elevation",
+   "motivo": "uniao",
+   "ts": "\"sm\" | \"md\" | \"lg\" | Property.BoxShadow"
+  },
+  {
+   "componente": "SgConfirmationDialog",
+   "prop": "initialFocusRef",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "React.RefObject<HTMLElement>"
+  },
+  {
+   "componente": "SgConfirmationDialog",
+   "prop": "onCancel",
+   "motivo": "funcao",
+   "ts": "(() => void)"
+  },
+  {
+   "componente": "SgConfirmationDialog",
+   "prop": "onClose",
+   "motivo": "funcao",
+   "ts": "(() => void)"
+  },
+  {
+   "componente": "SgConfirmationDialog",
+   "prop": "onConfirm",
+   "motivo": "funcao",
+   "ts": "(() => void)"
+  },
+  {
+   "componente": "SgConfirmationDialog",
+   "prop": "onOpenChange",
+   "motivo": "funcao",
+   "ts": "((open: boolean) => void)"
+  },
+  {
+   "componente": "SgDatatable",
+   "prop": "columnManagerMaxHeight",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgDatatable",
+   "prop": "columns",
+   "motivo": "lista",
+   "ts": "SgDatatableColumn<T>[]"
+  },
+  {
+   "componente": "SgDatatable",
+   "prop": "filters",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "Record<string, string>"
+  },
+  {
+   "componente": "SgDatatable",
+   "prop": "groupBoxProps",
+   "motivo": "uniao",
+   "ts": "(Omit<Partial<SgGroupBoxProps>, \"title\" | \"children\"> & { title?: string; })"
+  },
+  {
+   "componente": "SgDatatable",
+   "prop": "onFilter",
+   "motivo": "funcao",
+   "ts": "((event: SgDatatableFilterEvent) => void)"
+  },
+  {
+   "componente": "SgDatatable",
+   "prop": "onGlobalFilterChange",
+   "motivo": "funcao",
+   "ts": "((value: string) => void)"
+  },
+  {
+   "componente": "SgDatatable",
+   "prop": "onPage",
+   "motivo": "funcao",
+   "ts": "((event: SgDatatablePageEvent) => void)"
+  },
+  {
+   "componente": "SgDatatable",
+   "prop": "onSelectionChange",
+   "motivo": "funcao",
+   "ts": "((selection: SgDatatableSelection<T>) => void)"
+  },
+  {
+   "componente": "SgDatatable",
+   "prop": "onSort",
+   "motivo": "funcao",
+   "ts": "((event: SgDatatableSortEvent) => void)"
+  },
+  {
+   "componente": "SgDatatable",
+   "prop": "rowClassName",
+   "motivo": "uniao",
+   "ts": "string | ((rowData: T, rowIndex: number) => string)"
+  },
+  {
+   "componente": "SgDatatable",
+   "prop": "rowsPerPageOptions",
+   "motivo": "lista",
+   "ts": "number[]"
+  },
+  {
+   "componente": "SgDatatable",
+   "prop": "selection",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "SgDatatableSelection<T>"
+  },
+  {
+   "componente": "SgDatatable",
+   "prop": "sortOrder",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "SgDatatableSortOrder"
+  },
+  {
+   "componente": "SgDatatable",
+   "prop": "value",
+   "motivo": "lista",
+   "ts": "T[]"
+  },
+  {
+   "componente": "SgDialog",
+   "prop": "customColor",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "Property.BackgroundColor"
+  },
+  {
+   "componente": "SgDialog",
+   "prop": "elevation",
+   "motivo": "uniao",
+   "ts": "\"sm\" | \"md\" | \"lg\" | Property.BoxShadow"
+  },
+  {
+   "componente": "SgDialog",
+   "prop": "initialFocusRef",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "React.RefObject<HTMLElement>"
+  },
+  {
+   "componente": "SgDialog",
+   "prop": "onClose",
+   "motivo": "funcao",
+   "ts": "(() => void)"
+  },
+  {
+   "componente": "SgDialog",
+   "prop": "onOpenChange",
+   "motivo": "funcao",
+   "ts": "((open: boolean) => void)"
+  },
+  {
+   "componente": "SgDialog",
+   "prop": "shadow",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "Property.BoxShadow"
+  },
+  {
+   "componente": "SgDiscardDigit",
+   "prop": "fontWeight",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgDockLayout",
+   "prop": "defaultState",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "SgDockLayoutState"
+  },
+  {
+   "componente": "SgDockMenu",
+   "prop": "items",
+   "motivo": "lista",
+   "ts": "SgDockMenuItem[]"
+  },
+  {
+   "componente": "SgDockMenu",
+   "prop": "offset",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "{ x?: number; y?: number; }"
+  },
+  {
+   "componente": "SgDockScreen",
+   "prop": "defaultState",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "SgDockLayoutState"
+  },
+  {
+   "componente": "SgDockScreen",
+   "prop": "height",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgDockScreen",
+   "prop": "padding",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgDockScreen",
+   "prop": "width",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgEnvironmentProvider",
+   "prop": "value",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "Partial<SgEnvironmentValue>"
+  },
+  {
+   "componente": "SgExpandablePanel",
+   "prop": "animation",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "SgExpandablePanelAnimation"
+  },
+  {
+   "componente": "SgExpandablePanel",
+   "prop": "onOpenChange",
+   "motivo": "funcao",
+   "ts": "((open: boolean) => void)"
+  },
+  {
+   "componente": "SgExpandablePanel",
+   "prop": "onSizeChange",
+   "motivo": "funcao",
+   "ts": "((size: number | string) => void)"
+  },
+  {
+   "componente": "SgExpandablePanel",
+   "prop": "size",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "SgExpandablePanelSize"
+  },
+  {
+   "componente": "SgFloatActionButton",
+   "prop": "actions",
+   "motivo": "lista",
+   "ts": "SgFABAction[]"
+  },
+  {
+   "componente": "SgFloatActionButton",
+   "prop": "offset",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "{ x?: number; y?: number; }"
+  },
+  {
+   "componente": "SgFloatActionButton",
+   "prop": "onClick",
+   "motivo": "funcao",
+   "ts": "(() => void)"
+  },
+  {
+   "componente": "SgGrid",
+   "prop": "columns",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "SgGridColumns"
+  },
+  {
+   "componente": "SgGrid",
+   "prop": "gap",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgGrid",
+   "prop": "minItemWidth",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgGrid",
+   "prop": "padding",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgGrid",
+   "prop": "rowHeight",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgGroupBox",
+   "prop": "height",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgGroupBox",
+   "prop": "width",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgInputBirthDate",
+   "prop": "borderRadius",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgInputBirthDate",
+   "prop": "control",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "any"
+  },
+  {
+   "componente": "SgInputBirthDate",
+   "prop": "iconButtons",
+   "motivo": "lista",
+   "ts": "React.ReactNode[]"
+  },
+  {
+   "componente": "SgInputBirthDate",
+   "prop": "inputProps",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "(React.InputHTMLAttributes<HTMLInputElement> & { ref?: React.Ref<HTMLInputElement>; })"
+  },
+  {
+   "componente": "SgInputBirthDate",
+   "prop": "labelWidth",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgInputBirthDate",
+   "prop": "maxDate",
+   "motivo": "uniao",
+   "ts": "string | Date"
+  },
+  {
+   "componente": "SgInputBirthDate",
+   "prop": "minDate",
+   "motivo": "uniao",
+   "ts": "string | Date"
+  },
+  {
+   "componente": "SgInputBirthDate",
+   "prop": "onChange",
+   "motivo": "funcao",
+   "ts": "((value: string) => void)"
+  },
+  {
+   "componente": "SgInputBirthDate",
+   "prop": "onClear",
+   "motivo": "funcao",
+   "ts": "(() => void)"
+  },
+  {
+   "componente": "SgInputBirthDate",
+   "prop": "onEnter",
+   "motivo": "funcao",
+   "ts": "((() => void) & (() => void) & (() => void))"
+  },
+  {
+   "componente": "SgInputBirthDate",
+   "prop": "onExit",
+   "motivo": "funcao",
+   "ts": "((() => void) & (() => void) & (() => void))"
+  },
+  {
+   "componente": "SgInputBirthDate",
+   "prop": "onValidation",
+   "motivo": "funcao",
+   "ts": "(((message: string) => void) & ((message: string) => void))"
+  },
+  {
+   "componente": "SgInputBirthDate",
+   "prop": "rules",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "RegisterOptions<any>"
+  },
+  {
+   "componente": "SgInputBirthDate",
+   "prop": "validation",
+   "motivo": "funcao",
+   "ts": "((value: string) => string)"
+  },
+  {
+   "componente": "SgInputBirthDate",
+   "prop": "width",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgInputCNPJ",
+   "prop": "borderRadius",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgInputCNPJ",
+   "prop": "control",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "any"
+  },
+  {
+   "componente": "SgInputCNPJ",
+   "prop": "iconButtons",
+   "motivo": "lista",
+   "ts": "React.ReactNode[]"
+  },
+  {
+   "componente": "SgInputCNPJ",
+   "prop": "inputProps",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "(React.InputHTMLAttributes<HTMLInputElement> & { ref?: React.Ref<HTMLInputElement>; })"
+  },
+  {
+   "componente": "SgInputCNPJ",
+   "prop": "labelWidth",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgInputCNPJ",
+   "prop": "onChange",
+   "motivo": "funcao",
+   "ts": "((value: string) => void)"
+  },
+  {
+   "componente": "SgInputCNPJ",
+   "prop": "onClear",
+   "motivo": "funcao",
+   "ts": "(() => void)"
+  },
+  {
+   "componente": "SgInputCNPJ",
+   "prop": "onEnter",
+   "motivo": "funcao",
+   "ts": "((() => void) & (() => void))"
+  },
+  {
+   "componente": "SgInputCNPJ",
+   "prop": "onExit",
+   "motivo": "funcao",
+   "ts": "((() => void) & (() => void))"
+  },
+  {
+   "componente": "SgInputCNPJ",
+   "prop": "onPublicaCnpjError",
+   "motivo": "funcao",
+   "ts": "((error: unknown) => void)"
+  },
+  {
+   "componente": "SgInputCNPJ",
+   "prop": "onPublicaCnpjResult",
+   "motivo": "funcao",
+   "ts": "((data: unknown) => void)"
+  },
+  {
+   "componente": "SgInputCNPJ",
+   "prop": "onValidation",
+   "motivo": "funcao",
+   "ts": "(((message: string) => void) & ((message: string) => void))"
+  },
+  {
+   "componente": "SgInputCNPJ",
+   "prop": "publicaCnpjFetch",
+   "motivo": "funcao",
+   "ts": "((cnpj: string) => Promise<unknown>)"
+  },
+  {
+   "componente": "SgInputCNPJ",
+   "prop": "rules",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "RegisterOptions<any>"
+  },
+  {
+   "componente": "SgInputCNPJ",
+   "prop": "type",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "React.HTMLInputTypeAttribute"
+  },
+  {
+   "componente": "SgInputCNPJ",
+   "prop": "validation",
+   "motivo": "funcao",
+   "ts": "(((value: string) => string) & ((value: string) => string))"
+  },
+  {
+   "componente": "SgInputCNPJ",
+   "prop": "width",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgInputCPF",
+   "prop": "borderRadius",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgInputCPF",
+   "prop": "control",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "any"
+  },
+  {
+   "componente": "SgInputCPF",
+   "prop": "iconButtons",
+   "motivo": "lista",
+   "ts": "React.ReactNode[]"
+  },
+  {
+   "componente": "SgInputCPF",
+   "prop": "inputProps",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "(React.InputHTMLAttributes<HTMLInputElement> & { ref?: React.Ref<HTMLInputElement>; })"
+  },
+  {
+   "componente": "SgInputCPF",
+   "prop": "labelWidth",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgInputCPF",
+   "prop": "onChange",
+   "motivo": "funcao",
+   "ts": "((value: string) => void)"
+  },
+  {
+   "componente": "SgInputCPF",
+   "prop": "onClear",
+   "motivo": "funcao",
+   "ts": "(() => void)"
+  },
+  {
+   "componente": "SgInputCPF",
+   "prop": "onEnter",
+   "motivo": "funcao",
+   "ts": "((() => void) & (() => void))"
+  },
+  {
+   "componente": "SgInputCPF",
+   "prop": "onExit",
+   "motivo": "funcao",
+   "ts": "((() => void) & (() => void))"
+  },
+  {
+   "componente": "SgInputCPF",
+   "prop": "onValidation",
+   "motivo": "funcao",
+   "ts": "(((message: string) => void) & ((message: string) => void))"
+  },
+  {
+   "componente": "SgInputCPF",
+   "prop": "rules",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "RegisterOptions<any>"
+  },
+  {
+   "componente": "SgInputCPF",
+   "prop": "type",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "React.HTMLInputTypeAttribute"
+  },
+  {
+   "componente": "SgInputCPF",
+   "prop": "validation",
+   "motivo": "funcao",
+   "ts": "(((value: string) => string) & ((value: string) => string))"
+  },
+  {
+   "componente": "SgInputCPF",
+   "prop": "width",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgInputCPFCNPJ",
+   "prop": "borderRadius",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgInputCPFCNPJ",
+   "prop": "control",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "any"
+  },
+  {
+   "componente": "SgInputCPFCNPJ",
+   "prop": "iconButtons",
+   "motivo": "lista",
+   "ts": "React.ReactNode[]"
+  },
+  {
+   "componente": "SgInputCPFCNPJ",
+   "prop": "inputProps",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "(React.InputHTMLAttributes<HTMLInputElement> & { ref?: React.Ref<HTMLInputElement>; })"
+  },
+  {
+   "componente": "SgInputCPFCNPJ",
+   "prop": "labelWidth",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgInputCPFCNPJ",
+   "prop": "onChange",
+   "motivo": "funcao",
+   "ts": "((value: string) => void)"
+  },
+  {
+   "componente": "SgInputCPFCNPJ",
+   "prop": "onClear",
+   "motivo": "funcao",
+   "ts": "(() => void)"
+  },
+  {
+   "componente": "SgInputCPFCNPJ",
+   "prop": "onEnter",
+   "motivo": "funcao",
+   "ts": "((() => void) & (() => void))"
+  },
+  {
+   "componente": "SgInputCPFCNPJ",
+   "prop": "onExit",
+   "motivo": "funcao",
+   "ts": "((() => void) & (() => void))"
+  },
+  {
+   "componente": "SgInputCPFCNPJ",
+   "prop": "onValidation",
+   "motivo": "funcao",
+   "ts": "(((message: string) => void) & ((message: string) => void))"
+  },
+  {
+   "componente": "SgInputCPFCNPJ",
+   "prop": "rules",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "RegisterOptions<any>"
+  },
+  {
+   "componente": "SgInputCPFCNPJ",
+   "prop": "type",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "React.HTMLInputTypeAttribute"
+  },
+  {
+   "componente": "SgInputCPFCNPJ",
+   "prop": "validation",
+   "motivo": "funcao",
+   "ts": "(((value: string) => string) & ((value: string) => string))"
+  },
+  {
+   "componente": "SgInputCPFCNPJ",
+   "prop": "width",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgInputCurrency",
+   "prop": "borderRadius",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgInputCurrency",
+   "prop": "control",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "any"
+  },
+  {
+   "componente": "SgInputCurrency",
+   "prop": "iconButtons",
+   "motivo": "lista",
+   "ts": "React.ReactNode[]"
+  },
+  {
+   "componente": "SgInputCurrency",
+   "prop": "inputProps",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "(React.InputHTMLAttributes<HTMLInputElement> & { ref?: React.Ref<HTMLInputElement>; })"
+  },
+  {
+   "componente": "SgInputCurrency",
+   "prop": "onChange",
+   "motivo": "funcao",
+   "ts": "((value: string) => void)"
+  },
+  {
+   "componente": "SgInputCurrency",
+   "prop": "onClear",
+   "motivo": "funcao",
+   "ts": "(() => void)"
+  },
+  {
+   "componente": "SgInputCurrency",
+   "prop": "onEnter",
+   "motivo": "funcao",
+   "ts": "(() => void)"
+  },
+  {
+   "componente": "SgInputCurrency",
+   "prop": "onExit",
+   "motivo": "funcao",
+   "ts": "(() => void)"
+  },
+  {
+   "componente": "SgInputCurrency",
+   "prop": "onValidation",
+   "motivo": "funcao",
+   "ts": "((message: string) => void)"
+  },
+  {
+   "componente": "SgInputCurrency",
+   "prop": "rules",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "RegisterOptions<any>"
+  },
+  {
+   "componente": "SgInputCurrency",
+   "prop": "type",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "React.HTMLInputTypeAttribute"
+  },
+  {
+   "componente": "SgInputCurrency",
+   "prop": "validation",
+   "motivo": "funcao",
+   "ts": "((value: string) => string)"
+  },
+  {
+   "componente": "SgInputCurrency",
+   "prop": "width",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgInputDate",
+   "prop": "borderRadius",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgInputDate",
+   "prop": "control",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "any"
+  },
+  {
+   "componente": "SgInputDate",
+   "prop": "iconButtons",
+   "motivo": "lista",
+   "ts": "React.ReactNode[]"
+  },
+  {
+   "componente": "SgInputDate",
+   "prop": "inputProps",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "(React.InputHTMLAttributes<HTMLInputElement> & { ref?: React.Ref<HTMLInputElement>; })"
+  },
+  {
+   "componente": "SgInputDate",
+   "prop": "labelWidth",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgInputDate",
+   "prop": "maxDate",
+   "motivo": "uniao",
+   "ts": "string | Date"
+  },
+  {
+   "componente": "SgInputDate",
+   "prop": "minDate",
+   "motivo": "uniao",
+   "ts": "string | Date"
+  },
+  {
+   "componente": "SgInputDate",
+   "prop": "onChange",
+   "motivo": "funcao",
+   "ts": "((value: string) => void)"
+  },
+  {
+   "componente": "SgInputDate",
+   "prop": "onClear",
+   "motivo": "funcao",
+   "ts": "(() => void)"
+  },
+  {
+   "componente": "SgInputDate",
+   "prop": "onEnter",
+   "motivo": "funcao",
+   "ts": "((() => void) & (() => void))"
+  },
+  {
+   "componente": "SgInputDate",
+   "prop": "onExit",
+   "motivo": "funcao",
+   "ts": "((() => void) & (() => void))"
+  },
+  {
+   "componente": "SgInputDate",
+   "prop": "onValidation",
+   "motivo": "funcao",
+   "ts": "((message: string) => void)"
+  },
+  {
+   "componente": "SgInputDate",
+   "prop": "rules",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "RegisterOptions<any>"
+  },
+  {
+   "componente": "SgInputDate",
+   "prop": "validation",
+   "motivo": "funcao",
+   "ts": "((value: string) => string)"
+  },
+  {
+   "componente": "SgInputDate",
+   "prop": "width",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgInputEmail",
+   "prop": "blockedEmailDomains",
+   "motivo": "lista",
+   "ts": "string[]"
+  },
+  {
+   "componente": "SgInputEmail",
+   "prop": "borderRadius",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgInputEmail",
+   "prop": "control",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "any"
+  },
+  {
+   "componente": "SgInputEmail",
+   "prop": "iconButtons",
+   "motivo": "lista",
+   "ts": "React.ReactNode[]"
+  },
+  {
+   "componente": "SgInputEmail",
+   "prop": "inputProps",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "(React.InputHTMLAttributes<HTMLInputElement> & { ref?: React.Ref<HTMLInputElement>; })"
+  },
+  {
+   "componente": "SgInputEmail",
+   "prop": "labelWidth",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgInputEmail",
+   "prop": "onChange",
+   "motivo": "funcao",
+   "ts": "((value: string) => void)"
+  },
+  {
+   "componente": "SgInputEmail",
+   "prop": "onClear",
+   "motivo": "funcao",
+   "ts": "(() => void)"
+  },
+  {
+   "componente": "SgInputEmail",
+   "prop": "onEnter",
+   "motivo": "funcao",
+   "ts": "(() => void)"
+  },
+  {
+   "componente": "SgInputEmail",
+   "prop": "onExit",
+   "motivo": "funcao",
+   "ts": "((() => void) & (() => void))"
+  },
+  {
+   "componente": "SgInputEmail",
+   "prop": "onValidation",
+   "motivo": "funcao",
+   "ts": "(((message: string) => void) & ((message: string) => void))"
+  },
+  {
+   "componente": "SgInputEmail",
+   "prop": "rules",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "RegisterOptions<any>"
+  },
+  {
+   "componente": "SgInputEmail",
+   "prop": "validation",
+   "motivo": "funcao",
+   "ts": "(((value: string) => string) & ((value: string) => string))"
+  },
+  {
+   "componente": "SgInputEmail",
+   "prop": "width",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgInputNumber",
+   "prop": "borderRadius",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgInputNumber",
+   "prop": "control",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "any"
+  },
+  {
+   "componente": "SgInputNumber",
+   "prop": "iconButtons",
+   "motivo": "lista",
+   "ts": "React.ReactNode[]"
+  },
+  {
+   "componente": "SgInputNumber",
+   "prop": "inputProps",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "(React.InputHTMLAttributes<HTMLInputElement> & { ref?: React.Ref<HTMLInputElement>; })"
+  },
+  {
+   "componente": "SgInputNumber",
+   "prop": "labelWidth",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgInputNumber",
+   "prop": "onChange",
+   "motivo": "funcao",
+   "ts": "((value: string) => void)"
+  },
+  {
+   "componente": "SgInputNumber",
+   "prop": "onClear",
+   "motivo": "funcao",
+   "ts": "(() => void)"
+  },
+  {
+   "componente": "SgInputNumber",
+   "prop": "onEnter",
+   "motivo": "funcao",
+   "ts": "(() => void)"
+  },
+  {
+   "componente": "SgInputNumber",
+   "prop": "onExit",
+   "motivo": "funcao",
+   "ts": "(() => void)"
+  },
+  {
+   "componente": "SgInputNumber",
+   "prop": "onValidation",
+   "motivo": "funcao",
+   "ts": "((message: string) => void)"
+  },
+  {
+   "componente": "SgInputNumber",
+   "prop": "rules",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "RegisterOptions<any>"
+  },
+  {
+   "componente": "SgInputNumber",
+   "prop": "type",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "React.HTMLInputTypeAttribute"
+  },
+  {
+   "componente": "SgInputNumber",
+   "prop": "validation",
+   "motivo": "funcao",
+   "ts": "((value: string) => string)"
+  },
+  {
+   "componente": "SgInputNumber",
+   "prop": "width",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgInputOTP",
+   "prop": "control",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "any"
+  },
+  {
+   "componente": "SgInputOTP",
+   "prop": "inputProps",
+   "motivo": "uniao",
+   "ts": "(Omit<React.InputHTMLAttributes<HTMLInputElement>, \"defaultValue\" | \"value\"> & { ref?: React.Ref<HTMLInputElement>; })"
+  },
+  {
+   "componente": "SgInputOTP",
+   "prop": "onChange",
+   "motivo": "funcao",
+   "ts": "((maskedValue: string) => void)"
+  },
+  {
+   "componente": "SgInputOTP",
+   "prop": "onClear",
+   "motivo": "funcao",
+   "ts": "(() => void)"
+  },
+  {
+   "componente": "SgInputOTP",
+   "prop": "onComplete",
+   "motivo": "funcao",
+   "ts": "((value: string) => void)"
+  },
+  {
+   "componente": "SgInputOTP",
+   "prop": "onEnter",
+   "motivo": "funcao",
+   "ts": "(() => void)"
+  },
+  {
+   "componente": "SgInputOTP",
+   "prop": "onExit",
+   "motivo": "funcao",
+   "ts": "(() => void)"
+  },
+  {
+   "componente": "SgInputOTP",
+   "prop": "onRawChange",
+   "motivo": "funcao",
+   "ts": "((rawValue: string) => void)"
+  },
+  {
+   "componente": "SgInputOTP",
+   "prop": "onValidation",
+   "motivo": "funcao",
+   "ts": "((message: string) => void)"
+  },
+  {
+   "componente": "SgInputOTP",
+   "prop": "rules",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "RegisterOptions<any>"
+  },
+  {
+   "componente": "SgInputOTP",
+   "prop": "validation",
+   "motivo": "funcao",
+   "ts": "((rawValue: string, maskedValue: string) => string)"
+  },
+  {
+   "componente": "SgInputOTP",
+   "prop": "width",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgInputPassword",
+   "prop": "borderRadius",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgInputPassword",
+   "prop": "commonPasswordList",
+   "motivo": "lista",
+   "ts": "string[]"
+  },
+  {
+   "componente": "SgInputPassword",
+   "prop": "control",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "any"
+  },
+  {
+   "componente": "SgInputPassword",
+   "prop": "iconButtons",
+   "motivo": "lista",
+   "ts": "React.ReactNode[]"
+  },
+  {
+   "componente": "SgInputPassword",
+   "prop": "inputProps",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "(React.InputHTMLAttributes<HTMLInputElement> & { ref?: React.Ref<HTMLInputElement>; })"
+  },
+  {
+   "componente": "SgInputPassword",
+   "prop": "labelWidth",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgInputPassword",
+   "prop": "onChange",
+   "motivo": "funcao",
+   "ts": "((value: string) => void)"
+  },
+  {
+   "componente": "SgInputPassword",
+   "prop": "onClear",
+   "motivo": "funcao",
+   "ts": "(() => void)"
+  },
+  {
+   "componente": "SgInputPassword",
+   "prop": "onEnter",
+   "motivo": "funcao",
+   "ts": "((() => void) & (() => void))"
+  },
+  {
+   "componente": "SgInputPassword",
+   "prop": "onExit",
+   "motivo": "funcao",
+   "ts": "((() => void) & (() => void))"
+  },
+  {
+   "componente": "SgInputPassword",
+   "prop": "onValidation",
+   "motivo": "funcao",
+   "ts": "(((message: string) => void) & ((message: string) => void))"
+  },
+  {
+   "componente": "SgInputPassword",
+   "prop": "rules",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "RegisterOptions<any>"
+  },
+  {
+   "componente": "SgInputPassword",
+   "prop": "validation",
+   "motivo": "funcao",
+   "ts": "((value: string) => string)"
+  },
+  {
+   "componente": "SgInputPassword",
+   "prop": "width",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgInputPhone",
+   "prop": "borderRadius",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgInputPhone",
+   "prop": "control",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "any"
+  },
+  {
+   "componente": "SgInputPhone",
+   "prop": "iconButtons",
+   "motivo": "lista",
+   "ts": "React.ReactNode[]"
+  },
+  {
+   "componente": "SgInputPhone",
+   "prop": "inputProps",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "(React.InputHTMLAttributes<HTMLInputElement> & { ref?: React.Ref<HTMLInputElement>; })"
+  },
+  {
+   "componente": "SgInputPhone",
+   "prop": "labelWidth",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgInputPhone",
+   "prop": "onChange",
+   "motivo": "funcao",
+   "ts": "((value: string) => void)"
+  },
+  {
+   "componente": "SgInputPhone",
+   "prop": "onClear",
+   "motivo": "funcao",
+   "ts": "(() => void)"
+  },
+  {
+   "componente": "SgInputPhone",
+   "prop": "onEnter",
+   "motivo": "funcao",
+   "ts": "((() => void) & (() => void))"
+  },
+  {
+   "componente": "SgInputPhone",
+   "prop": "onExit",
+   "motivo": "funcao",
+   "ts": "((() => void) & (() => void))"
+  },
+  {
+   "componente": "SgInputPhone",
+   "prop": "onValidation",
+   "motivo": "funcao",
+   "ts": "(((message: string) => void) & ((message: string) => void))"
+  },
+  {
+   "componente": "SgInputPhone",
+   "prop": "rules",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "RegisterOptions<any>"
+  },
+  {
+   "componente": "SgInputPhone",
+   "prop": "type",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "React.HTMLInputTypeAttribute"
+  },
+  {
+   "componente": "SgInputPhone",
+   "prop": "validation",
+   "motivo": "funcao",
+   "ts": "(((value: string) => string) & ((value: string) => string))"
+  },
+  {
+   "componente": "SgInputPhone",
+   "prop": "width",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgInputPostalCode",
+   "prop": "borderRadius",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgInputPostalCode",
+   "prop": "control",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "any"
+  },
+  {
+   "componente": "SgInputPostalCode",
+   "prop": "iconButtons",
+   "motivo": "lista",
+   "ts": "React.ReactNode[]"
+  },
+  {
+   "componente": "SgInputPostalCode",
+   "prop": "inputProps",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "(React.InputHTMLAttributes<HTMLInputElement> & { ref?: React.Ref<HTMLInputElement>; })"
+  },
+  {
+   "componente": "SgInputPostalCode",
+   "prop": "labelWidth",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgInputPostalCode",
+   "prop": "onChange",
+   "motivo": "funcao",
+   "ts": "((value: string) => void)"
+  },
+  {
+   "componente": "SgInputPostalCode",
+   "prop": "onClear",
+   "motivo": "funcao",
+   "ts": "(() => void)"
+  },
+  {
+   "componente": "SgInputPostalCode",
+   "prop": "onEnter",
+   "motivo": "funcao",
+   "ts": "((() => void) & (() => void))"
+  },
+  {
+   "componente": "SgInputPostalCode",
+   "prop": "onExit",
+   "motivo": "funcao",
+   "ts": "((() => void) & (() => void))"
+  },
+  {
+   "componente": "SgInputPostalCode",
+   "prop": "onValidation",
+   "motivo": "funcao",
+   "ts": "(((message: string) => void) & ((message: string) => void))"
+  },
+  {
+   "componente": "SgInputPostalCode",
+   "prop": "onViaCepError",
+   "motivo": "funcao",
+   "ts": "((error: unknown) => void)"
+  },
+  {
+   "componente": "SgInputPostalCode",
+   "prop": "onViaCepResult",
+   "motivo": "funcao",
+   "ts": "((data: ViaCepResponse) => void)"
+  },
+  {
+   "componente": "SgInputPostalCode",
+   "prop": "rules",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "RegisterOptions<any>"
+  },
+  {
+   "componente": "SgInputPostalCode",
+   "prop": "type",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "React.HTMLInputTypeAttribute"
+  },
+  {
+   "componente": "SgInputPostalCode",
+   "prop": "validation",
+   "motivo": "funcao",
+   "ts": "(((value: string) => string) & ((value: string) => string))"
+  },
+  {
+   "componente": "SgInputPostalCode",
+   "prop": "viaCepFetch",
+   "motivo": "funcao",
+   "ts": "((cep: string) => Promise<ViaCepResponse>)"
+  },
+  {
+   "componente": "SgInputPostalCode",
+   "prop": "width",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgInputText",
+   "prop": "borderRadius",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgInputText",
+   "prop": "control",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "any"
+  },
+  {
+   "componente": "SgInputText",
+   "prop": "iconButtons",
+   "motivo": "lista",
+   "ts": "React.ReactNode[]"
+  },
+  {
+   "componente": "SgInputText",
+   "prop": "inputProps",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "(React.InputHTMLAttributes<HTMLInputElement> & { ref?: React.Ref<HTMLInputElement>; })"
+  },
+  {
+   "componente": "SgInputText",
+   "prop": "labelWidth",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgInputText",
+   "prop": "onChange",
+   "motivo": "funcao",
+   "ts": "((value: string) => void)"
+  },
+  {
+   "componente": "SgInputText",
+   "prop": "onClear",
+   "motivo": "funcao",
+   "ts": "(() => void)"
+  },
+  {
+   "componente": "SgInputText",
+   "prop": "onEnter",
+   "motivo": "funcao",
+   "ts": "(() => void)"
+  },
+  {
+   "componente": "SgInputText",
+   "prop": "onExit",
+   "motivo": "funcao",
+   "ts": "(() => void)"
+  },
+  {
+   "componente": "SgInputText",
+   "prop": "onValidation",
+   "motivo": "funcao",
+   "ts": "((message: string) => void)"
+  },
+  {
+   "componente": "SgInputText",
+   "prop": "rules",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "RegisterOptions<any>"
+  },
+  {
+   "componente": "SgInputText",
+   "prop": "type",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "React.HTMLInputTypeAttribute"
+  },
+  {
+   "componente": "SgInputText",
+   "prop": "validation",
+   "motivo": "funcao",
+   "ts": "((value: string) => string)"
+  },
+  {
+   "componente": "SgInputText",
+   "prop": "width",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgInputTextArea",
+   "prop": "borderRadius",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgInputTextArea",
+   "prop": "control",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "any"
+  },
+  {
+   "componente": "SgInputTextArea",
+   "prop": "height",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgInputTextArea",
+   "prop": "labelWidth",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgInputTextArea",
+   "prop": "onChange",
+   "motivo": "funcao",
+   "ts": "((value: string) => void)"
+  },
+  {
+   "componente": "SgInputTextArea",
+   "prop": "onClear",
+   "motivo": "funcao",
+   "ts": "(() => void)"
+  },
+  {
+   "componente": "SgInputTextArea",
+   "prop": "onEnter",
+   "motivo": "funcao",
+   "ts": "(() => void)"
+  },
+  {
+   "componente": "SgInputTextArea",
+   "prop": "onExit",
+   "motivo": "funcao",
+   "ts": "(() => void)"
+  },
+  {
+   "componente": "SgInputTextArea",
+   "prop": "onValidation",
+   "motivo": "funcao",
+   "ts": "((message: string) => void)"
+  },
+  {
+   "componente": "SgInputTextArea",
+   "prop": "rules",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "RegisterOptions<any>"
+  },
+  {
+   "componente": "SgInputTextArea",
+   "prop": "textareaProps",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "(React.TextareaHTMLAttributes<HTMLTextAreaElement> & { ref?: React.Ref<HTMLTextAreaElement>; })"
+  },
+  {
+   "componente": "SgInputTextArea",
+   "prop": "validation",
+   "motivo": "funcao",
+   "ts": "((value: string) => string)"
+  },
+  {
+   "componente": "SgInputTextArea",
+   "prop": "width",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgInputTextSearch",
+   "prop": "borderRadius",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgInputTextSearch",
+   "prop": "control",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "any"
+  },
+  {
+   "componente": "SgInputTextSearch",
+   "prop": "iconButtons",
+   "motivo": "lista",
+   "ts": "React.ReactNode[]"
+  },
+  {
+   "componente": "SgInputTextSearch",
+   "prop": "inputProps",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "(React.InputHTMLAttributes<HTMLInputElement> & { ref?: React.Ref<HTMLInputElement>; })"
+  },
+  {
+   "componente": "SgInputTextSearch",
+   "prop": "labelWidth",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgInputTextSearch",
+   "prop": "onChange",
+   "motivo": "funcao",
+   "ts": "((value: string) => void)"
+  },
+  {
+   "componente": "SgInputTextSearch",
+   "prop": "onClear",
+   "motivo": "funcao",
+   "ts": "(() => void)"
+  },
+  {
+   "componente": "SgInputTextSearch",
+   "prop": "onEnter",
+   "motivo": "funcao",
+   "ts": "(() => void)"
+  },
+  {
+   "componente": "SgInputTextSearch",
+   "prop": "onExit",
+   "motivo": "funcao",
+   "ts": "(() => void)"
+  },
+  {
+   "componente": "SgInputTextSearch",
+   "prop": "onSearchChange",
+   "motivo": "funcao",
+   "ts": "(value: string) => void"
+  },
+  {
+   "componente": "SgInputTextSearch",
+   "prop": "onValidation",
+   "motivo": "funcao",
+   "ts": "((message: string) => void)"
+  },
+  {
+   "componente": "SgInputTextSearch",
+   "prop": "rules",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "RegisterOptions<any>"
+  },
+  {
+   "componente": "SgInputTextSearch",
+   "prop": "type",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "React.HTMLInputTypeAttribute"
+  },
+  {
+   "componente": "SgInputTextSearch",
+   "prop": "validation",
+   "motivo": "funcao",
+   "ts": "((value: string) => string)"
+  },
+  {
+   "componente": "SgInputTextSearch",
+   "prop": "width",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgLinearGauge",
+   "prop": "labelFormatter",
+   "motivo": "funcao",
+   "ts": "((value: number) => React.ReactNode)"
+  },
+  {
+   "componente": "SgLinearGauge",
+   "prop": "onPointerValueChange",
+   "motivo": "funcao",
+   "ts": "((pointerId: string, value: number, pointer: SgLinearGaugePointer) => void)"
+  },
+  {
+   "componente": "SgLinearGauge",
+   "prop": "onValueChange",
+   "motivo": "funcao",
+   "ts": "((value: number) => void)"
+  },
+  {
+   "componente": "SgLinearGauge",
+   "prop": "pointers",
+   "motivo": "lista",
+   "ts": "SgLinearGaugePointer[]"
+  },
+  {
+   "componente": "SgLinearGauge",
+   "prop": "ranges",
+   "motivo": "lista",
+   "ts": "SgLinearGaugeRange[]"
+  },
+  {
+   "componente": "SgMenu",
+   "prop": "brand",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "SgMenuBrand"
+  },
+  {
+   "componente": "SgMenu",
+   "prop": "collapsedWidth",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgMenu",
+   "prop": "defaultExpandedIds",
+   "motivo": "lista",
+   "ts": "string[]"
+  },
+  {
+   "componente": "SgMenu",
+   "prop": "expandedIds",
+   "motivo": "lista",
+   "ts": "string[]"
+  },
+  {
+   "componente": "SgMenu",
+   "prop": "expandedWidth",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgMenu",
+   "prop": "menu",
+   "motivo": "lista",
+   "ts": "SgMenuNode[]"
+  },
+  {
+   "componente": "SgMenu",
+   "prop": "onAction",
+   "motivo": "funcao",
+   "ts": "((node: SgMenuNode) => void)"
+  },
+  {
+   "componente": "SgMenu",
+   "prop": "onCollapsedChange",
+   "motivo": "funcao",
+   "ts": "((value: boolean) => void)"
+  },
+  {
+   "componente": "SgMenu",
+   "prop": "onExpandedIdsChange",
+   "motivo": "funcao",
+   "ts": "((ids: string[]) => void)"
+  },
+  {
+   "componente": "SgMenu",
+   "prop": "onItemClick",
+   "motivo": "funcao",
+   "ts": "((node: SgMenuNode) => void)"
+  },
+  {
+   "componente": "SgMenu",
+   "prop": "onNavigate",
+   "motivo": "funcao",
+   "ts": "((node: SgMenuNode) => void)"
+  },
+  {
+   "componente": "SgMenu",
+   "prop": "onOpenChange",
+   "motivo": "funcao",
+   "ts": "((value: boolean) => void)"
+  },
+  {
+   "componente": "SgMenu",
+   "prop": "onPinnedChange",
+   "motivo": "funcao",
+   "ts": "((value: boolean) => void)"
+  },
+  {
+   "componente": "SgMenu",
+   "prop": "overlaySize",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "SgExpandablePanelSize"
+  },
+  {
+   "componente": "SgMenu",
+   "prop": "search",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "{ enabled: boolean; placeholder?: string; }"
+  },
+  {
+   "componente": "SgMenu",
+   "prop": "selection",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "SgMenuSelection"
+  },
+  {
+   "componente": "SgMenu",
+   "prop": "user",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "SgMenuUser"
+  },
+  {
+   "componente": "SgMenu",
+   "prop": "userMenu",
+   "motivo": "lista",
+   "ts": "SgMenuNode[]"
+  },
+  {
+   "componente": "SgMenu",
+   "prop": "userSectionStyle",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "React.CSSProperties"
+  },
+  {
+   "componente": "SgMultiSelect",
+   "prop": "borderRadius",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgMultiSelect",
+   "prop": "control",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "any"
+  },
+  {
+   "componente": "SgMultiSelect",
+   "prop": "labelWidth",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgMultiSelect",
+   "prop": "onChange",
+   "motivo": "funcao",
+   "ts": "((value: SgMultiSelectOptionValue[]) => void)"
+  },
+  {
+   "componente": "SgMultiSelect",
+   "prop": "onClear",
+   "motivo": "funcao",
+   "ts": "(() => void)"
+  },
+  {
+   "componente": "SgMultiSelect",
+   "prop": "onEnter",
+   "motivo": "funcao",
+   "ts": "((() => void) & (() => void))"
+  },
+  {
+   "componente": "SgMultiSelect",
+   "prop": "onExit",
+   "motivo": "funcao",
+   "ts": "((() => void) & (() => void))"
+  },
+  {
+   "componente": "SgMultiSelect",
+   "prop": "onValidation",
+   "motivo": "funcao",
+   "ts": "((message: string) => void)"
+  },
+  {
+   "componente": "SgMultiSelect",
+   "prop": "options",
+   "motivo": "lista",
+   "ts": "SgMultiSelectOption[]"
+  },
+  {
+   "componente": "SgMultiSelect",
+   "prop": "rules",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "RegisterOptions<any>"
+  },
+  {
+   "componente": "SgMultiSelect",
+   "prop": "validation",
+   "motivo": "funcao",
+   "ts": "((value: string) => string)"
+  },
+  {
+   "componente": "SgMultiSelect",
+   "prop": "value",
+   "motivo": "lista",
+   "ts": "SgMultiSelectOptionValue[]"
+  },
+  {
+   "componente": "SgMultiSelect",
+   "prop": "width",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgMultiSelectChips",
+   "prop": "borderRadius",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgMultiSelectChips",
+   "prop": "control",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "any"
+  },
+  {
+   "componente": "SgMultiSelectChips",
+   "prop": "onChange",
+   "motivo": "funcao",
+   "ts": "((value: SgMultiSelectOptionValue[]) => void)"
+  },
+  {
+   "componente": "SgMultiSelectChips",
+   "prop": "onEnter",
+   "motivo": "funcao",
+   "ts": "(() => void)"
+  },
+  {
+   "componente": "SgMultiSelectChips",
+   "prop": "onExit",
+   "motivo": "funcao",
+   "ts": "(() => void)"
+  },
+  {
+   "componente": "SgMultiSelectChips",
+   "prop": "options",
+   "motivo": "lista",
+   "ts": "SgMultiSelectOption[]"
+  },
+  {
+   "componente": "SgMultiSelectChips",
+   "prop": "rules",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "RegisterOptions<any>"
+  },
+  {
+   "componente": "SgMultiSelectChips",
+   "prop": "value",
+   "motivo": "lista",
+   "ts": "SgMultiSelectOptionValue[]"
+  },
+  {
+   "componente": "SgMultiSelectChips",
+   "prop": "width",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgNeonDigit",
+   "prop": "fontWeight",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgOrderList",
+   "prop": "control",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "any"
+  },
+  {
+   "componente": "SgOrderList",
+   "prop": "groupBoxProps",
+   "motivo": "uniao",
+   "ts": "(Omit<Partial<SgGroupBoxProps>, \"title\" | \"children\"> & { title?: string; })"
+  },
+  {
+   "componente": "SgOrderList",
+   "prop": "itemTemplate",
+   "motivo": "funcao",
+   "ts": "((item: SgOrderListItem, state: { index: number; selected: boolean; disabled: boolean; }) => React.ReactNode)"
+  },
+  {
+   "componente": "SgOrderList",
+   "prop": "onChange",
+   "motivo": "funcao",
+   "ts": "((items: SgOrderListItem[]) => void)"
+  },
+  {
+   "componente": "SgOrderList",
+   "prop": "onSelectionChange",
+   "motivo": "funcao",
+   "ts": "((values: (string | number)[]) => void)"
+  },
+  {
+   "componente": "SgOrderList",
+   "prop": "rules",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "RegisterOptions<any>"
+  },
+  {
+   "componente": "SgOrderList",
+   "prop": "selectedValues",
+   "motivo": "lista",
+   "ts": "(string | number)[]"
+  },
+  {
+   "componente": "SgOrderList",
+   "prop": "source",
+   "motivo": "lista",
+   "ts": "SgOrderListItem[]"
+  },
+  {
+   "componente": "SgOrderList",
+   "prop": "value",
+   "motivo": "lista",
+   "ts": "SgOrderListItem[]"
+  },
+  {
+   "componente": "SgPageControl",
+   "prop": "hiddenPageIds",
+   "motivo": "lista",
+   "ts": "string[]"
+  },
+  {
+   "componente": "SgPageControl",
+   "prop": "onActiveIndexChange",
+   "motivo": "funcao",
+   "ts": "((index: number, context: { pageId: string; page: SgPageControlPageProps; }) => void)"
+  },
+  {
+   "componente": "SgPageControl",
+   "prop": "onActivePageIdChange",
+   "motivo": "funcao",
+   "ts": "((pageId: string, context: { index: number; page: SgPageControlPageProps; }) => void)"
+  },
+  {
+   "componente": "SgPanel",
+   "prop": "contentGap",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgPanel",
+   "prop": "contentPadding",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgPanel",
+   "prop": "contentStyle",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "React.CSSProperties"
+  },
+  {
+   "componente": "SgPanel",
+   "prop": "height",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "SgDockPercent"
+  },
+  {
+   "componente": "SgPanel",
+   "prop": "padding",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgPanel",
+   "prop": "scrollable",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "SgPanelScrollable"
+  },
+  {
+   "componente": "SgPanel",
+   "prop": "width",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "SgDockPercent"
+  },
+  {
+   "componente": "SgPeriodSelector",
+   "prop": "control",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "Control<FieldValues>"
+  },
+  {
+   "componente": "SgPeriodSelector",
+   "prop": "maxDate",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "Date"
+  },
+  {
+   "componente": "SgPeriodSelector",
+   "prop": "minDate",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "Date"
+  },
+  {
+   "componente": "SgPeriodSelector",
+   "prop": "onChange",
+   "motivo": "funcao",
+   "ts": "((period: ResolvedPeriod) => void)"
+  },
+  {
+   "componente": "SgPeriodSelector",
+   "prop": "referenceDate",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "Date"
+  },
+  {
+   "componente": "SgPeriodSelector",
+   "prop": "rules",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "RegisterOptions"
+  },
+  {
+   "componente": "SgPickList",
+   "prop": "control",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "any"
+  },
+  {
+   "componente": "SgPickList",
+   "prop": "groupBoxProps",
+   "motivo": "uniao",
+   "ts": "(Omit<Partial<SgGroupBoxProps>, \"title\" | \"children\"> & { title?: string; })"
+  },
+  {
+   "componente": "SgPickList",
+   "prop": "itemTemplate",
+   "motivo": "funcao",
+   "ts": "((item: SgPickListItem, state: { index: number; selected: boolean; disabled: boolean; list: SgPickListListName; }) => React.ReactNode)"
+  },
+  {
+   "componente": "SgPickList",
+   "prop": "onChange",
+   "motivo": "funcao",
+   "ts": "((event: SgPickListChangeEvent) => void)"
+  },
+  {
+   "componente": "SgPickList",
+   "prop": "onSourceSelectionChange",
+   "motivo": "funcao",
+   "ts": "((values: (string | number)[]) => void)"
+  },
+  {
+   "componente": "SgPickList",
+   "prop": "onTargetSelectionChange",
+   "motivo": "funcao",
+   "ts": "((values: (string | number)[]) => void)"
+  },
+  {
+   "componente": "SgPickList",
+   "prop": "rules",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "RegisterOptions<any>"
+  },
+  {
+   "componente": "SgPickList",
+   "prop": "source",
+   "motivo": "lista",
+   "ts": "SgPickListItem[]"
+  },
+  {
+   "componente": "SgPickList",
+   "prop": "sourceSelection",
+   "motivo": "lista",
+   "ts": "(string | number)[]"
+  },
+  {
+   "componente": "SgPickList",
+   "prop": "target",
+   "motivo": "lista",
+   "ts": "SgPickListItem[]"
+  },
+  {
+   "componente": "SgPickList",
+   "prop": "targetSelection",
+   "motivo": "lista",
+   "ts": "(string | number)[]"
+  },
+  {
+   "componente": "SgPickList",
+   "prop": "value",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "SgPickListValue"
+  },
+  {
+   "componente": "SgPopup",
+   "prop": "actions",
+   "motivo": "lista",
+   "ts": "SgPopupAction[]"
+  },
+  {
+   "componente": "SgPopup",
+   "prop": "anchorRef",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "React.RefObject<HTMLElement>"
+  },
+  {
+   "componente": "SgPopup",
+   "prop": "minWidth",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgPopup",
+   "prop": "onClose",
+   "motivo": "funcao",
+   "ts": "(() => void)"
+  },
+  {
+   "componente": "SgPopup",
+   "prop": "onOpen",
+   "motivo": "funcao",
+   "ts": "(() => void)"
+  },
+  {
+   "componente": "SgPopup",
+   "prop": "onOpenChange",
+   "motivo": "funcao",
+   "ts": "((open: boolean) => void)"
+  },
+  {
+   "componente": "SgQRCode",
+   "prop": "onGenerateError",
+   "motivo": "funcao",
+   "ts": "((error: Error) => void)"
+  },
+  {
+   "componente": "SgRadialGauge",
+   "prop": "annotations",
+   "motivo": "lista",
+   "ts": "SgRadialGaugeAnnotation[]"
+  },
+  {
+   "componente": "SgRadialGauge",
+   "prop": "labelFormatter",
+   "motivo": "funcao",
+   "ts": "((value: number) => React.ReactNode)"
+  },
+  {
+   "componente": "SgRadialGauge",
+   "prop": "onPointerValueChange",
+   "motivo": "funcao",
+   "ts": "((pointerId: string, value: number, pointer: SgRadialGaugePointer) => void)"
+  },
+  {
+   "componente": "SgRadialGauge",
+   "prop": "onValueChange",
+   "motivo": "funcao",
+   "ts": "((value: number) => void)"
+  },
+  {
+   "componente": "SgRadialGauge",
+   "prop": "pointers",
+   "motivo": "lista",
+   "ts": "SgRadialGaugePointer[]"
+  },
+  {
+   "componente": "SgRadialGauge",
+   "prop": "ranges",
+   "motivo": "lista",
+   "ts": "SgRadialGaugeRange[]"
+  },
+  {
+   "componente": "SgRadioGroup",
+   "prop": "control",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "any"
+  },
+  {
+   "componente": "SgRadioGroup",
+   "prop": "groupBoxProps",
+   "motivo": "uniao",
+   "ts": "(Omit<Partial<SgGroupBoxProps>, \"title\" | \"children\"> & { title?: string; })"
+  },
+  {
+   "componente": "SgRadioGroup",
+   "prop": "onChange",
+   "motivo": "funcao",
+   "ts": "((value: string | number) => void)"
+  },
+  {
+   "componente": "SgRadioGroup",
+   "prop": "rules",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "RegisterOptions<any>"
+  },
+  {
+   "componente": "SgRadioGroup",
+   "prop": "source",
+   "motivo": "lista",
+   "ts": "SgRadioGroupOption[]"
+  },
+  {
+   "componente": "SgRadioGroup",
+   "prop": "value",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgRating",
+   "prop": "control",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "any"
+  },
+  {
+   "componente": "SgRating",
+   "prop": "onChange",
+   "motivo": "funcao",
+   "ts": "((value: number) => void)"
+  },
+  {
+   "componente": "SgRating",
+   "prop": "onHover",
+   "motivo": "funcao",
+   "ts": "((value: number) => void)"
+  },
+  {
+   "componente": "SgRating",
+   "prop": "rules",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "RegisterOptions<any>"
+  },
+  {
+   "componente": "SgRealtimeProvider",
+   "prop": "channels",
+   "motivo": "lista",
+   "ts": "string[]"
+  },
+  {
+   "componente": "SgRealtimeProvider",
+   "prop": "connectOptions",
+   "motivo": "uniao",
+   "ts": "Omit<ConnectInput, \"getToken\" | \"accountKey\" | \"baseUrl\">"
+  },
+  {
+   "componente": "SgRealtimeProvider",
+   "prop": "fetchToken",
+   "motivo": "funcao",
+   "ts": "(() => Promise<SgRealtimeConnectResponse>)"
+  },
+  {
+   "componente": "SgRealtimeProvider",
+   "prop": "tokenRequestInit",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "RequestInit"
+  },
+  {
+   "componente": "SgRoller3DDigit",
+   "prop": "items",
+   "motivo": "lista",
+   "ts": "string[]"
+  },
+  {
+   "componente": "SgScreen",
+   "prop": "height",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgScreen",
+   "prop": "padding",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgScreen",
+   "prop": "width",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgSkeleton",
+   "prop": "borderRadius",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgSkeleton",
+   "prop": "height",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgSkeleton",
+   "prop": "size",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgSkeleton",
+   "prop": "width",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgSlider",
+   "prop": "control",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "any"
+  },
+  {
+   "componente": "SgSlider",
+   "prop": "inputProps",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "SliderInputProps"
+  },
+  {
+   "componente": "SgSlider",
+   "prop": "onChange",
+   "motivo": "funcao",
+   "ts": "((value: number) => void)"
+  },
+  {
+   "componente": "SgSlider",
+   "prop": "rules",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "RegisterOptions<any>"
+  },
+  {
+   "componente": "SgSlider",
+   "prop": "width",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgSplitButton",
+   "prop": "customColors",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "SgButtonCustomColors"
+  },
+  {
+   "componente": "SgSplitButton",
+   "prop": "items",
+   "motivo": "lista",
+   "ts": "SgSplitButtonItem[]"
+  },
+  {
+   "componente": "SgSplitButton",
+   "prop": "onClick",
+   "motivo": "funcao",
+   "ts": "(() => void)"
+  },
+  {
+   "componente": "SgStack",
+   "prop": "gap",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgStepperInput",
+   "prop": "control",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "any"
+  },
+  {
+   "componente": "SgStepperInput",
+   "prop": "inputProps",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "StepperInputProps"
+  },
+  {
+   "componente": "SgStepperInput",
+   "prop": "onChange",
+   "motivo": "funcao",
+   "ts": "((value: number) => void)"
+  },
+  {
+   "componente": "SgStepperInput",
+   "prop": "rules",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "RegisterOptions<any>"
+  },
+  {
+   "componente": "SgStepperInput",
+   "prop": "width",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgStringAnimator",
+   "prop": "charset",
+   "motivo": "lista",
+   "ts": "string[]"
+  },
+  {
+   "componente": "SgTextEditor",
+   "prop": "borderRadius",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgTextEditor",
+   "prop": "control",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "any"
+  },
+  {
+   "componente": "SgTextEditor",
+   "prop": "onChangeHtml",
+   "motivo": "funcao",
+   "ts": "((htmlBody: string) => void)"
+  },
+  {
+   "componente": "SgTextEditor",
+   "prop": "onCssTextChange",
+   "motivo": "funcao",
+   "ts": "((cssText: string) => void)"
+  },
+  {
+   "componente": "SgTextEditor",
+   "prop": "onLoad",
+   "motivo": "funcao",
+   "ts": "((meta: SgTextEditorSaveMeta) => void)"
+  },
+  {
+   "componente": "SgTextEditor",
+   "prop": "onSave",
+   "motivo": "funcao",
+   "ts": "((file: File, meta: SgTextEditorSaveMeta) => void)"
+  },
+  {
+   "componente": "SgTextEditor",
+   "prop": "rules",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "RegisterOptions<any>"
+  },
+  {
+   "componente": "SgToastHost",
+   "prop": "customColors",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "Partial<Record<SgToastType, SgToasterTypeColors>>"
+  },
+  {
+   "componente": "SgToaster",
+   "prop": "customColors",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "Partial<Record<SgToastType, SgToasterTypeColors>>"
+  },
+  {
+   "componente": "SgToggleSwitch",
+   "prop": "control",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "any"
+  },
+  {
+   "componente": "SgToggleSwitch",
+   "prop": "inputProps",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "(React.InputHTMLAttributes<HTMLInputElement> & { ref?: React.Ref<HTMLInputElement>; })"
+  },
+  {
+   "componente": "SgToggleSwitch",
+   "prop": "onChange",
+   "motivo": "funcao",
+   "ts": "((checked: boolean) => void)"
+  },
+  {
+   "componente": "SgToggleSwitch",
+   "prop": "onValidation",
+   "motivo": "funcao",
+   "ts": "((message: string) => void)"
+  },
+  {
+   "componente": "SgToggleSwitch",
+   "prop": "rules",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "RegisterOptions<any>"
+  },
+  {
+   "componente": "SgToggleSwitch",
+   "prop": "validation",
+   "motivo": "funcao",
+   "ts": "((checked: boolean) => string)"
+  },
+  {
+   "componente": "SgToggleSwitch",
+   "prop": "width",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgToolBar",
+   "prop": "defaultPosition",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "{ x: number; y: number; }"
+  },
+  {
+   "componente": "SgToolBar",
+   "prop": "onCollapsedChange",
+   "motivo": "funcao",
+   "ts": "((collapsed: boolean) => void)"
+  },
+  {
+   "componente": "SgToolBar",
+   "prop": "size",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "SgToolBarSize"
+  },
+  {
+   "componente": "SgToolbarIconButton",
+   "prop": "onClick",
+   "motivo": "funcao",
+   "ts": "(() => void | Promise<void>)"
+  },
+  {
+   "componente": "SgTreeView",
+   "prop": "checkedIds",
+   "motivo": "lista",
+   "ts": "string[]"
+  },
+  {
+   "componente": "SgTreeView",
+   "prop": "confirmBar",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "SgTreeConfirmBar"
+  },
+  {
+   "componente": "SgTreeView",
+   "prop": "defaultCheckedIds",
+   "motivo": "lista",
+   "ts": "string[]"
+  },
+  {
+   "componente": "SgTreeView",
+   "prop": "defaultExpandedIds",
+   "motivo": "lista",
+   "ts": "string[]"
+  },
+  {
+   "componente": "SgTreeView",
+   "prop": "expandedIds",
+   "motivo": "lista",
+   "ts": "string[]"
+  },
+  {
+   "componente": "SgTreeView",
+   "prop": "nodes",
+   "motivo": "lista",
+   "ts": "SgTreeNode[]"
+  },
+  {
+   "componente": "SgTreeView",
+   "prop": "onCheckedChange",
+   "motivo": "funcao",
+   "ts": "((ids: string[]) => void)"
+  },
+  {
+   "componente": "SgTreeView",
+   "prop": "onCollapse",
+   "motivo": "funcao",
+   "ts": "((node: SgTreeNode) => void)"
+  },
+  {
+   "componente": "SgTreeView",
+   "prop": "onExpand",
+   "motivo": "funcao",
+   "ts": "((node: SgTreeNode) => void)"
+  },
+  {
+   "componente": "SgTreeView",
+   "prop": "onExpandedChange",
+   "motivo": "funcao",
+   "ts": "((ids: string[]) => void)"
+  },
+  {
+   "componente": "SgTreeView",
+   "prop": "onLeafClick",
+   "motivo": "funcao",
+   "ts": "((id: string) => void)"
+  },
+  {
+   "componente": "SgTreeView",
+   "prop": "onSearchChange",
+   "motivo": "funcao",
+   "ts": "((v: string) => void)"
+  },
+  {
+   "componente": "SgTreeView",
+   "prop": "tracks",
+   "motivo": "lista",
+   "ts": "SgTreeTrack[]"
+  },
+  {
+   "componente": "SgWhistleHost",
+   "prop": "customColors",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "Partial<Record<SgWhistleSeverity, SgWhistleColors>>"
+  },
+  {
+   "componente": "SgWhistler",
+   "prop": "customColors",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "Partial<Record<SgWhistleSeverity, SgWhistleColors>>"
+  },
+  {
+   "componente": "SgWizard",
+   "prop": "labels",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "Partial<SgWizardLabels>"
+  },
+  {
+   "componente": "SgWizard",
+   "prop": "onBeforeFinish",
+   "motivo": "funcao",
+   "ts": "((index: number) => boolean | Promise<boolean>)"
+  },
+  {
+   "componente": "SgWizard",
+   "prop": "onBeforeNext",
+   "motivo": "funcao",
+   "ts": "((index: number) => boolean | Promise<boolean>)"
+  },
+  {
+   "componente": "SgWizard",
+   "prop": "onFinish",
+   "motivo": "funcao",
+   "ts": "() => void | Promise<void>"
+  },
+  {
+   "componente": "SgWizard",
+   "prop": "onStepChange",
+   "motivo": "funcao",
+   "ts": "((index: number) => void)"
+  },
+  {
+   "componente": "SgWizard",
+   "prop": "validateStep",
+   "motivo": "funcao",
+   "ts": "((index: number) => boolean | Promise<boolean>)"
+  },
+  {
+   "componente": "SgYearPartSelector",
+   "prop": "allowedKinds",
+   "motivo": "lista",
+   "ts": "YearPartKind[]"
+  },
+  {
+   "componente": "SgYearPartSelector",
+   "prop": "onChange",
+   "motivo": "funcao",
+   "ts": "((resolved: ResolvedYearPart) => void)"
+  },
+  {
+   "componente": "SgYearPartSelector",
+   "prop": "value",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "YearPartValue"
+  }
+ ],
+ "renomeadas": [
+  {
+   "componente": "SgAutocomplete",
+   "de": "enabled",
+   "para": "disabled",
+   "motivo": "ADR 50 (valor invertido)"
+  },
+  {
+   "componente": "SgAvatar",
+   "de": "children",
+   "para": "child",
+   "motivo": "ADR 50"
+  },
+  {
+   "componente": "SgAvatarGroup",
+   "de": "children",
+   "para": "child",
+   "motivo": "ADR 50"
+  },
+  {
+   "componente": "SgBadge",
+   "de": "aria-label",
+   "para": "semanticLabel",
+   "motivo": "acessibilidade: Semantics"
+  },
+  {
+   "componente": "SgBadgeOverlay",
+   "de": "children",
+   "para": "child",
+   "motivo": "ADR 50"
+  },
+  {
+   "componente": "SgClockThemeProvider",
+   "de": "children",
+   "para": "child",
+   "motivo": "ADR 50"
+  },
+  {
+   "componente": "SgCombobox",
+   "de": "enabled",
+   "para": "disabled",
+   "motivo": "ADR 50 (valor invertido)"
+  },
+  {
+   "componente": "SgComponentsI18nProvider",
+   "de": "children",
+   "para": "child",
+   "motivo": "ADR 50"
+  },
+  {
+   "componente": "SgDialog",
+   "de": "children",
+   "para": "child",
+   "motivo": "ADR 50"
+  },
+  {
+   "componente": "SgDockLayout",
+   "de": "children",
+   "para": "child",
+   "motivo": "ADR 50"
+  },
+  {
+   "componente": "SgDockScreen",
+   "de": "children",
+   "para": "child",
+   "motivo": "ADR 50"
+  },
+  {
+   "componente": "SgDockZone",
+   "de": "children",
+   "para": "child",
+   "motivo": "ADR 50"
+  },
+  {
+   "componente": "SgEnvironmentProvider",
+   "de": "children",
+   "para": "child",
+   "motivo": "ADR 50"
+  },
+  {
+   "componente": "SgExpandablePanel",
+   "de": "children",
+   "para": "child",
+   "motivo": "ADR 50"
+  },
+  {
+   "componente": "SgGrid",
+   "de": "children",
+   "para": "child",
+   "motivo": "ADR 50"
+  },
+  {
+   "componente": "SgGroupBox",
+   "de": "children",
+   "para": "child",
+   "motivo": "ADR 50"
+  },
+  {
+   "componente": "SgInputBirthDate",
+   "de": "enabled",
+   "para": "disabled",
+   "motivo": "ADR 50 (valor invertido)"
+  },
+  {
+   "componente": "SgInputCNPJ",
+   "de": "enabled",
+   "para": "disabled",
+   "motivo": "ADR 50 (valor invertido)"
+  },
+  {
+   "componente": "SgInputCPF",
+   "de": "enabled",
+   "para": "disabled",
+   "motivo": "ADR 50 (valor invertido)"
+  },
+  {
+   "componente": "SgInputCPFCNPJ",
+   "de": "enabled",
+   "para": "disabled",
+   "motivo": "ADR 50 (valor invertido)"
+  },
+  {
+   "componente": "SgInputCurrency",
+   "de": "enabled",
+   "para": "disabled",
+   "motivo": "ADR 50 (valor invertido)"
+  },
+  {
+   "componente": "SgInputDate",
+   "de": "enabled",
+   "para": "disabled",
+   "motivo": "ADR 50 (valor invertido)"
+  },
+  {
+   "componente": "SgInputEmail",
+   "de": "enabled",
+   "para": "disabled",
+   "motivo": "ADR 50 (valor invertido)"
+  },
+  {
+   "componente": "SgInputNumber",
+   "de": "enabled",
+   "para": "disabled",
+   "motivo": "ADR 50 (valor invertido)"
+  },
+  {
+   "componente": "SgInputOTP",
+   "de": "enabled",
+   "para": "disabled",
+   "motivo": "ADR 50 (valor invertido)"
+  },
+  {
+   "componente": "SgInputPassword",
+   "de": "enabled",
+   "para": "disabled",
+   "motivo": "ADR 50 (valor invertido)"
+  },
+  {
+   "componente": "SgInputPhone",
+   "de": "enabled",
+   "para": "disabled",
+   "motivo": "ADR 50 (valor invertido)"
+  },
+  {
+   "componente": "SgInputPostalCode",
+   "de": "enabled",
+   "para": "disabled",
+   "motivo": "ADR 50 (valor invertido)"
+  },
+  {
+   "componente": "SgInputText",
+   "de": "enabled",
+   "para": "disabled",
+   "motivo": "ADR 50 (valor invertido)"
+  },
+  {
+   "componente": "SgInputTextArea",
+   "de": "enabled",
+   "para": "disabled",
+   "motivo": "ADR 50 (valor invertido)"
+  },
+  {
+   "componente": "SgInputTextSearch",
+   "de": "enabled",
+   "para": "disabled",
+   "motivo": "ADR 50 (valor invertido)"
+  },
+  {
+   "componente": "SgMultiSelect",
+   "de": "enabled",
+   "para": "disabled",
+   "motivo": "ADR 50 (valor invertido)"
+  },
+  {
+   "componente": "SgMultiSelectChips",
+   "de": "enabled",
+   "para": "disabled",
+   "motivo": "ADR 50 (valor invertido)"
+  },
+  {
+   "componente": "SgPageControl",
+   "de": "children",
+   "para": "child",
+   "motivo": "ADR 50"
+  },
+  {
+   "componente": "SgPageControlPage",
+   "de": "children",
+   "para": "child",
+   "motivo": "ADR 50"
+  },
+  {
+   "componente": "SgPanel",
+   "de": "children",
+   "para": "child",
+   "motivo": "ADR 50"
+  },
+  {
+   "componente": "SgPopup",
+   "de": "children",
+   "para": "child",
+   "motivo": "ADR 50"
+  },
+  {
+   "componente": "SgRealtimeProvider",
+   "de": "children",
+   "para": "child",
+   "motivo": "ADR 50"
+  },
+  {
+   "componente": "SgRealtimeProvider",
+   "de": "enabled",
+   "para": "disabled",
+   "motivo": "ADR 50 (valor invertido)"
+  },
+  {
+   "componente": "SgScreen",
+   "de": "children",
+   "para": "child",
+   "motivo": "ADR 50"
+  },
+  {
+   "componente": "SgStack",
+   "de": "children",
+   "para": "child",
+   "motivo": "ADR 50"
+  },
+  {
+   "componente": "SgTimeProvider",
+   "de": "children",
+   "para": "child",
+   "motivo": "ADR 50"
+  },
+  {
+   "componente": "SgToggleSwitch",
+   "de": "enabled",
+   "para": "disabled",
+   "motivo": "ADR 50 (valor invertido)"
+  },
+  {
+   "componente": "SgToolBar",
+   "de": "children",
+   "para": "child",
+   "motivo": "ADR 50"
+  },
+  {
+   "componente": "SgWizard",
+   "de": "children",
+   "para": "child",
+   "motivo": "ADR 50"
+  },
+  {
+   "componente": "SgWizardPage",
+   "de": "children",
+   "para": "child",
+   "motivo": "ADR 50"
+  }
+ ],
+ "resumo": {
+  "omitidas": 153,
+  "renomeadas": 46,
+  "tipoGenerico": {
+   "lista": 62,
+   "uniao": 115,
+   "funcao": 225,
+   "tipo-nomeado-a-portar": 143
+  }
+ }
+}

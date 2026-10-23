@@ -1,0 +1,3704 @@
+{
+ "versaoReact": "2026.7.1",
+ "contagem": {
+  "pt-BR": 214,
+  "pt-PT": 214,
+  "en-US": 214,
+  "es": 214,
+  "fr": 214
+ },
+ "locales": {
+  "pt-BR": {
+   "messages": {
+    "components.actions.clear": "Limpar",
+    "components.wizard.next": "Próximo",
+    "components.wizard.previous": "Anterior",
+    "components.wizard.finish": "Finalizar",
+    "components.password.show": "Mostrar senha",
+    "components.password.hide": "Ocultar senha",
+    "components.password.generate": "Gerar senha",
+    "components.password.common": "Senha muito comum. Escolha uma mais forte.",
+    "components.password.minSize": "Mínimo {min} caracteres.",
+    "components.password.upper": "Pelo menos 1 letra maiúscula.",
+    "components.password.lower": "Pelo menos 1 letra minúscula.",
+    "components.password.number": "Pelo menos 1 número.",
+    "components.password.special": "Pelo menos 1 caractere especial.",
+    "components.password.noRepeat": "Não repetir caracteres em sequência.",
+    "components.password.noSeqAsc": "Não usar sequências crescentes (ex: 1234, abcd).",
+    "components.password.noSeqDesc": "Não usar sequências decrescentes (ex: 4321, dcba).",
+    "components.inputs.required": "Campo obrigatório.",
+    "components.inputs.maxLength": "Campo deve ter no máximo {max} letra(s).",
+    "components.inputs.minLength": "Campo tem de ter no mínimo {min} letra(s).",
+    "components.inputs.minWords": "Campo tem de ter no mínimo {min} palavra(s).",
+    "components.inputs.textarea.required": "Campo de preenchimento obrigatório.",
+    "components.inputs.textarea.maxLength": "Texto deve ter no máximo {max} letra(s).",
+    "components.inputs.textarea.minLength": "Texto tem de ter no mínimo {min} letra(s).",
+    "components.inputs.textarea.minWords": "Texto tem de ter no mínimo {min} palavra(s).",
+    "components.inputs.textarea.minLines": "Texto tem de ter no mínimo {min} linha(s).",
+    "components.inputs.cpf.length": "CPF deve ter 11 dígitos.",
+    "components.inputs.cpf.invalid": "CPF inválido.",
+    "components.inputs.cnpj.length": "CNPJ deve ter 14 dígitos.",
+    "components.inputs.cnpj.invalid": "CNPJ inválido.",
+    "components.inputs.postalCode.BR.length": "CEP deve ter 8 dígitos.",
+    "components.inputs.postalCode.BR.invalid": "CEP inválido.",
+    "components.inputs.postalCode.PT.length": "Código postal deve ter 7 dígitos.",
+    "components.inputs.postalCode.PT.invalid": "Código postal inválido.",
+    "components.inputs.postalCode.US.length": "ZIP code deve ter 5 ou 9 dígitos.",
+    "components.inputs.postalCode.US.invalid": "ZIP code inválido.",
+    "components.inputs.postalCode.ES.length": "Código postal deve ter 5 dígitos.",
+    "components.inputs.postalCode.ES.invalid": "Código postal inválido.",
+    "components.inputs.postalCode.UY.length": "Código postal deve ter 5 dígitos.",
+    "components.inputs.postalCode.UY.invalid": "Código postal inválido.",
+    "components.inputs.postalCode.AR.length": "Código postal deve ter 4 ou 8 caracteres.",
+    "components.inputs.postalCode.AR.invalid": "Código postal inválido.",
+    "components.inputs.postalCode.PY.length": "Código postal deve ter 6 dígitos.",
+    "components.inputs.postalCode.PY.invalid": "Código postal inválido.",
+    "components.inputs.phone.invalid": "Telefone inválido.",
+    "components.inputs.email.invalid": "Email inválido.",
+    "components.inputs.otp.slot": "C?digo ?nico {slot}",
+    "components.inputs.otp.group": "C?digo ?nico",
+    "components.inputs.toggle.ariaLabel": "Alternar op??o",
+    "components.inputs.email.tempInvalid": "Email temporário inválido.",
+    "components.inputs.date.invalid": "Data inválida.",
+    "components.inputs.date.range": "Data deve estar entre {min} e {max}.",
+    "components.inputs.date.min": "Data deve ser a partir de {min}.",
+    "components.inputs.date.max": "Data deve ser até {max}.",
+    "components.inputs.birthdate.required": "Informe a data de nascimento.",
+    "components.validators.password.empty": "Senha não pode ser vazia.",
+    "components.validators.password.minSize": "mínimo de {min} caracteres",
+    "components.validators.password.upper": "deve conter letra maiúscula",
+    "components.validators.password.lower": "deve conter letra minúscula",
+    "components.validators.password.number": "deve conter número",
+    "components.validators.password.special": "deve conter caractere especial",
+    "components.validators.password.sequence": "não pode conter sequências (ex.: abc, 123)",
+    "components.validators.password.repeated": "não pode conter caracteres repetidos em série (ex.: aaa, 1111)",
+    "components.validators.password.invalid": "Senha inválida: {reasons}",
+    "components.validators.birthdate.configMissing": "Configuração inválida: informe minAge e/ou maxAge.",
+    "components.validators.birthdate.configRange": "Configuração inválida: minAge deve ser <= maxAge.",
+    "components.validators.birthdate.invalidDate": "Data inválida.",
+    "components.validators.birthdate.ageBetween": "A idade deve estar entre {min} e {max} anos.",
+    "components.validators.birthdate.ageMin": "A idade deve ser de pelo menos {min} anos.",
+    "components.validators.birthdate.ageMax": "A idade deve ser de no máximo {max} anos.",
+    "components.autocomplete.empty": "Nenhum registro encontrado.",
+    "components.autocomplete.loading": "Carregando...",
+    "components.inputs.number.min": "Valor deve ser no mínimo {min}.",
+    "components.inputs.number.max": "Valor deve ser no máximo {max}.",
+    "components.fab.resetConfirm": "Resetar posição do botão?",
+    "components.fab.resetPosition": "Resetar posição",
+    "components.fab.yes": "Sim",
+    "components.fab.no": "Não",
+    "components.dock.resetPosition": "Resetar posição",
+    "components.dock.resetConfirm": "Tem certeza que deseja resetar a posição do dock para o padrão?",
+    "components.dock.dropHere": "Solte aqui",
+    "components.actions.cancel": "Cancelar",
+    "components.actions.confirm": "Confirmar",
+    "components.rating.required": "Por favor, forneça uma avaliação",
+    "components.rating.cancel": "Cancelar avaliação",
+    "components.radiogroup.cancel": "Nenhuma opção",
+    "components.checkboxgroup.checkAll": "Selecionar todos",
+    "components.orderlist.moveTop": "Mover para o topo",
+    "components.orderlist.moveUp": "Mover para cima",
+    "components.orderlist.moveDown": "Mover para baixo",
+    "components.orderlist.moveBottom": "Mover para o fim",
+    "components.orderlist.empty": "Nenhum item disponivel.",
+    "components.picklist.moveToTarget": "Mover selecionado para destino",
+    "components.picklist.moveAllToTarget": "Mover todos para destino",
+    "components.picklist.moveToSource": "Mover selecionado para origem",
+    "components.picklist.moveAllToSource": "Mover todos para origem",
+    "components.picklist.sourceHeader": "Origem",
+    "components.picklist.targetHeader": "Destino",
+    "components.picklist.sourceFilterPlaceholder": "Buscar na origem",
+    "components.picklist.targetFilterPlaceholder": "Buscar no destino",
+    "components.picklist.empty": "Nenhum item disponivel.",
+    "components.gadgets.clock.title": "Relógio",
+    "components.gadgets.calendar.title": "Calendário",
+    "components.gadgets.calendar.previousMonth": "M?s anterior",
+    "components.gadgets.calendar.nextMonth": "Pr?ximo m?s",
+    "components.gadgets.calendar.goToday": "Ir para hoje",
+    "components.gadgets.qrcode.title": "C?digo QR",
+    "components.gadgets.gauge.radialAria": "Medidor radial",
+    "components.gadgets.gauge.linearAria": "Medidor linear",
+    "components.gadgets.gauge.value": "Valor",
+    "components.datatable.empty": "Nenhum registro encontrado.",
+    "components.datatable.loading": "Carregando dados...",
+    "components.datatable.globalFilterPlaceholder": "Buscar em todas as colunas",
+    "components.datatable.clearFilters": "Limpar filtros",
+    "components.datatable.pagination": "Paginacao",
+    "components.datatable.first": "Primeira pagina",
+    "components.datatable.prev": "Pagina anterior",
+    "components.datatable.next": "Proxima pagina",
+    "components.datatable.last": "Ultima pagina",
+    "components.datatable.jumpBackward": "Voltar varias paginas",
+    "components.datatable.jumpForward": "Avancar varias paginas",
+    "components.datatable.page": "Pagina {page}",
+    "components.datatable.rowsPerPage": "Linhas por pagina",
+    "components.datatable.pageReport": "{first} - {last} de {total}",
+    "components.datatable.columnFilterPlaceholder": "Filtrar {column}",
+    "components.actions.select": "Selecione",
+    "components.actions.search": "Pesquisar",
+    "components.actions.expand": "Expandir",
+    "components.actions.collapse": "Recolher",
+    "components.actions.expandAll": "Expandir tudo",
+    "components.actions.collapseAll": "Recolher tudo",
+    "components.actions.clearSelection": "Limpar selecao",
+    "components.actions.open": "Abrir",
+    "components.actions.openList": "Abrir lista",
+    "components.actions.close": "Fechar",
+    "components.actions.save": "Salvar",
+    "components.actions.loadHtml": "Carregar HTML",
+    "components.actions.top": "Topo",
+    "components.actions.up": "Subir",
+    "components.actions.down": "Descer",
+    "components.actions.bottom": "Base",
+    "components.menu.unpinAndCollapse": "Desafixar e recolher menu",
+    "components.menu.open": "Abrir menu",
+    "components.menu.close": "Fechar menu",
+    "components.menu.expand": "Expandir menu",
+    "components.menu.collapse": "Recolher menu",
+    "components.avatar.defaultAlt": "Avatar",
+    "components.badge.remove": "Remover badge",
+    "components.toast.loading": "Carregando...",
+    "components.toaster.close": "Fechar notificacao",
+    "components.whistler.close": "Fechar aviso",
+    "components.dialog.ariaLabel": "Dialogo",
+    "components.dialog.close": "Fechar",
+    "components.popup.ariaLabel": "Popup",
+    "components.inputs.select.placeholder": "Selecione",
+    "components.inputs.multiSelect.summary": "{count} selecionadas",
+    "components.inputs.multiSelect.removeChip": "Remover {label}",
+    "components.inputs.stepper.increase": "Aumentar valor",
+    "components.inputs.stepper.decrease": "Diminuir valor",
+    "components.textEditor.placeholder": "Digite aqui...",
+    "components.textEditor.cssEditorLabel": "CSS incorporado",
+    "components.textEditor.editorAriaLabel": "Editor de texto rico",
+    "components.textEditor.toolbar.heading": "Titulo",
+    "components.textEditor.toolbar.subheading": "Subtitulo",
+    "components.textEditor.toolbar.heading3": "Titulo 3",
+    "components.textEditor.toolbar.normal": "Normal",
+    "components.textEditor.toolbar.defaultFont": "Padrao",
+    "components.textEditor.toolbar.bold": "Negrito",
+    "components.textEditor.toolbar.italic": "Italico",
+    "components.textEditor.toolbar.underline": "Sublinhado",
+    "components.textEditor.toolbar.strike": "Tachado",
+    "components.textEditor.toolbar.textColor": "Cor do texto",
+    "components.textEditor.toolbar.highlightColor": "Cor do destaque",
+    "components.textEditor.toolbar.subscript": "Subscrito",
+    "components.textEditor.toolbar.superscript": "Sobrescrito",
+    "components.textEditor.toolbar.bullets": "Marcadores",
+    "components.textEditor.toolbar.numbered": "Numeracao",
+    "components.textEditor.toolbar.outdent": "Diminuir recuo",
+    "components.textEditor.toolbar.indent": "Aumentar recuo",
+    "components.textEditor.toolbar.alignLeft": "Alinhar a esquerda",
+    "components.textEditor.toolbar.alignCenter": "Centralizar",
+    "components.textEditor.toolbar.alignRight": "Alinhar a direita",
+    "components.textEditor.toolbar.justify": "Justificar",
+    "components.textEditor.toolbar.link": "Link",
+    "components.textEditor.toolbar.image": "Imagem",
+    "components.textEditor.toolbar.clear": "Limpar",
+    "components.textEditor.prompt.url": "URL",
+    "components.textEditor.prompt.imageUrl": "URL da imagem",
+    "components.textEditor.help.cssEmbedded": "O CSS e incorporado dentro do documento HTML salvo.",
+    "components.gadgets.clock.theme": "Tema",
+    "components.gadgets.clock.selectTheme": "Selecione um tema...",
+    "components.gadgets.clock.searchTheme": "Pesquisar tema",
+    "components.gadgets.clock.searchThemePlaceholder": "Pesquisar tema...",
+    "components.gadgets.clock.noThemesFound": "Nenhum tema encontrado.",
+    "components.gadgets.clock.activeTheme": "Ativo",
+    "components.gadgets.clock.analogAria": "Relogio analogico",
+    "components.gadgets.clock.digitalAria": "Relogio digital",
+    "components.tree.empty": "Nenhum item.",
+    "components.tree.selected": "Selecionados: {count}",
+    "components.tree.selectedLeafs": " (folhas)",
+    "components.menu.drag": "Arrastar menu",
+    "components.menu.ariaLabel": "Menu",
+    "components.toolbar.toggle": "Alternar barra de ferramentas",
+    "components.breadcrumb.ariaLabel": "Navega??o estrutural",
+    "components.breadcrumb.overflow": "Mais caminhos",
+    "components.pageControl.ariaLabel": "Controle de p?ginas",
+    "components.pageControl.empty": "Nenhuma p?gina vis?vel.",
+    "components.expandablePanel.ariaLabel": "Painel expansivel",
+    "components.carousel.goToSlide": "Ir para o slide {slide}",
+    "components.wizard.progress": "Progresso",
+    "components.menu.unpin": "Desafixar menu",
+    "components.wizard.step": "Etapa {step}",
+    "components.menu.empty": "Nenhum item encontrado.",
+    "components.menu.brandAlt": "Marca",
+    "components.menu.pin": "Fixar menu"
+   },
+   "password": [
+    {
+     "in": "",
+     "policy": {},
+     "out": "Senha não pode ser vazia."
+    },
+    {
+     "in": "",
+     "policy": {
+      "minSize": 4
+     },
+     "out": "Senha não pode ser vazia."
+    },
+    {
+     "in": "",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "Senha não pode ser vazia."
+    },
+    {
+     "in": "",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": "Senha não pode ser vazia."
+    },
+    {
+     "in": "   ",
+     "policy": {},
+     "out": "Senha não pode ser vazia."
+    },
+    {
+     "in": "   ",
+     "policy": {
+      "minSize": 4
+     },
+     "out": "Senha não pode ser vazia."
+    },
+    {
+     "in": "   ",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "Senha não pode ser vazia."
+    },
+    {
+     "in": "   ",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": "Senha não pode ser vazia."
+    },
+    {
+     "in": "a",
+     "policy": {},
+     "out": "Senha inválida: mínimo de 8 caracteres; deve conter letra maiúscula; deve conter número; deve conter caractere especial"
+    },
+    {
+     "in": "a",
+     "policy": {
+      "minSize": 4
+     },
+     "out": "Senha inválida: mínimo de 4 caracteres; deve conter letra maiúscula; deve conter número; deve conter caractere especial"
+    },
+    {
+     "in": "a",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "Senha inválida: mínimo de 12 caracteres; deve conter letra maiúscula; deve conter número; deve conter caractere especial"
+    },
+    {
+     "in": "a",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": null
+    },
+    {
+     "in": "Abcdef1!",
+     "policy": {},
+     "out": "Senha inválida: não pode conter sequências (ex.: abc, 123)"
+    },
+    {
+     "in": "Abcdef1!",
+     "policy": {
+      "minSize": 4
+     },
+     "out": "Senha inválida: não pode conter sequências (ex.: abc, 123)"
+    },
+    {
+     "in": "Abcdef1!",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "Senha inválida: mínimo de 12 caracteres; não pode conter sequências (ex.: abc, 123)"
+    },
+    {
+     "in": "Abcdef1!",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": null
+    },
+    {
+     "in": "abcdefgh",
+     "policy": {},
+     "out": "Senha inválida: deve conter letra maiúscula; deve conter número; deve conter caractere especial; não pode conter sequências (ex.: abc, 123)"
+    },
+    {
+     "in": "abcdefgh",
+     "policy": {
+      "minSize": 4
+     },
+     "out": "Senha inválida: deve conter letra maiúscula; deve conter número; deve conter caractere especial; não pode conter sequências (ex.: abc, 123)"
+    },
+    {
+     "in": "abcdefgh",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "Senha inválida: mínimo de 12 caracteres; deve conter letra maiúscula; deve conter número; deve conter caractere especial; não pode conter sequências (ex.: abc, 123)"
+    },
+    {
+     "in": "abcdefgh",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": null
+    },
+    {
+     "in": "ABCDEFGH",
+     "policy": {},
+     "out": "Senha inválida: deve conter letra minúscula; deve conter número; deve conter caractere especial; não pode conter sequências (ex.: abc, 123)"
+    },
+    {
+     "in": "ABCDEFGH",
+     "policy": {
+      "minSize": 4
+     },
+     "out": "Senha inválida: deve conter letra minúscula; deve conter número; deve conter caractere especial; não pode conter sequências (ex.: abc, 123)"
+    },
+    {
+     "in": "ABCDEFGH",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "Senha inválida: mínimo de 12 caracteres; deve conter letra minúscula; deve conter número; deve conter caractere especial; não pode conter sequências (ex.: abc, 123)"
+    },
+    {
+     "in": "ABCDEFGH",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": null
+    },
+    {
+     "in": "Abcdefg1",
+     "policy": {},
+     "out": "Senha inválida: deve conter caractere especial; não pode conter sequências (ex.: abc, 123)"
+    },
+    {
+     "in": "Abcdefg1",
+     "policy": {
+      "minSize": 4
+     },
+     "out": "Senha inválida: deve conter caractere especial; não pode conter sequências (ex.: abc, 123)"
+    },
+    {
+     "in": "Abcdefg1",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "Senha inválida: mínimo de 12 caracteres; deve conter caractere especial; não pode conter sequências (ex.: abc, 123)"
+    },
+    {
+     "in": "Abcdefg1",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": null
+    },
+    {
+     "in": "Abc12345!",
+     "policy": {},
+     "out": "Senha inválida: não pode conter sequências (ex.: abc, 123)"
+    },
+    {
+     "in": "Abc12345!",
+     "policy": {
+      "minSize": 4
+     },
+     "out": "Senha inválida: não pode conter sequências (ex.: abc, 123)"
+    },
+    {
+     "in": "Abc12345!",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "Senha inválida: mínimo de 12 caracteres; não pode conter sequências (ex.: abc, 123)"
+    },
+    {
+     "in": "Abc12345!",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": null
+    },
+    {
+     "in": "Aaa1!bcd",
+     "policy": {},
+     "out": "Senha inválida: não pode conter sequências (ex.: abc, 123)"
+    },
+    {
+     "in": "Aaa1!bcd",
+     "policy": {
+      "minSize": 4
+     },
+     "out": "Senha inválida: não pode conter sequências (ex.: abc, 123)"
+    },
+    {
+     "in": "Aaa1!bcd",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "Senha inválida: mínimo de 12 caracteres; não pode conter sequências (ex.: abc, 123)"
+    },
+    {
+     "in": "Aaa1!bcd",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": null
+    },
+    {
+     "in": "qwerty123",
+     "policy": {},
+     "out": "Senha inválida: deve conter letra maiúscula; deve conter caractere especial; não pode conter sequências (ex.: abc, 123)"
+    },
+    {
+     "in": "qwerty123",
+     "policy": {
+      "minSize": 4
+     },
+     "out": "Senha inválida: deve conter letra maiúscula; deve conter caractere especial; não pode conter sequências (ex.: abc, 123)"
+    },
+    {
+     "in": "qwerty123",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "Senha inválida: mínimo de 12 caracteres; deve conter letra maiúscula; deve conter caractere especial; não pode conter sequências (ex.: abc, 123)"
+    },
+    {
+     "in": "qwerty123",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": null
+    },
+    {
+     "in": "A1!a",
+     "policy": {},
+     "out": "Senha inválida: mínimo de 8 caracteres"
+    },
+    {
+     "in": "A1!a",
+     "policy": {
+      "minSize": 4
+     },
+     "out": null
+    },
+    {
+     "in": "A1!a",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "Senha inválida: mínimo de 12 caracteres"
+    },
+    {
+     "in": "A1!a",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": null
+    },
+    {
+     "in": "Aa1!Aa1!Aa1!",
+     "policy": {},
+     "out": null
+    },
+    {
+     "in": "Aa1!Aa1!Aa1!",
+     "policy": {
+      "minSize": 4
+     },
+     "out": null
+    },
+    {
+     "in": "Aa1!Aa1!Aa1!",
+     "policy": {
+      "minSize": 12
+     },
+     "out": null
+    },
+    {
+     "in": "Aa1!Aa1!Aa1!",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": null
+    },
+    {
+     "in": "Senha@2026",
+     "policy": {},
+     "out": null
+    },
+    {
+     "in": "Senha@2026",
+     "policy": {
+      "minSize": 4
+     },
+     "out": null
+    },
+    {
+     "in": "Senha@2026",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "Senha inválida: mínimo de 12 caracteres"
+    },
+    {
+     "in": "Senha@2026",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": null
+    }
+   ],
+   "birthdate": [
+    {
+     "value": "2999-01-01",
+     "policy": {},
+     "out": "Configuração inválida: informe minAge e/ou maxAge."
+    },
+    {
+     "value": "2999-01-01",
+     "policy": {
+      "minAge": 30,
+      "maxAge": 20
+     },
+     "out": "Configuração inválida: minAge deve ser <= maxAge."
+    },
+    {
+     "value": "",
+     "policy": {
+      "minAge": 18
+     },
+     "out": null
+    },
+    {
+     "value": "lixo",
+     "policy": {
+      "minAge": 18
+     },
+     "out": "Data inválida."
+    },
+    {
+     "value": "2999-01-01",
+     "policy": {
+      "minAge": 18
+     },
+     "out": "A idade deve ser de pelo menos 18 anos."
+    },
+    {
+     "value": "1000-01-01",
+     "policy": {
+      "maxAge": 120
+     },
+     "out": "A idade deve ser de no máximo 120 anos."
+    },
+    {
+     "value": "2999-01-01",
+     "policy": {
+      "minAge": 18,
+      "maxAge": 60
+     },
+     "out": "A idade deve estar entre 18 e 60 anos."
+    },
+    {
+     "value": "1000-01-01",
+     "policy": {
+      "minAge": 18,
+      "maxAge": 60
+     },
+     "out": "A idade deve estar entre 18 e 60 anos."
+    }
+   ],
+   "t": [
+    {
+     "key": "components.password.minSize",
+     "params": {
+      "min": 3
+     },
+     "out": "Mínimo 3 caracteres."
+    },
+    {
+     "key": "components.password.minSize",
+     "params": {
+      "min": "7"
+     },
+     "out": "Mínimo 7 caracteres."
+    },
+    {
+     "key": "components.password.minSize",
+     "params": {},
+     "out": "Mínimo {min} caracteres."
+    },
+    {
+     "key": "components.password.minSize",
+     "params": null,
+     "out": "Mínimo {min} caracteres."
+    },
+    {
+     "key": "components.validators.birthdate.ageBetween",
+     "params": {
+      "min": 1,
+      "max": 2
+     },
+     "out": "A idade deve estar entre 1 e 2 anos."
+    },
+    {
+     "key": "chave.que.nao.existe",
+     "params": null,
+     "out": "chave.que.nao.existe"
+    },
+    {
+     "key": "chave.que.nao.existe",
+     "params": {
+      "x": 1
+     },
+     "out": "chave.que.nao.existe"
+    }
+   ]
+  },
+  "pt-PT": {
+   "messages": {
+    "components.actions.clear": "Limpar",
+    "components.wizard.next": "Próximo",
+    "components.wizard.previous": "Anterior",
+    "components.wizard.finish": "Finalizar",
+    "components.password.show": "Mostrar senha",
+    "components.password.hide": "Ocultar senha",
+    "components.password.generate": "Gerar senha",
+    "components.password.common": "Senha muito comum. Escolha uma mais forte.",
+    "components.password.minSize": "Mínimo {min} caracteres.",
+    "components.password.upper": "Pelo menos 1 letra maiúscula.",
+    "components.password.lower": "Pelo menos 1 letra minúscula.",
+    "components.password.number": "Pelo menos 1 número.",
+    "components.password.special": "Pelo menos 1 caractere especial.",
+    "components.password.noRepeat": "Não repetir caracteres em sequência.",
+    "components.password.noSeqAsc": "Não usar sequências crescentes (ex: 1234, abcd).",
+    "components.password.noSeqDesc": "Não usar sequências decrescentes (ex: 4321, dcba).",
+    "components.inputs.required": "Campo obrigatório.",
+    "components.inputs.maxLength": "Campo deve ter no máximo {max} letra(s).",
+    "components.inputs.minLength": "Campo tem de ter no mínimo {min} letra(s).",
+    "components.inputs.minWords": "Campo tem de ter no mínimo {min} palavra(s).",
+    "components.inputs.textarea.required": "Campo de preenchimento obrigatório.",
+    "components.inputs.textarea.maxLength": "Texto deve ter no máximo {max} letra(s).",
+    "components.inputs.textarea.minLength": "Texto tem de ter no mínimo {min} letra(s).",
+    "components.inputs.textarea.minWords": "Texto tem de ter no mínimo {min} palavra(s).",
+    "components.inputs.textarea.minLines": "Texto tem de ter no mínimo {min} linha(s).",
+    "components.inputs.cpf.length": "CPF deve ter 11 dígitos.",
+    "components.inputs.cpf.invalid": "CPF inválido.",
+    "components.inputs.cnpj.length": "CNPJ deve ter 14 dígitos.",
+    "components.inputs.cnpj.invalid": "CNPJ inválido.",
+    "components.inputs.postalCode.BR.length": "CEP deve ter 8 dígitos.",
+    "components.inputs.postalCode.BR.invalid": "CEP inválido.",
+    "components.inputs.postalCode.PT.length": "Código postal deve ter 7 dígitos.",
+    "components.inputs.postalCode.PT.invalid": "Código postal inválido.",
+    "components.inputs.postalCode.US.length": "ZIP code deve ter 5 ou 9 dígitos.",
+    "components.inputs.postalCode.US.invalid": "ZIP code inválido.",
+    "components.inputs.postalCode.ES.length": "Código postal deve ter 5 dígitos.",
+    "components.inputs.postalCode.ES.invalid": "Código postal inválido.",
+    "components.inputs.postalCode.UY.length": "Código postal deve ter 5 dígitos.",
+    "components.inputs.postalCode.UY.invalid": "Código postal inválido.",
+    "components.inputs.postalCode.AR.length": "Código postal deve ter 4 ou 8 caracteres.",
+    "components.inputs.postalCode.AR.invalid": "Código postal inválido.",
+    "components.inputs.postalCode.PY.length": "Código postal deve ter 6 dígitos.",
+    "components.inputs.postalCode.PY.invalid": "Código postal inválido.",
+    "components.inputs.phone.invalid": "Telefone inválido.",
+    "components.inputs.email.invalid": "Email inválido.",
+    "components.inputs.otp.slot": "C?digo ?nico {slot}",
+    "components.inputs.otp.group": "C?digo ?nico",
+    "components.inputs.toggle.ariaLabel": "Alternar op??o",
+    "components.inputs.email.tempInvalid": "Email temporário inválido.",
+    "components.inputs.date.invalid": "Data inválida.",
+    "components.inputs.date.range": "Data deve estar entre {min} e {max}.",
+    "components.inputs.date.min": "Data deve ser a partir de {min}.",
+    "components.inputs.date.max": "Data deve ser até {max}.",
+    "components.inputs.birthdate.required": "Informe a data de nascimento.",
+    "components.validators.password.empty": "Senha não pode ser vazia.",
+    "components.validators.password.minSize": "mínimo de {min} caracteres",
+    "components.validators.password.upper": "deve conter letra maiúscula",
+    "components.validators.password.lower": "deve conter letra minúscula",
+    "components.validators.password.number": "deve conter número",
+    "components.validators.password.special": "deve conter caractere especial",
+    "components.validators.password.sequence": "não pode conter sequências (ex.: abc, 123)",
+    "components.validators.password.repeated": "não pode conter caracteres repetidos em série (ex.: aaa, 1111)",
+    "components.validators.password.invalid": "Senha inválida: {reasons}",
+    "components.validators.birthdate.configMissing": "Configuração inválida: informe minAge e/ou maxAge.",
+    "components.validators.birthdate.configRange": "Configuração inválida: minAge deve ser <= maxAge.",
+    "components.validators.birthdate.invalidDate": "Data inválida.",
+    "components.validators.birthdate.ageBetween": "A idade deve estar entre {min} e {max} anos.",
+    "components.validators.birthdate.ageMin": "A idade deve ser de pelo menos {min} anos.",
+    "components.validators.birthdate.ageMax": "A idade deve ser de no máximo {max} anos.",
+    "components.autocomplete.empty": "Nenhum registo encontrado.",
+    "components.autocomplete.loading": "A carregar...",
+    "components.inputs.number.min": "O valor deve ser no mínimo {min}.",
+    "components.inputs.number.max": "O valor deve ser no máximo {max}.",
+    "components.fab.resetConfirm": "Repor a posição do botão?",
+    "components.fab.resetPosition": "Repor posição",
+    "components.fab.yes": "Sim",
+    "components.fab.no": "Não",
+    "components.dock.resetPosition": "Repor posição",
+    "components.dock.resetConfirm": "Tem a certeza de que deseja repor a posição do dock para o padrão?",
+    "components.dock.dropHere": "Largue aqui",
+    "components.actions.cancel": "Cancelar",
+    "components.actions.confirm": "Confirmar",
+    "components.rating.required": "Por favor, forneça uma avaliação",
+    "components.rating.cancel": "Cancelar avaliação",
+    "components.radiogroup.cancel": "Nenhuma opção",
+    "components.checkboxgroup.checkAll": "Selecionar todos",
+    "components.orderlist.moveTop": "Mover para o topo",
+    "components.orderlist.moveUp": "Mover para cima",
+    "components.orderlist.moveDown": "Mover para baixo",
+    "components.orderlist.moveBottom": "Mover para o fim",
+    "components.orderlist.empty": "Nenhum item disponivel.",
+    "components.picklist.moveToTarget": "Mover selecionado para destino",
+    "components.picklist.moveAllToTarget": "Mover todos para destino",
+    "components.picklist.moveToSource": "Mover selecionado para origem",
+    "components.picklist.moveAllToSource": "Mover todos para origem",
+    "components.picklist.sourceHeader": "Origem",
+    "components.picklist.targetHeader": "Destino",
+    "components.picklist.sourceFilterPlaceholder": "Pesquisar na origem",
+    "components.picklist.targetFilterPlaceholder": "Pesquisar no destino",
+    "components.picklist.empty": "Nenhum item disponivel.",
+    "components.gadgets.clock.title": "Relógio",
+    "components.gadgets.calendar.title": "Calendário",
+    "components.gadgets.calendar.previousMonth": "M?s anterior",
+    "components.gadgets.calendar.nextMonth": "Pr?ximo m?s",
+    "components.gadgets.calendar.goToday": "Ir para hoje",
+    "components.gadgets.qrcode.title": "C?digo QR",
+    "components.gadgets.gauge.radialAria": "Medidor radial",
+    "components.gadgets.gauge.linearAria": "Medidor linear",
+    "components.gadgets.gauge.value": "Valor",
+    "components.datatable.empty": "Nenhum registo encontrado.",
+    "components.datatable.loading": "A carregar dados...",
+    "components.datatable.globalFilterPlaceholder": "Pesquisar em todas as colunas",
+    "components.datatable.clearFilters": "Limpar filtros",
+    "components.datatable.pagination": "Paginacao",
+    "components.datatable.first": "Primeira pagina",
+    "components.datatable.prev": "Pagina anterior",
+    "components.datatable.next": "Pagina seguinte",
+    "components.datatable.last": "Ultima pagina",
+    "components.datatable.jumpBackward": "Recuar varias paginas",
+    "components.datatable.jumpForward": "Avancar varias paginas",
+    "components.datatable.page": "Pagina {page}",
+    "components.datatable.rowsPerPage": "Linhas por pagina",
+    "components.datatable.pageReport": "{first} - {last} de {total}",
+    "components.datatable.columnFilterPlaceholder": "Filtrar {column}",
+    "components.actions.select": "Selecione",
+    "components.actions.search": "Pesquisar",
+    "components.actions.expand": "Expandir",
+    "components.actions.collapse": "Recolher",
+    "components.actions.expandAll": "Expandir tudo",
+    "components.actions.collapseAll": "Recolher tudo",
+    "components.actions.clearSelection": "Limpar selecao",
+    "components.actions.open": "Abrir",
+    "components.actions.openList": "Abrir lista",
+    "components.actions.close": "Fechar",
+    "components.actions.save": "Guardar",
+    "components.actions.loadHtml": "Carregar HTML",
+    "components.actions.top": "Topo",
+    "components.actions.up": "Subir",
+    "components.actions.down": "Descer",
+    "components.actions.bottom": "Fundo",
+    "components.menu.unpinAndCollapse": "Desafixar e recolher menu",
+    "components.menu.open": "Abrir menu",
+    "components.menu.close": "Fechar menu",
+    "components.menu.expand": "Expandir menu",
+    "components.menu.collapse": "Recolher menu",
+    "components.avatar.defaultAlt": "Avatar",
+    "components.badge.remove": "Remover badge",
+    "components.toast.loading": "A carregar...",
+    "components.toaster.close": "Fechar notificacao",
+    "components.whistler.close": "Fechar aviso",
+    "components.dialog.ariaLabel": "Dialogo",
+    "components.dialog.close": "Fechar",
+    "components.popup.ariaLabel": "Popup",
+    "components.inputs.select.placeholder": "Selecione",
+    "components.inputs.multiSelect.summary": "{count} selecionadas",
+    "components.inputs.multiSelect.removeChip": "Remover {label}",
+    "components.inputs.stepper.increase": "Aumentar valor",
+    "components.inputs.stepper.decrease": "Diminuir valor",
+    "components.textEditor.placeholder": "Escreva aqui...",
+    "components.textEditor.cssEditorLabel": "CSS incorporado",
+    "components.textEditor.editorAriaLabel": "Editor de texto rico",
+    "components.textEditor.toolbar.heading": "Titulo",
+    "components.textEditor.toolbar.subheading": "Subtitulo",
+    "components.textEditor.toolbar.heading3": "Titulo 3",
+    "components.textEditor.toolbar.normal": "Normal",
+    "components.textEditor.toolbar.defaultFont": "Predefinido",
+    "components.textEditor.toolbar.bold": "Negrito",
+    "components.textEditor.toolbar.italic": "Italico",
+    "components.textEditor.toolbar.underline": "Sublinhado",
+    "components.textEditor.toolbar.strike": "Riscado",
+    "components.textEditor.toolbar.textColor": "Cor do texto",
+    "components.textEditor.toolbar.highlightColor": "Cor do destaque",
+    "components.textEditor.toolbar.subscript": "Subscrito",
+    "components.textEditor.toolbar.superscript": "Sobrescrito",
+    "components.textEditor.toolbar.bullets": "Marcadores",
+    "components.textEditor.toolbar.numbered": "Numerado",
+    "components.textEditor.toolbar.outdent": "Diminuir avanco",
+    "components.textEditor.toolbar.indent": "Aumentar avanco",
+    "components.textEditor.toolbar.alignLeft": "Alinhar a esquerda",
+    "components.textEditor.toolbar.alignCenter": "Centrar",
+    "components.textEditor.toolbar.alignRight": "Alinhar a direita",
+    "components.textEditor.toolbar.justify": "Justificar",
+    "components.textEditor.toolbar.link": "Ligacao",
+    "components.textEditor.toolbar.image": "Imagem",
+    "components.textEditor.toolbar.clear": "Limpar",
+    "components.textEditor.prompt.url": "URL",
+    "components.textEditor.prompt.imageUrl": "URL da imagem",
+    "components.textEditor.help.cssEmbedded": "O CSS e incorporado dentro do documento HTML guardado.",
+    "components.gadgets.clock.theme": "Tema",
+    "components.gadgets.clock.selectTheme": "Selecione um tema...",
+    "components.gadgets.clock.searchTheme": "Pesquisar tema",
+    "components.gadgets.clock.searchThemePlaceholder": "Pesquisar tema...",
+    "components.gadgets.clock.noThemesFound": "Nenhum tema encontrado.",
+    "components.gadgets.clock.activeTheme": "Ativo",
+    "components.gadgets.clock.analogAria": "Relogio analogico",
+    "components.gadgets.clock.digitalAria": "Relogio digital",
+    "components.tree.empty": "Nenhum item.",
+    "components.tree.selected": "Selecionados: {count}",
+    "components.tree.selectedLeafs": " (folhas)",
+    "components.menu.drag": "Arrastar menu",
+    "components.menu.ariaLabel": "Menu",
+    "components.toolbar.toggle": "Alternar barra de ferramentas",
+    "components.breadcrumb.ariaLabel": "Navega??o estrutural",
+    "components.breadcrumb.overflow": "Mais caminhos",
+    "components.pageControl.ariaLabel": "Controlo de p?ginas",
+    "components.pageControl.empty": "Nenhuma p?gina vis?vel.",
+    "components.expandablePanel.ariaLabel": "Painel expansivel",
+    "components.carousel.goToSlide": "Ir para o slide {slide}",
+    "components.wizard.progress": "Progresso",
+    "components.menu.unpin": "Desafixar menu",
+    "components.wizard.step": "Etapa {step}",
+    "components.menu.empty": "Nenhum item encontrado.",
+    "components.menu.brandAlt": "Marca",
+    "components.menu.pin": "Fixar menu"
+   },
+   "password": [
+    {
+     "in": "",
+     "policy": {},
+     "out": "Senha não pode ser vazia."
+    },
+    {
+     "in": "",
+     "policy": {
+      "minSize": 4
+     },
+     "out": "Senha não pode ser vazia."
+    },
+    {
+     "in": "",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "Senha não pode ser vazia."
+    },
+    {
+     "in": "",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": "Senha não pode ser vazia."
+    },
+    {
+     "in": "   ",
+     "policy": {},
+     "out": "Senha não pode ser vazia."
+    },
+    {
+     "in": "   ",
+     "policy": {
+      "minSize": 4
+     },
+     "out": "Senha não pode ser vazia."
+    },
+    {
+     "in": "   ",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "Senha não pode ser vazia."
+    },
+    {
+     "in": "   ",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": "Senha não pode ser vazia."
+    },
+    {
+     "in": "a",
+     "policy": {},
+     "out": "Senha inválida: mínimo de 8 caracteres; deve conter letra maiúscula; deve conter número; deve conter caractere especial"
+    },
+    {
+     "in": "a",
+     "policy": {
+      "minSize": 4
+     },
+     "out": "Senha inválida: mínimo de 4 caracteres; deve conter letra maiúscula; deve conter número; deve conter caractere especial"
+    },
+    {
+     "in": "a",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "Senha inválida: mínimo de 12 caracteres; deve conter letra maiúscula; deve conter número; deve conter caractere especial"
+    },
+    {
+     "in": "a",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": null
+    },
+    {
+     "in": "Abcdef1!",
+     "policy": {},
+     "out": "Senha inválida: não pode conter sequências (ex.: abc, 123)"
+    },
+    {
+     "in": "Abcdef1!",
+     "policy": {
+      "minSize": 4
+     },
+     "out": "Senha inválida: não pode conter sequências (ex.: abc, 123)"
+    },
+    {
+     "in": "Abcdef1!",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "Senha inválida: mínimo de 12 caracteres; não pode conter sequências (ex.: abc, 123)"
+    },
+    {
+     "in": "Abcdef1!",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": null
+    },
+    {
+     "in": "abcdefgh",
+     "policy": {},
+     "out": "Senha inválida: deve conter letra maiúscula; deve conter número; deve conter caractere especial; não pode conter sequências (ex.: abc, 123)"
+    },
+    {
+     "in": "abcdefgh",
+     "policy": {
+      "minSize": 4
+     },
+     "out": "Senha inválida: deve conter letra maiúscula; deve conter número; deve conter caractere especial; não pode conter sequências (ex.: abc, 123)"
+    },
+    {
+     "in": "abcdefgh",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "Senha inválida: mínimo de 12 caracteres; deve conter letra maiúscula; deve conter número; deve conter caractere especial; não pode conter sequências (ex.: abc, 123)"
+    },
+    {
+     "in": "abcdefgh",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": null
+    },
+    {
+     "in": "ABCDEFGH",
+     "policy": {},
+     "out": "Senha inválida: deve conter letra minúscula; deve conter número; deve conter caractere especial; não pode conter sequências (ex.: abc, 123)"
+    },
+    {
+     "in": "ABCDEFGH",
+     "policy": {
+      "minSize": 4
+     },
+     "out": "Senha inválida: deve conter letra minúscula; deve conter número; deve conter caractere especial; não pode conter sequências (ex.: abc, 123)"
+    },
+    {
+     "in": "ABCDEFGH",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "Senha inválida: mínimo de 12 caracteres; deve conter letra minúscula; deve conter número; deve conter caractere especial; não pode conter sequências (ex.: abc, 123)"
+    },
+    {
+     "in": "ABCDEFGH",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": null
+    },
+    {
+     "in": "Abcdefg1",
+     "policy": {},
+     "out": "Senha inválida: deve conter caractere especial; não pode conter sequências (ex.: abc, 123)"
+    },
+    {
+     "in": "Abcdefg1",
+     "policy": {
+      "minSize": 4
+     },
+     "out": "Senha inválida: deve conter caractere especial; não pode conter sequências (ex.: abc, 123)"
+    },
+    {
+     "in": "Abcdefg1",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "Senha inválida: mínimo de 12 caracteres; deve conter caractere especial; não pode conter sequências (ex.: abc, 123)"
+    },
+    {
+     "in": "Abcdefg1",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": null
+    },
+    {
+     "in": "Abc12345!",
+     "policy": {},
+     "out": "Senha inválida: não pode conter sequências (ex.: abc, 123)"
+    },
+    {
+     "in": "Abc12345!",
+     "policy": {
+      "minSize": 4
+     },
+     "out": "Senha inválida: não pode conter sequências (ex.: abc, 123)"
+    },
+    {
+     "in": "Abc12345!",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "Senha inválida: mínimo de 12 caracteres; não pode conter sequências (ex.: abc, 123)"
+    },
+    {
+     "in": "Abc12345!",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": null
+    },
+    {
+     "in": "Aaa1!bcd",
+     "policy": {},
+     "out": "Senha inválida: não pode conter sequências (ex.: abc, 123)"
+    },
+    {
+     "in": "Aaa1!bcd",
+     "policy": {
+      "minSize": 4
+     },
+     "out": "Senha inválida: não pode conter sequências (ex.: abc, 123)"
+    },
+    {
+     "in": "Aaa1!bcd",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "Senha inválida: mínimo de 12 caracteres; não pode conter sequências (ex.: abc, 123)"
+    },
+    {
+     "in": "Aaa1!bcd",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": null
+    },
+    {
+     "in": "qwerty123",
+     "policy": {},
+     "out": "Senha inválida: deve conter letra maiúscula; deve conter caractere especial; não pode conter sequências (ex.: abc, 123)"
+    },
+    {
+     "in": "qwerty123",
+     "policy": {
+      "minSize": 4
+     },
+     "out": "Senha inválida: deve conter letra maiúscula; deve conter caractere especial; não pode conter sequências (ex.: abc, 123)"
+    },
+    {
+     "in": "qwerty123",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "Senha inválida: mínimo de 12 caracteres; deve conter letra maiúscula; deve conter caractere especial; não pode conter sequências (ex.: abc, 123)"
+    },
+    {
+     "in": "qwerty123",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": null
+    },
+    {
+     "in": "A1!a",
+     "policy": {},
+     "out": "Senha inválida: mínimo de 8 caracteres"
+    },
+    {
+     "in": "A1!a",
+     "policy": {
+      "minSize": 4
+     },
+     "out": null
+    },
+    {
+     "in": "A1!a",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "Senha inválida: mínimo de 12 caracteres"
+    },
+    {
+     "in": "A1!a",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": null
+    },
+    {
+     "in": "Aa1!Aa1!Aa1!",
+     "policy": {},
+     "out": null
+    },
+    {
+     "in": "Aa1!Aa1!Aa1!",
+     "policy": {
+      "minSize": 4
+     },
+     "out": null
+    },
+    {
+     "in": "Aa1!Aa1!Aa1!",
+     "policy": {
+      "minSize": 12
+     },
+     "out": null
+    },
+    {
+     "in": "Aa1!Aa1!Aa1!",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": null
+    },
+    {
+     "in": "Senha@2026",
+     "policy": {},
+     "out": null
+    },
+    {
+     "in": "Senha@2026",
+     "policy": {
+      "minSize": 4
+     },
+     "out": null
+    },
+    {
+     "in": "Senha@2026",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "Senha inválida: mínimo de 12 caracteres"
+    },
+    {
+     "in": "Senha@2026",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": null
+    }
+   ],
+   "birthdate": [
+    {
+     "value": "2999-01-01",
+     "policy": {},
+     "out": "Configuração inválida: informe minAge e/ou maxAge."
+    },
+    {
+     "value": "2999-01-01",
+     "policy": {
+      "minAge": 30,
+      "maxAge": 20
+     },
+     "out": "Configuração inválida: minAge deve ser <= maxAge."
+    },
+    {
+     "value": "",
+     "policy": {
+      "minAge": 18
+     },
+     "out": null
+    },
+    {
+     "value": "lixo",
+     "policy": {
+      "minAge": 18
+     },
+     "out": "Data inválida."
+    },
+    {
+     "value": "2999-01-01",
+     "policy": {
+      "minAge": 18
+     },
+     "out": "A idade deve ser de pelo menos 18 anos."
+    },
+    {
+     "value": "1000-01-01",
+     "policy": {
+      "maxAge": 120
+     },
+     "out": "A idade deve ser de no máximo 120 anos."
+    },
+    {
+     "value": "2999-01-01",
+     "policy": {
+      "minAge": 18,
+      "maxAge": 60
+     },
+     "out": "A idade deve estar entre 18 e 60 anos."
+    },
+    {
+     "value": "1000-01-01",
+     "policy": {
+      "minAge": 18,
+      "maxAge": 60
+     },
+     "out": "A idade deve estar entre 18 e 60 anos."
+    }
+   ],
+   "t": [
+    {
+     "key": "components.password.minSize",
+     "params": {
+      "min": 3
+     },
+     "out": "Mínimo 3 caracteres."
+    },
+    {
+     "key": "components.password.minSize",
+     "params": {
+      "min": "7"
+     },
+     "out": "Mínimo 7 caracteres."
+    },
+    {
+     "key": "components.password.minSize",
+     "params": {},
+     "out": "Mínimo {min} caracteres."
+    },
+    {
+     "key": "components.password.minSize",
+     "params": null,
+     "out": "Mínimo {min} caracteres."
+    },
+    {
+     "key": "components.validators.birthdate.ageBetween",
+     "params": {
+      "min": 1,
+      "max": 2
+     },
+     "out": "A idade deve estar entre 1 e 2 anos."
+    },
+    {
+     "key": "chave.que.nao.existe",
+     "params": null,
+     "out": "chave.que.nao.existe"
+    },
+    {
+     "key": "chave.que.nao.existe",
+     "params": {
+      "x": 1
+     },
+     "out": "chave.que.nao.existe"
+    }
+   ]
+  },
+  "en-US": {
+   "messages": {
+    "components.actions.clear": "Clear",
+    "components.wizard.next": "Next",
+    "components.wizard.previous": "Previous",
+    "components.wizard.finish": "Finish",
+    "components.password.show": "Show password",
+    "components.password.hide": "Hide password",
+    "components.password.generate": "Generate password",
+    "components.password.common": "Password is too common. Choose a stronger one.",
+    "components.password.minSize": "Minimum {min} characters.",
+    "components.password.upper": "At least 1 uppercase letter.",
+    "components.password.lower": "At least 1 lowercase letter.",
+    "components.password.number": "At least 1 number.",
+    "components.password.special": "At least 1 special character.",
+    "components.password.noRepeat": "Do not repeat characters in sequence.",
+    "components.password.noSeqAsc": "Do not use ascending sequences (e.g., 1234, abcd).",
+    "components.password.noSeqDesc": "Do not use descending sequences (e.g., 4321, dcba).",
+    "components.inputs.required": "Required field.",
+    "components.inputs.maxLength": "Field must have at most {max} letter(s).",
+    "components.inputs.minLength": "Field must have at least {min} letter(s).",
+    "components.inputs.minWords": "Field must have at least {min} word(s).",
+    "components.inputs.textarea.required": "This field is required.",
+    "components.inputs.textarea.maxLength": "Text must have at most {max} letter(s).",
+    "components.inputs.textarea.minLength": "Text must have at least {min} letter(s).",
+    "components.inputs.textarea.minWords": "Text must have at least {min} word(s).",
+    "components.inputs.textarea.minLines": "Text must have at least {min} line(s).",
+    "components.inputs.cpf.length": "CPF must have 11 digits.",
+    "components.inputs.cpf.invalid": "Invalid CPF.",
+    "components.inputs.cnpj.length": "CNPJ must have 14 digits.",
+    "components.inputs.cnpj.invalid": "Invalid CNPJ.",
+    "components.inputs.postalCode.BR.length": "CEP must have 8 digits.",
+    "components.inputs.postalCode.BR.invalid": "Invalid CEP.",
+    "components.inputs.postalCode.PT.length": "Postal code must have 7 digits.",
+    "components.inputs.postalCode.PT.invalid": "Invalid postal code.",
+    "components.inputs.postalCode.US.length": "ZIP code must have 5 or 9 digits.",
+    "components.inputs.postalCode.US.invalid": "Invalid ZIP code.",
+    "components.inputs.postalCode.ES.length": "Postal code must have 5 digits.",
+    "components.inputs.postalCode.ES.invalid": "Invalid postal code.",
+    "components.inputs.postalCode.UY.length": "Postal code must have 5 digits.",
+    "components.inputs.postalCode.UY.invalid": "Invalid postal code.",
+    "components.inputs.postalCode.AR.length": "Postal code must have 4 or 8 characters.",
+    "components.inputs.postalCode.AR.invalid": "Invalid postal code.",
+    "components.inputs.postalCode.PY.length": "Postal code must have 6 digits.",
+    "components.inputs.postalCode.PY.invalid": "Invalid postal code.",
+    "components.inputs.phone.invalid": "Invalid phone number.",
+    "components.inputs.email.invalid": "Invalid email.",
+    "components.inputs.otp.slot": "One-time code {slot}",
+    "components.inputs.otp.group": "One-time code",
+    "components.inputs.toggle.ariaLabel": "Toggle switch",
+    "components.inputs.email.tempInvalid": "Temporary email is not allowed.",
+    "components.inputs.date.invalid": "Invalid date.",
+    "components.inputs.date.range": "Date must be between {min} and {max}.",
+    "components.inputs.date.min": "Date must be on or after {min}.",
+    "components.inputs.date.max": "Date must be on or before {max}.",
+    "components.inputs.birthdate.required": "Please provide your birth date.",
+    "components.validators.password.empty": "Password cannot be empty.",
+    "components.validators.password.minSize": "minimum of {min} characters",
+    "components.validators.password.upper": "must include an uppercase letter",
+    "components.validators.password.lower": "must include a lowercase letter",
+    "components.validators.password.number": "must include a number",
+    "components.validators.password.special": "must include a special character",
+    "components.validators.password.sequence": "cannot contain sequences (e.g., abc, 123)",
+    "components.validators.password.repeated": "cannot contain repeated characters in sequence (e.g., aaa, 1111)",
+    "components.validators.password.invalid": "Invalid password: {reasons}",
+    "components.validators.birthdate.configMissing": "Invalid configuration: provide minAge and/or maxAge.",
+    "components.validators.birthdate.configRange": "Invalid configuration: minAge must be <= maxAge.",
+    "components.validators.birthdate.invalidDate": "Invalid date.",
+    "components.validators.birthdate.ageBetween": "Age must be between {min} and {max} years.",
+    "components.validators.birthdate.ageMin": "Age must be at least {min} years.",
+    "components.validators.birthdate.ageMax": "Age must be at most {max} years.",
+    "components.autocomplete.empty": "No records found.",
+    "components.autocomplete.loading": "Loading...",
+    "components.inputs.number.min": "Value must be at least {min}.",
+    "components.inputs.number.max": "Value must be at most {max}.",
+    "components.fab.resetConfirm": "Reset the button position?",
+    "components.fab.resetPosition": "Reset position",
+    "components.fab.yes": "Yes",
+    "components.fab.no": "No",
+    "components.dock.resetPosition": "Reset position",
+    "components.dock.resetConfirm": "Are you sure you want to reset the dock position to default?",
+    "components.dock.dropHere": "Drop here",
+    "components.actions.cancel": "Cancel",
+    "components.actions.confirm": "Confirm",
+    "components.rating.required": "Please provide a rating",
+    "components.rating.cancel": "Cancel rating",
+    "components.radiogroup.cancel": "No option",
+    "components.checkboxgroup.checkAll": "Select all",
+    "components.orderlist.moveTop": "Move to top",
+    "components.orderlist.moveUp": "Move up",
+    "components.orderlist.moveDown": "Move down",
+    "components.orderlist.moveBottom": "Move to bottom",
+    "components.orderlist.empty": "No items available.",
+    "components.picklist.moveToTarget": "Move selected to target",
+    "components.picklist.moveAllToTarget": "Move all to target",
+    "components.picklist.moveToSource": "Move selected to source",
+    "components.picklist.moveAllToSource": "Move all to source",
+    "components.picklist.sourceHeader": "Source",
+    "components.picklist.targetHeader": "Target",
+    "components.picklist.sourceFilterPlaceholder": "Search source",
+    "components.picklist.targetFilterPlaceholder": "Search target",
+    "components.picklist.empty": "No items available.",
+    "components.gadgets.clock.title": "Clock",
+    "components.gadgets.calendar.title": "Calendar",
+    "components.gadgets.calendar.previousMonth": "Previous month",
+    "components.gadgets.calendar.nextMonth": "Next month",
+    "components.gadgets.calendar.goToday": "Go to today",
+    "components.gadgets.qrcode.title": "QR Code",
+    "components.gadgets.gauge.radialAria": "Radial gauge",
+    "components.gadgets.gauge.linearAria": "Linear gauge",
+    "components.gadgets.gauge.value": "Value",
+    "components.datatable.empty": "No records found.",
+    "components.datatable.loading": "Loading data...",
+    "components.datatable.globalFilterPlaceholder": "Search in all columns",
+    "components.datatable.clearFilters": "Clear filters",
+    "components.datatable.pagination": "Pagination",
+    "components.datatable.first": "First page",
+    "components.datatable.prev": "Previous page",
+    "components.datatable.next": "Next page",
+    "components.datatable.last": "Last page",
+    "components.datatable.jumpBackward": "Jump back",
+    "components.datatable.jumpForward": "Jump forward",
+    "components.datatable.page": "Page {page}",
+    "components.datatable.rowsPerPage": "Rows per page",
+    "components.datatable.pageReport": "{first} - {last} of {total}",
+    "components.datatable.columnFilterPlaceholder": "Filter {column}",
+    "components.actions.select": "Select",
+    "components.actions.search": "Search",
+    "components.actions.expand": "Expand",
+    "components.actions.collapse": "Collapse",
+    "components.actions.expandAll": "Expand all",
+    "components.actions.collapseAll": "Collapse all",
+    "components.actions.clearSelection": "Clear selection",
+    "components.actions.open": "Open",
+    "components.actions.openList": "Open list",
+    "components.actions.close": "Close",
+    "components.actions.save": "Save",
+    "components.actions.loadHtml": "Load HTML",
+    "components.actions.top": "Top",
+    "components.actions.up": "Up",
+    "components.actions.down": "Down",
+    "components.actions.bottom": "Bottom",
+    "components.menu.unpinAndCollapse": "Unpin and collapse menu",
+    "components.menu.open": "Open menu",
+    "components.menu.close": "Close menu",
+    "components.menu.expand": "Expand menu",
+    "components.menu.collapse": "Collapse menu",
+    "components.avatar.defaultAlt": "Avatar",
+    "components.badge.remove": "Remove badge",
+    "components.toast.loading": "Loading...",
+    "components.toaster.close": "Close toast",
+    "components.whistler.close": "Close alert",
+    "components.dialog.ariaLabel": "Dialog",
+    "components.dialog.close": "Close",
+    "components.popup.ariaLabel": "Popup",
+    "components.inputs.select.placeholder": "Select",
+    "components.inputs.multiSelect.summary": "{count} selected",
+    "components.inputs.multiSelect.removeChip": "Remove {label}",
+    "components.inputs.stepper.increase": "Increase value",
+    "components.inputs.stepper.decrease": "Decrease value",
+    "components.textEditor.placeholder": "Type here...",
+    "components.textEditor.cssEditorLabel": "Embedded CSS",
+    "components.textEditor.editorAriaLabel": "Rich text editor",
+    "components.textEditor.toolbar.heading": "Heading",
+    "components.textEditor.toolbar.subheading": "Subheading",
+    "components.textEditor.toolbar.heading3": "Heading 3",
+    "components.textEditor.toolbar.normal": "Normal",
+    "components.textEditor.toolbar.defaultFont": "Default",
+    "components.textEditor.toolbar.bold": "Bold",
+    "components.textEditor.toolbar.italic": "Italic",
+    "components.textEditor.toolbar.underline": "Underline",
+    "components.textEditor.toolbar.strike": "Strike",
+    "components.textEditor.toolbar.textColor": "Text color",
+    "components.textEditor.toolbar.highlightColor": "Highlight color",
+    "components.textEditor.toolbar.subscript": "Subscript",
+    "components.textEditor.toolbar.superscript": "Superscript",
+    "components.textEditor.toolbar.bullets": "Bullets",
+    "components.textEditor.toolbar.numbered": "Numbered",
+    "components.textEditor.toolbar.outdent": "Outdent",
+    "components.textEditor.toolbar.indent": "Indent",
+    "components.textEditor.toolbar.alignLeft": "Align left",
+    "components.textEditor.toolbar.alignCenter": "Align center",
+    "components.textEditor.toolbar.alignRight": "Align right",
+    "components.textEditor.toolbar.justify": "Justify",
+    "components.textEditor.toolbar.link": "Link",
+    "components.textEditor.toolbar.image": "Image",
+    "components.textEditor.toolbar.clear": "Clear",
+    "components.textEditor.prompt.url": "URL",
+    "components.textEditor.prompt.imageUrl": "Image URL",
+    "components.textEditor.help.cssEmbedded": "CSS is embedded inside the saved HTML document.",
+    "components.gadgets.clock.theme": "Theme",
+    "components.gadgets.clock.selectTheme": "Select a theme...",
+    "components.gadgets.clock.searchTheme": "Search theme",
+    "components.gadgets.clock.searchThemePlaceholder": "Search theme...",
+    "components.gadgets.clock.noThemesFound": "No themes found.",
+    "components.gadgets.clock.activeTheme": "Active",
+    "components.gadgets.clock.analogAria": "Analog clock",
+    "components.gadgets.clock.digitalAria": "Digital clock",
+    "components.tree.empty": "No items.",
+    "components.tree.selected": "Selected: {count}",
+    "components.tree.selectedLeafs": " (leafs)",
+    "components.menu.drag": "Drag menu",
+    "components.menu.ariaLabel": "Menu",
+    "components.toolbar.toggle": "Toggle toolbar",
+    "components.breadcrumb.ariaLabel": "Breadcrumb",
+    "components.breadcrumb.overflow": "More paths",
+    "components.pageControl.ariaLabel": "Page control",
+    "components.pageControl.empty": "No visible pages.",
+    "components.expandablePanel.ariaLabel": "Expandable panel",
+    "components.carousel.goToSlide": "Go to slide {slide}",
+    "components.wizard.progress": "Progress",
+    "components.menu.unpin": "Unpin menu",
+    "components.wizard.step": "Step {step}",
+    "components.menu.empty": "No items found.",
+    "components.menu.brandAlt": "Brand",
+    "components.menu.pin": "Pin menu"
+   },
+   "password": [
+    {
+     "in": "",
+     "policy": {},
+     "out": "Password cannot be empty."
+    },
+    {
+     "in": "",
+     "policy": {
+      "minSize": 4
+     },
+     "out": "Password cannot be empty."
+    },
+    {
+     "in": "",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "Password cannot be empty."
+    },
+    {
+     "in": "",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": "Password cannot be empty."
+    },
+    {
+     "in": "   ",
+     "policy": {},
+     "out": "Password cannot be empty."
+    },
+    {
+     "in": "   ",
+     "policy": {
+      "minSize": 4
+     },
+     "out": "Password cannot be empty."
+    },
+    {
+     "in": "   ",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "Password cannot be empty."
+    },
+    {
+     "in": "   ",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": "Password cannot be empty."
+    },
+    {
+     "in": "a",
+     "policy": {},
+     "out": "Invalid password: minimum of 8 characters; must include an uppercase letter; must include a number; must include a special character"
+    },
+    {
+     "in": "a",
+     "policy": {
+      "minSize": 4
+     },
+     "out": "Invalid password: minimum of 4 characters; must include an uppercase letter; must include a number; must include a special character"
+    },
+    {
+     "in": "a",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "Invalid password: minimum of 12 characters; must include an uppercase letter; must include a number; must include a special character"
+    },
+    {
+     "in": "a",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": null
+    },
+    {
+     "in": "Abcdef1!",
+     "policy": {},
+     "out": "Invalid password: cannot contain sequences (e.g., abc, 123)"
+    },
+    {
+     "in": "Abcdef1!",
+     "policy": {
+      "minSize": 4
+     },
+     "out": "Invalid password: cannot contain sequences (e.g., abc, 123)"
+    },
+    {
+     "in": "Abcdef1!",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "Invalid password: minimum of 12 characters; cannot contain sequences (e.g., abc, 123)"
+    },
+    {
+     "in": "Abcdef1!",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": null
+    },
+    {
+     "in": "abcdefgh",
+     "policy": {},
+     "out": "Invalid password: must include an uppercase letter; must include a number; must include a special character; cannot contain sequences (e.g., abc, 123)"
+    },
+    {
+     "in": "abcdefgh",
+     "policy": {
+      "minSize": 4
+     },
+     "out": "Invalid password: must include an uppercase letter; must include a number; must include a special character; cannot contain sequences (e.g., abc, 123)"
+    },
+    {
+     "in": "abcdefgh",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "Invalid password: minimum of 12 characters; must include an uppercase letter; must include a number; must include a special character; cannot contain sequences (e.g., abc, 123)"
+    },
+    {
+     "in": "abcdefgh",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": null
+    },
+    {
+     "in": "ABCDEFGH",
+     "policy": {},
+     "out": "Invalid password: must include a lowercase letter; must include a number; must include a special character; cannot contain sequences (e.g., abc, 123)"
+    },
+    {
+     "in": "ABCDEFGH",
+     "policy": {
+      "minSize": 4
+     },
+     "out": "Invalid password: must include a lowercase letter; must include a number; must include a special character; cannot contain sequences (e.g., abc, 123)"
+    },
+    {
+     "in": "ABCDEFGH",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "Invalid password: minimum of 12 characters; must include a lowercase letter; must include a number; must include a special character; cannot contain sequences (e.g., abc, 123)"
+    },
+    {
+     "in": "ABCDEFGH",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": null
+    },
+    {
+     "in": "Abcdefg1",
+     "policy": {},
+     "out": "Invalid password: must include a special character; cannot contain sequences (e.g., abc, 123)"
+    },
+    {
+     "in": "Abcdefg1",
+     "policy": {
+      "minSize": 4
+     },
+     "out": "Invalid password: must include a special character; cannot contain sequences (e.g., abc, 123)"
+    },
+    {
+     "in": "Abcdefg1",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "Invalid password: minimum of 12 characters; must include a special character; cannot contain sequences (e.g., abc, 123)"
+    },
+    {
+     "in": "Abcdefg1",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": null
+    },
+    {
+     "in": "Abc12345!",
+     "policy": {},
+     "out": "Invalid password: cannot contain sequences (e.g., abc, 123)"
+    },
+    {
+     "in": "Abc12345!",
+     "policy": {
+      "minSize": 4
+     },
+     "out": "Invalid password: cannot contain sequences (e.g., abc, 123)"
+    },
+    {
+     "in": "Abc12345!",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "Invalid password: minimum of 12 characters; cannot contain sequences (e.g., abc, 123)"
+    },
+    {
+     "in": "Abc12345!",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": null
+    },
+    {
+     "in": "Aaa1!bcd",
+     "policy": {},
+     "out": "Invalid password: cannot contain sequences (e.g., abc, 123)"
+    },
+    {
+     "in": "Aaa1!bcd",
+     "policy": {
+      "minSize": 4
+     },
+     "out": "Invalid password: cannot contain sequences (e.g., abc, 123)"
+    },
+    {
+     "in": "Aaa1!bcd",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "Invalid password: minimum of 12 characters; cannot contain sequences (e.g., abc, 123)"
+    },
+    {
+     "in": "Aaa1!bcd",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": null
+    },
+    {
+     "in": "qwerty123",
+     "policy": {},
+     "out": "Invalid password: must include an uppercase letter; must include a special character; cannot contain sequences (e.g., abc, 123)"
+    },
+    {
+     "in": "qwerty123",
+     "policy": {
+      "minSize": 4
+     },
+     "out": "Invalid password: must include an uppercase letter; must include a special character; cannot contain sequences (e.g., abc, 123)"
+    },
+    {
+     "in": "qwerty123",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "Invalid password: minimum of 12 characters; must include an uppercase letter; must include a special character; cannot contain sequences (e.g., abc, 123)"
+    },
+    {
+     "in": "qwerty123",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": null
+    },
+    {
+     "in": "A1!a",
+     "policy": {},
+     "out": "Invalid password: minimum of 8 characters"
+    },
+    {
+     "in": "A1!a",
+     "policy": {
+      "minSize": 4
+     },
+     "out": null
+    },
+    {
+     "in": "A1!a",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "Invalid password: minimum of 12 characters"
+    },
+    {
+     "in": "A1!a",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": null
+    },
+    {
+     "in": "Aa1!Aa1!Aa1!",
+     "policy": {},
+     "out": null
+    },
+    {
+     "in": "Aa1!Aa1!Aa1!",
+     "policy": {
+      "minSize": 4
+     },
+     "out": null
+    },
+    {
+     "in": "Aa1!Aa1!Aa1!",
+     "policy": {
+      "minSize": 12
+     },
+     "out": null
+    },
+    {
+     "in": "Aa1!Aa1!Aa1!",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": null
+    },
+    {
+     "in": "Senha@2026",
+     "policy": {},
+     "out": null
+    },
+    {
+     "in": "Senha@2026",
+     "policy": {
+      "minSize": 4
+     },
+     "out": null
+    },
+    {
+     "in": "Senha@2026",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "Invalid password: minimum of 12 characters"
+    },
+    {
+     "in": "Senha@2026",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": null
+    }
+   ],
+   "birthdate": [
+    {
+     "value": "2999-01-01",
+     "policy": {},
+     "out": "Invalid configuration: provide minAge and/or maxAge."
+    },
+    {
+     "value": "2999-01-01",
+     "policy": {
+      "minAge": 30,
+      "maxAge": 20
+     },
+     "out": "Invalid configuration: minAge must be <= maxAge."
+    },
+    {
+     "value": "",
+     "policy": {
+      "minAge": 18
+     },
+     "out": null
+    },
+    {
+     "value": "lixo",
+     "policy": {
+      "minAge": 18
+     },
+     "out": "Invalid date."
+    },
+    {
+     "value": "2999-01-01",
+     "policy": {
+      "minAge": 18
+     },
+     "out": "Age must be at least 18 years."
+    },
+    {
+     "value": "1000-01-01",
+     "policy": {
+      "maxAge": 120
+     },
+     "out": "Age must be at most 120 years."
+    },
+    {
+     "value": "2999-01-01",
+     "policy": {
+      "minAge": 18,
+      "maxAge": 60
+     },
+     "out": "Age must be between 18 and 60 years."
+    },
+    {
+     "value": "1000-01-01",
+     "policy": {
+      "minAge": 18,
+      "maxAge": 60
+     },
+     "out": "Age must be between 18 and 60 years."
+    }
+   ],
+   "t": [
+    {
+     "key": "components.password.minSize",
+     "params": {
+      "min": 3
+     },
+     "out": "Minimum 3 characters."
+    },
+    {
+     "key": "components.password.minSize",
+     "params": {
+      "min": "7"
+     },
+     "out": "Minimum 7 characters."
+    },
+    {
+     "key": "components.password.minSize",
+     "params": {},
+     "out": "Minimum {min} characters."
+    },
+    {
+     "key": "components.password.minSize",
+     "params": null,
+     "out": "Minimum {min} characters."
+    },
+    {
+     "key": "components.validators.birthdate.ageBetween",
+     "params": {
+      "min": 1,
+      "max": 2
+     },
+     "out": "Age must be between 1 and 2 years."
+    },
+    {
+     "key": "chave.que.nao.existe",
+     "params": null,
+     "out": "chave.que.nao.existe"
+    },
+    {
+     "key": "chave.que.nao.existe",
+     "params": {
+      "x": 1
+     },
+     "out": "chave.que.nao.existe"
+    }
+   ]
+  },
+  "es": {
+   "messages": {
+    "components.actions.clear": "Limpiar",
+    "components.wizard.next": "Siguiente",
+    "components.wizard.previous": "Anterior",
+    "components.wizard.finish": "Finalizar",
+    "components.password.show": "Mostrar contraseÃ±a",
+    "components.password.hide": "Ocultar contraseÃ±a",
+    "components.password.generate": "Generar contraseÃ±a",
+    "components.password.common": "La contraseÃ±a es muy comÃºn. Elige una mÃ¡s fuerte.",
+    "components.password.minSize": "MÃ­nimo {min} caracteres.",
+    "components.password.upper": "Al menos 1 letra mayÃºscula.",
+    "components.password.lower": "Al menos 1 letra minÃºscula.",
+    "components.password.number": "Al menos 1 nÃºmero.",
+    "components.password.special": "Al menos 1 carÃ¡cter especial.",
+    "components.password.noRepeat": "No repetir caracteres en secuencia.",
+    "components.password.noSeqAsc": "No usar secuencias crecientes (ej: 1234, abcd).",
+    "components.password.noSeqDesc": "No usar secuencias decrecientes (ej: 4321, dcba).",
+    "components.inputs.required": "Campo obligatorio.",
+    "components.inputs.maxLength": "El campo debe tener como mÃ¡ximo {max} letra(s).",
+    "components.inputs.minLength": "El campo debe tener al menos {min} letra(s).",
+    "components.inputs.minWords": "El campo debe tener al menos {min} palabra(s).",
+    "components.inputs.textarea.required": "Este campo es obligatorio.",
+    "components.inputs.textarea.maxLength": "El texto debe tener como mÃ¡ximo {max} letra(s).",
+    "components.inputs.textarea.minLength": "El texto debe tener al menos {min} letra(s).",
+    "components.inputs.textarea.minWords": "El texto debe tener al menos {min} palabra(s).",
+    "components.inputs.textarea.minLines": "El texto debe tener al menos {min} linea(s).",
+    "components.inputs.cpf.length": "El CPF debe tener 11 dÃ­gitos.",
+    "components.inputs.cpf.invalid": "CPF invÃ¡lido.",
+    "components.inputs.cnpj.length": "El CNPJ debe tener 14 dÃ­gitos.",
+    "components.inputs.cnpj.invalid": "CNPJ invÃ¡lido.",
+    "components.inputs.postalCode.BR.length": "El CEP debe tener 8 dÃ­gitos.",
+    "components.inputs.postalCode.BR.invalid": "CEP invÃ¡lido.",
+    "components.inputs.postalCode.PT.length": "El cÃ³digo postal debe tener 7 dÃ­gitos.",
+    "components.inputs.postalCode.PT.invalid": "CÃ³digo postal invÃ¡lido.",
+    "components.inputs.postalCode.US.length": "El ZIP code debe tener 5 o 9 dÃ­gitos.",
+    "components.inputs.postalCode.US.invalid": "ZIP code invÃ¡lido.",
+    "components.inputs.postalCode.ES.length": "El cÃ³digo postal debe tener 5 dÃ­gitos.",
+    "components.inputs.postalCode.ES.invalid": "CÃ³digo postal invÃ¡lido.",
+    "components.inputs.postalCode.UY.length": "El cÃ³digo postal debe tener 5 dÃ­gitos.",
+    "components.inputs.postalCode.UY.invalid": "CÃ³digo postal invÃ¡lido.",
+    "components.inputs.postalCode.AR.length": "El cÃ³digo postal debe tener 4 u 8 caracteres.",
+    "components.inputs.postalCode.AR.invalid": "CÃ³digo postal invÃ¡lido.",
+    "components.inputs.postalCode.PY.length": "El cÃ³digo postal debe tener 6 dÃ­gitos.",
+    "components.inputs.postalCode.PY.invalid": "CÃ³digo postal invÃ¡lido.",
+    "components.inputs.phone.invalid": "TelÃ©fono invÃ¡lido.",
+    "components.inputs.email.invalid": "Email invÃ¡lido.",
+    "components.inputs.otp.slot": "C?digo de un solo uso {slot}",
+    "components.inputs.otp.group": "C?digo de un solo uso",
+    "components.inputs.toggle.ariaLabel": "Alternar opcion",
+    "components.inputs.email.tempInvalid": "Email temporal invÃ¡lido.",
+    "components.inputs.date.invalid": "Fecha invÃ¡lida.",
+    "components.inputs.date.range": "La fecha debe estar entre {min} y {max}.",
+    "components.inputs.date.min": "La fecha debe ser a partir de {min}.",
+    "components.inputs.date.max": "La fecha debe ser hasta {max}.",
+    "components.inputs.birthdate.required": "Informe la fecha de nacimiento.",
+    "components.validators.password.empty": "La contraseÃ±a no puede estar vacÃ­a.",
+    "components.validators.password.minSize": "mÃ­nimo de {min} caracteres",
+    "components.validators.password.upper": "debe contener letra mayÃºscula",
+    "components.validators.password.lower": "debe contener letra minÃºscula",
+    "components.validators.password.number": "debe contener nÃºmero",
+    "components.validators.password.special": "debe contener carÃ¡cter especial",
+    "components.validators.password.sequence": "no puede contener secuencias (ej.: abc, 123)",
+    "components.validators.password.repeated": "no puede contener caracteres repetidos en serie (ej.: aaa, 1111)",
+    "components.validators.password.invalid": "ContraseÃ±a invÃ¡lida: {reasons}",
+    "components.validators.birthdate.configMissing": "ConfiguraciÃ³n invÃ¡lida: informe minAge y/o maxAge.",
+    "components.validators.birthdate.configRange": "ConfiguraciÃ³n invÃ¡lida: minAge debe ser <= maxAge.",
+    "components.validators.birthdate.invalidDate": "Fecha invÃ¡lida.",
+    "components.validators.birthdate.ageBetween": "La edad debe estar entre {min} y {max} aÃ±os.",
+    "components.validators.birthdate.ageMin": "La edad debe ser al menos {min} aÃ±os.",
+    "components.validators.birthdate.ageMax": "La edad debe ser como mÃ¡ximo {max} aÃ±os.",
+    "components.autocomplete.empty": "No se encontraron registros.",
+    "components.autocomplete.loading": "Cargando...",
+    "components.inputs.number.min": "El valor debe ser al menos {min}.",
+    "components.inputs.number.max": "El valor debe ser como mÃ¡ximo {max}.",
+    "components.fab.resetConfirm": "Â¿Restablecer la posiciÃ³n del botÃ³n?",
+    "components.fab.resetPosition": "Restablecer posiciÃ³n",
+    "components.fab.yes": "SÃ­",
+    "components.fab.no": "No",
+    "components.dock.resetPosition": "Restablecer posiciÃ³n",
+    "components.dock.resetConfirm": "Â¿EstÃ¡ seguro de que desea restablecer la posiciÃ³n del dock al valor predeterminado?",
+    "components.dock.dropHere": "Suelta aquÃ­",
+    "components.actions.cancel": "Cancelar",
+    "components.actions.confirm": "Confirmar",
+    "components.rating.required": "Por favor, proporcione una calificaciÃ³n",
+    "components.rating.cancel": "Cancelar calificaciÃ³n",
+    "components.radiogroup.cancel": "Ninguna opciÃ³n",
+    "components.checkboxgroup.checkAll": "Seleccionar todos",
+    "components.orderlist.moveTop": "Mover al inicio",
+    "components.orderlist.moveUp": "Mover hacia arriba",
+    "components.orderlist.moveDown": "Mover hacia abajo",
+    "components.orderlist.moveBottom": "Mover al final",
+    "components.orderlist.empty": "No hay elementos disponibles.",
+    "components.picklist.moveToTarget": "Mover seleccionados al destino",
+    "components.picklist.moveAllToTarget": "Mover todos al destino",
+    "components.picklist.moveToSource": "Mover seleccionados al origen",
+    "components.picklist.moveAllToSource": "Mover todos al origen",
+    "components.picklist.sourceHeader": "Origen",
+    "components.picklist.targetHeader": "Destino",
+    "components.picklist.sourceFilterPlaceholder": "Buscar en origen",
+    "components.picklist.targetFilterPlaceholder": "Buscar en destino",
+    "components.picklist.empty": "No hay elementos disponibles.",
+    "components.gadgets.clock.title": "Reloj",
+    "components.gadgets.calendar.title": "Calendario",
+    "components.gadgets.calendar.previousMonth": "Mes anterior",
+    "components.gadgets.calendar.nextMonth": "Mes siguiente",
+    "components.gadgets.calendar.goToday": "Ir a hoy",
+    "components.gadgets.qrcode.title": "C?digo QR",
+    "components.gadgets.gauge.radialAria": "Medidor radial",
+    "components.gadgets.gauge.linearAria": "Medidor lineal",
+    "components.gadgets.gauge.value": "Valor",
+    "components.datatable.empty": "No se encontraron registros.",
+    "components.datatable.loading": "Cargando datos...",
+    "components.datatable.globalFilterPlaceholder": "Buscar en todas las columnas",
+    "components.datatable.clearFilters": "Limpiar filtros",
+    "components.datatable.pagination": "Paginacion",
+    "components.datatable.first": "Primera pagina",
+    "components.datatable.prev": "Pagina anterior",
+    "components.datatable.next": "Pagina siguiente",
+    "components.datatable.last": "Ultima pagina",
+    "components.datatable.jumpBackward": "Retroceder varias paginas",
+    "components.datatable.jumpForward": "Avanzar varias paginas",
+    "components.datatable.page": "Pagina {page}",
+    "components.datatable.rowsPerPage": "Filas por pagina",
+    "components.datatable.pageReport": "{first} - {last} de {total}",
+    "components.datatable.columnFilterPlaceholder": "Filtrar {column}",
+    "components.actions.select": "Seleccionar",
+    "components.actions.search": "Buscar",
+    "components.actions.expand": "Expandir",
+    "components.actions.collapse": "Contraer",
+    "components.actions.expandAll": "Expandir todo",
+    "components.actions.collapseAll": "Contraer todo",
+    "components.actions.clearSelection": "Limpiar seleccion",
+    "components.actions.open": "Abrir",
+    "components.actions.openList": "Abrir lista",
+    "components.actions.close": "Cerrar",
+    "components.actions.save": "Guardar",
+    "components.actions.loadHtml": "Cargar HTML",
+    "components.actions.top": "Arriba",
+    "components.actions.up": "Subir",
+    "components.actions.down": "Bajar",
+    "components.actions.bottom": "Abajo",
+    "components.menu.unpinAndCollapse": "Desanclar y contraer menu",
+    "components.menu.open": "Abrir menu",
+    "components.menu.close": "Cerrar menu",
+    "components.menu.expand": "Expandir menu",
+    "components.menu.collapse": "Contraer menu",
+    "components.avatar.defaultAlt": "Avatar",
+    "components.badge.remove": "Quitar insignia",
+    "components.toast.loading": "Cargando...",
+    "components.toaster.close": "Cerrar notificacion",
+    "components.whistler.close": "Cerrar aviso",
+    "components.dialog.ariaLabel": "Dialogo",
+    "components.dialog.close": "Cerrar",
+    "components.popup.ariaLabel": "Popup",
+    "components.inputs.select.placeholder": "Seleccionar",
+    "components.inputs.multiSelect.summary": "{count} seleccionadas",
+    "components.inputs.multiSelect.removeChip": "Quitar {label}",
+    "components.inputs.stepper.increase": "Aumentar valor",
+    "components.inputs.stepper.decrease": "Disminuir valor",
+    "components.textEditor.placeholder": "Escribe aqui...",
+    "components.textEditor.cssEditorLabel": "CSS incrustado",
+    "components.textEditor.editorAriaLabel": "Editor de texto enriquecido",
+    "components.textEditor.toolbar.heading": "Titulo",
+    "components.textEditor.toolbar.subheading": "Subtitulo",
+    "components.textEditor.toolbar.heading3": "Titulo 3",
+    "components.textEditor.toolbar.normal": "Normal",
+    "components.textEditor.toolbar.defaultFont": "Predeterminado",
+    "components.textEditor.toolbar.bold": "Negrita",
+    "components.textEditor.toolbar.italic": "Cursiva",
+    "components.textEditor.toolbar.underline": "Subrayado",
+    "components.textEditor.toolbar.strike": "Tachado",
+    "components.textEditor.toolbar.textColor": "Color del texto",
+    "components.textEditor.toolbar.highlightColor": "Color del resaltado",
+    "components.textEditor.toolbar.subscript": "Subindice",
+    "components.textEditor.toolbar.superscript": "Superindice",
+    "components.textEditor.toolbar.bullets": "Vinetas",
+    "components.textEditor.toolbar.numbered": "Numerado",
+    "components.textEditor.toolbar.outdent": "Reducir sangria",
+    "components.textEditor.toolbar.indent": "Aumentar sangria",
+    "components.textEditor.toolbar.alignLeft": "Alinear a la izquierda",
+    "components.textEditor.toolbar.alignCenter": "Centrar",
+    "components.textEditor.toolbar.alignRight": "Alinear a la derecha",
+    "components.textEditor.toolbar.justify": "Justificar",
+    "components.textEditor.toolbar.link": "Enlace",
+    "components.textEditor.toolbar.image": "Imagen",
+    "components.textEditor.toolbar.clear": "Limpiar",
+    "components.textEditor.prompt.url": "URL",
+    "components.textEditor.prompt.imageUrl": "URL de la imagen",
+    "components.textEditor.help.cssEmbedded": "El CSS se incrusta dentro del documento HTML guardado.",
+    "components.gadgets.clock.theme": "Tema",
+    "components.gadgets.clock.selectTheme": "Selecciona un tema...",
+    "components.gadgets.clock.searchTheme": "Buscar tema",
+    "components.gadgets.clock.searchThemePlaceholder": "Buscar tema...",
+    "components.gadgets.clock.noThemesFound": "No se encontraron temas.",
+    "components.gadgets.clock.activeTheme": "Activo",
+    "components.gadgets.clock.analogAria": "Reloj analogico",
+    "components.gadgets.clock.digitalAria": "Reloj digital",
+    "components.tree.empty": "No hay elementos.",
+    "components.tree.selected": "Seleccionados: {count}",
+    "components.tree.selectedLeafs": " (hojas)",
+    "components.menu.drag": "Arrastrar menu",
+    "components.menu.ariaLabel": "Menu",
+    "components.toolbar.toggle": "Alternar barra de herramientas",
+    "components.breadcrumb.ariaLabel": "Ruta de navegaci?n",
+    "components.breadcrumb.overflow": "M?s rutas",
+    "components.pageControl.ariaLabel": "Control de p?ginas",
+    "components.pageControl.empty": "No hay p?ginas visibles.",
+    "components.expandablePanel.ariaLabel": "Panel expandible",
+    "components.carousel.goToSlide": "Ir a la diapositiva {slide}",
+    "components.wizard.progress": "Progreso",
+    "components.menu.unpin": "Desfijar menu",
+    "components.wizard.step": "Paso {step}",
+    "components.menu.empty": "No se encontraron elementos.",
+    "components.menu.brandAlt": "Marca",
+    "components.menu.pin": "Fijar menu"
+   },
+   "password": [
+    {
+     "in": "",
+     "policy": {},
+     "out": "La contraseÃ±a no puede estar vacÃ­a."
+    },
+    {
+     "in": "",
+     "policy": {
+      "minSize": 4
+     },
+     "out": "La contraseÃ±a no puede estar vacÃ­a."
+    },
+    {
+     "in": "",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "La contraseÃ±a no puede estar vacÃ­a."
+    },
+    {
+     "in": "",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": "La contraseÃ±a no puede estar vacÃ­a."
+    },
+    {
+     "in": "   ",
+     "policy": {},
+     "out": "La contraseÃ±a no puede estar vacÃ­a."
+    },
+    {
+     "in": "   ",
+     "policy": {
+      "minSize": 4
+     },
+     "out": "La contraseÃ±a no puede estar vacÃ­a."
+    },
+    {
+     "in": "   ",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "La contraseÃ±a no puede estar vacÃ­a."
+    },
+    {
+     "in": "   ",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": "La contraseÃ±a no puede estar vacÃ­a."
+    },
+    {
+     "in": "a",
+     "policy": {},
+     "out": "ContraseÃ±a invÃ¡lida: mÃ­nimo de 8 caracteres; debe contener letra mayÃºscula; debe contener nÃºmero; debe contener carÃ¡cter especial"
+    },
+    {
+     "in": "a",
+     "policy": {
+      "minSize": 4
+     },
+     "out": "ContraseÃ±a invÃ¡lida: mÃ­nimo de 4 caracteres; debe contener letra mayÃºscula; debe contener nÃºmero; debe contener carÃ¡cter especial"
+    },
+    {
+     "in": "a",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "ContraseÃ±a invÃ¡lida: mÃ­nimo de 12 caracteres; debe contener letra mayÃºscula; debe contener nÃºmero; debe contener carÃ¡cter especial"
+    },
+    {
+     "in": "a",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": null
+    },
+    {
+     "in": "Abcdef1!",
+     "policy": {},
+     "out": "ContraseÃ±a invÃ¡lida: no puede contener secuencias (ej.: abc, 123)"
+    },
+    {
+     "in": "Abcdef1!",
+     "policy": {
+      "minSize": 4
+     },
+     "out": "ContraseÃ±a invÃ¡lida: no puede contener secuencias (ej.: abc, 123)"
+    },
+    {
+     "in": "Abcdef1!",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "ContraseÃ±a invÃ¡lida: mÃ­nimo de 12 caracteres; no puede contener secuencias (ej.: abc, 123)"
+    },
+    {
+     "in": "Abcdef1!",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": null
+    },
+    {
+     "in": "abcdefgh",
+     "policy": {},
+     "out": "ContraseÃ±a invÃ¡lida: debe contener letra mayÃºscula; debe contener nÃºmero; debe contener carÃ¡cter especial; no puede contener secuencias (ej.: abc, 123)"
+    },
+    {
+     "in": "abcdefgh",
+     "policy": {
+      "minSize": 4
+     },
+     "out": "ContraseÃ±a invÃ¡lida: debe contener letra mayÃºscula; debe contener nÃºmero; debe contener carÃ¡cter especial; no puede contener secuencias (ej.: abc, 123)"
+    },
+    {
+     "in": "abcdefgh",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "ContraseÃ±a invÃ¡lida: mÃ­nimo de 12 caracteres; debe contener letra mayÃºscula; debe contener nÃºmero; debe contener carÃ¡cter especial; no puede contener secuencias (ej.: abc, 123)"
+    },
+    {
+     "in": "abcdefgh",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": null
+    },
+    {
+     "in": "ABCDEFGH",
+     "policy": {},
+     "out": "ContraseÃ±a invÃ¡lida: debe contener letra minÃºscula; debe contener nÃºmero; debe contener carÃ¡cter especial; no puede contener secuencias (ej.: abc, 123)"
+    },
+    {
+     "in": "ABCDEFGH",
+     "policy": {
+      "minSize": 4
+     },
+     "out": "ContraseÃ±a invÃ¡lida: debe contener letra minÃºscula; debe contener nÃºmero; debe contener carÃ¡cter especial; no puede contener secuencias (ej.: abc, 123)"
+    },
+    {
+     "in": "ABCDEFGH",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "ContraseÃ±a invÃ¡lida: mÃ­nimo de 12 caracteres; debe contener letra minÃºscula; debe contener nÃºmero; debe contener carÃ¡cter especial; no puede contener secuencias (ej.: abc, 123)"
+    },
+    {
+     "in": "ABCDEFGH",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": null
+    },
+    {
+     "in": "Abcdefg1",
+     "policy": {},
+     "out": "ContraseÃ±a invÃ¡lida: debe contener carÃ¡cter especial; no puede contener secuencias (ej.: abc, 123)"
+    },
+    {
+     "in": "Abcdefg1",
+     "policy": {
+      "minSize": 4
+     },
+     "out": "ContraseÃ±a invÃ¡lida: debe contener carÃ¡cter especial; no puede contener secuencias (ej.: abc, 123)"
+    },
+    {
+     "in": "Abcdefg1",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "ContraseÃ±a invÃ¡lida: mÃ­nimo de 12 caracteres; debe contener carÃ¡cter especial; no puede contener secuencias (ej.: abc, 123)"
+    },
+    {
+     "in": "Abcdefg1",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": null
+    },
+    {
+     "in": "Abc12345!",
+     "policy": {},
+     "out": "ContraseÃ±a invÃ¡lida: no puede contener secuencias (ej.: abc, 123)"
+    },
+    {
+     "in": "Abc12345!",
+     "policy": {
+      "minSize": 4
+     },
+     "out": "ContraseÃ±a invÃ¡lida: no puede contener secuencias (ej.: abc, 123)"
+    },
+    {
+     "in": "Abc12345!",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "ContraseÃ±a invÃ¡lida: mÃ­nimo de 12 caracteres; no puede contener secuencias (ej.: abc, 123)"
+    },
+    {
+     "in": "Abc12345!",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": null
+    },
+    {
+     "in": "Aaa1!bcd",
+     "policy": {},
+     "out": "ContraseÃ±a invÃ¡lida: no puede contener secuencias (ej.: abc, 123)"
+    },
+    {
+     "in": "Aaa1!bcd",
+     "policy": {
+      "minSize": 4
+     },
+     "out": "ContraseÃ±a invÃ¡lida: no puede contener secuencias (ej.: abc, 123)"
+    },
+    {
+     "in": "Aaa1!bcd",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "ContraseÃ±a invÃ¡lida: mÃ­nimo de 12 caracteres; no puede contener secuencias (ej.: abc, 123)"
+    },
+    {
+     "in": "Aaa1!bcd",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": null
+    },
+    {
+     "in": "qwerty123",
+     "policy": {},
+     "out": "ContraseÃ±a invÃ¡lida: debe contener letra mayÃºscula; debe contener carÃ¡cter especial; no puede contener secuencias (ej.: abc, 123)"
+    },
+    {
+     "in": "qwerty123",
+     "policy": {
+      "minSize": 4
+     },
+     "out": "ContraseÃ±a invÃ¡lida: debe contener letra mayÃºscula; debe contener carÃ¡cter especial; no puede contener secuencias (ej.: abc, 123)"
+    },
+    {
+     "in": "qwerty123",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "ContraseÃ±a invÃ¡lida: mÃ­nimo de 12 caracteres; debe contener letra mayÃºscula; debe contener carÃ¡cter especial; no puede contener secuencias (ej.: abc, 123)"
+    },
+    {
+     "in": "qwerty123",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": null
+    },
+    {
+     "in": "A1!a",
+     "policy": {},
+     "out": "ContraseÃ±a invÃ¡lida: mÃ­nimo de 8 caracteres"
+    },
+    {
+     "in": "A1!a",
+     "policy": {
+      "minSize": 4
+     },
+     "out": null
+    },
+    {
+     "in": "A1!a",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "ContraseÃ±a invÃ¡lida: mÃ­nimo de 12 caracteres"
+    },
+    {
+     "in": "A1!a",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": null
+    },
+    {
+     "in": "Aa1!Aa1!Aa1!",
+     "policy": {},
+     "out": null
+    },
+    {
+     "in": "Aa1!Aa1!Aa1!",
+     "policy": {
+      "minSize": 4
+     },
+     "out": null
+    },
+    {
+     "in": "Aa1!Aa1!Aa1!",
+     "policy": {
+      "minSize": 12
+     },
+     "out": null
+    },
+    {
+     "in": "Aa1!Aa1!Aa1!",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": null
+    },
+    {
+     "in": "Senha@2026",
+     "policy": {},
+     "out": null
+    },
+    {
+     "in": "Senha@2026",
+     "policy": {
+      "minSize": 4
+     },
+     "out": null
+    },
+    {
+     "in": "Senha@2026",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "ContraseÃ±a invÃ¡lida: mÃ­nimo de 12 caracteres"
+    },
+    {
+     "in": "Senha@2026",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": null
+    }
+   ],
+   "birthdate": [
+    {
+     "value": "2999-01-01",
+     "policy": {},
+     "out": "ConfiguraciÃ³n invÃ¡lida: informe minAge y/o maxAge."
+    },
+    {
+     "value": "2999-01-01",
+     "policy": {
+      "minAge": 30,
+      "maxAge": 20
+     },
+     "out": "ConfiguraciÃ³n invÃ¡lida: minAge debe ser <= maxAge."
+    },
+    {
+     "value": "",
+     "policy": {
+      "minAge": 18
+     },
+     "out": null
+    },
+    {
+     "value": "lixo",
+     "policy": {
+      "minAge": 18
+     },
+     "out": "Fecha invÃ¡lida."
+    },
+    {
+     "value": "2999-01-01",
+     "policy": {
+      "minAge": 18
+     },
+     "out": "La edad debe ser al menos 18 aÃ±os."
+    },
+    {
+     "value": "1000-01-01",
+     "policy": {
+      "maxAge": 120
+     },
+     "out": "La edad debe ser como mÃ¡ximo 120 aÃ±os."
+    },
+    {
+     "value": "2999-01-01",
+     "policy": {
+      "minAge": 18,
+      "maxAge": 60
+     },
+     "out": "La edad debe estar entre 18 y 60 aÃ±os."
+    },
+    {
+     "value": "1000-01-01",
+     "policy": {
+      "minAge": 18,
+      "maxAge": 60
+     },
+     "out": "La edad debe estar entre 18 y 60 aÃ±os."
+    }
+   ],
+   "t": [
+    {
+     "key": "components.password.minSize",
+     "params": {
+      "min": 3
+     },
+     "out": "MÃ­nimo 3 caracteres."
+    },
+    {
+     "key": "components.password.minSize",
+     "params": {
+      "min": "7"
+     },
+     "out": "MÃ­nimo 7 caracteres."
+    },
+    {
+     "key": "components.password.minSize",
+     "params": {},
+     "out": "MÃ­nimo {min} caracteres."
+    },
+    {
+     "key": "components.password.minSize",
+     "params": null,
+     "out": "MÃ­nimo {min} caracteres."
+    },
+    {
+     "key": "components.validators.birthdate.ageBetween",
+     "params": {
+      "min": 1,
+      "max": 2
+     },
+     "out": "La edad debe estar entre 1 y 2 aÃ±os."
+    },
+    {
+     "key": "chave.que.nao.existe",
+     "params": null,
+     "out": "chave.que.nao.existe"
+    },
+    {
+     "key": "chave.que.nao.existe",
+     "params": {
+      "x": 1
+     },
+     "out": "chave.que.nao.existe"
+    }
+   ]
+  },
+  "fr": {
+   "messages": {
+    "components.actions.clear": "Effacer",
+    "components.wizard.next": "Suivant",
+    "components.wizard.previous": "Pr?c?dent",
+    "components.wizard.finish": "Terminer",
+    "components.password.show": "Afficher le mot de passe",
+    "components.password.hide": "Masquer le mot de passe",
+    "components.password.generate": "G?n?rer un mot de passe",
+    "components.password.common": "Le mot de passe est trop courant. Choisissez-en un plus fort.",
+    "components.password.minSize": "Minimum de {min} caract?res.",
+    "components.password.upper": "Au moins 1 lettre majuscule.",
+    "components.password.lower": "Au moins 1 lettre minuscule.",
+    "components.password.number": "Au moins 1 chiffre.",
+    "components.password.special": "Au moins 1 caract?re sp?cial.",
+    "components.password.noRepeat": "Ne r?p?tez pas des caract?res en s?quence.",
+    "components.password.noSeqAsc": "N'utilisez pas de s?quences ascendantes (ex. 1234, abcd).",
+    "components.password.noSeqDesc": "N'utilisez pas de s?quences descendantes (ex. 4321, dcba).",
+    "components.inputs.required": "Champ obligatoire.",
+    "components.inputs.maxLength": "Le champ doit contenir au maximum {max} caract?re(s).",
+    "components.inputs.minLength": "Le champ doit contenir au moins {min} caract?re(s).",
+    "components.inputs.minWords": "Le champ doit contenir au moins {min} mot(s).",
+    "components.inputs.textarea.required": "Ce champ est obligatoire.",
+    "components.inputs.textarea.maxLength": "Le texte doit contenir au maximum {max} caract?re(s).",
+    "components.inputs.textarea.minLength": "Le texte doit contenir au moins {min} caract?re(s).",
+    "components.inputs.textarea.minWords": "Le texte doit contenir au moins {min} mot(s).",
+    "components.inputs.textarea.minLines": "Le texte doit contenir au moins {min} ligne(s).",
+    "components.inputs.cpf.length": "Le CPF doit contenir 11 chiffres.",
+    "components.inputs.cpf.invalid": "CPF invalide.",
+    "components.inputs.cnpj.length": "Le CNPJ doit contenir 14 chiffres.",
+    "components.inputs.cnpj.invalid": "CNPJ invalide.",
+    "components.inputs.postalCode.BR.length": "Le CEP doit contenir 8 chiffres.",
+    "components.inputs.postalCode.BR.invalid": "CEP invalide.",
+    "components.inputs.postalCode.PT.length": "Le code postal doit contenir 7 chiffres.",
+    "components.inputs.postalCode.PT.invalid": "Code postal invalide.",
+    "components.inputs.postalCode.US.length": "Le code ZIP doit contenir 5 ou 9 chiffres.",
+    "components.inputs.postalCode.US.invalid": "Code ZIP invalide.",
+    "components.inputs.postalCode.ES.length": "Le code postal doit contenir 5 chiffres.",
+    "components.inputs.postalCode.ES.invalid": "Code postal invalide.",
+    "components.inputs.postalCode.UY.length": "Le code postal doit contenir 5 chiffres.",
+    "components.inputs.postalCode.UY.invalid": "Code postal invalide.",
+    "components.inputs.postalCode.AR.length": "Le code postal doit contenir 4 ou 8 caract?res.",
+    "components.inputs.postalCode.AR.invalid": "Code postal invalide.",
+    "components.inputs.postalCode.PY.length": "Le code postal doit contenir 6 chiffres.",
+    "components.inputs.postalCode.PY.invalid": "Code postal invalide.",
+    "components.inputs.phone.invalid": "Num?ro de t?l?phone invalide.",
+    "components.inputs.email.invalid": "Email invalide.",
+    "components.inputs.otp.slot": "Code ? usage unique {slot}",
+    "components.inputs.otp.group": "Code ? usage unique",
+    "components.inputs.toggle.ariaLabel": "Basculer option",
+    "components.inputs.email.tempInvalid": "Les emails temporaires ne sont pas autoris?s.",
+    "components.inputs.date.invalid": "Date invalide.",
+    "components.inputs.date.range": "La date doit ?tre comprise entre {min} et {max}.",
+    "components.inputs.date.min": "La date doit ?tre le {min} ou apr?s.",
+    "components.inputs.date.max": "La date doit ?tre le {max} ou avant.",
+    "components.inputs.birthdate.required": "Veuillez renseigner votre date de naissance.",
+    "components.validators.password.empty": "Le mot de passe ne peut pas ?tre vide.",
+    "components.validators.password.minSize": "minimum de {min} caract?res",
+    "components.validators.password.upper": "doit inclure une lettre majuscule",
+    "components.validators.password.lower": "doit inclure une lettre minuscule",
+    "components.validators.password.number": "doit inclure un chiffre",
+    "components.validators.password.special": "doit inclure un caract?re sp?cial",
+    "components.validators.password.sequence": "ne peut pas contenir de s?quences (ex. abc, 123)",
+    "components.validators.password.repeated": "ne peut pas contenir de caract?res r?p?t?s en s?quence (ex. aaa, 1111)",
+    "components.validators.password.invalid": "Mot de passe invalide : {reasons}",
+    "components.validators.birthdate.configMissing": "Configuration invalide : fournissez minAge et/ou maxAge.",
+    "components.validators.birthdate.configRange": "Configuration invalide : minAge doit ?tre <= maxAge.",
+    "components.validators.birthdate.invalidDate": "Date invalide.",
+    "components.validators.birthdate.ageBetween": "L'?ge doit ?tre compris entre {min} et {max} ans.",
+    "components.validators.birthdate.ageMin": "L'?ge doit ?tre d'au moins {min} ans.",
+    "components.validators.birthdate.ageMax": "L'?ge doit ?tre d'au plus {max} ans.",
+    "components.autocomplete.empty": "Aucun enregistrement trouv?.",
+    "components.autocomplete.loading": "Chargement...",
+    "components.inputs.number.min": "La valeur doit ?tre au moins {min}.",
+    "components.inputs.number.max": "La valeur doit ?tre au plus {max}.",
+    "components.fab.resetConfirm": "R?initialiser la position du bouton ?",
+    "components.fab.resetPosition": "R?initialiser la position",
+    "components.fab.yes": "Oui",
+    "components.fab.no": "Non",
+    "components.dock.resetPosition": "R?initialiser la position",
+    "components.dock.resetConfirm": "Voulez-vous vraiment r?initialiser la position du dock par d?faut ?",
+    "components.dock.dropHere": "D?poser ici",
+    "components.actions.cancel": "Annuler",
+    "components.actions.confirm": "Confirmer",
+    "components.rating.required": "Veuillez fournir une note",
+    "components.rating.cancel": "Annuler la note",
+    "components.radiogroup.cancel": "Aucune option",
+    "components.checkboxgroup.checkAll": "Tout s?lectionner",
+    "components.orderlist.moveTop": "D?placer en haut",
+    "components.orderlist.moveUp": "D?placer vers le haut",
+    "components.orderlist.moveDown": "D?placer vers le bas",
+    "components.orderlist.moveBottom": "D?placer en bas",
+    "components.orderlist.empty": "Aucun ?l?ment disponible.",
+    "components.picklist.moveToTarget": "D?placer la s?lection vers la cible",
+    "components.picklist.moveAllToTarget": "Tout d?placer vers la cible",
+    "components.picklist.moveToSource": "D?placer la s?lection vers la source",
+    "components.picklist.moveAllToSource": "Tout d?placer vers la source",
+    "components.picklist.sourceHeader": "Source",
+    "components.picklist.targetHeader": "Cible",
+    "components.picklist.sourceFilterPlaceholder": "Rechercher dans la source",
+    "components.picklist.targetFilterPlaceholder": "Rechercher dans la cible",
+    "components.picklist.empty": "Aucun ?l?ment disponible.",
+    "components.gadgets.clock.title": "Horloge",
+    "components.gadgets.calendar.title": "Calendrier",
+    "components.gadgets.calendar.previousMonth": "Mois precedent",
+    "components.gadgets.calendar.nextMonth": "Mois suivant",
+    "components.gadgets.calendar.goToday": "Aller a aujourd hui",
+    "components.gadgets.qrcode.title": "Code QR",
+    "components.gadgets.gauge.radialAria": "Jauge radiale",
+    "components.gadgets.gauge.linearAria": "Jauge lineaire",
+    "components.gadgets.gauge.value": "Valeur",
+    "components.datatable.empty": "Aucun enregistrement trouv?.",
+    "components.datatable.loading": "Chargement des donn?es...",
+    "components.datatable.globalFilterPlaceholder": "Rechercher dans toutes les colonnes",
+    "components.datatable.clearFilters": "Effacer les filtres",
+    "components.datatable.pagination": "Pagination",
+    "components.datatable.first": "Premiere page",
+    "components.datatable.prev": "Page precedente",
+    "components.datatable.next": "Page suivante",
+    "components.datatable.last": "Derniere page",
+    "components.datatable.jumpBackward": "Reculer de plusieurs pages",
+    "components.datatable.jumpForward": "Avancer de plusieurs pages",
+    "components.datatable.page": "Page {page}",
+    "components.datatable.rowsPerPage": "Lignes par page",
+    "components.datatable.pageReport": "{first} - {last} sur {total}",
+    "components.datatable.columnFilterPlaceholder": "Filtrer {column}",
+    "components.actions.select": "Selectionner",
+    "components.actions.search": "Rechercher",
+    "components.actions.expand": "Developper",
+    "components.actions.collapse": "Reduire",
+    "components.actions.expandAll": "Tout developper",
+    "components.actions.collapseAll": "Tout reduire",
+    "components.actions.clearSelection": "Effacer la selection",
+    "components.actions.open": "Ouvrir",
+    "components.actions.openList": "Ouvrir la liste",
+    "components.actions.close": "Fermer",
+    "components.actions.save": "Enregistrer",
+    "components.actions.loadHtml": "Charger le HTML",
+    "components.actions.top": "Haut",
+    "components.actions.up": "Monter",
+    "components.actions.down": "Descendre",
+    "components.actions.bottom": "Bas",
+    "components.menu.unpinAndCollapse": "Detacher et reduire le menu",
+    "components.menu.open": "Ouvrir le menu",
+    "components.menu.close": "Fermer le menu",
+    "components.menu.expand": "Developper le menu",
+    "components.menu.collapse": "Reduire le menu",
+    "components.avatar.defaultAlt": "Avatar",
+    "components.badge.remove": "Retirer badge",
+    "components.toast.loading": "Chargement...",
+    "components.toaster.close": "Fermer la notification",
+    "components.whistler.close": "Fermer l'alerte",
+    "components.dialog.ariaLabel": "Dialogue",
+    "components.dialog.close": "Fermer",
+    "components.popup.ariaLabel": "Fenetre",
+    "components.inputs.select.placeholder": "Selectionner",
+    "components.inputs.multiSelect.summary": "{count} selectionnees",
+    "components.inputs.multiSelect.removeChip": "Retirer {label}",
+    "components.inputs.stepper.increase": "Augmenter la valeur",
+    "components.inputs.stepper.decrease": "Diminuer la valeur",
+    "components.textEditor.placeholder": "Tapez ici...",
+    "components.textEditor.cssEditorLabel": "CSS integre",
+    "components.textEditor.editorAriaLabel": "Editeur de texte enrichi",
+    "components.textEditor.toolbar.heading": "Titre",
+    "components.textEditor.toolbar.subheading": "Sous-titre",
+    "components.textEditor.toolbar.heading3": "Titre 3",
+    "components.textEditor.toolbar.normal": "Normal",
+    "components.textEditor.toolbar.defaultFont": "Par defaut",
+    "components.textEditor.toolbar.bold": "Gras",
+    "components.textEditor.toolbar.italic": "Italique",
+    "components.textEditor.toolbar.underline": "Souligne",
+    "components.textEditor.toolbar.strike": "Barre",
+    "components.textEditor.toolbar.textColor": "Couleur du texte",
+    "components.textEditor.toolbar.highlightColor": "Couleur de surlignage",
+    "components.textEditor.toolbar.subscript": "Indice",
+    "components.textEditor.toolbar.superscript": "Exposant",
+    "components.textEditor.toolbar.bullets": "Puces",
+    "components.textEditor.toolbar.numbered": "Numerotation",
+    "components.textEditor.toolbar.outdent": "Reduire le retrait",
+    "components.textEditor.toolbar.indent": "Augmenter le retrait",
+    "components.textEditor.toolbar.alignLeft": "Aligner a gauche",
+    "components.textEditor.toolbar.alignCenter": "Centrer",
+    "components.textEditor.toolbar.alignRight": "Aligner a droite",
+    "components.textEditor.toolbar.justify": "Justifier",
+    "components.textEditor.toolbar.link": "Lien",
+    "components.textEditor.toolbar.image": "Image",
+    "components.textEditor.toolbar.clear": "Effacer",
+    "components.textEditor.prompt.url": "URL",
+    "components.textEditor.prompt.imageUrl": "URL de l'image",
+    "components.textEditor.help.cssEmbedded": "Le CSS est integre dans le document HTML enregistre.",
+    "components.gadgets.clock.theme": "Theme",
+    "components.gadgets.clock.selectTheme": "Selectionnez un theme...",
+    "components.gadgets.clock.searchTheme": "Rechercher un theme",
+    "components.gadgets.clock.searchThemePlaceholder": "Rechercher un theme...",
+    "components.gadgets.clock.noThemesFound": "Aucun theme trouve.",
+    "components.gadgets.clock.activeTheme": "Actif",
+    "components.gadgets.clock.analogAria": "Horloge analogique",
+    "components.gadgets.clock.digitalAria": "Horloge numerique",
+    "components.tree.empty": "Aucun element.",
+    "components.tree.selected": "Selectionnes : {count}",
+    "components.tree.selectedLeafs": " (feuilles)",
+    "components.menu.drag": "Deplacer le menu",
+    "components.menu.ariaLabel": "Menu",
+    "components.toolbar.toggle": "Basculer la barre d outils",
+    "components.breadcrumb.ariaLabel": "Fil d Ariane",
+    "components.breadcrumb.overflow": "Plus de chemins",
+    "components.pageControl.ariaLabel": "Controle de pages",
+    "components.pageControl.empty": "Aucune page visible.",
+    "components.expandablePanel.ariaLabel": "Panneau extensible",
+    "components.carousel.goToSlide": "Aller au slide {slide}",
+    "components.wizard.progress": "Progression",
+    "components.menu.unpin": "Detacher le menu",
+    "components.wizard.step": "Etape {step}",
+    "components.menu.empty": "Aucun element trouve.",
+    "components.menu.brandAlt": "Marque",
+    "components.menu.pin": "Epingler le menu"
+   },
+   "password": [
+    {
+     "in": "",
+     "policy": {},
+     "out": "Le mot de passe ne peut pas ?tre vide."
+    },
+    {
+     "in": "",
+     "policy": {
+      "minSize": 4
+     },
+     "out": "Le mot de passe ne peut pas ?tre vide."
+    },
+    {
+     "in": "",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "Le mot de passe ne peut pas ?tre vide."
+    },
+    {
+     "in": "",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": "Le mot de passe ne peut pas ?tre vide."
+    },
+    {
+     "in": "   ",
+     "policy": {},
+     "out": "Le mot de passe ne peut pas ?tre vide."
+    },
+    {
+     "in": "   ",
+     "policy": {
+      "minSize": 4
+     },
+     "out": "Le mot de passe ne peut pas ?tre vide."
+    },
+    {
+     "in": "   ",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "Le mot de passe ne peut pas ?tre vide."
+    },
+    {
+     "in": "   ",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": "Le mot de passe ne peut pas ?tre vide."
+    },
+    {
+     "in": "a",
+     "policy": {},
+     "out": "Mot de passe invalide : minimum de 8 caract?res; doit inclure une lettre majuscule; doit inclure un chiffre; doit inclure un caract?re sp?cial"
+    },
+    {
+     "in": "a",
+     "policy": {
+      "minSize": 4
+     },
+     "out": "Mot de passe invalide : minimum de 4 caract?res; doit inclure une lettre majuscule; doit inclure un chiffre; doit inclure un caract?re sp?cial"
+    },
+    {
+     "in": "a",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "Mot de passe invalide : minimum de 12 caract?res; doit inclure une lettre majuscule; doit inclure un chiffre; doit inclure un caract?re sp?cial"
+    },
+    {
+     "in": "a",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": null
+    },
+    {
+     "in": "Abcdef1!",
+     "policy": {},
+     "out": "Mot de passe invalide : ne peut pas contenir de s?quences (ex. abc, 123)"
+    },
+    {
+     "in": "Abcdef1!",
+     "policy": {
+      "minSize": 4
+     },
+     "out": "Mot de passe invalide : ne peut pas contenir de s?quences (ex. abc, 123)"
+    },
+    {
+     "in": "Abcdef1!",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "Mot de passe invalide : minimum de 12 caract?res; ne peut pas contenir de s?quences (ex. abc, 123)"
+    },
+    {
+     "in": "Abcdef1!",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": null
+    },
+    {
+     "in": "abcdefgh",
+     "policy": {},
+     "out": "Mot de passe invalide : doit inclure une lettre majuscule; doit inclure un chiffre; doit inclure un caract?re sp?cial; ne peut pas contenir de s?quences (ex. abc, 123)"
+    },
+    {
+     "in": "abcdefgh",
+     "policy": {
+      "minSize": 4
+     },
+     "out": "Mot de passe invalide : doit inclure une lettre majuscule; doit inclure un chiffre; doit inclure un caract?re sp?cial; ne peut pas contenir de s?quences (ex. abc, 123)"
+    },
+    {
+     "in": "abcdefgh",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "Mot de passe invalide : minimum de 12 caract?res; doit inclure une lettre majuscule; doit inclure un chiffre; doit inclure un caract?re sp?cial; ne peut pas contenir de s?quences (ex. abc, 123)"
+    },
+    {
+     "in": "abcdefgh",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": null
+    },
+    {
+     "in": "ABCDEFGH",
+     "policy": {},
+     "out": "Mot de passe invalide : doit inclure une lettre minuscule; doit inclure un chiffre; doit inclure un caract?re sp?cial; ne peut pas contenir de s?quences (ex. abc, 123)"
+    },
+    {
+     "in": "ABCDEFGH",
+     "policy": {
+      "minSize": 4
+     },
+     "out": "Mot de passe invalide : doit inclure une lettre minuscule; doit inclure un chiffre; doit inclure un caract?re sp?cial; ne peut pas contenir de s?quences (ex. abc, 123)"
+    },
+    {
+     "in": "ABCDEFGH",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "Mot de passe invalide : minimum de 12 caract?res; doit inclure une lettre minuscule; doit inclure un chiffre; doit inclure un caract?re sp?cial; ne peut pas contenir de s?quences (ex. abc, 123)"
+    },
+    {
+     "in": "ABCDEFGH",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": null
+    },
+    {
+     "in": "Abcdefg1",
+     "policy": {},
+     "out": "Mot de passe invalide : doit inclure un caract?re sp?cial; ne peut pas contenir de s?quences (ex. abc, 123)"
+    },
+    {
+     "in": "Abcdefg1",
+     "policy": {
+      "minSize": 4
+     },
+     "out": "Mot de passe invalide : doit inclure un caract?re sp?cial; ne peut pas contenir de s?quences (ex. abc, 123)"
+    },
+    {
+     "in": "Abcdefg1",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "Mot de passe invalide : minimum de 12 caract?res; doit inclure un caract?re sp?cial; ne peut pas contenir de s?quences (ex. abc, 123)"
+    },
+    {
+     "in": "Abcdefg1",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": null
+    },
+    {
+     "in": "Abc12345!",
+     "policy": {},
+     "out": "Mot de passe invalide : ne peut pas contenir de s?quences (ex. abc, 123)"
+    },
+    {
+     "in": "Abc12345!",
+     "policy": {
+      "minSize": 4
+     },
+     "out": "Mot de passe invalide : ne peut pas contenir de s?quences (ex. abc, 123)"
+    },
+    {
+     "in": "Abc12345!",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "Mot de passe invalide : minimum de 12 caract?res; ne peut pas contenir de s?quences (ex. abc, 123)"
+    },
+    {
+     "in": "Abc12345!",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": null
+    },
+    {
+     "in": "Aaa1!bcd",
+     "policy": {},
+     "out": "Mot de passe invalide : ne peut pas contenir de s?quences (ex. abc, 123)"
+    },
+    {
+     "in": "Aaa1!bcd",
+     "policy": {
+      "minSize": 4
+     },
+     "out": "Mot de passe invalide : ne peut pas contenir de s?quences (ex. abc, 123)"
+    },
+    {
+     "in": "Aaa1!bcd",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "Mot de passe invalide : minimum de 12 caract?res; ne peut pas contenir de s?quences (ex. abc, 123)"
+    },
+    {
+     "in": "Aaa1!bcd",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": null
+    },
+    {
+     "in": "qwerty123",
+     "policy": {},
+     "out": "Mot de passe invalide : doit inclure une lettre majuscule; doit inclure un caract?re sp?cial; ne peut pas contenir de s?quences (ex. abc, 123)"
+    },
+    {
+     "in": "qwerty123",
+     "policy": {
+      "minSize": 4
+     },
+     "out": "Mot de passe invalide : doit inclure une lettre majuscule; doit inclure un caract?re sp?cial; ne peut pas contenir de s?quences (ex. abc, 123)"
+    },
+    {
+     "in": "qwerty123",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "Mot de passe invalide : minimum de 12 caract?res; doit inclure une lettre majuscule; doit inclure un caract?re sp?cial; ne peut pas contenir de s?quences (ex. abc, 123)"
+    },
+    {
+     "in": "qwerty123",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": null
+    },
+    {
+     "in": "A1!a",
+     "policy": {},
+     "out": "Mot de passe invalide : minimum de 8 caract?res"
+    },
+    {
+     "in": "A1!a",
+     "policy": {
+      "minSize": 4
+     },
+     "out": null
+    },
+    {
+     "in": "A1!a",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "Mot de passe invalide : minimum de 12 caract?res"
+    },
+    {
+     "in": "A1!a",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": null
+    },
+    {
+     "in": "Aa1!Aa1!Aa1!",
+     "policy": {},
+     "out": null
+    },
+    {
+     "in": "Aa1!Aa1!Aa1!",
+     "policy": {
+      "minSize": 4
+     },
+     "out": null
+    },
+    {
+     "in": "Aa1!Aa1!Aa1!",
+     "policy": {
+      "minSize": 12
+     },
+     "out": null
+    },
+    {
+     "in": "Aa1!Aa1!Aa1!",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": null
+    },
+    {
+     "in": "Senha@2026",
+     "policy": {},
+     "out": null
+    },
+    {
+     "in": "Senha@2026",
+     "policy": {
+      "minSize": 4
+     },
+     "out": null
+    },
+    {
+     "in": "Senha@2026",
+     "policy": {
+      "minSize": 12
+     },
+     "out": "Mot de passe invalide : minimum de 12 caract?res"
+    },
+    {
+     "in": "Senha@2026",
+     "policy": {
+      "upper": false,
+      "lower": false,
+      "number": false,
+      "special": false,
+      "noRepeat": false,
+      "minSize": 1
+     },
+     "out": null
+    }
+   ],
+   "birthdate": [
+    {
+     "value": "2999-01-01",
+     "policy": {},
+     "out": "Configuration invalide : fournissez minAge et/ou maxAge."
+    },
+    {
+     "value": "2999-01-01",
+     "policy": {
+      "minAge": 30,
+      "maxAge": 20
+     },
+     "out": "Configuration invalide : minAge doit ?tre <= maxAge."
+    },
+    {
+     "value": "",
+     "policy": {
+      "minAge": 18
+     },
+     "out": null
+    },
+    {
+     "value": "lixo",
+     "policy": {
+      "minAge": 18
+     },
+     "out": "Date invalide."
+    },
+    {
+     "value": "2999-01-01",
+     "policy": {
+      "minAge": 18
+     },
+     "out": "L'?ge doit ?tre d'au moins 18 ans."
+    },
+    {
+     "value": "1000-01-01",
+     "policy": {
+      "maxAge": 120
+     },
+     "out": "L'?ge doit ?tre d'au plus 120 ans."
+    },
+    {
+     "value": "2999-01-01",
+     "policy": {
+      "minAge": 18,
+      "maxAge": 60
+     },
+     "out": "L'?ge doit ?tre compris entre 18 et 60 ans."
+    },
+    {
+     "value": "1000-01-01",
+     "policy": {
+      "minAge": 18,
+      "maxAge": 60
+     },
+     "out": "L'?ge doit ?tre compris entre 18 et 60 ans."
+    }
+   ],
+   "t": [
+    {
+     "key": "components.password.minSize",
+     "params": {
+      "min": 3
+     },
+     "out": "Minimum de 3 caract?res."
+    },
+    {
+     "key": "components.password.minSize",
+     "params": {
+      "min": "7"
+     },
+     "out": "Minimum de 7 caract?res."
+    },
+    {
+     "key": "components.password.minSize",
+     "params": {},
+     "out": "Minimum de {min} caract?res."
+    },
+    {
+     "key": "components.password.minSize",
+     "params": null,
+     "out": "Minimum de {min} caract?res."
+    },
+    {
+     "key": "components.validators.birthdate.ageBetween",
+     "params": {
+      "min": 1,
+      "max": 2
+     },
+     "out": "L'?ge doit ?tre compris entre 1 et 2 ans."
+    },
+    {
+     "key": "chave.que.nao.existe",
+     "params": null,
+     "out": "chave.que.nao.existe"
+    },
+    {
+     "key": "chave.que.nao.existe",
+     "params": {
+      "x": 1
+     },
+     "out": "chave.que.nao.existe"
+    }
+   ]
+  }
+ },
+ "normalize": [
+  {
+   "in": "pt-BR",
+   "out": "pt-BR"
+  },
+  {
+   "in": "pt-PT",
+   "out": "pt-PT"
+  },
+  {
+   "in": "en-US",
+   "out": "en-US"
+  },
+  {
+   "in": "en",
+   "out": "en-US"
+  },
+  {
+   "in": "es",
+   "out": "es"
+  },
+  {
+   "in": "fr",
+   "out": "fr"
+  },
+  {
+   "in": "xx",
+   "out": "xx"
+  },
+  {
+   "in": "pt",
+   "out": "pt"
+  },
+  {
+   "in": null,
+   "out": "en-US"
+  }
+ ],
+ "builtinFallback": [
+  {
+   "in": "xx",
+   "igualA": "en-US"
+  },
+  {
+   "in": "pt",
+   "igualA": "en-US"
+  },
+  {
+   "in": "en",
+   "igualA": "en-US"
+  }
+ ]
+}

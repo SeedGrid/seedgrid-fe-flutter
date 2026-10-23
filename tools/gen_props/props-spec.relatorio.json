@@ -1,0 +1,717 @@
+{
+ "semProps": [],
+ "diffNomes": [
+  {
+   "componente": "SgAccordion",
+   "soNoCompilador": [],
+   "soNoGeneratedProps": [
+    "id"
+   ]
+  },
+  {
+   "componente": "SgAutocomplete",
+   "soNoCompilador": [
+    "borderRadius",
+    "className",
+    "control",
+    "elevation",
+    "inputProps",
+    "labelClassName",
+    "register",
+    "rules"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgBadge",
+   "soNoCompilador": [
+    "aria-label",
+    "className",
+    "style"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgBadgeOverlay",
+   "soNoCompilador": [
+    "className",
+    "style"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgBreadcrumb",
+   "soNoCompilador": [
+    "className",
+    "style"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgButton",
+   "soNoCompilador": [
+    "elevation"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgCalendar",
+   "soNoCompilador": [],
+   "soNoGeneratedProps": [
+    "defaultValue"
+   ]
+  },
+  {
+   "componente": "SgCard",
+   "soNoCompilador": [],
+   "soNoGeneratedProps": [
+    "children",
+    "draggable"
+   ]
+  },
+  {
+   "componente": "SgCarousel",
+   "soNoCompilador": [
+    "className",
+    "style"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgCheckboxGroup",
+   "soNoCompilador": [
+    "className",
+    "control",
+    "register",
+    "rules",
+    "style"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgClock",
+   "soNoCompilador": [
+    "className",
+    "style"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgClockThemePicker",
+   "soNoCompilador": [
+    "className"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgCombobox",
+   "soNoCompilador": [
+    "borderRadius",
+    "className",
+    "control",
+    "elevation",
+    "inputProps",
+    "labelClassName",
+    "register",
+    "rules"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgConfirmationDialog",
+   "soNoCompilador": [
+    "className",
+    "elevation",
+    "style"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgDatatable",
+   "soNoCompilador": [
+    "className",
+    "ref",
+    "style"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgDialog",
+   "soNoCompilador": [
+    "className",
+    "elevation",
+    "style"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgDiscardDigit",
+   "soNoCompilador": [
+    "className",
+    "style"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgDockLayout",
+   "soNoCompilador": [
+    "className",
+    "style"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgDockMenu",
+   "soNoCompilador": [
+    "borderRadius",
+    "className",
+    "elevation",
+    "style"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgDockZone",
+   "soNoCompilador": [
+    "className",
+    "style"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgExpandablePanel",
+   "soNoCompilador": [
+    "className",
+    "elevation",
+    "style"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgFadeDigit",
+   "soNoCompilador": [
+    "className"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgFlipDigit",
+   "soNoCompilador": [
+    "className"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgFloatActionButton",
+   "soNoCompilador": [
+    "className",
+    "elevation",
+    "style"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgGroupBox",
+   "soNoCompilador": [
+    "className",
+    "style"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgInputBirthDate",
+   "soNoCompilador": [
+    "borderRadius",
+    "className",
+    "control",
+    "elevation",
+    "inputProps",
+    "labelClassName",
+    "register",
+    "rules"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgInputCNPJ",
+   "soNoCompilador": [
+    "borderRadius",
+    "className",
+    "control",
+    "elevation",
+    "inputProps",
+    "labelClassName",
+    "register",
+    "rules"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgInputCPF",
+   "soNoCompilador": [
+    "borderRadius",
+    "className",
+    "control",
+    "elevation",
+    "inputProps",
+    "labelClassName",
+    "register",
+    "rules"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgInputCPFCNPJ",
+   "soNoCompilador": [
+    "borderRadius",
+    "className",
+    "control",
+    "elevation",
+    "inputProps",
+    "labelClassName",
+    "register",
+    "rules"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgInputCurrency",
+   "soNoCompilador": [
+    "borderRadius",
+    "className",
+    "control",
+    "inputProps",
+    "labelClassName",
+    "register",
+    "rules"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgInputDate",
+   "soNoCompilador": [
+    "borderRadius",
+    "className",
+    "control",
+    "elevation",
+    "inputProps",
+    "labelClassName",
+    "register",
+    "rules"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgInputEmail",
+   "soNoCompilador": [
+    "borderRadius",
+    "className",
+    "control",
+    "elevation",
+    "inputProps",
+    "labelClassName",
+    "register",
+    "rules"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgInputNumber",
+   "soNoCompilador": [
+    "borderRadius",
+    "className",
+    "control",
+    "elevation",
+    "inputProps",
+    "labelClassName",
+    "register",
+    "rules"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgInputOTP",
+   "soNoCompilador": [
+    "className",
+    "control",
+    "inputProps",
+    "register",
+    "rules"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgInputPassword",
+   "soNoCompilador": [
+    "borderRadius",
+    "className",
+    "control",
+    "elevation",
+    "inputProps",
+    "labelClassName",
+    "register",
+    "rules"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgInputPhone",
+   "soNoCompilador": [
+    "borderRadius",
+    "className",
+    "control",
+    "elevation",
+    "inputProps",
+    "labelClassName",
+    "register",
+    "rules"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgInputPostalCode",
+   "soNoCompilador": [
+    "borderRadius",
+    "className",
+    "control",
+    "elevation",
+    "inputProps",
+    "labelClassName",
+    "register",
+    "rules"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgInputText",
+   "soNoCompilador": [
+    "borderRadius",
+    "className",
+    "control",
+    "elevation",
+    "inputProps",
+    "labelClassName",
+    "register",
+    "rules"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgInputTextArea",
+   "soNoCompilador": [
+    "borderRadius",
+    "className",
+    "control",
+    "elevation",
+    "labelClassName",
+    "register",
+    "rules"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgInputTextSearch",
+   "soNoCompilador": [
+    "borderRadius",
+    "className",
+    "control",
+    "elevation",
+    "inputProps",
+    "labelClassName",
+    "register",
+    "rules"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgLinearGauge",
+   "soNoCompilador": [
+    "className",
+    "style"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgMatrixDigit",
+   "soNoCompilador": [
+    "className",
+    "style"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgMenu",
+   "soNoCompilador": [
+    "className",
+    "elevation",
+    "style"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgMultiSelect",
+   "soNoCompilador": [
+    "borderRadius",
+    "className",
+    "control",
+    "elevation",
+    "labelClassName",
+    "register",
+    "rules"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgMultiSelectChips",
+   "soNoCompilador": [
+    "borderRadius",
+    "className",
+    "control",
+    "labelClassName",
+    "register",
+    "rules"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgNeonDigit",
+   "soNoCompilador": [
+    "className",
+    "style"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgOrderList",
+   "soNoCompilador": [
+    "className",
+    "control",
+    "register",
+    "rules",
+    "style"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgPageControl",
+   "soNoCompilador": [
+    "className",
+    "style"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgPageControlPage",
+   "soNoCompilador": [
+    "className",
+    "style"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgPeriodSelector",
+   "soNoCompilador": [
+    "className",
+    "control",
+    "rules"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgPickList",
+   "soNoCompilador": [
+    "className",
+    "control",
+    "register",
+    "rules",
+    "style"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgPopup",
+   "soNoCompilador": [
+    "className",
+    "style"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgRadialGauge",
+   "soNoCompilador": [
+    "className",
+    "style"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgRadioGroup",
+   "soNoCompilador": [
+    "className",
+    "control",
+    "register",
+    "rules",
+    "style"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgRating",
+   "soNoCompilador": [
+    "className",
+    "control",
+    "register",
+    "rules",
+    "style"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgRoller3DDigit",
+   "soNoCompilador": [
+    "className"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgSegmentDigit",
+   "soNoCompilador": [
+    "className",
+    "style"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgSevenSegmentDigit",
+   "soNoCompilador": [
+    "className",
+    "style"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgSkeleton",
+   "soNoCompilador": [
+    "borderRadius"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgSlider",
+   "soNoCompilador": [
+    "className",
+    "control",
+    "inputProps",
+    "register",
+    "rules"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgSplitButton",
+   "soNoCompilador": [
+    "className",
+    "elevation",
+    "style"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgStepperInput",
+   "soNoCompilador": [
+    "className",
+    "control",
+    "inputProps",
+    "register",
+    "rules"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgStringAnimator",
+   "soNoCompilador": [
+    "className"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgTextEditor",
+   "soNoCompilador": [
+    "borderRadius",
+    "className",
+    "control",
+    "register",
+    "rules",
+    "style"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgToggleSwitch",
+   "soNoCompilador": [
+    "className",
+    "control",
+    "inputProps",
+    "labelClassName",
+    "register",
+    "rules"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgToolBar",
+   "soNoCompilador": [
+    "className",
+    "style"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgToolbarIconButton",
+   "soNoCompilador": [
+    "className",
+    "hideLabel",
+    "style"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgTreeView",
+   "soNoCompilador": [
+    "className",
+    "style"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgWizard",
+   "soNoCompilador": [
+    "className",
+    "style"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgWizardPage",
+   "soNoCompilador": [
+    "className",
+    "style"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgYearPartSelector",
+   "soNoCompilador": [
+    "className"
+   ],
+   "soNoGeneratedProps": []
+  }
+ ],
+ "semGenerated": [
+  "SgClockThemePreview",
+  "SgClockThemeProvider",
+  "SgComponentsI18nProvider",
+  "SgEnvironmentProvider",
+  "SgTimeProvider"
+ ]
+}

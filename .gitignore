@@ -1,0 +1,19 @@
+# Dart / Flutter
+.dart_tool/
+.packages
+build/
+pubspec_overrides.yaml
+*.iml
+.idea/
+.flutter-plugins
+.flutter-plugins-dependencies
+
+# Segredos e ambiente (nunca versionar)
+*.env
+.env*
+*.pem
+keys/
+
+# Sistema
+.DS_Store
+Thumbs.db

@@ -1,0 +1,11 @@
+{
+  "_leia": "Estado manual que o detector automatico nao enxerga. Chave = componente do React. status: portado | parcial | nao-aplicavel. 'motivo' obrigatorio para parcial e nao-aplicavel. Componente com widget Dart de mesmo nome e detectado como 'portado' sozinho.",
+  "SgComponentsI18nProvider": {
+    "status": "portado",
+    "onde": "packages/seedgrid_components/lib/src/i18n/i18n.dart (SgComponentsI18nProvider, useComponentsI18n)"
+  },
+  "SgInputText": {
+    "status": "parcial",
+    "motivo": "sem inputProps (atributos do <input> nao tem equivalente; props nomeadas cobrem), value controlado so por initialValue/control, golden com fonte de teste (sem comparacao visual com o React), nao testado em IME/dispositivo; i18n so das mensagens de validacao"
+  }
+}

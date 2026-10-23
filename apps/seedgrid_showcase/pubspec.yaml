@@ -1,0 +1,19 @@
+name: seedgrid_showcase
+description: "Showcase dos componentes SeedGrid em Flutter."
+publish_to: none
+version: 2026.7.1+1
+resolution: workspace
+environment:
+  sdk: ^3.10.4
+dependencies:
+  flutter:
+    sdk: flutter
+  seedgrid_theme:
+  seedgrid_commons:
+  seedgrid_components:
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+flutter:
+  uses-material-design: true

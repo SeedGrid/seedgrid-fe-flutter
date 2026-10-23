@@ -1,0 +1,10 @@
+name: seedgrid_fe_flutter_workspace
+description: Workspace Dart dos componentes SeedGrid em Flutter.
+publish_to: none
+environment:
+  sdk: ^3.10.4
+workspace:
+  - packages/seedgrid_theme
+  - packages/seedgrid_commons
+  - packages/seedgrid_components
+  - apps/seedgrid_showcase
