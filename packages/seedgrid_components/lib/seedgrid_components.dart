@@ -29,3 +29,8 @@ export 'src/inputs/otp_inputs.dart';
 export 'src/inputs/period_inputs.dart';
 export 'src/inputs/select_inputs.dart';
 export 'src/layout/layout_tree.dart';
+export 'src/digits/digits_animated.dart';
+export 'src/digits/digits_simple.dart';
+export 'src/digits/digits_string_animator.dart';
+export 'src/gadgets/gadgets_clock.dart';
+export 'src/gadgets/gadgets_gauges.dart';
