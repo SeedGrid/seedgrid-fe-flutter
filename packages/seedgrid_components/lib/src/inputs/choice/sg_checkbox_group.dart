@@ -7,6 +7,7 @@ import '../../form/sg_rules.dart';
 import '../../generated/enums.g.dart';
 import '../../generated/sg_checkbox_group.g.dart';
 import '../../i18n/i18n.dart';
+import '../../layout/basic/sg_group_box.dart';
 import 'choice_shared.dart';
 import 'choice_tile.dart';
 
@@ -284,7 +285,7 @@ class _SgCheckboxGroupState extends State<SgCheckboxGroup> {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        SgChoiceBox(
+        SgGroupBox(
           title: title.isEmpty ? ' ' : title,
           width: w.groupBoxProps?.width,
           height: w.groupBoxProps?.height,

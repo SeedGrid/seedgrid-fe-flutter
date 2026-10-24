@@ -51,7 +51,7 @@ class ChoiceFieldBinding {
   void dispose() => form?.removeListener(_notify);
 }
 
-/// Parte de `SgGroupBoxProps` usada por `groupBoxProps` (o SgGroupBox completo vem na T3.1).
+/// `groupBoxProps` do React: o que se pode repassar ao SgGroupBox (titulo, largura e altura).
 class SgChoiceGroupBoxProps {
   const SgChoiceGroupBoxProps({this.title, this.width, this.height});
 
@@ -83,75 +83,6 @@ String choiceBoxTitle(
   final base = box?.title ?? title ?? '';
   if (!required || base.trim().isEmpty) return base;
   return base.contains('*') ? base : '$base *';
-}
-
-/// Equivale ao `<fieldset>` + `<legend>` do SgGroupBox: borda arredondada e legenda em maiusculas.
-class SgChoiceBox extends StatelessWidget {
-  const SgChoiceBox({
-    super.key,
-    required this.title,
-    required this.child,
-    this.width,
-    this.height,
-  });
-
-  final String title;
-  final Widget child;
-  final Object? width;
-  final Object? height;
-
-  @override
-  Widget build(BuildContext context) {
-    final t = sgThemeOf(context);
-    return LayoutBuilder(
-      builder: (context, c) {
-        final avail = c.maxWidth.isFinite ? c.maxWidth : 400.0;
-        final w = choiceDim(width, avail);
-        final h = choiceDim(height, c.maxHeight.isFinite ? c.maxHeight : 400.0);
-        Widget box = Stack(
-          clipBehavior: Clip.none,
-          children: [
-            Container(
-              margin: const EdgeInsets.only(top: 8),
-              padding: const EdgeInsets.fromLTRB(16, 20, 16, 16),
-              width: double.infinity,
-              height: h,
-              decoration: BoxDecoration(
-                color: t.surface,
-                border: Border.all(color: t.border),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: child,
-            ),
-            Positioned(
-              left: 12,
-              top: 0,
-              child: Container(
-                color: t.surface,
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: Text(
-                  title.toUpperCase(),
-                  style: TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w600,
-                    letterSpacing: 0.6,
-                    color: t.text.withValues(alpha: 0.7),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        );
-        if (w != null) {
-          box = Align(
-            alignment: Alignment.centerLeft,
-            child: SizedBox(width: w, child: box),
-          );
-        }
-        return box;
-      },
-    );
-  }
 }
 
 Widget choiceErrorText(

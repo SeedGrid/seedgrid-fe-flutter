@@ -320,7 +320,7 @@ void main() {
             .getSize(
               find
                   .descendant(
-                    of: find.byType(SgChoiceBox),
+                    of: find.byType(SgGroupBox),
                     matching: find.byType(SizedBox),
                   )
                   .first,
@@ -579,6 +579,9 @@ void main() {
         width: 876,
       ),
     );
+    // Golden regravado ao trocar o SgChoiceBox provisorio pelo SgGroupBox real: a legenda passou de
+    // left 12 + px 8 para left 16 + px 8 (como o `left-4` do SgGroupBox.tsx) e agora ABRE a borda
+    // (recorte) em vez de ser coberta por um retangulo da cor da superficie. Sem outra diferenca.
     await expectLater(
       find.byType(Column).first,
       matchesGoldenFile('goldens/sg_checkbox_group_estilos.png'),

@@ -8,6 +8,7 @@
 // rola, entao nenhum exemplo vaza por tras dele. O alvo da ancora e calculado pela posicao real
 // renderizada do titulo, com respiro minimo de [kAnchorGap], e ha correcao depois da rolagem.
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart' show FilteringTextInputFormatter;
 import 'package:seedgrid_components/seedgrid_components.dart';
 
 /// Respiro minimo, em pixels, entre a borda superior da area de conteudo e o titulo da secao.
@@ -443,7 +444,10 @@ class _SgPlaygroundState extends State<SgPlayground> {
 
   bool _editable(SgPropSpec s) =>
       s.values != null ||
-      (s.exact && (s.type.startsWith('bool') || s.type.startsWith('String')));
+      (s.exact &&
+          (s.type.startsWith('bool') ||
+              s.type.startsWith('num') ||
+              s.type.startsWith('String')));
 
   @override
   Widget build(BuildContext context) {
@@ -486,6 +490,13 @@ class _SgPlaygroundState extends State<SgPlayground> {
     );
   }
 
+  /// Texto -> `num?`: vazio ou incompleto ('-', '.') = null; sem ponto = int.
+  static num? _parseNum(String text) {
+    final t = text.trim();
+    if (t.isEmpty) return null;
+    return int.tryParse(t) ?? double.tryParse(t);
+  }
+
   Widget _control(SgPropSpec s) {
     if (s.values != null) {
       return DropdownButtonFormField<String?>(
@@ -507,8 +518,29 @@ class _SgPlaygroundState extends State<SgPlayground> {
         dense: true,
         contentPadding: EdgeInsets.zero,
         title: Text(s.name),
-        value: (_values[s.name] as bool?) ?? false,
+        // Sem toque do usuario o valor do mapa segue nulo (a pagina usa o padrao da prop); o switch
+        // mostra esse padrao, vindo do meta do React (`defaultValue: 'true'`).
+        value: (_values[s.name] as bool?) ?? s.defaultValue == 'true',
         onChanged: (v) => setState(() => _values[s.name] = v),
+      );
+    }
+    if (s.type.startsWith('num')) {
+      // Campo numerico opcional: vazio = null (prop nao informada); inteiro vira int, decimal double.
+      return TextField(
+        key: ValueKey('pg-${s.name}'),
+        keyboardType: const TextInputType.numberWithOptions(
+          signed: true,
+          decimal: true,
+        ),
+        inputFormatters: [
+          FilteringTextInputFormatter.allow(RegExp(r'^-?\d*\.?\d*$')),
+        ],
+        decoration: InputDecoration(
+          labelText: s.name,
+          isDense: true,
+          hintText: s.defaultValue,
+        ),
+        onChanged: (v) => setState(() => _values[s.name] = _parseNum(v)),
       );
     }
     return TextField(

@@ -187,8 +187,8 @@ class SgInputEmail extends StatefulWidget implements SgInputEmailProps {
 }
 
 class _SgInputEmailState extends State<SgInputEmail> {
-  // Controlador proprio para ler o valor atual na perda de foco quando o campo nao esta ligado a um formulario.
-  final SgFormController _own = SgFormController();
+  // Ultimo valor completo digitado, para ler na perda de foco quando o campo nao esta ligado a um formulario.
+  String? _last;
   SgFormController? _ctl;
   String? _internalError;
   bool _interacted = false;
@@ -203,12 +203,6 @@ class _SgInputEmailState extends State<SgInputEmail> {
         : null;
   }
 
-  @override
-  void dispose() {
-    _own.dispose();
-    super.dispose();
-  }
-
   String _strip(String s) {
     var v = s;
     final p = widget.prefixText ?? '';
@@ -221,7 +215,7 @@ class _SgInputEmailState extends State<SgInputEmail> {
   String _current() => _strip(
     _hasForm
         ? '${_ctl!.getValue(widget.name!) ?? ''}'
-        : '${_own.getValue('v') ?? widget.initialValue ?? ''}',
+        : (_last ?? widget.initialValue ?? ''),
   );
 
   void _set(String? message) {
@@ -254,7 +248,7 @@ class _SgInputEmailState extends State<SgInputEmail> {
 
   void _onChange(String full) {
     _interacted = true;
-    if (!_hasForm) _own.setValue('v', full);
+    if (!_hasForm) _last = full;
     _validate(_strip(full));
     widget.onChange?.call(full);
   }

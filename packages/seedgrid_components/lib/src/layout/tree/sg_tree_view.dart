@@ -14,7 +14,6 @@ import 'package:flutter/services.dart';
 import 'package:seedgrid_theme/seedgrid_theme.dart';
 
 import '../../buttons/sg_button.dart';
-import '../../form/sg_form.dart';
 import '../../generated/enums.g.dart';
 import '../../generated/sg_tree_view.g.dart';
 import '../../i18n/i18n.dart';
@@ -182,7 +181,6 @@ class SgTreeViewState extends State<SgTreeView>
   late List<String> _pending = [...?widget.defaultCheckedIds];
   late String _searchInner = widget.defaultSearchValue ?? '';
 
-  final SgFormController _searchForm = SgFormController();
   final FocusNode _focus = FocusNode(debugLabel: 'SgTreeView');
   final ScrollController _scroll = ScrollController();
 
@@ -233,7 +231,6 @@ class SgTreeViewState extends State<SgTreeView>
         widget.checkedIds != null) {
       _pending = [...widget.checkedIds!];
     }
-    _searchForm.registerField('q', initialValue: _search);
     widget.controller?.attach(this);
     _focus.addListener(() {
       if (mounted) setState(() {});
@@ -257,16 +254,11 @@ class SgTreeViewState extends State<SgTreeView>
         !identical(oldWidget.checkedIds, widget.checkedIds)) {
       _pending = [...widget.checkedIds!];
     }
-    if (widget.searchValue != null &&
-        _searchForm.getValue('q') != widget.searchValue) {
-      _searchForm.setValue('q', widget.searchValue);
-    }
   }
 
   @override
   void dispose() {
     widget.controller?.detach(this);
-    _searchForm.dispose();
     _focus.dispose();
     _scroll.dispose();
     super.dispose();
@@ -565,8 +557,7 @@ class SgTreeViewState extends State<SgTreeView>
 
     final searchField = SgInputText(
       id: 'sg-tree-search',
-      name: 'q',
-      control: _searchForm,
+      value: _search,
       labelText: searchPlaceholder,
       placeholder: searchPlaceholder,
       prefixIcon: const Icon(Icons.search, size: 16),

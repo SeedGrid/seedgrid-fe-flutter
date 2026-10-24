@@ -63,6 +63,7 @@ class SgInputText extends StatefulWidget implements SgInputTextProps {
     this.width,
     this.withBorder,
     this.initialValue,
+    this.value,
     this.inputFormatters,
     this.autofocus = false,
     this.autofillHints,
@@ -174,6 +175,13 @@ class SgInputText extends StatefulWidget implements SgInputTextProps {
   /// Valor inicial quando nao ha `control` (no React, `inputProps.defaultValue`).
   final String? initialValue;
 
+  /// Valor controlado (no React, `inputProps.value`), com os afixos (`prefixText`/`suffixText`), como o
+  /// `onChange` os entrega. Nulo = nao controlado (Dart nao distingue null de indefinido). Controlado: o campo
+  /// sempre mostra `value`; se o pai nao atualizar `value` apos o `onChange`, o texto volta ao valor anterior.
+  /// Trocar `value` por fora atualiza o texto. Com `name` + formulario (ou `control`), o valor do formulario
+  /// manda e `value` e ignorado (igual ao React, onde o Controller sobrescreve `inputProps.value`).
+  final String? value;
+
   /// Lista fechada que substitui `inputProps` do React (ADR 50): formatadores de entrada (mascaras).
   final List<TextInputFormatter>? inputFormatters;
 
@@ -224,7 +232,28 @@ class _SgInputTextState extends State<SgInputText> {
   void initState() {
     super.initState();
     _focus.addListener(_onFocus);
-    _text.text = widget.initialValue ?? '';
+    _text.text = widget.value != null
+        ? _strip(widget.value)
+        : (widget.initialValue ?? '');
+  }
+
+  bool get _controlled => widget.value != null && !_bound;
+
+  /// Controlado: devolve o texto a `value` depois do quadro, caso o pai nao tenha atualizado (como o
+  /// `<input value>` controlado do React).
+  void _enforceControlled() {
+    if (!_controlled) return;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted || !_controlled) return;
+      final v = _strip(widget.value);
+      if (_text.text != v) {
+        _text.value = TextEditingValue(
+          text: v,
+          selection: TextSelection.collapsed(offset: v.length),
+        );
+        setState(() {});
+      }
+    });
   }
 
   @override
@@ -243,6 +272,18 @@ class _SgInputTextState extends State<SgInputText> {
   void didUpdateWidget(SgInputText old) {
     super.didUpdateWidget(old);
     _register();
+    if (_controlled &&
+        (widget.value != old.value ||
+            widget.prefixText != old.prefixText ||
+            widget.suffixText != old.suffixText)) {
+      final v = _strip(widget.value);
+      if (_text.text != v) {
+        _text.value = TextEditingValue(
+          text: v,
+          selection: TextSelection.collapsed(offset: v.length),
+        );
+      }
+    }
   }
 
   void _register() {
@@ -346,6 +387,7 @@ class _SgInputTextState extends State<SgInputText> {
     }
     widget.onChange?.call(full);
     setState(() {});
+    _enforceControlled();
   }
 
   void _clear() {
@@ -354,6 +396,7 @@ class _SgInputTextState extends State<SgInputText> {
     widget.onChange?.call('');
     widget.onClear?.call();
     setState(() {});
+    _enforceControlled();
   }
 
   double? _dim(Object? v, double available) {

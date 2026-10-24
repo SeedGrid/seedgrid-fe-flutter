@@ -9,10 +9,8 @@ import 'package:seedgrid_theme/seedgrid_theme.dart';
 import '../../commons/commons_colors.dart';
 import '../../i18n/i18n.dart';
 import '../../theme_access.dart';
+import '../dropdown/sg_dropdown_host.dart';
 import 'multi_select_core.dart';
-
-/// Largura (logica) a partir da qual a lista abre ancorada; abaixo disso abre como bottom sheet.
-const double kSgMultiSelectSheetBreakpoint = 600;
 
 /// Altura maxima da lista de opcoes (`max-h-64` do React).
 const double kSgMultiSelectListMaxHeight = 256;
@@ -54,12 +52,6 @@ class SgMultiSelectColors {
       inputPlaceholder,
       inputDisabledBg,
       inputDisabledFg;
-}
-
-/// `maxWidth: min(32rem, 100vw - 24px)` do React.
-double sgMultiSelectDropdownWidth(double anchorWidth, double screenWidth) {
-  final maxW = screenWidth - 24 < 512 ? screenWidth - 24 : 512.0;
-  return anchorWidth < maxW ? anchorWidth : maxW;
 }
 
 /// Conteudo do dropdown: busca opcional, lista de opcoes com marcacao e texto de lista vazia.
@@ -306,9 +298,9 @@ class _OptionRow extends StatelessWidget {
   }
 }
 
-/// Envolve o campo (gatilho) e mostra o [SgMultiSelectDropdown] quando o controlador abre:
-/// ancorado ao campo em tela larga, bottom sheet em tela estreita (< 600).
-class SgMultiSelectHost extends StatefulWidget {
+/// Envolve o campo (gatilho) e mostra o [SgMultiSelectDropdown] quando o controlador abre, sobre o
+/// [SgDropdownHost] compartilhado: ancorado ao campo em tela larga, bottom sheet modal em tela estreita.
+class SgMultiSelectHost extends StatelessWidget {
   const SgMultiSelectHost({
     super.key,
     required this.controller,
@@ -324,150 +316,43 @@ class SgMultiSelectHost extends StatefulWidget {
   final String emptyText;
   final double borderRadius;
 
-  @override
-  State<SgMultiSelectHost> createState() => _SgMultiSelectHostState();
-}
-
-class _SgMultiSelectHostState extends State<SgMultiSelectHost> {
-  final OverlayPortalController _portal = OverlayPortalController();
-  final LayerLink _link = LayerLink();
-  final GlobalKey _anchorKey = GlobalKey(debugLabel: 'multi-ancora');
-  final Object _group = Object();
-  BuildContext? _sheetContext;
-  bool _sheetShown = false;
-  bool? _narrowWhenOpened;
-
-  bool get _narrow =>
-      MediaQuery.sizeOf(context).width < kSgMultiSelectSheetBreakpoint;
-
-  @override
-  void initState() {
-    super.initState();
-    widget.controller.addListener(_sync);
-  }
-
-  @override
-  void didUpdateWidget(SgMultiSelectHost old) {
-    super.didUpdateWidget(old);
-    if (old.controller != widget.controller) {
-      old.controller.removeListener(_sync);
-      widget.controller.addListener(_sync);
-    }
-  }
-
-  @override
-  void dispose() {
-    widget.controller.removeListener(_sync);
-    super.dispose();
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    // Girou o aparelho / mudou a largura com a lista aberta: fecha para reabrir na superficie certa.
-    if (widget.controller.open &&
-        _narrowWhenOpened != null &&
-        _narrowWhenOpened != _narrow) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        if (mounted) widget.controller.closeDropdown();
-      });
-    }
-  }
-
-  void _sync() {
-    if (!mounted) return;
-    final c = widget.controller;
-    final want = c.open && !c.isDisabled;
-    if (want) {
-      _narrowWhenOpened ??= _narrow;
-      if (_narrowWhenOpened!) {
-        if (!_sheetShown) _openSheet();
-      } else if (!_portal.isShowing) {
-        _portal.show();
-      }
-    } else {
-      _narrowWhenOpened = null;
-      if (_portal.isShowing) _portal.hide();
-      if (_sheetShown) _closeSheet();
-    }
-  }
-
-  void _openSheet() {
-    _sheetShown = true;
-    showModalBottomSheet<void>(
-      context: context,
-      isScrollControlled: true,
-      useRootNavigator: true,
-      backgroundColor: Colors.transparent,
-      builder: (sheetContext) {
-        _sheetContext = sheetContext;
-        final colors = SgMultiSelectColors(sgThemeOf(sheetContext));
-        final h = MediaQuery.sizeOf(sheetContext).height;
-        return Focus(
-          // Sem busca, as setas/Enter/Espaco chegam aqui (o foco esta na folha, nao no campo).
-          autofocus: !widget.controller.searchable,
-          onKeyEvent: (_, e) => widget.controller.handleListKey(e),
-          child: SafeArea(
-            child: Padding(
-              padding: EdgeInsets.only(
-                left: 8,
-                right: 8,
-                bottom: MediaQuery.viewInsetsOf(sheetContext).bottom + 8,
-              ),
-              child: Material(
-                color: colors.surface,
-                borderRadius: BorderRadius.circular(widget.borderRadius + 6),
-                child: SgMultiSelectDropdown(
-                  controller: widget.controller,
-                  searchPlaceholder: widget.searchPlaceholder,
-                  emptyText: widget.emptyText,
-                  borderRadius: widget.borderRadius + 6,
-                  maxListHeight: h * 0.5,
-                ),
-              ),
-            ),
-          ),
-        );
-      },
-    ).whenComplete(() {
-      _sheetShown = false;
-      _sheetContext = null;
-      // Fechou por gesto (arrastar/tocar fora): sincroniza o estado.
-      if (mounted && widget.controller.open) widget.controller.closeDropdown();
-    });
-  }
-
-  void _closeSheet() {
-    final ctx = _sheetContext;
-    _sheetShown = false;
-    if (ctx != null && ctx.mounted) Navigator.of(ctx).pop();
-  }
-
-  Widget _overlay(BuildContext context) {
-    final box = _anchorKey.currentContext?.findRenderObject() as RenderBox?;
-    final anchorW = box?.size.width ?? 300;
-    final width = sgMultiSelectDropdownWidth(
-      anchorW,
-      MediaQuery.sizeOf(context).width,
+  Widget _popup(BuildContext context, double fieldWidth) {
+    final screen = MediaQuery.sizeOf(context).width;
+    final maxW = sgDropdownMaxWidth(screen);
+    return SizedBox(
+      width: fieldWidth < maxW ? fieldWidth : maxW,
+      child: SgMultiSelectDropdown(
+        controller: controller,
+        searchPlaceholder: searchPlaceholder,
+        emptyText: emptyText,
+        borderRadius: borderRadius,
+      ),
     );
-    return Positioned(
-      left: 0,
-      top: 0,
-      child: CompositedTransformFollower(
-        link: _link,
-        showWhenUnlinked: false,
-        targetAnchor: Alignment.bottomLeft,
-        followerAnchor: Alignment.topLeft,
-        offset: const Offset(0, 4),
-        child: TapRegion(
-          groupId: _group,
-          child: SizedBox(
-            width: width,
+  }
+
+  Widget _sheet(BuildContext sheetContext) {
+    final colors = SgMultiSelectColors(sgThemeOf(sheetContext));
+    final h = MediaQuery.sizeOf(sheetContext).height;
+    return Focus(
+      // Sem busca, as setas/Enter/Espaco chegam aqui (o foco esta na folha, nao no campo).
+      autofocus: !controller.searchable,
+      onKeyEvent: (_, e) => controller.handleListKey(e),
+      child: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.only(
+            left: 8,
+            right: 8,
+            bottom: MediaQuery.viewInsetsOf(sheetContext).bottom + 8,
+          ),
+          child: Material(
+            color: colors.surface,
+            borderRadius: BorderRadius.circular(borderRadius + 6),
             child: SgMultiSelectDropdown(
-              controller: widget.controller,
-              searchPlaceholder: widget.searchPlaceholder,
-              emptyText: widget.emptyText,
-              borderRadius: widget.borderRadius,
+              controller: controller,
+              searchPlaceholder: searchPlaceholder,
+              emptyText: emptyText,
+              borderRadius: borderRadius + 6,
+              maxListHeight: h * 0.5,
             ),
           ),
         ),
@@ -476,25 +361,20 @@ class _SgMultiSelectHostState extends State<SgMultiSelectHost> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return OverlayPortal(
-      controller: _portal,
-      overlayChildBuilder: _overlay,
-      child: TapRegion(
-        groupId: _group,
-        onTapOutside: (_) {
-          // mousedown fora do campo e da lista fecha (no sheet quem fecha e o modal).
-          if (widget.controller.open && _narrowWhenOpened == false) {
-            widget.controller.closeDropdown();
-          }
-        },
-        child: CompositedTransformTarget(
-          link: _link,
-          child: KeyedSubtree(key: _anchorKey, child: widget.child),
-        ),
-      ),
-    );
-  }
+  Widget build(BuildContext context) => ListenableBuilder(
+    listenable: controller,
+    child: child,
+    builder: (context, field) => SgDropdownHost(
+      open: controller.open && !controller.isDisabled,
+      field: field!,
+      modalSheet: true,
+      popup: _popup,
+      sheet: _sheet,
+      onOutsideTap: controller.closeDropdown,
+      onNarrowChanged: controller.closeDropdown,
+      onModalDismissed: controller.closeDropdown,
+    ),
+  );
 }
 
 /// O foco foi para a lista (busca ou bottom sheet)? Entao o blur do campo nao e "sair" (no React o
@@ -502,10 +382,7 @@ class _SgMultiSelectHostState extends State<SgMultiSelectHost> {
 bool sgMultiSelectFocusMovesToList(
   BuildContext context,
   SgMultiSelectController c,
-) =>
-    c.open &&
-    (c.searchable ||
-        MediaQuery.sizeOf(context).width < kSgMultiSelectSheetBreakpoint);
+) => c.open && (c.searchable || sgSelectNarrow(context));
 
 /// Teclas que o campo trata antes do texto (Escape, ArrowDown, Enter, Espaco), iguais ao `onKeyDown`
 /// do campo do React; as demais seguem para o `handleListKey` so quando a lista esta aberta e sem busca.

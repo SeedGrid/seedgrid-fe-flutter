@@ -256,9 +256,9 @@ class SgInputPassword extends StatefulWidget implements SgInputPasswordProps {
 }
 
 class _SgInputPasswordState extends State<SgInputPassword> {
-  // Controlador proprio: o botao de gerar senha precisa escrever no campo, e o SgInputText so aceita
-  // valor de fora por formulario.
-  final SgFormController _own = SgFormController();
+  // Sem formulario o botao de gerar senha escreve no campo pelo `value` controlado do SgInputText;
+  // com formulario escreve no controlador.
+  late String _value = widget.initialValue ?? '';
   final FocusNode _buttonFocus = FocusNode(
     skipTraversal: true,
     canRequestFocus: false,
@@ -271,7 +271,6 @@ class _SgInputPasswordState extends State<SgInputPassword> {
   Set<String>? _commonSet;
 
   String get _name => widget.name ?? 'senha';
-  SgFormController get _control => _ctl ?? _own;
 
   @override
   void initState() {
@@ -303,7 +302,6 @@ class _SgInputPasswordState extends State<SgInputPassword> {
   @override
   void dispose() {
     _buttonFocus.dispose();
-    _own.dispose();
     super.dispose();
   }
 
@@ -386,6 +384,7 @@ class _SgInputPasswordState extends State<SgInputPassword> {
   /// Valor sem afixos (o que o React le do <input>).
   void _onValue(String full) {
     _interacted = true;
+    if (_ctl == null) setState(() => _value = full);
     final raw = stripAffixes(full, widget.prefixText, widget.suffixText);
     _validate(raw);
     widget.onChange?.call(raw);
@@ -395,7 +394,7 @@ class _SgInputPasswordState extends State<SgInputPassword> {
     if ((widget.validateOnBlur ?? true) || _interacted) {
       _validate(
         stripAffixes(
-          '${_control.getValue(_name) ?? ''}',
+          _ctl == null ? _value : '${_ctl!.getValue(_name) ?? ''}',
           widget.prefixText,
           widget.suffixText,
         ),
@@ -453,7 +452,10 @@ class _SgInputPasswordState extends State<SgInputPassword> {
 
   Future<void> _applyGenerated() async {
     final next = _generate();
-    await _control.setValue(_name, next);
+    if (_ctl != null) {
+      await _ctl!.setValue(_name, next);
+      if (!mounted) return;
+    }
     _onValue(next);
   }
 
@@ -503,7 +505,8 @@ class _SgInputPasswordState extends State<SgInputPassword> {
       id: w.id,
       borderRadius: w.borderRadius,
       clearButton: w.clearButton,
-      control: _control,
+      control: _ctl,
+      value: _ctl == null ? _value : null,
       elevation: SgInputTextElevation.fromValue(w.elevation?.value),
       disabled: w.disabled,
       error: w.error ?? _internalError,
@@ -551,7 +554,7 @@ class _SgInputPasswordState extends State<SgInputPassword> {
       minLengthMessage: w.minLengthMessage,
       minNumberOfWords: w.minNumberOfWords,
       minNumberOfWordsMessage: w.minNumberOfWordsMessage,
-      name: _name,
+      name: _ctl == null ? null : _name,
       onChange: _onValue,
       onClear: () {
         setState(() => _internalError = null);

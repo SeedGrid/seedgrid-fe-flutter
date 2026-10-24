@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:seedgrid_components/seedgrid_components.dart' show SgToastHost;
 import 'package:seedgrid_theme/seedgrid_theme.dart';
 
 import 'pages/pages.g.dart';
@@ -127,24 +128,32 @@ class _ShowcaseHomeState extends State<ShowcaseHome> {
           ? null
           : AppBar(title: Text(entry?.name ?? 'Início'), actions: [toggle]),
       drawer: wide ? null : Drawer(child: SafeArea(child: menu)),
-      body: SafeArea(
-        child: wide
-            ? Row(
-                children: [
-                  SizedBox(
-                    width: 260,
-                    child: Column(
-                      children: [
-                        Expanded(child: menu),
-                        toggle,
-                      ],
-                    ),
-                  ),
-                  const VerticalDivider(width: 1),
-                  Expanded(child: content),
-                ],
-              )
-            : content,
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          SafeArea(
+            child: wide
+                ? Row(
+                    children: [
+                      SizedBox(
+                        width: 260,
+                        child: Column(
+                          children: [
+                            Expanded(child: menu),
+                            toggle,
+                          ],
+                        ),
+                      ),
+                      const VerticalDivider(width: 1),
+                      Expanded(child: content),
+                    ],
+                  )
+                : content,
+          ),
+          // Host global de toasts: qualquer pagina dispara `toast(...)` sem host local. O SgToaster
+          // tem a propria pagina com um toaster solto configuravel, entao ali o host global sai.
+          if (entry?.name != 'SgToaster') const SgToastHost(),
+        ],
       ),
     );
   }

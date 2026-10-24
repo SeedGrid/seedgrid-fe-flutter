@@ -494,4 +494,131 @@ void extrasTests() {
       expect(submitted, [r'R$ 9']);
     },
   );
+
+  group('value controlado', () {
+    String shown(WidgetTester t, String id) =>
+        t.widget<TextField>(field(id)).controller!.text;
+
+    testWidgets('value inicial aparece no campo', (t) async {
+      await t.pumpWidget(host(const SgInputText(id: 'a', value: 'Ana')));
+      expect(shown(t, 'a'), 'Ana');
+    });
+
+    testWidgets('pai atualiza value no onChange: campo acompanha', (t) async {
+      var v = 'a';
+      await t.pumpWidget(
+        host(
+          StatefulBuilder(
+            builder: (c, set) => SgInputText(
+              id: 'a',
+              value: v,
+              onChange: (n) => set(() => v = n.toUpperCase()),
+            ),
+          ),
+        ),
+      );
+      await t.enterText(field('a'), 'abc');
+      await t.pump();
+      expect(v, 'ABC');
+      expect(shown(t, 'a'), 'ABC');
+    });
+
+    testWidgets('pai nao atualiza value: texto volta ao valor', (t) async {
+      final changes = <String>[];
+      await t.pumpWidget(
+        host(SgInputText(id: 'a', value: 'fixo', onChange: changes.add)),
+      );
+      await t.enterText(field('a'), 'outro');
+      await t.pump();
+      expect(changes, ['outro']);
+      expect(shown(t, 'a'), 'fixo');
+    });
+
+    testWidgets('troca externa do value atualiza o campo', (t) async {
+      await t.pumpWidget(host(const SgInputText(id: 'a', value: 'um')));
+      await t.pumpWidget(host(const SgInputText(id: 'a', value: 'dois')));
+      expect(shown(t, 'a'), 'dois');
+      await t.pumpWidget(host(const SgInputText(id: 'a', value: '')));
+      expect(shown(t, 'a'), '');
+    });
+
+    testWidgets('afixos: value completo e exibido sem afixos', (t) async {
+      await t.pumpWidget(
+        host(
+          const SgInputText(
+            id: 'a',
+            prefixText: r'R$ ',
+            suffixText: ' /mes',
+            value: r'R$ 10 /mes',
+          ),
+        ),
+      );
+      expect(shown(t, 'a'), '10');
+    });
+
+    testWidgets('limpar com clearButton reverte se o pai nao atualiza', (
+      t,
+    ) async {
+      var cleared = 0;
+      await t.pumpWidget(
+        host(SgInputText(id: 'a', value: 'x', onClear: () => cleared++)),
+      );
+      await t.tap(find.byKey(const ValueKey('clear-a')));
+      await t.pump();
+      expect(cleared, 1);
+      expect(shown(t, 'a'), 'x');
+    });
+  });
+
+  group('nao controlado', () {
+    testWidgets('initialValue inicia o campo e permite digitar', (t) async {
+      await t.pumpWidget(host(const SgInputText(id: 'a', initialValue: 'Ana')));
+      expect(find.text('Ana'), findsOneWidget);
+      await t.enterText(field('a'), 'Bia');
+      await t.pump();
+      expect(find.text('Bia'), findsOneWidget);
+    });
+
+    testWidgets('value nulo apos controlado vira nao controlado', (t) async {
+      await t.pumpWidget(host(const SgInputText(id: 'a', value: 'um')));
+      await t.pumpWidget(host(const SgInputText(id: 'a')));
+      await t.enterText(field('a'), 'livre');
+      await t.pump();
+      expect(find.text('livre'), findsOneWidget);
+    });
+  });
+
+  group('value com formulario', () {
+    testWidgets('com name+control o valor do formulario manda e reset limpa', (
+      t,
+    ) async {
+      final form = SgFormController(defaultValues: {'n': 'Ana'});
+      addTearDown(form.dispose);
+      await t.pumpWidget(
+        host(SgInputText(id: 'a', name: 'n', control: form, value: 'ignorado')),
+      );
+      expect(find.text('Ana'), findsOneWidget);
+      await t.enterText(field('a'), 'Bia');
+      await t.pump();
+      expect(form.getValue('n'), 'Bia');
+      expect(find.text('Bia'), findsOneWidget);
+      form.reset();
+      await t.pump();
+      expect(find.text('Ana'), findsOneWidget);
+      await form.setValue('n', 'Caio');
+      await t.pump();
+      expect(find.text('Caio'), findsOneWidget);
+    });
+
+    testWidgets('sem name, value controla mesmo dentro de SgForm', (t) async {
+      await t.pumpWidget(
+        host(
+          const SgForm(
+            child: SgInputText(id: 'a', value: 'solto'),
+          ),
+        ),
+      );
+      expect(find.text('solto'), findsOneWidget);
+    });
+  });
 }

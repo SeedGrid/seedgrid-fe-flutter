@@ -10,9 +10,10 @@ import 'package:flutter/material.dart';
 import 'package:seedgrid_theme/seedgrid_theme.dart';
 
 import '../../theme_access.dart';
+import '../dropdown/sg_dropdown_host.dart';
 
-/// Largura abaixo da qual a lista vira bottom sheet.
-const double kSgSelectNarrowWidth = 600;
+export '../dropdown/sg_dropdown_host.dart'
+    show kSgSelectNarrowWidth, sgSelectNarrow;
 
 /// `SgAutocompleteItem` do React. `id` e texto ou numero.
 class SgAutocompleteItem {
@@ -63,10 +64,6 @@ SgAutocompleteItem sgDefaultMapItem(Object? raw) {
 /// `idEquals` do React: compara como texto; nulo nunca e igual.
 bool sgIdEquals(Object left, Object? right) =>
     right != null && '$left' == '$right';
-
-/// A lista cabe como painel de baixo? (largura < 600)
-bool sgSelectNarrow(BuildContext context) =>
-    MediaQuery.sizeOf(context).width < kSgSelectNarrowWidth;
 
 typedef SgSelectItemBuilder =
     Widget Function(SgAutocompleteItem item, bool isActive);
@@ -270,8 +267,8 @@ class _SgSelectListState extends State<SgSelectList> {
 }
 
 /// Superficie da lista: ancorada ao campo (larga) ou painel de baixo acima do teclado (estreita).
-/// Dona do `OverlayPortal`; mostra/esconde conforme [open]. O [field] fica na arvore e a lista no Overlay.
-class SgSelectOverlay extends StatefulWidget {
+/// Estilo da lista de selecao sobre o [SgDropdownHost] compartilhado; mostra/esconde conforme [open].
+class SgSelectOverlay extends StatelessWidget {
   const SgSelectOverlay({
     super.key,
     required this.open,
@@ -299,47 +296,9 @@ class SgSelectOverlay extends StatefulWidget {
   /// Toque fora do campo e da lista (so chamado quando aberto).
   final VoidCallback onOutsideTap;
 
-  @override
-  State<SgSelectOverlay> createState() => _SgSelectOverlayState();
-}
-
-class _SgSelectOverlayState extends State<SgSelectOverlay> {
-  final OverlayPortalController _portal = OverlayPortalController();
-  final LayerLink _link = LayerLink();
-  final GlobalKey _fieldKey = GlobalKey();
-  final Object _group = Object();
-
-  void _sync() {
-    // OverlayPortalController.show/hide nao podem rodar durante o build.
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (!mounted) return;
-      if (widget.open && !_portal.isShowing) _portal.show();
-      if (!widget.open && _portal.isShowing) _portal.hide();
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _sync();
-  }
-
-  @override
-  void didUpdateWidget(SgSelectOverlay old) {
-    super.didUpdateWidget(old);
-    _sync();
-  }
-
-  @override
-  void dispose() {
-    if (_portal.isShowing) _portal.hide();
-    super.dispose();
-  }
-
-  Widget _surface(BuildContext context) {
+  Widget _inner(BuildContext context, {required bool narrow}) {
     final t = sgThemeOf(context);
-    final narrow = sgSelectNarrow(context);
-    final inner = Column(
+    return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -357,116 +316,81 @@ class _SgSelectOverlayState extends State<SgSelectOverlay> {
               ),
             ),
           ),
-        if (narrow && widget.title != null)
+        if (narrow && title != null)
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 4, 16, 8),
             child: Text(
-              widget.title!,
+              title!,
               key: const ValueKey('sg-select-sheet-title'),
               style: Theme.of(context).textTheme.titleSmall,
             ),
           ),
-        Flexible(child: widget.content),
-        if (widget.footer != null)
+        Flexible(child: content),
+        if (footer != null)
           Container(
             decoration: BoxDecoration(
               border: Border(top: BorderSide(color: t.border)),
             ),
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-            child: widget.footer,
+            child: footer,
           ),
       ],
     );
+  }
 
-    if (narrow) {
-      final media = MediaQuery.of(context);
-      // O contexto do OverlayPortal fica dentro do Scaffold, que remove o viewInsets do MediaQuery; o teclado
-      // real vem da janela.
-      final view = View.of(context);
-      final keyboard = view.viewInsets.bottom / view.devicePixelRatio;
-      return TapRegion(
-        groupId: _group,
-        child: TextFieldTapRegion(
-          child: Align(
-            alignment: Alignment.bottomCenter,
-            child: Padding(
-              padding: EdgeInsets.only(bottom: keyboard),
-              child: Material(
-                key: const ValueKey('sg-select-sheet'),
-                color: t.surface,
-                elevation: 16,
-                shadowColor: const Color(0x40000000),
-                borderRadius: const BorderRadius.vertical(
-                  top: Radius.circular(16),
-                ),
-                clipBehavior: Clip.antiAlias,
-                child: ConstrainedBox(
-                  constraints: BoxConstraints(
-                    maxHeight: media.size.height * 0.5,
-                    minWidth: media.size.width,
-                  ),
-                  child: inner,
-                ),
-              ),
-            ),
-          ),
+  Widget _panel(BuildContext context) {
+    final t = sgThemeOf(context);
+    final media = MediaQuery.of(context);
+    return Material(
+      key: const ValueKey('sg-select-sheet'),
+      color: t.surface,
+      elevation: 16,
+      shadowColor: const Color(0x40000000),
+      borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
+      clipBehavior: Clip.antiAlias,
+      child: ConstrainedBox(
+        constraints: BoxConstraints(
+          maxHeight: media.size.height * 0.5,
+          minWidth: media.size.width,
         ),
-      );
-    }
+        child: _inner(context, narrow: true),
+      ),
+    );
+  }
 
-    final fieldBox = _fieldKey.currentContext?.findRenderObject() as RenderBox?;
-    final fieldWidth = fieldBox != null && fieldBox.hasSize
-        ? fieldBox.size.width
-        : 0.0;
-    final screenWidth = MediaQuery.sizeOf(context).width;
-    return TapRegion(
-      groupId: _group,
-      child: TextFieldTapRegion(
-        child: CompositedTransformFollower(
-          link: _link,
-          targetAnchor: Alignment.bottomLeft,
-          followerAnchor: Alignment.topLeft,
-          offset: const Offset(0, 4),
-          showWhenUnlinked: false,
-          child: Align(
-            alignment: Alignment.topLeft,
-            child: ConstrainedBox(
-              constraints: BoxConstraints(
-                minWidth: fieldWidth,
-                maxWidth: math.max(fieldWidth, math.min(512, screenWidth - 24)),
-              ),
-              child: IntrinsicWidth(
-                child: Material(
-                  key: const ValueKey('sg-select-popup'),
-                  color: t.surface,
-                  elevation: 8,
-                  shadowColor: const Color(0x40000000),
-                  clipBehavior: Clip.antiAlias,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(widget.radius),
-                    side: BorderSide(color: t.border),
-                  ),
-                  child: inner,
-                ),
-              ),
-            ),
+  Widget _popup(BuildContext context, double fieldWidth) {
+    final t = sgThemeOf(context);
+    return ConstrainedBox(
+      constraints: BoxConstraints(
+        minWidth: fieldWidth,
+        maxWidth: math.max(
+          fieldWidth,
+          sgDropdownMaxWidth(MediaQuery.sizeOf(context).width),
+        ),
+      ),
+      child: IntrinsicWidth(
+        child: Material(
+          key: const ValueKey('sg-select-popup'),
+          color: t.surface,
+          elevation: 8,
+          shadowColor: const Color(0x40000000),
+          clipBehavior: Clip.antiAlias,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(radius),
+            side: BorderSide(color: t.border),
           ),
+          child: _inner(context, narrow: false),
         ),
       ),
     );
   }
 
   @override
-  Widget build(BuildContext context) => OverlayPortal(
-    controller: _portal,
-    overlayChildBuilder: _surface,
-    child: TapRegion(
-      groupId: _group,
-      onTapOutside: widget.open ? (_) => widget.onOutsideTap() : null,
-      child: CompositedTransformTarget(
-        link: _link,
-        child: KeyedSubtree(key: _fieldKey, child: widget.field),
-      ),
-    ),
+  Widget build(BuildContext context) => SgDropdownHost(
+    open: open,
+    field: field,
+    onOutsideTap: onOutsideTap,
+    popup: _popup,
+    panel: _panel,
   );
 }
