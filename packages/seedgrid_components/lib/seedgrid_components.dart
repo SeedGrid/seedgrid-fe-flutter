@@ -34,3 +34,7 @@ export 'src/digits/digits_simple.dart';
 export 'src/digits/digits_string_animator.dart';
 export 'src/gadgets/gadgets_clock.dart';
 export 'src/gadgets/gadgets_gauges.dart';
+export 'src/inputs/datatable_inputs.dart';
+export 'src/layout/menu/menu_layout.dart';
+export 'src/menus/menus_dock.dart';
+export 'src/buttons/action_buttons.dart';

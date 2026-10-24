@@ -1,5 +1,17 @@
 {
   "_leia": "Estado manual que o detector automatico nao enxerga. Chave = componente do React. status: portado | parcial | nao-aplicavel. 'motivo' obrigatorio para parcial e nao-aplicavel. Componente com widget Dart de mesmo nome e detectado como 'portado' sozinho.",
+  "SgMenu": {
+    "status": "parcial",
+    "motivo": "motor proprio (widgets + Overlay), sem MenuAnchor; sem navegacao propria (window.location.assign vira so onNavigate); brand.imageSrc e user.avatarSrc sao URLs de rede; className/style/userSectionClassName/userSectionStyle aceitos sem efeito; collapsedWidth/expandedWidth aceitam px e % (nao rem); dock sem portal (o widget fica na SgDockZone); dica (hint) sempre abaixo; no trilho recolhido do hibrido o botao de fixar fica cortado"
+  },
+  "SgToolBar": {
+    "status": "parcial",
+    "motivo": "className/style sem efeito; dock sem portal (o widget fica na SgDockZone; zonas horizontais mostram o conteudo em linha); freeDrag fora de um Stack vira translacao (sem position: fixed); size e SgToolBarSize, defaultPosition e Offset, cores em texto CSS; extras do Flutter: children (lista) ao lado de child e overflow (itens que nao cabem vao para o menu '...' feito com SgMenu, painel inferior abaixo de 600)"
+  },
+  "SgToolbarIconButton": {
+    "status": "parcial",
+    "motivo": "icon e um Widget (nao texto/nome de icone); dica sempre abaixo; severidades success/warning usam --accent (nao existe --tertiary); showLabel segue o codigo do React (padrao true), nao o meta (false); onClick pode ser assincrono e mostra o indicador de carregamento"
+  },
   "SgComponentsI18nProvider": {
     "status": "portado",
     "onde": "packages/seedgrid_components/lib/src/i18n/i18n.dart (SgComponentsI18nProvider, useComponentsI18n)"
@@ -212,6 +224,10 @@
     "status": "parcial",
     "motivo": "so temas embutidos (formato JSON sg-clock-theme/1); o playground nao edita size (num?); golden com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em dispositivo"
   },
+  "SgDockMenu": {
+    "status": "parcial",
+    "motivo": "zoom por proximidade e rotulo ao passar so com mouse/caneta (desktop/web); em toque nao ha zoom nem rotulo (sem hover); sem className/itemClassName/style e item.className (ADR 50); zIndex aceito e ignorado (Flutter sem z-index); sem position fixed na viewport: o dock ancora na area do widget (use num Stack ou como filho que preenche a tela); sem SgEnvironmentProvider a posicao vai para shared_preferences (localStorage com prefixo flutter. no web); menu de contexto por botao direito ou toque longo; backdrop-filter aproximado por BackdropFilter; goldens nao feitos; nao testado em dispositivo"
+  },
   "SgTimeProvider": {
     "status": "parcial",
     "motivo": "initialServerTime invalido cai no agora (o React propagaria NaN)"
@@ -219,5 +235,17 @@
   "SgStringAnimator": {
     "status": "parcial",
     "motivo": "o ref virou SgStringAnimatorController.startAnimation(); prop extra controller; dois pontos e celula do periodo reproduzidos pelo codigo (fora da paridade por vetor); golden com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em dispositivo"
+  },
+  "SgDatatable": {
+    "status": "parcial",
+    "motivo": "tabela propria sem dependencia nova (two_dimensional_scrollables/TableView avaliada e descartada: exige altura de linha conhecida e nao mede conteudo); sem altura limitada pelo pai monta todas as linhas da pagina como o React (2.000 linhas sem paginador levam cerca de 1,9 s de build em teste), com altura limitada e mais de 100 linhas o corpo e virtualizado; ordenacao de texto aproxima a colacao ICU do localeCompare (vetores do React batem em 8.299 pares, mas locales exoticos podem divergir); className/style/tableClassName/rowClassName/bodyClassName/headerClassName/className de coluna nao existem (ADR 50); sortField/selection nulos significam nao controlado (Dart nao separa undefined de null); groupBoxProps vira SgListGroupBoxProps (title, width, height); ref vira controller; reordenar colunas por arrastar a alca funciona tambem por toque; painel de colunas vira painel de baixo com largura < 600; golden e teste em dispositivo nao feitos"
+  },
+  "SgFloatActionButton": {
+    "status": "parcial",
+    "motivo": "absolute:false flutua no Overlay raiz (position: fixed) e absolute:true preenche o pai (ponha num Stack de tamanho definido); zIndex sem efeito (ordem do Overlay/Stack); floatActionButtonStyle aceito mas sem efeito (igual ao React, que nunca le o sinonimo porque severity tem padrao); position padrao e rightBottom (o meta do React diz bottom-right, valor inexistente); offset vira SgFABOffset e actions vira List<SgFABAction>; botao direito ou toque longo (500 ms) abre o menu de reiniciar; sem dragId a posicao nao e guardada e com SgEnvironmentProvider usa o namespace; autoHideOnScroll escuta a rolagem vertical do Scrollable mais externo sob o Scaffold, nao a janela; hint e dica de acao aparecem por hover (no toque nao ha hover); animacoes e sombras aproximadas por Flutter; nao testado em dispositivo; className/style do React nao existem (ADR 50)"
+  },
+  "SgSplitButton": {
+    "status": "parcial",
+    "motivo": "em largura < 600 o menu vira painel de baixo (ADR 51), em tela larga abre colado embaixo do botao principal; items vira List<SgSplitButtonItem>; label e String (como no React); setas de teclado no menu nao existem (o React tambem nao tem); divisoria e sombras aproximadas; nao testado em dispositivo; className/style do React nao existem (ADR 50)"
   }
 }

@@ -78,9 +78,9 @@ void main() {
     await t.pumpWidget(const ShowcaseApp());
     await settle(t);
     expect(find.textContaining('Ação ('), findsOneWidget);
-    await revealInMenu(t, find.byKey(const ValueKey('nav-SgDatatable')));
+    await revealInMenu(t, find.byKey(const ValueKey('nav-SgTextEditor')));
     final tile = t.widget<ListTile>(
-      find.byKey(const ValueKey('nav-SgDatatable')),
+      find.byKey(const ValueKey('nav-SgTextEditor')),
     );
     expect(
       tile.enabled,
@@ -89,7 +89,7 @@ void main() {
     );
     expect(
       find.descendant(
-        of: find.byKey(const ValueKey('nav-SgDatatable')),
+        of: find.byKey(const ValueKey('nav-SgTextEditor')),
         matching: find.text('pendente'),
       ),
       findsOneWidget,
