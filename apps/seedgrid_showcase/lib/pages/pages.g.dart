@@ -16,14 +16,21 @@ import 'sg_calendar_page.dart';
 import 'sg_card_page.dart';
 import 'sg_carousel_page.dart';
 import 'sg_checkbox_group_page.dart';
+import 'sg_clock_page.dart';
+import 'sg_clock_theme_picker_page.dart';
+import 'sg_clock_theme_preview_page.dart';
+import 'sg_clock_theme_provider_page.dart';
 import 'sg_combobox_page.dart';
 import 'sg_confirmation_dialog_page.dart';
 import 'sg_dialog_page.dart';
+import 'sg_discard_digit_page.dart';
 import 'sg_dock_layout_page.dart';
 import 'sg_dock_screen_page.dart';
 import 'sg_dock_zone_page.dart';
 import 'sg_environment_provider_page.dart';
 import 'sg_expandable_panel_page.dart';
+import 'sg_fade_digit_page.dart';
+import 'sg_flip_digit_page.dart';
 import 'sg_grid_page.dart';
 import 'sg_group_box_page.dart';
 import 'sg_input_birth_date_page.dart';
@@ -41,22 +48,32 @@ import 'sg_input_postal_code_page.dart';
 import 'sg_input_text_page.dart';
 import 'sg_input_text_area_page.dart';
 import 'sg_input_text_search_page.dart';
+import 'sg_linear_gauge_page.dart';
+import 'sg_matrix_digit_page.dart';
 import 'sg_multi_select_page.dart';
 import 'sg_multi_select_chips_page.dart';
+import 'sg_neon_digit_page.dart';
 import 'sg_order_list_page.dart';
 import 'sg_page_control_demo_page.dart';
 import 'sg_panel_page.dart';
 import 'sg_period_selector_page.dart';
 import 'sg_pick_list_page.dart';
 import 'sg_popup_page.dart';
+import 'sg_qr_code_page.dart';
+import 'sg_radial_gauge_page.dart';
 import 'sg_radio_group_page.dart';
 import 'sg_rating_page.dart';
 import 'sg_realtime_provider_page.dart';
+import 'sg_roller3d_digit_page.dart';
 import 'sg_screen_page.dart';
+import 'sg_segment_digit_page.dart';
+import 'sg_seven_segment_digit_page.dart';
 import 'sg_skeleton_page.dart';
 import 'sg_slider_page.dart';
 import 'sg_stack_page.dart';
 import 'sg_stepper_input_page.dart';
+import 'sg_string_animator_page.dart';
+import 'sg_time_provider_page.dart';
 import 'sg_toaster_page.dart';
 import 'sg_toast_host_page.dart';
 import 'sg_toggle_switch_page.dart';
@@ -84,14 +101,21 @@ final List<ShowcasePageEntry> kShowcasePages = <ShowcasePageEntry>[
   (name: 'SgCard', file: 'lib/pages/sg_card_page.dart', examples: 5, builder: (_) => const SgCardPage()),
   (name: 'SgCarousel', file: 'lib/pages/sg_carousel_page.dart', examples: 4, builder: (_) => const SgCarouselPage()),
   (name: 'SgCheckboxGroup', file: 'lib/pages/sg_checkbox_group_page.dart', examples: 5, builder: (_) => const SgCheckboxGroupPage()),
+  (name: 'SgClock', file: 'lib/pages/sg_clock_page.dart', examples: 7, builder: (_) => const SgClockPage()),
+  (name: 'SgClockThemePicker', file: 'lib/pages/sg_clock_theme_picker_page.dart', examples: 4, builder: (_) => const SgClockThemePickerPage()),
+  (name: 'SgClockThemePreview', file: 'lib/pages/sg_clock_theme_preview_page.dart', examples: 4, builder: (_) => const SgClockThemePreviewPage()),
+  (name: 'SgClockThemeProvider', file: 'lib/pages/sg_clock_theme_provider_page.dart', examples: 4, builder: (_) => const SgClockThemeProviderPage()),
   (name: 'SgCombobox', file: 'lib/pages/sg_combobox_page.dart', examples: 5, builder: (_) => const SgComboboxPage()),
   (name: 'SgConfirmationDialog', file: 'lib/pages/sg_confirmation_dialog_page.dart', examples: 4, builder: (_) => const SgConfirmationDialogPage()),
   (name: 'SgDialog', file: 'lib/pages/sg_dialog_page.dart', examples: 5, builder: (_) => const SgDialogPage()),
+  (name: 'SgDiscardDigit', file: 'lib/pages/sg_discard_digit_page.dart', examples: 5, builder: (_) => const SgDiscardDigitPage()),
   (name: 'SgDockLayout', file: 'lib/pages/sg_dock_layout_page.dart', examples: 3, builder: (_) => const SgDockLayoutPage()),
   (name: 'SgDockScreen', file: 'lib/pages/sg_dock_screen_page.dart', examples: 3, builder: (_) => const SgDockScreenPage()),
   (name: 'SgDockZone', file: 'lib/pages/sg_dock_zone_page.dart', examples: 4, builder: (_) => const SgDockZonePage()),
   (name: 'SgEnvironmentProvider', file: 'lib/pages/sg_environment_provider_page.dart', examples: 4, builder: (_) => const SgEnvironmentProviderPage()),
   (name: 'SgExpandablePanel', file: 'lib/pages/sg_expandable_panel_page.dart', examples: 4, builder: (_) => const SgExpandablePanelPage()),
+  (name: 'SgFadeDigit', file: 'lib/pages/sg_fade_digit_page.dart', examples: 3, builder: (_) => const SgFadeDigitPage()),
+  (name: 'SgFlipDigit', file: 'lib/pages/sg_flip_digit_page.dart', examples: 4, builder: (_) => const SgFlipDigitPage()),
   (name: 'SgGrid', file: 'lib/pages/sg_grid_page.dart', examples: 5, builder: (_) => const SgGridPage()),
   (name: 'SgGroupBox', file: 'lib/pages/sg_group_box_page.dart', examples: 3, builder: (_) => const SgGroupBoxPage()),
   (name: 'SgInputBirthDate', file: 'lib/pages/sg_input_birth_date_page.dart', examples: 4, builder: (_) => const SgInputBirthDatePage()),
@@ -109,22 +133,32 @@ final List<ShowcasePageEntry> kShowcasePages = <ShowcasePageEntry>[
   (name: 'SgInputText', file: 'lib/pages/sg_input_text_page.dart', examples: 5, builder: (_) => const SgInputTextPage()),
   (name: 'SgInputTextArea', file: 'lib/pages/sg_input_text_area_page.dart', examples: 5, builder: (_) => const SgInputTextAreaPage()),
   (name: 'SgInputTextSearch', file: 'lib/pages/sg_input_text_search_page.dart', examples: 4, builder: (_) => const SgInputTextSearchPage()),
+  (name: 'SgLinearGauge', file: 'lib/pages/sg_linear_gauge_page.dart', examples: 4, builder: (_) => const SgLinearGaugePage()),
+  (name: 'SgMatrixDigit', file: 'lib/pages/sg_matrix_digit_page.dart', examples: 4, builder: (_) => const SgMatrixDigitPage()),
   (name: 'SgMultiSelect', file: 'lib/pages/sg_multi_select_page.dart', examples: 5, builder: (_) => const SgMultiSelectPage()),
   (name: 'SgMultiSelectChips', file: 'lib/pages/sg_multi_select_chips_page.dart', examples: 5, builder: (_) => const SgMultiSelectChipsPage()),
+  (name: 'SgNeonDigit', file: 'lib/pages/sg_neon_digit_page.dart', examples: 4, builder: (_) => const SgNeonDigitPage()),
   (name: 'SgOrderList', file: 'lib/pages/sg_order_list_page.dart', examples: 5, builder: (_) => const SgOrderListPage()),
   (name: 'SgPageControl', file: 'lib/pages/sg_page_control_demo_page.dart', examples: 4, builder: (_) => const SgPageControlDemoPage()),
   (name: 'SgPanel', file: 'lib/pages/sg_panel_page.dart', examples: 4, builder: (_) => const SgPanelPage()),
   (name: 'SgPeriodSelector', file: 'lib/pages/sg_period_selector_page.dart', examples: 5, builder: (_) => const SgPeriodSelectorPage()),
   (name: 'SgPickList', file: 'lib/pages/sg_pick_list_page.dart', examples: 5, builder: (_) => const SgPickListPage()),
   (name: 'SgPopup', file: 'lib/pages/sg_popup_page.dart', examples: 4, builder: (_) => const SgPopupPage()),
+  (name: 'SgQRCode', file: 'lib/pages/sg_qr_code_page.dart', examples: 4, builder: (_) => const SgQRCodePage()),
+  (name: 'SgRadialGauge', file: 'lib/pages/sg_radial_gauge_page.dart', examples: 5, builder: (_) => const SgRadialGaugePage()),
   (name: 'SgRadioGroup', file: 'lib/pages/sg_radio_group_page.dart', examples: 4, builder: (_) => const SgRadioGroupPage()),
   (name: 'SgRating', file: 'lib/pages/sg_rating_page.dart', examples: 4, builder: (_) => const SgRatingPage()),
   (name: 'SgRealtimeProvider', file: 'lib/pages/sg_realtime_provider_page.dart', examples: 4, builder: (_) => const SgRealtimeProviderPage()),
+  (name: 'SgRoller3DDigit', file: 'lib/pages/sg_roller3d_digit_page.dart', examples: 4, builder: (_) => const SgRoller3DDigitPage()),
   (name: 'SgScreen', file: 'lib/pages/sg_screen_page.dart', examples: 3, builder: (_) => const SgScreenPage()),
+  (name: 'SgSegmentDigit', file: 'lib/pages/sg_segment_digit_page.dart', examples: 4, builder: (_) => const SgSegmentDigitPage()),
+  (name: 'SgSevenSegmentDigit', file: 'lib/pages/sg_seven_segment_digit_page.dart', examples: 4, builder: (_) => const SgSevenSegmentDigitPage()),
   (name: 'SgSkeleton', file: 'lib/pages/sg_skeleton_page.dart', examples: 4, builder: (_) => const SgSkeletonPage()),
   (name: 'SgSlider', file: 'lib/pages/sg_slider_page.dart', examples: 4, builder: (_) => const SgSliderPage()),
   (name: 'SgStack', file: 'lib/pages/sg_stack_page.dart', examples: 4, builder: (_) => const SgStackPage()),
   (name: 'SgStepperInput', file: 'lib/pages/sg_stepper_input_page.dart', examples: 5, builder: (_) => const SgStepperInputPage()),
+  (name: 'SgStringAnimator', file: 'lib/pages/sg_string_animator_page.dart', examples: 5, builder: (_) => const SgStringAnimatorPage()),
+  (name: 'SgTimeProvider', file: 'lib/pages/sg_time_provider_page.dart', examples: 4, builder: (_) => const SgTimeProviderPage()),
   (name: 'SgToaster', file: 'lib/pages/sg_toaster_page.dart', examples: 4, builder: (_) => const SgToasterPage()),
   (name: 'SgToastHost', file: 'lib/pages/sg_toast_host_page.dart', examples: 4, builder: (_) => const SgToastHostPage()),
   (name: 'SgToggleSwitch', file: 'lib/pages/sg_toggle_switch_page.dart', examples: 4, builder: (_) => const SgToggleSwitchPage()),

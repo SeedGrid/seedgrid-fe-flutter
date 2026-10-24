@@ -2,9 +2,9 @@
  "versaoReact": "2026.7.1",
  "resumo": {
   "total": 89,
-  "portado": 24,
-  "parcial": 40,
-  "pendente": 25,
+  "portado": 27,
+  "parcial": 54,
+  "pendente": 8,
   "naoAplicavel": 0
  },
  "componentes": [
@@ -131,9 +131,9 @@
   {
    "componente": "SgClock",
    "onda": 4,
-   "status": "pendente",
-   "motivo": "",
-   "onde": "",
+   "status": "parcial",
+   "motivo": "tema por URL/SVG livre NAO e portado (SgClockUrlThemeUnsupportedError, ADR 51/D8); sem banco de fusos no Dart: so fuso da maquina, UTC, deslocamentos, Etc/GMT+N e 11 zonas com regra embutida (outra zona usa o fuso da maquina; registerSgClockTimeZone acrescenta); periodos do dia de uma tabela gerada para 8 locales; cardProps vira SgClockCardProps; os 8 estilos digitais usam os widgets de digitos (ligados por clock_digital_styles.dart); golden com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em dispositivo",
+   "onde": "packages/seedgrid_components/lib/src/gadgets/clock/sg_clock.dart",
    "props": 16,
    "propsOmitidas": 2,
    "propsGenericas": 3
@@ -141,9 +141,9 @@
   {
    "componente": "SgClockThemePicker",
    "onda": 4,
-   "status": "pendente",
-   "motivo": "",
-   "onde": "",
+   "status": "parcial",
+   "motivo": "o painel e um OverlayPortal, nao um popup absoluto; so temas embutidos e registrados; golden com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em dispositivo",
+   "onde": "packages/seedgrid_components/lib/src/gadgets/clock/sg_clock_theme_widgets.dart",
    "props": 10,
    "propsOmitidas": 1,
    "propsGenericas": 2
@@ -151,9 +151,9 @@
   {
    "componente": "SgClockThemePreview",
    "onda": 4,
-   "status": "pendente",
-   "motivo": "",
-   "onde": "",
+   "status": "parcial",
+   "motivo": "so temas embutidos (formato JSON sg-clock-theme/1); o playground nao edita size (num?); golden com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em dispositivo",
+   "onde": "packages/seedgrid_components/lib/src/gadgets/clock/sg_clock_theme_widgets.dart",
    "props": 3,
    "propsOmitidas": 1,
    "propsGenericas": 1
@@ -161,9 +161,9 @@
   {
    "componente": "SgClockThemeProvider",
    "onda": 4,
-   "status": "pendente",
+   "status": "portado",
    "motivo": "",
-   "onde": "",
+   "onde": "packages/seedgrid_components/lib/src/gadgets/clock/sg_clock_theme_widgets.dart",
    "props": 2,
    "propsOmitidas": 0,
    "propsGenericas": 1
@@ -221,9 +221,9 @@
   {
    "componente": "SgDiscardDigit",
    "onda": 4,
-   "status": "pendente",
-   "motivo": "",
-   "onde": "",
+   "status": "parcial",
+   "motivo": "o ref virou SgDiscardDigitController (page() ja devolve o valor novo; no React devolve o da ultima renderizacao); prop extra random para testes; a borda de baixo das folhas de fundo vira linha de 1 px (o Flutter nao aceita raio com bordas de cores diferentes); cor em texto CSS entende hex, rgb(), rgba() e algumas palavras; golden com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em dispositivo",
+   "onde": "packages/seedgrid_components/lib/src/digits/animated/sg_discard_digit.dart",
    "props": 13,
    "propsOmitidas": 2,
    "propsGenericas": 1
@@ -291,9 +291,9 @@
   {
    "componente": "SgFadeDigit",
    "onda": 4,
-   "status": "pendente",
-   "motivo": "",
-   "onde": "",
+   "status": "parcial",
+   "motivo": "a sombra do cartao assume 1em = 16px (fonte padrao do navegador); golden com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em dispositivo",
+   "onde": "packages/seedgrid_components/lib/src/digits/simple/sg_fade_digit.dart",
    "props": 6,
    "propsOmitidas": 1,
    "propsGenericas": 0
@@ -301,9 +301,9 @@
   {
    "componente": "SgFlipDigit",
    "onda": 4,
-   "status": "pendente",
+   "status": "portado",
    "motivo": "",
-   "onde": "",
+   "onde": "packages/seedgrid_components/lib/src/digits/animated/sg_flip_digit.dart",
    "props": 5,
    "propsOmitidas": 1,
    "propsGenericas": 0
@@ -491,9 +491,9 @@
   {
    "componente": "SgLinearGauge",
    "onda": 4,
-   "status": "pendente",
-   "motivo": "",
-   "onde": "",
+   "status": "parcial",
+   "motivo": "no React o transition all quase nao age na geometria do SVG; no Flutter o ponteiro anima com ease-out; primaryPointerLabel e pointer.label que nao sejam texto vao como overlay; arrastar usa area de toque de 16 px; acessibilidade por Semantics (nao role=meter); golden com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em dispositivo",
+   "onde": "packages/seedgrid_components/lib/src/gadgets/gauges/sg_linear_gauge.dart",
    "props": 32,
    "propsOmitidas": 2,
    "propsGenericas": 5
@@ -501,9 +501,9 @@
   {
    "componente": "SgMatrixDigit",
    "onda": 4,
-   "status": "pendente",
-   "motivo": "",
-   "onde": "",
+   "status": "parcial",
+   "motivo": "o React remonta o ponto ao trocar o caractere, entao a transicao de 160 ms nunca aparece; aqui tambem nao ha animacao na troca de cor por prop; jsToUpperCase cobre o SpecialCasing incondicional (ficam fora as sequencias do grego com iota subscrito); golden com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em dispositivo",
+   "onde": "packages/seedgrid_components/lib/src/digits/simple/sg_matrix_digit.dart",
    "props": 12,
    "propsOmitidas": 2,
    "propsGenericas": 0
@@ -541,9 +541,9 @@
   {
    "componente": "SgNeonDigit",
    "onda": 4,
-   "status": "pendente",
-   "motivo": "",
-   "onde": "",
+   "status": "parcial",
+   "motivo": "filtro de brilho e saturacao aproximado por matriz de cor; as sombras do estado apagado foram conferidas contra o fonte, nao executadas; golden com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em dispositivo",
+   "onde": "packages/seedgrid_components/lib/src/digits/simple/sg_neon_digit.dart",
    "props": 16,
    "propsOmitidas": 2,
    "propsGenericas": 1
@@ -621,9 +621,9 @@
   {
    "componente": "SgQRCode",
    "onda": 4,
-   "status": "pendente",
-   "motivo": "",
-   "onde": "",
+   "status": "parcial",
+   "motivo": "o qr_flutter nao serve (falha na versao 15, so modo byte, mascara diferente): o algoritmo qrcodegen (Nayuki, MIT) foi portado e bate com o qrcode.react em 118 matrizes; logoSrc so carrega URL (prop extra logoImage para imagem local); caixa de erro pulsa de forma aproximada; golden com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em dispositivo",
+   "onde": "packages/seedgrid_components/lib/src/gadgets/gauges/sg_qr_code.dart",
    "props": 16,
    "propsOmitidas": 0,
    "propsGenericas": 1
@@ -631,9 +631,9 @@
   {
    "componente": "SgRadialGauge",
    "onda": 4,
-   "status": "pendente",
-   "motivo": "",
-   "onde": "",
+   "status": "parcial",
+   "motivo": "no React o transition all quase nao age na geometria do SVG; no Flutter o ponteiro anima com ease-out; primaryPointerLabel e pointer.label que nao sejam texto vao como overlay; arrastar usa area de toque de 16 px; acessibilidade por Semantics (nao role=meter); golden com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em dispositivo",
+   "onde": "packages/seedgrid_components/lib/src/gadgets/gauges/sg_radial_gauge.dart",
    "props": 37,
    "propsOmitidas": 2,
    "propsGenericas": 6
@@ -671,9 +671,9 @@
   {
    "componente": "SgRoller3DDigit",
    "onda": 4,
-   "status": "pendente",
-   "motivo": "",
-   "onde": "",
+   "status": "parcial",
+   "motivo": "a sombra interna (inset) e desenhada por CustomPainter porque o Flutter nao tem inset shadow; a mascara do tambor e um gradiente sobre o tambor inteiro, como no React; golden com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em dispositivo",
+   "onde": "packages/seedgrid_components/lib/src/digits/animated/sg_roller3d_digit.dart",
    "props": 5,
    "propsOmitidas": 1,
    "propsGenericas": 1
@@ -691,9 +691,9 @@
   {
    "componente": "SgSegmentDigit",
    "onda": 4,
-   "status": "pendente",
+   "status": "portado",
    "motivo": "",
-   "onde": "",
+   "onde": "packages/seedgrid_components/lib/src/digits/simple/sg_segment_digit.dart",
    "props": 5,
    "propsOmitidas": 2,
    "propsGenericas": 0
@@ -701,9 +701,9 @@
   {
    "componente": "SgSevenSegmentDigit",
    "onda": 4,
-   "status": "pendente",
-   "motivo": "",
-   "onde": "",
+   "status": "parcial",
+   "motivo": "sombra interna do painel aproximada; a troca de cor por prop e imediata (no React anima); golden com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em dispositivo",
+   "onde": "packages/seedgrid_components/lib/src/digits/simple/sg_seven_segment_digit.dart",
    "props": 15,
    "propsOmitidas": 2,
    "propsGenericas": 0
@@ -761,9 +761,9 @@
   {
    "componente": "SgStringAnimator",
    "onda": 4,
-   "status": "pendente",
-   "motivo": "",
-   "onde": "",
+   "status": "parcial",
+   "motivo": "o ref virou SgStringAnimatorController.startAnimation(); prop extra controller; dois pontos e celula do periodo reproduzidos pelo codigo (fora da paridade por vetor); golden com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em dispositivo",
+   "onde": "packages/seedgrid_components/lib/src/gadgets/string_animator/sg_string_animator.dart",
    "props": 12,
    "propsOmitidas": 1,
    "propsGenericas": 1
@@ -781,9 +781,9 @@
   {
    "componente": "SgTimeProvider",
    "onda": 4,
-   "status": "pendente",
-   "motivo": "",
-   "onde": "",
+   "status": "parcial",
+   "motivo": "initialServerTime invalido cai no agora (o React propagaria NaN)",
+   "onde": "packages/seedgrid_components/lib/src/gadgets/clock/sg_time_provider.dart",
    "props": 2,
    "propsOmitidas": 0,
    "propsGenericas": 0

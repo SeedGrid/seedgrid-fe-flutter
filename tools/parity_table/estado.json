@@ -163,5 +163,61 @@
   "SgPeriodSelector": {
     "status": "parcial",
     "motivo": "value nulo = nao controlado (o Combobox nao distingue null de indefinido): limpar o preset por fora nao limpa o campo; o campo de data de Periodo e o SgInputDate do Flutter (mascara com calendario proprio), que segue o locale do i18n global e nao a prop locale do seletor; os rotulos vem de mapas ASCII embutidos sem acento, iguais ao React (nao passam pelo i18n)"
+  },
+  "SgSevenSegmentDigit": {
+    "status": "parcial",
+    "motivo": "sombra interna do painel aproximada; a troca de cor por prop e imediata (no React anima); golden com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em dispositivo"
+  },
+  "SgMatrixDigit": {
+    "status": "parcial",
+    "motivo": "o React remonta o ponto ao trocar o caractere, entao a transicao de 160 ms nunca aparece; aqui tambem nao ha animacao na troca de cor por prop; jsToUpperCase cobre o SpecialCasing incondicional (ficam fora as sequencias do grego com iota subscrito); golden com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em dispositivo"
+  },
+  "SgNeonDigit": {
+    "status": "parcial",
+    "motivo": "filtro de brilho e saturacao aproximado por matriz de cor; as sombras do estado apagado foram conferidas contra o fonte, nao executadas; golden com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em dispositivo"
+  },
+  "SgFadeDigit": {
+    "status": "parcial",
+    "motivo": "a sombra do cartao assume 1em = 16px (fonte padrao do navegador); golden com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em dispositivo"
+  },
+  "SgRoller3DDigit": {
+    "status": "parcial",
+    "motivo": "a sombra interna (inset) e desenhada por CustomPainter porque o Flutter nao tem inset shadow; a mascara do tambor e um gradiente sobre o tambor inteiro, como no React; golden com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em dispositivo"
+  },
+  "SgDiscardDigit": {
+    "status": "parcial",
+    "motivo": "o ref virou SgDiscardDigitController (page() ja devolve o valor novo; no React devolve o da ultima renderizacao); prop extra random para testes; a borda de baixo das folhas de fundo vira linha de 1 px (o Flutter nao aceita raio com bordas de cores diferentes); cor em texto CSS entende hex, rgb(), rgba() e algumas palavras; golden com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em dispositivo"
+  },
+  "SgRadialGauge": {
+    "status": "parcial",
+    "motivo": "no React o transition all quase nao age na geometria do SVG; no Flutter o ponteiro anima com ease-out; primaryPointerLabel e pointer.label que nao sejam texto vao como overlay; arrastar usa area de toque de 16 px; acessibilidade por Semantics (nao role=meter); golden com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em dispositivo"
+  },
+  "SgLinearGauge": {
+    "status": "parcial",
+    "motivo": "no React o transition all quase nao age na geometria do SVG; no Flutter o ponteiro anima com ease-out; primaryPointerLabel e pointer.label que nao sejam texto vao como overlay; arrastar usa area de toque de 16 px; acessibilidade por Semantics (nao role=meter); golden com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em dispositivo"
+  },
+  "SgQRCode": {
+    "status": "parcial",
+    "motivo": "o qr_flutter nao serve (falha na versao 15, so modo byte, mascara diferente): o algoritmo qrcodegen (Nayuki, MIT) foi portado e bate com o qrcode.react em 118 matrizes; logoSrc so carrega URL (prop extra logoImage para imagem local); caixa de erro pulsa de forma aproximada; golden com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em dispositivo"
+  },
+  "SgClock": {
+    "status": "parcial",
+    "motivo": "tema por URL/SVG livre NAO e portado (SgClockUrlThemeUnsupportedError, ADR 51/D8); sem banco de fusos no Dart: so fuso da maquina, UTC, deslocamentos, Etc/GMT+N e 11 zonas com regra embutida (outra zona usa o fuso da maquina; registerSgClockTimeZone acrescenta); periodos do dia de uma tabela gerada para 8 locales; cardProps vira SgClockCardProps; os 8 estilos digitais usam os widgets de digitos (ligados por clock_digital_styles.dart); golden com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em dispositivo"
+  },
+  "SgClockThemePicker": {
+    "status": "parcial",
+    "motivo": "o painel e um OverlayPortal, nao um popup absoluto; so temas embutidos e registrados; golden com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em dispositivo"
+  },
+  "SgClockThemePreview": {
+    "status": "parcial",
+    "motivo": "so temas embutidos (formato JSON sg-clock-theme/1); o playground nao edita size (num?); golden com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em dispositivo"
+  },
+  "SgTimeProvider": {
+    "status": "parcial",
+    "motivo": "initialServerTime invalido cai no agora (o React propagaria NaN)"
+  },
+  "SgStringAnimator": {
+    "status": "parcial",
+    "motivo": "o ref virou SgStringAnimatorController.startAnimation(); prop extra controller; dois pontos e celula do periodo reproduzidos pelo codigo (fora da paridade por vetor); golden com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em dispositivo"
   }
 }
