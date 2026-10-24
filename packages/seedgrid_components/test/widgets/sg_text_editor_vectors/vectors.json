@@ -1,0 +1,2642 @@
+{
+ "fonte": "TipTap real com as extensoes do SgTextEditor.tsx (jsdom)",
+ "versaoReact": "2026.7.1",
+ "tiptap": "2.27.2",
+ "node": "v22.16.0",
+ "cases": [
+  {
+   "kind": "html",
+   "id": "vazio",
+   "html": "",
+   "canonical": "<p></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "paragrafo",
+   "html": "<p>Ola mundo</p>",
+   "canonical": "<p>Ola mundo</p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "paragrafos",
+   "html": "<p>Um</p><p>Dois</p><p>Tres</p>",
+   "canonical": "<p>Um</p><p>Dois</p><p>Tres</p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "paragrafo_vazio",
+   "html": "<p></p>",
+   "canonical": "<p></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "texto_solto",
+   "html": "Texto sem tag",
+   "canonical": "<p>Texto sem tag</p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "negrito",
+   "html": "<p>a <strong>b</strong> c</p>",
+   "canonical": "<p>a <strong>b</strong> c</p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "negrito_b",
+   "html": "<p>a <b>b</b> c</p>",
+   "canonical": "<p>a <strong>b</strong> c</p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "italico",
+   "html": "<p>a <em>b</em> c</p>",
+   "canonical": "<p>a <em>b</em> c</p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "italico_i",
+   "html": "<p>a <i>b</i> c</p>",
+   "canonical": "<p>a <em>b</em> c</p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "sublinhado",
+   "html": "<p>a <u>b</u> c</p>",
+   "canonical": "<p>a <u>b</u> c</p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "tachado",
+   "html": "<p>a <s>b</s> c</p>",
+   "canonical": "<p>a <s>b</s> c</p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "tachado_strike",
+   "html": "<p>a <strike>b</strike> c</p>",
+   "canonical": "<p>a <s>b</s> c</p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "codigo_inline",
+   "html": "<p>a <code>b</code> c</p>",
+   "canonical": "<p>a <code>b</code> c</p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "negrito_italico",
+   "html": "<p><strong><em>bi</em></strong></p>",
+   "canonical": "<p><strong><em>bi</em></strong></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "negrito_italico_ordem",
+   "html": "<p><em><strong>bi</strong></em></p>",
+   "canonical": "<p><strong><em>bi</em></strong></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "todas_marcas",
+   "html": "<p><strong><em><u><s>x</s></u></em></strong></p>",
+   "canonical": "<p><strong><em><s><u>x</u></s></em></strong></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "sub",
+   "html": "<p>H<sub>2</sub>O</p>",
+   "canonical": "<p>H<sub>2</sub>O</p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "sup",
+   "html": "<p>x<sup>2</sup></p>",
+   "canonical": "<p>x<sup>2</sup></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "cor",
+   "html": "<p><span style=\"color: #ff0000\">vermelho</span></p>",
+   "canonical": "<p><span style=\"color: rgb(255, 0, 0);\">vermelho</span></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "cor_rgb",
+   "html": "<p><span style=\"color: rgb(255, 0, 0)\">vermelho</span></p>",
+   "canonical": "<p><span style=\"color: rgb(255, 0, 0);\">vermelho</span></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "cor_nome",
+   "html": "<p><span style=\"color: red\">vermelho</span></p>",
+   "canonical": "<p><span style=\"color: red;\">vermelho</span></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "destaque",
+   "html": "<p><mark data-color=\"#ffff00\" style=\"background-color: #ffff00; color: inherit\">amarelo</mark></p>",
+   "canonical": "<p><mark data-color=\"#ffff00\" style=\"background-color: rgb(255, 255, 0); color: inherit;\">amarelo</mark></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "destaque_simples",
+   "html": "<p><mark>sem cor</mark></p>",
+   "canonical": "<p><mark>sem cor</mark></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "destaque_style",
+   "html": "<p><mark style=\"background-color: #00ff00\">verde</mark></p>",
+   "canonical": "<p><mark data-color=\"rgb(0, 255, 0)\" style=\"background-color: rgb(0, 255, 0); color: inherit;\">verde</mark></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "fonte",
+   "html": "<p><span style=\"font-family: Arial\">arial</span></p>",
+   "canonical": "<p><span style=\"font-family: Arial;\">arial</span></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "fonte_aspas",
+   "html": "<p><span style=\"font-family: &quot;Times New Roman&quot;\">times</span></p>",
+   "canonical": "<p><span style=\"font-family: &quot;Times New Roman&quot;;\">times</span></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "fonte_serif",
+   "html": "<p><span style=\"font-family: Georgia\">georgia</span></p>",
+   "canonical": "<p><span style=\"font-family: Georgia;\">georgia</span></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "tamanho",
+   "html": "<p><span style=\"font-size:24px\">grande</span></p>",
+   "canonical": "<p><span style=\"font-size: 24px;\">grande</span></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "tamanho_espaco",
+   "html": "<p><span style=\"font-size: 12px\">pequeno</span></p>",
+   "canonical": "<p><span style=\"font-size: 12px;\">pequeno</span></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "cor_fonte_tamanho",
+   "html": "<p><span style=\"color: #0000ff;font-family: Courier New;font-size:18px\">tudo</span></p>",
+   "canonical": "<p><span style=\"font-family: &quot;Courier New&quot;; color: rgb(0, 0, 255); font-size: 18px;\">tudo</span></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "cor_e_negrito",
+   "html": "<p><strong><span style=\"color: #ff0000\">x</span></strong></p>",
+   "canonical": "<p><span style=\"color: rgb(255, 0, 0);\"><strong>x</strong></span></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "negrito_e_cor",
+   "html": "<p><span style=\"color: #ff0000\"><strong>x</strong></span></p>",
+   "canonical": "<p><span style=\"color: rgb(255, 0, 0);\"><strong>x</strong></span></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "cor_duas",
+   "html": "<p><span style=\"color: #ff0000\">a</span><span style=\"color: #0000ff\">b</span></p>",
+   "canonical": "<p><span style=\"color: rgb(255, 0, 0);\">a</span><span style=\"color: rgb(0, 0, 255);\">b</span></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "h1",
+   "html": "<h1>Titulo</h1>",
+   "canonical": "<h1>Titulo</h1>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "h2",
+   "html": "<h2>Subtitulo</h2>",
+   "canonical": "<h2>Subtitulo</h2>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "h3",
+   "html": "<h3>Titulo 3</h3>",
+   "canonical": "<h3>Titulo 3</h3>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "h4",
+   "html": "<h4>Titulo 4</h4>",
+   "canonical": "<h4>Titulo 4</h4>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "h1_formatado",
+   "html": "<h1>T <strong>n</strong> <em>i</em></h1>",
+   "canonical": "<h1>T <strong>n</strong> <em>i</em></h1>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "alinha_centro",
+   "html": "<p style=\"text-align: center\">c</p>",
+   "canonical": "<p style=\"text-align: center;\">c</p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "alinha_direita",
+   "html": "<p style=\"text-align: right\">d</p>",
+   "canonical": "<p style=\"text-align: right;\">d</p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "alinha_justifica",
+   "html": "<p style=\"text-align: justify\">j</p>",
+   "canonical": "<p style=\"text-align: justify;\">j</p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "alinha_esquerda",
+   "html": "<p style=\"text-align: left\">e</p>",
+   "canonical": "<p style=\"text-align: left;\">e</p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "alinha_titulo",
+   "html": "<h2 style=\"text-align: center\">t</h2>",
+   "canonical": "<h2 style=\"text-align: center;\">t</h2>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "link",
+   "html": "<p><a href=\"https://exemplo.com\">link</a></p>",
+   "canonical": "<p><a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"https://exemplo.com\">link</a></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "link_completo",
+   "html": "<p><a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"https://exemplo.com\">link</a></p>",
+   "canonical": "<p><a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"https://exemplo.com\">link</a></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "link_negrito",
+   "html": "<p><a href=\"https://exemplo.com\"><strong>l</strong></a> fim</p>",
+   "canonical": "<p><a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"https://exemplo.com\"><strong>l</strong></a> fim</p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "link_javascript",
+   "html": "<p><a href=\"javascript:alert(1)\">x</a></p>",
+   "canonical": "<p>x</p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "link_relativo",
+   "html": "<p><a href=\"/rota\">x</a></p>",
+   "canonical": "<p><a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"/rota\">x</a></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "link_mailto",
+   "html": "<p><a href=\"mailto:a@b.com\">x</a></p>",
+   "canonical": "<p><a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"mailto:a@b.com\">x</a></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "imagem",
+   "html": "<img src=\"https://exemplo.com/a.png\">",
+   "canonical": "<img src=\"https://exemplo.com/a.png\">",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "imagem_alt",
+   "html": "<img src=\"https://exemplo.com/a.png\" alt=\"alt\" title=\"tit\">",
+   "canonical": "<img src=\"https://exemplo.com/a.png\" alt=\"alt\" title=\"tit\">",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "imagem_entre",
+   "html": "<p>antes</p><img src=\"https://exemplo.com/a.png\"><p>depois</p>",
+   "canonical": "<p>antes</p><img src=\"https://exemplo.com/a.png\"><p>depois</p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "imagem_dentro_p",
+   "html": "<p>texto <img src=\"https://exemplo.com/a.png\"> mais</p>",
+   "canonical": "<p>texto</p><img src=\"https://exemplo.com/a.png\"><p> mais</p>",
+   "idempotent": false
+  },
+  {
+   "kind": "html",
+   "id": "imagem_data",
+   "html": "<img src=\"data:image/png;base64,iVBORw0KGgo=\">",
+   "canonical": "<p></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "lista",
+   "html": "<ul><li><p>a</p></li><li><p>b</p></li></ul>",
+   "canonical": "<ul><li><p>a</p></li><li><p>b</p></li></ul>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "lista_sem_p",
+   "html": "<ul><li>a</li><li>b</li></ul>",
+   "canonical": "<ul><li><p>a</p></li><li><p>b</p></li></ul>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "lista_num",
+   "html": "<ol><li><p>a</p></li><li><p>b</p></li></ol>",
+   "canonical": "<ol><li><p>a</p></li><li><p>b</p></li></ol>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "lista_num_start",
+   "html": "<ol start=\"3\"><li><p>a</p></li></ol>",
+   "canonical": "<ol start=\"3\"><li><p>a</p></li></ol>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "lista_aninhada",
+   "html": "<ul><li><p>a</p><ul><li><p>a1</p></li><li><p>a2</p></li></ul></li><li><p>b</p></li></ul>",
+   "canonical": "<ul><li><p>a</p><ul><li><p>a1</p></li><li><p>a2</p></li></ul></li><li><p>b</p></li></ul>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "lista_mista",
+   "html": "<ul><li><p>a</p><ol><li><p>a1</p></li></ol></li></ul>",
+   "canonical": "<ul><li><p>a</p><ol><li><p>a1</p></li></ol></li></ul>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "lista_profunda",
+   "html": "<ul><li><p>a</p><ul><li><p>b</p><ul><li><p>c</p></li></ul></li></ul></li></ul>",
+   "canonical": "<ul><li><p>a</p><ul><li><p>b</p><ul><li><p>c</p></li></ul></li></ul></li></ul>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "lista_formatada",
+   "html": "<ul><li><p><strong>a</strong> b</p></li></ul>",
+   "canonical": "<ul><li><p><strong>a</strong> b</p></li></ul>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "lista_dois_paragrafos",
+   "html": "<ul><li><p>a</p><p>a2</p></li></ul>",
+   "canonical": "<ul><li><p>a</p><p>a2</p></li></ul>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "lista_entre_paragrafos",
+   "html": "<p>antes</p><ul><li><p>a</p></li></ul><p>depois</p>",
+   "canonical": "<p>antes</p><ul><li><p>a</p></li></ul><p>depois</p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "duas_listas",
+   "html": "<ul><li><p>a</p></li></ul><ol><li><p>b</p></li></ol>",
+   "canonical": "<ul><li><p>a</p></li></ul><ol><li><p>b</p></li></ol>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "citacao",
+   "html": "<blockquote><p>cita</p></blockquote>",
+   "canonical": "<blockquote><p>cita</p></blockquote>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "citacao_dois",
+   "html": "<blockquote><p>a</p><p>b</p></blockquote>",
+   "canonical": "<blockquote><p>a</p><p>b</p></blockquote>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "codigo_bloco",
+   "html": "<pre><code>linha1\nlinha2</code></pre>",
+   "canonical": "<pre><code>linha1\nlinha2</code></pre>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "codigo_bloco_lang",
+   "html": "<pre><code class=\"language-js\">x = 1</code></pre>",
+   "canonical": "<pre><code class=\"language-js\">x = 1</code></pre>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "hr",
+   "html": "<p>a</p><hr><p>b</p>",
+   "canonical": "<p>a</p><hr><p>b</p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "br",
+   "html": "<p>a<br>b</p>",
+   "canonical": "<p>a<br>b</p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "br_fim",
+   "html": "<p>a<br></p>",
+   "canonical": "<p>a<br></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "entidades",
+   "html": "<p>a &amp; b &lt; c &gt; d &quot;e&quot; &#39;f&#39;</p>",
+   "canonical": "<p>a &amp; b &lt; c &gt; d \"e\" 'f'</p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "nbsp",
+   "html": "<p>a&nbsp;b</p>",
+   "canonical": "<p>a&nbsp;b</p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "acentos",
+   "html": "<p>Ação não é coração — “aspas” ç ü</p>",
+   "canonical": "<p>Ação não é coração — “aspas” ç ü</p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "emoji",
+   "html": "<p>ok 😀 fim</p>",
+   "canonical": "<p>ok 😀 fim</p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "espacos",
+   "html": "<p>  a   b  </p>",
+   "canonical": "<p>a b</p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "quebra_linha_fonte",
+   "html": "<p>a\nb</p>",
+   "canonical": "<p>a b</p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "tags_desconhecidas",
+   "html": "<div>x</div>",
+   "canonical": "<p>x</p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "span_sem_estilo",
+   "html": "<p><span>x</span></p>",
+   "canonical": "<p>x</p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "script",
+   "html": "<p>a</p><script>alert(1)</script>",
+   "canonical": "<p>a</p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "tabela",
+   "html": "<table><tr><td>x</td></tr></table>",
+   "canonical": "<p>x</p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "misto",
+   "html": "<h1>T</h1><p>a <strong>b</strong> <a href=\"https://x.com\">c</a></p><ul><li><p>l1</p></li></ul>",
+   "canonical": "<h1>T</h1><p>a <strong>b</strong> <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"https://x.com\">c</a></p><ul><li><p>l1</p></li></ul>",
+   "idempotent": true
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_negrito",
+   "html": "<p>Ola mundo</p>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "bold"
+    ]
+   ],
+   "canonical": "<p><strong>Ola mundo</strong></p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_negrito_parcial",
+   "html": "<p>Ola mundo</p>",
+   "commands": [
+    [
+     "setSel",
+     [
+      1,
+      4
+     ]
+    ],
+    [
+     "bold"
+    ]
+   ],
+   "canonical": "<p><strong>Ola</strong> mundo</p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_negrito_desliga",
+   "html": "<p><strong>Ola</strong></p>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "bold"
+    ]
+   ],
+   "canonical": "<p>Ola</p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_italico",
+   "html": "<p>Ola mundo</p>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "italic"
+    ]
+   ],
+   "canonical": "<p><em>Ola mundo</em></p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_sublinhado",
+   "html": "<p>Ola mundo</p>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "underline"
+    ]
+   ],
+   "canonical": "<p><u>Ola mundo</u></p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_tachado",
+   "html": "<p>Ola mundo</p>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "strike"
+    ]
+   ],
+   "canonical": "<p><s>Ola mundo</s></p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_cor",
+   "html": "<p>Ola mundo</p>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "color",
+     "#ff0000"
+    ]
+   ],
+   "canonical": "<p><span style=\"color: rgb(255, 0, 0);\">Ola mundo</span></p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_destaque",
+   "html": "<p>Ola mundo</p>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "highlight",
+     "#ffff00"
+    ]
+   ],
+   "canonical": "<p><mark data-color=\"#ffff00\" style=\"background-color: rgb(255, 255, 0); color: inherit;\">Ola mundo</mark></p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_destaque_alterna",
+   "html": "<p><mark data-color=\"#ffff00\" style=\"background-color: #ffff00; color: inherit\">x</mark></p>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "highlight",
+     "#ffff00"
+    ]
+   ],
+   "canonical": "<p>x</p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_destaque_troca",
+   "html": "<p><mark data-color=\"#ffff00\" style=\"background-color: #ffff00; color: inherit\">x</mark></p>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "highlight",
+     "#00ff00"
+    ]
+   ],
+   "canonical": "<p><mark data-color=\"#00ff00\" style=\"background-color: rgb(0, 255, 0); color: inherit;\">x</mark></p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_sub",
+   "html": "<p>Ola mundo</p>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "subscript"
+    ]
+   ],
+   "canonical": "<p><sub>Ola mundo</sub></p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_sup",
+   "html": "<p>Ola mundo</p>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "superscript"
+    ]
+   ],
+   "canonical": "<p><sup>Ola mundo</sup></p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_sub_depois_sup",
+   "html": "<p>Ola</p>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "subscript"
+    ],
+    [
+     "superscript"
+    ]
+   ],
+   "canonical": "<p><sub><sup>Ola</sup></sub></p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_fonte",
+   "html": "<p>Ola mundo</p>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "fontFamily",
+     "Georgia"
+    ]
+   ],
+   "canonical": "<p><span style=\"font-family: Georgia;\">Ola mundo</span></p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_fonte_times",
+   "html": "<p>Ola mundo</p>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "fontFamily",
+     "Times New Roman"
+    ]
+   ],
+   "canonical": "<p><span style=\"font-family: &quot;Times New Roman&quot;;\">Ola mundo</span></p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_fonte_inherit",
+   "html": "<p>Ola mundo</p>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "fontFamily",
+     "inherit"
+    ]
+   ],
+   "canonical": "<p><span style=\"font-family: inherit;\">Ola mundo</span></p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_tamanho",
+   "html": "<p>Ola mundo</p>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "fontSize",
+     "24px"
+    ]
+   ],
+   "canonical": "<p><span style=\"font-size: 24px;\">Ola mundo</span></p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_tamanho_16",
+   "html": "<p>Ola mundo</p>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "fontSize",
+     "16px"
+    ]
+   ],
+   "canonical": "<p><span style=\"font-size: 16px;\">Ola mundo</span></p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_fonte_e_tamanho",
+   "html": "<p>Ola mundo</p>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "fontFamily",
+     "Arial"
+    ],
+    [
+     "fontSize",
+     "18px"
+    ]
+   ],
+   "canonical": "<p><span style=\"font-family: Arial; font-size: 18px;\">Ola mundo</span></p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_cor_e_tamanho",
+   "html": "<p>Ola mundo</p>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "color",
+     "#0000ff"
+    ],
+    [
+     "fontSize",
+     "18px"
+    ]
+   ],
+   "canonical": "<p><span style=\"color: rgb(0, 0, 255); font-size: 18px;\">Ola mundo</span></p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_negrito_cor",
+   "html": "<p>Ola mundo</p>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "bold"
+    ],
+    [
+     "color",
+     "#0000ff"
+    ]
+   ],
+   "canonical": "<p><span style=\"color: rgb(0, 0, 255);\"><strong>Ola mundo</strong></span></p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_cor_negrito",
+   "html": "<p>Ola mundo</p>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "color",
+     "#0000ff"
+    ],
+    [
+     "bold"
+    ]
+   ],
+   "canonical": "<p><span style=\"color: rgb(0, 0, 255);\"><strong>Ola mundo</strong></span></p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_tudo",
+   "html": "<p>Ola mundo</p>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "bold"
+    ],
+    [
+     "italic"
+    ],
+    [
+     "underline"
+    ],
+    [
+     "strike"
+    ],
+    [
+     "color",
+     "#ff0000"
+    ],
+    [
+     "highlight",
+     "#ffff00"
+    ],
+    [
+     "subscript"
+    ],
+    [
+     "fontFamily",
+     "Arial"
+    ],
+    [
+     "fontSize",
+     "24px"
+    ]
+   ],
+   "canonical": "<p><span style=\"font-family: Arial; color: rgb(255, 0, 0); font-size: 24px;\"><strong><em><s><u><mark data-color=\"#ffff00\" style=\"background-color: rgb(255, 255, 0); color: inherit;\"><sub>Ola mundo</sub></mark></u></s></em></strong></span></p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_h1",
+   "html": "<p>Titulo</p>",
+   "commands": [
+    [
+     "heading",
+     1
+    ]
+   ],
+   "canonical": "<h1>Titulo</h1>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_h2",
+   "html": "<p>Titulo</p>",
+   "commands": [
+    [
+     "heading",
+     2
+    ]
+   ],
+   "canonical": "<h2>Titulo</h2>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_h3",
+   "html": "<p>Titulo</p>",
+   "commands": [
+    [
+     "heading",
+     3
+    ]
+   ],
+   "canonical": "<h3>Titulo</h3>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_h1_para_p",
+   "html": "<h1>Titulo</h1>",
+   "commands": [
+    [
+     "heading",
+     "p"
+    ]
+   ],
+   "canonical": "<p>Titulo</p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_h1_toggle",
+   "html": "<h1>Titulo</h1>",
+   "commands": [
+    [
+     "heading",
+     1
+    ]
+   ],
+   "canonical": "<p>Titulo</p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_lista",
+   "html": "<p>a</p><p>b</p>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "bullets"
+    ]
+   ],
+   "canonical": "<ul><li><p>a</p></li><li><p>b</p></li></ul>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_lista_num",
+   "html": "<p>a</p><p>b</p>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "numbered"
+    ]
+   ],
+   "canonical": "<ol><li><p>a</p></li><li><p>b</p></li></ol>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_lista_para_num",
+   "html": "<ul><li><p>a</p></li></ul>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "numbered"
+    ]
+   ],
+   "canonical": "<ol><li><p>a</p></li></ol>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_lista_desliga",
+   "html": "<ul><li><p>a</p></li></ul>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "bullets"
+    ]
+   ],
+   "canonical": "<ul><li><p>a</p></li></ul>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_indent",
+   "html": "<ul><li><p>a</p></li><li><p>b</p></li></ul>",
+   "commands": [
+    [
+     "focusEnd"
+    ],
+    [
+     "indent"
+    ]
+   ],
+   "canonical": "<ul><li><p>a</p><ul><li><p>b</p></li></ul></li></ul>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_outdent",
+   "html": "<ul><li><p>a</p><ul><li><p>b</p></li></ul></li></ul>",
+   "commands": [
+    [
+     "focusEnd"
+    ],
+    [
+     "outdent"
+    ]
+   ],
+   "canonical": "<ul><li><p>a</p></li><li><p>b</p></li></ul>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_indent_primeiro",
+   "html": "<ul><li><p>a</p></li><li><p>b</p></li></ul>",
+   "commands": [
+    [
+     "setSel",
+     [
+      3,
+      3
+     ]
+    ],
+    [
+     "indent"
+    ]
+   ],
+   "canonical": "<ul><li><p>a</p></li><li><p>b</p></li></ul>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_alinha_centro",
+   "html": "<p>a</p>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "align",
+     "center"
+    ]
+   ],
+   "canonical": "<p style=\"text-align: center;\">a</p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_alinha_direita",
+   "html": "<p>a</p>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "align",
+     "right"
+    ]
+   ],
+   "canonical": "<p style=\"text-align: right;\">a</p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_alinha_justifica",
+   "html": "<p>a</p>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "align",
+     "justify"
+    ]
+   ],
+   "canonical": "<p style=\"text-align: justify;\">a</p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_alinha_esquerda",
+   "html": "<p>a</p>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "align",
+     "left"
+    ]
+   ],
+   "canonical": "<p style=\"text-align: left;\">a</p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_alinha_varios",
+   "html": "<p>a</p><p>b</p>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "align",
+     "center"
+    ]
+   ],
+   "canonical": "<p style=\"text-align: center;\">a</p><p style=\"text-align: center;\">b</p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_alinha_titulo",
+   "html": "<h1>a</h1>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "align",
+     "right"
+    ]
+   ],
+   "canonical": "<h1 style=\"text-align: right;\">a</h1>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_alinha_lista",
+   "html": "<ul><li><p>a</p></li></ul>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "align",
+     "center"
+    ]
+   ],
+   "canonical": "<ul><li><p style=\"text-align: center;\">a</p></li></ul>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_link",
+   "html": "<p>Ola mundo</p>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "link",
+     "https://exemplo.com"
+    ]
+   ],
+   "canonical": "<p><a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"https://exemplo.com\">Ola mundo</a></p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_link_remove",
+   "html": "<p><a href=\"https://exemplo.com\">x</a></p>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "unlink"
+    ]
+   ],
+   "canonical": "<p>x</p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_imagem",
+   "html": "<p>Ola</p>",
+   "commands": [
+    [
+     "focusEnd"
+    ],
+    [
+     "image",
+     "https://exemplo.com/a.png"
+    ]
+   ],
+   "canonical": "<p>Ola</p><img src=\"https://exemplo.com/a.png\">"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_imagem_vazio",
+   "html": "",
+   "commands": [
+    [
+     "image",
+     "https://exemplo.com/a.png"
+    ]
+   ],
+   "canonical": "<img src=\"https://exemplo.com/a.png\">"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_limpar",
+   "html": "<h1><strong>Ola</strong> <span style=\"color: #ff0000\">x</span></h1>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "clear"
+    ]
+   ],
+   "canonical": "<p>Ola x</p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_limpar_lista",
+   "html": "<ul><li><p><strong>a</strong></p></li></ul>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "clear"
+    ]
+   ],
+   "canonical": "<p>a</p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_limpar_alinhamento",
+   "html": "<p style=\"text-align: center\"><strong>a</strong></p>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "clear"
+    ]
+   ],
+   "canonical": "<p>a</p>"
+  },
+  {
+   "kind": "document",
+   "id": "doc_basico",
+   "html": "<!doctype html><html><head><title>t</title></head><body><p>x</p></body></html>",
+   "cssText": "",
+   "bodyHtml": "<p>x</p>",
+   "canonical": "<p>x</p>"
+  },
+  {
+   "kind": "document",
+   "id": "doc_css",
+   "html": "<!doctype html><html><head><style>p{color:red}</style><style>h1{x:y}</style></head><body><h1>t</h1></body></html>",
+   "cssText": "p{color:red}\nh1{x:y}",
+   "bodyHtml": "<h1>t</h1>",
+   "canonical": "<h1>t</h1>"
+  },
+  {
+   "kind": "document",
+   "id": "doc_sem_corpo",
+   "html": "<html><head><style>a{b:c}</style></head></html>",
+   "cssText": "a{b:c}",
+   "bodyHtml": "",
+   "canonical": "<p></p>"
+  },
+  {
+   "kind": "document",
+   "id": "doc_fragmento",
+   "html": "<p>so fragmento</p>",
+   "cssText": "",
+   "bodyHtml": "<p>so fragmento</p>",
+   "canonical": "<p>so fragmento</p>"
+  },
+  {
+   "kind": "document",
+   "id": "doc_texto",
+   "html": "texto puro",
+   "cssText": "",
+   "bodyHtml": "texto puro",
+   "canonical": "<p>texto puro</p>"
+  },
+  {
+   "kind": "document",
+   "id": "doc_vazio",
+   "html": "",
+   "cssText": "",
+   "bodyHtml": "",
+   "canonical": "<p></p>"
+  },
+  {
+   "kind": "document",
+   "id": "doc_style_no_corpo",
+   "html": "<html><body><style>p{c:d}</style><p>x</p></body></html>",
+   "cssText": "",
+   "bodyHtml": "<style>p{c:d}</style><p>x</p>",
+   "canonical": "<p>x</p>"
+  },
+  {
+   "kind": "html",
+   "id": "marcas_todas",
+   "html": "<p><a href=\"https://x.com\"><span style=\"color: #ff0000\"><strong><em><u><s><mark data-color=\"#ffff00\"><sub>x</sub></mark></s></u></em></strong></span></a></p>",
+   "canonical": "<p><a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"https://x.com\"><span style=\"color: rgb(255, 0, 0);\"><strong><em><s><u><mark data-color=\"#ffff00\" style=\"background-color: rgb(255, 255, 0); color: inherit;\"><sub>x</sub></mark></u></s></em></strong></span></a></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "marcas_sup_todas",
+   "html": "<p><a href=\"https://x.com\"><span style=\"color: #ff0000\"><strong><em><u><s><mark data-color=\"#ffff00\"><sup>x</sup></mark></s></u></em></strong></span></a></p>",
+   "canonical": "<p><a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"https://x.com\"><span style=\"color: rgb(255, 0, 0);\"><strong><em><s><u><mark data-color=\"#ffff00\" style=\"background-color: rgb(255, 255, 0); color: inherit;\"><sup>x</sup></mark></u></s></em></strong></span></a></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "marcas_codigo",
+   "html": "<p><code><strong>x</strong></code></p>",
+   "canonical": "<p><code>x</code></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "marcas_codigo_depois",
+   "html": "<p><strong><code>x</code></strong></p>",
+   "canonical": "<p><code>x</code></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "marcas_sub_sup",
+   "html": "<p><sub><sup>x</sup></sub></p>",
+   "canonical": "<p><sub><sup>x</sup></sub></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "marcas_sup_sub",
+   "html": "<p><sup><sub>x</sub></sup></p>",
+   "canonical": "<p><sub><sup>x</sup></sub></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "marca_parcial",
+   "html": "<p><strong>a<em>b</em></strong><em>c</em></p>",
+   "canonical": "<p><strong>a<em>b</em></strong><em>c</em></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "marcas_adjacentes",
+   "html": "<p><strong>a</strong><strong>b</strong></p>",
+   "canonical": "<p><strong>ab</strong></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "link_dois",
+   "html": "<p><a href=\"https://a.com\">a</a><a href=\"https://b.com\">b</a></p>",
+   "canonical": "<p><a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"https://a.com\">a</a><a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"https://b.com\">b</a></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "link_mesmo",
+   "html": "<p><a href=\"https://a.com\">a</a> <a href=\"https://a.com\">b</a></p>",
+   "canonical": "<p><a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"https://a.com\">a</a> <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"https://a.com\">b</a></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "br_vazio_p",
+   "html": "<p><br></p>",
+   "canonical": "<p><br></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "br_duplo",
+   "html": "<p>a<br><br>b</p>",
+   "canonical": "<p>a<br><br>b</p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "br_negrito",
+   "html": "<p><strong>a<br>b</strong></p>",
+   "canonical": "<p><strong>a<br>b</strong></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "br_inicio",
+   "html": "<p><br>a</p>",
+   "canonical": "<p><br>a</p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "blocos_com_quebra",
+   "html": "<p>a</p>\n<p>b</p>\n",
+   "canonical": "<p>a</p><p>b</p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "lista_formatada_html",
+   "html": "<ul>\n  <li>\n    <p>a</p>\n  </li>\n  <li>b</li>\n</ul>",
+   "canonical": "<ul><li><p>a</p></li><li><p>b</p></li></ul>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "texto_antes_bloco",
+   "html": "texto<p>b</p>",
+   "canonical": "<p>texto</p><p>b</p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "texto_depois_bloco",
+   "html": "<p>a</p>texto",
+   "canonical": "<p>a</p><p>texto</p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "espaco_entre_marcas",
+   "html": "<p><strong>a</strong> <em>b</em></p>",
+   "canonical": "<p><strong>a</strong> <em>b</em></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "espaco_inicio_marca",
+   "html": "<p>a<strong> b</strong></p>",
+   "canonical": "<p>a<strong> b</strong></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "espaco_fim_p",
+   "html": "<p>a </p>",
+   "canonical": "<p>a</p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "espaco_duplo_marca",
+   "html": "<p><strong>a </strong> b</p>",
+   "canonical": "<p><strong>a </strong>b</p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "titulo_marcas_alinhado",
+   "html": "<h2 style=\"text-align: right\"><strong>t</strong> <a href=\"https://x.com\">l</a></h2>",
+   "canonical": "<h2 style=\"text-align: right;\"><strong>t</strong> <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"https://x.com\">l</a></h2>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "citacao_lista",
+   "html": "<blockquote><ul><li><p>a</p></li></ul></blockquote>",
+   "canonical": "<blockquote><ul><li><p>a</p></li></ul></blockquote>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "citacao_titulo",
+   "html": "<blockquote><h2>t</h2></blockquote>",
+   "canonical": "<blockquote><h2>t</h2></blockquote>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "citacao_marcas",
+   "html": "<blockquote><p><strong>a</strong></p></blockquote>",
+   "canonical": "<blockquote><p><strong>a</strong></p></blockquote>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "citacao_aninhada",
+   "html": "<blockquote><blockquote><p>a</p></blockquote></blockquote>",
+   "canonical": "<blockquote><blockquote><p>a</p></blockquote></blockquote>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "lista_titulo",
+   "html": "<ul><li><h2>t</h2></li></ul>",
+   "canonical": "<ul><li><p></p></li></ul><h2>t</h2>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "lista_imagem",
+   "html": "<ul><li><p>a</p></li></ul><img src=\"https://x.com/a.png\"><ul><li><p>b</p></li></ul>",
+   "canonical": "<ul><li><p>a</p></li></ul><img src=\"https://x.com/a.png\"><ul><li><p>b</p></li></ul>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "lista_vazia_item",
+   "html": "<ul><li><p></p></li></ul>",
+   "canonical": "<ul><li><p></p></li></ul>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "lista_item_alinhado",
+   "html": "<ul><li><p style=\"text-align: right\">a</p></li></ul>",
+   "canonical": "<ul><li><p style=\"text-align: right;\">a</p></li></ul>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "lista_num_aninhada_start",
+   "html": "<ol><li><p>a</p><ol start=\"2\"><li><p>b</p></li></ol></li></ol>",
+   "canonical": "<ol><li><p>a</p><ol start=\"2\"><li><p>b</p></li></ol></li></ol>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "lista_sub_depois_texto",
+   "html": "<ul><li><p>a</p></li><li><p>b</p><ul><li><p>c</p></li></ul></li><li><p>d</p></li></ul>",
+   "canonical": "<ul><li><p>a</p></li><li><p>b</p><ul><li><p>c</p></li></ul></li><li><p>d</p></li></ul>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "lista_dupla_profunda",
+   "html": "<ol><li><p>a</p><ol><li><p>b</p></li></ol></li><li><p>c</p></li></ol>",
+   "canonical": "<ol><li><p>a</p><ol><li><p>b</p></li></ol></li><li><p>c</p></li></ol>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "codigo_bloco_marcas",
+   "html": "<pre><code>a <strong>b</strong></code></pre>",
+   "canonical": "<pre><code>a b</code></pre>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "codigo_bloco_vazio",
+   "html": "<pre><code></code></pre>",
+   "canonical": "<pre><code></code></pre>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "codigo_bloco_entidades",
+   "html": "<pre><code>if (a &lt; b &amp;&amp; c) {}</code></pre>",
+   "canonical": "<pre><code>if (a &lt; b &amp;&amp; c) {}</code></pre>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "codigo_bloco_linhas_vazias",
+   "html": "<pre><code>a\n\nb</code></pre>",
+   "canonical": "<pre><code>a\n\nb</code></pre>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "imagem_ftp",
+   "html": "<img src=\"ftp://x.com/a.png\">",
+   "canonical": "<img src=\"ftp://x.com/a.png\">",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "imagem_relativa",
+   "html": "<img src=\"/a.png\">",
+   "canonical": "<img src=\"/a.png\">",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "imagem_sem_src",
+   "html": "<img>",
+   "canonical": "<p></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "imagem_aspas",
+   "html": "<img src=\"https://x.com/a.png?x=1&y=2\" alt=\"a &quot;b&quot;\">",
+   "canonical": "<img src=\"https://x.com/a.png?x=1&amp;y=2\" alt=\"a &quot;b&quot;\">",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "imagem_largura",
+   "html": "<img src=\"https://x.com/a.png\" width=\"100\" height=\"50\" style=\"width:10px\">",
+   "canonical": "<img src=\"https://x.com/a.png\">",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "imagem_duas",
+   "html": "<img src=\"https://x.com/a.png\"><img src=\"https://x.com/b.png\">",
+   "canonical": "<img src=\"https://x.com/a.png\"><img src=\"https://x.com/b.png\">",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "alinha_misto",
+   "html": "<p style=\"text-align: center\">a</p><p>b</p><p style=\"text-align: right\">c</p>",
+   "canonical": "<p style=\"text-align: center;\">a</p><p>b</p><p style=\"text-align: right;\">c</p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "alinha_invalido",
+   "html": "<p style=\"text-align: start\">a</p>",
+   "canonical": "<p>a</p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "alinha_atributo",
+   "html": "<p align=\"center\">a</p>",
+   "canonical": "<p>a</p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "estilo_extra",
+   "html": "<p style=\"color: red; margin: 0\">a</p>",
+   "canonical": "<p>a</p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "fonte_lista",
+   "html": "<p><span style=\"font-family: Arial, sans-serif\">a</span></p>",
+   "canonical": "<p><span style=\"font-family: Arial, sans-serif;\">a</span></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "fonte_inherit",
+   "html": "<p><span style=\"font-family: inherit\">a</span></p>",
+   "canonical": "<p><span style=\"font-family: inherit;\">a</span></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "tamanho_em",
+   "html": "<p><span style=\"font-size: 1.5em\">a</span></p>",
+   "canonical": "<p><span style=\"font-size: 1.5em;\">a</span></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "tamanho_pt",
+   "html": "<p><span style=\"font-size: 12pt\">a</span></p>",
+   "canonical": "<p><span style=\"font-size: 12pt;\">a</span></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "tamanho_decimal",
+   "html": "<p><span style=\"font-size: 13.5px\">a</span></p>",
+   "canonical": "<p><span style=\"font-size: 13.5px;\">a</span></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "cor_hex3",
+   "html": "<p><span style=\"color: #f00\">a</span></p>",
+   "canonical": "<p><span style=\"color: rgb(255, 0, 0);\">a</span></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "cor_hex8",
+   "html": "<p><span style=\"color: #ff000080\">a</span></p>",
+   "canonical": "<p><span style=\"color: rgba(255, 0, 0, 0.5);\">a</span></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "cor_rgba",
+   "html": "<p><span style=\"color: rgba(255, 0, 0, 0.5)\">a</span></p>",
+   "canonical": "<p><span style=\"color: rgba(255, 0, 0, 0.5);\">a</span></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "cor_hsl",
+   "html": "<p><span style=\"color: hsl(0, 100%, 50%)\">a</span></p>",
+   "canonical": "<p><span style=\"color: rgb(255, 0, 0);\">a</span></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "cor_maiuscula",
+   "html": "<p><span style=\"color: #FF00AA\">a</span></p>",
+   "canonical": "<p><span style=\"color: rgb(255, 0, 170);\">a</span></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "destaque_cor_nome",
+   "html": "<p><mark data-color=\"yellow\" style=\"background-color: yellow; color: inherit\">a</mark></p>",
+   "canonical": "<p><mark data-color=\"yellow\" style=\"background-color: yellow; color: inherit;\">a</mark></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "destaque_so_data",
+   "html": "<p><mark data-color=\"#00ff00\">a</mark></p>",
+   "canonical": "<p><mark data-color=\"#00ff00\" style=\"background-color: rgb(0, 255, 0); color: inherit;\">a</mark></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "span_estilo_so_bg",
+   "html": "<p><span style=\"background-color: #ff0\">a</span></p>",
+   "canonical": "<p><span>a</span></p>",
+   "idempotent": false
+  },
+  {
+   "kind": "html",
+   "id": "negrito_estilo",
+   "html": "<p><span style=\"font-weight: bold\">a</span></p>",
+   "canonical": "<p><span><strong>a</strong></span></p>",
+   "idempotent": false
+  },
+  {
+   "kind": "html",
+   "id": "italico_estilo",
+   "html": "<p><span style=\"font-style: italic\">a</span></p>",
+   "canonical": "<p><span><em>a</em></span></p>",
+   "idempotent": false
+  },
+  {
+   "kind": "html",
+   "id": "sublinhado_estilo",
+   "html": "<p><span style=\"text-decoration: underline\">a</span></p>",
+   "canonical": "<p><span><u>a</u></span></p>",
+   "idempotent": false
+  },
+  {
+   "kind": "html",
+   "id": "negrito_peso700",
+   "html": "<p><span style=\"font-weight: 700\">a</span></p>",
+   "canonical": "<p><span><strong>a</strong></span></p>",
+   "idempotent": false
+  },
+  {
+   "kind": "html",
+   "id": "heading_h5",
+   "html": "<h5>a</h5>",
+   "canonical": "<h5>a</h5>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "heading_h6",
+   "html": "<h6>a</h6>",
+   "canonical": "<h6>a</h6>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "pre_sem_code",
+   "html": "<pre>a\nb</pre>",
+   "canonical": "<pre><code>a\nb</code></pre>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "hr_inicio_fim",
+   "html": "<hr><p>a</p><hr>",
+   "canonical": "<hr><p>a</p><hr>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "hr_duas",
+   "html": "<hr><hr>",
+   "canonical": "<hr><hr>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "hr_em_lista",
+   "html": "<ul><li><p>a</p></li></ul><hr><ul><li><p>b</p></li></ul>",
+   "canonical": "<ul><li><p>a</p></li></ul><hr><ul><li><p>b</p></li></ul>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "entidade_numerica",
+   "html": "<p>&#x41;&#66;&copy;&euro;</p>",
+   "canonical": "<p>AB©€</p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "nbsp_duplo",
+   "html": "<p>a&nbsp;&nbsp;b</p>",
+   "canonical": "<p>a&nbsp;&nbsp;b</p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "tab",
+   "html": "<p>a\tb</p>",
+   "canonical": "<p>a b</p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "comentario",
+   "html": "<p>a<!-- c -->b</p>",
+   "canonical": "<p>ab</p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "iframe",
+   "html": "<p>a</p><iframe src=\"https://x.com\"></iframe>",
+   "canonical": "<p>a</p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "video",
+   "html": "<video src=\"https://x.com/a.mp4\"></video>",
+   "canonical": "<p></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "input",
+   "html": "<p><input value=x></p>",
+   "canonical": "<p></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "onclick",
+   "html": "<p onclick=\"alert(1)\">a</p>",
+   "canonical": "<p>a</p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "b_i_aninhados",
+   "html": "<p><b><i>a</i></b></p>",
+   "canonical": "<p><strong><em>a</em></strong></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "del_ins",
+   "html": "<p><del>a</del><ins>b</ins></p>",
+   "canonical": "<p><s>a</s>b</p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "sub_dentro_link",
+   "html": "<p><a href=\"https://x.com\">H<sub>2</sub>O</a></p>",
+   "canonical": "<p><a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"https://x.com\">H<sub>2</sub>O</a></p>",
+   "idempotent": true
+  },
+  {
+   "kind": "html",
+   "id": "texto_longo",
+   "html": "<p>palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra</p>",
+   "canonical": "<p>palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra palavra</p>",
+   "idempotent": true
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_outdent_topo",
+   "html": "<ul><li><p>a</p></li><li><p>b</p></li></ul>",
+   "commands": [
+    [
+     "focusEnd"
+    ],
+    [
+     "outdent"
+    ]
+   ],
+   "canonical": "<ul><li><p>a</p></li></ul><p>b</p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_outdent_topo_unico",
+   "html": "<ul><li><p>a</p></li></ul>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "outdent"
+    ]
+   ],
+   "canonical": "<ul><li><p>a</p></li></ul>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_indent_fora_lista",
+   "html": "<p>a</p>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "indent"
+    ]
+   ],
+   "canonical": "<p>a</p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_outdent_fora_lista",
+   "html": "<p>a</p>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "outdent"
+    ]
+   ],
+   "canonical": "<p>a</p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_indent_duplo",
+   "html": "<ul><li><p>a</p></li><li><p>b</p></li></ul>",
+   "commands": [
+    [
+     "focusEnd"
+    ],
+    [
+     "indent"
+    ],
+    [
+     "indent"
+    ]
+   ],
+   "canonical": "<ul><li><p>a</p><ul><li><p>b</p></li></ul></li></ul>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_indent_meio",
+   "html": "<ul><li><p>a</p></li><li><p>b</p></li><li><p>c</p></li></ul>",
+   "commands": [
+    [
+     "setSel",
+     [
+      8,
+      8
+     ]
+    ],
+    [
+     "indent"
+    ]
+   ],
+   "canonical": "<ul><li><p>a</p><ul><li><p>b</p></li></ul></li><li><p>c</p></li></ul>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_lista_num_para_bullets",
+   "html": "<ol><li><p>a</p><ol><li><p>b</p></li></ol></li></ol>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "bullets"
+    ]
+   ],
+   "canonical": "<ol><li><p>a</p></li></ol><p>b</p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_lista_parcial",
+   "html": "<p>a</p><p>b</p><p>c</p>",
+   "commands": [
+    [
+     "setSel",
+     [
+      4,
+      5
+     ]
+    ],
+    [
+     "bullets"
+    ]
+   ],
+   "canonical": "<p>a</p><ul><li><p>b</p></li></ul><p>c</p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_lista_titulo",
+   "html": "<h1>a</h1>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "bullets"
+    ]
+   ],
+   "canonical": "<ul><li><p>a</p></li></ul>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_titulo_em_lista",
+   "html": "<ul><li><p>a</p></li></ul>",
+   "commands": [
+    [
+     "heading",
+     1
+    ]
+   ],
+   "canonical": "<h1>a</h1>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_titulo_varios",
+   "html": "<p>a</p><p>b</p>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "heading",
+     2
+    ]
+   ],
+   "canonical": "<h2>a</h2><h2>b</h2>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_titulo_h1_para_h2",
+   "html": "<h1>a</h1>",
+   "commands": [
+    [
+     "heading",
+     2
+    ]
+   ],
+   "canonical": "<h2>a</h2>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_titulo_marcas",
+   "html": "<p><strong>a</strong></p>",
+   "commands": [
+    [
+     "heading",
+     1
+    ]
+   ],
+   "canonical": "<h1><strong>a</strong></h1>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_alinha_varios_misto",
+   "html": "<p style=\"text-align: right\">a</p><p>b</p>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "align",
+     "center"
+    ]
+   ],
+   "canonical": "<p style=\"text-align: center;\">a</p><p style=\"text-align: center;\">b</p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_alinha_cursor",
+   "html": "<p>a</p><p>b</p>",
+   "commands": [
+    [
+     "setSel",
+     [
+      4,
+      4
+     ]
+    ],
+    [
+     "align",
+     "right"
+    ]
+   ],
+   "canonical": "<p>a</p><p style=\"text-align: right;\">b</p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_negrito_sem_selecao",
+   "html": "<p>a</p>",
+   "commands": [
+    [
+     "setSel",
+     [
+      1,
+      1
+     ]
+    ],
+    [
+     "bold"
+    ],
+    [
+     "insertText",
+     "x"
+    ]
+   ],
+   "canonical": "<p><strong>x</strong>a</p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_negrito_varios_blocos",
+   "html": "<p>a</p><p>b</p>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "bold"
+    ]
+   ],
+   "canonical": "<p><strong>a</strong></p><p><strong>b</strong></p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_negrito_lista",
+   "html": "<ul><li><p>a</p></li></ul>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "bold"
+    ]
+   ],
+   "canonical": "<ul><li><p><strong>a</strong></p></li></ul>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_sub_em_sup",
+   "html": "<p><sup>a</sup></p>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "subscript"
+    ]
+   ],
+   "canonical": "<p><sub><sup>a</sup></sub></p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_cor_duas_vezes",
+   "html": "<p>a</p>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "color",
+     "#ff0000"
+    ],
+    [
+     "color",
+     "#00ff00"
+    ]
+   ],
+   "canonical": "<p><span style=\"color: rgb(0, 255, 0);\">a</span></p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_cor_parcial",
+   "html": "<p>abcd</p>",
+   "commands": [
+    [
+     "setSel",
+     [
+      2,
+      3
+     ]
+    ],
+    [
+     "color",
+     "#ff0000"
+    ]
+   ],
+   "canonical": "<p>a<span style=\"color: rgb(255, 0, 0);\">b</span>cd</p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_tamanho_duas",
+   "html": "<p>a</p>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "fontSize",
+     "12px"
+    ],
+    [
+     "fontSize",
+     "32px"
+    ]
+   ],
+   "canonical": "<p><span style=\"font-size: 32px;\">a</span></p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_fonte_depois_inherit",
+   "html": "<p>a</p>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "fontFamily",
+     "Arial"
+    ],
+    [
+     "fontFamily",
+     "inherit"
+    ]
+   ],
+   "canonical": "<p><span style=\"font-family: inherit;\">a</span></p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_fonte_courier",
+   "html": "<p>a</p>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "fontFamily",
+     "Courier New"
+    ]
+   ],
+   "canonical": "<p><span style=\"font-family: &quot;Courier New&quot;;\">a</span></p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_link_parcial",
+   "html": "<p>abcd</p>",
+   "commands": [
+    [
+     "setSel",
+     [
+      2,
+      3
+     ]
+    ],
+    [
+     "link",
+     "https://x.com"
+    ]
+   ],
+   "canonical": "<p>a<a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"https://x.com\">b</a>cd</p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_link_sem_protocolo",
+   "html": "<p>a</p>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "link",
+     "exemplo.com"
+    ]
+   ],
+   "canonical": "<p><a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"exemplo.com\">a</a></p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_link_javascript",
+   "html": "<p>a</p>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "link",
+     "javascript:alert(1)"
+    ]
+   ],
+   "canonical": "<p>a</p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_link_troca",
+   "html": "<p><a href=\"https://a.com\">x</a></p>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "link",
+     "https://b.com"
+    ]
+   ],
+   "canonical": "<p><a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"https://b.com\">x</a></p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_link_cursor_dentro",
+   "html": "<p><a href=\"https://a.com\">xyz</a></p>",
+   "commands": [
+    [
+     "setSel",
+     [
+      2,
+      2
+     ]
+    ],
+    [
+     "unlink"
+    ]
+   ],
+   "canonical": "<p>xyz</p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_imagem_meio",
+   "html": "<p>abcd</p>",
+   "commands": [
+    [
+     "setSel",
+     [
+      3,
+      3
+     ]
+    ],
+    [
+     "image",
+     "https://x.com/a.png"
+    ]
+   ],
+   "canonical": "<p>ab</p><img src=\"https://x.com/a.png\"><p>cd</p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_imagem_data",
+   "html": "<p>a</p>",
+   "commands": [
+    [
+     "focusEnd"
+    ],
+    [
+     "image",
+     "data:image/png;base64,AAA="
+    ]
+   ],
+   "canonical": "<p>a</p><img src=\"data:image/png;base64,AAA=\">"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_imagem_vazia_url",
+   "html": "<p>a</p>",
+   "commands": [
+    [
+     "focusEnd"
+    ],
+    [
+     "image",
+     ""
+    ]
+   ],
+   "canonical": "<p>a</p><img src=\"\">"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_imagem_sobre_selecao",
+   "html": "<p>abcd</p>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "image",
+     "https://x.com/a.png"
+    ]
+   ],
+   "canonical": "<img src=\"https://x.com/a.png\">"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_limpar_cursor",
+   "html": "<p><strong>a</strong></p>",
+   "commands": [
+    [
+     "setSel",
+     [
+      1,
+      1
+     ]
+    ],
+    [
+     "clear"
+    ]
+   ],
+   "canonical": "<p><strong>a</strong></p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_limpar_citacao",
+   "html": "<blockquote><p><strong>a</strong></p></blockquote>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "clear"
+    ]
+   ],
+   "canonical": "<p>a</p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_limpar_codigo",
+   "html": "<pre><code>a</code></pre>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "clear"
+    ]
+   ],
+   "canonical": "<p>a</p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_limpar_imagem",
+   "html": "<p>a</p><img src=\"https://x.com/a.png\">",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "clear"
+    ]
+   ],
+   "canonical": "<p>a</p><img src=\"https://x.com/a.png\">"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_limpar_link",
+   "html": "<p><a href=\"https://x.com\">a</a></p>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "clear"
+    ]
+   ],
+   "canonical": "<p>a</p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_limpar_so_um_bloco",
+   "html": "<h1>a</h1><h1>b</h1>",
+   "commands": [
+    [
+     "setSel",
+     [
+      1,
+      1
+     ]
+    ],
+    [
+     "clear"
+    ]
+   ],
+   "canonical": "<p>a</p><h1>b</h1>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_tudo_lista",
+   "html": "<p>a</p>",
+   "commands": [
+    [
+     "selectAll"
+    ],
+    [
+     "bold"
+    ],
+    [
+     "color",
+     "#ff0000"
+    ],
+    [
+     "bullets"
+    ],
+    [
+     "align",
+     "center"
+    ]
+   ],
+   "canonical": "<ul><li><p style=\"text-align: center;\"><span style=\"color: rgb(255, 0, 0);\"><strong>a</strong></span></p></li></ul>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_vazio_texto",
+   "html": "",
+   "commands": [
+    [
+     "insertText",
+     "ola"
+    ]
+   ],
+   "canonical": "<p>ola</p>"
+  },
+  {
+   "kind": "commands",
+   "id": "cmd_vazio_negrito",
+   "html": "",
+   "commands": [
+    [
+     "bold"
+    ],
+    [
+     "insertText",
+     "ola"
+    ]
+   ],
+   "canonical": "<p><strong>ola</strong></p>"
+  }
+ ]
+}

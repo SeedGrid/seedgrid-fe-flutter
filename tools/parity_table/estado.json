@@ -247,5 +247,9 @@
   "SgSplitButton": {
     "status": "parcial",
     "motivo": "em largura < 600 o menu vira painel de baixo (ADR 51), em tela larga abre colado embaixo do botao principal; items vira List<SgSplitButtonItem>; label e String (como no React); setas de teclado no menu nao existem (o React tambem nao tem); divisoria e sombras aproximadas; nao testado em dispositivo; className/style do React nao existem (ADR 50)"
+  },
+  "SgTextEditor": {
+    "status": "parcial",
+    "motivo": "motor nativo flutter_quill (MIT) em vez de TipTap; conteudo trafega como HTML via conversor proprio (HTML do TipTap lido e reescrito igual em 160+ fixtures do TipTap real). Nao suportado pelo modelo Delta: tabelas e iframes (descartados), <br> vira U+2028, sub e sup juntos (vence um), <mark> sem cor vira amarelo, cor com alfa perde o alfa, tamanho em em/pt/% vira px, ol start, item de lista com varios paragrafos vira um item com quebra suave, citacao com lista/titulo/citacao aninhada achata, classe de linguagem do bloco de codigo, regras de markdown (# , - , 1. , >) e Ctrl+Z/atalhos so os do flutter_quill; cor do texto e destaque por seletor proprio (paleta + hex) no lugar do input color; Salvar/Carregar HTML via file_picker (extra htmlFilePicker); onSave recebe SgTextEditorFile no lugar de File; dialogos de link/imagem proprios no lugar de window.prompt (cancelar nao remove o link); disabled reativo (no React so vale na criacao); sem className/style (ADR 50); nao testado em dispositivo/IME; SgTextEditor ainda fora do arquivo raiz do pacote (barril editor_inputs.dart)"
   }
 }

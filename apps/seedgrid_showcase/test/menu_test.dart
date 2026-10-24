@@ -78,20 +78,19 @@ void main() {
     await t.pumpWidget(const ShowcaseApp());
     await settle(t);
     expect(find.textContaining('Ação ('), findsOneWidget);
-    await revealInMenu(t, find.byKey(const ValueKey('nav-SgTextEditor')));
-    final tile = t.widget<ListTile>(
-      find.byKey(const ValueKey('nav-SgTextEditor')),
-    );
+    final pendentes = kCatalog.where((e) => e.status == 'pendente').toList();
+    if (pendentes.isEmpty)
+      return; // 89 de 89 portados: nada esmaecido para conferir
+    final key = ValueKey('nav-${pendentes.first.name}');
+    await revealInMenu(t, find.byKey(key));
+    final tile = t.widget<ListTile>(find.byKey(key));
     expect(
       tile.enabled,
       isFalse,
       reason: 'componente pendente nao abre pagina',
     );
     expect(
-      find.descendant(
-        of: find.byKey(const ValueKey('nav-SgTextEditor')),
-        matching: find.text('pendente'),
-      ),
+      find.descendant(of: find.byKey(key), matching: find.text('pendente')),
       findsOneWidget,
     );
   });

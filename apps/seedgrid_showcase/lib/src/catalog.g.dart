@@ -83,7 +83,7 @@ const List<CatalogEntry> kCatalog = <CatalogEntry>[
   (name: 'SgStack', category: 'layout', wave: 2, status: 'parcial'),
   (name: 'SgStepperInput', category: 'input', wave: 1, status: 'portado'),
   (name: 'SgStringAnimator', category: 'gadget', wave: 4, status: 'parcial'),
-  (name: 'SgTextEditor', category: 'input', wave: 6, status: 'pendente'),
+  (name: 'SgTextEditor', category: 'input', wave: 6, status: 'parcial'),
   (name: 'SgTimeProvider', category: 'provider', wave: 4, status: 'parcial'),
   (name: 'SgToaster', category: 'feedback', wave: 2, status: 'portado'),
   (name: 'SgToastHost', category: 'feedback', wave: 2, status: 'portado'),

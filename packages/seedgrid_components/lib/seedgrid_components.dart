@@ -38,3 +38,4 @@ export 'src/inputs/datatable_inputs.dart';
 export 'src/layout/menu/menu_layout.dart';
 export 'src/menus/menus_dock.dart';
 export 'src/buttons/action_buttons.dart';
+export 'src/inputs/editor_inputs.dart';

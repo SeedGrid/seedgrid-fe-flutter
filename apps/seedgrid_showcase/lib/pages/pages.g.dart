@@ -78,6 +78,7 @@ import 'sg_split_button_page.dart';
 import 'sg_stack_page.dart';
 import 'sg_stepper_input_page.dart';
 import 'sg_string_animator_page.dart';
+import 'sg_text_editor_page.dart';
 import 'sg_time_provider_page.dart';
 import 'sg_toaster_page.dart';
 import 'sg_toast_host_page.dart';
@@ -170,6 +171,7 @@ final List<ShowcasePageEntry> kShowcasePages = <ShowcasePageEntry>[
   (name: 'SgStack', file: 'lib/pages/sg_stack_page.dart', examples: 4, builder: (_) => const SgStackPage()),
   (name: 'SgStepperInput', file: 'lib/pages/sg_stepper_input_page.dart', examples: 5, builder: (_) => const SgStepperInputPage()),
   (name: 'SgStringAnimator', file: 'lib/pages/sg_string_animator_page.dart', examples: 5, builder: (_) => const SgStringAnimatorPage()),
+  (name: 'SgTextEditor', file: 'lib/pages/sg_text_editor_page.dart', examples: 5, builder: (_) => const SgTextEditorPage()),
   (name: 'SgTimeProvider', file: 'lib/pages/sg_time_provider_page.dart', examples: 4, builder: (_) => const SgTimeProviderPage()),
   (name: 'SgToaster', file: 'lib/pages/sg_toaster_page.dart', examples: 4, builder: (_) => const SgToasterPage()),
   (name: 'SgToastHost', file: 'lib/pages/sg_toast_host_page.dart', examples: 4, builder: (_) => const SgToastHostPage()),
