@@ -70,6 +70,9 @@ class SgInputText extends StatefulWidget implements SgInputTextProps {
     this.textInputAction,
     this.onSubmitted,
     this.focusNode,
+    this.onValueSet,
+    this.onExitText,
+    this.externalValueNormalizer,
   });
 
   @override
@@ -200,6 +203,19 @@ class SgInputText extends StatefulWidget implements SgInputTextProps {
   /// Foco externo (`ref` do <input> no React).
   final FocusNode? focusNode;
 
+  /// Interno dos inputs derivados (CPF, e-mail...): chamado quando o texto muda POR FORA (setValue/reset do
+  /// formulario), nunca ao digitar. `reset` = o formulario voltou aos padroes (o texto pode nao ter mudado).
+  /// Recebe o texto completo (com afixos) ja formatado.
+  final void Function(String full, bool reset)? onValueSet;
+
+  /// Interno dos inputs derivados: chamado na perda de foco, antes de `onExit`, com o texto exibido (sem
+  /// afixos), que e o que o React le do <input> no `onBlur`.
+  final ValueChanged<String>? onExitText;
+
+  /// Interno dos inputs derivados: ajusta o valor que vem de FORA (inicial, `value`, setValue/reset) antes
+  /// da mascara; ex.: telefone `+5511987654321` sem o DDI. Nao vale para o que o usuario digita.
+  final String Function(String)? externalValueNormalizer;
+
   @override
   State<SgInputText> createState() => _SgInputTextState();
 }
@@ -210,6 +226,8 @@ class _SgInputTextState extends State<SgInputText> {
   SgFormController? _form;
   String? _internalError;
   bool _interacted = false;
+  int _seenReset = 0;
+  String? _rawSet;
 
   String get _prefix => widget.prefixText ?? '';
   String get _suffix => widget.suffixText ?? '';
@@ -232,9 +250,66 @@ class _SgInputTextState extends State<SgInputText> {
   void initState() {
     super.initState();
     _focus.addListener(_onFocus);
-    _text.text = widget.value != null
-        ? _strip(widget.value)
-        : (widget.initialValue ?? '');
+    _text.text = _display(
+      widget.value != null ? _strip(widget.value) : (widget.initialValue ?? ''),
+    );
+  }
+
+  /// Texto que o <input> do navegador guardaria para [text]: sem quebra de linha e, em `type="email"`, sem os
+  /// espacos das pontas.
+  String _sanitize(String text) {
+    var s = text.replaceAll(RegExp(r'[\r\n]'), '');
+    if (widget.type == 'email') s = s.trim();
+    return s;
+  }
+
+  /// Texto como o campo o exibe para um valor vindo de FORA (valor inicial, `value`, setValue/reset): passa
+  /// pelos formatadores de entrada (mascaras), assim sai igual ao digitado. Se a mascara mudou o texto
+  /// (valor sem formatacao, ou maior/com lixo alem do que a mascara comporta), guarda o texto cru em
+  /// [_rawSet]: a validacao da perda de foco usa o cru (como o React, que valida o texto do <input>), e
+  /// um valor que nao cabe na mascara aparece como invalido em vez de ser cortado em silencio.
+  String _display(String raw) {
+    var s = _sanitize(raw);
+    if (s.isNotEmpty && widget.externalValueNormalizer != null) {
+      s = widget.externalValueNormalizer!(s);
+    }
+    final formatters = widget.inputFormatters;
+    var out = s;
+    if (s.isNotEmpty && formatters != null && formatters.isNotEmpty) {
+      var v = TextEditingValue(
+        text: s,
+        selection: TextSelection.collapsed(offset: s.length),
+      );
+      for (final f in formatters) {
+        v = f.formatEditUpdate(TextEditingValue.empty, v);
+      }
+      out = v.text;
+    }
+    _rawSet = out == s ? null : s;
+    return out;
+  }
+
+  /// Texto que a validacao enxerga: o cru do valor de fora (enquanto o usuario nao digitou) ou o exibido.
+  String get _validationText => _rawSet ?? _text.text;
+
+  void _setText(String text) {
+    _text.value = TextEditingValue(
+      text: text,
+      selection: TextSelection.collapsed(offset: text.length),
+    );
+  }
+
+  /// O texto mudou por fora: um erro proprio ja visivel e recalculado para o valor novo (senao ficaria um
+  /// erro velho ao lado de um valor que ja e outro); `reset` limpa o erro.
+  void _programmatic({required bool reset}) {
+    if (reset) {
+      if (_internalError != null) {
+        _internalError = null;
+        widget.onValidation?.call(null);
+      }
+    } else if (_internalError != null) {
+      _runValidation(_validationText);
+    }
   }
 
   bool get _controlled => widget.value != null && !_bound;
@@ -245,12 +320,9 @@ class _SgInputTextState extends State<SgInputText> {
     if (!_controlled) return;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted || !_controlled) return;
-      final v = _strip(widget.value);
+      final v = _display(_strip(widget.value));
       if (_text.text != v) {
-        _text.value = TextEditingValue(
-          text: v,
-          selection: TextSelection.collapsed(offset: v.length),
-        );
+        _setText(v);
         setState(() {});
       }
     });
@@ -263,6 +335,7 @@ class _SgInputTextState extends State<SgInputText> {
     if (f != _form) {
       _form?.removeListener(_syncFromForm);
       _form = f;
+      _seenReset = f?.resetCount ?? 0;
       _form?.addListener(_syncFromForm);
     }
     _register();
@@ -276,12 +349,10 @@ class _SgInputTextState extends State<SgInputText> {
         (widget.value != old.value ||
             widget.prefixText != old.prefixText ||
             widget.suffixText != old.suffixText)) {
-      final v = _strip(widget.value);
+      final v = _display(_strip(widget.value));
       if (_text.text != v) {
-        _text.value = TextEditingValue(
-          text: v,
-          selection: TextSelection.collapsed(offset: v.length),
-        );
+        _setText(v);
+        _programmatic(reset: false);
       }
     }
   }
@@ -303,12 +374,14 @@ class _SgInputTextState extends State<SgInputText> {
 
   void _syncFromForm() {
     if (!_bound) return;
-    final v = _strip(_form!.getValue(widget.name!));
-    if (_text.text != v) {
-      _text.value = TextEditingValue(
-        text: v,
-        selection: TextSelection.collapsed(offset: v.length),
-      );
+    final v = _display(_strip(_form!.getValue(widget.name!)));
+    final reset = _form!.resetCount != _seenReset;
+    _seenReset = _form!.resetCount;
+    final changed = _text.text != v;
+    if (changed) _setText(v);
+    if (changed || reset) {
+      _programmatic(reset: reset);
+      widget.onValueSet?.call(_full(_validationText), reset);
     }
     if (mounted) setState(() {});
   }
@@ -366,18 +439,20 @@ class _SgInputTextState extends State<SgInputText> {
       widget.onEnter?.call();
     } else {
       if ((widget.validateOnBlur ?? true) || _interacted) {
-        _runValidation(_text.text);
+        _runValidation(_validationText);
       }
       if (_bound) {
         _form!.markTouched(widget.name!);
         _form!.trigger([widget.name!]);
       }
+      widget.onExitText?.call(_validationText);
       widget.onExit?.call();
     }
   }
 
   void _onChanged(String raw) {
     _interacted = true;
+    _rawSet = null;
     if (widget.validateOnBlur == false) _runValidation(raw);
     final full = _full(raw);
     if (_bound) {
@@ -391,6 +466,7 @@ class _SgInputTextState extends State<SgInputText> {
   }
 
   void _clear() {
+    _rawSet = null;
     _text.clear();
     if (_bound) _form!.setValue(widget.name!, '');
     widget.onChange?.call('');

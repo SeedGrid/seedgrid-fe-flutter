@@ -66,6 +66,7 @@ class SgInputBirthDate extends StatefulWidget implements SgInputBirthDateProps {
     this.minAge,
     this.minDate,
     this.initialValue,
+    this.value,
     this.autofocus = false,
     this.autofillHints,
     this.textInputAction,
@@ -225,6 +226,9 @@ class SgInputBirthDate extends StatefulWidget implements SgInputBirthDateProps {
   /// Valor inicial quando nao ha `control` (no React, `inputProps.defaultValue`).
   final String? initialValue;
 
+  /// Valor controlado (no React, `inputProps.value`): data ISO `yyyy-MM-dd`. Trocar por fora atualiza o campo.
+  final String? value;
+
   /// `autoFocus` do <input>.
   final bool autofocus;
 
@@ -246,18 +250,8 @@ class SgInputBirthDate extends StatefulWidget implements SgInputBirthDateProps {
 
 class _SgInputBirthDateState extends State<SgInputBirthDate> {
   String? _internalError;
-  String _iso = '';
 
   String _isoDate(DateTime d) => d.toUtc().toIso8601String().substring(0, 10);
-
-  String _current() {
-    final form = widget.control ?? SgForm.maybeOf(context);
-    if (widget.name != null && form != null) {
-      final v = form.getValue(widget.name!);
-      if (v != null) return '$v';
-    }
-    return _iso.isNotEmpty ? _iso : (sgToDateValue(widget.initialValue) ?? '');
-  }
 
   void _validate(String value) {
     final i18n = useComponentsI18n(context);
@@ -279,6 +273,18 @@ class _SgInputBirthDateState extends State<SgInputBirthDate> {
     }
     setState(() => _internalError = message);
     widget.onValidation?.call(message);
+  }
+
+  /// Data mudou por fora (setValue/reset/`value`): erro ja visivel e recalculado; `reset` limpa.
+  void _onValueSet(String iso, bool reset) {
+    if (reset) {
+      if (_internalError != null) {
+        setState(() => _internalError = null);
+        widget.onValidation?.call(null);
+      }
+    } else if (_internalError != null) {
+      _validate(iso);
+    }
   }
 
   @override
@@ -326,10 +332,7 @@ class _SgInputBirthDateState extends State<SgInputBirthDate> {
       minNumberOfWords: widget.minNumberOfWords,
       minNumberOfWordsMessage: widget.minNumberOfWordsMessage,
       name: widget.name,
-      onChange: (v) {
-        _iso = v;
-        widget.onChange?.call(v);
-      },
+      onChange: widget.onChange,
       onClear: () {
         setState(() => _internalError = null);
         widget.onValidation?.call(null);
@@ -337,10 +340,11 @@ class _SgInputBirthDateState extends State<SgInputBirthDate> {
       },
       onEnter: widget.onEnter,
       // Roda depois da validacao de intervalo do SgInputDate (que e o onBlur interno no React).
-      onExit: () {
-        if (widget.validateOnBlur ?? true) _validate(_current());
-        widget.onExit?.call();
+      onExitIso: (iso) {
+        if (widget.validateOnBlur ?? true) _validate(iso);
       },
+      onValueSet: _onValueSet,
+      onExit: widget.onExit,
       placeholder: widget.placeholder,
       prefixIcon: widget.prefixIcon,
       prefixText: widget.prefixText,
@@ -354,6 +358,7 @@ class _SgInputBirthDateState extends State<SgInputBirthDate> {
       width: widget.width,
       withBorder: widget.withBorder,
       initialValue: widget.initialValue,
+      value: widget.value,
       autofocus: widget.autofocus,
       autofillHints: widget.autofillHints,
       textInputAction: widget.textInputAction,

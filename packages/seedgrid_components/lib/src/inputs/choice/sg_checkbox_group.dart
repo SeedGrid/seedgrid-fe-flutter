@@ -143,6 +143,8 @@ class _SgCheckboxGroupState extends State<SgCheckboxGroup> {
   @override
   void didUpdateWidget(SgCheckboxGroup old) {
     super.didUpdateWidget(old);
+    // O pai mudou `value` (inclusive para nulo = limpar): a selecao guardada antes no campo "nao controlado" nao sobrevive.
+    if (old.value != widget.value) _internal = widget.value ?? <Object>[];
     if (old.controller != widget.controller) {
       if (old.controller?._state == this) old.controller!._state = null;
       widget.controller?._state = this;

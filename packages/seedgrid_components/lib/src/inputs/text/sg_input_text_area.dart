@@ -65,6 +65,7 @@ class SgInputTextArea extends StatefulWidget implements SgInputTextAreaProps {
     this.width,
     this.withBorder,
     this.initialValue,
+    this.value,
     this.readOnly,
     this.autofocus = false,
     this.inputFormatters,
@@ -174,6 +175,10 @@ class SgInputTextArea extends StatefulWidget implements SgInputTextAreaProps {
 
   // Lista fechada que substitui textareaProps (ADR 50).
   final String? initialValue;
+
+  /// Valor controlado (no React, `textareaProps.value`): sem formulario, o campo mostra sempre `value`; trocar
+  /// por fora atualiza o texto (se o pai nao atualizar apos o `onChange`, o texto volta ao valor anterior).
+  final String? value;
   final bool? readOnly;
   final bool autofocus;
   final List<TextInputFormatter>? inputFormatters;
@@ -185,14 +190,16 @@ class SgInputTextArea extends StatefulWidget implements SgInputTextAreaProps {
 
 class _SgInputTextAreaState extends State<SgInputTextArea> {
   late final TextEditingController _text = TextEditingController(
-    text: widget.initialValue ?? '',
+    text: widget.value ?? widget.initialValue ?? '',
   );
   late final FocusNode _focus = widget.focusNode ?? FocusNode();
   SgFormController? _form;
   String? _internalError;
   bool _interacted = false;
+  int _seenReset = 0;
 
   bool get _bound => widget.name != null && _form != null;
+  bool get _controlled => widget.value != null && !_bound;
 
   @override
   void initState() {
@@ -207,6 +214,7 @@ class _SgInputTextAreaState extends State<SgInputTextArea> {
     if (f != _form) {
       _form?.removeListener(_sync);
       _form = f;
+      _seenReset = f?.resetCount ?? 0;
       _form?.addListener(_sync);
     }
     _register();
@@ -216,6 +224,44 @@ class _SgInputTextAreaState extends State<SgInputTextArea> {
   void didUpdateWidget(SgInputTextArea old) {
     super.didUpdateWidget(old);
     _register();
+    if (_controlled && widget.value != old.value) {
+      final v = widget.value!;
+      if (_text.text != v) {
+        _setText(v);
+        _programmatic(reset: false);
+      }
+    }
+  }
+
+  void _setText(String v) {
+    _text.value = TextEditingValue(
+      text: v,
+      selection: TextSelection.collapsed(offset: v.length),
+    );
+  }
+
+  /// Texto mudou por fora (valor controlado, setValue/reset): erro ja visivel e recalculado; `reset` limpa.
+  void _programmatic({required bool reset}) {
+    if (reset) {
+      if (_internalError != null) {
+        _internalError = null;
+        widget.onValidation?.call(null);
+      }
+    } else if (_internalError != null) {
+      _validate(_text.text);
+    }
+  }
+
+  /// Controlado: devolve o texto a `value` depois do quadro, caso o pai nao tenha atualizado.
+  void _enforceControlled() {
+    if (!_controlled) return;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted || !_controlled) return;
+      if (_text.text != widget.value!) {
+        _setText(widget.value!);
+        setState(() {});
+      }
+    });
   }
 
   void _register() {
@@ -236,13 +282,12 @@ class _SgInputTextAreaState extends State<SgInputTextArea> {
 
   void _sync() {
     if (!_bound) return;
-    final v = '${_form!.getValue(widget.name!) ?? ''}';
-    if (_text.text != v) {
-      _text.value = TextEditingValue(
-        text: v,
-        selection: TextSelection.collapsed(offset: v.length),
-      );
-    }
+    final v = '${_form!.getValue(widget.name!) ?? ''}'.replaceAll('\r\n', '\n');
+    final reset = _form!.resetCount != _seenReset;
+    _seenReset = _form!.resetCount;
+    final changed = _text.text != v;
+    if (changed) _setText(v);
+    if (changed || reset) _programmatic(reset: reset);
     if (mounted) setState(() {});
   }
 
@@ -323,6 +368,7 @@ class _SgInputTextAreaState extends State<SgInputTextArea> {
     }
     widget.onChange?.call(value);
     setState(() {});
+    _enforceControlled();
   }
 
   void _clear() {
@@ -331,6 +377,7 @@ class _SgInputTextAreaState extends State<SgInputTextArea> {
     widget.onChange?.call('');
     widget.onClear?.call();
     setState(() {});
+    _enforceControlled();
   }
 
   @override
@@ -376,7 +423,7 @@ class _SgInputTextAreaState extends State<SgInputTextArea> {
       textAlignVertical: TextAlignVertical.top,
       onChanged: _onChanged,
       inputFormatters: [
-        if (limit != null && limit > 0) LengthLimitingTextInputFormatter(limit),
+        if (limit != null && limit > 0) SgMaxLengthFormatter(limit),
         ...?w.inputFormatters,
       ],
       style: TextStyle(

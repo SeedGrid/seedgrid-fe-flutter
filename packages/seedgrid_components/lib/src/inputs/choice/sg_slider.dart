@@ -116,7 +116,7 @@ class _SgSliderState extends State<SgSlider> {
     control: widget.control,
     name: widget.name,
     rules: widget.rules,
-    initialValue: _min,
+    initialValue: widget.minValue,
   );
 
   @override

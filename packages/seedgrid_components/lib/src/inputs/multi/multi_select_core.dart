@@ -75,6 +75,9 @@ class SgMultiSelectController extends ChangeNotifier {
     required ValueChanged<List<SgMultiSelectOptionValue>>? onChange,
   }) {
     this.options = options;
+    // O pai passou a mandar `null` depois de mandar uma lista (limpar por fora): a escolha interna antiga nao volta
+    // (o Dart nao distingue `null` de ausente como o React).
+    if (this.value != null && value == null) _internal = [];
     this.value = value;
     this.searchable = searchable;
     this.maxSelected = maxSelected;

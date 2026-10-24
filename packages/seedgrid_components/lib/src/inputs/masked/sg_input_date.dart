@@ -124,6 +124,9 @@ class SgInputDate extends StatefulWidget implements SgInputDateProps {
     this.maxDate,
     this.minDate,
     this.initialValue,
+    this.value,
+    this.onValueSet,
+    this.onExitIso,
     this.autofocus = false,
     this.autofillHints,
     this.textInputAction,
@@ -277,6 +280,16 @@ class SgInputDate extends StatefulWidget implements SgInputDateProps {
   /// Valor inicial quando nao ha `control` (no React, `inputProps.defaultValue`).
   final String? initialValue;
 
+  /// Valor controlado (no React, `inputProps.value`): data ISO `yyyy-MM-dd` (ver [sgNormalizeDateValue] para
+  /// os outros formatos aceitos). Trocar por fora atualiza o campo. Com `name` + formulario, o formulario manda.
+  final String? value;
+
+  /// Interno do SgInputBirthDate: chamado quando o valor muda por fora, com a data ISO ('' se nao e data).
+  final void Function(String iso, bool reset)? onValueSet;
+
+  /// Interno do SgInputBirthDate: chamado na perda de foco, com a data ISO do campo ('' se incompleta).
+  final ValueChanged<String>? onExitIso;
+
   /// `autoFocus` do <input>.
   final bool autofocus;
 
@@ -296,16 +309,39 @@ class SgInputDate extends StatefulWidget implements SgInputDateProps {
   State<SgInputDate> createState() => _SgInputDateState();
 }
 
+/// Valor recebido de fora (setValue, `value`, valor inicial) -> data ISO `yyyy-MM-dd`; '' se nao for uma data.
+/// O `<input type="date">` do React so aceita ISO e mostra vazio para qualquer outro texto; aqui tambem
+/// valem a data ISO com hora (`2020-01-31T10:20:30Z`, a parte da data) e o texto do proprio campo no
+/// idioma atual (`31/01/2020`, ou `01/31/2020` em en-US), que sao as formas em que dados salvos costumam
+/// chegar. Data que nao existe (2020-02-30) ou outro formato (`20200131`) fica vazia, como no React.
+String sgNormalizeDateValue(Object? raw, String locale) {
+  if (raw == null) return '';
+  final s = '$raw'.trim();
+  if (RegExp(r'^\d{4}-\d{2}-\d{2}([T ].*)?$').hasMatch(s)) {
+    final d = sgParseIso(s);
+    return d == null ? '' : sgIso(d);
+  }
+  if (RegExp(r'^\d{2}/\d{2}/\d{4}$').hasMatch(s)) {
+    return sgIsoFromDisplay(s, locale);
+  }
+  return '';
+}
+
 class _SgInputDateState extends State<SgInputDate> {
   String? _internalError;
   bool _interacted = false;
-  int _bump = 0;
   String _text = '';
+  // Ultimo valor (como o formulario/`value` o entrega) que este campo ja refletiu: serve para distinguir
+  // uma mudanca vinda de fora de um eco da propria digitacao.
+  String _seen = '';
   String _lastIso = '';
+  int _seenReset = 0;
   SgFormController? _form;
   late bool _initialized = false;
 
   String get _locale => useComponentsI18n(context).locale;
+
+  bool get _bound => widget.name != null && _form != null;
 
   @override
   void didChangeDependencies() {
@@ -314,22 +350,32 @@ class _SgInputDateState extends State<SgInputDate> {
     if (f != _form) {
       _form?.removeListener(_syncFromForm);
       _form = f;
+      _seenReset = f?.resetCount ?? 0;
       _form?.addListener(_syncFromForm);
     }
     if (!_initialized) {
       _initialized = true;
-      final initial = (widget.name != null && _form != null)
-          ? _form!.getValue(widget.name!)
-          : null;
-      _lastIso = '${initial ?? sgToDateValue(widget.initialValue) ?? ''}';
+      final Object? initial = _bound
+          ? (_form!.getValue(widget.name!) ?? widget.initialValue)
+          : (widget.value ?? widget.initialValue);
+      _seen = initial == null ? '' : '$initial';
+      _lastIso = sgNormalizeDateValue(initial, _locale);
       _text = sgDisplayDate(_lastIso, _locale);
     }
-    if (widget.name != null && _form != null) {
+    if (_bound) {
       _form!.registerField(
         widget.name!,
         rules: widget.rules,
-        initialValue: _lastIso.isEmpty ? null : _lastIso,
+        initialValue: _seen.isEmpty ? null : _seen,
       );
+    }
+  }
+
+  @override
+  void didUpdateWidget(SgInputDate old) {
+    super.didUpdateWidget(old);
+    if (!_bound && widget.value != null && widget.value != old.value) {
+      _applyExternal(widget.value, reset: false);
     }
   }
 
@@ -339,19 +385,36 @@ class _SgInputDateState extends State<SgInputDate> {
     super.dispose();
   }
 
-  /// Valor mudou por fora (reset, setValue): recria o campo com o novo texto.
-  void _syncFromForm() {
-    if (widget.name == null || _form == null || !mounted) return;
-    final v = '${_form!.getValue(widget.name!) ?? ''}';
-    if (v != _lastIso) {
-      setState(() {
-        _lastIso = v;
-        _text = sgDisplayDate(v, _locale);
-        _bump++;
-      });
-    } else {
-      setState(() {});
+  /// Valor mudou por fora (reset, setValue, `value`): o campo passa a mostrar a data nova e um erro ja
+  /// visivel e recalculado para ela (`reset` limpa o erro).
+  void _applyExternal(Object? raw, {required bool reset}) {
+    final s = raw == null ? '' : '$raw';
+    final iso = sgNormalizeDateValue(raw, _locale);
+    final changed = s != _seen || iso != _lastIso;
+    _seen = s;
+    if (!changed && !reset) return;
+    _lastIso = iso;
+    _text = sgDisplayDate(iso, _locale);
+    if (reset) {
+      if (_internalError != null) {
+        _internalError = null;
+        widget.onValidation?.call(null);
+      }
+    } else if (_internalError != null) {
+      final m = _messageFor(_text);
+      _internalError = m;
+      widget.onValidation?.call(m);
     }
+    widget.onValueSet?.call(iso, reset);
+    if (mounted) setState(() {});
+  }
+
+  void _syncFromForm() {
+    if (!_bound || !mounted) return;
+    final reset = _form!.resetCount != _seenReset;
+    _seenReset = _form!.resetCount;
+    _applyExternal(_form!.getValue(widget.name!), reset: reset);
+    if (mounted) setState(() {}); // erro do formulario (handleSubmit/trigger)
   }
 
   String? get _minValue => sgToDateValue(widget.minDate);
@@ -398,29 +461,52 @@ class _SgInputDateState extends State<SgInputDate> {
 
   void _emit(String iso) {
     _lastIso = iso;
-    if (widget.name != null && _form != null) {
+    _seen = iso;
+    if (_bound) {
       _form!.setValue(widget.name!, iso.isEmpty ? '' : iso);
     }
     widget.onChange?.call(iso);
   }
 
   void _onChange(String text) {
-    _text = text;
+    setState(() => _text = text);
     _interacted = true;
     _emit(sgIsoFromDisplay(text, _locale));
     if (widget.validateOnBlur == false || _internalError != null) {
       _validate(text);
     }
+    _enforceControlled();
+  }
+
+  /// Campo controlado (`value`): se o pai nao adotou o que foi digitado, o campo volta ao `value`.
+  void _enforceControlled() {
+    if (_bound || widget.value == null) return;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted || _bound || widget.value == null) return;
+      final iso = sgNormalizeDateValue(widget.value, _locale);
+      final text = sgDisplayDate(iso, _locale);
+      if (text == _text) return;
+      setState(() {
+        _text = text;
+        _lastIso = iso;
+        _seen = '${widget.value}';
+      });
+    });
+    // garante um frame para o retorno acontecer
+    WidgetsBinding.instance.scheduleFrame();
   }
 
   void _onExit() {
     if ((widget.validateOnBlur ?? true) || _interacted) _validate(_text);
+    widget.onExitIso?.call(sgIsoFromDisplay(_text, _locale));
     widget.onExit?.call();
   }
 
   void _onClear() {
-    _text = '';
-    setState(() => _internalError = null);
+    setState(() {
+      _text = '';
+      _internalError = null;
+    });
     widget.onValidation?.call(null);
     widget.onClear?.call();
   }
@@ -437,7 +523,6 @@ class _SgInputDateState extends State<SgInputDate> {
     setState(() {
       _interacted = true;
       _text = sgDisplayDate(picked, _locale);
-      _bump++;
     });
     _emit(picked);
     if (widget.validateOnBlur == false || _internalError != null) {
@@ -448,12 +533,9 @@ class _SgInputDateState extends State<SgInputDate> {
   @override
   Widget build(BuildContext context) {
     final locale = _locale;
-    final formError = (widget.name != null && _form != null)
-        ? _form!.errorOf(widget.name!)?.message
-        : null;
+    final formError = _bound ? _form!.errorOf(widget.name!)?.message : null;
     final locked = (widget.disabled ?? false) || (widget.readOnly ?? false);
     return SgInputText(
-      key: ValueKey('sg-date-${widget.id}-$_bump'),
       id: widget.id,
       borderRadius: widget.borderRadius,
       clearButton: widget.clearButton,
@@ -510,7 +592,7 @@ class _SgInputDateState extends State<SgInputDate> {
           SgInputTextTextInputType.numeric,
       width: widget.width,
       withBorder: widget.withBorder,
-      initialValue: _text,
+      value: _text,
       inputFormatters: [SgMaskFormatter(sgDateMask(locale))],
       autofocus: widget.autofocus,
       autofillHints: widget.autofillHints,

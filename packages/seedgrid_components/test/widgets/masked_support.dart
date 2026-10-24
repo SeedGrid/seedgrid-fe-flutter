@@ -290,10 +290,12 @@ void defineCommonChecks(
     });
 
     testWidgets(
-      'initialValue aparece como esta (sem aplicar mascara, igual ao React)',
+      // Mudanca deliberada (docs/VALOR_PROGRAMATICO.md): o React mostra o initialValue cru; aqui o campo
+      // sempre mostra o valor mascarado, igual ao que aparece depois de digitar.
+      'initialValue sem mascara aparece mascarado',
       (t) async {
-        await t.pumpWidget(host(build(const Opts(initialValue: '1234'))));
-        expect(textOf(t, 'f'), '1234');
+        await t.pumpWidget(host(build(Opts(initialValue: typed))));
+        expect(textOf(t, 'f'), masked);
       },
     );
 

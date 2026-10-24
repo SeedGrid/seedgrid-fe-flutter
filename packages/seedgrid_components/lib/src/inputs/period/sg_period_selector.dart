@@ -136,6 +136,8 @@ class _SgPeriodSelectorState extends State<SgPeriodSelector> {
   @override
   void didUpdateWidget(SgPeriodSelector old) {
     super.didUpdateWidget(old);
+    // `value` mudou por fora (inclusive para nulo): o estado proprio acompanha, para nao reaparecer o valor antigo.
+    if (old.value != widget.value) _internal = widget.value;
     _register();
   }
 
@@ -163,8 +165,9 @@ class _SgPeriodSelectorState extends State<SgPeriodSelector> {
   SgPeriodSelectorValue? get _selected {
     if (_bound) {
       final v = _form!.getValue(widget.name!);
-      final fromForm = v is String ? SgPeriodSelectorValue.fromValue(v) : null;
-      if (fromForm != null) return fromForm;
+      // Ligado ao formulario, quem manda e o formulario: reset/setValue(null) limpa o campo (no React o
+      // estado proprio ficaria com a ultima escolha do usuario).
+      return v is String ? SgPeriodSelectorValue.fromValue(v) : null;
     }
     return widget.value ?? _internal;
   }

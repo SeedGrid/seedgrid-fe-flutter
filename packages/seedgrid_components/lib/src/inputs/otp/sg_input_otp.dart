@@ -286,7 +286,12 @@ class _SgInputOTPState extends State<SgInputOTP> {
       widget.controller?._state = this;
     }
     if (old.mask != widget.mask) {
-      final raw = slotValuesToRaw(_slots);
+      // Como o React, refaz a partir do valor de fora (o formulario ou `value`), sem perder o que a
+      // mascara anterior cortou; sem valor de fora, usa o que o usuario digitou.
+      final external = _bound
+          ? '${_form!.getValue(widget.name!) ?? ''}'
+          : widget.value;
+      final raw = external ?? slotValuesToRaw(_slots);
       _mask = parseOtpMask(widget.mask);
       _slots = textToSlotValues(raw, _mask.slots);
       _ensureSlotObjects();

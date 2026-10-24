@@ -206,9 +206,15 @@ class _SgTextEditorState extends State<SgTextEditor> {
     return widget.valueHtml;
   }
 
+  /// Ja houve valor vindo do formulario (string)? Se ele some (reset sem padrao, setValue(null)), o editor limpa
+  /// em vez de ficar com o texto antigo (o React deixaria o ultimo texto, pois passa `undefined`).
+  bool _hadFormValue = false;
+
   void _syncFromForm() {
     final v = _controlled;
     if (v != null && v != _html) _setContent(v);
+    if (v == null && _bound && _hadFormValue) _setContent('');
+    if (_bound) _hadFormValue = v != null;
     if (mounted) setState(() {});
   }
 
@@ -220,6 +226,8 @@ class _SgTextEditorState extends State<SgTextEditor> {
     if (old.valueHtml != widget.valueHtml && !_bound) {
       final v = widget.valueHtml;
       if (v != null && v != _html) _setContent(v);
+      // `valueHtml` voltou a nulo: o pai limpou o campo.
+      if (v == null && old.valueHtml != null) _setContent('');
     }
     if (old.cssText != widget.cssText && (widget.cssText ?? '') != _css.text) {
       _css.text = widget.cssText ?? '';

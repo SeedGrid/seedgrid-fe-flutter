@@ -70,6 +70,7 @@ class SgInputPostalCode extends StatelessWidget
     this.onViaCepResult,
     this.onViaCepError,
     this.initialValue,
+    this.value,
     this.autofocus = false,
     this.autofillHints,
     this.textInputAction,
@@ -239,6 +240,9 @@ class SgInputPostalCode extends StatelessWidget
   /// Valor inicial quando nao ha `control` (no React, `inputProps.defaultValue`).
   final String? initialValue;
 
+  /// Valor controlado (no React, `inputProps.value`); aparece mascarado e trocar por fora atualiza o campo.
+  final String? value;
+
   /// `autoFocus` do <input>.
   final bool autofocus;
 
@@ -303,6 +307,7 @@ class SgInputPostalCode extends StatelessWidget
         width: width,
         withBorder: withBorder,
         initialValue: initialValue,
+        value: value,
         autofocus: autofocus,
         autofillHints: autofillHints,
         textInputAction: textInputAction,

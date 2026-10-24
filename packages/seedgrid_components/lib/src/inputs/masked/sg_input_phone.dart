@@ -63,6 +63,7 @@ class SgInputPhone extends StatelessWidget implements SgInputPhoneProps {
     this.invalidMessage,
     this.lengthMessage,
     this.initialValue,
+    this.value,
     this.autofocus = false,
     this.autofillHints,
     this.textInputAction,
@@ -213,6 +214,9 @@ class SgInputPhone extends StatelessWidget implements SgInputPhoneProps {
   /// Valor inicial quando nao ha `control` (no React, `inputProps.defaultValue`).
   final String? initialValue;
 
+  /// Valor controlado (no React, `inputProps.value`); aparece mascarado e trocar por fora atualiza o campo.
+  final String? value;
+
   /// `autoFocus` do <input>.
   final bool autofocus;
 
@@ -275,6 +279,7 @@ class SgInputPhone extends StatelessWidget implements SgInputPhoneProps {
         width: width,
         withBorder: withBorder,
         initialValue: initialValue,
+        value: value,
         autofocus: autofocus,
         autofillHints: autofillHints,
         textInputAction: textInputAction,
@@ -282,6 +287,7 @@ class SgInputPhone extends StatelessWidget implements SgInputPhoneProps {
         focusNode: focusNode,
       ),
       mask: maskPhone,
+      normalizeExternal: sgPhoneStripDdi,
       blurRule: SgMaskedBlurRule.optionOrInteracted,
       forwardRequired: true,
       defaultTextInputType: SgInputTextTextInputType.numeric,

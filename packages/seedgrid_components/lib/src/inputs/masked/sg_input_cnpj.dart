@@ -69,6 +69,7 @@ class SgInputCNPJ extends StatelessWidget implements SgInputCNPJProps {
     this.onPublicaCnpjResult,
     this.onPublicaCnpjError,
     this.initialValue,
+    this.value,
     this.autofocus = false,
     this.autofillHints,
     this.textInputAction,
@@ -235,6 +236,9 @@ class SgInputCNPJ extends StatelessWidget implements SgInputCNPJProps {
   /// Valor inicial quando nao ha `control` (no React, `inputProps.defaultValue`).
   final String? initialValue;
 
+  /// Valor controlado (no React, `inputProps.value`); aparece mascarado e trocar por fora atualiza o campo.
+  final String? value;
+
   /// `autoFocus` do <input>.
   final bool autofocus;
 
@@ -297,6 +301,7 @@ class SgInputCNPJ extends StatelessWidget implements SgInputCNPJProps {
         width: width,
         withBorder: withBorder,
         initialValue: initialValue,
+        value: value,
         autofocus: autofocus,
         autofillHints: autofillHints,
         textInputAction: textInputAction,

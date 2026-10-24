@@ -100,6 +100,7 @@ class SgInputPassword extends StatefulWidget implements SgInputPasswordProps {
     this.width,
     this.withBorder,
     this.initialValue,
+    this.value,
     this.inputFormatters,
     this.autofocus = false,
     this.autofillHints,
@@ -244,6 +245,9 @@ class SgInputPassword extends StatefulWidget implements SgInputPasswordProps {
   final bool? withBorder;
 
   final String? initialValue;
+
+  /// Valor controlado (no React, `inputProps.value`); trocar por fora atualiza o campo.
+  final String? value;
   final List<TextInputFormatter>? inputFormatters;
   final bool autofocus;
   final Iterable<String>? autofillHints;
@@ -258,7 +262,7 @@ class SgInputPassword extends StatefulWidget implements SgInputPasswordProps {
 class _SgInputPasswordState extends State<SgInputPassword> {
   // Sem formulario o botao de gerar senha escreve no campo pelo `value` controlado do SgInputText;
   // com formulario escreve no controlador.
-  late String _value = widget.initialValue ?? '';
+  late String _value = widget.value ?? widget.initialValue ?? '';
   final FocusNode _buttonFocus = FocusNode(
     skipTraversal: true,
     canRequestFocus: false,
@@ -291,6 +295,10 @@ class _SgInputPasswordState extends State<SgInputPassword> {
   @override
   void didUpdateWidget(SgInputPassword old) {
     super.didUpdateWidget(old);
+    if (widget.value != null && widget.value != old.value && _ctl == null) {
+      _value = widget.value!;
+      _onProgrammatic(_value, false);
+    }
     if (old.commonPasswordCheck != widget.commonPasswordCheck ||
         old.commonPasswordList != widget.commonPasswordList) {
       _commonSet = widget.commonPasswordCheck
@@ -384,23 +392,31 @@ class _SgInputPasswordState extends State<SgInputPassword> {
   /// Valor sem afixos (o que o React le do <input>).
   void _onValue(String full) {
     _interacted = true;
-    if (_ctl == null) setState(() => _value = full);
+    // Controlado (`value`): o texto volta a `value` se o pai nao o atualizar, como o <input value> do React.
+    if (_ctl == null && widget.value == null) setState(() => _value = full);
     final raw = stripAffixes(full, widget.prefixText, widget.suffixText);
     _validate(raw);
     widget.onChange?.call(raw);
   }
 
-  void _onExit() {
-    if ((widget.validateOnBlur ?? true) || _interacted) {
-      _validate(
-        stripAffixes(
-          _ctl == null ? _value : '${_ctl!.getValue(_name) ?? ''}',
-          widget.prefixText,
-          widget.suffixText,
-        ),
-      );
+  void _onExitText(String text) {
+    if ((widget.validateOnBlur ?? true) || _interacted) _validate(text);
+  }
+
+  /// Texto mudou por fora (valor controlado, setValue/reset): erro e lista de requisitos ja visiveis sao
+  /// recalculados para o valor novo; `reset` limpa os dois.
+  void _onProgrammatic(String full, bool reset) {
+    if (reset) {
+      if (_internalError != null || _unmet.isNotEmpty) {
+        setState(() {
+          _internalError = null;
+          _unmet = const [];
+        });
+        widget.onValidation?.call(null);
+      }
+    } else if (_internalError != null) {
+      _validate(stripAffixes(full, widget.prefixText, widget.suffixText));
     }
-    widget.onExit?.call();
   }
 
   String _generate() {
@@ -562,7 +578,9 @@ class _SgInputPasswordState extends State<SgInputPassword> {
         w.onClear?.call();
       },
       onEnter: w.onEnter,
-      onExit: _onExit,
+      onExit: w.onExit,
+      onExitText: _onExitText,
+      onValueSet: _onProgrammatic,
       placeholder: w.placeholder,
       prefixIcon: w.prefixIcon,
       prefixText: w.prefixText,

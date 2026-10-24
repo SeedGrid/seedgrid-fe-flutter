@@ -141,6 +141,10 @@ class _SgToggleSwitchState extends State<SgToggleSwitch> {
   @override
   void didUpdateWidget(SgToggleSwitch old) {
     super.didUpdateWidget(old);
+    // O pai mudou `checked` (inclusive para nulo): o estado guardado antes no campo "nao controlado" nao sobrevive.
+    if (old.checked != widget.checked) {
+      _internal = widget.checked ?? widget.defaultChecked ?? false;
+    }
     _bind();
   }
 

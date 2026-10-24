@@ -62,6 +62,7 @@ class SgInputEmail extends StatefulWidget implements SgInputEmailProps {
     this.width,
     this.withBorder,
     this.initialValue,
+    this.value,
     this.inputFormatters,
     this.autofocus = false,
     this.autofillHints,
@@ -175,6 +176,9 @@ class SgInputEmail extends StatefulWidget implements SgInputEmailProps {
 
   // Lista fechada que substitui inputProps (ADR 50), repassada ao SgInputText.
   final String? initialValue;
+
+  /// Valor controlado (no React, `inputProps.value`); trocar por fora atualiza o campo.
+  final String? value;
   final List<TextInputFormatter>? inputFormatters;
   final bool autofocus;
   final Iterable<String>? autofillHints;
@@ -187,8 +191,6 @@ class SgInputEmail extends StatefulWidget implements SgInputEmailProps {
 }
 
 class _SgInputEmailState extends State<SgInputEmail> {
-  // Ultimo valor completo digitado, para ler na perda de foco quando o campo nao esta ligado a um formulario.
-  String? _last;
   SgFormController? _ctl;
   String? _internalError;
   bool _interacted = false;
@@ -211,12 +213,6 @@ class _SgInputEmailState extends State<SgInputEmail> {
     if (x.isNotEmpty && v.endsWith(x)) v = v.substring(0, v.length - x.length);
     return v;
   }
-
-  String _current() => _strip(
-    _hasForm
-        ? '${_ctl!.getValue(widget.name!) ?? ''}'
-        : (_last ?? widget.initialValue ?? ''),
-  );
 
   void _set(String? message) {
     setState(() => _internalError = message);
@@ -248,14 +244,32 @@ class _SgInputEmailState extends State<SgInputEmail> {
 
   void _onChange(String full) {
     _interacted = true;
-    if (!_hasForm) _last = full;
     _validate(_strip(full));
     widget.onChange?.call(full);
   }
 
-  void _onExit() {
-    if ((widget.validateOnBlur ?? true) || _interacted) _validate(_current());
-    widget.onExit?.call();
+  void _onExitText(String text) {
+    if ((widget.validateOnBlur ?? true) || _interacted) _validate(text);
+  }
+
+  /// Texto mudou por fora (valor controlado, setValue/reset): erro ja visivel e recalculado; `reset` limpa.
+  void _onProgrammatic(String full, bool reset) {
+    if (reset) {
+      if (_internalError != null) {
+        setState(() => _internalError = null);
+        widget.onValidation?.call(null);
+      }
+    } else if (_internalError != null) {
+      _validate(_strip(full));
+    }
+  }
+
+  @override
+  void didUpdateWidget(SgInputEmail old) {
+    super.didUpdateWidget(old);
+    if (widget.value != null && widget.value != old.value && !_hasForm) {
+      _onProgrammatic(widget.value!.trim(), false);
+    }
   }
 
   @override
@@ -291,7 +305,9 @@ class _SgInputEmailState extends State<SgInputEmail> {
         w.onClear?.call();
       },
       onEnter: w.onEnter,
-      onExit: _onExit,
+      onExit: w.onExit,
+      onExitText: _onExitText,
+      onValueSet: _onProgrammatic,
       placeholder: w.placeholder,
       prefixIcon: w.prefixIcon,
       prefixText: w.prefixText,
@@ -308,6 +324,7 @@ class _SgInputEmailState extends State<SgInputEmail> {
       width: w.width,
       withBorder: w.withBorder,
       initialValue: w.initialValue,
+      value: w.value,
       inputFormatters: w.inputFormatters,
       autofocus: w.autofocus,
       autofillHints: w.autofillHints,

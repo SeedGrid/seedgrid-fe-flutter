@@ -289,6 +289,9 @@ class _SgComboboxState<T> extends State<SgCombobox<T>> {
   @override
   void didUpdateWidget(SgCombobox<T> old) {
     super.didUpdateWidget(old);
+    // O pai mudou `value` (inclusive para nulo, ex.: limpar o campo): o valor escolhido antes pelo usuario num campo
+    // ate entao "nao controlado" nao pode sobreviver (o Dart nao distingue `null` de ausente como o React).
+    if (old.value != widget.value) _internalValue = widget.value;
     _loadListEntries();
     _reconcileSelection();
   }
@@ -373,7 +376,12 @@ class _SgComboboxState<T> extends State<SgCombobox<T>> {
   void _setSelectedValue(Object? next) {
     if (!_controlled) setState(() => _internalValue = next);
     widget.onValueChange?.call(next);
-    if (_bound) _outer!.setValue(widget.name!, next);
+    if (_bound) {
+      // Revalida quando o campo ja tem erro ou o formulario ja foi enviado (o usuario corrigiu o campo).
+      final revalidate =
+          _outer!.errorOf(widget.name!) != null || _outer!.submitCount > 0;
+      _outer!.setValue(widget.name!, next, shouldValidate: revalidate);
+    }
   }
 
   // ------------------------------------------------------------------ abrir, fechar e escolher

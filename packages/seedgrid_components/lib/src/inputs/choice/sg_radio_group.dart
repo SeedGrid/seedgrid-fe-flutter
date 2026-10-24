@@ -125,6 +125,8 @@ class _SgRadioGroupState extends State<SgRadioGroup> {
   @override
   void didUpdateWidget(SgRadioGroup old) {
     super.didUpdateWidget(old);
+    // O pai mudou `value` (inclusive para nulo = limpar): a escolha guardada antes no campo "nao controlado" nao sobrevive.
+    if (old.value != widget.value) _internal = widget.value;
     _syncNodes();
     _bind();
   }
@@ -160,6 +162,8 @@ class _SgRadioGroupState extends State<SgRadioGroup> {
 
   void _select(Object? v) {
     if (widget.disabled || widget.readOnly) return;
+    // Um radio ja marcado nao dispara mudanca (no navegador nao ha `change`): nao reemite o mesmo valor.
+    if (v != null && _current == v) return;
     if (_binding.bound) {
       _binding.set(v);
     } else if (!_isControlled) {

@@ -24,9 +24,13 @@ bool _isSignificant(int c) =>
 /// Apagar um separador (ponto, traco, parentese) apaga tambem o caractere significativo anterior,
 /// senao a mascara recolocaria o separador e o backspace pareceria nao fazer nada.
 class SgMaskFormatter extends TextInputFormatter {
-  const SgMaskFormatter(this.mask);
+  const SgMaskFormatter(this.mask, {this.pasteNormalizer});
 
   final String Function(String) mask;
+
+  /// Normaliza texto que chega de uma vez (colar, preencher, valor de fora) antes da mascara; nunca uma
+  /// tecla so. Ex.: telefone com DDI (+55) perderia dois digitos na mascara.
+  final String Function(String)? pasteNormalizer;
 
   @override
   TextEditingValue formatEditUpdate(
@@ -34,6 +38,8 @@ class SgMaskFormatter extends TextInputFormatter {
     TextEditingValue newValue,
   ) {
     var text = newValue.text;
+    final bulk = newValue.text.length - oldValue.text.length > 1;
+    if (pasteNormalizer != null && bulk) text = pasteNormalizer!(text);
     var cursor = newValue.selection.isValid
         ? newValue.selection.extentOffset
         : text.length;
@@ -66,6 +72,18 @@ class SgMaskFormatter extends TextInputFormatter {
       selection: TextSelection.collapsed(offset: offset),
     );
   }
+}
+
+/// Telefone brasileiro com DDI (`+55 11 98765-4321`, `5511987654321`): tira o `55`. Numero do Brasil tem 10
+/// ou 11 digitos, entao 12 ou 13 digitos comecados em `55` so podem ser DDI + numero. A mascara do
+/// React (`maskPhone`) ficaria com os 11 primeiros digitos e mostraria outro telefone (`(55) 11987-6543`).
+/// Fora disso devolve o texto como veio.
+String sgPhoneStripDdi(String v) {
+  final digits = v.replaceAll(RegExp(r'\D'), '');
+  if ((digits.length == 12 || digits.length == 13) && digits.startsWith('55')) {
+    return digits.substring(2);
+  }
+  return v;
 }
 
 String? _enumValue(Object? e) =>
@@ -118,6 +136,7 @@ class SgInputCommon {
     this.width,
     this.withBorder,
     this.initialValue,
+    this.value,
     this.autofocus = false,
     this.autofillHints,
     this.textInputAction,
@@ -168,6 +187,9 @@ class SgInputCommon {
   final Object? width;
   final bool? withBorder;
   final String? initialValue;
+
+  /// Valor controlado (no React, `inputProps.value`). Aparece mascarado; trocar por fora atualiza o campo.
+  final String? value;
   final bool autofocus;
   final Iterable<String>? autofillHints;
   final TextInputAction? textInputAction;
@@ -214,6 +236,7 @@ class SgMaskedInput extends StatefulWidget {
     this.defaultTextInputType,
     this.forwardRequired = false,
     this.onResetMemo = true,
+    this.normalizeExternal,
   });
 
   final SgInputCommon common;
@@ -229,6 +252,9 @@ class SgMaskedInput extends StatefulWidget {
   final bool forwardRequired;
   final bool onResetMemo;
 
+  /// Normaliza o valor que chega de fora (inicial, `value`, setValue, colar) antes da mascara.
+  final String Function(String)? normalizeExternal;
+
   @override
   State<SgMaskedInput> createState() => _SgMaskedInputState();
 }
@@ -236,20 +262,10 @@ class SgMaskedInput extends StatefulWidget {
 class _SgMaskedInputState extends State<SgMaskedInput> {
   String? _internalError;
   bool _interacted = false;
-  String _typed = '';
   final Map<String, Object?> _memo = {};
   int _run = 0;
 
   SgInputCommon get c => widget.common;
-
-  String _current() {
-    final form = c.control ?? SgForm.maybeOf(context);
-    if (c.name != null && form != null) {
-      final v = form.getValue(c.name!);
-      if (v != null) return '$v';
-    }
-    return _typed.isNotEmpty ? _typed : (c.initialValue ?? '');
-  }
 
   Future<void> _validate(String value) async {
     final id = ++_run;
@@ -262,24 +278,48 @@ class _SgMaskedInputState extends State<SgMaskedInput> {
   }
 
   void _onChange(String full) {
-    _typed = full;
     _interacted = true;
     _validate(full);
     c.onChange?.call(full);
   }
 
-  void _onExit() {
+  /// Texto mudou por fora (valor controlado, setValue/reset do formulario): um erro ja visivel e
+  /// recalculado para o valor novo; `reset` limpa. Valor setado sem erro visivel so e validado no blur,
+  /// como o valor digitado.
+  void _onProgrammatic(String text, bool reset) {
+    if (reset) {
+      _run++;
+      if (_internalError != null) {
+        _internalError = null;
+        if (mounted) setState(() {});
+        c.onValidation?.call(null);
+      }
+    } else if (_internalError != null) {
+      _validate(text);
+    }
+  }
+
+  @override
+  void didUpdateWidget(SgMaskedInput old) {
+    super.didUpdateWidget(old);
+    if (c.value != null && c.value != old.common.value) {
+      _onProgrammatic(
+        widget.mask(widget.normalizeExternal?.call(c.value!) ?? c.value!),
+        false,
+      );
+    }
+  }
+
+  void _onExitText(String text) {
     final should = switch (widget.blurRule) {
       SgMaskedBlurRule.option => c.validateOnBlur ?? true,
       SgMaskedBlurRule.optionOrInteracted =>
         (c.validateOnBlur ?? true) || _interacted,
     };
-    if (should) _validate(_current());
-    c.onExit?.call();
+    if (should) _validate(text);
   }
 
   void _onClear() {
-    _typed = '';
     _run++;
     setState(() => _internalError = null);
     c.onValidation?.call(null);
@@ -315,7 +355,9 @@ class _SgMaskedInputState extends State<SgMaskedInput> {
       onChange: _onChange,
       onClear: _onClear,
       onEnter: c.onEnter,
-      onExit: _onExit,
+      onExit: c.onExit,
+      onExitText: _onExitText,
+      onValueSet: _onProgrammatic,
       // O React repassa onValidation tambem ao SgInputText interno (via ...rest): ele o chama com
       // null ao validar o proprio maxLength/minLength no blur, e a validacao do input vem depois.
       onValidation: c.onValidation,
@@ -333,7 +375,11 @@ class _SgMaskedInputState extends State<SgMaskedInput> {
       width: c.width,
       withBorder: c.withBorder,
       initialValue: c.initialValue,
-      inputFormatters: [SgMaskFormatter(widget.mask)],
+      value: c.value,
+      inputFormatters: [
+        SgMaskFormatter(widget.mask, pasteNormalizer: widget.normalizeExternal),
+      ],
+      externalValueNormalizer: widget.normalizeExternal,
       autofocus: c.autofocus,
       autofillHints: c.autofillHints,
       textInputAction: c.textInputAction,

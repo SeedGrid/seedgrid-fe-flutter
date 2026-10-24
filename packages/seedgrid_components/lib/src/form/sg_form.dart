@@ -28,6 +28,7 @@ class SgFormController extends ChangeNotifier {
   final Set<String> _dirty = {};
   bool _submitting = false;
   int _submitCount = 0;
+  int _resetCount = 0;
 
   /// `getValues(name)` do RHF.
   Object? getValue(String name) => _values[name];
@@ -47,6 +48,10 @@ class SgFormController extends ChangeNotifier {
   bool get isValid => _errors.isEmpty;
   bool get isDirty => _dirty.isNotEmpty;
   int get submitCount => _submitCount;
+
+  /// Quantas vezes `reset` foi chamado. Os campos comparam este numero para saber que o valor voltou
+  /// ao padrao (e limpar erros proprios) mesmo quando o texto nao muda.
+  int get resetCount => _resetCount;
   bool isTouched(String name) => _touched.contains(name);
 
   /// Declara o campo e suas regras (chamado pelo componente; idempotente). Valor inicial vem de
@@ -132,6 +137,7 @@ class SgFormController extends ChangeNotifier {
     _touched.clear();
     _dirty.clear();
     _submitCount = 0;
+    _resetCount++;
     notifyListeners();
   }
 

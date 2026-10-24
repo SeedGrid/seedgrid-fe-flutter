@@ -274,6 +274,9 @@ class _SgAutocompleteState<T> extends State<SgAutocomplete<T>> {
   bool _browse = false;
   bool _typed = false;
   bool _focused = false;
+  // Ultimo texto que ESTE campo emitiu (onChange / formulario). Com o campo focado, so o eco dele e ignorado: um valor
+  // diferente e programatico (setValue, prop `value`) e vale na hora (o React o perde por um defeito: ver docs).
+  String? _lastEmitted;
   Timer? _debounce;
 
   bool get _bound => widget.name != null && _outer != null;
@@ -324,6 +327,14 @@ class _SgAutocompleteState<T> extends State<SgAutocomplete<T>> {
   @override
   void didUpdateWidget(SgAutocomplete<T> old) {
     super.didUpdateWidget(old);
+    // `value` voltou a nulo no pai (nao ligado ao formulario): limpa o campo.
+    if (!_bound && old.value != null && widget.value == null) {
+      _typed = false;
+      _lastSelected = '';
+      _selectedItem = null;
+      _internalError = null;
+      _setInput('');
+    }
     _syncExternal();
   }
 
@@ -348,7 +359,7 @@ class _SgAutocompleteState<T> extends State<SgAutocomplete<T>> {
   void _syncExternal() {
     final v = _valueProp;
     if (v == null) return;
-    if (_focused) return;
+    if (_focused && v == _lastEmitted) return;
     if (v == _inputValue) return;
     _typed = false;
     _lastSelected = v;
@@ -365,6 +376,7 @@ class _SgAutocompleteState<T> extends State<SgAutocomplete<T>> {
   }
 
   void _emit(String v) {
+    _lastEmitted = v;
     widget.onChange?.call(v);
     if (_bound) {
       final revalidate =

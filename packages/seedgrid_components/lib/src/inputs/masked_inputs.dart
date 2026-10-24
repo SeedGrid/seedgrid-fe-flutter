@@ -1,7 +1,7 @@
 // Barril do grupo: cada widget novo do grupo e exportado aqui (e so aqui).
 library;
 
-export 'masked/masked_core.dart' show SgMaskFormatter;
+export 'masked/masked_core.dart' show SgMaskFormatter, sgPhoneStripDdi;
 export 'masked/masked_fetch.dart' show SgViaCepResult;
 export 'masked/sg_date_picker.dart'
     show showSgDatePicker, SgDatePickerDialog, sgParseIso, sgIso;
