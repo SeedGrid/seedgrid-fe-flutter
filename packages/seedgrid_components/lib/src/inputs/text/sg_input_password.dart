@@ -367,11 +367,18 @@ class _SgInputPasswordState extends State<SgInputPassword> {
   }
 
   void _validate(String value) {
+    final (message, unmet) = _evaluate(value);
+    _publish(message, unmet);
+  }
+
+  /// Mensagem de erro (ou `null`) e requisitos nao atendidos para [value]; usada no blur e no
+  /// `trigger`/`handleSubmit` do formulario.
+  (String?, List<String>) _evaluate(String value) {
     final i18n = useComponentsI18n(context);
     final required = widget.required ?? false;
-    if (value.isEmpty && !required) return _publish(null, const []);
+    if (value.isEmpty && !required) return (null, const []);
     if (value.isEmpty && required) {
-      return _publish(
+      return (
         widget.requiredMessage ?? t(i18n, 'components.inputs.required'),
         const [],
       );
@@ -386,7 +393,7 @@ class _SgInputPasswordState extends State<SgInputPassword> {
     final combined = (custom != null && custom.isNotEmpty)
         ? [...unmet, custom]
         : unmet;
-    _publish(combined.isEmpty ? null : combined.first, combined);
+    return (combined.isEmpty ? null : combined.first, combined);
   }
 
   /// Valor sem afixos (o que o React le do <input>).
@@ -579,6 +586,7 @@ class _SgInputPasswordState extends State<SgInputPassword> {
       },
       onEnter: w.onEnter,
       onExit: w.onExit,
+      formValidator: (value) => _evaluate(value).$1,
       onExitText: _onExitText,
       onValueSet: _onProgrammatic,
       placeholder: w.placeholder,

@@ -205,8 +205,13 @@ class NumericFieldState extends State<NumericField> {
   void _register() {
     if (!_bound) return;
     final i18n = useComponentsI18n(context);
+    if (_registeredName != null && _registeredName != c.name) {
+      _form!.unregisterValidator(_registeredName!, _formValidate);
+    }
+    _registeredName = c.name;
     _form!.registerField(
       c.name!,
+      validator: _formValidate,
       rules: mergeRequiredRule(
         c.rules,
         c.required,
@@ -234,6 +239,9 @@ class NumericFieldState extends State<NumericField> {
   @override
   void dispose() {
     _form?.removeListener(_syncFromForm);
+    if (_registeredName != null) {
+      _form?.unregisterValidator(_registeredName!, _formValidate);
+    }
     _focus.dispose();
     _text.dispose();
     super.dispose();
@@ -246,34 +254,39 @@ class NumericFieldState extends State<NumericField> {
     c.onValidation?.call(message);
   }
 
-  void _runValidation(SgNumberState? s) {
+  void _runValidation(SgNumberState? s) => _setError(_messageFor(s));
+
+  /// Mensagem de erro para o estado [s] (ou `null`); usada no blur e no `trigger`/`handleSubmit`.
+  String? _messageFor(SgNumberState? s) {
     final i18n = useComponentsI18n(context);
     final number = stateToNumber(s, c.decimals);
     final isZero = isZeroState(s, c.decimals);
     if (s == null || number == null || (!c.emptyIsNull && isZero)) {
       if (c.required ?? false) {
-        return _setError(
-          c.requiredMessage ?? t(i18n, 'components.inputs.required'),
-        );
+        return c.requiredMessage ?? t(i18n, 'components.inputs.required');
       }
-      return _setError(null);
+      return null;
     }
     if (c.minValue != null && number < c.minValue!) {
-      return _setError(
-        c.minValueMessage ??
-            t(i18n, 'components.inputs.number.min', {'min': _num(c.minValue!)}),
-      );
+      return c.minValueMessage ??
+          t(i18n, 'components.inputs.number.min', {'min': _num(c.minValue!)});
     }
     if (c.maxValue != null && number > c.maxValue!) {
-      return _setError(
-        c.maxValueMessage ??
-            t(i18n, 'components.inputs.number.max', {'max': _num(c.maxValue!)}),
-      );
+      return c.maxValueMessage ??
+          t(i18n, 'components.inputs.number.max', {'max': _num(c.maxValue!)});
     }
     if (c.validation != null) {
-      return _setError(c.validation!(stateToValue(s, c.decimals)));
+      return c.validation!(stateToValue(s, c.decimals));
     }
-    _setError(null);
+    return null;
+  }
+
+  String? _registeredName;
+
+  /// Validador do componente para `trigger`/`handleSubmit` (o mesmo do blur); desabilitado nao falha.
+  String? _formValidate(Object? value) {
+    if (!mounted || (c.disabled ?? false)) return null;
+    return _messageFor(_parse(value));
   }
 
   /// Como o JS imprime o numero em `{min}`: inteiro sem ".0".

@@ -657,14 +657,30 @@ Future<List<String>> runAndCompare(
       );
     }
     final reactFe = r['formError'] as String?;
-    if (b.form != null && rhfFresh && d.formError != reactFe) {
+    // Decisao do dono (2026-10-25, docs/DIVERGENCIAS_DO_REACT.md): trigger/handleSubmit/setValue com
+    // shouldValidate tambem rodam o validador do PROPRIO componente (CPF, e-mail, datas...), que no React so
+    // roda no blur. Entao, sem erro de `rules` no React, o Dart pode ter um erro do componente no formulario.
+    // Tem de ser uma mensagem de verdade e a mesma que o campo mostra; erro de `rules` continua exato.
+    final componentError =
+        b.form != null &&
+        rhfFresh &&
+        reactFe == null &&
+        d.formError != null &&
+        d.formError!.isNotEmpty;
+    if (componentError) {
+      if (d.error != d.formError) {
+        fails.add(
+          '${where(i)}: erro do componente no formulario "${d.formError}" nao e o visivel "${d.error}"',
+        );
+      }
+    } else if (b.form != null && rhfFresh && d.formError != reactFe) {
       fails.add(
         '${where(i)}: erro do formulario "${d.formError}" != "$reactFe"',
       );
     }
-    final visibleOk = rhfFresh
-        ? (reactFe != null || !stale)
-        : (!stale && reactFe == null);
+    final visibleOk =
+        !componentError &&
+        (rhfFresh ? (reactFe != null || !stale) : (!stale && reactFe == null));
     if (visibleOk && !skipVal && d.error != r['error']) {
       fails.add('${where(i)}: erro visivel "${d.error}" != "${r['error']}"');
     }

@@ -14,6 +14,12 @@ typedef SgSubmitValid = FutureOr<void> Function(Map<String, Object?> values);
 typedef SgSubmitInvalid =
     FutureOr<void> Function(Map<String, SgFieldError> errors);
 
+/// Validador proprio do componente (o que o campo valida no blur: CPF, CNPJ, e-mail, telefone, CEP, datas,
+/// limite de idade...). Recebe o valor do formulario e devolve a mensagem de erro, ou `null` se valido.
+/// Decisao do dono (2026-10-25), diverge do React: `trigger`/`handleSubmit` tambem executam estes validadores
+/// (no RHF so rodam as `rules`). Roda DEPOIS das `rules` (ordem de erros do RHF) e so se elas passaram.
+typedef SgFieldValidator = FutureOr<String?> Function(Object? value);
+
 /// Controlador do formulario (o `control` do RHF). Notifica quando valor, erro ou estado muda.
 class SgFormController extends ChangeNotifier {
   SgFormController({Map<String, Object?> defaultValues = const {}})
@@ -23,6 +29,11 @@ class SgFormController extends ChangeNotifier {
   Map<String, Object?> _defaults;
   final Map<String, Object?> _values;
   final Map<String, SgRules> _rules = {};
+  final Map<String, SgFieldValidator> _validators = {};
+
+  /// Campos cujo erro atual veio do validador do componente (nao das `rules`): mudar o valor por fora
+  /// (`setValue`) revalida so o validador, como o campo faz com o erro proprio (o erro velho some).
+  final Set<String> _componentErrors = {};
   final Map<String, SgFieldError> _errors = {};
   final Set<String> _touched = {};
   final Set<String> _dirty = {};
@@ -56,16 +67,35 @@ class SgFormController extends ChangeNotifier {
 
   /// Declara o campo e suas regras (chamado pelo componente; idempotente). Valor inicial vem de
   /// `defaultValues`; sem ele o campo existe com `null`.
-  void registerField(String name, {SgRules? rules, Object? initialValue}) {
+  ///
+  /// [validator] e o validador proprio do componente (ver [SgFieldValidator]); fica ao lado das [rules] e
+  /// roda em `trigger`/`handleSubmit`. Quem o registra deve chamar [unregisterValidator] ao sair da arvore.
+  void registerField(
+    String name, {
+    SgRules? rules,
+    Object? initialValue,
+    SgFieldValidator? validator,
+  }) {
     if (rules != null) {
       _rules[name] = rules;
     } else {
       _rules.remove(name);
     }
+    if (validator != null) {
+      _validators[name] = validator;
+    } else {
+      _validators.remove(name);
+    }
     if (!_values.containsKey(name)) {
       _values[name] = initialValue;
       _defaults[name] = initialValue;
     }
+  }
+
+  /// Remove o validador registrado por [registerField], se ainda for [validator] (um campo novo com o mesmo
+  /// nome nao e afetado). Nao notifica.
+  void unregisterValidator(String name, SgFieldValidator validator) {
+    if (_validators[name] == validator) _validators.remove(name);
   }
 
   /// `setValue` do RHF. `shouldValidate` valida o campo logo em seguida.
@@ -86,7 +116,25 @@ class SgFormController extends ChangeNotifier {
     }
     if (shouldTouch) _touched.add(name);
     notifyListeners();
-    if (shouldValidate) await trigger([name]);
+    if (shouldValidate) {
+      await trigger([name]);
+    } else if (_componentErrors.contains(name)) {
+      await _revalidateComponentError(name);
+    }
+  }
+
+  Future<void> _revalidateComponentError(String name) async {
+    final validator = _validators[name];
+    if (validator == null) return;
+    final message = await validator(_values[name]);
+    if (!_componentErrors.contains(name)) return;
+    if (message == null || message.isEmpty) {
+      _errors.remove(name);
+      _componentErrors.remove(name);
+    } else {
+      _errors[name] = SgFieldError('validate', message);
+    }
+    notifyListeners();
   }
 
   void markTouched(String name) {
@@ -95,15 +143,34 @@ class SgFormController extends ChangeNotifier {
 
   /// `trigger` do RHF: valida os campos (todos, se `names` for nulo). Devolve `true` se todos validos.
   Future<bool> trigger([List<String>? names]) async {
-    final targets = names ?? _rules.keys.toList();
+    final targets = names ?? {..._rules.keys, ..._validators.keys}.toList();
     var ok = true;
     for (final n in targets) {
       final rules = _rules[n];
-      final err = rules == null ? null : await validateRules(rules, _values[n]);
+      var err = rules == null ? null : await validateRules(rules, _values[n]);
+      var fromComponent = false;
+      // Ordem do RHF: o erro das `rules` (required, min, ..., validate) vence; o validador do componente so
+      // roda quando elas passam.
+      if (err == null) {
+        final validator = _validators[n];
+        if (validator != null) {
+          final message = await validator(_values[n]);
+          if (message != null && message.isNotEmpty) {
+            err = SgFieldError('validate', message);
+            fromComponent = true;
+          }
+        }
+      }
       if (err == null) {
         _errors.remove(n);
+        _componentErrors.remove(n);
       } else {
         _errors[n] = err;
+        if (fromComponent) {
+          _componentErrors.add(n);
+        } else {
+          _componentErrors.remove(n);
+        }
         ok = false;
       }
     }
@@ -114,6 +181,7 @@ class SgFormController extends ChangeNotifier {
   /// `setError` do RHF.
   void setError(String name, String message, {String type = 'manual'}) {
     _errors[name] = SgFieldError(type, message);
+    _componentErrors.remove(name);
     notifyListeners();
   }
 
@@ -121,8 +189,10 @@ class SgFormController extends ChangeNotifier {
   void clearErrors([List<String>? names]) {
     if (names == null) {
       _errors.clear();
+      _componentErrors.clear();
     } else {
       names.forEach(_errors.remove);
+      names.forEach(_componentErrors.remove);
     }
     notifyListeners();
   }
@@ -134,6 +204,7 @@ class SgFormController extends ChangeNotifier {
       ..clear()
       ..addAll(_defaults);
     _errors.clear();
+    _componentErrors.clear();
     _touched.clear();
     _dirty.clear();
     _submitCount = 0;

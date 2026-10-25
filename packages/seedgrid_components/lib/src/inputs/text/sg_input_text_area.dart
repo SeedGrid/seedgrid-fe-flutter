@@ -267,8 +267,13 @@ class _SgInputTextAreaState extends State<SgInputTextArea> {
   void _register() {
     if (!_bound) return;
     final i18n = useComponentsI18n(context);
+    if (_registeredName != null && _registeredName != widget.name) {
+      _form!.unregisterValidator(_registeredName!, _formValidate);
+    }
+    _registeredName = widget.name;
     _form!.registerField(
       widget.name!,
+      validator: _formValidate,
       rules: mergeRequiredRule(
         widget.rules,
         widget.required,
@@ -294,6 +299,9 @@ class _SgInputTextAreaState extends State<SgInputTextArea> {
   @override
   void dispose() {
     _form?.removeListener(_sync);
+    if (_registeredName != null) {
+      _form?.unregisterValidator(_registeredName!, _formValidate);
+    }
     if (widget.focusNode == null) _focus.dispose();
     _text.dispose();
     super.dispose();
@@ -304,45 +312,46 @@ class _SgInputTextAreaState extends State<SgInputTextArea> {
     widget.onValidation?.call(message);
   }
 
+  void _validate(String value) => _setError(_messageFor(value));
+
   /// Ordem do React: required, maxLength, minLength, minNumberOfWords, minLines, validation.
-  void _validate(String value) {
+  String? _messageFor(String value) {
     final i18n = useComponentsI18n(context);
     final w = widget;
     if (value.isEmpty && (w.required ?? false)) {
-      return _setError(
-        w.requiredMessage ?? t(i18n, 'components.inputs.textarea.required'),
-      );
+      return w.requiredMessage ??
+          t(i18n, 'components.inputs.textarea.required');
     }
     final max = w.maxLength;
     if (max != null && max != 0 && value.length > max) {
-      return _setError(
-        w.maxLengthMessage ??
-            t(i18n, 'components.inputs.textarea.maxLength', {'max': max}),
-      );
+      return w.maxLengthMessage ??
+          t(i18n, 'components.inputs.textarea.maxLength', {'max': max});
     }
     final min = w.minLength;
     if (min != null && min != 0 && value.length < min) {
-      return _setError(
-        w.minLengthMessage ??
-            t(i18n, 'components.inputs.textarea.minLength', {'min': min}),
-      );
+      return w.minLengthMessage ??
+          t(i18n, 'components.inputs.textarea.minLength', {'min': min});
     }
     final words = w.minNumberOfWords;
     if (words != null && words != 0 && _words(value) < words) {
-      return _setError(
-        w.minNumberOfWordsMessage ??
-            t(i18n, 'components.inputs.textarea.minWords', {'min': words}),
-      );
+      return w.minNumberOfWordsMessage ??
+          t(i18n, 'components.inputs.textarea.minWords', {'min': words});
     }
     final lines = w.minLines;
     if (lines != null && lines != 0 && _lines(value) < lines) {
-      return _setError(
-        w.minLinesMessage ??
-            t(i18n, 'components.inputs.textarea.minLines', {'min': lines}),
-      );
+      return w.minLinesMessage ??
+          t(i18n, 'components.inputs.textarea.minLines', {'min': lines});
     }
-    if (w.validation != null) return _setError(w.validation!(value));
-    _setError(null);
+    if (w.validation != null) return w.validation!(value);
+    return null;
+  }
+
+  String? _registeredName;
+
+  /// Validador do componente para `trigger`/`handleSubmit` (o mesmo do blur); desabilitado nao falha.
+  String? _formValidate(Object? value) {
+    if (!mounted || widget.disabled == true) return null;
+    return _messageFor('${value ?? ''}'.replaceAll('\r\n', '\n'));
   }
 
   void _onFocus() {

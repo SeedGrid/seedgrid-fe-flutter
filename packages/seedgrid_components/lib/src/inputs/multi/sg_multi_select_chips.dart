@@ -50,8 +50,8 @@ class SgMultiSelectChips extends StatefulWidget
   @override
   final List<SgMultiSelectOptionValue>? value;
 
-  /// Recebe a nova lista. Com `name` + `control` (formulario) NAO e chamado: o React troca o
-  /// `onChange` pelo do campo do formulario (comportamento reproduzido).
+  /// Recebe a nova lista. Tambem e chamado com `name` + `control` (formulario), junto com a gravacao no
+  /// formulario (decisao do dono; o React engole o `onChange` do usuario dentro do `Controller`).
   @override
   final ValueChanged<List<SgMultiSelectOptionValue>>? onChange;
   @override
@@ -150,11 +150,9 @@ class _SgMultiSelectChipsState extends State<SgMultiSelectChips>
   }
 
   void _handleChange(List<SgMultiSelectOptionValue> next) {
-    if (isBound) {
-      pushToForm(next);
-    } else {
-      widget.onChange?.call(next);
-    }
+    // Decisao do dono (diverge do React): o onChange do usuario sempre roda, tambem dentro do formulario.
+    if (isBound) pushToForm(next);
+    widget.onChange?.call(next);
   }
 
   void _openOrClose() {

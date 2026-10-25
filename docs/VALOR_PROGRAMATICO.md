@@ -95,8 +95,8 @@ Totais (cenários comparados com o React): texto 395, máscaras BR 558, datas 23
 4. `reset()` sem valores / `setValue(null)` deixam texto antigo em número e moeda.
 5. Stepper em formulário ignora o `onChange` do usuário.
 6. `handleSubmit`/`trigger` do RHF não executam os validadores dos próprios componentes (CPF/CNPJ inválido passa no submit);
-   o Dart também não os inclui no `trigger`, igual ao React. Quem precisa deve usar `rules.validate`. Pendência possível: ligar os
-   validadores ao `trigger`.
+   o Dart, por decisão do dono (2026-10-25), RODA os validadores dos componentes no `trigger`/`handleSubmit`
+   (ver `DIVERGENCIAS_DO_REACT.md`).
 7. Datas: `<input type=date>` só entende ISO; qualquer outro formato some, mas o valor do formulário continua o texto setado.
 8. Validação de data/idade mínima depende do valor do DOM no blur, então o `value` controlado e o digitado podem divergir.
 

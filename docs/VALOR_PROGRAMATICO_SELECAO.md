@@ -80,8 +80,8 @@ já tem vetores próprios): os testes diretos cobrem as mesmas vias.
   valor, **limpa** o campo.
 - Com erro mostrado (ou depois de um submit), o usuário mudar o valor **revalida** (corrige D-6).
 - O usuário agindo chama o `onChange` do componente **e** grava no formulário em Combobox, Autocomplete e Slider.
-  A família MultiSelect reproduz D-1 de propósito, porque `sg_multi_select_test.dart` (~linha 1000) fixa
-  "o onChange do usuário NÃO é chamado dentro do formulário". **Inconsistência a decidir pelo dono.**
+  A família MultiSelect também chama o `onChange` do usuário dentro do formulário (decisão do dono, 2026-10-25;
+  ver `DIVERGENCIAS_DO_REACT.md`), então não há mais inconsistência.
 - Campos sem valor no formulário registram o padrão do tipo (`[]` em multi/checkbox, `false` no toggle, o mínimo no
   slider); o React deixa `undefined`.
 - OTP: `value: null` depois de um valor não nulo é ignorado (igual ao `undefined` do React); não alterado.

@@ -127,6 +127,7 @@ class SgInputDate extends StatefulWidget implements SgInputDateProps {
     this.value,
     this.onValueSet,
     this.onExitIso,
+    this.formValidator,
     this.autofocus = false,
     this.autofillHints,
     this.textInputAction,
@@ -290,6 +291,10 @@ class SgInputDate extends StatefulWidget implements SgInputDateProps {
   /// Interno do SgInputBirthDate: chamado na perda de foco, com a data ISO do campo ('' se incompleta).
   final ValueChanged<String>? onExitIso;
 
+  /// Interno do SgInputBirthDate: validador extra (limite de idade) que roda tambem em `trigger`/`handleSubmit`
+  /// do formulario. Recebe a data ISO ('' se vazia) e devolve a mensagem de erro ou `null`.
+  final String? Function(String iso)? formValidator;
+
   /// `autoFocus` do <input>.
   final bool autofocus;
 
@@ -363,10 +368,12 @@ class _SgInputDateState extends State<SgInputDate> {
       _text = sgDisplayDate(_lastIso, _locale);
     }
     if (_bound) {
+      _registeredName = widget.name;
       _form!.registerField(
         widget.name!,
         rules: widget.rules,
         initialValue: _seen.isEmpty ? null : _seen,
+        validator: _formValidate,
       );
     }
   }
@@ -382,6 +389,9 @@ class _SgInputDateState extends State<SgInputDate> {
   @override
   void dispose() {
     _form?.removeListener(_syncFromForm);
+    if (_registeredName != null) {
+      _form?.unregisterValidator(_registeredName!, _formValidate);
+    }
     super.dispose();
   }
 
@@ -415,6 +425,20 @@ class _SgInputDateState extends State<SgInputDate> {
     _seenReset = _form!.resetCount;
     _applyExternal(_form!.getValue(widget.name!), reset: reset);
     if (mounted) setState(() {}); // erro do formulario (handleSubmit/trigger)
+  }
+
+  String? _registeredName;
+
+  /// Validador do componente para `trigger`/`handleSubmit` (o mesmo do blur): intervalo e,
+  /// nos derivados (aniversario), [SgInputDate.formValidator]. Desabilitado nao falha.
+  String? _formValidate(Object? value) {
+    if (!mounted || widget.disabled == true) return null;
+    final i18n = useComponentsI18n(context);
+    // Valida o que o campo mostra (como no blur): texto que nao e data aparece vazio (D10).
+    final iso = sgNormalizeDateValue(value, i18n.locale);
+    final extra = widget.formValidator?.call(iso);
+    if (extra != null && extra.isNotEmpty) return extra;
+    return _messageFor(sgDisplayDate(iso, i18n.locale));
   }
 
   String? get _minValue => sgToDateValue(widget.minDate);

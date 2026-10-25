@@ -85,8 +85,8 @@ class SgMultiSelect extends StatefulWidget implements SgMultiSelectProps {
   @override
   final List<SgMultiSelectOptionValue>? value;
 
-  /// Recebe a nova lista. Com `name` + `control` (formulario) NAO e chamado: o React troca o
-  /// `onChange` pelo do campo do formulario (comportamento reproduzido).
+  /// Recebe a nova lista. Tambem e chamado com `name` + `control` (formulario), junto com a gravacao no
+  /// formulario (decisao do dono; o React engole o `onChange` do usuario dentro do `Controller`).
   @override
   final ValueChanged<List<SgMultiSelectOptionValue>>? onChange;
   @override
@@ -188,8 +188,12 @@ class _DisplayForm extends SgFormController {
   _DisplayForm() : super(defaultValues: const {'resumo': ''});
 
   @override
-  void registerField(String name, {SgRules? rules, Object? initialValue}) =>
-      super.registerField(name, initialValue: initialValue);
+  void registerField(
+    String name, {
+    SgRules? rules,
+    Object? initialValue,
+    SgFieldValidator? validator,
+  }) => super.registerField(name, initialValue: initialValue);
 }
 
 class _SgMultiSelectState extends State<SgMultiSelect>
@@ -234,11 +238,9 @@ class _SgMultiSelectState extends State<SgMultiSelect>
   }
 
   void _handleChange(List<SgMultiSelectOptionValue> next) {
-    if (isBound) {
-      pushToForm(next);
-    } else {
-      widget.onChange?.call(next);
-    }
+    // Decisao do dono (diverge do React): o onChange do usuario sempre roda, tambem dentro do formulario.
+    if (isBound) pushToForm(next);
+    widget.onChange?.call(next);
   }
 
   bool _insideIcons(Offset global) {

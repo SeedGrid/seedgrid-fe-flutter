@@ -2,6 +2,8 @@
 // Atencao a pegadinha herdada do React: `onEnter` NAO e a tecla Enter, e o foco; `onExit` e o blur.
 // `register` nao existe (ADR 49): o campo e ligado por `name` + `control` (SgFormController) ou pelo
 // SgForm mais proximo.
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:seedgrid_theme/seedgrid_theme.dart';
@@ -73,6 +75,7 @@ class SgInputText extends StatefulWidget implements SgInputTextProps {
     this.onValueSet,
     this.onExitText,
     this.externalValueNormalizer,
+    this.formValidator,
   });
 
   @override
@@ -216,6 +219,11 @@ class SgInputText extends StatefulWidget implements SgInputTextProps {
   /// da mascara; ex.: telefone `+5511987654321` sem o DDI. Nao vale para o que o usuario digita.
   final String Function(String)? externalValueNormalizer;
 
+  /// Interno dos inputs derivados (CPF, e-mail, telefone...): validador do componente que roda tambem em
+  /// `trigger`/`handleSubmit` do formulario (decisao do dono). Recebe o texto sem afixos e devolve a mensagem
+  /// de erro ou `null`. Vence a validacao propria do SgInputText (maxLength etc.), que roda em seguida.
+  final FutureOr<String?> Function(String value)? formValidator;
+
   @override
   State<SgInputText> createState() => _SgInputTextState();
 }
@@ -357,11 +365,34 @@ class _SgInputTextState extends State<SgInputText> {
     }
   }
 
+  String? _registeredName;
+
+  /// Validador do componente para o formulario (`trigger`/`handleSubmit`): o mesmo que roda no blur.
+  /// Campo desabilitado nao falha; vazio so falha se for obrigatorio (o validador decide).
+  Future<String?> _formValidate(Object? value) async {
+    if (!mounted || widget.disabled == true) return null;
+    final text = _strip(value);
+    final extra = widget.formValidator;
+    if (extra != null) {
+      final m = await extra(text);
+      if (m != null && m.isNotEmpty) return m;
+    }
+    if (!mounted) return null;
+    // Vazio e opcional nao falha (minLength etc. so valem com texto, como no atributo HTML); so `required`.
+    if (text.isEmpty && !(widget.required ?? false)) return null;
+    return _messageFor(text);
+  }
+
   void _register() {
     if (!_bound) return;
     final i18n = useComponentsI18n(context);
+    if (_registeredName != null && _registeredName != widget.name) {
+      _form!.unregisterValidator(_registeredName!, _formValidate);
+    }
+    _registeredName = widget.name;
     _form!.registerField(
       widget.name!,
+      validator: _formValidate,
       rules: mergeRequiredRule(
         widget.rules,
         widget.required,
@@ -389,6 +420,9 @@ class _SgInputTextState extends State<SgInputText> {
   @override
   void dispose() {
     _form?.removeListener(_syncFromForm);
+    if (_registeredName != null) {
+      _form?.unregisterValidator(_registeredName!, _formValidate);
+    }
     if (widget.focusNode == null) _focus.dispose();
     _text.dispose();
     super.dispose();
@@ -400,38 +434,30 @@ class _SgInputTextState extends State<SgInputText> {
   }
 
   /// Mesma ordem do React: required, maxLength, minLength, minNumberOfWords, validation.
-  void _runValidation(String value) {
+  void _runValidation(String value) => _setError(_messageFor(value));
+
+  String? _messageFor(String value) {
     final i18n = useComponentsI18n(context);
     if (value.isEmpty && (widget.required ?? false)) {
-      return _setError(
-        widget.requiredMessage ?? t(i18n, 'components.inputs.required'),
-      );
+      return widget.requiredMessage ?? t(i18n, 'components.inputs.required');
     }
     final max = widget.maxLength;
     if (max != null && max != 0 && value.length > max) {
-      return _setError(
-        widget.maxLengthMessage ??
-            t(i18n, 'components.inputs.maxLength', {'max': max}),
-      );
+      return widget.maxLengthMessage ??
+          t(i18n, 'components.inputs.maxLength', {'max': max});
     }
     final min = widget.minLength;
     if (min != null && min != 0 && value.length < min) {
-      return _setError(
-        widget.minLengthMessage ??
-            t(i18n, 'components.inputs.minLength', {'min': min}),
-      );
+      return widget.minLengthMessage ??
+          t(i18n, 'components.inputs.minLength', {'min': min});
     }
     final words = widget.minNumberOfWords;
     if (words != null && words != 0 && _wordCount(value) < words) {
-      return _setError(
-        widget.minNumberOfWordsMessage ??
-            t(i18n, 'components.inputs.minWords', {'min': words}),
-      );
+      return widget.minNumberOfWordsMessage ??
+          t(i18n, 'components.inputs.minWords', {'min': words});
     }
-    if (widget.validation != null) {
-      return _setError(widget.validation!(value));
-    }
-    _setError(null);
+    if (widget.validation != null) return widget.validation!(value);
+    return null;
   }
 
   void _onFocus() {

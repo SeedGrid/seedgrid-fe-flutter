@@ -18,7 +18,7 @@
   },
   "SgInputText": {
     "status": "parcial",
-    "motivo": "sem inputProps (atributos do <input> nao tem equivalente; props nomeadas cobrem), value controlado pela prop value (nula = nao controlado; com name+formulario o valor do formulario manda e value e ignorado, como no React), golden com fonte de teste (sem comparacao visual com o React), nao testado em IME/dispositivo; i18n so das mensagens de validacao"
+    "motivo": "sem inputProps (atributos do <input> nao tem equivalente; props nomeadas cobrem), value controlado pela prop value (nula = nao controlado; com name+formulario o valor do formulario manda e value e ignorado, como no React), golden com fonte de teste (sem comparacao visual com o React), nao testado em IME/dispositivo; i18n so das mensagens de validacao; validadores do componente rodam no submit (decisao do dono)"
   },
   "SgCheckboxGroup": {
     "status": "parcial",
@@ -30,7 +30,7 @@
   },
   "SgToggleSwitch": {
     "status": "parcial",
-    "motivo": "enabled virou disabled (ADR 50); goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50)"
+    "motivo": "enabled virou disabled (ADR 50); goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50); validadores do componente rodam no submit (decisao do dono)"
   },
   "SgSlider": {
     "status": "parcial",
@@ -42,43 +42,43 @@
   },
   "SgInputTextArea": {
     "status": "parcial",
-    "motivo": "inputProps/textareaProps ignorados; commonPasswordList sem efeito (igual ao React); usa SgFormController interno quando nao ha name+control; goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50)"
+    "motivo": "inputProps/textareaProps ignorados; commonPasswordList sem efeito (igual ao React); usa SgFormController interno quando nao ha name+control; goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50); validadores do componente rodam no submit (decisao do dono)"
   },
   "SgInputTextSearch": {
     "status": "parcial",
-    "motivo": "inputProps/textareaProps ignorados; commonPasswordList sem efeito (igual ao React); usa SgFormController interno quando nao ha name+control; goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50)"
+    "motivo": "inputProps/textareaProps ignorados; commonPasswordList sem efeito (igual ao React); usa SgFormController interno quando nao ha name+control; goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50); validadores do componente rodam no submit (decisao do dono)"
   },
   "SgInputEmail": {
     "status": "parcial",
-    "motivo": "inputProps/textareaProps ignorados; commonPasswordList sem efeito (igual ao React); usa SgFormController interno quando nao ha name+control; goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50)"
+    "motivo": "inputProps/textareaProps ignorados; commonPasswordList sem efeito (igual ao React); usa SgFormController interno quando nao ha name+control; goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50); validadores do componente rodam no submit (decisao do dono)"
   },
   "SgInputPassword": {
     "status": "parcial",
-    "motivo": "inputProps/textareaProps ignorados; commonPasswordList sem efeito (igual ao React); usa SgFormController interno quando nao ha name+control; goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50)"
+    "motivo": "inputProps/textareaProps ignorados; commonPasswordList sem efeito (igual ao React); usa SgFormController interno quando nao ha name+control; goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50); validadores do componente rodam no submit (decisao do dono)"
   },
   "SgInputDate": {
     "status": "parcial",
-    "motivo": "o React usa input type=date nativo; aqui campo com mascara por idioma e calendario proprio: data impossivel (31/02) mostra Data invalida (no nativo o valor vira vazio) e alwaysFloat nao tem efeito; recriar por key perde o foco (precisa de controller externo no SgInputText); pegadinha de fuso do validateBirthDate mantida"
+    "motivo": "o React usa input type=date nativo; aqui campo com mascara por idioma e calendario proprio: data impossivel (31/02) mostra Data invalida (no nativo o valor vira vazio) e alwaysFloat nao tem efeito; recriar por key perde o foco (precisa de controller externo no SgInputText); pegadinha de fuso do validateBirthDate mantida; validadores do componente rodam no submit (decisao do dono)"
   },
   "SgInputBirthDate": {
     "status": "parcial",
-    "motivo": "o React usa input type=date nativo; aqui campo com mascara por idioma e calendario proprio: data impossivel (31/02) mostra Data invalida (no nativo o valor vira vazio) e alwaysFloat nao tem efeito; recriar por key perde o foco (precisa de controller externo no SgInputText); pegadinha de fuso do validateBirthDate mantida"
+    "motivo": "o React usa input type=date nativo; aqui campo com mascara por idioma e calendario proprio: data impossivel (31/02) mostra Data invalida (no nativo o valor vira vazio) e alwaysFloat nao tem efeito; recriar por key perde o foco (precisa de controller externo no SgInputText); pegadinha de fuso do validateBirthDate mantida; validadores do componente rodam no submit (decisao do dono)"
   },
   "SgInputPostalCode": {
     "status": "parcial",
-    "motivo": "consulta de rede por cliente injetavel (SgViaCepResult no lugar do ViaCepResponse que lanca erro; SgHttpClient no CNPJ); placeholder por pais do React nunca e usado e nao foi portado; goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50)"
+    "motivo": "consulta de rede por cliente injetavel (SgViaCepResult no lugar do ViaCepResponse que lanca erro; SgHttpClient no CNPJ); placeholder por pais do React nunca e usado e nao foi portado; goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50); validadores do componente rodam no submit (decisao do dono)"
   },
   "SgInputCNPJ": {
     "status": "parcial",
-    "motivo": "consulta de rede por cliente injetavel (SgViaCepResult no lugar do ViaCepResponse que lanca erro; SgHttpClient no CNPJ); placeholder por pais do React nunca e usado e nao foi portado; goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50)"
+    "motivo": "consulta de rede por cliente injetavel (SgViaCepResult no lugar do ViaCepResponse que lanca erro; SgHttpClient no CNPJ); placeholder por pais do React nunca e usado e nao foi portado; goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50); validadores do componente rodam no submit (decisao do dono)"
   },
   "SgInputNumber": {
     "status": "parcial",
-    "motivo": "sem Intl no Dart: simbolo, posicao e separadores vem de tabela gerada do Node (pt-BR, pt-PT, en-US, es, fr, de-DE; 162 moedas), locale fora da lista cai em en-US; o React trata tecla e o Flutter recebe diferenca de texto (formatter converte); goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50)"
+    "motivo": "sem Intl no Dart: simbolo, posicao e separadores vem de tabela gerada do Node (pt-BR, pt-PT, en-US, es, fr, de-DE; 162 moedas), locale fora da lista cai em en-US; o React trata tecla e o Flutter recebe diferenca de texto (formatter converte); goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50); validadores do componente rodam no submit (decisao do dono)"
   },
   "SgInputCurrency": {
     "status": "parcial",
-    "motivo": "sem Intl no Dart: simbolo, posicao e separadores vem de tabela gerada do Node (pt-BR, pt-PT, en-US, es, fr, de-DE; 162 moedas), locale fora da lista cai em en-US; o React trata tecla e o Flutter recebe diferenca de texto (formatter converte); goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50)"
+    "motivo": "sem Intl no Dart: simbolo, posicao e separadores vem de tabela gerada do Node (pt-BR, pt-PT, en-US, es, fr, de-DE; 162 moedas), locale fora da lista cai em en-US; o React trata tecla e o Flutter recebe diferenca de texto (formatter converte); goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50); validadores do componente rodam no submit (decisao do dono)"
   },
   "SgDockLayout": {
     "status": "parcial",
@@ -146,11 +146,11 @@
   },
   "SgMultiSelect": {
     "status": "parcial",
-    "motivo": "o React nao foca o campo ao tocar e o Flutter foca; a lista ancorada se alinha ao SgInputText inteiro; onClear/maxLengthMessage/minLengthMessage aceitos sem efeito (igual ao React); superficie do dropdown compartilhada (SgDropdownHost); a lista de opcoes continua propria; inputProps ignorado (ADR 50); o texto ainda passa por um SgFormController interno (o SgInputText ja aceita value controlado; migracao pendente); sem autocorrect/spellCheck; nao testado em IME nem em dispositivo; golden com fonte de teste"
+    "motivo": "o React nao foca o campo ao tocar e o Flutter foca; a lista ancorada se alinha ao SgInputText inteiro; onClear/maxLengthMessage/minLengthMessage aceitos sem efeito (igual ao React); superficie do dropdown compartilhada (SgDropdownHost); a lista de opcoes continua propria; inputProps ignorado (ADR 50); o texto ainda passa por um SgFormController interno (o SgInputText ja aceita value controlado; migracao pendente); sem autocorrect/spellCheck; nao testado em IME nem em dispositivo; golden com fonte de teste; onChange do usuario tambem dentro de formulario (decisao do dono)"
   },
   "SgMultiSelectChips": {
     "status": "parcial",
-    "motivo": "o item ativo da lista rola ate ficar visivel (o React nao faz); superficie do dropdown compartilhada (SgDropdownHost); a lista de opcoes continua propria; inputProps ignorado (ADR 50); o texto ainda passa por um SgFormController interno (o SgInputText ja aceita value controlado; migracao pendente); sem autocorrect/spellCheck; nao testado em IME nem em dispositivo; golden com fonte de teste"
+    "motivo": "o item ativo da lista rola ate ficar visivel (o React nao faz); superficie do dropdown compartilhada (SgDropdownHost); a lista de opcoes continua propria; inputProps ignorado (ADR 50); o texto ainda passa por um SgFormController interno (o SgInputText ja aceita value controlado; migracao pendente); sem autocorrect/spellCheck; nao testado em IME nem em dispositivo; golden com fonte de teste; onChange do usuario tambem dentro de formulario (decisao do dono)"
   },
   "SgPickList": {
     "status": "parcial",
@@ -170,7 +170,7 @@
   },
   "SgInputOTP": {
     "status": "parcial",
-    "motivo": "slot vazio guarda um caractere invisivel (U+200B) para o teclado virtual avisar o Backspace; colar 1 caractere num slot cheio e tratado como digitar (o React limparia os seguintes); inputProps e *ClassName aceitos sem efeito; nao testado em IME nem em dispositivo; golden com fonte de teste"
+    "motivo": "slot vazio guarda um caractere invisivel (U+200B) para o teclado virtual avisar o Backspace; colar 1 caractere num slot cheio e tratado como digitar (o React limparia os seguintes); inputProps e *ClassName aceitos sem efeito; nao testado em IME nem em dispositivo; golden com fonte de teste; validadores do componente rodam no submit (decisao do dono)"
   },
   "SgPeriodSelector": {
     "status": "parcial",
@@ -251,5 +251,17 @@
   "SgTextEditor": {
     "status": "parcial",
     "motivo": "motor nativo flutter_quill (MIT) em vez de TipTap; conteudo trafega como HTML via conversor proprio (HTML do TipTap lido e reescrito igual em 160+ fixtures do TipTap real). Nao suportado pelo modelo Delta: tabelas e iframes (descartados), <br> vira U+2028, sub e sup juntos (vence um), <mark> sem cor vira amarelo, cor com alfa perde o alfa, tamanho em em/pt/% vira px, ol start, item de lista com varios paragrafos vira um item com quebra suave, citacao com lista/titulo/citacao aninhada achata, classe de linguagem do bloco de codigo, regras de markdown (# , - , 1. , >) e Ctrl+Z/atalhos so os do flutter_quill; cor do texto e destaque por seletor proprio (paleta + hex) no lugar do input color; Salvar/Carregar HTML via file_picker (extra htmlFilePicker); onSave recebe SgTextEditorFile no lugar de File; dialogos de link/imagem proprios no lugar de window.prompt (cancelar nao remove o link); disabled reativo (no React so vale na criacao); sem className/style (ADR 50); nao testado em dispositivo/IME; SgTextEditor ainda fora do arquivo raiz do pacote (barril editor_inputs.dart)"
+  },
+  "SgInputCPF": {
+    "status": "parcial",
+    "motivo": "validadores do componente rodam no submit (decisao do dono)"
+  },
+  "SgInputCPFCNPJ": {
+    "status": "parcial",
+    "motivo": "validadores do componente rodam no submit (decisao do dono)"
+  },
+  "SgInputPhone": {
+    "status": "parcial",
+    "motivo": "validadores do componente rodam no submit (decisao do dono)"
   }
 }

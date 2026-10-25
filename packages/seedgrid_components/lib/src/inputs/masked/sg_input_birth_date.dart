@@ -254,25 +254,29 @@ class _SgInputBirthDateState extends State<SgInputBirthDate> {
   String _isoDate(DateTime d) => d.toUtc().toIso8601String().substring(0, 10);
 
   void _validate(String value) {
+    final message = _messageFor(value);
+    setState(() => _internalError = message);
+    widget.onValidation?.call(message);
+  }
+
+  /// Obrigatoriedade e limite de idade (minAge/maxAge) para a data ISO [value]; tambem roda em
+  /// `trigger`/`handleSubmit` do formulario.
+  String? _messageFor(String value) {
     final i18n = useComponentsI18n(context);
-    String? message;
     if (value.isEmpty) {
-      message = (widget.required ?? false)
+      return (widget.required ?? false)
           ? (widget.requiredMessage ??
                 t(i18n, 'components.inputs.birthdate.required'))
           : null;
-    } else {
-      message = validateBirthDateMessage(
-        value,
-        BirthDatePolicy(
-          minAge: widget.minAge?.toInt(),
-          maxAge: widget.maxAge?.toInt(),
-        ),
-        i18n: i18n,
-      );
     }
-    setState(() => _internalError = message);
-    widget.onValidation?.call(message);
+    return validateBirthDateMessage(
+      value,
+      BirthDatePolicy(
+        minAge: widget.minAge?.toInt(),
+        maxAge: widget.maxAge?.toInt(),
+      ),
+      i18n: i18n,
+    );
   }
 
   /// Data mudou por fora (setValue/reset/`value`): erro ja visivel e recalculado; `reset` limpa.
@@ -344,6 +348,7 @@ class _SgInputBirthDateState extends State<SgInputBirthDate> {
         if (widget.validateOnBlur ?? true) _validate(iso);
       },
       onValueSet: _onValueSet,
+      formValidator: _messageFor,
       onExit: widget.onExit,
       placeholder: widget.placeholder,
       prefixIcon: widget.prefixIcon,

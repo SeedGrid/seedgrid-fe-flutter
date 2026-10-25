@@ -28,6 +28,7 @@ class ChoiceFieldBinding {
     required String? name,
     required SgRules? rules,
     Object? initialValue,
+    SgFieldValidator? validator,
   }) {
     final f = control ?? SgForm.maybeOf(context);
     if (f != form) {
@@ -35,11 +36,26 @@ class ChoiceFieldBinding {
       form = f;
       form?.addListener(_notify);
     }
+    if (_validatorName != null &&
+        _validator != null &&
+        _validatorName != name) {
+      form?.unregisterValidator(_validatorName!, _validator!);
+    }
     this.name = name;
+    _validator = validator;
+    _validatorName = name;
     if (bound) {
-      form!.registerField(name!, rules: rules, initialValue: initialValue);
+      form!.registerField(
+        name!,
+        rules: rules,
+        initialValue: initialValue,
+        validator: validator,
+      );
     }
   }
+
+  SgFieldValidator? _validator;
+  String? _validatorName;
 
   /// Grava no formulario; depois de um envio (ou com erro) revalida a cada mudanca, como o RHF.
   Future<void> set(Object? v) async {
@@ -48,7 +64,12 @@ class ChoiceFieldBinding {
     await form!.setValue(name!, v, shouldValidate: revalidate);
   }
 
-  void dispose() => form?.removeListener(_notify);
+  void dispose() {
+    form?.removeListener(_notify);
+    if (_validator != null && _validatorName != null) {
+      form?.unregisterValidator(_validatorName!, _validator!);
+    }
+  }
 }
 
 /// `groupBoxProps` do React: o que se pode repassar ao SgGroupBox (titulo, largura e altura).

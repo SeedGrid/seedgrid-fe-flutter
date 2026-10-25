@@ -181,6 +181,8 @@ const _overrides = <String, Map<String, Object?>>{
   },
 };
 
+// skipEventsInForm: o React engole o onChange do usuario no formulario; o Flutter chama os dois
+// (decisao do dono, 2026-10-25).
 void main() {
   runVectors(
     MultiAdapter(chips: false),

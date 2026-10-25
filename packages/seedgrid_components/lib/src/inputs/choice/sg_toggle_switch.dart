@@ -160,6 +160,7 @@ class _SgToggleSwitchState extends State<SgToggleSwitch> {
         widget.requiredMessage ?? t(i18n, 'components.inputs.required'),
       ),
       initialValue: widget.defaultChecked ?? false,
+      validator: _formValidate,
     );
   }
 
@@ -182,15 +183,21 @@ class _SgToggleSwitchState extends State<SgToggleSwitch> {
     widget.onValidation?.call(m);
   }
 
-  void _validate(bool next) {
+  void _validate(bool next) => _setError(_messageFor(next));
+
+  String? _messageFor(bool next) {
     final i18n = useComponentsI18n(context);
     if ((widget.required ?? false) && !next) {
-      return _setError(
-        widget.requiredMessage ?? t(i18n, 'components.inputs.required'),
-      );
+      return widget.requiredMessage ?? t(i18n, 'components.inputs.required');
     }
-    if (widget.validation != null) return _setError(widget.validation!(next));
-    _setError(null);
+    if (widget.validation != null) return widget.validation!(next);
+    return null;
+  }
+
+  /// Validador do componente para `trigger`/`handleSubmit` (o mesmo do blur); desabilitado nao falha.
+  String? _formValidate(Object? value) {
+    if (!mounted || _disabled) return null;
+    return _messageFor(_toBool(value));
   }
 
   void _onFocus() {

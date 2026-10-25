@@ -47,6 +47,7 @@ Ferramentas (Node 22; leem o repositório React, que **não é alterado**):
 - Exemplo do showcase: o código exibido é o trecho entre `// #region` e `// #endregion` da própria página.
 - Sem `className`/`style`; `enabled` vira `disabled`; eventos mantêm o nome do React (ADR 50).
 - Sem referência a PrimeFaces/PrimeReact em exemplos.
+- Divergências de propósito em relação ao React (decisões do dono): `docs/DIVERGENCIAS_DO_REACT.md`.
 - Arquivos em UTF-8.
 
 ## Como portar um componente (Onda 1 em diante)

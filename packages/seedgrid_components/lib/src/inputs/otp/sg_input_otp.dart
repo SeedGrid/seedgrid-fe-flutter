@@ -260,7 +260,9 @@ class _SgInputOTPState extends State<SgInputOTP> {
         widget.requiredMessage ?? t(i18n, 'components.inputs.required'),
       ),
       initialValue: widget.value ?? widget.defaultValue,
+      validator: _formValidate,
     );
+    _registeredName = widget.name;
     _syncFromForm();
   }
 
@@ -311,6 +313,9 @@ class _SgInputOTPState extends State<SgInputOTP> {
   void dispose() {
     if (widget.controller?._state == this) widget.controller!._state = null;
     _form?.removeListener(_syncFromForm);
+    if (_registeredName != null) {
+      _form?.unregisterValidator(_registeredName!, _formValidate);
+    }
     for (final c in _ctrls) {
       c.dispose();
     }
@@ -368,14 +373,29 @@ class _SgInputOTPState extends State<SgInputOTP> {
 
   // ------------------------------------------------------------------ validacao
 
-  String? _runValidation(String raw, String masked) {
+  String? _messageFor(String raw, String masked) {
     final i18n = useComponentsI18n(context);
-    String? message;
     if (raw.isEmpty && _required) {
-      message = widget.requiredMessage ?? t(i18n, 'components.inputs.required');
-    } else if (widget.validation != null) {
-      message = widget.validation!(raw, masked);
+      return widget.requiredMessage ?? t(i18n, 'components.inputs.required');
     }
+    if (widget.validation != null) return widget.validation!(raw, masked);
+    return null;
+  }
+
+  String? _registeredName;
+
+  /// Validador do componente para `trigger`/`handleSubmit` (o mesmo do blur); desabilitado nao falha.
+  String? _formValidate(Object? value) {
+    if (!mounted || widget.disabled == true) return null;
+    final slots = textToSlotValues('${value ?? ''}', _mask.slots);
+    return _messageFor(
+      slotValuesToRaw(slots),
+      slotValuesToMasked(_mask.tokens, slots),
+    );
+  }
+
+  String? _runValidation(String raw, String masked) {
+    final message = _messageFor(raw, masked);
     setState(() => _internalError = message);
     widget.onValidation?.call(message);
     return message;

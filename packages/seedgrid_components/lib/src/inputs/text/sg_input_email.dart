@@ -219,27 +219,27 @@ class _SgInputEmailState extends State<SgInputEmail> {
     widget.onValidation?.call(message);
   }
 
-  void _validate(String value) {
+  void _validate(String value) => _set(_messageFor(value));
+
+  /// Mensagem de erro do e-mail (ou `null`); usada no blur e no `trigger`/`handleSubmit` do formulario.
+  String? _messageFor(String value) {
     final i18n = useComponentsI18n(context);
     final required = widget.required ?? false;
-    if (value.isEmpty && !required) return _set(null);
+    if (value.isEmpty && !required) return null;
     if (value.isEmpty && required) {
-      return _set(
-        widget.requiredMessage ?? t(i18n, 'components.inputs.required'),
-      );
+      return widget.requiredMessage ?? t(i18n, 'components.inputs.required');
     }
     final custom = widget.validation?.call(value);
-    if (custom != null && custom.isNotEmpty) return _set(custom);
+    if (custom != null && custom.isNotEmpty) return custom;
     if (!isValidEmail(value)) {
-      return _set(
-        widget.invalidMessage ?? t(i18n, 'components.inputs.email.invalid'),
-      );
+      return widget.invalidMessage ??
+          t(i18n, 'components.inputs.email.invalid');
     }
     if ((widget.blockFakeMail ?? true) &&
         isBlockedEmailDomain(value, widget.blockedEmailDomains)) {
-      return _set(t(i18n, 'components.inputs.email.tempInvalid'));
+      return t(i18n, 'components.inputs.email.tempInvalid');
     }
-    _set(null);
+    return null;
   }
 
   void _onChange(String full) {
@@ -308,6 +308,7 @@ class _SgInputEmailState extends State<SgInputEmail> {
       onExit: w.onExit,
       onExitText: _onExitText,
       onValueSet: _onProgrammatic,
+      formValidator: _messageFor,
       placeholder: w.placeholder,
       prefixIcon: w.prefixIcon,
       prefixText: w.prefixText,

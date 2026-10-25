@@ -277,6 +277,12 @@ class _SgMaskedInputState extends State<SgMaskedInput> {
     c.onValidation?.call(message);
   }
 
+  /// Mesmo validador do blur, para `trigger`/`handleSubmit` do formulario (CPF invalido nao passa no envio).
+  FutureOr<String?> _formValidate(String value) => widget.validate(
+    value,
+    SgMaskedContext(useComponentsI18n(context), _memo),
+  );
+
   void _onChange(String full) {
     _interacted = true;
     _validate(full);
@@ -358,6 +364,7 @@ class _SgMaskedInputState extends State<SgMaskedInput> {
       onExit: c.onExit,
       onExitText: _onExitText,
       onValueSet: _onProgrammatic,
+      formValidator: _formValidate,
       // O React repassa onValidation tambem ao SgInputText interno (via ...rest): ele o chama com
       // null ao validar o proprio maxLength/minLength no blur, e a validacao do input vem depois.
       onValidation: c.onValidation,

@@ -832,8 +832,10 @@ void main() {
     );
 
     testWidgets(
-      'o onChange do usuario NAO e chamado dentro do formulario (defeito do React reproduzido)',
+      'o onChange do usuario TAMBEM e chamado dentro do formulario (decisao do dono)',
       (t) async {
+        // Decisao do dono (2026-10-25), diverge do React de proposito: o React engole o onChange do
+        // usuario dentro do formulario; aqui ele roda junto com a gravacao no formulario.
         size(t, 1280);
         final form = SgFormController();
         final changes = <List<Object>>[];
@@ -852,7 +854,9 @@ void main() {
         await t.tap(option('a'));
         await t.pumpAndSettle();
         expect(form.getValue('tags'), ['a']);
-        expect(changes, isEmpty);
+        expect(changes, [
+          ['a'],
+        ]);
       },
     );
 
