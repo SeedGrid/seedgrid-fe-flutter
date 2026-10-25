@@ -2,6 +2,7 @@
 // No React o toaster e `position: fixed`; no Flutter ele PREENCHE o espaco do pai (deixa os toques
 // passarem fora dos cards). Coloque-o num Stack acima do conteudo, ex.:
 //   MaterialApp(builder: (context, child) => Stack(children: [child!, const SgToastHost()]))
+// Em area ilimitada (Column, ListView) ele desenha no Overlay da rota e nao ocupa espaco.
 // Quando existe algum SgToastHost, o SgToaster "solto" cede a vez e nao desenha nada.
 import 'dart:async';
 import 'dart:math' as math;
@@ -409,23 +410,63 @@ class _SgToasterBodyState extends State<_SgToasterBody> {
         ),
     ];
 
-    return SizedBox.expand(
-      child: Align(
-        alignment: alignment,
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: cross,
-            children: [
-              for (var i = 0; i < cards.length; i++) ...[
-                if (i > 0) const SizedBox(height: 8),
-                cards[i],
-              ],
+    final layer = Align(
+      alignment: alignment,
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: cross,
+          children: [
+            for (var i = 0; i < cards.length; i++) ...[
+              if (i > 0) const SizedBox(height: 8),
+              cards[i],
             ],
-          ),
+          ],
         ),
       ),
+    );
+
+    // Area limitada (filho de um Stack, por exemplo): preenche o pai. Area ilimitada (Column, ListView,
+    // Row...): preencher daria "infinite height", entao o toaster nao ocupa espaco no layout e desenha
+    // no Overlay da rota, que e o equivalente do `position: fixed` do React.
+    return LayoutBuilder(
+      builder: (context, bc) {
+        if (bc.hasBoundedWidth && bc.hasBoundedHeight) {
+          return SizedBox.expand(child: layer);
+        }
+        return _SgToasterOverlayLayer(child: layer);
+      },
+    );
+  }
+}
+
+/// Mostra [child] ocupando o Overlay mais proximo; no layout do pai ocupa 0x0.
+class _SgToasterOverlayLayer extends StatefulWidget {
+  const _SgToasterOverlayLayer({required this.child});
+  final Widget child;
+
+  @override
+  State<_SgToasterOverlayLayer> createState() => _SgToasterOverlayLayerState();
+}
+
+class _SgToasterOverlayLayerState extends State<_SgToasterOverlayLayer> {
+  final OverlayPortalController _controller = OverlayPortalController();
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted && !_controller.isShowing) _controller.show();
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (Overlay.maybeOf(context) == null) return const SizedBox.shrink();
+    return OverlayPortal(
+      controller: _controller,
+      overlayChildBuilder: (_) => Positioned.fill(child: widget.child),
     );
   }
 }

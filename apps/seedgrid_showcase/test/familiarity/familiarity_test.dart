@@ -39,9 +39,8 @@ void main() {
     await t.tap(find.text('Enviar'));
     await settle(t);
     expect(find.textContaining('Enviado:'), findsNothing);
-    // BUG-1 (so registrado, nao corrigido aqui): o erro "Required field." faz o SgInputPassword
-    // crescer 20px dentro do SgGrid e a linha ja foi medida sem ele -> RenderFlex overflow.
-    expect(t.takeException(), isA<FlutterError>());
+    // BUG-1/BUG-2 corrigidos: o erro "Required field." no SgInputPassword (dentro de SgPanel(span: 2)
+    // dentro de SgGrid) nao estoura mais; qualquer excecao de layout falharia o teste aqui.
     expect(find.text('Required field.'), findsNWidgets(5));
 
     final fields = find.byType(TextField);

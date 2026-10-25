@@ -8,6 +8,7 @@ import 'package:seedgrid_theme/seedgrid_theme.dart';
 import '../form/sg_form.dart';
 import '../generated/enums.g.dart';
 import '../generated/sg_button.g.dart';
+import '../props/sg_node.dart';
 import '../theme_access.dart';
 
 /// `type` do `<button>` do HTML. `submit` dentro de um [SgForm] aciona o envio do formulario
@@ -188,8 +189,10 @@ class SgButton extends StatefulWidget implements SgButtonProps {
   final SgButtonShape? shape;
   @override
   final SgElevation elevation;
+
+  /// `String` ou `Widget` (React: `ReactNode`).
   @override
-  final Widget? label;
+  final Object? label;
   @override
   final bool? iconOnly;
   @override
@@ -210,23 +213,38 @@ class SgButton extends StatefulWidget implements SgButtonProps {
   /// `type` do botao HTML.
   final SgButtonType type;
 
-  /// `children` no React (tem precedencia sobre [label]).
-  final Widget? child;
+  /// `children` no React (tem precedencia sobre [label]). `String` ou `Widget`.
+  final Object? child;
 
   @override
   State<SgButton> createState() => _SgButtonState();
 }
 
 class _SgButtonState extends State<SgButton> {
+  VoidCallback? _unregisterSubmit;
   bool _hover = false;
   bool _pressed = false;
   bool _focused = false;
 
   @override
+  void initState() {
+    super.initState();
+    if (widget.type == SgButtonType.submit) {
+      _unregisterSubmit = SgForm.registerSubmitButton(context);
+    }
+  }
+
+  @override
+  void dispose() {
+    _unregisterSubmit?.call();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final t = sgThemeOf(context);
     final w = widget;
-    final content = w.child ?? w.label;
+    final content = sgNode(w.child) ?? sgNode(w.label);
     final isDisabled = (w.disabled ?? false) || w.loading;
     final iconOnly =
         w.iconOnly ??
@@ -404,6 +422,17 @@ class _SgButtonState extends State<SgButton> {
 
   void _onTap() {
     widget.onClick?.call();
-    if (widget.type == SgButtonType.submit) SgForm.submitOf(context)?.call();
+    if (widget.type == SgButtonType.submit) {
+      final submit = SgForm.submitOf(context);
+      if (submit == null) {
+        throw FlutterError(
+          'SgButton(type: SgButtonType.submit) precisa estar dentro de um SgForm. '
+          'No React o botao submit envia o <form> que o contem; aqui o envio e do SgForm '
+          '(SgForm(controller: form, onValid: ...)). Envolva o botao e os campos num SgForm, ou use '
+          'onClick: () => form.handleSubmit(...) sem type: submit.',
+        );
+      }
+      submit();
+    }
   }
 }

@@ -6,6 +6,7 @@
 // `register` do RHF nao existe: todo campo Flutter e controlado.
 import 'dart:async';
 
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
 import 'sg_rules.dart';
@@ -245,6 +246,7 @@ class SgForm extends StatefulWidget {
     this.defaultValues = const {},
     this.onValid,
     this.onInvalid,
+    this.submitOnEnter = true,
     required this.child,
   });
 
@@ -257,6 +259,12 @@ class SgForm extends StatefulWidget {
 
   /// Chamado com os erros quando o envio falha na validacao.
   final SgSubmitInvalid? onInvalid;
+
+  /// Enter num campo de texto de uma linha envia o formulario, como o envio implicito do `<form>` do
+  /// HTML: so quando ha um `SgButton(type: submit)` dentro do SgForm ou [onValid]/[onInvalid]. Nao vale
+  /// para campos multilinha (SgInputTextArea). Limite: o botao "concluir" do teclado de tela (mobile)
+  /// nao e interceptado, so a tecla Enter (web/desktop/teclado fisico).
+  final bool submitOnEnter;
   final Widget child;
 
   /// Controlador do `SgForm` mais proximo. Lanca se nao houver.
@@ -272,6 +280,15 @@ class SgForm extends StatefulWidget {
   static SgFormController? maybeOf(BuildContext context) =>
       context.dependOnInheritedWidgetOfExactType<_SgFormScope>()?.controller;
 
+  /// Registra um botao `submit` no SgForm mais proximo (habilita o Enter nos campos). Devolve a funcao
+  /// que desfaz o registro; nula se nao houver SgForm.
+  static VoidCallback? registerSubmitButton(BuildContext context) {
+    final state = context.getInheritedWidgetOfExactType<_SgFormScope>()?.state;
+    if (state == null) return null;
+    state._submitButtons++;
+    return () => state._submitButtons--;
+  }
+
   /// Dispara o envio do SgForm mais proximo (botao 'type: submit'). Nulo se nao houver SgForm.
   static VoidCallback? submitOf(BuildContext context) {
     final scope = context.getInheritedWidgetOfExactType<_SgFormScope>();
@@ -286,6 +303,7 @@ class SgForm extends StatefulWidget {
 
 class _SgFormState extends State<SgForm> {
   SgFormController? _own;
+  int _submitButtons = 0;
 
   SgFormController get _controller =>
       widget.controller ??
@@ -297,23 +315,55 @@ class _SgFormState extends State<SgForm> {
     super.dispose();
   }
 
+  // Envio implicito do HTML: Enter num campo de uma linha. Nao consome a tecla (devolve ignored) para o
+  // `onSubmitted` do proprio campo continuar funcionando.
+  KeyEventResult _onKey(FocusNode node, KeyEvent event) {
+    if (!widget.submitOnEnter || event is! KeyDownEvent) {
+      return KeyEventResult.ignored;
+    }
+    final k = event.logicalKey;
+    if (k != LogicalKeyboardKey.enter && k != LogicalKeyboardKey.numpadEnter) {
+      return KeyEventResult.ignored;
+    }
+    if (_submitButtons == 0 &&
+        widget.onValid == null &&
+        widget.onInvalid == null) {
+      return KeyEventResult.ignored;
+    }
+    final ctx = FocusManager.instance.primaryFocus?.context;
+    final editable = ctx?.findAncestorWidgetOfExactType<EditableText>();
+    if (editable == null || editable.maxLines != 1) {
+      return KeyEventResult.ignored;
+    }
+    _controller.handleSubmit(widget.onValid ?? (_) {}, widget.onInvalid);
+    return KeyEventResult.ignored;
+  }
+
   @override
   Widget build(BuildContext context) => _SgFormScope(
     controller: _controller,
+    state: this,
     onValid: widget.onValid,
     onInvalid: widget.onInvalid,
-    child: widget.child,
+    child: Focus(
+      canRequestFocus: false,
+      skipTraversal: true,
+      onKeyEvent: _onKey,
+      child: widget.child,
+    ),
   );
 }
 
 class _SgFormScope extends InheritedWidget {
   const _SgFormScope({
     required this.controller,
+    required this.state,
     this.onValid,
     this.onInvalid,
     required super.child,
   });
   final SgFormController controller;
+  final _SgFormState state;
   final SgSubmitValid? onValid;
   final SgSubmitInvalid? onInvalid;
 

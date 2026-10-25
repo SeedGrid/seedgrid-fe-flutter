@@ -95,81 +95,75 @@ class _DialogoToastScreenState extends State<DialogoToastScreen> {
       ),
     ];
 
-    // <SgToaster /> e fixo na janela no React; aqui precisa de um Stack com area limitada.
-    return Stack(
-      children: [
-        SingleChildScrollView(
-          child: Column(
+    // <SgToaster /> em qualquer lugar, como no React (em area ilimitada ele desenha no Overlay).
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          SgDatatable(
+            id: 'datatable-actions',
+            title: 'Permissions with row actions',
+            value: rows,
+            columns: permissionColumns,
+            dataKey: 'id',
+            paginator: true,
+            rows: 4,
+            rowsPerPageOptions: [4, 8],
+            showGridlines: true,
+          ),
+          SgConfirmationDialog(
+            open: confirmDeleteOpen,
+            onOpenChange: (v) => setState(() => confirmDeleteOpen = v),
+            closeOnOverlayClick: false,
+            severity: SgDialogSeverity.danger,
+            title: 'Delete permission',
+            message: pendingDelete != null
+                ? 'Confirm delete ${pendingDelete!['name']}?'
+                : 'Confirm delete?',
+            confirmButton: SgConfirmationDialogButtonConfig(
+              label: 'Delete',
+              icon: const Icon(Icons.delete),
+              severity: SgSeverity.danger,
+            ),
+            onCancel: () => setState(() {
+              confirmDeleteOpen = false;
+              pendingDelete = null;
+            }),
+            onConfirm: () {
+              if (pendingDelete == null) return;
+              setState(() {
+                rows = rows
+                    .where((item) => item['id'] != pendingDelete!['id'])
+                    .toList();
+                lastPermissionAction = 'delete: ${pendingDelete!['name']}';
+                confirmDeleteOpen = false;
+                pendingDelete = null;
+              });
+              toast.success('Sucesso!');
+            },
+          ),
+          Text('last action: $lastPermissionAction'),
+          Wrap(
+            spacing: 8,
             children: [
-              SgDatatable(
-                id: 'datatable-actions',
-                title: 'Permissions with row actions',
-                value: rows,
-                columns: permissionColumns,
-                dataKey: 'id',
-                paginator: true,
-                rows: 4,
-                rowsPerPageOptions: [4, 8],
-                showGridlines: true,
+              SgButton(
+                onClick: () => toast.message('Mensagem básica'),
+                child: 'toast.message',
               ),
-              SgConfirmationDialog(
-                open: confirmDeleteOpen,
-                onOpenChange: (v) => setState(() => confirmDeleteOpen = v),
-                closeOnOverlayClick: false,
-                severity: SgDialogSeverity.danger,
-                title: const Text('Delete permission'),
-                message: Text(
-                  pendingDelete != null
-                      ? 'Confirm delete ${pendingDelete!['name']}?'
-                      : 'Confirm delete?',
-                ),
-                confirmButton: SgConfirmationDialogButtonConfig(
-                  label: const Text('Delete'),
-                  icon: const Icon(Icons.delete),
-                  severity: SgSeverity.danger,
-                ),
-                onCancel: () => setState(() {
-                  confirmDeleteOpen = false;
-                  pendingDelete = null;
-                }),
-                onConfirm: () {
-                  if (pendingDelete == null) return;
-                  setState(() {
-                    rows = rows
-                        .where((item) => item['id'] != pendingDelete!['id'])
-                        .toList();
-                    lastPermissionAction = 'delete: ${pendingDelete!['name']}';
-                    confirmDeleteOpen = false;
-                    pendingDelete = null;
-                  });
-                  toast.success('Sucesso!');
-                },
+              SgButton(
+                severity: SgSeverity.success,
+                onClick: () => toast.success('Sucesso!'),
+                child: 'toast.success',
               ),
-              Text('last action: $lastPermissionAction'),
-              Wrap(
-                spacing: 8,
-                children: [
-                  SgButton(
-                    onClick: () => toast.message('Mensagem básica'),
-                    child: const Text('toast.message'),
-                  ),
-                  SgButton(
-                    severity: SgSeverity.success,
-                    onClick: () => toast.success('Sucesso!'),
-                    child: const Text('toast.success'),
-                  ),
-                  SgButton(
-                    appearance: SgAppearance.outline,
-                    onClick: () => toast.dismiss(),
-                    child: const Text('toast.dismiss'),
-                  ),
-                ],
+              SgButton(
+                appearance: SgAppearance.outline,
+                onClick: () => toast.dismiss(),
+                child: 'toast.dismiss',
               ),
             ],
           ),
-        ),
-        const SgToaster(),
-      ],
+          const SgToaster(),
+        ],
+      ),
     );
   }
 }

@@ -4,6 +4,11 @@
 // estao em tools/gen_props/excecoes.json.
 // ignore_for_file: constant_identifier_names
 
+// Qual enum usar: alias TS compartilhado entre componentes (Severity, Appearance, Size, Elevation...) vira
+// enum compartilhado (SgSeverity, SgAppearance, SgSize, SgElevation); uniao inline de um componente vira
+// Sg<Componente><Prop> (SgInputTextElevation, SgDatatableColumnAlign). Em caso de duvida: o tipo do campo
+// no <Comp>Props gerado diz qual enum o componente espera.
+
 /// Valores aceitos pelo React: `vertical`, `horizontal`.
 enum SgAccordionOrientation {
   vertical('vertical'),

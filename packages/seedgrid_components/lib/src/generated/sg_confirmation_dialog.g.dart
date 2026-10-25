@@ -44,8 +44,8 @@ abstract interface class SgConfirmationDialogProps {
   Object? get initialFocusRef;
   Widget? get leading;
   bool? get lockBodyScroll;
-  /// Mensagem principal explicando o risco ou decisao.
-  Widget? get message;
+  /// Mensagem principal explicando o risco ou decisao. Aceita `String` ou `Widget` (React: `ReactNode`).
+  Object? get message;
   /// Callback disparado quando o usuario cancela a acao. Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onCancel;
   /// Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
@@ -64,9 +64,10 @@ abstract interface class SgConfirmationDialogProps {
   bool? get showSeverityAccent;
   /// Padrão: `sm`.
   SgDialogSize? get size;
-  Widget? get subtitle;
-  /// Titulo principal da confirmacao.
-  Widget? get title;
+  /// Aceita `String` ou `Widget` (React: `ReactNode`).
+  Object? get subtitle;
+  /// Titulo principal da confirmacao. Aceita `String` ou `Widget` (React: `ReactNode`).
+  Object? get title;
   Widget? get trailing;
   num? get transitionMs;
 }
@@ -244,7 +245,7 @@ const List<SgPropSpec> sgConfirmationDialogPropSpecs = <SgPropSpec>[
   SgPropSpec(
     name: 'message',
     reactName: 'message',
-    type: 'Widget?',
+    type: 'Object?',
     tsType: 'React.ReactNode',
     required: false,
     description: 'Mensagem principal explicando o risco ou decisao.',
@@ -335,14 +336,14 @@ const List<SgPropSpec> sgConfirmationDialogPropSpecs = <SgPropSpec>[
   SgPropSpec(
     name: 'subtitle',
     reactName: 'subtitle',
-    type: 'Widget?',
+    type: 'Object?',
     tsType: 'React.ReactNode',
     required: false,
   ),
   SgPropSpec(
     name: 'title',
     reactName: 'title',
-    type: 'Widget?',
+    type: 'Object?',
     tsType: 'React.ReactNode',
     required: false,
     description: 'Titulo principal da confirmacao.',

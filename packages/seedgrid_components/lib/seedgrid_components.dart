@@ -6,6 +6,7 @@ export 'src/generated/generated.dart';
 export 'src/i18n/i18n.dart';
 export 'src/i18n/validator_messages.dart';
 export 'src/props/sg_prop_spec.dart';
+export 'src/props/sg_node.dart';
 export 'src/buttons/sg_button.dart';
 export 'src/form/sg_form.dart';
 export 'src/form/sg_rules.dart';

@@ -9,6 +9,7 @@ import 'package:flutter/services.dart';
 import '../../generated/enums.g.dart';
 import '../../generated/sg_card.g.dart';
 import '../../i18n/i18n.dart';
+import '../../props/sg_node.dart';
 import '../../theme_access.dart';
 import 'containers_support.dart';
 
@@ -110,8 +111,10 @@ class SgCard extends StatefulWidget implements SgCardProps {
   final bool defaultOpen;
   @override
   final SgCardPosition? defaultPosition;
+
+  /// `String` ou `Widget` (React: `ReactNode`).
   @override
-  final Widget? description;
+  final Object? description;
   @override
   final bool disabled;
   @override
@@ -146,8 +149,10 @@ class SgCard extends StatefulWidget implements SgCardProps {
   final bool? open;
   @override
   final SgCardSize size;
+
+  /// `String` ou `Widget` (React: `ReactNode`).
   @override
-  final Widget? title;
+  final Object? title;
   @override
   final bool toggleOnHeaderClick;
   @override
@@ -401,7 +406,7 @@ class _SgCardState extends State<SgCard> {
                             fontWeight: FontWeight.w500,
                             color: p.foreground,
                           ),
-                          child: w.title!,
+                          child: sgNode(w.title)!,
                         ),
                       if (w.description != null)
                         Padding(
@@ -411,7 +416,7 @@ class _SgCardState extends State<SgCard> {
                               fontSize: m.desc,
                               color: p.mutedForeground,
                             ),
-                            child: w.description!,
+                            child: sgNode(w.description)!,
                           ),
                         ),
                     ],

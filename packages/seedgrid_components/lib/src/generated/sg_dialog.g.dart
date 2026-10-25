@@ -57,10 +57,10 @@ abstract interface class SgDialogProps {
   bool? get showTopAccent;
   /// Escala do container modal. Padrão: `md`.
   SgDialogSize? get size;
-  /// Subtitulo complementar do dialog.
-  Widget? get subtitle;
-  /// Titulo principal do dialog.
-  Widget? get title;
+  /// Subtitulo complementar do dialog. Aceita `String` ou `Widget` (React: `ReactNode`).
+  Object? get subtitle;
+  /// Titulo principal do dialog. Aceita `String` ou `Widget` (React: `ReactNode`).
+  Object? get title;
   Widget? get trailing;
   /// Padrão: `160`.
   num? get transitionMs;
@@ -285,7 +285,7 @@ const List<SgPropSpec> sgDialogPropSpecs = <SgPropSpec>[
   SgPropSpec(
     name: 'subtitle',
     reactName: 'subtitle',
-    type: 'Widget?',
+    type: 'Object?',
     tsType: 'React.ReactNode',
     required: false,
     description: 'Subtitulo complementar do dialog.',
@@ -293,7 +293,7 @@ const List<SgPropSpec> sgDialogPropSpecs = <SgPropSpec>[
   SgPropSpec(
     name: 'title',
     reactName: 'title',
-    type: 'Widget?',
+    type: 'Object?',
     tsType: 'React.ReactNode',
     required: false,
     description: 'Titulo principal do dialog.',

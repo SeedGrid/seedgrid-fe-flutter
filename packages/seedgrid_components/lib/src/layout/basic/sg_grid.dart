@@ -401,8 +401,13 @@ class RenderSgGrid extends RenderBox
         }
         if (_align == SgGridAlign.stretch) {
           // item estica ate a altura da celula
+          // Altura fixa (gridAutoRows): tight. Linhas automaticas: so `minHeight` (o mesmo maxHeight
+          // ilimitado da medicao). Tight faria do item um limite de relayout: se o conteudo crescer depois
+          // (mensagem de erro de um campo, por exemplo) o grid nao seria remedido e o filho estouraria.
           k.layout(
-            BoxConstraints.tightFor(width: w, height: cellH),
+            _rowHeight != null
+                ? BoxConstraints.tightFor(width: w, height: cellH)
+                : BoxConstraints(minWidth: w, maxWidth: w, minHeight: cellH),
             parentUsesSize: true,
           );
         }

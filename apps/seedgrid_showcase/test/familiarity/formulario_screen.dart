@@ -75,13 +75,19 @@ class _FormularioScreenState extends State<FormularioScreen> {
                       label: 'CEP',
                       required: true,
                     ),
-                    // <div className="sm:col-span-2"> -> SgPanel(span: 2) estourou a altura (ver relatorio); sem o wrapper:
-                    SgInputPassword(
-                      id: 'password',
-                      name: 'password',
-                      control: form,
-                      label: 'Senha',
-                      required: true,
+                    // <div className="sm:col-span-2">
+                    SgPanel(
+                      span: 2,
+                      borderStyle: SgPanelBorderStyle.none,
+                      children: [
+                        SgInputPassword(
+                          id: 'password',
+                          name: 'password',
+                          control: form,
+                          label: 'Senha',
+                          required: true,
+                        ),
+                      ],
                     ),
                     SgInputCurrency(
                       id: 'demo-basic',
@@ -97,7 +103,7 @@ class _FormularioScreenState extends State<FormularioScreen> {
                 type: SgButtonType.submit,
                 size: SgSize.sm,
                 appearance: SgAppearance.outline,
-                child: const Text('Enviar'),
+                child: 'Enviar',
               ),
               Text('Valores: ${jsonEncode(form.getValues())}'),
               if (submitted != null) Text('Enviado: ${jsonEncode(submitted)}'),

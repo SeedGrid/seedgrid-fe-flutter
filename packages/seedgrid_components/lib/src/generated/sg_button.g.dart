@@ -19,8 +19,8 @@ abstract interface class SgButtonProps {
   /// Padrão: `none`.
   SgElevation? get elevation;
   bool? get iconOnly;
-  /// Conteudo textual principal do botao.
-  Widget? get label;
+  /// Conteudo textual principal do botao. Aceita `String` ou `Widget` (React: `ReactNode`).
+  Object? get label;
   /// Icone exibido antes do label.
   Widget? get leftIcon;
   /// Exibe spinner e bloqueia interacao enquanto a acao esta em progresso. Padrão: `false`.
@@ -72,7 +72,7 @@ const List<SgPropSpec> sgButtonPropSpecs = <SgPropSpec>[
   SgPropSpec(
     name: 'label',
     reactName: 'label',
-    type: 'Widget?',
+    type: 'Object?',
     tsType: 'React.ReactNode',
     required: false,
     description: 'Conteudo textual principal do botao.',

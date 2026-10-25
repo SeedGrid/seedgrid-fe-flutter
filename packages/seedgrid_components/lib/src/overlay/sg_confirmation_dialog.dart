@@ -9,6 +9,7 @@ import '../commons/commons_colors.dart' show tokenChain;
 import '../generated/enums.g.dart';
 import '../generated/sg_confirmation_dialog.g.dart';
 import '../i18n/i18n.dart';
+import '../props/sg_node.dart';
 import '../theme_access.dart';
 import 'sg_dialog.dart';
 
@@ -24,7 +25,10 @@ class SgConfirmationDialogButtonConfig {
     this.onClick,
   });
 
-  final Widget? label;
+  /// `String` ou `Widget`.
+  final Object? label;
+
+  /// `Widget` (ex.: `Icon(Icons.delete)`).
   final Widget? icon;
   final SgSeverity? severity;
   final SgAppearance? appearance;
@@ -84,10 +88,14 @@ class SgConfirmationDialog extends StatefulWidget
   final ValueChanged<bool>? onOpenChange;
   @override
   final VoidCallback? onClose;
+
+  /// `String` ou `Widget` (React: `ReactNode`).
   @override
-  final Widget? title;
+  final Object? title;
+
+  /// `String` ou `Widget` (React: `ReactNode`).
   @override
-  final Widget? message;
+  final Object? message;
 
   /// `null` usa o icone padrao da severidade (info, warning, danger); sem icone para as demais.
   @override
@@ -118,8 +126,10 @@ class SgConfirmationDialog extends StatefulWidget
   final bool closeable;
   @override
   final SgDialogSize size;
+
+  /// `String` ou `Widget` (React: `ReactNode`).
   @override
-  final Widget? subtitle;
+  final Object? subtitle;
   @override
   final Widget? leading;
   @override
@@ -233,9 +243,9 @@ class _SgConfirmationDialogState extends State<SgConfirmationDialog> {
     final confirm = w.confirmButton;
 
     final cancelLabel =
-        cancel?.label ?? Text(t(i18n, 'components.actions.cancel'));
+        sgNode(cancel?.label) ?? Text(t(i18n, 'components.actions.cancel'));
     final confirmLabel =
-        confirm?.label ?? Text(t(i18n, 'components.actions.confirm'));
+        sgNode(confirm?.label) ?? Text(t(i18n, 'components.actions.confirm'));
     final resolvedIcon = w.icon ?? _defaultSeverityIcon(w.severity);
 
     // No React o outline do SgButton usa `bg` como cor do texto: mantem o texto visivel.
@@ -254,7 +264,7 @@ class _SgConfirmationDialogState extends State<SgConfirmationDialog> {
 
     final message = DefaultTextStyle.merge(
       style: TextStyle(fontSize: 14, color: mutedFg),
-      child: w.message ?? const SizedBox.shrink(),
+      child: sgNode(w.message) ?? const SizedBox.shrink(),
     );
     final Widget body = resolvedIcon == null
         ? message

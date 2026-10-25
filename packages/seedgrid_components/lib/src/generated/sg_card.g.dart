@@ -34,8 +34,8 @@ abstract interface class SgCardProps {
   bool? get defaultOpen;
   /// Tipo TS: `SgCardPosition` (sem tradução exata; ver excecoes.json).
   Object? get defaultPosition;
-  /// Descricao ou subtitulo complementar do cabecalho.
-  Widget? get description;
+  /// Descricao ou subtitulo complementar do cabecalho. Aceita `String` ou `Widget` (React: `ReactNode`).
+  Object? get description;
   /// Padrão: `false`.
   bool? get disabled;
   /// Padrão: `false`.
@@ -55,8 +55,8 @@ abstract interface class SgCardProps {
   bool? get open;
   /// Escala geral de espacos e dimensoes do card. Padrão: `md`.
   SgCardSize? get size;
-  /// Titulo principal do card.
-  Widget? get title;
+  /// Titulo principal do card. Aceita `String` ou `Widget` (React: `ReactNode`).
+  Object? get title;
   /// Padrão: `true`.
   bool? get toggleOnHeaderClick;
   Widget? get trailer;
@@ -179,7 +179,7 @@ const List<SgPropSpec> sgCardPropSpecs = <SgPropSpec>[
   SgPropSpec(
     name: 'description',
     reactName: 'description',
-    type: 'Widget?',
+    type: 'Object?',
     tsType: 'React.ReactNode',
     required: false,
     description: 'Descricao ou subtitulo complementar do cabecalho.',
@@ -287,7 +287,7 @@ const List<SgPropSpec> sgCardPropSpecs = <SgPropSpec>[
   SgPropSpec(
     name: 'title',
     reactName: 'title',
-    type: 'Widget?',
+    type: 'Object?',
     tsType: 'React.ReactNode',
     required: false,
     description: 'Titulo principal do card.',

@@ -12,6 +12,7 @@ import '../commons/commons_colors.dart' show tokenChain;
 import '../generated/enums.g.dart';
 import '../generated/sg_dialog.g.dart';
 import '../i18n/i18n.dart';
+import '../props/sg_node.dart';
 import '../theme_access.dart';
 import 'overlay_support.dart';
 
@@ -58,10 +59,14 @@ class SgDialog extends StatefulWidget implements SgDialogProps {
   final ValueChanged<bool>? onOpenChange;
   @override
   final bool defaultOpen;
+
+  /// `String` ou `Widget` (React: `ReactNode`).
   @override
-  final Widget? title;
+  final Object? title;
+
+  /// `String` ou `Widget` (React: `ReactNode`).
   @override
-  final Widget? subtitle;
+  final Object? subtitle;
   @override
   final Widget? leading;
   @override
@@ -287,8 +292,7 @@ class _SgDialogState extends State<SgDialog>
   }
 
   String _a11yLabel(BuildContext context) {
-    final t = widget.title;
-    final fromTitle = (t is Text) ? t.data : null;
+    final fromTitle = sgNodeText(widget.title);
     return widget.ariaLabel ??
         fromTitle ??
         t_(context, 'components.dialog.ariaLabel');
@@ -349,14 +353,14 @@ class _SgDialogState extends State<SgDialog>
                       fontWeight: FontWeight.w600,
                       height: 1.5,
                     ),
-                    child: w.title!,
+                    child: sgNode(w.title)!,
                   ),
                 if (w.subtitle != null)
                   Padding(
                     padding: const EdgeInsets.only(top: 4),
                     child: DefaultTextStyle.merge(
                       style: TextStyle(fontSize: 14, color: mutedFg),
-                      child: w.subtitle!,
+                      child: sgNode(w.subtitle)!,
                     ),
                   ),
               ],

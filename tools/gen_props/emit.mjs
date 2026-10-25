@@ -26,6 +26,17 @@ const OMIT = new Map([
   ["key", "React-only: Key do widget"],
 ]);
 
+// Props que no React sao `ReactNode` mas sao so texto na pratica (title="x", label="x"): o React aceita string
+// ou JSX, entao o contrato Dart e `Object?` (String ou Widget) e o widget converte com `sgNode`
+// (lib/src/props/sg_node.dart). Demais ReactNode seguem `Widget`. Para ampliar: acrescente aqui, mude o
+// campo do widget para `Object?` e use `sgNode(...)` ao renderizar.
+const TEXT_OR_WIDGET = new Map([
+  ["SgButton", ["label"]],
+  ["SgCard", ["title", "description"]],
+  ["SgConfirmationDialog", ["title", "message", "subtitle"]],
+  ["SgDialog", ["title", "subtitle"]],
+]);
+
 const snake = (s) => s.replace(/([a-z0-9])([A-Z])/g, "$1_$2").replace(/([A-Z]+)([A-Z][a-z])/g, "$1_$2").toLowerCase();
 const lowerCamel = (s) => s.charAt(0).toLowerCase() + s.slice(1);
 const upperCamel = (s) => s.charAt(0).toUpperCase() + s.slice(1);
@@ -93,7 +104,10 @@ function dartType(comp, p) {
   if (t === "string") return { dart: "String" };
   if (t === "number") return { dart: "num" };
   if (t === "boolean") return { dart: "bool" };
-  if (/^(React\.)?(ReactNode|ReactElement|JSX\.Element)$/.test(t)) return { dart: "Widget" };
+  if (/^(React\.)?(ReactNode|ReactElement|JSX\.Element)$/.test(t)) {
+    if (TEXT_OR_WIDGET.get(comp)?.includes(p.name)) return { dart: "Object", textOrWidget: true };
+    return { dart: "Widget" };
+  }
   if (p.fn) {
     exceptions.tipoGenerico.push({ componente: comp, prop: p.name, motivo: "funcao", ts: t });
     return { dart: "Function", generic: true };
@@ -156,7 +170,8 @@ for (const comp of compNames) {
     const desc = docLine(p.description ?? p.doc ?? "");
     const def = p.default !== undefined ? ` Padrão: \`${docLine(String(p.default))}\`.` : "";
     const gen = ty.generic ? ` Tipo TS: \`${docLine(stripOpt(p.ts))}\` (sem tradução exata; ver excecoes.json).` : "";
-    const docText = [desc, def.trim(), note, gen.trim()].filter(Boolean).join(" ");
+    const tw = ty.textOrWidget ? "Aceita `String` ou `Widget` (React: `ReactNode`)." : "";
+    const docText = [desc, def.trim(), note, tw, gen.trim()].filter(Boolean).join(" ");
     lines.push(`${docText ? `  /// ${docText}\n` : ""}  ${dartT} get ${name};`);
     specs.push(`  SgPropSpec(\n    name: '${esc(name)}',\n    reactName: '${esc(p.name)}',\n    type: '${esc(dartT)}',\n    tsType: '${esc(stripOpt(p.ts))}',\n    required: ${!p.optional},${p.default !== undefined ? `\n    defaultValue: '${esc(String(p.default))}',` : ""}${p.description || p.doc ? `\n    description: '${esc(p.description ?? p.doc)}',` : ""}${p.enum ? `\n    values: <String>[${p.enum.map((v) => `'${esc(v)}'`).join(", ")}],` : ""}${ty.generic ? "\n    exact: false," : ""}\n  )`);
   }
@@ -169,7 +184,8 @@ for (const comp of compNames) {
   fs.writeFileSync(path.join(outDir, snake(comp) + ".g.dart"), body);
   barrel.push(snake(comp) + ".g.dart");
 }
-fs.writeFileSync(path.join(outDir, "enums.g.dart"), header + [...emittedEnums].sort().map((n) => enumSrc(n, enumDefs.get(n))).join("\n"));
+const enumRule = "// Qual enum usar: alias TS compartilhado entre componentes (Severity, Appearance, Size, Elevation...) vira\n// enum compartilhado (SgSeverity, SgAppearance, SgSize, SgElevation); uniao inline de um componente vira\n// Sg<Componente><Prop> (SgInputTextElevation, SgDatatableColumnAlign). Em caso de duvida: o tipo do campo\n// no <Comp>Props gerado diz qual enum o componente espera.\n\n";
+fs.writeFileSync(path.join(outDir, "enums.g.dart"), header + enumRule + [...emittedEnums].sort().map((n) => enumSrc(n, enumDefs.get(n))).join("\n"));
 barrel.unshift("enums.g.dart");
 const registry = header + "import '../props/sg_prop_spec.dart';\n" + compNames.map((n) => `import '${snake(n)}.g.dart';`).join("\n") + "\n\n/// Props de todos os componentes, por nome do widget (showcase e playground).\nconst Map<String, List<SgPropSpec>> sgPropSpecs = <String, List<SgPropSpec>>{\n" + compNames.map((n) => `  '${n}': ${lowerCamel(n)}PropSpecs,`).join("\n") + "\n};\n";
 fs.writeFileSync(path.join(outDir, "registry.g.dart"), registry);
