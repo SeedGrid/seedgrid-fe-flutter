@@ -14,7 +14,7 @@ componentes React usar estes com facilidade. Não é pixel a pixel nem reuso de 
 |---|---|---|
 | `packages/seedgrid_theme` | tokens, escala de cor por hex, claro/escuro, `SgTheme` (porte de `@seedgrid/fe-theme`) | Onda 0 pronta |
 | `packages/seedgrid_commons` | máscaras, validadores, CEP, CNPJ, cliente HTTP (porte de `masks.ts`, `validators.ts`, `@seedgrid/fe-commons`) | Onda 0 pronta |
-| `packages/seedgrid_components` | contratos de props gerados, i18n, widgets: 89 de 89 componentes portados (24 completos, 65 parciais; ver `docs/PARIDADE.md`) | Ondas 0 a 6 prontas |
+| `packages/seedgrid_components` | contratos de props gerados, i18n, widgets: 89 de 89 componentes portados (27 completos, 62 parciais; ver `docs/PARIDADE.md`) | Ondas 0 a 6 prontas |
 | `apps/seedgrid_showcase` | showcase (cabeçalho fixo, âncoras, exemplos, playground, referência de props) | esqueleto pronto |
 
 Versão dos pacotes = versão do `@seedgrid/fe-components` (hoje 2026.7.1).
