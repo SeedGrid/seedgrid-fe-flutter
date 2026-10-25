@@ -182,25 +182,9 @@ class SgMultiSelect extends StatefulWidget implements SgMultiSelectProps {
   State<SgMultiSelect> createState() => _SgMultiSelectState();
 }
 
-/// Formulario so para exibir o resumo no SgInputText: ignora as regras que o SgInputText registra
-/// (a validacao do campo e a PROPRIA do SgInputText, como no React, que nao liga o campo a formulario).
-class _DisplayForm extends SgFormController {
-  _DisplayForm() : super(defaultValues: const {'resumo': ''});
-
-  @override
-  void registerField(
-    String name, {
-    SgRules? rules,
-    Object? initialValue,
-    SgFieldValidator? validator,
-  }) => super.registerField(name, initialValue: initialValue);
-}
-
 class _SgMultiSelectState extends State<SgMultiSelect>
     with SgMultiFormBinding<SgMultiSelect> {
   final SgMultiSelectController _ms = SgMultiSelectController();
-  // Exibe o resumo no SgInputText: ele le o texto de um formulario interno (nao mexe no do usuario).
-  final SgFormController _display = _DisplayForm();
   late final FocusNode _focus = FocusNode(
     debugLabel: 'multi-select-campo',
     onKeyEvent: (_, e) => sgMultiSelectTriggerKey(_ms, e),
@@ -232,7 +216,6 @@ class _SgMultiSelectState extends State<SgMultiSelect>
   void dispose() {
     disposeBinding();
     _ms.dispose();
-    _display.dispose();
     _focus.dispose();
     super.dispose();
   }
@@ -284,13 +267,6 @@ class _SgMultiSelectState extends State<SgMultiSelect>
     );
 
     final text = _displayedValue(i18n);
-    if (_display.getValue('resumo') != text) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        if (mounted && _display.getValue('resumo') != text) {
-          _display.setValue('resumo', text);
-        }
-      });
-    }
 
     final canClear = w.clearable && _ms.selectedLabels.isNotEmpty && !disabled;
     final icons = Row(
@@ -342,8 +318,7 @@ class _SgMultiSelectState extends State<SgMultiSelect>
       },
       child: SgInputText(
         id: w.id,
-        name: 'resumo',
-        control: _display,
+        value: text,
         focusNode: _focus,
         readOnly: true,
         clearButton: false,

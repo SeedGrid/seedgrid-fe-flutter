@@ -203,11 +203,6 @@ class SgCombobox<T> extends StatefulWidget implements SgComboboxProps {
 }
 
 class _SgComboboxState<T> extends State<SgCombobox<T>> {
-  static const _field = 't';
-
-  late final SgFormController _text = SgFormController(
-    defaultValues: {_field: ''},
-  );
   final FocusNode _focus = FocusNode();
   final FocusNode _buttonFocus = FocusNode(
     canRequestFocus: false,
@@ -303,7 +298,6 @@ class _SgComboboxState<T> extends State<SgCombobox<T>> {
     _focus.removeListener(_onFocusChange);
     _focus.dispose();
     _buttonFocus.dispose();
-    _text.dispose();
     super.dispose();
   }
 
@@ -545,14 +539,6 @@ class _SgComboboxState<T> extends State<SgCombobox<T>> {
     final sg = sgThemeOf(context);
     final w = widget;
     final displayed = _displayed;
-    // O texto do campo e o rotulo escolhido; sincroniza depois do quadro (nao se notifica durante o build).
-    if (_text.getValue(_field) != displayed) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        if (mounted && _text.getValue(_field) != _displayed) {
-          _text.setValue(_field, _displayed);
-        }
-      });
-    }
     final outerError = _bound ? _outer!.errorOf(w.name!)?.message : null;
     final items = [for (final e in _entries) e.item];
 
@@ -598,8 +584,7 @@ class _SgComboboxState<T> extends State<SgCombobox<T>> {
         onKeyEvent: _onKey,
         child: SgInputText(
           id: w.id,
-          name: _field,
-          control: _text,
+          value: displayed,
           focusNode: _focus,
           readOnly: true,
           clearButton: false,

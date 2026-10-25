@@ -42,19 +42,19 @@
   },
   "SgInputTextArea": {
     "status": "parcial",
-    "motivo": "inputProps/textareaProps ignorados; commonPasswordList sem efeito (igual ao React); usa SgFormController interno quando nao ha name+control; goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50); validadores do componente rodam no submit (decisao do dono)"
+    "motivo": "inputProps/textareaProps ignorados; commonPasswordList sem efeito (igual ao React); goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50); validadores do componente rodam no submit (decisao do dono)"
   },
   "SgInputTextSearch": {
     "status": "parcial",
-    "motivo": "inputProps/textareaProps ignorados; commonPasswordList sem efeito (igual ao React); usa SgFormController interno quando nao ha name+control; goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50); validadores do componente rodam no submit (decisao do dono)"
+    "motivo": "inputProps/textareaProps ignorados; commonPasswordList sem efeito (igual ao React); goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50); validadores do componente rodam no submit (decisao do dono)"
   },
   "SgInputEmail": {
     "status": "parcial",
-    "motivo": "inputProps/textareaProps ignorados; commonPasswordList sem efeito (igual ao React); usa SgFormController interno quando nao ha name+control; goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50); validadores do componente rodam no submit (decisao do dono)"
+    "motivo": "inputProps/textareaProps ignorados; commonPasswordList sem efeito (igual ao React); goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50); validadores do componente rodam no submit (decisao do dono)"
   },
   "SgInputPassword": {
     "status": "parcial",
-    "motivo": "inputProps/textareaProps ignorados; commonPasswordList sem efeito (igual ao React); usa SgFormController interno quando nao ha name+control; goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50); validadores do componente rodam no submit (decisao do dono)"
+    "motivo": "inputProps/textareaProps ignorados; commonPasswordList sem efeito (igual ao React); goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50); validadores do componente rodam no submit (decisao do dono)"
   },
   "SgInputDate": {
     "status": "parcial",
@@ -138,19 +138,19 @@
   },
   "SgAutocomplete": {
     "status": "parcial",
-    "motivo": "renderValue cobre o texto com um conteiner opaco (o React usa texto transparente); itemTooltip vira Tooltip por toque longo, nao por hover; inputProps ignorado (ADR 50); o texto ainda passa por um SgFormController interno (o SgInputText ja aceita value controlado; migracao pendente); sem autocorrect/spellCheck; nao testado em IME nem em dispositivo; golden com fonte de teste"
+    "motivo": "renderValue cobre o texto com um conteiner opaco (o React usa texto transparente); itemTooltip vira Tooltip por toque longo, nao por hover; inputProps ignorado (ADR 50); sem autocorrect/spellCheck; nao testado em IME nem em dispositivo; golden com fonte de teste"
   },
   "SgCombobox": {
     "status": "parcial",
-    "motivo": "value nulo = nao controlado (Dart nao distingue null de indefinido); em tela estreita a lista e um painel de baixo (nao showModalBottomSheet, que tiraria o foco do campo); inputProps ignorado (ADR 50); o texto ainda passa por um SgFormController interno (o SgInputText ja aceita value controlado; migracao pendente); sem autocorrect/spellCheck; nao testado em IME nem em dispositivo; golden com fonte de teste"
+    "motivo": "value nulo = nao controlado (Dart nao distingue null de indefinido); em tela estreita a lista e um painel de baixo (nao showModalBottomSheet, que tiraria o foco do campo); inputProps ignorado (ADR 50); sem autocorrect/spellCheck; nao testado em IME nem em dispositivo; golden com fonte de teste"
   },
   "SgMultiSelect": {
     "status": "parcial",
-    "motivo": "o React nao foca o campo ao tocar e o Flutter foca; a lista ancorada se alinha ao SgInputText inteiro; onClear/maxLengthMessage/minLengthMessage aceitos sem efeito (igual ao React); superficie do dropdown compartilhada (SgDropdownHost); a lista de opcoes continua propria; inputProps ignorado (ADR 50); o texto ainda passa por um SgFormController interno (o SgInputText ja aceita value controlado; migracao pendente); sem autocorrect/spellCheck; nao testado em IME nem em dispositivo; golden com fonte de teste; onChange do usuario tambem dentro de formulario (decisao do dono)"
+    "motivo": "o React nao foca o campo ao tocar e o Flutter foca; a lista ancorada se alinha ao SgInputText inteiro; onClear/maxLengthMessage/minLengthMessage aceitos sem efeito (igual ao React); superficie do dropdown compartilhada (SgDropdownHost); a lista de opcoes continua propria; inputProps ignorado (ADR 50); sem autocorrect/spellCheck; nao testado em IME nem em dispositivo; golden com fonte de teste; onChange do usuario tambem dentro de formulario (decisao do dono)"
   },
   "SgMultiSelectChips": {
     "status": "parcial",
-    "motivo": "o item ativo da lista rola ate ficar visivel (o React nao faz); superficie do dropdown compartilhada (SgDropdownHost); a lista de opcoes continua propria; inputProps ignorado (ADR 50); o texto ainda passa por um SgFormController interno (o SgInputText ja aceita value controlado; migracao pendente); sem autocorrect/spellCheck; nao testado em IME nem em dispositivo; golden com fonte de teste; onChange do usuario tambem dentro de formulario (decisao do dono)"
+    "motivo": "o item ativo da lista rola ate ficar visivel (o React nao faz); superficie do dropdown compartilhada (SgDropdownHost); a lista de opcoes continua propria; inputProps ignorado (ADR 50); sem autocorrect/spellCheck; nao testado em IME nem em dispositivo; golden com fonte de teste; onChange do usuario tambem dentro de formulario (decisao do dono)"
   },
   "SgPickList": {
     "status": "parcial",

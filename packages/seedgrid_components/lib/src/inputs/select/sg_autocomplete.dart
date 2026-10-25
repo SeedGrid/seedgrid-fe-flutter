@@ -1,7 +1,6 @@
 // Porte de SgAutocomplete (React: src/inputs/SgAutocomplete.tsx). Mesmos nomes de prop, valores e defaults.
-// Compoe o SgInputText ja portado. O texto do campo e mantido por um SgFormController interno (o SgInputText
-// so aceita valor de fora por formulario); a ligacao do USUARIO ao formulario (`name` + `control`) e do
-// proprio Autocomplete, como o <Controller> do React.
+// Compoe o SgInputText ja portado, que recebe o texto pelo `value` controlado; a ligacao do USUARIO ao
+// formulario (`name` + `control`) e do proprio Autocomplete, como o <Controller> do React.
 // Lista: ancorada ao campo em tela larga; painel de baixo acima do teclado em tela estreita (< 600).
 import 'dart:async';
 
@@ -248,11 +247,6 @@ class SgAutocomplete<T> extends StatefulWidget implements SgAutocompleteProps {
 }
 
 class _SgAutocompleteState<T> extends State<SgAutocomplete<T>> {
-  static const _field = 't';
-
-  late final SgFormController _text = SgFormController(
-    defaultValues: {_field: widget.value ?? ''},
-  );
   final FocusNode _focus = FocusNode();
   final FocusNode _buttonFocus = FocusNode(
     canRequestFocus: false,
@@ -345,7 +339,6 @@ class _SgAutocompleteState<T> extends State<SgAutocomplete<T>> {
     _focus.removeListener(_onFocusChange);
     _focus.dispose();
     _buttonFocus.dispose();
-    _text.dispose();
     super.dispose();
   }
 
@@ -370,10 +363,7 @@ class _SgAutocompleteState<T> extends State<SgAutocomplete<T>> {
     }
   }
 
-  void _setInput(String s) {
-    _inputValue = s;
-    if (_text.getValue(_field) != s) _text.setValue(_field, s);
-  }
+  void _setInput(String s) => _inputValue = s;
 
   void _emit(String v) {
     _lastEmitted = v;
@@ -669,8 +659,7 @@ class _SgAutocompleteState<T> extends State<SgAutocomplete<T>> {
       onKeyEvent: _onKey,
       child: SgInputText(
         id: w.id,
-        name: _field,
-        control: _text,
+        value: _inputValue,
         focusNode: _focus,
         onChange: _handleInputChange,
         error: resolveFieldError(w.error, outerError, _internalError),
