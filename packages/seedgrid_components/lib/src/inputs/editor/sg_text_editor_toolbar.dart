@@ -101,10 +101,12 @@ class SgTextEditorToolbar extends StatelessWidget {
                   height: size,
                   constraints: BoxConstraints(minWidth: size),
                   padding: const EdgeInsets.symmetric(horizontal: 8),
-                  alignment: Alignment.center,
-                  child: DefaultTextStyle.merge(
-                    style: TextStyle(fontSize: 14, color: theme.text),
-                    child: child,
+                  child: Center(
+                    widthFactor: 1,
+                    child: DefaultTextStyle.merge(
+                      style: TextStyle(fontSize: 14, color: theme.text),
+                      child: child,
+                    ),
                   ),
                 ),
               ),

@@ -152,6 +152,115 @@ final List<_Case> _cases = [
     (id, n, c) =>
         SgStepperInput(id: id, name: n, control: c, minValue: 0, maxValue: 100),
   ),
+  _Case(
+    'SgCombobox',
+    2,
+    (id, n, c) => SgCombobox<SgAutocompleteItem>(
+      id: id,
+      name: n,
+      control: c,
+      labelText: 'SgCombobox',
+      source: _frutas,
+    ),
+  ),
+  _Case(
+    'SgAutocomplete',
+    3,
+    (id, n, c) => SgAutocomplete<SgAutocompleteItem>(
+      id: id,
+      name: n,
+      control: c,
+      labelText: 'SgAutocomplete',
+      source: (q) => _frutas
+          .where((f) => f.label.toLowerCase().contains(q.toLowerCase()))
+          .toList(),
+    ),
+  ),
+  _Case(
+    'SgMultiSelect',
+    ['a', 'c'],
+    (id, n, c) =>
+        SgMultiSelect(id: id, name: n, control: c, options: _opcoesMulti),
+  ),
+  _Case(
+    'SgMultiSelectChips',
+    ['a', 'c'],
+    (id, n, c) =>
+        SgMultiSelectChips(id: id, name: n, control: c, options: _opcoesMulti),
+  ),
+  _Case(
+    'SgRadioGroup',
+    'b',
+    (id, n, c) => SgRadioGroup(
+      id: id,
+      name: n,
+      control: c,
+      source: const [
+        SgRadioGroupOption(label: 'Opção A', value: 'a'),
+        SgRadioGroupOption(label: 'Opção B', value: 'b'),
+        SgRadioGroupOption(label: 'Opção C', value: 'c'),
+      ],
+    ),
+  ),
+  _Case(
+    'SgCheckboxGroup',
+    ['a', 'c'],
+    (id, n, c) => SgCheckboxGroup(
+      id: id,
+      name: n,
+      control: c,
+      source: const [
+        SgCheckboxGroupOption(label: 'Opção A', value: 'a'),
+        SgCheckboxGroupOption(label: 'Opção B', value: 'b'),
+        SgCheckboxGroupOption(label: 'Opção C', value: 'c'),
+      ],
+    ),
+  ),
+  _Case(
+    'SgToggleSwitch',
+    true,
+    (id, n, c) => SgToggleSwitch(id: id, name: n, control: c, label: 'Ativo'),
+  ),
+  _Case(
+    'SgSlider',
+    40,
+    (id, n, c) => SgSlider(
+      id: id,
+      name: n,
+      control: c,
+      minValue: 0,
+      maxValue: 100,
+      step: 5,
+    ),
+  ),
+  _Case('SgRating', 4, (id, n, c) => SgRating(id: id, name: n, control: c)),
+  _Case(
+    'SgInputOTP',
+    '123456',
+    (id, n, c) => SgInputOTP(id: id, name: n, control: c),
+  ),
+  _Case(
+    'SgPeriodSelector',
+    'THIS_YEAR',
+    (id, n, c) => SgPeriodSelector(id: id, name: n, control: c),
+  ),
+  _Case(
+    'SgTextEditor',
+    '<p>olá <strong>mundo</strong></p>',
+    (id, n, c) => SgTextEditor(id: id, name: n, control: c),
+  ),
+];
+
+const List<SgAutocompleteItem> _frutas = [
+  SgAutocompleteItem(id: 1, label: 'Maçã'),
+  SgAutocompleteItem(id: 2, label: 'Banana'),
+  SgAutocompleteItem(id: 3, label: 'Uva'),
+];
+
+const List<SgMultiSelectOption> _opcoesMulti = [
+  SgMultiSelectOption(label: 'Opção A', value: 'a'),
+  SgMultiSelectOption(label: 'Opção B', value: 'b'),
+  SgMultiSelectOption(label: 'Opção C', value: 'c'),
 ];
 
 class LabPage extends StatefulWidget {
