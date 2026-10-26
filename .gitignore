@@ -17,3 +17,6 @@ keys/
 # Sistema
 .DS_Store
 Thumbs.db
+
+# Saida de falhas de golden do flutter test
+**/failures/
