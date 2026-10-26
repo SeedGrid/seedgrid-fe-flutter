@@ -142,17 +142,27 @@ void main() {
                 as BoxDecoration)
             .color!;
     final before = primaryBg();
-    await revealInMenu(t, find.byKey(const ValueKey('tema-painel')));
-    await t.tap(find.byKey(const ValueKey('tema-painel')));
-    await settle(t);
-    await revealInMenu(t, find.byKey(const ValueKey('tema-cor-#DC2626')));
-    await t.tap(find.byKey(const ValueKey('tema-cor-#DC2626')));
+    await revealInMenu(t, find.byKey(const ValueKey('tema-cor-#EF4444')));
+    await t.tap(find.byKey(const ValueKey('tema-cor-#EF4444')));
     await settle(t);
     final red = SgTheme.fromInput(
-      defaultSeedTheme.copyWith(seed: '#DC2626'),
+      defaultSeedTheme.copyWith(seed: '#EF4444'),
       Brightness.light,
     );
     expect(primaryBg(), red.btnPrimaryBg);
     expect(primaryBg(), isNot(before));
+
+    // Cor livre: so aplica um #RRGGBB completo.
+    await revealInMenu(t, find.byKey(const ValueKey('tema-cor-livre')));
+    await t.enterText(find.byKey(const ValueKey('tema-cor-livre')), '#7C3A');
+    await settle(t);
+    expect(primaryBg(), red.btnPrimaryBg);
+    await t.enterText(find.byKey(const ValueKey('tema-cor-livre')), '#7c3aed');
+    await settle(t);
+    final purple = SgTheme.fromInput(
+      defaultSeedTheme.copyWith(seed: '#7C3AED'),
+      Brightness.light,
+    );
+    expect(primaryBg(), purple.btnPrimaryBg);
   });
 }
