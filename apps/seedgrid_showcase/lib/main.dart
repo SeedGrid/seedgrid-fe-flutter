@@ -6,6 +6,7 @@ import 'package:seedgrid_theme/seedgrid_theme.dart';
 
 import 'pages/pages.g.dart';
 import 'src/home_page.dart';
+import 'src/showcase_i18n.dart';
 import 'src/sg_showcase_page.dart';
 import 'src/showcase_menu.dart';
 import 'src/theme_panel.dart';
@@ -34,7 +35,8 @@ class ShowcaseApp extends StatelessWidget {
   Widget build(BuildContext context) => MaterialApp(
     title: 'SeedGrid Flutter',
     theme: ThemeData(useMaterial3: true),
-    builder: (context, child) => SeedThemeProvider(child: child!),
+    builder: (context, child) =>
+        ShowcaseI18nScope(child: SeedThemeProvider(child: child!)),
     home: ShowcaseHome(initialUri: initialUri ?? (kIsWeb ? Uri.base : Uri())),
   );
 }
@@ -87,7 +89,7 @@ class _ShowcaseHomeState extends State<ShowcaseHome> {
     final sg = useSgTheme(context);
     final toggle = IconButton(
       key: const ValueKey('alternar-tema'),
-      tooltip: 'Claro / escuro',
+      tooltip: context.tr('toggleTheme'),
       icon: Icon(
         sg.currentMode == Brightness.dark ? Icons.light_mode : Icons.dark_mode,
       ),
@@ -126,7 +128,10 @@ class _ShowcaseHomeState extends State<ShowcaseHome> {
     return Scaffold(
       appBar: wide
           ? null
-          : AppBar(title: Text(entry?.name ?? 'Início'), actions: [toggle]),
+          : AppBar(
+              title: Text(entry?.name ?? context.tr('home')),
+              actions: [toggle],
+            ),
       drawer: wide ? null : Drawer(child: SafeArea(child: menu)),
       body: Stack(
         fit: StackFit.expand,

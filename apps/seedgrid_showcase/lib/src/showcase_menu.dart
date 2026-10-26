@@ -4,18 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../pages/pages.g.dart';
 import 'catalog.g.dart';
-
-const Map<String, String> kCategoryLabels = {
-  'action': 'Ação',
-  'input': 'Entrada de dados',
-  'data': 'Dados',
-  'layout': 'Layout',
-  'navigation': 'Navegação',
-  'feedback': 'Feedback e exibição',
-  'gadget': 'Gadgets',
-  'provider': 'Providers',
-  'outros': 'Outros',
-};
+import 'showcase_i18n.dart';
 
 const List<String> kCategoryOrder = [
   'action',
@@ -87,12 +76,13 @@ class _ShowcaseMenuState extends State<ShowcaseMenu> {
     return ListView(
       key: const ValueKey('menu-lista'),
       children: [
+        const ShowcaseLanguagePicker(),
         Padding(
           padding: const EdgeInsets.fromLTRB(12, 12, 12, 4),
           child: TextField(
             key: const ValueKey('busca-componente'),
-            decoration: const InputDecoration(
-              hintText: 'Buscar componente',
+            decoration: InputDecoration(
+              hintText: context.tr('search'),
               prefixIcon: Icon(Icons.search, size: 18),
               isDense: true,
               border: OutlineInputBorder(),
@@ -103,22 +93,22 @@ class _ShowcaseMenuState extends State<ShowcaseMenu> {
         ListTile(
           key: const ValueKey('nav-inicio'),
           leading: const Icon(Icons.home_outlined),
-          title: const Text('Início'),
+          title: Text(context.tr('home')),
           selected: widget.selected == null,
           onTap: () => widget.onSelect(null),
         ),
         if (groups.isEmpty)
-          const Padding(
-            key: ValueKey('menu-sem-resultado'),
-            padding: EdgeInsets.all(16),
-            child: Text('Nenhum componente encontrado.'),
+          Padding(
+            key: const ValueKey('menu-sem-resultado'),
+            padding: const EdgeInsets.all(16),
+            child: Text(context.tr('noResults')),
           ),
         for (final cat in kCategoryOrder)
           if (groups[cat] != null)
             ExpansionTile(
               key: ValueKey('grupo-$cat-${_query.isEmpty}'),
               initiallyExpanded: true,
-              title: Text('${kCategoryLabels[cat]} (${groups[cat]!.length})'),
+              title: Text('${context.tr('cat.$cat')} (${groups[cat]!.length})'),
               children: [
                 for (final item in groups[cat]!)
                   ListTile(
@@ -130,7 +120,7 @@ class _ShowcaseMenuState extends State<ShowcaseMenu> {
                     trailing: item.status == 'portado'
                         ? null
                         : Text(
-                            item.status,
+                            context.tr('status.${item.status}'),
                             style: theme.textTheme.labelSmall?.copyWith(
                               color: theme.disabledColor,
                             ),

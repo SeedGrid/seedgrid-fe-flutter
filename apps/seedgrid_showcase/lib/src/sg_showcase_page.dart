@@ -10,6 +10,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show FilteringTextInputFormatter;
 import 'package:seedgrid_components/seedgrid_components.dart';
+import 'showcase_i18n.dart';
 
 /// Respiro minimo, em pixels, entre a borda superior da area de conteudo e o titulo da secao.
 const double kAnchorGap = 12;
@@ -181,18 +182,18 @@ class SgShowcasePageState extends State<SgShowcasePage> {
       for (var i = 0; i < widget.examples.length; i++)
         _AnchorLink(
           key: ValueKey('link-exemplo-${i + 1}'),
-          label: 'Exemplo ${i + 1}',
+          label: '${context.tr('example')} ${i + 1}',
           onTap: () => _go('exemplo-${i + 1}'),
         ),
       if (widget.playground != null)
         _AnchorLink(
           key: const ValueKey('link-playground'),
-          label: 'Playground',
+          label: context.tr('playground'),
           onTap: () => _go('playground'),
         ),
       _AnchorLink(
         key: const ValueKey('link-props-reference'),
-        label: 'Props Reference',
+        label: context.tr('propsReference'),
         onTap: () => _go('props-reference'),
       ),
     ];
@@ -251,7 +252,7 @@ class SgShowcasePageState extends State<SgShowcasePage> {
                     _SectionTitle(
                       key: _playgroundKey,
                       id: 'playground',
-                      text: 'Playground',
+                      text: context.tr('playground'),
                     ),
                     widget.playground!,
                     const SizedBox(height: 32),
@@ -259,7 +260,7 @@ class SgShowcasePageState extends State<SgShowcasePage> {
                   _SectionTitle(
                     key: _propsKey,
                     id: 'props-reference',
-                    text: 'Referência de Props',
+                    text: context.tr('propsTitle'),
                   ),
                   SgPropsTable(specs: widget.propSpecs),
                   // Espaco final para a ultima secao poder chegar ao topo.
@@ -328,7 +329,7 @@ class _ExampleSection extends StatelessWidget {
           _SectionTitle(
             key: anchorKey,
             id: id,
-            text: 'Exemplo $number — ${example.title}',
+            text: '${context.tr('example')} $number — ${example.title}',
           ),
           if (example.description != null)
             Padding(
@@ -388,11 +389,11 @@ class SgPropsTable extends StatelessWidget {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: DataTable(
-        columns: const [
-          DataColumn(label: Text('Prop')),
-          DataColumn(label: Text('Tipo')),
-          DataColumn(label: Text('Padrão')),
-          DataColumn(label: Text('Descrição')),
+        columns: [
+          DataColumn(label: Text(context.tr('colProp'))),
+          DataColumn(label: Text(context.tr('colType'))),
+          DataColumn(label: Text(context.tr('colDefault'))),
+          DataColumn(label: Text(context.tr('colDescription'))),
         ],
         rows: [
           for (final s in specs)
@@ -470,7 +471,7 @@ class _SgPlaygroundState extends State<SgPlayground> {
           Padding(
             padding: const EdgeInsets.only(top: 8),
             child: Text(
-              'Não editáveis aqui: ${skipped.join(', ')}',
+              '${context.tr('notEditable')}: ${skipped.join(', ')}',
               style: Theme.of(context).textTheme.bodySmall,
             ),
           ),
@@ -505,7 +506,10 @@ class _SgPlaygroundState extends State<SgPlayground> {
         initialValue: _values[s.name] as String?,
         decoration: InputDecoration(labelText: s.name, isDense: true),
         items: [
-          const DropdownMenuItem<String?>(value: null, child: Text('(padrão)')),
+          DropdownMenuItem<String?>(
+            value: null,
+            child: Text(context.tr('default')),
+          ),
           for (final v in s.values!)
             DropdownMenuItem<String?>(value: v, child: Text(v)),
         ],

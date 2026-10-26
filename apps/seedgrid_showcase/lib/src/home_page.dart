@@ -2,7 +2,8 @@
 import 'package:flutter/material.dart';
 
 import 'catalog.g.dart';
-import 'showcase_menu.dart' show kCategoryLabels, kCategoryOrder;
+import 'showcase_i18n.dart';
+import 'showcase_menu.dart' show kCategoryOrder;
 
 class ShowcaseHomePage extends StatelessWidget {
   const ShowcaseHomePage({super.key});
@@ -25,17 +26,12 @@ class ShowcaseHomePage extends StatelessWidget {
       key: const ValueKey('home-resumo'),
       padding: const EdgeInsets.all(24),
       children: [
-        Text('SeedGrid para Flutter', style: theme.textTheme.headlineMedium),
+        Text(context.tr('homeTitle'), style: theme.textTheme.headlineMedium),
         const SizedBox(height: 8),
-        const Text(
-          'Porte dos componentes SeedGrid do React: mesmos nomes de widget, de props e de valores, '
-          'para quem já conhece os componentes React usar estes com facilidade. '
-          'Escolha um componente no menu; cada página tem exemplos com o código igual ao renderizado, '
-          'um playground de props e a referência de props.',
-        ),
+        Text(context.tr('homeIntro')),
         const SizedBox(height: 24),
         Text(
-          'Andamento do porte (React $kCatalogReactVersion)',
+          context.tr('progress', {'version': kCatalogReactVersion}),
           style: theme.textTheme.titleLarge,
         ),
         const SizedBox(height: 12),
@@ -45,12 +41,24 @@ class ShowcaseHomePage extends StatelessWidget {
           children: [
             _Stat(
               keyName: 'total',
-              label: 'Componentes no React',
+              label: context.tr('statTotal'),
               value: total,
             ),
-            _Stat(keyName: 'portado', label: 'Portados', value: portado),
-            _Stat(keyName: 'parcial', label: 'Parciais', value: parcial),
-            _Stat(keyName: 'pendente', label: 'Pendentes', value: pendente),
+            _Stat(
+              keyName: 'portado',
+              label: context.tr('statPortado'),
+              value: portado,
+            ),
+            _Stat(
+              keyName: 'parcial',
+              label: context.tr('statParcial'),
+              value: parcial,
+            ),
+            _Stat(
+              keyName: 'pendente',
+              label: context.tr('statPendente'),
+              value: pendente,
+            ),
           ],
         ),
         const SizedBox(height: 24),
@@ -59,17 +67,13 @@ class ShowcaseHomePage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(bottom: 12),
               child: _CategoryBar(
-                label: kCategoryLabels[cat]!,
+                label: context.tr('cat.$cat'),
                 done: count('portado', cat) + count('parcial', cat),
                 total: kCatalog.where((e) => e.category == cat).length,
               ),
             ),
         const SizedBox(height: 12),
-        Text(
-          '"Parcial" = portado, com diferença documentada em docs/PARIDADE.md. '
-          '"Pendente" = ainda sem widget.',
-          style: theme.textTheme.bodySmall,
-        ),
+        Text(context.tr('statusNote'), style: theme.textTheme.bodySmall),
       ],
     );
   }
@@ -123,7 +127,7 @@ class _CategoryBar extends StatelessWidget {
   Widget build(BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      Text('$label: $done de $total'),
+      Text('$label: $done ${context.tr('of')} $total'),
       const SizedBox(height: 4),
       LinearProgressIndicator(value: total == 0 ? 0 : done / total),
     ],

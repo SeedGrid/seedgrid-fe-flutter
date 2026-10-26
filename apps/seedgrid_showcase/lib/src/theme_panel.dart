@@ -2,12 +2,15 @@
 import 'package:flutter/material.dart';
 import 'package:seedgrid_theme/seedgrid_theme.dart';
 
-const List<({String label, String hex})> kSeedPresets = [
-  (label: 'Azul', hex: '#2563EB'),
-  (label: 'Verde', hex: '#16A34A'),
-  (label: 'Vermelho', hex: '#DC2626'),
-  (label: 'Roxo', hex: '#9333EA'),
-  (label: 'Laranja', hex: '#EA580C'),
+import 'showcase_i18n.dart';
+
+/// Cores semente; o nome vem do i18n (`color.<hex>`).
+const List<String> kSeedPresets = [
+  '#2563EB',
+  '#16A34A',
+  '#DC2626',
+  '#9333EA',
+  '#EA580C',
 ];
 
 class ShowcaseThemePanel extends StatelessWidget {
@@ -20,7 +23,7 @@ class ShowcaseThemePanel extends StatelessWidget {
     final radius = (sg.currentTheme.radius ?? 12).toDouble();
     return ExpansionTile(
       key: const ValueKey('tema-painel'),
-      title: const Text('Tema'),
+      title: Text(context.tr('theme')),
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -28,12 +31,12 @@ class ShowcaseThemePanel extends StatelessWidget {
             spacing: 8,
             runSpacing: 8,
             children: [
-              for (final p in kSeedPresets)
+              for (final hex in kSeedPresets)
                 ChoiceChip(
-                  key: ValueKey('tema-cor-${p.hex}'),
-                  label: Text(p.label),
-                  selected: seed == p.hex,
-                  onSelected: (_) => sg.setTheme(seed: p.hex),
+                  key: ValueKey('tema-cor-$hex'),
+                  label: Text(context.tr('color.$hex')),
+                  selected: seed == hex,
+                  onSelected: (_) => sg.setTheme(seed: hex),
                 ),
             ],
           ),
@@ -42,7 +45,7 @@ class ShowcaseThemePanel extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Row(
             children: [
-              const Text('Raio'),
+              Text(context.tr('radius')),
               Expanded(
                 child: Slider(
                   key: const ValueKey('tema-raio'),
