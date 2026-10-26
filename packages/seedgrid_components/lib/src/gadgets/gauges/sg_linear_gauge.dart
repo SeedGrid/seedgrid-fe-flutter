@@ -453,7 +453,12 @@ class _SgLinearGaugeState extends State<SgLinearGauge>
       container: true,
       label: label,
       value: gaugeLabelString(_current),
-      child: body,
+      // Em tela estreita o medidor encolhe para caber em vez de passar da largura do pai.
+      child: FittedBox(
+        fit: BoxFit.scaleDown,
+        alignment: Alignment.centerLeft,
+        child: body,
+      ),
     );
   }
 }

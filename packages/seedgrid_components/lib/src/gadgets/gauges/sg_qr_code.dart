@@ -271,22 +271,27 @@ class _SgQRCodeState extends State<SgQRCode>
     return Semantics(
       image: true,
       label: t(i18n, 'components.gadgets.qrcode.title'),
-      child: SizedBox(
-        width: side,
-        height: side,
-        child: Stack(
-          alignment: Alignment.center,
-          clipBehavior: Clip.none,
-          children: [
-            Positioned.fill(child: code),
-            // o logo pode passar do QR (position:absolute no React): sem restricao de tamanho.
-            if (logo != null)
-              OverflowBox(
-                maxWidth: double.infinity,
-                maxHeight: double.infinity,
-                child: logo,
-              ),
-          ],
+      // Align afrouxa a restricao apertada do pai (ex.: coluna esticada): sem isso o QR ignora `size`.
+      child: Align(
+        widthFactor: 1,
+        heightFactor: 1,
+        child: SizedBox(
+          width: side,
+          height: side,
+          child: Stack(
+            alignment: Alignment.center,
+            clipBehavior: Clip.none,
+            children: [
+              Positioned.fill(child: code),
+              // o logo pode passar do QR (position:absolute no React): sem restricao de tamanho.
+              if (logo != null)
+                OverflowBox(
+                  maxWidth: double.infinity,
+                  maxHeight: double.infinity,
+                  child: logo,
+                ),
+            ],
+          ),
         ),
       ),
     );
