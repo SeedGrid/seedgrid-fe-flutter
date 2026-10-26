@@ -138,7 +138,16 @@ Column(
       severity: _sev,
       size: SgDialogSize.sm,
       title: Text('Severidade ${_sev.value}'),
-      child: const Text('Tamanho sm (largura máxima de 384).'),
+      child: Text(
+        'Faixa do topo: ${switch (_sev) {
+          SgDialogSeverity.primary => '--primary',
+          SgDialogSeverity.secondary || SgDialogSeverity.info || SgDialogSeverity.help => '--secondary',
+          SgDialogSeverity.success => '--tertiary',
+          SgDialogSeverity.warning => '--accent',
+          SgDialogSeverity.danger => '--destructive',
+          SgDialogSeverity.plain => '--border',
+        }}. Tamanho sm (largura máxima de 384).',
+      ),
     ),
   ],
 )

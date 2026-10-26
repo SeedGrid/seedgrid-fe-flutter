@@ -59,7 +59,7 @@ class _SgDialogPageState extends State<SgDialogPage> {
       ShowcaseExample(
         title: 'Severidades e tamanhos',
         description:
-            'A severidade pinta o acento do topo; o tamanho limita a largura.',
+            'A severidade só pinta a faixa de 4px no topo (secondary, info e help usam o mesmo token, como no React); o tamanho limita a largura.',
         preview:
             // #region sg-dialog-severidade
             Column(
@@ -87,7 +87,16 @@ class _SgDialogPageState extends State<SgDialogPage> {
                   severity: _sev,
                   size: SgDialogSize.sm,
                   title: Text('Severidade ${_sev.value}'),
-                  child: const Text('Tamanho sm (largura máxima de 384).'),
+                  child: Text(
+                    'Faixa do topo: ${switch (_sev) {
+                      SgDialogSeverity.primary => '--primary',
+                      SgDialogSeverity.secondary || SgDialogSeverity.info || SgDialogSeverity.help => '--secondary',
+                      SgDialogSeverity.success => '--tertiary',
+                      SgDialogSeverity.warning => '--accent',
+                      SgDialogSeverity.danger => '--destructive',
+                      SgDialogSeverity.plain => '--border',
+                    }}. Tamanho sm (largura máxima de 384).',
+                  ),
                 ),
               ],
             ),

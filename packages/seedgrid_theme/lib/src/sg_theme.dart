@@ -58,6 +58,7 @@ class SgTheme extends ThemeExtension<SgTheme> {
   /// `ThemeData` Material coerente com o tema SeedGrid (cores principais), com [SgTheme] registrado
   /// como extensao. Os widgets SeedGrid leem os tokens da extensao.
   ThemeData toThemeData([ThemeData? base]) {
+    final dark = mode == Brightness.dark;
     final scheme = ColorScheme(
       brightness: mode,
       primary: color('--sg-primary-500'),
@@ -70,6 +71,13 @@ class SgTheme extends ThemeExtension<SgTheme> {
       onSurface: color('--sg-text'),
       // Os papeis que nao tem token proprio ficariam no padrao do tema claro do Material (texto preto e
       // superficies claras no escuro): chips, caixas de codigo e textos de apoio ficavam ilegiveis.
+      // Containers (chip selecionado, barra de navegacao...) na familia do primario, nao num tom proprio do Material.
+      primaryContainer: color(dark ? '--sg-primary-900' : '--sg-primary-100'),
+      onPrimaryContainer: color(dark ? '--sg-primary-100' : '--sg-primary-900'),
+      secondaryContainer: color(dark ? '--sg-primary-900' : '--sg-primary-100'),
+      onSecondaryContainer: color(
+        dark ? '--sg-primary-100' : '--sg-primary-900',
+      ),
       onSurfaceVariant: color('--sg-muted'),
       outline: color('--sg-border'),
       outlineVariant: color('--sg-border'),
