@@ -16,6 +16,7 @@ class SgInputTextAreaPage extends StatefulWidget {
 class _SgInputTextAreaPageState extends State<SgInputTextAreaPage> {
   final SgFormController _form = SgFormController();
   String _enviado = '';
+  String _evento = 'nenhum';
 
   @override
   void dispose() {
@@ -115,6 +116,198 @@ class _SgInputTextAreaPageState extends State<SgInputTextAreaPage> {
             ),
         // #endregion
         code: SgInputTextAreaPageSnippets.sgInputTextAreaValidacao,
+      ),
+      ShowcaseExample(
+        title: 'Mínimo de palavras',
+        description:
+            'Valida a quantidade mínima de palavras ao sair do campo (minNumberOfWords).',
+        preview:
+            // #region sg-input-text-area-palavras
+            const SgInputTextArea(
+              id: 'palavras',
+              labelText: 'Resumo',
+              minNumberOfWords: 5,
+              minNumberOfWordsMessage: 'Escreva pelo menos 5 palavras',
+            ),
+        // #endregion
+        code: SgInputTextAreaPageSnippets.sgInputTextAreaPalavras,
+      ),
+      ShowcaseExample(
+        title: 'Mínimo de linhas',
+        description:
+            'minLines exige um número mínimo de linhas (quebras de linha) no texto.',
+        preview:
+            // #region sg-input-text-area-linhas-minimas
+            const SgInputTextArea(
+              id: 'minlinhas',
+              labelText: 'Endereço em 2 linhas',
+              minLines: 2,
+              minLinesMessage: 'Use pelo menos 2 linhas',
+            ),
+        // #endregion
+        code: SgInputTextAreaPageSnippets.sgInputTextAreaLinhasMinimas,
+      ),
+      ShowcaseExample(
+        title: 'Ícone de prefixo',
+        description:
+            'prefixIcon recebe qualquer widget e fica à esquerda do texto.',
+        preview:
+            // #region sg-input-text-area-icone
+            const SgInputTextArea(
+              id: 'icone',
+              labelText: 'Comentário',
+              prefixIcon: Icon(Icons.chat_bubble_outline, size: 18),
+            ),
+        // #endregion
+        code: SgInputTextAreaPageSnippets.sgInputTextAreaIcone,
+      ),
+      ShowcaseExample(
+        title: 'Variações visuais',
+        description:
+            'filled alterna o fundo preenchido; withBorder remove a borda.',
+        preview:
+            // #region sg-input-text-area-variacoes
+            const Column(
+              children: [
+                SgInputTextArea(
+                  id: 'preenchido',
+                  labelText: 'Preenchido',
+                  filled: true,
+                ),
+                SizedBox(height: 12),
+                SgInputTextArea(
+                  id: 'vazado',
+                  labelText: 'Sem preenchimento',
+                  filled: false,
+                ),
+                SizedBox(height: 12),
+                SgInputTextArea(
+                  id: 'semborda',
+                  labelText: 'Sem borda',
+                  withBorder: false,
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgInputTextAreaPageSnippets.sgInputTextAreaVariacoes,
+      ),
+      ShowcaseExample(
+        title: 'Sem botão de limpar',
+        description:
+            'clearButton: false esconde o botão de limpar (por padrão ele aparece com texto).',
+        preview:
+            // #region sg-input-text-area-sem-limpar
+            const SgInputTextArea(
+              id: 'semlimpar',
+              labelText: 'Sem limpar',
+              initialValue: 'texto fixo',
+              clearButton: false,
+            ),
+        // #endregion
+        code: SgInputTextAreaPageSnippets.sgInputTextAreaSemLimpar,
+      ),
+      ShowcaseExample(
+        title: 'Largura e borda',
+        description:
+            'width aceita número (px) ou porcentagem; borderRadius arredonda os cantos.',
+        preview:
+            // #region sg-input-text-area-largura
+            const SgInputTextArea(
+              id: 'largura',
+              labelText: 'Arredondado',
+              width: 240,
+              borderRadius: 20,
+            ),
+        // #endregion
+        code: SgInputTextAreaPageSnippets.sgInputTextAreaLargura,
+      ),
+      ShowcaseExample(
+        title: 'Desabilitado e somente leitura',
+        description:
+            'disabled bloqueia o campo; readOnly deixa copiar, mas não editar.',
+        preview:
+            // #region sg-input-text-area-estados
+            const Column(
+              children: [
+                SgInputTextArea(
+                  id: 'desabilitado',
+                  labelText: 'Desabilitado',
+                  initialValue: 'não edita',
+                  disabled: true,
+                ),
+                SizedBox(height: 12),
+                SgInputTextArea(
+                  id: 'leitura',
+                  labelText: 'Somente leitura',
+                  initialValue: 'só leitura',
+                  readOnly: true,
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgInputTextAreaPageSnippets.sgInputTextAreaEstados,
+      ),
+      ShowcaseExample(
+        title: 'Erro externo',
+        description:
+            'error mostra uma mensagem vinda de fora (por exemplo, da resposta do servidor).',
+        preview:
+            // #region sg-input-text-area-erro-externo
+            const SgInputTextArea(
+              id: 'erro',
+              labelText: 'Observação',
+              initialValue: 'texto recusado',
+              error: 'Conteúdo não permitido',
+            ),
+        // #endregion
+        code: SgInputTextAreaPageSnippets.sgInputTextAreaErroExterno,
+      ),
+      ShowcaseExample(
+        title: 'Eventos',
+        description:
+            'onChange, onEnter (foco), onExit (saída) e onClear informam o que o usuário fez.',
+        preview:
+            // #region sg-input-text-area-eventos
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SgInputTextArea(
+                  id: 'eventos',
+                  labelText: 'Digite aqui',
+                  onChange: (v) => setState(() => _evento = 'onChange: $v'),
+                  onEnter: () => setState(() => _evento = 'onEnter'),
+                  onExit: () => setState(() => _evento = 'onExit'),
+                  onClear: () => setState(() => _evento = 'onClear'),
+                ),
+                const SizedBox(height: 8),
+                Text('Último evento: $_evento'),
+              ],
+            ),
+        // #endregion
+        code: SgInputTextAreaPageSnippets.sgInputTextAreaEventos,
+      ),
+      ShowcaseExample(
+        title: 'Elevação',
+        description: 'elevation aplica sombra ao campo: none, sm, md ou lg.',
+        preview:
+            // #region sg-input-text-area-elevacao
+            const Column(
+              children: [
+                SgInputTextArea(
+                  id: 'sm',
+                  labelText: 'Sombra pequena',
+                  elevation: SgInputTextAreaElevation.sm,
+                ),
+                SizedBox(height: 12),
+                SgInputTextArea(
+                  id: 'lg',
+                  labelText: 'Sombra grande',
+                  elevation: SgInputTextAreaElevation.lg,
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgInputTextAreaPageSnippets.sgInputTextAreaElevacao,
       ),
       ShowcaseExample(
         title: 'Dentro de um formulário',
