@@ -17,6 +17,8 @@ class _SgExpandablePanelPageState extends State<SgExpandablePanelPage> {
   bool _lateral = true;
   bool _inferior = false;
   bool _overlay = false;
+  bool _semFundo = false;
+  bool _acessivel = false;
   final bool _redimensionavel = true;
   double _tamanho = 260;
 
@@ -115,6 +117,78 @@ class _SgExpandablePanelPageState extends State<SgExpandablePanelPage> {
             ),
         // #endregion
         code: SgExpandablePanelPageSnippets.sgExpandableOverlay,
+      ),
+      ShowcaseExample(
+        title: 'Sem fundo escurecido e sem animação',
+        description:
+            'showBackdrop: false tira o fundo escurecido; animation com type none abre sem transição; closeOnOutsideClick: false só fecha pelo botão.',
+        preview:
+            // #region sg-expandable-semfundo
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SgButton(
+                  label: const Text('Abrir painel'),
+                  onClick: () => setState(() => _semFundo = true),
+                ),
+                SgExpandablePanel(
+                  mode: SgExpandablePanelMode.overlay,
+                  expandTo: SgExpandablePanelExpandTo.left,
+                  open: _semFundo,
+                  onOpenChange: (v) => setState(() => _semFundo = v),
+                  showBackdrop: false,
+                  closeOnOutsideClick: false,
+                  animation: const SgExpandablePanelAnimation(
+                    type: SgExpandablePanelAnimationType.none,
+                  ),
+                  header: const Text('Sem fundo'),
+                  footer: SgButton(
+                    label: const Text('Fechar'),
+                    onClick: () => setState(() => _semFundo = false),
+                  ),
+                  child: const Text('Só o botão fecha este painel.'),
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgExpandablePanelPageSnippets.sgExpandableSemfundo,
+      ),
+      ShowcaseExample(
+        title: 'Acessibilidade e fade',
+        description:
+            'ariaLabel nomeia o painel para leitores de tela; trapFocus prende o foco dentro; closeOnEsc: false ignora a tecla Esc; animation com type fade troca o deslize por esmaecer.',
+        preview:
+            // #region sg-expandable-acessibilidade
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SgButton(
+                  label: const Text('Abrir painel acessível'),
+                  onClick: () => setState(() => _acessivel = true),
+                ),
+                SgExpandablePanel(
+                  mode: SgExpandablePanelMode.overlay,
+                  expandTo: SgExpandablePanelExpandTo.right,
+                  open: _acessivel,
+                  onOpenChange: (v) => setState(() => _acessivel = v),
+                  ariaLabel: 'Filtros avançados',
+                  trapFocus: true,
+                  closeOnEsc: false,
+                  animation: const SgExpandablePanelAnimation(
+                    type: SgExpandablePanelAnimationType.fade,
+                    durationMs: 300,
+                  ),
+                  header: const Text('Filtros'),
+                  footer: SgButton(
+                    label: const Text('Fechar'),
+                    onClick: () => setState(() => _acessivel = false),
+                  ),
+                  child: const Text('Esc não fecha; use o botão.'),
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgExpandablePanelPageSnippets.sgExpandableAcessibilidade,
       ),
       ShowcaseExample(
         title: 'Redimensionável',

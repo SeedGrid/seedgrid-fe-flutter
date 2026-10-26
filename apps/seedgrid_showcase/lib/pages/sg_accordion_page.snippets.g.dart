@@ -42,6 +42,25 @@ SgAccordion(
 )
 ''';
 
+  /// Region `sg-accordion-cores`.
+  static const String sgAccordionCores = r'''
+const SgAccordion(
+  headerBackgroundColor: '#E0F2FE',
+  animationDuration: 600,
+  items: [
+    SgAccordionItem(
+      title: Text('Primeiro'),
+      content: Text('Abre devagar (600 ms).'),
+    ),
+    SgAccordionItem(
+      title: Text('Segundo'),
+      content: Text('Cabeçalho com fundo azul claro.'),
+      headerBackgroundColor: '#FEF3C7',
+    ),
+  ],
+)
+''';
+
   /// Region `sg-accordion-horizontal`.
   static const String sgAccordionHorizontal = r'''
 const SgAccordion(

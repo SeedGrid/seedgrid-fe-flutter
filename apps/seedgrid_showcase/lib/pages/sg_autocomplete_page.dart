@@ -166,6 +166,25 @@ class _SgAutocompletePageState extends State<SgAutocompletePage> {
         code: SgAutocompletePageSnippets.sgAutocompleteLivre,
       ),
       ShowcaseExample(
+        title: 'Limite de resultados e raio da borda',
+        description:
+            'maxResult limita quantos itens a lista mostra; borderRadius arredonda o campo.',
+        preview:
+            // #region sg-autocomplete-limite
+            SgAutocomplete<String>(
+              id: 'limite',
+              labelText: 'Máximo de 2 resultados',
+              maxResult: 2,
+              borderRadius: 20,
+              source: (q) =>
+                  const ['Rio Branco', 'Rio Claro', 'Rio Grande', 'Rio Verde']
+                      .where((p) => p.toLowerCase().contains(q.toLowerCase()))
+                      .toList(),
+            ),
+        // #endregion
+        code: SgAutocompletePageSnippets.sgAutocompleteLimite,
+      ),
+      ShowcaseExample(
         title: 'Dentro de um formulário',
         description: 'name + control + required, como no react-hook-form.',
         preview:

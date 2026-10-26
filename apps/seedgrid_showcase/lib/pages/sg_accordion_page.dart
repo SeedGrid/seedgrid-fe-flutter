@@ -87,6 +87,30 @@ class _SgAccordionPageState extends State<SgAccordionPage> {
         code: SgAccordionPageSnippets.sgAccordionMultiplo,
       ),
       ShowcaseExample(
+        title: 'Cor do cabeçalho e animação',
+        description:
+            'headerBackgroundColor pinta os cabeçalhos; animationDuration (ms) ajusta a velocidade de abrir e fechar.',
+        preview:
+            // #region sg-accordion-cores
+            const SgAccordion(
+              headerBackgroundColor: '#E0F2FE',
+              animationDuration: 600,
+              items: [
+                SgAccordionItem(
+                  title: Text('Primeiro'),
+                  content: Text('Abre devagar (600 ms).'),
+                ),
+                SgAccordionItem(
+                  title: Text('Segundo'),
+                  content: Text('Cabeçalho com fundo azul claro.'),
+                  headerBackgroundColor: '#FEF3C7',
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgAccordionPageSnippets.sgAccordionCores,
+      ),
+      ShowcaseExample(
         title: 'Controlado',
         description:
             'O estado vive na página: ativos = $_ativos, último toque = $_ultimo.',

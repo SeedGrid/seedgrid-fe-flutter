@@ -122,6 +122,20 @@ Column(
 )
 ''';
 
+  /// Region `sg-autocomplete-limite`.
+  static const String sgAutocompleteLimite = r'''
+SgAutocomplete<String>(
+  id: 'limite',
+  labelText: 'Máximo de 2 resultados',
+  maxResult: 2,
+  borderRadius: 20,
+  source: (q) =>
+      const ['Rio Branco', 'Rio Claro', 'Rio Grande', 'Rio Verde']
+          .where((p) => p.toLowerCase().contains(q.toLowerCase()))
+          .toList(),
+)
+''';
+
   /// Region `sg-autocomplete-livre`.
   static const String sgAutocompleteLivre = r'''
 Column(

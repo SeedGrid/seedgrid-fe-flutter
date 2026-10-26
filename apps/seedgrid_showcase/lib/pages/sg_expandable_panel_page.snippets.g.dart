@@ -3,6 +3,38 @@
 // Cada constante e o trecho entre `// #region` e `// #endregion` de sg_expandable_panel_page.dart: o mesmo codigo que a pagina renderiza.
 
 abstract final class SgExpandablePanelPageSnippets {
+  /// Region `sg-expandable-acessibilidade`.
+  static const String sgExpandableAcessibilidade = r'''
+Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    SgButton(
+      label: const Text('Abrir painel acessível'),
+      onClick: () => setState(() => _acessivel = true),
+    ),
+    SgExpandablePanel(
+      mode: SgExpandablePanelMode.overlay,
+      expandTo: SgExpandablePanelExpandTo.right,
+      open: _acessivel,
+      onOpenChange: (v) => setState(() => _acessivel = v),
+      ariaLabel: 'Filtros avançados',
+      trapFocus: true,
+      closeOnEsc: false,
+      animation: const SgExpandablePanelAnimation(
+        type: SgExpandablePanelAnimationType.fade,
+        durationMs: 300,
+      ),
+      header: const Text('Filtros'),
+      footer: SgButton(
+        label: const Text('Fechar'),
+        onClick: () => setState(() => _acessivel = false),
+      ),
+      child: const Text('Esc não fecha; use o botão.'),
+    ),
+  ],
+)
+''';
+
   /// Region `sg-expandable-inferior`.
   static const String sgExpandableInferior = r'''
 Column(
@@ -104,6 +136,36 @@ SizedBox(
       ),
     ],
   ),
+)
+''';
+
+  /// Region `sg-expandable-semfundo`.
+  static const String sgExpandableSemfundo = r'''
+Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    SgButton(
+      label: const Text('Abrir painel'),
+      onClick: () => setState(() => _semFundo = true),
+    ),
+    SgExpandablePanel(
+      mode: SgExpandablePanelMode.overlay,
+      expandTo: SgExpandablePanelExpandTo.left,
+      open: _semFundo,
+      onOpenChange: (v) => setState(() => _semFundo = v),
+      showBackdrop: false,
+      closeOnOutsideClick: false,
+      animation: const SgExpandablePanelAnimation(
+        type: SgExpandablePanelAnimationType.none,
+      ),
+      header: const Text('Sem fundo'),
+      footer: SgButton(
+        label: const Text('Fechar'),
+        onClick: () => setState(() => _semFundo = false),
+      ),
+      child: const Text('Só o botão fecha este painel.'),
+    ),
+  ],
 )
 ''';
 }

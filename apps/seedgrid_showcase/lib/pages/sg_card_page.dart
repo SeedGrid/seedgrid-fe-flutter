@@ -69,6 +69,23 @@ class _SgCardPageState extends State<SgCardPage> {
         code: SgCardPageSnippets.sgCardCabecalho,
       ),
       ShowcaseExample(
+        title: 'Cores personalizadas',
+        description:
+            'bgColor, bgColorTitle e bgColorFooter aceitam cores CSS (#hex, rgb()) para o corpo, o título e o rodapé.',
+        preview:
+            // #region sg-card-cores
+            const SgCard(
+              title: Text('Cartão colorido'),
+              footer: Text('Rodapé destacado'),
+              bgColor: '#F0FDF4',
+              bgColorTitle: '#BBF7D0',
+              bgColorFooter: '#DCFCE7',
+              child: Text('Corpo com fundo próprio.'),
+            ),
+        // #endregion
+        code: SgCardPageSnippets.sgCardCores,
+      ),
+      ShowcaseExample(
         title: 'Recolhível',
         description:
             'Clique no cabeçalho ou no botão. O estado fica aqui em cima (modo controlado).',
