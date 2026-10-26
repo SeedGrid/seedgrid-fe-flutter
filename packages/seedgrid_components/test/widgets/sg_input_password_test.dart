@@ -315,9 +315,9 @@ void main() {
       'segmentos e cores por pontuacao (8 criterios ativos menos as falhas)',
       (t) async {
         await t.pumpWidget(host(const SgInputPassword(id: 'p')));
-        // DEFEITO HERDADO DO REACT: sem nenhuma falha (campo vazio) a pontuacao e 8 - 0, entao a barra nasce
-        // cheia e verde. O porte reproduz.
-        expect(filled(t, 'p'), 5);
+        // DIVERGE DO REACT (decisao do dono): campo vazio = barra neutra. No React a pontuacao era 8 - 0 e a
+        // barra nascia toda verde mesmo sem senha.
+        expect(filled(t, 'p'), 0);
         await t.enterText(
           field('p'),
           'a',
@@ -332,6 +332,9 @@ void main() {
         await t.pump();
         expect(filled(t, 'p'), 5);
         expect(bar(t, 'p').first, const Color(0xFF22C55E));
+        await t.enterText(field('p'), ''); // apagou tudo: volta a barra neutra
+        await t.pump();
+        expect(filled(t, 'p'), 0);
       },
     );
 

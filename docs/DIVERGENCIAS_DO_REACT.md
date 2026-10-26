@@ -79,3 +79,14 @@ contrato `registerField(validator)` / `unregisterValidator`).
 
 **Riscos conhecidos:** com `validateWithViaCep` / `validateWithPublicaCnpj` ligados, o envio dispara a consulta de rede
 (memorizada pelo último valor) se o campo ainda não foi validado. Validadores assíncronos são aguardados em sequência.
+
+### 2026-10-26 - 3. Barra de força da senha fica neutra com o campo vazio
+
+**React:** a pontuação era "requisitos ativos - não atendidos"; com o campo vazio nenhum requisito é violado de fato, então
+a barra já nascia com 5 segmentos verdes (parecia "senha forte" sem digitar nada).
+
+**Flutter e React (alterado nos dois):** `SgInputPassword` só pontua depois que há texto; vazio (inicial, apagado ou
+`reset`) = 0 segmentos acesos. Com texto, a regra é a de antes (1 vermelho, 2 laranja, 3 âmbar, 4 amarelo, 5 verde).
+
+**Testes:** `test/widgets/sg_input_password_test.dart` ('segmentos e cores por pontuacao') e, no React,
+`tests/inputs-dom.test.mjs`.

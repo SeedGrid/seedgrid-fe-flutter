@@ -272,6 +272,8 @@ class _SgInputPasswordState extends State<SgInputPassword> {
   String? _internalError;
   bool _interacted = false;
   List<String> _unmet = const [];
+  // Barra de forca: sem texto nao ha o que medir (antes ficava toda verde com o campo vazio). Diverge do React.
+  late bool _hasText = (widget.value ?? widget.initialValue ?? '').isNotEmpty;
   Set<String>? _commonSet;
 
   String get _name => widget.name ?? 'senha';
@@ -367,6 +369,7 @@ class _SgInputPasswordState extends State<SgInputPassword> {
   }
 
   void _validate(String value) {
+    _hasText = value.isNotEmpty;
     final (message, unmet) = _evaluate(value);
     _publish(message, unmet);
   }
@@ -416,6 +419,7 @@ class _SgInputPasswordState extends State<SgInputPassword> {
     if (reset) {
       if (_internalError != null || _unmet.isNotEmpty) {
         setState(() {
+          _hasText = false;
           _internalError = null;
           _unmet = const [];
         });
@@ -495,7 +499,7 @@ class _SgInputPasswordState extends State<SgInputPassword> {
       w.prohibitsSequentialAscCharacters,
       w.prohibitsSequentialDescCharacters,
     ].where((v) => v).length;
-    if (active == 0) return 0;
+    if (active == 0 || !_hasText) return 0;
     return active - _unmet.length;
   }
 
