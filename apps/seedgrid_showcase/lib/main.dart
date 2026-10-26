@@ -130,7 +130,22 @@ class _ShowcaseHomeState extends State<ShowcaseHome> {
           ? null
           : AppBar(
               title: Text(entry?.name ?? context.tr('home')),
-              actions: [toggle],
+              actions: [
+                IconButton(
+                  key: const ValueKey('abrir-tema'),
+                  tooltip: context.tr('theme'),
+                  icon: const Icon(Icons.palette_outlined),
+                  onPressed: () => showModalBottomSheet<void>(
+                    context: context,
+                    isScrollControlled: true,
+                    showDragHandle: true,
+                    builder: (_) => const SafeArea(
+                      child: SingleChildScrollView(child: ShowcaseThemePanel()),
+                    ),
+                  ),
+                ),
+                toggle,
+              ],
             ),
       drawer: wide ? null : Drawer(child: SafeArea(child: menu)),
       body: Stack(

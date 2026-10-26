@@ -165,4 +165,21 @@ void main() {
     );
     expect(primaryBg(), purple.btnPrimaryBg);
   });
+
+  testWidgets('no celular, o botao de paleta da barra abre o painel de tema', (
+    t,
+  ) async {
+    setSize(t, kSizes.values.first);
+    await t.pumpWidget(const ShowcaseApp(initialUri: null));
+    await settle(t);
+    await t.tap(find.byKey(const ValueKey('abrir-tema')));
+    await settle(t);
+    expect(find.byKey(const ValueKey('tema-cor-livre')), findsOneWidget);
+    await t.tap(find.byKey(const ValueKey('tema-cor-#EF4444')));
+    await settle(t);
+    final chip = t.widget<ChoiceChip>(
+      find.byKey(const ValueKey('tema-cor-#EF4444')),
+    );
+    expect(chip.selected, isTrue);
+  });
 }
