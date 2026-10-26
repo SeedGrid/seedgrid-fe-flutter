@@ -44,20 +44,25 @@ SgAccordion(
 
   /// Region `sg-accordion-cores`.
   static const String sgAccordionCores = r'''
-const SgAccordion(
-  headerBackgroundColor: '#E0F2FE',
-  animationDuration: 600,
-  items: [
-    SgAccordionItem(
-      title: Text('Primeiro'),
-      content: Text('Abre devagar (600 ms).'),
-    ),
-    SgAccordionItem(
-      title: Text('Segundo'),
-      content: Text('Cabeçalho com fundo azul claro.'),
-      headerBackgroundColor: '#FEF3C7',
-    ),
-  ],
+Builder(
+  builder: (context) {
+    final escuro = Theme.of(context).brightness == Brightness.dark;
+    return SgAccordion(
+      headerBackgroundColor: escuro ? '#164E63' : '#E0F2FE',
+      animationDuration: 600,
+      items: [
+        const SgAccordionItem(
+          title: Text('Primeiro'),
+          content: Text('Abre devagar (600 ms).'),
+        ),
+        SgAccordionItem(
+          title: const Text('Segundo'),
+          content: const Text('Cabeçalho com outra cor.'),
+          headerBackgroundColor: escuro ? '#713F12' : '#FEF3C7',
+        ),
+      ],
+    );
+  },
 )
 ''';
 

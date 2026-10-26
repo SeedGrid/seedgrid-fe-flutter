@@ -49,13 +49,18 @@ SgCard(
 
   /// Region `sg-card-cores`.
   static const String sgCardCores = r'''
-const SgCard(
-  title: Text('Cartão colorido'),
-  footer: Text('Rodapé destacado'),
-  bgColor: '#F0FDF4',
-  bgColorTitle: '#BBF7D0',
-  bgColorFooter: '#DCFCE7',
-  child: Text('Corpo com fundo próprio.'),
+Builder(
+  builder: (context) {
+    final escuro = Theme.of(context).brightness == Brightness.dark;
+    return SgCard(
+      title: const Text('Cartão colorido'),
+      footer: const Text('Rodapé destacado'),
+      bgColor: escuro ? '#14532D' : '#F0FDF4',
+      bgColorTitle: escuro ? '#166534' : '#BBF7D0',
+      bgColorFooter: escuro ? '#15803D' : '#DCFCE7',
+      child: const Text('Corpo com fundo próprio.'),
+    );
+  },
 )
 ''';
 
