@@ -635,15 +635,23 @@ class _SgComboboxState<T> extends State<SgCombobox<T>> {
     );
 
     final showValue = w.renderValue != null && displayed.isNotEmpty;
+    final band = sgRenderValueBand(
+      labelPosition: w.labelPosition?.value,
+      hasLabel: (w.labelText ?? w.label) != null,
+      labelWidth: w.labelWidth,
+    );
     final field = Stack(
       children: [
         input,
         if (showValue)
-          Positioned.fill(
+          Positioned(
+            top: band.top,
+            left: band.left + 1,
+            right: 1,
+            height: band.height,
             child: IgnorePointer(
               child: Container(
                 key: const ValueKey('sg-combobox-render-value'),
-                margin: const EdgeInsets.symmetric(horizontal: 1),
                 color: _disabled
                     ? sg.inputDisabledBg
                     : ((w.filled ?? false) ? sg.mutedSurface : sg.inputBg),

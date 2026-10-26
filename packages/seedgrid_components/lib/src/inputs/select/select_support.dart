@@ -394,3 +394,26 @@ class SgSelectOverlay extends StatelessWidget {
     panel: _panel,
   );
 }
+
+/// Faixa do campo que o `renderValue` cobre. O rotulo flutuante fica sobre a borda de cima e o rotulo
+/// `top` fica acima do campo; cobrir o Stack inteiro (como antes) escondia o rotulo e o texto de ajuda.
+/// Medidas do campo denso do SgInputText: ~51 de altura, com o rotulo flutuante ocupando ~8 abaixo da borda.
+({double top, double left, double height}) sgRenderValueBand({
+  required String? labelPosition,
+  required bool hasLabel,
+  Object? labelWidth,
+}) {
+  const field = 33.0;
+  switch (labelPosition) {
+    case 'top':
+      return (top: (hasLabel ? 24.0 : 0) + 9, left: 0, height: field);
+    case 'left':
+      return (
+        top: 9,
+        left: hasLabel ? (labelWidth is num ? labelWidth.toDouble() : 120) : 0,
+        height: field,
+      );
+    default:
+      return (top: 9, left: 0, height: field);
+  }
+}

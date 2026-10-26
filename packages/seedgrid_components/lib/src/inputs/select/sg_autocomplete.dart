@@ -711,14 +711,23 @@ class _SgAutocompleteState<T> extends State<SgAutocomplete<T>> {
     );
 
     final showValue = w.renderValue != null && _selectedItem != null && !_open;
+    final band = sgRenderValueBand(
+      labelPosition: w.labelPosition?.value,
+      hasLabel: (w.labelText ?? w.label) != null,
+      labelWidth: w.labelWidth,
+    );
     final field = Stack(
       children: [
         input,
         if (showValue)
-          Positioned.fill(
+          Positioned(
+            top: band.top,
+            left: band.left + 1,
+            right: 1,
+            height: band.height,
             child: IgnorePointer(
               child: Padding(
-                padding: const EdgeInsets.only(left: 1, right: 1),
+                padding: EdgeInsets.zero,
                 child: Container(
                   key: const ValueKey('sg-autocomplete-render-value'),
                   color: (w.disabled ?? false)
