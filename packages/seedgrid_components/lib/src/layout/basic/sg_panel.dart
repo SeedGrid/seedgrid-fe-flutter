@@ -12,6 +12,22 @@ import '../../theme_access.dart';
 import 'dock_content.dart';
 import 'layout_units.dart';
 
+/// Interno: o docking ja dimensionou este painel (width/height em % do container); o painel nao repete a porcentagem.
+class SgPanelDocked extends InheritedWidget {
+  const SgPanelDocked({super.key, required this.panel, required super.child});
+
+  /// O painel que o docking dimensionou (filhos aninhados com width proprio nao sao afetados).
+  final SgPanel panel;
+
+  static bool isFor(BuildContext context, SgPanel panel) => identical(
+    context.dependOnInheritedWidgetOfExactType<SgPanelDocked>()?.panel,
+    panel,
+  );
+
+  @override
+  bool updateShouldNotify(SgPanelDocked old) => old.panel != panel;
+}
+
 class SgPanel extends StatelessWidget implements SgPanelProps {
   const SgPanel({
     super.key,
@@ -158,13 +174,14 @@ class SgPanel extends StatelessWidget implements SgPanelProps {
 
     Widget box = LayoutBuilder(
       builder: (context, c) {
-        final w = sgPercent(width) == null
+        final docked = SgPanelDocked.isFor(context, this);
+        final w = docked || sgPercent(width) == null
             ? null
             : sgSize(
                 '${sgPercent(width)}%',
                 c.hasBoundedWidth ? c.maxWidth : double.infinity,
               );
-        final h = sgPercent(height) == null
+        final h = docked || sgPercent(height) == null
             ? null
             : sgSize(
                 '${sgPercent(height)}%',

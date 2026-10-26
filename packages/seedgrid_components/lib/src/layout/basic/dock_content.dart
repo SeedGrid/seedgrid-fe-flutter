@@ -153,7 +153,7 @@ Widget sgDockContent({
           ),
           child: SizedBox(
             height: sgPercent(p.height) == null ? null : h,
-            child: p,
+            child: SgPanelDocked(panel: p, child: p),
           ),
         );
       }
@@ -165,7 +165,10 @@ Widget sgDockContent({
             : sgSize('${sgPercent(p.width)}%', basisW);
         return ConstrainedBox(
           constraints: BoxConstraints(minWidth: p.minWidthPx?.toDouble() ?? 0),
-          child: SizedBox(width: w, child: p),
+          child: SizedBox(
+            width: w,
+            child: SgPanelDocked(panel: p, child: p),
+          ),
         );
       }
 
