@@ -34,7 +34,7 @@ void main() {
   testWidgets('SgInputText: exemplo de formulario valida e envia', (t) async {
     setSize(t, kSizes.values.last);
     await t.pumpWidget(app(const SgInputTextPage()));
-    await tapLink(t, const ValueKey('link-exemplo-5'));
+    await tapLink(t, const ValueKey('link-exemplo-15'));
     await t.tap(find.text('Enviar'));
     await settle(t);
     expect(find.text('Informe o e-mail'), findsOneWidget);
