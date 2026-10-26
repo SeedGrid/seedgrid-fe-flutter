@@ -10,6 +10,7 @@ Widget _app(Widget child) => MaterialApp(
 );
 
 void main() {
+  matrixNarrow();
   testWidgets(
     'SgQRCode: coluna esticada nao deforma o QR (continua size x size)',
     (t) async {
@@ -65,3 +66,20 @@ void main() {
 }
 
 Object? tester(WidgetTester t) => t.takeException();
+
+void matrixNarrow() {
+  testWidgets('SgMatrixDigit: texto longo em pai estreito encolhe para caber', (
+    t,
+  ) async {
+    await t.pumpWidget(
+      _app(
+        const SizedBox(
+          width: 300,
+          child: SgMatrixDigit(value: 'Seed Grid 2026'),
+        ),
+      ),
+    );
+    expect(t.getSize(find.byType(SgMatrixDigit)).width, lessThanOrEqualTo(300));
+    expect(t.takeException(), isNull);
+  });
+}

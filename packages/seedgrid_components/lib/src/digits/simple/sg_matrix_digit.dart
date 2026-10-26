@@ -72,23 +72,28 @@ class SgMatrixDigit extends StatelessWidget implements SgMatrixDigitProps {
       image: true,
       label: value,
       excludeSemantics: true,
-      child: Container(
-        padding: EdgeInsets.all(padding.toDouble()),
-        decoration: BoxDecoration(
-          color: resolveDigitColor(backgroundColor, const Color(0xFF0B1220)),
-          borderRadius: BorderRadius.circular(rounded.toDouble()),
-        ),
-        child: CustomPaint(
-          key: const ValueKey('sg-matrix-canvas'),
-          size: Size(width, grid.height),
-          painter: SgMatrixPainter(
-            chars: chars,
-            dotSize: dotSize.toDouble(),
-            gap: gap.toDouble(),
-            charGap: charGap.toDouble(),
-            on: resolveDigitColor(color, const Color(0xFF22D3EE)),
-            off: resolveDigitColor(offColor, const Color(0x38949CA8)),
-            glow: glow,
+      // Em tela estreita o painel encolhe para caber em vez de passar da largura do pai.
+      child: FittedBox(
+        fit: BoxFit.scaleDown,
+        alignment: Alignment.centerLeft,
+        child: Container(
+          padding: EdgeInsets.all(padding.toDouble()),
+          decoration: BoxDecoration(
+            color: resolveDigitColor(backgroundColor, const Color(0xFF0B1220)),
+            borderRadius: BorderRadius.circular(rounded.toDouble()),
+          ),
+          child: CustomPaint(
+            key: const ValueKey('sg-matrix-canvas'),
+            size: Size(width, grid.height),
+            painter: SgMatrixPainter(
+              chars: chars,
+              dotSize: dotSize.toDouble(),
+              gap: gap.toDouble(),
+              charGap: charGap.toDouble(),
+              on: resolveDigitColor(color, const Color(0xFF22D3EE)),
+              off: resolveDigitColor(offColor, const Color(0x38949CA8)),
+              glow: glow,
+            ),
           ),
         ),
       ),
