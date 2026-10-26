@@ -15,6 +15,7 @@ class SgInputCNPJPage extends StatefulWidget {
 
 class _SgInputCNPJPageState extends State<SgInputCNPJPage> {
   final SgFormController _form = SgFormController();
+  String _evento = 'nenhum';
   String _enviado = '';
 
   @override
@@ -64,6 +65,141 @@ class _SgInputCNPJPageState extends State<SgInputCNPJPage> {
             ),
         // #endregion
         code: SgInputCnpjPageSnippets.sgInputCnpjConsulta,
+      ),
+      ShowcaseExample(
+        title: 'Variações visuais',
+        description:
+            'filled alterna o fundo preenchido; withBorder remove a borda.',
+        preview:
+            // #region sg-input-cnpj-variacoes
+            const Column(
+              children: [
+                SgInputCNPJ(
+                  id: 'preenchido',
+                  labelText: 'Preenchido',
+                  filled: true,
+                ),
+                SizedBox(height: 12),
+                SgInputCNPJ(
+                  id: 'vazado',
+                  labelText: 'Sem preenchimento',
+                  filled: false,
+                ),
+                SizedBox(height: 12),
+                SgInputCNPJ(
+                  id: 'semborda',
+                  labelText: 'Sem borda',
+                  withBorder: false,
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgInputCnpjPageSnippets.sgInputCnpjVariacoes,
+      ),
+      ShowcaseExample(
+        title: 'Sem botão de limpar',
+        description:
+            'clearButton: false esconde o botão de limpar (por padrão ele aparece com texto).',
+        preview:
+            // #region sg-input-cnpj-sem-limpar
+            const SgInputCNPJ(
+              id: 'semlimpar',
+              labelText: 'CNPJ',
+              initialValue: '05952365000130',
+              clearButton: false,
+            ),
+        // #endregion
+        code: SgInputCnpjPageSnippets.sgInputCnpjSemLimpar,
+      ),
+      ShowcaseExample(
+        title: 'Largura e borda',
+        description:
+            'width aceita número (px) ou porcentagem; borderRadius arredonda os cantos.',
+        preview:
+            // #region sg-input-cnpj-largura
+            const SgInputCNPJ(
+              id: 'largura',
+              labelText: 'CNPJ',
+              width: 240,
+              borderRadius: 20,
+            ),
+        // #endregion
+        code: SgInputCnpjPageSnippets.sgInputCnpjLargura,
+      ),
+      ShowcaseExample(
+        title: 'Desabilitado e somente leitura',
+        description:
+            'disabled bloqueia o campo; readOnly deixa copiar, mas não editar.',
+        preview:
+            // #region sg-input-cnpj-estados
+            const Column(
+              children: [
+                SgInputCNPJ(
+                  id: 'desabilitado',
+                  labelText: 'Desabilitado',
+                  initialValue: '05952365000130',
+                  disabled: true,
+                ),
+                SizedBox(height: 12),
+                SgInputCNPJ(
+                  id: 'leitura',
+                  labelText: 'Somente leitura',
+                  initialValue: '05952365000130',
+                  readOnly: true,
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgInputCnpjPageSnippets.sgInputCnpjEstados,
+      ),
+      ShowcaseExample(
+        title: 'Eventos',
+        description:
+            'onChange, onEnter (foco), onExit (saída) e onClear informam o que o usuário fez.',
+        preview:
+            // #region sg-input-cnpj-eventos
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SgInputCNPJ(
+                  id: 'eventos',
+                  labelText: 'CNPJ',
+                  onChange: (v) => setState(() => _evento = 'onChange: $v'),
+                  onEnter: () => setState(() => _evento = 'onEnter'),
+                  onExit: () => setState(() => _evento = 'onExit'),
+                  onClear: () => setState(() => _evento = 'onClear'),
+                ),
+                const SizedBox(height: 8),
+                Text('Último evento: $_evento'),
+              ],
+            ),
+        // #endregion
+        code: SgInputCnpjPageSnippets.sgInputCnpjEventos,
+      ),
+      ShowcaseExample(
+        title: 'Posição do rótulo',
+        description:
+            'labelPosition: float (padrão), top ou left; labelWidth fixa a largura do rótulo à esquerda.',
+        preview:
+            // #region sg-input-cnpj-rotulo
+            const Column(
+              children: [
+                SgInputCNPJ(
+                  id: 'topo',
+                  labelText: 'Rótulo no topo',
+                  labelPosition: SgInputCNPJLabelPosition.top,
+                ),
+                SizedBox(height: 12),
+                SgInputCNPJ(
+                  id: 'esquerda',
+                  labelText: 'À esquerda',
+                  labelPosition: SgInputCNPJLabelPosition.left,
+                  labelWidth: 110,
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgInputCnpjPageSnippets.sgInputCnpjRotulo,
       ),
       ShowcaseExample(
         title: 'Dentro de um formulário',

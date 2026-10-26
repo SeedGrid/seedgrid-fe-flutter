@@ -15,6 +15,7 @@ class SgInputCPFPage extends StatefulWidget {
 
 class _SgInputCPFPageState extends State<SgInputCPFPage> {
   final SgFormController _form = SgFormController();
+  String _evento = 'nenhum';
   String _enviado = '';
 
   @override
@@ -65,6 +66,115 @@ class _SgInputCPFPageState extends State<SgInputCPFPage> {
             ),
         // #endregion
         code: SgInputCpfPageSnippets.sgInputCpfValidacao,
+      ),
+      ShowcaseExample(
+        title: 'Variações visuais',
+        description:
+            'filled alterna o fundo preenchido; withBorder remove a borda.',
+        preview:
+            // #region sg-input-cpf-variacoes
+            const Column(
+              children: [
+                SgInputCPF(
+                  id: 'preenchido',
+                  labelText: 'Preenchido',
+                  filled: true,
+                ),
+                SizedBox(height: 12),
+                SgInputCPF(
+                  id: 'vazado',
+                  labelText: 'Sem preenchimento',
+                  filled: false,
+                ),
+                SizedBox(height: 12),
+                SgInputCPF(
+                  id: 'semborda',
+                  labelText: 'Sem borda',
+                  withBorder: false,
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgInputCpfPageSnippets.sgInputCpfVariacoes,
+      ),
+      ShowcaseExample(
+        title: 'Sem botão de limpar',
+        description:
+            'clearButton: false esconde o botão de limpar (por padrão ele aparece com texto).',
+        preview:
+            // #region sg-input-cpf-sem-limpar
+            const SgInputCPF(
+              id: 'semlimpar',
+              labelText: 'CPF',
+              initialValue: '12345678909',
+              clearButton: false,
+            ),
+        // #endregion
+        code: SgInputCpfPageSnippets.sgInputCpfSemLimpar,
+      ),
+      ShowcaseExample(
+        title: 'Largura e borda',
+        description:
+            'width aceita número (px) ou porcentagem; borderRadius arredonda os cantos.',
+        preview:
+            // #region sg-input-cpf-largura
+            const SgInputCPF(
+              id: 'largura',
+              labelText: 'CPF',
+              width: 240,
+              borderRadius: 20,
+            ),
+        // #endregion
+        code: SgInputCpfPageSnippets.sgInputCpfLargura,
+      ),
+      ShowcaseExample(
+        title: 'Eventos',
+        description:
+            'onChange, onEnter (foco), onExit (saída) e onClear informam o que o usuário fez.',
+        preview:
+            // #region sg-input-cpf-eventos
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SgInputCPF(
+                  id: 'eventos',
+                  labelText: 'CPF',
+                  onChange: (v) => setState(() => _evento = 'onChange: $v'),
+                  onEnter: () => setState(() => _evento = 'onEnter'),
+                  onExit: () => setState(() => _evento = 'onExit'),
+                  onClear: () => setState(() => _evento = 'onClear'),
+                ),
+                const SizedBox(height: 8),
+                Text('Último evento: $_evento'),
+              ],
+            ),
+        // #endregion
+        code: SgInputCpfPageSnippets.sgInputCpfEventos,
+      ),
+      ShowcaseExample(
+        title: 'Posição do rótulo',
+        description:
+            'labelPosition: float (padrão), top ou left; labelWidth fixa a largura do rótulo à esquerda.',
+        preview:
+            // #region sg-input-cpf-rotulo
+            const Column(
+              children: [
+                SgInputCPF(
+                  id: 'topo',
+                  labelText: 'Rótulo no topo',
+                  labelPosition: SgInputCPFLabelPosition.top,
+                ),
+                SizedBox(height: 12),
+                SgInputCPF(
+                  id: 'esquerda',
+                  labelText: 'À esquerda',
+                  labelPosition: SgInputCPFLabelPosition.left,
+                  labelWidth: 110,
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgInputCpfPageSnippets.sgInputCpfRotulo,
       ),
       ShowcaseExample(
         title: 'Dentro de um formulário',

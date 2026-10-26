@@ -15,6 +15,7 @@ class SgInputPhonePage extends StatefulWidget {
 
 class _SgInputPhonePageState extends State<SgInputPhonePage> {
   final SgFormController _form = SgFormController();
+  String _evento = 'nenhum';
   String _enviado = '';
 
   @override
@@ -49,6 +50,141 @@ class _SgInputPhonePageState extends State<SgInputPhonePage> {
             ),
         // #endregion
         code: SgInputPhonePageSnippets.sgInputPhoneObrigatorio,
+      ),
+      ShowcaseExample(
+        title: 'Variações visuais',
+        description:
+            'filled alterna o fundo preenchido; withBorder remove a borda.',
+        preview:
+            // #region sg-input-phone-variacoes
+            const Column(
+              children: [
+                SgInputPhone(
+                  id: 'preenchido',
+                  labelText: 'Preenchido',
+                  filled: true,
+                ),
+                SizedBox(height: 12),
+                SgInputPhone(
+                  id: 'vazado',
+                  labelText: 'Sem preenchimento',
+                  filled: false,
+                ),
+                SizedBox(height: 12),
+                SgInputPhone(
+                  id: 'semborda',
+                  labelText: 'Sem borda',
+                  withBorder: false,
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgInputPhonePageSnippets.sgInputPhoneVariacoes,
+      ),
+      ShowcaseExample(
+        title: 'Sem botão de limpar',
+        description:
+            'clearButton: false esconde o botão de limpar (por padrão ele aparece com texto).',
+        preview:
+            // #region sg-input-phone-sem-limpar
+            const SgInputPhone(
+              id: 'semlimpar',
+              labelText: 'Telefone',
+              initialValue: '11987654321',
+              clearButton: false,
+            ),
+        // #endregion
+        code: SgInputPhonePageSnippets.sgInputPhoneSemLimpar,
+      ),
+      ShowcaseExample(
+        title: 'Largura e borda',
+        description:
+            'width aceita número (px) ou porcentagem; borderRadius arredonda os cantos.',
+        preview:
+            // #region sg-input-phone-largura
+            const SgInputPhone(
+              id: 'largura',
+              labelText: 'Telefone',
+              width: 240,
+              borderRadius: 20,
+            ),
+        // #endregion
+        code: SgInputPhonePageSnippets.sgInputPhoneLargura,
+      ),
+      ShowcaseExample(
+        title: 'Desabilitado e somente leitura',
+        description:
+            'disabled bloqueia o campo; readOnly deixa copiar, mas não editar.',
+        preview:
+            // #region sg-input-phone-estados
+            const Column(
+              children: [
+                SgInputPhone(
+                  id: 'desabilitado',
+                  labelText: 'Desabilitado',
+                  initialValue: '11987654321',
+                  disabled: true,
+                ),
+                SizedBox(height: 12),
+                SgInputPhone(
+                  id: 'leitura',
+                  labelText: 'Somente leitura',
+                  initialValue: '11987654321',
+                  readOnly: true,
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgInputPhonePageSnippets.sgInputPhoneEstados,
+      ),
+      ShowcaseExample(
+        title: 'Eventos',
+        description:
+            'onChange, onEnter (foco), onExit (saída) e onClear informam o que o usuário fez.',
+        preview:
+            // #region sg-input-phone-eventos
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SgInputPhone(
+                  id: 'eventos',
+                  labelText: 'Telefone',
+                  onChange: (v) => setState(() => _evento = 'onChange: $v'),
+                  onEnter: () => setState(() => _evento = 'onEnter'),
+                  onExit: () => setState(() => _evento = 'onExit'),
+                  onClear: () => setState(() => _evento = 'onClear'),
+                ),
+                const SizedBox(height: 8),
+                Text('Último evento: $_evento'),
+              ],
+            ),
+        // #endregion
+        code: SgInputPhonePageSnippets.sgInputPhoneEventos,
+      ),
+      ShowcaseExample(
+        title: 'Posição do rótulo',
+        description:
+            'labelPosition: float (padrão), top ou left; labelWidth fixa a largura do rótulo à esquerda.',
+        preview:
+            // #region sg-input-phone-rotulo
+            const Column(
+              children: [
+                SgInputPhone(
+                  id: 'topo',
+                  labelText: 'Rótulo no topo',
+                  labelPosition: SgInputPhoneLabelPosition.top,
+                ),
+                SizedBox(height: 12),
+                SgInputPhone(
+                  id: 'esquerda',
+                  labelText: 'À esquerda',
+                  labelPosition: SgInputPhoneLabelPosition.left,
+                  labelWidth: 110,
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgInputPhonePageSnippets.sgInputPhoneRotulo,
       ),
       ShowcaseExample(
         title: 'Dentro de um formulário',

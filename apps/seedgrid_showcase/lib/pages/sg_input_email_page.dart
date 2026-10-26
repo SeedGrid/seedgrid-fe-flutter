@@ -15,6 +15,7 @@ class SgInputEmailPage extends StatefulWidget {
 
 class _SgInputEmailPageState extends State<SgInputEmailPage> {
   final SgFormController _form = SgFormController();
+  String _evento = 'nenhum';
   String _enviado = '';
 
   @override
@@ -107,6 +108,141 @@ class _SgInputEmailPageState extends State<SgInputEmailPage> {
             ),
         // #endregion
         code: SgInputEmailPageSnippets.sgInputEmailValidacao,
+      ),
+      ShowcaseExample(
+        title: 'Variações visuais',
+        description:
+            'filled alterna o fundo preenchido; withBorder remove a borda.',
+        preview:
+            // #region sg-input-email-variacoes
+            const Column(
+              children: [
+                SgInputEmail(
+                  id: 'preenchido',
+                  labelText: 'Preenchido',
+                  filled: true,
+                ),
+                SizedBox(height: 12),
+                SgInputEmail(
+                  id: 'vazado',
+                  labelText: 'Sem preenchimento',
+                  filled: false,
+                ),
+                SizedBox(height: 12),
+                SgInputEmail(
+                  id: 'semborda',
+                  labelText: 'Sem borda',
+                  withBorder: false,
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgInputEmailPageSnippets.sgInputEmailVariacoes,
+      ),
+      ShowcaseExample(
+        title: 'Sem botão de limpar',
+        description:
+            'clearButton: false esconde o botão de limpar (por padrão ele aparece com texto).',
+        preview:
+            // #region sg-input-email-sem-limpar
+            const SgInputEmail(
+              id: 'semlimpar',
+              labelText: 'E-mail',
+              initialValue: 'ana@exemplo.com',
+              clearButton: false,
+            ),
+        // #endregion
+        code: SgInputEmailPageSnippets.sgInputEmailSemLimpar,
+      ),
+      ShowcaseExample(
+        title: 'Largura e borda',
+        description:
+            'width aceita número (px) ou porcentagem; borderRadius arredonda os cantos.',
+        preview:
+            // #region sg-input-email-largura
+            const SgInputEmail(
+              id: 'largura',
+              labelText: 'E-mail',
+              width: 240,
+              borderRadius: 20,
+            ),
+        // #endregion
+        code: SgInputEmailPageSnippets.sgInputEmailLargura,
+      ),
+      ShowcaseExample(
+        title: 'Desabilitado e somente leitura',
+        description:
+            'disabled bloqueia o campo; readOnly deixa copiar, mas não editar.',
+        preview:
+            // #region sg-input-email-estados
+            const Column(
+              children: [
+                SgInputEmail(
+                  id: 'desabilitado',
+                  labelText: 'Desabilitado',
+                  initialValue: 'ana@exemplo.com',
+                  disabled: true,
+                ),
+                SizedBox(height: 12),
+                SgInputEmail(
+                  id: 'leitura',
+                  labelText: 'Somente leitura',
+                  initialValue: 'ana@exemplo.com',
+                  readOnly: true,
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgInputEmailPageSnippets.sgInputEmailEstados,
+      ),
+      ShowcaseExample(
+        title: 'Eventos',
+        description:
+            'onChange, onEnter (foco), onExit (saída) e onClear informam o que o usuário fez.',
+        preview:
+            // #region sg-input-email-eventos
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SgInputEmail(
+                  id: 'eventos',
+                  labelText: 'E-mail',
+                  onChange: (v) => setState(() => _evento = 'onChange: $v'),
+                  onEnter: () => setState(() => _evento = 'onEnter'),
+                  onExit: () => setState(() => _evento = 'onExit'),
+                  onClear: () => setState(() => _evento = 'onClear'),
+                ),
+                const SizedBox(height: 8),
+                Text('Último evento: $_evento'),
+              ],
+            ),
+        // #endregion
+        code: SgInputEmailPageSnippets.sgInputEmailEventos,
+      ),
+      ShowcaseExample(
+        title: 'Posição do rótulo',
+        description:
+            'labelPosition: float (padrão), top ou left; labelWidth fixa a largura do rótulo à esquerda.',
+        preview:
+            // #region sg-input-email-rotulo
+            const Column(
+              children: [
+                SgInputEmail(
+                  id: 'topo',
+                  labelText: 'Rótulo no topo',
+                  labelPosition: SgInputEmailLabelPosition.top,
+                ),
+                SizedBox(height: 12),
+                SgInputEmail(
+                  id: 'esquerda',
+                  labelText: 'À esquerda',
+                  labelPosition: SgInputEmailLabelPosition.left,
+                  labelWidth: 110,
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgInputEmailPageSnippets.sgInputEmailRotulo,
       ),
       ShowcaseExample(
         title: 'Dentro de um formulário',

@@ -8,6 +8,46 @@ abstract final class SgInputPostalCodePageSnippets {
 const SgInputPostalCode(id: 'cep', labelText: 'CEP')
 ''';
 
+  /// Region `sg-input-postal-code-estados`.
+  static const String sgInputPostalCodeEstados = r'''
+const Column(
+  children: [
+    SgInputPostalCode(
+      id: 'desabilitado',
+      labelText: 'Desabilitado',
+      initialValue: '01310100',
+      disabled: true,
+    ),
+    SizedBox(height: 12),
+    SgInputPostalCode(
+      id: 'leitura',
+      labelText: 'Somente leitura',
+      initialValue: '01310100',
+      readOnly: true,
+    ),
+  ],
+)
+''';
+
+  /// Region `sg-input-postal-code-eventos`.
+  static const String sgInputPostalCodeEventos = r'''
+Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    SgInputPostalCode(
+      id: 'eventos',
+      labelText: 'CEP',
+      onChange: (v) => setState(() => _evento = 'onChange: $v'),
+      onEnter: () => setState(() => _evento = 'onEnter'),
+      onExit: () => setState(() => _evento = 'onExit'),
+      onClear: () => setState(() => _evento = 'onClear'),
+    ),
+    const SizedBox(height: 8),
+    Text('Último evento: $_evento'),
+  ],
+)
+''';
+
   /// Region `sg-input-postal-code-formulario`.
   static const String sgInputPostalCodeFormulario = r'''
 Column(
@@ -32,6 +72,16 @@ Column(
 )
 ''';
 
+  /// Region `sg-input-postal-code-largura`.
+  static const String sgInputPostalCodeLargura = r'''
+const SgInputPostalCode(
+  id: 'largura',
+  labelText: 'CEP',
+  width: 240,
+  borderRadius: 20,
+)
+''';
+
   /// Region `sg-input-postal-code-paises`.
   static const String sgInputPostalCodePaises = r'''
 const Column(
@@ -52,6 +102,61 @@ const Column(
       id: 'cp-ar',
       labelText: 'Argentina',
       country: SgInputPostalCodeCountry.ar,
+    ),
+  ],
+)
+''';
+
+  /// Region `sg-input-postal-code-rotulo`.
+  static const String sgInputPostalCodeRotulo = r'''
+const Column(
+  children: [
+    SgInputPostalCode(
+      id: 'topo',
+      labelText: 'Rótulo no topo',
+      labelPosition: SgInputPostalCodeLabelPosition.top,
+    ),
+    SizedBox(height: 12),
+    SgInputPostalCode(
+      id: 'esquerda',
+      labelText: 'À esquerda',
+      labelPosition: SgInputPostalCodeLabelPosition.left,
+      labelWidth: 110,
+    ),
+  ],
+)
+''';
+
+  /// Region `sg-input-postal-code-sem-limpar`.
+  static const String sgInputPostalCodeSemLimpar = r'''
+const SgInputPostalCode(
+  id: 'semlimpar',
+  labelText: 'CEP',
+  initialValue: '01310100',
+  clearButton: false,
+)
+''';
+
+  /// Region `sg-input-postal-code-variacoes`.
+  static const String sgInputPostalCodeVariacoes = r'''
+const Column(
+  children: [
+    SgInputPostalCode(
+      id: 'preenchido',
+      labelText: 'Preenchido',
+      filled: true,
+    ),
+    SizedBox(height: 12),
+    SgInputPostalCode(
+      id: 'vazado',
+      labelText: 'Sem preenchimento',
+      filled: false,
+    ),
+    SizedBox(height: 12),
+    SgInputPostalCode(
+      id: 'semborda',
+      labelText: 'Sem borda',
+      withBorder: false,
     ),
   ],
 )

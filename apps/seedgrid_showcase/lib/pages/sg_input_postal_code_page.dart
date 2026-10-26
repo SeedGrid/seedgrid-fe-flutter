@@ -15,6 +15,7 @@ class SgInputPostalCodePage extends StatefulWidget {
 
 class _SgInputPostalCodePageState extends State<SgInputPostalCodePage> {
   final SgFormController _form = SgFormController();
+  String _evento = 'nenhum';
   String _enviado = '';
 
   @override
@@ -80,6 +81,141 @@ class _SgInputPostalCodePageState extends State<SgInputPostalCodePage> {
             ),
         // #endregion
         code: SgInputPostalCodePageSnippets.sgInputPostalCodeViacep,
+      ),
+      ShowcaseExample(
+        title: 'Variações visuais',
+        description:
+            'filled alterna o fundo preenchido; withBorder remove a borda.',
+        preview:
+            // #region sg-input-postal-code-variacoes
+            const Column(
+              children: [
+                SgInputPostalCode(
+                  id: 'preenchido',
+                  labelText: 'Preenchido',
+                  filled: true,
+                ),
+                SizedBox(height: 12),
+                SgInputPostalCode(
+                  id: 'vazado',
+                  labelText: 'Sem preenchimento',
+                  filled: false,
+                ),
+                SizedBox(height: 12),
+                SgInputPostalCode(
+                  id: 'semborda',
+                  labelText: 'Sem borda',
+                  withBorder: false,
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgInputPostalCodePageSnippets.sgInputPostalCodeVariacoes,
+      ),
+      ShowcaseExample(
+        title: 'Sem botão de limpar',
+        description:
+            'clearButton: false esconde o botão de limpar (por padrão ele aparece com texto).',
+        preview:
+            // #region sg-input-postal-code-sem-limpar
+            const SgInputPostalCode(
+              id: 'semlimpar',
+              labelText: 'CEP',
+              initialValue: '01310100',
+              clearButton: false,
+            ),
+        // #endregion
+        code: SgInputPostalCodePageSnippets.sgInputPostalCodeSemLimpar,
+      ),
+      ShowcaseExample(
+        title: 'Largura e borda',
+        description:
+            'width aceita número (px) ou porcentagem; borderRadius arredonda os cantos.',
+        preview:
+            // #region sg-input-postal-code-largura
+            const SgInputPostalCode(
+              id: 'largura',
+              labelText: 'CEP',
+              width: 240,
+              borderRadius: 20,
+            ),
+        // #endregion
+        code: SgInputPostalCodePageSnippets.sgInputPostalCodeLargura,
+      ),
+      ShowcaseExample(
+        title: 'Desabilitado e somente leitura',
+        description:
+            'disabled bloqueia o campo; readOnly deixa copiar, mas não editar.',
+        preview:
+            // #region sg-input-postal-code-estados
+            const Column(
+              children: [
+                SgInputPostalCode(
+                  id: 'desabilitado',
+                  labelText: 'Desabilitado',
+                  initialValue: '01310100',
+                  disabled: true,
+                ),
+                SizedBox(height: 12),
+                SgInputPostalCode(
+                  id: 'leitura',
+                  labelText: 'Somente leitura',
+                  initialValue: '01310100',
+                  readOnly: true,
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgInputPostalCodePageSnippets.sgInputPostalCodeEstados,
+      ),
+      ShowcaseExample(
+        title: 'Eventos',
+        description:
+            'onChange, onEnter (foco), onExit (saída) e onClear informam o que o usuário fez.',
+        preview:
+            // #region sg-input-postal-code-eventos
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SgInputPostalCode(
+                  id: 'eventos',
+                  labelText: 'CEP',
+                  onChange: (v) => setState(() => _evento = 'onChange: $v'),
+                  onEnter: () => setState(() => _evento = 'onEnter'),
+                  onExit: () => setState(() => _evento = 'onExit'),
+                  onClear: () => setState(() => _evento = 'onClear'),
+                ),
+                const SizedBox(height: 8),
+                Text('Último evento: $_evento'),
+              ],
+            ),
+        // #endregion
+        code: SgInputPostalCodePageSnippets.sgInputPostalCodeEventos,
+      ),
+      ShowcaseExample(
+        title: 'Posição do rótulo',
+        description:
+            'labelPosition: float (padrão), top ou left; labelWidth fixa a largura do rótulo à esquerda.',
+        preview:
+            // #region sg-input-postal-code-rotulo
+            const Column(
+              children: [
+                SgInputPostalCode(
+                  id: 'topo',
+                  labelText: 'Rótulo no topo',
+                  labelPosition: SgInputPostalCodeLabelPosition.top,
+                ),
+                SizedBox(height: 12),
+                SgInputPostalCode(
+                  id: 'esquerda',
+                  labelText: 'À esquerda',
+                  labelPosition: SgInputPostalCodeLabelPosition.left,
+                  labelWidth: 110,
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgInputPostalCodePageSnippets.sgInputPostalCodeRotulo,
       ),
       ShowcaseExample(
         title: 'Dentro de um formulário',
