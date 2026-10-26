@@ -60,15 +60,18 @@ Future<SgViaCepResult> sgDefaultViaCepFetch(String cep) async {
   }
 }
 
-/// Consulta padrao do CNPJ: GET https://publica.cnpj.ws/cnpj/<14 digitos>. Resposta nao-2xx vira
-/// `null` ("nao achou", igual ao React); falha de rede propaga (vai para `onPublicaCnpjError`).
+/// Consulta padrao do CNPJ: GET https://publica.cnpj.ws/cnpj/<14 digitos>. Resposta 4xx (menos 429) vira
+/// `null` ("nao achou"); falha de rede propaga (vai para `onPublicaCnpjError`).
 Future<Object?> sgDefaultPublicaCnpjFetch(String cnpj) async {
   final client = SgHttpClient(
     const HttpClientOptions(baseUrl: 'https://publica.cnpj.ws'),
   );
   try {
     return await client.request('/cnpj/$cnpj');
-  } on SgHttpException {
+  } on SgHttpException catch (e) {
+    // 429 (limite de 3 consultas por minuto) e 5xx nao dizem que o CNPJ nao existe: propagam e vao para
+    // onPublicaCnpjError (a validacao passa). Diverge do React, que trata toda resposta nao-2xx como "nao achou".
+    if (e.status == 429 || e.status >= 500) rethrow;
     return null;
   } finally {
     client.close();

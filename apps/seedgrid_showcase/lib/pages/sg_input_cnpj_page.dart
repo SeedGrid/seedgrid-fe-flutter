@@ -53,7 +53,7 @@ class _SgInputCNPJPageState extends State<SgInputCNPJPage> {
       ShowcaseExample(
         title: 'Consulta na base pública',
         description:
-            'Aqui a consulta é simulada (publicaCnpjFetch); sem ela, o padrão consulta publica.cnpj.ws.',
+            'Consulta de verdade em publica.cnpj.ws (precisa de internet; a API limita a 3 consultas por minuto). Para testar sem rede, passe publicaCnpjFetch.',
         preview:
             // #region sg-input-cnpj-consulta
             SgInputCNPJ(
@@ -61,8 +61,6 @@ class _SgInputCNPJPageState extends State<SgInputCNPJPage> {
               labelText: 'CNPJ com consulta',
               validateWithPublicaCnpj: true,
               publicaCnpjErrorMessage: 'CNPJ não encontrado na Receita',
-              publicaCnpjFetch: (cnpj) async =>
-                  cnpj.endsWith('81') ? {'razao_social': 'ACME LTDA'} : null,
             ),
         // #endregion
         code: SgInputCnpjPageSnippets.sgInputCnpjConsulta,

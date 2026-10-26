@@ -15,8 +15,6 @@ SgInputCNPJ(
   labelText: 'CNPJ com consulta',
   validateWithPublicaCnpj: true,
   publicaCnpjErrorMessage: 'CNPJ não encontrado na Receita',
-  publicaCnpjFetch: (cnpj) async =>
-      cnpj.endsWith('81') ? {'razao_social': 'ACME LTDA'} : null,
 )
 ''';
 
