@@ -1,11 +1,11 @@
-// Textos fixos do showcase (cabecalho, menu, pagina inicial, tema, playground, props) em pt-BR e en-US.
+// Textos fixos do showcase (cabecalho, menu, pagina inicial, tema, playground, props) em pt-BR, pt-PT, en-US, es e fr (os mesmos idiomas dos componentes).
 // O idioma escolhido tambem vai para o SgComponentsI18nProvider, entao os textos internos dos
 // componentes acompanham. Padrao pt-BR; a escolha fica so na sessao.
 import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart'
     show SgComponentsI18nProvider;
 
-const List<String> kShowcaseLocales = ['pt-BR', 'en-US'];
+const List<String> kShowcaseLocales = ['pt-BR', 'pt-PT', 'en-US', 'es', 'fr'];
 
 const Map<String, Map<String, String>> kShowcaseMessages = {
   'pt-BR': {
@@ -108,6 +108,153 @@ const Map<String, Map<String, String>> kShowcaseMessages = {
     'color.#9333EA': 'Purple',
     'color.#EA580C': 'Orange',
   },
+  'pt-PT': {
+    'home': 'Início',
+    'search': 'Procurar componente',
+    'noResults': 'Nenhum componente encontrado.',
+    'toggleTheme': 'Claro / escuro',
+    'language': 'Idioma',
+    'theme': 'Tema',
+    'radius': 'Raio',
+    'example': 'Exemplo',
+    'playground': 'Playground',
+    'propsReference': 'Props Reference',
+    'propsTitle': 'Referência de Props',
+    'colProp': 'Prop',
+    'colType': 'Tipo',
+    'colDefault': 'Predefinição',
+    'colDescription': 'Descrição',
+    'default': '(predefinição)',
+    'notEditable': 'Não editáveis aqui',
+    'homeTitle': 'SeedGrid para Flutter',
+    'homeIntro':
+        'Porte dos componentes SeedGrid do React: mesmos nomes de widget, de props e de valores, '
+        'para quem já conhece os componentes React os usar com facilidade. '
+        'Escolha um componente no menu; cada página tem exemplos com o código igual ao renderizado, '
+        'um playground de props e a referência de props.',
+    'progress': 'Progresso do porte (React {version})',
+    'statTotal': 'Componentes no React',
+    'statPortado': 'Portados',
+    'statParcial': 'Parciais',
+    'statPendente': 'Pendentes',
+    'statusNote':
+        '"Parcial" = portado, com diferença documentada em docs/PARIDADE.md. "Pendente" = ainda sem widget.',
+    'of': 'de',
+    'status.parcial': 'parcial',
+    'status.pendente': 'pendente',
+    'cat.action': 'Ação',
+    'cat.input': 'Introdução de dados',
+    'cat.data': 'Dados',
+    'cat.layout': 'Layout',
+    'cat.navigation': 'Navegação',
+    'cat.feedback': 'Feedback e apresentação',
+    'cat.gadget': 'Gadgets',
+    'cat.provider': 'Providers',
+    'cat.outros': 'Outros',
+    'color.#2563EB': 'Azul',
+    'color.#16A34A': 'Verde',
+    'color.#DC2626': 'Vermelho',
+    'color.#9333EA': 'Roxo',
+    'color.#EA580C': 'Laranja',
+  },
+  'es': {
+    'home': 'Inicio',
+    'search': 'Buscar componente',
+    'noResults': 'No se encontraron componentes.',
+    'toggleTheme': 'Claro / oscuro',
+    'language': 'Idioma',
+    'theme': 'Tema',
+    'radius': 'Radio',
+    'example': 'Ejemplo',
+    'playground': 'Playground',
+    'propsReference': 'Props Reference',
+    'propsTitle': 'Referencia de Props',
+    'colProp': 'Prop',
+    'colType': 'Tipo',
+    'colDefault': 'Predeterminado',
+    'colDescription': 'Descripción',
+    'default': '(predeterminado)',
+    'notEditable': 'No editables aquí',
+    'homeTitle': 'SeedGrid para Flutter',
+    'homeIntro':
+        'Port de los componentes SeedGrid de React: mismos nombres de widget, de props y de valores, '
+        'para que quien ya conoce los componentes React los use con facilidad. '
+        'Elija un componente en el menú; cada página tiene ejemplos con el código igual al renderizado, '
+        'un playground de props y la referencia de props.',
+    'progress': 'Avance del port (React {version})',
+    'statTotal': 'Componentes en React',
+    'statPortado': 'Portados',
+    'statParcial': 'Parciales',
+    'statPendente': 'Pendientes',
+    'statusNote':
+        '"Parcial" = portado, con una diferencia documentada en docs/PARIDADE.md. "Pendiente" = aún sin widget.',
+    'of': 'de',
+    'status.parcial': 'parcial',
+    'status.pendente': 'pendiente',
+    'cat.action': 'Acción',
+    'cat.input': 'Entrada de datos',
+    'cat.data': 'Datos',
+    'cat.layout': 'Layout',
+    'cat.navigation': 'Navegación',
+    'cat.feedback': 'Feedback y visualización',
+    'cat.gadget': 'Gadgets',
+    'cat.provider': 'Providers',
+    'cat.outros': 'Otros',
+    'color.#2563EB': 'Azul',
+    'color.#16A34A': 'Verde',
+    'color.#DC2626': 'Rojo',
+    'color.#9333EA': 'Morado',
+    'color.#EA580C': 'Naranja',
+  },
+  'fr': {
+    'home': 'Accueil',
+    'search': 'Rechercher un composant',
+    'noResults': 'Aucun composant trouvé.',
+    'toggleTheme': 'Clair / sombre',
+    'language': 'Langue',
+    'theme': 'Thème',
+    'radius': 'Rayon',
+    'example': 'Exemple',
+    'playground': 'Playground',
+    'propsReference': 'Props Reference',
+    'propsTitle': 'Référence des Props',
+    'colProp': 'Prop',
+    'colType': 'Type',
+    'colDefault': 'Par défaut',
+    'colDescription': 'Description',
+    'default': '(par défaut)',
+    'notEditable': 'Non modifiables ici',
+    'homeTitle': 'SeedGrid pour Flutter',
+    'homeIntro':
+        'Portage des composants SeedGrid de React : mêmes noms de widget, de props et de valeurs, '
+        'pour que les personnes qui connaissent déjà les composants React les utilisent facilement. '
+        'Choisissez un composant dans le menu ; chaque page propose des exemples dont le code est identique au rendu, '
+        'un playground de props et la référence des props.',
+    'progress': 'Avancement du portage (React {version})',
+    'statTotal': 'Composants dans React',
+    'statPortado': 'Portés',
+    'statParcial': 'Partiels',
+    'statPendente': 'En attente',
+    'statusNote':
+        '« Partiel » = porté, avec une différence documentée dans docs/PARIDADE.md. « En attente » = pas encore de widget.',
+    'of': 'sur',
+    'status.parcial': 'partiel',
+    'status.pendente': 'en attente',
+    'cat.action': 'Action',
+    'cat.input': 'Saisie de données',
+    'cat.data': 'Données',
+    'cat.layout': 'Layout',
+    'cat.navigation': 'Navigation',
+    'cat.feedback': 'Retours et affichage',
+    'cat.gadget': 'Gadgets',
+    'cat.provider': 'Providers',
+    'cat.outros': 'Autres',
+    'color.#2563EB': 'Bleu',
+    'color.#16A34A': 'Vert',
+    'color.#DC2626': 'Rouge',
+    'color.#9333EA': 'Violet',
+    'color.#EA580C': 'Orange',
+  },
 };
 
 /// Idioma e textos do showcase para a subarvore. Sem escopo acima, cai em pt-BR.
@@ -185,16 +332,19 @@ class ShowcaseLanguagePicker extends StatelessWidget {
         children: [
           Text(context.tr('language')),
           const SizedBox(height: 4),
-          SegmentedButton<String>(
+          Wrap(
             key: const ValueKey('idioma'),
-            showSelectedIcon: false,
-            style: const ButtonStyle(visualDensity: VisualDensity.compact),
-            segments: [
+            spacing: 6,
+            runSpacing: 4,
+            children: [
               for (final l in kShowcaseLocales)
-                ButtonSegment<String>(value: l, label: Text(l)),
+                ChoiceChip(
+                  label: Text(l),
+                  selected: l == current,
+                  visualDensity: VisualDensity.compact,
+                  onSelected: (_) => i18n?.setLocale(l),
+                ),
             ],
-            selected: {current},
-            onSelectionChanged: (s) => i18n?.setLocale(s.first),
           ),
         ],
       ),
