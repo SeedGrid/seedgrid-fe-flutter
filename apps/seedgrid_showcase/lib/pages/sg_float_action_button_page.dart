@@ -209,7 +209,7 @@ class _SgFloatActionButtonPageState extends State<SgFloatActionButtonPage> {
       ShowcaseExample(
         title: 'Animações',
         description:
-            'animation (scale, fade, slide, rotate, pulse) disparada em animationOn: mount, hover ou click.',
+            'animation (scale, fade, slide, rotate, pulse) disparada em animationOn: mount, hover ou click. Cada botão também abre um speed-dial ao tocar.',
         preview:
             // #region sg-fab-animacoes
             SizedBox(
@@ -225,17 +225,38 @@ class _SgFloatActionButtonPageState extends State<SgFloatActionButtonPage> {
                       absolute: true,
                       position: SgFloatActionButtonPosition.leftBottom,
                       animation: SgFloatActionButtonAnimation.pulse,
+                      actions: [
+                        SgFABAction(icon: Icon(Icons.edit), label: 'Editar'),
+                        SgFABAction(
+                          icon: Icon(Icons.share),
+                          label: 'Compartilhar',
+                        ),
+                      ],
                     ),
                     SgFloatActionButton(
                       absolute: true,
                       position: SgFloatActionButtonPosition.centerBottom,
                       animation: SgFloatActionButtonAnimation.rotate,
                       animationOn: SgFloatActionButtonAnimationOn.hover,
+                      actions: [
+                        SgFABAction(icon: Icon(Icons.edit), label: 'Editar'),
+                        SgFABAction(
+                          icon: Icon(Icons.share),
+                          label: 'Compartilhar',
+                        ),
+                      ],
                     ),
                     SgFloatActionButton(
                       absolute: true,
                       animation: SgFloatActionButtonAnimation.scale,
                       animationOn: SgFloatActionButtonAnimationOn.click,
+                      actions: [
+                        SgFABAction(icon: Icon(Icons.edit), label: 'Editar'),
+                        SgFABAction(
+                          icon: Icon(Icons.share),
+                          label: 'Compartilhar',
+                        ),
+                      ],
                     ),
                   ],
                 ),

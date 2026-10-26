@@ -18,17 +18,38 @@ SizedBox(
           absolute: true,
           position: SgFloatActionButtonPosition.leftBottom,
           animation: SgFloatActionButtonAnimation.pulse,
+          actions: [
+            SgFABAction(icon: Icon(Icons.edit), label: 'Editar'),
+            SgFABAction(
+              icon: Icon(Icons.share),
+              label: 'Compartilhar',
+            ),
+          ],
         ),
         SgFloatActionButton(
           absolute: true,
           position: SgFloatActionButtonPosition.centerBottom,
           animation: SgFloatActionButtonAnimation.rotate,
           animationOn: SgFloatActionButtonAnimationOn.hover,
+          actions: [
+            SgFABAction(icon: Icon(Icons.edit), label: 'Editar'),
+            SgFABAction(
+              icon: Icon(Icons.share),
+              label: 'Compartilhar',
+            ),
+          ],
         ),
         SgFloatActionButton(
           absolute: true,
           animation: SgFloatActionButtonAnimation.scale,
           animationOn: SgFloatActionButtonAnimationOn.click,
+          actions: [
+            SgFABAction(icon: Icon(Icons.edit), label: 'Editar'),
+            SgFABAction(
+              icon: Icon(Icons.share),
+              label: 'Compartilhar',
+            ),
+          ],
         ),
       ],
     ),
