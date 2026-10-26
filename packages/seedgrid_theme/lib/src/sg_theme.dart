@@ -68,11 +68,44 @@ class SgTheme extends ThemeExtension<SgTheme> {
       onError: color('--sg-on-error'),
       surface: color('--sg-surface'),
       onSurface: color('--sg-text'),
+      // Os papeis que nao tem token proprio ficariam no padrao do tema claro do Material (texto preto e
+      // superficies claras no escuro): chips, caixas de codigo e textos de apoio ficavam ilegiveis.
+      onSurfaceVariant: color('--sg-muted'),
+      outline: color('--sg-border'),
+      outlineVariant: color('--sg-border'),
+      surfaceContainerLowest: color('--sg-bg'),
+      surfaceContainerLow: color('--sg-surface'),
+      surfaceContainer: color('--sg-surface'),
+      surfaceContainerHigh: color('--sg-muted-surface'),
+      surfaceContainerHighest: color('--sg-muted-surface'),
     );
     final b = base ?? ThemeData(useMaterial3: true);
+    // O ThemeData de fabrica guarda varias cores ja resolvidas para o modo claro (texto, icones, canvas, card,
+    // dialogo...). Refaz esses campos a partir do esquema do modo atual: o Material sem cor propria (chips,
+    // por exemplo) pinta com `canvasColor` e ficava branco no escuro, com texto claro por cima.
+    final onSurface = scheme.onSurface;
+    final fresh = ThemeData(useMaterial3: b.useMaterial3, colorScheme: scheme);
     return b.copyWith(
       brightness: mode,
       colorScheme: scheme,
+      canvasColor: fresh.canvasColor,
+      cardColor: fresh.cardColor,
+      disabledColor: fresh.disabledColor,
+      hintColor: fresh.hintColor,
+      hoverColor: fresh.hoverColor,
+      focusColor: fresh.focusColor,
+      highlightColor: fresh.highlightColor,
+      iconTheme: fresh.iconTheme,
+      primaryIconTheme: fresh.primaryIconTheme,
+      chipTheme: fresh.chipTheme,
+      textTheme: b.textTheme.apply(
+        bodyColor: onSurface,
+        displayColor: onSurface,
+      ),
+      primaryTextTheme: b.primaryTextTheme.apply(
+        bodyColor: scheme.onPrimary,
+        displayColor: scheme.onPrimary,
+      ),
       scaffoldBackgroundColor: color('--sg-bg'),
       dividerColor: color('--sg-border'),
       extensions: [...b.extensions.values.where((e) => e is! SgTheme), this],

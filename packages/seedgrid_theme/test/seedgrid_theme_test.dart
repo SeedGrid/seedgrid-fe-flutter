@@ -247,4 +247,77 @@ void main() {
       expect(ctx.currentMode, Brightness.dark);
     });
   });
+
+  group('ThemeData Material nos dois modos (contraste)', () {
+    // Relacao de contraste WCAG entre duas cores.
+    double contrast(Color a, Color b) {
+      final la = a.computeLuminance(), lb = b.computeLuminance();
+      final hi = la > lb ? la : lb, lo = la > lb ? lb : la;
+      return (hi + 0.05) / (lo + 0.05);
+    }
+
+    for (final mode in Brightness.values) {
+      test('${mode.name}: texto, chips e blocos de codigo legiveis (>= 4,5:1)', () {
+        // O app costuma passar um ThemeData claro como base (MaterialApp(theme: ThemeData(useMaterial3: true))).
+        final data = SgTheme.fromInput(
+          defaultSeedTheme,
+          mode,
+        ).toThemeData(ThemeData(useMaterial3: true));
+        final bg = data.scaffoldBackgroundColor;
+        final scheme = data.colorScheme;
+        for (final entry in {
+          'bodyMedium': data.textTheme.bodyMedium,
+          'headlineSmall': data.textTheme.headlineSmall,
+          'titleLarge': data.textTheme.titleLarge,
+          'bodySmall': data.textTheme.bodySmall,
+        }.entries) {
+          expect(
+            contrast(entry.value!.color!, bg),
+            greaterThanOrEqualTo(4.5),
+            reason: 'textTheme.${entry.key} sobre o fundo',
+          );
+        }
+        // Caixa de codigo do showcase: texto (onSurface) sobre surfaceContainerHighest.
+        expect(
+          contrast(scheme.onSurface, scheme.surfaceContainerHighest),
+          greaterThanOrEqualTo(4.5),
+          reason: 'bloco de codigo',
+        );
+        // Material sem cor propria (ActionChip, por exemplo) pinta com canvasColor; Card com cardColor; os icones
+        // seguem o iconTheme. Todos precisam acompanhar o modo.
+        expect(
+          contrast(scheme.onSurface, data.canvasColor),
+          greaterThanOrEqualTo(4.5),
+          reason: 'canvasColor (fundo do chip)',
+        );
+        expect(
+          contrast(scheme.onSurface, data.cardColor),
+          greaterThanOrEqualTo(4.5),
+          reason: 'cardColor',
+        );
+        expect(
+          contrast(data.iconTheme.color!, bg),
+          greaterThanOrEqualTo(4.5),
+          reason: 'iconTheme sobre o fundo',
+        );
+        // Chip / tonal: onSurfaceVariant e onSurface sobre as superficies elevadas.
+        for (final surface in [
+          scheme.surface,
+          scheme.surfaceContainerLow,
+          scheme.surfaceContainer,
+          scheme.surfaceContainerHigh,
+        ]) {
+          expect(
+            contrast(scheme.onSurface, surface),
+            greaterThanOrEqualTo(4.5),
+          );
+          expect(
+            contrast(scheme.onSurfaceVariant, surface),
+            greaterThanOrEqualTo(3),
+            reason: 'texto de apoio',
+          );
+        }
+      });
+    }
+  });
 }
