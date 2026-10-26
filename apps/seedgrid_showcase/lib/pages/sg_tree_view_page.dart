@@ -165,6 +165,185 @@ class _SgTreeViewPageState extends State<SgTreeViewPage> {
         code: SgTreeViewPageSnippets.sgTreeViewConfirmacao,
       ),
       ShowcaseExample(
+        title: 'Tom e ícones',
+        description:
+            'iconTone destaca os ícones com a cor primária; tone: muted suaviza os rótulos; cada nó aceita um icon.',
+        preview:
+            // #region sg-tree-view-tom
+            const Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SgTreeView(
+                  defaultExpandedIds: ['docs'],
+                  iconTone: SgTreeViewIconTone.primary,
+                  nodes: [
+                    SgTreeNode(
+                      id: 'docs',
+                      label: 'Documentos',
+                      icon: Icon(Icons.folder_outlined, size: 16),
+                      children: [
+                        SgTreeNode(
+                          id: 'contrato',
+                          label: 'Contrato',
+                          icon: Icon(Icons.description_outlined, size: 16),
+                        ),
+                        SgTreeNode(
+                          id: 'nota',
+                          label: 'Nota fiscal',
+                          icon: Icon(Icons.receipt_long_outlined, size: 16),
+                        ),
+                      ],
+                    ),
+                    SgTreeNode(
+                      id: 'img',
+                      label: 'Imagens',
+                      icon: Icon(Icons.image_outlined, size: 16),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 12),
+                SgTreeView(
+                  defaultExpandedIds: ['docs'],
+                  tone: SgTreeViewTone.muted,
+                  nodes: [
+                    SgTreeNode(
+                      id: 'docs',
+                      label: 'Documentos',
+                      icon: Icon(Icons.folder_outlined, size: 16),
+                      children: [
+                        SgTreeNode(
+                          id: 'contrato',
+                          label: 'Contrato',
+                          icon: Icon(Icons.description_outlined, size: 16),
+                        ),
+                        SgTreeNode(
+                          id: 'nota',
+                          label: 'Nota fiscal',
+                          icon: Icon(Icons.receipt_long_outlined, size: 16),
+                        ),
+                      ],
+                    ),
+                    SgTreeNode(
+                      id: 'img',
+                      label: 'Imagens',
+                      icon: Icon(Icons.image_outlined, size: 16),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgTreeViewPageSnippets.sgTreeViewTom,
+      ),
+      ShowcaseExample(
+        title: 'Tamanho e densidade',
+        description:
+            'size (sm, md, lg) muda a fonte e a altura da linha; density (compact, normal, comfortable) muda o espaçamento.',
+        preview:
+            // #region sg-tree-view-tamanho
+            const Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SgTreeView(
+                  size: SgTreeViewSize.sm,
+                  density: SgTreeViewDensity.compact,
+                  defaultExpandedIds: ['a'],
+                  nodes: [
+                    SgTreeNode(
+                      id: 'a',
+                      label: 'Ramo A',
+                      children: [
+                        SgTreeNode(id: 'a1', label: 'Folha A1'),
+                        SgTreeNode(id: 'a2', label: 'Folha A2'),
+                      ],
+                    ),
+                    SgTreeNode(id: 'b', label: 'Folha B'),
+                  ],
+                ),
+                SizedBox(height: 12),
+                SgTreeView(
+                  size: SgTreeViewSize.lg,
+                  density: SgTreeViewDensity.comfortable,
+                  defaultExpandedIds: ['a'],
+                  nodes: [
+                    SgTreeNode(
+                      id: 'a',
+                      label: 'Ramo A',
+                      children: [
+                        SgTreeNode(id: 'a1', label: 'Folha A1'),
+                        SgTreeNode(id: 'a2', label: 'Folha A2'),
+                      ],
+                    ),
+                    SgTreeNode(id: 'b', label: 'Folha B'),
+                  ],
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgTreeViewPageSnippets.sgTreeViewTamanho,
+      ),
+      ShowcaseExample(
+        title: 'Expandido por padrão',
+        description:
+            'defaultExpandedIds abre os ramos listados na primeira exibição; o usuário continua podendo recolher.',
+        preview:
+            // #region sg-tree-view-expandido
+            const SgTreeView(
+              defaultExpandedIds: ['docs'],
+              nodes: [
+                SgTreeNode(
+                  id: 'docs',
+                  label: 'Documentos',
+                  icon: Icon(Icons.folder_outlined, size: 16),
+                  children: [
+                    SgTreeNode(
+                      id: 'contrato',
+                      label: 'Contrato',
+                      icon: Icon(Icons.description_outlined, size: 16),
+                    ),
+                    SgTreeNode(
+                      id: 'nota',
+                      label: 'Nota fiscal',
+                      icon: Icon(Icons.receipt_long_outlined, size: 16),
+                    ),
+                  ],
+                ),
+                SgTreeNode(
+                  id: 'img',
+                  label: 'Imagens',
+                  icon: Icon(Icons.image_outlined, size: 16),
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgTreeViewPageSnippets.sgTreeViewExpandido,
+      ),
+      ShowcaseExample(
+        title: 'Marcados iniciais',
+        description:
+            'defaultCheckedIds já nasce com nós marcados; o ramo fica indeterminado quando só parte dos filhos está marcada.',
+        preview:
+            // #region sg-tree-view-marcados-iniciais
+            const SgTreeView(
+              checkable: true,
+              defaultExpandedIds: ['a'],
+              defaultCheckedIds: ['a1'],
+              nodes: [
+                SgTreeNode(
+                  id: 'a',
+                  label: 'Ramo A',
+                  children: [
+                    SgTreeNode(id: 'a1', label: 'Folha A1'),
+                    SgTreeNode(id: 'a2', label: 'Folha A2'),
+                  ],
+                ),
+                SgTreeNode(id: 'b', label: 'Folha B'),
+              ],
+            ),
+        // #endregion
+        code: SgTreeViewPageSnippets.sgTreeViewMarcadosIniciais,
+      ),
+      ShowcaseExample(
         title: 'Trilhas (colunas extras)',
         description:
             'Uma coluna por linha: caixa de seleção com cascata própria, lista de opções e célula livre.',

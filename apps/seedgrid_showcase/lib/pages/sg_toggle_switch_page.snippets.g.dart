@@ -19,6 +19,37 @@ Column(
 )
 ''';
 
+  /// Region `sg-toggle-switch-controlado`.
+  static const String sgToggleSwitchControlado = r'''
+Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    SgToggleSwitch(
+      id: 'controlado',
+      label: 'Modo escuro',
+      checked: _controlado,
+      onChange: (v) => setState(() => _controlado = v),
+    ),
+    const SizedBox(height: 8),
+    SgButton(
+      label: const Text('Inverter por código'),
+      onClick: () => setState(() => _controlado = !_controlado),
+    ),
+    Text('Valor: $_controlado'),
+  ],
+)
+''';
+
+  /// Region `sg-toggle-switch-erro-externo`.
+  static const String sgToggleSwitchErroExterno = r'''
+const SgToggleSwitch(
+  id: 'erro',
+  label: 'Aceito os termos',
+  error: 'Aceite os termos para continuar',
+  width: 280,
+)
+''';
+
   /// Region `sg-toggle-switch-estados`.
   static const String sgToggleSwitchEstados = r'''
 const Column(
@@ -66,6 +97,33 @@ Column(
       ),
     ),
     if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),
+  ],
+)
+''';
+
+  /// Region `sg-toggle-switch-remoto`.
+  static const String sgToggleSwitchRemoto = r'''
+Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    SgToggleSwitch(
+      id: 'remoto',
+      label: 'Sincronizar',
+      checked: _remoto,
+      disabled: _salvando,
+      onChange: (v) async {
+        setState(() => _salvando = true);
+        await Future<void>.delayed(
+          const Duration(milliseconds: 800),
+        );
+        if (!mounted) return;
+        setState(() {
+          _remoto = v;
+          _salvando = false;
+        });
+      },
+    ),
+    Text(_salvando ? 'Salvando...' : 'Salvo: $_remoto'),
   ],
 )
 ''';

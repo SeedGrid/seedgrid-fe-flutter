@@ -3,6 +3,66 @@
 // Cada constante e o trecho entre `// #region` e `// #endregion` de sg_datatable_page.dart: o mesmo codigo que a pagina renderiza.
 
 abstract final class SgDatatablePageSnippets {
+  /// Region `sg-datatable-acoes`.
+  static const String sgDatatableAcoes = r'''
+Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    SgDatatable(
+      id: 'pessoas-acoes',
+      value: _pessoas.take(5).toList(),
+      columns: [
+        const SgDatatableColumn(field: 'nome', header: 'Nome'),
+        SgDatatableColumn(
+          field: 'acoes',
+          header: 'Ações',
+          width: 120,
+          body: (row, meta) => Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              SgButton(
+                iconOnly: true,
+                size: SgSize.sm,
+                appearance: SgAppearance.outline,
+                leftIcon: const Icon(Icons.edit_outlined),
+                onClick: () => setState(
+                  () => _evento = 'editar ${row['nome']}',
+                ),
+              ),
+              const SizedBox(width: 4),
+              SgButton(
+                iconOnly: true,
+                size: SgSize.sm,
+                severity: SgSeverity.danger,
+                appearance: SgAppearance.outline,
+                leftIcon: const Icon(Icons.delete_outline),
+                onClick: () => setState(
+                  () => _evento = 'excluir ${row['nome']}',
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    ),
+    const SizedBox(height: 8),
+    Text('Última ação: $_evento'),
+  ],
+)
+''';
+
+  /// Region `sg-datatable-aparencia`.
+  static const String sgDatatableAparencia = r'''
+SgDatatable(
+  id: 'pessoas-aparencia',
+  value: _pessoas.take(5).toList(),
+  columns: _colunas,
+  stripedRows: true,
+  showGridlines: true,
+  showColumnManager: false,
+)
+''';
+
   /// Region `sg-datatable-basico`.
   static const String sgDatatableBasico = r'''
 SgDatatable(

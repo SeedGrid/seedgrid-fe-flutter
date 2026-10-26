@@ -242,6 +242,76 @@ class _SgDatatablePageState extends State<SgDatatablePage> {
         code: SgDatatablePageSnippets.sgDatatableColunas,
       ),
       ShowcaseExample(
+        title: 'Coluna de ações com ícones',
+        description:
+            'body desenha qualquer widget na célula; aqui, botões de ícone que usam a linha da própria célula.',
+        preview:
+            // #region sg-datatable-acoes
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SgDatatable(
+                  id: 'pessoas-acoes',
+                  value: _pessoas.take(5).toList(),
+                  columns: [
+                    const SgDatatableColumn(field: 'nome', header: 'Nome'),
+                    SgDatatableColumn(
+                      field: 'acoes',
+                      header: 'Ações',
+                      width: 120,
+                      body: (row, meta) => Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          SgButton(
+                            iconOnly: true,
+                            size: SgSize.sm,
+                            appearance: SgAppearance.outline,
+                            leftIcon: const Icon(Icons.edit_outlined),
+                            onClick: () => setState(
+                              () => _evento = 'editar ${row['nome']}',
+                            ),
+                          ),
+                          const SizedBox(width: 4),
+                          SgButton(
+                            iconOnly: true,
+                            size: SgSize.sm,
+                            severity: SgSeverity.danger,
+                            appearance: SgAppearance.outline,
+                            leftIcon: const Icon(Icons.delete_outline),
+                            onClick: () => setState(
+                              () => _evento = 'excluir ${row['nome']}',
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 8),
+                Text('Última ação: $_evento'),
+              ],
+            ),
+        // #endregion
+        code: SgDatatablePageSnippets.sgDatatableAcoes,
+      ),
+      ShowcaseExample(
+        title: 'Aparência da tabela',
+        description:
+            'stripedRows alterna o fundo das linhas, showGridlines desenha as divisões e hoverableRows (padrão) destaca a linha sob o cursor.',
+        preview:
+            // #region sg-datatable-aparencia
+            SgDatatable(
+              id: 'pessoas-aparencia',
+              value: _pessoas.take(5).toList(),
+              columns: _colunas,
+              stripedRows: true,
+              showGridlines: true,
+              showColumnManager: false,
+            ),
+        // #endregion
+        code: SgDatatablePageSnippets.sgDatatableAparencia,
+      ),
+      ShowcaseExample(
         title: 'Carga sob demanda (lazy)',
         description:
             'lazy não filtra nem ordena: você entrega só a página atual em value e o total em totalRecords; onPage pede a próxima.',

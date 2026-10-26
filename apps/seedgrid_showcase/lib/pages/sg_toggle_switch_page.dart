@@ -15,6 +15,9 @@ class SgToggleSwitchPage extends StatefulWidget {
 
 class _SgToggleSwitchPageState extends State<SgToggleSwitchPage> {
   bool _ligado = false;
+  bool _controlado = false;
+  bool _remoto = false;
+  bool _salvando = false;
   final SgFormController _form = SgFormController();
   String _enviado = '';
 
@@ -102,6 +105,79 @@ class _SgToggleSwitchPageState extends State<SgToggleSwitchPage> {
             ),
         // #endregion
         code: SgToggleSwitchPageSnippets.sgToggleSwitchValidacao,
+      ),
+      ShowcaseExample(
+        title: 'Controlado externamente',
+        description:
+            'checked é a fonte da verdade: o pai decide o estado, e o botão altera o valor por fora.',
+        preview:
+            // #region sg-toggle-switch-controlado
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SgToggleSwitch(
+                  id: 'controlado',
+                  label: 'Modo escuro',
+                  checked: _controlado,
+                  onChange: (v) => setState(() => _controlado = v),
+                ),
+                const SizedBox(height: 8),
+                SgButton(
+                  label: const Text('Inverter por código'),
+                  onClick: () => setState(() => _controlado = !_controlado),
+                ),
+                Text('Valor: $_controlado'),
+              ],
+            ),
+        // #endregion
+        code: SgToggleSwitchPageSnippets.sgToggleSwitchControlado,
+      ),
+      ShowcaseExample(
+        title: 'Atualização remota',
+        description:
+            'A chave só muda depois que o servidor responde (aqui, simulado com 800 ms); enquanto isso ela mostra o valor antigo.',
+        preview:
+            // #region sg-toggle-switch-remoto
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SgToggleSwitch(
+                  id: 'remoto',
+                  label: 'Sincronizar',
+                  checked: _remoto,
+                  disabled: _salvando,
+                  onChange: (v) async {
+                    setState(() => _salvando = true);
+                    await Future<void>.delayed(
+                      const Duration(milliseconds: 800),
+                    );
+                    if (!mounted) return;
+                    setState(() {
+                      _remoto = v;
+                      _salvando = false;
+                    });
+                  },
+                ),
+                Text(_salvando ? 'Salvando...' : 'Salvo: $_remoto'),
+              ],
+            ),
+        // #endregion
+        code: SgToggleSwitchPageSnippets.sgToggleSwitchRemoto,
+      ),
+      ShowcaseExample(
+        title: 'Erro externo e largura',
+        description:
+            'error mostra uma mensagem vinda de fora; width limita a largura do componente.',
+        preview:
+            // #region sg-toggle-switch-erro-externo
+            const SgToggleSwitch(
+              id: 'erro',
+              label: 'Aceito os termos',
+              error: 'Aceite os termos para continuar',
+              width: 280,
+            ),
+        // #endregion
+        code: SgToggleSwitchPageSnippets.sgToggleSwitchErroExterno,
       ),
       ShowcaseExample(
         title: 'Dentro de um formulário',
