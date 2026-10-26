@@ -360,7 +360,30 @@ class _SgAutocompleteState<T> extends State<SgAutocomplete<T>> {
     if (v.isEmpty) {
       _internalError = null;
       _selectedItem = null;
+    } else {
+      _resolveExternalLabel(v);
     }
+  }
+
+  /// Valor de fora que e o id/valor de um item (ex.: `setValue('f', 3)`): mostra o rotulo dele em vez do texto cru.
+  /// Procura no catalogo inteiro (consulta vazia); se nao achar, fica o texto como veio (igual ao React).
+  Future<void> _resolveExternalLabel(String v) async {
+    try {
+      final raw = await widget.source('');
+      if (!mounted || _inputValue != v || _typed) return;
+      for (final r in raw) {
+        final item = _toItem(r);
+        if ('${item.id}' == v || item.value == v) {
+          final label = _selectionLabel(item);
+          if (label == v) return;
+          setState(() {
+            _selectedItem = item;
+            _setInput(label);
+          });
+          return;
+        }
+      }
+    } catch (_) {}
   }
 
   void _setInput(String s) => _inputValue = s;

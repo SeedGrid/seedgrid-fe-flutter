@@ -5,6 +5,7 @@
 // Diferencas assumidas em relacao ao React (ver docs/PARIDADE.md):
 // - `inputProps` nao existe (ADR 50); `value` do formulario e `List<Object>`.
 // - No React o mousedown no campo nao o foca (preventDefault); no Flutter o toque foca o campo.
+import '../list_narrow.dart';
 import 'package:flutter/gestures.dart' show kTouchSlop;
 import 'package:flutter/material.dart';
 
@@ -222,7 +223,7 @@ class _SgMultiSelectState extends State<SgMultiSelect>
 
   void _handleChange(List<SgMultiSelectOptionValue> next) {
     // Decisao do dono (diverge do React): o onChange do usuario sempre roda, tambem dentro do formulario.
-    if (isBound) pushToForm(next);
+    if (isBound) pushToForm(sgNarrowList(next));
     widget.onChange?.call(next);
   }
 

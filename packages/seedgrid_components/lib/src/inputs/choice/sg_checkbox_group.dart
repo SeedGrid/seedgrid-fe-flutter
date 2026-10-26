@@ -1,5 +1,6 @@
 // Porte de SgCheckboxGroup (React: src/inputs/SgCheckboxGroup.tsx). Mesmos nomes, valores e defaults.
 // `ref` (SgCheckboxGroupRef) vira `controller` (SgCheckboxGroupController). `register` nao existe (ADR 49).
+import '../list_narrow.dart';
 import 'package:flutter/material.dart';
 
 import '../../form/sg_form.dart';
@@ -191,7 +192,7 @@ class _SgCheckboxGroupState extends State<SgCheckboxGroup> {
 
   void _emit(List<Object> next) {
     if (_binding.bound) {
-      _binding.set(next);
+      _binding.set(sgNarrowList(next));
     } else if (!_isControlled) {
       setState(() => _internal = next);
     }

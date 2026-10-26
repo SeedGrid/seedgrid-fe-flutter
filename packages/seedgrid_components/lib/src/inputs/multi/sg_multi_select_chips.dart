@@ -1,6 +1,7 @@
 // Porte de SgMultiSelectChips (React: src/inputs/SgMultiSelectChips.tsx): campo em que os valores
 // selecionados aparecem como chips removiveis; a lista de opcoes e o mesmo dropdown do
 // SgMultiSelect (ancorado em tela larga, bottom sheet em tela estreita; ADR 51).
+import '../list_narrow.dart';
 import 'package:flutter/material.dart';
 
 import '../../form/sg_form.dart';
@@ -151,7 +152,7 @@ class _SgMultiSelectChipsState extends State<SgMultiSelectChips>
 
   void _handleChange(List<SgMultiSelectOptionValue> next) {
     // Decisao do dono (diverge do React): o onChange do usuario sempre roda, tambem dentro do formulario.
-    if (isBound) pushToForm(next);
+    if (isBound) pushToForm(sgNarrowList(next));
     widget.onChange?.call(next);
   }
 
