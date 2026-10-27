@@ -91,13 +91,12 @@ Column(
       spacing: 8,
       runSpacing: 8,
       children: [
-        for (final s in SgDialogSeverity.values)
+        for (final s in SgSeverity.values)
           SgButton(
             label: Text(s.value),
-            appearance: SgAppearance.outline,
-            size: SgSize.sm,
+            severity: s,
             onClick: () => setState(() {
-              _sev = s;
+              _sev = SgDialogSeverity.fromValue(s.value)!;
               _severidade = true;
             }),
           ),
@@ -109,7 +108,9 @@ Column(
       severity: _sev,
       showSeverityAccent: true,
       title: Text('Severidade ${_sev.value}'),
-      message: const Text('Veja o ícone e o botão de confirmar.'),
+      message: const Text(
+        'Veja o ícone, o fundo e o botão de confirmar.',
+      ),
     ),
   ],
 )

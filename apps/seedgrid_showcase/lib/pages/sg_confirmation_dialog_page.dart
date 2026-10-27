@@ -57,7 +57,7 @@ class _SgConfirmationDialogPageState extends State<SgConfirmationDialogPage> {
       ShowcaseExample(
         title: 'Severidades',
         description:
-            'A severidade escolhe o ícone padrão (info, aviso, perigo) e a cor do botão de confirmar.',
+            'A severidade escolhe o ícone padrão (info, aviso, perigo), tinge o fundo e dá a cor do botão de confirmar.',
         preview:
             // #region sg-confirmation-dialog-severidade
             Column(
@@ -67,13 +67,12 @@ class _SgConfirmationDialogPageState extends State<SgConfirmationDialogPage> {
                   spacing: 8,
                   runSpacing: 8,
                   children: [
-                    for (final s in SgDialogSeverity.values)
+                    for (final s in SgSeverity.values)
                       SgButton(
                         label: Text(s.value),
-                        appearance: SgAppearance.outline,
-                        size: SgSize.sm,
+                        severity: s,
                         onClick: () => setState(() {
-                          _sev = s;
+                          _sev = SgDialogSeverity.fromValue(s.value)!;
                           _severidade = true;
                         }),
                       ),
@@ -85,7 +84,9 @@ class _SgConfirmationDialogPageState extends State<SgConfirmationDialogPage> {
                   severity: _sev,
                   showSeverityAccent: true,
                   title: Text('Severidade ${_sev.value}'),
-                  message: const Text('Veja o ícone e o botão de confirmar.'),
+                  message: const Text(
+                    'Veja o ícone, o fundo e o botão de confirmar.',
+                  ),
                 ),
               ],
             ),
