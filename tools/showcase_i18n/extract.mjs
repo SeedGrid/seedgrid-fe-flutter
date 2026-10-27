@@ -68,6 +68,22 @@ export function pageTexts(file) {
     const stop = t.indexOf("preview:", m.index);
     grab(m.index + m[0].length, stop < 0 ? t.length : stop, ["title", "description"]);
   }
+  // Descricao das props escritas na pagina (SgPropSpec(...)): bloco ate o parentese que fecha, ignorando strings.
+  for (const m of t.matchAll(/SgPropSpec\(/g)) {
+    let i = m.index + m[0].length;
+    let depth = 1;
+    const start = i;
+    while (i < t.length && depth > 0) {
+      const c = t[i];
+      if (c === "'" || c === '"') {
+        i++;
+        while (i < t.length && t[i] !== c) i += t[i] === "\\" ? 2 : 1;
+      } else if (c === "(") depth++;
+      else if (c === ")") depth--;
+      i++;
+    }
+    grab(start, i, ["description"]);
+  }
   for (const m of t.matchAll(/SgShowcasePage\(/g)) {
     const stop = t.indexOf("examples:", m.index);
     grab(m.index + m[0].length, stop < 0 ? t.length : stop, ["description"]);
@@ -77,6 +93,11 @@ export function pageTexts(file) {
 
 export function allTexts() {
   const map = new Map();
+  // Descricoes de props do contrato do React (tabela de props de todas as paginas).
+  const spec = JSON.parse(fs.readFileSync(path.join(root, "tools/gen_props/props-spec.json"), "utf8"));
+  for (const c of Object.values(spec.components)) {
+    for (const p of c.props) if (p.description && !map.has(p.description)) map.set(p.description, "props-spec.json");
+  }
   for (const f of fs.readdirSync(pagesDir).filter((x) => x.endsWith("_page.dart")).sort()) {
     for (const { texto, onde } of pageTexts(path.join(pagesDir, f))) if (!map.has(texto)) map.set(texto, onde);
   }

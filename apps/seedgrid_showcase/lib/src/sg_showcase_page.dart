@@ -411,7 +411,7 @@ class SgPropsTable extends StatelessWidget {
                 DataCell(
                   ConstrainedBox(
                     constraints: const BoxConstraints(maxWidth: 420),
-                    child: Text(s.description ?? '-'),
+                    child: Text(context.tx(s.description ?? '-')),
                   ),
                 ),
               ],
