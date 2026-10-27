@@ -1,5 +1,7 @@
 // Showcase do SgInputCNPJ. O codigo exibido em cada exemplo e o trecho entre `// #region` e
 // `// #endregion` deste arquivo: exatamente o que esta renderizado.
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
@@ -17,6 +19,8 @@ class _SgInputCNPJPageState extends State<SgInputCNPJPage> {
   final SgFormController _form = SgFormController();
   String _evento = 'nenhum';
   String _enviado = '';
+  Object? _publicaResultado;
+  String? _publicaErro;
 
   @override
   void dispose() {
@@ -57,11 +61,39 @@ class _SgInputCNPJPageState extends State<SgInputCNPJPage> {
             'Consulta de verdade em publica.cnpj.ws (precisa de internet; a API limita a 3 consultas por minuto). Para testar sem rede, passe publicaCnpjFetch.',
         preview:
             // #region sg-input-cnpj-consulta
-            SgInputCNPJ(
-              id: 'cnpj-consulta',
-              labelText: 'CNPJ com consulta',
-              validateWithPublicaCnpj: true,
-              publicaCnpjErrorMessage: 'CNPJ não encontrado na Receita',
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SgInputCNPJ(
+                  id: 'cnpj-consulta',
+                  labelText: 'CNPJ com consulta',
+                  validateWithPublicaCnpj: true,
+                  publicaCnpjErrorMessage: 'CNPJ não encontrado na Receita',
+                  onPublicaCnpjResult: (data) => setState(() {
+                    _publicaResultado = data;
+                    _publicaErro = null;
+                  }),
+                  onPublicaCnpjError: (_) => setState(
+                    () => _publicaErro =
+                        'Não foi possível consultar a base pública agora.',
+                  ),
+                ),
+                if (_publicaResultado != null) ...[
+                  const SizedBox(height: 8),
+                  const Text('Resultado da consulta'),
+                  ConstrainedBox(
+                    constraints: const BoxConstraints(maxHeight: 240),
+                    child: SingleChildScrollView(
+                      child: SelectableText(
+                        const JsonEncoder.withIndent(
+                          '  ',
+                        ).convert(_publicaResultado),
+                      ),
+                    ),
+                  ),
+                ],
+                if (_publicaErro != null) Text(_publicaErro!),
+              ],
             ),
         // #endregion
         code: SgInputCnpjPageSnippets.sgInputCnpjConsulta,

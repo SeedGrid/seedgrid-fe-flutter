@@ -10,11 +10,39 @@ const SgInputCNPJ(id: 'cnpj', labelText: 'CNPJ')
 
   /// Region `sg-input-cnpj-consulta`.
   static const String sgInputCnpjConsulta = r'''
-SgInputCNPJ(
-  id: 'cnpj-consulta',
-  labelText: 'CNPJ com consulta',
-  validateWithPublicaCnpj: true,
-  publicaCnpjErrorMessage: 'CNPJ não encontrado na Receita',
+Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    SgInputCNPJ(
+      id: 'cnpj-consulta',
+      labelText: 'CNPJ com consulta',
+      validateWithPublicaCnpj: true,
+      publicaCnpjErrorMessage: 'CNPJ não encontrado na Receita',
+      onPublicaCnpjResult: (data) => setState(() {
+        _publicaResultado = data;
+        _publicaErro = null;
+      }),
+      onPublicaCnpjError: (_) => setState(
+        () => _publicaErro =
+            'Não foi possível consultar a base pública agora.',
+      ),
+    ),
+    if (_publicaResultado != null) ...[
+      const SizedBox(height: 8),
+      const Text('Resultado da consulta'),
+      ConstrainedBox(
+        constraints: const BoxConstraints(maxHeight: 240),
+        child: SingleChildScrollView(
+          child: SelectableText(
+            const JsonEncoder.withIndent(
+              '  ',
+            ).convert(_publicaResultado),
+          ),
+        ),
+      ),
+    ],
+    if (_publicaErro != null) Text(_publicaErro!),
+  ],
 )
 ''';
 
