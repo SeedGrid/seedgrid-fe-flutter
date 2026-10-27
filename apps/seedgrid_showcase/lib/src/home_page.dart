@@ -1,27 +1,25 @@
-// Pagina inicial do showcase: o que e, e o andamento do porte (lido do catalogo gerado da tabela de paridade).
+// Pagina inicial do showcase: o que e e o catalogo de componentes por categoria, com um card por componente
+// (nome + descricao curta, a mesma do cabecalho da pagina), como na home do showcase React.
 import 'package:flutter/material.dart';
 
+import '../pages/pages.g.dart';
 import 'catalog.g.dart';
 import 'showcase_i18n.dart';
-import 'showcase_menu.dart' show kCategoryOrder;
+import 'showcase_menu.dart' show kCategoryOrder, menuGroups;
 
 class ShowcaseHomePage extends StatelessWidget {
-  const ShowcaseHomePage({super.key});
+  const ShowcaseHomePage({super.key, required this.onOpen});
+
+  /// Chamado com o nome do componente ao tocar no card.
+  final ValueChanged<String> onOpen;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    int count(String status, [String? category]) => kCatalog
-        .where(
-          (e) =>
-              e.status == status &&
-              (category == null || e.category == category),
-        )
-        .length;
-    final total = kCatalog.length;
-    final portado = count('portado');
-    final parcial = count('parcial');
-    final pendente = count('pendente');
+    final groups = menuGroups('');
+    final descriptions = {
+      for (final p in kShowcasePages) p.name: p.description,
+    };
     return ListView(
       key: const ValueKey('home-resumo'),
       padding: const EdgeInsets.all(24),
@@ -29,107 +27,121 @@ class ShowcaseHomePage extends StatelessWidget {
         Text(context.tr('homeTitle'), style: theme.textTheme.headlineMedium),
         const SizedBox(height: 8),
         Text(context.tr('homeIntro')),
-        const SizedBox(height: 24),
-        Text(
-          context.tr('progress', {'version': kCatalogReactVersion}),
-          style: theme.textTheme.titleLarge,
-        ),
-        const SizedBox(height: 12),
-        Wrap(
-          spacing: 12,
-          runSpacing: 12,
-          children: [
-            _Stat(
-              keyName: 'total',
-              label: context.tr('statTotal'),
-              value: total,
-            ),
-            _Stat(
-              keyName: 'portado',
-              label: context.tr('statPortado'),
-              value: portado,
-            ),
-            _Stat(
-              keyName: 'parcial',
-              label: context.tr('statParcial'),
-              value: parcial,
-            ),
-            _Stat(
-              keyName: 'pendente',
-              label: context.tr('statPendente'),
-              value: pendente,
-            ),
-          ],
-        ),
-        const SizedBox(height: 24),
         for (final cat in kCategoryOrder)
-          if (kCatalog.any((e) => e.category == cat))
-            Padding(
-              padding: const EdgeInsets.only(bottom: 12),
-              child: _CategoryBar(
-                label: context.tr('cat.$cat'),
-                done: count('portado', cat) + count('parcial', cat),
-                total: kCatalog.where((e) => e.category == cat).length,
-              ),
+          if (groups[cat] != null)
+            _Category(
+              title: context.tr('cat.$cat'),
+              items: [
+                for (final item in groups[cat]!)
+                  if (item.hasPage)
+                    (
+                      name: item.name,
+                      description: descriptions[item.name] ?? '',
+                    ),
+              ],
+              onOpen: onOpen,
             ),
-        const SizedBox(height: 12),
-        Text(context.tr('statusNote'), style: theme.textTheme.bodySmall),
       ],
     );
   }
 }
 
-class _Stat extends StatelessWidget {
-  const _Stat({
-    required this.keyName,
-    required this.label,
-    required this.value,
+class _Category extends StatelessWidget {
+  const _Category({
+    required this.title,
+    required this.items,
+    required this.onOpen,
   });
 
-  final String keyName;
-  final String label;
-  final int value;
+  final String title;
+  final List<({String name, String description})> items;
+  final ValueChanged<String> onOpen;
 
   @override
-  Widget build(BuildContext context) => SizedBox(
-    width: 170,
-    child: Card(
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              '$value',
-              key: ValueKey('stat-$keyName'),
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-            Text(label),
-          ],
-        ),
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Padding(
+      padding: const EdgeInsets.only(top: 32),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(title, style: theme.textTheme.titleLarge),
+          const Divider(height: 16),
+          LayoutBuilder(
+            builder: (context, c) {
+              final columns = c.maxWidth >= 640 ? 2 : 1;
+              const gap = 12.0;
+              final width = (c.maxWidth - gap * (columns - 1)) / columns;
+              return Wrap(
+                spacing: gap,
+                runSpacing: gap,
+                children: [
+                  for (final item in items)
+                    SizedBox(
+                      width: width,
+                      child: _ComponentCard(
+                        name: item.name,
+                        description: item.description,
+                        onTap: () => onOpen(item.name),
+                      ),
+                    ),
+                ],
+              );
+            },
+          ),
+        ],
       ),
-    ),
-  );
+    );
+  }
 }
 
-class _CategoryBar extends StatelessWidget {
-  const _CategoryBar({
-    required this.label,
-    required this.done,
-    required this.total,
+class _ComponentCard extends StatelessWidget {
+  const _ComponentCard({
+    required this.name,
+    required this.description,
+    required this.onTap,
   });
 
-  final String label;
-  final int done;
-  final int total;
+  final String name;
+  final String description;
+  final VoidCallback onTap;
 
   @override
-  Widget build(BuildContext context) => Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Text('$label: $done ${context.tr('of')} $total'),
-      const SizedBox(height: 4),
-      LinearProgressIndicator(value: total == 0 ? 0 : done / total),
-    ],
-  );
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Card(
+      key: ValueKey('card-$name'),
+      margin: EdgeInsets.zero,
+      clipBehavior: Clip.antiAlias,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8),
+        side: BorderSide(color: theme.colorScheme.outlineVariant),
+      ),
+      child: InkWell(
+        onTap: onTap,
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                name,
+                style: theme.textTheme.titleMedium?.copyWith(
+                  color: theme.colorScheme.primary,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                description,
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  color: theme.colorScheme.onSurfaceVariant,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 }

@@ -101,7 +101,15 @@ class _ShowcaseHomeState extends State<ShowcaseHome> {
         ? null
         : kShowcasePages.where((p) => p.name == _page).firstOrNull;
     final Widget content = entry == null
-        ? const ShowcaseHomePage()
+        ? ShowcaseHomePage(
+            onOpen: (name) {
+              setState(() {
+                _page = name;
+                _anchor = null;
+              });
+              _syncUrl();
+            },
+          )
         : ShowcaseLocation(
             anchor: _anchor,
             onAnchorChanged: (id) {

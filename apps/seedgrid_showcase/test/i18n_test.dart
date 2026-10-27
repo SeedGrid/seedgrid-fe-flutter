@@ -28,7 +28,7 @@ void main() {
     await tester.pumpWidget(const ShowcaseApp());
     expect(find.text('SeedGrid para Flutter'), findsOneWidget);
 
-    await tester.tap(find.text('en-US'));
+    await tester.tap(_chip('en-US'));
     await tester.pumpAndSettle();
     expect(find.text('SeedGrid for Flutter'), findsOneWidget);
     expect(find.text('Home'), findsWidgets);
@@ -38,18 +38,21 @@ void main() {
       ('fr', 'SeedGrid pour Flutter'),
       ('pt-PT', 'SeedGrid para Flutter'),
     ]) {
-      await tester.tap(find.text(locale));
+      await tester.tap(_chip(locale));
       await tester.pumpAndSettle();
       expect(find.text(title), findsOneWidget, reason: locale);
     }
     expect(find.text('Accueil'), findsNothing);
-    await tester.tap(find.text('fr'));
+    await tester.tap(_chip('fr'));
     await tester.pumpAndSettle();
     expect(find.text('Accueil'), findsWidgets);
     expect(find.text('Rechercher un composant'), findsWidgets);
 
-    await tester.tap(find.text('pt-BR'));
+    await tester.tap(_chip('pt-BR'));
     await tester.pumpAndSettle();
     expect(find.text('SeedGrid para Flutter'), findsOneWidget);
   });
 }
+
+/// Chip do idioma: o rotulo e a bandeira seguida do codigo.
+Finder _chip(String locale) => find.text('${kShowcaseFlags[locale]} $locale');

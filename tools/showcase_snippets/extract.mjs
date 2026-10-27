@@ -60,7 +60,9 @@ for (const f of files) {
   // Colisao de nome (ex.: SgWizardPage e o widget da etapa): `// showcase-name: SgWizard` no topo do arquivo
   // define o nome da pagina no menu/URL sem mudar o nome da classe.
   const override = /^\/\/ showcase-name: (\w+)\s*$/m.exec(text);
-  registry.push({ name: override ? override[1] : classMatch[1], cls: classMatch[1] + "Page", file: `lib/pages/${f}`, importPath: f, examples: found.size });
+  // Descricao curta do cabecalho da pagina (literal Dart, possivelmente em varias strings adjacentes): vai para os cards da home.
+  const descMatch = /SgShowcasePage\(\s*name:\s*'[^']*',\s*description:\s*('[^']*'(?:\s*'[^']*')*)\s*,/.exec(text);
+  registry.push({ name: override ? override[1] : classMatch[1], cls: classMatch[1] + "Page", file: `lib/pages/${f}`, importPath: f, examples: found.size, description: descMatch ? descMatch[1].replace(/\s+/g, " ") : "''" });
 }
 
 registry.sort((a, b) => {
@@ -70,8 +72,8 @@ registry.sort((a, b) => {
 });
 let reg = "// dart format off\n// GERADO por tools/showcase_snippets/extract.mjs. NAO EDITE A MAO.\n// Registro das paginas do showcase (menu do app e testes automaticos).\n\nimport 'package:flutter/widgets.dart';\n\n";
 for (const r of registry) reg += `import '${r.importPath}';\n`;
-reg += "\n/// Uma pagina do showcase. `examples` = numero de regioes `// #region` do arquivo (links esperados).\ntypedef ShowcasePageEntry = ({String name, String file, int examples, WidgetBuilder builder});\n\nfinal List<ShowcasePageEntry> kShowcasePages = <ShowcasePageEntry>[\n";
-for (const r of registry) reg += `  (name: '${r.name}', file: '${r.file}', examples: ${r.examples}, builder: (_) => const ${r.cls}()),\n`;
+reg += "\n/// Uma pagina do showcase. `examples` = numero de regioes `// #region` do arquivo (links esperados).\ntypedef ShowcasePageEntry = ({String name, String file, int examples, String description, WidgetBuilder builder});\n\nfinal List<ShowcasePageEntry> kShowcasePages = <ShowcasePageEntry>[\n";
+for (const r of registry) reg += `  (name: '${r.name}', file: '${r.file}', examples: ${r.examples}, description: ${r.description}, builder: (_) => const ${r.cls}()),\n`;
 reg += "];\n";
 outputs.set(path.join(pagesDir, "pages.g.dart"), reg);
 

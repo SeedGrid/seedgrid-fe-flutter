@@ -7,6 +7,15 @@ import 'package:seedgrid_components/seedgrid_components.dart'
 
 const List<String> kShowcaseLocales = ['pt-BR', 'pt-PT', 'en-US', 'es', 'fr'];
 
+/// Bandeira de cada idioma do seletor.
+const Map<String, String> kShowcaseFlags = {
+  'pt-BR': '🇧🇷',
+  'pt-PT': '🇵🇹',
+  'en-US': '🇺🇸',
+  'es': '🇪🇸',
+  'fr': '🇫🇷',
+};
+
 const Map<String, Map<String, String>> kShowcaseMessages = {
   'pt-BR': {
     'home': 'Início',
@@ -364,7 +373,7 @@ class ShowcaseLanguagePicker extends StatelessWidget {
             children: [
               for (final l in kShowcaseLocales)
                 ChoiceChip(
-                  label: Text(l),
+                  label: Text('${kShowcaseFlags[l] ?? ''} $l'),
                   selected: l == current,
                   visualDensity: VisualDensity.compact,
                   onSelected: (_) => i18n?.setLocale(l),

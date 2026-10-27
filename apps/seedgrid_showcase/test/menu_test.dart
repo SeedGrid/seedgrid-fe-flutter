@@ -58,21 +58,22 @@ void main() {
     },
   );
 
-  testWidgets('abre na pagina inicial com o andamento do porte', (t) async {
-    setSize(t, kSizes.values.last);
-    await t.pumpWidget(const ShowcaseApp(initialUri: null));
-    await settle(t);
-    expect(find.byKey(const ValueKey('home-resumo')), findsOneWidget);
-    expect(
-      t.widget<Text>(find.byKey(const ValueKey('stat-total'))).data,
-      '${kCatalog.length}',
-    );
-    final portados = kCatalog.where((e) => e.status == 'portado').length;
-    expect(
-      t.widget<Text>(find.byKey(const ValueKey('stat-portado'))).data,
-      '$portados',
-    );
-  });
+  testWidgets(
+    'abre na pagina inicial com um card por componente e abre a pagina ao tocar',
+    (t) async {
+      setSize(t, kSizes.values.last);
+      await t.pumpWidget(const ShowcaseApp(initialUri: null));
+      await settle(t);
+      expect(find.byKey(const ValueKey('home-resumo')), findsOneWidget);
+      // a lista e lazy: o primeiro card (categoria Acao) ja esta montado
+      final card = find.byKey(const ValueKey('card-SgButton'));
+      expect(card, findsOneWidget);
+      await t.ensureVisible(card);
+      await t.tap(card);
+      await settle(t);
+      expect(find.byKey(const ValueKey('home-resumo')), findsNothing);
+    },
+  );
 
   testWidgets('menu: grupos por categoria, pendente esmaecido e sem clique', (
     t,
