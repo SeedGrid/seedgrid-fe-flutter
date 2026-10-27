@@ -54,7 +54,7 @@ void main() {
       setSize(t, kSizes.values.last);
       await t.pumpWidget(const ShowcaseApp());
       // A primeira pagina do menu muda conforme os componentes portados: ir ate SgButton.
-      await t.tap(find.byKey(const ValueKey('nav-SgButton')));
+      await t.tap(find.byKey(const ValueKey('sg-menu-row-SgButton')));
       await settle(t);
       final light = SgTheme.fromInput(defaultSeedTheme, Brightness.light);
       final dark = SgTheme.fromInput(defaultSeedTheme, Brightness.dark);
@@ -75,8 +75,8 @@ void main() {
       await settle(t);
       expect(primaryBg(), dark.btnPrimaryBg);
       // O menu e uma lista longa e preguicosa: rolar ate o item aparecer.
-      await revealInMenu(t, find.byKey(const ValueKey('nav-SgInputText')));
-      await t.tap(find.byKey(const ValueKey('nav-SgInputText')));
+      await revealInMenu(t, find.byKey(const ValueKey('sg-menu-row-SgInputText')));
+      await t.tap(find.byKey(const ValueKey('sg-menu-row-SgInputText')));
       await settle(t);
       expect(find.text('Exemplo 1 — Básico'), findsOneWidget);
     },

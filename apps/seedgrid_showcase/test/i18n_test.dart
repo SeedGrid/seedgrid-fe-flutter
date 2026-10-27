@@ -46,7 +46,7 @@ void main() {
     await tester.tap(find.text('fr'));
     await tester.pumpAndSettle();
     expect(find.text('Accueil'), findsWidgets);
-    expect(find.text('Rechercher un composant'), findsOneWidget);
+    expect(find.text('Rechercher un composant'), findsWidgets);
 
     await tester.tap(find.text('pt-BR'));
     await tester.pumpAndSettle();

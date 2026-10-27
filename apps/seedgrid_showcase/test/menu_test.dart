@@ -95,30 +95,34 @@ void main() {
     );
   });
 
-  testWidgets('busca filtra o menu e mostra mensagem quando nao acha', (
-    t,
-  ) async {
-    setSize(t, kSizes.values.last);
-    await t.pumpWidget(const ShowcaseApp());
-    await settle(t);
-    await t.enterText(find.byKey(const ValueKey('busca-componente')), 'avatar');
-    await settle(t);
-    expect(find.byKey(const ValueKey('nav-SgAvatar')), findsOneWidget);
-    expect(find.byKey(const ValueKey('nav-SgAvatarGroup')), findsOneWidget);
-    expect(find.byKey(const ValueKey('nav-SgButton')), findsNothing);
-    await t.enterText(find.byKey(const ValueKey('busca-componente')), 'zzzz');
-    await settle(t);
-    expect(find.byKey(const ValueKey('menu-sem-resultado')), findsOneWidget);
-  });
+  testWidgets(
+    'busca do SgMenu sugere os componentes e nao acha o que nao existe',
+    (t) async {
+      setSize(t, kSizes.values.last);
+      await t.pumpWidget(const ShowcaseApp());
+      await settle(t);
+      final campo = find.descendant(
+        of: find.byKey(const ValueKey('sg-menu-search')),
+        matching: find.byType(EditableText),
+      );
+      await t.enterText(campo, 'avatar');
+      await settle(t);
+      expect(find.text('SgAvatar'), findsWidgets);
+      expect(find.text('SgAvatarGroup'), findsWidgets);
+      await t.enterText(campo, 'zzzz');
+      await settle(t);
+      expect(find.text('SgAvatarGroup'), findsNothing);
+    },
+  );
 
   testWidgets('escolher um componente abre a pagina; Inicio volta', (t) async {
     setSize(t, kSizes.values.last);
     await t.pumpWidget(const ShowcaseApp());
     await settle(t);
-    await t.tap(find.byKey(const ValueKey('nav-SgButton')));
+    await t.tap(find.byKey(const ValueKey('sg-menu-row-SgButton')));
     await settle(t);
     expect(find.text('Exemplo 1 — Severidades'), findsOneWidget);
-    await t.tap(find.byKey(const ValueKey('nav-inicio')));
+    await t.tap(find.byKey(const ValueKey('sg-menu-row-inicio')));
     await settle(t);
     expect(find.byKey(const ValueKey('home-resumo')), findsOneWidget);
   });
@@ -127,7 +131,7 @@ void main() {
     setSize(t, kSizes.values.last);
     await t.pumpWidget(const ShowcaseApp(initialUri: null));
     await settle(t);
-    await t.tap(find.byKey(const ValueKey('nav-SgButton')));
+    await t.tap(find.byKey(const ValueKey('sg-menu-row-SgButton')));
     await settle(t);
     Color primaryBg() =>
         (t
@@ -142,7 +146,10 @@ void main() {
                 as BoxDecoration)
             .color!;
     final before = primaryBg();
-    await revealInMenu(t, find.byKey(const ValueKey('tema-cor-#EF4444')));
+    await t.tap(find.byKey(const ValueKey('menu-tema')));
+    await settle(t);
+    await t.ensureVisible(find.byKey(const ValueKey('tema-cor-#EF4444')));
+    await settle(t);
     await t.tap(find.byKey(const ValueKey('tema-cor-#EF4444')));
     await settle(t);
     final red = SgTheme.fromInput(

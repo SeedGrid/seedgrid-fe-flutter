@@ -1,6 +1,7 @@
 // Menu do showcase: agrupado por categoria do React, com busca. Mostra TODOS os componentes do React;
 // os que ainda nao foram portados aparecem esmaecidos e marcados (como a tabela de paridade).
 import 'package:flutter/material.dart';
+import 'package:seedgrid_components/seedgrid_components.dart';
 
 import '../pages/pages.g.dart';
 import 'catalog.g.dart';
@@ -47,7 +48,8 @@ Map<String, List<({String name, String status, bool hasPage})>> menuGroups(
   return groups;
 }
 
-class ShowcaseMenu extends StatefulWidget {
+/// O menu e o proprio SgMenu: grupos por categoria, busca integrada, item ativo e esmaecido nos pendentes.
+class ShowcaseMenu extends StatelessWidget {
   const ShowcaseMenu({
     super.key,
     required this.selected,
@@ -62,76 +64,71 @@ class ShowcaseMenu extends StatefulWidget {
   final ValueChanged<String?> onSelect;
   final Widget? footer;
 
-  @override
-  State<ShowcaseMenu> createState() => _ShowcaseMenuState();
-}
-
-class _ShowcaseMenuState extends State<ShowcaseMenu> {
-  String _query = '';
+  static const _inicioId = 'inicio';
 
   @override
   Widget build(BuildContext context) {
-    final groups = menuGroups(_query);
-    final theme = Theme.of(context);
-    return ListView(
-      key: const ValueKey('menu-lista'),
+    final groups = menuGroups('');
+    final nodes = <SgMenuNode>[
+      SgMenuNode(
+        id: _inicioId,
+        label: context.tr('home'),
+        icon: const Icon(Icons.home_outlined, size: 18),
+        onClick: () => onSelect(null),
+      ),
+      for (final cat in kCategoryOrder)
+        if (groups[cat] != null)
+          SgMenuNode(
+            id: 'cat:$cat',
+            label: '${context.tr('cat.$cat')} (${groups[cat]!.length})',
+            children: [
+              for (final item in groups[cat]!)
+                SgMenuNode(
+                  id: item.name,
+                  label: item.name,
+                  disabled: !item.hasPage,
+                  badge: item.status == 'portado'
+                      ? null
+                      : context.tr('status.${item.status}'),
+                  onClick: item.hasPage ? () => onSelect(item.name) : null,
+                ),
+            ],
+          ),
+    ];
+    return Column(
       children: [
         const ShowcaseLanguagePicker(),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(12, 12, 12, 4),
-          child: TextField(
-            key: const ValueKey('busca-componente'),
-            decoration: InputDecoration(
-              hintText: context.tr('search'),
-              prefixIcon: Icon(Icons.search, size: 18),
-              isDense: true,
-              border: OutlineInputBorder(),
+        Expanded(
+          child: SgMenu(
+            key: const ValueKey('menu-lista'),
+            menu: nodes,
+            border: false,
+            density: SgMenuDensity.compact,
+            defaultExpandedIds: [
+              for (final cat in kCategoryOrder)
+                if (groups[cat] != null) 'cat:$cat',
+            ],
+            selection: SgMenuSelection(activeId: selected ?? _inicioId),
+            search: SgMenuSearch(
+              enabled: true,
+              placeholder: context.tr('search'),
             ),
-            onChanged: (v) => setState(() => _query = v),
           ),
         ),
-        ListTile(
-          key: const ValueKey('nav-inicio'),
-          leading: const Icon(Icons.home_outlined),
-          title: Text(context.tr('home')),
-          selected: widget.selected == null,
-          onTap: () => widget.onSelect(null),
-        ),
-        if (groups.isEmpty)
-          Padding(
-            key: const ValueKey('menu-sem-resultado'),
-            padding: const EdgeInsets.all(16),
-            child: Text(context.tr('noResults')),
-          ),
-        for (final cat in kCategoryOrder)
-          if (groups[cat] != null)
-            ExpansionTile(
-              key: ValueKey('grupo-$cat-${_query.isEmpty}'),
-              initiallyExpanded: true,
-              title: Text('${context.tr('cat.$cat')} (${groups[cat]!.length})'),
-              children: [
-                for (final item in groups[cat]!)
-                  ListTile(
-                    key: ValueKey('nav-${item.name}'),
-                    dense: true,
-                    enabled: item.hasPage,
-                    title: Text(item.name),
-                    selected: item.name == widget.selected,
-                    trailing: item.status == 'portado'
-                        ? null
-                        : Text(
-                            context.tr('status.${item.status}'),
-                            style: theme.textTheme.labelSmall?.copyWith(
-                              color: theme.disabledColor,
-                            ),
-                          ),
-                    onTap: item.hasPage
-                        ? () => widget.onSelect(item.name)
-                        : null,
-                  ),
-              ],
+        if (footer != null)
+          ListTile(
+            key: const ValueKey('menu-tema'),
+            dense: true,
+            leading: const Icon(Icons.palette_outlined, size: 18),
+            title: Text(context.tr('theme')),
+            onTap: () => showModalBottomSheet<void>(
+              context: context,
+              isScrollControlled: true,
+              showDragHandle: true,
+              builder: (_) =>
+                  SafeArea(child: SingleChildScrollView(child: footer!)),
             ),
-        if (widget.footer != null) widget.footer!,
+          ),
       ],
     );
   }

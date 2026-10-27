@@ -104,8 +104,8 @@ void main() {
       expect(urls.last, '/sg-button#exemplo-2');
       await tapLink(t, const ValueKey('link-props-reference'));
       expect(urls.last, '/sg-button#props-reference');
-      await revealInMenu(t, find.byKey(const ValueKey('nav-SgInputText')));
-      await t.tap(find.byKey(const ValueKey('nav-SgInputText')));
+      await revealInMenu(t, find.byKey(const ValueKey('sg-menu-row-SgInputText')));
+      await t.tap(find.byKey(const ValueKey('sg-menu-row-SgInputText')));
       await settle(t);
       expect(
         urls.last,
