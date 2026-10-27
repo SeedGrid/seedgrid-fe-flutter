@@ -2,8 +2,8 @@
  "versaoReact": "2026.7.1",
  "resumo": {
   "total": 89,
-  "portado": 84,
-  "parcial": 5,
+  "portado": 85,
+  "parcial": 4,
   "pendente": 0,
   "naoAplicavel": 0
  },
@@ -661,8 +661,8 @@
   {
    "componente": "SgRealtimeProvider",
    "onda": 2,
-   "status": "parcial",
-   "motivo": "o cliente entra por connectionFactory (SgPulseConnection injetavel; sem ele o status fica unavailable; adaptador do SDK Pulse em lib/src/providers/PULSE_ADAPTER.md, nao ligado por dependencia); tokenEndpoint precisa de URL absoluta; enabled virou disabled, children virou child; hooks viraram widget e funcao",
+   "status": "portado",
+   "motivo": "o cliente entra por connectionFactory (SgPulseConnection injetavel; sem ele o status fica unavailable; adaptador do SDK Pulse em lib/src/providers/PULSE_ADAPTER.md, nao ligado por dependencia); tokenEndpoint precisa de URL absoluta; enabled virou disabled, children virou child; hooks viraram widget e funcao; decisao do dono pendente: ligar o SDK Pulse por dependencia so depois de seedgrid_pulse_subscriber ir ao pub.dev (hoje o adaptador esta documentado e testado fora do repositorio)",
    "onde": "packages/seedgrid_components/lib/src/providers/sg_realtime_provider.dart",
    "props": 8,
    "propsOmitidas": 0,

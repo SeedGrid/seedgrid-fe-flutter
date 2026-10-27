@@ -72,7 +72,7 @@ const List<CatalogEntry> kCatalog = <CatalogEntry>[
   (name: 'SgRadialGauge', category: 'gadget', wave: 4, status: 'portado'),
   (name: 'SgRadioGroup', category: 'input', wave: 1, status: 'portado'),
   (name: 'SgRating', category: 'input', wave: 1, status: 'portado'),
-  (name: 'SgRealtimeProvider', category: 'provider', wave: 2, status: 'parcial'),
+  (name: 'SgRealtimeProvider', category: 'provider', wave: 2, status: 'portado'),
   (name: 'SgRoller3DDigit', category: 'gadget', wave: 4, status: 'portado'),
   (name: 'SgScreen', category: 'layout', wave: 2, status: 'portado'),
   (name: 'SgSegmentDigit', category: 'gadget', wave: 4, status: 'portado'),

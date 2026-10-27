@@ -2,7 +2,7 @@
 
 > Gerado por `node tools/parity_table/generate.mjs` a partir do @seedgrid/fe-components 2026.7.1. Não edite à mão.
 
-**89 componentes**: 84 portados, 5 parciais, 0 pendentes, 0 não aplicáveis.
+**89 componentes**: 85 portados, 4 parciais, 0 pendentes, 0 não aplicáveis.
 
 "Props omitidas" = props do React que não existem no Flutter de propósito (`className`, `style`, `register`, HTML; ver ADR 50). "Props genéricas" = props cujo tipo Dart do contrato ainda é genérico (função, união, tipo a portar; ver `tools/gen_props/excecoes.json`).
 
@@ -52,7 +52,7 @@
 | 2 | SgPageControlPage | portado | 11 | 2 | 0 | packages/seedgrid_components/lib/src/layout/containers/sg_page_control.dart |
 | 2 | SgPanel | portado | 20 | 0 | 7 | packages/seedgrid_components/lib/src/layout/basic/sg_panel.dart — breakpoints medem a janela como o @media; span/rowSpan lidos de filhos SgPanel (rowSpan reparte o excesso por igual entre as linhas, como o CSS grid); grow so vale com pai Flex e stretch so iguala irmaos com eixo transversal fixo; gap/padding aceitam numero, Npx, Nrem, vh/vw/vmin/vmax e calc()/min()/max()/clamp() |
 | 2 | SgPopup | portado | 21 | 2 | 6 | packages/seedgrid_components/lib/src/overlay/sg_popup.dart — lockBodyScroll sem efeito (o fundo modal ja bloqueia); props de classe CSS aceitas sem efeito; acento do topo e uma faixa de 4 px; icones padrao do SgConfirmationDialog sao do Material; zIndex so cumpre o contrato (a ordem e a do Overlay); anchorRef virou GlobalKey; sem arrastar/redimensionar (o React nao tem); golden com fonte de teste |
-| 2 | SgRealtimeProvider | parcial | 8 | 0 | 4 | packages/seedgrid_components/lib/src/providers/sg_realtime_provider.dart — o cliente entra por connectionFactory (SgPulseConnection injetavel; sem ele o status fica unavailable; adaptador do SDK Pulse em lib/src/providers/PULSE_ADAPTER.md, nao ligado por dependencia); tokenEndpoint precisa de URL absoluta; enabled virou disabled, children virou child; hooks viraram widget e funcao |
+| 2 | SgRealtimeProvider | portado | 8 | 0 | 4 | packages/seedgrid_components/lib/src/providers/sg_realtime_provider.dart — o cliente entra por connectionFactory (SgPulseConnection injetavel; sem ele o status fica unavailable; adaptador do SDK Pulse em lib/src/providers/PULSE_ADAPTER.md, nao ligado por dependencia); tokenEndpoint precisa de URL absoluta; enabled virou disabled, children virou child; hooks viraram widget e funcao; decisao do dono pendente: ligar o SDK Pulse por dependencia so depois de seedgrid_pulse_subscriber ir ao pub.dev (hoje o adaptador esta documentado e testado fora do repositorio) |
 | 2 | SgScreen | portado | 5 | 0 | 3 | packages/seedgrid_components/lib/src/layout/basic/sg_screen.dart |
 | 2 | SgStack | portado | 7 | 0 | 1 | packages/seedgrid_components/lib/src/layout/basic/sg_stack.dart — breakpoints medem a janela como o @media; span/rowSpan lidos de filhos SgPanel (rowSpan reparte o excesso por igual entre as linhas, como o CSS grid); grow so vale com pai Flex e stretch so iguala irmaos com eixo transversal fixo; gap/padding aceitam numero, Npx, Nrem, vh/vw/vmin/vmax e calc()/min()/max()/clamp() |
 | 2 | SgToaster | portado | 8 | 0 | 1 | packages/seedgrid_components/lib/src/feedback/sg_toaster.dart |

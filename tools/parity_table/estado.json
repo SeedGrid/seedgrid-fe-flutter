@@ -97,8 +97,8 @@
     "motivo": "valida a etapa por SgFormController.trigger(fields) (SgWizardPage.fields e SgWizard.control sao extras) e tambem pelos campos sem formulario (SgValidationScope): o React foca e sai de cada input e conta [data-sg-error]; aqui os campos da etapa se validam sob demanda e bloqueiam o avanco"
   },
   "SgRealtimeProvider": {
-    "status": "parcial",
-    "motivo": "o cliente entra por connectionFactory (SgPulseConnection injetavel; sem ele o status fica unavailable; adaptador do SDK Pulse em lib/src/providers/PULSE_ADAPTER.md, nao ligado por dependencia); tokenEndpoint precisa de URL absoluta; enabled virou disabled, children virou child; hooks viraram widget e funcao"
+    "status": "portado",
+    "motivo": "o cliente entra por connectionFactory (SgPulseConnection injetavel; sem ele o status fica unavailable; adaptador do SDK Pulse em lib/src/providers/PULSE_ADAPTER.md, nao ligado por dependencia); tokenEndpoint precisa de URL absoluta; enabled virou disabled, children virou child; hooks viraram widget e funcao; decisao do dono pendente: ligar o SDK Pulse por dependencia so depois de seedgrid_pulse_subscriber ir ao pub.dev (hoje o adaptador esta documentado e testado fora do repositorio)"
   },
   "SgDialog": {
     "status": "portado",
