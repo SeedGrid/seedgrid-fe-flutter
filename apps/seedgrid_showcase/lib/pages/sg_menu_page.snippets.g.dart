@@ -206,4 +206,55 @@ SizedBox(
   ),
 )
 ''';
+
+  /// Region `sg-menu-usuario`.
+  static const String sgMenuUsuario = r'''
+SizedBox(
+  height: 460,
+  child: SgMenu(
+    id: 'menu-usuario',
+    brand: const SgMenuBrand(title: 'SeedGrid ERP'),
+    user: SgMenuUser(
+      name: 'Lúcia Souza',
+      subtitle: 'Financeiro',
+      avatar: const CircleAvatar(child: Text('LS')),
+      onClick: () =>
+          setState(() => _usuarioAcao = 'bloco do usuário'),
+    ),
+    userMenu: [
+      SgMenuNode(
+        id: 'perfil',
+        label: 'Meu perfil',
+        icon: const Icon(Icons.person_outline),
+        onClick: () => setState(() => _usuarioAcao = 'perfil'),
+      ),
+      SgMenuNode(
+        id: 'preferencias',
+        label: 'Preferências',
+        icon: const Icon(Icons.tune),
+        onClick: () =>
+            setState(() => _usuarioAcao = 'preferências'),
+      ),
+      SgMenuNode(
+        id: 'sair',
+        label: 'Sair',
+        icon: const Icon(Icons.logout),
+        onClick: () => setState(() => _usuarioAcao = 'sair'),
+      ),
+    ],
+    menu: const [
+      SgMenuNode(
+        id: 'painel',
+        label: 'Painel',
+        icon: Icon(Icons.dashboard_outlined),
+      ),
+      SgMenuNode(
+        id: 'financeiro',
+        label: 'Financeiro',
+        icon: Icon(Icons.attach_money),
+      ),
+    ],
+  ),
+)
+''';
 }

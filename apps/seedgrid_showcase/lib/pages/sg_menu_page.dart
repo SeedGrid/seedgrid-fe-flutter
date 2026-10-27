@@ -17,6 +17,7 @@ class SgMenuPage extends StatefulWidget {
 class _SgMenuPageState extends State<SgMenuPage> {
   String _ultimo = 'nada ainda';
   bool _gaveta = false;
+  String _usuarioAcao = 'nada ainda';
 
   @override
   Widget build(BuildContext context) {
@@ -147,6 +148,62 @@ class _SgMenuPageState extends State<SgMenuPage> {
             ),
         // #endregion
         code: SgMenuPageSnippets.sgMenuRecolher,
+      ),
+      ShowcaseExample(
+        title: 'Usuário e menu do usuário (SgMenuUser)',
+        description:
+            'user mostra nome, subtítulo e avatar no rodapé do menu; clicar no bloco chama onClick, e userMenu abre as ações do usuário. Última ação: $_usuarioAcao.',
+        preview:
+            // #region sg-menu-usuario
+            SizedBox(
+              height: 460,
+              child: SgMenu(
+                id: 'menu-usuario',
+                brand: const SgMenuBrand(title: 'SeedGrid ERP'),
+                user: SgMenuUser(
+                  name: 'Lúcia Souza',
+                  subtitle: 'Financeiro',
+                  avatar: const CircleAvatar(child: Text('LS')),
+                  onClick: () =>
+                      setState(() => _usuarioAcao = 'bloco do usuário'),
+                ),
+                userMenu: [
+                  SgMenuNode(
+                    id: 'perfil',
+                    label: 'Meu perfil',
+                    icon: const Icon(Icons.person_outline),
+                    onClick: () => setState(() => _usuarioAcao = 'perfil'),
+                  ),
+                  SgMenuNode(
+                    id: 'preferencias',
+                    label: 'Preferências',
+                    icon: const Icon(Icons.tune),
+                    onClick: () =>
+                        setState(() => _usuarioAcao = 'preferências'),
+                  ),
+                  SgMenuNode(
+                    id: 'sair',
+                    label: 'Sair',
+                    icon: const Icon(Icons.logout),
+                    onClick: () => setState(() => _usuarioAcao = 'sair'),
+                  ),
+                ],
+                menu: const [
+                  SgMenuNode(
+                    id: 'painel',
+                    label: 'Painel',
+                    icon: Icon(Icons.dashboard_outlined),
+                  ),
+                  SgMenuNode(
+                    id: 'financeiro',
+                    label: 'Financeiro',
+                    icon: Icon(Icons.attach_money),
+                  ),
+                ],
+              ),
+            ),
+        // #endregion
+        code: SgMenuPageSnippets.sgMenuUsuario,
       ),
       ShowcaseExample(
         title: 'Variante tiered (submenus em cascata)',
