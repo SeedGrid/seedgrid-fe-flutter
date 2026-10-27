@@ -132,9 +132,9 @@ void main() {
               }
               final txt = r.text.toPlainText().trim();
               final glyph = txt.runes.every((u) => u >= 0xE000);
-              // "Info": branco sobre o azul do token info (2,7:1) sai do gerador de tema, o mesmo do
+              // "Info"/"info": branco sobre o azul do token info (2,7:1) sai do gerador de tema, o mesmo do
               // React (DIVERGENCIAS_DO_REACT.md); nao e defeito do modo escuro e fica igual ao React.
-              if (c < 3 && !glyph && txt != 'Info') {
+              if (c < 3 && !glyph && txt.toLowerCase() != 'info') {
                 bad.add('${c.toStringAsFixed(2)}  "$txt"');
               }
             }

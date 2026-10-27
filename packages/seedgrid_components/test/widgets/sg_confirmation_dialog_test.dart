@@ -570,7 +570,7 @@ void main() {
         await settle(t);
         expect(
           t.widget<Container>(accent()).color,
-          _theme.color('--destructive'),
+          resolveButtonColors(_theme, SgSeverity.danger).bg,
         );
       },
     );

@@ -57,9 +57,9 @@ class _SgDialogPageState extends State<SgDialogPage> {
         code: SgDialogPageSnippets.sgDialogBasico,
       ),
       ShowcaseExample(
-        title: 'Severidades e tamanhos',
+        title: 'Severidades',
         description:
-            'A severidade só pinta a faixa de 4px no topo (secondary, info e help usam o mesmo token, como no React); o tamanho limita a largura.',
+            'Cada severidade tinge o fundo e a faixa do topo do diálogo com a cor do botão correspondente, como no SgWhistler.',
         preview:
             // #region sg-dialog-severidade
             Column(
@@ -69,13 +69,12 @@ class _SgDialogPageState extends State<SgDialogPage> {
                   spacing: 8,
                   runSpacing: 8,
                   children: [
-                    for (final s in SgDialogSeverity.values)
+                    for (final s in SgSeverity.values)
                       SgButton(
                         label: Text(s.value),
-                        appearance: SgAppearance.outline,
-                        size: SgSize.sm,
+                        severity: s,
                         onClick: () => setState(() {
-                          _sev = s;
+                          _sev = SgDialogSeverity.fromValue(s.value)!;
                           _severidade = true;
                         }),
                       ),
@@ -87,15 +86,14 @@ class _SgDialogPageState extends State<SgDialogPage> {
                   severity: _sev,
                   size: SgDialogSize.sm,
                   title: Text('Severidade ${_sev.value}'),
-                  child: Text(
-                    'Faixa do topo: ${switch (_sev) {
-                      SgDialogSeverity.primary => '--primary',
-                      SgDialogSeverity.secondary || SgDialogSeverity.info || SgDialogSeverity.help => '--secondary',
-                      SgDialogSeverity.success => '--tertiary',
-                      SgDialogSeverity.warning => '--accent',
-                      SgDialogSeverity.danger => '--destructive',
-                      SgDialogSeverity.plain => '--border',
-                    }}. Tamanho sm (largura máxima de 384).',
+                  footer: SgButton(
+                    label: const Text('Confirmar'),
+                    severity:
+                        SgSeverity.fromValue(_sev.value) ?? SgSeverity.primary,
+                    onClick: () => setState(() => _severidade = false),
+                  ),
+                  child: const Text(
+                    'O fundo e a faixa do topo seguem a severidade escolhida.',
                   ),
                 ),
               ],

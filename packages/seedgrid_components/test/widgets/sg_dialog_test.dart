@@ -563,23 +563,21 @@ void main() {
       },
     );
 
-    testWidgets('cada severidade usa o token do React', (t) async {
+    testWidgets('cada severidade usa a cor do botao e tinge o fundo', (
+      t,
+    ) async {
+      Color btn(SgSeverity s) => resolveButtonColors(_theme, s).bg;
       final expected = <SgDialogSeverity, Color>{
-        SgDialogSeverity.primary: _theme.color('--primary'),
-        SgDialogSeverity.secondary: _theme.color('--secondary'),
-        SgDialogSeverity.success: _theme.color(
-          _theme.vars.containsKey('--tertiary')
-              ? '--tertiary'
-              : (_theme.vars.containsKey('--accent')
-                    ? '--accent'
-                    : '--primary'),
-        ),
-        SgDialogSeverity.info: _theme.color('--secondary'),
-        SgDialogSeverity.help: _theme.color('--secondary'),
-        SgDialogSeverity.warning: _theme.color('--accent'),
-        SgDialogSeverity.danger: _theme.color('--destructive'),
+        SgDialogSeverity.primary: btn(SgSeverity.primary),
+        SgDialogSeverity.secondary: btn(SgSeverity.secondary),
+        SgDialogSeverity.success: btn(SgSeverity.success),
+        SgDialogSeverity.info: btn(SgSeverity.info),
+        SgDialogSeverity.help: btn(SgSeverity.help),
+        SgDialogSeverity.warning: btn(SgSeverity.warning),
+        SgDialogSeverity.danger: btn(SgSeverity.danger),
         SgDialogSeverity.plain: _theme.color('--border'),
       };
+      final background = _theme.color('--background');
       for (final e in expected.entries) {
         await t.pumpWidget(
           host(
@@ -592,6 +590,22 @@ void main() {
         );
         await settle(t);
         expect(accentColor(t), e.value, reason: '${e.key}');
+        final surface = t.widget<DecoratedBox>(
+          find
+              .descendant(
+                of: find.byKey(const ValueKey('sg-dialog-surface')),
+                matching: find.byType(DecoratedBox),
+              )
+              .first,
+        );
+        final fill = (surface.decoration as BoxDecoration).color;
+        expect(
+          fill,
+          e.key == SgDialogSeverity.plain
+              ? background
+              : Color.alphaBlend(e.value.withValues(alpha: 0.12), background),
+          reason: 'fundo ${e.key}',
+        );
         await t.pumpWidget(host(const SizedBox()));
       }
     });

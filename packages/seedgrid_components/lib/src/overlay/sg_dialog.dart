@@ -8,6 +8,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../buttons/sg_button.dart' show resolveButtonColors;
 import '../commons/commons_colors.dart' show tokenChain;
 import '../generated/enums.g.dart';
 import '../generated/sg_dialog.g.dart';
@@ -276,20 +277,24 @@ class _SgDialogState extends State<SgDialog>
     SgDialogSize.xl: 896.0,
   };
 
-  Color _accent(BuildContext context) {
-    final t = sgThemeOf(context);
-    final chain = switch (widget.severity) {
-      SgDialogSeverity.primary => ['--primary'],
-      SgDialogSeverity.secondary => ['--secondary'],
-      SgDialogSeverity.success => ['--tertiary', '--accent', '--primary'],
-      SgDialogSeverity.info ||
-      SgDialogSeverity.help => ['--secondary', '--primary'],
-      SgDialogSeverity.warning => ['--accent', '--secondary', '--primary'],
-      SgDialogSeverity.danger => ['--destructive'],
-      SgDialogSeverity.plain => ['--border'],
+  /// Mesma cor do fundo do SgButton da severidade (como no React); `null` em plain.
+  Color? _severityColor(BuildContext context) {
+    final severity = switch (widget.severity) {
+      SgDialogSeverity.primary => SgSeverity.primary,
+      SgDialogSeverity.secondary => SgSeverity.secondary,
+      SgDialogSeverity.success => SgSeverity.success,
+      SgDialogSeverity.info => SgSeverity.info,
+      SgDialogSeverity.warning => SgSeverity.warning,
+      SgDialogSeverity.help => SgSeverity.help,
+      SgDialogSeverity.danger => SgSeverity.danger,
+      SgDialogSeverity.plain => null,
     };
-    return tokenChain(t, chain);
+    if (severity == null) return null;
+    return resolveButtonColors(sgThemeOf(context), severity).bg;
   }
+
+  Color _accent(BuildContext context) =>
+      _severityColor(context) ?? tokenChain(sgThemeOf(context), ['--border']);
 
   String _a11yLabel(BuildContext context) {
     final fromTitle = sgNodeText(widget.title);
@@ -306,7 +311,17 @@ class _SgDialogState extends State<SgDialog>
     final w = widget;
     final custom = resolveCustomColor(w.customColor);
     final palette = CustomSurfacePalette.of(custom);
-    final bg = custom ?? tokenChain(theme, ['--background']);
+    final background = tokenChain(theme, ['--background']);
+    final severityColor = _severityColor(context);
+    // Sem customColor, a severidade tinge o fundo (12% da cor da severidade sobre o fundo), como no React.
+    final bg =
+        custom ??
+        (severityColor == null
+            ? background
+            : Color.alphaBlend(
+                severityColor.withValues(alpha: 0.12),
+                background,
+              ));
     final fg = palette?.foreground ?? tokenChain(theme, ['--foreground']);
     final border = palette?.border ?? tokenChain(theme, ['--border']);
     final mutedFg =

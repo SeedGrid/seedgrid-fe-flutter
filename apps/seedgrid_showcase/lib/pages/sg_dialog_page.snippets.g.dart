@@ -120,13 +120,12 @@ Column(
       spacing: 8,
       runSpacing: 8,
       children: [
-        for (final s in SgDialogSeverity.values)
+        for (final s in SgSeverity.values)
           SgButton(
             label: Text(s.value),
-            appearance: SgAppearance.outline,
-            size: SgSize.sm,
+            severity: s,
             onClick: () => setState(() {
-              _sev = s;
+              _sev = SgDialogSeverity.fromValue(s.value)!;
               _severidade = true;
             }),
           ),
@@ -138,15 +137,14 @@ Column(
       severity: _sev,
       size: SgDialogSize.sm,
       title: Text('Severidade ${_sev.value}'),
-      child: Text(
-        'Faixa do topo: ${switch (_sev) {
-          SgDialogSeverity.primary => '--primary',
-          SgDialogSeverity.secondary || SgDialogSeverity.info || SgDialogSeverity.help => '--secondary',
-          SgDialogSeverity.success => '--tertiary',
-          SgDialogSeverity.warning => '--accent',
-          SgDialogSeverity.danger => '--destructive',
-          SgDialogSeverity.plain => '--border',
-        }}. Tamanho sm (largura máxima de 384).',
+      footer: SgButton(
+        label: const Text('Confirmar'),
+        severity:
+            SgSeverity.fromValue(_sev.value) ?? SgSeverity.primary,
+        onClick: () => setState(() => _severidade = false),
+      ),
+      child: const Text(
+        'O fundo e a faixa do topo seguem a severidade escolhida.',
       ),
     ),
   ],
