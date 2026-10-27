@@ -775,12 +775,12 @@ class _RenderSlotBox extends RenderBox {
   }
 }
 
-/// Pan do cabecalho: aceita com a folga de toque (~18 px) em vez da do pan (~36 px), para ganhar da rolagem
-/// vertical da pagina tambem quando o primeiro movimento e para cima ou para baixo.
+/// Pan do cabecalho: aceita com folga bem menor que a da rolagem da pagina (~8-18 px), para ganhar dela
+/// tambem quando o primeiro movimento e para cima ou para baixo, e sem atrapalhar o toque (< 4 px).
 class _SgHeaderPanRecognizer extends PanGestureRecognizer {
   @override
   bool hasSufficientGlobalDistanceToAccept(
     PointerDeviceKind pointerDeviceKind,
     double? deviceTouchSlop,
-  ) => globalDistanceMoved.abs() > (deviceTouchSlop ?? kTouchSlop);
+  ) => globalDistanceMoved.abs() > 4;
 }
