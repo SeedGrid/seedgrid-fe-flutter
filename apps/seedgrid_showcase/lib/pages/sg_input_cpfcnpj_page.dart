@@ -1,5 +1,7 @@
 // Showcase do SgInputCPFCNPJ. O codigo exibido em cada exemplo e o trecho entre `// #region` e
 // `// #endregion` deste arquivo: exatamente o que esta renderizado.
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
@@ -16,6 +18,8 @@ class SgInputCPFCNPJPage extends StatefulWidget {
 class _SgInputCPFCNPJPageState extends State<SgInputCPFCNPJPage> {
   final SgFormController _form = SgFormController();
   String _enviado = '';
+  Object? _publicaResultado;
+  String? _publicaErro;
 
   @override
   void dispose() {
@@ -76,6 +80,49 @@ class _SgInputCPFCNPJPageState extends State<SgInputCPFCNPJPage> {
             ),
         // #endregion
         code: SgInputCpfcnpjPageSnippets.sgInputCpfcnpjFormulario,
+      ),
+      ShowcaseExample(
+        title: 'Consulta na base pública',
+        description:
+            'Com um CNPJ numérico válido, consulta de verdade em publica.cnpj.ws (precisa de internet; a API limita a 3 consultas por minuto). CPF não consulta. Para testar sem rede, passe publicaCnpjFetch.',
+        preview:
+            // #region sg-input-cpfcnpj-consulta
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SgInputCPFCNPJ(
+                  id: 'documento-consulta',
+                  labelText: 'CPF ou CNPJ com consulta',
+                  validateWithPublicaCnpj: true,
+                  publicaCnpjErrorMessage: 'CNPJ não encontrado na Receita',
+                  onPublicaCnpjResult: (data) => setState(() {
+                    _publicaResultado = data;
+                    _publicaErro = null;
+                  }),
+                  onPublicaCnpjError: (_) => setState(
+                    () => _publicaErro =
+                        'Não foi possível consultar a base pública agora.',
+                  ),
+                ),
+                if (_publicaResultado != null) ...[
+                  const SizedBox(height: 8),
+                  const Text('Resultado da consulta'),
+                  ConstrainedBox(
+                    constraints: const BoxConstraints(maxHeight: 240),
+                    child: SingleChildScrollView(
+                      child: SelectableText(
+                        const JsonEncoder.withIndent(
+                          '  ',
+                        ).convert(_publicaResultado),
+                      ),
+                    ),
+                  ),
+                ],
+                if (_publicaErro != null) Text(_publicaErro!),
+              ],
+            ),
+        // #endregion
+        code: SgInputCpfcnpjPageSnippets.sgInputCpfcnpjConsulta,
       ),
     ];
 

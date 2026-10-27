@@ -6490,6 +6490,26 @@
      "doc": "Disparado ao perder o foco (apos validacao) — padrao seedgrid."
     },
     {
+     "name": "onPublicaCnpjError",
+     "optional": true,
+     "ts": "((error: unknown) => void) | undefined",
+     "alias": null,
+     "fn": true,
+     "doc": "Chamado quando a consulta falha (rede ou limite da API); a validacao passa.",
+     "description": "Chamado quando a consulta falha.",
+     "semanticRole": "event"
+    },
+    {
+     "name": "onPublicaCnpjResult",
+     "optional": true,
+     "ts": "((data: unknown | null) => void) | undefined",
+     "alias": null,
+     "fn": true,
+     "doc": "Recebe o resultado da consulta (`null` quando nao achou).",
+     "description": "Recebe o resultado da consulta.",
+     "semanticRole": "event"
+    },
+    {
      "name": "onValidation",
      "optional": true,
      "ts": "(((message: string | null) => void) & ((message: string | null) => void)) | undefined",
@@ -6515,6 +6535,25 @@
      "optional": true,
      "ts": "string | undefined",
      "alias": null
+    },
+    {
+     "name": "publicaCnpjErrorMessage",
+     "optional": true,
+     "ts": "string | undefined",
+     "alias": null,
+     "doc": "Mensagem quando a base publica nao encontra o CNPJ.",
+     "description": "Mensagem quando a base publica nao encontra o CNPJ.",
+     "semanticRole": "validation"
+    },
+    {
+     "name": "publicaCnpjFetch",
+     "optional": true,
+     "ts": "((cnpj: string) => Promise<unknown | null>) | undefined",
+     "alias": null,
+     "fn": true,
+     "doc": "Consulta injetavel (testes sem rede). Padrao: https://publica.cnpj.ws.",
+     "description": "Consulta injetavel (padrao publica.cnpj.ws).",
+     "semanticRole": "behavior"
     },
     {
      "name": "readOnly",
@@ -6591,6 +6630,16 @@
      "alias": null,
      "description": "Executa validacao no blur.",
      "default": true,
+     "semanticRole": "behavior"
+    },
+    {
+     "name": "validateWithPublicaCnpj",
+     "optional": true,
+     "ts": "boolean | undefined",
+     "alias": null,
+     "doc": "Quando o documento e um CNPJ numerico valido, confirma na base publica (publica.cnpj.ws) que ele existe.",
+     "description": "Confirma na base publica que o CNPJ numerico existe.",
+     "default": false,
      "semanticRole": "behavior"
     },
     {

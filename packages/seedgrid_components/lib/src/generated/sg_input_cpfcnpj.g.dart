@@ -56,11 +56,19 @@ abstract interface class SgInputCPFCNPJProps {
   Function? get onEnter;
   /// Disparado ao perder o foco (apos validacao) — padrao seedgrid. Tipo TS: `((() =&gt; void) & (() =&gt; void))` (sem tradução exata; ver excecoes.json).
   Function? get onExit;
+  /// Chamado quando a consulta falha. Tipo TS: `((error: unknown) =&gt; void)` (sem tradução exata; ver excecoes.json).
+  Function? get onPublicaCnpjError;
+  /// Recebe o resultado da consulta. Tipo TS: `((data: unknown) =&gt; void)` (sem tradução exata; ver excecoes.json).
+  Function? get onPublicaCnpjResult;
   /// Callback para estado de validacao. Tipo TS: `(((message: string) =&gt; void) & ((message: string) =&gt; void))` (sem tradução exata; ver excecoes.json).
   Function? get onValidation;
   String? get placeholder;
   Widget? get prefixIcon;
   String? get prefixText;
+  /// Mensagem quando a base publica nao encontra o CNPJ.
+  String? get publicaCnpjErrorMessage;
+  /// Consulta injetavel (padrao publica.cnpj.ws). Tipo TS: `((cnpj: string) =&gt; Promise&lt;unknown&gt;)` (sem tradução exata; ver excecoes.json).
+  Function? get publicaCnpjFetch;
   bool? get readOnly;
   /// Marca o campo como obrigatorio. Padrão: `false`.
   bool? get required;
@@ -74,6 +82,8 @@ abstract interface class SgInputCPFCNPJProps {
   Object? get type;
   /// Executa validacao no blur. Padrão: `true`.
   bool? get validateOnBlur;
+  /// Confirma na base publica que o CNPJ numerico existe. Padrão: `false`.
+  bool? get validateWithPublicaCnpj;
   /// Validacao customizada adicional. Tipo TS: `(((value: string) =&gt; string) & ((value: string) =&gt; string))` (sem tradução exata; ver excecoes.json).
   Function? get validation;
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
@@ -306,6 +316,24 @@ const List<SgPropSpec> sgInputCPFCNPJPropSpecs = <SgPropSpec>[
     exact: false,
   ),
   SgPropSpec(
+    name: 'onPublicaCnpjError',
+    reactName: 'onPublicaCnpjError',
+    type: 'Function?',
+    tsType: '((error: unknown) => void)',
+    required: false,
+    description: 'Chamado quando a consulta falha.',
+    exact: false,
+  ),
+  SgPropSpec(
+    name: 'onPublicaCnpjResult',
+    reactName: 'onPublicaCnpjResult',
+    type: 'Function?',
+    tsType: '((data: unknown) => void)',
+    required: false,
+    description: 'Recebe o resultado da consulta.',
+    exact: false,
+  ),
+  SgPropSpec(
     name: 'onValidation',
     reactName: 'onValidation',
     type: 'Function?',
@@ -334,6 +362,23 @@ const List<SgPropSpec> sgInputCPFCNPJPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
+  ),
+  SgPropSpec(
+    name: 'publicaCnpjErrorMessage',
+    reactName: 'publicaCnpjErrorMessage',
+    type: 'String?',
+    tsType: 'string',
+    required: false,
+    description: 'Mensagem quando a base publica nao encontra o CNPJ.',
+  ),
+  SgPropSpec(
+    name: 'publicaCnpjFetch',
+    reactName: 'publicaCnpjFetch',
+    type: 'Function?',
+    tsType: '((cnpj: string) => Promise<unknown>)',
+    required: false,
+    description: 'Consulta injetavel (padrao publica.cnpj.ws).',
+    exact: false,
   ),
   SgPropSpec(
     name: 'readOnly',
@@ -404,6 +449,15 @@ const List<SgPropSpec> sgInputCPFCNPJPropSpecs = <SgPropSpec>[
     required: false,
     defaultValue: 'true',
     description: 'Executa validacao no blur.',
+  ),
+  SgPropSpec(
+    name: 'validateWithPublicaCnpj',
+    reactName: 'validateWithPublicaCnpj',
+    type: 'bool?',
+    tsType: 'boolean',
+    required: false,
+    defaultValue: 'false',
+    description: 'Confirma na base publica que o CNPJ numerico existe.',
   ),
   SgPropSpec(
     name: 'validation',

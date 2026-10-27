@@ -12,6 +12,7 @@ import '../../generated/enums.g.dart';
 import '../../generated/sg_input_cpfcnpj.g.dart';
 import '../../i18n/i18n.dart';
 import 'masked_core.dart';
+import 'masked_fetch.dart';
 
 /// Campo unico que aceita CPF ou CNPJ (decide pelo conteudo).
 class SgInputCPFCNPJ extends StatelessWidget implements SgInputCPFCNPJProps {
@@ -62,6 +63,11 @@ class SgInputCPFCNPJ extends StatelessWidget implements SgInputCPFCNPJProps {
     this.withBorder,
     this.invalidMessage,
     this.lengthMessage,
+    this.validateWithPublicaCnpj,
+    this.publicaCnpjErrorMessage,
+    this.publicaCnpjFetch,
+    this.onPublicaCnpjResult,
+    this.onPublicaCnpjError,
     this.initialValue,
     this.value,
     this.autofocus = false,
@@ -211,6 +217,23 @@ class SgInputCPFCNPJ extends StatelessWidget implements SgInputCPFCNPJProps {
   @override
   final String? lengthMessage;
 
+  /// Com CNPJ numerico valido, confirma na base publica (publica.cnpj.ws) que ele existe.
+  @override
+  final bool? validateWithPublicaCnpj;
+
+  @override
+  final String? publicaCnpjErrorMessage;
+
+  /// Consulta injetavel (testes sem rede). Padrao: https://publica.cnpj.ws.
+  @override
+  final Future<Object?> Function(String cnpj)? publicaCnpjFetch;
+
+  @override
+  final ValueChanged<Object?>? onPublicaCnpjResult;
+
+  @override
+  final ValueChanged<Object>? onPublicaCnpjError;
+
   /// Valor inicial quando nao ha `control` (no React, `inputProps.defaultValue`).
   final String? initialValue;
 
@@ -316,6 +339,35 @@ class SgInputCPFCNPJ extends StatelessWidget implements SgInputCPFCNPJProps {
         if (!isValidCnpj(value)) {
           return invalidMessage ??
               t(ctx.i18n, 'components.inputs.cnpj.invalid');
+        }
+        if ((validateWithPublicaCnpj ?? false) &&
+            !RegExp('[A-Z]').hasMatch(raw)) {
+          final digits = onlyDigits(raw);
+          if (digits.length == 14) {
+            final message =
+                publicaCnpjErrorMessage ??
+                invalidMessage ??
+                t(ctx.i18n, 'components.inputs.cnpj.invalid');
+            if (ctx.memo['lastCnpj'] == digits) {
+              return ctx.memo['lastFound'] == false ? message : null;
+            }
+            // so aqui ha rede: o resto da validacao e sincrono (como no React, onde o async so cede no await)
+            return () async {
+              try {
+                final data =
+                    await (publicaCnpjFetch ?? sgDefaultPublicaCnpjFetch)(
+                      digits,
+                    );
+                ctx.memo['lastCnpj'] = digits;
+                ctx.memo['lastFound'] = data != null;
+                onPublicaCnpjResult?.call(data);
+                if (data == null) return message;
+              } catch (err) {
+                onPublicaCnpjError?.call(err);
+              }
+              return null;
+            }();
+          }
         }
         return null;
       },

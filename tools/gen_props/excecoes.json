@@ -2023,9 +2023,27 @@
   },
   {
    "componente": "SgInputCPFCNPJ",
+   "prop": "onPublicaCnpjError",
+   "motivo": "funcao",
+   "ts": "((error: unknown) => void)"
+  },
+  {
+   "componente": "SgInputCPFCNPJ",
+   "prop": "onPublicaCnpjResult",
+   "motivo": "funcao",
+   "ts": "((data: unknown) => void)"
+  },
+  {
+   "componente": "SgInputCPFCNPJ",
    "prop": "onValidation",
    "motivo": "funcao",
    "ts": "(((message: string) => void) & ((message: string) => void))"
+  },
+  {
+   "componente": "SgInputCPFCNPJ",
+   "prop": "publicaCnpjFetch",
+   "motivo": "funcao",
+   "ts": "((cnpj: string) => Promise<unknown>)"
   },
   {
    "componente": "SgInputCPFCNPJ",
@@ -4340,7 +4358,7 @@
   "tipoGenerico": {
    "lista": 62,
    "uniao": 116,
-   "funcao": 225,
+   "funcao": 228,
    "tipo-nomeado-a-portar": 143
   }
  }

@@ -6,51 +6,137 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'masked_support.dart';
 
-Widget build(Opts o, {String? lengthMessage, String? invalidMessage}) =>
-    SgInputCPFCNPJ(
-      id: o.id,
-      labelText: o.labelText,
-      placeholder: o.placeholder,
-      disabled: o.disabled,
-      readOnly: o.readOnly,
-      clearButton: o.clearButton,
-      error: o.error,
-      required: o.required,
-      requiredMessage: o.requiredMessage,
-      validateOnBlur: o.validateOnBlur,
-      validation: o.validation,
-      onValidation: o.onValidation,
-      onChange: o.onChange,
-      onEnter: o.onEnter,
-      onExit: o.onExit,
-      onClear: o.onClear,
-      name: o.name,
-      control: o.control,
-      width: o.width,
-      labelPosition: enumOf(
-        SgInputCPFCNPJLabelPosition.values,
-        o.labelPosition,
-      ),
-      elevation: enumOf(SgInputCPFCNPJElevation.values, o.elevation),
-      initialValue: o.initialValue,
-      filled: o.filled,
-      showCharCounter: o.showCharCounter,
-      maxLength: o.maxLength,
-      withBorder: o.withBorder,
-      borderRadius: o.borderRadius,
-      prefixText: o.prefixText,
-      suffixText: o.suffixText,
-      hintText: o.hintText,
-      autofocus: o.autofocus,
-      focusNode: o.focusNode,
-      onSubmitted: o.onSubmitted,
-      rules: o.rules,
-      lengthMessage: lengthMessage,
-      invalidMessage: invalidMessage,
-    );
+Widget build(
+  Opts o, {
+  String? lengthMessage,
+  String? invalidMessage,
+  bool? validateWithPublicaCnpj,
+  String? publicaCnpjErrorMessage,
+  Future<Object?> Function(String)? publicaCnpjFetch,
+  ValueChanged<Object?>? onPublicaCnpjResult,
+  ValueChanged<Object>? onPublicaCnpjError,
+}) => SgInputCPFCNPJ(
+  id: o.id,
+  labelText: o.labelText,
+  placeholder: o.placeholder,
+  disabled: o.disabled,
+  readOnly: o.readOnly,
+  clearButton: o.clearButton,
+  error: o.error,
+  required: o.required,
+  requiredMessage: o.requiredMessage,
+  validateOnBlur: o.validateOnBlur,
+  validation: o.validation,
+  onValidation: o.onValidation,
+  onChange: o.onChange,
+  onEnter: o.onEnter,
+  onExit: o.onExit,
+  onClear: o.onClear,
+  name: o.name,
+  control: o.control,
+  width: o.width,
+  labelPosition: enumOf(SgInputCPFCNPJLabelPosition.values, o.labelPosition),
+  elevation: enumOf(SgInputCPFCNPJElevation.values, o.elevation),
+  initialValue: o.initialValue,
+  filled: o.filled,
+  showCharCounter: o.showCharCounter,
+  maxLength: o.maxLength,
+  withBorder: o.withBorder,
+  borderRadius: o.borderRadius,
+  prefixText: o.prefixText,
+  suffixText: o.suffixText,
+  hintText: o.hintText,
+  autofocus: o.autofocus,
+  focusNode: o.focusNode,
+  onSubmitted: o.onSubmitted,
+  rules: o.rules,
+  lengthMessage: lengthMessage,
+  invalidMessage: invalidMessage,
+  validateWithPublicaCnpj: validateWithPublicaCnpj,
+  publicaCnpjErrorMessage: publicaCnpjErrorMessage,
+  publicaCnpjFetch: publicaCnpjFetch,
+  onPublicaCnpjResult: onPublicaCnpjResult,
+  onPublicaCnpjError: onPublicaCnpjError,
+);
 
 void main() {
   setUp(resetComponentsI18n);
+
+  group('consulta na base publica (validateWithPublicaCnpj)', () {
+    testWidgets('CNPJ achou: sem erro e onPublicaCnpjResult com os dados', (
+      t,
+    ) async {
+      final calls = <String>[];
+      final results = <Object?>[];
+      await t.pumpWidget(
+        host(
+          build(
+            const Opts(),
+            validateWithPublicaCnpj: true,
+            publicaCnpjFetch: (c) async {
+              calls.add(c);
+              return {'cnpj': c};
+            },
+            onPublicaCnpjResult: results.add,
+          ),
+        ),
+      );
+      await t.enterText(field('f'), '11222333000181');
+      await t.pump();
+      await t.pump();
+      expect(calls, ['11222333000181']);
+      expect(results.single, {'cnpj': '11222333000181'});
+      expect(find.textContaining('CNPJ'), findsNothing);
+    });
+
+    testWidgets('CNPJ nao achou: mostra publicaCnpjErrorMessage', (t) async {
+      await t.pumpWidget(
+        host(
+          build(
+            const Opts(),
+            validateWithPublicaCnpj: true,
+            publicaCnpjErrorMessage: 'Nao existe na Receita',
+            publicaCnpjFetch: (_) async => null,
+          ),
+        ),
+      );
+      await t.enterText(field('f'), '11222333000181');
+      await t.pump();
+      await t.pump();
+      expect(find.text('Nao existe na Receita'), findsOneWidget);
+    });
+
+    testWidgets(
+      'CPF nao consulta; falha da consulta chama onPublicaCnpjError',
+      (t) async {
+        final calls = <String>[];
+        final errors = <Object>[];
+        await t.pumpWidget(
+          host(
+            build(
+              const Opts(),
+              validateWithPublicaCnpj: true,
+              publicaCnpjFetch: (c) async {
+                calls.add(c);
+                throw StateError('rede');
+              },
+              onPublicaCnpjError: errors.add,
+            ),
+          ),
+        );
+        await t.enterText(field('f'), '52998224725');
+        await t.pump();
+        await t.pump();
+        expect(calls, isEmpty);
+        await t.enterText(field('f'), '11222333000181');
+        await t.pump();
+        await t.pump();
+        expect(calls, ['11222333000181']);
+        expect(errors.single, isA<StateError>());
+        expect(find.textContaining('CNPJ'), findsNothing);
+      },
+    );
+  });
 
   defineCommonChecks(
     'SgInputCPFCNPJ',

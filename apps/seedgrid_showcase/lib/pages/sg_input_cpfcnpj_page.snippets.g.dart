@@ -8,6 +8,44 @@ abstract final class SgInputCpfcnpjPageSnippets {
 const SgInputCPFCNPJ(id: 'documento', labelText: 'CPF ou CNPJ')
 ''';
 
+  /// Region `sg-input-cpfcnpj-consulta`.
+  static const String sgInputCpfcnpjConsulta = r'''
+Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    SgInputCPFCNPJ(
+      id: 'documento-consulta',
+      labelText: 'CPF ou CNPJ com consulta',
+      validateWithPublicaCnpj: true,
+      publicaCnpjErrorMessage: 'CNPJ não encontrado na Receita',
+      onPublicaCnpjResult: (data) => setState(() {
+        _publicaResultado = data;
+        _publicaErro = null;
+      }),
+      onPublicaCnpjError: (_) => setState(
+        () => _publicaErro =
+            'Não foi possível consultar a base pública agora.',
+      ),
+    ),
+    if (_publicaResultado != null) ...[
+      const SizedBox(height: 8),
+      const Text('Resultado da consulta'),
+      ConstrainedBox(
+        constraints: const BoxConstraints(maxHeight: 240),
+        child: SingleChildScrollView(
+          child: SelectableText(
+            const JsonEncoder.withIndent(
+              '  ',
+            ).convert(_publicaResultado),
+          ),
+        ),
+      ),
+    ],
+    if (_publicaErro != null) Text(_publicaErro!),
+  ],
+)
+''';
+
   /// Region `sg-input-cpfcnpj-formulario`.
   static const String sgInputCpfcnpjFormulario = r'''
 Column(
