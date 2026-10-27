@@ -173,8 +173,8 @@
     "motivo": "slot vazio guarda um caractere invisivel (U+200B) para o teclado virtual avisar o Backspace; colar 1 caractere num slot cheio e tratado como digitar (o React limparia os seguintes); inputProps e *ClassName aceitos sem efeito; nao testado em IME nem em dispositivo; golden com fonte de teste; validadores do componente rodam no submit (decisao do dono)"
   },
   "SgPeriodSelector": {
-    "status": "parcial",
-    "motivo": "value nulo = nao controlado (o Combobox nao distingue null de indefinido): limpar o preset por fora nao limpa o campo; o campo de data de Periodo e o SgInputDate do Flutter (mascara com calendario proprio), que segue o locale do i18n global e nao a prop locale do seletor; os rotulos vem de mapas ASCII embutidos sem acento, iguais ao React (nao passam pelo i18n)"
+    "status": "portado",
+    "motivo": "value nulo = nao controlado (o Combobox nao distingue null de indefinido), mas voltar o value para nulo limpa o campo; o campo de data de Periodo e o SgInputDate, que segue o locale do i18n global (no React tambem: a prop locale do seletor so troca os rotulos); os rotulos vem de mapas ASCII embutidos sem acento, iguais ao React (nao passam pelo i18n)"
   },
   "SgSevenSegmentDigit": {
     "status": "portado",

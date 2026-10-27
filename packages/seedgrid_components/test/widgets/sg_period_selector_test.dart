@@ -244,6 +244,17 @@ void main() {
       expect(text(t, 'sg-period-selector'), 'Este ano');
     });
 
+    testWidgets('value controlado: voltar para nulo limpa o campo', (t) async {
+      await t.pumpWidget(
+        host(const SgPeriodSelector(value: PeriodPreset.today)),
+      );
+      await frames(t);
+      expect(text(t, 'sg-period-selector'), 'Hoje');
+      await t.pumpWidget(host(const SgPeriodSelector()));
+      await frames(t);
+      expect(text(t, 'sg-period-selector'), '');
+    });
+
     testWidgets(
       'id proprio vira o id do campo e prefixo do intervalo; label aparece',
       (t) async {

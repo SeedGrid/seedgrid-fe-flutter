@@ -2,8 +2,8 @@
  "versaoReact": "2026.7.1",
  "resumo": {
   "total": 89,
-  "portado": 78,
-  "parcial": 11,
+  "portado": 79,
+  "parcial": 10,
   "pendente": 0,
   "naoAplicavel": 0
  },
@@ -591,8 +591,8 @@
   {
    "componente": "SgPeriodSelector",
    "onda": 3,
-   "status": "parcial",
-   "motivo": "value nulo = nao controlado (o Combobox nao distingue null de indefinido): limpar o preset por fora nao limpa o campo; o campo de data de Periodo e o SgInputDate do Flutter (mascara com calendario proprio), que segue o locale do i18n global e nao a prop locale do seletor; os rotulos vem de mapas ASCII embutidos sem acento, iguais ao React (nao passam pelo i18n)",
+   "status": "portado",
+   "motivo": "value nulo = nao controlado (o Combobox nao distingue null de indefinido), mas voltar o value para nulo limpa o campo; o campo de data de Periodo e o SgInputDate, que segue o locale do i18n global (no React tambem: a prop locale do seletor so troca os rotulos); os rotulos vem de mapas ASCII embutidos sem acento, iguais ao React (nao passam pelo i18n)",
    "onde": "packages/seedgrid_components/lib/src/inputs/period/sg_period_selector.dart",
    "props": 20,
    "propsOmitidas": 1,

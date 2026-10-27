@@ -65,7 +65,7 @@ const List<CatalogEntry> kCatalog = <CatalogEntry>[
   (name: 'SgPageControl', category: 'navigation', wave: 2, status: 'portado'),
   (name: 'SgPageControlPage', category: 'navigation', wave: 2, status: 'portado'),
   (name: 'SgPanel', category: 'layout', wave: 2, status: 'portado'),
-  (name: 'SgPeriodSelector', category: 'input', wave: 3, status: 'parcial'),
+  (name: 'SgPeriodSelector', category: 'input', wave: 3, status: 'portado'),
   (name: 'SgPickList', category: 'input', wave: 3, status: 'portado'),
   (name: 'SgPopup', category: 'feedback', wave: 2, status: 'portado'),
   (name: 'SgQRCode', category: 'gadget', wave: 4, status: 'portado'),
