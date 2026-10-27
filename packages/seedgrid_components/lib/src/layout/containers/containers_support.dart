@@ -4,6 +4,8 @@
 import 'package:flutter/painting.dart';
 import 'package:seedgrid_theme/seedgrid_theme.dart';
 
+import '../basic/layout_units.dart';
+
 /// Cores dos aliases legados usados pelos conteineres.
 class ContainerPalette {
   ContainerPalette(SgTheme t)
@@ -95,18 +97,11 @@ Color? parseCssColor(String? text) {
   }
 }
 
-/// Dimensao do React (`number | string`): numero = px; `'120px'` = 120; `'50%'` = fracao de [available];
-/// outra coisa (`'auto'`, `'calc(...)'`) = `null`.
-double? resolveDimension(Object? v, [double? available]) {
-  if (v is num) return v.toDouble();
-  if (v is String) {
-    final s = v.trim().toLowerCase();
-    final px = RegExp(r'^(-?\d+(?:\.\d+)?)(?:px)?$').firstMatch(s);
-    if (px != null) return double.parse(px.group(1)!);
-    final pct = RegExp(r'^(-?\d+(?:\.\d+)?)%$').firstMatch(s);
-    if (pct != null && available != null && available.isFinite) {
-      return available * double.parse(pct.group(1)!) / 100;
-    }
-  }
-  return null;
-}
+/// Dimensao do React (`number | string`): numero = px; texto CSS = `'120px'`, `'50%'` (fracao de [available]),
+/// `'20rem'`, `'30vw'` (com [viewport]) e `calc()`/`min()`/`max()`/`clamp()`; outra coisa (`'auto'`) = `null`.
+double? resolveDimension(Object? v, [double? available, Size? viewport]) =>
+    sgSpace(
+      v,
+      viewport: viewport,
+      available: available != null && available.isFinite ? available : null,
+    );

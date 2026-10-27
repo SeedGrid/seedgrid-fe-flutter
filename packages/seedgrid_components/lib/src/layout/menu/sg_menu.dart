@@ -1790,7 +1790,8 @@ class _SgMenuState extends State<SgMenu> {
       builder: (context, c) {
         final bounded = c.hasBoundedHeight;
         final avail = c.maxWidth;
-        var w = resolveDimension(layout.sidebarWidthCss, avail);
+        final screen = MediaQuery.sizeOf(context);
+        var w = resolveDimension(layout.sidebarWidthCss, avail, screen);
         w ??= resolveDimension(280, avail)!;
         if (avail.isFinite && w > avail) w = avail;
         final shellWidth = avail.isFinite || layout.sidebarWidthCss != '100%'

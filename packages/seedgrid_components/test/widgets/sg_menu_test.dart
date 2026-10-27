@@ -290,6 +290,26 @@ void main() {
     expect(t.getSize(shell).width, 200);
   });
 
+  testWidgets('expandedWidth aceita rem, vw e calc()', (t) async {
+    Future<double> larguraCom(Object w) async {
+      await t.pumpWidget(
+        host(SgMenu(key: UniqueKey(), menu: tree(), expandedWidth: w)),
+      );
+      final shell = find
+          .ancestor(
+            of: find.byKey(const ValueKey('sg-menu-panel')),
+            matching: find.byType(SizedBox),
+          )
+          .first;
+      return t.getSize(shell).width;
+    }
+
+    expect(await larguraCom('15rem'), 240);
+    expect(await larguraCom('calc(10rem + 20px)'), 180);
+    // 20vw da janela de teste (800 px de largura)
+    expect(await larguraCom('20vw'), 160);
+  });
+
   testWidgets('recolher persiste com id (sg-menu:<id>:collapsed)', (t) async {
     SharedPreferences.setMockInitialValues({'sg-menu:m1:collapsed': 'true'});
     await t.pumpWidget(host(SgMenu(id: 'm1', menu: tree())));

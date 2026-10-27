@@ -1,8 +1,8 @@
 {
   "_leia": "Estado manual que o detector automatico nao enxerga. Chave = componente do React. status: portado | parcial | nao-aplicavel. 'motivo' obrigatorio para parcial e nao-aplicavel; em portado e so observacao. REGRA: parcial = funcionalidade do React que realmente falta no Flutter; diferenca de DOM (className, style, inputProps), de plataforma (hover, controle nativo, position: fixed) ou decisao do dono NAO rebaixa para parcial. Componente com widget Dart de mesmo nome e detectado como 'portado' sozinho.",
   "SgMenu": {
-    "status": "parcial",
-    "motivo": "motor proprio (widgets + Overlay), sem MenuAnchor; sem navegacao propria (window.location.assign vira so onNavigate); brand.imageSrc e user.avatarSrc sao URLs de rede; className/style/userSectionClassName/userSectionStyle aceitos sem efeito; collapsedWidth/expandedWidth aceitam px e % (nao rem); dock sem portal (o widget fica na SgDockZone); dica (hint) sempre abaixo; no trilho recolhido do hibrido o botao de fixar fica cortado"
+    "status": "portado",
+    "motivo": "motor proprio (widgets + Overlay), sem MenuAnchor; sem navegacao propria (window.location.assign vira so onNavigate); brand.imageSrc e user.avatarSrc sao URLs de rede; className/style/userSectionClassName/userSectionStyle aceitos sem efeito; collapsedWidth/expandedWidth aceitam px, %, rem, vw/vh e calc(); dock sem portal (o widget fica na SgDockZone); dica (hint) sempre abaixo; no trilho recolhido do hibrido o botao de fixar fica cortado, igual ao React (72 px, botoes de 32 px que nao encolhem e aside overflow-hidden)"
   },
   "SgToolBar": {
     "status": "portado",

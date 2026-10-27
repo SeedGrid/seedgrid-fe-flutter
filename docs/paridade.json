@@ -2,8 +2,8 @@
  "versaoReact": "2026.7.1",
  "resumo": {
   "total": 89,
-  "portado": 79,
-  "parcial": 10,
+  "portado": 80,
+  "parcial": 9,
   "pendente": 0,
   "naoAplicavel": 0
  },
@@ -511,8 +511,8 @@
   {
    "componente": "SgMenu",
    "onda": 5,
-   "status": "parcial",
-   "motivo": "motor proprio (widgets + Overlay), sem MenuAnchor; sem navegacao propria (window.location.assign vira so onNavigate); brand.imageSrc e user.avatarSrc sao URLs de rede; className/style/userSectionClassName/userSectionStyle aceitos sem efeito; collapsedWidth/expandedWidth aceitam px e % (nao rem); dock sem portal (o widget fica na SgDockZone); dica (hint) sempre abaixo; no trilho recolhido do hibrido o botao de fixar fica cortado",
+   "status": "portado",
+   "motivo": "motor proprio (widgets + Overlay), sem MenuAnchor; sem navegacao propria (window.location.assign vira so onNavigate); brand.imageSrc e user.avatarSrc sao URLs de rede; className/style/userSectionClassName/userSectionStyle aceitos sem efeito; collapsedWidth/expandedWidth aceitam px, %, rem, vw/vh e calc(); dock sem portal (o widget fica na SgDockZone); dica (hint) sempre abaixo; no trilho recolhido do hibrido o botao de fixar fica cortado, igual ao React (72 px, botoes de 32 px que nao encolhem e aside overflow-hidden)",
    "onde": "packages/seedgrid_components/lib/src/layout/menu/sg_menu.dart",
    "props": 49,
    "propsOmitidas": 2,

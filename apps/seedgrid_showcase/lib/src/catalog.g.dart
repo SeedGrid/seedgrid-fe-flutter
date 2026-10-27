@@ -57,7 +57,7 @@ const List<CatalogEntry> kCatalog = <CatalogEntry>[
   (name: 'SgInputTextSearch', category: 'input', wave: 1, status: 'portado'),
   (name: 'SgLinearGauge', category: 'gadget', wave: 4, status: 'portado'),
   (name: 'SgMatrixDigit', category: 'gadget', wave: 4, status: 'portado'),
-  (name: 'SgMenu', category: 'navigation', wave: 5, status: 'parcial'),
+  (name: 'SgMenu', category: 'navigation', wave: 5, status: 'portado'),
   (name: 'SgMultiSelect', category: 'input', wave: 3, status: 'portado'),
   (name: 'SgMultiSelectChips', category: 'input', wave: 3, status: 'portado'),
   (name: 'SgNeonDigit', category: 'gadget', wave: 4, status: 'portado'),
