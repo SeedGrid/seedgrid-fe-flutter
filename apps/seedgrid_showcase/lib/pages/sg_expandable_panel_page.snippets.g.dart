@@ -139,6 +139,30 @@ SizedBox(
 )
 ''';
 
+  /// Region `sg-expandable-redimensionavel-altura`.
+  static const String sgExpandableRedimensionavelAltura = r'''
+SizedBox(
+  height: 300,
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.stretch,
+    children: [
+      SgExpandablePanel(
+        expandTo: SgExpandablePanelExpandTo.bottom,
+        defaultOpen: true,
+        resizable: true,
+        size: const SgExpandablePanelSize(
+          defaultSize: 200,
+          min: 60,
+          max: 260,
+        ),
+        onSizeChange: (v) => setState(() => _altura = v),
+        child: const Text('Arraste a borda de baixo'),
+      ),
+    ],
+  ),
+)
+''';
+
   /// Region `sg-expandable-semfundo`.
   static const String sgExpandableSemfundo = r'''
 Column(

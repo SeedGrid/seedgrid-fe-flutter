@@ -168,17 +168,67 @@ class SgDockZonePage extends StatelessWidget {
         specs: sgPropSpecs['SgDockZone']!
             .where((s) => s.name == 'zone')
             .toList(),
-        builder: (context, v) => SgDockZone(
-          zone: SgDockZoneId.values.firstWhere(
+        builder: (context, v) {
+          final zone = SgDockZoneId.values.firstWhere(
             (z) => z.value == v['zone'],
             orElse: () => SgDockZoneId.top,
-          ),
-          width: 200,
-          height: 120,
-          children: const [Text('filho 1'), Text('filho 2')],
-        ),
-        codeBuilder: (v) =>
-            'SgDockZone(\n  zone: SgDockZoneId.${SgDockZoneId.values.firstWhere((z) => z.value == v['zone'], orElse: () => SgDockZoneId.top).name},\n  width: 200,\n  height: 120,\n  children: [Text(\'filho 1\'), Text(\'filho 2\')],\n)',
+          );
+          return Container(
+            width: double.infinity,
+            height: 260,
+            decoration: BoxDecoration(
+              border: Border.all(color: Theme.of(context).dividerColor),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Align(
+              alignment: switch (zone) {
+                SgDockZoneId.top => Alignment.topCenter,
+                SgDockZoneId.bottom => Alignment.bottomCenter,
+                SgDockZoneId.left => Alignment.centerLeft,
+                SgDockZoneId.right => Alignment.centerRight,
+                SgDockZoneId.free => Alignment.center,
+              },
+              child: SgDockZone(
+                zone: zone,
+                width: 200,
+                height: 120,
+                children: const [Text('filho 1'), Text('filho 2')],
+              ),
+            ),
+          );
+        },
+        codeBuilder: (v) {
+          final zone = SgDockZoneId.values.firstWhere(
+            (z) => z.value == v['zone'],
+            orElse: () => SgDockZoneId.top,
+          );
+          final align = switch (zone) {
+            SgDockZoneId.top => 'topCenter',
+            SgDockZoneId.bottom => 'bottomCenter',
+            SgDockZoneId.left => 'centerLeft',
+            SgDockZoneId.right => 'centerRight',
+            SgDockZoneId.free => 'center',
+          };
+          return [
+            'Container(',
+            '  width: double.infinity,',
+            '  height: 260,',
+            '  decoration: BoxDecoration(',
+            '    border: Border.all(color: Theme.of(context).dividerColor),',
+            '    borderRadius: BorderRadius.circular(8),',
+            '  ),',
+            '  child: Align(',
+            '    alignment: Alignment.$align,',
+            '    child: SgDockZone(',
+            '      zone: SgDockZoneId.${zone.name},',
+            '      width: 200,',
+            '      height: 120,',
+            "      children: [Text('filho 1'), Text('filho 2')],",
+            '    ),',
+            '  ),',
+            ')',
+          ].join('\n');
+        },
       ),
     );
   }

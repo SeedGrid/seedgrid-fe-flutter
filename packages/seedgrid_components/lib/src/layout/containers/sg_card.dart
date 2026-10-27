@@ -2,7 +2,7 @@
 // Props herdadas do HTML no React (`id`, `draggable`, `children`) entram como lista fechada (ADR 50):
 // `id`, `draggable` e `child`. `className`/`style` nao existem; `bodyClassName`, `headerClassName` e
 // `footerClassName` existem so para cumprir o contrato gerado e sao ignoradas.
-import 'package:flutter/gestures.dart' show DragStartBehavior;
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -464,15 +464,28 @@ class _SgCardState extends State<SgCard> {
         ),
         child: inner,
       );
-      head = GestureDetector(
+      final canDrag = w.draggable && !w.disabled;
+      head = RawGestureDetector(
         behavior: HitTestBehavior.opaque,
-        onTap: _onHeaderTap,
-        // down: o movimento conta desde o toque (o React nao tem a folga de ~18 px do gesto de pan do Flutter).
-        dragStartBehavior: DragStartBehavior.down,
-        onPanStart: w.draggable && !w.disabled ? _dragStart : null,
-        onPanUpdate: w.draggable && !w.disabled ? _dragUpdate : null,
-        onPanEnd: w.draggable && !w.disabled ? _dragEnd : null,
-        onPanCancel: w.draggable && !w.disabled ? _dragEnd : null,
+        gestures: <Type, GestureRecognizerFactory>{
+          TapGestureRecognizer:
+              GestureRecognizerFactoryWithHandlers<TapGestureRecognizer>(
+                TapGestureRecognizer.new,
+                (r) => r.onTap = _onHeaderTap,
+              ),
+          if (canDrag)
+            _SgHeaderPanRecognizer:
+                GestureRecognizerFactoryWithHandlers<_SgHeaderPanRecognizer>(
+                  _SgHeaderPanRecognizer.new,
+                  (r) => r
+                    // down: o movimento conta desde o toque (o React nao tem a folga do pan do Flutter).
+                    ..dragStartBehavior = DragStartBehavior.down
+                    ..onStart = _dragStart
+                    ..onUpdate = _dragUpdate
+                    ..onEnd = _dragEnd
+                    ..onCancel = _dragEnd,
+                ),
+        },
         child: head,
       );
       if (canToggle) {
@@ -760,4 +773,14 @@ class _RenderSlotBox extends RenderBox {
       SchedulerBinding.instance.addPostFrameCallback((_) => onWidth(width));
     }
   }
+}
+
+/// Pan do cabecalho: aceita com a folga de toque (~18 px) em vez da do pan (~36 px), para ganhar da rolagem
+/// vertical da pagina tambem quando o primeiro movimento e para cima ou para baixo.
+class _SgHeaderPanRecognizer extends PanGestureRecognizer {
+  @override
+  bool hasSufficientGlobalDistanceToAccept(
+    PointerDeviceKind pointerDeviceKind,
+    double? deviceTouchSlop,
+  ) => globalDistanceMoved.abs() > (deviceTouchSlop ?? kTouchSlop);
 }

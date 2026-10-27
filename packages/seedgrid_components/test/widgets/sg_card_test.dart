@@ -697,6 +697,42 @@ void main() {
       },
     );
 
+    testWidgets(
+      'dentro de uma lista rolavel, arrastar primeiro na vertical move o cartao (nao rola a pagina)',
+      (t) async {
+        final positions = <SgCardPosition>[];
+        final scroll = ScrollController();
+        addTearDown(scroll.dispose);
+        await t.pumpWidget(
+          host(
+            SizedBox(
+              height: 500,
+              child: ListView(
+                controller: scroll,
+                children: [
+                  SgCard(
+                    draggable: true,
+                    title: const Text('T'),
+                    onPositionChange: positions.add,
+                    child: const Text('x'),
+                  ),
+                  const SizedBox(height: 2000),
+                ],
+              ),
+            ),
+          ),
+        );
+        await t.pump();
+        await t.dragFrom(
+          t.getCenter(find.byKey(const ValueKey('sg-card-header'))),
+          const Offset(0, 80),
+        );
+        await t.pump();
+        expect(positions.last.y, closeTo(80, 25));
+        expect(scroll.offset, 0);
+      },
+    );
+
     testWidgets('disabled nao arrasta; sem draggable nao arrasta', (t) async {
       await t.pumpWidget(
         host(

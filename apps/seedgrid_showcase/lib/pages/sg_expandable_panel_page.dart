@@ -21,6 +21,7 @@ class _SgExpandablePanelPageState extends State<SgExpandablePanelPage> {
   bool _acessivel = false;
   final bool _redimensionavel = true;
   double _tamanho = 260;
+  double _altura = 200;
 
   @override
   Widget build(BuildContext context) {
@@ -219,6 +220,35 @@ class _SgExpandablePanelPageState extends State<SgExpandablePanelPage> {
         // #endregion
         code: SgExpandablePanelPageSnippets.sgExpandableRedimensionavel,
       ),
+      ShowcaseExample(
+        title: 'Redimensionável na altura',
+        description:
+            'Com expandTo bottom a borda de baixo muda a altura (min 60, max 260). Altura atual: ${_altura.round()} px.',
+        preview:
+            // #region sg-expandable-redimensionavel-altura
+            SizedBox(
+              height: 300,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  SgExpandablePanel(
+                    expandTo: SgExpandablePanelExpandTo.bottom,
+                    defaultOpen: true,
+                    resizable: true,
+                    size: const SgExpandablePanelSize(
+                      defaultSize: 200,
+                      min: 60,
+                      max: 260,
+                    ),
+                    onSizeChange: (v) => setState(() => _altura = v),
+                    child: const Text('Arraste a borda de baixo'),
+                  ),
+                ],
+              ),
+            ),
+        // #endregion
+        code: SgExpandablePanelPageSnippets.sgExpandableRedimensionavelAltura,
+      ),
     ];
 
     return SgShowcasePage(
@@ -275,7 +305,7 @@ class _SgExpandablePanelPageState extends State<SgExpandablePanelPage> {
                     SgExpandablePanelRounded.lg,
                 border: (v['border'] as bool?) ?? true,
                 resizable: (v['resizable'] as bool?) ?? false,
-                size: const SgExpandablePanelSize(defaultSize: 200),
+                size: const SgExpandablePanelSize(defaultSize: 200, min: 60),
                 header: const Text('Painel'),
                 child: const Text('Conteúdo'),
               ),
@@ -286,6 +316,7 @@ class _SgExpandablePanelPageState extends State<SgExpandablePanelPage> {
           final args = <String>[
             'expandTo: SgExpandablePanelExpandTo.${(SgExpandablePanelExpandTo.fromValue(v['expandTo'] as String?) ?? SgExpandablePanelExpandTo.right).name}',
             'defaultOpen: true',
+            'size: const SgExpandablePanelSize(defaultSize: 200, min: 60)',
           ];
           for (final e in v.entries) {
             if (e.value == null || e.key == 'expandTo') continue;
