@@ -43,20 +43,27 @@ O Delta é uma lista plana de linhas e a linha tem **um** bloco exclusivo (títu
 
 | Entrada | O que acontece |
 |---|---|
-| `<sub>` e `<sup>` no mesmo trecho | vence o mais interno (Delta tem um `script`) |
-| `<mark>` sem cor | vira amarelo `#ffff00` |
-| `<mark data-color="yellow">` (nome) | vira `#ffff00` |
-| Cor com alfa (`#ff000080`, `rgba()`) | alfa descartado |
-| `font-size` em `em`, `rem`, `pt`, `%` | convertido para px |
-| `<ol start="3">` | numeração recomeça em 1 |
 | Item de lista com vários parágrafos | um item, parágrafos unidos por quebra suave |
 | Citação com lista, título ou outra citação dentro | achatada em citação de parágrafos |
 | Título dentro de item de lista | item de lista comum |
-| Bloco de código com marcas ou `class="language-js"` | texto puro, linguagem perdida |
+| Bloco de código com marcas (negrito etc.) | texto puro (o TipTap também descarta as marcas dentro do código) |
 | Tabelas, `iframe`, `video`, `input`, `script`, `style` | descartados (o TipTap também descarta; célula de tabela vira texto) |
 | `<span style="font-weight/font-style/text-decoration">` | vira negrito/itálico/sublinhado/tachado e **não** deixa `<span>` vazio (o TipTap deixa; ver defeitos) |
 | Imagem `data:` | descartada na leitura (igual ao TipTap, `allowBase64: false`); a barra ainda insere se digitada |
 | Atalhos de markdown (`# `, `- `, `1. `, `> `, ` ``` `) | não existem; só os atalhos do `flutter_quill` (Ctrl+B/I/U, etc.) |
+
+## Preservados com atributos próprios no Delta
+
+O `flutter_quill` mantém atributos que ele não conhece (escopo "ignore"), então estes casos ficam iguais ao TipTap na ida e volta:
+
+| Entrada | Como é guardado |
+|---|---|
+| `<sub>` e `<sup>` no mesmo trecho | `script: sub` + `sg-sup` (sai sempre `<sub><sup>`, como o TipTap) |
+| `<mark>` sem cor | fundo amarelo + `sg-mark`; sai `<mark>` enquanto a cor continuar amarela |
+| Cor com alfa (`#ff000080`, `rgba()`) | valor `rgba(r, g, b, a)` (o `flutter_quill` entende e desenha com transparência) |
+| Cor por nome (`yellow`), `font-size` em `em`/`pt`/`rem`/`%` | valor convertido para a tela + texto original em `sg-color-raw`/`sg-bg-raw`/`sg-size-raw`, repetido na saída enquanto a conversão do original bater com o valor atual |
+| `<ol start="3">` | `sg-start` na primeira linha da lista; o editor numera a partir dele no primeiro nível (listas aninhadas mantêm o `start` no HTML, mas a tela numera de 1) |
+| `<pre><code class="language-js">` | `sg-lang` nas linhas do bloco |
 
 ## Estratégia de conversão
 

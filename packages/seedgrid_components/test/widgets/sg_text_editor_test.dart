@@ -105,6 +105,35 @@ void main() {
     expect(find.textContaining('Escreva', findRichText: true), findsOneWidget);
   });
 
+  testWidgets(
+    'lista ordenada com start: numera a partir dele e mantem no HTML',
+    (t) async {
+      const html = '<ol start="3"><li><p>a</p></li><li><p>b</p></li></ol>';
+      await t.pumpWidget(
+        host(const SgTextEditor(id: 'e', defaultValueHtml: html)),
+      );
+      expect(find.text('3.'), findsOneWidget);
+      expect(find.text('4.'), findsOneWidget);
+      expect(find.text('1.'), findsNothing);
+      expect(htmlOf(t), html);
+    },
+  );
+
+  testWidgets(
+    'cor com alfa, nome de cor, tamanho em em e sub+sup resistem ao editor',
+    (t) async {
+      const html =
+          '<p><span style="color: rgba(255, 0, 0, 0.5); font-size: 1.5em">a</span>'
+          '<mark>b</mark><mark data-color="yellow" style="background-color: yellow; color: inherit">c</mark>'
+          '<sub><sup>d</sup></sub></p>'
+          '<pre><code class="language-js">x = 1</code></pre>';
+      await t.pumpWidget(
+        host(const SgTextEditor(id: 'e', defaultValueHtml: html)),
+      );
+      expect(htmlOf(t), html);
+    },
+  );
+
   testWidgets('defaultValueHtml e valueHtml (controlado)', (t) async {
     await t.pumpWidget(
       host(

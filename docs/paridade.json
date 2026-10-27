@@ -2,8 +2,8 @@
  "versaoReact": "2026.7.1",
  "resumo": {
   "total": 89,
-  "portado": 88,
-  "parcial": 1,
+  "portado": 89,
+  "parcial": 0,
   "pendente": 0,
   "naoAplicavel": 0
  },
@@ -771,8 +771,8 @@
   {
    "componente": "SgTextEditor",
    "onda": 6,
-   "status": "parcial",
-   "motivo": "motor nativo flutter_quill (MIT) em vez de TipTap; conteudo trafega como HTML via conversor proprio (HTML do TipTap lido e reescrito igual em 160+ fixtures do TipTap real). Nao suportado pelo modelo Delta: tabelas e iframes (descartados), <br> vira U+2028, sub e sup juntos (vence um), <mark> sem cor vira amarelo, cor com alfa perde o alfa, tamanho em em/pt/% vira px, ol start, item de lista com varios paragrafos vira um item com quebra suave, citacao com lista/titulo/citacao aninhada achata, classe de linguagem do bloco de codigo, regras de markdown (# , - , 1. , >) e Ctrl+Z/atalhos so os do flutter_quill; cor do texto e destaque por seletor proprio (paleta + hex) no lugar do input color; Salvar/Carregar HTML via file_picker (extra htmlFilePicker); onSave recebe SgTextEditorFile no lugar de File; dialogos de link/imagem proprios no lugar de window.prompt (cancelar nao remove o link); disabled reativo (no React so vale na criacao); sem className/style (ADR 50); nao testado em dispositivo/IME; SgTextEditor ainda fora do arquivo raiz do pacote (barril editor_inputs.dart)",
+   "status": "portado",
+   "motivo": "motor nativo flutter_quill (MIT) em vez de TipTap; conteudo trafega como HTML via conversor proprio (HTML do TipTap lido e reescrito igual em 160+ fixtures do TipTap real; 154 de 166 saidas do Dart relidas pelo TipTap real iguais ao canonico). Preservados com atributos proprios: sub+sup juntos, <mark> sem cor, cor com alfa, nome de cor e tamanho em em/pt/%, ol start (numerado na tela no primeiro nivel) e linguagem do bloco de codigo. Sem tabela, por decisao do dono (tabelas e iframes sao descartados e a barra nao tem botao de tabela). Limites do modelo Delta (linear): <br> vira U+2028, item de lista com varios paragrafos vira um item com quebra suave, citacao com lista/titulo/citacao aninhada achata, titulo dentro de item de lista vira item comum; regras de markdown (# , - , 1. , >) e Ctrl+Z/atalhos so os do flutter_quill; cor do texto e destaque por seletor proprio (paleta + hex) no lugar do input color; Salvar/Carregar HTML via file_picker (extra htmlFilePicker); onSave recebe SgTextEditorFile no lugar de File; dialogos de link/imagem proprios no lugar de window.prompt (cancelar nao remove o link); disabled reativo (no React so vale na criacao); sem className/style (ADR 50); nao testado em dispositivo/IME",
    "onde": "packages/seedgrid_components/lib/src/inputs/editor/sg_text_editor.dart",
    "props": 22,
    "propsOmitidas": 3,

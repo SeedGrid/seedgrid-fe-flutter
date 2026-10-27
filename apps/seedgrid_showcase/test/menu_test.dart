@@ -63,7 +63,10 @@ void main() {
     await t.pumpWidget(const ShowcaseApp(initialUri: null));
     await settle(t);
     expect(find.byKey(const ValueKey('home-resumo')), findsOneWidget);
-    expect(find.text('${kCatalog.length}'), findsOneWidget);
+    expect(
+      t.widget<Text>(find.byKey(const ValueKey('stat-total'))).data,
+      '${kCatalog.length}',
+    );
     final portados = kCatalog.where((e) => e.status == 'portado').length;
     expect(
       t.widget<Text>(find.byKey(const ValueKey('stat-portado'))).data,

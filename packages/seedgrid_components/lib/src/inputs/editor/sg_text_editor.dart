@@ -570,6 +570,7 @@ class _SgTextEditorState extends State<SgTextEditor> {
             scrollable: true,
             customStyles: _styles(theme),
             embedBuilders: const [_ImageEmbedBuilder(), _HrEmbedBuilder()],
+            customLeadingBlockBuilder: _orderedStartLeading,
             customShortcuts: const {
               SingleActivator(LogicalKeyboardKey.enter, shift: true):
                   _SoftBreakIntent(),
@@ -695,6 +696,31 @@ class _SoftBreakAction extends Action<_SoftBreakIntent> {
     );
     return null;
   }
+}
+
+/// Numero das listas ordenadas que comecam depois de 1 (`<ol start="3">`): o flutter_quill sempre conta a partir de 1.
+/// O inicio fica no atributo `sg-start` da primeira linha da lista; so o primeiro nivel e ajustado (devolver nulo usa o
+/// desenho padrao).
+Widget? _orderedStartLeading(Node node, LeadingConfig config) {
+  if (config.attribute != Attribute.ol) return null;
+  if (config.attrs.containsKey(Attribute.indent.key)) return null;
+  final parent = node.parent;
+  final first = parent is Block && parent.childCount > 0 ? parent.first : null;
+  final start = first is Line
+      ? first.style.attributes['sg-start']?.value
+      : null;
+  if (start is! int || start == 1) return null;
+  final n = int.tryParse(config.getIndexNumberByIndent ?? '');
+  if (n == null) return null;
+  return QuillNumberPoint(
+    index: '${n + start - 1}',
+    indentLevelCounts: config.indentLevelCounts,
+    count: config.count,
+    style: config.style!,
+    attrs: config.attrs,
+    width: config.width!,
+    padding: config.padding!,
+  );
 }
 
 class _ImageEmbedBuilder extends EmbedBuilder {

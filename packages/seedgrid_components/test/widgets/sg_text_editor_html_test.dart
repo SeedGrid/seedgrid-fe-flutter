@@ -21,10 +21,12 @@ String normalize(String html) {
       final k = d.substring(0, i).trim();
       var v = d.substring(i + 1).trim();
       if (k == 'color' || k == 'background-color') {
-        final hex = sgCssColorToHex(v);
-        if (hex != null && !v.startsWith('rgba')) {
-          final n = int.parse(hex.substring(1), radix: 16);
+        final q = sgCssColorToQuill(v);
+        if (q != null && q.startsWith('#')) {
+          final n = int.parse(q.substring(1), radix: 16);
           v = 'rgb(${(n >> 16) & 255}, ${(n >> 8) & 255}, ${n & 255})';
+        } else if (q != null) {
+          v = q; // rgba(r, g, b, a) com alfa
         }
       } else if (k == 'font-family') {
         v = v
@@ -42,22 +44,6 @@ String normalize(String html) {
 /// Diferencas conhecidas: id -> HTML que o Dart emite (explicado em docs/SG_TEXT_EDITOR_PoC.md).
 const divergentes = <String, String>{
   // Delta nao tem estas coisas:
-  'marcas_codigo': '<p><code>x</code></p>',
-  'marcas_sub_sup':
-      '<p><sup>x</sup></p>', // so um script por trecho: vence o mais interno
-  'marcas_sup_sub': '<p><sub>x</sub></p>',
-  'destaque_simples':
-      '<p><mark data-color="#ffff00" style="background-color: #ffff00; color: inherit">sem cor</mark></p>',
-  'destaque_cor_nome':
-      '<p><mark data-color="#ffff00" style="background-color: #ffff00; color: inherit">a</mark></p>',
-  'cor_hex8': '<p><span style="color: #ff0000">a</span></p>', // alfa descartado
-  'cor_rgba': '<p><span style="color: #ff0000">a</span></p>',
-  'tamanho_em': '<p><span style="font-size: 24px">a</span></p>',
-  'tamanho_pt': '<p><span style="font-size: 16px">a</span></p>',
-  'lista_num_start':
-      '<ol><li><p>a</p></li></ol>', // numeracao sempre comeca em 1
-  'lista_num_aninhada_start':
-      '<ol><li><p>a</p><ol><li><p>b</p></li></ol></li></ol>',
   'lista_dois_paragrafos':
       '<ul><li><p>a<br>a2</p></li></ul>', // um item = uma linha
   'lista_titulo': '<ul><li><p>t</p></li></ul>',
@@ -65,7 +51,6 @@ const divergentes = <String, String>{
       '<ul><li><p>a</p></li></ul>', // bloco exclusivo: citacao OU lista
   'citacao_titulo': '<blockquote><p>t</p></blockquote>',
   'citacao_aninhada': '<blockquote><p>a</p></blockquote>',
-  'codigo_bloco_lang': '<pre><code>x = 1</code></pre>', // linguagem perdida
   'imagem_dentro_p':
       '<p>texto</p><img src="https://exemplo.com/a.png"><p>mais</p>',
   // Estilos que o TipTap deixa como <span> vazio (defeito do React); o Dart nao emite o span vazio.

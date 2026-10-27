@@ -149,22 +149,31 @@ const _colorNames = <String, String>{
   'beige': '#f5f5dc',
 };
 
-/// Cor CSS -> `#rrggbb` (ou nulo). Aceita `#rgb`, `#rgba`, `#rrggbb`, `#rrggbbaa`, `rgb()`, `rgba()`,
-/// `hsl()`, `hsla()` e nomes basicos. O canal alfa e descartado (o Delta so guarda RGB).
-String? sgCssColorToHex(String? value) {
+typedef _Rgba = ({int r, int g, int b, double a});
+
+/// Cor CSS -> canais RGB e alfa (0 a 1), ou nulo. Aceita `#rgb`, `#rgba`, `#rrggbb`, `#rrggbbaa`, `rgb()`, `rgba()`,
+/// `hsl()`, `hsla()` e nomes basicos.
+_Rgba? _parseCssColor(String? value) {
   if (value == null) return null;
   final v = value.trim().toLowerCase();
   if (v.isEmpty) return null;
-  String hex(int r, int g, int b) =>
-      '#${[r, g, b].map((c) => c.clamp(0, 255).toRadixString(16).padLeft(2, '0')).join()}';
+  _Rgba rgba(num r, num g, num b, [double a = 1]) => (
+    r: r.round().clamp(0, 255),
+    g: g.round().clamp(0, 255),
+    b: b.round().clamp(0, 255),
+    a: a.clamp(0.0, 1.0),
+  );
   if (v.startsWith('#')) {
     final h = v.substring(1);
     if (!RegExp(r'^[0-9a-f]+$').hasMatch(h)) return null;
+    var full = h;
     if (h.length == 3 || h.length == 4) {
-      return '#${h.substring(0, 3).split('').map((c) => '$c$c').join()}';
+      full = h.split('').map((c) => '$c$c').join();
+    } else if (h.length != 6 && h.length != 8) {
+      return null;
     }
-    if (h.length == 6 || h.length == 8) return '#${h.substring(0, 6)}';
-    return null;
+    int ch(int i) => int.parse(full.substring(i * 2, i * 2 + 2), radix: 16);
+    return rgba(ch(0), ch(1), ch(2), full.length == 8 ? ch(3) / 255 : 1);
   }
   final fn = RegExp(r'^(rgba?|hsla?)\(([^)]*)\)$').firstMatch(v);
   if (fn != null) {
@@ -183,11 +192,13 @@ String? sgCssColorToHex(String? value) {
       return double.tryParse(s.replaceAll('deg', '')) ?? 0;
     }
 
+    final alpha = parts.length > 3 ? num(parts[3], 1) : 1.0;
     if (fn.group(1)!.startsWith('rgb')) {
-      return hex(
-        num(parts[0], 255).round(),
-        num(parts[1], 255).round(),
-        num(parts[2], 255).round(),
+      return rgba(
+        num(parts[0], 255),
+        num(parts[1], 255),
+        num(parts[2], 255),
+        alpha,
       );
     }
     final h = (num(parts[0], 360) % 360 + 360) % 360;
@@ -203,13 +214,29 @@ String? sgCssColorToHex(String? value) {
       return lig - a * math.max(-1.0, math.min(math.min(k - 3, 9 - k), 1.0));
     }
 
-    return hex(
-      (f(0) * 255).round(),
-      (f(8) * 255).round(),
-      (f(4) * 255).round(),
-    );
+    return rgba(f(0) * 255, f(8) * 255, f(4) * 255, alpha);
   }
-  return _colorNames[v];
+  final named = _colorNames[v];
+  return named == null ? null : _parseCssColor(named);
+}
+
+String _hex2(int c) => c.toRadixString(16).padLeft(2, '0');
+
+/// Cor CSS -> `#rrggbb` (ou nulo). O canal alfa e descartado; para guardar o alfa use [sgCssColorToQuill].
+String? sgCssColorToHex(String? value) {
+  final c = _parseCssColor(value);
+  return c == null ? null : '#${_hex2(c.r)}${_hex2(c.g)}${_hex2(c.b)}';
+}
+
+/// Cor CSS -> valor de cor do Delta: `#rrggbb` quando opaca e `rgba(r, g, b, a)` quando tem transparencia
+/// (o flutter_quill le os dois formatos). Nulo se a cor for invalida.
+String? sgCssColorToQuill(String? value) {
+  final c = _parseCssColor(value);
+  if (c == null) return null;
+  final a = (c.a * 100).round() / 100;
+  if (a >= 1) return '#${_hex2(c.r)}${_hex2(c.g)}${_hex2(c.b)}';
+  final alpha = a == a.roundToDouble() ? '${a.round()}' : '$a';
+  return 'rgba(${c.r}, ${c.g}, ${c.b}, $alpha)';
 }
 
 Map<String, String> _styleMap(String? style) {
@@ -244,6 +271,19 @@ String? _sizeToQuill(String? raw) {
   if (px <= 0) return null;
   final r = double.parse(px.toStringAsFixed(2));
   return r == r.roundToDouble() ? '${r.round()}' : '$r';
+}
+
+/// Guarda o texto original de uma cor/tamanho (ex.: `yellow`, `1.5em`) quando o valor do Delta o escreve diferente,
+/// para o HTML de saida repetir o que o autor escreveu. So vale enquanto a conversao do original bater com o valor atual.
+void _keepRaw(
+  Map<String, Object?> attrs,
+  String key,
+  String? raw,
+  String converted,
+) {
+  final r = raw?.trim();
+  if (r == null || r.isEmpty || r == converted || r == '${converted}px') return;
+  attrs[key] = r;
 }
 
 class _Seg {
@@ -336,28 +376,47 @@ class _Parser {
       case 'code':
         attrs['code'] = true;
       case 'sub':
+        // o TipTap aceita sub e sup juntos (sai sempre `<sub><sup>`); o Delta so tem um `script`, o outro vai em `sg-sup`
+        if (attrs['script'] == 'super') attrs['sg-sup'] = true;
         attrs['script'] = 'sub';
       case 'sup':
-        attrs['script'] = 'super';
+        if (attrs['script'] == 'sub') {
+          attrs['sg-sup'] = true;
+        } else {
+          attrs['script'] = 'super';
+        }
       case 'a':
         final href = el.attributes['href'];
         if (href != null && sgIsAllowedLinkUri(href)) attrs['link'] = href;
       case 'mark':
-        final c =
-            sgCssColorToHex(el.attributes['data-color']) ??
-            sgCssColorToHex(style['background-color']);
-        // `<mark>` sem cor: o Delta precisa de um valor; usa o amarelo padrao do navegador.
-        attrs['background'] = c ?? '#ffff00';
+        final rawBg = sgCssColorToQuill(el.attributes['data-color']) != null
+            ? el.attributes['data-color']
+            : style['background-color'];
+        final c = sgCssColorToQuill(rawBg);
+        if (c != null) {
+          attrs['background'] = c;
+          _keepRaw(attrs, 'sg-bg-raw', rawBg, c);
+        } else {
+          // `<mark>` sem cor: o Delta precisa de um valor (amarelo padrao); `sg-mark` lembra que nao havia cor.
+          attrs['background'] = '#ffff00';
+          attrs['sg-mark'] = true;
+        }
       case 'span':
         if (el.attributes.containsKey('style')) {
           final ff = style['font-family']
               ?.replaceAll(RegExp(r'''['"]+'''), '')
               .trim();
           if (ff != null && ff.isNotEmpty) attrs['font'] = ff;
-          final col = sgCssColorToHex(style['color']);
-          if (col != null) attrs['color'] = col;
+          final col = sgCssColorToQuill(style['color']);
+          if (col != null) {
+            attrs['color'] = col;
+            _keepRaw(attrs, 'sg-color-raw', style['color'], col);
+          }
           final sz = _sizeToQuill(style['font-size']);
-          if (sz != null) attrs['size'] = sz;
+          if (sz != null) {
+            attrs['size'] = sz;
+            _keepRaw(attrs, 'sg-size-raw', style['font-size'], sz);
+          }
         }
     }
     final fw = style['font-weight'];
@@ -525,8 +584,11 @@ class _Parser {
     if (text.endsWith('\n') && text.length > 1) {
       text = text.substring(0, text.length - 1);
     }
+    final cls = pre.querySelector('code')?.className ?? '';
+    final lang = RegExp(r'(?:^|\s)language-(\S+)').firstMatch(cls)?.group(1);
     for (final part in text.split('\n')) {
-      final l = _Line()..attrs = {'code-block': true};
+      final l = _Line()
+        ..attrs = {'code-block': true, if (lang != null) 'sg-lang': lang};
       if (part.isNotEmpty) l.segs.add(_Seg(part, {}));
       lines.add(l);
     }
@@ -534,15 +596,26 @@ class _Parser {
 
   void _list(dom.Element list, int indent, _Ctx ctx) {
     final ordered = list.localName == 'ol';
+    final start = ordered ? int.tryParse(list.attributes['start'] ?? '') : null;
+    var first = true;
     for (final li in list.nodes.whereType<dom.Element>()) {
       if (li.localName != 'li') continue;
-      _listItem(li, ordered, indent, ctx);
+      _listItem(li, ordered, indent, ctx, first ? start : null);
+      first = false;
     }
   }
 
-  void _listItem(dom.Element li, bool ordered, int indent, _Ctx ctx) {
+  void _listItem(
+    dom.Element li,
+    bool ordered,
+    int indent,
+    _Ctx ctx, [
+    int? start,
+  ]) {
     final attrs = <String, Object?>{'list': ordered ? 'ordered' : 'bullet'};
     if (indent > 0) attrs['indent'] = indent;
+    // `<ol start="3">`: o numero inicial fica na primeira linha da lista (o TipTap omite quando e 1)
+    if (start != null && start != 1) attrs['sg-start'] = start;
     final item = _Run();
     var emitted = false;
     String? align;
@@ -550,6 +623,7 @@ class _Parser {
       final a = Map<String, Object?>.of(attrs);
       if (align != null) a['align'] = align;
       _emitRun(item, a);
+      attrs.remove('sg-start');
       emitted = true;
     }
 
@@ -713,12 +787,23 @@ List<_Mark> _marksFor(Map<String, Object?> a) {
   final font = a['font'] is String && (a['font'] as String).isNotEmpty
       ? a['font'] as String
       : null;
-  final color = a['color'] is String && (a['color'] as String).isNotEmpty
+  var color = a['color'] is String && (a['color'] as String).isNotEmpty
       ? a['color'] as String
       : null;
+  final colorRaw = a['sg-color-raw'];
+  if (color != null &&
+      colorRaw is String &&
+      sgCssColorToQuill(colorRaw) == color) {
+    color = colorRaw;
+  }
   String? size;
   final rawSize = a['size'];
-  if (rawSize != null) {
+  final sizeRaw = a['sg-size-raw'];
+  if (rawSize != null &&
+      sizeRaw is String &&
+      _sizeToQuill(sizeRaw) == '$rawSize') {
+    size = sizeRaw;
+  } else if (rawSize != null) {
     size = switch ('$rawSize') {
       'small' => '10px',
       'large' => '18px',
@@ -745,17 +830,26 @@ List<_Mark> _marksFor(Map<String, Object?> a) {
   if (a['italic'] == true) out.add(_Mark('i', '<em>', '</em>'));
   if (a['strike'] == true) out.add(_Mark('s', '<s>', '</s>'));
   if (a['underline'] == true) out.add(_Mark('u', '<u>', '</u>'));
-  final bg = a['background'];
+  var bg = a['background'];
   if (bg is String && bg.isNotEmpty) {
-    out.add(
-      _Mark(
-        'hl:$bg',
-        '<mark data-color="${_escAttr(bg)}" style="background-color: ${_escAttr(bg)}; color: inherit">',
-        '</mark>',
-      ),
-    );
+    final bgRaw = a['sg-bg-raw'];
+    if (bgRaw is String && sgCssColorToQuill(bgRaw) == bg) bg = bgRaw;
+    if (a['sg-mark'] == true && bg == '#ffff00') {
+      out.add(_Mark('hl:', '<mark>', '</mark>'));
+    } else {
+      out.add(
+        _Mark(
+          'hl:$bg',
+          '<mark data-color="${_escAttr(bg)}" style="background-color: ${_escAttr(bg)}; color: inherit">',
+          '</mark>',
+        ),
+      );
+    }
   }
-  if (a['script'] == 'sub') out.add(_Mark('sub', '<sub>', '</sub>'));
+  if (a['script'] == 'sub') {
+    out.add(_Mark('sub', '<sub>', '</sub>'));
+    if (a['sg-sup'] == true) out.add(_Mark('sup', '<sup>', '</sup>'));
+  }
   if (a['script'] == 'super') out.add(_Mark('sup', '<sup>', '</sup>'));
   return out;
 }
@@ -823,7 +917,11 @@ class _Writer {
           );
           i++;
         }
-        out.write('<pre><code>${_escText(txt.join('\n'))}</code></pre>');
+        final lang = l.attrs['sg-lang'];
+        final cls = lang is String && lang.isNotEmpty
+            ? ' class="language-${_escAttr(lang)}"'
+            : '';
+        out.write('<pre><code$cls>${_escText(txt.join('\n'))}</code></pre>');
       } else if (l.attrs['blockquote'] == true) {
         out.write('<blockquote>');
         while (i < lines.length &&
@@ -875,16 +973,19 @@ class _Writer {
       while (stack.length > d + 1) {
         out.write('</li></${stack.removeLast()}>');
       }
+      final startAttr = tag == 'ol' && l.attrs['sg-start'] is num
+          ? ' start="${(l.attrs['sg-start'] as num).toInt()}"'
+          : '';
       if (stack.length == d + 1) {
         if (stack.last != tag) {
           out.write('</li></${stack.removeLast()}>');
-          out.write('<$tag><li>');
+          out.write('<$tag$startAttr><li>');
           stack.add(tag);
         } else {
           out.write('</li><li>');
         }
       } else {
-        out.write('<$tag><li>');
+        out.write('<$tag$startAttr><li>');
         stack.add(tag);
       }
       out.write('<p${_alignAttr(l.attrs)}>${inline(l.segs)}</p>');
