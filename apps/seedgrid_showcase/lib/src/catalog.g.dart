@@ -16,7 +16,7 @@ const List<CatalogEntry> kCatalog = <CatalogEntry>[
   (name: 'SgBreadcrumb', category: 'navigation', wave: 2, status: 'portado'),
   (name: 'SgButton', category: 'action', wave: 1, status: 'portado'),
   (name: 'SgCalendar', category: 'gadget', wave: 3, status: 'parcial'),
-  (name: 'SgCard', category: 'layout', wave: 2, status: 'parcial'),
+  (name: 'SgCard', category: 'layout', wave: 2, status: 'portado'),
   (name: 'SgCarousel', category: 'layout', wave: 2, status: 'portado'),
   (name: 'SgCheckboxGroup', category: 'input', wave: 1, status: 'portado'),
   (name: 'SgClock', category: 'gadget', wave: 4, status: 'parcial'),

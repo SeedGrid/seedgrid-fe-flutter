@@ -2,15 +2,20 @@
 // Props herdadas do HTML no React (`id`, `draggable`, `children`) entram como lista fechada (ADR 50):
 // `id`, `draggable` e `child`. `className`/`style` nao existem; `bodyClassName`, `headerClassName` e
 // `footerClassName` existem so para cumprir o contrato gerado e sao ignoradas.
+import 'dart:async';
+import 'dart:convert';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../generated/enums.g.dart';
 import '../../generated/sg_card.g.dart';
 import '../../i18n/i18n.dart';
 import '../../props/sg_node.dart';
+import '../../providers/sg_environment_provider.dart';
 import '../../theme_access.dart';
 import 'containers_support.dart';
 
@@ -29,13 +34,32 @@ class SgCardPosition {
   @override
   int get hashCode => Object.hash(x, y);
 
+  /// `{ x, y }` -> posicao. Aceita o mapa ou o JSON em texto; `null` se faltar numero finito.
+  static SgCardPosition? fromStored(Object? raw) {
+    var v = raw;
+    if (v is String) {
+      try {
+        v = jsonDecode(v);
+      } catch (_) {
+        return null;
+      }
+    }
+    if (v is! Map) return null;
+    final x = v['x'];
+    final y = v['y'];
+    if (x is! num || y is! num || !x.isFinite || !y.isFinite) return null;
+    return SgCardPosition(x.toDouble(), y.toDouble());
+  }
+
+  Map<String, double> toJson() => {'x': x, 'y': y};
+
   @override
   String toString() => 'SgCardPosition($x, $y)';
 }
 
-/// Posicoes salvas por chave (`dragPersistKey`, ou `sg-card-pos:<id>`). No React vai para o
-/// `SgEnvironmentProvider` ou para o localStorage; aqui vive na memoria do processo: sobrevive a
-/// reconstrucoes do widget, nao a reinicios do app (parcial). Limpe com [clear] em testes.
+/// Posicoes salvas por chave (`dragPersistKey`, ou `sg-card-pos:<id>`). Memoria do processo: leitura
+/// imediata ao remontar o widget. O disco (SgEnvironmentProvider ou shared_preferences, como o React com
+/// localStorage) e lido logo depois da montagem e gravado ao soltar o card. Limpe com [clear] em testes.
 abstract final class SgCardPositionStore {
   static final Map<String, SgCardPosition> _map = {};
 
@@ -260,6 +284,7 @@ class _SgCardState extends State<SgCard> {
 
   void _dragStart(DragStartDetails d) {
     if (!widget.draggable || widget.disabled) return;
+    _movedByUser = true;
     setState(() => _dragging = true);
   }
 
@@ -273,6 +298,81 @@ class _SgCardState extends State<SgCard> {
 
   bool get _displaced => _pos.x.round() != 0 || _pos.y.round() != 0;
 
+  // ---------------------------------------------------------------- persistencia em disco
+
+  SgPersistence? _persistence;
+  bool _hasProvider = false;
+  String? _loadedSignature;
+  int _loadGen = 0;
+  bool _movedByUser = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _persistence = useSgPersistence(context);
+    _hasProvider = useHasSgEnvironmentProvider(context);
+    _maybeLoad();
+  }
+
+  @override
+  void dispose() {
+    _loadGen++;
+    super.dispose();
+  }
+
+  void _maybeLoad() {
+    final key = widget.draggable ? _storageKey : null;
+    if (key == null) {
+      _loadedSignature = null;
+      return;
+    }
+    final signature = '$key|$_hasProvider|${_persistence?.namespace}';
+    if (signature == _loadedSignature) return;
+    _loadedSignature = signature;
+    unawaited(_loadStored(key));
+  }
+
+  Future<SgCardPosition?> _readStored(String key) async {
+    try {
+      if (_hasProvider) {
+        final loaded = await _persistence!.load(key);
+        final parsed = SgCardPosition.fromStored(loaded);
+        if (parsed == null && loaded != null) await _persistence!.clear(key);
+        return parsed;
+      }
+      final prefs = await SharedPreferences.getInstance();
+      final raw = prefs.getString(key);
+      final parsed = SgCardPosition.fromStored(raw);
+      if (parsed == null && raw != null) await prefs.remove(key);
+      return parsed;
+    } catch (_) {
+      return null;
+    }
+  }
+
+  Future<void> _loadStored(String key) async {
+    final gen = ++_loadGen;
+    final stored = await _readStored(key);
+    if (!mounted || gen != _loadGen || stored == null || _movedByUser) return;
+    if (stored == _pos) return;
+    setState(() => _pos = stored);
+    SgCardPositionStore.write(key, stored);
+    widget.onPositionChange?.call(stored);
+  }
+
+  Future<void> _writeStored(String key, SgCardPosition pos) async {
+    try {
+      if (_hasProvider) {
+        await _persistence!.save(key, pos.toJson());
+        return;
+      }
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString(key, jsonEncode(pos.toJson()));
+    } catch (_) {
+      // sem armazenamento: a posicao continua so em memoria
+    }
+  }
+
   void _dragEnd([DragEndDetails? _]) {
     if (!_dragging) return;
     setState(() {
@@ -281,7 +381,10 @@ class _SgCardState extends State<SgCard> {
       if (_floating && !_displaced) _floating = false;
     });
     final key = _storageKey;
-    if (key != null) SgCardPositionStore.write(key, _pos);
+    if (key != null) {
+      SgCardPositionStore.write(key, _pos);
+      unawaited(_writeStored(key, _pos));
+    }
   }
 
   KeyEventResult _headerKey(FocusNode n, KeyEvent e) {

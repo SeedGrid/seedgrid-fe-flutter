@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 // Importa so o que e deste grupo: compila mesmo se outro grupo estiver incompleto.
 import 'package:seedgrid_components/src/generated/enums.g.dart';
 import 'package:seedgrid_components/src/i18n/i18n.dart';
@@ -730,6 +731,43 @@ void main() {
         await t.pump();
         expect(positions.last.y, closeTo(80, 25));
         expect(scroll.offset, 0);
+      },
+    );
+
+    testWidgets(
+      'a posicao vai para o disco (shared_preferences) e volta depois de reiniciar o app',
+      (t) async {
+        SharedPreferences.setMockInitialValues({});
+        Widget card() => host(
+          const SgCard(
+            dragPersistKey: 'cartao-disco',
+            draggable: true,
+            title: Text('T'),
+            child: Text('x'),
+          ),
+        );
+        await t.pumpWidget(card());
+        await t.drag(
+          find.byKey(const ValueKey('sg-card-header')),
+          const Offset(60, 0),
+        );
+        await t.pump();
+        await t.runAsync(() => Future<void>.delayed(Duration.zero));
+        final prefs = await t.runAsync(SharedPreferences.getInstance);
+        expect(prefs!.getString('cartao-disco'), isNotNull);
+        expect(prefs.getString('cartao-disco'), contains('"x":60'));
+
+        // "reinicia o app": some a memoria, sobra so o disco
+        SgCardPositionStore.clear();
+        await t.pumpWidget(const SizedBox());
+        await t.pumpWidget(card());
+        expect(cardTopLeft(t).dx, 0, reason: 'antes de ler o disco');
+        await t.runAsync(
+          () => Future<void>.delayed(const Duration(milliseconds: 50)),
+        );
+        await t.pump();
+        await t.pump();
+        expect(cardTopLeft(t).dx, closeTo(60, 1.5));
       },
     );
 

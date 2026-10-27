@@ -125,8 +125,8 @@
     "motivo": "breakpoints medem a janela como o @media; span/rowSpan lidos de filhos SgPanel (rowSpan reparte o excesso por igual entre as linhas, como o CSS grid); grow so vale com pai Flex e stretch so iguala irmaos com eixo transversal fixo; gap/padding aceitam numero, Npx, Nrem, vh/vw/vmin/vmax e calc()/min()/max()/clamp()"
   },
   "SgCard": {
-    "status": "parcial",
-    "motivo": "posicao arrastada (dragPersistKey/id) so em memoria (SgCardPositionStore) ate haver shared_preferences no uso; onPositionChange dispara na montagem como no React; golden com fonte de teste"
+    "status": "portado",
+    "motivo": "posicao arrastada (dragPersistKey/id) vai para o SgEnvironmentProvider ou shared_preferences (como o localStorage do React) e e lida logo apos a montagem; onPositionChange dispara na montagem como no React; golden com fonte de teste"
   },
   "SgBreadcrumb": {
     "status": "portado",

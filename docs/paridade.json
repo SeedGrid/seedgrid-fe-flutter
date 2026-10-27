@@ -2,8 +2,8 @@
  "versaoReact": "2026.7.1",
  "resumo": {
   "total": 89,
-  "portado": 77,
-  "parcial": 12,
+  "portado": 78,
+  "parcial": 11,
   "pendente": 0,
   "naoAplicavel": 0
  },
@@ -101,8 +101,8 @@
   {
    "componente": "SgCard",
    "onda": 2,
-   "status": "parcial",
-   "motivo": "posicao arrastada (dragPersistKey/id) so em memoria (SgCardPositionStore) ate haver shared_preferences no uso; onPositionChange dispara na montagem como no React; golden com fonte de teste",
+   "status": "portado",
+   "motivo": "posicao arrastada (dragPersistKey/id) vai para o SgEnvironmentProvider ou shared_preferences (como o localStorage do React) e e lida logo apos a montagem; onPositionChange dispara na montagem como no React; golden com fonte de teste",
    "onde": "packages/seedgrid_components/lib/src/layout/containers/sg_card.dart",
    "props": 33,
    "propsOmitidas": 1,

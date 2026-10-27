@@ -2,7 +2,7 @@
 
 > Gerado por `node tools/parity_table/generate.mjs` a partir do @seedgrid/fe-components 2026.7.1. Não edite à mão.
 
-**89 componentes**: 77 portados, 12 parciais, 0 pendentes, 0 não aplicáveis.
+**89 componentes**: 78 portados, 11 parciais, 0 pendentes, 0 não aplicáveis.
 
 "Props omitidas" = props do React que não existem no Flutter de propósito (`className`, `style`, `register`, HTML; ver ADR 50). "Props genéricas" = props cujo tipo Dart do contrato ainda é genérico (função, união, tipo a portar; ver `tools/gen_props/excecoes.json`).
 
@@ -38,7 +38,7 @@
 | 1 | SgToggleSwitch | portado | 27 | 3 | 7 | packages/seedgrid_components/lib/src/inputs/choice/sg_toggle_switch.dart — enabled virou disabled (ADR 50); goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50); validadores do componente rodam no submit (decisao do dono) |
 | 2 | SgAccordion | portado | 18 | 0 | 7 | packages/seedgrid_components/lib/src/layout/containers/sg_accordion.dart |
 | 2 | SgBreadcrumb | portado | 15 | 2 | 3 | packages/seedgrid_components/lib/src/layout/containers/sg_breadcrumb.dart — href nao navega (sem url_launcher): item com href ou onClick e clicavel e dispara onClick e onNavigate |
-| 2 | SgCard | parcial | 33 | 1 | 4 | packages/seedgrid_components/lib/src/layout/containers/sg_card.dart — posicao arrastada (dragPersistKey/id) so em memoria (SgCardPositionStore) ate haver shared_preferences no uso; onPositionChange dispara na montagem como no React; golden com fonte de teste |
+| 2 | SgCard | portado | 33 | 1 | 4 | packages/seedgrid_components/lib/src/layout/containers/sg_card.dart — posicao arrastada (dragPersistKey/id) vai para o SgEnvironmentProvider ou shared_preferences (como o localStorage do React) e e lida logo apos a montagem; onPositionChange dispara na montagem como no React; golden com fonte de teste |
 | 2 | SgCarousel | portado | 18 | 2 | 5 | packages/seedgrid_components/lib/src/layout/containers/sg_carousel.dart — extras do Flutter (deslizar o dedo, pausar o autoplay ao tocar); no modo vertical os botoes e indicadores ocupam 20 px em cima/baixo e 24 px a direita (toque fora da area do pai nao chega); vertical sem height usa 300 (o React colapsaria a 0) |
 | 2 | SgConfirmationDialog | portado | 39 | 2 | 9 | packages/seedgrid_components/lib/src/overlay/sg_confirmation_dialog.dart — lockBodyScroll sem efeito (o fundo modal ja bloqueia); props de classe CSS aceitas sem efeito; acento do topo e uma faixa de 4 px; icones padrao do SgConfirmationDialog sao do Material; zIndex so cumpre o contrato (a ordem e a do Overlay); anchorRef virou GlobalKey; sem arrastar/redimensionar (o React nao tem); golden com fonte de teste |
 | 2 | SgDialog | portado | 33 | 2 | 6 | packages/seedgrid_components/lib/src/overlay/sg_dialog.dart — lockBodyScroll sem efeito (o fundo modal ja bloqueia); props de classe CSS aceitas sem efeito; acento do topo e uma faixa de 4 px; icones padrao do SgConfirmationDialog sao do Material; zIndex so cumpre o contrato (a ordem e a do Overlay); anchorRef virou GlobalKey; sem arrastar/redimensionar (o React nao tem); golden com fonte de teste |
