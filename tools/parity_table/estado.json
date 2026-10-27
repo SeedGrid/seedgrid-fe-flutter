@@ -98,7 +98,7 @@
   },
   "SgRealtimeProvider": {
     "status": "portado",
-    "motivo": "o cliente entra por connectionFactory (SgPulseConnection injetavel; sem ele o status fica unavailable; adaptador do SDK Pulse em lib/src/providers/PULSE_ADAPTER.md, nao ligado por dependencia); tokenEndpoint precisa de URL absoluta; enabled virou disabled, children virou child; hooks viraram widget e funcao; decisao do dono pendente: ligar o SDK Pulse por dependencia so depois de seedgrid_pulse_subscriber ir ao pub.dev (hoje o adaptador esta documentado; o provider com ele foi executado ao vivo contra o Pulse real em 2026-10-27: conectou, recebeu a mensagem do proprio usuario e nao recebeu a de outro; reconexao com pendentes nao exercitada)"
+    "motivo": "o cliente entra por connectionFactory (SgPulseConnection injetavel; sem ele o status fica unavailable; adaptador do SDK Pulse em lib/src/providers/PULSE_ADAPTER.md, nao ligado por dependencia); tokenEndpoint precisa de URL absoluta; enabled virou disabled, children virou child; hooks viraram widget e funcao; decisao do dono pendente: ligar o SDK Pulse por dependencia so depois de seedgrid_pulse_subscriber ir ao pub.dev (hoje o adaptador esta documentado; o provider com ele foi executado ao vivo contra o Pulse real em 2026-10-27: conectou, recebeu a mensagem do proprio usuario e nao recebeu a de outro; reconexao com mensagem pendente tambem verificada; modo processed, que exige ack, nao exercitado)"
   },
   "SgDialog": {
     "status": "portado",

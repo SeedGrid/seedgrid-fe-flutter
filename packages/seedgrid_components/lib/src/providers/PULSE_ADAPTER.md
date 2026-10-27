@@ -20,7 +20,7 @@ com as mesmas mudancas. Nao ha defasagem de funcionalidade; o unico ajuste e o n
 
 ## Verificado ao vivo (2026-10-27)
 
-O `SgRealtimeProvider` com este adaptador foi executado contra o Pulse real (conta de demonstracao do `exemplo-pulse`), com o fluxo de producao: o widget faz `POST` num BFF local, o BFF emite o token curto com a chave `project` (`issueConnectToken`), o provider conecta no WebSocket, assina um canal e recebe o que o publisher publica. Resultado, com `autoAck` ligado e desligado: status `connected`; a mensagem publicada para `usr_1` chegou com o mesmo `messageId`; a publicada para `usr_2` **nao** chegou na conexao de `usr_1`. A chave `project` ficou so no BFF. Nao foi exercitada a reconexao com mensagens pendentes.
+O `SgRealtimeProvider` com este adaptador foi executado contra o Pulse real (conta de demonstracao do `exemplo-pulse`), com o fluxo de producao: o widget faz `POST` num BFF local, o BFF emite o token curto com a chave `project` (`issueConnectToken`), o provider conecta no WebSocket, assina um canal e recebe o que o publisher publica. Resultado, com `autoAck` ligado e desligado: status `connected`; a mensagem publicada para `usr_1` chegou com o mesmo `messageId`; a publicada para `usr_2` **nao** chegou na conexao de `usr_1`. A chave `project` ficou so no BFF. Reconexao com pendentes (conexao derrubada, mensagem publicada com ela caida): a mensagem chegou uma vez ao reconectar e uma 2a queda nao reentregou nada, com `autoAck` ligado e desligado (para mensagens em modo `notification` o `autoAck` nao muda o resultado; o modo `processed`, que espera confirmacao, nao foi exercitado). Os testes estao em `seedgrid-platform-work/scripts/pulse-realtime-live/`.
 
 ## Adaptador (compila contra o SDK 2.0.0)
 
