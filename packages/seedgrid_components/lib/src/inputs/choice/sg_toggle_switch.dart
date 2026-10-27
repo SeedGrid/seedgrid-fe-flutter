@@ -5,6 +5,7 @@ import 'package:seedgrid_theme/seedgrid_theme.dart';
 import 'package:flutter/services.dart';
 
 import '../../form/sg_form.dart';
+import '../../form/sg_validation_scope.dart';
 import '../../form/sg_rules.dart';
 import '../../generated/sg_toggle_switch.g.dart';
 import '../../i18n/i18n.dart';
@@ -116,9 +117,11 @@ bool _toBool(Object? v, [bool fallback = false]) {
   return fallback;
 }
 
-class _SgToggleSwitchState extends State<SgToggleSwitch> {
+class _SgToggleSwitchState extends State<SgToggleSwitch>
+    implements SgSelfValidating {
   late bool _internal = widget.defaultChecked ?? false;
   String? _internalError;
+  SgValidationRegistry? _scope;
   bool _interacted = false;
   final FocusNode _focus = FocusNode();
   bool _focused = false;
@@ -135,6 +138,12 @@ class _SgToggleSwitchState extends State<SgToggleSwitch> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    final scope = SgValidationScope.maybeOf(context);
+    if (scope != _scope) {
+      _scope?.remove(this);
+      _scope = scope;
+      _scope?.add(this);
+    }
     _bind();
   }
 
@@ -166,6 +175,7 @@ class _SgToggleSwitchState extends State<SgToggleSwitch> {
 
   @override
   void dispose() {
+    _scope?.remove(this);
     _binding.dispose();
     _focus.dispose();
     super.dispose();
@@ -184,6 +194,14 @@ class _SgToggleSwitchState extends State<SgToggleSwitch> {
   }
 
   void _validate(bool next) => _setError(_messageFor(next));
+
+  /// Validacao de etapa do SgWizard para campo fora de formulario: a mesma validacao da perda de foco.
+  @override
+  bool validateNow() {
+    if (!mounted || _binding.bound || _disabled) return true;
+    if ((widget.validateOnBlur ?? true) || _interacted) _validate(_checked);
+    return _internalError == null;
+  }
 
   String? _messageFor(bool next) {
     final i18n = useComponentsI18n(context);

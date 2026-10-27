@@ -15,6 +15,7 @@ import 'package:flutter/services.dart';
 import 'package:seedgrid_theme/seedgrid_theme.dart';
 
 import '../../form/sg_form.dart';
+import '../../form/sg_validation_scope.dart';
 import '../../form/sg_rules.dart';
 import '../../generated/sg_input_otp.g.dart';
 import '../../i18n/i18n.dart';
@@ -177,7 +178,7 @@ class SgInputOTP extends StatefulWidget implements SgInputOTPProps {
   State<SgInputOTP> createState() => _SgInputOTPState();
 }
 
-class _SgInputOTPState extends State<SgInputOTP> {
+class _SgInputOTPState extends State<SgInputOTP> implements SgSelfValidating {
   late OtpMask _mask = parseOtpMask(widget.mask);
   late List<String> _slots = textToSlotValues(
     widget.value ?? widget.defaultValue ?? '',
@@ -187,6 +188,7 @@ class _SgInputOTPState extends State<SgInputOTP> {
   final List<FocusNode> _nodes = [];
   SgFormController? _form;
   String? _internalError;
+  SgValidationRegistry? _scope;
   bool _interacted = false;
   bool _focusWithin = false;
   int _focusedSlot = -1;
@@ -240,6 +242,12 @@ class _SgInputOTPState extends State<SgInputOTP> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    final scope = SgValidationScope.maybeOf(context);
+    if (scope != _scope) {
+      _scope?.remove(this);
+      _scope = scope;
+      _scope?.add(this);
+    }
     final f = widget.control ?? SgForm.maybeOf(context);
     if (f != _form) {
       _form?.removeListener(_syncFromForm);
@@ -311,6 +319,7 @@ class _SgInputOTPState extends State<SgInputOTP> {
 
   @override
   void dispose() {
+    _scope?.remove(this);
     if (widget.controller?._state == this) widget.controller!._state = null;
     _form?.removeListener(_syncFromForm);
     if (_registeredName != null) {
@@ -392,6 +401,20 @@ class _SgInputOTPState extends State<SgInputOTP> {
       slotValuesToRaw(slots),
       slotValuesToMasked(_mask.tokens, slots),
     );
+  }
+
+  /// Validacao de etapa do SgWizard para campo fora de formulario: a mesma validacao da perda de foco.
+  @override
+  bool validateNow() {
+    if (!mounted || _bound || _isDisabled) return true;
+    if (_validateOnBlur || _interacted) {
+      _runValidation(
+        slotValuesToRaw(_slots),
+        slotValuesToMasked(_mask.tokens, _slots),
+      );
+    }
+    final propError = widget.error;
+    return _internalError == null && (propError == null || propError.isEmpty);
   }
 
   String? _runValidation(String raw, String masked) {

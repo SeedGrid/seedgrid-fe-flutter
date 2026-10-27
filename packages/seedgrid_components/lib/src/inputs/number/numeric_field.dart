@@ -11,6 +11,7 @@ import 'package:flutter/services.dart';
 import 'package:seedgrid_theme/seedgrid_theme.dart';
 
 import '../../form/sg_form.dart';
+import '../../form/sg_validation_scope.dart';
 import '../../form/sg_rules.dart';
 import '../../i18n/i18n.dart';
 import '../../theme_access.dart';
@@ -123,7 +124,8 @@ class NumericField extends StatefulWidget {
   State<NumericField> createState() => NumericFieldState();
 }
 
-class NumericFieldState extends State<NumericField> {
+class NumericFieldState extends State<NumericField>
+    implements SgSelfValidating {
   final TextEditingController _text = TextEditingController();
   final FocusNode _focus = FocusNode();
   late final _NumberFormatter _formatter = _NumberFormatter(this);
@@ -131,6 +133,7 @@ class NumericFieldState extends State<NumericField> {
   SgNumberState? _state;
   String? _lastEmitted;
   String? _internalError;
+  SgValidationRegistry? _scope;
   bool _interacted = false;
   bool _started = false;
 
@@ -152,6 +155,12 @@ class NumericFieldState extends State<NumericField> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    final scope = SgValidationScope.maybeOf(context);
+    if (scope != _scope) {
+      _scope?.remove(this);
+      _scope = scope;
+      _scope?.add(this);
+    }
     final f = c.control ?? SgForm.maybeOf(context);
     if (f != _form) {
       _form?.removeListener(_syncFromForm);
@@ -238,6 +247,7 @@ class NumericFieldState extends State<NumericField> {
 
   @override
   void dispose() {
+    _scope?.remove(this);
     _form?.removeListener(_syncFromForm);
     if (_registeredName != null) {
       _form?.unregisterValidator(_registeredName!, _formValidate);
@@ -255,6 +265,15 @@ class NumericFieldState extends State<NumericField> {
   }
 
   void _runValidation(SgNumberState? s) => _setError(_messageFor(s));
+
+  /// Validacao de etapa do SgWizard para campo fora de formulario: a mesma validacao da perda de foco.
+  @override
+  bool validateNow() {
+    if (!mounted || _bound || (c.disabled ?? false)) return true;
+    if ((c.validateOnBlur ?? true) || _interacted) _runValidation(_state);
+    final propError = c.error;
+    return _internalError == null && (propError == null || propError.isEmpty);
+  }
 
   /// Mensagem de erro para o estado [s] (ou `null`); usada no blur e no `trigger`/`handleSubmit`.
   String? _messageFor(SgNumberState? s) {

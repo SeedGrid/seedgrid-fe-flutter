@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../form/sg_form.dart';
+import '../../form/sg_validation_scope.dart';
 import '../../form/sg_rules.dart';
 import '../../generated/enums.g.dart';
 import '../../generated/sg_input_text_area.g.dart';
@@ -188,13 +189,15 @@ class SgInputTextArea extends StatefulWidget implements SgInputTextAreaProps {
   State<SgInputTextArea> createState() => _SgInputTextAreaState();
 }
 
-class _SgInputTextAreaState extends State<SgInputTextArea> {
+class _SgInputTextAreaState extends State<SgInputTextArea>
+    implements SgSelfValidating {
   late final TextEditingController _text = TextEditingController(
     text: widget.value ?? widget.initialValue ?? '',
   );
   late final FocusNode _focus = widget.focusNode ?? FocusNode();
   SgFormController? _form;
   String? _internalError;
+  SgValidationRegistry? _scope;
   bool _interacted = false;
   int _seenReset = 0;
 
@@ -210,6 +213,12 @@ class _SgInputTextAreaState extends State<SgInputTextArea> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    final scope = SgValidationScope.maybeOf(context);
+    if (scope != _scope) {
+      _scope?.remove(this);
+      _scope = scope;
+      _scope?.add(this);
+    }
     final f = widget.control ?? SgForm.maybeOf(context);
     if (f != _form) {
       _form?.removeListener(_sync);
@@ -298,6 +307,7 @@ class _SgInputTextAreaState extends State<SgInputTextArea> {
 
   @override
   void dispose() {
+    _scope?.remove(this);
     _form?.removeListener(_sync);
     if (_registeredName != null) {
       _form?.unregisterValidator(_registeredName!, _formValidate);
@@ -313,6 +323,15 @@ class _SgInputTextAreaState extends State<SgInputTextArea> {
   }
 
   void _validate(String value) => _setError(_messageFor(value));
+
+  /// Validacao de etapa do SgWizard para campo fora de formulario: a mesma validacao da perda de foco.
+  @override
+  bool validateNow() {
+    if (!mounted || _bound || widget.disabled == true) return true;
+    if ((widget.validateOnBlur ?? true) || _interacted) _validate(_text.text);
+    final propError = widget.error;
+    return _internalError == null && (propError == null || propError.isEmpty);
+  }
 
   /// Ordem do React: required, maxLength, minLength, minNumberOfWords, minLines, validation.
   String? _messageFor(String value) {

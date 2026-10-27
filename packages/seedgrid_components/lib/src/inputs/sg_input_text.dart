@@ -9,6 +9,7 @@ import 'package:flutter/services.dart';
 import 'package:seedgrid_theme/seedgrid_theme.dart';
 
 import '../form/sg_form.dart';
+import '../form/sg_validation_scope.dart';
 import '../form/sg_rules.dart';
 import '../generated/enums.g.dart';
 import '../generated/sg_input_text.g.dart';
@@ -228,7 +229,7 @@ class SgInputText extends StatefulWidget implements SgInputTextProps {
   State<SgInputText> createState() => _SgInputTextState();
 }
 
-class _SgInputTextState extends State<SgInputText> {
+class _SgInputTextState extends State<SgInputText> implements SgSelfValidating {
   late final TextEditingController _text = TextEditingController();
   late final FocusNode _focus = widget.focusNode ?? FocusNode();
   SgFormController? _form;
@@ -339,6 +340,12 @@ class _SgInputTextState extends State<SgInputText> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    final scope = SgValidationScope.maybeOf(context);
+    if (scope != _scope) {
+      _scope?.remove(this);
+      _scope = scope;
+      _scope?.add(this);
+    }
     final f = widget.control ?? SgForm.maybeOf(context);
     if (f != _form) {
       _form?.removeListener(_syncFromForm);
@@ -366,6 +373,19 @@ class _SgInputTextState extends State<SgInputText> {
   }
 
   String? _registeredName;
+  SgValidationRegistry? _scope;
+
+  /// Validacao de etapa do SgWizard para campo FORA de formulario (os ligados a um formulario passam pelo
+  /// `trigger`): roda a mesma validacao da perda de foco e diz se ficou sem erro. Campo desabilitado passa.
+  @override
+  bool validateNow() {
+    if (!mounted || _bound || widget.disabled == true) return true;
+    if ((widget.validateOnBlur ?? true) || _interacted) {
+      _runValidation(_validationText);
+    }
+    final propError = widget.error;
+    return _internalError == null && (propError == null || propError.isEmpty);
+  }
 
   /// Validador do componente para o formulario (`trigger`/`handleSubmit`): o mesmo que roda no blur.
   /// Campo desabilitado nao falha; vazio so falha se for obrigatorio (o validador decide).
@@ -419,6 +439,7 @@ class _SgInputTextState extends State<SgInputText> {
 
   @override
   void dispose() {
+    _scope?.remove(this);
     _form?.removeListener(_syncFromForm);
     if (_registeredName != null) {
       _form?.unregisterValidator(_registeredName!, _formValidate);

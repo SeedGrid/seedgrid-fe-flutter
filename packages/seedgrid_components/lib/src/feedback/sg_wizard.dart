@@ -2,7 +2,8 @@
 // Diferenca de design (ADR 49): o React valida a pagina atual focando e saindo de cada <input> e
 // contando elementos `[data-sg-error]`. No Flutter a validacao da etapa roda no formulario:
 // `SgFormController.trigger(fields)`, onde `fields` vem de `SgWizardPage.fields` (nomes dos campos da
-// etapa; sem ele valida todos os campos registrados). O controlador vem de `SgWizard.control` ou do
+// etapa; sem ele valida todos os campos registrados). Campos fora de formulario (SgInputText sem `name`)
+// se registram no SgValidationScope da etapa e tambem barram o avanco. O controlador vem de `SgWizard.control` ou do
 // SgForm mais proximo; sem nenhum dos dois a pagina e considerada valida (como uma pagina sem inputs).
 import 'dart:async';
 
@@ -12,6 +13,7 @@ import 'package:seedgrid_theme/seedgrid_theme.dart';
 import '../buttons/sg_button.dart';
 import '../commons/commons_colors.dart' show tokenChain;
 import '../form/sg_form.dart';
+import '../form/sg_validation_scope.dart';
 import '../generated/enums.g.dart';
 import '../generated/sg_wizard.g.dart';
 import '../generated/sg_wizard_page.g.dart';
@@ -176,10 +178,18 @@ class _SgWizardState extends State<SgWizard> {
     widget.onStepChange?.call(next);
   }
 
+  // Campos da etapa fora de um formulario (sem `name`) se registram aqui e tambem barram o avanco.
+  final SgValidationRegistry _scope = SgValidationRegistry();
+
   Future<bool> _validateCurrentPage() async {
+    if (widget.children.isEmpty) return true;
     final form = widget.control ?? _form;
-    if (form == null || widget.children.isEmpty) return true;
-    return form.trigger(widget.children[_step].fields);
+    // Os dois sempre rodam (sem curto-circuito): cada campo mostra o proprio erro.
+    final formOk = form == null
+        ? true
+        : await form.trigger(widget.children[_step].fields);
+    final scopeOk = _scope.validateAll();
+    return formOk && scopeOk;
   }
 
   Future<void> _goNext() async {
@@ -276,7 +286,7 @@ class _SgWizardState extends State<SgWizard> {
         if (pages.isNotEmpty)
           KeyedSubtree(
             key: ValueKey('wizard-page-$_step'),
-            child: pages[_step],
+            child: SgValidationScope(registry: _scope, child: pages[_step]),
           ),
         const SizedBox(height: 24),
         Wrap(

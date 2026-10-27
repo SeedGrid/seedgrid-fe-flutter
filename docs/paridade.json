@@ -2,8 +2,8 @@
  "versaoReact": "2026.7.1",
  "resumo": {
   "total": 89,
-  "portado": 83,
-  "parcial": 6,
+  "portado": 84,
+  "parcial": 5,
   "pendente": 0,
   "naoAplicavel": 0
  },
@@ -871,8 +871,8 @@
   {
    "componente": "SgWizard",
    "onda": 2,
-   "status": "parcial",
-   "motivo": "valida a etapa por SgFormController.trigger(fields) (SgWizardPage.fields e SgWizard.control sao extras): o React foca e sai de cada input e conta [data-sg-error]; erros internos do SgInputText que nao passam pelo formulario nao bloqueiam a etapa",
+   "status": "portado",
+   "motivo": "valida a etapa por SgFormController.trigger(fields) (SgWizardPage.fields e SgWizard.control sao extras) e tambem pelos campos sem formulario (SgValidationScope): o React foca e sai de cada input e conta [data-sg-error]; aqui os campos da etapa se validam sob demanda e bloqueiam o avanco",
    "onde": "packages/seedgrid_components/lib/src/feedback/sg_wizard.dart",
    "props": 13,
    "propsOmitidas": 2,

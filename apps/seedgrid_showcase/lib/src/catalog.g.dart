@@ -93,7 +93,7 @@ const List<CatalogEntry> kCatalog = <CatalogEntry>[
   (name: 'SgTreeView', category: 'navigation', wave: 3, status: 'portado'),
   (name: 'SgWhistleHost', category: 'feedback', wave: 2, status: 'portado'),
   (name: 'SgWhistler', category: 'feedback', wave: 2, status: 'portado'),
-  (name: 'SgWizard', category: 'navigation', wave: 2, status: 'parcial'),
+  (name: 'SgWizard', category: 'navigation', wave: 2, status: 'portado'),
   (name: 'SgWizardPage', category: 'navigation', wave: 2, status: 'portado'),
   (name: 'SgYearPartSelector', category: 'input', wave: 3, status: 'portado'),
 ];

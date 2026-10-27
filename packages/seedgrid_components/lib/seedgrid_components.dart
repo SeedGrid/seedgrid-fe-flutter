@@ -9,6 +9,7 @@ export 'src/props/sg_prop_spec.dart';
 export 'src/props/sg_node.dart';
 export 'src/buttons/sg_button.dart';
 export 'src/form/sg_form.dart';
+export 'src/form/sg_validation_scope.dart';
 export 'src/form/sg_rules.dart';
 export 'src/inputs/sg_input_text.dart';
 export 'src/theme_access.dart';

@@ -2,7 +2,7 @@
 
 > Gerado por `node tools/parity_table/generate.mjs` a partir do @seedgrid/fe-components 2026.7.1. Não edite à mão.
 
-**89 componentes**: 83 portados, 6 parciais, 0 pendentes, 0 não aplicáveis.
+**89 componentes**: 84 portados, 5 parciais, 0 pendentes, 0 não aplicáveis.
 
 "Props omitidas" = props do React que não existem no Flutter de propósito (`className`, `style`, `register`, HTML; ver ADR 50). "Props genéricas" = props cujo tipo Dart do contrato ainda é genérico (função, união, tipo a portar; ver `tools/gen_props/excecoes.json`).
 
@@ -59,7 +59,7 @@
 | 2 | SgToastHost | portado | 8 | 0 | 1 | packages/seedgrid_components/lib/src/feedback/sg_toaster.dart |
 | 2 | SgWhistleHost | portado | 6 | 0 | 1 | packages/seedgrid_components/lib/src/feedback/sg_whistler.dart |
 | 2 | SgWhistler | portado | 6 | 0 | 1 | packages/seedgrid_components/lib/src/feedback/sg_whistler.dart |
-| 2 | SgWizard | parcial | 13 | 2 | 6 | packages/seedgrid_components/lib/src/feedback/sg_wizard.dart — valida a etapa por SgFormController.trigger(fields) (SgWizardPage.fields e SgWizard.control sao extras): o React foca e sai de cada input e conta [data-sg-error]; erros internos do SgInputText que nao passam pelo formulario nao bloqueiam a etapa |
+| 2 | SgWizard | portado | 13 | 2 | 6 | packages/seedgrid_components/lib/src/feedback/sg_wizard.dart — valida a etapa por SgFormController.trigger(fields) (SgWizardPage.fields e SgWizard.control sao extras) e tambem pelos campos sem formulario (SgValidationScope): o React foca e sai de cada input e conta [data-sg-error]; aqui os campos da etapa se validam sob demanda e bloqueiam o avanco |
 | 2 | SgWizardPage | portado | 5 | 2 | 0 | packages/seedgrid_components/lib/src/feedback/sg_wizard.dart |
 | 3 | SgAutocomplete | portado | 72 | 3 | 26 | packages/seedgrid_components/lib/src/inputs/select/sg_autocomplete.dart — renderValue cobre o texto com um conteiner opaco (o React usa texto transparente); itemTooltip vira Tooltip por toque longo, nao por hover; inputProps ignorado (ADR 50); sem autocorrect/spellCheck; nao testado em IME nem em dispositivo; golden com fonte de teste |
 | 3 | SgCalendar | portado | 19 | 0 | 12 | packages/seedgrid_components/lib/src/gadgets/calendar/sg_calendar.dart — 33 locales com dados gerados do Intl (pt, en, es, fr, de, it, nl, ja, zh, ko, ru, pl, sv, tr, da, nb, fi, cs, hu, uk, el e variantes regionais); locale sem dados cai no idioma e depois em en-US; cardProps vira SgCalendarCardProps (subconjunto do SgCard); datas em texto so ISO 8601; prop extra today para fixar o hoje; defaultValue acrescentado a mao ate o gerador passar a manter props redeclaradas (ja mantem); icones SVG viraram CustomPaint; golden com fonte de teste |

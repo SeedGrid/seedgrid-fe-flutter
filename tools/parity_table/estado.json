@@ -93,8 +93,8 @@
     "motivo": "no React o SgDockLayout guarda o estado das toolbars encaixaveis (nao e motor de layout) e nao ha divisores arrastaveis; persistencia por SgDockLayoutStore plugavel (sem ele, so memoria); a toolbar se registra por registerToolbar(id, key) em vez de achar pelo DOM; className/style nao existem; golden com fonte de teste"
   },
   "SgWizard": {
-    "status": "parcial",
-    "motivo": "valida a etapa por SgFormController.trigger(fields) (SgWizardPage.fields e SgWizard.control sao extras): o React foca e sai de cada input e conta [data-sg-error]; erros internos do SgInputText que nao passam pelo formulario nao bloqueiam a etapa"
+    "status": "portado",
+    "motivo": "valida a etapa por SgFormController.trigger(fields) (SgWizardPage.fields e SgWizard.control sao extras) e tambem pelos campos sem formulario (SgValidationScope): o React foca e sai de cada input e conta [data-sg-error]; aqui os campos da etapa se validam sob demanda e bloqueiam o avanco"
   },
   "SgRealtimeProvider": {
     "status": "parcial",

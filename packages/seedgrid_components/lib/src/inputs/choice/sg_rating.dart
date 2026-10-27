@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:seedgrid_theme/seedgrid_theme.dart';
 
 import '../../form/sg_form.dart';
+import '../../form/sg_validation_scope.dart';
 import '../../form/sg_rules.dart';
 import '../../generated/enums.g.dart';
 import '../../generated/sg_rating.g.dart';
@@ -126,10 +127,11 @@ Color _parseColor(String? s, Color fallback, SgTheme th) {
   }
 }
 
-class _SgRatingState extends State<SgRating> {
+class _SgRatingState extends State<SgRating> implements SgSelfValidating {
   late num _internal = widget.value;
   num? _hover;
   String? _internalError;
+  SgValidationRegistry? _scope;
   final FocusNode _focus = FocusNode();
   bool _focused = false;
   late final ChoiceFieldBinding _binding = ChoiceFieldBinding(() {
@@ -145,6 +147,12 @@ class _SgRatingState extends State<SgRating> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    final scope = SgValidationScope.maybeOf(context);
+    if (scope != _scope) {
+      _scope?.remove(this);
+      _scope = scope;
+      _scope?.add(this);
+    }
     _bind();
   }
 
@@ -173,9 +181,23 @@ class _SgRatingState extends State<SgRating> {
 
   @override
   void dispose() {
+    _scope?.remove(this);
     _binding.dispose();
     _focus.dispose();
     super.dispose();
+  }
+
+  /// Validacao de etapa do SgWizard para campo fora de formulario: `required` sem nota falha.
+  @override
+  bool validateNow() {
+    if (!mounted || _binding.bound || widget.disabled) return true;
+    final i18n = useComponentsI18n(context);
+    setState(
+      () => _internalError = widget.required && _current == 0
+          ? (widget.requiredMessage ?? t(i18n, 'components.rating.required'))
+          : null,
+    );
+    return _internalError == null;
   }
 
   bool get _interactive => !widget.disabled && !widget.readOnly;

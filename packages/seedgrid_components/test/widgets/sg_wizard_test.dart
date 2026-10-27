@@ -745,6 +745,85 @@ void main() {
       expect(find.text('conteudo 2'), findsOneWidget);
     });
   });
+
+  group('campos fora de formulario barram o avanco (como o React)', () {
+    Widget wizard() => host(
+      SgWizard(
+        onFinish: () {},
+        children: [
+          const SgWizardPage(
+            title: 'Dados',
+            child: SgInputText(
+              id: 'nome',
+              required: true,
+              requiredMessage: 'Informe o nome',
+            ),
+          ),
+          SgWizardPage(title: 'Fim', child: const Text('conteudo fim')),
+        ],
+      ),
+    );
+
+    testWidgets(
+      'obrigatorio vazio bloqueia e mostra o erro; preenchido avanca',
+      (t) async {
+        await t.pumpWidget(wizard());
+        await t.tap(next());
+        await t.pumpAndSettle();
+        expect(find.text('Informe o nome'), findsOneWidget);
+        expect(find.text('conteudo fim'), findsNothing);
+
+        await t.enterText(find.byKey(const ValueKey('input-nome')), 'Ana');
+        await t.tap(next());
+        await t.pumpAndSettle();
+        expect(find.text('conteudo fim'), findsOneWidget);
+      },
+    );
+
+    for (final (nome, campo) in <(String, Widget)>[
+      ('SgInputTextArea', const SgInputTextArea(id: 'a', required: true)),
+      ('SgInputNumber', const SgInputNumber(id: 'b', required: true)),
+      ('SgToggleSwitch', const SgToggleSwitch(id: 'c', required: true)),
+      ('SgInputEmail', const SgInputEmail(id: 'd', required: true)),
+    ]) {
+      testWidgets('$nome obrigatorio vazio bloqueia o Proximo', (t) async {
+        await t.pumpWidget(
+          host(
+            SgWizard(
+              onFinish: () {},
+              children: [
+                SgWizardPage(title: 'Dados', child: campo),
+                const SgWizardPage(title: 'Fim', child: Text('conteudo fim')),
+              ],
+            ),
+          ),
+        );
+        await t.tap(next());
+        await t.pumpAndSettle();
+        expect(find.text('conteudo fim'), findsNothing);
+      });
+    }
+
+    testWidgets('campo desabilitado nao bloqueia', (t) async {
+      await t.pumpWidget(
+        host(
+          SgWizard(
+            onFinish: () {},
+            children: [
+              const SgWizardPage(
+                title: 'Dados',
+                child: SgInputText(id: 'x', required: true, disabled: true),
+              ),
+              SgWizardPage(title: 'Fim', child: const Text('conteudo fim')),
+            ],
+          ),
+        ),
+      );
+      await t.tap(next());
+      await t.pumpAndSettle();
+      expect(find.text('conteudo fim'), findsOneWidget);
+    });
+  });
 }
 
 void _noop() {}
