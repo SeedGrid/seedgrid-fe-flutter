@@ -1,6 +1,5 @@
 // Showcase do SgQRCode. O codigo exibido em cada exemplo e o trecho entre `// #region` e
 // `// #endregion` deste arquivo: exatamente o que esta renderizado.
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
@@ -50,12 +49,8 @@ class SgQRCodePage extends StatelessWidget {
             SgQRCode(
               value: 'https://seedgrid.com.br/logo',
               size: 200,
-              logoImage: MemoryImage(
-                base64Decode(
-                  'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==',
-                ),
-              ),
-              logoSize: 48,
+              logoImage: const AssetImage('assets/logo-seedgrid.png'),
+              logoSize: 56,
               logoPadding: 4,
               logoBorderRadius: 8,
             ),

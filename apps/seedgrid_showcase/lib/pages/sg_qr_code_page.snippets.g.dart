@@ -25,12 +25,8 @@ const SgQRCode(
 SgQRCode(
   value: 'https://seedgrid.com.br/logo',
   size: 200,
-  logoImage: MemoryImage(
-    base64Decode(
-      'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==',
-    ),
-  ),
-  logoSize: 48,
+  logoImage: const AssetImage('assets/logo-seedgrid.png'),
+  logoSize: 56,
   logoPadding: 4,
   logoBorderRadius: 8,
 )
