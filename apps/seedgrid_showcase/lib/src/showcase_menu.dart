@@ -1,10 +1,12 @@
 // Menu do showcase: agrupado por categoria do React, com busca. Mostra TODOS os componentes do React;
 // os que ainda nao foram portados aparecem esmaecidos e marcados (como a tabela de paridade).
 import 'package:flutter/material.dart';
+import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
 import '../pages/pages.g.dart';
 import 'catalog.g.dart';
+import 'menu_icons.g.dart';
 import 'showcase_i18n.dart';
 
 const List<String> kCategoryOrder = [
@@ -73,18 +75,23 @@ class ShowcaseMenu extends StatelessWidget {
       SgMenuNode(
         id: _inicioId,
         label: context.tr('home'),
-        icon: const Icon(Icons.home_outlined, size: 18),
+        icon: const Icon(LucideIcons.house, size: 18),
         onClick: () => onSelect(null),
       ),
       for (final cat in kCategoryOrder)
         if (groups[cat] != null)
           SgMenuNode(
             id: 'cat:$cat',
+            icon: Icon(kMenuGroupIcons[cat] ?? LucideIcons.folder, size: 18),
             label: '${context.tr('cat.$cat')} (${groups[cat]!.length})',
             children: [
               for (final item in groups[cat]!)
                 SgMenuNode(
                   id: item.name,
+                  icon: Icon(
+                    kMenuIcons[item.name] ?? LucideIcons.box,
+                    size: 16,
+                  ),
                   label: item.name,
                   disabled: !item.hasPage,
                   badge: item.status == 'portado'

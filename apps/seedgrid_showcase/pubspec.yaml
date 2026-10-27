@@ -13,6 +13,7 @@ dependencies:
   seedgrid_theme:
   seedgrid_commons:
   seedgrid_components:
+  lucide_icons_flutter: ^4.0.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
