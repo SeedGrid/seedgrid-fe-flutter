@@ -1,7 +1,8 @@
 // Separadores e moeda por locale. O React usa `Intl.NumberFormat` (ICU); o Dart nao tem ICU, entao
-// os valores vem de `currency_data.g.dart`, gerado do Intl do Node para pt-BR, pt-PT, en-US, es, fr e
-// de-DE. Locale fora da tabela cai em en-US (o Intl tambem cai no locale padrao quando nao conhece o
-// locale pedido). LIMITE: locales alem desses 6 nao tem simbolo/separador proprio.
+// os valores vem de `currency_data.g.dart`, gerado do Intl do Node para 30 locales (pt-BR, pt-PT, en-US/GB/CA/AU,
+// es, es-MX/AR, fr, fr-CA, de-DE/AT/CH, it, nl, ja, zh, ko, ru, pl, sv, tr, da, nb, fi, cs, hu, uk, el). Locale fora da
+// tabela cai no locale da tabela com o mesmo idioma e, sem ele, em en-US (o Intl tambem cai no locale padrao).
+// Fora da tabela ficam so as escritas com digitos nao latinos ou agrupamento fora de 3 em 3 (ar, hi, bn, fa...).
 import 'currency_data.g.dart';
 
 /// Separadores usados pelo `SgInputNumber` (React: `getSeparators`).
@@ -41,6 +42,23 @@ String resolveNumberLocale(String? locale) {
     'es': 'es',
     'fr': 'fr',
     'de': 'de-DE',
+    'it': 'it-IT',
+    'nl': 'nl-NL',
+    'ja': 'ja-JP',
+    'zh': 'zh-CN',
+    'ko': 'ko-KR',
+    'ru': 'ru-RU',
+    'pl': 'pl-PL',
+    'sv': 'sv-SE',
+    'tr': 'tr-TR',
+    'da': 'da-DK',
+    'nb': 'nb-NO',
+    'no': 'nb-NO',
+    'fi': 'fi-FI',
+    'cs': 'cs-CZ',
+    'hu': 'hu-HU',
+    'uk': 'uk-UA',
+    'el': 'el-GR',
   };
   return byLang[lang] ?? 'en-US';
 }

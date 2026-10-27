@@ -95,18 +95,26 @@ void main() {
               )
               as Map<String, dynamic>;
       final locales = (doc['locales'] as Map<String, dynamic>);
-      test('os 9 locales dos vetores foram gerados', () {
-        expect(locales.keys, [
-          'pt-BR',
-          'pt-PT',
-          'pt',
-          'en-US',
-          'en',
-          'es',
-          'fr',
-          'de-DE',
-          'de',
-        ]);
+      test('os 33 locales dos vetores foram gerados', () {
+        expect(locales.length, 33);
+        expect(
+          locales.keys,
+          containsAll([
+            'pt-BR',
+            'pt-PT',
+            'pt',
+            'en-US',
+            'en',
+            'es',
+            'fr',
+            'de-DE',
+            'de',
+            'it',
+            'ja',
+            'ru',
+            'uk',
+          ]),
+        );
       });
       locales.forEach((loc, raw) {
         final v = raw as Map<String, dynamic>;

@@ -73,12 +73,12 @@
     "motivo": "consulta de rede por cliente injetavel (SgViaCepResult no lugar do ViaCepResponse que lanca erro; SgHttpClient no CNPJ); placeholder por pais do React nunca e usado e nao foi portado; goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50); validadores do componente rodam no submit (decisao do dono)"
   },
   "SgInputNumber": {
-    "status": "parcial",
-    "motivo": "sem Intl no Dart: simbolo, posicao e separadores vem de tabela gerada do Node (pt-BR, pt-PT, en-US, es, fr, de-DE; 162 moedas), locale fora da lista cai em en-US; o React trata tecla e o Flutter recebe diferenca de texto (formatter converte); goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50); validadores do componente rodam no submit (decisao do dono)"
+    "status": "portado",
+    "motivo": "sem Intl no Dart: simbolo, posicao e separadores vem de tabela gerada do Node (30 locales latinos; 162 moedas; fora da tabela so as escritas com digitos nao latinos ou agrupamento fora de 3 em 3), locale sem dados cai no idioma e depois em en-US; o React trata tecla e o Flutter recebe diferenca de texto (formatter converte); goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50); validadores do componente rodam no submit (decisao do dono)"
   },
   "SgInputCurrency": {
-    "status": "parcial",
-    "motivo": "sem Intl no Dart: simbolo, posicao e separadores vem de tabela gerada do Node (pt-BR, pt-PT, en-US, es, fr, de-DE; 162 moedas), locale fora da lista cai em en-US; o React trata tecla e o Flutter recebe diferenca de texto (formatter converte); goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50); validadores do componente rodam no submit (decisao do dono)"
+    "status": "portado",
+    "motivo": "sem Intl no Dart: simbolo, posicao e separadores vem de tabela gerada do Node (30 locales latinos; 162 moedas; fora da tabela so as escritas com digitos nao latinos ou agrupamento fora de 3 em 3), locale sem dados cai no idioma e depois em en-US; o React trata tecla e o Flutter recebe diferenca de texto (formatter converte); goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50); validadores do componente rodam no submit (decisao do dono)"
   },
   "SgDockLayout": {
     "status": "portado",
@@ -165,8 +165,8 @@
     "motivo": "o React nao tem navegacao por teclado propria (o Flutter tem setas, Home/End, Enter, Espaco e * como extra); maxHeightClassName vira maxHeight em px (padrao 60% da altura da tela); SgTreeConfirmBar.sticky sem efeito; layout de celular proprio (busca em linha, barra empilhada); medido com 10.100 nos em debug de teste: primeira construcao 142 ms, 19 linhas construidas, quadro de rolagem medio 59,6 ms (release, dispositivo e GPU nao medidos)"
   },
   "SgCalendar": {
-    "status": "parcial",
-    "motivo": "so 9 locales com dados (pt-BR, pt-PT, pt, en-US, en, es, fr, de-DE, de), outro cai em en-US; cardProps vira SgCalendarCardProps (subconjunto do SgCard); datas em texto so ISO 8601; prop extra today para fixar o hoje; defaultValue acrescentado a mao ate o gerador passar a manter props redeclaradas (ja mantem); icones SVG viraram CustomPaint; golden com fonte de teste"
+    "status": "portado",
+    "motivo": "33 locales com dados gerados do Intl (pt, en, es, fr, de, it, nl, ja, zh, ko, ru, pl, sv, tr, da, nb, fi, cs, hu, uk, el e variantes regionais); locale sem dados cai no idioma e depois em en-US; cardProps vira SgCalendarCardProps (subconjunto do SgCard); datas em texto so ISO 8601; prop extra today para fixar o hoje; defaultValue acrescentado a mao ate o gerador passar a manter props redeclaradas (ja mantem); icones SVG viraram CustomPaint; golden com fonte de teste"
   },
   "SgInputOTP": {
     "status": "portado",

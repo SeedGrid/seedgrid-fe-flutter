@@ -14,7 +14,7 @@ const dataOut = path.join(root, "packages/seedgrid_components/lib/src/gadgets/ca
 const vecOut = path.join(root, "packages/seedgrid_components/test/widgets/calendar_vectors/vectors.json");
 
 // Locales com dados proprios. O React aceita qualquer locale; fora desta lista o widget cai em en-US.
-const LOCALES = ["pt-BR", "pt-PT", "pt", "en-US", "en", "es", "fr", "de-DE", "de"];
+const LOCALES = ["pt-BR", "pt-PT", "pt", "en-US", "en", "es", "fr", "de-DE", "de", "en-GB", "en-AU", "en-CA", "es-MX", "es-AR", "fr-CA", "de-AT", "de-CH", "it", "nl", "ja", "zh", "ko", "ru", "pl", "sv", "tr", "da", "nb", "fi", "cs", "hu", "uk", "el"];
 const FORMATS = ["narrow", "short", "long"];
 
 // Igual ao React: capitalizeFirst(value, locale)
@@ -31,7 +31,8 @@ const weekdayLabels = (loc, fmt, weekStartsOn) => {
 
 // Molde a partir de formatToParts: {weekday} {day} {month} {year} + literais.
 function template(fmt, sample) {
-  return fmt.formatToParts(sample).map((p) => (["weekday", "day", "month", "year"].includes(p.type) ? "{" + p.type + "}" : p.value)).join("");
+  // V8 devolve U+202F em formatToParts mas U+0020 em format() (o que o React usa): normaliza para o de format().
+  return fmt.formatToParts(sample).map((p) => (["weekday", "day", "month", "year"].includes(p.type) ? "{" + p.type + "}" : p.value)).join("").replace(/ /g, " ");
 }
 const dartStr = (s) => "'" + s.replace(/\\/g, "\\\\").replace(/'/g, "\\'").replace(/\$/g, "\\$") + "'";
 const dartList = (a) => "[" + a.map(dartStr).join(", ") + "]";

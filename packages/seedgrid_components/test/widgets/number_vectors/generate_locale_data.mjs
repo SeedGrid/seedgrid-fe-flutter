@@ -6,7 +6,7 @@
 import fs from "node:fs";
 import path from "node:path";
 
-const LOCALES = ["pt-BR", "pt-PT", "en-US", "es", "fr", "de-DE"];
+const LOCALES = ["pt-BR", "pt-PT", "en-US", "es", "fr", "de-DE", "en-GB", "en-CA", "en-AU", "es-MX", "es-AR", "fr-CA", "de-AT", "de-CH", "it-IT", "nl-NL", "ja-JP", "zh-CN", "ko-KR", "ru-RU", "pl-PL", "sv-SE", "tr-TR", "da-DK", "nb-NO", "fi-FI", "cs-CZ", "hu-HU", "uk-UA", "el-GR"];
 const DISPLAYS = ["symbol", "narrowSymbol", "code", "name"];
 const CURRENCIES = Intl.supportedValuesOf("currency");
 const dir = path.resolve(path.dirname(new URL(import.meta.url).pathname.replace(/^\//, "")), "../../../lib/src/inputs/number");

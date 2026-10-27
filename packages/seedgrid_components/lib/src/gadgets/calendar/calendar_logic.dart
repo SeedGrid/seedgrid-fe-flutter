@@ -76,8 +76,9 @@ List<DateTime> sgMonthGrid(DateTime monthDate, int weekStartsOn) {
 String sgCapitalizeFirst(String value) =>
     value.isEmpty ? value : value[0].toUpperCase() + value.substring(1);
 
-/// Dados do locale pedido. O React aceita qualquer locale (`Intl.DateTimeFormat`); aqui so os que tem dados
-/// gerados (pt-BR, pt-PT, pt, en-US, en, es, fr, de-DE, de). Outro locale cai em en-US.
+/// Dados do locale pedido. O React aceita qualquer locale (`Intl.DateTimeFormat`); aqui os 33 que tem dados
+/// gerados (pt, en, es, fr, de, it, nl, ja, zh, ko, ru, pl, sv, tr, da, nb, fi, cs, hu, uk, el e variantes
+/// regionais). Locale sem dados cai no idioma e, sem ele, em en-US (escritas com digitos nao latinos ficam fora).
 SgCalendarLocaleData sgCalendarLocaleData(String locale) {
   final exact = kSgCalendarLocaleData[locale];
   if (exact != null) return exact;
