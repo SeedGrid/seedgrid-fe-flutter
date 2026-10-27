@@ -113,16 +113,16 @@
     "motivo": "lockBodyScroll sem efeito (o fundo modal ja bloqueia); props de classe CSS aceitas sem efeito; acento do topo e uma faixa de 4 px; icones padrao do SgConfirmationDialog sao do Material; zIndex so cumpre o contrato (a ordem e a do Overlay); anchorRef virou GlobalKey; sem arrastar/redimensionar (o React nao tem); golden com fonte de teste"
   },
   "SgGrid": {
-    "status": "parcial",
-    "motivo": "breakpoints medem a janela como o @media; span/rowSpan so lidos de filhos SgPanel e rowSpan aproximado; grow so vale com pai Flex e stretch so iguala irmaos com eixo transversal fixo; scrollable so na vertical e scrollbarGutter/contentClassName sem efeito; gap/padding/width aceitam numero, Npx e Nrem (calc/vh/vw ignorados)"
+    "status": "portado",
+    "motivo": "breakpoints medem a janela como o @media; span/rowSpan lidos de filhos SgPanel (rowSpan reparte o excesso por igual entre as linhas, como o CSS grid); grow so vale com pai Flex e stretch so iguala irmaos com eixo transversal fixo; gap/padding aceitam numero, Npx, Nrem, vh/vw/vmin/vmax e calc()/min()/max()/clamp()"
   },
   "SgStack": {
-    "status": "parcial",
-    "motivo": "breakpoints medem a janela como o @media; span/rowSpan so lidos de filhos SgPanel e rowSpan aproximado; grow so vale com pai Flex e stretch so iguala irmaos com eixo transversal fixo; scrollable so na vertical e scrollbarGutter/contentClassName sem efeito; gap/padding/width aceitam numero, Npx e Nrem (calc/vh/vw ignorados)"
+    "status": "portado",
+    "motivo": "breakpoints medem a janela como o @media; span/rowSpan lidos de filhos SgPanel (rowSpan reparte o excesso por igual entre as linhas, como o CSS grid); grow so vale com pai Flex e stretch so iguala irmaos com eixo transversal fixo; gap/padding aceitam numero, Npx, Nrem, vh/vw/vmin/vmax e calc()/min()/max()/clamp()"
   },
   "SgPanel": {
-    "status": "parcial",
-    "motivo": "breakpoints medem a janela como o @media; span/rowSpan so lidos de filhos SgPanel e rowSpan aproximado; grow so vale com pai Flex e stretch so iguala irmaos com eixo transversal fixo; scrollable so na vertical e scrollbarGutter/contentClassName sem efeito; gap/padding/width aceitam numero, Npx e Nrem (calc/vh/vw ignorados)"
+    "status": "portado",
+    "motivo": "breakpoints medem a janela como o @media; span/rowSpan lidos de filhos SgPanel (rowSpan reparte o excesso por igual entre as linhas, como o CSS grid); grow so vale com pai Flex e stretch so iguala irmaos com eixo transversal fixo; gap/padding aceitam numero, Npx, Nrem, vh/vw/vmin/vmax e calc()/min()/max()/clamp()"
   },
   "SgCard": {
     "status": "parcial",

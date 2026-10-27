@@ -44,18 +44,19 @@ class SgScreen extends StatelessWidget implements SgScreenProps {
   @override
   Widget build(BuildContext context) {
     final full = fullscreen ?? true;
-    final viewportH = MediaQuery.sizeOf(context).height;
+    final screen = MediaQuery.sizeOf(context);
+    final viewportH = screen.height;
     return LayoutBuilder(
       builder: (context, c) {
         final availW = c.hasBoundedWidth ? c.maxWidth : double.infinity;
         final availH = c.hasBoundedHeight ? c.maxHeight : double.infinity;
         final w = width != null
-            ? sgSize(width, availW)
+            ? sgSize(width, availW, viewport: screen)
             : (full ? (c.hasBoundedWidth ? c.maxWidth : null) : null);
         final h = height != null
-            ? sgSize(height, availH)
+            ? sgSize(height, availH, viewport: screen)
             : (full ? viewportH : null);
-        final pad = sgSpace(padding);
+        final pad = sgSpace(padding, viewport: screen);
         Widget body = sgDockContent(
           children: children,
           align: SgPanelAlign.client,

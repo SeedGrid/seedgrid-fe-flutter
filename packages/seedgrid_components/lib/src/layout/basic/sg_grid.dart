@@ -69,7 +69,7 @@ class SgGrid extends StatelessWidget implements SgGridProps {
   @override
   final bool? dense;
 
-  /// `num` (px) ou texto 'Npx'/'Nrem'. Padrao 0.
+  /// `num` (px) ou texto CSS ('Npx', 'Nrem', 'Nvh', 'calc(...)'). Padrao 0.
   @override
   final Object? gap;
   @override
@@ -87,16 +87,17 @@ class SgGrid extends StatelessWidget implements SgGridProps {
 
   @override
   Widget build(BuildContext context) {
-    final viewport = MediaQuery.sizeOf(context).width;
-    final minW = sgSpace(minItemWidth);
+    final screen = MediaQuery.sizeOf(context);
+    final viewport = screen.width;
+    final minW = sgSpace(minItemWidth, viewport: screen);
     final grid = _SgGridLayout(
       columns: minW != null
           ? 0
           : math.max(1, sgGridColumnsFor(columns, viewport)),
       minItemWidth: minW,
-      gap: sgSpace(gap) ?? 0,
+      gap: sgSpace(gap, viewport: screen) ?? 0,
       dense: dense ?? false,
-      rowHeight: sgSpace(rowHeight),
+      rowHeight: sgSpace(rowHeight, viewport: screen),
       align: align ?? SgGridAlign.stretch,
       children: [
         for (final c in children)
@@ -107,7 +108,7 @@ class SgGrid extends StatelessWidget implements SgGridProps {
           ),
       ],
     );
-    final pad = sgSpace(padding);
+    final pad = sgSpace(padding, viewport: screen);
     return pad == null
         ? grid
         : Padding(padding: EdgeInsets.all(pad), child: grid);
@@ -367,16 +368,23 @@ class RenderSgGrid extends RenderBox
           rowH[cells[i].row] = math.max(rowH[cells[i].row], heights[i]);
         }
       }
-      for (var i = 0; i < kids.length; i++) {
+      // menores spans primeiro, como o CSS grid
+      final bySpan = [
+        for (var i = 0; i < kids.length; i++)
+          if (spans[i].$2 > 1) i,
+      ]..sort((a, b) => spans[a].$2.compareTo(spans[b].$2));
+      for (final i in bySpan) {
         final sr = spans[i].$2;
-        if (sr == 1) continue;
-        // item que ocupa varias linhas: o que faltar vai para a ultima linha coberta
+        // item que ocupa varias linhas: o que faltar e repartido por igual entre as linhas cobertas (CSS grid)
         var covered = _gap * (sr - 1);
         for (var r = cells[i].row; r < cells[i].row + sr; r++) {
           covered += rowH[r];
         }
         if (heights[i] > covered) {
-          rowH[cells[i].row + sr - 1] += heights[i] - covered;
+          final extra = (heights[i] - covered) / sr;
+          for (var r = cells[i].row; r < cells[i].row + sr; r++) {
+            rowH[r] += extra;
+          }
         }
       }
     }

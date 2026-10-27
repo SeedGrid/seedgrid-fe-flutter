@@ -33,7 +33,7 @@ class SgStack extends StatelessWidget implements SgStackProps {
   @override
   final SgStackDirection? direction;
 
-  /// `num` (px) ou texto 'Npx'/'Nrem'. Padrao 0.
+  /// `num` (px) ou texto CSS ('Npx', 'Nrem', 'Nvh', 'calc(...)'). Padrao 0.
   @override
   final Object? gap;
 
@@ -52,7 +52,7 @@ class SgStack extends StatelessWidget implements SgStackProps {
   @override
   Widget build(BuildContext context) {
     final row = (direction ?? SgStackDirection.column) == SgStackDirection.row;
-    final g = sgSpace(gap) ?? 0;
+    final g = sgSpace(gap, viewport: MediaQuery.sizeOf(context)) ?? 0;
     final j = justify ?? SgStackJustify.start;
     final a = align ?? SgStackAlign.stretch;
     final isGrow = grow ?? false;

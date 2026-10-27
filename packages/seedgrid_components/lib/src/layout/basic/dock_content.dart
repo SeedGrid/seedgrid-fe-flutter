@@ -103,9 +103,10 @@ Widget sgDockContent({
   SgPanelContentJustify? contentJustify,
   SgPanelContentAlign? contentAlign,
   bool? contentWrap,
+  Size? viewport,
 }) {
   final direction = contentDirection ?? sgDefaultContentDirection(align);
-  final gap = sgSpace(contentGap) ?? kSgDefaultContentGap;
+  final gap = sgSpace(contentGap, viewport: viewport) ?? kSgDefaultContentGap;
   final justify = contentJustify ?? SgPanelContentJustify.start;
   final cAlign = contentAlign ?? sgDefaultContentAlign(align);
   final wrap = contentWrap ?? false;

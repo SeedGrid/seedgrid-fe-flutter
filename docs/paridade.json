@@ -2,8 +2,8 @@
  "versaoReact": "2026.7.1",
  "resumo": {
   "total": 89,
-  "portado": 74,
-  "parcial": 15,
+  "portado": 77,
+  "parcial": 12,
   "pendente": 0,
   "naoAplicavel": 0
  },
@@ -321,8 +321,8 @@
   {
    "componente": "SgGrid",
    "onda": 2,
-   "status": "parcial",
-   "motivo": "breakpoints medem a janela como o @media; span/rowSpan so lidos de filhos SgPanel e rowSpan aproximado; grow so vale com pai Flex e stretch so iguala irmaos com eixo transversal fixo; scrollable so na vertical e scrollbarGutter/contentClassName sem efeito; gap/padding/width aceitam numero, Npx e Nrem (calc/vh/vw ignorados)",
+   "status": "portado",
+   "motivo": "breakpoints medem a janela como o @media; span/rowSpan lidos de filhos SgPanel (rowSpan reparte o excesso por igual entre as linhas, como o CSS grid); grow so vale com pai Flex e stretch so iguala irmaos com eixo transversal fixo; gap/padding aceitam numero, Npx, Nrem, vh/vw/vmin/vmax e calc()/min()/max()/clamp()",
    "onde": "packages/seedgrid_components/lib/src/layout/basic/sg_grid.dart",
    "props": 9,
    "propsOmitidas": 0,
@@ -581,8 +581,8 @@
   {
    "componente": "SgPanel",
    "onda": 2,
-   "status": "parcial",
-   "motivo": "breakpoints medem a janela como o @media; span/rowSpan so lidos de filhos SgPanel e rowSpan aproximado; grow so vale com pai Flex e stretch so iguala irmaos com eixo transversal fixo; scrollable so na vertical e scrollbarGutter/contentClassName sem efeito; gap/padding/width aceitam numero, Npx e Nrem (calc/vh/vw ignorados)",
+   "status": "portado",
+   "motivo": "breakpoints medem a janela como o @media; span/rowSpan lidos de filhos SgPanel (rowSpan reparte o excesso por igual entre as linhas, como o CSS grid); grow so vale com pai Flex e stretch so iguala irmaos com eixo transversal fixo; gap/padding aceitam numero, Npx, Nrem, vh/vw/vmin/vmax e calc()/min()/max()/clamp()",
    "onde": "packages/seedgrid_components/lib/src/layout/basic/sg_panel.dart",
    "props": 20,
    "propsOmitidas": 0,
@@ -741,8 +741,8 @@
   {
    "componente": "SgStack",
    "onda": 2,
-   "status": "parcial",
-   "motivo": "breakpoints medem a janela como o @media; span/rowSpan so lidos de filhos SgPanel e rowSpan aproximado; grow so vale com pai Flex e stretch so iguala irmaos com eixo transversal fixo; scrollable so na vertical e scrollbarGutter/contentClassName sem efeito; gap/padding/width aceitam numero, Npx e Nrem (calc/vh/vw ignorados)",
+   "status": "portado",
+   "motivo": "breakpoints medem a janela como o @media; span/rowSpan lidos de filhos SgPanel (rowSpan reparte o excesso por igual entre as linhas, como o CSS grid); grow so vale com pai Flex e stretch so iguala irmaos com eixo transversal fixo; gap/padding aceitam numero, Npx, Nrem, vh/vw/vmin/vmax e calc()/min()/max()/clamp()",
    "onde": "packages/seedgrid_components/lib/src/layout/basic/sg_stack.dart",
    "props": 7,
    "propsOmitidas": 0,

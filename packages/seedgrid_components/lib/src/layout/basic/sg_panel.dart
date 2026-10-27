@@ -142,9 +142,11 @@ class SgPanel extends StatelessWidget implements SgPanelProps {
       contentJustify: contentJustify,
       contentAlign: contentAlign,
       contentWrap: contentWrap,
+      viewport: MediaQuery.sizeOf(context),
     );
 
-    final inner = sgSpace(contentPadding);
+    final screen = MediaQuery.sizeOf(context);
+    final inner = sgSpace(contentPadding, viewport: screen);
     final scroll = scrollable;
     final bool scrollY = scroll == true || scroll == 'auto' || scroll == 'y';
     final Widget content = scroll == 'x'
@@ -220,7 +222,7 @@ class SgPanel extends StatelessWidget implements SgPanelProps {
       },
     );
 
-    final margin = sgSpace(padding);
+    final margin = sgSpace(padding, viewport: screen);
     if (margin != null) {
       box = Padding(padding: EdgeInsets.all(margin), child: box);
     }
