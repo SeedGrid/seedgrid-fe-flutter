@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 import 'sg_breadcrumb_page.snippets.g.dart';
 
 class SgBreadcrumbPage extends StatefulWidget {
@@ -33,8 +34,10 @@ class _SgBreadcrumbPageState extends State<SgBreadcrumbPage> {
     final examples = <ShowcaseExample>[
       ShowcaseExample(
         title: 'Básico',
-        description:
-            'O último item é a página atual e não é clicável. Último clique: $_ultimo.',
+        description: context.txf(
+          'O último item é a página atual e não é clicável. Último clique: {ultimo}.',
+          {'ultimo': _ultimo},
+        ),
         preview:
             // #region sg-breadcrumb-basico
             SgBreadcrumb(

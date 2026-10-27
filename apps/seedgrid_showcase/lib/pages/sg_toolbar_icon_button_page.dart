@@ -5,6 +5,7 @@ import 'package:seedgrid_components/seedgrid_components.dart';
 // O barril do grupo Menu/ToolBar ainda nao esta ligado no arquivo raiz.
 
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 import 'sg_toolbar_icon_button_page.snippets.g.dart';
 
 class SgToolbarIconButtonPage extends StatefulWidget {
@@ -23,8 +24,10 @@ class _SgToolbarIconButtonPageState extends State<SgToolbarIconButtonPage> {
     final examples = <ShowcaseExample>[
       ShowcaseExample(
         title: 'Básico',
-        description:
-            'Botão de ícone com rótulo e dica (hint). Cliques: $_cliques.',
+        description: context.txf(
+          'Botão de ícone com rótulo e dica (hint). Cliques: {cliques}.',
+          {'cliques': _cliques},
+        ),
         preview:
             // #region sg-toolbar-icon-button-basico
             SgToolbarIconButton(

@@ -213,7 +213,10 @@ class SgShowcasePageState extends State<SgShowcasePage> {
               children: [
                 Text(widget.name, style: theme.textTheme.headlineSmall),
                 const SizedBox(height: 4),
-                Text(widget.description, style: theme.textTheme.bodyMedium),
+                Text(
+                  context.tx(widget.description),
+                  style: theme.textTheme.bodyMedium,
+                ),
                 const SizedBox(height: 8),
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
@@ -329,12 +332,13 @@ class _ExampleSection extends StatelessWidget {
           _SectionTitle(
             key: anchorKey,
             id: id,
-            text: '${context.tr('example')} $number — ${example.title}',
+            text:
+                '${context.tr('example')} $number — ${context.tx(example.title)}',
           ),
           if (example.description != null)
             Padding(
               padding: const EdgeInsets.only(bottom: 12),
-              child: Text(example.description!),
+              child: Text(context.tx(example.description!)),
             ),
           Container(
             width: double.infinity,

@@ -5,6 +5,7 @@ import 'package:seedgrid_components/seedgrid_components.dart';
 // O barril do grupo Menu/ToolBar ainda nao esta ligado no arquivo raiz.
 
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 import 'sg_tool_bar_page.snippets.g.dart';
 
 class SgToolBarPage extends StatefulWidget {
@@ -22,8 +23,10 @@ class _SgToolBarPageState extends State<SgToolBarPage> {
     final examples = <ShowcaseExample>[
       ShowcaseExample(
         title: 'Básico',
-        description:
-            'Barra com título e botões de ícone. O botão do cabeçalho recolhe o conteúdo. Último clique: $_ultimo.',
+        description: context.txf(
+          'Barra com título e botões de ícone. O botão do cabeçalho recolhe o conteúdo. Último clique: {ultimo}.',
+          {'ultimo': _ultimo},
+        ),
         preview:
             // #region sg-tool-bar-basico
             Align(

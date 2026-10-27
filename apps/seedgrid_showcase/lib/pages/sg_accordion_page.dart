@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 import 'sg_accordion_page.snippets.g.dart';
 
 class SgAccordionPage extends StatefulWidget {
@@ -117,8 +118,10 @@ class _SgAccordionPageState extends State<SgAccordionPage> {
       ),
       ShowcaseExample(
         title: 'Controlado',
-        description:
-            'O estado vive na página: ativos = $_ativos, último toque = $_ultimo.',
+        description: context.txf(
+          'O estado vive na página: ativos = {ativos}, último toque = {ultimo}.',
+          {'ativos': _ativos, 'ultimo': _ultimo},
+        ),
         preview:
             // #region sg-accordion-controlado
             SgAccordion(

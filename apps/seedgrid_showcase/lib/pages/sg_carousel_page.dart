@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 import 'sg_carousel_page.snippets.g.dart';
 
 class SgCarouselPage extends StatefulWidget {
@@ -36,8 +37,10 @@ class _SgCarouselPageState extends State<SgCarouselPage> {
     final examples = <ShowcaseExample>[
       ShowcaseExample(
         title: 'Básico',
-        description:
-            'Setas, indicadores e deslizar o dedo. Slide atual: ${_slide + 1}.',
+        description: context.txf(
+          'Setas, indicadores e deslizar o dedo. Slide atual: {slide}.',
+          {'slide': _slide + 1},
+        ),
         preview:
             // #region sg-carousel-basico
             SgCarousel(

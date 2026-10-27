@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 import 'sg_expandable_panel_page.snippets.g.dart';
 
 class SgExpandablePanelPage extends StatefulWidget {
@@ -193,8 +194,10 @@ class _SgExpandablePanelPageState extends State<SgExpandablePanelPage> {
       ),
       ShowcaseExample(
         title: 'Redimensionável',
-        description:
-            'Arraste a borda direita. Tamanho atual: ${_tamanho.round()} px.',
+        description: context.txf(
+          'Arraste a borda direita. Tamanho atual: {tamanho} px.',
+          {'tamanho': _tamanho.round()},
+        ),
         preview:
             // #region sg-expandable-redimensionavel
             SizedBox(
@@ -222,8 +225,10 @@ class _SgExpandablePanelPageState extends State<SgExpandablePanelPage> {
       ),
       ShowcaseExample(
         title: 'Redimensionável na altura',
-        description:
-            'Com expandTo bottom a borda de baixo muda a altura (min 60, max 260). Altura atual: ${_altura.round()} px.',
+        description: context.txf(
+          'Com expandTo bottom a borda de baixo muda a altura (min 60, max 260). Altura atual: {altura} px.',
+          {'altura': _altura.round()},
+        ),
         preview:
             // #region sg-expandable-redimensionavel-altura
             SizedBox(

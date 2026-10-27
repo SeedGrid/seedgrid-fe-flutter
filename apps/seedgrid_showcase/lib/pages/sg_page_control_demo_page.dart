@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 import 'sg_page_control_demo_page.snippets.g.dart';
 
 class SgPageControlDemoPage extends StatefulWidget {
@@ -57,8 +58,10 @@ class _SgPageControlDemoPageState extends State<SgPageControlDemoPage> {
       ),
       ShowcaseExample(
         title: 'Controlado e páginas escondidas',
-        description:
-            'Ativa: $_ativa. Esconder uma aba a tira da lista (hiddenPageIds).',
+        description: context.txf(
+          'Ativa: {ativa}. Esconder uma aba a tira da lista (hiddenPageIds).',
+          {'ativa': _ativa},
+        ),
         preview:
             // #region sg-page-control-controlado
             Column(

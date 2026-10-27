@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart'
     show SgComponentsI18nProvider;
 
+import 'showcase_texts.g.dart';
+
 const List<String> kShowcaseLocales = ['pt-BR', 'pt-PT', 'en-US', 'es', 'fr'];
 
 /// Bandeira de cada idioma do seletor.
@@ -320,6 +322,15 @@ class ShowcaseI18n extends InheritedWidget {
     return text!;
   }
 
+  /// Texto de pagina (titulo/descricao de exemplo, descricao da pagina) no idioma atual. O texto em pt-BR escrito
+  /// na pagina e a chave; sem traducao (ou em pt-BR) volta o proprio texto.
+  static String tx(BuildContext context, String text) {
+    final locale = maybeOf(context)?.locale ?? 'pt-BR';
+    final i = kShowcaseTextLocales.indexOf(locale);
+    if (i < 0) return text;
+    return kShowcaseTexts[text]?[i] ?? text;
+  }
+
   @override
   bool updateShouldNotify(ShowcaseI18n old) => old.locale != locale;
 }
@@ -328,6 +339,16 @@ class ShowcaseI18n extends InheritedWidget {
 extension ShowcaseTr on BuildContext {
   String tr(String key, [Map<String, Object> params = const {}]) =>
       ShowcaseI18n.t(this, key, params);
+
+  /// Texto de pagina traduzido: `context.tx('Texto em pt-BR')`.
+  String tx(String text) => ShowcaseI18n.tx(this, text);
+
+  /// Texto de pagina com parametros: o modelo (com `{nome}`) e a chave; `{nome}` e trocado por [params].
+  String txf(String template, Map<String, Object> params) {
+    var text = ShowcaseI18n.tx(this, template);
+    params.forEach((k, v) => text = text.replaceAll('{$k}', '$v'));
+    return text;
+  }
 }
 
 /// Guarda o idioma escolhido e o repassa aos componentes (SgComponentsI18nProvider).

@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 
 import '../pages/pages.g.dart';
-import 'catalog.g.dart';
 import 'showcase_i18n.dart';
 import 'showcase_menu.dart' show kCategoryOrder, menuGroups;
 
@@ -36,7 +35,7 @@ class ShowcaseHomePage extends StatelessWidget {
                   if (item.hasPage)
                     (
                       name: item.name,
-                      description: descriptions[item.name] ?? '',
+                      description: context.tx(descriptions[item.name] ?? ''),
                     ),
               ],
               onOpen: onOpen,

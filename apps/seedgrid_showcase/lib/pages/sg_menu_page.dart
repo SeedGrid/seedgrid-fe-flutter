@@ -5,6 +5,7 @@ import 'package:seedgrid_components/seedgrid_components.dart';
 // O barril do grupo Menu/ToolBar ainda nao esta ligado no arquivo raiz.
 
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 import 'sg_menu_page.snippets.g.dart';
 
 class SgMenuPage extends StatefulWidget {
@@ -24,8 +25,10 @@ class _SgMenuPageState extends State<SgMenuPage> {
     final examples = <ShowcaseExample>[
       ShowcaseExample(
         title: 'Básico (painel em árvore)',
-        description:
-            'Itens com ícone, selo e subitens. Clique em um item para ver o evento. Último clique: $_ultimo.',
+        description: context.txf(
+          'Itens com ícone, selo e subitens. Clique em um item para ver o evento. Último clique: {ultimo}.',
+          {'ultimo': _ultimo},
+        ),
         preview:
             // #region sg-menu-basico
             SizedBox(
@@ -151,8 +154,10 @@ class _SgMenuPageState extends State<SgMenuPage> {
       ),
       ShowcaseExample(
         title: 'Usuário e menu do usuário (SgMenuUser)',
-        description:
-            'user mostra nome, subtítulo e avatar no rodapé do menu; clicar no bloco chama onClick, e userMenu abre as ações do usuário. Última ação: $_usuarioAcao.',
+        description: context.txf(
+          'user mostra nome, subtítulo e avatar no rodapé do menu; clicar no bloco chama onClick, e userMenu abre as ações do usuário. Última ação: {acao}.',
+          {'acao': _usuarioAcao},
+        ),
         preview:
             // #region sg-menu-usuario
             SizedBox(
