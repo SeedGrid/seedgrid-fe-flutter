@@ -657,6 +657,46 @@ void main() {
       },
     );
 
+    testWidgets(
+      'arrastado para fora da area dos pais ainda pode ser pego e arrastado de volta',
+      (t) async {
+        t.view.physicalSize = const Size(800, 900);
+        t.view.devicePixelRatio = 1;
+        addTearDown(t.view.reset);
+        final positions = <SgCardPosition>[];
+        await t.pumpWidget(
+          host(
+            Align(
+              alignment: Alignment.topLeft,
+              child: SizedBox(
+                width: 200,
+                child: SgCard(
+                  draggable: true,
+                  title: const Text('T'),
+                  onPositionChange: positions.add,
+                  child: const Text('x'),
+                ),
+              ),
+            ),
+          ),
+        );
+        await t.pump();
+        await t.pump();
+        final header = find.byKey(const ValueKey('sg-card-header'));
+        await t.drag(header, const Offset(300, 500));
+        await t.pump();
+        expect(positions.last.x, closeTo(300, 1.5));
+        expect(positions.last.y, closeTo(500, 1.5));
+        await t.pump(); // mede e passa a flutuar no Overlay
+        await t.pump();
+        // o cabecalho agora esta bem fora do SizedBox/Align de origem: ainda tem que ser agarravel
+        await t.drag(header, const Offset(-300, -500));
+        await t.pump();
+        expect(positions.last.x, closeTo(0, 1.5));
+        expect(positions.last.y, closeTo(0, 1.5));
+      },
+    );
+
     testWidgets('disabled nao arrasta; sem draggable nao arrasta', (t) async {
       await t.pumpWidget(
         host(

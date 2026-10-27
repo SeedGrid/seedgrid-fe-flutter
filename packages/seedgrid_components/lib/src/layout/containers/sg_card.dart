@@ -4,6 +4,7 @@
 // `footerClassName` existem so para cumprir o contrato gerado e sao ignoradas.
 import 'package:flutter/gestures.dart' show DragStartBehavior;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 
 import '../../generated/enums.g.dart';
@@ -196,6 +197,16 @@ class _SgCardState extends State<SgCard> {
   bool _dragging = false;
   late SgCardPosition _pos = _initialPosition();
 
+  // Card arrastavel flutua no Overlay: um Transform ficaria fora da area dos pais (SizedBox, Align...), que so
+  // aceitam toque dentro do proprio tamanho, e o card deixaria de ser agarravel depois de arrastado.
+  final LayerLink _link = LayerLink();
+  final OverlayPortalController _portal = OverlayPortalController();
+  final GlobalKey _inlineKey = GlobalKey();
+  final GlobalKey _floatKey = GlobalKey();
+  bool _floating = false;
+  bool _measureScheduled = false;
+  Size _slot = Size.zero;
+
   String? get _storageKey {
     final k = widget.dragPersistKey?.trim();
     if (k != null && k.isNotEmpty) return k;
@@ -260,9 +271,15 @@ class _SgCardState extends State<SgCard> {
     widget.onPositionChange?.call(_pos);
   }
 
+  bool get _displaced => _pos.x.round() != 0 || _pos.y.round() != 0;
+
   void _dragEnd([DragEndDetails? _]) {
     if (!_dragging) return;
-    setState(() => _dragging = false);
+    setState(() {
+      _dragging = false;
+      // voltou ao lugar de origem: sai do Overlay e volta para o fluxo
+      if (_floating && !_displaced) _floating = false;
+    });
     final key = _storageKey;
     if (key != null) SgCardPositionStore.write(key, _pos);
   }
@@ -596,6 +613,13 @@ class _SgCardState extends State<SgCard> {
       );
     }
 
+    if (w.disabled) {
+      card = Opacity(opacity: 0.6, child: IgnorePointer(child: card));
+    }
+    if (w.draggable && Overlay.maybeOf(context) != null) {
+      return _buildFloating(card);
+    }
+    _floating = false;
     if (w.draggable &&
         (_dragging || _pos.x.round() != 0 || _pos.y.round() != 0)) {
       card = Transform.translate(
@@ -603,9 +627,137 @@ class _SgCardState extends State<SgCard> {
         child: card,
       );
     }
-    if (w.disabled) {
-      card = Opacity(opacity: 0.6, child: IgnorePointer(child: card));
-    }
     return SizedBox(width: double.infinity, child: card);
+  }
+
+  void _measureInline() {
+    if (_measureScheduled) return;
+    _measureScheduled = true;
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      _measureScheduled = false;
+      if (!mounted || _floating) return;
+      final box = _inlineKey.currentContext?.findRenderObject();
+      if (box is! RenderBox || !box.hasSize) return;
+      setState(() {
+        _slot = box.size;
+        _floating = true;
+      });
+      _portal.show();
+    });
+  }
+
+  void _measureFloating() {
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      if (!mounted || !_floating) return;
+      final box = _floatKey.currentContext?.findRenderObject();
+      if (box is! RenderBox || !box.hasSize) return;
+      if (box.size.height != _slot.height) {
+        setState(() => _slot = Size(_slot.width, box.size.height));
+      }
+    });
+  }
+
+  Widget _buildFloating(Widget card) {
+    if (!_floating) {
+      // So flutua depois de arrastado (sem soltar o gesto em curso): parado no lugar, fica em linha.
+      if (!_dragging && _displaced) _measureInline();
+      // 1o frame (ainda sem medida): igual ao modo antigo, so com o Transform.
+      return SizedBox(
+        width: double.infinity,
+        child: Transform.translate(
+          offset: Offset(_pos.x.roundToDouble(), _pos.y.roundToDouble()),
+          child: KeyedSubtree(key: _inlineKey, child: card),
+        ),
+      );
+    }
+    return OverlayPortal(
+      controller: _portal,
+      overlayChildBuilder: (_) => CompositedTransformFollower(
+        link: _link,
+        showWhenUnlinked: false,
+        offset: Offset(_pos.x.roundToDouble(), _pos.y.roundToDouble()),
+        child: Align(
+          alignment: Alignment.topLeft,
+          child: NotificationListener<SizeChangedLayoutNotification>(
+            onNotification: (_) {
+              _measureFloating();
+              return false;
+            },
+            child: SizeChangedLayoutNotifier(
+              child: SizedBox(key: _floatKey, width: _slot.width, child: card),
+            ),
+          ),
+        ),
+      ),
+      child: CompositedTransformTarget(
+        link: _link,
+        child: _SlotBox(
+          slot: _slot,
+          onWidth: (w) {
+            if (w != _slot.width) setState(() => _slot = Size(w, _slot.height));
+          },
+        ),
+      ),
+    );
+  }
+}
+
+/// Reserva no fluxo o lugar do card que flutua no Overlay (largura e altura medidas do card).
+class _SlotBox extends LeafRenderObjectWidget {
+  const _SlotBox({required this.slot, required this.onWidth});
+
+  final Size slot;
+  final ValueChanged<double> onWidth;
+
+  @override
+  RenderObject createRenderObject(BuildContext context) =>
+      _RenderSlotBox(slot, onWidth);
+
+  @override
+  void updateRenderObject(BuildContext context, _RenderSlotBox renderObject) {
+    renderObject
+      ..slot = slot
+      ..onWidth = onWidth;
+  }
+}
+
+class _RenderSlotBox extends RenderBox {
+  _RenderSlotBox(this._slot, this.onWidth);
+
+  Size _slot;
+  ValueChanged<double> onWidth;
+
+  set slot(Size value) {
+    if (value == _slot) return;
+    _slot = value;
+    markNeedsLayout();
+  }
+
+  @override
+  double computeMinIntrinsicWidth(double height) => _slot.width;
+
+  @override
+  double computeMaxIntrinsicWidth(double height) => _slot.width;
+
+  @override
+  double computeMinIntrinsicHeight(double width) => _slot.height;
+
+  @override
+  double computeMaxIntrinsicHeight(double width) => _slot.height;
+
+  Size _sizeFor(BoxConstraints c) => c.constrain(
+    Size(c.hasBoundedWidth ? c.maxWidth : _slot.width, _slot.height),
+  );
+
+  @override
+  Size computeDryLayout(BoxConstraints constraints) => _sizeFor(constraints);
+
+  @override
+  void performLayout() {
+    size = _sizeFor(constraints);
+    final width = size.width;
+    if (width != _slot.width) {
+      SchedulerBinding.instance.addPostFrameCallback((_) => onWidth(width));
+    }
   }
 }
