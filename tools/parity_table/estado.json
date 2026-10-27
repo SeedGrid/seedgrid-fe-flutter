@@ -1,15 +1,15 @@
 {
-  "_leia": "Estado manual que o detector automatico nao enxerga. Chave = componente do React. status: portado | parcial | nao-aplicavel. 'motivo' obrigatorio para parcial e nao-aplicavel. Componente com widget Dart de mesmo nome e detectado como 'portado' sozinho.",
+  "_leia": "Estado manual que o detector automatico nao enxerga. Chave = componente do React. status: portado | parcial | nao-aplicavel. 'motivo' obrigatorio para parcial e nao-aplicavel; em portado e so observacao. REGRA: parcial = funcionalidade do React que realmente falta no Flutter; diferenca de DOM (className, style, inputProps), de plataforma (hover, controle nativo, position: fixed) ou decisao do dono NAO rebaixa para parcial. Componente com widget Dart de mesmo nome e detectado como 'portado' sozinho.",
   "SgMenu": {
     "status": "parcial",
     "motivo": "motor proprio (widgets + Overlay), sem MenuAnchor; sem navegacao propria (window.location.assign vira so onNavigate); brand.imageSrc e user.avatarSrc sao URLs de rede; className/style/userSectionClassName/userSectionStyle aceitos sem efeito; collapsedWidth/expandedWidth aceitam px e % (nao rem); dock sem portal (o widget fica na SgDockZone); dica (hint) sempre abaixo; no trilho recolhido do hibrido o botao de fixar fica cortado"
   },
   "SgToolBar": {
-    "status": "parcial",
+    "status": "portado",
     "motivo": "className/style sem efeito; dock sem portal (o widget fica na SgDockZone; zonas horizontais mostram o conteudo em linha); freeDrag fora de um Stack vira translacao (sem position: fixed); size e SgToolBarSize, defaultPosition e Offset, cores em texto CSS; extras do Flutter: children (lista) ao lado de child e overflow (itens que nao cabem vao para o menu '...' feito com SgMenu, painel inferior abaixo de 600)"
   },
   "SgToolbarIconButton": {
-    "status": "parcial",
+    "status": "portado",
     "motivo": "icon e um Widget (nao texto/nome de icone); dica sempre abaixo; severidades success/warning usam --accent (nao existe --tertiary); showLabel segue o codigo do React (padrao true), nao o meta (false); onClick pode ser assincrono e mostra o indicador de carregamento"
   },
   "SgComponentsI18nProvider": {
@@ -17,59 +17,59 @@
     "onde": "packages/seedgrid_components/lib/src/i18n/i18n.dart (SgComponentsI18nProvider, useComponentsI18n)"
   },
   "SgInputText": {
-    "status": "parcial",
+    "status": "portado",
     "motivo": "sem inputProps (atributos do <input> nao tem equivalente; props nomeadas cobrem), value controlado pela prop value (nula = nao controlado; com name+formulario o valor do formulario manda e value e ignorado, como no React), golden com fonte de teste (sem comparacao visual com o React), nao testado em IME/dispositivo; i18n so das mensagens de validacao; validadores do componente rodam no submit (decisao do dono)"
   },
   "SgCheckboxGroup": {
-    "status": "parcial",
+    "status": "portado",
     "motivo": "destaque e relevo aproximados (bordas por Transform); groupBoxProps vira SgChoiceGroupBoxProps; a caixa e o SgGroupBox real; goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50)"
   },
   "SgRadioGroup": {
-    "status": "parcial",
+    "status": "portado",
     "motivo": "destaque e relevo aproximados (bordas por Transform); groupBoxProps vira SgChoiceGroupBoxProps; a caixa e o SgGroupBox real; goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50)"
   },
   "SgToggleSwitch": {
-    "status": "parcial",
+    "status": "portado",
     "motivo": "enabled virou disabled (ADR 50); goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50); validadores do componente rodam no submit (decisao do dono)"
   },
   "SgSlider": {
-    "status": "parcial",
+    "status": "portado",
     "motivo": "e o Slider do Material tematizado, nao CustomPainter (o React usa o controle nativo do navegador); goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50)"
   },
   "SgRating": {
-    "status": "parcial",
+    "status": "portado",
     "motivo": "color/emptyColor aceitam texto (#hex, rgb(), hsl(var(--token))) porque o contrato gerado fixa String; value nulo = nao controlado; teclado e extra do Flutter; goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50)"
   },
   "SgInputTextArea": {
-    "status": "parcial",
+    "status": "portado",
     "motivo": "inputProps/textareaProps ignorados; commonPasswordList sem efeito (igual ao React); goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50); validadores do componente rodam no submit (decisao do dono)"
   },
   "SgInputTextSearch": {
-    "status": "parcial",
+    "status": "portado",
     "motivo": "inputProps/textareaProps ignorados; commonPasswordList sem efeito (igual ao React); goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50); validadores do componente rodam no submit (decisao do dono)"
   },
   "SgInputEmail": {
-    "status": "parcial",
+    "status": "portado",
     "motivo": "inputProps/textareaProps ignorados; commonPasswordList sem efeito (igual ao React); goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50); validadores do componente rodam no submit (decisao do dono)"
   },
   "SgInputPassword": {
-    "status": "parcial",
+    "status": "portado",
     "motivo": "inputProps/textareaProps ignorados; commonPasswordList sem efeito (igual ao React); goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50); validadores do componente rodam no submit (decisao do dono)"
   },
   "SgInputDate": {
-    "status": "parcial",
+    "status": "portado",
     "motivo": "o React usa input type=date nativo; aqui campo com mascara por idioma e calendario proprio: data impossivel (31/02) mostra Data invalida (no nativo o valor vira vazio) e alwaysFloat nao tem efeito; recriar por key perde o foco (precisa de controller externo no SgInputText); pegadinha de fuso do validateBirthDate mantida; validadores do componente rodam no submit (decisao do dono)"
   },
   "SgInputBirthDate": {
-    "status": "parcial",
+    "status": "portado",
     "motivo": "o React usa input type=date nativo; aqui campo com mascara por idioma e calendario proprio: data impossivel (31/02) mostra Data invalida (no nativo o valor vira vazio) e alwaysFloat nao tem efeito; recriar por key perde o foco (precisa de controller externo no SgInputText); pegadinha de fuso do validateBirthDate mantida; validadores do componente rodam no submit (decisao do dono)"
   },
   "SgInputPostalCode": {
-    "status": "parcial",
+    "status": "portado",
     "motivo": "consulta de rede por cliente injetavel (SgViaCepResult no lugar do ViaCepResponse que lanca erro; SgHttpClient no CNPJ); placeholder por pais do React nunca e usado e nao foi portado; goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50); validadores do componente rodam no submit (decisao do dono)"
   },
   "SgInputCNPJ": {
-    "status": "parcial",
+    "status": "portado",
     "motivo": "consulta de rede por cliente injetavel (SgViaCepResult no lugar do ViaCepResponse que lanca erro; SgHttpClient no CNPJ); placeholder por pais do React nunca e usado e nao foi portado; goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50); validadores do componente rodam no submit (decisao do dono)"
   },
   "SgInputNumber": {
@@ -81,16 +81,16 @@
     "motivo": "sem Intl no Dart: simbolo, posicao e separadores vem de tabela gerada do Node (pt-BR, pt-PT, en-US, es, fr, de-DE; 162 moedas), locale fora da lista cai em en-US; o React trata tecla e o Flutter recebe diferenca de texto (formatter converte); goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50); validadores do componente rodam no submit (decisao do dono)"
   },
   "SgDockLayout": {
-    "status": "parcial",
-    "motivo": "no React o SgDockLayout guarda o estado das toolbars encaixaveis (nao e motor de layout) e nao ha divisores arrastaveis; persistencia por SgDockLayoutStore plugavel (sem ele, so memoria); a toolbar se registra por registerToolbar(id, key) em vez de achar pelo DOM; SgToolBar ainda nao portada (exemplos usam botoes); className/style nao existem; golden com fonte de teste"
+    "status": "portado",
+    "motivo": "no React o SgDockLayout guarda o estado das toolbars encaixaveis (nao e motor de layout) e nao ha divisores arrastaveis; persistencia por SgDockLayoutStore plugavel (sem ele, so memoria); a toolbar se registra por registerToolbar(id, key) em vez de achar pelo DOM; className/style nao existem; golden com fonte de teste"
   },
   "SgDockZone": {
-    "status": "parcial",
-    "motivo": "no React o SgDockLayout guarda o estado das toolbars encaixaveis (nao e motor de layout) e nao ha divisores arrastaveis; persistencia por SgDockLayoutStore plugavel (sem ele, so memoria); a toolbar se registra por registerToolbar(id, key) em vez de achar pelo DOM; SgToolBar ainda nao portada (exemplos usam botoes); className/style nao existem; golden com fonte de teste"
+    "status": "portado",
+    "motivo": "no React o SgDockLayout guarda o estado das toolbars encaixaveis (nao e motor de layout) e nao ha divisores arrastaveis; persistencia por SgDockLayoutStore plugavel (sem ele, so memoria); a toolbar se registra por registerToolbar(id, key) em vez de achar pelo DOM; className/style nao existem; golden com fonte de teste"
   },
   "SgDockScreen": {
-    "status": "parcial",
-    "motivo": "no React o SgDockLayout guarda o estado das toolbars encaixaveis (nao e motor de layout) e nao ha divisores arrastaveis; persistencia por SgDockLayoutStore plugavel (sem ele, so memoria); a toolbar se registra por registerToolbar(id, key) em vez de achar pelo DOM; SgToolBar ainda nao portada (exemplos usam botoes); className/style nao existem; golden com fonte de teste"
+    "status": "portado",
+    "motivo": "no React o SgDockLayout guarda o estado das toolbars encaixaveis (nao e motor de layout) e nao ha divisores arrastaveis; persistencia por SgDockLayoutStore plugavel (sem ele, so memoria); a toolbar se registra por registerToolbar(id, key) em vez de achar pelo DOM; className/style nao existem; golden com fonte de teste"
   },
   "SgWizard": {
     "status": "parcial",
@@ -101,15 +101,15 @@
     "motivo": "o cliente entra por connectionFactory (SgPulseConnection injetavel; sem ele o status fica unavailable; adaptador do SDK Pulse em lib/src/providers/PULSE_ADAPTER.md, nao ligado por dependencia); tokenEndpoint precisa de URL absoluta; enabled virou disabled, children virou child; hooks viraram widget e funcao"
   },
   "SgDialog": {
-    "status": "parcial",
+    "status": "portado",
     "motivo": "lockBodyScroll sem efeito (o fundo modal ja bloqueia); props de classe CSS aceitas sem efeito; acento do topo e uma faixa de 4 px; icones padrao do SgConfirmationDialog sao do Material; zIndex so cumpre o contrato (a ordem e a do Overlay); anchorRef virou GlobalKey; sem arrastar/redimensionar (o React nao tem); golden com fonte de teste"
   },
   "SgConfirmationDialog": {
-    "status": "parcial",
+    "status": "portado",
     "motivo": "lockBodyScroll sem efeito (o fundo modal ja bloqueia); props de classe CSS aceitas sem efeito; acento do topo e uma faixa de 4 px; icones padrao do SgConfirmationDialog sao do Material; zIndex so cumpre o contrato (a ordem e a do Overlay); anchorRef virou GlobalKey; sem arrastar/redimensionar (o React nao tem); golden com fonte de teste"
   },
   "SgPopup": {
-    "status": "parcial",
+    "status": "portado",
     "motivo": "lockBodyScroll sem efeito (o fundo modal ja bloqueia); props de classe CSS aceitas sem efeito; acento do topo e uma faixa de 4 px; icones padrao do SgConfirmationDialog sao do Material; zIndex so cumpre o contrato (a ordem e a do Overlay); anchorRef virou GlobalKey; sem arrastar/redimensionar (o React nao tem); golden com fonte de teste"
   },
   "SgGrid": {
@@ -129,39 +129,39 @@
     "motivo": "posicao arrastada (dragPersistKey/id) so em memoria (SgCardPositionStore) ate haver shared_preferences no uso; onPositionChange dispara na montagem como no React; golden com fonte de teste"
   },
   "SgBreadcrumb": {
-    "status": "parcial",
+    "status": "portado",
     "motivo": "href nao navega (sem url_launcher): item com href ou onClick e clicavel e dispara onClick e onNavigate"
   },
   "SgCarousel": {
-    "status": "parcial",
+    "status": "portado",
     "motivo": "extras do Flutter (deslizar o dedo, pausar o autoplay ao tocar); no modo vertical os botoes e indicadores ocupam 20 px em cima/baixo e 24 px a direita (toque fora da area do pai nao chega); vertical sem height usa 300 (o React colapsaria a 0)"
   },
   "SgAutocomplete": {
-    "status": "parcial",
+    "status": "portado",
     "motivo": "renderValue cobre o texto com um conteiner opaco (o React usa texto transparente); itemTooltip vira Tooltip por toque longo, nao por hover; inputProps ignorado (ADR 50); sem autocorrect/spellCheck; nao testado em IME nem em dispositivo; golden com fonte de teste"
   },
   "SgCombobox": {
-    "status": "parcial",
+    "status": "portado",
     "motivo": "value nulo = nao controlado (Dart nao distingue null de indefinido); em tela estreita a lista e um painel de baixo (nao showModalBottomSheet, que tiraria o foco do campo); inputProps ignorado (ADR 50); sem autocorrect/spellCheck; nao testado em IME nem em dispositivo; golden com fonte de teste"
   },
   "SgMultiSelect": {
-    "status": "parcial",
+    "status": "portado",
     "motivo": "o React nao foca o campo ao tocar e o Flutter foca; a lista ancorada se alinha ao SgInputText inteiro; onClear/maxLengthMessage/minLengthMessage aceitos sem efeito (igual ao React); superficie do dropdown compartilhada (SgDropdownHost); a lista de opcoes continua propria; inputProps ignorado (ADR 50); sem autocorrect/spellCheck; nao testado em IME nem em dispositivo; golden com fonte de teste; onChange do usuario tambem dentro de formulario (decisao do dono)"
   },
   "SgMultiSelectChips": {
-    "status": "parcial",
+    "status": "portado",
     "motivo": "o item ativo da lista rola ate ficar visivel (o React nao faz); superficie do dropdown compartilhada (SgDropdownHost); a lista de opcoes continua propria; inputProps ignorado (ADR 50); sem autocorrect/spellCheck; nao testado em IME nem em dispositivo; golden com fonte de teste; onChange do usuario tambem dentro de formulario (decisao do dono)"
   },
   "SgPickList": {
-    "status": "parcial",
+    "status": "portado",
     "motivo": "arrastar por toque longo (LongPressDraggable, cerca de 150 ms) no lugar do arrastar nativo do navegador; PickList: mover pelo duplo toque em ate 300 ms; reinicio do estado ao trocar source/target compara por identidade dos itens; rotulos Top/Up/Down/Bottom do OrderList ficam em ingles como no React; listClassName/itemClassName sem efeito; groupBoxProps vira SgListGroupBoxProps"
   },
   "SgOrderList": {
-    "status": "parcial",
+    "status": "portado",
     "motivo": "arrastar por toque longo (LongPressDraggable, cerca de 150 ms) no lugar do arrastar nativo do navegador; PickList: mover pelo duplo toque em ate 300 ms; reinicio do estado ao trocar source/target compara por identidade dos itens; rotulos Top/Up/Down/Bottom do OrderList ficam em ingles como no React; listClassName/itemClassName sem efeito; groupBoxProps vira SgListGroupBoxProps"
   },
   "SgTreeView": {
-    "status": "parcial",
+    "status": "portado",
     "motivo": "o React nao tem navegacao por teclado propria (o Flutter tem setas, Home/End, Enter, Espaco e * como extra); maxHeightClassName vira maxHeight em px (padrao 60% da altura da tela); SgTreeConfirmBar.sticky sem efeito; layout de celular proprio (busca em linha, barra empilhada); medido com 10.100 nos em debug de teste: primeira construcao 142 ms, 19 linhas construidas, quadro de rolagem medio 59,6 ms (release, dispositivo e GPU nao medidos)"
   },
   "SgCalendar": {
@@ -169,7 +169,7 @@
     "motivo": "so 9 locales com dados (pt-BR, pt-PT, pt, en-US, en, es, fr, de-DE, de), outro cai em en-US; cardProps vira SgCalendarCardProps (subconjunto do SgCard); datas em texto so ISO 8601; prop extra today para fixar o hoje; defaultValue acrescentado a mao ate o gerador passar a manter props redeclaradas (ja mantem); icones SVG viraram CustomPaint; golden com fonte de teste"
   },
   "SgInputOTP": {
-    "status": "parcial",
+    "status": "portado",
     "motivo": "slot vazio guarda um caractere invisivel (U+200B) para o teclado virtual avisar o Backspace; colar 1 caractere num slot cheio e tratado como digitar (o React limparia os seguintes); inputProps e *ClassName aceitos sem efeito; nao testado em IME nem em dispositivo; golden com fonte de teste; validadores do componente rodam no submit (decisao do dono)"
   },
   "SgPeriodSelector": {
@@ -177,39 +177,39 @@
     "motivo": "value nulo = nao controlado (o Combobox nao distingue null de indefinido): limpar o preset por fora nao limpa o campo; o campo de data de Periodo e o SgInputDate do Flutter (mascara com calendario proprio), que segue o locale do i18n global e nao a prop locale do seletor; os rotulos vem de mapas ASCII embutidos sem acento, iguais ao React (nao passam pelo i18n)"
   },
   "SgSevenSegmentDigit": {
-    "status": "parcial",
+    "status": "portado",
     "motivo": "sombra interna do painel aproximada; a troca de cor por prop e imediata (no React anima); golden com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em dispositivo"
   },
   "SgMatrixDigit": {
-    "status": "parcial",
+    "status": "portado",
     "motivo": "o React remonta o ponto ao trocar o caractere, entao a transicao de 160 ms nunca aparece; aqui tambem nao ha animacao na troca de cor por prop; jsToUpperCase cobre o SpecialCasing incondicional (ficam fora as sequencias do grego com iota subscrito); golden com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em dispositivo"
   },
   "SgNeonDigit": {
-    "status": "parcial",
+    "status": "portado",
     "motivo": "filtro de brilho e saturacao aproximado por matriz de cor; as sombras do estado apagado foram conferidas contra o fonte, nao executadas; golden com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em dispositivo"
   },
   "SgFadeDigit": {
-    "status": "parcial",
+    "status": "portado",
     "motivo": "a sombra do cartao assume 1em = 16px (fonte padrao do navegador); golden com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em dispositivo"
   },
   "SgRoller3DDigit": {
-    "status": "parcial",
+    "status": "portado",
     "motivo": "a sombra interna (inset) e desenhada por CustomPainter porque o Flutter nao tem inset shadow; a mascara do tambor e um gradiente sobre o tambor inteiro, como no React; golden com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em dispositivo"
   },
   "SgDiscardDigit": {
-    "status": "parcial",
+    "status": "portado",
     "motivo": "o ref virou SgDiscardDigitController (page() ja devolve o valor novo; no React devolve o da ultima renderizacao); prop extra random para testes; a borda de baixo das folhas de fundo vira linha de 1 px (o Flutter nao aceita raio com bordas de cores diferentes); cor em texto CSS entende hex, rgb(), rgba() e algumas palavras; golden com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em dispositivo"
   },
   "SgRadialGauge": {
-    "status": "parcial",
+    "status": "portado",
     "motivo": "no React o transition all quase nao age na geometria do SVG; no Flutter o ponteiro anima com ease-out; primaryPointerLabel e pointer.label que nao sejam texto vao como overlay; arrastar usa area de toque de 16 px; acessibilidade por Semantics (nao role=meter); golden com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em dispositivo"
   },
   "SgLinearGauge": {
-    "status": "parcial",
+    "status": "portado",
     "motivo": "no React o transition all quase nao age na geometria do SVG; no Flutter o ponteiro anima com ease-out; primaryPointerLabel e pointer.label que nao sejam texto vao como overlay; arrastar usa area de toque de 16 px; acessibilidade por Semantics (nao role=meter); golden com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em dispositivo"
   },
   "SgQRCode": {
-    "status": "parcial",
+    "status": "portado",
     "motivo": "o qr_flutter nao serve (falha na versao 15, so modo byte, mascara diferente): o algoritmo qrcodegen (Nayuki, MIT) foi portado e bate com o qrcode.react em 118 matrizes; logoSrc so carrega URL (prop extra logoImage para imagem local); caixa de erro pulsa de forma aproximada; golden com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em dispositivo"
   },
   "SgClock": {
@@ -225,27 +225,27 @@
     "motivo": "so temas embutidos (formato JSON sg-clock-theme/1); o playground nao edita size (num?); golden com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em dispositivo"
   },
   "SgDockMenu": {
-    "status": "parcial",
+    "status": "portado",
     "motivo": "zoom por proximidade e rotulo ao passar so com mouse/caneta (desktop/web); em toque nao ha zoom nem rotulo (sem hover); sem className/itemClassName/style e item.className (ADR 50); zIndex aceito e ignorado (Flutter sem z-index); sem position fixed na viewport: o dock ancora na area do widget (use num Stack ou como filho que preenche a tela); sem SgEnvironmentProvider a posicao vai para shared_preferences (localStorage com prefixo flutter. no web); menu de contexto por botao direito ou toque longo; backdrop-filter aproximado por BackdropFilter; goldens nao feitos; nao testado em dispositivo"
   },
   "SgTimeProvider": {
-    "status": "parcial",
+    "status": "portado",
     "motivo": "initialServerTime invalido cai no agora (o React propagaria NaN)"
   },
   "SgStringAnimator": {
-    "status": "parcial",
+    "status": "portado",
     "motivo": "o ref virou SgStringAnimatorController.startAnimation(); prop extra controller; dois pontos e celula do periodo reproduzidos pelo codigo (fora da paridade por vetor); golden com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em dispositivo"
   },
   "SgDatatable": {
-    "status": "parcial",
+    "status": "portado",
     "motivo": "tabela propria sem dependencia nova (two_dimensional_scrollables/TableView avaliada e descartada: exige altura de linha conhecida e nao mede conteudo); sem altura limitada pelo pai monta todas as linhas da pagina como o React (2.000 linhas sem paginador levam cerca de 1,9 s de build em teste), com altura limitada e mais de 100 linhas o corpo e virtualizado; ordenacao de texto aproxima a colacao ICU do localeCompare (vetores do React batem em 8.299 pares, mas locales exoticos podem divergir); className/style/tableClassName/rowClassName/bodyClassName/headerClassName/className de coluna nao existem (ADR 50); sortField/selection nulos significam nao controlado (Dart nao separa undefined de null); groupBoxProps vira SgListGroupBoxProps (title, width, height); ref vira controller; reordenar colunas por arrastar a alca funciona tambem por toque; painel de colunas vira painel de baixo com largura < 600; golden e teste em dispositivo nao feitos"
   },
   "SgFloatActionButton": {
-    "status": "parcial",
+    "status": "portado",
     "motivo": "absolute:false flutua no Overlay raiz (position: fixed) e absolute:true preenche o pai (ponha num Stack de tamanho definido); zIndex sem efeito (ordem do Overlay/Stack); floatActionButtonStyle aceito mas sem efeito (igual ao React, que nunca le o sinonimo porque severity tem padrao); position padrao e rightBottom (o meta do React diz bottom-right, valor inexistente); offset vira SgFABOffset e actions vira List<SgFABAction>; botao direito ou toque longo (500 ms) abre o menu de reiniciar; sem dragId a posicao nao e guardada e com SgEnvironmentProvider usa o namespace; autoHideOnScroll escuta a rolagem vertical do Scrollable mais externo sob o Scaffold, nao a janela; hint e dica de acao aparecem por hover (no toque nao ha hover); animacoes e sombras aproximadas por Flutter; nao testado em dispositivo; className/style do React nao existem (ADR 50)"
   },
   "SgSplitButton": {
-    "status": "parcial",
+    "status": "portado",
     "motivo": "em largura < 600 o menu vira painel de baixo (ADR 51), em tela larga abre colado embaixo do botao principal; items vira List<SgSplitButtonItem>; label e String (como no React); setas de teclado no menu nao existem (o React tambem nao tem); divisoria e sombras aproximadas; nao testado em dispositivo; className/style do React nao existem (ADR 50)"
   },
   "SgTextEditor": {

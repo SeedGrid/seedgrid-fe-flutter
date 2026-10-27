@@ -2,8 +2,8 @@
  "versaoReact": "2026.7.1",
  "resumo": {
   "total": 89,
-  "portado": 27,
-  "parcial": 62,
+  "portado": 74,
+  "parcial": 15,
   "pendente": 0,
   "naoAplicavel": 0
  },
@@ -21,7 +21,7 @@
   {
    "componente": "SgAutocomplete",
    "onda": 3,
-   "status": "parcial",
+   "status": "portado",
    "motivo": "renderValue cobre o texto com um conteiner opaco (o React usa texto transparente); itemTooltip vira Tooltip por toque longo, nao por hover; inputProps ignorado (ADR 50); sem autocorrect/spellCheck; nao testado em IME nem em dispositivo; golden com fonte de teste",
    "onde": "packages/seedgrid_components/lib/src/inputs/select/sg_autocomplete.dart",
    "props": 72,
@@ -71,7 +71,7 @@
   {
    "componente": "SgBreadcrumb",
    "onda": 2,
-   "status": "parcial",
+   "status": "portado",
    "motivo": "href nao navega (sem url_launcher): item com href ou onClick e clicavel e dispara onClick e onNavigate",
    "onde": "packages/seedgrid_components/lib/src/layout/containers/sg_breadcrumb.dart",
    "props": 15,
@@ -111,7 +111,7 @@
   {
    "componente": "SgCarousel",
    "onda": 2,
-   "status": "parcial",
+   "status": "portado",
    "motivo": "extras do Flutter (deslizar o dedo, pausar o autoplay ao tocar); no modo vertical os botoes e indicadores ocupam 20 px em cima/baixo e 24 px a direita (toque fora da area do pai nao chega); vertical sem height usa 300 (o React colapsaria a 0)",
    "onde": "packages/seedgrid_components/lib/src/layout/containers/sg_carousel.dart",
    "props": 18,
@@ -121,7 +121,7 @@
   {
    "componente": "SgCheckboxGroup",
    "onda": 1,
-   "status": "parcial",
+   "status": "portado",
    "motivo": "destaque e relevo aproximados (bordas por Transform); groupBoxProps vira SgChoiceGroupBoxProps; a caixa e o SgGroupBox real; goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50)",
    "onde": "packages/seedgrid_components/lib/src/inputs/choice/sg_checkbox_group.dart",
    "props": 23,
@@ -171,7 +171,7 @@
   {
    "componente": "SgCombobox",
    "onda": 3,
-   "status": "parcial",
+   "status": "portado",
    "motivo": "value nulo = nao controlado (Dart nao distingue null de indefinido); em tela estreita a lista e um painel de baixo (nao showModalBottomSheet, que tiraria o foco do campo); inputProps ignorado (ADR 50); sem autocorrect/spellCheck; nao testado em IME nem em dispositivo; golden com fonte de teste",
    "onde": "packages/seedgrid_components/lib/src/inputs/select/sg_combobox.dart",
    "props": 56,
@@ -191,7 +191,7 @@
   {
    "componente": "SgConfirmationDialog",
    "onda": 2,
-   "status": "parcial",
+   "status": "portado",
    "motivo": "lockBodyScroll sem efeito (o fundo modal ja bloqueia); props de classe CSS aceitas sem efeito; acento do topo e uma faixa de 4 px; icones padrao do SgConfirmationDialog sao do Material; zIndex so cumpre o contrato (a ordem e a do Overlay); anchorRef virou GlobalKey; sem arrastar/redimensionar (o React nao tem); golden com fonte de teste",
    "onde": "packages/seedgrid_components/lib/src/overlay/sg_confirmation_dialog.dart",
    "props": 39,
@@ -201,7 +201,7 @@
   {
    "componente": "SgDatatable",
    "onda": 5,
-   "status": "parcial",
+   "status": "portado",
    "motivo": "tabela propria sem dependencia nova (two_dimensional_scrollables/TableView avaliada e descartada: exige altura de linha conhecida e nao mede conteudo); sem altura limitada pelo pai monta todas as linhas da pagina como o React (2.000 linhas sem paginador levam cerca de 1,9 s de build em teste), com altura limitada e mais de 100 linhas o corpo e virtualizado; ordenacao de texto aproxima a colacao ICU do localeCompare (vetores do React batem em 8.299 pares, mas locales exoticos podem divergir); className/style/tableClassName/rowClassName/bodyClassName/headerClassName/className de coluna nao existem (ADR 50); sortField/selection nulos significam nao controlado (Dart nao separa undefined de null); groupBoxProps vira SgListGroupBoxProps (title, width, height); ref vira controller; reordenar colunas por arrastar a alca funciona tambem por toque; painel de colunas vira painel de baixo com largura < 600; golden e teste em dispositivo nao feitos",
    "onde": "packages/seedgrid_components/lib/src/inputs/datatable/sg_datatable.dart",
    "props": 41,
@@ -211,7 +211,7 @@
   {
    "componente": "SgDialog",
    "onda": 2,
-   "status": "parcial",
+   "status": "portado",
    "motivo": "lockBodyScroll sem efeito (o fundo modal ja bloqueia); props de classe CSS aceitas sem efeito; acento do topo e uma faixa de 4 px; icones padrao do SgConfirmationDialog sao do Material; zIndex so cumpre o contrato (a ordem e a do Overlay); anchorRef virou GlobalKey; sem arrastar/redimensionar (o React nao tem); golden com fonte de teste",
    "onde": "packages/seedgrid_components/lib/src/overlay/sg_dialog.dart",
    "props": 33,
@@ -221,7 +221,7 @@
   {
    "componente": "SgDiscardDigit",
    "onda": 4,
-   "status": "parcial",
+   "status": "portado",
    "motivo": "o ref virou SgDiscardDigitController (page() ja devolve o valor novo; no React devolve o da ultima renderizacao); prop extra random para testes; a borda de baixo das folhas de fundo vira linha de 1 px (o Flutter nao aceita raio com bordas de cores diferentes); cor em texto CSS entende hex, rgb(), rgba() e algumas palavras; golden com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em dispositivo",
    "onde": "packages/seedgrid_components/lib/src/digits/animated/sg_discard_digit.dart",
    "props": 13,
@@ -231,8 +231,8 @@
   {
    "componente": "SgDockLayout",
    "onda": 2,
-   "status": "parcial",
-   "motivo": "no React o SgDockLayout guarda o estado das toolbars encaixaveis (nao e motor de layout) e nao ha divisores arrastaveis; persistencia por SgDockLayoutStore plugavel (sem ele, so memoria); a toolbar se registra por registerToolbar(id, key) em vez de achar pelo DOM; SgToolBar ainda nao portada (exemplos usam botoes); className/style nao existem; golden com fonte de teste",
+   "status": "portado",
+   "motivo": "no React o SgDockLayout guarda o estado das toolbars encaixaveis (nao e motor de layout) e nao ha divisores arrastaveis; persistencia por SgDockLayoutStore plugavel (sem ele, so memoria); a toolbar se registra por registerToolbar(id, key) em vez de achar pelo DOM; className/style nao existem; golden com fonte de teste",
    "onde": "packages/seedgrid_components/lib/src/layout/dock/sg_dock_layout.dart",
    "props": 5,
    "propsOmitidas": 2,
@@ -241,7 +241,7 @@
   {
    "componente": "SgDockMenu",
    "onda": 5,
-   "status": "parcial",
+   "status": "portado",
    "motivo": "zoom por proximidade e rotulo ao passar so com mouse/caneta (desktop/web); em toque nao ha zoom nem rotulo (sem hover); sem className/itemClassName/style e item.className (ADR 50); zIndex aceito e ignorado (Flutter sem z-index); sem position fixed na viewport: o dock ancora na area do widget (use num Stack ou como filho que preenche a tela); sem SgEnvironmentProvider a posicao vai para shared_preferences (localStorage com prefixo flutter. no web); menu de contexto por botao direito ou toque longo; backdrop-filter aproximado por BackdropFilter; goldens nao feitos; nao testado em dispositivo",
    "onde": "packages/seedgrid_components/lib/src/menus/dock_menu/sg_dock_menu.dart",
    "props": 18,
@@ -251,8 +251,8 @@
   {
    "componente": "SgDockScreen",
    "onda": 2,
-   "status": "parcial",
-   "motivo": "no React o SgDockLayout guarda o estado das toolbars encaixaveis (nao e motor de layout) e nao ha divisores arrastaveis; persistencia por SgDockLayoutStore plugavel (sem ele, so memoria); a toolbar se registra por registerToolbar(id, key) em vez de achar pelo DOM; SgToolBar ainda nao portada (exemplos usam botoes); className/style nao existem; golden com fonte de teste",
+   "status": "portado",
+   "motivo": "no React o SgDockLayout guarda o estado das toolbars encaixaveis (nao e motor de layout) e nao ha divisores arrastaveis; persistencia por SgDockLayoutStore plugavel (sem ele, so memoria); a toolbar se registra por registerToolbar(id, key) em vez de achar pelo DOM; className/style nao existem; golden com fonte de teste",
    "onde": "packages/seedgrid_components/lib/src/layout/dock/sg_dock_screen.dart",
    "props": 9,
    "propsOmitidas": 0,
@@ -261,8 +261,8 @@
   {
    "componente": "SgDockZone",
    "onda": 2,
-   "status": "parcial",
-   "motivo": "no React o SgDockLayout guarda o estado das toolbars encaixaveis (nao e motor de layout) e nao ha divisores arrastaveis; persistencia por SgDockLayoutStore plugavel (sem ele, so memoria); a toolbar se registra por registerToolbar(id, key) em vez de achar pelo DOM; SgToolBar ainda nao portada (exemplos usam botoes); className/style nao existem; golden com fonte de teste",
+   "status": "portado",
+   "motivo": "no React o SgDockLayout guarda o estado das toolbars encaixaveis (nao e motor de layout) e nao ha divisores arrastaveis; persistencia por SgDockLayoutStore plugavel (sem ele, so memoria); a toolbar se registra por registerToolbar(id, key) em vez de achar pelo DOM; className/style nao existem; golden com fonte de teste",
    "onde": "packages/seedgrid_components/lib/src/layout/dock/sg_dock_zone.dart",
    "props": 4,
    "propsOmitidas": 2,
@@ -291,7 +291,7 @@
   {
    "componente": "SgFadeDigit",
    "onda": 4,
-   "status": "parcial",
+   "status": "portado",
    "motivo": "a sombra do cartao assume 1em = 16px (fonte padrao do navegador); golden com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em dispositivo",
    "onde": "packages/seedgrid_components/lib/src/digits/simple/sg_fade_digit.dart",
    "props": 6,
@@ -311,7 +311,7 @@
   {
    "componente": "SgFloatActionButton",
    "onda": 5,
-   "status": "parcial",
+   "status": "portado",
    "motivo": "absolute:false flutua no Overlay raiz (position: fixed) e absolute:true preenche o pai (ponha num Stack de tamanho definido); zIndex sem efeito (ordem do Overlay/Stack); floatActionButtonStyle aceito mas sem efeito (igual ao React, que nunca le o sinonimo porque severity tem padrao); position padrao e rightBottom (o meta do React diz bottom-right, valor inexistente); offset vira SgFABOffset e actions vira List<SgFABAction>; botao direito ou toque longo (500 ms) abre o menu de reiniciar; sem dragId a posicao nao e guardada e com SgEnvironmentProvider usa o namespace; autoHideOnScroll escuta a rolagem vertical do Scrollable mais externo sob o Scaffold, nao a janela; hint e dica de acao aparecem por hover (no toque nao ha hover); animacoes e sombras aproximadas por Flutter; nao testado em dispositivo; className/style do React nao existem (ADR 50)",
    "onde": "packages/seedgrid_components/lib/src/buttons/sg_float_action_button.dart",
    "props": 32,
@@ -341,7 +341,7 @@
   {
    "componente": "SgInputBirthDate",
    "onda": 1,
-   "status": "parcial",
+   "status": "portado",
    "motivo": "o React usa input type=date nativo; aqui campo com mascara por idioma e calendario proprio: data impossivel (31/02) mostra Data invalida (no nativo o valor vira vazio) e alwaysFloat nao tem efeito; recriar por key perde o foco (precisa de controller externo no SgInputText); pegadinha de fuso do validateBirthDate mantida; validadores do componente rodam no submit (decisao do dono)",
    "onde": "packages/seedgrid_components/lib/src/inputs/masked/sg_input_birth_date.dart",
    "props": 50,
@@ -351,7 +351,7 @@
   {
    "componente": "SgInputCNPJ",
    "onda": 1,
-   "status": "parcial",
+   "status": "portado",
    "motivo": "consulta de rede por cliente injetavel (SgViaCepResult no lugar do ViaCepResponse que lanca erro; SgHttpClient no CNPJ); placeholder por pais do React nunca e usado e nao foi portado; goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50); validadores do componente rodam no submit (decisao do dono)",
    "onde": "packages/seedgrid_components/lib/src/inputs/masked/sg_input_cnpj.dart",
    "props": 53,
@@ -374,9 +374,9 @@
    "status": "portado",
    "motivo": "",
    "onde": "packages/seedgrid_components/lib/src/inputs/masked/sg_input_cpfcnpj.dart",
-   "props": 48,
+   "props": 53,
    "propsOmitidas": 3,
-   "propsGenericas": 14
+   "propsGenericas": 17
   },
   {
    "componente": "SgInputCurrency",
@@ -391,7 +391,7 @@
   {
    "componente": "SgInputDate",
    "onda": 1,
-   "status": "parcial",
+   "status": "portado",
    "motivo": "o React usa input type=date nativo; aqui campo com mascara por idioma e calendario proprio: data impossivel (31/02) mostra Data invalida (no nativo o valor vira vazio) e alwaysFloat nao tem efeito; recriar por key perde o foco (precisa de controller externo no SgInputText); pegadinha de fuso do validateBirthDate mantida; validadores do componente rodam no submit (decisao do dono)",
    "onde": "packages/seedgrid_components/lib/src/inputs/masked/sg_input_date.dart",
    "props": 48,
@@ -401,7 +401,7 @@
   {
    "componente": "SgInputEmail",
    "onda": 1,
-   "status": "parcial",
+   "status": "portado",
    "motivo": "inputProps/textareaProps ignorados; commonPasswordList sem efeito (igual ao React); goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50); validadores do componente rodam no submit (decisao do dono)",
    "onde": "packages/seedgrid_components/lib/src/inputs/text/sg_input_email.dart",
    "props": 48,
@@ -421,7 +421,7 @@
   {
    "componente": "SgInputOTP",
    "onda": 3,
-   "status": "parcial",
+   "status": "portado",
    "motivo": "slot vazio guarda um caractere invisivel (U+200B) para o teclado virtual avisar o Backspace; colar 1 caractere num slot cheio e tratado como digitar (o React limparia os seguintes); inputProps e *ClassName aceitos sem efeito; nao testado em IME nem em dispositivo; golden com fonte de teste; validadores do componente rodam no submit (decisao do dono)",
    "onde": "packages/seedgrid_components/lib/src/inputs/otp/sg_input_otp.dart",
    "props": 30,
@@ -431,7 +431,7 @@
   {
    "componente": "SgInputPassword",
    "onda": 1,
-   "status": "parcial",
+   "status": "portado",
    "motivo": "inputProps/textareaProps ignorados; commonPasswordList sem efeito (igual ao React); goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50); validadores do componente rodam no submit (decisao do dono)",
    "onde": "packages/seedgrid_components/lib/src/inputs/text/sg_input_password.dart",
    "props": 60,
@@ -451,7 +451,7 @@
   {
    "componente": "SgInputPostalCode",
    "onda": 1,
-   "status": "parcial",
+   "status": "portado",
    "motivo": "consulta de rede por cliente injetavel (SgViaCepResult no lugar do ViaCepResponse que lanca erro; SgHttpClient no CNPJ); placeholder por pais do React nunca e usado e nao foi portado; goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50); validadores do componente rodam no submit (decisao do dono)",
    "onde": "packages/seedgrid_components/lib/src/inputs/masked/sg_input_postal_code.dart",
    "props": 54,
@@ -461,7 +461,7 @@
   {
    "componente": "SgInputText",
    "onda": 1,
-   "status": "parcial",
+   "status": "portado",
    "motivo": "sem inputProps (atributos do <input> nao tem equivalente; props nomeadas cobrem), value controlado pela prop value (nula = nao controlado; com name+formulario o valor do formulario manda e value e ignorado, como no React), golden com fonte de teste (sem comparacao visual com o React), nao testado em IME/dispositivo; i18n so das mensagens de validacao; validadores do componente rodam no submit (decisao do dono)",
    "onde": "packages/seedgrid_components/lib/src/inputs/sg_input_text.dart",
    "props": 46,
@@ -471,7 +471,7 @@
   {
    "componente": "SgInputTextArea",
    "onda": 1,
-   "status": "parcial",
+   "status": "portado",
    "motivo": "inputProps/textareaProps ignorados; commonPasswordList sem efeito (igual ao React); goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50); validadores do componente rodam no submit (decisao do dono)",
    "onde": "packages/seedgrid_components/lib/src/inputs/text/sg_input_text_area.dart",
    "props": 43,
@@ -481,7 +481,7 @@
   {
    "componente": "SgInputTextSearch",
    "onda": 1,
-   "status": "parcial",
+   "status": "portado",
    "motivo": "inputProps/textareaProps ignorados; commonPasswordList sem efeito (igual ao React); goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50); validadores do componente rodam no submit (decisao do dono)",
    "onde": "packages/seedgrid_components/lib/src/inputs/text/sg_input_text_search.dart",
    "props": 49,
@@ -491,7 +491,7 @@
   {
    "componente": "SgLinearGauge",
    "onda": 4,
-   "status": "parcial",
+   "status": "portado",
    "motivo": "no React o transition all quase nao age na geometria do SVG; no Flutter o ponteiro anima com ease-out; primaryPointerLabel e pointer.label que nao sejam texto vao como overlay; arrastar usa area de toque de 16 px; acessibilidade por Semantics (nao role=meter); golden com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em dispositivo",
    "onde": "packages/seedgrid_components/lib/src/gadgets/gauges/sg_linear_gauge.dart",
    "props": 32,
@@ -501,7 +501,7 @@
   {
    "componente": "SgMatrixDigit",
    "onda": 4,
-   "status": "parcial",
+   "status": "portado",
    "motivo": "o React remonta o ponto ao trocar o caractere, entao a transicao de 160 ms nunca aparece; aqui tambem nao ha animacao na troca de cor por prop; jsToUpperCase cobre o SpecialCasing incondicional (ficam fora as sequencias do grego com iota subscrito); golden com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em dispositivo",
    "onde": "packages/seedgrid_components/lib/src/digits/simple/sg_matrix_digit.dart",
    "props": 12,
@@ -521,7 +521,7 @@
   {
    "componente": "SgMultiSelect",
    "onda": 3,
-   "status": "parcial",
+   "status": "portado",
    "motivo": "o React nao foca o campo ao tocar e o Flutter foca; a lista ancorada se alinha ao SgInputText inteiro; onClear/maxLengthMessage/minLengthMessage aceitos sem efeito (igual ao React); superficie do dropdown compartilhada (SgDropdownHost); a lista de opcoes continua propria; inputProps ignorado (ADR 50); sem autocorrect/spellCheck; nao testado em IME nem em dispositivo; golden com fonte de teste; onChange do usuario tambem dentro de formulario (decisao do dono)",
    "onde": "packages/seedgrid_components/lib/src/inputs/multi/sg_multi_select.dart",
    "props": 46,
@@ -531,7 +531,7 @@
   {
    "componente": "SgMultiSelectChips",
    "onda": 3,
-   "status": "parcial",
+   "status": "portado",
    "motivo": "o item ativo da lista rola ate ficar visivel (o React nao faz); superficie do dropdown compartilhada (SgDropdownHost); a lista de opcoes continua propria; inputProps ignorado (ADR 50); sem autocorrect/spellCheck; nao testado em IME nem em dispositivo; golden com fonte de teste; onChange do usuario tambem dentro de formulario (decisao do dono)",
    "onde": "packages/seedgrid_components/lib/src/inputs/multi/sg_multi_select_chips.dart",
    "props": 25,
@@ -541,7 +541,7 @@
   {
    "componente": "SgNeonDigit",
    "onda": 4,
-   "status": "parcial",
+   "status": "portado",
    "motivo": "filtro de brilho e saturacao aproximado por matriz de cor; as sombras do estado apagado foram conferidas contra o fonte, nao executadas; golden com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em dispositivo",
    "onde": "packages/seedgrid_components/lib/src/digits/simple/sg_neon_digit.dart",
    "props": 16,
@@ -551,7 +551,7 @@
   {
    "componente": "SgOrderList",
    "onda": 3,
-   "status": "parcial",
+   "status": "portado",
    "motivo": "arrastar por toque longo (LongPressDraggable, cerca de 150 ms) no lugar do arrastar nativo do navegador; PickList: mover pelo duplo toque em ate 300 ms; reinicio do estado ao trocar source/target compara por identidade dos itens; rotulos Top/Up/Down/Bottom do OrderList ficam em ingles como no React; listClassName/itemClassName sem efeito; groupBoxProps vira SgListGroupBoxProps",
    "onde": "packages/seedgrid_components/lib/src/inputs/lists/sg_order_list.dart",
    "props": 25,
@@ -601,7 +601,7 @@
   {
    "componente": "SgPickList",
    "onda": 3,
-   "status": "parcial",
+   "status": "portado",
    "motivo": "arrastar por toque longo (LongPressDraggable, cerca de 150 ms) no lugar do arrastar nativo do navegador; PickList: mover pelo duplo toque em ate 300 ms; reinicio do estado ao trocar source/target compara por identidade dos itens; rotulos Top/Up/Down/Bottom do OrderList ficam em ingles como no React; listClassName/itemClassName sem efeito; groupBoxProps vira SgListGroupBoxProps",
    "onde": "packages/seedgrid_components/lib/src/inputs/lists/sg_pick_list.dart",
    "props": 36,
@@ -611,7 +611,7 @@
   {
    "componente": "SgPopup",
    "onda": 2,
-   "status": "parcial",
+   "status": "portado",
    "motivo": "lockBodyScroll sem efeito (o fundo modal ja bloqueia); props de classe CSS aceitas sem efeito; acento do topo e uma faixa de 4 px; icones padrao do SgConfirmationDialog sao do Material; zIndex so cumpre o contrato (a ordem e a do Overlay); anchorRef virou GlobalKey; sem arrastar/redimensionar (o React nao tem); golden com fonte de teste",
    "onde": "packages/seedgrid_components/lib/src/overlay/sg_popup.dart",
    "props": 21,
@@ -621,7 +621,7 @@
   {
    "componente": "SgQRCode",
    "onda": 4,
-   "status": "parcial",
+   "status": "portado",
    "motivo": "o qr_flutter nao serve (falha na versao 15, so modo byte, mascara diferente): o algoritmo qrcodegen (Nayuki, MIT) foi portado e bate com o qrcode.react em 118 matrizes; logoSrc so carrega URL (prop extra logoImage para imagem local); caixa de erro pulsa de forma aproximada; golden com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em dispositivo",
    "onde": "packages/seedgrid_components/lib/src/gadgets/gauges/sg_qr_code.dart",
    "props": 16,
@@ -631,7 +631,7 @@
   {
    "componente": "SgRadialGauge",
    "onda": 4,
-   "status": "parcial",
+   "status": "portado",
    "motivo": "no React o transition all quase nao age na geometria do SVG; no Flutter o ponteiro anima com ease-out; primaryPointerLabel e pointer.label que nao sejam texto vao como overlay; arrastar usa area de toque de 16 px; acessibilidade por Semantics (nao role=meter); golden com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em dispositivo",
    "onde": "packages/seedgrid_components/lib/src/gadgets/gauges/sg_radial_gauge.dart",
    "props": 37,
@@ -641,7 +641,7 @@
   {
    "componente": "SgRadioGroup",
    "onda": 1,
-   "status": "parcial",
+   "status": "portado",
    "motivo": "destaque e relevo aproximados (bordas por Transform); groupBoxProps vira SgChoiceGroupBoxProps; a caixa e o SgGroupBox real; goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50)",
    "onde": "packages/seedgrid_components/lib/src/inputs/choice/sg_radio_group.dart",
    "props": 20,
@@ -651,7 +651,7 @@
   {
    "componente": "SgRating",
    "onda": 1,
-   "status": "parcial",
+   "status": "portado",
    "motivo": "color/emptyColor aceitam texto (#hex, rgb(), hsl(var(--token))) porque o contrato gerado fixa String; value nulo = nao controlado; teclado e extra do Flutter; goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50)",
    "onde": "packages/seedgrid_components/lib/src/inputs/choice/sg_rating.dart",
    "props": 26,
@@ -671,7 +671,7 @@
   {
    "componente": "SgRoller3DDigit",
    "onda": 4,
-   "status": "parcial",
+   "status": "portado",
    "motivo": "a sombra interna (inset) e desenhada por CustomPainter porque o Flutter nao tem inset shadow; a mascara do tambor e um gradiente sobre o tambor inteiro, como no React; golden com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em dispositivo",
    "onde": "packages/seedgrid_components/lib/src/digits/animated/sg_roller3d_digit.dart",
    "props": 5,
@@ -701,7 +701,7 @@
   {
    "componente": "SgSevenSegmentDigit",
    "onda": 4,
-   "status": "parcial",
+   "status": "portado",
    "motivo": "sombra interna do painel aproximada; a troca de cor por prop e imediata (no React anima); golden com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em dispositivo",
    "onde": "packages/seedgrid_components/lib/src/digits/simple/sg_seven_segment_digit.dart",
    "props": 15,
@@ -721,7 +721,7 @@
   {
    "componente": "SgSlider",
    "onda": 1,
-   "status": "parcial",
+   "status": "portado",
    "motivo": "e o Slider do Material tematizado, nao CustomPainter (o React usa o controle nativo do navegador); goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50)",
    "onde": "packages/seedgrid_components/lib/src/inputs/choice/sg_slider.dart",
    "props": 17,
@@ -731,7 +731,7 @@
   {
    "componente": "SgSplitButton",
    "onda": 5,
-   "status": "parcial",
+   "status": "portado",
    "motivo": "em largura < 600 o menu vira painel de baixo (ADR 51), em tela larga abre colado embaixo do botao principal; items vira List<SgSplitButtonItem>; label e String (como no React); setas de teclado no menu nao existem (o React tambem nao tem); divisoria e sombras aproximadas; nao testado em dispositivo; className/style do React nao existem (ADR 50)",
    "onde": "packages/seedgrid_components/lib/src/buttons/sg_split_button.dart",
    "props": 14,
@@ -761,7 +761,7 @@
   {
    "componente": "SgStringAnimator",
    "onda": 4,
-   "status": "parcial",
+   "status": "portado",
    "motivo": "o ref virou SgStringAnimatorController.startAnimation(); prop extra controller; dois pontos e celula do periodo reproduzidos pelo codigo (fora da paridade por vetor); golden com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em dispositivo",
    "onde": "packages/seedgrid_components/lib/src/gadgets/string_animator/sg_string_animator.dart",
    "props": 12,
@@ -781,7 +781,7 @@
   {
    "componente": "SgTimeProvider",
    "onda": 4,
-   "status": "parcial",
+   "status": "portado",
    "motivo": "initialServerTime invalido cai no agora (o React propagaria NaN)",
    "onde": "packages/seedgrid_components/lib/src/gadgets/clock/sg_time_provider.dart",
    "props": 2,
@@ -811,7 +811,7 @@
   {
    "componente": "SgToggleSwitch",
    "onda": 1,
-   "status": "parcial",
+   "status": "portado",
    "motivo": "enabled virou disabled (ADR 50); goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50); validadores do componente rodam no submit (decisao do dono)",
    "onde": "packages/seedgrid_components/lib/src/inputs/choice/sg_toggle_switch.dart",
    "props": 27,
@@ -821,7 +821,7 @@
   {
    "componente": "SgToolBar",
    "onda": 5,
-   "status": "parcial",
+   "status": "portado",
    "motivo": "className/style sem efeito; dock sem portal (o widget fica na SgDockZone; zonas horizontais mostram o conteudo em linha); freeDrag fora de um Stack vira translacao (sem position: fixed); size e SgToolBarSize, defaultPosition e Offset, cores em texto CSS; extras do Flutter: children (lista) ao lado de child e overflow (itens que nao cabem vao para o menu '...' feito com SgMenu, painel inferior abaixo de 600)",
    "onde": "packages/seedgrid_components/lib/src/layout/menu/sg_tool_bar.dart",
    "props": 18,
@@ -831,7 +831,7 @@
   {
    "componente": "SgToolbarIconButton",
    "onda": 5,
-   "status": "parcial",
+   "status": "portado",
    "motivo": "icon e um Widget (nao texto/nome de icone); dica sempre abaixo; severidades success/warning usam --accent (nao existe --tertiary); showLabel segue o codigo do React (padrao true), nao o meta (false); onClick pode ser assincrono e mostra o indicador de carregamento",
    "onde": "packages/seedgrid_components/lib/src/layout/menu/sg_toolbar_icon_button.dart",
    "props": 11,
@@ -841,7 +841,7 @@
   {
    "componente": "SgTreeView",
    "onda": 3,
-   "status": "parcial",
+   "status": "portado",
    "motivo": "o React nao tem navegacao por teclado propria (o Flutter tem setas, Home/End, Enter, Espaco e * como extra); maxHeightClassName vira maxHeight em px (padrao 60% da altura da tela); SgTreeConfirmBar.sticky sem efeito; layout de celular proprio (busca em linha, barra empilhada); medido com 10.100 nos em debug de teste: primeira construcao 142 ms, 19 linhas construidas, quadro de rolagem medio 59,6 ms (release, dispositivo e GPU nao medidos)",
    "onde": "packages/seedgrid_components/lib/src/layout/tree/sg_tree_view.dart",
    "props": 31,
