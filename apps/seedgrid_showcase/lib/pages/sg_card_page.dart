@@ -37,6 +37,7 @@ class _SgCardPageState extends State<SgCardPage> {
                 ],
               ),
               child: const Column(
+                spacing: 8,
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -84,6 +85,7 @@ class _SgCardPageState extends State<SgCardPage> {
                 children: [Text('Expira em 12 dias'), Text('+12%')],
               ),
               child: const Column(
+                spacing: 8,
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -150,6 +152,7 @@ class _SgCardPageState extends State<SgCardPage> {
                     children: [Text('128 itens'), Text('R\$ 9.820')],
                   ),
                   child: const Column(
+                    spacing: 8,
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -247,6 +250,7 @@ class _SgCardPageState extends State<SgCardPage> {
                       color: Color(escuro ? 0xFFE2E8F0 : 0xFF334155),
                     ),
                     child: Column(
+                      spacing: 8,
                       children: [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -307,6 +311,7 @@ class _SgCardPageState extends State<SgCardPage> {
                     child: DefaultTextStyle.merge(
                       style: TextStyle(color: Color(0xFF334155)),
                       child: Column(
+                        spacing: 8,
                         children: [
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -29,6 +29,7 @@ SizedBox(
         child: DefaultTextStyle.merge(
           style: TextStyle(color: Color(0xFF334155)),
           child: Column(
+            spacing: 8,
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -73,6 +74,7 @@ SgCard(
     ],
   ),
   child: const Column(
+    spacing: 8,
     children: [
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -122,6 +124,7 @@ Builder(
           color: Color(escuro ? 0xFFE2E8F0 : 0xFF334155),
         ),
         child: Column(
+          spacing: 8,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -170,6 +173,7 @@ SgCard(
     children: [Text('Expira em 12 dias'), Text('+12%')],
   ),
   child: const Column(
+    spacing: 8,
     children: [
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -231,6 +235,7 @@ Column(
         children: [Text('128 itens'), Text('R\$ 9.820')],
       ),
       child: const Column(
+        spacing: 8,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
