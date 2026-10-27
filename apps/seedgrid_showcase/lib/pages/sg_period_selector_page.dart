@@ -68,6 +68,7 @@ class _SgPeriodSelectorPageState extends State<SgPeriodSelectorPage> {
               children: [
                 Wrap(
                   spacing: 8,
+                  runSpacing: 8,
                   children: [
                     FilterChip(
                       label: const Text('Passados'),

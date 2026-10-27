@@ -167,6 +167,7 @@ class _SgToastHostPageState extends State<SgToastHostPage> {
               _publish(v);
               return Wrap(
                 spacing: 8,
+                runSpacing: 8,
                 children: [
                   SgButton(
                     label: const Text('Disparar toast'),

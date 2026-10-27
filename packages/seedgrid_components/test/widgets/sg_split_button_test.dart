@@ -69,26 +69,52 @@ void main() {
     expect(find.text('Dois'), findsOneWidget);
   });
 
-  testWidgets('tamanhos sm/md/lg = 32/40/48 de altura e toggle quadrado', (
-    t,
-  ) async {
-    for (final e in {
-      SgSize.sm: 32.0,
-      SgSize.md: 40.0,
-      SgSize.lg: 48.0,
-    }.entries) {
+  testWidgets(
+    'tamanhos sm/md/lg = 32/40/48; o toggle tem a mesma altura do principal',
+    (t) async {
+      for (final e in {
+        SgSize.sm: 32.0,
+        SgSize.md: 40.0,
+        SgSize.lg: 48.0,
+      }.entries) {
+        await t.pumpWidget(
+          host(SgSplitButton(label: 'x', items: items(), size: e.key)),
+        );
+        // principal: min-h + py + borda (como o SgButton): sm = 34
+        expect(
+          t.getSize(_main).height,
+          e.key == SgSize.sm ? 34 : e.value,
+          reason: '${e.key}',
+        );
+        // toggle: largura minima = altura do tamanho, e a altura acompanha o principal
+        expect(t.getSize(_toggle).width, e.value, reason: '${e.key}');
+        expect(
+          t.getSize(_toggle).height,
+          t.getSize(_main).height,
+          reason: '${e.key}',
+        );
+      }
+    },
+  );
+
+  testWidgets(
+    'fonte grande: principal cresce e o toggle acompanha, alinhados',
+    (t) async {
       await t.pumpWidget(
-        host(SgSplitButton(label: 'x', items: items(), size: e.key)),
+        MediaQuery(
+          data: const MediaQueryData(textScaler: TextScaler.linear(1.6)),
+          child: host(
+            SgSplitButton(label: 'Small', items: items(), size: SgSize.sm),
+          ),
+        ),
       );
-      expect(t.getSize(_toggle), Size(e.value, e.value), reason: '${e.key}');
-      // principal: min-h + py + borda (como o SgButton): sm = 34
-      expect(
-        t.getSize(_main).height,
-        e.key == SgSize.sm ? 34 : e.value,
-        reason: '${e.key}',
-      );
-    }
-  });
+      final main = t.getRect(_main);
+      final toggle = t.getRect(_toggle);
+      expect(main.height, greaterThan(34));
+      expect(toggle.top, main.top);
+      expect(toggle.bottom, main.bottom);
+    },
+  );
 
   testWidgets(
     'menu: item dispara onClick e fecha; desabilitado nao dispara nem fecha',

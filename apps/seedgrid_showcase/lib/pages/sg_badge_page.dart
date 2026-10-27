@@ -91,6 +91,7 @@ class _SgBadgePageState extends State<SgBadgePage> {
             // #region sg-badge-dot
             const Wrap(
               spacing: 16,
+              runSpacing: 16,
               children: [
                 SgBadge(
                   dot: true,

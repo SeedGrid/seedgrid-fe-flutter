@@ -33,6 +33,7 @@ const SgBadge(
   static const String sgBadgeDot = r'''
 const Wrap(
   spacing: 16,
+  runSpacing: 16,
   children: [
     SgBadge(
       dot: true,

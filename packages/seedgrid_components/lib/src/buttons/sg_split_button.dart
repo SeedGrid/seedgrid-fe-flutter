@@ -300,41 +300,45 @@ class _SgSplitButtonState extends State<SgSplitButton> {
         onTapOutside: _open ? (_) => _setOpen(false) : null,
         child: CompositedTransformTarget(
           link: _link,
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _Segment(
-                key: const ValueKey('sg-split-main'),
-                side: _Side.left,
-                severity: w.severity,
-                appearance: w.appearance,
-                size: w.size,
-                shape: w.shape,
-                elevation: w.elevation,
-                customColors: w.customColors,
-                disabled: w.disabled || w.loading,
-                loading: w.loading,
-                label: w.label,
-                leftIcon: w.leftIcon,
-                onTap: w.onClick,
-              ),
-              _Segment(
-                key: const ValueKey('sg-split-toggle'),
-                side: _Side.right,
-                severity: w.severity,
-                appearance: w.appearance,
-                size: w.size,
-                shape: w.shape,
-                elevation: w.elevation,
-                customColors: w.customColors,
-                disabled: w.disabled || w.loading,
-                leftIcon: const Icon(Icons.expand_more),
-                semanticLabel: menuLabel,
-                expanded: _open,
-                onTap: _toggle,
-              ),
-            ],
+          // Os dois botoes tem a mesma altura (flex items-stretch no React): o principal cresce com o
+          // texto e a seta acompanha, para a area de toque e a divisoria nao ficarem desalinhadas.
+          child: IntrinsicHeight(
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                _Segment(
+                  key: const ValueKey('sg-split-main'),
+                  side: _Side.left,
+                  severity: w.severity,
+                  appearance: w.appearance,
+                  size: w.size,
+                  shape: w.shape,
+                  elevation: w.elevation,
+                  customColors: w.customColors,
+                  disabled: w.disabled || w.loading,
+                  loading: w.loading,
+                  label: w.label,
+                  leftIcon: w.leftIcon,
+                  onTap: w.onClick,
+                ),
+                _Segment(
+                  key: const ValueKey('sg-split-toggle'),
+                  side: _Side.right,
+                  severity: w.severity,
+                  appearance: w.appearance,
+                  size: w.size,
+                  shape: w.shape,
+                  elevation: w.elevation,
+                  customColors: w.customColors,
+                  disabled: w.disabled || w.loading,
+                  leftIcon: const Icon(Icons.expand_more),
+                  semanticLabel: menuLabel,
+                  expanded: _open,
+                  onTap: _toggle,
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -604,6 +608,7 @@ class _SegmentState extends State<_Segment> {
     );
     if (isToggle) {
       box = Stack(
+        fit: StackFit.passthrough,
         children: [
           box,
           Positioned(
@@ -649,7 +654,13 @@ class _SegmentState extends State<_Segment> {
               },
               // O toggle tem altura fixa e e quadrado (h-N aspect-square); o principal tem min-h.
               child: (isToggle || iconOnly)
-                  ? SizedBox(width: s.h, height: s.h, child: box)
+                  ? ConstrainedBox(
+                      constraints: BoxConstraints(
+                        minWidth: s.h,
+                        minHeight: s.h,
+                      ),
+                      child: box,
+                    )
                   : ConstrainedBox(
                       constraints: BoxConstraints(minHeight: s.h),
                       child: box,

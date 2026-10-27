@@ -91,6 +91,7 @@ class _SgAvatarPageState extends State<SgAvatarPage> {
             // #region sg-avatar-imagem
             const Wrap(
               spacing: 12,
+              runSpacing: 12,
               children: [
                 SgAvatar(
                   src: 'https://endereco.invalido.exemplo/foto.png',
@@ -107,6 +108,7 @@ class _SgAvatarPageState extends State<SgAvatarPage> {
             // #region sg-avatar-interativo
             Wrap(
               spacing: 12,
+              runSpacing: 12,
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
                 SgAvatar(

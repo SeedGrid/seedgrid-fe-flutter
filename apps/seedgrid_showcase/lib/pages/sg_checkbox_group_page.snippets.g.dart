@@ -48,6 +48,7 @@ Column(
     const SizedBox(height: 8),
     Wrap(
       spacing: 8,
+      runSpacing: 8,
       children: [
         SgButton(
           label: const Text('Marcar todos'),

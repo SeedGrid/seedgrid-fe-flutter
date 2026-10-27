@@ -47,6 +47,7 @@ class SgClockThemePreviewPage extends StatelessWidget {
             // #region sg-clock-theme-preview-tamanhos
             Wrap(
               spacing: 12,
+              runSpacing: 12,
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
                 SgClockThemePreview(theme: sgClockThemesBuiltIn[7], size: 32),

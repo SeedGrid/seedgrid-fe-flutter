@@ -62,6 +62,7 @@ class _SgLinearGaugePageState extends State<SgLinearGaugePage> {
             // #region sg-linear-gauge-vertical
             const Wrap(
               spacing: 24,
+              runSpacing: 24,
               children: [
                 SgLinearGauge(
                   value: 70,

@@ -48,6 +48,7 @@ const SgClockThemePreview(
   static const String sgClockThemePreviewTamanhos = r'''
 Wrap(
   spacing: 12,
+  runSpacing: 12,
   crossAxisAlignment: WrapCrossAlignment.center,
   children: [
     SgClockThemePreview(theme: sgClockThemesBuiltIn[7], size: 32),

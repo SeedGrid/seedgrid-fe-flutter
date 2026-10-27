@@ -26,6 +26,7 @@ SingleChildScrollView(
             const SizedBox(height: 16),
             Wrap(
               spacing: 8,
+              runSpacing: 8,
               children: [
                 for (final nome in const ['MARTA', 'JOAO', 'ANA'])
                   OutlinedButton(

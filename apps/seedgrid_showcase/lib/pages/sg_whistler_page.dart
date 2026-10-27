@@ -279,6 +279,7 @@ class _SgWhistlerPageState extends State<SgWhistlerPage> {
                 _publish(v);
                 return Wrap(
                   spacing: 8,
+                  runSpacing: 8,
                   children: [
                     SgButton(
                       label: const Text('Disparar 2 avisos'),

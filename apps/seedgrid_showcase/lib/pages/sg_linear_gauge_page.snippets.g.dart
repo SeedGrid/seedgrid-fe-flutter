@@ -48,6 +48,7 @@ const SgLinearGauge(
   static const String sgLinearGaugeVertical = r'''
 const Wrap(
   spacing: 24,
+  runSpacing: 24,
   children: [
     SgLinearGauge(
       value: 70,

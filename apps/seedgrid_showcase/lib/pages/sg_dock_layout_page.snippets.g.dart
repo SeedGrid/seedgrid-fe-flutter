@@ -101,6 +101,7 @@ SgDockLayout(
           const SizedBox(height: 8),
           Wrap(
             spacing: 8,
+            runSpacing: 8,
             children: [
               SgButton(
                 label: const Text(
@@ -146,6 +147,7 @@ SizedBox(
           children: [
             Wrap(
               spacing: 8,
+              runSpacing: 8,
               children: [
                 SgButton(
                   label: const Text('Simular arrasto'),

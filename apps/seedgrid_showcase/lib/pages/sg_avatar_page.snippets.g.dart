@@ -40,6 +40,7 @@ const SgAvatar(
   static const String sgAvatarImagem = r'''
 const Wrap(
   spacing: 12,
+  runSpacing: 12,
   children: [
     SgAvatar(
       src: 'https://endereco.invalido.exemplo/foto.png',
@@ -53,6 +54,7 @@ const Wrap(
   static const String sgAvatarInterativo = r'''
 Wrap(
   spacing: 12,
+  runSpacing: 12,
   crossAxisAlignment: WrapCrossAlignment.center,
   children: [
     SgAvatar(

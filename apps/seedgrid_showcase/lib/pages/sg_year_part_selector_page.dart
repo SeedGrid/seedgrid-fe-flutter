@@ -120,6 +120,7 @@ class _SgYearPartSelectorPageState extends State<SgYearPartSelectorPage> {
                 const SizedBox(height: 8),
                 Wrap(
                   spacing: 8,
+                  runSpacing: 8,
                   children: [
                     SgButton(
                       label: const Text('1º trimestre de 2024'),
