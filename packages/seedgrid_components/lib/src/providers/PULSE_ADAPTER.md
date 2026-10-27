@@ -18,7 +18,11 @@ quebraria o `pub get` de quem nao tem a arvore irma.
 A diferenca 2.0.0 x 3.0.0 e so de numeracao: a 2.0.0 do React nunca foi publicada e a 3.0.0 foi a primeira versao no npm,
 com as mesmas mudancas. Nao ha defasagem de funcionalidade; o unico ajuste e o nome do campo de data.
 
-## Adaptador (compila contra o SDK 2.0.0; verificado com `dart analyze` fora do repositorio)
+## Verificado ao vivo (2026-10-27)
+
+O `SgRealtimeProvider` com este adaptador foi executado contra o Pulse real (conta de demonstracao do `exemplo-pulse`), com o fluxo de producao: o widget faz `POST` num BFF local, o BFF emite o token curto com a chave `project` (`issueConnectToken`), o provider conecta no WebSocket, assina um canal e recebe o que o publisher publica. Resultado, com `autoAck` ligado e desligado: status `connected`; a mensagem publicada para `usr_1` chegou com o mesmo `messageId`; a publicada para `usr_2` **nao** chegou na conexao de `usr_1`. A chave `project` ficou so no BFF. Nao foi exercitada a reconexao com mensagens pendentes.
+
+## Adaptador (compila contra o SDK 2.0.0)
 
 Copie para o app que depende do SDK:
 
@@ -39,7 +43,8 @@ import 'package:seedgrid_components/seedgrid_components.dart';
 /// )
 /// ```
 class PulseSdkConnection implements SgPulseConnection {
-  PulseSdkConnection([pulse.PulseSubscriber? subscriber]) : _subscriber = subscriber ?? pulse.PulseSubscriber();
+  // autoAck: true, como o exemplo-pulse: o SDK confirma cada mensagem entregue (sem isso o Pulse pode reentregar).
+  PulseSdkConnection([pulse.PulseSubscriber? subscriber]) : _subscriber = subscriber ?? pulse.PulseSubscriber(autoAck: true);
 
   final pulse.PulseSubscriber _subscriber;
 
