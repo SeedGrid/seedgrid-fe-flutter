@@ -226,7 +226,7 @@ void main() {
           host(
             const SgClock(
               initialServerTime: '2026-06-15T12:34:56Z',
-              timezone: 'Pacific/Fiji',
+              timezone: 'Mars/Olympus',
             ),
           ),
         );

@@ -2,8 +2,8 @@
  "versaoReact": "2026.7.1",
  "resumo": {
   "total": 89,
-  "portado": 85,
-  "parcial": 4,
+  "portado": 88,
+  "parcial": 1,
   "pendente": 0,
   "naoAplicavel": 0
  },
@@ -131,8 +131,8 @@
   {
    "componente": "SgClock",
    "onda": 4,
-   "status": "parcial",
-   "motivo": "tema por URL/SVG livre NAO e portado (SgClockUrlThemeUnsupportedError, ADR 51/D8); sem banco de fusos no Dart: so fuso da maquina, UTC, deslocamentos, Etc/GMT+N e 11 zonas com regra embutida (outra zona usa o fuso da maquina; registerSgClockTimeZone acrescenta); periodos do dia de uma tabela gerada para 8 locales; cardProps vira SgClockCardProps; os 8 estilos digitais usam os widgets de digitos (ligados por clock_digital_styles.dart); golden com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em dispositivo",
+   "status": "portado",
+   "motivo": "tema por URL/SVG livre fora por decisao do dono (ADR 51/D8: SgClockUrlThemeUnsupportedError); fuso padrao = o da maquina, e 464 nomes IANA numa tabela propria gerada do Intl (clock_tz_data.g.dart; regerar quando um pais mudar a regra de horario de verao ou antes de 2045); periodos do dia gerados para 33 locales; cardProps vira SgClockCardProps; os 8 estilos digitais usam os widgets de digitos; golden com a fonte de teste do Flutter",
    "onde": "packages/seedgrid_components/lib/src/gadgets/clock/sg_clock.dart",
    "props": 16,
    "propsOmitidas": 2,
@@ -141,8 +141,8 @@
   {
    "componente": "SgClockThemePicker",
    "onda": 4,
-   "status": "parcial",
-   "motivo": "o painel e um OverlayPortal, nao um popup absoluto; so temas embutidos e registrados; golden com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em dispositivo",
+   "status": "portado",
+   "motivo": "o painel e um OverlayPortal, nao um popup absoluto; so temas embutidos e registrados (decisao do dono, ADR 51/D8); golden com a fonte de teste do Flutter",
    "onde": "packages/seedgrid_components/lib/src/gadgets/clock/sg_clock_theme_widgets.dart",
    "props": 10,
    "propsOmitidas": 1,
@@ -151,8 +151,8 @@
   {
    "componente": "SgClockThemePreview",
    "onda": 4,
-   "status": "parcial",
-   "motivo": "so temas embutidos (formato JSON sg-clock-theme/1); o playground nao edita size (num?); golden com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em dispositivo",
+   "status": "portado",
+   "motivo": "so temas embutidos (formato JSON sg-clock-theme/1; decisao do dono, ADR 51/D8); golden com a fonte de teste do Flutter",
    "onde": "packages/seedgrid_components/lib/src/gadgets/clock/sg_clock_theme_widgets.dart",
    "props": 3,
    "propsOmitidas": 1,

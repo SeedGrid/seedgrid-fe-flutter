@@ -1,10 +1,12 @@
-// Fusos horarios do SgClock. O React usa `Intl.DateTimeFormat({ timeZone })` (banco IANA completo); o
-// Dart nao tem banco de fusos, e o pubspec nao leva a dependencia `timezone`. Aqui ha:
+// Fusos horarios do SgClock. O React usa `Intl.DateTimeFormat({ timeZone })` e o navegador traz o banco IANA; o
+// Dart nao tem isso. Aqui ha:
 //   - fuso local (timezone nulo), UTC/GMT, deslocamentos (`+03:00`, `-0530`, `+03`) e `Etc/GMT+N`;
-//   - regras de horario de verao para um conjunto de zonas comuns, conferidas contra o Intl do Node
-//     (clock_vectors/tz.json: cada mudanca de deslocamento de 2019 a 2036, no segundo exato);
-//   - [registerSgClockTimeZone] para o app acrescentar qualquer outra zona (ex.: com o pacote `timezone`).
-// Zona valida fora dessa lista lanca [SgClockUnsupportedTimeZoneError]; o SgClock reporta o erro e usa o fuso local.
+//   - tabela IANA propria (clock_tz_data.g.dart, gerada do Intl do Node por clock_vectors/generate_tz_data.mjs):
+//     todas as zonas do Intl, com cada mudanca de deslocamento (horario de verao) de 2019 a 2045, no segundo exato.
+//     Regerar quando um pais mudar a regra ou o fim do intervalo se aproximar;
+//   - [registerSgClockTimeZone] para o app acrescentar ou substituir uma zona.
+// Zona valida fora da tabela lanca [SgClockUnsupportedTimeZoneError]; o SgClock reporta o erro e usa o fuso local.
+import 'clock_tz_data.g.dart';
 
 /// Zona que o Intl conhece mas esta porte nao: mensagem clara, com o caminho para acrescentar.
 class SgClockUnsupportedTimeZoneError implements Exception {
@@ -14,8 +16,8 @@ class SgClockUnsupportedTimeZoneError implements Exception {
 
   @override
   String toString() =>
-      'SgClockUnsupportedTimeZoneError: fuso "$timezone" nao suportado no Flutter. Suportados: fuso local, UTC/GMT, '
-      'deslocamentos (+03:00), Etc/GMT+N e ${_zones.keys.join(', ')}. Use registerSgClockTimeZone para acrescentar outra zona.';
+      'SgClockUnsupportedTimeZoneError: fuso "$timezone" nao esta na tabela do Flutter. Suportados: fuso local, UTC/GMT, '
+      'deslocamentos (+03:00), Etc/GMT+N e as ${kSgClockTzZones.length} zonas IANA da tabela. Use registerSgClockTimeZone para acrescentar outra zona.';
 }
 
 /// Deslocamento (minutos a leste de UTC) de [timezone] no instante [utc].
@@ -30,70 +32,24 @@ void registerSgClockTimeZone(String timezone, SgClockOffsetOf offsetMinutes) =>
 /// Remove as zonas acrescentadas por [registerSgClockTimeZone] (uso em testes).
 void clearSgClockCustomTimeZones() => _custom.clear();
 
-int _nthSunday(int year, int month, int n) {
-  // n >= 1: n-esimo domingo; n = -1: ultimo domingo. Devolve o dia do mes.
-  if (n > 0) {
-    final first = DateTime.utc(year, month, 1).weekday; // 1=seg .. 7=dom
-    final firstSunday = 1 + (7 - first) % 7;
-    return firstSunday + (n - 1) * 7;
+/// Deslocamento de um padrao da tabela: `[inicial, t1, off1, t2, off2, ...]` (t em segundos UTC, crescentes).
+int _patternOffset(List<int> p, DateTime utc) {
+  final t = utc.millisecondsSinceEpoch ~/ 1000;
+  var lo = 0, hi = (p.length - 1) ~/ 2; // numero de mudancas
+  // ultima mudanca com t_i <= t
+  while (lo < hi) {
+    final mid = (lo + hi + 1) ~/ 2;
+    if (p[1 + (mid - 1) * 2] <= t) {
+      lo = mid;
+    } else {
+      hi = mid - 1;
+    }
   }
-  final last = DateTime.utc(year, month + 1, 0);
-  return last.day - (last.weekday % 7);
+  return lo == 0 ? p[0] : p[2 + (lo - 1) * 2];
 }
 
-int _ms(int y, int mo, int d, int h) =>
-    DateTime.utc(y, mo, d, h).millisecondsSinceEpoch;
-
-SgClockOffsetOf _us(int std) => (utc) {
-  final y = utc.year;
-  // 2o domingo de marco 02:00 (horario padrao) ate 1o domingo de novembro 02:00 (horario de verao)
-  final start = _ms(y, 3, _nthSunday(y, 3, 2), 2) - std * 60000;
-  final end = _ms(y, 11, _nthSunday(y, 11, 1), 2) - (std + 60) * 60000;
-  final t = utc.millisecondsSinceEpoch;
-  return t >= start && t < end ? std + 60 : std;
-};
-
-SgClockOffsetOf _eu(int std) => (utc) {
-  final y = utc.year;
-  // ultimo domingo de marco 01:00 UTC ate ultimo domingo de outubro 01:00 UTC
-  final start = _ms(y, 3, _nthSunday(y, 3, -1), 1);
-  final end = _ms(y, 10, _nthSunday(y, 10, -1), 1);
-  final t = utc.millisecondsSinceEpoch;
-  return t >= start && t < end ? std + 60 : std;
-};
-
-SgClockOffsetOf _auSouth(int std) => (utc) {
-  final y = utc.year;
-  // verao austral: 1o domingo de outubro 02:00 (padrao) ate 1o domingo de abril 03:00 (verao)
-  final start = _ms(y, 10, _nthSunday(y, 10, 1), 2) - std * 60000;
-  final end = _ms(y, 4, _nthSunday(y, 4, 1), 3) - (std + 60) * 60000;
-  final t = utc.millisecondsSinceEpoch;
-  return t >= start || t < end ? std + 60 : std;
-};
-
-SgClockOffsetOf _fixed(int minutes) =>
-    (_) => minutes;
-
-final int _saoPauloDstEnd = DateTime.utc(2019, 2, 17, 2).millisecondsSinceEpoch;
-
-final Map<String, SgClockOffsetOf> _zones = {
-  // Brasil sem horario de verao desde 2019-02-17 02:00Z (antes disso, a regra antiga so cobre jan-fev de 2019).
-  'America/Sao_Paulo': (utc) =>
-      utc.millisecondsSinceEpoch < _saoPauloDstEnd ? -120 : -180,
-  'America/Argentina/Buenos_Aires': _fixed(-180),
-  'America/New_York': _us(-300),
-  'America/Los_Angeles': _us(-480),
-  'Europe/Lisbon': _eu(0),
-  'Europe/London': _eu(0),
-  'Europe/Paris': _eu(60),
-  'Europe/Madrid': _eu(60),
-  'Asia/Tokyo': _fixed(540),
-  'Asia/Kolkata': _fixed(330),
-  'Australia/Sydney': _auSouth(600),
-};
-
 /// Zonas com regra embutida (alem de UTC, deslocamentos e Etc/GMT+N).
-List<String> get sgClockBuiltInTimeZones => _zones.keys.toList();
+List<String> get sgClockBuiltInTimeZones => kSgClockTzZones.keys.toList();
 
 /// Deslocamento em minutos a leste de UTC. `null` ou vazio = fuso local da maquina.
 /// Lanca [SgClockUnsupportedTimeZoneError] para zona desconhecida.
@@ -129,7 +85,9 @@ int sgClockOffsetMinutes(String? timezone, DateTime utc) {
         int.parse(off.group(2)!) * 60 + int.parse(off.group(3) ?? '0');
     return off.group(1) == '-' ? -minutes : minutes;
   }
-  final rule = _zones[timezone];
-  if (rule != null) return rule(utcInstant);
+  final pattern = kSgClockTzZones[timezone];
+  if (pattern != null) {
+    return _patternOffset(kSgClockTzPatterns[pattern], utcInstant);
+  }
   throw SgClockUnsupportedTimeZoneError(timezone);
 }

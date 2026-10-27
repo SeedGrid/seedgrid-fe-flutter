@@ -137,8 +137,22 @@ void main() {
           kSgClockDayPeriods.keys,
           containsAll(['pt-BR', 'pt-PT', 'en-US', 'es', 'fr', 'de-DE']),
         );
+        expect(kSgClockDayPeriods.length, 33);
       },
     );
+
+    test('periodos de outros idiomas (ja, ko) vem do Intl', () {
+      String at(String loc, int h) => sgClockDigitalParts(
+        DateTime.utc(2026, 6, 15, h, 5),
+        timezone: 'UTC',
+        is12h: true,
+        locale: loc,
+      ).dayPeriod!;
+      expect(at('ja', 3), '午前');
+      expect(at('ja', 15), '午後');
+      expect(at('ko', 9), '오전');
+      expect(at('ja-JP', 15), '午後', reason: 'cai no idioma');
+    });
 
     test('meia-noite e meio-dia em 12h viram 12; 24h vai de 00 a 23', () {
       final mid = DateTime.utc(2026, 1, 1, 0, 5, 9);
@@ -188,6 +202,41 @@ void main() {
         expect(sgClockDigitalParts(DateTime.utc(2026), size: 40).sizePx, 40);
       },
     );
+  });
+
+  group('tabela IANA == Intl do Node (clock_vectors/tz_sample.json)', () {
+    final sample = _json('tz_sample.json');
+
+    test('todas as zonas do Intl estao na tabela', () {
+      expect(sample.length, greaterThan(400));
+      expect(sgClockBuiltInTimeZones, containsAll(sample.keys));
+    });
+
+    test('instantes sorteados de cada zona batem com o Intl', () {
+      var checked = 0;
+      for (final z in sample.entries) {
+        for (final row in (z.value as List).cast<List>()) {
+          final at = DateTime.fromMillisecondsSinceEpoch(
+            row[0] as int,
+            isUtc: true,
+          );
+          expect(
+            sgClockOffsetMinutes(z.key, at),
+            row[1],
+            reason: '${z.key} em $at',
+          );
+          checked++;
+        }
+      }
+      expect(checked, greaterThan(10000));
+    });
+
+    test('zona fora da tabela lanca erro claro', () {
+      expect(
+        () => sgClockOffsetMinutes('Mars/Olympus', DateTime.utc(2026)),
+        throwsA(isA<SgClockUnsupportedTimeZoneError>()),
+      );
+    });
   });
 
   group('fusos == Intl do Node (clock_vectors/tz.json)', () {
@@ -273,20 +322,20 @@ void main() {
       () {
         final t = DateTime.utc(2026, 6, 15);
         expect(
-          () => sgClockOffsetMinutes('Pacific/Fiji', t),
+          () => sgClockOffsetMinutes('Mars/Olympus', t),
           throwsA(
             isA<SgClockUnsupportedTimeZoneError>().having(
               (e) => e.toString(),
               'mensagem',
               allOf(
-                contains('Pacific/Fiji'),
+                contains('Mars/Olympus'),
                 contains('registerSgClockTimeZone'),
               ),
             ),
           ),
         );
-        registerSgClockTimeZone('Pacific/Fiji', (_) => 720);
-        expect(sgClockOffsetMinutes('Pacific/Fiji', t), 720);
+        registerSgClockTimeZone('Mars/Olympus', (_) => 720);
+        expect(sgClockOffsetMinutes('Mars/Olympus', t), 720);
       },
     );
   });

@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 import 'package:seedgrid_showcase/main.dart';
 import 'package:seedgrid_showcase/pages/sg_button_page.dart';
+import 'package:seedgrid_showcase/pages/sg_clock_theme_preview_page.dart';
 import 'package:seedgrid_showcase/pages/sg_input_text_page.dart';
 import 'package:seedgrid_showcase/src/sg_showcase_page.dart';
 import 'package:seedgrid_theme/seedgrid_theme.dart';
@@ -30,6 +31,24 @@ void main() {
       );
     },
   );
+
+  testWidgets('SgClockThemePreview: playground edita o size (numero)', (
+    t,
+  ) async {
+    setSize(t, kSizes.values.last);
+    await t.pumpWidget(app(const SgClockThemePreviewPage()));
+    await tapLink(t, const ValueKey('link-playground'));
+    await t.enterText(find.byKey(const ValueKey('pg-size')), '90');
+    await settle(t);
+    expect(t.takeException(), isNull);
+    expect(
+      find.descendant(
+        of: find.byType(SgPlayground),
+        matching: find.textContaining('size: 90'),
+      ),
+      findsOneWidget,
+    );
+  });
 
   testWidgets('SgInputText: exemplo de formulario valida e envia', (t) async {
     setSize(t, kSizes.values.last);
@@ -75,7 +94,10 @@ void main() {
       await settle(t);
       expect(primaryBg(), dark.btnPrimaryBg);
       // O menu e uma lista longa e preguicosa: rolar ate o item aparecer.
-      await revealInMenu(t, find.byKey(const ValueKey('sg-menu-row-SgInputText')));
+      await revealInMenu(
+        t,
+        find.byKey(const ValueKey('sg-menu-row-SgInputText')),
+      );
       await t.tap(find.byKey(const ValueKey('sg-menu-row-SgInputText')));
       await settle(t);
       expect(find.text('Exemplo 1 — Básico'), findsOneWidget);

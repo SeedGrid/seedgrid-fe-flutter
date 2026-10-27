@@ -330,12 +330,17 @@ const oracle = data.clock.map((c) => {
 });
 fs.writeFileSync(path.join(rawDir, "oracle.json"), JSON.stringify({ gerador: "clock_vectors/generate.mjs", casos: oracle }, null, 0) + "\n");
 
-// Periodo do dia (12h) por locale e hora UTC, como o Intl devolve: vira tabela em Dart (nao ha Intl completo no Dart).
+// Periodo do dia (12h) por locale e hora UTC, como o SgClock.tsx o obtem (formatToParts + fallback AM/PM): vira tabela em
+// Dart (nao ha Intl completo no Dart). Mesmos 33 locales do calendario.
+const DP_LOCALES = ["pt-BR", "pt-PT", "pt", "en-US", "en", "es", "fr", "de-DE", "de", "en-GB", "en-AU", "en-CA", "es-MX", "es-AR", "fr-CA", "de-AT", "de-CH", "it", "nl", "ja", "zh", "ko", "ru", "pl", "sv", "tr", "da", "nb", "fi", "cs", "hu", "uk", "el"];
 const dayPeriods = {};
-for (const c of oracle) {
-  if (!c.props.__sweep) continue;
-  const hour = Number(c.props.initialServerTime.slice(11, 13));
-  (dayPeriods[c.props.locale] ??= Array(24).fill(null))[hour] = c.periodo;
+for (const loc of DP_LOCALES) {
+  dayPeriods[loc] = Array.from({ length: 24 }, (_, hour) => {
+    const d = new Date(Date.UTC(2026, 5, 15, hour, 34, 56));
+    const parts = new Intl.DateTimeFormat(loc, { timeZone: "UTC", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: true }).formatToParts(d);
+    const dp = parts.find((p) => p.type === "dayPeriod")?.value;
+    return dp || (hour >= 12 ? "PM" : "AM");
+  });
 }
 const dpDart = `// dart format off
 // GERADO por test/widgets/clock_vectors/generate.mjs (Intl do Node, ICU ${process.versions.icu}). NAO EDITE A MAO.

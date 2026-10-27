@@ -113,10 +113,10 @@ class SgClockThemePreviewPage extends StatelessWidget {
             .toList(),
         builder: (context, v) => SgClockThemePreview(
           theme: sgClockThemesBuiltIn[1],
-          size: num.tryParse((v['size'] as String?) ?? '') ?? 64,
+          size: (v['size'] as num?) ?? 64,
         ),
         codeBuilder: (v) =>
-            'SgClockThemePreview(\n  theme: sgClockThemesBuiltIn[1],\n  size: ${num.tryParse((v['size'] as String?) ?? '') ?? 64},\n)',
+            'SgClockThemePreview(\n  theme: sgClockThemesBuiltIn[1],\n  size: ${(v['size'] as num?) ?? 64},\n)',
       ),
     );
   }
