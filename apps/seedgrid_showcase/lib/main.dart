@@ -149,27 +149,27 @@ class _ShowcaseHomeState extends State<ShowcaseHome> {
       },
     );
     return Scaffold(
-      appBar: wide
-          ? null
-          : AppBar(
-              title: Text(entry?.name ?? context.tr('home')),
-              actions: [
-                IconButton(
-                  key: const ValueKey('abrir-tema'),
-                  tooltip: context.tr('theme'),
-                  icon: const Icon(Icons.palette_outlined),
-                  onPressed: () => showModalBottomSheet<void>(
-                    context: context,
-                    isScrollControlled: true,
-                    showDragHandle: true,
-                    builder: (_) => const SafeArea(
-                      child: SingleChildScrollView(child: ShowcaseThemePanel()),
-                    ),
-                  ),
-                ),
-                toggle,
-              ],
+      // Barra no topo em qualquer largura: respiro no alto e os botoes de tema e claro/escuro sempre a vista
+      // (na tela larga eles ficavam no pe do menu lateral, fora da tela em janelas baixas).
+      appBar: AppBar(
+        title: Text(entry?.name ?? context.tr('home')),
+        actions: [
+          IconButton(
+            key: const ValueKey('abrir-tema'),
+            tooltip: context.tr('theme'),
+            icon: const Icon(Icons.palette_outlined),
+            onPressed: () => showModalBottomSheet<void>(
+              context: context,
+              isScrollControlled: true,
+              showDragHandle: true,
+              builder: (_) => const SafeArea(
+                child: SingleChildScrollView(child: ShowcaseThemePanel()),
+              ),
             ),
+          ),
+          toggle,
+        ],
+      ),
       drawer: wide ? null : Drawer(child: SafeArea(child: menu)),
       body: Stack(
         fit: StackFit.expand,
@@ -178,15 +178,7 @@ class _ShowcaseHomeState extends State<ShowcaseHome> {
             child: wide
                 ? Row(
                     children: [
-                      SizedBox(
-                        width: 260,
-                        child: Column(
-                          children: [
-                            Expanded(child: menu),
-                            toggle,
-                          ],
-                        ),
-                      ),
+                      SizedBox(width: 260, child: menu),
                       const VerticalDivider(width: 1),
                       Expanded(child: content),
                     ],

@@ -76,6 +76,9 @@ export 'datatable_types.dart';
 /// Acima desta quantidade de linhas, com altura limitada pelo pai, o corpo e virtualizado.
 const int kDatatableVirtualizeThreshold = 100;
 
+/// 2^40 como literal: `1 << 40` vira 0 no JavaScript (web) e `clamp(1, 0)` lanca `Invalid argument: 1`.
+const int _kMaxRecords = 1099511627776;
+
 /// Largura minima padrao de uma coluna sem `width`/`minWidth`.
 const double kDatatableDefaultMinColumnWidth = 96;
 
@@ -886,9 +889,9 @@ class _SgDatatableState extends State<SgDatatable> {
     final total = lazy
         ? (widget.totalRecords == null
               ? widget.value.length
-              : widget.totalRecords!.toInt().clamp(0, 1 << 40))
+              : widget.totalRecords!.toInt().clamp(0, _kMaxRecords))
         : _sortedRows.length;
-    final pageCount = _ceilDiv(total < 1 ? 1 : total, rows).clamp(1, 1 << 40);
+    final pageCount = _ceilDiv(total < 1 ? 1 : total, rows).clamp(1, _kMaxRecords);
     final maxFirst = (pageCount - 1) * rows;
     final currentFirst = _currentFirst;
     final safeFirst = currentFirst < maxFirst ? currentFirst : maxFirst;
