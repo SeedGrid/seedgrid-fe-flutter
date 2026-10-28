@@ -8,7 +8,7 @@ import path from "node:path";
 const root = path.resolve(".");
 const app = path.join(root, "apps", "seedgrid_showcase", "lib");
 const check = process.argv.includes("--check");
-const DEMO = "https://seedgrid.github.io/seedgrid-fe-flutter";
+const DEMO = "https://components-flutter.seedgrid.com.br";
 
 const slug = (n) =>
   n
@@ -60,7 +60,9 @@ for (const [id, titulo, sub] of categorias) {
 out = out.replace(/\n+$/, "\n");
 
 const file = path.join(root, "README.md");
-const text = fs.readFileSync(file, "utf8");
+const raw = fs.readFileSync(file, "utf8");
+const eol = raw.includes("\r\n") ? "\r\n" : "\n"; // preserva o fim de linha do README (Windows ou Unix)
+const text = raw.replace(/\r\n/g, "\n");
 const re = /(<!-- componentes:inicio -->\n)[\s\S]*?(<!-- componentes:fim -->)/;
 if (!re.test(text)) throw new Error("README.md sem os marcadores <!-- componentes:inicio --> / <!-- componentes:fim -->");
 const next = text.replace(re, (_, a, b) => `${a}\n${out}\n${b}`);
@@ -70,6 +72,6 @@ if (next === text) {
   console.error("README desatualizado: rode node tools/readme/generate.mjs");
   process.exit(1);
 } else {
-  fs.writeFileSync(file, next);
+  fs.writeFileSync(file, next.replace(/\n/g, eol));
   console.log(`README atualizado (${catalog.length} itens)`);
 }

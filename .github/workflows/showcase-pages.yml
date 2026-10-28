@@ -1,6 +1,7 @@
 # Compila o showcase (apps/seedgrid_showcase) para a web e publica no GitHub Pages:
-# https://seedgrid.github.io/seedgrid-fe-flutter/
-# Requer: Settings > Pages > Source = "GitHub Actions".
+# https://components-flutter.seedgrid.com.br/
+# Dominio proprio (CNAME components-flutter.seedgrid.com.br -> seedgrid.github.io), por isso o app fica na raiz (base-href /).
+# Requer: Settings > Pages > Source = "GitHub Actions" e o dominio em Settings > Pages > Custom domain.
 name: Showcase (GitHub Pages)
 
 on:
@@ -33,13 +34,14 @@ jobs:
 
       - name: Build web
         working-directory: apps/seedgrid_showcase
-        run: flutter build web --release --base-href /seedgrid-fe-flutter/
+        run: flutter build web --release --base-href /
 
       # O Pages nao tem fallback de SPA: um 404.html igual ao index.html faz /sg-button abrir direto.
-      - name: Fallback de SPA e .nojekyll
+      - name: Fallback de SPA, CNAME e .nojekyll
         working-directory: apps/seedgrid_showcase/build/web
         run: |
           cp index.html 404.html
+          echo components-flutter.seedgrid.com.br > CNAME
           touch .nojekyll
 
       - uses: actions/upload-pages-artifact@v3

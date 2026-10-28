@@ -11,7 +11,7 @@ Mesmos nomes de widget, mesmas props, mesmos valores: quem já usa o SeedGrid em
 [![Idiomas](https://img.shields.io/badge/idiomas-pt--BR%20%C2%B7%20pt--PT%20%C2%B7%20en--US%20%C2%B7%20es%20%C2%B7%20fr-8957e5)](#-idiomas)
 [![Licença](https://img.shields.io/badge/licen%C3%A7a-MIT-blue)](LICENSE)
 
-### [▶ Ver o showcase ao vivo](https://seedgrid.github.io/seedgrid-fe-flutter/)
+### [▶ Ver o showcase ao vivo](https://components-flutter.seedgrid.com.br/)
 
 [Instalação](#-instalação) · [Primeiros passos](#-primeiros-passos) · [Componentes](#-componentes) · [Showcase](#-showcase) · [Contribuindo](#-contribuindo)
 
@@ -137,10 +137,10 @@ Cada nome abaixo leva à página do componente no showcase ao vivo. O estado de 
 
 | Componente | O que faz |
 |---|---|
-| [`SgButton`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-button) | Botão de ação com severidade, aparência, forma, loading e ícones, para ações principais e secundárias. |
-| [`SgFloatActionButton`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-float-action-button) | Botão de ação flutuante para a tarefa de maior destaque, com hint, posição, arrastar e speed-dial de ações secundárias. |
-| [`SgSplitButton`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-split-button) | Botão de ação com um caminho principal e um menu acoplado de variações da mesma tarefa. |
-| [`SgToolbarIconButton`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-toolbar-icon-button) | Botão de ícone para barras de ferramentas, com rótulo, dica, severidade, estado de carregamento e orientação herdada do SgToolBar. |
+| [`SgButton`](https://components-flutter.seedgrid.com.br/sg-button) | Botão de ação com severidade, aparência, forma, loading e ícones, para ações principais e secundárias. |
+| [`SgFloatActionButton`](https://components-flutter.seedgrid.com.br/sg-float-action-button) | Botão de ação flutuante para a tarefa de maior destaque, com hint, posição, arrastar e speed-dial de ações secundárias. |
+| [`SgSplitButton`](https://components-flutter.seedgrid.com.br/sg-split-button) | Botão de ação com um caminho principal e um menu acoplado de variações da mesma tarefa. |
+| [`SgToolbarIconButton`](https://components-flutter.seedgrid.com.br/sg-toolbar-icon-button) | Botão de ícone para barras de ferramentas, com rótulo, dica, severidade, estado de carregamento e orientação herdada do SgToolBar. |
 
 </details>
 
@@ -149,36 +149,36 @@ Cada nome abaixo leva à página do componente no showcase ao vivo. O estado de 
 
 | Componente | O que faz |
 |---|---|
-| [`SgAutocomplete`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-autocomplete) | Campo de texto com sugestões vindas de uma fonte (lista ou assíncrona), com busca com atraso, cache, grupos e valor livre. |
-| [`SgCheckboxGroup`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-checkbox-group) | Grupo de caixas de seleção múltipla com título, orientação, estilo highlight, "selecionar todos" e ligação a formulário. |
-| [`SgCombobox`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-combobox) | Seleção de um item de uma lista (local ou assíncrona), com escolha por id e busca por tecla digitada. |
-| [`SgInputBirthDate`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-input-birth-date) | Data de nascimento: SgInputDate com limites derivados de minAge/maxAge e validação de idade ao sair do campo. |
-| [`SgInputCNPJ`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-input-cnpj) | Campo de CNPJ (numérico e alfanumérico) com máscara 00.000.000/0000-00, validação dos dígitos e consulta opcional na base pública. |
-| [`SgInputCPF`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-input-cpf) | Campo de CPF com máscara 000.000.000-00 e validação dos dígitos verificadores. |
-| [`SgInputCPFCNPJ`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-input-cpfcnpj) | Campo único que aceita CPF ou CNPJ e decide pela quantidade de caracteres. |
-| [`SgInputCurrency`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-input-currency) | Campo de moeda com símbolo, posição e separadores do idioma (Intl), casas da moeda, limites e ligação a formulário. |
-| [`SgInputDate`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-input-date) | Campo de data com máscara do idioma e calendário próprio. |
-| [`SgInputEmail`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-input-email) | Campo de e-mail com validação de formato, bloqueio de e-mails descartáveis e ligação a formulário. |
-| [`SgInputNumber`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-input-number) | Campo numérico com formatação por idioma, casas decimais, sinal, limites e ligação a formulário (SgForm). |
-| [`SgInputOTP`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-input-otp) | Campo de código de uso único com vários campos: máscara, colar o código inteiro,  |
-| [`SgInputPassword`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-input-password) | Campo de senha com política configurável, barra de força, lista de senhas comuns, mostrar/ocultar e gerador de senha forte. |
-| [`SgInputPhone`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-input-phone) | Telefone brasileiro (10 ou 11 dígitos) com máscara (00) 00000-0000. |
-| [`SgInputPostalCode`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-input-postal-code) | Código postal por país (BR, PT, US, ES, UY, AR, PY) com máscara e consulta opcional ao ViaCEP. |
-| [`SgInputText`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-input-text) | Campo de texto com rótulo, afixos, validação e ligação a formulário (SgForm). |
-| [`SgInputTextArea`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-input-text-area) | Área de texto com rótulo, limites de caracteres, palavras e linhas, contador e ligação a formulário. |
-| [`SgInputTextSearch`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-input-text-search) | Campo de busca com debounce, mínimo de caracteres e busca distinta, baseado no SgInputText. |
-| [`SgMultiSelect`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-multi-select) | Campo de seleção múltipla: o resumo dos itens marcados aparece no campo e a lista (com busca opcional) abre ancorada ou, em tela estreita, como… |
-| [`SgMultiSelectChips`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-multi-select-chips) | Seleção múltipla com os valores marcados como chips removíveis dentro do campo; a lista abre ancorada ou, em tela estreita, como bottom sheet. |
-| [`SgOrderList`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-order-list) | Lista ordenável para reordenar itens manualmente, com seleção, botões de mover, teclado e arrastar. |
-| [`SgPeriodSelector`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-period-selector) | Seletor de períodos prontos (hoje, esta semana, mês passado...) ou de um intervalo personalizado; entrega as datas já resolvidas. |
-| [`SgPickList`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-pick-list) | Lista dupla para mover itens entre origem e destino, com filtros, seleção, botões de mover e ordenar, e arrastar. |
-| [`SgRadioGroup`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-radio-group) | Grupo de escolha única com título, orientação, estilo highlight, navegação por setas e ligação a formulário. |
-| [`SgRating`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-rating) | Avaliação por estrelas com meia estrela, cancelar, tooltip, cores, ícones próprios e ligação a formulário. |
-| [`SgSlider`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-slider) | Controle deslizante numérico com faixa, passo, largura e ligação a formulário. |
-| [`SgStepperInput`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-stepper-input) | Campo numérico com botões de aumentar e diminuir, passo configurável e limites. |
-| [`SgTextEditor`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-text-editor) | Editor de texto rico (negrito, listas, cores, alinhamento, link e imagem) que entrega e recebe HTML. |
-| [`SgToggleSwitch`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-toggle-switch) | Chave liga/desliga com rótulo, descrição, ícones, validação e ligação a formulário. |
-| [`SgYearPartSelector`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-year-part-selector) | Seletor de recorte de ano: o usuário escolhe ano, recorte (semestre, trimestre ou bimestre) e fatia, e recebe o intervalo de datas resolvido. |
+| [`SgAutocomplete`](https://components-flutter.seedgrid.com.br/sg-autocomplete) | Campo de texto com sugestões vindas de uma fonte (lista ou assíncrona), com busca com atraso, cache, grupos e valor livre. |
+| [`SgCheckboxGroup`](https://components-flutter.seedgrid.com.br/sg-checkbox-group) | Grupo de caixas de seleção múltipla com título, orientação, estilo highlight, "selecionar todos" e ligação a formulário. |
+| [`SgCombobox`](https://components-flutter.seedgrid.com.br/sg-combobox) | Seleção de um item de uma lista (local ou assíncrona), com escolha por id e busca por tecla digitada. |
+| [`SgInputBirthDate`](https://components-flutter.seedgrid.com.br/sg-input-birth-date) | Data de nascimento: SgInputDate com limites derivados de minAge/maxAge e validação de idade ao sair do campo. |
+| [`SgInputCNPJ`](https://components-flutter.seedgrid.com.br/sg-input-cnpj) | Campo de CNPJ (numérico e alfanumérico) com máscara 00.000.000/0000-00, validação dos dígitos e consulta opcional na base pública. |
+| [`SgInputCPF`](https://components-flutter.seedgrid.com.br/sg-input-cpf) | Campo de CPF com máscara 000.000.000-00 e validação dos dígitos verificadores. |
+| [`SgInputCPFCNPJ`](https://components-flutter.seedgrid.com.br/sg-input-cpfcnpj) | Campo único que aceita CPF ou CNPJ e decide pela quantidade de caracteres. |
+| [`SgInputCurrency`](https://components-flutter.seedgrid.com.br/sg-input-currency) | Campo de moeda com símbolo, posição e separadores do idioma (Intl), casas da moeda, limites e ligação a formulário. |
+| [`SgInputDate`](https://components-flutter.seedgrid.com.br/sg-input-date) | Campo de data com máscara do idioma e calendário próprio. |
+| [`SgInputEmail`](https://components-flutter.seedgrid.com.br/sg-input-email) | Campo de e-mail com validação de formato, bloqueio de e-mails descartáveis e ligação a formulário. |
+| [`SgInputNumber`](https://components-flutter.seedgrid.com.br/sg-input-number) | Campo numérico com formatação por idioma, casas decimais, sinal, limites e ligação a formulário (SgForm). |
+| [`SgInputOTP`](https://components-flutter.seedgrid.com.br/sg-input-otp) | Campo de código de uso único com vários campos: máscara, colar o código inteiro,  |
+| [`SgInputPassword`](https://components-flutter.seedgrid.com.br/sg-input-password) | Campo de senha com política configurável, barra de força, lista de senhas comuns, mostrar/ocultar e gerador de senha forte. |
+| [`SgInputPhone`](https://components-flutter.seedgrid.com.br/sg-input-phone) | Telefone brasileiro (10 ou 11 dígitos) com máscara (00) 00000-0000. |
+| [`SgInputPostalCode`](https://components-flutter.seedgrid.com.br/sg-input-postal-code) | Código postal por país (BR, PT, US, ES, UY, AR, PY) com máscara e consulta opcional ao ViaCEP. |
+| [`SgInputText`](https://components-flutter.seedgrid.com.br/sg-input-text) | Campo de texto com rótulo, afixos, validação e ligação a formulário (SgForm). |
+| [`SgInputTextArea`](https://components-flutter.seedgrid.com.br/sg-input-text-area) | Área de texto com rótulo, limites de caracteres, palavras e linhas, contador e ligação a formulário. |
+| [`SgInputTextSearch`](https://components-flutter.seedgrid.com.br/sg-input-text-search) | Campo de busca com debounce, mínimo de caracteres e busca distinta, baseado no SgInputText. |
+| [`SgMultiSelect`](https://components-flutter.seedgrid.com.br/sg-multi-select) | Campo de seleção múltipla: o resumo dos itens marcados aparece no campo e a lista (com busca opcional) abre ancorada ou, em tela estreita, como… |
+| [`SgMultiSelectChips`](https://components-flutter.seedgrid.com.br/sg-multi-select-chips) | Seleção múltipla com os valores marcados como chips removíveis dentro do campo; a lista abre ancorada ou, em tela estreita, como bottom sheet. |
+| [`SgOrderList`](https://components-flutter.seedgrid.com.br/sg-order-list) | Lista ordenável para reordenar itens manualmente, com seleção, botões de mover, teclado e arrastar. |
+| [`SgPeriodSelector`](https://components-flutter.seedgrid.com.br/sg-period-selector) | Seletor de períodos prontos (hoje, esta semana, mês passado...) ou de um intervalo personalizado; entrega as datas já resolvidas. |
+| [`SgPickList`](https://components-flutter.seedgrid.com.br/sg-pick-list) | Lista dupla para mover itens entre origem e destino, com filtros, seleção, botões de mover e ordenar, e arrastar. |
+| [`SgRadioGroup`](https://components-flutter.seedgrid.com.br/sg-radio-group) | Grupo de escolha única com título, orientação, estilo highlight, navegação por setas e ligação a formulário. |
+| [`SgRating`](https://components-flutter.seedgrid.com.br/sg-rating) | Avaliação por estrelas com meia estrela, cancelar, tooltip, cores, ícones próprios e ligação a formulário. |
+| [`SgSlider`](https://components-flutter.seedgrid.com.br/sg-slider) | Controle deslizante numérico com faixa, passo, largura e ligação a formulário. |
+| [`SgStepperInput`](https://components-flutter.seedgrid.com.br/sg-stepper-input) | Campo numérico com botões de aumentar e diminuir, passo configurável e limites. |
+| [`SgTextEditor`](https://components-flutter.seedgrid.com.br/sg-text-editor) | Editor de texto rico (negrito, listas, cores, alinhamento, link e imagem) que entrega e recebe HTML. |
+| [`SgToggleSwitch`](https://components-flutter.seedgrid.com.br/sg-toggle-switch) | Chave liga/desliga com rótulo, descrição, ícones, validação e ligação a formulário. |
+| [`SgYearPartSelector`](https://components-flutter.seedgrid.com.br/sg-year-part-selector) | Seletor de recorte de ano: o usuário escolhe ano, recorte (semestre, trimestre ou bimestre) e fatia, e recebe o intervalo de datas resolvido. |
 
 </details>
 
@@ -187,7 +187,7 @@ Cada nome abaixo leva à página do componente no showcase ao vivo. O estado de 
 
 | Componente | O que faz |
 |---|---|
-| [`SgDatatable`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-datatable) | Tabela de dados com colunas configuráveis, paginação, ordenação, filtros, seleção, carga sob demanda e layout de colunas persistente. |
+| [`SgDatatable`](https://components-flutter.seedgrid.com.br/sg-datatable) | Tabela de dados com colunas configuráveis, paginação, ordenação, filtros, seleção, carga sob demanda e layout de colunas persistente. |
 
 </details>
 
@@ -196,18 +196,18 @@ Cada nome abaixo leva à página do componente no showcase ao vivo. O estado de 
 
 | Componente | O que faz |
 |---|---|
-| [`SgAccordion`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-accordion) | Lista de painéis que abrem e fecham, na vertical ou na horizontal, em modo controlado ou não. |
-| [`SgCard`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-card) | Cartão com cabeçalho, corpo e rodapé; pode ser clicável, recolhível ou arrastável. |
-| [`SgCarousel`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-carousel) | Carrossel de itens com setas, indicadores, reprodução automática, vários itens visíveis e orientação vertical. |
-| [`SgDockLayout`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-dock-layout) | Contexto das toolbars encaixáveis: guarda a zona, a ordem e o recolhimento de cada toolbar e coordena a prévia de soltura entre zonas. |
-| [`SgDockScreen`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-dock-screen) | Tela completa com um SgDockLayout interno e a grade padrão de zonas (topo, base, esquerda, direita e centro livre). |
-| [`SgDockZone`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-dock-zone) | Área onde as toolbars se encaixam (top, bottom, left, right ou free). |
-| [`SgExpandablePanel`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-expandable-panel) | Painel que expande para um lado, empurrando o conteúdo (inline) ou sobre a tela (overlay). |
-| [`SgGrid`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-grid) | Grade de colunas 1fr com colunas por breakpoint, largura mínima automática, span e rowSpan. |
-| [`SgGroupBox`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-group-box) | Caixa com legenda sobre a borda para agrupar campos relacionados. |
-| [`SgPanel`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-panel) | Painel com borda, docking por align, organização do conteúdo e rolagem. |
-| [`SgScreen`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-screen) | Área raiz de uma tela: ocupa a janela por padrão e organiza o conteúdo por docking. |
-| [`SgStack`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-stack) | Pilha flex em linha ou coluna, com gap, justify, align, wrap e grow. |
+| [`SgAccordion`](https://components-flutter.seedgrid.com.br/sg-accordion) | Lista de painéis que abrem e fecham, na vertical ou na horizontal, em modo controlado ou não. |
+| [`SgCard`](https://components-flutter.seedgrid.com.br/sg-card) | Cartão com cabeçalho, corpo e rodapé; pode ser clicável, recolhível ou arrastável. |
+| [`SgCarousel`](https://components-flutter.seedgrid.com.br/sg-carousel) | Carrossel de itens com setas, indicadores, reprodução automática, vários itens visíveis e orientação vertical. |
+| [`SgDockLayout`](https://components-flutter.seedgrid.com.br/sg-dock-layout) | Contexto das toolbars encaixáveis: guarda a zona, a ordem e o recolhimento de cada toolbar e coordena a prévia de soltura entre zonas. |
+| [`SgDockScreen`](https://components-flutter.seedgrid.com.br/sg-dock-screen) | Tela completa com um SgDockLayout interno e a grade padrão de zonas (topo, base, esquerda, direita e centro livre). |
+| [`SgDockZone`](https://components-flutter.seedgrid.com.br/sg-dock-zone) | Área onde as toolbars se encaixam (top, bottom, left, right ou free). |
+| [`SgExpandablePanel`](https://components-flutter.seedgrid.com.br/sg-expandable-panel) | Painel que expande para um lado, empurrando o conteúdo (inline) ou sobre a tela (overlay). |
+| [`SgGrid`](https://components-flutter.seedgrid.com.br/sg-grid) | Grade de colunas 1fr com colunas por breakpoint, largura mínima automática, span e rowSpan. |
+| [`SgGroupBox`](https://components-flutter.seedgrid.com.br/sg-group-box) | Caixa com legenda sobre a borda para agrupar campos relacionados. |
+| [`SgPanel`](https://components-flutter.seedgrid.com.br/sg-panel) | Painel com borda, docking por align, organização do conteúdo e rolagem. |
+| [`SgScreen`](https://components-flutter.seedgrid.com.br/sg-screen) | Área raiz de uma tela: ocupa a janela por padrão e organiza o conteúdo por docking. |
+| [`SgStack`](https://components-flutter.seedgrid.com.br/sg-stack) | Pilha flex em linha ou coluna, com gap, justify, align, wrap e grow. |
 
 </details>
 
@@ -216,15 +216,15 @@ Cada nome abaixo leva à página do componente no showcase ao vivo. O estado de 
 
 | Componente | O que faz |
 |---|---|
-| [`SgBreadcrumb`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-breadcrumb) | Trilha de navegação com separador, ícone de início, colapso dos itens do meio e variantes. |
-| [`SgDockMenu`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-dock-menu) | Menu de ações no estilo dock: zoom por proximidade do mouse, badges, rótulos, oito posições ancoradas e arraste com posição persistida. |
-| [`SgMenu`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-menu) | Menu de navegação em árvore com variantes painel, tiered e mega, recolher, busca, usuário, gaveta e teclado. |
-| [`SgPageControl`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-page-control) | Abas com painéis: estilo sublinhado ou pílulas, controlado ou não, com navegação por teclado e modo seleção no celular. |
+| [`SgBreadcrumb`](https://components-flutter.seedgrid.com.br/sg-breadcrumb) | Trilha de navegação com separador, ícone de início, colapso dos itens do meio e variantes. |
+| [`SgDockMenu`](https://components-flutter.seedgrid.com.br/sg-dock-menu) | Menu de ações no estilo dock: zoom por proximidade do mouse, badges, rótulos, oito posições ancoradas e arraste com posição persistida. |
+| [`SgMenu`](https://components-flutter.seedgrid.com.br/sg-menu) | Menu de navegação em árvore com variantes painel, tiered e mega, recolher, busca, usuário, gaveta e teclado. |
+| [`SgPageControl`](https://components-flutter.seedgrid.com.br/sg-page-control) | Abas com painéis: estilo sublinhado ou pílulas, controlado ou não, com navegação por teclado e modo seleção no celular. |
 | `SgPageControlPage` |  |
-| [`SgToolBar`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-tool-bar) | Barra de ferramentas com título, recolher, orientação, botões por linha, arraste livre ou no dock e overflow em menu. |
-| [`SgTreeView`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-tree-view) | Árvore com expansão, seleção (checkbox, modo confirmar), busca, colunas extras (trilhas) e lista virtualizada para muitos nós. |
-| [`SgWizard`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-wizard) | Assistente em etapas com stepper numerado ou de ícones, navegação por etapas, guardas assíncronas e validação por etapa no formulário. |
-| [`SgWizardPage`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-wizard-page) | Uma etapa do SgWizard: título e ícone do stepper e o conteúdo da etapa. |
+| [`SgToolBar`](https://components-flutter.seedgrid.com.br/sg-tool-bar) | Barra de ferramentas com título, recolher, orientação, botões por linha, arraste livre ou no dock e overflow em menu. |
+| [`SgTreeView`](https://components-flutter.seedgrid.com.br/sg-tree-view) | Árvore com expansão, seleção (checkbox, modo confirmar), busca, colunas extras (trilhas) e lista virtualizada para muitos nós. |
+| [`SgWizard`](https://components-flutter.seedgrid.com.br/sg-wizard) | Assistente em etapas com stepper numerado ou de ícones, navegação por etapas, guardas assíncronas e validação por etapa no formulário. |
+| [`SgWizardPage`](https://components-flutter.seedgrid.com.br/sg-wizard-page) | Uma etapa do SgWizard: título e ícone do stepper e o conteúdo da etapa. |
 
 </details>
 
@@ -233,18 +233,18 @@ Cada nome abaixo leva à página do componente no showcase ao vivo. O estado de 
 
 | Componente | O que faz |
 |---|---|
-| [`SgAvatar`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-avatar) | Avatar com imagem, iniciais, ícone ou conteúdo próprio; severidades, tamanhos, formas e estado de erro da imagem. |
-| [`SgAvatarGroup`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-avatar-group) | Agrupa avatares sobrepostos, com limite de exibição e contador do excesso. |
-| [`SgBadge`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-badge) | Selo compacto para status, contagens e rótulos curtos, com estilos, tamanhos, ícones e remoção. |
-| [`SgBadgeOverlay`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-badge-overlay) | Posiciona um selo (SgBadge) sobre um canto ou borda de outro widget. |
-| [`SgConfirmationDialog`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-confirmation-dialog) | Diálogo de confirmação com mensagem, ícone de severidade e botões cancelar e confirmar. |
-| [`SgDialog`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-dialog) | Diálogo modal com título, corpo e rodapé, foco preso, fechamento por Esc e fundo, severidade, animação e fechamento automático. |
-| [`SgPopup`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-popup) | Painel flutuante ancorado em um widget, com título, conteúdo e ações; posiciona sozinho dentro da tela. |
-| [`SgSkeleton`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-skeleton) | Marcador de carregamento com formas, dimensões flexíveis e animações wave, pulse ou nenhuma. |
-| [`SgToaster`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-toaster) | Renderiza os toasts da API imperativa (toast) em um canto da tela, com cores por tipo, ação, botão de fechar e tempo de vida. |
-| [`SgToastHost`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-toast-host) | Marca onde os toasts aparecem. |
-| [`SgWhistleHost`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-whistle-host) | Marca onde os whistles aparecem. |
-| [`SgWhistler`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-whistler) | Pilha de avisos persistentes ou semi-persistentes, com cores por severidade, ação opcional e máximo visível. |
+| [`SgAvatar`](https://components-flutter.seedgrid.com.br/sg-avatar) | Avatar com imagem, iniciais, ícone ou conteúdo próprio; severidades, tamanhos, formas e estado de erro da imagem. |
+| [`SgAvatarGroup`](https://components-flutter.seedgrid.com.br/sg-avatar-group) | Agrupa avatares sobrepostos, com limite de exibição e contador do excesso. |
+| [`SgBadge`](https://components-flutter.seedgrid.com.br/sg-badge) | Selo compacto para status, contagens e rótulos curtos, com estilos, tamanhos, ícones e remoção. |
+| [`SgBadgeOverlay`](https://components-flutter.seedgrid.com.br/sg-badge-overlay) | Posiciona um selo (SgBadge) sobre um canto ou borda de outro widget. |
+| [`SgConfirmationDialog`](https://components-flutter.seedgrid.com.br/sg-confirmation-dialog) | Diálogo de confirmação com mensagem, ícone de severidade e botões cancelar e confirmar. |
+| [`SgDialog`](https://components-flutter.seedgrid.com.br/sg-dialog) | Diálogo modal com título, corpo e rodapé, foco preso, fechamento por Esc e fundo, severidade, animação e fechamento automático. |
+| [`SgPopup`](https://components-flutter.seedgrid.com.br/sg-popup) | Painel flutuante ancorado em um widget, com título, conteúdo e ações; posiciona sozinho dentro da tela. |
+| [`SgSkeleton`](https://components-flutter.seedgrid.com.br/sg-skeleton) | Marcador de carregamento com formas, dimensões flexíveis e animações wave, pulse ou nenhuma. |
+| [`SgToaster`](https://components-flutter.seedgrid.com.br/sg-toaster) | Renderiza os toasts da API imperativa (toast) em um canto da tela, com cores por tipo, ação, botão de fechar e tempo de vida. |
+| [`SgToastHost`](https://components-flutter.seedgrid.com.br/sg-toast-host) | Marca onde os toasts aparecem. |
+| [`SgWhistleHost`](https://components-flutter.seedgrid.com.br/sg-whistle-host) | Marca onde os whistles aparecem. |
+| [`SgWhistler`](https://components-flutter.seedgrid.com.br/sg-whistler) | Pilha de avisos persistentes ou semi-persistentes, com cores por severidade, ação opcional e máximo visível. |
 
 </details>
 
@@ -253,22 +253,22 @@ Cada nome abaixo leva à página do componente no showcase ao vivo. O estado de 
 
 | Componente | O que faz |
 |---|---|
-| [`SgCalendar`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-calendar) | Calendário mensal em formato de gadget, com locale, vários meses, limites, dias bloqueados e cartão configurável. |
-| [`SgClock`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-clock) | Relógio analógico ou digital, com fuso, 12/24 horas, temas embutidos e cartão recolhível. |
-| [`SgClockThemePicker`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-clock-theme-picker) | Seletor de tema de relógio: botão com a miniatura atual e um painel com busca e a lista de temas. |
-| [`SgClockThemePreview`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-clock-theme-preview) | Miniatura de um tema de relógio, usada no seletor de temas e para escolher entre os temas embutidos. |
-| [`SgDiscardDigit`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-discard-digit) | Pilha de folhas de papel: a de cima é descartada (ou uma nova sobe por baixo) quando o valor muda. |
-| [`SgFadeDigit`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-fade-digit) | Cartão que apaga o dígito atual e acende o novo, como uma lâmpada ou display trocando de valor. |
-| [`SgFlipDigit`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-flip-digit) | Cartão que vira como num relógio de aeroporto: um caractere, animado por uma carta com perspectiva 3D. |
-| [`SgLinearGauge`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-linear-gauge) | Medidor linear horizontal ou vertical com barra, faixas, ponteiros extras e arraste. |
-| [`SgMatrixDigit`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-matrix-digit) | Texto desenhado em matriz de pontos 5 x 7 com brilho, cores e medidas configuráveis. |
-| [`SgNeonDigit`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-neon-digit) | Texto com brilho neon que apaga e acende ao trocar o valor, com cores, intensidade e fonte configuráveis. |
-| [`SgQRCode`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-qr-code) | Gera QR Code a partir de um texto, com cores, margem, nível de correção de erro e logo central. |
-| [`SgRadialGauge`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-radial-gauge) | Medidor circular com agulha, marcadores, faixas, anotações e arraste, para velocímetros, mostradores e progresso. |
-| [`SgRoller3DDigit`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-roller3-d-digit) | Tambor vertical que desliza entre valores (dígitos, números com zero à esquerda, letras ou textos quaisquer). |
-| [`SgSegmentDigit`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-segment-digit) | Dígito desenhado com retângulos (estilo calculadora), com tamanho e cor configuráveis. |
-| [`SgSevenSegmentDigit`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-seven-segment-digit) | Display de sete segmentos estilo LED, com paletas, inclinação, brilho e transição entre valores. |
-| [`SgStringAnimator`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-string-animator) | Anima caractere a caractere de uma string para outra, com seis estilos de dígito (roller3d, flip, neon, fade, discard e matrix). |
+| [`SgCalendar`](https://components-flutter.seedgrid.com.br/sg-calendar) | Calendário mensal em formato de gadget, com locale, vários meses, limites, dias bloqueados e cartão configurável. |
+| [`SgClock`](https://components-flutter.seedgrid.com.br/sg-clock) | Relógio analógico ou digital, com fuso, 12/24 horas, temas embutidos e cartão recolhível. |
+| [`SgClockThemePicker`](https://components-flutter.seedgrid.com.br/sg-clock-theme-picker) | Seletor de tema de relógio: botão com a miniatura atual e um painel com busca e a lista de temas. |
+| [`SgClockThemePreview`](https://components-flutter.seedgrid.com.br/sg-clock-theme-preview) | Miniatura de um tema de relógio, usada no seletor de temas e para escolher entre os temas embutidos. |
+| [`SgDiscardDigit`](https://components-flutter.seedgrid.com.br/sg-discard-digit) | Pilha de folhas de papel: a de cima é descartada (ou uma nova sobe por baixo) quando o valor muda. |
+| [`SgFadeDigit`](https://components-flutter.seedgrid.com.br/sg-fade-digit) | Cartão que apaga o dígito atual e acende o novo, como uma lâmpada ou display trocando de valor. |
+| [`SgFlipDigit`](https://components-flutter.seedgrid.com.br/sg-flip-digit) | Cartão que vira como num relógio de aeroporto: um caractere, animado por uma carta com perspectiva 3D. |
+| [`SgLinearGauge`](https://components-flutter.seedgrid.com.br/sg-linear-gauge) | Medidor linear horizontal ou vertical com barra, faixas, ponteiros extras e arraste. |
+| [`SgMatrixDigit`](https://components-flutter.seedgrid.com.br/sg-matrix-digit) | Texto desenhado em matriz de pontos 5 x 7 com brilho, cores e medidas configuráveis. |
+| [`SgNeonDigit`](https://components-flutter.seedgrid.com.br/sg-neon-digit) | Texto com brilho neon que apaga e acende ao trocar o valor, com cores, intensidade e fonte configuráveis. |
+| [`SgQRCode`](https://components-flutter.seedgrid.com.br/sg-qr-code) | Gera QR Code a partir de um texto, com cores, margem, nível de correção de erro e logo central. |
+| [`SgRadialGauge`](https://components-flutter.seedgrid.com.br/sg-radial-gauge) | Medidor circular com agulha, marcadores, faixas, anotações e arraste, para velocímetros, mostradores e progresso. |
+| [`SgRoller3DDigit`](https://components-flutter.seedgrid.com.br/sg-roller3-d-digit) | Tambor vertical que desliza entre valores (dígitos, números com zero à esquerda, letras ou textos quaisquer). |
+| [`SgSegmentDigit`](https://components-flutter.seedgrid.com.br/sg-segment-digit) | Dígito desenhado com retângulos (estilo calculadora), com tamanho e cor configuráveis. |
+| [`SgSevenSegmentDigit`](https://components-flutter.seedgrid.com.br/sg-seven-segment-digit) | Display de sete segmentos estilo LED, com paletas, inclinação, brilho e transição entre valores. |
+| [`SgStringAnimator`](https://components-flutter.seedgrid.com.br/sg-string-animator) | Anima caractere a caractere de uma string para outra, com seis estilos de dígito (roller3d, flip, neon, fade, discard e matrix). |
 
 </details>
 
@@ -277,11 +277,11 @@ Cada nome abaixo leva à página do componente no showcase ao vivo. O estado de 
 
 | Componente | O que faz |
 |---|---|
-| [`SgClockThemeProvider`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-clock-theme-provider) | Fornece um resolvedor de temas de relógio (modo, tema de recuo e temas locais) a toda a árvore. |
+| [`SgClockThemeProvider`](https://components-flutter.seedgrid.com.br/sg-clock-theme-provider) | Fornece um resolvedor de temas de relógio (modo, tema de recuo e temas locais) a toda a árvore. |
 | `SgComponentsI18nProvider` |  |
-| [`SgEnvironmentProvider`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-environment-provider) | Ambiente com namespace, escopo e estratégia de persistência (local, API ou as duas) para os componentes SeedGrid e para o estado persistido. |
-| [`SgRealtimeProvider`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-realtime-provider) | Avisos em tempo real para o usuário logado pelo SeedGrid Pulse: pede o token ao backend, conecta, reconecta sozinho e informa o estado para a tela… |
-| [`SgTimeProvider`](https://seedgrid.github.io/seedgrid-fe-flutter/sg-time-provider) | Fornece a hora do servidor a toda a árvore e avisa a cada segundo; useSgTime lê esse contexto. |
+| [`SgEnvironmentProvider`](https://components-flutter.seedgrid.com.br/sg-environment-provider) | Ambiente com namespace, escopo e estratégia de persistência (local, API ou as duas) para os componentes SeedGrid e para o estado persistido. |
+| [`SgRealtimeProvider`](https://components-flutter.seedgrid.com.br/sg-realtime-provider) | Avisos em tempo real para o usuário logado pelo SeedGrid Pulse: pede o token ao backend, conecta, reconecta sozinho e informa o estado para a tela… |
+| [`SgTimeProvider`](https://components-flutter.seedgrid.com.br/sg-time-provider) | Fornece a hora do servidor a toda a árvore e avisa a cada segundo; useSgTime lê esse contexto. |
 
 </details>
 
@@ -290,7 +290,7 @@ Cada nome abaixo leva à página do componente no showcase ao vivo. O estado de 
 
 | Componente | O que faz |
 |---|---|
-| [`CrudClientes`](https://seedgrid.github.io/seedgrid-fe-flutter/crud-clientes) | Exemplo de CRUD completo só com componentes SeedGrid: lista com busca e tabela, tela de novo/editar com formulário, exclusão com confirmação e… |
+| [`CrudClientes`](https://components-flutter.seedgrid.com.br/crud-clientes) | Exemplo de CRUD completo só com componentes SeedGrid: lista com busca e tabela, tela de novo/editar com formulário, exclusão com confirmação e… |
 
 </details>
 
@@ -300,7 +300,7 @@ Cada nome abaixo leva à página do componente no showcase ao vivo. O estado de 
 
 O showcase é o próprio app em [`apps/seedgrid_showcase`](apps/seedgrid_showcase), publicado no GitHub Pages a cada push na `main`:
 
-**👉 https://seedgrid.github.io/seedgrid-fe-flutter/**
+**👉 https://components-flutter.seedgrid.com.br/**
 
 Cada página de componente tem:
 
@@ -381,7 +381,7 @@ As ferramentas usam Node 22 e leem o repositório React, que **não é alterado*
 5. Página de showcase: `apps/seedgrid_showcase/lib/pages/<snake>_page.dart` com `class <Comp>Page extends StatelessWidget` (construtor `const` sem argumentos) usando `SgShowcasePage`, exemplos com `// #region <id>` ... `// #endregion` e `SgPlayground`. Depois: `node tools/showcase_snippets/extract.mjs`. Os testes de âncoras, props e código 1:1 rodam sozinhos para toda página.
 6. `dart format lib test` **antes** de `extract.mjs`; `bash tools/ci.sh` verde.
 
-**Publicação do showcase.** O workflow [`.github/workflows/showcase-pages.yml`](.github/workflows/showcase-pages.yml) compila `flutter build web` com `--base-href /seedgrid-fe-flutter/` e publica no GitHub Pages. Em *Settings → Pages*, a fonte precisa estar em **GitHub Actions**. O `404.html` é uma cópia do `index.html`, para que `/sg-button` aberto direto funcione (fallback de SPA).
+**Publicação do showcase.** O workflow [`.github/workflows/showcase-pages.yml`](.github/workflows/showcase-pages.yml) compila `flutter build web` com `--base-href /` e publica no GitHub Pages, no domínio `components-flutter.seedgrid.com.br` (DNS: `CNAME` para `seedgrid.github.io`; o workflow grava o arquivo `CNAME` no build). Em *Settings → Pages*, a fonte precisa estar em **GitHub Actions** e o domínio em *Custom domain*, com *Enforce HTTPS*. O `404.html` é uma cópia do `index.html`, para que `/sg-button` aberto direto funcione (fallback de SPA).
 
 ## 📄 Licença
 
