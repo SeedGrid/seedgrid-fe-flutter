@@ -10,7 +10,9 @@ dependencies:
   flutter:
     sdk: flutter
   seedgrid_theme:
+    path: ../seedgrid_theme
   seedgrid_commons:
+    path: ../seedgrid_commons
   intl: ^0.20.0
   shared_preferences: ^2.3.0
   flutter_quill: ^11.5.0
