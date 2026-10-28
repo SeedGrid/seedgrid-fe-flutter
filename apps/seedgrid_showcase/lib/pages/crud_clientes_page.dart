@@ -55,7 +55,7 @@ const List<SgDatatableRow> _amostra = [
   },
 ];
 
-// #region crud-clientes-completo
+// #region crud-clientes
 class ClientesCrud extends StatefulWidget {
   const ClientesCrud({super.key});
 
@@ -144,9 +144,7 @@ class _ClientesCrudState extends State<ClientesCrud> {
     );
   }
 }
-// #endregion
 
-// #region crud-clientes-lista
 class ClientesLista extends StatefulWidget {
   const ClientesLista({
     super.key,
@@ -317,9 +315,7 @@ class _ClientesListaState extends State<ClientesLista> {
     );
   }
 }
-// #endregion
 
-// #region crud-clientes-form
 class ClienteForm extends StatefulWidget {
   const ClienteForm({
     super.key,
@@ -448,59 +444,15 @@ class CrudClientesPage extends StatefulWidget {
 }
 
 class _CrudClientesPageState extends State<CrudClientesPage> {
-  final List<SgDatatableRow> _linhas = List.of(_amostra);
-  String _acao = 'nenhuma ação ainda';
-  String _salvo = 'nada salvo ainda';
-
   @override
   Widget build(BuildContext context) {
     final examples = <ShowcaseExample>[
       ShowcaseExample(
-        title: 'CRUD completo, lendo de JSON',
+        title: 'CRUD de clientes: lista e edição',
         description:
-            'Carrega assets/data/clientes.json e liga as duas telas: Novo e Editar abrem o formulário, salvar volta à lista com um aviso, excluir confirma antes.',
+            'Carrega assets/data/clientes.json e liga as duas telas. O código abaixo traz o fonte de cada uma: ClientesLista (busca, tabela, editar e excluir com confirmação), ClienteForm (novo e editar) e ClientesCrud, que alterna entre elas.',
         preview: const ClientesCrud(),
-        code: CrudClientesPageSnippets.crudClientesCompleto,
-      ),
-      ShowcaseExample(
-        title: 'Lista com busca e ações',
-        description:
-            'SgInputTextSearch filtra por nome ou e-mail (3 ou mais caracteres); SgDatatable ordena e pagina; editar e excluir ficam em cada linha, e excluir pede confirmação.',
-        preview: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ClientesLista(
-              clientes: _linhas,
-              onNovo: () => setState(() => _acao = 'Novo'),
-              onEditar: (id) => setState(() => _acao = 'Editar $id'),
-              onExcluir: (id) => setState(() {
-                _linhas.removeWhere((c) => c['publicId'] == id);
-                _acao = 'Excluído $id';
-              }),
-            ),
-            const SizedBox(height: 8),
-            Text('Última ação: $_acao'),
-          ],
-        ),
-        code: CrudClientesPageSnippets.crudClientesLista,
-      ),
-      ShowcaseExample(
-        title: 'Novo e editar',
-        description:
-            'Tela própria de edição: SgForm com campos de cada tipo (texto, e-mail, combobox, moeda e interruptor); Salvar valida, Cancelar volta.',
-        preview: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ClienteForm(
-              cliente: _amostra.first,
-              onSalvar: (dados) => setState(() => _salvo = jsonEncode(dados)),
-              onCancelar: () => setState(() => _salvo = 'cancelado'),
-            ),
-            const SizedBox(height: 8),
-            Text('Resultado: $_salvo'),
-          ],
-        ),
-        code: CrudClientesPageSnippets.crudClientesForm,
+        code: CrudClientesPageSnippets.crudClientes,
       ),
     ];
 

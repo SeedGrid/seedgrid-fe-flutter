@@ -3,8 +3,8 @@
 // Cada constante e o trecho entre `// #region` e `// #endregion` de crud_clientes_page.dart: o mesmo codigo que a pagina renderiza.
 
 abstract final class CrudClientesPageSnippets {
-  /// Region `crud-clientes-completo`.
-  static const String crudClientesCompleto = r'''
+  /// Region `crud-clientes`.
+  static const String crudClientes = r'''
 class ClientesCrud extends StatefulWidget {
   const ClientesCrud({super.key});
 
@@ -93,132 +93,7 @@ class _ClientesCrudState extends State<ClientesCrud> {
     );
   }
 }
-''';
 
-  /// Region `crud-clientes-form`.
-  static const String crudClientesForm = r'''
-class ClienteForm extends StatefulWidget {
-  const ClienteForm({
-    super.key,
-    this.cliente,
-    required this.onSalvar,
-    required this.onCancelar,
-  });
-
-  /// Nulo = cliente novo.
-  final SgDatatableRow? cliente;
-  final ValueChanged<Map<String, Object?>> onSalvar;
-  final VoidCallback onCancelar;
-
-  @override
-  State<ClienteForm> createState() => _ClienteFormState();
-}
-
-class _ClienteFormState extends State<ClienteForm> {
-  late final SgFormController _form = SgFormController(
-    defaultValues: {
-      'nome': widget.cliente?['nome'] ?? '',
-      'email': widget.cliente?['email'] ?? '',
-      'cidade': widget.cliente?['cidade'] ?? '',
-      'plano': widget.cliente?['plano'] ?? 'Básico',
-      'limite': ((widget.cliente?['limite'] as num?) ?? 0).toStringAsFixed(2),
-      'ativo': widget.cliente?['ativo'] ?? true,
-    },
-  );
-
-  @override
-  void dispose() {
-    _form.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return SgForm(
-      controller: _form,
-      onValid: (dados) => widget.onSalvar({
-        ...dados,
-        'limite': double.tryParse('${dados['limite']}') ?? 0.0,
-      }),
-      child: SgStack(
-        gap: 16,
-        children: [
-          SgGroupBox(
-            title: widget.cliente == null
-                ? context.tx('Novo cliente')
-                : context.tx('Editar cliente'),
-            child: SgGrid(
-              columns: {'base': 1, 'sm': 2},
-              gap: 16,
-              children: [
-                SgInputText(
-                  id: 'cliente-nome',
-                  name: 'nome',
-                  control: _form,
-                  label: context.tx('Nome'),
-                  required: true,
-                ),
-                SgInputEmail(
-                  id: 'cliente-email',
-                  name: 'email',
-                  control: _form,
-                  label: context.tx('E-mail'),
-                  required: true,
-                ),
-                SgInputText(
-                  id: 'cliente-cidade',
-                  name: 'cidade',
-                  control: _form,
-                  label: context.tx('Cidade'),
-                ),
-                SgCombobox<String>(
-                  id: 'cliente-plano',
-                  name: 'plano',
-                  control: _form,
-                  labelText: context.tx('Plano'),
-                  source: _planos,
-                ),
-                SgInputCurrency(
-                  id: 'cliente-limite',
-                  name: 'limite',
-                  control: _form,
-                  label: context.tx('Limite de crédito'),
-                  currency: 'BRL',
-                ),
-                SgToggleSwitch(
-                  id: 'cliente-ativo',
-                  name: 'ativo',
-                  control: _form,
-                  label: context.tx('Cliente ativo'),
-                ),
-              ],
-            ),
-          ),
-          SgStack(
-            direction: SgStackDirection.row,
-            justify: SgStackJustify.end,
-            gap: 8,
-            children: [
-              SgButton(
-                label: Text(context.tx('Cancelar')),
-                appearance: SgAppearance.outline,
-                onClick: widget.onCancelar,
-              ),
-              SgButton(
-                label: Text(context.tx('Salvar')),
-                type: SgButtonType.submit,
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-}
-''';
-
-  /// Region `crud-clientes-lista`.
-  static const String crudClientesLista = r'''
 class ClientesLista extends StatefulWidget {
   const ClientesLista({
     super.key,
@@ -386,6 +261,125 @@ class _ClientesListaState extends State<ClientesLista> {
           onConfirm: () => widget.onExcluir(_alvo),
         ),
       ],
+    );
+  }
+}
+
+class ClienteForm extends StatefulWidget {
+  const ClienteForm({
+    super.key,
+    this.cliente,
+    required this.onSalvar,
+    required this.onCancelar,
+  });
+
+  /// Nulo = cliente novo.
+  final SgDatatableRow? cliente;
+  final ValueChanged<Map<String, Object?>> onSalvar;
+  final VoidCallback onCancelar;
+
+  @override
+  State<ClienteForm> createState() => _ClienteFormState();
+}
+
+class _ClienteFormState extends State<ClienteForm> {
+  late final SgFormController _form = SgFormController(
+    defaultValues: {
+      'nome': widget.cliente?['nome'] ?? '',
+      'email': widget.cliente?['email'] ?? '',
+      'cidade': widget.cliente?['cidade'] ?? '',
+      'plano': widget.cliente?['plano'] ?? 'Básico',
+      'limite': ((widget.cliente?['limite'] as num?) ?? 0).toStringAsFixed(2),
+      'ativo': widget.cliente?['ativo'] ?? true,
+    },
+  );
+
+  @override
+  void dispose() {
+    _form.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SgForm(
+      controller: _form,
+      onValid: (dados) => widget.onSalvar({
+        ...dados,
+        'limite': double.tryParse('${dados['limite']}') ?? 0.0,
+      }),
+      child: SgStack(
+        gap: 16,
+        children: [
+          SgGroupBox(
+            title: widget.cliente == null
+                ? context.tx('Novo cliente')
+                : context.tx('Editar cliente'),
+            child: SgGrid(
+              columns: {'base': 1, 'sm': 2},
+              gap: 16,
+              children: [
+                SgInputText(
+                  id: 'cliente-nome',
+                  name: 'nome',
+                  control: _form,
+                  label: context.tx('Nome'),
+                  required: true,
+                ),
+                SgInputEmail(
+                  id: 'cliente-email',
+                  name: 'email',
+                  control: _form,
+                  label: context.tx('E-mail'),
+                  required: true,
+                ),
+                SgInputText(
+                  id: 'cliente-cidade',
+                  name: 'cidade',
+                  control: _form,
+                  label: context.tx('Cidade'),
+                ),
+                SgCombobox<String>(
+                  id: 'cliente-plano',
+                  name: 'plano',
+                  control: _form,
+                  labelText: context.tx('Plano'),
+                  source: _planos,
+                ),
+                SgInputCurrency(
+                  id: 'cliente-limite',
+                  name: 'limite',
+                  control: _form,
+                  label: context.tx('Limite de crédito'),
+                  currency: 'BRL',
+                ),
+                SgToggleSwitch(
+                  id: 'cliente-ativo',
+                  name: 'ativo',
+                  control: _form,
+                  label: context.tx('Cliente ativo'),
+                ),
+              ],
+            ),
+          ),
+          SgStack(
+            direction: SgStackDirection.row,
+            justify: SgStackJustify.end,
+            gap: 8,
+            children: [
+              SgButton(
+                label: Text(context.tx('Cancelar')),
+                appearance: SgAppearance.outline,
+                onClick: widget.onCancelar,
+              ),
+              SgButton(
+                label: Text(context.tx('Salvar')),
+                type: SgButtonType.submit,
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

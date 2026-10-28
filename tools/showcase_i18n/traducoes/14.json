@@ -1,33 +1,164 @@
 {
-"Buscar por nome ou e-mail": ["Search by name or email", "Pesquisar por nome ou e-mail", "Buscar por nombre o correo electrónico", "Rechercher par nom ou e-mail"],
-"Nenhum cliente encontrado.": ["No customers found.", "Nenhum cliente encontrado.", "No se encontraron clientes.", "Aucun client trouvé."],
-"Limite": ["Limit", "Limite", "Límite", "Limite"],
-"Situação": ["Status", "Situação", "Situación", "Statut"],
-"Ativo": ["Active", "Ativo", "Activo", "Actif"],
-"Inativo": ["Inactive", "Inativo", "Inactivo", "Inactif"],
-"Excluir cliente?": ["Delete customer?", "Eliminar cliente?", "¿Eliminar cliente?", "Supprimer le client ?"],
-"Novo cliente": ["New customer", "Novo cliente", "Nuevo cliente", "Nouveau client"],
-"Editar cliente": ["Edit customer", "Editar cliente", "Editar cliente", "Modifier le client"],
-"Limite de crédito": ["Credit limit", "Limite de crédito", "Límite de crédito", "Limite de crédit"],
-"Cliente ativo": ["Active customer", "Cliente ativo", "Cliente activo", "Client actif"],
-"Cliente atualizado.": ["Customer updated.", "Cliente atualizado.", "Cliente actualizado.", "Client mis à jour."],
-"Cliente criado.": ["Customer created.", "Cliente criado.", "Cliente creado.", "Client créé."],
-"Cliente excluído.": ["Customer deleted.", "Cliente eliminado.", "Cliente eliminado.", "Client supprimé."],
-"Lista com busca e ações": ["List with search and actions", "Lista com pesquisa e ações", "Lista con búsqueda y acciones", "Liste avec recherche et actions"],
-"SgInputTextSearch filtra por nome ou e-mail (3 ou mais caracteres); SgDatatable ordena e pagina; editar e excluir ficam em cada linha, e excluir pede confirmação.": ["SgInputTextSearch filters by name or email (3 or more characters); SgDatatable sorts and paginates; edit and delete sit on each row, and delete asks for confirmation.", "SgInputTextSearch filtra por nome ou e-mail (3 ou mais caracteres); SgDatatable ordena e pagina; editar e eliminar ficam em cada linha, e eliminar pede confirmação.", "SgInputTextSearch filtra por nombre o correo electrónico (3 o más caracteres); SgDatatable ordena y pagina; editar y eliminar están en cada fila, y eliminar pide confirmación.", "SgInputTextSearch filtre par nom ou e-mail (3 caractères ou plus) ; SgDatatable trie et pagine ; modifier et supprimer se trouvent sur chaque ligne, et supprimer demande une confirmation."],
-"Novo e editar": ["New and edit", "Novo e editar", "Nuevo y editar", "Nouveau et modifier"],
-"Tela própria de edição: SgForm com campos de cada tipo (texto, e-mail, combobox, moeda e interruptor); Salvar valida, Cancelar volta.": ["Dedicated edit screen: SgForm with a field of each type (text, email, combobox, currency and switch); Save validates, Cancel goes back.", "Ecrã próprio de edição: SgForm com campos de cada tipo (texto, e-mail, combobox, moeda e interruptor); Guardar valida, Cancelar volta.", "Pantalla propia de edición: SgForm con campos de cada tipo (texto, correo electrónico, combobox, moneda e interruptor); Guardar valida, Cancelar vuelve.", "Écran d'édition dédié : SgForm avec des champs de chaque type (texte, e-mail, combobox, monnaie et interrupteur) ; Enregistrer valide, Annuler revient en arrière."],
-"CRUD completo, lendo de JSON": ["Full CRUD, reading from JSON", "CRUD completo, a ler de JSON", "CRUD completo, leyendo de JSON", "CRUD complet, lu depuis un JSON"],
-"Carrega assets/data/clientes.json e liga as duas telas: Novo e Editar abrem o formulário, salvar volta à lista com um aviso, excluir confirma antes.": ["Loads assets/data/clientes.json and connects the two screens: New and Edit open the form, saving returns to the list with a notice, delete confirms first.", "Carrega assets/data/clientes.json e liga os dois ecrãs: Novo e Editar abrem o formulário, guardar volta à lista com um aviso, eliminar confirma antes.", "Carga assets/data/clientes.json y conecta las dos pantallas: Nuevo y Editar abren el formulario, guardar vuelve a la lista con un aviso, eliminar confirma antes.", "Charge assets/data/clientes.json et relie les deux écrans : Nouveau et Modifier ouvrent le formulaire, enregistrer revient à la liste avec un avis, supprimer demande d'abord une confirmation."],
-"ClientesLista: linhas exibidas na tabela (cada uma com publicId).": ["ClientesLista: rows shown in the table (each with a publicId).", "ClientesLista: linhas apresentadas na tabela (cada uma com publicId).", "ClientesLista: filas mostradas en la tabla (cada una con publicId).", "ClientesLista : lignes affichées dans le tableau (chacune avec un publicId)."],
-"ClientesLista: chamado ao tocar em Novo.": ["ClientesLista: called when New is tapped.", "ClientesLista: chamado ao tocar em Novo.", "ClientesLista: se llama al tocar Nuevo.", "ClientesLista : appelé lorsqu'on touche Nouveau."],
-"ClientesLista: chamado com o publicId da linha ao tocar em editar.": ["ClientesLista: called with the row's publicId when edit is tapped.", "ClientesLista: chamado com o publicId da linha ao tocar em editar.", "ClientesLista: se llama con el publicId de la fila al tocar editar.", "ClientesLista : appelé avec le publicId de la ligne lorsqu'on touche modifier."],
-"ClientesLista: chamado com o publicId da linha depois de confirmar a exclusão.": ["ClientesLista: called with the row's publicId after the deletion is confirmed.", "ClientesLista: chamado com o publicId da linha depois de confirmar a eliminação.", "ClientesLista: se llama con el publicId de la fila tras confirmar la eliminación.", "ClientesLista : appelé avec le publicId de la ligne après confirmation de la suppression."],
-"ClientesLista: linhas alternadas na tabela.": ["ClientesLista: alternating rows in the table.", "ClientesLista: linhas alternadas na tabela.", "ClientesLista: filas alternadas en la tabla.", "ClientesLista : lignes alternées dans le tableau."],
-"ClientesLista: linhas de grade na tabela.": ["ClientesLista: gridlines in the table.", "ClientesLista: linhas de grelha na tabela.", "ClientesLista: líneas de cuadrícula en la tabla.", "ClientesLista : lignes de grille dans le tableau."],
-"ClientesLista: destaca a linha sob o ponteiro.": ["ClientesLista: highlights the row under the pointer.", "ClientesLista: destaca a linha sob o ponteiro.", "ClientesLista: resalta la fila bajo el puntero.", "ClientesLista : met en évidence la ligne sous le pointeur."],
-"ClienteForm: cliente a editar; nulo abre um cliente novo.": ["ClienteForm: customer to edit; null opens a new customer.", "ClienteForm: cliente a editar; nulo abre um cliente novo.", "ClienteForm: cliente a editar; nulo abre un cliente nuevo.", "ClienteForm : client à modifier ; nul ouvre un nouveau client."],
-"ClienteForm: chamado com os valores do formulário depois de validar.": ["ClienteForm: called with the form values after validation.", "ClienteForm: chamado com os valores do formulário depois de validar.", "ClienteForm: se llama con los valores del formulario tras validar.", "ClienteForm : appelé avec les valeurs du formulaire après validation."],
-"ClienteForm: chamado ao tocar em Cancelar.": ["ClienteForm: called when Cancel is tapped.", "ClienteForm: chamado ao tocar em Cancelar.", "ClienteForm: se llama al tocar Cancelar.", "ClienteForm : appelé lorsqu'on touche Annuler."],
-"Exemplo de CRUD completo só com componentes SeedGrid: lista com busca e tabela, tela de novo/editar com formulário, exclusão com confirmação e dados lidos de um JSON local.": ["Full CRUD example using only SeedGrid components: list with search and table, new/edit screen with a form, deletion with confirmation, and data read from a local JSON.", "Exemplo de CRUD completo só com componentes SeedGrid: lista com pesquisa e tabela, ecrã de novo/editar com formulário, eliminação com confirmação e dados lidos de um JSON local.", "Ejemplo de CRUD completo solo con componentes SeedGrid: lista con búsqueda y tabla, pantalla de nuevo/editar con formulario, eliminación con confirmación y datos leídos de un JSON local.", "Exemple de CRUD complet avec uniquement des composants SeedGrid : liste avec recherche et tableau, écran nouveau/modifier avec formulaire, suppression avec confirmation et données lues depuis un JSON local."]
+"Buscar por nome ou e-mail": [
+"Search by name or email",
+"Pesquisar por nome ou e-mail",
+"Buscar por nombre o correo electrónico",
+"Rechercher par nom ou e-mail"
+],
+"Nenhum cliente encontrado.": [
+"No customers found.",
+"Nenhum cliente encontrado.",
+"No se encontraron clientes.",
+"Aucun client trouvé."
+],
+"Limite": [
+"Limit",
+"Limite",
+"Límite",
+"Limite"
+],
+"Situação": [
+"Status",
+"Situação",
+"Situación",
+"Statut"
+],
+"Ativo": [
+"Active",
+"Ativo",
+"Activo",
+"Actif"
+],
+"Inativo": [
+"Inactive",
+"Inativo",
+"Inactivo",
+"Inactif"
+],
+"Excluir cliente?": [
+"Delete customer?",
+"Eliminar cliente?",
+"¿Eliminar cliente?",
+"Supprimer le client ?"
+],
+"Novo cliente": [
+"New customer",
+"Novo cliente",
+"Nuevo cliente",
+"Nouveau client"
+],
+"Editar cliente": [
+"Edit customer",
+"Editar cliente",
+"Editar cliente",
+"Modifier le client"
+],
+"Limite de crédito": [
+"Credit limit",
+"Limite de crédito",
+"Límite de crédito",
+"Limite de crédit"
+],
+"Cliente ativo": [
+"Active customer",
+"Cliente ativo",
+"Cliente activo",
+"Client actif"
+],
+"Cliente atualizado.": [
+"Customer updated.",
+"Cliente atualizado.",
+"Cliente actualizado.",
+"Client mis à jour."
+],
+"Cliente criado.": [
+"Customer created.",
+"Cliente criado.",
+"Cliente creado.",
+"Client créé."
+],
+"Cliente excluído.": [
+"Customer deleted.",
+"Cliente eliminado.",
+"Cliente eliminado.",
+"Client supprimé."
+],
+"ClientesLista: linhas exibidas na tabela (cada uma com publicId).": [
+"ClientesLista: rows shown in the table (each with a publicId).",
+"ClientesLista: linhas apresentadas na tabela (cada uma com publicId).",
+"ClientesLista: filas mostradas en la tabla (cada una con publicId).",
+"ClientesLista : lignes affichées dans le tableau (chacune avec un publicId)."
+],
+"ClientesLista: chamado ao tocar em Novo.": [
+"ClientesLista: called when New is tapped.",
+"ClientesLista: chamado ao tocar em Novo.",
+"ClientesLista: se llama al tocar Nuevo.",
+"ClientesLista : appelé lorsqu'on touche Nouveau."
+],
+"ClientesLista: chamado com o publicId da linha ao tocar em editar.": [
+"ClientesLista: called with the row's publicId when edit is tapped.",
+"ClientesLista: chamado com o publicId da linha ao tocar em editar.",
+"ClientesLista: se llama con el publicId de la fila al tocar editar.",
+"ClientesLista : appelé avec le publicId de la ligne lorsqu'on touche modifier."
+],
+"ClientesLista: chamado com o publicId da linha depois de confirmar a exclusão.": [
+"ClientesLista: called with the row's publicId after the deletion is confirmed.",
+"ClientesLista: chamado com o publicId da linha depois de confirmar a eliminação.",
+"ClientesLista: se llama con el publicId de la fila tras confirmar la eliminación.",
+"ClientesLista : appelé avec le publicId de la ligne après confirmation de la suppression."
+],
+"ClientesLista: linhas alternadas na tabela.": [
+"ClientesLista: alternating rows in the table.",
+"ClientesLista: linhas alternadas na tabela.",
+"ClientesLista: filas alternadas en la tabla.",
+"ClientesLista : lignes alternées dans le tableau."
+],
+"ClientesLista: linhas de grade na tabela.": [
+"ClientesLista: gridlines in the table.",
+"ClientesLista: linhas de grelha na tabela.",
+"ClientesLista: líneas de cuadrícula en la tabla.",
+"ClientesLista : lignes de grille dans le tableau."
+],
+"ClientesLista: destaca a linha sob o ponteiro.": [
+"ClientesLista: highlights the row under the pointer.",
+"ClientesLista: destaca a linha sob o ponteiro.",
+"ClientesLista: resalta la fila bajo el puntero.",
+"ClientesLista : met en évidence la ligne sous le pointeur."
+],
+"ClienteForm: cliente a editar; nulo abre um cliente novo.": [
+"ClienteForm: customer to edit; null opens a new customer.",
+"ClienteForm: cliente a editar; nulo abre um cliente novo.",
+"ClienteForm: cliente a editar; nulo abre un cliente nuevo.",
+"ClienteForm : client à modifier ; nul ouvre un nouveau client."
+],
+"ClienteForm: chamado com os valores do formulário depois de validar.": [
+"ClienteForm: called with the form values after validation.",
+"ClienteForm: chamado com os valores do formulário depois de validar.",
+"ClienteForm: se llama con los valores del formulario tras validar.",
+"ClienteForm : appelé avec les valeurs du formulaire après validation."
+],
+"ClienteForm: chamado ao tocar em Cancelar.": [
+"ClienteForm: called when Cancel is tapped.",
+"ClienteForm: chamado ao tocar em Cancelar.",
+"ClienteForm: se llama al tocar Cancelar.",
+"ClienteForm : appelé lorsqu'on touche Annuler."
+],
+"Exemplo de CRUD completo só com componentes SeedGrid: lista com busca e tabela, tela de novo/editar com formulário, exclusão com confirmação e dados lidos de um JSON local.": [
+"Full CRUD example using only SeedGrid components: list with search and table, new/edit screen with a form, deletion with confirmation, and data read from a local JSON.",
+"Exemplo de CRUD completo só com componentes SeedGrid: lista com pesquisa e tabela, ecrã de novo/editar com formulário, eliminação com confirmação e dados lidos de um JSON local.",
+"Ejemplo de CRUD completo solo con componentes SeedGrid: lista con búsqueda y tabla, pantalla de nuevo/editar con formulario, eliminación con confirmación y datos leídos de un JSON local.",
+"Exemple de CRUD complet avec uniquement des composants SeedGrid : liste avec recherche et tableau, écran nouveau/modifier avec formulaire, suppression avec confirmation et données lues depuis un JSON local."
+],
+"CRUD de clientes: lista e edição": [
+"Customer CRUD: list and edit",
+"CRUD de clientes: lista e edição",
+"CRUD de clientes: lista y edición",
+"CRUD de clients : liste et édition"
+],
+"Carrega assets/data/clientes.json e liga as duas telas. O código abaixo traz o fonte de cada uma: ClientesLista (busca, tabela, editar e excluir com confirmação), ClienteForm (novo e editar) e ClientesCrud, que alterna entre elas.": [
+"Loads assets/data/clientes.json and connects the two screens. The code below has the source of each one: ClientesLista (search, table, edit and delete with confirmation), ClienteForm (new and edit) and ClientesCrud, which switches between them.",
+"Carrega assets/data/clientes.json e liga os dois ecrãs. O código abaixo traz o fonte de cada um: ClientesLista (pesquisa, tabela, editar e eliminar com confirmação), ClienteForm (novo e editar) e ClientesCrud, que alterna entre eles.",
+"Carga assets/data/clientes.json y conecta las dos pantallas. El código de abajo trae el fuente de cada una: ClientesLista (búsqueda, tabla, editar y eliminar con confirmación), ClienteForm (nuevo y editar) y ClientesCrud, que alterna entre ellas.",
+"Charge assets/data/clientes.json et relie les deux écrans. Le code ci-dessous contient le source de chacun : ClientesLista (recherche, tableau, modifier et supprimer avec confirmation), ClienteForm (nouveau et modifier) et ClientesCrud, qui alterne entre eux."
+]
 }
