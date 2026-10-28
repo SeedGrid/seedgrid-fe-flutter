@@ -9,7 +9,7 @@ Column(
   crossAxisAlignment: CrossAxisAlignment.start,
   children: [
     SgButton(
-      label: const Text('Excluir registro'),
+      label: Text(context.tx('Excluir registro')),
       severity: SgSeverity.danger,
       onClick: () => setState(() => _basico = true),
     ),
@@ -17,8 +17,8 @@ Column(
     SgConfirmationDialog(
       open: _basico,
       onOpenChange: (open) => setState(() => _basico = open),
-      title: const Text('Excluir registro?'),
-      message: const Text('Esta ação não pode ser desfeita.'),
+      title: Text(context.tx('Excluir registro?')),
+      message: Text(context.tx('Esta ação não pode ser desfeita.')),
       onConfirm: () => setState(() => _resultado = 'Confirmado'),
       onCancel: () => setState(() => _resultado = 'Cancelado'),
     ),
@@ -32,7 +32,7 @@ Column(
   crossAxisAlignment: CrossAxisAlignment.start,
   children: [
     SgButton(
-      label: const Text('Sair sem salvar'),
+      label: Text(context.tx('Sair sem salvar')),
       appearance: SgAppearance.outline,
       onClick: () => setState(() => _botoes = true),
     ),
@@ -40,16 +40,16 @@ Column(
       open: _botoes,
       onOpenChange: (open) => setState(() => _botoes = open),
       severity: SgDialogSeverity.danger,
-      title: const Text('Descartar alterações?'),
-      message: const Text(
-        'As alterações não salvas serão perdidas.',
+      title: Text(context.tx('Descartar alterações?')),
+      message: Text(
+        context.tx('As alterações não salvas serão perdidas.'),
       ),
-      cancelButton: const SgConfirmationDialogButtonConfig(
-        label: Text('Continuar editando'),
+      cancelButton: SgConfirmationDialogButtonConfig(
+        label: Text(context.tx('Continuar editando')),
         icon: Icon(Icons.edit),
       ),
-      confirmButton: const SgConfirmationDialogButtonConfig(
-        label: Text('Descartar'),
+      confirmButton: SgConfirmationDialogButtonConfig(
+        label: Text(context.tx('Descartar')),
         icon: Icon(Icons.delete),
         appearance: SgAppearance.outline,
       ),
@@ -64,7 +64,7 @@ Column(
   crossAxisAlignment: CrossAxisAlignment.start,
   children: [
     SgButton(
-      label: const Text('Publicar'),
+      label: Text(context.tx('Publicar')),
       severity: SgSeverity.success,
       onClick: () => setState(() => _icone = true),
     ),
@@ -75,8 +75,10 @@ Column(
       iconPlacement: SgConfirmationDialogIconPlacement.top,
       icon: const Icon(Icons.rocket_launch, size: 28),
       closeable: true,
-      title: const Text('Publicar agora?'),
-      message: const Text('A versão ficará visível para todos.'),
+      title: Text(context.tx('Publicar agora?')),
+      message: Text(
+        context.tx('A versão ficará visível para todos.'),
+      ),
     ),
   ],
 )
@@ -108,8 +110,8 @@ Column(
       severity: _sev,
       showSeverityAccent: true,
       title: Text('Severidade ${_sev.value}'),
-      message: const Text(
-        'Veja o ícone, o fundo e o botão de confirmar.',
+      message: Text(
+        context.tx('Veja o ícone, o fundo e o botão de confirmar.'),
       ),
     ),
   ],

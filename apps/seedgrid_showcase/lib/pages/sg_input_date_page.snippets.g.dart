@@ -22,7 +22,7 @@ Column(
     ),
     const SizedBox(height: 12),
     SgButton(
-      label: const Text('Enviar'),
+      label: Text(context.tx('Enviar')),
       onClick: () => _form.handleSubmit(
         (values) => setState(() => _enviado = '${values['campo']}'),
       ),

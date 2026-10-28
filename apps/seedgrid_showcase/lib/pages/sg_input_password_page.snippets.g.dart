@@ -35,7 +35,7 @@ Column(
     ),
     const SizedBox(height: 12),
     SgButton(
-      label: const Text('Criar conta'),
+      label: Text(context.tx('Criar conta')),
       onClick: () => _form.handleSubmit(
         (values) => setState(() => _resultado = 'Conta criada'),
       ),

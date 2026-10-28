@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 import 'sg_neon_digit_page.snippets.g.dart';
 
 class SgNeonDigitPage extends StatelessWidget {
@@ -82,7 +83,7 @@ class SgNeonDigitPage extends StatelessWidget {
                       const SizedBox(width: 24),
                       FilledButton(
                         onPressed: () => set(() => value = value % 9 + 1),
-                        child: const Text('Próximo'),
+                        child: Text(context.tx('Próximo')),
                       ),
                     ],
                   ),
@@ -107,7 +108,7 @@ class SgNeonDigitPage extends StatelessWidget {
                       const SizedBox(width: 24),
                       FilledButton(
                         onPressed: () => set(() => value = value % 9 + 1),
-                        child: const Text('Próximo'),
+                        child: Text(context.tx('Próximo')),
                       ),
                     ],
                   ),

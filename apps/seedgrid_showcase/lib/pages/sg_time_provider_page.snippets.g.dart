@@ -49,11 +49,11 @@ Builder(
 
   /// Region `sg-time-provider-servidor`.
   static const String sgTimeProviderServidor = r'''
-const SgTimeProvider(
+SgTimeProvider(
   initialServerTime: '2030-01-01T23:59:55Z',
   child: SgClock(
     timezone: 'UTC',
-    cardTitle: Text('Hora do servidor'),
+    cardTitle: Text(context.tx('Hora do servidor')),
   ),
 )
 ''';

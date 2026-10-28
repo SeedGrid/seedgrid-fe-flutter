@@ -5,19 +5,22 @@
 abstract final class SgPanelPageSnippets {
   /// Region `sg-panel-borda`.
   static const String sgPanelBorda = r'''
-const SgStack(
+SgStack(
   gap: 8,
   children: [
-    SgPanel(contentPadding: 8, children: [Text('dashed (padrão)')]),
+    SgPanel(
+      contentPadding: 8,
+      children: [Text(context.tx('dashed (padrão)'))],
+    ),
     SgPanel(
       borderStyle: SgPanelBorderStyle.solid,
       contentPadding: 8,
-      children: [Text('solid')],
+      children: [Text(context.tx('solid'))],
     ),
     SgPanel(
       borderStyle: SgPanelBorderStyle.none,
       contentPadding: 8,
-      children: [Text('none')],
+      children: [Text(context.tx('none'))],
     ),
   ],
 )
@@ -32,13 +35,13 @@ SgPanel(
   contentJustify: SgPanelContentJustify.between,
   contentAlign: SgPanelContentAlign.center,
   children: [
-    const Text('Início'),
+    Text(context.tx('Início')),
     SgButton(
-      label: const Text('Ação'),
+      label: Text(context.tx('Ação')),
       size: SgSize.sm,
       onClick: () {},
     ),
-    const Text('Fim'),
+    Text(context.tx('Fim')),
   ],
 )
 ''';
@@ -54,24 +57,24 @@ SizedBox(
         align: SgPanelAlign.top,
         height: 15,
         borderStyle: SgPanelBorderStyle.solid,
-        children: const [Text('top')],
+        children: [Text(context.tx('top'))],
       ),
       SgPanel(
         align: SgPanelAlign.left,
         width: 25,
         borderStyle: SgPanelBorderStyle.solid,
-        children: const [Text('left')],
+        children: [Text(context.tx('left'))],
       ),
       SgPanel(
         align: SgPanelAlign.client,
         borderStyle: SgPanelBorderStyle.solid,
-        children: const [Text('client')],
+        children: [Text(context.tx('client'))],
       ),
       SgPanel(
         align: SgPanelAlign.bottom,
         height: 15,
         borderStyle: SgPanelBorderStyle.solid,
-        children: const [Text('bottom')],
+        children: [Text(context.tx('bottom'))],
       ),
     ],
   ),

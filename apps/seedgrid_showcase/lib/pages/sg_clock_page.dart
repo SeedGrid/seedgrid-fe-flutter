@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 import 'sg_clock_page.snippets.g.dart';
 
 class SgClockPage extends StatefulWidget {
@@ -202,10 +203,10 @@ class _SgClockPageState extends State<SgClockPage> {
             'O relógio vem num SgCard recolhível e arrastável. cardTitle troca o título; cardProps ajusta o cartão.',
         preview:
             // #region sg-clock-cartao
-            const SgClock(
+            SgClock(
               initialServerTime: '2026-06-15T09:41:07Z',
               timezone: 'UTC',
-              cardTitle: Text('Hora de Brasília'),
+              cardTitle: Text(context.tx('Hora de Brasília')),
               cardProps: SgClockCardProps(
                 id: 'brasilia',
                 draggable: false,

@@ -5,6 +5,7 @@ import 'package:seedgrid_components/seedgrid_components.dart';
 // SgTextEditor ainda nao esta no arquivo raiz do pacote: entra pelo barril proprio do grupo.
 
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 import 'sg_text_editor_page.snippets.g.dart';
 
 class SgTextEditorPage extends StatefulWidget {
@@ -43,7 +44,7 @@ class _SgTextEditorPageState extends State<SgTextEditorPage> {
                 SgTextEditor(
                   id: 'editor-basico',
                   height: 220,
-                  placeholder: 'Escreva aqui',
+                  placeholder: context.tx('Escreva aqui'),
                   defaultValueHtml: '<p>Texto <strong>inicial</strong></p>',
                   onChangeHtml: (html) => setState(() => _html = html),
                 ),
@@ -71,7 +72,7 @@ class _SgTextEditorPageState extends State<SgTextEditorPage> {
                 ),
                 const SizedBox(height: 8),
                 SgButton(
-                  label: const Text('Trocar o conteúdo'),
+                  label: Text(context.tx('Trocar o conteúdo')),
                   severity: SgSeverity.secondary,
                   onClick: () => setState(
                     () =>
@@ -133,7 +134,7 @@ class _SgTextEditorPageState extends State<SgTextEditorPage> {
                 ),
                 const SizedBox(height: 12),
                 SgButton(
-                  label: const Text('Enviar'),
+                  label: Text(context.tx('Enviar')),
                   onClick: () => _form.handleSubmit(
                     (values) =>
                         setState(() => _enviado = '${values['descricao']}'),

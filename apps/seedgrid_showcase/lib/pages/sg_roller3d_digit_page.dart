@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 import 'sg_roller3d_digit_page.snippets.g.dart';
 
 class SgRoller3DDigitPage extends StatefulWidget {
@@ -34,11 +35,11 @@ class _SgRoller3DDigitPageState extends State<SgRoller3DDigitPage> {
               children: [
                 SgRoller3DDigit(value: '$_digit', fontSize: 32),
                 SgButton(
-                  label: const Text('Próximo'),
+                  label: Text(context.tx('Próximo')),
                   onClick: () => setState(() => _digit = (_digit + 1) % 10),
                 ),
                 SgButton(
-                  label: const Text('Aleatório'),
+                  label: Text(context.tx('Aleatório')),
                   appearance: SgAppearance.outline,
                   onClick: () => setState(() => _digit = (_digit * 7 + 3) % 10),
                 ),
@@ -64,7 +65,7 @@ class _SgRoller3DDigitPageState extends State<SgRoller3DDigitPage> {
                   fontSize: 22,
                 ),
                 SgButton(
-                  label: const Text('+7 minutos'),
+                  label: Text(context.tx('+7 minutos')),
                   onClick: () => setState(() => _minute = (_minute + 7) % 60),
                 ),
               ],
@@ -87,7 +88,7 @@ class _SgRoller3DDigitPageState extends State<SgRoller3DDigitPage> {
                   fontSize: 32,
                 ),
                 SgButton(
-                  label: const Text('Próxima letra'),
+                  label: Text(context.tx('Próxima letra')),
                   onClick: () => setState(() => _letter = (_letter + 5) % 26),
                 ),
               ],
@@ -116,7 +117,7 @@ class _SgRoller3DDigitPageState extends State<SgRoller3DDigitPage> {
                   fontSize: 28,
                 ),
                 SgButton(
-                  label: const Text('Alternar 0 e 9'),
+                  label: Text(context.tx('Alternar 0 e 9')),
                   onClick: () => setState(() => _slow = !_slow),
                 ),
               ],

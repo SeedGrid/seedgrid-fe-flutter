@@ -10,14 +10,20 @@ Container(
     border: Border.all(color: Colors.black26),
     borderRadius: BorderRadius.circular(8),
   ),
-  child: const Column(
+  child: Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      SgDockZone(zone: SgDockZoneId.top, child: Text('só child')),
       SgDockZone(
         zone: SgDockZoneId.top,
-        child: Text('child ignorado'),
-        children: [Text('children 1'), Text('children 2')],
+        child: Text(context.tx('só child')),
+      ),
+      SgDockZone(
+        zone: SgDockZoneId.top,
+        child: Text(context.tx('child ignorado')),
+        children: [
+          Text(context.tx('children 1')),
+          Text(context.tx('children 2')),
+        ],
       ),
     ],
   ),
@@ -31,22 +37,22 @@ Container(
     border: Border.all(color: Colors.black26),
     borderRadius: BorderRadius.circular(8),
   ),
-  child: const SgDockZone(
+  child: SgDockZone(
     zone: SgDockZoneId.top,
     children: [
-      SgButton(label: Text('Novo'), size: SgSize.sm),
+      SgButton(label: Text(context.tx('Novo')), size: SgSize.sm),
       SgButton(
-        label: Text('Abrir'),
+        label: Text(context.tx('Abrir')),
         size: SgSize.sm,
         appearance: SgAppearance.outline,
       ),
       SgButton(
-        label: Text('Salvar'),
+        label: Text(context.tx('Salvar')),
         size: SgSize.sm,
         appearance: SgAppearance.outline,
       ),
       SgButton(
-        label: Text('Imprimir'),
+        label: Text(context.tx('Imprimir')),
         size: SgSize.sm,
         appearance: SgAppearance.outline,
       ),
@@ -63,10 +69,10 @@ Container(
     border: Border.all(color: Colors.black26),
     borderRadius: BorderRadius.circular(8),
   ),
-  child: const SgDockZone(
+  child: SgDockZone(
     zone: SgDockZoneId.free,
     height: 140,
-    child: Text('Área central livre'),
+    child: Text(context.tx('Área central livre')),
   ),
 )
 ''';
@@ -78,23 +84,23 @@ Container(
     border: Border.all(color: Colors.black26),
     borderRadius: BorderRadius.circular(8),
   ),
-  child: const SgDockZone(
+  child: SgDockZone(
     zone: SgDockZoneId.left,
     width: 160,
     height: 180,
     children: [
       SgButton(
-        label: Text('Clientes'),
+        label: Text(context.tx('Clientes')),
         size: SgSize.sm,
         appearance: SgAppearance.ghost,
       ),
       SgButton(
-        label: Text('Pedidos'),
+        label: Text(context.tx('Pedidos')),
         size: SgSize.sm,
         appearance: SgAppearance.ghost,
       ),
       SgButton(
-        label: Text('Config'),
+        label: Text(context.tx('Config')),
         size: SgSize.sm,
         appearance: SgAppearance.ghost,
       ),

@@ -5,6 +5,7 @@ import 'package:seedgrid_components/seedgrid_components.dart';
 // Enquanto o barril `datatable_inputs.dart` nao estiver ligado no arquivo raiz do pacote.
 
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 import 'sg_datatable_page.snippets.g.dart';
 
 const List<String> _nomes = [
@@ -113,7 +114,7 @@ class _SgDatatablePageState extends State<SgDatatablePage> {
         preview:
             // #region sg-datatable-basico
             SgDatatable(
-              title: 'Pessoas',
+              title: context.tx('Pessoas'),
               value: _pessoas.take(6).toList(),
               columns: _colunas,
               stripedRows: true,
@@ -181,17 +182,21 @@ class _SgDatatablePageState extends State<SgDatatablePage> {
             // #region sg-datatable-filtros
             SgDatatable(
               value: _pessoas,
-              columns: const [
-                SgDatatableColumn(field: 'nome', header: 'Nome', filter: true),
+              columns: [
+                SgDatatableColumn(
+                  field: 'nome',
+                  header: context.tx('Nome'),
+                  filter: true,
+                ),
                 SgDatatableColumn(
                   field: 'cidade',
-                  header: 'Cidade',
+                  header: context.tx('Cidade'),
                   filter: true,
                   filterMatchMode: SgDatatableFilterMatchMode.startsWith,
                 ),
                 SgDatatableColumn(
                   field: 'salario',
-                  header: 'Salário',
+                  header: context.tx('Salário'),
                   excludeGlobalFilter: true,
                 ),
               ],
@@ -214,15 +219,15 @@ class _SgDatatablePageState extends State<SgDatatablePage> {
               id: 'pessoas-colunas',
               value: _pessoas.take(8).toList(),
               columns: [
-                const SgDatatableColumn(
+                SgDatatableColumn(
                   field: 'nome',
-                  header: 'Nome',
+                  header: context.tx('Nome'),
                   hideable: false,
                   footer: 'Total',
                 ),
                 SgDatatableColumn(
                   field: 'salario',
-                  header: 'Salário',
+                  header: context.tx('Salário'),
                   sortable: true,
                   align: SgDatatableColumnAlign.right,
                   body: (row, meta) =>
@@ -230,9 +235,9 @@ class _SgDatatablePageState extends State<SgDatatablePage> {
                   footer: (List<SgDatatableRow> rows) =>
                       'R\$ ${rows.fold<num>(0, (a, r) => a + (r['salario'] as num)).toStringAsFixed(2)}',
                 ),
-                const SgDatatableColumn(
+                SgDatatableColumn(
                   field: 'cidade',
-                  header: 'Cidade',
+                  header: context.tx('Cidade'),
                   hidden: true,
                 ),
               ],
@@ -254,10 +259,13 @@ class _SgDatatablePageState extends State<SgDatatablePage> {
                   id: 'pessoas-acoes',
                   value: _pessoas.take(5).toList(),
                   columns: [
-                    const SgDatatableColumn(field: 'nome', header: 'Nome'),
+                    SgDatatableColumn(
+                      field: 'nome',
+                      header: context.tx('Nome'),
+                    ),
                     SgDatatableColumn(
                       field: 'acoes',
-                      header: 'Ações',
+                      header: context.tx('Ações'),
                       width: 120,
                       body: (row, meta) => Row(
                         mainAxisSize: MainAxisSize.min,
@@ -353,15 +361,15 @@ class _SgDatatablePageState extends State<SgDatatablePage> {
                   runSpacing: 8,
                   children: [
                     SgButton(
-                      label: const Text('Ir para a página 3'),
+                      label: Text(context.tx('Ir para a página 3')),
                       onClick: () => _controller.goToPage(3),
                     ),
                     SgButton(
-                      label: const Text('Limpar filtros'),
+                      label: Text(context.tx('Limpar filtros')),
                       onClick: () => _controller.clearFilters(),
                     ),
                     SgButton(
-                      label: const Text('Remover ordem'),
+                      label: Text(context.tx('Remover ordem')),
                       onClick: () => _controller.resetSort(),
                     ),
                   ],
@@ -381,7 +389,7 @@ class _SgDatatablePageState extends State<SgDatatablePage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SgDatatable(
-                  title: 'Carregando',
+                  title: context.tx('Carregando'),
                   value: const [],
                   columns: _colunas,
                   loading: true,
@@ -389,7 +397,7 @@ class _SgDatatablePageState extends State<SgDatatablePage> {
                 ),
                 const SizedBox(height: 16),
                 SgDatatable(
-                  title: 'Vazio',
+                  title: context.tx('Vazio'),
                   value: const [],
                   columns: _colunas,
                   emptyMessage: 'Nenhuma pessoa cadastrada.',

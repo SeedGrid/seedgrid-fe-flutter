@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 import 'sg_input_currency_page.snippets.g.dart';
 
 class SgInputCurrencyPage extends StatefulWidget {
@@ -171,7 +172,7 @@ class _SgInputCurrencyPageState extends State<SgInputCurrencyPage> {
                 ),
                 const SizedBox(height: 12),
                 SgButton(
-                  label: const Text('Enviar'),
+                  label: Text(context.tx('Enviar')),
                   onClick: () => _form.handleSubmit(
                     (values) => setState(() => _enviado = '${values['preco']}'),
                   ),

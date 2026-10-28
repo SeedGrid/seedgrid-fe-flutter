@@ -10,7 +10,7 @@ Column(
   children: [
     SgRating(
       id: 'basico',
-      label: 'Sua avaliação',
+      label: context.tx('Sua avaliação'),
       value: 3,
       onChange: (v) => setState(() => _nota = v),
       onHover: (v) => setState(() => _hover = v),
@@ -31,12 +31,12 @@ Column(
       id: 'form',
       name: 'nota',
       control: _form,
-      label: 'Nota do atendimento',
+      label: context.tx('Nota do atendimento'),
       required: true,
     ),
     const SizedBox(height: 12),
     SgButton(
-      label: const Text('Enviar'),
+      label: Text(context.tx('Enviar')),
       onClick: () => _form.handleSubmit(
         (values) => setState(() => _enviado = '${values['nota']}'),
       ),

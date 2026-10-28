@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 import 'sg_combobox_page.snippets.g.dart';
 
 class SgComboboxPage extends StatefulWidget {
@@ -55,18 +56,26 @@ class _SgComboboxPageState extends State<SgComboboxPage> {
                   labelText: 'Cargo',
                   grouped: true,
                   onValueChange: (id) => setState(() => _escolhido = id),
-                  source: const [
-                    SgAutocompleteItem(id: 1, label: 'Analista', group: 'TI'),
-                    SgAutocompleteItem(id: 2, label: 'Gerente', group: 'TI'),
+                  source: [
+                    SgAutocompleteItem(
+                      id: 1,
+                      label: context.tx('Analista'),
+                      group: 'TI',
+                    ),
+                    SgAutocompleteItem(
+                      id: 2,
+                      label: context.tx('Gerente'),
+                      group: 'TI',
+                    ),
                     SgAutocompleteItem(
                       id: 3,
-                      label: 'Diretor',
+                      label: context.tx('Diretor'),
                       group: 'Gestão',
                       disabled: true,
                     ),
                     SgAutocompleteItem(
                       id: 4,
-                      label: 'Coordenador',
+                      label: context.tx('Coordenador'),
                       group: 'Gestão',
                     ),
                   ],
@@ -115,10 +124,11 @@ class _SgComboboxPageState extends State<SgComboboxPage> {
                 ],
               ),
               renderValue: (item) => Text('● ${item?.label}'),
-              renderFooter: (q, has) => const Text('Escolha o status atual'),
-              source: const [
-                SgAutocompleteItem(id: 1, label: 'Concluído'),
-                SgAutocompleteItem(id: 2, label: 'Pendente'),
+              renderFooter: (q, has) =>
+                  Text(context.tx('Escolha o status atual')),
+              source: [
+                SgAutocompleteItem(id: 1, label: context.tx('Concluído')),
+                SgAutocompleteItem(id: 2, label: context.tx('Pendente')),
               ],
             ),
         // #endregion
@@ -142,7 +152,7 @@ class _SgComboboxPageState extends State<SgComboboxPage> {
                 ),
                 const SizedBox(height: 12),
                 SgButton(
-                  label: const Text('Enviar'),
+                  label: Text(context.tx('Enviar')),
                   onClick: () => _form.handleSubmit(
                     (values) =>
                         setState(() => _enviado = '${values['pagamento']}'),

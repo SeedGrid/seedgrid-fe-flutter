@@ -5,6 +5,7 @@ import 'package:seedgrid_components/seedgrid_components.dart';
 
 import 'sg_radio_group_page.snippets.g.dart';
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 
 class SgRadioGroupPage extends StatefulWidget {
   const SgRadioGroupPage({super.key});
@@ -38,12 +39,15 @@ class _SgRadioGroupPageState extends State<SgRadioGroupPage> {
               children: [
                 SgRadioGroup(
                   id: 'tamanho',
-                  title: 'Tamanho',
-                  source: const [
-                    SgRadioGroupOption(label: 'Pequeno', value: 'p'),
-                    SgRadioGroupOption(label: 'Médio', value: 'm'),
+                  title: context.tx('Tamanho'),
+                  source: [
                     SgRadioGroupOption(
-                      label: 'Grande',
+                      label: context.tx('Pequeno'),
+                      value: 'p',
+                    ),
+                    SgRadioGroupOption(label: context.tx('Médio'), value: 'm'),
+                    SgRadioGroupOption(
+                      label: context.tx('Grande'),
                       value: 'g',
                       disabled: true,
                     ),
@@ -60,12 +64,12 @@ class _SgRadioGroupPageState extends State<SgRadioGroupPage> {
         title: 'Horizontal e highlight',
         preview:
             // #region sg-radio-group-estilos
-            const Column(
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SgRadioGroup(
                   id: 'horizontal',
-                  title: 'Horizontal',
+                  title: context.tx('Horizontal'),
                   orientation: SgRadioGroupOrientation.horizontal,
                   value: 'b',
                   source: [
@@ -77,17 +81,17 @@ class _SgRadioGroupPageState extends State<SgRadioGroupPage> {
                 SizedBox(height: 16),
                 SgRadioGroup(
                   id: 'highlight',
-                  title: 'Highlight',
+                  title: context.tx('Highlight'),
                   selectionStyle: SgRadioGroupSelectionStyle.highlight,
                   value: 'lista',
                   source: [
                     SgRadioGroupOption(
-                      label: 'Lista',
+                      label: context.tx('Lista'),
                       value: 'lista',
                       icon: Icon(Icons.list, size: 16),
                     ),
                     SgRadioGroupOption(
-                      label: 'Grade',
+                      label: context.tx('Grade'),
                       value: 'grade',
                       icon: Icon(Icons.grid_view, size: 16),
                     ),
@@ -102,24 +106,24 @@ class _SgRadioGroupPageState extends State<SgRadioGroupPage> {
         title: 'Só ícones, somente leitura e desabilitado',
         preview:
             // #region sg-radio-group-estados
-            const Column(
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SgRadioGroup(
                   id: 'icones',
-                  title: 'iconOnly',
+                  title: context.tx('iconOnly'),
                   iconOnly: true,
                   orientation: SgRadioGroupOrientation.horizontal,
                   selectionStyle: SgRadioGroupSelectionStyle.highlight,
                   value: 'a',
                   source: [
                     SgRadioGroupOption(
-                      label: 'Estrela',
+                      label: context.tx('Estrela'),
                       value: 'a',
                       icon: Icon(Icons.star),
                     ),
                     SgRadioGroupOption(
-                      label: 'Coração',
+                      label: context.tx('Coração'),
                       value: 'b',
                       icon: Icon(Icons.favorite),
                     ),
@@ -128,7 +132,7 @@ class _SgRadioGroupPageState extends State<SgRadioGroupPage> {
                 SizedBox(height: 16),
                 SgRadioGroup(
                   id: 'leitura',
-                  title: 'readOnly',
+                  title: context.tx('readOnly'),
                   readOnly: true,
                   value: 'x',
                   source: [
@@ -139,7 +143,7 @@ class _SgRadioGroupPageState extends State<SgRadioGroupPage> {
                 SizedBox(height: 16),
                 SgRadioGroup(
                   id: 'off',
-                  title: 'disabled',
+                  title: context.tx('disabled'),
                   disabled: true,
                   value: 'x',
                   source: [
@@ -165,16 +169,19 @@ class _SgRadioGroupPageState extends State<SgRadioGroupPage> {
                   id: 'plano',
                   name: 'plano',
                   control: _form,
-                  title: 'Plano',
+                  title: context.tx('Plano'),
                   required: true,
-                  source: const [
-                    SgRadioGroupOption(label: 'Grátis', value: 'free'),
-                    SgRadioGroupOption(label: 'Pro', value: 'pro'),
+                  source: [
+                    SgRadioGroupOption(
+                      label: context.tx('Grátis'),
+                      value: 'free',
+                    ),
+                    SgRadioGroupOption(label: context.tx('Pro'), value: 'pro'),
                   ],
                 ),
                 const SizedBox(height: 12),
                 SgButton(
-                  label: const Text('Enviar'),
+                  label: Text(context.tx('Enviar')),
                   onClick: () => _form.handleSubmit(
                     (values) => setState(() => _enviado = '${values['plano']}'),
                   ),

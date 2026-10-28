@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 import 'sg_order_list_page.snippets.g.dart';
 
 const List<SgOrderListItem> _tarefas = [
@@ -48,7 +49,7 @@ class _SgOrderListPageState extends State<SgOrderListPage> {
               children: [
                 SgOrderList(
                   id: 'tarefas',
-                  title: 'Tarefas',
+                  title: context.tx('Tarefas'),
                   source: _tarefas,
                   onChange: (items) => setState(
                     () => _ordem = items.map((e) => e.label).join(' > '),
@@ -66,8 +67,8 @@ class _SgOrderListPageState extends State<SgOrderListPage> {
             'selectionMode single e controlsPosition right; com Ctrl + setas, Home e End no teclado.',
         preview:
             // #region sg-order-list-single
-            const SgOrderList(
-              title: 'Prioridades',
+            SgOrderList(
+              title: context.tx('Prioridades'),
               source: _tarefas,
               selectionMode: SgOrderListSelectionMode.single,
               controlsPosition: SgOrderListControlsPosition.right,
@@ -82,15 +83,15 @@ class _SgOrderListPageState extends State<SgOrderListPage> {
         preview:
             // #region sg-order-list-template
             SgOrderList(
-              title: 'Com numeração',
-              source: const [
+              title: context.tx('Com numeração'),
+              source: [
                 SgOrderListItem(
-                  label: 'Um',
+                  label: context.tx('Um'),
                   value: 1,
                   icon: Icon(Icons.looks_one, size: 16),
                 ),
-                SgOrderListItem(label: 'Dois', value: 2),
-                SgOrderListItem(label: 'Três', value: 3),
+                SgOrderListItem(label: context.tx('Dois'), value: 2),
+                SgOrderListItem(label: context.tx('Três'), value: 3),
               ],
               itemTemplate: (item, state) => Text(
                 '#${state.index + 1} ${item.label}${state.selected ? ' *' : ''}',
@@ -109,7 +110,7 @@ class _SgOrderListPageState extends State<SgOrderListPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SgOrderList(
-                  title: 'Controlada',
+                  title: context.tx('Controlada'),
                   source: _tarefas,
                   controller: _controller,
                 ),
@@ -119,15 +120,15 @@ class _SgOrderListPageState extends State<SgOrderListPage> {
                   runSpacing: 8,
                   children: [
                     SgButton(
-                      label: const Text('Selecionar a 3ª'),
+                      label: Text(context.tx('Selecionar a 3ª')),
                       onClick: () => _controller.setSelection(const [3]),
                     ),
                     SgButton(
-                      label: const Text('Mover para o topo'),
+                      label: Text(context.tx('Mover para o topo')),
                       onClick: () => _controller.moveTop(),
                     ),
                     SgButton(
-                      label: const Text('Inverter'),
+                      label: Text(context.tx('Inverter')),
                       onClick: () => _controller.setItems(
                         _controller.getItems().reversed.toList(),
                       ),
@@ -152,11 +153,14 @@ class _SgOrderListPageState extends State<SgOrderListPage> {
                   id: 'ranking',
                   name: 'ranking',
                   control: _form,
-                  title: 'Ranking',
-                  source: const [
-                    SgOrderListItem(label: 'Ouro', value: 'ouro'),
-                    SgOrderListItem(label: 'Prata', value: 'prata'),
-                    SgOrderListItem(label: 'Bronze', value: 'bronze'),
+                  title: context.tx('Ranking'),
+                  source: [
+                    SgOrderListItem(label: context.tx('Ouro'), value: 'ouro'),
+                    SgOrderListItem(label: context.tx('Prata'), value: 'prata'),
+                    SgOrderListItem(
+                      label: context.tx('Bronze'),
+                      value: 'bronze',
+                    ),
                   ],
                   rules: SgRules(
                     validate: (v) =>
@@ -169,7 +173,7 @@ class _SgOrderListPageState extends State<SgOrderListPage> {
                 ),
                 const SizedBox(height: 12),
                 SgButton(
-                  label: const Text('Enviar'),
+                  label: Text(context.tx('Enviar')),
                   onClick: () => _form.handleSubmit((values) {
                     final v = values['ranking'] as List<SgOrderListItem>?;
                     setState(

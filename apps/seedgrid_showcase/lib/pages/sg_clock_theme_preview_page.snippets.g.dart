@@ -10,11 +10,11 @@ SgClockThemePreview(theme: sgClockThemesBuiltIn.first)
 
   /// Region `sg-clock-theme-preview-proprio`.
   static const String sgClockThemePreviewProprio = r'''
-const SgClockThemePreview(
+SgClockThemePreview(
   size: 96,
   theme: SgClockTheme(
     id: 'ponto',
-    label: 'Ponto',
+    label: context.tx('Ponto'),
     ops: [
       SgClockCircle(
         cx: 50,

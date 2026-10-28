@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 import 'sg_time_provider_page.snippets.g.dart';
 
 class SgTimeProviderPage extends StatelessWidget {
@@ -62,11 +63,11 @@ class SgTimeProviderPage extends StatelessWidget {
             'É o uso típico: o servidor manda a hora certa e a tela segue por ela, sem depender do relógio do aparelho.',
         preview:
             // #region sg-time-provider-servidor
-            const SgTimeProvider(
+            SgTimeProvider(
               initialServerTime: '2030-01-01T23:59:55Z',
               child: SgClock(
                 timezone: 'UTC',
-                cardTitle: Text('Hora do servidor'),
+                cardTitle: Text(context.tx('Hora do servidor')),
               ),
             ),
         // #endregion

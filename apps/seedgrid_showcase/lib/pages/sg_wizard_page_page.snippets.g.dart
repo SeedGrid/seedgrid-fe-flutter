@@ -20,7 +20,7 @@ SgWizard(
         requiredMessage: 'Informe a cidade',
       ),
     ),
-    const SgWizardPage(child: Text('Pronto!')),
+    SgWizardPage(child: Text(context.tx('Pronto!'))),
   ],
 )
 ''';
@@ -30,9 +30,9 @@ SgWizard(
 SgWizard(
   stepper: SgWizardStepper.numbered,
   onFinish: () {},
-  children: const [
-    SgWizardPage(child: Text('Primeira')),
-    SgWizardPage(child: Text('Segunda')),
+  children: [
+    SgWizardPage(child: Text(context.tx('Primeira'))),
+    SgWizardPage(child: Text(context.tx('Segunda'))),
   ],
 )
 ''';
@@ -42,16 +42,16 @@ SgWizard(
 SgWizard(
   stepper: SgWizardStepper.icons,
   onFinish: () {},
-  children: const [
+  children: [
     SgWizardPage(
-      title: 'Perfil',
+      title: context.tx('Perfil'),
       icon: Icon(Icons.person),
-      child: Text('Conteúdo do perfil'),
+      child: Text(context.tx('Conteúdo do perfil')),
     ),
     SgWizardPage(
-      title: 'Segurança',
+      title: context.tx('Segurança'),
       icon: Icon(Icons.lock),
-      child: Text('Conteúdo de segurança'),
+      child: Text(context.tx('Conteúdo de segurança')),
     ),
   ],
 )

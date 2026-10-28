@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 import 'sg_wizard_demo_page.snippets.g.dart';
 
 class SgWizardDemoPage extends StatefulWidget {
@@ -42,10 +43,12 @@ class _SgWizardDemoPageState extends State<SgWizardDemoPage> {
               children: [
                 SgWizard(
                   onFinish: () => setState(() => _resultado = 'finalizado'),
-                  children: const [
-                    SgWizardPage(child: Text('Etapa 1: dados pessoais')),
-                    SgWizardPage(child: Text('Etapa 2: endereço')),
-                    SgWizardPage(child: Text('Etapa 3: revisão')),
+                  children: [
+                    SgWizardPage(
+                      child: Text(context.tx('Etapa 1: dados pessoais')),
+                    ),
+                    SgWizardPage(child: Text(context.tx('Etapa 2: endereço'))),
+                    SgWizardPage(child: Text(context.tx('Etapa 3: revisão'))),
                   ],
                 ),
                 const SizedBox(height: 12),
@@ -65,7 +68,7 @@ class _SgWizardDemoPageState extends State<SgWizardDemoPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 FilterChip(
-                  label: const Text('Ícones'),
+                  label: Text(context.tx('Ícones')),
                   selected: _icones,
                   onSelected: (v) => setState(() => _icones = v),
                 ),
@@ -75,18 +78,20 @@ class _SgWizardDemoPageState extends State<SgWizardDemoPage> {
                       ? SgWizardStepper.icons
                       : SgWizardStepper.numbered,
                   onFinish: () {},
-                  children: const [
+                  children: [
                     SgWizardPage(
-                      title: 'Conta',
+                      title: context.tx('Conta'),
                       icon: Icon(Icons.person),
-                      child: Text('Dados da conta'),
+                      child: Text(context.tx('Dados da conta')),
                     ),
                     SgWizardPage(
-                      title: 'Endereço',
+                      title: context.tx('Endereço'),
                       icon: Icon(Icons.home),
-                      child: Text('Onde você mora'),
+                      child: Text(context.tx('Onde você mora')),
                     ),
-                    SgWizardPage(child: Text('Sem título nem ícone')),
+                    SgWizardPage(
+                      child: Text(context.tx('Sem título nem ícone')),
+                    ),
                   ],
                 ),
               ],
@@ -106,7 +111,7 @@ class _SgWizardDemoPageState extends State<SgWizardDemoPage> {
               onFinish: () {},
               children: [
                 SgWizardPage(
-                  title: 'Nome',
+                  title: context.tx('Nome'),
                   fields: const ['nome'],
                   child: SgInputText(
                     id: 'wz-nome',
@@ -118,7 +123,7 @@ class _SgWizardDemoPageState extends State<SgWizardDemoPage> {
                   ),
                 ),
                 SgWizardPage(
-                  title: 'E-mail',
+                  title: context.tx('E-mail'),
                   fields: const ['email'],
                   child: SgInputText(
                     id: 'wz-email',
@@ -149,7 +154,7 @@ class _SgWizardDemoPageState extends State<SgWizardDemoPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 FilterChip(
-                  label: const Text('nextDisabled'),
+                  label: Text(context.tx('nextDisabled')),
                   selected: _bloqueado,
                   onSelected: (v) => setState(() => _bloqueado = v),
                 ),
@@ -165,10 +170,19 @@ class _SgWizardDemoPageState extends State<SgWizardDemoPage> {
                     return true;
                   },
                   onFinish: () {},
-                  children: const [
-                    SgWizardPage(title: 'Um', child: Text('Primeira etapa')),
-                    SgWizardPage(title: 'Dois', child: Text('Segunda etapa')),
-                    SgWizardPage(title: 'Três', child: Text('Terceira etapa')),
+                  children: [
+                    SgWizardPage(
+                      title: context.tx('Um'),
+                      child: Text(context.tx('Primeira etapa')),
+                    ),
+                    SgWizardPage(
+                      title: context.tx('Dois'),
+                      child: Text(context.tx('Segunda etapa')),
+                    ),
+                    SgWizardPage(
+                      title: context.tx('Três'),
+                      child: Text(context.tx('Terceira etapa')),
+                    ),
                   ],
                 ),
                 const SizedBox(height: 12),

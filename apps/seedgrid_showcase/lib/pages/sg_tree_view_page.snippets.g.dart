@@ -11,26 +11,29 @@ Column(
     SgTreeView(
       defaultExpandedIds: const ['frutas'],
       onLeafClick: (id) => setState(() => _clicado = id),
-      nodes: const [
+      nodes: [
         SgTreeNode(
           id: 'frutas',
-          label: 'Frutas',
+          label: context.tx('Frutas'),
           children: [
-            SgTreeNode(id: 'maca', label: 'Maçã'),
+            SgTreeNode(id: 'maca', label: context.tx('Maçã')),
             SgTreeNode(
               id: 'citricos',
-              label: 'Cítricos',
+              label: context.tx('Cítricos'),
               children: [
-                SgTreeNode(id: 'laranja', label: 'Laranja'),
-                SgTreeNode(id: 'limao', label: 'Limão'),
+                SgTreeNode(
+                  id: 'laranja',
+                  label: context.tx('Laranja'),
+                ),
+                SgTreeNode(id: 'limao', label: context.tx('Limão')),
               ],
             ),
           ],
         ),
-        SgTreeNode(id: 'graos', label: 'Grãos'),
+        SgTreeNode(id: 'graos', label: context.tx('Grãos')),
         SgTreeNode(
           id: 'bloqueado',
-          label: 'Bloqueado',
+          label: context.tx('Bloqueado'),
           disabled: true,
         ),
       ],
@@ -43,22 +46,24 @@ Column(
 
   /// Region `sg-tree-view-busca`.
   static const String sgTreeViewBusca = r'''
-const SgTreeView(
+SgTreeView(
   searchable: true,
   defaultSearchValue: 'couve',
   nodes: [
     SgTreeNode(
       id: 'verduras',
-      label: 'Verduras',
+      label: context.tx('Verduras'),
       children: [
-        SgTreeNode(id: 'alface', label: 'Alface'),
-        SgTreeNode(id: 'couve', label: 'Couve'),
+        SgTreeNode(id: 'alface', label: context.tx('Alface')),
+        SgTreeNode(id: 'couve', label: context.tx('Couve')),
       ],
     ),
     SgTreeNode(
       id: 'legumes',
-      label: 'Legumes',
-      children: [SgTreeNode(id: 'cenoura', label: 'Cenoura')],
+      label: context.tx('Legumes'),
+      children: [
+        SgTreeNode(id: 'cenoura', label: context.tx('Cenoura')),
+      ],
     ),
   ],
 )
@@ -79,13 +84,13 @@ Column(
         onConfirm: (ids) =>
             setState(() => _confirmado = ids.join(', ')),
       ),
-      nodes: const [
+      nodes: [
         SgTreeNode(
           id: 'x',
-          label: 'Permissões',
+          label: context.tx('Permissões'),
           children: [
-            SgTreeNode(id: 'ler', label: 'Ler'),
-            SgTreeNode(id: 'gravar', label: 'Gravar'),
+            SgTreeNode(id: 'ler', label: context.tx('Ler')),
+            SgTreeNode(id: 'gravar', label: context.tx('Gravar')),
           ],
         ),
       ],
@@ -98,29 +103,29 @@ Column(
 
   /// Region `sg-tree-view-expandido`.
   static const String sgTreeViewExpandido = r'''
-const SgTreeView(
+SgTreeView(
   defaultExpandedIds: ['docs'],
   nodes: [
     SgTreeNode(
       id: 'docs',
-      label: 'Documentos',
+      label: context.tx('Documentos'),
       icon: Icon(Icons.folder_outlined, size: 16),
       children: [
         SgTreeNode(
           id: 'contrato',
-          label: 'Contrato',
+          label: context.tx('Contrato'),
           icon: Icon(Icons.description_outlined, size: 16),
         ),
         SgTreeNode(
           id: 'nota',
-          label: 'Nota fiscal',
+          label: context.tx('Nota fiscal'),
           icon: Icon(Icons.receipt_long_outlined, size: 16),
         ),
       ],
     ),
     SgTreeNode(
       id: 'img',
-      label: 'Imagens',
+      label: context.tx('Imagens'),
       icon: Icon(Icons.image_outlined, size: 16),
     ),
   ],
@@ -129,20 +134,20 @@ const SgTreeView(
 
   /// Region `sg-tree-view-marcados-iniciais`.
   static const String sgTreeViewMarcadosIniciais = r'''
-const SgTreeView(
+SgTreeView(
   checkable: true,
   defaultExpandedIds: ['a'],
   defaultCheckedIds: ['a1'],
   nodes: [
     SgTreeNode(
       id: 'a',
-      label: 'Ramo A',
+      label: context.tx('Ramo A'),
       children: [
-        SgTreeNode(id: 'a1', label: 'Folha A1'),
-        SgTreeNode(id: 'a2', label: 'Folha A2'),
+        SgTreeNode(id: 'a1', label: context.tx('Folha A1')),
+        SgTreeNode(id: 'a2', label: context.tx('Folha A2')),
       ],
     ),
-    SgTreeNode(id: 'b', label: 'Folha B'),
+    SgTreeNode(id: 'b', label: context.tx('Folha B')),
   ],
 )
 ''';
@@ -157,16 +162,16 @@ Column(
       defaultExpandedIds: const ['a'],
       defaultCheckedIds: const ['a1'],
       onCheckedChange: (ids) => setState(() => _marcados = ids),
-      nodes: const [
+      nodes: [
         SgTreeNode(
           id: 'a',
-          label: 'Documentos',
+          label: context.tx('Documentos'),
           children: [
-            SgTreeNode(id: 'a1', label: 'Contrato'),
-            SgTreeNode(id: 'a2', label: 'Proposta'),
+            SgTreeNode(id: 'a1', label: context.tx('Contrato')),
+            SgTreeNode(id: 'a2', label: context.tx('Proposta')),
           ],
         ),
-        SgTreeNode(id: 'b', label: 'Imagens'),
+        SgTreeNode(id: 'b', label: context.tx('Imagens')),
       ],
     ),
     const SizedBox(height: 8),
@@ -177,7 +182,7 @@ Column(
 
   /// Region `sg-tree-view-tamanho`.
   static const String sgTreeViewTamanho = r'''
-const Column(
+Column(
   crossAxisAlignment: CrossAxisAlignment.start,
   children: [
     SgTreeView(
@@ -187,13 +192,13 @@ const Column(
       nodes: [
         SgTreeNode(
           id: 'a',
-          label: 'Ramo A',
+          label: context.tx('Ramo A'),
           children: [
-            SgTreeNode(id: 'a1', label: 'Folha A1'),
-            SgTreeNode(id: 'a2', label: 'Folha A2'),
+            SgTreeNode(id: 'a1', label: context.tx('Folha A1')),
+            SgTreeNode(id: 'a2', label: context.tx('Folha A2')),
           ],
         ),
-        SgTreeNode(id: 'b', label: 'Folha B'),
+        SgTreeNode(id: 'b', label: context.tx('Folha B')),
       ],
     ),
     SizedBox(height: 12),
@@ -204,13 +209,13 @@ const Column(
       nodes: [
         SgTreeNode(
           id: 'a',
-          label: 'Ramo A',
+          label: context.tx('Ramo A'),
           children: [
-            SgTreeNode(id: 'a1', label: 'Folha A1'),
-            SgTreeNode(id: 'a2', label: 'Folha A2'),
+            SgTreeNode(id: 'a1', label: context.tx('Folha A1')),
+            SgTreeNode(id: 'a2', label: context.tx('Folha A2')),
           ],
         ),
-        SgTreeNode(id: 'b', label: 'Folha B'),
+        SgTreeNode(id: 'b', label: context.tx('Folha B')),
       ],
     ),
   ],
@@ -219,7 +224,7 @@ const Column(
 
   /// Region `sg-tree-view-tom`.
   static const String sgTreeViewTom = r'''
-const Column(
+Column(
   crossAxisAlignment: CrossAxisAlignment.start,
   children: [
     SgTreeView(
@@ -228,24 +233,24 @@ const Column(
       nodes: [
         SgTreeNode(
           id: 'docs',
-          label: 'Documentos',
+          label: context.tx('Documentos'),
           icon: Icon(Icons.folder_outlined, size: 16),
           children: [
             SgTreeNode(
               id: 'contrato',
-              label: 'Contrato',
+              label: context.tx('Contrato'),
               icon: Icon(Icons.description_outlined, size: 16),
             ),
             SgTreeNode(
               id: 'nota',
-              label: 'Nota fiscal',
+              label: context.tx('Nota fiscal'),
               icon: Icon(Icons.receipt_long_outlined, size: 16),
             ),
           ],
         ),
         SgTreeNode(
           id: 'img',
-          label: 'Imagens',
+          label: context.tx('Imagens'),
           icon: Icon(Icons.image_outlined, size: 16),
         ),
       ],
@@ -257,24 +262,24 @@ const Column(
       nodes: [
         SgTreeNode(
           id: 'docs',
-          label: 'Documentos',
+          label: context.tx('Documentos'),
           icon: Icon(Icons.folder_outlined, size: 16),
           children: [
             SgTreeNode(
               id: 'contrato',
-              label: 'Contrato',
+              label: context.tx('Contrato'),
               icon: Icon(Icons.description_outlined, size: 16),
             ),
             SgTreeNode(
               id: 'nota',
-              label: 'Nota fiscal',
+              label: context.tx('Nota fiscal'),
               icon: Icon(Icons.receipt_long_outlined, size: 16),
             ),
           ],
         ),
         SgTreeNode(
           id: 'img',
-          label: 'Imagens',
+          label: context.tx('Imagens'),
           icon: Icon(Icons.image_outlined, size: 16),
         ),
       ],
@@ -289,20 +294,20 @@ SgTreeView(
   checkable: true,
   checkableLabel: 'Incluir',
   defaultExpandedIds: const ['contas'],
-  nodes: const [
+  nodes: [
     SgTreeNode(
       id: 'contas',
-      label: 'Contas',
+      label: context.tx('Contas'),
       children: [
-        SgTreeNode(id: 'cc', label: 'Conta corrente'),
-        SgTreeNode(id: 'poup', label: 'Poupança'),
+        SgTreeNode(id: 'cc', label: context.tx('Conta corrente')),
+        SgTreeNode(id: 'poup', label: context.tx('Poupança')),
       ],
     ),
   ],
   tracks: [
     SgTreeTrackBoolean(
       id: 'ler',
-      label: 'Ler',
+      label: context.tx('Ler'),
       width: '70px',
       checkedIds: _marcadosColuna,
       onCheckedChange: (ids) =>
@@ -310,18 +315,24 @@ SgTreeView(
     ),
     SgTreeTrackEnum(
       id: 'tipo',
-      label: 'Tipo',
+      label: context.tx('Tipo'),
       width: '140px',
-      options: const [
-        SgTreeTrackOption(value: 'corrente', label: 'Corrente'),
-        SgTreeTrackOption(value: 'poupanca', label: 'Poupança'),
+      options: [
+        SgTreeTrackOption(
+          value: 'corrente',
+          label: context.tx('Corrente'),
+        ),
+        SgTreeTrackOption(
+          value: 'poupanca',
+          label: context.tx('Poupança'),
+        ),
       ],
       valueByNodeId: _tipos,
       onChange: (next) => setState(() => _tipos = next),
     ),
     SgTreeTrackCustom(
       id: 'codigo',
-      label: 'Código',
+      label: context.tx('Código'),
       width: '80px',
       render: (node) => Text('#${node.id}'),
     ),

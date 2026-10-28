@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 import 'sg_float_action_button_page.snippets.g.dart';
 
 class SgFloatActionButtonPage extends StatefulWidget {
@@ -52,7 +53,7 @@ class _SgFloatActionButtonPageState extends State<SgFloatActionButtonPage> {
                     Center(child: Text('Cliques: $_cliques')),
                     SgFloatActionButton(
                       absolute: true,
-                      hint: 'Novo item',
+                      hint: context.tx('Novo item'),
                       onClick: () => setState(() => _cliques++),
                     ),
                     const SgFloatActionButton(
@@ -149,19 +150,19 @@ class _SgFloatActionButtonPageState extends State<SgFloatActionButtonPage> {
                       actions: [
                         SgFABAction(
                           icon: const Icon(Icons.edit),
-                          label: 'Editar',
+                          label: context.tx('Editar'),
                           onClick: () => setState(() => _ultima = 'editar'),
                         ),
                         SgFABAction(
                           icon: const Icon(Icons.share),
-                          label: 'Compartilhar',
+                          label: context.tx('Compartilhar'),
                           severity: SgFloatActionButtonSeverity.info,
                           onClick: () =>
                               setState(() => _ultima = 'compartilhar'),
                         ),
-                        const SgFABAction(
+                        SgFABAction(
                           icon: Icon(Icons.delete),
-                          label: 'Excluir',
+                          label: context.tx('Excluir'),
                           disabled: true,
                         ),
                       ],
@@ -186,7 +187,7 @@ class _SgFloatActionButtonPageState extends State<SgFloatActionButtonPage> {
                   border: Border.all(color: Colors.black26),
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: const Stack(
+                child: Stack(
                   children: [
                     SgFloatActionButton(
                       absolute: true,
@@ -194,9 +195,18 @@ class _SgFloatActionButtonPageState extends State<SgFloatActionButtonPage> {
                       type: SgFloatActionButtonType.semiCircle,
                       radius: 90,
                       actions: [
-                        SgFABAction(icon: Icon(Icons.home), label: 'Início'),
-                        SgFABAction(icon: Icon(Icons.search), label: 'Buscar'),
-                        SgFABAction(icon: Icon(Icons.person), label: 'Perfil'),
+                        SgFABAction(
+                          icon: Icon(Icons.home),
+                          label: context.tx('Início'),
+                        ),
+                        SgFABAction(
+                          icon: Icon(Icons.search),
+                          label: context.tx('Buscar'),
+                        ),
+                        SgFABAction(
+                          icon: Icon(Icons.person),
+                          label: context.tx('Perfil'),
+                        ),
                       ],
                     ),
                   ],
@@ -219,17 +229,20 @@ class _SgFloatActionButtonPageState extends State<SgFloatActionButtonPage> {
                   border: Border.all(color: Colors.black26),
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: const Stack(
+                child: Stack(
                   children: [
                     SgFloatActionButton(
                       absolute: true,
                       position: SgFloatActionButtonPosition.leftBottom,
                       animation: SgFloatActionButtonAnimation.pulse,
                       actions: [
-                        SgFABAction(icon: Icon(Icons.edit), label: 'Editar'),
+                        SgFABAction(
+                          icon: Icon(Icons.edit),
+                          label: context.tx('Editar'),
+                        ),
                         SgFABAction(
                           icon: Icon(Icons.share),
-                          label: 'Compartilhar',
+                          label: context.tx('Compartilhar'),
                         ),
                       ],
                     ),
@@ -239,10 +252,13 @@ class _SgFloatActionButtonPageState extends State<SgFloatActionButtonPage> {
                       animation: SgFloatActionButtonAnimation.rotate,
                       animationOn: SgFloatActionButtonAnimationOn.hover,
                       actions: [
-                        SgFABAction(icon: Icon(Icons.edit), label: 'Editar'),
+                        SgFABAction(
+                          icon: Icon(Icons.edit),
+                          label: context.tx('Editar'),
+                        ),
                         SgFABAction(
                           icon: Icon(Icons.share),
-                          label: 'Compartilhar',
+                          label: context.tx('Compartilhar'),
                         ),
                       ],
                     ),
@@ -251,10 +267,13 @@ class _SgFloatActionButtonPageState extends State<SgFloatActionButtonPage> {
                       animation: SgFloatActionButtonAnimation.scale,
                       animationOn: SgFloatActionButtonAnimationOn.click,
                       actions: [
-                        SgFABAction(icon: Icon(Icons.edit), label: 'Editar'),
+                        SgFABAction(
+                          icon: Icon(Icons.edit),
+                          label: context.tx('Editar'),
+                        ),
                         SgFABAction(
                           icon: Icon(Icons.share),
-                          label: 'Compartilhar',
+                          label: context.tx('Compartilhar'),
                         ),
                       ],
                     ),
@@ -278,16 +297,22 @@ class _SgFloatActionButtonPageState extends State<SgFloatActionButtonPage> {
                   border: Border.all(color: Colors.black26),
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: const Stack(
+                child: Stack(
                   children: [
                     SgFloatActionButton(
                       absolute: true,
                       enableDragDrop: true,
                       dragId: 'showcase-fab',
-                      hint: 'Arraste-me',
+                      hint: context.tx('Arraste-me'),
                       actions: [
-                        SgFABAction(icon: Icon(Icons.edit), label: 'Editar'),
-                        SgFABAction(icon: Icon(Icons.share), label: 'Enviar'),
+                        SgFABAction(
+                          icon: Icon(Icons.edit),
+                          label: context.tx('Editar'),
+                        ),
+                        SgFABAction(
+                          icon: Icon(Icons.share),
+                          label: context.tx('Enviar'),
+                        ),
                       ],
                     ),
                   ],

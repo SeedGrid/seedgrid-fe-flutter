@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 import 'sg_whistle_host_page.snippets.g.dart';
 
 class SgWhistleHostPage extends StatefulWidget {
@@ -49,21 +50,21 @@ class _SgWhistleHostPageState extends State<SgWhistleHostPage> {
               runSpacing: 8,
               children: [
                 SgButton(
-                  label: const Text('Sucesso'),
+                  label: Text(context.tx('Sucesso')),
                   severity: SgSeverity.success,
                   onClick: () => sgWhistle.success(
-                    const SgWhistleOptions(message: 'Salvo pelo host'),
+                    SgWhistleOptions(message: context.tx('Salvo pelo host')),
                   ),
                 ),
                 SgButton(
-                  label: const Text('Erro'),
+                  label: Text(context.tx('Erro')),
                   severity: SgSeverity.danger,
                   onClick: () => sgWhistle.error(
-                    const SgWhistleOptions(message: 'Falhou pelo host'),
+                    SgWhistleOptions(message: context.tx('Falhou pelo host')),
                   ),
                 ),
                 SgButton(
-                  label: const Text('Limpar'),
+                  label: Text(context.tx('Limpar')),
                   appearance: SgAppearance.ghost,
                   onClick: sgWhistle.dismiss,
                 ),
@@ -83,9 +84,9 @@ class _SgWhistleHostPageState extends State<SgWhistleHostPage> {
               children: [
                 const SgWhistler(),
                 SgButton(
-                  label: const Text('Disparar'),
+                  label: Text(context.tx('Disparar')),
                   onClick: () => sgWhistle.info(
-                    const SgWhistleOptions(message: 'Só aparece no host'),
+                    SgWhistleOptions(message: context.tx('Só aparece no host')),
                   ),
                 ),
               ],
@@ -105,15 +106,15 @@ class _SgWhistleHostPageState extends State<SgWhistleHostPage> {
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
                 FilterChip(
-                  label: const Text('Segundo host (cantos retos)'),
+                  label: Text(context.tx('Segundo host (cantos retos)')),
                   selected: _extraHost,
                   onSelected: (v) => setState(() => _extraHost = v),
                 ),
                 SgButton(
-                  label: const Text('Disparar'),
+                  label: Text(context.tx('Disparar')),
                   onClick: () => sgWhistle.warning(
-                    const SgWhistleOptions(
-                      message: 'Quem está ativo?',
+                    SgWhistleOptions(
+                      message: context.tx('Quem está ativo?'),
                       duration: 3000,
                     ),
                   ),
@@ -135,15 +136,15 @@ class _SgWhistleHostPageState extends State<SgWhistleHostPage> {
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
                 FilterChip(
-                  label: const Text('rounded'),
+                  label: Text(context.tx('rounded')),
                   selected: _rounded,
                   onSelected: (v) => setState(() => _rounded = v),
                 ),
                 SgButton(
-                  label: const Text('Disparar'),
+                  label: Text(context.tx('Disparar')),
                   onClick: () => sgWhistle.success(
-                    const SgWhistleOptions(
-                      message: 'Cantos do host',
+                    SgWhistleOptions(
+                      message: context.tx('Cantos do host'),
                       duration: 3000,
                     ),
                   ),

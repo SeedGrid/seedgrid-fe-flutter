@@ -10,7 +10,7 @@ Column(
   children: [
     SgPickList(
       id: 'frutas',
-      title: 'Frutas',
+      title: context.tx('Frutas'),
       source: _frutas,
       target: const [],
       onChange: (e) => setState(
@@ -29,7 +29,7 @@ Column(
   crossAxisAlignment: CrossAxisAlignment.start,
   children: [
     SgPickList(
-      title: 'Controlada',
+      title: context.tx('Controlada'),
       source: _frutas,
       target: const [],
       controller: _controller,
@@ -40,15 +40,15 @@ Column(
       runSpacing: 8,
       children: [
         SgButton(
-          label: const Text('Mover todos'),
+          label: Text(context.tx('Mover todos')),
           onClick: () => _controller.moveAllToTarget(),
         ),
         SgButton(
-          label: const Text('Devolver todos'),
+          label: Text(context.tx('Devolver todos')),
           onClick: () => _controller.moveAllToSource(),
         ),
         SgButton(
-          label: const Text('Limpar seleção'),
+          label: Text(context.tx('Limpar seleção')),
           onClick: () => _controller.clearSelection(),
         ),
       ],
@@ -59,10 +59,12 @@ Column(
 
   /// Region `sg-pick-list-filtros`.
   static const String sgPickListFiltros = r'''
-const SgPickList(
-  title: 'Escolha as frutas',
+SgPickList(
+  title: context.tx('Escolha as frutas'),
   source: _frutas,
-  target: [SgPickListItem(label: 'Abacate', value: 'abacate')],
+  target: [
+    SgPickListItem(label: context.tx('Abacate'), value: 'abacate'),
+  ],
   sourceHeader: 'Disponíveis',
   targetHeader: 'Escolhidas',
   showSourceFilter: true,
@@ -83,11 +85,11 @@ Column(
       id: 'equipe',
       name: 'equipe',
       control: _form,
-      title: 'Equipe',
-      source: const [
-        SgPickListItem(label: 'Ana', value: 'ana'),
-        SgPickListItem(label: 'Bruno', value: 'bruno'),
-        SgPickListItem(label: 'Carla', value: 'carla'),
+      title: context.tx('Equipe'),
+      source: [
+        SgPickListItem(label: context.tx('Ana'), value: 'ana'),
+        SgPickListItem(label: context.tx('Bruno'), value: 'bruno'),
+        SgPickListItem(label: context.tx('Carla'), value: 'carla'),
       ],
       target: const [],
       rules: SgRules(
@@ -98,7 +100,7 @@ Column(
     ),
     const SizedBox(height: 12),
     SgButton(
-      label: const Text('Enviar'),
+      label: Text(context.tx('Enviar')),
       onClick: () => _form.handleSubmit((values) {
         final v = values['equipe'] as SgPickListValue?;
         setState(
@@ -115,19 +117,23 @@ Column(
   /// Region `sg-pick-list-template`.
   static const String sgPickListTemplate = r'''
 SgPickList(
-  title: 'Com ícones',
-  source: const [
+  title: context.tx('Com ícones'),
+  source: [
     SgPickListItem(
-      label: 'Favoritos',
+      label: context.tx('Favoritos'),
       value: 1,
       icon: Icon(Icons.star, size: 16),
     ),
     SgPickListItem(
-      label: 'Rápidos',
+      label: context.tx('Rápidos'),
       value: 2,
       icon: Icon(Icons.bolt, size: 16),
     ),
-    SgPickListItem(label: 'Bloqueado', value: 3, disabled: true),
+    SgPickListItem(
+      label: context.tx('Bloqueado'),
+      value: 3,
+      disabled: true,
+    ),
   ],
   target: const [],
   itemTemplate: (item, state) => Row(

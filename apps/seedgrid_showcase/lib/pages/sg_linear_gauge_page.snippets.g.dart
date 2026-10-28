@@ -26,7 +26,7 @@ const SgLinearGauge(value: 62)
 
   /// Region `sg-linear-gauge-faixas`.
   static const String sgLinearGaugeFaixas = r'''
-const SgLinearGauge(
+SgLinearGauge(
   value: 35,
   ranges: [
     SgLinearGaugeRange(start: 0, end: 40, color: '#22c55e'),
@@ -36,7 +36,7 @@ const SgLinearGauge(
     SgLinearGaugePointer(
       value: 80,
       shape: SgLinearGaugePointerShape.diamond,
-      label: 'meta',
+      label: context.tx('meta'),
     ),
   ],
   primaryPointerShape:

@@ -10,17 +10,19 @@ Wrap(
   runSpacing: 8,
   children: [
     SgButton(
-      label: const Text('Com ação'),
+      label: Text(context.tx('Com ação')),
       onClick: () => sgWhistle.warning(
         SgWhistleOptions(
-          title: 'Rascunho',
-          message: 'Você tem alterações não salvas.',
+          title: context.tx('Rascunho'),
+          message: context.tx('Você tem alterações não salvas.'),
           icon: const Icon(Icons.edit),
           duration: 0,
           action: SgWhistleAction(
-            label: 'Salvar',
+            label: context.tx('Salvar'),
             onClick: () => sgWhistle.success(
-              const SgWhistleOptions(message: 'Rascunho salvo'),
+              SgWhistleOptions(
+                message: context.tx('Rascunho salvo'),
+              ),
             ),
           ),
           onClose: () => debugPrint('whistle fechado'),
@@ -28,11 +30,11 @@ Wrap(
       ),
     ),
     SgButton(
-      label: const Text('Sem botão de fechar'),
+      label: Text(context.tx('Sem botão de fechar')),
       appearance: SgAppearance.outline,
       onClick: () => sgWhistle.info(
-        const SgWhistleOptions(
-          message: 'Some em 3 segundos',
+        SgWhistleOptions(
+          message: context.tx('Some em 3 segundos'),
           dismissible: false,
           duration: 3000,
         ),
@@ -50,7 +52,7 @@ Wrap(
   crossAxisAlignment: WrapCrossAlignment.center,
   children: [
     FilterChip(
-      label: const Text('rounded'),
+      label: Text(context.tx('rounded')),
       selected: _rounded,
       onSelected: (v) => setState(() => _rounded = v),
     ),
@@ -66,17 +68,17 @@ Wrap(
       ),
     ),
     SgButton(
-      label: const Text('Disparar 2 avisos'),
+      label: Text(context.tx('Disparar 2 avisos')),
       onClick: () {
         sgWhistle.info(
-          const SgWhistleOptions(
-            message: 'Primeiro',
+          SgWhistleOptions(
+            message: context.tx('Primeiro'),
             duration: 4000,
           ),
         );
         sgWhistle.success(
-          const SgWhistleOptions(
-            message: 'Segundo',
+          SgWhistleOptions(
+            message: context.tx('Segundo'),
             duration: 4000,
           ),
         );
@@ -93,33 +95,38 @@ Wrap(
   runSpacing: 8,
   children: [
     SgButton(
-      label: const Text('Atualizar'),
+      label: Text(context.tx('Atualizar')),
       onClick: () {
         final id = sgWhistle.loading(
-          const SgWhistleOptions(message: 'Gerando relatório...'),
+          SgWhistleOptions(
+            message: context.tx('Gerando relatório...'),
+          ),
         );
+        final pronto = context.tx('Relatório pronto');
         Future<void>.delayed(
           const Duration(seconds: 2),
           () => sgWhistle.update(
             id,
-            const SgWhistleCustomOptions(
+            SgWhistleCustomOptions(
               severity: SgWhistleSeverity.success,
-              message: 'Relatório pronto',
+              message: pronto,
             ),
           ),
         );
       },
     ),
     SgButton(
-      label: const Text('Promise'),
+      label: Text(context.tx('Promise')),
       appearance: SgAppearance.outline,
       onClick: () => sgWhistle.promise<int>(
         Future<int>.delayed(const Duration(seconds: 2), () => 42),
         SgWhistlePromiseStates<int>(
-          loading: const SgWhistleOptions(message: 'Calculando...'),
+          loading: SgWhistleOptions(
+            message: context.tx('Calculando...'),
+          ),
           success: (int v) =>
               SgWhistleOptions(message: 'Resultado: $v'),
-          error: const SgWhistleOptions(message: 'Deu erro'),
+          error: SgWhistleOptions(message: context.tx('Deu erro')),
         ),
       ),
     ),
@@ -156,47 +163,51 @@ Wrap(
   runSpacing: 8,
   children: [
     SgButton(
-      label: const Text('Padrão'),
+      label: Text(context.tx('Padrão')),
       onClick: () => sgWhistle.show(
-        const SgWhistleOptions(message: 'Aviso simples'),
+        SgWhistleOptions(message: context.tx('Aviso simples')),
       ),
     ),
     SgButton(
-      label: const Text('Sucesso'),
+      label: Text(context.tx('Sucesso')),
       severity: SgSeverity.success,
       onClick: () => sgWhistle.success(
-        const SgWhistleOptions(
-          title: 'Salvo',
-          message: 'As alterações foram gravadas.',
+        SgWhistleOptions(
+          title: context.tx('Salvo'),
+          message: context.tx('As alterações foram gravadas.'),
         ),
       ),
     ),
     SgButton(
-      label: const Text('Info'),
+      label: Text(context.tx('Info')),
       severity: SgSeverity.info,
       onClick: () => sgWhistle.info(
-        const SgWhistleOptions(message: 'Há uma nova versão.'),
-      ),
-    ),
-    SgButton(
-      label: const Text('Aviso'),
-      severity: SgSeverity.warning,
-      onClick: () => sgWhistle.warning(
-        const SgWhistleOptions(message: 'Sessão perto de expirar.'),
-      ),
-    ),
-    SgButton(
-      label: const Text('Erro'),
-      severity: SgSeverity.danger,
-      onClick: () => sgWhistle.error(
-        const SgWhistleOptions(
-          title: 'Falha',
-          message: 'Não foi possível salvar.',
+        SgWhistleOptions(
+          message: context.tx('Há uma nova versão.'),
         ),
       ),
     ),
     SgButton(
-      label: const Text('Limpar tudo'),
+      label: Text(context.tx('Aviso')),
+      severity: SgSeverity.warning,
+      onClick: () => sgWhistle.warning(
+        SgWhistleOptions(
+          message: context.tx('Sessão perto de expirar.'),
+        ),
+      ),
+    ),
+    SgButton(
+      label: Text(context.tx('Erro')),
+      severity: SgSeverity.danger,
+      onClick: () => sgWhistle.error(
+        SgWhistleOptions(
+          title: context.tx('Falha'),
+          message: context.tx('Não foi possível salvar.'),
+        ),
+      ),
+    ),
+    SgButton(
+      label: Text(context.tx('Limpar tudo')),
       appearance: SgAppearance.ghost,
       onClick: sgWhistle.dismiss,
     ),

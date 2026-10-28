@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 import 'sg_toast_host_page.snippets.g.dart';
 
 class SgToastHostPage extends StatefulWidget {
@@ -49,17 +50,17 @@ class _SgToastHostPageState extends State<SgToastHostPage> {
               runSpacing: 8,
               children: [
                 SgButton(
-                  label: const Text('Sucesso'),
+                  label: Text(context.tx('Sucesso')),
                   severity: SgSeverity.success,
                   onClick: () => toast.success('Salvo pelo host'),
                 ),
                 SgButton(
-                  label: const Text('Erro'),
+                  label: Text(context.tx('Erro')),
                   severity: SgSeverity.danger,
                   onClick: () => toast.error('Falhou pelo host'),
                 ),
                 SgButton(
-                  label: const Text('Limpar'),
+                  label: Text(context.tx('Limpar')),
                   appearance: SgAppearance.ghost,
                   onClick: toast.dismiss,
                 ),
@@ -82,7 +83,7 @@ class _SgToastHostPageState extends State<SgToastHostPage> {
                   Align(
                     alignment: Alignment.center,
                     child: SgButton(
-                      label: const Text('Disparar'),
+                      label: Text(context.tx('Disparar')),
                       onClick: () => toast('Só aparece no host'),
                     ),
                   ),
@@ -104,12 +105,12 @@ class _SgToastHostPageState extends State<SgToastHostPage> {
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
                 FilterChip(
-                  label: const Text('Segundo host'),
+                  label: Text(context.tx('Segundo host')),
                   selected: _extraHost,
                   onSelected: (v) => setState(() => _extraHost = v),
                 ),
                 SgButton(
-                  label: const Text('Disparar'),
+                  label: Text(context.tx('Disparar')),
                   onClick: () => toast.info(
                     'Quem está ativo?',
                     const SgToastOptions(duration: 3000),
@@ -132,12 +133,12 @@ class _SgToastHostPageState extends State<SgToastHostPage> {
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
                 FilterChip(
-                  label: const Text('richColors'),
+                  label: Text(context.tx('richColors')),
                   selected: _rich,
                   onSelected: (v) => setState(() => _rich = v),
                 ),
                 SgButton(
-                  label: const Text('Disparar'),
+                  label: Text(context.tx('Disparar')),
                   onClick: () => toast.warning(
                     'Cores do host',
                     const SgToastOptions(duration: 3000),

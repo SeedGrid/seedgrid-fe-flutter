@@ -29,7 +29,7 @@ Column(
             ),
             const SizedBox(width: 12),
             SgButton(
-              label: const Text('Apagar'),
+              label: Text(context.tx('Apagar')),
               appearance: SgAppearance.outline,
               onClick: state.clear,
             ),
@@ -96,7 +96,7 @@ SgEnvironmentProvider(
         ),
         const SizedBox(width: 12),
         SgButton(
-          label: const Text('Zerar'),
+          label: Text(context.tx('Zerar')),
           appearance: SgAppearance.outline,
           onClick: state.clear,
         ),
@@ -129,7 +129,7 @@ SgEnvironmentProvider(
           'chave: ${useSgPersistence(context).fullKeyOf('rascunho')}',
         ),
         SgButton(
-          label: const Text('Tentar salvar'),
+          label: Text(context.tx('Tentar salvar')),
           onClick: () => state.setValue('salvo?'),
         ),
       ],

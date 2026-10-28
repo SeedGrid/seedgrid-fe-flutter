@@ -19,20 +19,20 @@ SgAutocomplete<SgAutocompleteItem>(
   renderFooter: (q, has) =>
       Text(has ? 'Resultados para "$q"' : 'Nada para "$q"'),
   source: (q) =>
-      const [
+      [
             SgAutocompleteItem(
               id: 1,
-              label: 'Maçã',
+              label: context.tx('Maçã'),
               group: 'Frutas',
             ),
             SgAutocompleteItem(
               id: 2,
-              label: 'Manga',
+              label: context.tx('Manga'),
               group: 'Frutas',
             ),
             SgAutocompleteItem(
               id: 3,
-              label: 'Milho',
+              label: context.tx('Milho'),
               group: 'Grãos',
             ),
           ]
@@ -64,7 +64,7 @@ SgAutocomplete<String>(
 SgAutocomplete<String>(
   id: 'pais',
   labelText: 'País',
-  placeholder: 'Digite 2 letras',
+  placeholder: context.tx('Digite 2 letras'),
   source: (q) =>
       const [
             'Argentina',
@@ -112,7 +112,7 @@ Column(
     ),
     const SizedBox(height: 12),
     SgButton(
-      label: const Text('Enviar'),
+      label: Text(context.tx('Enviar')),
       onClick: () => _form.handleSubmit(
         (values) => setState(() => _enviado = '${values['fruta']}'),
       ),

@@ -58,7 +58,7 @@ SgClockThemeProvider(
     child: SgClockThemePicker(
       value: _escolhido,
       onChange: (id) => setState(() => _escolhido = id),
-      label: 'Tema romano',
+      label: context.tx('Tema romano'),
       filter: (tema) =>
           tema.id.startsWith('roman') || tema.id == 'classic',
     ),
@@ -90,7 +90,7 @@ Wrap(
       child: SgClockThemePicker(
         value: 'classic',
         onChange: (_) {},
-        placeholder: 'Nenhum tema registrado',
+        placeholder: context.tx('Nenhum tema registrado'),
       ),
     ),
   ],

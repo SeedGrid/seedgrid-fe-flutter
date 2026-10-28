@@ -13,18 +13,18 @@ SgScreen(
       align: SgPanelAlign.top,
       height: 20,
       borderStyle: SgPanelBorderStyle.solid,
-      children: const [Text('Cabeçalho')],
+      children: [Text(context.tx('Cabeçalho'))],
     ),
     SgPanel(
       align: SgPanelAlign.left,
       width: 25,
       borderStyle: SgPanelBorderStyle.solid,
-      children: const [Text('Menu')],
+      children: [Text(context.tx('Menu'))],
     ),
     SgPanel(
       align: SgPanelAlign.client,
       borderStyle: SgPanelBorderStyle.solid,
-      children: const [Text('Conteúdo')],
+      children: [Text(context.tx('Conteúdo'))],
     ),
   ],
 )
@@ -32,20 +32,23 @@ SgScreen(
 
   /// Region `sg-screen-livre`.
   static const String sgScreenLivre = r'''
-const SgScreen(
+SgScreen(
   fullscreen: false,
   padding: 12,
-  children: [Text('Altura do conteúdo'), Text('Segunda linha')],
+  children: [
+    Text(context.tx('Altura do conteúdo')),
+    Text(context.tx('Segunda linha')),
+  ],
 )
 ''';
 
   /// Region `sg-screen-tamanho`.
   static const String sgScreenTamanho = r'''
-const SgScreen(
+SgScreen(
   width: '60%',
   height: 120,
   padding: 12,
-  children: [Text('60% da largura, 120 de altura')],
+  children: [Text(context.tx('60% da largura, 120 de altura'))],
 )
 ''';
 }

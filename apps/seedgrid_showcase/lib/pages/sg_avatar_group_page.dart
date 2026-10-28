@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 import 'sg_avatar_group_page.snippets.g.dart';
 
 class SgAvatarGroupPage extends StatelessWidget {
@@ -16,15 +17,15 @@ class SgAvatarGroupPage extends StatelessWidget {
         description: 'Os avatares se sobrepõem em 8 px (overlap md).',
         preview:
             // #region sg-avatar-group-simples
-            const SgAvatarGroup(
+            SgAvatarGroup(
               children: [
-                SgAvatar(label: Text('Ana Lima')),
+                SgAvatar(label: Text(context.tx('Ana Lima'))),
                 SgAvatar(
-                  label: Text('Bia Souza'),
+                  label: Text(context.tx('Bia Souza')),
                   severity: SgAvatarSeverity.success,
                 ),
                 SgAvatar(
-                  label: Text('Caio Reis'),
+                  label: Text(context.tx('Caio Reis')),
                   severity: SgAvatarSeverity.warning,
                 ),
               ],
@@ -38,21 +39,21 @@ class SgAvatarGroupPage extends StatelessWidget {
             'max esconde o excesso; total soma quem não está na lista.',
         preview:
             // #region sg-avatar-group-max
-            const SgAvatarGroup(
+            SgAvatarGroup(
               max: 3,
               total: 12,
               children: [
-                SgAvatar(label: Text('Ana Lima')),
+                SgAvatar(label: Text(context.tx('Ana Lima'))),
                 SgAvatar(
-                  label: Text('Bia Souza'),
+                  label: Text(context.tx('Bia Souza')),
                   severity: SgAvatarSeverity.success,
                 ),
                 SgAvatar(
-                  label: Text('Caio Reis'),
+                  label: Text(context.tx('Caio Reis')),
                   severity: SgAvatarSeverity.warning,
                 ),
                 SgAvatar(
-                  label: Text('Duda Melo'),
+                  label: Text(context.tx('Duda Melo')),
                   severity: SgAvatarSeverity.danger,
                 ),
               ],
@@ -94,11 +95,23 @@ class SgAvatarGroupPage extends StatelessWidget {
               moreSeverity: SgAvatarSeverity.info,
               moreLabel: (restantes) => Text('+$restantes'),
               shape: SgAvatarShape.square,
-              children: const [
-                SgAvatar(label: Text('Ana Lima'), shape: SgAvatarShape.square),
-                SgAvatar(label: Text('Bia Souza'), shape: SgAvatarShape.square),
-                SgAvatar(label: Text('Caio Reis'), shape: SgAvatarShape.square),
-                SgAvatar(label: Text('Duda Melo'), shape: SgAvatarShape.square),
+              children: [
+                SgAvatar(
+                  label: Text(context.tx('Ana Lima')),
+                  shape: SgAvatarShape.square,
+                ),
+                SgAvatar(
+                  label: Text(context.tx('Bia Souza')),
+                  shape: SgAvatarShape.square,
+                ),
+                SgAvatar(
+                  label: Text(context.tx('Caio Reis')),
+                  shape: SgAvatarShape.square,
+                ),
+                SgAvatar(
+                  label: Text(context.tx('Duda Melo')),
+                  shape: SgAvatarShape.square,
+                ),
               ],
             ),
         // #endregion

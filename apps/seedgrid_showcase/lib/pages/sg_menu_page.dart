@@ -37,34 +37,34 @@ class _SgMenuPageState extends State<SgMenuPage> {
                 id: 'menu-basico',
                 ariaLabel: 'Navegação principal',
                 onItemClick: (node) => setState(() => _ultimo = node.id),
-                menu: const [
+                menu: [
                   SgMenuNode(
                     id: 'inicio',
-                    label: 'Início',
+                    label: context.tx('Início'),
                     icon: Icon(Icons.home_outlined),
                     url: '/inicio',
                   ),
                   SgMenuNode(
                     id: 'vendas',
-                    label: 'Vendas',
+                    label: context.tx('Vendas'),
                     icon: Icon(Icons.shopping_cart_outlined),
                     badge: 3,
                     children: [
                       SgMenuNode(
                         id: 'pedidos',
-                        label: 'Pedidos',
+                        label: context.tx('Pedidos'),
                         url: '/pedidos',
                       ),
                       SgMenuNode(
                         id: 'clientes',
-                        label: 'Clientes',
+                        label: context.tx('Clientes'),
                         url: '/clientes',
                       ),
                     ],
                   ),
                   SgMenuNode(
                     id: 'ajustes',
-                    label: 'Ajustes',
+                    label: context.tx('Ajustes'),
                     icon: Icon(Icons.settings_outlined),
                     disabled: true,
                   ),
@@ -87,21 +87,30 @@ class _SgMenuPageState extends State<SgMenuPage> {
                 mode: SgMenuMode.accordion,
                 selection: const SgMenuSelection(activeId: 'relatorio-mensal'),
                 indent: 20,
-                menu: const [
+                menu: [
                   SgMenuNode(
                     id: 'relatorios',
-                    label: 'Relatórios',
+                    label: context.tx('Relatórios'),
                     children: [
-                      SgMenuNode(id: 'relatorio-mensal', label: 'Mensal'),
-                      SgMenuNode(id: 'relatorio-anual', label: 'Anual'),
+                      SgMenuNode(
+                        id: 'relatorio-mensal',
+                        label: context.tx('Mensal'),
+                      ),
+                      SgMenuNode(
+                        id: 'relatorio-anual',
+                        label: context.tx('Anual'),
+                      ),
                     ],
                   ),
                   SgMenuNode(
                     id: 'cadastros',
-                    label: 'Cadastros',
+                    label: context.tx('Cadastros'),
                     children: [
-                      SgMenuNode(id: 'produtos', label: 'Produtos'),
-                      SgMenuNode(id: 'fornecedores', label: 'Fornecedores'),
+                      SgMenuNode(id: 'produtos', label: context.tx('Produtos')),
+                      SgMenuNode(
+                        id: 'fornecedores',
+                        label: context.tx('Fornecedores'),
+                      ),
                     ],
                   ),
                 ],
@@ -121,29 +130,29 @@ class _SgMenuPageState extends State<SgMenuPage> {
               child: SgMenu(
                 id: 'menu-recolher',
                 showCollapseButton: true,
-                brand: const SgMenuBrand(title: 'SeedGrid'),
-                search: const SgMenuSearch(
+                brand: SgMenuBrand(title: context.tx('SeedGrid')),
+                search: SgMenuSearch(
                   enabled: true,
-                  placeholder: 'Buscar no menu',
+                  placeholder: context.tx('Buscar no menu'),
                 ),
-                user: const SgMenuUser(
+                user: SgMenuUser(
                   name: 'Ana Souza',
-                  subtitle: 'Administradora',
+                  subtitle: context.tx('Administradora'),
                 ),
                 footer: const Text('v1.0'),
-                menu: const [
+                menu: [
                   SgMenuNode(
                     id: 'painel',
-                    label: 'Painel',
+                    label: context.tx('Painel'),
                     icon: Icon(Icons.dashboard_outlined),
                   ),
                   SgMenuNode(
                     id: 'equipe',
-                    label: 'Equipe',
+                    label: context.tx('Equipe'),
                     icon: Icon(Icons.group_outlined),
                     children: [
-                      SgMenuNode(id: 'membros', label: 'Membros'),
-                      SgMenuNode(id: 'convites', label: 'Convites'),
+                      SgMenuNode(id: 'membros', label: context.tx('Membros')),
+                      SgMenuNode(id: 'convites', label: context.tx('Convites')),
                     ],
                   ),
                 ],
@@ -164,44 +173,44 @@ class _SgMenuPageState extends State<SgMenuPage> {
               height: 460,
               child: SgMenu(
                 id: 'menu-usuario',
-                brand: const SgMenuBrand(title: 'SeedGrid ERP'),
+                brand: SgMenuBrand(title: context.tx('SeedGrid ERP')),
                 user: SgMenuUser(
                   name: 'Lúcia Souza',
-                  subtitle: 'Financeiro',
-                  avatar: const CircleAvatar(child: Text('LS')),
+                  subtitle: context.tx('Financeiro'),
+                  avatar: CircleAvatar(child: Text(context.tx('LS'))),
                   onClick: () =>
                       setState(() => _usuarioAcao = 'bloco do usuário'),
                 ),
                 userMenu: [
                   SgMenuNode(
                     id: 'perfil',
-                    label: 'Meu perfil',
+                    label: context.tx('Meu perfil'),
                     icon: const Icon(Icons.person_outline),
                     onClick: () => setState(() => _usuarioAcao = 'perfil'),
                   ),
                   SgMenuNode(
                     id: 'preferencias',
-                    label: 'Preferências',
+                    label: context.tx('Preferências'),
                     icon: const Icon(Icons.tune),
                     onClick: () =>
                         setState(() => _usuarioAcao = 'preferências'),
                   ),
                   SgMenuNode(
                     id: 'sair',
-                    label: 'Sair',
+                    label: context.tx('Sair'),
                     icon: const Icon(Icons.logout),
                     onClick: () => setState(() => _usuarioAcao = 'sair'),
                   ),
                 ],
-                menu: const [
+                menu: [
                   SgMenuNode(
                     id: 'painel',
-                    label: 'Painel',
+                    label: context.tx('Painel'),
                     icon: Icon(Icons.dashboard_outlined),
                   ),
                   SgMenuNode(
                     id: 'financeiro',
-                    label: 'Financeiro',
+                    label: context.tx('Financeiro'),
                     icon: Icon(Icons.attach_money),
                   ),
                 ],
@@ -222,23 +231,23 @@ class _SgMenuPageState extends State<SgMenuPage> {
                 id: 'menu-tiered',
                 menuVariantStyle: SgMenuMenuVariantStyle.tiered,
                 openSubmenuOnHover: true,
-                menu: const [
+                menu: [
                   SgMenuNode(
                     id: 'arquivo',
-                    label: 'Arquivo',
+                    label: context.tx('Arquivo'),
                     children: [
-                      SgMenuNode(id: 'novo', label: 'Novo'),
+                      SgMenuNode(id: 'novo', label: context.tx('Novo')),
                       SgMenuNode(
                         id: 'exportar',
-                        label: 'Exportar',
+                        label: context.tx('Exportar'),
                         children: [
-                          SgMenuNode(id: 'pdf', label: 'PDF'),
-                          SgMenuNode(id: 'csv', label: 'CSV'),
+                          SgMenuNode(id: 'pdf', label: context.tx('PDF')),
+                          SgMenuNode(id: 'csv', label: context.tx('CSV')),
                         ],
                       ),
                     ],
                   ),
-                  SgMenuNode(id: 'editar', label: 'Editar'),
+                  SgMenuNode(id: 'editar', label: context.tx('Editar')),
                 ],
               ),
             ),
@@ -257,30 +266,36 @@ class _SgMenuPageState extends State<SgMenuPage> {
                 id: 'menu-mega',
                 menuStyle: SgMenuMenuStyle.inline,
                 menuVariantStyle: SgMenuMenuVariantStyle.megaHorizontal,
-                menu: const [
+                menu: [
                   SgMenuNode(
                     id: 'produtos',
-                    label: 'Produtos',
+                    label: context.tx('Produtos'),
                     children: [
                       SgMenuNode(
                         id: 'software',
-                        label: 'Software',
+                        label: context.tx('Software'),
                         children: [
-                          SgMenuNode(id: 'erp', label: 'ERP'),
-                          SgMenuNode(id: 'crm', label: 'CRM'),
+                          SgMenuNode(id: 'erp', label: context.tx('ERP')),
+                          SgMenuNode(id: 'crm', label: context.tx('CRM')),
                         ],
                       ),
                       SgMenuNode(
                         id: 'servicos',
-                        label: 'Serviços',
+                        label: context.tx('Serviços'),
                         children: [
-                          SgMenuNode(id: 'suporte', label: 'Suporte'),
-                          SgMenuNode(id: 'treinamento', label: 'Treinamento'),
+                          SgMenuNode(
+                            id: 'suporte',
+                            label: context.tx('Suporte'),
+                          ),
+                          SgMenuNode(
+                            id: 'treinamento',
+                            label: context.tx('Treinamento'),
+                          ),
                         ],
                       ),
                     ],
                   ),
-                  SgMenuNode(id: 'precos', label: 'Preços'),
+                  SgMenuNode(id: 'precos', label: context.tx('Preços')),
                 ],
               ),
             ),
@@ -298,7 +313,7 @@ class _SgMenuPageState extends State<SgMenuPage> {
               child: Stack(
                 children: [
                   SgButton(
-                    label: const Text('Abrir menu'),
+                    label: Text(context.tx('Abrir menu')),
                     onClick: () => setState(() => _gaveta = true),
                   ),
                   SgMenu(
@@ -306,9 +321,9 @@ class _SgMenuPageState extends State<SgMenuPage> {
                     menuStyle: SgMenuMenuStyle.drawer,
                     open: _gaveta,
                     onOpenChange: (aberto) => setState(() => _gaveta = aberto),
-                    menu: const [
-                      SgMenuNode(id: 'a', label: 'Primeiro item'),
-                      SgMenuNode(id: 'b', label: 'Segundo item'),
+                    menu: [
+                      SgMenuNode(id: 'a', label: context.tx('Primeiro item')),
+                      SgMenuNode(id: 'b', label: context.tx('Segundo item')),
                     ],
                   ),
                 ],

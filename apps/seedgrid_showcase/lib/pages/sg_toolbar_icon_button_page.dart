@@ -32,8 +32,8 @@ class _SgToolbarIconButtonPageState extends State<SgToolbarIconButtonPage> {
             // #region sg-toolbar-icon-button-basico
             SgToolbarIconButton(
               icon: const Icon(Icons.add),
-              label: 'Novo',
-              hint: 'Criar um registro',
+              label: context.tx('Novo'),
+              hint: context.tx('Criar um registro'),
               onClick: () => setState(() => _cliques++),
             ),
         // #endregion
@@ -68,25 +68,25 @@ class _SgToolbarIconButtonPageState extends State<SgToolbarIconButtonPage> {
               spacing: 8,
               runSpacing: 8,
               children: [
-                const SgToolbarIconButton(
+                SgToolbarIconButton(
                   icon: Icon(Icons.lock_outline),
-                  label: 'Bloqueado',
+                  label: context.tx('Bloqueado'),
                   disabled: true,
                 ),
-                const SgToolbarIconButton(
+                SgToolbarIconButton(
                   icon: Icon(Icons.sync),
-                  label: 'Carregando',
+                  label: context.tx('Carregando'),
                   loading: true,
                 ),
                 SgToolbarIconButton(
                   icon: const Icon(Icons.cloud_upload_outlined),
-                  label: 'Enviar',
+                  label: context.tx('Enviar'),
                   onClick: () =>
                       Future<void>.delayed(const Duration(seconds: 2)),
                 ),
-                const SgToolbarIconButton(
+                SgToolbarIconButton(
                   icon: Icon(Icons.search),
-                  label: 'Buscar',
+                  label: context.tx('Buscar'),
                   hideLabel: true,
                 ),
               ],

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 import 'sg_stepper_input_page.snippets.g.dart';
 
 class SgStepperInputPage extends StatefulWidget {
@@ -156,7 +157,7 @@ class _SgStepperInputPageState extends State<SgStepperInputPage> {
                 ),
                 const SizedBox(height: 12),
                 SgButton(
-                  label: const Text('Enviar'),
+                  label: Text(context.tx('Enviar')),
                   onClick: () => _form.handleSubmit(
                     (values) => setState(() => _enviado = '${values['qtd']}'),
                   ),

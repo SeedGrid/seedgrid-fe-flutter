@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 import 'sg_seven_segment_digit_page.snippets.g.dart';
 
 class SgSevenSegmentDigitPage extends StatelessWidget {
@@ -125,7 +126,7 @@ class SgSevenSegmentDigitPage extends StatelessWidget {
                       const SizedBox(width: 16),
                       FilledButton(
                         onPressed: () => set(() => value = (value + 1) % 10),
-                        child: const Text('Próximo'),
+                        child: Text(context.tx('Próximo')),
                       ),
                     ],
                   ),

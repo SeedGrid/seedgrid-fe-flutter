@@ -43,8 +43,8 @@ class _SgExpandablePanelPageState extends State<SgExpandablePanelPage> {
                     open: _lateral,
                     onOpenChange: (v) => setState(() => _lateral = v),
                     size: const SgExpandablePanelSize(defaultSize: 180),
-                    header: const Text('Filtros'),
-                    child: const Text('Conteúdo do painel'),
+                    header: Text(context.tx('Filtros')),
+                    child: Text(context.tx('Conteúdo do painel')),
                   ),
                   const SizedBox(width: 12),
                   Expanded(
@@ -80,10 +80,12 @@ class _SgExpandablePanelPageState extends State<SgExpandablePanelPage> {
                   expandTo: SgExpandablePanelExpandTo.bottom,
                   open: _inferior,
                   size: const SgExpandablePanelSize(defaultSize: 150),
-                  header: const Text('Detalhes'),
-                  footer: const Text('Rodapé'),
+                  header: Text(context.tx('Detalhes')),
+                  footer: Text(context.tx('Rodapé')),
                   rounded: SgExpandablePanelRounded.xl,
-                  child: const Text('Mais informações aparecem aqui embaixo.'),
+                  child: Text(
+                    context.tx('Mais informações aparecem aqui embaixo.'),
+                  ),
                 ),
               ],
             ),
@@ -100,7 +102,7 @@ class _SgExpandablePanelPageState extends State<SgExpandablePanelPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SgButton(
-                  label: const Text('Abrir gaveta'),
+                  label: Text(context.tx('Abrir gaveta')),
                   onClick: () => setState(() => _overlay = true),
                 ),
                 SgExpandablePanel(
@@ -108,12 +110,12 @@ class _SgExpandablePanelPageState extends State<SgExpandablePanelPage> {
                   expandTo: SgExpandablePanelExpandTo.right,
                   open: _overlay,
                   onOpenChange: (v) => setState(() => _overlay = v),
-                  header: const Text('Menu'),
+                  header: Text(context.tx('Menu')),
                   footer: SgButton(
-                    label: const Text('Fechar'),
+                    label: Text(context.tx('Fechar')),
                     onClick: () => setState(() => _overlay = false),
                   ),
-                  child: const Text('Itens do menu lateral.'),
+                  child: Text(context.tx('Itens do menu lateral.')),
                 ),
               ],
             ),
@@ -130,7 +132,7 @@ class _SgExpandablePanelPageState extends State<SgExpandablePanelPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SgButton(
-                  label: const Text('Abrir painel'),
+                  label: Text(context.tx('Abrir painel')),
                   onClick: () => setState(() => _semFundo = true),
                 ),
                 SgExpandablePanel(
@@ -143,12 +145,12 @@ class _SgExpandablePanelPageState extends State<SgExpandablePanelPage> {
                   animation: const SgExpandablePanelAnimation(
                     type: SgExpandablePanelAnimationType.none,
                   ),
-                  header: const Text('Sem fundo'),
+                  header: Text(context.tx('Sem fundo')),
                   footer: SgButton(
-                    label: const Text('Fechar'),
+                    label: Text(context.tx('Fechar')),
                     onClick: () => setState(() => _semFundo = false),
                   ),
-                  child: const Text('Só o botão fecha este painel.'),
+                  child: Text(context.tx('Só o botão fecha este painel.')),
                 ),
               ],
             ),
@@ -165,7 +167,7 @@ class _SgExpandablePanelPageState extends State<SgExpandablePanelPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SgButton(
-                  label: const Text('Abrir painel acessível'),
+                  label: Text(context.tx('Abrir painel acessível')),
                   onClick: () => setState(() => _acessivel = true),
                 ),
                 SgExpandablePanel(
@@ -180,12 +182,12 @@ class _SgExpandablePanelPageState extends State<SgExpandablePanelPage> {
                     type: SgExpandablePanelAnimationType.fade,
                     durationMs: 300,
                   ),
-                  header: const Text('Filtros'),
+                  header: Text(context.tx('Filtros')),
                   footer: SgButton(
-                    label: const Text('Fechar'),
+                    label: Text(context.tx('Fechar')),
                     onClick: () => setState(() => _acessivel = false),
                   ),
-                  child: const Text('Esc não fecha; use o botão.'),
+                  child: Text(context.tx('Esc não fecha; use o botão.')),
                 ),
               ],
             ),
@@ -215,7 +217,7 @@ class _SgExpandablePanelPageState extends State<SgExpandablePanelPage> {
                       max: 360,
                     ),
                     onSizeChange: (v) => setState(() => _tamanho = v),
-                    child: const Text('Arraste a borda'),
+                    child: Text(context.tx('Arraste a borda')),
                   ),
                 ],
               ),
@@ -246,7 +248,7 @@ class _SgExpandablePanelPageState extends State<SgExpandablePanelPage> {
                       max: 260,
                     ),
                     onSizeChange: (v) => setState(() => _altura = v),
-                    child: const Text('Arraste a borda de baixo'),
+                    child: Text(context.tx('Arraste a borda de baixo')),
                   ),
                 ],
               ),

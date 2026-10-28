@@ -60,14 +60,14 @@ SgGrid(
     SgPanel(
       span: 2,
       borderStyle: SgPanelBorderStyle.solid,
-      children: const [Text('largo')],
+      children: [Text(context.tx('largo'))],
     ),
     SgPanel(
       span: 2,
       borderStyle: SgPanelBorderStyle.solid,
-      children: const [Text('largo')],
+      children: [Text(context.tx('largo'))],
     ),
-    const Text('preenche o buraco'),
+    Text(context.tx('preenche o buraco')),
   ],
 )
 ''';
@@ -81,12 +81,12 @@ SgGrid(
     SgPanel(
       span: 2,
       borderStyle: SgPanelBorderStyle.solid,
-      children: const [Text('span: 2')],
+      children: [Text(context.tx('span: 2'))],
     ),
     SgPanel(
       rowSpan: 2,
       borderStyle: SgPanelBorderStyle.solid,
-      children: const [Text('rowSpan: 2')],
+      children: [Text(context.tx('rowSpan: 2'))],
     ),
     SgPanel(
       borderStyle: SgPanelBorderStyle.solid,

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 import 'sg_dock_layout_page.snippets.g.dart';
 
 class SgDockLayoutPage extends StatelessWidget {
@@ -28,7 +29,7 @@ class SgDockLayoutPage extends StatelessWidget {
                     border: Border.all(color: Colors.black26),
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  child: const Stack(
+                  child: Stack(
                     children: [
                       Positioned(
                         left: 0,
@@ -38,12 +39,12 @@ class SgDockLayoutPage extends StatelessWidget {
                           zone: SgDockZoneId.top,
                           children: [
                             SgButton(
-                              label: Text('Início'),
+                              label: Text(context.tx('Início')),
                               size: SgSize.sm,
                               appearance: SgAppearance.outline,
                             ),
                             SgButton(
-                              label: Text('Buscar'),
+                              label: Text(context.tx('Buscar')),
                               size: SgSize.sm,
                               appearance: SgAppearance.outline,
                             ),
@@ -59,12 +60,12 @@ class SgDockLayoutPage extends StatelessWidget {
                           zone: SgDockZoneId.left,
                           children: [
                             SgButton(
-                              label: Text('Clientes'),
+                              label: Text(context.tx('Clientes')),
                               size: SgSize.sm,
                               appearance: SgAppearance.ghost,
                             ),
                             SgButton(
-                              label: Text('Config'),
+                              label: Text(context.tx('Config')),
                               size: SgSize.sm,
                               appearance: SgAppearance.ghost,
                             ),
@@ -74,7 +75,7 @@ class SgDockLayoutPage extends StatelessWidget {
                       Positioned.fill(
                         child: SgDockZone(
                           zone: SgDockZoneId.free,
-                          child: Text('Área central livre'),
+                          child: Text(context.tx('Área central livre')),
                         ),
                       ),
                     ],
@@ -123,8 +124,8 @@ class SgDockLayoutPage extends StatelessWidget {
                         runSpacing: 8,
                         children: [
                           SgButton(
-                            label: const Text(
-                              'Mover "navegacao" para a direita',
+                            label: Text(
+                              context.tx('Mover "navegacao" para a direita'),
                             ),
                             size: SgSize.sm,
                             onClick: () => dock.moveToolbar(
@@ -133,8 +134,8 @@ class SgDockLayoutPage extends StatelessWidget {
                             ),
                           ),
                           SgButton(
-                            label: const Text(
-                              'Mover "ferramentas" para a base',
+                            label: Text(
+                              context.tx('Mover "ferramentas" para a base'),
                             ),
                             size: SgSize.sm,
                             appearance: SgAppearance.outline,
@@ -174,7 +175,7 @@ class SgDockLayoutPage extends StatelessWidget {
                           runSpacing: 8,
                           children: [
                             SgButton(
-                              label: const Text('Simular arrasto'),
+                              label: Text(context.tx('Simular arrasto')),
                               size: SgSize.sm,
                               onClick: () {
                                 dock.setDropPreviewActive(true);
@@ -188,7 +189,7 @@ class SgDockLayoutPage extends StatelessWidget {
                               },
                             ),
                             SgButton(
-                              label: const Text('Encerrar'),
+                              label: Text(context.tx('Encerrar')),
                               size: SgSize.sm,
                               appearance: SgAppearance.outline,
                               onClick: () => dock.setDropPreviewActive(false),
@@ -196,18 +197,18 @@ class SgDockLayoutPage extends StatelessWidget {
                           ],
                         ),
                         const SizedBox(height: 8),
-                        const Row(
+                        Row(
                           children: [
                             Expanded(
                               child: SgDockZone(
                                 zone: SgDockZoneId.top,
-                                child: Text('Topo'),
+                                child: Text(context.tx('Topo')),
                               ),
                             ),
                             Expanded(
                               child: SgDockZone(
                                 zone: SgDockZoneId.free,
-                                child: Text('Livre'),
+                                child: Text(context.tx('Livre')),
                               ),
                             ),
                           ],

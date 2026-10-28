@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 import 'sg_input_email_page.snippets.g.dart';
 
 class SgInputEmailPage extends StatefulWidget {
@@ -32,10 +33,10 @@ class _SgInputEmailPageState extends State<SgInputEmailPage> {
         description: 'Valida o formato a cada digitação e ao sair do campo.',
         preview:
             // #region sg-input-email-basico
-            const SgInputEmail(
+            SgInputEmail(
               id: 'email',
               labelText: 'E-mail',
-              placeholder: 'voce@empresa.com',
+              placeholder: context.tx('voce@empresa.com'),
             ),
         // #endregion
         code: SgInputEmailPageSnippets.sgInputEmailBasico,
@@ -261,7 +262,7 @@ class _SgInputEmailPageState extends State<SgInputEmailPage> {
                 ),
                 const SizedBox(height: 12),
                 SgButton(
-                  label: const Text('Enviar'),
+                  label: Text(context.tx('Enviar')),
                   onClick: () => _form.handleSubmit(
                     (values) => setState(() => _enviado = '${values['email']}'),
                   ),

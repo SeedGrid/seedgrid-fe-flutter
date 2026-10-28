@@ -38,7 +38,7 @@ Column(
     SgTextEditor(
       id: 'editor-basico',
       height: 220,
-      placeholder: 'Escreva aqui',
+      placeholder: context.tx('Escreva aqui'),
       defaultValueHtml: '<p>Texto <strong>inicial</strong></p>',
       onChangeHtml: (html) => setState(() => _html = html),
     ),
@@ -61,7 +61,7 @@ Column(
     ),
     const SizedBox(height: 8),
     SgButton(
-      label: const Text('Trocar o conteúdo'),
+      label: Text(context.tx('Trocar o conteúdo')),
       severity: SgSeverity.secondary,
       onClick: () => setState(
         () =>
@@ -107,7 +107,7 @@ Column(
     ),
     const SizedBox(height: 12),
     SgButton(
-      label: const Text('Enviar'),
+      label: Text(context.tx('Enviar')),
       onClick: () => _form.handleSubmit(
         (values) =>
             setState(() => _enviado = '${values['descricao']}'),

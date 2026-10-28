@@ -5,12 +5,12 @@
 abstract final class SgStackPageSnippets {
   /// Region `sg-stack-coluna`.
   static const String sgStackColuna = r'''
-const SgStack(
+SgStack(
   gap: 8,
   children: [
-    SgBadge(value: Text('Primeiro')),
-    SgBadge(value: Text('Segundo')),
-    SgBadge(value: Text('Terceiro')),
+    SgBadge(value: Text(context.tx('Primeiro'))),
+    SgBadge(value: Text(context.tx('Segundo'))),
+    SgBadge(value: Text(context.tx('Terceiro'))),
   ],
 )
 ''';
@@ -19,13 +19,17 @@ const SgStack(
   static const String sgStackGrow = r'''
 Row(
   children: [
-    const SgStack(
+    SgStack(
       grow: true,
       children: [
-        Text('Este bloco cresce e empurra o botão para a direita.'),
+        Text(
+          context.tx(
+            'Este bloco cresce e empurra o botão para a direita.',
+          ),
+        ),
       ],
     ),
-    SgButton(label: const Text('OK'), onClick: () {}),
+    SgButton(label: Text(context.tx('OK')), onClick: () {}),
   ],
 )
 ''';
@@ -38,11 +42,11 @@ SgStack(
   align: SgStackAlign.center,
   children: [
     SgButton(
-      label: const Text('Cancelar'),
+      label: Text(context.tx('Cancelar')),
       appearance: SgAppearance.outline,
       onClick: () {},
     ),
-    SgButton(label: const Text('Salvar'), onClick: () {}),
+    SgButton(label: Text(context.tx('Salvar')), onClick: () {}),
   ],
 )
 ''';

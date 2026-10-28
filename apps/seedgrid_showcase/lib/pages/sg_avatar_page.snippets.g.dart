@@ -5,12 +5,12 @@
 abstract final class SgAvatarPageSnippets {
   /// Region `sg-avatar-conteudo`.
   static const String sgAvatarConteudo = r'''
-const Wrap(
+Wrap(
   spacing: 12,
   runSpacing: 12,
   children: [
-    SgAvatar(label: Text('Maria Silva')),
-    SgAvatar(label: Text('joao')),
+    SgAvatar(label: Text(context.tx('Maria Silva'))),
+    SgAvatar(label: Text(context.tx('joao'))),
     SgAvatar(
       icon: Icon(Icons.person),
       severity: SgAvatarSeverity.info,
@@ -26,8 +26,8 @@ const Wrap(
 
   /// Region `sg-avatar-cores`.
   static const String sgAvatarCores = r'''
-const SgAvatar(
-  label: Text('Roxo Real'),
+SgAvatar(
+  label: Text(context.tx('Roxo Real')),
   customColors: SgAvatarCustomColors(
     bg: Color(0xFF7C3AED),
     fg: Colors.white,
@@ -38,13 +38,13 @@ const SgAvatar(
 
   /// Region `sg-avatar-imagem`.
   static const String sgAvatarImagem = r'''
-const Wrap(
+Wrap(
   spacing: 12,
   runSpacing: 12,
   children: [
     SgAvatar(
       src: 'https://endereco.invalido.exemplo/foto.png',
-      label: Text('Carlos Dias'),
+      label: Text(context.tx('Carlos Dias')),
     ),
   ],
 )
@@ -58,12 +58,12 @@ Wrap(
   crossAxisAlignment: WrapCrossAlignment.center,
   children: [
     SgAvatar(
-      label: const Text('Ana Lima'),
-      title: 'Abrir perfil',
+      label: Text(context.tx('Ana Lima')),
+      title: context.tx('Abrir perfil'),
       onClick: () => setState(() => _cliques++),
     ),
     SgAvatar(
-      label: const Text('Bia Souza'),
+      label: Text(context.tx('Bia Souza')),
       disabled: true,
       onClick: () {},
     ),
@@ -86,22 +86,22 @@ Wrap(
 
   /// Region `sg-avatar-tamanhos`.
   static const String sgAvatarTamanhos = r'''
-const Wrap(
+Wrap(
   spacing: 12,
   runSpacing: 12,
   crossAxisAlignment: WrapCrossAlignment.center,
   children: [
-    SgAvatar(label: Text('XS'), size: SgAvatarSize.xs),
-    SgAvatar(label: Text('SM'), size: SgAvatarSize.sm),
-    SgAvatar(label: Text('MD')),
-    SgAvatar(label: Text('LG'), size: SgAvatarSize.lg),
-    SgAvatar(label: Text('XL'), size: SgAvatarSize.xl),
+    SgAvatar(label: Text(context.tx('XS')), size: SgAvatarSize.xs),
+    SgAvatar(label: Text(context.tx('SM')), size: SgAvatarSize.sm),
+    SgAvatar(label: Text(context.tx('MD'))),
+    SgAvatar(label: Text(context.tx('LG')), size: SgAvatarSize.lg),
+    SgAvatar(label: Text(context.tx('XL')), size: SgAvatarSize.xl),
     SgAvatar(
-      label: Text('Quadrado'),
+      label: Text(context.tx('Quadrado')),
       shape: SgAvatarShape.square,
       size: SgAvatarSize.lg,
     ),
-    SgAvatar(label: Text('Sem borda'), bordered: false),
+    SgAvatar(label: Text(context.tx('Sem borda')), bordered: false),
   ],
 )
 ''';

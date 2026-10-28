@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 import 'sg_grid_page.snippets.g.dart';
 
 class SgGridPage extends StatelessWidget {
@@ -85,12 +86,12 @@ class SgGridPage extends StatelessWidget {
                 SgPanel(
                   span: 2,
                   borderStyle: SgPanelBorderStyle.solid,
-                  children: const [Text('span: 2')],
+                  children: [Text(context.tx('span: 2'))],
                 ),
                 SgPanel(
                   rowSpan: 2,
                   borderStyle: SgPanelBorderStyle.solid,
-                  children: const [Text('rowSpan: 2')],
+                  children: [Text(context.tx('rowSpan: 2'))],
                 ),
                 SgPanel(
                   borderStyle: SgPanelBorderStyle.solid,
@@ -121,14 +122,14 @@ class SgGridPage extends StatelessWidget {
                 SgPanel(
                   span: 2,
                   borderStyle: SgPanelBorderStyle.solid,
-                  children: const [Text('largo')],
+                  children: [Text(context.tx('largo'))],
                 ),
                 SgPanel(
                   span: 2,
                   borderStyle: SgPanelBorderStyle.solid,
-                  children: const [Text('largo')],
+                  children: [Text(context.tx('largo'))],
                 ),
-                const Text('preenche o buraco'),
+                Text(context.tx('preenche o buraco')),
               ],
             ),
         // #endregion

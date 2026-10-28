@@ -5,6 +5,7 @@ import 'package:seedgrid_components/seedgrid_components.dart';
 // O barril do grupo de menus ainda nao esta ligado no arquivo raiz.
 
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 import 'sg_dock_menu_page.snippets.g.dart';
 
 class SgDockMenuPage extends StatelessWidget {
@@ -28,19 +29,19 @@ class SgDockMenuPage extends StatelessWidget {
                       SgDockMenuItem(
                         id: 'home',
                         icon: const Icon(Icons.home),
-                        label: 'Início',
+                        label: context.tx('Início'),
                         onClick: () {},
                       ),
                       SgDockMenuItem(
                         id: 'search',
                         icon: const Icon(Icons.search),
-                        label: 'Buscar',
+                        label: context.tx('Buscar'),
                         onClick: () {},
                       ),
                       SgDockMenuItem(
                         id: 'settings',
                         icon: const Icon(Icons.settings),
-                        label: 'Ajustes',
+                        label: context.tx('Ajustes'),
                         onClick: () {},
                       ),
                     ],
@@ -67,21 +68,21 @@ class SgDockMenuPage extends StatelessWidget {
                       SgDockMenuItem(
                         id: 'mail',
                         icon: const Icon(Icons.mail),
-                        label: 'Mensagens',
+                        label: context.tx('Mensagens'),
                         badge: 3,
                         onClick: () {},
                       ),
                       SgDockMenuItem(
                         id: 'bell',
                         icon: const Icon(Icons.notifications),
-                        label: 'Avisos',
+                        label: context.tx('Avisos'),
                         badge: 'novo',
                         onClick: () {},
                       ),
                       SgDockMenuItem(
                         id: 'lock',
                         icon: const Icon(Icons.lock),
-                        label: 'Bloqueado',
+                        label: context.tx('Bloqueado'),
                         disabled: true,
                       ),
                     ],
@@ -114,22 +115,22 @@ class SgDockMenuPage extends StatelessWidget {
                       SgDockMenuItem(
                         id: 'a',
                         icon: const Icon(Icons.folder),
-                        label: 'Arquivos',
+                        label: context.tx('Arquivos'),
                       ),
                       SgDockMenuItem(
                         id: 'b',
                         icon: const Icon(Icons.image),
-                        label: 'Imagens',
+                        label: context.tx('Imagens'),
                       ),
                       SgDockMenuItem(
                         id: 'c',
                         icon: const Icon(Icons.music_note),
-                        label: 'Música',
+                        label: context.tx('Música'),
                       ),
                       SgDockMenuItem(
                         id: 'd',
                         icon: const Icon(Icons.movie),
-                        label: 'Vídeos',
+                        label: context.tx('Vídeos'),
                       ),
                     ],
                   ),
@@ -158,13 +159,13 @@ class SgDockMenuPage extends StatelessWidget {
                       SgDockMenuItem(
                         id: 'play',
                         icon: const Icon(Icons.play_arrow),
-                        label: 'Tocar',
+                        label: context.tx('Tocar'),
                         onClick: () {},
                       ),
                       SgDockMenuItem(
                         id: 'pause',
                         icon: const Icon(Icons.pause),
-                        label: 'Pausar',
+                        label: context.tx('Pausar'),
                         onClick: () {},
                       ),
                     ],

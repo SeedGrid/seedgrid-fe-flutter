@@ -6,6 +6,7 @@ import 'package:seedgrid_components/seedgrid_components.dart';
 
 import 'modelo_page.snippets.g.dart';
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 
 class ModeloPage extends StatelessWidget {
   const ModeloPage({super.key});
@@ -18,7 +19,7 @@ class ModeloPage extends StatelessWidget {
         description: 'Primeiro exemplo da página-modelo.',
         preview:
             // #region modelo-texto
-            const Text('Olá, SeedGrid'),
+            Text(context.tx('Olá, SeedGrid')),
         // #endregion
         code: ModeloPageSnippets.modeloTexto,
       ),
@@ -28,9 +29,15 @@ class ModeloPage extends StatelessWidget {
             // #region modelo-botoes
             Row(
               children: [
-                FilledButton(onPressed: () {}, child: const Text('Salvar')),
+                FilledButton(
+                  onPressed: () {},
+                  child: Text(context.tx('Salvar')),
+                ),
                 const SizedBox(width: 8),
-                OutlinedButton(onPressed: () {}, child: const Text('Cancelar')),
+                OutlinedButton(
+                  onPressed: () {},
+                  child: Text(context.tx('Cancelar')),
+                ),
               ],
             ),
         // #endregion
@@ -41,9 +48,9 @@ class ModeloPage extends StatelessWidget {
         description: 'Altura grande para forçar rolagem entre as âncoras.',
         preview:
             // #region modelo-alto
-            const SizedBox(
+            SizedBox(
               height: 420,
-              child: Center(child: Text('Conteúdo alto')),
+              child: Center(child: Text(context.tx('Conteúdo alto'))),
             ),
         // #endregion
         code: ModeloPageSnippets.modeloAlto,
@@ -52,9 +59,13 @@ class ModeloPage extends StatelessWidget {
         title: 'Coluna',
         preview:
             // #region modelo-coluna
-            const Column(
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [Text('Linha 1'), Text('Linha 2'), Text('Linha 3')],
+              children: [
+                Text(context.tx('Linha 1')),
+                Text(context.tx('Linha 2')),
+                Text(context.tx('Linha 3')),
+              ],
             ),
         // #endregion
         code: ModeloPageSnippets.modeloColuna,
@@ -63,9 +74,9 @@ class ModeloPage extends StatelessWidget {
         title: 'Outro bloco alto',
         preview:
             // #region modelo-alto-2
-            const SizedBox(
+            SizedBox(
               height: 520,
-              child: Center(child: Text('Mais conteúdo')),
+              child: Center(child: Text(context.tx('Mais conteúdo'))),
             ),
         // #endregion
         code: ModeloPageSnippets.modeloAlto2,
@@ -74,7 +85,7 @@ class ModeloPage extends StatelessWidget {
         title: 'Último exemplo',
         preview:
             // #region modelo-ultimo
-            const Chip(label: Text('Fim')),
+            Chip(label: Text(context.tx('Fim'))),
         // #endregion
         code: ModeloPageSnippets.modeloUltimo,
       ),

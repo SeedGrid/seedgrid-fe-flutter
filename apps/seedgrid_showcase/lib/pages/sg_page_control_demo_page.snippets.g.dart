@@ -5,25 +5,25 @@
 abstract final class SgPageControlDemoPageSnippets {
   /// Region `sg-page-control-basico`.
   static const String sgPageControlBasico = r'''
-const SgPageControl(
+SgPageControl(
   children: [
     SgPageControlPage(
       id: 'geral',
-      title: Text('Geral'),
-      child: Text('Dados gerais do cadastro.'),
+      title: Text(context.tx('Geral')),
+      child: Text(context.tx('Dados gerais do cadastro.')),
     ),
     SgPageControlPage(
       id: 'endereco',
-      title: Text('Endereço'),
-      hint: 'Endereço de entrega',
+      title: Text(context.tx('Endereço')),
+      hint: context.tx('Endereço de entrega'),
       icon: Icon(Icons.place_outlined),
-      child: Text('Rua, número e CEP.'),
+      child: Text(context.tx('Rua, número e CEP.')),
     ),
     SgPageControlPage(
       id: 'bloqueada',
-      title: Text('Bloqueada'),
+      title: Text(context.tx('Bloqueada')),
       disabled: true,
-      child: Text('Nunca aparece.'),
+      child: Text(context.tx('Nunca aparece.')),
     ),
   ],
 )
@@ -31,21 +31,21 @@ const SgPageControl(
 
   /// Region `sg-page-control-celular`.
   static const String sgPageControlCelular = r'''
-const SgPageControl(
+SgPageControl(
   mobilePageControl: SgPageControlMobilePageControl.select,
   keepMounted: true,
   children: [
     SgPageControlPage(
-      title: Text('Perfil'),
-      child: Text('Perfil do usuário'),
+      title: Text(context.tx('Perfil')),
+      child: Text(context.tx('Perfil do usuário')),
     ),
     SgPageControlPage(
-      title: Text('Segurança'),
-      child: Text('Senha e acesso'),
+      title: Text(context.tx('Segurança')),
+      child: Text(context.tx('Senha e acesso')),
     ),
     SgPageControlPage(
-      title: Text('Notificações'),
-      child: Text('Avisos por e-mail'),
+      title: Text(context.tx('Notificações')),
+      child: Text(context.tx('Avisos por e-mail')),
     ),
   ],
 )
@@ -75,21 +75,21 @@ Column(
       hiddenPageIds: _escondidas.toList(),
       onActivePageIdChange: (id, ctx) =>
           setState(() => _ativa = id),
-      children: const [
+      children: [
         SgPageControlPage(
           id: 'geral',
-          title: Text('Geral'),
-          child: Text('Aba geral'),
+          title: Text(context.tx('Geral')),
+          child: Text(context.tx('Aba geral')),
         ),
         SgPageControlPage(
           id: 'extra',
-          title: Text('Extra'),
-          child: Text('Aba extra'),
+          title: Text(context.tx('Extra')),
+          child: Text(context.tx('Aba extra')),
         ),
         SgPageControlPage(
           id: 'fim',
-          title: Text('Fim'),
-          child: Text('Aba final'),
+          title: Text(context.tx('Fim')),
+          child: Text(context.tx('Aba final')),
         ),
       ],
     ),
@@ -99,22 +99,22 @@ Column(
 
   /// Region `sg-page-control-pilulas`.
   static const String sgPageControlPilulas = r'''
-const SgPageControl(
+SgPageControl(
   pageControlStyle: SgPageControlPageControlStyle.pills,
   size: SgPageControlSize.sm,
   fullWidthTabs: true,
   children: [
     SgPageControlPage(
-      title: Text('Dia'),
-      child: Text('Visão do dia'),
+      title: Text(context.tx('Dia')),
+      child: Text(context.tx('Visão do dia')),
     ),
     SgPageControlPage(
-      title: Text('Semana'),
-      child: Text('Visão da semana'),
+      title: Text(context.tx('Semana')),
+      child: Text(context.tx('Visão da semana')),
     ),
     SgPageControlPage(
-      title: Text('Mês'),
-      child: Text('Visão do mês'),
+      title: Text(context.tx('Mês')),
+      child: Text(context.tx('Visão do mês')),
     ),
   ],
 )

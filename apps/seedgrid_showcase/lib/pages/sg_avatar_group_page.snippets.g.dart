@@ -10,32 +10,44 @@ SgAvatarGroup(
   moreSeverity: SgAvatarSeverity.info,
   moreLabel: (restantes) => Text('+$restantes'),
   shape: SgAvatarShape.square,
-  children: const [
-    SgAvatar(label: Text('Ana Lima'), shape: SgAvatarShape.square),
-    SgAvatar(label: Text('Bia Souza'), shape: SgAvatarShape.square),
-    SgAvatar(label: Text('Caio Reis'), shape: SgAvatarShape.square),
-    SgAvatar(label: Text('Duda Melo'), shape: SgAvatarShape.square),
+  children: [
+    SgAvatar(
+      label: Text(context.tx('Ana Lima')),
+      shape: SgAvatarShape.square,
+    ),
+    SgAvatar(
+      label: Text(context.tx('Bia Souza')),
+      shape: SgAvatarShape.square,
+    ),
+    SgAvatar(
+      label: Text(context.tx('Caio Reis')),
+      shape: SgAvatarShape.square,
+    ),
+    SgAvatar(
+      label: Text(context.tx('Duda Melo')),
+      shape: SgAvatarShape.square,
+    ),
   ],
 )
 ''';
 
   /// Region `sg-avatar-group-max`.
   static const String sgAvatarGroupMax = r'''
-const SgAvatarGroup(
+SgAvatarGroup(
   max: 3,
   total: 12,
   children: [
-    SgAvatar(label: Text('Ana Lima')),
+    SgAvatar(label: Text(context.tx('Ana Lima'))),
     SgAvatar(
-      label: Text('Bia Souza'),
+      label: Text(context.tx('Bia Souza')),
       severity: SgAvatarSeverity.success,
     ),
     SgAvatar(
-      label: Text('Caio Reis'),
+      label: Text(context.tx('Caio Reis')),
       severity: SgAvatarSeverity.warning,
     ),
     SgAvatar(
-      label: Text('Duda Melo'),
+      label: Text(context.tx('Duda Melo')),
       severity: SgAvatarSeverity.danger,
     ),
   ],
@@ -66,15 +78,15 @@ Column(
 
   /// Region `sg-avatar-group-simples`.
   static const String sgAvatarGroupSimples = r'''
-const SgAvatarGroup(
+SgAvatarGroup(
   children: [
-    SgAvatar(label: Text('Ana Lima')),
+    SgAvatar(label: Text(context.tx('Ana Lima'))),
     SgAvatar(
-      label: Text('Bia Souza'),
+      label: Text(context.tx('Bia Souza')),
       severity: SgAvatarSeverity.success,
     ),
     SgAvatar(
-      label: Text('Caio Reis'),
+      label: Text(context.tx('Caio Reis')),
       severity: SgAvatarSeverity.warning,
     ),
   ],

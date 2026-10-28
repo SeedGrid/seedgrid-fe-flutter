@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 import 'sg_stack_page.snippets.g.dart';
 
 class SgStackPage extends StatelessWidget {
@@ -17,12 +18,12 @@ class SgStackPage extends StatelessWidget {
         description: 'O padrão é direction: column, align: stretch e gap 0.',
         preview:
             // #region sg-stack-coluna
-            const SgStack(
+            SgStack(
               gap: 8,
               children: [
-                SgBadge(value: Text('Primeiro')),
-                SgBadge(value: Text('Segundo')),
-                SgBadge(value: Text('Terceiro')),
+                SgBadge(value: Text(context.tx('Primeiro'))),
+                SgBadge(value: Text(context.tx('Segundo'))),
+                SgBadge(value: Text(context.tx('Terceiro'))),
               ],
             ),
         // #endregion
@@ -40,11 +41,11 @@ class SgStackPage extends StatelessWidget {
               align: SgStackAlign.center,
               children: [
                 SgButton(
-                  label: const Text('Cancelar'),
+                  label: Text(context.tx('Cancelar')),
                   appearance: SgAppearance.outline,
                   onClick: () {},
                 ),
-                SgButton(label: const Text('Salvar'), onClick: () {}),
+                SgButton(label: Text(context.tx('Salvar')), onClick: () {}),
               ],
             ),
         // #endregion
@@ -84,13 +85,17 @@ class SgStackPage extends StatelessWidget {
             // #region sg-stack-grow
             Row(
               children: [
-                const SgStack(
+                SgStack(
                   grow: true,
                   children: [
-                    Text('Este bloco cresce e empurra o botão para a direita.'),
+                    Text(
+                      context.tx(
+                        'Este bloco cresce e empurra o botão para a direita.',
+                      ),
+                    ),
                   ],
                 ),
-                SgButton(label: const Text('OK'), onClick: () {}),
+                SgButton(label: Text(context.tx('OK')), onClick: () {}),
               ],
             ),
         // #endregion

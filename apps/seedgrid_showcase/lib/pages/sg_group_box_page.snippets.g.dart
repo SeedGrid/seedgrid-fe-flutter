@@ -5,8 +5,8 @@
 abstract final class SgGroupBoxPageSnippets {
   /// Region `sg-group-box-campos`.
   static const String sgGroupBoxCampos = r'''
-const SgGroupBox(
-  title: 'Dados do cliente',
+SgGroupBox(
+  title: context.tx('Dados do cliente'),
   child: SgStack(
     gap: 12,
     children: [
@@ -19,33 +19,36 @@ const SgGroupBox(
 
   /// Region `sg-group-box-lado`.
   static const String sgGroupBoxLado = r'''
-const SgGrid(
+SgGrid(
   minItemWidth: 200,
   gap: 12,
   children: [
     SgGroupBox(
-      title: 'Entrega',
-      child: Text('Rua das Flores, 100'),
+      title: context.tx('Entrega'),
+      child: Text(context.tx('Rua das Flores, 100')),
     ),
-    SgGroupBox(title: 'Cobrança', child: Text('Mesmo endereço')),
+    SgGroupBox(
+      title: context.tx('Cobrança'),
+      child: Text(context.tx('Mesmo endereço')),
+    ),
   ],
 )
 ''';
 
   /// Region `sg-group-box-largura`.
   static const String sgGroupBoxLargura = r'''
-const SgStack(
+SgStack(
   gap: 12,
   children: [
     SgGroupBox(
-      title: 'Metade',
+      title: context.tx('Metade'),
       width: '50%',
-      child: Text('width: "50%"'),
+      child: Text(context.tx('width: "50%"')),
     ),
     SgGroupBox(
-      title: 'Fixa',
+      title: context.tx('Fixa'),
       width: 240,
-      child: Text('width: 240'),
+      child: Text(context.tx('width: 240')),
     ),
   ],
 )

@@ -5,7 +5,7 @@
 abstract final class SgRadialGaugePageSnippets {
   /// Region `sg-radial-gauge-anel`.
   static const String sgRadialGaugeAnel = r'''
-const SgRadialGauge(
+SgRadialGauge(
   value: 55,
   primaryPointerType: SgRadialGaugePrimaryPointerType.range,
   ringThickness: 16,
@@ -16,7 +16,7 @@ const SgRadialGauge(
       value: 80,
       shape: SgRadialGaugeMarkerShape.diamond,
       color: '#ef4444',
-      label: 'meta',
+      label: context.tx('meta'),
     ),
   ],
 )
@@ -45,7 +45,7 @@ const SgRadialGauge(value: 62)
 
   /// Region `sg-radial-gauge-faixas`.
   static const String sgRadialGaugeFaixas = r'''
-const SgRadialGauge(
+SgRadialGauge(
   value: 72,
   width: 280,
   height: 280,
@@ -58,7 +58,7 @@ const SgRadialGauge(
     SgRadialGaugeAnnotation(
       value: 50,
       radiusFactor: 0.55,
-      content: Text('média'),
+      content: Text(context.tx('média')),
     ),
   ],
   centerContent: Text(

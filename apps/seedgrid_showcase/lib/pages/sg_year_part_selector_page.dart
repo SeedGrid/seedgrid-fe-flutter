@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 import 'sg_year_part_selector_page.snippets.g.dart';
 
 class SgYearPartSelectorPage extends StatefulWidget {
@@ -37,7 +38,7 @@ class _SgYearPartSelectorPageState extends State<SgYearPartSelectorPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SgYearPartSelector(
-                  label: 'Recorte do ano',
+                  label: context.tx('Recorte do ano'),
                   onChange: (r) => setState(
                     () => _basico =
                         '${r.value.year} - ${r.label}: ${r.startDate.toIso8601String().substring(0, 10)} a ${r.endDate.toIso8601String().substring(0, 10)}',
@@ -123,7 +124,7 @@ class _SgYearPartSelectorPageState extends State<SgYearPartSelectorPage> {
                   runSpacing: 8,
                   children: [
                     SgButton(
-                      label: const Text('1º trimestre de 2024'),
+                      label: Text(context.tx('1º trimestre de 2024')),
                       appearance: SgAppearance.outline,
                       onClick: () => setState(
                         () => _controlado = const YearPartValue(
@@ -134,7 +135,7 @@ class _SgYearPartSelectorPageState extends State<SgYearPartSelectorPage> {
                       ),
                     ),
                     SgButton(
-                      label: const Text('2º bimestre de 2023'),
+                      label: Text(context.tx('2º bimestre de 2023')),
                       appearance: SgAppearance.outline,
                       onClick: () => setState(
                         () => _controlado = const YearPartValue(
@@ -158,18 +159,18 @@ class _SgYearPartSelectorPageState extends State<SgYearPartSelectorPage> {
         title: 'Rótulo, obrigatório e desabilitado',
         preview:
             // #region sg-year-part-selector-estados
-            const Column(
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SgYearPartSelector(
                   id: 'obrigatorio',
-                  label: 'Período do relatório',
+                  label: context.tx('Período do relatório'),
                   required: true,
                 ),
                 SizedBox(height: 16),
                 SgYearPartSelector(
                   id: 'desabilitado',
-                  label: 'Desabilitado',
+                  label: context.tx('Desabilitado'),
                   disabled: true,
                 ),
               ],

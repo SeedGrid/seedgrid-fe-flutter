@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 import 'sg_string_animator_page.snippets.g.dart';
 
 class SgStringAnimatorPage extends StatelessWidget {
@@ -33,7 +34,7 @@ class SgStringAnimatorPage extends StatelessWidget {
                       const SizedBox(height: 16),
                       FilledButton(
                         onPressed: controller.startAnimation,
-                        child: const Text('Animar'),
+                        child: Text(context.tx('Animar')),
                       ),
                     ],
                   );
@@ -125,7 +126,7 @@ class SgStringAnimatorPage extends StatelessWidget {
                       const SizedBox(width: 24),
                       FilledButton(
                         onPressed: controller.startAnimation,
-                        child: const Text('Contar'),
+                        child: Text(context.tx('Contar')),
                       ),
                     ],
                   );
@@ -167,7 +168,7 @@ class SgStringAnimatorPage extends StatelessWidget {
                         ),
                       FilledButton(
                         onPressed: controller.startAnimation,
-                        child: const Text('Animar'),
+                        child: Text(context.tx('Animar')),
                       ),
                     ],
                   );
@@ -219,7 +220,7 @@ class SgStringAnimatorPage extends StatelessWidget {
                           lento.startAnimation();
                           rapido.startAnimation();
                         },
-                        child: const Text('Animar os dois'),
+                        child: Text(context.tx('Animar os dois')),
                       ),
                     ],
                   );

@@ -5,10 +5,10 @@
 abstract final class SgInputEmailPageSnippets {
   /// Region `sg-input-email-basico`.
   static const String sgInputEmailBasico = r'''
-const SgInputEmail(
+SgInputEmail(
   id: 'email',
   labelText: 'E-mail',
-  placeholder: 'voce@empresa.com',
+  placeholder: context.tx('voce@empresa.com'),
 )
 ''';
 
@@ -91,7 +91,7 @@ Column(
     ),
     const SizedBox(height: 12),
     SgButton(
-      label: const Text('Enviar'),
+      label: Text(context.tx('Enviar')),
       onClick: () => _form.handleSubmit(
         (values) => setState(() => _enviado = '${values['email']}'),
       ),

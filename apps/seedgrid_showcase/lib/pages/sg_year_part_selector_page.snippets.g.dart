@@ -9,7 +9,7 @@ Column(
   crossAxisAlignment: CrossAxisAlignment.start,
   children: [
     SgYearPartSelector(
-      label: 'Recorte do ano',
+      label: context.tx('Recorte do ano'),
       onChange: (r) => setState(
         () => _basico =
             '${r.value.year} - ${r.label}: ${r.startDate.toIso8601String().substring(0, 10)} a ${r.endDate.toIso8601String().substring(0, 10)}',
@@ -40,7 +40,7 @@ Column(
       runSpacing: 8,
       children: [
         SgButton(
-          label: const Text('1º trimestre de 2024'),
+          label: Text(context.tx('1º trimestre de 2024')),
           appearance: SgAppearance.outline,
           onClick: () => setState(
             () => _controlado = const YearPartValue(
@@ -51,7 +51,7 @@ Column(
           ),
         ),
         SgButton(
-          label: const Text('2º bimestre de 2023'),
+          label: Text(context.tx('2º bimestre de 2023')),
           appearance: SgAppearance.outline,
           onClick: () => setState(
             () => _controlado = const YearPartValue(
@@ -72,18 +72,18 @@ Column(
 
   /// Region `sg-year-part-selector-estados`.
   static const String sgYearPartSelectorEstados = r'''
-const Column(
+Column(
   crossAxisAlignment: CrossAxisAlignment.start,
   children: [
     SgYearPartSelector(
       id: 'obrigatorio',
-      label: 'Período do relatório',
+      label: context.tx('Período do relatório'),
       required: true,
     ),
     SizedBox(height: 16),
     SgYearPartSelector(
       id: 'desabilitado',
-      label: 'Desabilitado',
+      label: context.tx('Desabilitado'),
       disabled: true,
     ),
   ],

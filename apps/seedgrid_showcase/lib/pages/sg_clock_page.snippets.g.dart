@@ -56,10 +56,10 @@ SgClockThemeProvider(
 
   /// Region `sg-clock-cartao`.
   static const String sgClockCartao = r'''
-const SgClock(
+SgClock(
   initialServerTime: '2026-06-15T09:41:07Z',
   timezone: 'UTC',
-  cardTitle: Text('Hora de Brasília'),
+  cardTitle: Text(context.tx('Hora de Brasília')),
   cardProps: SgClockCardProps(
     id: 'brasilia',
     draggable: false,

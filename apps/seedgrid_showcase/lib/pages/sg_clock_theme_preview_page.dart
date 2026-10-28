@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 import 'sg_clock_theme_preview_page.snippets.g.dart';
 
 class SgClockThemePreviewPage extends StatelessWidget {
@@ -64,11 +65,11 @@ class SgClockThemePreviewPage extends StatelessWidget {
             'Um tema é uma lista de figuras no espaço 100×100 (formato JSON sg-clock-theme/1) ou um desenho livre com paint.',
         preview:
             // #region sg-clock-theme-preview-proprio
-            const SgClockThemePreview(
+            SgClockThemePreview(
               size: 96,
               theme: SgClockTheme(
                 id: 'ponto',
-                label: 'Ponto',
+                label: context.tx('Ponto'),
                 ops: [
                   SgClockCircle(
                     cx: 50,

@@ -9,15 +9,15 @@ SgBreadcrumb(
   items: [
     SgBreadcrumbItem(
       id: 'a',
-      label: const Text('Início'),
+      label: Text(context.tx('Início')),
       href: '/',
     ),
     SgBreadcrumbItem(
       id: 'b',
-      label: const Text('Relatórios'),
+      label: Text(context.tx('Relatórios')),
       href: '/relatorios',
     ),
-    const SgBreadcrumbItem(id: 'c', label: Text('Vendas')),
+    SgBreadcrumbItem(id: 'c', label: Text(context.tx('Vendas'))),
   ],
   onNavigate: (item, index) =>
       setState(() => _ultimo = '${item.id} (índice $index)'),
@@ -46,9 +46,9 @@ Column(
           showHomeIcon: true,
           separator: s,
           items: [
-            const SgBreadcrumbItem(
+            SgBreadcrumbItem(
               id: 'a',
-              label: Text('Pasta'),
+              label: Text(context.tx('Pasta')),
               href: '/p',
               icon: Icon(Icons.folder_outlined),
             ),

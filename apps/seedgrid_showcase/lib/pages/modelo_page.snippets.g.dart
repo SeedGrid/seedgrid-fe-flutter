@@ -5,17 +5,17 @@
 abstract final class ModeloPageSnippets {
   /// Region `modelo-alto`.
   static const String modeloAlto = r'''
-const SizedBox(
+SizedBox(
   height: 420,
-  child: Center(child: Text('Conteúdo alto')),
+  child: Center(child: Text(context.tx('Conteúdo alto'))),
 )
 ''';
 
   /// Region `modelo-alto-2`.
   static const String modeloAlto2 = r'''
-const SizedBox(
+SizedBox(
   height: 520,
-  child: Center(child: Text('Mais conteúdo')),
+  child: Center(child: Text(context.tx('Mais conteúdo'))),
 )
 ''';
 
@@ -23,28 +23,38 @@ const SizedBox(
   static const String modeloBotoes = r'''
 Row(
   children: [
-    FilledButton(onPressed: () {}, child: const Text('Salvar')),
+    FilledButton(
+      onPressed: () {},
+      child: Text(context.tx('Salvar')),
+    ),
     const SizedBox(width: 8),
-    OutlinedButton(onPressed: () {}, child: const Text('Cancelar')),
+    OutlinedButton(
+      onPressed: () {},
+      child: Text(context.tx('Cancelar')),
+    ),
   ],
 )
 ''';
 
   /// Region `modelo-coluna`.
   static const String modeloColuna = r'''
-const Column(
+Column(
   crossAxisAlignment: CrossAxisAlignment.start,
-  children: [Text('Linha 1'), Text('Linha 2'), Text('Linha 3')],
+  children: [
+    Text(context.tx('Linha 1')),
+    Text(context.tx('Linha 2')),
+    Text(context.tx('Linha 3')),
+  ],
 )
 ''';
 
   /// Region `modelo-texto`.
   static const String modeloTexto = r'''
-const Text('Olá, SeedGrid')
+Text(context.tx('Olá, SeedGrid'))
 ''';
 
   /// Region `modelo-ultimo`.
   static const String modeloUltimo = r'''
-const Chip(label: Text('Fim'))
+Chip(label: Text(context.tx('Fim')))
 ''';
 }

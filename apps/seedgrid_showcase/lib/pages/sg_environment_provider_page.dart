@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 import 'sg_environment_provider_page.snippets.g.dart';
 
 class SgEnvironmentProviderPage extends StatefulWidget {
@@ -84,7 +85,7 @@ class _SgEnvironmentProviderPageState extends State<SgEnvironmentProviderPage> {
                     ),
                     const SizedBox(width: 12),
                     SgButton(
-                      label: const Text('Zerar'),
+                      label: Text(context.tx('Zerar')),
                       appearance: SgAppearance.outline,
                       onClick: state.clear,
                     ),
@@ -122,7 +123,7 @@ class _SgEnvironmentProviderPageState extends State<SgEnvironmentProviderPage> {
                       'chave: ${useSgPersistence(context).fullKeyOf('rascunho')}',
                     ),
                     SgButton(
-                      label: const Text('Tentar salvar'),
+                      label: Text(context.tx('Tentar salvar')),
                       onClick: () => state.setValue('salvo?'),
                     ),
                   ],
@@ -203,7 +204,7 @@ class _SgEnvironmentProviderPageState extends State<SgEnvironmentProviderPage> {
                         ),
                         const SizedBox(width: 12),
                         SgButton(
-                          label: const Text('Apagar'),
+                          label: Text(context.tx('Apagar')),
                           appearance: SgAppearance.outline,
                           onClick: state.clear,
                         ),

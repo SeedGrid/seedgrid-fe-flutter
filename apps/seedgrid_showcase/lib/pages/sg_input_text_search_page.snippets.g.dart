@@ -27,7 +27,7 @@ SgInputTextSearch(
   id: 'aparencia',
   labelText: 'Cliente',
   labelPosition: SgInputTextSearchLabelPosition.top,
-  placeholder: 'Nome ou CPF',
+  placeholder: context.tx('Nome ou CPF'),
   width: 320,
   filled: true,
   onSearchChange: (valor) {},

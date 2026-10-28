@@ -12,11 +12,11 @@ Wrap(
   children: [
     SgRoller3DDigit(value: '$_digit', fontSize: 32),
     SgButton(
-      label: const Text('Próximo'),
+      label: Text(context.tx('Próximo')),
       onClick: () => setState(() => _digit = (_digit + 1) % 10),
     ),
     SgButton(
-      label: const Text('Aleatório'),
+      label: Text(context.tx('Aleatório')),
       appearance: SgAppearance.outline,
       onClick: () => setState(() => _digit = (_digit * 7 + 3) % 10),
     ),
@@ -42,7 +42,7 @@ Wrap(
       fontSize: 28,
     ),
     SgButton(
-      label: const Text('Alternar 0 e 9'),
+      label: Text(context.tx('Alternar 0 e 9')),
       onClick: () => setState(() => _slow = !_slow),
     ),
   ],
@@ -62,7 +62,7 @@ Wrap(
       fontSize: 32,
     ),
     SgButton(
-      label: const Text('Próxima letra'),
+      label: Text(context.tx('Próxima letra')),
       onClick: () => setState(() => _letter = (_letter + 5) % 26),
     ),
   ],
@@ -82,7 +82,7 @@ Wrap(
       fontSize: 22,
     ),
     SgButton(
-      label: const Text('+7 minutos'),
+      label: Text(context.tx('+7 minutos')),
       onClick: () => setState(() => _minute = (_minute + 7) % 60),
     ),
   ],

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 import 'sg_radial_gauge_page.snippets.g.dart';
 
 class SgRadialGaugePage extends StatefulWidget {
@@ -35,7 +36,7 @@ class _SgRadialGaugePageState extends State<SgRadialGaugePage> {
             'ranges pintam trechos da escala; annotations e centerContent colocam widgets sobre o arco.',
         preview:
             // #region sg-radial-gauge-faixas
-            const SgRadialGauge(
+            SgRadialGauge(
               value: 72,
               width: 280,
               height: 280,
@@ -48,7 +49,7 @@ class _SgRadialGaugePageState extends State<SgRadialGaugePage> {
                 SgRadialGaugeAnnotation(
                   value: 50,
                   radiusFactor: 0.55,
-                  content: Text('média'),
+                  content: Text(context.tx('média')),
                 ),
               ],
               centerContent: Text(
@@ -65,7 +66,7 @@ class _SgRadialGaugePageState extends State<SgRadialGaugePage> {
             'primaryPointerType range preenche o anel; pointers adiciona marcadores e agulhas.',
         preview:
             // #region sg-radial-gauge-anel
-            const SgRadialGauge(
+            SgRadialGauge(
               value: 55,
               primaryPointerType: SgRadialGaugePrimaryPointerType.range,
               ringThickness: 16,
@@ -76,7 +77,7 @@ class _SgRadialGaugePageState extends State<SgRadialGaugePage> {
                   value: 80,
                   shape: SgRadialGaugeMarkerShape.diamond,
                   color: '#ef4444',
-                  label: 'meta',
+                  label: context.tx('meta'),
                 ),
               ],
             ),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 import 'sg_avatar_page.snippets.g.dart';
 
 class SgAvatarPage extends StatefulWidget {
@@ -23,12 +24,12 @@ class _SgAvatarPageState extends State<SgAvatarPage> {
         description: 'Do nome saem até 2 iniciais; sem nada, aparece "?".',
         preview:
             // #region sg-avatar-conteudo
-            const Wrap(
+            Wrap(
               spacing: 12,
               runSpacing: 12,
               children: [
-                SgAvatar(label: Text('Maria Silva')),
-                SgAvatar(label: Text('joao')),
+                SgAvatar(label: Text(context.tx('Maria Silva'))),
+                SgAvatar(label: Text(context.tx('joao'))),
                 SgAvatar(
                   icon: Icon(Icons.person),
                   severity: SgAvatarSeverity.info,
@@ -62,22 +63,22 @@ class _SgAvatarPageState extends State<SgAvatarPage> {
         title: 'Tamanhos e formas',
         preview:
             // #region sg-avatar-tamanhos
-            const Wrap(
+            Wrap(
               spacing: 12,
               runSpacing: 12,
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
-                SgAvatar(label: Text('XS'), size: SgAvatarSize.xs),
-                SgAvatar(label: Text('SM'), size: SgAvatarSize.sm),
-                SgAvatar(label: Text('MD')),
-                SgAvatar(label: Text('LG'), size: SgAvatarSize.lg),
-                SgAvatar(label: Text('XL'), size: SgAvatarSize.xl),
+                SgAvatar(label: Text(context.tx('XS')), size: SgAvatarSize.xs),
+                SgAvatar(label: Text(context.tx('SM')), size: SgAvatarSize.sm),
+                SgAvatar(label: Text(context.tx('MD'))),
+                SgAvatar(label: Text(context.tx('LG')), size: SgAvatarSize.lg),
+                SgAvatar(label: Text(context.tx('XL')), size: SgAvatarSize.xl),
                 SgAvatar(
-                  label: Text('Quadrado'),
+                  label: Text(context.tx('Quadrado')),
                   shape: SgAvatarShape.square,
                   size: SgAvatarSize.lg,
                 ),
-                SgAvatar(label: Text('Sem borda'), bordered: false),
+                SgAvatar(label: Text(context.tx('Sem borda')), bordered: false),
               ],
             ),
         // #endregion
@@ -89,13 +90,13 @@ class _SgAvatarPageState extends State<SgAvatarPage> {
             'Se a imagem falhar, o avatar cai para as iniciais e chama onImageError.',
         preview:
             // #region sg-avatar-imagem
-            const Wrap(
+            Wrap(
               spacing: 12,
               runSpacing: 12,
               children: [
                 SgAvatar(
                   src: 'https://endereco.invalido.exemplo/foto.png',
-                  label: Text('Carlos Dias'),
+                  label: Text(context.tx('Carlos Dias')),
                 ),
               ],
             ),
@@ -112,12 +113,12 @@ class _SgAvatarPageState extends State<SgAvatarPage> {
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
                 SgAvatar(
-                  label: const Text('Ana Lima'),
-                  title: 'Abrir perfil',
+                  label: Text(context.tx('Ana Lima')),
+                  title: context.tx('Abrir perfil'),
                   onClick: () => setState(() => _cliques++),
                 ),
                 SgAvatar(
-                  label: const Text('Bia Souza'),
+                  label: Text(context.tx('Bia Souza')),
                   disabled: true,
                   onClick: () {},
                 ),
@@ -131,8 +132,8 @@ class _SgAvatarPageState extends State<SgAvatarPage> {
         title: 'Cores customizadas',
         preview:
             // #region sg-avatar-cores
-            const SgAvatar(
-              label: Text('Roxo Real'),
+            SgAvatar(
+              label: Text(context.tx('Roxo Real')),
               customColors: SgAvatarCustomColors(
                 bg: Color(0xFF7C3AED),
                 fg: Colors.white,

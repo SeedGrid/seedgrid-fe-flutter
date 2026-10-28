@@ -5,6 +5,7 @@ import 'package:seedgrid_components/seedgrid_components.dart';
 
 import 'sg_checkbox_group_page.snippets.g.dart';
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 
 class SgCheckboxGroupPage extends StatefulWidget {
   const SgCheckboxGroupPage({super.key});
@@ -39,16 +40,19 @@ class _SgCheckboxGroupPageState extends State<SgCheckboxGroupPage> {
               children: [
                 SgCheckboxGroup(
                   id: 'frutas',
-                  title: 'Frutas',
-                  source: const [
+                  title: context.tx('Frutas'),
+                  source: [
                     SgCheckboxGroupOption(
-                      label: 'Maçã',
+                      label: context.tx('Maçã'),
                       value: 'maca',
                       checked: true,
                     ),
-                    SgCheckboxGroupOption(label: 'Banana', value: 'banana'),
                     SgCheckboxGroupOption(
-                      label: 'Cereja',
+                      label: context.tx('Banana'),
+                      value: 'banana',
+                    ),
+                    SgCheckboxGroupOption(
+                      label: context.tx('Cereja'),
                       value: 'cereja',
                       disabled: true,
                     ),
@@ -67,37 +71,37 @@ class _SgCheckboxGroupPageState extends State<SgCheckboxGroupPage> {
             'orientation horizontal quebra a linha; selectionStyle highlight troca a caixa por um cartão.',
         preview:
             // #region sg-checkbox-group-estilos
-            const Column(
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SgCheckboxGroup(
                   id: 'horizontal',
-                  title: 'Horizontal',
+                  title: context.tx('Horizontal'),
                   orientation: SgCheckboxGroupOrientation.horizontal,
                   source: [
-                    SgCheckboxGroupOption(label: 'Um', value: 1),
+                    SgCheckboxGroupOption(label: context.tx('Um'), value: 1),
                     SgCheckboxGroupOption(
-                      label: 'Dois',
+                      label: context.tx('Dois'),
                       value: 2,
                       checked: true,
                     ),
-                    SgCheckboxGroupOption(label: 'Três', value: 3),
+                    SgCheckboxGroupOption(label: context.tx('Três'), value: 3),
                   ],
                 ),
                 SizedBox(height: 16),
                 SgCheckboxGroup(
                   id: 'highlight',
-                  title: 'Highlight',
+                  title: context.tx('Highlight'),
                   selectionStyle: SgCheckboxGroupSelectionStyle.highlight,
                   source: [
                     SgCheckboxGroupOption(
-                      label: 'Lista',
+                      label: context.tx('Lista'),
                       value: 'lista',
                       checked: true,
                       icon: Icon(Icons.list, size: 16),
                     ),
                     SgCheckboxGroupOption(
-                      label: 'Grade',
+                      label: context.tx('Grade'),
                       value: 'grade',
                       icon: Icon(Icons.grid_view, size: 16),
                     ),
@@ -114,15 +118,22 @@ class _SgCheckboxGroupPageState extends State<SgCheckboxGroupPage> {
             'showCheckAll marca só as opções habilitadas e mostra o estado indeterminado.',
         preview:
             // #region sg-checkbox-group-todos
-            const SgCheckboxGroup(
+            SgCheckboxGroup(
               id: 'todos',
-              title: 'Permissões',
+              title: context.tx('Permissões'),
               showCheckAll: true,
               source: [
-                SgCheckboxGroupOption(label: 'Ler', value: 'r', checked: true),
-                SgCheckboxGroupOption(label: 'Escrever', value: 'w'),
                 SgCheckboxGroupOption(
-                  label: 'Apagar',
+                  label: context.tx('Ler'),
+                  value: 'r',
+                  checked: true,
+                ),
+                SgCheckboxGroupOption(
+                  label: context.tx('Escrever'),
+                  value: 'w',
+                ),
+                SgCheckboxGroupOption(
+                  label: context.tx('Apagar'),
                   value: 'd',
                   disabled: true,
                 ),
@@ -155,18 +166,18 @@ class _SgCheckboxGroupPageState extends State<SgCheckboxGroupPage> {
                   runSpacing: 8,
                   children: [
                     SgButton(
-                      label: const Text('Marcar todos'),
+                      label: Text(context.tx('Marcar todos')),
                       size: SgSize.sm,
                       onClick: _controller.checkAll,
                     ),
                     SgButton(
-                      label: const Text('Limpar'),
+                      label: Text(context.tx('Limpar')),
                       size: SgSize.sm,
                       appearance: SgAppearance.outline,
                       onClick: _controller.clearAll,
                     ),
                     SgButton(
-                      label: const Text('Só B'),
+                      label: Text(context.tx('Só B')),
                       size: SgSize.sm,
                       appearance: SgAppearance.outline,
                       onClick: () => _controller.setChecked(['b']),
@@ -191,17 +202,26 @@ class _SgCheckboxGroupPageState extends State<SgCheckboxGroupPage> {
                   id: 'interesses',
                   name: 'interesses',
                   control: _form,
-                  title: 'Interesses',
+                  title: context.tx('Interesses'),
                   required: true,
-                  source: const [
-                    SgCheckboxGroupOption(label: 'Esportes', value: 'esportes'),
-                    SgCheckboxGroupOption(label: 'Música', value: 'musica'),
-                    SgCheckboxGroupOption(label: 'Leitura', value: 'leitura'),
+                  source: [
+                    SgCheckboxGroupOption(
+                      label: context.tx('Esportes'),
+                      value: 'esportes',
+                    ),
+                    SgCheckboxGroupOption(
+                      label: context.tx('Música'),
+                      value: 'musica',
+                    ),
+                    SgCheckboxGroupOption(
+                      label: context.tx('Leitura'),
+                      value: 'leitura',
+                    ),
                   ],
                 ),
                 const SizedBox(height: 12),
                 SgButton(
-                  label: const Text('Enviar'),
+                  label: Text(context.tx('Enviar')),
                   onClick: () => _form.handleSubmit(
                     (values) =>
                         setState(() => _enviado = '${values['interesses']}'),

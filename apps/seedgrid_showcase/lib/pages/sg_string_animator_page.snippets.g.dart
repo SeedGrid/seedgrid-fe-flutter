@@ -76,7 +76,7 @@ SingleChildScrollView(
           const SizedBox(width: 24),
           FilledButton(
             onPressed: controller.startAnimation,
-            child: const Text('Contar'),
+            child: Text(context.tx('Contar')),
           ),
         ],
       );
@@ -113,7 +113,7 @@ SingleChildScrollView(
             ),
           FilledButton(
             onPressed: controller.startAnimation,
-            child: const Text('Animar'),
+            child: Text(context.tx('Animar')),
           ),
         ],
       );
@@ -140,7 +140,7 @@ SingleChildScrollView(
           const SizedBox(height: 16),
           FilledButton(
             onPressed: controller.startAnimation,
-            child: const Text('Animar'),
+            child: Text(context.tx('Animar')),
           ),
         ],
       );
@@ -187,7 +187,7 @@ SingleChildScrollView(
               lento.startAnimation();
               rapido.startAnimation();
             },
-            child: const Text('Animar os dois'),
+            child: Text(context.tx('Animar os dois')),
           ),
         ],
       );

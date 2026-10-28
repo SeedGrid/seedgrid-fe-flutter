@@ -33,23 +33,23 @@ class _SgToolBarPageState extends State<SgToolBarPage> {
               alignment: Alignment.centerLeft,
               child: SgToolBar(
                 id: 'tb-basico',
-                title: const Text('Ações'),
+                title: Text(context.tx('Ações')),
                 children: [
                   SgToolbarIconButton(
                     icon: const Icon(Icons.add),
-                    label: 'Novo',
-                    hint: 'Criar um registro',
+                    label: context.tx('Novo'),
+                    hint: context.tx('Criar um registro'),
                     severity: SgToolbarIconButtonSeverity.primary,
                     onClick: () => setState(() => _ultimo = 'Novo'),
                   ),
                   SgToolbarIconButton(
                     icon: const Icon(Icons.edit_outlined),
-                    label: 'Editar',
+                    label: context.tx('Editar'),
                     onClick: () => setState(() => _ultimo = 'Editar'),
                   ),
                   SgToolbarIconButton(
                     icon: const Icon(Icons.delete_outline),
-                    label: 'Excluir',
+                    label: context.tx('Excluir'),
                     severity: SgToolbarIconButtonSeverity.danger,
                     onClick: () => setState(() => _ultimo = 'Excluir'),
                   ),
@@ -71,23 +71,23 @@ class _SgToolBarPageState extends State<SgToolBarPage> {
               children: [
                 SgToolBar(
                   id: 'tb-vertical',
-                  title: const Text('Vertical'),
+                  title: Text(context.tx('Vertical')),
                   orientationDirection:
                       SgToolBarOrientationDirection.verticalDown,
-                  children: const [
+                  children: [
                     SgToolbarIconButton(
                       icon: Icon(Icons.save_outlined),
-                      label: 'Salvar',
+                      label: context.tx('Salvar'),
                     ),
                     SgToolbarIconButton(
                       icon: Icon(Icons.print_outlined),
-                      label: 'Imprimir',
+                      label: context.tx('Imprimir'),
                     ),
                   ],
                 ),
                 SgToolBar(
                   id: 'tb-grade',
-                  title: const Text('Grade 2x'),
+                  title: Text(context.tx('Grade 2x')),
                   buttonsPerDirection: 2,
                   bgColor: 'var(--muted)',
                   children: const [
@@ -124,18 +124,18 @@ class _SgToolBarPageState extends State<SgToolBarPage> {
                 children: [
                   SgToolBar(
                     id: 'tb-arrastar',
-                    title: const Text('Arraste-me'),
+                    title: Text(context.tx('Arraste-me')),
                     freeDrag: true,
                     draggable: true,
                     defaultPosition: const Offset(24, 24),
-                    children: const [
+                    children: [
                       SgToolbarIconButton(
                         icon: Icon(Icons.star_outline),
-                        label: 'Favorito',
+                        label: context.tx('Favorito'),
                       ),
                       SgToolbarIconButton(
                         icon: Icon(Icons.share_outlined),
-                        label: 'Compartilhar',
+                        label: context.tx('Compartilhar'),
                       ),
                     ],
                   ),
@@ -155,23 +155,29 @@ class _SgToolBarPageState extends State<SgToolBarPage> {
               width: 260,
               child: SgToolBar(
                 id: 'tb-overflow',
-                title: const Text('Estreita'),
+                title: Text(context.tx('Estreita')),
                 overflow: true,
                 size: const SgToolBarSize(w: 260),
-                children: const [
-                  SgToolbarIconButton(icon: Icon(Icons.add), label: 'Novo'),
+                children: [
+                  SgToolbarIconButton(
+                    icon: Icon(Icons.add),
+                    label: context.tx('Novo'),
+                  ),
                   SgToolbarIconButton(
                     icon: Icon(Icons.edit_outlined),
-                    label: 'Editar',
+                    label: context.tx('Editar'),
                   ),
-                  SgToolbarIconButton(icon: Icon(Icons.copy), label: 'Copiar'),
+                  SgToolbarIconButton(
+                    icon: Icon(Icons.copy),
+                    label: context.tx('Copiar'),
+                  ),
                   SgToolbarIconButton(
                     icon: Icon(Icons.print_outlined),
-                    label: 'Imprimir',
+                    label: context.tx('Imprimir'),
                   ),
                   SgToolbarIconButton(
                     icon: Icon(Icons.share_outlined),
-                    label: 'Compartilhar',
+                    label: context.tx('Compartilhar'),
                   ),
                 ],
               ),

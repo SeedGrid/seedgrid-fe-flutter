@@ -14,7 +14,7 @@ SizedBox(
         border: Border.all(color: Colors.black26),
         borderRadius: BorderRadius.circular(12),
       ),
-      child: const Stack(
+      child: Stack(
         children: [
           Positioned(
             left: 0,
@@ -24,12 +24,12 @@ SizedBox(
               zone: SgDockZoneId.top,
               children: [
                 SgButton(
-                  label: Text('Início'),
+                  label: Text(context.tx('Início')),
                   size: SgSize.sm,
                   appearance: SgAppearance.outline,
                 ),
                 SgButton(
-                  label: Text('Buscar'),
+                  label: Text(context.tx('Buscar')),
                   size: SgSize.sm,
                   appearance: SgAppearance.outline,
                 ),
@@ -45,12 +45,12 @@ SizedBox(
               zone: SgDockZoneId.left,
               children: [
                 SgButton(
-                  label: Text('Clientes'),
+                  label: Text(context.tx('Clientes')),
                   size: SgSize.sm,
                   appearance: SgAppearance.ghost,
                 ),
                 SgButton(
-                  label: Text('Config'),
+                  label: Text(context.tx('Config')),
                   size: SgSize.sm,
                   appearance: SgAppearance.ghost,
                 ),
@@ -60,7 +60,7 @@ SizedBox(
           Positioned.fill(
             child: SgDockZone(
               zone: SgDockZoneId.free,
-              child: Text('Área central livre'),
+              child: Text(context.tx('Área central livre')),
             ),
           ),
         ],
@@ -104,8 +104,8 @@ SgDockLayout(
             runSpacing: 8,
             children: [
               SgButton(
-                label: const Text(
-                  'Mover "navegacao" para a direita',
+                label: Text(
+                  context.tx('Mover "navegacao" para a direita'),
                 ),
                 size: SgSize.sm,
                 onClick: () => dock.moveToolbar(
@@ -114,8 +114,8 @@ SgDockLayout(
                 ),
               ),
               SgButton(
-                label: const Text(
-                  'Mover "ferramentas" para a base',
+                label: Text(
+                  context.tx('Mover "ferramentas" para a base'),
                 ),
                 size: SgSize.sm,
                 appearance: SgAppearance.outline,
@@ -150,7 +150,7 @@ SizedBox(
               runSpacing: 8,
               children: [
                 SgButton(
-                  label: const Text('Simular arrasto'),
+                  label: Text(context.tx('Simular arrasto')),
                   size: SgSize.sm,
                   onClick: () {
                     dock.setDropPreviewActive(true);
@@ -164,7 +164,7 @@ SizedBox(
                   },
                 ),
                 SgButton(
-                  label: const Text('Encerrar'),
+                  label: Text(context.tx('Encerrar')),
                   size: SgSize.sm,
                   appearance: SgAppearance.outline,
                   onClick: () => dock.setDropPreviewActive(false),
@@ -172,18 +172,18 @@ SizedBox(
               ],
             ),
             const SizedBox(height: 8),
-            const Row(
+            Row(
               children: [
                 Expanded(
                   child: SgDockZone(
                     zone: SgDockZoneId.top,
-                    child: Text('Topo'),
+                    child: Text(context.tx('Topo')),
                   ),
                 ),
                 Expanded(
                   child: SgDockZone(
                     zone: SgDockZoneId.free,
-                    child: Text('Livre'),
+                    child: Text(context.tx('Livre')),
                   ),
                 ),
               ],

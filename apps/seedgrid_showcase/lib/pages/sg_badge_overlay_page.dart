@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 import 'sg_badge_overlay_page.snippets.g.dart';
 
 class SgBadgeOverlayPage extends StatelessWidget {
@@ -16,13 +17,13 @@ class SgBadgeOverlayPage extends StatelessWidget {
         description: 'Padrão: top-right.',
         preview:
             // #region sg-badge-overlay-avatar
-            const SgBadgeOverlay(
+            SgBadgeOverlay(
               badge: SgBadge(
                 count: 3,
                 size: SgBadgeSize.sm,
                 severity: SgBadgeSeverity.danger,
               ),
-              child: SgAvatar(label: Text('Ana Lima')),
+              child: SgAvatar(label: Text(context.tx('Ana Lima'))),
             ),
         // #endregion
         code: SgBadgeOverlayPageSnippets.sgBadgeOverlayAvatar,
@@ -31,11 +32,11 @@ class SgBadgeOverlayPage extends StatelessWidget {
         title: 'Ponto de status',
         preview:
             // #region sg-badge-overlay-status
-            const SgBadgeOverlay(
+            SgBadgeOverlay(
               placement: SgBadgeOverlayPlacement.bottomRight,
               badge: SgBadge(dot: true, severity: SgBadgeSeverity.success),
               child: SgAvatar(
-                label: Text('Bia Souza'),
+                label: Text(context.tx('Bia Souza')),
                 severity: SgAvatarSeverity.info,
               ),
             ),
@@ -54,7 +55,7 @@ class SgBadgeOverlayPage extends StatelessWidget {
                 severity: SgBadgeSeverity.danger,
               ),
               child: SgButton(
-                label: const Text('Mensagens'),
+                label: Text(context.tx('Mensagens')),
                 appearance: SgAppearance.outline,
                 onClick: () {},
               ),

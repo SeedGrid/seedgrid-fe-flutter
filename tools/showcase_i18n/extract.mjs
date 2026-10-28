@@ -64,6 +64,11 @@ export function pageTexts(file) {
       else if (lit && lit.value.trim()) out.push({ texto: lit.value, onde: path.basename(file) });
     }
   };
+  // Textos dentro dos exemplos: context.tx('...') (o literal e a chave).
+  for (const m of t.matchAll(/context\.tx\(\s*/g)) {
+    const lit = readLiterals(t, m.index + m[0].length);
+    if (lit && !lit.dynamic && lit.value.trim()) out.push({ texto: lit.value, onde: path.basename(file) });
+  }
   for (const m of t.matchAll(/ShowcaseExample\(/g)) {
     const stop = t.indexOf("preview:", m.index);
     grab(m.index + m[0].length, stop < 0 ? t.length : stop, ["title", "description"]);
@@ -116,6 +121,9 @@ export function loadTranslations() {
       all[pt] = tr;
     }
   }
+  // Textos que nao se traduzem (nomes, tokens, identificadores): valem igual nos 4 idiomas.
+  const inv = path.join(path.dirname(transDir), "invariaveis.json");
+  if (fs.existsSync(inv)) for (const t of JSON.parse(fs.readFileSync(inv, "utf8"))) all[t] ??= LOCALES.map(() => t);
   return all;
 }
 

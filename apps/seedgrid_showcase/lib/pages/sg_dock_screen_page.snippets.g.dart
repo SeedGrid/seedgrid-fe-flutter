@@ -10,7 +10,7 @@ Container(
     border: Border.all(color: Colors.black26),
     borderRadius: BorderRadius.circular(12),
   ),
-  child: const SgDockScreen(
+  child: SgDockScreen(
     id: 'showcase-dock-screen-basico',
     fullscreen: false,
     height: 320,
@@ -19,12 +19,12 @@ Container(
         zone: SgDockZoneId.top,
         children: [
           SgButton(
-            label: Text('Início'),
+            label: Text(context.tx('Início')),
             size: SgSize.sm,
             appearance: SgAppearance.outline,
           ),
           SgButton(
-            label: Text('Buscar'),
+            label: Text(context.tx('Buscar')),
             size: SgSize.sm,
             appearance: SgAppearance.outline,
           ),
@@ -34,7 +34,7 @@ Container(
         zone: SgDockZoneId.bottom,
         children: [
           SgButton(
-            label: Text('Relatórios'),
+            label: Text(context.tx('Relatórios')),
             size: SgSize.sm,
             appearance: SgAppearance.outline,
           ),
@@ -44,12 +44,12 @@ Container(
         zone: SgDockZoneId.left,
         children: [
           SgButton(
-            label: Text('Clientes'),
+            label: Text(context.tx('Clientes')),
             size: SgSize.sm,
             appearance: SgAppearance.ghost,
           ),
           SgButton(
-            label: Text('Config'),
+            label: Text(context.tx('Config')),
             size: SgSize.sm,
             appearance: SgAppearance.ghost,
           ),
@@ -59,7 +59,7 @@ Container(
         zone: SgDockZoneId.right,
         children: [
           SgButton(
-            label: Text('Equipe'),
+            label: Text(context.tx('Equipe')),
             size: SgSize.sm,
             appearance: SgAppearance.ghost,
           ),
@@ -67,7 +67,7 @@ Container(
       ),
       SgDockZone(
         zone: SgDockZoneId.free,
-        child: Text('Área central livre'),
+        child: Text(context.tx('Área central livre')),
       ),
     ],
   ),
@@ -81,14 +81,20 @@ Container(
     border: Border.all(color: Colors.black26),
     borderRadius: BorderRadius.circular(12),
   ),
-  child: const SgDockScreen(
+  child: SgDockScreen(
     id: 'showcase-dock-screen-conteudo',
     fullscreen: false,
     height: 200,
     children: [
-      SgDockZone(zone: SgDockZoneId.left, child: Text('Menu')),
-      Center(child: Text('Conteúdo da página')),
-      SgDockZone(zone: SgDockZoneId.right, child: Text('Ajuda')),
+      SgDockZone(
+        zone: SgDockZoneId.left,
+        child: Text(context.tx('Menu')),
+      ),
+      Center(child: Text(context.tx('Conteúdo da página'))),
+      SgDockZone(
+        zone: SgDockZoneId.right,
+        child: Text(context.tx('Ajuda')),
+      ),
     ],
   ),
 )
@@ -101,7 +107,7 @@ Container(
     border: Border.all(color: Colors.black26),
     borderRadius: BorderRadius.circular(12),
   ),
-  child: const SgDockScreen(
+  child: SgDockScreen(
     id: 'showcase-dock-screen-tamanho',
     fullscreen: false,
     width: '520px',
@@ -110,17 +116,23 @@ Container(
     children: [
       SgDockZone(
         zone: SgDockZoneId.top,
-        child: SgButton(label: Text('Topo'), size: SgSize.sm),
+        child: SgButton(
+          label: Text(context.tx('Topo')),
+          size: SgSize.sm,
+        ),
       ),
       SgDockZone(
         zone: SgDockZoneId.left,
         child: SgButton(
-          label: Text('Esquerda'),
+          label: Text(context.tx('Esquerda')),
           size: SgSize.sm,
           appearance: SgAppearance.outline,
         ),
       ),
-      SgDockZone(zone: SgDockZoneId.free, child: Text('Centro')),
+      SgDockZone(
+        zone: SgDockZoneId.free,
+        child: Text(context.tx('Centro')),
+      ),
     ],
   ),
 )

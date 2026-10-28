@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 import 'sg_discard_digit_page.snippets.g.dart';
 
 class SgDiscardDigitPage extends StatefulWidget {
@@ -33,7 +34,7 @@ class _SgDiscardDigitPageState extends State<SgDiscardDigitPage> {
               children: [
                 SgDiscardDigit(value: '$_n'),
                 SgButton(
-                  label: const Text('Próximo'),
+                  label: Text(context.tx('Próximo')),
                   onClick: () => setState(() => _n = _n % 9 + 1),
                 ),
               ],
@@ -58,7 +59,7 @@ class _SgDiscardDigitPageState extends State<SgDiscardDigitPage> {
                       SgDiscardDigitChangeAnimationMode.incoming,
                 ),
                 SgButton(
-                  label: const Text('Próximo'),
+                  label: Text(context.tx('Próximo')),
                   onClick: () => setState(() => _n = _n % 9 + 1),
                 ),
               ],
@@ -94,7 +95,7 @@ class _SgDiscardDigitPageState extends State<SgDiscardDigitPage> {
                       crossAxisAlignment: WrapCrossAlignment.center,
                       children: [
                         SgButton(
-                          label: const Text('Anterior'),
+                          label: Text(context.tx('Anterior')),
                           appearance: SgAppearance.outline,
                           onClick: () => setState(() {
                             _pages.decreasePage();
@@ -102,7 +103,7 @@ class _SgDiscardDigitPageState extends State<SgDiscardDigitPage> {
                           }),
                         ),
                         SgButton(
-                          label: const Text('Próxima'),
+                          label: Text(context.tx('Próxima')),
                           onClick: () => setState(() {
                             _pages.increasePage();
                             _page = _pages.page();
@@ -129,7 +130,7 @@ class _SgDiscardDigitPageState extends State<SgDiscardDigitPage> {
               children: [
                 SgDiscardDigit(value: '$_n', animateOnChange: false),
                 SgButton(
-                  label: const Text('Próximo'),
+                  label: Text(context.tx('Próximo')),
                   onClick: () => setState(() => _n = _n % 9 + 1),
                 ),
               ],
@@ -158,7 +159,7 @@ class _SgDiscardDigitPageState extends State<SgDiscardDigitPage> {
                   stackDepth: 10,
                 ),
                 SgButton(
-                  label: const Text('Próximo'),
+                  label: Text(context.tx('Próximo')),
                   onClick: () => setState(() => _n = _n % 9 + 1),
                 ),
               ],

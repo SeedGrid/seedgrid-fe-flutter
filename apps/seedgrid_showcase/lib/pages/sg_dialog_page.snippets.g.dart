@@ -31,8 +31,8 @@ Column(
       transitionMs: 300,
       autoCloseMs: 3000,
       title: Text('Animação ${_anim.value}'),
-      child: const Text(
-        'Este diálogo fecha sozinho em 3 segundos.',
+      child: Text(
+        context.tx('Este diálogo fecha sozinho em 3 segundos.'),
       ),
     ),
   ],
@@ -45,19 +45,19 @@ Column(
   crossAxisAlignment: CrossAxisAlignment.start,
   children: [
     SgButton(
-      label: const Text('Abrir diálogo'),
+      label: Text(context.tx('Abrir diálogo')),
       onClick: () => setState(() => _basico = true),
     ),
     SgDialog(
       open: _basico,
       onOpenChange: (open) => setState(() => _basico = open),
-      title: const Text('Novo cadastro'),
-      subtitle: const Text('Preencha os dados abaixo'),
+      title: Text(context.tx('Novo cadastro')),
+      subtitle: Text(context.tx('Preencha os dados abaixo')),
       footer: SgButton(
-        label: const Text('Salvar'),
+        label: Text(context.tx('Salvar')),
         onClick: () => setState(() => _basico = false),
       ),
-      child: const Text('O conteúdo do diálogo fica aqui.'),
+      child: Text(context.tx('O conteúdo do diálogo fica aqui.')),
     ),
   ],
 )
@@ -69,7 +69,7 @@ Column(
   crossAxisAlignment: CrossAxisAlignment.start,
   children: [
     SgButton(
-      label: const Text('Abrir diálogo escuro'),
+      label: Text(context.tx('Abrir diálogo escuro')),
       onClick: () => setState(() => _cores = true),
     ),
     SgDialog(
@@ -77,9 +77,9 @@ Column(
       onOpenChange: (open) => setState(() => _cores = open),
       customColor: '#101820',
       elevation: 'lg',
-      title: const Text('Modo escuro'),
-      subtitle: const Text('Paleta derivada da cor de fundo'),
-      child: const Text('Texto claro sobre fundo escuro.'),
+      title: Text(context.tx('Modo escuro')),
+      subtitle: Text(context.tx('Paleta derivada da cor de fundo')),
+      child: Text(context.tx('Texto claro sobre fundo escuro.')),
     ),
   ],
 )
@@ -91,7 +91,7 @@ Column(
   crossAxisAlignment: CrossAxisAlignment.start,
   children: [
     SgButton(
-      label: const Text('Abrir diálogo obrigatório'),
+      label: Text(context.tx('Abrir diálogo obrigatório')),
       onClick: () => setState(() => _fechamento = true),
     ),
     SgDialog(
@@ -100,12 +100,14 @@ Column(
       closeable: false,
       closeOnEsc: false,
       closeOnOverlayClick: false,
-      title: const Text('Atenção'),
+      title: Text(context.tx('Atenção')),
       footer: SgButton(
-        label: const Text('Entendi'),
+        label: Text(context.tx('Entendi')),
         onClick: () => setState(() => _fechamento = false),
       ),
-      child: const Text('É preciso confirmar para continuar.'),
+      child: Text(
+        context.tx('É preciso confirmar para continuar.'),
+      ),
     ),
   ],
 )
@@ -138,13 +140,15 @@ Column(
       size: SgDialogSize.sm,
       title: Text('Severidade ${_sev.value}'),
       footer: SgButton(
-        label: const Text('Confirmar'),
+        label: Text(context.tx('Confirmar')),
         severity:
             SgSeverity.fromValue(_sev.value) ?? SgSeverity.primary,
         onClick: () => setState(() => _severidade = false),
       ),
-      child: const Text(
-        'O fundo e a faixa do topo seguem a severidade escolhida.',
+      child: Text(
+        context.tx(
+          'O fundo e a faixa do topo seguem a severidade escolhida.',
+        ),
       ),
     ),
   ],

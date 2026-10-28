@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 import 'sg_group_box_page.snippets.g.dart';
 
 class SgGroupBoxPage extends StatelessWidget {
@@ -17,8 +18,8 @@ class SgGroupBoxPage extends StatelessWidget {
         description: 'A legenda fica sobre a borda, em caixa alta.',
         preview:
             // #region sg-group-box-campos
-            const SgGroupBox(
-              title: 'Dados do cliente',
+            SgGroupBox(
+              title: context.tx('Dados do cliente'),
               child: SgStack(
                 gap: 12,
                 children: [
@@ -36,18 +37,18 @@ class SgGroupBoxPage extends StatelessWidget {
             'O padrão é a largura toda. width aceita px ("240px"), número e porcentagem ("50%").',
         preview:
             // #region sg-group-box-largura
-            const SgStack(
+            SgStack(
               gap: 12,
               children: [
                 SgGroupBox(
-                  title: 'Metade',
+                  title: context.tx('Metade'),
                   width: '50%',
-                  child: Text('width: "50%"'),
+                  child: Text(context.tx('width: "50%"')),
                 ),
                 SgGroupBox(
-                  title: 'Fixa',
+                  title: context.tx('Fixa'),
                   width: 240,
-                  child: Text('width: 240'),
+                  child: Text(context.tx('width: 240')),
                 ),
               ],
             ),
@@ -58,15 +59,18 @@ class SgGroupBoxPage extends StatelessWidget {
         title: 'Várias caixas lado a lado',
         preview:
             // #region sg-group-box-lado
-            const SgGrid(
+            SgGrid(
               minItemWidth: 200,
               gap: 12,
               children: [
                 SgGroupBox(
-                  title: 'Entrega',
-                  child: Text('Rua das Flores, 100'),
+                  title: context.tx('Entrega'),
+                  child: Text(context.tx('Rua das Flores, 100')),
                 ),
-                SgGroupBox(title: 'Cobrança', child: Text('Mesmo endereço')),
+                SgGroupBox(
+                  title: context.tx('Cobrança'),
+                  child: Text(context.tx('Mesmo endereço')),
+                ),
               ],
             ),
         // #endregion

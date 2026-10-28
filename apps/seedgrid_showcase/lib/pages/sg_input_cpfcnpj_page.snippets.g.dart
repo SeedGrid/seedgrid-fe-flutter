@@ -29,7 +29,7 @@ Column(
     ),
     if (_publicaResultado != null) ...[
       const SizedBox(height: 8),
-      const Text('Resultado da consulta'),
+      Text(context.tx('Resultado da consulta')),
       ConstrainedBox(
         constraints: const BoxConstraints(maxHeight: 240),
         child: SingleChildScrollView(
@@ -60,7 +60,7 @@ Column(
     ),
     const SizedBox(height: 12),
     SgButton(
-      label: const Text('Enviar'),
+      label: Text(context.tx('Enviar')),
       onClick: () => _form.handleSubmit(
         (values) => setState(() => _enviado = '${values['campo']}'),
       ),

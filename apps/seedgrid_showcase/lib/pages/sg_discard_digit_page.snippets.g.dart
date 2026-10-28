@@ -20,7 +20,7 @@ Wrap(
       stackDepth: 10,
     ),
     SgButton(
-      label: const Text('Próximo'),
+      label: Text(context.tx('Próximo')),
       onClick: () => setState(() => _n = _n % 9 + 1),
     ),
   ],
@@ -36,7 +36,7 @@ Wrap(
   children: [
     SgDiscardDigit(value: '$_n'),
     SgButton(
-      label: const Text('Próximo'),
+      label: Text(context.tx('Próximo')),
       onClick: () => setState(() => _n = _n % 9 + 1),
     ),
   ],
@@ -56,7 +56,7 @@ Wrap(
           SgDiscardDigitChangeAnimationMode.incoming,
     ),
     SgButton(
-      label: const Text('Próximo'),
+      label: Text(context.tx('Próximo')),
       onClick: () => setState(() => _n = _n % 9 + 1),
     ),
   ],
@@ -87,7 +87,7 @@ Wrap(
           crossAxisAlignment: WrapCrossAlignment.center,
           children: [
             SgButton(
-              label: const Text('Anterior'),
+              label: Text(context.tx('Anterior')),
               appearance: SgAppearance.outline,
               onClick: () => setState(() {
                 _pages.decreasePage();
@@ -95,7 +95,7 @@ Wrap(
               }),
             ),
             SgButton(
-              label: const Text('Próxima'),
+              label: Text(context.tx('Próxima')),
               onClick: () => setState(() {
                 _pages.increasePage();
                 _page = _pages.page();
@@ -118,7 +118,7 @@ Wrap(
   children: [
     SgDiscardDigit(value: '$_n', animateOnChange: false),
     SgButton(
-      label: const Text('Próximo'),
+      label: Text(context.tx('Próximo')),
       onClick: () => setState(() => _n = _n % 9 + 1),
     ),
   ],

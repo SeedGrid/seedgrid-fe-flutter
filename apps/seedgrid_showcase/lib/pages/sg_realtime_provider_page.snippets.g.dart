@@ -40,14 +40,14 @@ Builder(
             crossAxisAlignment: WrapCrossAlignment.center,
             children: [
               SgButton(
-                label: const Text('backup.finished.error'),
+                label: Text(context.tx('backup.finished.error')),
                 onClick: () => sim.emitMessage(
                   channel: 'backup',
                   event: 'backup.finished.error',
                 ),
               ),
               SgButton(
-                label: const Text('backup.other'),
+                label: Text(context.tx('backup.other')),
                 appearance: SgAppearance.outline,
                 onClick: () => sim.emitMessage(
                   channel: 'backup',
@@ -55,7 +55,7 @@ Builder(
                 ),
               ),
               SgButton(
-                label: const Text('audit.login'),
+                label: Text(context.tx('audit.login')),
                 appearance: SgAppearance.outline,
                 onClick: () => sim.emitMessage(
                   channel: 'audit',
@@ -94,7 +94,7 @@ SgRealtimeProvider(
           ),
           const SizedBox(width: 12),
           SgButton(
-            label: const Text('Derrubar'),
+            label: Text(context.tx('Derrubar')),
             appearance: SgAppearance.outline,
             size: SgSize.sm,
             onClick: () =>
@@ -133,8 +133,8 @@ SgRealtimeProvider(
               runSpacing: 8,
               children: [
                 SgButton(
-                  label: const Text(
-                    'Publicar backup.finished.success',
+                  label: Text(
+                    context.tx('Publicar backup.finished.success'),
                   ),
                   onClick: () => _pulse.emitMessage(
                     channel: 'backup',
@@ -143,12 +143,12 @@ SgRealtimeProvider(
                   ),
                 ),
                 SgButton(
-                  label: const Text('Queda e reconexão'),
+                  label: Text(context.tx('Queda e reconexão')),
                   appearance: SgAppearance.outline,
                   onClick: () => _pulse.simulateReconnect(),
                 ),
                 SgButton(
-                  label: const Text('Revogar credencial'),
+                  label: Text(context.tx('Revogar credencial')),
                   severity: SgSeverity.danger,
                   appearance: SgAppearance.outline,
                   onClick: _pulse.simulateRevoked,

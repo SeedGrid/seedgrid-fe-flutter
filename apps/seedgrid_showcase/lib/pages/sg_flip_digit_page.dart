@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 import 'sg_flip_digit_page.snippets.g.dart';
 
 class SgFlipDigitPage extends StatefulWidget {
@@ -37,7 +38,7 @@ class _SgFlipDigitPageState extends State<SgFlipDigitPage> {
                   onClick: () => setState(() => _n++),
                 ),
                 SgButton(
-                  label: const Text('Zerar'),
+                  label: Text(context.tx('Zerar')),
                   appearance: SgAppearance.outline,
                   onClick: () => setState(() => _n = 0),
                 ),
@@ -79,7 +80,7 @@ class _SgFlipDigitPageState extends State<SgFlipDigitPage> {
                 for (final ch in _clock.toString().padLeft(4, '0').split(''))
                   SgFlipDigit(value: ch, fontSize: 44),
                 SgButton(
-                  label: const Text('Somar 111'),
+                  label: Text(context.tx('Somar 111')),
                   size: SgSize.sm,
                   onClick: () =>
                       setState(() => _clock = (_clock + 111) % 10000),
@@ -101,7 +102,7 @@ class _SgFlipDigitPageState extends State<SgFlipDigitPage> {
               children: [
                 SgFlipDigit(value: _letter, fontSize: 56),
                 SgButton(
-                  label: const Text('Próxima letra'),
+                  label: Text(context.tx('Próxima letra')),
                   onClick: () => setState(
                     () => _letter = String.fromCharCode(
                       65 + (_letter.codeUnitAt(0) - 64) % 26,

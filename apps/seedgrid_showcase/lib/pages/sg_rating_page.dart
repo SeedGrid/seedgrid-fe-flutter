@@ -5,6 +5,7 @@ import 'package:seedgrid_components/seedgrid_components.dart';
 
 import 'sg_rating_page.snippets.g.dart';
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 
 class SgRatingPage extends StatefulWidget {
   const SgRatingPage({super.key});
@@ -39,7 +40,7 @@ class _SgRatingPageState extends State<SgRatingPage> {
               children: [
                 SgRating(
                   id: 'basico',
-                  label: 'Sua avaliação',
+                  label: context.tx('Sua avaliação'),
                   value: 3,
                   onChange: (v) => setState(() => _nota = v),
                   onHover: (v) => setState(() => _hover = v),
@@ -125,12 +126,12 @@ class _SgRatingPageState extends State<SgRatingPage> {
                   id: 'form',
                   name: 'nota',
                   control: _form,
-                  label: 'Nota do atendimento',
+                  label: context.tx('Nota do atendimento'),
                   required: true,
                 ),
                 const SizedBox(height: 12),
                 SgButton(
-                  label: const Text('Enviar'),
+                  label: Text(context.tx('Enviar')),
                   onClick: () => _form.handleSubmit(
                     (values) => setState(() => _enviado = '${values['nota']}'),
                   ),

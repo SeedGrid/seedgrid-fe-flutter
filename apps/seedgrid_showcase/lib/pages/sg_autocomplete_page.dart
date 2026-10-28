@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 import 'sg_autocomplete_page.snippets.g.dart';
 
 class SgAutocompletePage extends StatefulWidget {
@@ -35,7 +36,7 @@ class _SgAutocompletePageState extends State<SgAutocompletePage> {
             SgAutocomplete<String>(
               id: 'pais',
               labelText: 'País',
-              placeholder: 'Digite 2 letras',
+              placeholder: context.tx('Digite 2 letras'),
               source: (q) =>
                   const [
                         'Argentina',
@@ -110,20 +111,20 @@ class _SgAutocompletePageState extends State<SgAutocompletePage> {
               renderFooter: (q, has) =>
                   Text(has ? 'Resultados para "$q"' : 'Nada para "$q"'),
               source: (q) =>
-                  const [
+                  [
                         SgAutocompleteItem(
                           id: 1,
-                          label: 'Maçã',
+                          label: context.tx('Maçã'),
                           group: 'Frutas',
                         ),
                         SgAutocompleteItem(
                           id: 2,
-                          label: 'Manga',
+                          label: context.tx('Manga'),
                           group: 'Frutas',
                         ),
                         SgAutocompleteItem(
                           id: 3,
-                          label: 'Milho',
+                          label: context.tx('Milho'),
                           group: 'Grãos',
                         ),
                       ]
@@ -205,7 +206,7 @@ class _SgAutocompletePageState extends State<SgAutocompletePage> {
                 ),
                 const SizedBox(height: 12),
                 SgButton(
-                  label: const Text('Enviar'),
+                  label: Text(context.tx('Enviar')),
                   onClick: () => _form.handleSubmit(
                     (values) => setState(() => _enviado = '${values['fruta']}'),
                   ),

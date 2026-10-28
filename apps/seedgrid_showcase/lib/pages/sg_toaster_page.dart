@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 import 'sg_toaster_page.snippets.g.dart';
 
 class SgToasterPage extends StatefulWidget {
@@ -52,36 +53,36 @@ class _SgToasterPageState extends State<SgToasterPage> {
               runSpacing: 8,
               children: [
                 SgButton(
-                  label: const Text('Padrão'),
+                  label: Text(context.tx('Padrão')),
                   onClick: () => toast('Mensagem simples'),
                 ),
                 SgButton(
-                  label: const Text('Sucesso'),
+                  label: Text(context.tx('Sucesso')),
                   severity: SgSeverity.success,
                   onClick: () => toast.success(
                     'Salvo!',
-                    const SgToastOptions(
-                      description: 'As alterações foram gravadas.',
+                    SgToastOptions(
+                      description: context.tx('As alterações foram gravadas.'),
                     ),
                   ),
                 ),
                 SgButton(
-                  label: const Text('Info'),
+                  label: Text(context.tx('Info')),
                   severity: SgSeverity.info,
                   onClick: () => toast.info('Nova versão disponível'),
                 ),
                 SgButton(
-                  label: const Text('Aviso'),
+                  label: Text(context.tx('Aviso')),
                   severity: SgSeverity.warning,
                   onClick: () => toast.warning('Sessão expira em 5 minutos'),
                 ),
                 SgButton(
-                  label: const Text('Erro'),
+                  label: Text(context.tx('Erro')),
                   severity: SgSeverity.danger,
                   onClick: () => toast.error('Falha ao salvar'),
                 ),
                 SgButton(
-                  label: const Text('Carregando'),
+                  label: Text(context.tx('Carregando')),
                   severity: SgSeverity.secondary,
                   onClick: () => toast.loading(
                     'Processando...',
@@ -89,7 +90,7 @@ class _SgToasterPageState extends State<SgToasterPage> {
                   ),
                 ),
                 SgButton(
-                  label: const Text('Promise'),
+                  label: Text(context.tx('Promise')),
                   appearance: SgAppearance.outline,
                   onClick: () => toast.promise<String>(
                     Future<String>.delayed(
@@ -104,7 +105,7 @@ class _SgToasterPageState extends State<SgToasterPage> {
                   ),
                 ),
                 SgButton(
-                  label: const Text('Limpar tudo'),
+                  label: Text(context.tx('Limpar tudo')),
                   appearance: SgAppearance.ghost,
                   onClick: toast.dismiss,
                 ),
@@ -124,19 +125,19 @@ class _SgToasterPageState extends State<SgToasterPage> {
               runSpacing: 8,
               children: [
                 SgButton(
-                  label: const Text('Com ação'),
+                  label: Text(context.tx('Com ação')),
                   onClick: () => toast(
                     'Item removido',
                     SgToastOptions(
                       action: SgToastAction(
-                        label: 'Desfazer',
+                        label: context.tx('Desfazer'),
                         onClick: () => toast.success('Restaurado'),
                       ),
                     ),
                   ),
                 ),
                 SgButton(
-                  label: const Text('Sem botão de fechar'),
+                  label: Text(context.tx('Sem botão de fechar')),
                   appearance: SgAppearance.outline,
                   onClick: () => toast(
                     'Sem x',
@@ -159,17 +160,17 @@ class _SgToasterPageState extends State<SgToasterPage> {
               runSpacing: 8,
               children: [
                 SgButton(
-                  label: const Text('1 segundo'),
+                  label: Text(context.tx('1 segundo')),
                   onClick: () =>
                       toast('Rápido', const SgToastOptions(duration: 1000)),
                 ),
                 SgButton(
-                  label: const Text('8 segundos'),
+                  label: Text(context.tx('8 segundos')),
                   onClick: () =>
                       toast('Devagar', const SgToastOptions(duration: 8000)),
                 ),
                 SgButton(
-                  label: const Text('Fixo'),
+                  label: Text(context.tx('Fixo')),
                   onClick: () => toast.info(
                     'Fica até fechar',
                     const SgToastOptions(duration: 0),
@@ -192,26 +193,26 @@ class _SgToasterPageState extends State<SgToasterPage> {
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
                 FilterChip(
-                  label: const Text('richColors'),
+                  label: Text(context.tx('richColors')),
                   selected: _richColors,
                   onSelected: (v) => setState(() => _richColors = v),
                 ),
                 FilterChip(
-                  label: const Text('rounded'),
+                  label: Text(context.tx('rounded')),
                   selected: _rounded,
                   onSelected: (v) => setState(() => _rounded = v),
                 ),
                 FilterChip(
-                  label: const Text('closeButton'),
+                  label: Text(context.tx('closeButton')),
                   selected: _closeButton,
                   onSelected: (v) => setState(() => _closeButton = v),
                 ),
                 SgButton(
-                  label: const Text('Disparar'),
+                  label: Text(context.tx('Disparar')),
                   onClick: () => toast.success(
                     'Toast de teste',
-                    const SgToastOptions(
-                      description: 'Veja as cores e os cantos.',
+                    SgToastOptions(
+                      description: context.tx('Veja as cores e os cantos.'),
                     ),
                   ),
                 ),

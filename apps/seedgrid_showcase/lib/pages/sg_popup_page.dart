@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 import 'sg_popup_page.snippets.g.dart';
 
 class SgPopupPage extends StatefulWidget {
@@ -41,16 +42,16 @@ class _SgPopupPageState extends State<SgPopupPage> {
               children: [
                 SgButton(
                   key: _basicoKey,
-                  label: const Text('Abrir popup'),
+                  label: Text(context.tx('Abrir popup')),
                   onClick: () => setState(() => _basico = !_basico),
                 ),
                 SgPopup(
                   anchorRef: _basicoKey,
                   open: _basico,
                   onOpenChange: (open) => setState(() => _basico = open),
-                  title: 'Perfil',
-                  subtitle: 'Conta pessoal',
-                  child: const Text('Conteúdo livre do popup.'),
+                  title: context.tx('Perfil'),
+                  subtitle: context.tx('Conta pessoal'),
+                  child: Text(context.tx('Conteúdo livre do popup.')),
                 ),
               ],
             ),
@@ -67,7 +68,7 @@ class _SgPopupPageState extends State<SgPopupPage> {
               children: [
                 SgButton(
                   key: _acoesKey,
-                  label: const Text('Ações'),
+                  label: Text(context.tx('Ações')),
                   appearance: SgAppearance.outline,
                   onClick: () => setState(() => _acoes = !_acoes),
                 ),
@@ -79,20 +80,23 @@ class _SgPopupPageState extends State<SgPopupPage> {
                   onOpenChange: (open) => setState(() => _acoes = open),
                   actions: [
                     SgPopupAction(
-                      label: 'Editar',
+                      label: context.tx('Editar'),
                       icon: const Icon(Icons.edit),
-                      hint: 'Abre o editor',
+                      hint: context.tx('Abre o editor'),
                       onClick: () => setState(() => _ultima = 'editar'),
                     ),
                     SgPopupAction(
-                      label: 'Duplicar (não fecha)',
+                      label: context.tx('Duplicar (não fecha)'),
                       icon: const Icon(Icons.copy),
                       closeOnClick: false,
                       onClick: () => setState(() => _ultima = 'duplicar'),
                     ),
-                    const SgPopupAction(label: 'Indisponível', disabled: true),
                     SgPopupAction(
-                      label: 'Excluir',
+                      label: context.tx('Indisponível'),
+                      disabled: true,
+                    ),
+                    SgPopupAction(
+                      label: context.tx('Excluir'),
                       icon: const Icon(Icons.delete),
                       severity: SgPopupSeverity.danger,
                       onClick: () => setState(() => _ultima = 'excluir'),
@@ -134,7 +138,7 @@ class _SgPopupPageState extends State<SgPopupPage> {
                 const SizedBox(height: 12),
                 SgButton(
                   key: _posKey,
-                  label: const Text('Abrir'),
+                  label: Text(context.tx('Abrir')),
                   onClick: () => setState(() => _pos = !_pos),
                 ),
                 SgPopup(
@@ -160,7 +164,7 @@ class _SgPopupPageState extends State<SgPopupPage> {
               children: [
                 SgButton(
                   key: _fechaKey,
-                  label: const Text('Abrir fixo'),
+                  label: Text(context.tx('Abrir fixo')),
                   onClick: () => setState(() => _fecha = !_fecha),
                 ),
                 SgPopup(
@@ -169,8 +173,8 @@ class _SgPopupPageState extends State<SgPopupPage> {
                   onOpenChange: (open) => setState(() => _fecha = open),
                   closeOnOutsideClick: false,
                   closeOnEscape: false,
-                  title: 'Fixo',
-                  actions: [SgPopupAction(label: 'Fechar')],
+                  title: context.tx('Fixo'),
+                  actions: [SgPopupAction(label: context.tx('Fechar'))],
                 ),
               ],
             ),

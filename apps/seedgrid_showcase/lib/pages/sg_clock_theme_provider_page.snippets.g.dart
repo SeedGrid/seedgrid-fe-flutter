@@ -19,12 +19,12 @@ SgClockThemeProvider(
 
   /// Region `sg-clock-theme-provider-local`.
   static const String sgClockThemeProviderLocal = r'''
-const SgClockThemeProvider(
+SgClockThemeProvider(
   value: SgClockThemeProviderValue(
     themes: [
       SgClockTheme(
         id: 'ponto',
-        label: 'Ponto',
+        label: context.tx('Ponto'),
         ops: [
           SgClockCircle(
             cx: 50,

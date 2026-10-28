@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 import 'sg_split_button_page.snippets.g.dart';
 
 class SgSplitButtonPage extends StatefulWidget {
@@ -28,16 +29,16 @@ class _SgSplitButtonPageState extends State<SgSplitButtonPage> {
             Row(
               children: [
                 SgSplitButton(
-                  label: 'Salvar',
+                  label: context.tx('Salvar'),
                   onClick: () => setState(() => _ultima = 'salvar'),
                   items: [
                     SgSplitButtonItem(
-                      label: 'Salvar e fechar',
+                      label: context.tx('Salvar e fechar'),
                       onClick: () =>
                           setState(() => _ultima = 'salvar e fechar'),
                     ),
                     SgSplitButtonItem(
-                      label: 'Salvar como rascunho',
+                      label: context.tx('Salvar como rascunho'),
                       onClick: () => setState(() => _ultima = 'rascunho'),
                     ),
                   ],
@@ -54,26 +55,29 @@ class _SgSplitButtonPageState extends State<SgSplitButtonPage> {
         preview:
             // #region sg-split-button-itens
             SgSplitButton(
-              label: 'Exportar',
+              label: context.tx('Exportar'),
               leftIcon: const Icon(Icons.download),
               items: [
                 SgSplitButtonItem(
-                  label: 'PDF',
+                  label: context.tx('PDF'),
                   icon: const Icon(Icons.picture_as_pdf),
                   onClick: () {},
                 ),
                 SgSplitButtonItem(
-                  label: 'Planilha',
+                  label: context.tx('Planilha'),
                   icon: const Icon(Icons.table_chart),
                   onClick: () {},
                 ),
                 SgSplitButtonItem(
-                  label: 'Imprimir',
+                  label: context.tx('Imprimir'),
                   icon: const Icon(Icons.print),
                   separator: true,
                   onClick: () {},
                 ),
-                const SgSplitButtonItem(label: 'Indisponível', disabled: true),
+                SgSplitButtonItem(
+                  label: context.tx('Indisponível'),
+                  disabled: true,
+                ),
               ],
             ),
         // #endregion
@@ -88,21 +92,36 @@ class _SgSplitButtonPageState extends State<SgSplitButtonPage> {
               runSpacing: 12,
               children: [
                 SgSplitButton(
-                  label: 'Success',
+                  label: context.tx('Success'),
                   severity: SgSeverity.success,
-                  items: [SgSplitButtonItem(label: 'Opção', onClick: () {})],
+                  items: [
+                    SgSplitButtonItem(
+                      label: context.tx('Opção'),
+                      onClick: () {},
+                    ),
+                  ],
                 ),
                 SgSplitButton(
-                  label: 'Danger',
+                  label: context.tx('Danger'),
                   severity: SgSeverity.danger,
                   appearance: SgAppearance.outline,
-                  items: [SgSplitButtonItem(label: 'Opção', onClick: () {})],
+                  items: [
+                    SgSplitButtonItem(
+                      label: context.tx('Opção'),
+                      onClick: () {},
+                    ),
+                  ],
                 ),
                 SgSplitButton(
-                  label: 'Help',
+                  label: context.tx('Help'),
                   severity: SgSeverity.help,
                   appearance: SgAppearance.ghost,
-                  items: [SgSplitButtonItem(label: 'Opção', onClick: () {})],
+                  items: [
+                    SgSplitButtonItem(
+                      label: context.tx('Opção'),
+                      onClick: () {},
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -119,25 +138,45 @@ class _SgSplitButtonPageState extends State<SgSplitButtonPage> {
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
                 SgSplitButton(
-                  label: 'Small',
+                  label: context.tx('Small'),
                   size: SgSize.sm,
-                  items: [SgSplitButtonItem(label: 'Opção', onClick: () {})],
+                  items: [
+                    SgSplitButtonItem(
+                      label: context.tx('Opção'),
+                      onClick: () {},
+                    ),
+                  ],
                 ),
                 SgSplitButton(
-                  label: 'Large',
+                  label: context.tx('Large'),
                   size: SgSize.lg,
-                  items: [SgSplitButtonItem(label: 'Opção', onClick: () {})],
+                  items: [
+                    SgSplitButtonItem(
+                      label: context.tx('Opção'),
+                      onClick: () {},
+                    ),
+                  ],
                 ),
                 SgSplitButton(
-                  label: 'Rounded',
+                  label: context.tx('Rounded'),
                   shape: SgSplitButtonShape.rounded,
-                  items: [SgSplitButtonItem(label: 'Opção', onClick: () {})],
+                  items: [
+                    SgSplitButtonItem(
+                      label: context.tx('Opção'),
+                      onClick: () {},
+                    ),
+                  ],
                 ),
                 SgSplitButton(
-                  label: 'Square',
+                  label: context.tx('Square'),
                   shape: SgSplitButtonShape.square,
                   elevation: SgElevation.md,
-                  items: [SgSplitButtonItem(label: 'Opção', onClick: () {})],
+                  items: [
+                    SgSplitButtonItem(
+                      label: context.tx('Opção'),
+                      onClick: () {},
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -153,24 +192,39 @@ class _SgSplitButtonPageState extends State<SgSplitButtonPage> {
               runSpacing: 12,
               children: [
                 SgSplitButton(
-                  label: 'Enviando',
+                  label: context.tx('Enviando'),
                   loading: true,
-                  items: [SgSplitButtonItem(label: 'Opção', onClick: () {})],
+                  items: [
+                    SgSplitButtonItem(
+                      label: context.tx('Opção'),
+                      onClick: () {},
+                    ),
+                  ],
                 ),
                 SgSplitButton(
-                  label: 'Desabilitado',
+                  label: context.tx('Desabilitado'),
                   disabled: true,
-                  items: [SgSplitButtonItem(label: 'Opção', onClick: () {})],
+                  items: [
+                    SgSplitButtonItem(
+                      label: context.tx('Opção'),
+                      onClick: () {},
+                    ),
+                  ],
                 ),
                 SgSplitButton(
-                  label: 'Roxo',
+                  label: context.tx('Roxo'),
                   customColors: const SgButtonCustomColors(
                     bg: Color(0xFF7C3AED),
                     fg: Colors.white,
                     border: Color(0xFF6D28D9),
                     hoverBg: Color(0xFF6D28D9),
                   ),
-                  items: [SgSplitButtonItem(label: 'Opção', onClick: () {})],
+                  items: [
+                    SgSplitButtonItem(
+                      label: context.tx('Opção'),
+                      onClick: () {},
+                    ),
+                  ],
                 ),
               ],
             ),

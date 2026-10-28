@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 import 'sg_linear_gauge_page.snippets.g.dart';
 
 class SgLinearGaugePage extends StatefulWidget {
@@ -35,7 +36,7 @@ class _SgLinearGaugePageState extends State<SgLinearGaugePage> {
             'ranges coloridas sobre o eixo e um ponteiro adicional com rótulo.',
         preview:
             // #region sg-linear-gauge-faixas
-            const SgLinearGauge(
+            SgLinearGauge(
               value: 35,
               ranges: [
                 SgLinearGaugeRange(start: 0, end: 40, color: '#22c55e'),
@@ -45,7 +46,7 @@ class _SgLinearGaugePageState extends State<SgLinearGaugePage> {
                 SgLinearGaugePointer(
                   value: 80,
                   shape: SgLinearGaugePointerShape.diamond,
-                  label: 'meta',
+                  label: context.tx('meta'),
                 ),
               ],
               primaryPointerShape:

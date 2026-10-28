@@ -10,7 +10,7 @@ Column(
   children: [
     SgInputOTP(
       id: 'basico',
-      label: 'Código de verificação',
+      label: context.tx('Código de verificação'),
       hintText: 'Enviamos 6 dígitos por SMS.',
       onComplete: (v) => setState(() => _concluido = v),
     ),
@@ -36,12 +36,12 @@ Column(
       runSpacing: 8,
       children: [
         SgButton(
-          label: const Text('Focar o 3º'),
+          label: Text(context.tx('Focar o 3º')),
           size: SgSize.sm,
           onClick: () => _controller.focus(2),
         ),
         SgButton(
-          label: const Text('Limpar'),
+          label: Text(context.tx('Limpar')),
           size: SgSize.sm,
           severity: SgSeverity.secondary,
           onClick: _controller.clear,
@@ -54,12 +54,12 @@ Column(
 
   /// Region `sg-input-otp-estados`.
   static const String sgInputOtpEstados = r'''
-const Column(
+Column(
   crossAxisAlignment: CrossAxisAlignment.start,
   children: [
     SgInputOTP(
       id: 'erro',
-      label: 'Com erro',
+      label: context.tx('Com erro'),
       mask: '9999',
       defaultValue: '1234',
       error: 'Código expirado.',
@@ -67,7 +67,7 @@ const Column(
     SizedBox(height: 16),
     SgInputOTP(
       id: 'desab',
-      label: 'Desabilitado',
+      label: context.tx('Desabilitado'),
       mask: '9999',
       defaultValue: '12',
       disabled: true,
@@ -75,7 +75,7 @@ const Column(
     SizedBox(height: 16),
     SgInputOTP(
       id: 'leitura',
-      label: 'Somente leitura',
+      label: context.tx('Somente leitura'),
       mask: '9999',
       defaultValue: '9876',
       readOnly: true,
@@ -93,14 +93,14 @@ Column(
       id: 'form',
       name: 'codigo',
       control: _form,
-      label: 'Código',
+      label: context.tx('Código'),
       mask: '9999',
       required: true,
       requiredMessage: 'Informe o código.',
     ),
     const SizedBox(height: 12),
     SgButton(
-      label: const Text('Confirmar'),
+      label: Text(context.tx('Confirmar')),
       onClick: () => _form.handleSubmit(
         (values) =>
             setState(() => _enviado = '${values['codigo']}'),
@@ -113,12 +113,20 @@ Column(
 
   /// Region `sg-input-otp-mascara`.
   static const String sgInputOtpMascara = r'''
-const Column(
+Column(
   crossAxisAlignment: CrossAxisAlignment.start,
   children: [
-    SgInputOTP(id: 'sep', label: 'Dígitos', mask: '999-999'),
+    SgInputOTP(
+      id: 'sep',
+      label: context.tx('Dígitos'),
+      mask: '999-999',
+    ),
     SizedBox(height: 16),
-    SgInputOTP(id: 'alfa', label: 'Alfanumérico', mask: '##-##-##'),
+    SgInputOTP(
+      id: 'alfa',
+      label: context.tx('Alfanumérico'),
+      mask: '##-##-##',
+    ),
   ],
 )
 ''';
@@ -127,7 +135,7 @@ const Column(
   static const String sgInputOtpValidacao = r'''
 SgInputOTP(
   id: 'validacao',
-  label: 'Código de convite',
+  label: context.tx('Código de convite'),
   mask: '99-99',
   required: true,
   requiredMessage: 'Informe o código.',

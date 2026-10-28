@@ -7,6 +7,7 @@ import 'package:seedgrid_components/seedgrid_components.dart';
 
 import 'sg_input_cnpj_page.snippets.g.dart';
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 
 class SgInputCNPJPage extends StatefulWidget {
   const SgInputCNPJPage({super.key});
@@ -80,7 +81,7 @@ class _SgInputCNPJPageState extends State<SgInputCNPJPage> {
                 ),
                 if (_publicaResultado != null) ...[
                   const SizedBox(height: 8),
-                  const Text('Resultado da consulta'),
+                  Text(context.tx('Resultado da consulta')),
                   ConstrainedBox(
                     constraints: const BoxConstraints(maxHeight: 240),
                     child: SingleChildScrollView(
@@ -249,7 +250,7 @@ class _SgInputCNPJPageState extends State<SgInputCNPJPage> {
                 ),
                 const SizedBox(height: 12),
                 SgButton(
-                  label: const Text('Enviar'),
+                  label: Text(context.tx('Enviar')),
                   onClick: () => _form.handleSubmit(
                     (values) => setState(() => _enviado = '${values['campo']}'),
                   ),

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 import 'sg_confirmation_dialog_page.snippets.g.dart';
 
 class SgConfirmationDialogPage extends StatefulWidget {
@@ -36,7 +37,7 @@ class _SgConfirmationDialogPageState extends State<SgConfirmationDialogPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SgButton(
-                  label: const Text('Excluir registro'),
+                  label: Text(context.tx('Excluir registro')),
                   severity: SgSeverity.danger,
                   onClick: () => setState(() => _basico = true),
                 ),
@@ -44,8 +45,8 @@ class _SgConfirmationDialogPageState extends State<SgConfirmationDialogPage> {
                 SgConfirmationDialog(
                   open: _basico,
                   onOpenChange: (open) => setState(() => _basico = open),
-                  title: const Text('Excluir registro?'),
-                  message: const Text('Esta ação não pode ser desfeita.'),
+                  title: Text(context.tx('Excluir registro?')),
+                  message: Text(context.tx('Esta ação não pode ser desfeita.')),
                   onConfirm: () => setState(() => _resultado = 'Confirmado'),
                   onCancel: () => setState(() => _resultado = 'Cancelado'),
                 ),
@@ -84,8 +85,8 @@ class _SgConfirmationDialogPageState extends State<SgConfirmationDialogPage> {
                   severity: _sev,
                   showSeverityAccent: true,
                   title: Text('Severidade ${_sev.value}'),
-                  message: const Text(
-                    'Veja o ícone, o fundo e o botão de confirmar.',
+                  message: Text(
+                    context.tx('Veja o ícone, o fundo e o botão de confirmar.'),
                   ),
                 ),
               ],
@@ -102,7 +103,7 @@ class _SgConfirmationDialogPageState extends State<SgConfirmationDialogPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SgButton(
-                  label: const Text('Sair sem salvar'),
+                  label: Text(context.tx('Sair sem salvar')),
                   appearance: SgAppearance.outline,
                   onClick: () => setState(() => _botoes = true),
                 ),
@@ -110,16 +111,16 @@ class _SgConfirmationDialogPageState extends State<SgConfirmationDialogPage> {
                   open: _botoes,
                   onOpenChange: (open) => setState(() => _botoes = open),
                   severity: SgDialogSeverity.danger,
-                  title: const Text('Descartar alterações?'),
-                  message: const Text(
-                    'As alterações não salvas serão perdidas.',
+                  title: Text(context.tx('Descartar alterações?')),
+                  message: Text(
+                    context.tx('As alterações não salvas serão perdidas.'),
                   ),
-                  cancelButton: const SgConfirmationDialogButtonConfig(
-                    label: Text('Continuar editando'),
+                  cancelButton: SgConfirmationDialogButtonConfig(
+                    label: Text(context.tx('Continuar editando')),
                     icon: Icon(Icons.edit),
                   ),
-                  confirmButton: const SgConfirmationDialogButtonConfig(
-                    label: Text('Descartar'),
+                  confirmButton: SgConfirmationDialogButtonConfig(
+                    label: Text(context.tx('Descartar')),
                     icon: Icon(Icons.delete),
                     appearance: SgAppearance.outline,
                   ),
@@ -138,7 +139,7 @@ class _SgConfirmationDialogPageState extends State<SgConfirmationDialogPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SgButton(
-                  label: const Text('Publicar'),
+                  label: Text(context.tx('Publicar')),
                   severity: SgSeverity.success,
                   onClick: () => setState(() => _icone = true),
                 ),
@@ -149,8 +150,10 @@ class _SgConfirmationDialogPageState extends State<SgConfirmationDialogPage> {
                   iconPlacement: SgConfirmationDialogIconPlacement.top,
                   icon: const Icon(Icons.rocket_launch, size: 28),
                   closeable: true,
-                  title: const Text('Publicar agora?'),
-                  message: const Text('A versão ficará visível para todos.'),
+                  title: Text(context.tx('Publicar agora?')),
+                  message: Text(
+                    context.tx('A versão ficará visível para todos.'),
+                  ),
                 ),
               ],
             ),

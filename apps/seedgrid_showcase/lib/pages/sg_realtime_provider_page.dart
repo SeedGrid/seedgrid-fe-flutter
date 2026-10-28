@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 import 'sg_realtime_provider_page.snippets.g.dart';
 
 class SgRealtimeProviderPage extends StatefulWidget {
@@ -69,8 +70,8 @@ class _SgRealtimeProviderPageState extends State<SgRealtimeProviderPage> {
                           runSpacing: 8,
                           children: [
                             SgButton(
-                              label: const Text(
-                                'Publicar backup.finished.success',
+                              label: Text(
+                                context.tx('Publicar backup.finished.success'),
                               ),
                               onClick: () => _pulse.emitMessage(
                                 channel: 'backup',
@@ -79,12 +80,12 @@ class _SgRealtimeProviderPageState extends State<SgRealtimeProviderPage> {
                               ),
                             ),
                             SgButton(
-                              label: const Text('Queda e reconexão'),
+                              label: Text(context.tx('Queda e reconexão')),
                               appearance: SgAppearance.outline,
                               onClick: () => _pulse.simulateReconnect(),
                             ),
                             SgButton(
-                              label: const Text('Revogar credencial'),
+                              label: Text(context.tx('Revogar credencial')),
                               severity: SgSeverity.danger,
                               appearance: SgAppearance.outline,
                               onClick: _pulse.simulateRevoked,
@@ -130,7 +131,7 @@ class _SgRealtimeProviderPageState extends State<SgRealtimeProviderPage> {
                       ),
                       const SizedBox(width: 12),
                       SgButton(
-                        label: const Text('Derrubar'),
+                        label: Text(context.tx('Derrubar')),
                         appearance: SgAppearance.outline,
                         size: SgSize.sm,
                         onClick: () =>
@@ -171,14 +172,14 @@ class _SgRealtimeProviderPageState extends State<SgRealtimeProviderPage> {
                         crossAxisAlignment: WrapCrossAlignment.center,
                         children: [
                           SgButton(
-                            label: const Text('backup.finished.error'),
+                            label: Text(context.tx('backup.finished.error')),
                             onClick: () => sim.emitMessage(
                               channel: 'backup',
                               event: 'backup.finished.error',
                             ),
                           ),
                           SgButton(
-                            label: const Text('backup.other'),
+                            label: Text(context.tx('backup.other')),
                             appearance: SgAppearance.outline,
                             onClick: () => sim.emitMessage(
                               channel: 'backup',
@@ -186,7 +187,7 @@ class _SgRealtimeProviderPageState extends State<SgRealtimeProviderPage> {
                             ),
                           ),
                           SgButton(
-                            label: const Text('audit.login'),
+                            label: Text(context.tx('audit.login')),
                             appearance: SgAppearance.outline,
                             onClick: () => sim.emitMessage(
                               channel: 'audit',

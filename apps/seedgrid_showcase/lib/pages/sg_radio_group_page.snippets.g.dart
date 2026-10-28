@@ -10,12 +10,15 @@ Column(
   children: [
     SgRadioGroup(
       id: 'tamanho',
-      title: 'Tamanho',
-      source: const [
-        SgRadioGroupOption(label: 'Pequeno', value: 'p'),
-        SgRadioGroupOption(label: 'Médio', value: 'm'),
+      title: context.tx('Tamanho'),
+      source: [
         SgRadioGroupOption(
-          label: 'Grande',
+          label: context.tx('Pequeno'),
+          value: 'p',
+        ),
+        SgRadioGroupOption(label: context.tx('Médio'), value: 'm'),
+        SgRadioGroupOption(
+          label: context.tx('Grande'),
           value: 'g',
           disabled: true,
         ),
@@ -29,24 +32,24 @@ Column(
 
   /// Region `sg-radio-group-estados`.
   static const String sgRadioGroupEstados = r'''
-const Column(
+Column(
   crossAxisAlignment: CrossAxisAlignment.start,
   children: [
     SgRadioGroup(
       id: 'icones',
-      title: 'iconOnly',
+      title: context.tx('iconOnly'),
       iconOnly: true,
       orientation: SgRadioGroupOrientation.horizontal,
       selectionStyle: SgRadioGroupSelectionStyle.highlight,
       value: 'a',
       source: [
         SgRadioGroupOption(
-          label: 'Estrela',
+          label: context.tx('Estrela'),
           value: 'a',
           icon: Icon(Icons.star),
         ),
         SgRadioGroupOption(
-          label: 'Coração',
+          label: context.tx('Coração'),
           value: 'b',
           icon: Icon(Icons.favorite),
         ),
@@ -55,7 +58,7 @@ const Column(
     SizedBox(height: 16),
     SgRadioGroup(
       id: 'leitura',
-      title: 'readOnly',
+      title: context.tx('readOnly'),
       readOnly: true,
       value: 'x',
       source: [
@@ -66,7 +69,7 @@ const Column(
     SizedBox(height: 16),
     SgRadioGroup(
       id: 'off',
-      title: 'disabled',
+      title: context.tx('disabled'),
       disabled: true,
       value: 'x',
       source: [
@@ -80,12 +83,12 @@ const Column(
 
   /// Region `sg-radio-group-estilos`.
   static const String sgRadioGroupEstilos = r'''
-const Column(
+Column(
   crossAxisAlignment: CrossAxisAlignment.start,
   children: [
     SgRadioGroup(
       id: 'horizontal',
-      title: 'Horizontal',
+      title: context.tx('Horizontal'),
       orientation: SgRadioGroupOrientation.horizontal,
       value: 'b',
       source: [
@@ -97,17 +100,17 @@ const Column(
     SizedBox(height: 16),
     SgRadioGroup(
       id: 'highlight',
-      title: 'Highlight',
+      title: context.tx('Highlight'),
       selectionStyle: SgRadioGroupSelectionStyle.highlight,
       value: 'lista',
       source: [
         SgRadioGroupOption(
-          label: 'Lista',
+          label: context.tx('Lista'),
           value: 'lista',
           icon: Icon(Icons.list, size: 16),
         ),
         SgRadioGroupOption(
-          label: 'Grade',
+          label: context.tx('Grade'),
           value: 'grade',
           icon: Icon(Icons.grid_view, size: 16),
         ),
@@ -126,16 +129,19 @@ Column(
       id: 'plano',
       name: 'plano',
       control: _form,
-      title: 'Plano',
+      title: context.tx('Plano'),
       required: true,
-      source: const [
-        SgRadioGroupOption(label: 'Grátis', value: 'free'),
-        SgRadioGroupOption(label: 'Pro', value: 'pro'),
+      source: [
+        SgRadioGroupOption(
+          label: context.tx('Grátis'),
+          value: 'free',
+        ),
+        SgRadioGroupOption(label: context.tx('Pro'), value: 'pro'),
       ],
     ),
     const SizedBox(height: 12),
     SgButton(
-      label: const Text('Enviar'),
+      label: Text(context.tx('Enviar')),
       onClick: () => _form.handleSubmit(
         (values) => setState(() => _enviado = '${values['plano']}'),
       ),

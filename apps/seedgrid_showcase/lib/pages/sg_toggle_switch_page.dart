@@ -5,6 +5,7 @@ import 'package:seedgrid_components/seedgrid_components.dart';
 
 import 'sg_toggle_switch_page.snippets.g.dart';
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 
 class SgToggleSwitchPage extends StatefulWidget {
   const SgToggleSwitchPage({super.key});
@@ -40,8 +41,8 @@ class _SgToggleSwitchPageState extends State<SgToggleSwitchPage> {
               children: [
                 SgToggleSwitch(
                   id: 'notificar',
-                  label: 'Receber notificações',
-                  description: 'Avisos por e-mail',
+                  label: context.tx('Receber notificações'),
+                  description: context.tx('Avisos por e-mail'),
                   onChange: (v) => setState(() => _ligado = v),
                 ),
                 Text('Estado: ${_ligado ? 'ligado' : 'desligado'}'),
@@ -54,12 +55,12 @@ class _SgToggleSwitchPageState extends State<SgToggleSwitchPage> {
         title: 'Ícones, somente leitura e desabilitado',
         preview:
             // #region sg-toggle-switch-estados
-            const Column(
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SgToggleSwitch(
                   id: 'icones',
-                  label: 'Com ícones',
+                  label: context.tx('Com ícones'),
                   defaultChecked: true,
                   onIcon: Icon(Icons.check, size: 12),
                   offIcon: Icon(Icons.close, size: 12),
@@ -67,12 +68,16 @@ class _SgToggleSwitchPageState extends State<SgToggleSwitchPage> {
                 SizedBox(height: 12),
                 SgToggleSwitch(
                   id: 'leitura',
-                  label: 'readOnly',
+                  label: context.tx('readOnly'),
                   readOnly: true,
                   defaultChecked: true,
                 ),
                 SizedBox(height: 12),
-                SgToggleSwitch(id: 'off', label: 'disabled', disabled: true),
+                SgToggleSwitch(
+                  id: 'off',
+                  label: context.tx('disabled'),
+                  disabled: true,
+                ),
               ],
             ),
         // #endregion
@@ -87,16 +92,16 @@ class _SgToggleSwitchPageState extends State<SgToggleSwitchPage> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SgToggleSwitch(
+                SgToggleSwitch(
                   id: 'termos',
-                  label: 'Aceito os termos',
+                  label: context.tx('Aceito os termos'),
                   required: true,
                   requiredMessage: 'Aceite os termos para continuar',
                 ),
                 const SizedBox(height: 12),
                 SgToggleSwitch(
                   id: 'regra',
-                  label: 'Não pode ligar',
+                  label: context.tx('Não pode ligar'),
                   validateOnBlur: false,
                   validation: (ligado) =>
                       ligado ? 'Esta chave deve ficar desligada' : null,
@@ -117,13 +122,13 @@ class _SgToggleSwitchPageState extends State<SgToggleSwitchPage> {
               children: [
                 SgToggleSwitch(
                   id: 'controlado',
-                  label: 'Modo escuro',
+                  label: context.tx('Modo escuro'),
                   checked: _controlado,
                   onChange: (v) => setState(() => _controlado = v),
                 ),
                 const SizedBox(height: 8),
                 SgButton(
-                  label: const Text('Inverter por código'),
+                  label: Text(context.tx('Inverter por código')),
                   onClick: () => setState(() => _controlado = !_controlado),
                 ),
                 Text('Valor: $_controlado'),
@@ -143,7 +148,7 @@ class _SgToggleSwitchPageState extends State<SgToggleSwitchPage> {
               children: [
                 SgToggleSwitch(
                   id: 'remoto',
-                  label: 'Sincronizar',
+                  label: context.tx('Sincronizar'),
                   checked: _remoto,
                   disabled: _salvando,
                   onChange: (v) async {
@@ -170,9 +175,9 @@ class _SgToggleSwitchPageState extends State<SgToggleSwitchPage> {
             'error mostra uma mensagem vinda de fora; width limita a largura do componente.',
         preview:
             // #region sg-toggle-switch-erro-externo
-            const SgToggleSwitch(
+            SgToggleSwitch(
               id: 'erro',
-              label: 'Aceito os termos',
+              label: context.tx('Aceito os termos'),
               error: 'Aceite os termos para continuar',
               width: 280,
             ),
@@ -190,13 +195,13 @@ class _SgToggleSwitchPageState extends State<SgToggleSwitchPage> {
                   id: 'newsletter',
                   name: 'newsletter',
                   control: _form,
-                  label: 'Assinar a newsletter',
+                  label: context.tx('Assinar a newsletter'),
                   required: true,
                   requiredMessage: 'Marque para assinar',
                 ),
                 const SizedBox(height: 12),
                 SgButton(
-                  label: const Text('Enviar'),
+                  label: Text(context.tx('Enviar')),
                   onClick: () => _form.handleSubmit(
                     (values) =>
                         setState(() => _enviado = '${values['newsletter']}'),

@@ -60,7 +60,7 @@ Builder(
           const SizedBox(width: 24),
           FilledButton(
             onPressed: () => set(() => value = value % 9 + 1),
-            child: const Text('Próximo'),
+            child: Text(context.tx('Próximo')),
           ),
         ],
       ),
@@ -82,7 +82,7 @@ Builder(
           const SizedBox(width: 24),
           FilledButton(
             onPressed: () => set(() => value = value % 9 + 1),
-            child: const Text('Próximo'),
+            child: Text(context.tx('Próximo')),
           ),
         ],
       ),

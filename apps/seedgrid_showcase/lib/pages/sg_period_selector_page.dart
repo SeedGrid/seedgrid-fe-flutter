@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 import 'sg_period_selector_page.snippets.g.dart';
 
 class SgPeriodSelectorPage extends StatefulWidget {
@@ -44,7 +45,7 @@ class _SgPeriodSelectorPageState extends State<SgPeriodSelectorPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SgPeriodSelector(
-                  label: 'Período',
+                  label: context.tx('Período'),
                   onChange: (p) => setState(
                     () => _basico =
                         '${p.label}: ${p.startDate?.toIso8601String().substring(0, 10) ?? '-'} a ${p.endDate?.toIso8601String().substring(0, 10) ?? '-'}',
@@ -71,27 +72,27 @@ class _SgPeriodSelectorPageState extends State<SgPeriodSelectorPage> {
                   runSpacing: 8,
                   children: [
                     FilterChip(
-                      label: const Text('Passados'),
+                      label: Text(context.tx('Passados')),
                       selected: _passados,
                       onSelected: (v) => setState(() => _passados = v),
                     ),
                     FilterChip(
-                      label: const Text('Atuais'),
+                      label: Text(context.tx('Atuais')),
                       selected: _atuais,
                       onSelected: (v) => setState(() => _atuais = v),
                     ),
                     FilterChip(
-                      label: const Text('Futuros'),
+                      label: Text(context.tx('Futuros')),
                       selected: _futuros,
                       onSelected: (v) => setState(() => _futuros = v),
                     ),
                     FilterChip(
-                      label: const Text('Todos'),
+                      label: Text(context.tx('Todos')),
                       selected: _todos,
                       onSelected: (v) => setState(() => _todos = v),
                     ),
                     FilterChip(
-                      label: const Text('Período'),
+                      label: Text(context.tx('Período')),
                       selected: _periodo,
                       onSelected: (v) => setState(() => _periodo = v),
                     ),
@@ -100,7 +101,7 @@ class _SgPeriodSelectorPageState extends State<SgPeriodSelectorPage> {
                 const SizedBox(height: 12),
                 SgPeriodSelector(
                   id: 'grupos',
-                  label: 'Período',
+                  label: context.tx('Período'),
                   permitPast: _passados,
                   permitCurrent: _atuais,
                   permitFuture: _futuros,
@@ -123,7 +124,7 @@ class _SgPeriodSelectorPageState extends State<SgPeriodSelectorPage> {
               children: [
                 SgPeriodSelector(
                   id: 'personalizado',
-                  label: 'Período',
+                  label: context.tx('Período'),
                   minDate: DateTime(2024, 1, 1),
                   maxDate: DateTime(2024, 12, 31),
                   referenceDate: DateTime(2024, 6, 15),
@@ -150,7 +151,7 @@ class _SgPeriodSelectorPageState extends State<SgPeriodSelectorPage> {
               children: [
                 SgPeriodSelector(
                   id: 'ingles',
-                  label: 'Period',
+                  label: context.tx('Period'),
                   locale: 'en-US',
                   referenceDate: DateTime(2024, 2, 29),
                   onChange: (p) => setState(
@@ -178,12 +179,12 @@ class _SgPeriodSelectorPageState extends State<SgPeriodSelectorPage> {
                   id: 'periodo-form',
                   name: 'periodo',
                   control: _form,
-                  label: 'Período do relatório',
+                  label: context.tx('Período do relatório'),
                   rules: const SgRules(required: 'Escolha um período'),
                 ),
                 const SizedBox(height: 12),
                 SgButton(
-                  label: const Text('Enviar'),
+                  label: Text(context.tx('Enviar')),
                   onClick: () => _form.handleSubmit(
                     (values) =>
                         setState(() => _enviado = '${values['periodo']}'),

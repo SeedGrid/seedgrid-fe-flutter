@@ -34,10 +34,10 @@ SgQRCode(
 
   /// Region `sg-qr-code-vazio`.
   static const String sgQrCodeVazio = r'''
-const SgQRCode(
+SgQRCode(
   value: '',
   size: 120,
-  emptyFallback: Text('Informe um texto'),
+  emptyFallback: Text(context.tx('Informe um texto')),
 )
 ''';
 }

@@ -17,10 +17,10 @@ const SgInputText(
 
   /// Region `sg-input-text-basico`.
   static const String sgInputTextBasico = r'''
-const SgInputText(
+SgInputText(
   id: 'nome',
   labelText: 'Nome',
-  placeholder: 'Digite seu nome',
+  placeholder: context.tx('Digite seu nome'),
 )
 ''';
 
@@ -137,7 +137,7 @@ Column(
     ),
     const SizedBox(height: 12),
     SgButton(
-      label: const Text('Enviar'),
+      label: Text(context.tx('Enviar')),
       onClick: () => _form.handleSubmit(
         (values) => setState(() => _enviado = '${values['email']}'),
       ),

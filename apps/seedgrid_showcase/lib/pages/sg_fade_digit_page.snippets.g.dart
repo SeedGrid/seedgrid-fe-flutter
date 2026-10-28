@@ -56,7 +56,7 @@ Builder(
           const SizedBox(width: 24),
           FilledButton(
             onPressed: () => set(() => value = (value + 1) % 10),
-            child: const Text('Próximo'),
+            child: Text(context.tx('Próximo')),
           ),
         ],
       ),

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 import 'sg_qr_code_page.snippets.g.dart';
 
 class SgQRCodePage extends StatelessWidget {
@@ -63,10 +64,10 @@ class SgQRCodePage extends StatelessWidget {
             'Texto vazio mostra emptyFallback; texto grande demais chama onGenerateError.',
         preview:
             // #region sg-qr-code-vazio
-            const SgQRCode(
+            SgQRCode(
               value: '',
               size: 120,
-              emptyFallback: Text('Informe um texto'),
+              emptyFallback: Text(context.tx('Informe um texto')),
             ),
         // #endregion
         code: SgQrCodePageSnippets.sgQrCodeVazio,

@@ -5,6 +5,7 @@ import 'package:seedgrid_components/seedgrid_components.dart';
 
 import 'sg_button_page.snippets.g.dart';
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 
 class SgButtonPage extends StatelessWidget {
   const SgButtonPage({super.key});
@@ -21,34 +22,34 @@ class SgButtonPage extends StatelessWidget {
               spacing: 8,
               runSpacing: 8,
               children: [
-                SgButton(label: const Text('Primary'), onClick: () {}),
+                SgButton(label: Text(context.tx('Primary')), onClick: () {}),
                 SgButton(
-                  label: const Text('Secondary'),
+                  label: Text(context.tx('Secondary')),
                   severity: SgSeverity.secondary,
                   onClick: () {},
                 ),
                 SgButton(
-                  label: const Text('Success'),
+                  label: Text(context.tx('Success')),
                   severity: SgSeverity.success,
                   onClick: () {},
                 ),
                 SgButton(
-                  label: const Text('Info'),
+                  label: Text(context.tx('Info')),
                   severity: SgSeverity.info,
                   onClick: () {},
                 ),
                 SgButton(
-                  label: const Text('Warning'),
+                  label: Text(context.tx('Warning')),
                   severity: SgSeverity.warning,
                   onClick: () {},
                 ),
                 SgButton(
-                  label: const Text('Help'),
+                  label: Text(context.tx('Help')),
                   severity: SgSeverity.help,
                   onClick: () {},
                 ),
                 SgButton(
-                  label: const Text('Danger'),
+                  label: Text(context.tx('Danger')),
                   severity: SgSeverity.danger,
                   onClick: () {},
                 ),
@@ -65,14 +66,14 @@ class SgButtonPage extends StatelessWidget {
               spacing: 8,
               runSpacing: 8,
               children: [
-                SgButton(label: const Text('Solid'), onClick: () {}),
+                SgButton(label: Text(context.tx('Solid')), onClick: () {}),
                 SgButton(
-                  label: const Text('Outline'),
+                  label: Text(context.tx('Outline')),
                   appearance: SgAppearance.outline,
                   onClick: () {},
                 ),
                 SgButton(
-                  label: const Text('Ghost'),
+                  label: Text(context.tx('Ghost')),
                   appearance: SgAppearance.ghost,
                   onClick: () {},
                 ),
@@ -91,28 +92,28 @@ class SgButtonPage extends StatelessWidget {
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
                 SgButton(
-                  label: const Text('Small'),
+                  label: Text(context.tx('Small')),
                   size: SgSize.sm,
                   onClick: () {},
                 ),
-                SgButton(label: const Text('Medium'), onClick: () {}),
+                SgButton(label: Text(context.tx('Medium')), onClick: () {}),
                 SgButton(
-                  label: const Text('Large'),
+                  label: Text(context.tx('Large')),
                   size: SgSize.lg,
                   onClick: () {},
                 ),
                 SgButton(
-                  label: const Text('Rounded'),
+                  label: Text(context.tx('Rounded')),
                   shape: SgButtonShape.rounded,
                   onClick: () {},
                 ),
                 SgButton(
-                  label: const Text('Square'),
+                  label: Text(context.tx('Square')),
                   shape: SgButtonShape.square,
                   onClick: () {},
                 ),
                 SgButton(
-                  label: const Text('Sombra'),
+                  label: Text(context.tx('Sombra')),
                   elevation: SgElevation.md,
                   onClick: () {},
                 ),
@@ -131,18 +132,21 @@ class SgButtonPage extends StatelessWidget {
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
                 SgButton(
-                  label: const Text('Adicionar'),
+                  label: Text(context.tx('Adicionar')),
                   leftIcon: const Icon(Icons.add),
                   onClick: () {},
                 ),
                 SgButton(
-                  label: const Text('Próximo'),
+                  label: Text(context.tx('Próximo')),
                   rightIcon: const Icon(Icons.arrow_forward),
                   onClick: () {},
                 ),
                 SgButton(leftIcon: const Icon(Icons.search), onClick: () {}),
-                const SgButton(label: Text('Salvando'), loading: true),
-                const SgButton(label: Text('Desabilitado'), disabled: true),
+                SgButton(label: Text(context.tx('Salvando')), loading: true),
+                SgButton(
+                  label: Text(context.tx('Desabilitado')),
+                  disabled: true,
+                ),
               ],
             ),
         // #endregion
@@ -153,7 +157,7 @@ class SgButtonPage extends StatelessWidget {
         preview:
             // #region sg-button-cores
             SgButton(
-              label: const Text('Roxo'),
+              label: Text(context.tx('Roxo')),
               customColors: const SgButtonCustomColors(
                 bg: Color(0xFF7C3AED),
                 fg: Colors.white,

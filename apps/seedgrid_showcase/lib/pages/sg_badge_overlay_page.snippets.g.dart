@@ -5,13 +5,13 @@
 abstract final class SgBadgeOverlayPageSnippets {
   /// Region `sg-badge-overlay-avatar`.
   static const String sgBadgeOverlayAvatar = r'''
-const SgBadgeOverlay(
+SgBadgeOverlay(
   badge: SgBadge(
     count: 3,
     size: SgBadgeSize.sm,
     severity: SgBadgeSeverity.danger,
   ),
-  child: SgAvatar(label: Text('Ana Lima')),
+  child: SgAvatar(label: Text(context.tx('Ana Lima'))),
 )
 ''';
 
@@ -25,7 +25,7 @@ SgBadgeOverlay(
     severity: SgBadgeSeverity.danger,
   ),
   child: SgButton(
-    label: const Text('Mensagens'),
+    label: Text(context.tx('Mensagens')),
     appearance: SgAppearance.outline,
     onClick: () {},
   ),
@@ -54,11 +54,11 @@ Wrap(
 
   /// Region `sg-badge-overlay-status`.
   static const String sgBadgeOverlayStatus = r'''
-const SgBadgeOverlay(
+SgBadgeOverlay(
   placement: SgBadgeOverlayPlacement.bottomRight,
   badge: SgBadge(dot: true, severity: SgBadgeSeverity.success),
   child: SgAvatar(
-    label: Text('Bia Souza'),
+    label: Text(context.tx('Bia Souza')),
     severity: SgAvatarSeverity.info,
   ),
 )

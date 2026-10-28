@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 import 'sg_multi_select_page.snippets.g.dart';
 
 class SgMultiSelectPage extends StatefulWidget {
@@ -34,14 +35,23 @@ class _SgMultiSelectPageState extends State<SgMultiSelectPage> {
             'Em tela estreita (menos de 600 px) a lista abre como bottom sheet.',
         preview:
             // #region sg-multi-select-basico
-            const SgMultiSelect(
+            SgMultiSelect(
               id: 'estados',
               labelText: 'Estados',
               options: [
-                SgMultiSelectOption(label: 'São Paulo', value: 'sp'),
-                SgMultiSelectOption(label: 'Rio de Janeiro', value: 'rj'),
-                SgMultiSelectOption(label: 'Minas Gerais', value: 'mg'),
-                SgMultiSelectOption(label: 'Bahia', value: 'ba'),
+                SgMultiSelectOption(
+                  label: context.tx('São Paulo'),
+                  value: 'sp',
+                ),
+                SgMultiSelectOption(
+                  label: context.tx('Rio de Janeiro'),
+                  value: 'rj',
+                ),
+                SgMultiSelectOption(
+                  label: context.tx('Minas Gerais'),
+                  value: 'mg',
+                ),
+                SgMultiSelectOption(label: context.tx('Bahia'), value: 'ba'),
               ],
             ),
         // #endregion
@@ -54,7 +64,7 @@ class _SgMultiSelectPageState extends State<SgMultiSelectPage> {
             'maxSelected impede marcar mais itens.',
         preview:
             // #region sg-multi-select-busca
-            const SgMultiSelect(
+            SgMultiSelect(
               id: 'cores',
               labelText: 'Até 3 cores',
               searchable: true,
@@ -62,13 +72,19 @@ class _SgMultiSelectPageState extends State<SgMultiSelectPage> {
               maxSelected: 3,
               searchPlaceholder: 'Buscar cor...',
               options: [
-                SgMultiSelectOption(label: 'Azul', value: 'azul'),
-                SgMultiSelectOption(label: 'Verde', value: 'verde'),
-                SgMultiSelectOption(label: 'Vermelho', value: 'vermelho'),
-                SgMultiSelectOption(label: 'Amarelo', value: 'amarelo'),
-                SgMultiSelectOption(label: 'Roxo', value: 'roxo'),
+                SgMultiSelectOption(label: context.tx('Azul'), value: 'azul'),
+                SgMultiSelectOption(label: context.tx('Verde'), value: 'verde'),
                 SgMultiSelectOption(
-                  label: 'Cinza (indisponível)',
+                  label: context.tx('Vermelho'),
+                  value: 'vermelho',
+                ),
+                SgMultiSelectOption(
+                  label: context.tx('Amarelo'),
+                  value: 'amarelo',
+                ),
+                SgMultiSelectOption(label: context.tx('Roxo'), value: 'roxo'),
+                SgMultiSelectOption(
+                  label: context.tx('Cinza (indisponível)'),
                   value: 'cinza',
                   disabled: true,
                 ),
@@ -84,28 +100,28 @@ class _SgMultiSelectPageState extends State<SgMultiSelectPage> {
             'itens o campo lista os rótulos; acima disso mostra "N selecionadas".',
         preview:
             // #region sg-multi-select-resumo
-            const SgMultiSelect(
+            SgMultiSelect(
               id: 'filiais',
               labelText: 'Filiais',
               summaryThreshold: 3,
               options: [
                 SgMultiSelectOption(
-                  label: '1 - Matriz',
+                  label: context.tx('1 - Matriz'),
                   value: 1,
                   chipLabel: '1',
                 ),
                 SgMultiSelectOption(
-                  label: '2 - Filial Centro',
+                  label: context.tx('2 - Filial Centro'),
                   value: 2,
                   chipLabel: '2',
                 ),
                 SgMultiSelectOption(
-                  label: '3 - Filial Norte',
+                  label: context.tx('3 - Filial Norte'),
                   value: 3,
                   chipLabel: '3',
                 ),
                 SgMultiSelectOption(
-                  label: '4 - Filial Sul',
+                  label: context.tx('4 - Filial Sul'),
                   value: 4,
                   chipLabel: '4',
                 ),
@@ -128,10 +144,19 @@ class _SgMultiSelectPageState extends State<SgMultiSelectPage> {
                   labelText: 'Cidades',
                   value: _escolhidas,
                   onChange: (v) => setState(() => _escolhidas = v),
-                  options: const [
-                    SgMultiSelectOption(label: 'São Paulo', value: 'sp'),
-                    SgMultiSelectOption(label: 'Campinas', value: 'cps'),
-                    SgMultiSelectOption(label: 'Santos', value: 'sts'),
+                  options: [
+                    SgMultiSelectOption(
+                      label: context.tx('São Paulo'),
+                      value: 'sp',
+                    ),
+                    SgMultiSelectOption(
+                      label: context.tx('Campinas'),
+                      value: 'cps',
+                    ),
+                    SgMultiSelectOption(
+                      label: context.tx('Santos'),
+                      value: 'sts',
+                    ),
                   ],
                 ),
                 const SizedBox(height: 8),
@@ -157,15 +182,24 @@ class _SgMultiSelectPageState extends State<SgMultiSelectPage> {
                   control: _form,
                   labelText: 'Tags',
                   rules: const SgRules(required: 'Escolha ao menos uma tag'),
-                  options: const [
-                    SgMultiSelectOption(label: 'Urgente', value: 'urgente'),
-                    SgMultiSelectOption(label: 'Financeiro', value: 'fin'),
-                    SgMultiSelectOption(label: 'Suporte', value: 'sup'),
+                  options: [
+                    SgMultiSelectOption(
+                      label: context.tx('Urgente'),
+                      value: 'urgente',
+                    ),
+                    SgMultiSelectOption(
+                      label: context.tx('Financeiro'),
+                      value: 'fin',
+                    ),
+                    SgMultiSelectOption(
+                      label: context.tx('Suporte'),
+                      value: 'sup',
+                    ),
                   ],
                 ),
                 const SizedBox(height: 12),
                 SgButton(
-                  label: const Text('Enviar'),
+                  label: Text(context.tx('Enviar')),
                   onClick: () => _form.handleSubmit(
                     (values) => setState(() => _enviado = '${values['tags']}'),
                   ),

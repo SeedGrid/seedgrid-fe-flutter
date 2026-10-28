@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 import 'sg_clock_theme_picker_page.snippets.g.dart';
 
 class SgClockThemePickerPage extends StatefulWidget {
@@ -66,7 +67,7 @@ class _SgClockThemePickerPageState extends State<SgClockThemePickerPage> {
                 child: SgClockThemePicker(
                   value: _escolhido,
                   onChange: (id) => setState(() => _escolhido = id),
-                  label: 'Tema romano',
+                  label: context.tx('Tema romano'),
                   filter: (tema) =>
                       tema.id.startsWith('roman') || tema.id == 'classic',
                 ),
@@ -126,7 +127,7 @@ class _SgClockThemePickerPageState extends State<SgClockThemePickerPage> {
                   child: SgClockThemePicker(
                     value: 'classic',
                     onChange: (_) {},
-                    placeholder: 'Nenhum tema registrado',
+                    placeholder: context.tx('Nenhum tema registrado'),
                   ),
                 ),
               ],

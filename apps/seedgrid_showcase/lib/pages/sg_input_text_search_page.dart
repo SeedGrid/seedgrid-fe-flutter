@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 import 'sg_input_text_search_page.snippets.g.dart';
 
 class SgInputTextSearchPage extends StatefulWidget {
@@ -99,7 +100,7 @@ class _SgInputTextSearchPageState extends State<SgInputTextSearchPage> {
               id: 'aparencia',
               labelText: 'Cliente',
               labelPosition: SgInputTextSearchLabelPosition.top,
-              placeholder: 'Nome ou CPF',
+              placeholder: context.tx('Nome ou CPF'),
               width: 320,
               filled: true,
               onSearchChange: (valor) {},

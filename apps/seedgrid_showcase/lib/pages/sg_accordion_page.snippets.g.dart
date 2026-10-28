@@ -5,25 +5,27 @@
 abstract final class SgAccordionPageSnippets {
   /// Region `sg-accordion-basico`.
   static const String sgAccordionBasico = r'''
-const SgAccordion(
+SgAccordion(
   items: [
     SgAccordionItem(
-      title: Text('Entrega'),
-      content: Text('Prazo de 2 a 5 dias úteis, conforme o CEP.'),
+      title: Text(context.tx('Entrega')),
+      content: Text(
+        context.tx('Prazo de 2 a 5 dias úteis, conforme o CEP.'),
+      ),
     ),
     SgAccordionItem(
-      title: Text('Pagamento'),
-      content: Text('Cartão, boleto ou Pix.'),
-      end: Text('3 formas'),
+      title: Text(context.tx('Pagamento')),
+      content: Text(context.tx('Cartão, boleto ou Pix.')),
+      end: Text(context.tx('3 formas')),
     ),
     SgAccordionItem(
-      title: Text('Trocas'),
-      content: Text('Até 30 dias após o recebimento.'),
+      title: Text(context.tx('Trocas')),
+      content: Text(context.tx('Até 30 dias após o recebimento.')),
       icon: Icon(Icons.swap_horiz, size: 18),
     ),
     SgAccordionItem(
-      title: Text('Indisponível'),
-      content: Text('Este item está desabilitado.'),
+      title: Text(context.tx('Indisponível')),
+      content: Text(context.tx('Este item está desabilitado.')),
       disabled: true,
     ),
   ],
@@ -51,13 +53,13 @@ Builder(
       headerBackgroundColor: escuro ? '#164E63' : '#E0F2FE',
       animationDuration: 600,
       items: [
-        const SgAccordionItem(
-          title: Text('Primeiro'),
-          content: Text('Abre devagar (600 ms).'),
+        SgAccordionItem(
+          title: Text(context.tx('Primeiro')),
+          content: Text(context.tx('Abre devagar (600 ms).')),
         ),
         SgAccordionItem(
-          title: const Text('Segundo'),
-          content: const Text('Cabeçalho com outra cor.'),
+          title: Text(context.tx('Segundo')),
+          content: Text(context.tx('Cabeçalho com outra cor.')),
           headerBackgroundColor: escuro ? '#713F12' : '#FEF3C7',
         ),
       ],

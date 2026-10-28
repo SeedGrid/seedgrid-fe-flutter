@@ -29,4 +29,20 @@ void main() {
     expect(find.text(pt), findsNothing);
     expect(find.text(kShowcaseTexts[pt]![0]), findsOneWidget);
   });
+
+  testWidgets('texto dentro de um exemplo troca de idioma', (tester) async {
+    tester.view.physicalSize = const Size(1400, 1000);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.reset);
+    await tester.pumpWidget(const ShowcaseApp());
+    final card = find.byKey(const ValueKey('card-SgButton'));
+    await tester.ensureVisible(card);
+    await tester.tap(card);
+    await tester.pump(const Duration(seconds: 1));
+    expect(find.text('Adicionar'), findsWidgets);
+    await tester.tap(find.text('${kShowcaseFlags['en-US']} en-US'));
+    await tester.pump(const Duration(seconds: 1));
+    expect(find.text('Adicionar'), findsNothing);
+    expect(find.text('Add'), findsWidgets);
+  });
 }

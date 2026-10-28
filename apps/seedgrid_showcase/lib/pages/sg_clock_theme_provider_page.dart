@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 import 'sg_clock_theme_provider_page.snippets.g.dart';
 
 class SgClockThemeProviderPage extends StatelessWidget {
@@ -37,12 +38,12 @@ class SgClockThemeProviderPage extends StatelessWidget {
             'themes aceita temas próprios, que valem só abaixo do provider e vencem os globais de mesmo id.',
         preview:
             // #region sg-clock-theme-provider-local
-            const SgClockThemeProvider(
+            SgClockThemeProvider(
               value: SgClockThemeProviderValue(
                 themes: [
                   SgClockTheme(
                     id: 'ponto',
-                    label: 'Ponto',
+                    label: context.tx('Ponto'),
                     ops: [
                       SgClockCircle(
                         cx: 50,

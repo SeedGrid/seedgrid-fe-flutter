@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 import 'sg_input_otp_page.snippets.g.dart';
 
 class SgInputOTPPage extends StatefulWidget {
@@ -39,7 +40,7 @@ class _SgInputOTPPageState extends State<SgInputOTPPage> {
               children: [
                 SgInputOTP(
                   id: 'basico',
-                  label: 'Código de verificação',
+                  label: context.tx('Código de verificação'),
                   hintText: 'Enviamos 6 dígitos por SMS.',
                   onComplete: (v) => setState(() => _concluido = v),
                 ),
@@ -56,12 +57,20 @@ class _SgInputOTPPageState extends State<SgInputOTPPage> {
             'onChange recebe o valor com separador e onRawChange, sem.',
         preview:
             // #region sg-input-otp-mascara
-            const Column(
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SgInputOTP(id: 'sep', label: 'Dígitos', mask: '999-999'),
+                SgInputOTP(
+                  id: 'sep',
+                  label: context.tx('Dígitos'),
+                  mask: '999-999',
+                ),
                 SizedBox(height: 16),
-                SgInputOTP(id: 'alfa', label: 'Alfanumérico', mask: '##-##-##'),
+                SgInputOTP(
+                  id: 'alfa',
+                  label: context.tx('Alfanumérico'),
+                  mask: '##-##-##',
+                ),
               ],
             ),
         // #endregion
@@ -75,7 +84,7 @@ class _SgInputOTPPageState extends State<SgInputOTPPage> {
             // #region sg-input-otp-validacao
             SgInputOTP(
               id: 'validacao',
-              label: 'Código de convite',
+              label: context.tx('Código de convite'),
               mask: '99-99',
               required: true,
               requiredMessage: 'Informe o código.',
@@ -106,12 +115,12 @@ class _SgInputOTPPageState extends State<SgInputOTPPage> {
                   runSpacing: 8,
                   children: [
                     SgButton(
-                      label: const Text('Focar o 3º'),
+                      label: Text(context.tx('Focar o 3º')),
                       size: SgSize.sm,
                       onClick: () => _controller.focus(2),
                     ),
                     SgButton(
-                      label: const Text('Limpar'),
+                      label: Text(context.tx('Limpar')),
                       size: SgSize.sm,
                       severity: SgSeverity.secondary,
                       onClick: _controller.clear,
@@ -136,14 +145,14 @@ class _SgInputOTPPageState extends State<SgInputOTPPage> {
                   id: 'form',
                   name: 'codigo',
                   control: _form,
-                  label: 'Código',
+                  label: context.tx('Código'),
                   mask: '9999',
                   required: true,
                   requiredMessage: 'Informe o código.',
                 ),
                 const SizedBox(height: 12),
                 SgButton(
-                  label: const Text('Confirmar'),
+                  label: Text(context.tx('Confirmar')),
                   onClick: () => _form.handleSubmit(
                     (values) =>
                         setState(() => _enviado = '${values['codigo']}'),
@@ -159,12 +168,12 @@ class _SgInputOTPPageState extends State<SgInputOTPPage> {
         title: 'Estados',
         preview:
             // #region sg-input-otp-estados
-            const Column(
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SgInputOTP(
                   id: 'erro',
-                  label: 'Com erro',
+                  label: context.tx('Com erro'),
                   mask: '9999',
                   defaultValue: '1234',
                   error: 'Código expirado.',
@@ -172,7 +181,7 @@ class _SgInputOTPPageState extends State<SgInputOTPPage> {
                 SizedBox(height: 16),
                 SgInputOTP(
                   id: 'desab',
-                  label: 'Desabilitado',
+                  label: context.tx('Desabilitado'),
                   mask: '9999',
                   defaultValue: '12',
                   disabled: true,
@@ -180,7 +189,7 @@ class _SgInputOTPPageState extends State<SgInputOTPPage> {
                 SizedBox(height: 16),
                 SgInputOTP(
                   id: 'leitura',
-                  label: 'Somente leitura',
+                  label: context.tx('Somente leitura'),
                   mask: '9999',
                   defaultValue: '9876',
                   readOnly: true,

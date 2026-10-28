@@ -10,8 +10,8 @@ Column(
   children: [
     SgToggleSwitch(
       id: 'notificar',
-      label: 'Receber notificações',
-      description: 'Avisos por e-mail',
+      label: context.tx('Receber notificações'),
+      description: context.tx('Avisos por e-mail'),
       onChange: (v) => setState(() => _ligado = v),
     ),
     Text('Estado: ${_ligado ? 'ligado' : 'desligado'}'),
@@ -26,13 +26,13 @@ Column(
   children: [
     SgToggleSwitch(
       id: 'controlado',
-      label: 'Modo escuro',
+      label: context.tx('Modo escuro'),
       checked: _controlado,
       onChange: (v) => setState(() => _controlado = v),
     ),
     const SizedBox(height: 8),
     SgButton(
-      label: const Text('Inverter por código'),
+      label: Text(context.tx('Inverter por código')),
       onClick: () => setState(() => _controlado = !_controlado),
     ),
     Text('Valor: $_controlado'),
@@ -42,9 +42,9 @@ Column(
 
   /// Region `sg-toggle-switch-erro-externo`.
   static const String sgToggleSwitchErroExterno = r'''
-const SgToggleSwitch(
+SgToggleSwitch(
   id: 'erro',
-  label: 'Aceito os termos',
+  label: context.tx('Aceito os termos'),
   error: 'Aceite os termos para continuar',
   width: 280,
 )
@@ -52,12 +52,12 @@ const SgToggleSwitch(
 
   /// Region `sg-toggle-switch-estados`.
   static const String sgToggleSwitchEstados = r'''
-const Column(
+Column(
   crossAxisAlignment: CrossAxisAlignment.start,
   children: [
     SgToggleSwitch(
       id: 'icones',
-      label: 'Com ícones',
+      label: context.tx('Com ícones'),
       defaultChecked: true,
       onIcon: Icon(Icons.check, size: 12),
       offIcon: Icon(Icons.close, size: 12),
@@ -65,12 +65,16 @@ const Column(
     SizedBox(height: 12),
     SgToggleSwitch(
       id: 'leitura',
-      label: 'readOnly',
+      label: context.tx('readOnly'),
       readOnly: true,
       defaultChecked: true,
     ),
     SizedBox(height: 12),
-    SgToggleSwitch(id: 'off', label: 'disabled', disabled: true),
+    SgToggleSwitch(
+      id: 'off',
+      label: context.tx('disabled'),
+      disabled: true,
+    ),
   ],
 )
 ''';
@@ -84,13 +88,13 @@ Column(
       id: 'newsletter',
       name: 'newsletter',
       control: _form,
-      label: 'Assinar a newsletter',
+      label: context.tx('Assinar a newsletter'),
       required: true,
       requiredMessage: 'Marque para assinar',
     ),
     const SizedBox(height: 12),
     SgButton(
-      label: const Text('Enviar'),
+      label: Text(context.tx('Enviar')),
       onClick: () => _form.handleSubmit(
         (values) =>
             setState(() => _enviado = '${values['newsletter']}'),
@@ -108,7 +112,7 @@ Column(
   children: [
     SgToggleSwitch(
       id: 'remoto',
-      label: 'Sincronizar',
+      label: context.tx('Sincronizar'),
       checked: _remoto,
       disabled: _salvando,
       onChange: (v) async {
@@ -133,16 +137,16 @@ Column(
 Column(
   crossAxisAlignment: CrossAxisAlignment.start,
   children: [
-    const SgToggleSwitch(
+    SgToggleSwitch(
       id: 'termos',
-      label: 'Aceito os termos',
+      label: context.tx('Aceito os termos'),
       required: true,
       requiredMessage: 'Aceite os termos para continuar',
     ),
     const SizedBox(height: 12),
     SgToggleSwitch(
       id: 'regra',
-      label: 'Não pode ligar',
+      label: context.tx('Não pode ligar'),
       validateOnBlur: false,
       validation: (ligado) =>
           ligado ? 'Esta chave deve ficar desligada' : null,
