@@ -1,0 +1,57 @@
+# Compila o showcase (apps/seedgrid_showcase) para a web e publica no GitHub Pages:
+# https://seedgrid.github.io/seedgrid-fe-flutter/
+# Requer: Settings > Pages > Source = "GitHub Actions".
+name: Showcase (GitHub Pages)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Dependencias
+        run: flutter pub get
+
+      - name: Build web
+        working-directory: apps/seedgrid_showcase
+        run: flutter build web --release --base-href /seedgrid-fe-flutter/
+
+      # O Pages nao tem fallback de SPA: um 404.html igual ao index.html faz /sg-button abrir direto.
+      - name: Fallback de SPA e .nojekyll
+        working-directory: apps/seedgrid_showcase/build/web
+        run: |
+          cp index.html 404.html
+          touch .nojekyll
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: apps/seedgrid_showcase/build/web
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

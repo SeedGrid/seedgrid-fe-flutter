@@ -3,7 +3,7 @@
 library;
 
 // Reexporta o tema: quem instala so este pacote (ex.: via git) tem `SeedThemeProvider` e `SgTheme` sem uma segunda dependencia.
-export 'package:seedgrid_theme/seedgrid_theme.dart';
+export 'package:seedgrid_theme/seedgrid_theme.dart' hide relativeLuminance;
 
 export 'src/generated/generated.dart';
 export 'src/i18n/i18n.dart';

@@ -17,3 +17,4 @@ done
 echo "== arquivos gerados em dia"
 node tools/showcase_snippets/extract.mjs --check
 node tools/parity_table/generate.mjs --check
+node tools/readme/generate.mjs --check
