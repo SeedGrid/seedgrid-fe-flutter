@@ -43,15 +43,6 @@ const Map<String, Map<String, String>> kShowcaseMessages = {
         'para quem já conhece os componentes React usar estes com facilidade. '
         'Escolha um componente no menu; cada página tem exemplos com o código igual ao renderizado, '
         'um playground de props e a referência de props.',
-    'progress': 'Andamento do porte (React {version})',
-    'statTotal': 'Componentes no React',
-    'statPortado': 'Portados',
-    'statParcial': 'Parciais',
-    'statPendente': 'Pendentes',
-    'statusNote':
-        '"Parcial" = portado, com diferença documentada em docs/PARIDADE.md. '
-        '"Pendente" = ainda sem widget.',
-    'of': 'de',
     'status.parcial': 'parcial',
     'status.pendente': 'pendente',
     'cat.action': 'Ação',
@@ -98,15 +89,6 @@ const Map<String, Map<String, String>> kShowcaseMessages = {
         'so anyone who knows the React components can use these with ease. '
         'Pick a component in the menu; each page has examples whose code matches what is rendered, '
         'a props playground and the props reference.',
-    'progress': 'Port progress (React {version})',
-    'statTotal': 'Components in React',
-    'statPortado': 'Ported',
-    'statParcial': 'Partial',
-    'statPendente': 'Pending',
-    'statusNote':
-        '"Partial" = ported, with a difference documented in docs/PARIDADE.md. '
-        '"Pending" = no widget yet.',
-    'of': 'of',
     'status.parcial': 'partial',
     'status.pendente': 'pending',
     'cat.action': 'Action',
@@ -153,14 +135,6 @@ const Map<String, Map<String, String>> kShowcaseMessages = {
         'para quem já conhece os componentes React os usar com facilidade. '
         'Escolha um componente no menu; cada página tem exemplos com o código igual ao renderizado, '
         'um playground de props e a referência de props.',
-    'progress': 'Progresso do porte (React {version})',
-    'statTotal': 'Componentes no React',
-    'statPortado': 'Portados',
-    'statParcial': 'Parciais',
-    'statPendente': 'Pendentes',
-    'statusNote':
-        '"Parcial" = portado, com diferença documentada em docs/PARIDADE.md. "Pendente" = ainda sem widget.',
-    'of': 'de',
     'status.parcial': 'parcial',
     'status.pendente': 'pendente',
     'cat.action': 'Ação',
@@ -207,14 +181,6 @@ const Map<String, Map<String, String>> kShowcaseMessages = {
         'para que quien ya conoce los componentes React los use con facilidad. '
         'Elija un componente en el menú; cada página tiene ejemplos con el código igual al renderizado, '
         'un playground de props y la referencia de props.',
-    'progress': 'Avance del port (React {version})',
-    'statTotal': 'Componentes en React',
-    'statPortado': 'Portados',
-    'statParcial': 'Parciales',
-    'statPendente': 'Pendientes',
-    'statusNote':
-        '"Parcial" = portado, con una diferencia documentada en docs/PARIDADE.md. "Pendiente" = aún sin widget.',
-    'of': 'de',
     'status.parcial': 'parcial',
     'status.pendente': 'pendiente',
     'cat.action': 'Acción',
@@ -261,14 +227,6 @@ const Map<String, Map<String, String>> kShowcaseMessages = {
         'pour que les personnes qui connaissent déjà les composants React les utilisent facilement. '
         'Choisissez un composant dans le menu ; chaque page propose des exemples dont le code est identique au rendu, '
         'un playground de props et la référence des props.',
-    'progress': 'Avancement du portage (React {version})',
-    'statTotal': 'Composants dans React',
-    'statPortado': 'Portés',
-    'statParcial': 'Partiels',
-    'statPendente': 'En attente',
-    'statusNote':
-        '« Partiel » = porté, avec une différence documentée dans docs/PARIDADE.md. « En attente » = pas encore de widget.',
-    'of': 'sur',
     'status.parcial': 'partiel',
     'status.pendente': 'en attente',
     'cat.action': 'Action',

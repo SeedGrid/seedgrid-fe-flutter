@@ -36,6 +36,7 @@ Ferramentas (Node 22; leem o repositório React, que **não é alterado**):
 | `node --experimental-strip-types tools/gen_props/extract.mjs <pacote react>` | especificação de props (compilador TypeScript) |
 | `node tools/gen_props/emit.mjs` | interfaces `<Comp>Props`, enums e `sgPropSpecs` em `lib/src/generated/` |
 | `node tools/showcase_snippets/extract.mjs` | código dos exemplos do showcase, igual ao renderizado |
+| `node tools/showcase_i18n/extract.mjs` | gera o dicionário de textos das páginas do showcase (descrição, títulos de exemplos, tabela de props) a partir de `tools/showcase_i18n/traducoes/*.json`; `--check` falha se faltar tradução, `--faltam` lista o que falta. Texto novo numa página = acrescentar a tradução (en-US, pt-PT, es, fr) num JSON novo |
 | `node tools/parity_table/generate.mjs` | `docs/PARIDADE.md` |
 
 `<pacote react>` = `../seedgrid-fe-components/packages/seedgrid-fe-components`.
