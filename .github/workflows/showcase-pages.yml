@@ -27,6 +27,7 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: stable
+          flutter-version: 3.38.5   # a mesma do desenvolvimento; o flutter_quill 11.5 nao compila no stable mais novo
           cache: true
 
       - name: Dependencias
