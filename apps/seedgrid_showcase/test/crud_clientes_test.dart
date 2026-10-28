@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart' show SynchronousFuture;
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:seedgrid_components/seedgrid_components.dart';
 import 'package:seedgrid_showcase/pages/crud_clientes_page.dart';
 
 import 'support/page_checks.dart';
@@ -18,6 +19,8 @@ class _BundleDeArquivos extends CachingAssetBundle {
   Future<String> loadString(String key, {bool cache = true}) =>
       SynchronousFuture(File(key).readAsStringSync());
 }
+
+String? _ns() => 'teste';
 
 Future<void> _abre(WidgetTester t) async {
   setSize(t, const Size(1280, 1000));
@@ -104,4 +107,52 @@ void main() {
     expect(find.text('Ana Lima'), findsNothing);
     expect(find.text('Bruno Souza'), findsOneWidget);
   });
+
+  testWidgets(
+    'a tabela restaura as colunas salvas pelo SgEnvironmentProvider',
+    (t) async {
+      setSize(t, const Size(1280, 1000));
+      final salvos = <String, Object?>{};
+      final estrategia = PersistenceStrategy.from(
+        load: (k) =>
+            salvos[k] ??
+            {
+              'version': 1,
+              'columnOrder': [
+                'field:nome',
+                'field:email',
+                'field:cidade',
+                'field:plano',
+                'field:limite',
+                'field:ativo',
+                'index:6',
+              ],
+              'hiddenColumnsMap': {'field:email': true},
+            },
+        save: (k, v) => salvos[k] = v,
+        clear: salvos.remove,
+      );
+      await t.pumpWidget(
+        app(
+          SgEnvironmentProvider(
+            value: SgEnvironmentPartial(
+              namespaceProvider: const NamespaceProvider(_ns),
+              persistenceStrategy: estrategia,
+            ),
+            child: DefaultAssetBundle(
+              bundle: _BundleDeArquivos(),
+              child: const SingleChildScrollView(child: ClientesCrud()),
+            ),
+          ),
+        ),
+      );
+      await settle(t);
+      expect(find.text('Nome'), findsWidgets);
+      expect(
+        find.text('E-mail'),
+        findsNothing,
+        reason: 'coluna oculta restaurada',
+      );
+    },
+  );
 }

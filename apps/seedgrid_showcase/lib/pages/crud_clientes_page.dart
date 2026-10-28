@@ -214,8 +214,10 @@ class _ClientesListaState extends State<ClientesLista> {
           ],
         ),
         SgDatatable(
+          id: 'clientes-tabela',
           value: _filtradas,
           dataKey: 'publicId',
+          showColumnManager: true,
           paginator: true,
           rows: 5,
           stripedRows: widget.stripedRows,

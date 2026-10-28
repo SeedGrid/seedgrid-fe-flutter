@@ -1,7 +1,13 @@
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:seedgrid_components/seedgrid_components.dart' show SgToastHost;
+import 'package:seedgrid_components/seedgrid_components.dart'
+    show
+        SgEnvironmentPartial,
+        NamespaceProvider,
+        SgEnvironmentProvider,
+        SgPersistencePartial,
+        SgToastHost;
 import 'package:seedgrid_theme/seedgrid_theme.dart';
 
 import 'pages/pages.g.dart';
@@ -23,6 +29,8 @@ String showcaseSlug(String name) => name
     .replaceAllMapped(RegExp(r'([A-Z]+)([A-Z][a-z])'), (m) => '${m[1]}-${m[2]}')
     .toLowerCase();
 
+String? _namespace() => 'showcase';
+
 class ShowcaseApp extends StatelessWidget {
   const ShowcaseApp({super.key, this.initialUri});
 
@@ -35,8 +43,15 @@ class ShowcaseApp extends StatelessWidget {
   Widget build(BuildContext context) => MaterialApp(
     title: 'SeedGrid Flutter',
     theme: ThemeData(useMaterial3: true),
-    builder: (context, child) =>
-        ShowcaseI18nScope(child: SeedThemeProvider(child: child!)),
+    // O SgEnvironmentProvider liga a persistencia dos componentes (ex.: ordem e visibilidade das colunas do SgDatatable
+    // com `id`). Sem namespace nada e lido nem gravado: um app real usa o tenant/usuario; o showcase usa um fixo.
+    builder: (context, child) => SgEnvironmentProvider(
+      value: const SgEnvironmentPartial(
+        namespaceProvider: NamespaceProvider(_namespace),
+        persistence: SgPersistencePartial(scope: 'app:seedgrid-showcase'),
+      ),
+      child: ShowcaseI18nScope(child: SeedThemeProvider(child: child!)),
+    ),
     home: ShowcaseHome(initialUri: initialUri ?? (kIsWeb ? Uri.base : Uri())),
   );
 }
