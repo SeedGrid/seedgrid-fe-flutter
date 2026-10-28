@@ -1,0 +1,218 @@
+[
+  {
+    "publicId": "cli-0001",
+    "nome": "Ana Lima",
+    "email": "ana.lima@exemplo.com",
+    "cidade": "São Paulo",
+    "plano": "Básico",
+    "limite": 1000.0,
+    "ativo": true
+  },
+  {
+    "publicId": "cli-0002",
+    "nome": "Bruno Souza",
+    "email": "bruno.souza@exemplo.com",
+    "cidade": "Recife",
+    "plano": "Pro",
+    "limite": 1750.0,
+    "ativo": true
+  },
+  {
+    "publicId": "cli-0003",
+    "nome": "Carla Dias",
+    "email": "carla.dias@exemplo.com",
+    "cidade": "Curitiba",
+    "plano": "Enterprise",
+    "limite": 2500.0,
+    "ativo": true
+  },
+  {
+    "publicId": "cli-0004",
+    "nome": "Daniel Rocha",
+    "email": "daniel.rocha@exemplo.com",
+    "cidade": "Salvador",
+    "plano": "Básico",
+    "limite": 3250.0,
+    "ativo": false
+  },
+  {
+    "publicId": "cli-0005",
+    "nome": "Elisa Prado",
+    "email": "elisa.prado@exemplo.com",
+    "cidade": "Porto Alegre",
+    "plano": "Pro",
+    "limite": 4000.0,
+    "ativo": true
+  },
+  {
+    "publicId": "cli-0006",
+    "nome": "Fábio Nunes",
+    "email": "fabio.nunes@exemplo.com",
+    "cidade": "São Paulo",
+    "plano": "Enterprise",
+    "limite": 4750.0,
+    "ativo": true
+  },
+  {
+    "publicId": "cli-0007",
+    "nome": "Gabriela Costa",
+    "email": "gabriela.costa@exemplo.com",
+    "cidade": "Recife",
+    "plano": "Básico",
+    "limite": 5500.0,
+    "ativo": true
+  },
+  {
+    "publicId": "cli-0008",
+    "nome": "Hugo Teixeira",
+    "email": "hugo.teixeira@exemplo.com",
+    "cidade": "Curitiba",
+    "plano": "Pro",
+    "limite": 6250.0,
+    "ativo": true
+  },
+  {
+    "publicId": "cli-0009",
+    "nome": "Íris Campos",
+    "email": "iris.campos@exemplo.com",
+    "cidade": "Salvador",
+    "plano": "Enterprise",
+    "limite": 7000.0,
+    "ativo": false
+  },
+  {
+    "publicId": "cli-0010",
+    "nome": "João Pereira",
+    "email": "joao.pereira@exemplo.com",
+    "cidade": "Porto Alegre",
+    "plano": "Básico",
+    "limite": 7750.0,
+    "ativo": true
+  },
+  {
+    "publicId": "cli-0011",
+    "nome": "Karina Alves",
+    "email": "karina.alves@exemplo.com",
+    "cidade": "São Paulo",
+    "plano": "Pro",
+    "limite": 8500.0,
+    "ativo": true
+  },
+  {
+    "publicId": "cli-0012",
+    "nome": "Leandro Silva",
+    "email": "leandro.silva@exemplo.com",
+    "cidade": "Recife",
+    "plano": "Enterprise",
+    "limite": 9250.0,
+    "ativo": true
+  },
+  {
+    "publicId": "cli-0013",
+    "nome": "Marina Duarte",
+    "email": "marina.duarte@exemplo.com",
+    "cidade": "Curitiba",
+    "plano": "Básico",
+    "limite": 1000.0,
+    "ativo": true
+  },
+  {
+    "publicId": "cli-0014",
+    "nome": "Nuno Ferreira",
+    "email": "nuno.ferreira@exemplo.com",
+    "cidade": "Salvador",
+    "plano": "Pro",
+    "limite": 1750.0,
+    "ativo": false
+  },
+  {
+    "publicId": "cli-0015",
+    "nome": "Olívia Santos",
+    "email": "olivia.santos@exemplo.com",
+    "cidade": "Porto Alegre",
+    "plano": "Enterprise",
+    "limite": 2500.0,
+    "ativo": true
+  },
+  {
+    "publicId": "cli-0016",
+    "nome": "Paulo Ribeiro",
+    "email": "paulo.ribeiro@exemplo.com",
+    "cidade": "São Paulo",
+    "plano": "Básico",
+    "limite": 3250.0,
+    "ativo": true
+  },
+  {
+    "publicId": "cli-0017",
+    "nome": "Quitéria Melo",
+    "email": "quiteria.melo@exemplo.com",
+    "cidade": "Recife",
+    "plano": "Pro",
+    "limite": 4000.0,
+    "ativo": true
+  },
+  {
+    "publicId": "cli-0018",
+    "nome": "Rafael Gomes",
+    "email": "rafael.gomes@exemplo.com",
+    "cidade": "Curitiba",
+    "plano": "Enterprise",
+    "limite": 4750.0,
+    "ativo": true
+  },
+  {
+    "publicId": "cli-0019",
+    "nome": "Sofia Barros",
+    "email": "sofia.barros@exemplo.com",
+    "cidade": "Salvador",
+    "plano": "Básico",
+    "limite": 5500.0,
+    "ativo": false
+  },
+  {
+    "publicId": "cli-0020",
+    "nome": "Tiago Moreira",
+    "email": "tiago.moreira@exemplo.com",
+    "cidade": "Porto Alegre",
+    "plano": "Pro",
+    "limite": 6250.0,
+    "ativo": true
+  },
+  {
+    "publicId": "cli-0021",
+    "nome": "Úrsula Matos",
+    "email": "ursula.matos@exemplo.com",
+    "cidade": "São Paulo",
+    "plano": "Enterprise",
+    "limite": 7000.0,
+    "ativo": true
+  },
+  {
+    "publicId": "cli-0022",
+    "nome": "Vítor Cardoso",
+    "email": "vitor.cardoso@exemplo.com",
+    "cidade": "Recife",
+    "plano": "Básico",
+    "limite": 7750.0,
+    "ativo": true
+  },
+  {
+    "publicId": "cli-0023",
+    "nome": "Wanda Freitas",
+    "email": "wanda.freitas@exemplo.com",
+    "cidade": "Curitiba",
+    "plano": "Pro",
+    "limite": 8500.0,
+    "ativo": true
+  },
+  {
+    "publicId": "cli-0024",
+    "nome": "Xavier Lopes",
+    "email": "xavier.lopes@exemplo.com",
+    "cidade": "Salvador",
+    "plano": "Enterprise",
+    "limite": 9250.0,
+    "ativo": false
+  }
+]

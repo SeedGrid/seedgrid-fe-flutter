@@ -91,6 +91,7 @@ import 'sg_whistler_page.dart';
 import 'sg_wizard_demo_page.dart';
 import 'sg_wizard_page_page.dart';
 import 'sg_year_part_selector_page.dart';
+import 'crud_clientes_page.dart';
 
 /// Uma pagina do showcase. `examples` = numero de regioes `// #region` do arquivo (links esperados).
 typedef ShowcasePageEntry = ({String name, String file, int examples, String description, WidgetBuilder builder});
@@ -183,4 +184,5 @@ final List<ShowcasePageEntry> kShowcasePages = <ShowcasePageEntry>[
   (name: 'SgWizard', file: 'lib/pages/sg_wizard_demo_page.dart', examples: 4, description: 'Assistente em etapas com stepper numerado ou de ícones, navegação por etapas, guardas assíncronas e validação por etapa no formulário.', builder: (_) => const SgWizardDemoPage()),
   (name: 'SgWizardPage', file: 'lib/pages/sg_wizard_page_page.dart', examples: 3, description: 'Uma etapa do SgWizard: título e ícone do stepper e o conteúdo da etapa.', builder: (_) => const SgWizardPagePage()),
   (name: 'SgYearPartSelector', file: 'lib/pages/sg_year_part_selector_page.dart', examples: 5, description: 'Seletor de recorte de ano: o usuário escolhe ano, recorte (semestre, trimestre ou bimestre) e fatia, e recebe o intervalo de datas resolvido.', builder: (_) => const SgYearPartSelectorPage()),
+  (name: 'CrudClientes', file: 'lib/pages/crud_clientes_page.dart', examples: 3, description: 'Exemplo de CRUD completo só com componentes SeedGrid: lista com busca e tabela, tela de novo/editar com formulário, exclusão com confirmação e dados lidos de um JSON local.', builder: (_) => const CrudClientesPage()),
 ];
