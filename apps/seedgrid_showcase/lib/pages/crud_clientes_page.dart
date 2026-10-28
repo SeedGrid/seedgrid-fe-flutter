@@ -55,6 +55,97 @@ const List<SgDatatableRow> _amostra = [
   },
 ];
 
+// #region crud-clientes-completo
+class ClientesCrud extends StatefulWidget {
+  const ClientesCrud({super.key});
+
+  @override
+  State<ClientesCrud> createState() => _ClientesCrudState();
+}
+
+class _ClientesCrudState extends State<ClientesCrud> {
+  List<SgDatatableRow>? _clientes;
+  bool _editando = false;
+  String? _publicId;
+
+  bool _pedido = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_pedido) return;
+    _pedido = true;
+    _carregar(DefaultAssetBundle.of(context));
+  }
+
+  Future<void> _carregar(AssetBundle bundle) async {
+    final texto = await bundle.loadString('assets/data/clientes.json');
+    if (!mounted) return;
+    setState(() {
+      _clientes = [
+        for (final c in jsonDecode(texto) as List)
+          Map<String, Object?>.from(c as Map),
+      ];
+    });
+  }
+
+  void _abrir([String? publicId]) => setState(() {
+    _publicId = publicId;
+    _editando = true;
+  });
+
+  void _salvar(Map<String, Object?> dados) {
+    final i = _clientes!.indexWhere((c) => c['publicId'] == _publicId);
+    setState(() {
+      if (i >= 0) {
+        _clientes![i] = {..._clientes![i], ...dados};
+      } else {
+        _clientes!.add({
+          'publicId': 'cli-${DateTime.now().microsecondsSinceEpoch}',
+          ...dados,
+        });
+      }
+      _editando = false;
+    });
+    toast.success(
+      i >= 0
+          ? context.tx('Cliente atualizado.')
+          : context.tx('Cliente criado.'),
+    );
+  }
+
+  void _excluir(String publicId) {
+    setState(() => _clientes!.removeWhere((c) => c['publicId'] == publicId));
+    toast.success(context.tx('Cliente excluído.'));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final clientes = _clientes;
+    if (clientes == null) {
+      return SgDatatable(value: const [], columns: const [], loading: true);
+    }
+    if (_editando) {
+      return ClienteForm(
+        key: ValueKey(_publicId),
+        cliente: clientes.cast<SgDatatableRow?>().firstWhere(
+          (c) => c!['publicId'] == _publicId,
+          orElse: () => null,
+        ),
+        onSalvar: _salvar,
+        onCancelar: () => setState(() => _editando = false),
+      );
+    }
+    return ClientesLista(
+      clientes: clientes,
+      onNovo: _abrir,
+      onEditar: _abrir,
+      onExcluir: _excluir,
+    );
+  }
+}
+// #endregion
+
 // #region crud-clientes-lista
 class ClientesLista extends StatefulWidget {
   const ClientesLista({
@@ -349,97 +440,6 @@ class _ClienteFormState extends State<ClienteForm> {
 }
 // #endregion
 
-// #region crud-clientes-completo
-class ClientesCrud extends StatefulWidget {
-  const ClientesCrud({super.key});
-
-  @override
-  State<ClientesCrud> createState() => _ClientesCrudState();
-}
-
-class _ClientesCrudState extends State<ClientesCrud> {
-  List<SgDatatableRow>? _clientes;
-  bool _editando = false;
-  String? _publicId;
-
-  bool _pedido = false;
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    if (_pedido) return;
-    _pedido = true;
-    _carregar(DefaultAssetBundle.of(context));
-  }
-
-  Future<void> _carregar(AssetBundle bundle) async {
-    final texto = await bundle.loadString('assets/data/clientes.json');
-    if (!mounted) return;
-    setState(() {
-      _clientes = [
-        for (final c in jsonDecode(texto) as List)
-          Map<String, Object?>.from(c as Map),
-      ];
-    });
-  }
-
-  void _abrir([String? publicId]) => setState(() {
-    _publicId = publicId;
-    _editando = true;
-  });
-
-  void _salvar(Map<String, Object?> dados) {
-    final i = _clientes!.indexWhere((c) => c['publicId'] == _publicId);
-    setState(() {
-      if (i >= 0) {
-        _clientes![i] = {..._clientes![i], ...dados};
-      } else {
-        _clientes!.add({
-          'publicId': 'cli-${DateTime.now().microsecondsSinceEpoch}',
-          ...dados,
-        });
-      }
-      _editando = false;
-    });
-    toast.success(
-      i >= 0
-          ? context.tx('Cliente atualizado.')
-          : context.tx('Cliente criado.'),
-    );
-  }
-
-  void _excluir(String publicId) {
-    setState(() => _clientes!.removeWhere((c) => c['publicId'] == publicId));
-    toast.success(context.tx('Cliente excluído.'));
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final clientes = _clientes;
-    if (clientes == null) {
-      return SgDatatable(value: const [], columns: const [], loading: true);
-    }
-    if (_editando) {
-      return ClienteForm(
-        key: ValueKey(_publicId),
-        cliente: clientes.cast<SgDatatableRow?>().firstWhere(
-          (c) => c!['publicId'] == _publicId,
-          orElse: () => null,
-        ),
-        onSalvar: _salvar,
-        onCancelar: () => setState(() => _editando = false),
-      );
-    }
-    return ClientesLista(
-      clientes: clientes,
-      onNovo: _abrir,
-      onEditar: _abrir,
-      onExcluir: _excluir,
-    );
-  }
-}
-// #endregion
-
 class CrudClientesPage extends StatefulWidget {
   const CrudClientesPage({super.key});
 
@@ -448,12 +448,20 @@ class CrudClientesPage extends StatefulWidget {
 }
 
 class _CrudClientesPageState extends State<CrudClientesPage> {
+  final List<SgDatatableRow> _linhas = List.of(_amostra);
   String _acao = 'nenhuma ação ainda';
   String _salvo = 'nada salvo ainda';
 
   @override
   Widget build(BuildContext context) {
     final examples = <ShowcaseExample>[
+      ShowcaseExample(
+        title: 'CRUD completo, lendo de JSON',
+        description:
+            'Carrega assets/data/clientes.json e liga as duas telas: Novo e Editar abrem o formulário, salvar volta à lista com um aviso, excluir confirma antes.',
+        preview: const ClientesCrud(),
+        code: CrudClientesPageSnippets.crudClientesCompleto,
+      ),
       ShowcaseExample(
         title: 'Lista com busca e ações',
         description:
@@ -462,10 +470,13 @@ class _CrudClientesPageState extends State<CrudClientesPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ClientesLista(
-              clientes: _amostra,
+              clientes: _linhas,
               onNovo: () => setState(() => _acao = 'Novo'),
               onEditar: (id) => setState(() => _acao = 'Editar $id'),
-              onExcluir: (id) => setState(() => _acao = 'Excluir $id'),
+              onExcluir: (id) => setState(() {
+                _linhas.removeWhere((c) => c['publicId'] == id);
+                _acao = 'Excluído $id';
+              }),
             ),
             const SizedBox(height: 8),
             Text('Última ação: $_acao'),
@@ -490,13 +501,6 @@ class _CrudClientesPageState extends State<CrudClientesPage> {
           ],
         ),
         code: CrudClientesPageSnippets.crudClientesForm,
-      ),
-      ShowcaseExample(
-        title: 'CRUD completo, lendo de JSON',
-        description:
-            'Carrega assets/data/clientes.json e liga as duas telas: Novo e Editar abrem o formulário, salvar volta à lista com um aviso, excluir confirma antes.',
-        preview: const ClientesCrud(),
-        code: CrudClientesPageSnippets.crudClientesCompleto,
       ),
     ];
 
