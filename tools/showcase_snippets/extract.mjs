@@ -62,6 +62,8 @@ for (const f of files) {
   const override = /^\/\/ showcase-name: (\w+)\s*$/m.exec(text);
   // Descricao curta do cabecalho da pagina (literal Dart, possivelmente em varias strings adjacentes): vai para os cards da home.
   const descMatch = /SgShowcasePage\(\s*name:\s*'[^']*',\s*description:\s*('[^']*'(?:\s*'[^']*')*)\s*,/.exec(text);
+  // `// showcase-hidden` no topo: a pagina gera snippets mas fica fora do registro (menu/home/testes por pagina); so para molde/fixture de teste.
+  if (/^\/\/ showcase-hidden\s*$/m.test(text)) continue;
   registry.push({ name: override ? override[1] : classMatch[1], cls: classMatch[1] + "Page", file: `lib/pages/${f}`, importPath: f, examples: found.size, description: descMatch ? descMatch[1].replace(/\s+/g, " ") : "''" });
 }
 

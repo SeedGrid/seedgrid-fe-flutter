@@ -1,3 +1,4 @@
+// showcase-hidden
 // Pagina-modelo do showcase: serve de molde para as paginas de componente e de teste do layout
 // (cabecalho fixo, ancoras, codigo igual ao renderizado, playground, referencia de props).
 // Ainda usa widgets do Material nos exemplos: os widgets SeedGrid entram a partir da Onda 1.
