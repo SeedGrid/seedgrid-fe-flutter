@@ -220,6 +220,32 @@ void main() {
         throwsA(predicate((e) => e.toString() == 'HTTP 403 Forbidden: nope')),
       );
     });
+    test(
+      '409 com problem+json lanca SgHttpException com status e corpo (sem tratar por status)',
+      () async {
+        const problema =
+            '{"type":"about:blank","title":"Tenant Already Active","status":409}';
+        final c = SgHttpClient(
+          const HttpClientOptions(baseUrl: 'https://api.x'),
+          client: MockClient(
+            (_) async => http.Response(
+              problema,
+              409,
+              reasonPhrase: 'Conflict',
+              headers: {'content-type': 'application/problem+json'},
+            ),
+          ),
+        );
+        await expectLater(
+          c.request('/tenants/validate', method: 'POST'),
+          throwsA(
+            isA<SgHttpException>()
+                .having((e) => e.status, 'status', 409)
+                .having((e) => e.body, 'body', problema),
+          ),
+        );
+      },
+    );
     test('JSON de resposta', () async {
       final c = SgHttpClient(
         const HttpClientOptions(baseUrl: 'https://api.x'),
