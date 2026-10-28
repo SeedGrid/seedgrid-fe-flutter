@@ -6,7 +6,6 @@ import 'package:seedgrid_showcase/pages/pages.g.dart';
 import 'package:seedgrid_showcase/src/catalog.g.dart';
 import 'package:seedgrid_showcase/src/showcase_menu.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
-import 'package:seedgrid_theme/seedgrid_theme.dart';
 
 import 'support/page_checks.dart';
 

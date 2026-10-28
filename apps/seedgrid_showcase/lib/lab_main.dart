@@ -4,7 +4,6 @@
 // e LER o valor (getValue do controller, mostrado abaixo do campo). Tambem mostra o texto exibido no campo.
 import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
-import 'package:seedgrid_theme/seedgrid_theme.dart';
 
 void main() => runApp(const LabApp());
 

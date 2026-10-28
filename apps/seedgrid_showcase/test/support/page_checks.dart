@@ -7,7 +7,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 import 'package:seedgrid_showcase/pages/pages.g.dart';
 import 'package:seedgrid_showcase/src/sg_showcase_page.dart';
-import 'package:seedgrid_theme/seedgrid_theme.dart';
 
 const kSizes = {
   'mobile 390x800': Size(390, 800),

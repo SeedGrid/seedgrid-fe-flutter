@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
-import 'package:seedgrid_theme/seedgrid_theme.dart';
 
 Widget host(Widget child) => MaterialApp(
   debugShowCheckedModeBanner: false,

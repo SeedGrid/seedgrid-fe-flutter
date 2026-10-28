@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
-import 'package:seedgrid_theme/seedgrid_theme.dart';
 
 import 'dialogo_toast_screen.dart';
 import 'formulario_screen.dart';

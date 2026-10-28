@@ -7,7 +7,6 @@ import 'package:seedgrid_showcase/pages/sg_button_page.dart';
 import 'package:seedgrid_showcase/pages/sg_clock_theme_preview_page.dart';
 import 'package:seedgrid_showcase/pages/sg_input_text_page.dart';
 import 'package:seedgrid_showcase/src/sg_showcase_page.dart';
-import 'package:seedgrid_theme/seedgrid_theme.dart';
 
 import 'support/page_checks.dart';
 
