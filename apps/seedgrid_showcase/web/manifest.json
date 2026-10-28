@@ -1,11 +1,11 @@
 {
-    "name": "seedgrid_showcase",
-    "short_name": "seedgrid_showcase",
+    "name": "SeedGrid Components for Flutter",
+    "short_name": "SeedGrid Flutter",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "Showcase dos componentes SeedGrid em Flutter.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

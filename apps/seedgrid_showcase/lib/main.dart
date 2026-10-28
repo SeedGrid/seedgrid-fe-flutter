@@ -41,7 +41,7 @@ class ShowcaseApp extends StatelessWidget {
   // que os widgets leem e o claro/escuro troca em tempo de execucao.
   @override
   Widget build(BuildContext context) => MaterialApp(
-    title: 'SeedGrid Flutter',
+    title: 'SeedGrid Components for Flutter',
     theme: ThemeData(useMaterial3: true),
     // O SgEnvironmentProvider liga a persistencia dos componentes (ex.: ordem e visibilidade das colunas do SgDatatable
     // com `id`). Sem namespace nada e lido nem gravado: um app real usa o tenant/usuario; o showcase usa um fixo.
