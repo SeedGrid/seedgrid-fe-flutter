@@ -13,7 +13,7 @@ Origem dos dados: saidas reais do MCP por stdio (`--platform=react|flutter`, `co
 | react | achar | 3205 | 298 | - | 10.7x | - |
 | flutter | conhecer | 3891 | 2159 | 792 | 1.8x | 4.9x |
 | flutter | validar | n/c (a KB Flutter nao tem validador) | - | - | - | - |
-| flutter | achar | n/c (busca vetorial do MCP Flutter sem colecao indexada (fallback vazio)) | - | - | - | - |
+| flutter | achar | 3205 | 302 | - | 10.6x | - |
 
 `conhecer` = conhecer um componente; `achar` = achar o componente por necessidade; `validar` = validar props. MCP = `get_component` completo (padrao); MCP leve = `get_component` com `fields: "props"`. Em `achar`, a KB le o `Preciso-de.md` inteiro e o MCP faz uma busca vetorial.
 
@@ -77,7 +77,7 @@ Na pratica, uma conversa paga o custo fixo uma vez e depois cada consulta. Custo
 
 | Consulta | KB | MCP | MCP leve | Observacao |
 |---|---:|---:|---:|---|
-| campo para digitar CPF | 3205 | 281 | - |  |
+| campo para digitar CPF | 3205 | 280 | - |  |
 | tabela com paginacao e ordenacao | 3205 | 281 | - |  |
 | dialogo de confirmacao ao excluir | 3205 | 291 | - |  |
 | escolher uma data | 3205 | 375 | - |  |
@@ -122,16 +122,15 @@ Na pratica, uma conversa paga o custo fixo uma vez e depois cada consulta. Custo
 
 | Consulta | KB | MCP | MCP leve | Observacao |
 |---|---:|---:|---:|---|
-| campo para digitar CPF | 3205 | n/c | - | busca do MCP em fallback, saida vazia |
-| tabela com paginacao e ordenacao | 3205 | n/c | - | busca do MCP em fallback, saida vazia |
-| dialogo de confirmacao ao excluir | 3205 | n/c | - | busca do MCP em fallback, saida vazia |
-| escolher uma data | 3205 | n/c | - | busca do MCP em fallback, saida vazia |
-| lista dupla para mover itens entre duas colunas | 3205 | n/c | - | busca do MCP em fallback, saida vazia |
-| campo de valor em moeda | 3205 | n/c | - | busca do MCP em fallback, saida vazia |
+| campo para digitar CPF | 3205 | 280 | - |  |
+| tabela com paginacao e ordenacao | 3205 | 287 | - |  |
+| dialogo de confirmacao ao excluir | 3205 | 286 | - |  |
+| escolher uma data | 3205 | 373 | - |  |
+| lista dupla para mover itens entre duas colunas | 3205 | 289 | - |  |
+| campo de valor em moeda | 3205 | 295 | - |  |
 
 ## Limites
 
 - Tokenizador da OpenAI como aproximacao do Claude (decisao do dono em 2026-10-29); para numeros exatos do Claude, trocar `tok()` pela API `count_tokens` da Anthropic.
 - Conta o que entra no contexto (argumentos e saidas das tools, trechos lidos da KB); nao conta o raciocinio do modelo nem o codigo que ele escreve depois.
 - A KB Flutter nao tem busca por necessidade propria nem validador: usa o `Preciso-de.md` compartilhado e o contrato `.g.dart`.
-- No Flutter a busca vetorial do MCP caiu no modo `fallback` (a colecao Qdrant da plataforma Flutter ainda nao foi indexada); o tamanho da saida e parecido, a qualidade nao e comparavel.
