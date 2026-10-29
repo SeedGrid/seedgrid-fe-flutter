@@ -9130,7 +9130,7 @@
         ],
         "parity": {
           "status": "portado",
-          "reason": "O slot vazio guarda um caractere invisível (U+200B) para o teclado virtual avisar o Backspace; colar 1 caractere num slot cheio é tratado como digitar; inputProps e props *ClassName são aceitos sem efeito; os validadores rodam no envio do formulário. Não testado em IME nem em dispositivo."
+          "reason": "O slot vazio guarda um caractere invisível (U+200B) para o teclado virtual avisar o Backspace; colar 1 caractere num slot cheio é tratado como digitar; inputProps e props de classe são aceitos sem efeito; os validadores rodam no envio do formulário. Não testado em IME nem em dispositivo."
         },
         "omittedProps": [
           {
@@ -13225,7 +13225,7 @@
         ],
         "parity": {
           "status": "portado",
-          "reason": "Arrastar por toque longo (LongPressDraggable, cerca de 150 ms); no PickList, mover pelo duplo toque em até 300 ms; o estado reinicia ao trocar source/target, comparando os itens por identidade; os rótulos Top/Up/Down/Bottom do OrderList ficam em inglês; listClassName e itemClassName não têm efeito; groupBoxProps é SgListGroupBoxProps."
+          "reason": "Arrastar por toque longo (LongPressDraggable, cerca de 150 ms); no PickList, mover pelo duplo toque em até 300 ms; o estado reinicia ao trocar source/target, comparando os itens por identidade; os rótulos Top/Up/Down/Bottom do OrderList ficam em inglês; as props de classe da lista e dos itens não têm efeito; groupBoxProps é SgListGroupBoxProps."
         },
         "omittedProps": [
           {
@@ -14196,7 +14196,7 @@
         ],
         "parity": {
           "status": "portado",
-          "reason": "Arrastar por toque longo (LongPressDraggable, cerca de 150 ms); no PickList, mover pelo duplo toque em até 300 ms; o estado reinicia ao trocar source/target, comparando os itens por identidade; os rótulos Top/Up/Down/Bottom do OrderList ficam em inglês; listClassName e itemClassName não têm efeito; groupBoxProps é SgListGroupBoxProps."
+          "reason": "Arrastar por toque longo (LongPressDraggable, cerca de 150 ms); no PickList, mover pelo duplo toque em até 300 ms; o estado reinicia ao trocar source/target, comparando os itens por identidade; os rótulos Top/Up/Down/Bottom do OrderList ficam em inglês; as props de classe da lista e dos itens não têm efeito; groupBoxProps é SgListGroupBoxProps."
         },
         "omittedProps": [
           {
@@ -17924,7 +17924,7 @@
         ],
         "parity": {
           "status": "portado",
-          "reason": "Navegação por teclado própria (setas, Home/End, Enter, Espaço e * como extra); maxHeightClassName vira maxHeight em px (padrão 60% da altura da tela); SgTreeConfirmBar.sticky sem efeito; layout de celular próprio (busca em linha, barra empilhada); medido com 10.100 nós em debug de teste: primeira construção 142 ms, 19 linhas construídas, quadro de rolagem médio 59,6 ms (release, dispositivo e GPU não medidos)."
+          "reason": "Navegação por teclado própria (setas, Home/End, Enter, Espaço e * como extra); a altura máxima é a prop maxHeight, em px (padrão 60% da altura da tela); SgTreeConfirmBar.sticky sem efeito; layout de celular próprio (busca em linha, barra empilhada); medido com 10.100 nós em debug de teste: primeira construção 142 ms, 19 linhas construídas, quadro de rolagem médio 59,6 ms (release, dispositivo e GPU não medidos)."
         },
         "omittedProps": [
           {

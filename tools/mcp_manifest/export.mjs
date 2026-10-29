@@ -163,7 +163,7 @@ const manifest = {
 // --- MC.3: nenhum termo do React no manifesto -------------------------------------------------------------
 // Fora da checagem: o `name` das props (a API Dart pode ter `contentClassName`) e das omitidas (o dev precisa saber
 // que `className` nao existe no Flutter); tudo o mais (descricoes, motivos, exemplos, tipos) tem que estar limpo.
-const proibidos = [/\bReact\b/i, /\bNext(\.js)?\b/, /\bVite\b/i, /\bJSX\b/i, /\bTSX\b/i, /\bclassName\b/, /\bADR\b/, /\bTypeScript\b/i, /\bnpm\b/i];
+const proibidos = [/\bReact\b/i, /\bNext(\.js)?\b/, /\bVite\b/i, /\bJSX\b/i, /\bTSX\b/i, /classname/i, /\bADR\b/, /\bTypeScript\b/i, /\bnpm\b/i];
 function varre(valor, caminho) {
   if (typeof valor === "string") {
     for (const re of proibidos) if (re.test(valor)) falhas.push(`${caminho}: termo do React (${re}) em "${valor.slice(0, 80)}"`);
