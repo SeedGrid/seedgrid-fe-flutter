@@ -32,6 +32,8 @@ abstract interface class SgDatatableProps {
   bool? get lazy;
   /// Indica estado de carregamento. Padrão: `false`.
   bool? get loading;
+  /// Comportamento quando o container fica abaixo de 600 px (SG_DATATABLE_MOBILE_BREAKPOINT): scroll rola a tabela; cards mostra cada linha como cartao. Padrão: `scroll`.
+  SgDatatableMobileMode? get mobileMode;
   /// Tipo TS: `((event: SgDatatableFilterEvent) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onFilter;
   /// Tipo TS: `((value: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
@@ -190,6 +192,16 @@ const List<SgPropSpec> sgDatatablePropSpecs = <SgPropSpec>[
     required: false,
     defaultValue: 'false',
     description: 'Indica estado de carregamento.',
+  ),
+  SgPropSpec(
+    name: 'mobileMode',
+    reactName: 'mobileMode',
+    type: 'SgDatatableMobileMode?',
+    tsType: 'SgDatatableMobileMode',
+    required: false,
+    defaultValue: 'scroll',
+    description: 'Comportamento quando o container fica abaixo de 600 px (SG_DATATABLE_MOBILE_BREAKPOINT): scroll rola a tabela; cards mostra cada linha como cartao.',
+    values: <String>['scroll', 'cards'],
   ),
   SgPropSpec(
     name: 'onFilter',

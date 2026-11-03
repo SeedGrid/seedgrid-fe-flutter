@@ -77,6 +77,48 @@ SgDatatable(
 )
 ''';
 
+  /// Region `sg-datatable-cartoes`.
+  static const String sgDatatableCartoes = r'''
+SizedBox(
+  width: 420,
+  child: SgDatatable(
+    title: context.tx('Pessoas (cartões)'),
+    value: _pessoas,
+    columns: const [
+      SgDatatableColumn(
+        field: 'id',
+        header: 'Id',
+        cardHidden: true,
+      ),
+      SgDatatableColumn(
+        field: 'nome',
+        header: 'Nome',
+        sortable: true,
+        filter: true,
+        cardTitle: true,
+      ),
+      SgDatatableColumn(
+        field: 'cidade',
+        header: 'Cidade',
+        sortable: true,
+        filter: true,
+      ),
+      SgDatatableColumn(
+        field: 'idade',
+        header: 'Idade',
+        sortable: true,
+      ),
+    ],
+    dataKey: 'id',
+    mobileMode: SgDatatableMobileMode.cards,
+    selectionMode: SgDatatableSelectionMode.single,
+    showColumnFilters: true,
+    paginator: true,
+    rows: 4,
+  ),
+)
+''';
+
   /// Region `sg-datatable-colunas`.
   static const String sgDatatableColunas = r'''
 SgDatatable(

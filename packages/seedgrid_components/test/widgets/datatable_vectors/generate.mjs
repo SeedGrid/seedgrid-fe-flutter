@@ -6,6 +6,8 @@
 // Uso (na raiz do repo seedgrid-fe-flutter):
 //   node packages/seedgrid_components/test/widgets/datatable_vectors/generate.mjs <pasta do pacote react>
 // Gera packages/seedgrid_components/test/widgets/datatable_vectors/vectors.json (deterministico).
+// P127: a chave `cardCases` (modo cartoes, mobileMode="cards") e' renderizada no CLIENTE (react-dom/client em jsdom,
+// com a largura do container simulada), porque o modo depende da medicao do container. As demais chaves nao mudam.
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
@@ -56,7 +58,9 @@ await esbuild.build({
     contents: `export * from ${JSON.stringify(tsx.replace(/\\/g, "/"))};
 import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
-export { React, renderToStaticMarkup };`,
+import { createRoot } from "react-dom/client";
+import { flushSync } from "react-dom";
+export { React, renderToStaticMarkup, createRoot, flushSync };`,
     resolveDir: pkg,
     loader: "ts",
   },
@@ -69,6 +73,7 @@ export { React, renderToStaticMarkup };`,
   define: { "process.env.NODE_ENV": '"production"' },
   plugins: [suffixPlugin],
 });
+const require_cache = createRequire(import.meta.url).cache;
 const dt = createRequire(import.meta.url)(bundleFile);
 const { JSDOM } = createRequire(path.join(pkg, "package.json"))("jsdom");
 
@@ -316,15 +321,176 @@ const fieldValue = [
   [{ a: 1 }, ""], [{ a: 1 }, "a"], [{ a: { b: 0 } }, "a.b"], [{}, "q.w"],
 ].map(([row, field]) => [row, field, dt.getFieldValue(row, field) ?? null]);
 
+// ------------------------------------------------------------ modo cartoes (P127)
+// Renderizado no cliente: o SgDatatable mede a largura do container (getBoundingClientRect) e troca a tabela por cartoes
+// abaixo de 600 px. Aqui a largura e' simulada; o React usa o fallback de "resize" porque o jsdom nao tem ResizeObserver.
+const CARD_COLS = [
+  { field: "id", header: "Id", cardHidden: true },
+  { field: "name", header: "Nome", sortable: true, filter: true, cardTitle: true, footer: "count" },
+  { field: "age", header: "Idade", sortable: true, filter: true, footer: "sumAge" },
+  { field: "city", header: "Cidade", sortable: true, filter: true },
+  { field: "active", header: "Ativo" },
+  { field: "owner.name", header: "Dono", filter: true },
+  { field: "score", header: "Nota", sortable: true },
+];
+const CARD_COLS_NO_TITLE = CARD_COLS.map(({ cardTitle, cardHidden, ...c }) => c);
+const CARD_COLS_HIDDEN = CARD_COLS.map((c) => (c.field === "city" ? { ...c, hidden: true } : c));
+const CARD_COLS_NO_FOOTER = CARD_COLS.map(({ footer, ...c }) => c);
+const cardCasesIn = [];
+const addCard = (name, props, extra = {}) => cardCasesIn.push({ name, props, width: 400, actions: [], ...extra });
+const CM = { mobileMode: "cards" };
+
+addCard("cards plain", { ...CM, columns: CARD_COLS_NO_FOOTER });
+addCard("cards plain with footer", { ...CM, columns: CARD_COLS });
+addCard("cards no cardTitle", { ...CM, columns: CARD_COLS_NO_TITLE });
+addCard("cards hidden column", { ...CM, columns: CARD_COLS_HIDDEN });
+addCard("cards width 599", { ...CM, columns: CARD_COLS_NO_FOOTER }, { width: 599 });
+addCard("cards width 600 is table", { ...CM, columns: CARD_COLS_NO_FOOTER }, { width: 600 });
+addCard("cards width 900 is table", { ...CM, columns: CARD_COLS_NO_FOOTER }, { width: 900 });
+addCard("scroll default at 400 is table", { columns: CARD_COLS_NO_FOOTER });
+addCard("scroll explicit at 400 is table", { mobileMode: "scroll", columns: CARD_COLS_NO_FOOTER });
+for (const f of ["name", "age", "score", "city"]) {
+  for (const order of [1, -1]) addCard("cards sort " + f + " " + order, { ...CM, columns: CARD_COLS_NO_FOOTER, sortField: f, sortOrder: order });
+}
+addCard("cards sort none", { ...CM, columns: CARD_COLS_NO_FOOTER, sortField: "name", sortOrder: 0 });
+addCard("cards selection single", { ...CM, columns: CARD_COLS_NO_FOOTER, dataKey: "id", selectionMode: "single", selection: { id: 3 } });
+addCard("cards selection multiple", { ...CM, columns: CARD_COLS_NO_FOOTER, dataKey: "id", selectionMode: "multiple", selection: [{ id: 2 }, { id: 5 }] });
+addCard("cards selection no mode", { ...CM, columns: CARD_COLS_NO_FOOTER, dataKey: "id", selection: { id: 3 } });
+addCard("cards paginator rows=5 first=0", { ...CM, columns: CARD_COLS, paginator: true, rows: 5 });
+addCard("cards paginator rows=5 first=10", { ...CM, columns: CARD_COLS, paginator: true, rows: 5, first: 10 });
+addCard("cards paginator rowsPerPageOptions", { ...CM, columns: CARD_COLS_NO_FOOTER, paginator: true, rows: 10, rowsPerPageOptions: [5, 10, 25] });
+addCard("cards globalFilter", { ...CM, columns: CARD_COLS, showGlobalFilter: true, globalFilter: "jo" });
+addCard("cards globalFilter + clear", { ...CM, columns: CARD_COLS_NO_FOOTER, showGlobalFilter: true, showClearFiltersButton: true, globalFilter: "ana" });
+addCard("cards filters closed", { ...CM, columns: CARD_COLS_NO_FOOTER, showColumnFilters: true, filters: { name: "a" } });
+addCard("cards filters panel open", { ...CM, columns: CARD_COLS_NO_FOOTER, showColumnFilters: true, filters: { name: "a", city: "s" } }, { actions: ["openFilters"] });
+addCard("cards filters panel open, no values", { ...CM, columns: CARD_COLS_NO_FOOTER, showColumnFilters: true }, { actions: ["openFilters"] });
+addCard("cards filters not shown without showColumnFilters", { ...CM, columns: CARD_COLS_NO_FOOTER, filters: { name: "a" } });
+addCard("cards filters custom placeholder", { ...CM, columns: [{ field: "name", header: "Nome", filter: true, filterPlaceholder: "so nome", cardTitle: true }, { field: "age", header: "Idade", filter: true }], showColumnFilters: true }, { actions: ["openFilters"] });
+addCard("cards filter and global", { ...CM, columns: CARD_COLS, showGlobalFilter: true, globalFilter: "a", filters: { age: "3" }, showColumnFilters: true });
+addCard("cards loading", { ...CM, columns: CARD_COLS, loading: true });
+addCard("cards empty default", { ...CM, columns: CARD_COLS, rowsData: [] });
+addCard("cards empty custom", { ...CM, columns: CARD_COLS, rowsData: [], emptyMessage: "Nada aqui" });
+addCard("cards lazy", { ...CM, columns: CARD_COLS_NO_FOOTER, lazy: true, paginator: true, rows: 10, first: 20, totalRecords: 100 });
+addCard("cards null and nested values", { ...CM, columns: [{ field: "a.b", header: "AB", cardTitle: true }, { field: "n", header: "N" }, { field: "b", header: "B" }], rowsData: [
+  { a: { b: 1 }, n: null, b: false },
+  { a: null, n: 0, b: true },
+] });
+addCard("cards no sortable and no filter columns", { ...CM, columns: [{ field: "id", header: "Id" }, { field: "name", header: "Nome" }], showColumnFilters: true });
+
+const { JSDOM: CardsDOM } = createRequire(path.join(pkg, "package.json"))("jsdom");
+function renderCards(c) {
+  const dom = new CardsDOM("<!doctype html><html><body></body></html>", { url: "http://localhost/" });
+  const w = dom.window;
+  const prev = {};
+  const names = ["window", "document", "navigator", "HTMLElement", "Node", "Event", "MouseEvent", "getComputedStyle"];
+  for (const n of names) { prev[n] = Object.getOwnPropertyDescriptor(globalThis, n); }
+  const set = (n, v) => Object.defineProperty(globalThis, n, { configurable: true, writable: true, value: v });
+  set("window", w); set("document", w.document); set("navigator", w.navigator); set("HTMLElement", w.HTMLElement);
+  set("Node", w.Node); set("Event", w.Event); set("MouseEvent", w.MouseEvent); set("getComputedStyle", w.getComputedStyle.bind(w));
+  w.HTMLElement.prototype.getBoundingClientRect = () => ({ x: 0, y: 0, top: 0, left: 0, right: c.width, bottom: 0, width: c.width, height: 0 });
+  try {
+    // recarrega o bundle com window definido: o hook de largura escolhe useLayoutEffect quando ha window
+    delete require_cache[bundleFile];
+    const dtc = createRequire(import.meta.url)(bundleFile);
+    const props = { ...c.props };
+    const rowsData = props.rowsData;
+    delete props.rowsData;
+    props.value = rowsData ?? ROWS;
+    props.columns = buildColumns(c.props.columns);
+    const host = w.document.createElement("div");
+    w.document.body.appendChild(host);
+    const root = dtc.createRoot(host);
+    dtc.flushSync(() => root.render(dtc.React.createElement(dtc.SgDatatable, props)));
+    for (const a of c.actions) {
+      if (a === "openFilters") {
+        const b = [...host.querySelectorAll("button")].find((x) => txt(x) === "Filters");
+        if (!b) throw new Error("botao Filters nao encontrado em " + c.name);
+        dtc.flushSync(() => b.click());
+      }
+    }
+    return extractCards(host);
+  } finally {
+    for (const n of names) {
+      if (prev[n]) Object.defineProperty(globalThis, n, prev[n]);
+      else delete globalThis[n];
+    }
+    w.close();
+  }
+}
+
+function pairs(root) {
+  return [...root.querySelectorAll("dt")].map((dt) => [txt(dt), txt(dt.nextElementSibling)]);
+}
+
+function extractCards(host) {
+  const root = host.querySelector("[data-sg-datatable-cards]");
+  const nav = host.querySelector("nav");
+  const reportEl = host.querySelector("span.min-w-\\[180px\\]");
+  const rppSelect = host.querySelector("label select");
+  const panel = host.querySelector("[data-sg-datatable-filters-panel]");
+  const toolbarInput = [...host.querySelectorAll("input")].find((i) => !i.closest("[data-sg-datatable-filters-panel]") && !i.closest("table"));
+  const common = {
+    pager: nav
+      ? [...nav.querySelectorAll("button")].map((b) => ({
+          label: b.getAttribute("aria-label"),
+          current: b.getAttribute("aria-current") === "page",
+          disabled: b.hasAttribute("disabled"),
+        }))
+      : null,
+    report: reportEl ? txt(reportEl) : null,
+    rowsPerPage: rppSelect
+      ? { value: rppSelect.querySelector("option[selected]")?.getAttribute("value") ?? rppSelect.value ?? null, options: [...rppSelect.querySelectorAll("option")].map((o) => o.getAttribute("value")) }
+      : null,
+    globalInput: toolbarInput ? { placeholder: toolbarInput.getAttribute("placeholder"), value: toolbarInput.getAttribute("value") ?? "" } : null,
+    clearButton: [...host.querySelectorAll("button")].some((b) => txt(b) === "Clear filters"),
+  };
+  if (!root) return { mode: "table", ...common };
+  const sortSelect = root.querySelector('select[aria-label="Sort by"]');
+  const dirButton = root.querySelector('button[aria-label="Reverse order"]');
+  const filtersToggle = [...root.querySelectorAll("button")].find((b) => txt(b) === "Filters");
+  const stateEl = root.querySelector("[data-sg-card-state]");
+  return {
+    mode: "cards",
+    cards: [...root.querySelectorAll("li[data-sg-card]")].map((li) => ({
+      title: li.querySelector("[data-sg-card-title]") ? txt(li.querySelector("[data-sg-card-title]")) : null,
+      fields: pairs(li),
+      selected: li.getAttribute("aria-selected") === "true",
+    })),
+    state: stateEl ? { kind: stateEl.getAttribute("data-sg-card-state"), text: txt(stateEl) } : null,
+    sort: sortSelect
+      ? {
+          options: [...sortSelect.querySelectorAll("option")].map((o) => ({ value: o.getAttribute("value"), label: txt(o) })),
+          value: sortSelect.value ?? "",
+          directionEnabled: dirButton ? !dirButton.hasAttribute("disabled") : false,
+        }
+      : null,
+    filters: {
+      toggle: Boolean(filtersToggle),
+      open: Boolean(panel),
+      inputs: panel
+        ? [...panel.querySelectorAll("label")].map((l) => ({
+            label: txt(l.querySelector("span")),
+            placeholder: l.querySelector("input").getAttribute("placeholder"),
+            value: l.querySelector("input").getAttribute("value") ?? "",
+          }))
+        : [],
+    },
+    footer: root.querySelector("[data-sg-card-footer]") ? pairs(root.querySelector("[data-sg-card-footer]")) : null,
+    ...common,
+  };
+}
+
+const cardCases = cardCasesIn.map((c) => ({ name: c.name, props: c.props, width: c.width, actions: c.actions, expected: renderCards(c) }));
+
 fs.mkdirSync(path.dirname(out), { recursive: true });
 fs.writeFileSync(
   out,
   JSON.stringify(
-    { rows: ROWS, cases: rendered, compare, match, normalizeText, tokens, maxButtons, normalizeFilters, moveItem, columnKeys, fieldValue },
+    { rows: ROWS, cases: rendered, cardCases, compare, match, normalizeText, tokens, maxButtons, normalizeFilters, moveItem, columnKeys, fieldValue },
     null,
     0,
   ) + "\n",
   "utf8",
 );
 fs.rmSync(tmp, { recursive: true, force: true });
-console.log(`vetores: ${rendered.length} casos, ${compare.length} comparacoes, ${match.length} filtros, ${tokens.length} janelas -> ${out}`);
+console.log(`vetores: ${rendered.length} casos, ${cardCases.length} casos de cartoes, ${compare.length} comparacoes, ${match.length} filtros, ${tokens.length} janelas -> ${out}`);

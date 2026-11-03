@@ -187,7 +187,7 @@ Cada nome abaixo leva à página do componente no showcase ao vivo. O estado de 
 
 | Componente | O que faz |
 |---|---|
-| [`SgDatatable`](https://components-flutter.seedgrid.com.br/sg-datatable) | Tabela de dados com colunas configuráveis, paginação, ordenação, filtros, seleção, carga sob demanda e layout de colunas persistente. |
+| [`SgDatatable`](https://components-flutter.seedgrid.com.br/sg-datatable) | Tabela de dados com colunas configuráveis, paginação, ordenação, filtros, seleção, carga sob demanda, layout de colunas persistente e modo cartões… |
 
 </details>
 

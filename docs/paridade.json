@@ -204,7 +204,7 @@
    "status": "portado",
    "motivo": "tabela propria sem dependencia nova (two_dimensional_scrollables/TableView avaliada e descartada: exige altura de linha conhecida e nao mede conteudo); sem altura limitada pelo pai monta todas as linhas da pagina como o React (2.000 linhas sem paginador levam cerca de 1,9 s de build em teste), com altura limitada e mais de 100 linhas o corpo e virtualizado; ordenacao de texto aproxima a colacao ICU do localeCompare (vetores do React batem em 8.299 pares, mas locales exoticos podem divergir); className/style/tableClassName/rowClassName/bodyClassName/headerClassName/className de coluna nao existem (ADR 50); sortField/selection nulos significam nao controlado (Dart nao separa undefined de null); groupBoxProps vira SgListGroupBoxProps (title, width, height); ref vira controller; reordenar colunas por arrastar a alca funciona tambem por toque; painel de colunas vira painel de baixo com largura < 600; golden e teste em dispositivo nao feitos",
    "onde": "packages/seedgrid_components/lib/src/inputs/datatable/sg_datatable.dart",
-   "props": 41,
+   "props": 42,
    "propsOmitidas": 3,
    "propsGenericas": 14
   },

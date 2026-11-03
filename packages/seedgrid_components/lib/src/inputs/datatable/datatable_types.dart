@@ -163,6 +163,8 @@ class SgDatatableColumn {
     this.hidden = false,
     this.hideable = true,
     this.reorderable = true,
+    this.cardHidden = false,
+    this.cardTitle = false,
   });
 
   final String? columnId;
@@ -196,4 +198,10 @@ class SgDatatableColumn {
   final bool hidden;
   final bool hideable;
   final bool reorderable;
+
+  /// Modo cartoes (`mobileMode: cards`): nao mostra esta coluna no cartao (continua na tabela).
+  final bool cardHidden;
+
+  /// Modo cartoes: o valor desta coluna vira o titulo do cartao (sem rotulo). So a primeira marcada vale.
+  final bool cardTitle;
 }

@@ -38,6 +38,8 @@
 //   tableClassName           nao-aplicavel (aceita so para cumprir o contrato; sem efeito)
 //   rowClassName             nao-aplicavel (idem; classes CSS nao existem no Flutter)
 //   groupBoxProps            parcial   (SgListGroupBoxProps: title, width e height, o que o SgGroupBox tem)
+//   mobileMode               portada   (SgDatatableMobileMode: scroll | cards; P127 - abaixo de 600 px de largura do
+//                                       CONTAINER, como o React, cada linha vira um cartao "coluna: valor")
 //   showColumnManager        portada
 //   columnManagerLabel       portada
 //   columnManagerMaxHeight   portada   (numero ou 'Npx'/'Nrem')
@@ -78,6 +80,9 @@ const int kDatatableVirtualizeThreshold = 100;
 
 /// 2^40 como literal: `1 << 40` vira 0 no JavaScript (web) e `clamp(1, 0)` lanca `Invalid argument: 1`.
 const int _kMaxRecords = 1099511627776;
+
+/// Largura (px) do container abaixo da qual o modo `cards` entra (igual ao React e ao corte do gerenciador de colunas).
+const double kDatatableMobileBreakpoint = 600;
 
 /// Largura minima padrao de uma coluna sem `width`/`minWidth`.
 const double kDatatableDefaultMinColumnWidth = 96;
@@ -136,6 +141,7 @@ class SgDatatable extends StatefulWidget implements SgDatatableProps {
     this.showColumnManager = true,
     this.columnManagerLabel,
     this.columnManagerMaxHeight = 320,
+    this.mobileMode = SgDatatableMobileMode.scroll,
     this.controller,
   });
 
@@ -226,6 +232,11 @@ class SgDatatable extends StatefulWidget implements SgDatatableProps {
   @override
   final Object? columnManagerMaxHeight;
 
+  /// `scroll` (padrao): a tabela rola na horizontal; `cards`: abaixo de [kDatatableMobileBreakpoint] de largura do
+  /// container cada linha vira um cartao `rotulo: valor`, mantendo ordenacao, selecao, acoes, rodape e paginacao.
+  @override
+  final SgDatatableMobileMode mobileMode;
+
   /// `ref` do React.
   final SgDatatableController? controller;
 
@@ -293,6 +304,9 @@ class _SgDatatableState extends State<SgDatatable> {
   SgPersistence? _persistence;
   String? _hydrateSig;
   int _hydrateToken = 0;
+
+  // modo cartoes: painel de filtros aberto
+  bool _cardFiltersOpen = false;
 
   // gerenciador de colunas
   final OverlayPortalController _portal = OverlayPortalController();
@@ -891,7 +905,10 @@ class _SgDatatableState extends State<SgDatatable> {
               ? widget.value.length
               : widget.totalRecords!.toInt().clamp(0, _kMaxRecords))
         : _sortedRows.length;
-    final pageCount = _ceilDiv(total < 1 ? 1 : total, rows).clamp(1, _kMaxRecords);
+    final pageCount = _ceilDiv(
+      total < 1 ? 1 : total,
+      rows,
+    ).clamp(1, _kMaxRecords);
     final maxFirst = (pageCount - 1) * rows;
     final currentFirst = _currentFirst;
     final safeFirst = currentFirst < maxFirst ? currentFirst : maxFirst;
@@ -917,7 +934,7 @@ class _SgDatatableState extends State<SgDatatable> {
     }
 
     final box = widget.groupBoxProps;
-    final content = LayoutBuilder(
+    Widget contentFor(bool cardsMode) => LayoutBuilder(
       builder: (context, c) {
         final boundedHeight = c.hasBoundedHeight;
         final children = <Widget>[
@@ -931,6 +948,7 @@ class _SgDatatableState extends State<SgDatatable> {
             paged: paged,
             safeFirst: safeFirst,
             boundedHeight: boundedHeight,
+            cards: cardsMode,
           ),
           if (widget.paginator)
             _paginator(
@@ -957,12 +975,20 @@ class _SgDatatableState extends State<SgDatatable> {
       },
     );
 
-    Widget result = SgGroupBox(
+    Widget groupBox(bool cardsMode) => SgGroupBox(
       title: listBoxTitle(widget.title, box),
       width: box?.width,
       height: box?.height,
-      child: content,
+      child: contentFor(cardsMode),
     );
+    // O corte e medido no container da tabela (fora do SgGroupBox), como o React mede o elemento raiz.
+    Widget result = widget.mobileMode == SgDatatableMobileMode.cards
+        ? LayoutBuilder(
+            builder: (context, oc) => groupBox(
+              oc.maxWidth.isFinite && oc.maxWidth < kDatatableMobileBreakpoint,
+            ),
+          )
+        : groupBox(false);
     final id = widget.id;
     if (id != null && id.isNotEmpty) {
       result = Semantics(container: true, identifier: id, child: result);
@@ -1055,6 +1081,7 @@ class _SgDatatableState extends State<SgDatatable> {
     required List<SgDatatableRow> paged,
     required int safeFirst,
     required bool boundedHeight,
+    bool cards = false,
   }) {
     final cols = [for (final x in visible) x.column];
     final keys = [for (final x in visible) x.key];
@@ -1078,61 +1105,80 @@ class _SgDatatableState extends State<SgDatatable> {
       );
     }
 
-    final table = LayoutBuilder(
-      builder: (context, c) {
-        final avail = c.maxWidth;
-        final widths = _widths(cols, avail);
-        final total = widths.fold<double>(0, (a, b) => a + b);
-        final tableWidth = avail.isFinite && total < avail ? avail : total;
+    final table = cards
+        ? _cardsBlock(
+            context,
+            i18n,
+            theme,
+            cols: cols,
+            paged: paged,
+            safeFirst: safeFirst,
+            boundedHeight: boundedHeight,
+          )
+        : LayoutBuilder(
+            builder: (context, c) {
+              final avail = c.maxWidth;
+              final widths = _widths(cols, avail);
+              final total = widths.fold<double>(0, (a, b) => a + b);
+              final tableWidth = avail.isFinite && total < avail
+                  ? avail
+                  : total;
 
-        final header = _headerBlock(context, i18n, theme, cols, keys, widths);
-        final footer = _footerBlock(theme, cols, widths);
-
-        final body = _bodyBlock(
-          context,
-          i18n,
-          theme,
-          cols: cols,
-          keys: keys,
-          widths: widths,
-          tableWidth: tableWidth,
-          paged: paged,
-          safeFirst: safeFirst,
-          boundedHeight: boundedHeight,
-        );
-
-        final inner = SizedBox(
-          width: tableWidth,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [header, body, ?footer],
-          ),
-        );
-
-        final scrolled = (avail.isFinite && total <= avail)
-            ? inner
-            : SingleChildScrollView(
-                key: const ValueKey('sg-dt-hscroll'),
-                scrollDirection: Axis.horizontal,
-                child: inner,
+              final header = _headerBlock(
+                context,
+                i18n,
+                theme,
+                cols,
+                keys,
+                widths,
               );
-        return DecoratedBox(
-          decoration: BoxDecoration(
-            color: theme.surface,
-            border: Border.all(color: theme.border),
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(7),
-            child: DefaultTextStyle.merge(
-              style: TextStyle(fontSize: 14, color: theme.text),
-              child: scrolled,
-            ),
-          ),
-        );
-      },
-    );
+              final footer = _footerBlock(theme, cols, widths);
+
+              final body = _bodyBlock(
+                context,
+                i18n,
+                theme,
+                cols: cols,
+                keys: keys,
+                widths: widths,
+                tableWidth: tableWidth,
+                paged: paged,
+                safeFirst: safeFirst,
+                boundedHeight: boundedHeight,
+              );
+
+              final inner = SizedBox(
+                width: tableWidth,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [header, body, ?footer],
+                ),
+              );
+
+              final scrolled = (avail.isFinite && total <= avail)
+                  ? inner
+                  : SingleChildScrollView(
+                      key: const ValueKey('sg-dt-hscroll'),
+                      scrollDirection: Axis.horizontal,
+                      child: inner,
+                    );
+              return DecoratedBox(
+                decoration: BoxDecoration(
+                  color: theme.surface,
+                  border: Border.all(color: theme.border),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(7),
+                  child: DefaultTextStyle.merge(
+                    style: TextStyle(fontSize: 14, color: theme.text),
+                    child: scrolled,
+                  ),
+                ),
+              );
+            },
+          );
 
     final area = OverlayPortal(
       controller: _portal,
@@ -1477,6 +1523,393 @@ class _SgDatatableState extends State<SgDatatable> {
       );
     }
     return column;
+  }
+
+  // ---------------------------------------------------------------- modo cartoes (P127)
+
+  static bool _hasText(String? s) => s != null && s.isNotEmpty;
+
+  String _cardHeaderText(SgDatatableColumn c) =>
+      (c.header is String || c.header is num)
+      ? jsString(c.header)
+      : '[object Object]';
+
+  Widget _cardsBlock(
+    BuildContext context,
+    SgComponentsI18n i18n,
+    SgTheme theme, {
+    required List<SgDatatableColumn> cols,
+    required List<SgDatatableRow> paged,
+    required int safeFirst,
+    required bool boundedHeight,
+  }) {
+    SgDatatableColumn? titleCol;
+    for (final c in cols) {
+      if (c.cardTitle) {
+        titleCol = c;
+        break;
+      }
+    }
+    final bodyCols = [
+      for (final c in cols)
+        if (!identical(c, titleCol) && !c.cardHidden) c,
+    ];
+    final sortCols = [
+      for (final c in cols)
+        if (c.sortable && _hasText(c.sortField ?? c.field)) c,
+    ];
+    final filterCols = [
+      for (final c in cols)
+        if (c.filter && _hasText(c.filterField ?? c.field)) c,
+    ];
+    final showFilters = widget.showColumnFilters && filterCols.isNotEmpty;
+
+    String msg(String key, String fallback) =>
+        _resolveMessage(t(i18n, key), key, fallback);
+    final sortByLabel = msg('components.datatable.sortBy', 'Ordenar por');
+    final sortNoneLabel = msg('components.datatable.sortNone', 'Sem ordem');
+    final sortDirLabel = msg(
+      'components.datatable.sortDirection',
+      'Inverter ordem',
+    );
+    final filtersLabel = msg('components.datatable.filters', 'Filtros');
+
+    final sortField = _currentSortField;
+    final sortOrder = _currentSortOrder;
+    final sortKeys = [for (final c in sortCols) (c.sortField ?? c.field)!];
+    final sortValue =
+        (sortOrder != 0 && sortField != null && sortKeys.contains(sortField))
+        ? sortField
+        : '';
+
+    final controls = <Widget>[];
+    if (sortCols.isNotEmpty) {
+      controls.add(
+        Expanded(
+          child: Semantics(
+            label: sortByLabel,
+            child: DropdownButton<String>(
+              key: const ValueKey('sg-dt-card-sort'),
+              isExpanded: true,
+              isDense: true,
+              value: sortValue,
+              items: [
+                DropdownMenuItem(value: '', child: Text(sortNoneLabel)),
+                for (var i = 0; i < sortCols.length; i++)
+                  DropdownMenuItem(
+                    value: sortKeys[i],
+                    child: _node(sortCols[i].header) ?? const SizedBox.shrink(),
+                  ),
+              ],
+              onChanged: (v) {
+                if (v == null || v.isEmpty) {
+                  _commitSort(null, 0);
+                } else {
+                  _commitSort(v, 1);
+                }
+              },
+            ),
+          ),
+        ),
+      );
+      controls.add(const SizedBox(width: 8));
+      final canFlip = sortField != null && sortOrder != 0;
+      controls.add(
+        Tooltip(
+          key: const ValueKey('sg-dt-card-sort-dir'),
+          message: sortDirLabel,
+          child: Semantics(
+            label: sortDirLabel,
+            button: true,
+            enabled: canFlip,
+            excludeSemantics: true,
+            child: SgButton(
+              size: SgSize.sm,
+              appearance: SgAppearance.outline,
+              iconOnly: true,
+              disabled: !canFlip,
+              onClick: canFlip
+                  ? () => _commitSort(sortField, sortOrder == 1 ? -1 : 1)
+                  : null,
+              leftIcon: Icon(
+                sortOrder == -1 ? Icons.arrow_downward : Icons.arrow_upward,
+              ),
+            ),
+          ),
+        ),
+      );
+    }
+    if (showFilters) {
+      if (controls.isNotEmpty) controls.add(const SizedBox(width: 8));
+      controls.add(
+        SgButton(
+          key: const ValueKey('sg-dt-card-filters-toggle'),
+          size: SgSize.sm,
+          appearance: SgAppearance.outline,
+          onClick: () => setState(() => _cardFiltersOpen = !_cardFiltersOpen),
+          label: Text(filtersLabel),
+        ),
+      );
+    }
+
+    Widget? filtersPanel;
+    if (showFilters && _cardFiltersOpen) {
+      filtersPanel = Container(
+        key: const ValueKey('sg-dt-card-filters-panel'),
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          color: theme.surface,
+          border: Border.all(color: theme.border),
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            for (var i = 0; i < filterCols.length; i++) ...[
+              if (i > 0) const SizedBox(height: 8),
+              KeyedSubtree(
+                key: ValueKey(
+                  'sg-dt-card-filterlabel-${filterCols[i].filterField ?? filterCols[i].field}',
+                ),
+                child: DefaultTextStyle.merge(
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
+                    color: theme.muted,
+                  ),
+                  child: _node(filterCols[i].header) ?? const SizedBox.shrink(),
+                ),
+              ),
+              const SizedBox(height: 4),
+              Builder(
+                builder: (context) {
+                  final c = filterCols[i];
+                  final field = (c.filterField ?? c.field)!;
+                  return _DtTextField(
+                    key: ValueKey('sg-dt-card-filter-$field'),
+                    controller: _filterCtl(field),
+                    dense: false,
+                    placeholder:
+                        c.filterPlaceholder ??
+                        t(
+                          i18n,
+                          'components.datatable.columnFilterPlaceholder',
+                          {'column': _cardHeaderText(c)},
+                        ),
+                    onChanged: (v) {
+                      final next = {..._currentFilters, field: v};
+                      _commitFilters(
+                        normalizeFilters(next),
+                        _currentGlobalFilter,
+                      );
+                    },
+                  );
+                },
+              ),
+            ],
+          ],
+        ),
+      );
+    }
+
+    Widget list;
+    if (widget.loading) {
+      list = _messageRow(
+        theme,
+        t(i18n, 'components.datatable.loading'),
+        double.infinity,
+        const ValueKey('sg-dt-loading'),
+      );
+    } else if (paged.isEmpty) {
+      list = _messageRow(
+        theme,
+        widget.emptyMessage ?? t(i18n, 'components.datatable.empty'),
+        double.infinity,
+        const ValueKey('sg-dt-empty'),
+      );
+    } else {
+      list = Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          for (var i = 0; i < paged.length; i++) ...[
+            if (i > 0) const SizedBox(height: 8),
+            _cardOf(
+              theme,
+              row: paged[i],
+              absoluteIndex: safeFirst + i,
+              titleCol: titleCol,
+              bodyCols: bodyCols,
+            ),
+          ],
+        ],
+      );
+    }
+
+    final footerCols = [
+      for (final c in cols)
+        if (c.footer != null && !c.cardHidden) c,
+    ];
+    Widget? footer;
+    if (cols.any((c) => c.footer != null) && footerCols.isNotEmpty) {
+      footer = Container(
+        key: const ValueKey('sg-dt-card-footer'),
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          color: theme.primary50,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: DefaultTextStyle.merge(
+          style: const TextStyle(fontWeight: FontWeight.w600),
+          child: _pairsTable([
+            for (final c in footerCols)
+              (
+                _node(c.header) ?? const SizedBox.shrink(),
+                _node(
+                      c.footer is Function
+                          ? Function.apply(c.footer as Function, [_sortedRows])
+                          : c.footer,
+                    ) ??
+                    const SizedBox.shrink(),
+              ),
+          ]),
+        ),
+      );
+    }
+
+    final body = Column(
+      key: const ValueKey('sg-dt-cards'),
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        if (controls.isNotEmpty) Row(children: controls),
+        if (filtersPanel != null) ...[const SizedBox(height: 8), filtersPanel],
+        if (controls.isNotEmpty || filtersPanel != null)
+          const SizedBox(height: 8),
+        list,
+        if (footer != null) ...[const SizedBox(height: 8), footer],
+      ],
+    );
+    final scoped = DefaultTextStyle.merge(
+      style: TextStyle(fontSize: 14, color: theme.text),
+      child: body,
+    );
+    return boundedHeight ? SingleChildScrollView(child: scoped) : scoped;
+  }
+
+  /// Duas colunas "rotulo | valor": o rotulo ocupa a largura do maior rotulo, o valor o resto.
+  Widget _pairsTable(List<(Widget, Widget)> pairs) {
+    return Table(
+      defaultVerticalAlignment: TableCellVerticalAlignment.top,
+      columnWidths: const {0: IntrinsicColumnWidth(), 1: FlexColumnWidth()},
+      children: [
+        for (final (label, value) in pairs)
+          TableRow(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(right: 12, top: 2, bottom: 2),
+                child: KeyedSubtree(
+                  key: const ValueKey('sg-dt-card-label'),
+                  child: label,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 2),
+                child: KeyedSubtree(
+                  key: const ValueKey('sg-dt-card-value'),
+                  child: value,
+                ),
+              ),
+            ],
+          ),
+      ],
+    );
+  }
+
+  Widget _cardCell(SgDatatableColumn c, SgDatatableRow row, int absoluteIndex) {
+    final value = getFieldValue(row, c.field);
+    return c.body != null
+        ? c.body!(
+            row,
+            SgDatatableCellMeta(
+              rowIndex: absoluteIndex,
+              field: c.field,
+              value: value,
+              rowData: row,
+            ),
+          )
+        : Text(value == null ? '-' : jsString(value));
+  }
+
+  Widget _cardOf(
+    SgTheme theme, {
+    required SgDatatableRow row,
+    required int absoluteIndex,
+    required SgDatatableColumn? titleCol,
+    required List<SgDatatableColumn> bodyCols,
+  }) {
+    final selected = _isRowSelected(row);
+    final striped = widget.stripedRows && absoluteIndex % 2 == 1;
+    final selectable = widget.selectionMode != null;
+    final card = Container(
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: selected
+            ? theme.primary100
+            : (striped ? theme.primary50 : theme.surface),
+        border: Border.all(color: selected ? theme.primary600 : theme.border),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (titleCol != null)
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8),
+              child: KeyedSubtree(
+                key: const ValueKey('sg-dt-card-title'),
+                child: DefaultTextStyle.merge(
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                  ),
+                  child: _cardCell(titleCol, row, absoluteIndex),
+                ),
+              ),
+            ),
+          if (bodyCols.isNotEmpty)
+            _pairsTable([
+              for (final c in bodyCols)
+                (
+                  DefaultTextStyle.merge(
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      color: theme.muted,
+                    ),
+                    child: _node(c.header) ?? const SizedBox.shrink(),
+                  ),
+                  _cardCell(c, row, absoluteIndex),
+                ),
+            ]),
+        ],
+      ),
+    );
+    return Semantics(
+      key: ValueKey('sg-dt-card-$absoluteIndex'),
+      selected: selected,
+      container: true,
+      child: selectable
+          ? MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onTap: () => _handleRowSelection(row),
+                child: card,
+              ),
+            )
+          : card,
+    );
   }
 
   // ---------------------------------------------------------------- paginador

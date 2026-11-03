@@ -3361,6 +3361,19 @@
      "semanticRole": "appearance"
     },
     {
+     "name": "mobileMode",
+     "optional": true,
+     "ts": "SgDatatableMobileMode | undefined",
+     "alias": null,
+     "enum": [
+      "scroll",
+      "cards"
+     ],
+     "description": "Comportamento quando o container fica abaixo de 600 px (SG_DATATABLE_MOBILE_BREAKPOINT): scroll rola a tabela; cards mostra cada linha como cartao.",
+     "default": "scroll",
+     "defaultFonte": "codigo"
+    },
+    {
      "name": "onFilter",
      "optional": true,
      "ts": "((event: SgDatatableFilterEvent) => void) | undefined",

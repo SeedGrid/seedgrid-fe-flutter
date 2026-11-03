@@ -408,12 +408,59 @@ class _SgDatatablePageState extends State<SgDatatablePage> {
         // #endregion
         code: SgDatatablePageSnippets.sgDatatableEstados,
       ),
+      ShowcaseExample(
+        title: 'Modo cartões (celular)',
+        description:
+            'mobileMode: cards troca a tabela por cartões "coluna: valor" quando o container tem menos de 600 px. cardTitle usa a coluna como título do cartão e cardHidden a deixa de fora. Ordenação vira um seletor, os filtros vão para um painel aberto por botão; seleção, ações, rodapé e paginação continuam.',
+        preview:
+            // #region sg-datatable-cartoes
+            SizedBox(
+              width: 420,
+              child: SgDatatable(
+                title: context.tx('Pessoas (cartões)'),
+                value: _pessoas,
+                columns: const [
+                  SgDatatableColumn(
+                    field: 'id',
+                    header: 'Id',
+                    cardHidden: true,
+                  ),
+                  SgDatatableColumn(
+                    field: 'nome',
+                    header: 'Nome',
+                    sortable: true,
+                    filter: true,
+                    cardTitle: true,
+                  ),
+                  SgDatatableColumn(
+                    field: 'cidade',
+                    header: 'Cidade',
+                    sortable: true,
+                    filter: true,
+                  ),
+                  SgDatatableColumn(
+                    field: 'idade',
+                    header: 'Idade',
+                    sortable: true,
+                  ),
+                ],
+                dataKey: 'id',
+                mobileMode: SgDatatableMobileMode.cards,
+                selectionMode: SgDatatableSelectionMode.single,
+                showColumnFilters: true,
+                paginator: true,
+                rows: 4,
+              ),
+            ),
+        // #endregion
+        code: SgDatatablePageSnippets.sgDatatableCartoes,
+      ),
     ];
 
     return SgShowcasePage(
       name: 'SgDatatable',
       description:
-          'Tabela de dados com colunas configuráveis, paginação, ordenação, filtros, seleção, carga sob demanda e layout de colunas persistente.',
+          'Tabela de dados com colunas configuráveis, paginação, ordenação, filtros, seleção, carga sob demanda, layout de colunas persistente e modo cartões para celular (mobileMode).',
       examples: examples,
       propSpecs: [
         ...sgPropSpecs['SgDatatable']!,

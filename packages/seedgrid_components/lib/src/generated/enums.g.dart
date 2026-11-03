@@ -684,6 +684,24 @@ enum SgConfirmationDialogIconPlacement {
   }
 }
 
+/// Valores aceitos pelo React: `scroll`, `cards`.
+enum SgDatatableMobileMode {
+  scroll('scroll'),
+  cards('cards');
+
+  const SgDatatableMobileMode(this.value);
+
+  /// String equivalente no React.
+  final String value;
+
+  static SgDatatableMobileMode? fromValue(String? v) {
+    for (final e in values) {
+      if (e.value == v) return e;
+    }
+    return null;
+  }
+}
+
 /// Valores aceitos pelo React: `multiple`, `single`.
 enum SgDatatableSelectionMode {
   multiple('multiple'),

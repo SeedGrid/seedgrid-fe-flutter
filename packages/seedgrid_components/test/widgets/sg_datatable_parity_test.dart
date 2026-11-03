@@ -41,6 +41,8 @@ SgDatatableColumn column(Map<String, dynamic> c) {
     excludeGlobalFilter: c['excludeGlobalFilter'] == true,
     align: SgDatatableColumnAlign.fromValue(c['align'] as String?),
     hidden: c['hidden'] == true,
+    cardHidden: c['cardHidden'] == true,
+    cardTitle: c['cardTitle'] == true,
     footer: footer,
     sortFunction: c['sortFunction'] == 'byNameLength'
         ? (a, b) => (a['name'] as String).length - (b['name'] as String).length
@@ -86,6 +88,9 @@ Widget fromProps(Map<String, dynamic> p, List<SgDatatableRow> rows) {
     showClearFiltersButton: p['showClearFiltersButton'] == true,
     loading: p['loading'] == true,
     emptyMessage: p['emptyMessage'] as String?,
+    mobileMode:
+        SgDatatableMobileMode.fromValue(p['mobileMode'] as String?) ??
+        SgDatatableMobileMode.scroll,
   );
 }
 
