@@ -423,6 +423,25 @@ void main() {
   });
 
   group('tiered', () {
+    testWidgets(
+      'o submenu tem a altura do conteudo, nao a da tela (P139.F1.T2)',
+      (t) async {
+        await t.pumpWidget(
+          host(
+            SgMenu(
+              menu: tree(),
+              menuVariantStyle: SgMenuMenuVariantStyle.tiered,
+            ),
+            height: 700,
+          ),
+        );
+        await t.tap(find.text('Vendas'));
+        await t.pumpAndSettle();
+        final level = t.getSize(find.byKey(const ValueKey('sg-menu-tiered-1')));
+        expect(level.height, lessThan(200));
+      },
+    );
+
     testWidgets('clique abre o submenu num overlay e fora fecha', (t) async {
       final nav = <String>[];
       await t.pumpWidget(

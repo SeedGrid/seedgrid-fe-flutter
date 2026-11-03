@@ -490,24 +490,38 @@ class _SgDockMenuState extends State<SgDockMenu> {
       border: Border.all(color: theme.border.withValues(alpha: 0.85)),
     );
 
-    final dockBody = ClipRRect(
-      borderRadius: BorderRadius.circular(borderRadius),
-      child: BackdropFilter(
-        filter: ui.ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-        child: AnimatedContainer(
-          key: const ValueKey('sg-dock-container'),
-          duration: const Duration(milliseconds: 300),
-          curve: Curves.ease,
-          decoration: decoration,
-          padding: horizontal
-              ? EdgeInsets.symmetric(
-                  vertical: crossPadding,
-                  horizontal: edgePadding,
-                )
-              : EdgeInsets.symmetric(
-                  vertical: edgePadding,
-                  horizontal: crossPadding,
-                ),
+    // Fundo (blur + borda) recortado no raio; o conteudo (itens ampliados, rotulos, badges) fica FORA do
+    // recorte para o botao crescer por cima do dock, como no React (sem overflow:hidden).
+    final dockBody = Stack(
+      clipBehavior: Clip.none,
+      children: [
+        Positioned.fill(
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(borderRadius),
+            child: BackdropFilter(
+              filter: ui.ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+              child: AnimatedContainer(
+                key: const ValueKey('sg-dock-container'),
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.ease,
+                decoration: decoration,
+              ),
+            ),
+          ),
+        ),
+        Padding(
+          // +1: a borda de 1 px do fundo entra no tamanho, como no AnimatedContainer anterior.
+          padding:
+              (horizontal
+                      ? EdgeInsets.symmetric(
+                          vertical: crossPadding,
+                          horizontal: edgePadding,
+                        )
+                      : EdgeInsets.symmetric(
+                          vertical: edgePadding,
+                          horizontal: crossPadding,
+                        ))
+                  .add(const EdgeInsets.all(1)),
           child: SizedBox(
             width: stackSize.width,
             height: stackSize.height,
@@ -534,7 +548,7 @@ class _SgDockMenuState extends State<SgDockMenu> {
             ),
           ),
         ),
-      ),
+      ],
     );
 
     final dock = MouseRegion(

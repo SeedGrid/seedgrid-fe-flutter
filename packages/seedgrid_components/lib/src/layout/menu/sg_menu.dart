@@ -2054,6 +2054,7 @@ class _TieredLevelState extends State<_TieredLevel> {
       ),
       child: IntrinsicWidth(
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             for (final n in widget.nodes)

@@ -17,14 +17,150 @@ class SgBadgePage extends StatefulWidget {
 class _SgBadgePageState extends State<SgBadgePage> {
   String _ultimo = 'nada ainda';
   bool _tagVisivel = true;
+  bool _manualVisivel = true;
 
   @override
   Widget build(BuildContext context) {
     final examples = <ShowcaseExample>[
       ShowcaseExample(
-        title: 'Severidades e estilos',
+        title: 'Básico',
+        description: 'Uso básico: value, severity e badgeStyle.',
+        preview:
+            // #region sg-badge-basico
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                SgBadge(value: Text(context.tx('Admin'))),
+                SgBadge(
+                  value: Text(context.tx('Pendente')),
+                  severity: SgBadgeSeverity.warning,
+                  badgeStyle: SgBadgeBadgeStyle.soft,
+                ),
+                SgBadge(
+                  value: Text(context.tx('Pago')),
+                  severity: SgBadgeSeverity.success,
+                  badgeStyle: SgBadgeBadgeStyle.solid,
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgBadgePageSnippets.sgBadgeBasico,
+      ),
+      ShowcaseExample(
+        title: 'Variantes',
+        description: 'Solid, soft, outline e ghost.',
+        preview:
+            // #region sg-badge-variantes
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                SgBadge(
+                  value: Text(context.tx('Solid')),
+                  badgeStyle: SgBadgeBadgeStyle.solid,
+                ),
+                SgBadge(
+                  value: Text(context.tx('Soft')),
+                  badgeStyle: SgBadgeBadgeStyle.soft,
+                  severity: SgBadgeSeverity.secondary,
+                ),
+                SgBadge(
+                  value: Text(context.tx('Outline')),
+                  badgeStyle: SgBadgeBadgeStyle.outline,
+                  severity: SgBadgeSeverity.info,
+                ),
+                SgBadge(
+                  value: Text(context.tx('Ghost')),
+                  badgeStyle: SgBadgeBadgeStyle.ghost,
+                  severity: SgBadgeSeverity.neutral,
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgBadgePageSnippets.sgBadgeVariantes,
+      ),
+      ShowcaseExample(
+        title: 'Tamanhos',
+        description: 'XS, SM, MD e LG.',
+        preview:
+            // #region sg-badge-tamanhos
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                SgBadge(value: Text(context.tx('XS')), size: SgBadgeSize.xs),
+                SgBadge(value: Text(context.tx('SM')), size: SgBadgeSize.sm),
+                SgBadge(value: Text(context.tx('MD')), size: SgBadgeSize.md),
+                SgBadge(value: Text(context.tx('LG')), size: SgBadgeSize.lg),
+              ],
+            ),
+        // #endregion
+        code: SgBadgePageSnippets.sgBadgeTamanhos,
+      ),
+      ShowcaseExample(
+        title: 'Contador e dot',
+        description: 'Badge numérico, max e indicador.',
+        preview:
+            // #region sg-badge-contador
+            const Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                SgBadge(count: 3, severity: SgBadgeSeverity.danger),
+                SgBadge(count: 120, max: 99, severity: SgBadgeSeverity.danger),
+                SgBadge(dot: true, severity: SgBadgeSeverity.success),
+                SgBadge(
+                  dot: true,
+                  severity: SgBadgeSeverity.success,
+                  pulse: true,
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgBadgePageSnippets.sgBadgeContador,
+      ),
+      ShowcaseExample(
+        title: 'Ações',
+        description: 'Removível e clicável.',
+        preview:
+            // #region sg-badge-acoes
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                SgBadge(
+                  value: Text(context.tx('Remover auto')),
+                  removable: true,
+                  autoRemove: true,
+                  onRemove: () => setState(() => _ultimo = 'removida (auto)'),
+                ),
+                if (_manualVisivel)
+                  SgBadge(
+                    value: Text(context.tx('Remover manual')),
+                    removable: true,
+                    autoRemove: false,
+                    onRemove: () => setState(() {
+                      _manualVisivel = false;
+                      _ultimo = 'removida (manual)';
+                    }),
+                  ),
+                Text('Último evento: $_ultimo'),
+              ],
+            ),
+        // #endregion
+        code: SgBadgePageSnippets.sgBadgeAcoes,
+      ),
+      // Exemplos só do Flutter (depois dos que espelham o React).
+      ShowcaseExample(
+        title: 'Severidades',
         description:
-            'Quatro estilos (solid, soft, outline, ghost) para cada severidade.',
+            'Cada severidade e cada estilo (solid, soft, outline, ghost).',
         preview:
             // #region sg-badge-severidades
             Wrap(
@@ -45,18 +181,15 @@ class _SgBadgePageState extends State<SgBadgePage> {
         code: SgBadgePageSnippets.sgBadgeSeveridades,
       ),
       ShowcaseExample(
-        title: 'Tamanhos, forma e ícones',
+        title: 'Forma e ícones',
+        description: 'rounded: false, leftIcon e rightIcon.',
         preview:
-            // #region sg-badge-tamanhos
+            // #region sg-badge-forma
             Wrap(
               spacing: 8,
               runSpacing: 8,
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
-                SgBadge(value: Text(context.tx('xs')), size: SgBadgeSize.xs),
-                SgBadge(value: Text(context.tx('sm')), size: SgBadgeSize.sm),
-                SgBadge(value: Text(context.tx('md'))),
-                SgBadge(value: Text(context.tx('lg')), size: SgBadgeSize.lg),
                 SgBadge(value: Text(context.tx('quadrado')), rounded: false),
                 SgBadge(
                   value: Text(context.tx('favorito')),
@@ -69,54 +202,7 @@ class _SgBadgePageState extends State<SgBadgePage> {
               ],
             ),
         // #endregion
-        code: SgBadgePageSnippets.sgBadgeTamanhos,
-      ),
-      ShowcaseExample(
-        title: 'Contador com limite',
-        description: 'count aplica max ("99+") e showZero.',
-        preview:
-            // #region sg-badge-contador
-            const Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              children: [
-                SgBadge(count: 5, severity: SgBadgeSeverity.danger),
-                SgBadge(count: 150, max: 99, severity: SgBadgeSeverity.danger),
-                SgBadge(count: 0),
-                SgBadge(count: 0, showZero: false),
-              ],
-            ),
-        // #endregion
-        code: SgBadgePageSnippets.sgBadgeContador,
-      ),
-      ShowcaseExample(
-        title: 'Ponto de status',
-        preview:
-            // #region sg-badge-dot
-            Wrap(
-              spacing: 16,
-              runSpacing: 16,
-              children: [
-                SgBadge(
-                  dot: true,
-                  severity: SgBadgeSeverity.success,
-                  hint: context.tx('Online'),
-                ),
-                SgBadge(
-                  dot: true,
-                  severity: SgBadgeSeverity.danger,
-                  pulse: true,
-                  hint: context.tx('Ao vivo'),
-                ),
-                SgBadge(
-                  dot: true,
-                  severity: SgBadgeSeverity.neutral,
-                  hint: context.tx('Ausente'),
-                ),
-              ],
-            ),
-        // #endregion
-        code: SgBadgePageSnippets.sgBadgeDot,
+        code: SgBadgePageSnippets.sgBadgeForma,
       ),
       ShowcaseExample(
         title: 'Clicável e removível',

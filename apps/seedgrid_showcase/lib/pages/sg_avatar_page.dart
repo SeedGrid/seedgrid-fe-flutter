@@ -20,6 +20,160 @@ class _SgAvatarPageState extends State<SgAvatarPage> {
   Widget build(BuildContext context) {
     final examples = <ShowcaseExample>[
       ShowcaseExample(
+        title: 'Básico',
+        description: 'Uso básico com label, ícone e imagem.',
+        preview:
+            // #region sg-avatar-basico
+            Wrap(
+              spacing: 12,
+              runSpacing: 12,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                SgAvatar(label: Text(context.tx('P'))),
+                SgAvatar(
+                  icon: Icon(Icons.person),
+                  severity: SgAvatarSeverity.secondary,
+                ),
+                SgAvatar(
+                  src: 'https://i.pravatar.cc/150?img=32',
+                  label: Text(context.tx('Amy Elsner')),
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgAvatarPageSnippets.sgAvatarBasico,
+      ),
+      ShowcaseExample(
+        title: 'Shape e Tamanho',
+        description: 'Combinações de shape e size.',
+        preview:
+            // #region sg-avatar-tamanhos
+            Wrap(
+              spacing: 12,
+              runSpacing: 12,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                SgAvatar(
+                  label: Text(context.tx('C')),
+                  shape: SgAvatarShape.circle,
+                ),
+                SgAvatar(
+                  label: Text(context.tx('S')),
+                  shape: SgAvatarShape.square,
+                ),
+                SgAvatar(label: Text(context.tx('XS')), size: SgAvatarSize.xs),
+                SgAvatar(label: Text(context.tx('LG')), size: SgAvatarSize.lg),
+                SgAvatar(
+                  src: 'https://i.pravatar.cc/150?img=47',
+                  label: Text(context.tx('Asiya Javayant')),
+                  shape: SgAvatarShape.square,
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgAvatarPageSnippets.sgAvatarTamanhos,
+      ),
+      ShowcaseExample(
+        title: 'Severity e Cores Customizadas',
+        description: 'Preset por severity e override de cores.',
+        preview:
+            // #region sg-avatar-cores
+            Wrap(
+              spacing: 12,
+              runSpacing: 12,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                SgAvatar(
+                  label: Text(context.tx('P')),
+                  severity: SgAvatarSeverity.primary,
+                ),
+                SgAvatar(
+                  label: Text(context.tx('S')),
+                  severity: SgAvatarSeverity.success,
+                ),
+                SgAvatar(
+                  label: Text(context.tx('D')),
+                  severity: SgAvatarSeverity.danger,
+                ),
+                SgAvatar(
+                  icon: Icon(Icons.photo_camera),
+                  severity: SgAvatarSeverity.custom,
+                  customColors: SgAvatarCustomColors(
+                    bg: Color(0xFF7C3AED),
+                    fg: Color(0xFFFFFFFF),
+                    border: Color(0xFF5B21B6),
+                    ring: Color(0x597C3AED),
+                  ),
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgAvatarPageSnippets.sgAvatarCores,
+      ),
+      ShowcaseExample(
+        title: 'Avatar Group',
+        description: 'Agrupamento com sobreposição e contador automático.',
+        preview:
+            // #region sg-avatar-grupo
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SgAvatarGroup(
+                  children: [
+                    SgAvatar(
+                      src: 'https://i.pravatar.cc/150?img=32',
+                      label: Text(context.tx('Amy Elsner')),
+                    ),
+                    SgAvatar(
+                      src: 'https://i.pravatar.cc/150?img=47',
+                      label: Text(context.tx('Asiya Javayant')),
+                    ),
+                    SgAvatar(
+                      src: 'https://i.pravatar.cc/150?img=12',
+                      label: Text(context.tx('Onyama Limba')),
+                    ),
+                    SgAvatar(
+                      src: 'https://i.pravatar.cc/150?img=56',
+                      label: Text(context.tx('Ioni Bowcher')),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 16),
+                SgAvatarGroup(
+                  max: 3,
+                  total: 6,
+                  size: SgAvatarSize.sm,
+                  moreSeverity: SgAvatarSeverity.secondary,
+                  children: [
+                    SgAvatar(
+                      icon: Icon(Icons.group),
+                      severity: SgAvatarSeverity.info,
+                      size: SgAvatarSize.sm,
+                    ),
+                    SgAvatar(
+                      label: Text(context.tx('AL')),
+                      severity: SgAvatarSeverity.success,
+                      size: SgAvatarSize.sm,
+                    ),
+                    SgAvatar(
+                      label: Text(context.tx('BK')),
+                      severity: SgAvatarSeverity.warning,
+                      size: SgAvatarSize.sm,
+                    ),
+                    SgAvatar(
+                      label: Text(context.tx('CM')),
+                      severity: SgAvatarSeverity.danger,
+                      size: SgAvatarSize.sm,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgAvatarPageSnippets.sgAvatarGrupo,
+      ),
+      // Exemplos só do Flutter (depois dos que espelham o React).
+      ShowcaseExample(
         title: 'Iniciais, ícone e fallback',
         description: 'Do nome saem até 2 iniciais; sem nada, aparece "?".',
         preview:
@@ -43,46 +197,6 @@ class _SgAvatarPageState extends State<SgAvatarPage> {
             ),
         // #endregion
         code: SgAvatarPageSnippets.sgAvatarConteudo,
-      ),
-      ShowcaseExample(
-        title: 'Severidades',
-        preview:
-            // #region sg-avatar-severidades
-            Wrap(
-              spacing: 12,
-              runSpacing: 12,
-              children: [
-                for (final s in SgAvatarSeverity.values)
-                  SgAvatar(label: Text(s.value), severity: s),
-              ],
-            ),
-        // #endregion
-        code: SgAvatarPageSnippets.sgAvatarSeveridades,
-      ),
-      ShowcaseExample(
-        title: 'Tamanhos e formas',
-        preview:
-            // #region sg-avatar-tamanhos
-            Wrap(
-              spacing: 12,
-              runSpacing: 12,
-              crossAxisAlignment: WrapCrossAlignment.center,
-              children: [
-                SgAvatar(label: Text(context.tx('XS')), size: SgAvatarSize.xs),
-                SgAvatar(label: Text(context.tx('SM')), size: SgAvatarSize.sm),
-                SgAvatar(label: Text(context.tx('MD'))),
-                SgAvatar(label: Text(context.tx('LG')), size: SgAvatarSize.lg),
-                SgAvatar(label: Text(context.tx('XL')), size: SgAvatarSize.xl),
-                SgAvatar(
-                  label: Text(context.tx('Quadrado')),
-                  shape: SgAvatarShape.square,
-                  size: SgAvatarSize.lg,
-                ),
-                SgAvatar(label: Text(context.tx('Sem borda')), bordered: false),
-              ],
-            ),
-        // #endregion
-        code: SgAvatarPageSnippets.sgAvatarTamanhos,
       ),
       ShowcaseExample(
         title: 'Imagem com fallback',
@@ -127,21 +241,6 @@ class _SgAvatarPageState extends State<SgAvatarPage> {
             ),
         // #endregion
         code: SgAvatarPageSnippets.sgAvatarInterativo,
-      ),
-      ShowcaseExample(
-        title: 'Cores customizadas',
-        preview:
-            // #region sg-avatar-cores
-            SgAvatar(
-              label: Text(context.tx('Roxo Real')),
-              customColors: SgAvatarCustomColors(
-                bg: Color(0xFF7C3AED),
-                fg: Colors.white,
-                border: Color(0xFF6D28D9),
-              ),
-            ),
-        // #endregion
-        code: SgAvatarPageSnippets.sgAvatarCores,
       ),
     ];
 

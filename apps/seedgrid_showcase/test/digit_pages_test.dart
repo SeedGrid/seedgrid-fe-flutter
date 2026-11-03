@@ -25,7 +25,7 @@ void main() {
     await settle(t);
     final state = t.state<SgFlipDigitState>(find.byType(SgFlipDigit).first);
     expect(state.engine.value, '0');
-    await t.tap(find.text('+1'));
+    await t.tap(find.text('Próximo (+1)'));
     await t.pump();
     expect(state.engine.value, '1');
     expect(state.engine.animating, isTrue);
@@ -33,9 +33,9 @@ void main() {
     await t.pump(const Duration(milliseconds: 16));
     expect(state.engine.animating, isFalse);
 
-    await tapLink(t, const ValueKey('link-exemplo-4'));
+    await tapLink(t, const ValueKey('link-exemplo-2'));
     final letters = t.state<SgFlipDigitState>(
-      find.byWidgetPredicate((w) => w is SgFlipDigit && w.value == 'A'),
+      find.byWidgetPredicate((w) => w is SgFlipDigit && w.value == 'A').first,
     );
     expect(letters.engine.value, 'A');
     await t.tap(find.text('Próxima letra'));

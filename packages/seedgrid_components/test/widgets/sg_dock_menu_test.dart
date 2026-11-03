@@ -113,6 +113,25 @@ void main() {
       },
     );
 
+    testWidgets(
+      'os itens nao ficam dentro de um recorte do dock (P139.F1.T1)',
+      (t) async {
+        await t.pumpWidget(host(SgDockMenu(items: _items())));
+        expect(
+          find.ancestor(of: _button('a'), matching: find.byType(ClipRRect)),
+          findsNothing,
+          reason: 'o botao ampliado tem de poder sair do dock sem ser cortado',
+        );
+        expect(
+          find.ancestor(
+            of: _button('a'),
+            matching: find.byType(BackdropFilter),
+          ),
+          findsNothing,
+        );
+      },
+    );
+
     testWidgets('items vazio: so a moldura, sem erro', (t) async {
       await t.pumpWidget(host(const SgDockMenu(items: [])));
       expect(_container, findsOneWidget);

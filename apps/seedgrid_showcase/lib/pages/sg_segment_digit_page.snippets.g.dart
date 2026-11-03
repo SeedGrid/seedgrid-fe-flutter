@@ -15,54 +15,158 @@ Wrap(
 )
 ''';
 
-  /// Region `sg-segment-digit-cores`.
-  static const String sgSegmentDigitCores = r'''
-const Wrap(
-  spacing: 8,
-  runSpacing: 8,
+  /// Region `sg-segment-digit-basico`.
+  static const String sgSegmentDigitBasico = r'''
+Wrap(
+  spacing: 16,
+  runSpacing: 12,
+  crossAxisAlignment: WrapCrossAlignment.center,
   children: [
-    SgSegmentDigit(value: '1', size: 48),
-    SgSegmentDigit(value: '2', size: 48, color: '#ef4444'),
-    SgSegmentDigit(value: '3', size: 48, color: 'rgb(37, 99, 235)'),
-    SgSegmentDigit(
-      value: '4',
-      size: 48,
-      color: 'rgba(22, 163, 74, 0.5)',
+    SgSegmentDigit(value: '$_digito', size: 64),
+    Wrap(
+      spacing: 8,
+      runSpacing: 8,
+      children: [
+        SgButton(
+          label: Text(context.tx('Próximo (+1)')),
+          onClick: () =>
+              setState(() => _digito = (_digito + 1) % 10),
+        ),
+        SgButton(
+          label: Text(context.tx('Anterior (-1)')),
+          onClick: () =>
+              setState(() => _digito = (_digito + 9) % 10),
+        ),
+        SgButton(
+          label: Text(context.tx('Aleatório')),
+          onClick: () => setState(
+            () => _digito = DateTime.now().microsecond % 10,
+          ),
+        ),
+      ],
     ),
   ],
 )
 ''';
 
-  /// Region `sg-segment-digit-hora`.
-  static const String sgSegmentDigitHora = r'''
-const Row(
-  mainAxisSize: MainAxisSize.min,
+  /// Region `sg-segment-digit-cores`.
+  static const String sgSegmentDigitCores = r'''
+Wrap(
+  spacing: 24,
+  runSpacing: 12,
   children: [
-    SgSegmentDigit(value: '1', size: 56),
-    SizedBox(width: 6),
-    SgSegmentDigit(value: '4', size: 56),
-    SizedBox(width: 6),
-    SgSegmentDigit(value: ':', size: 56),
-    SizedBox(width: 6),
-    SgSegmentDigit(value: '0', size: 56),
-    SizedBox(width: 6),
-    SgSegmentDigit(value: '7', size: 56),
+    Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(context.tx('Padrão')),
+        SgSegmentDigit(value: '8', size: 42),
+      ],
+    ),
+    Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(context.tx('Azul')),
+        SgSegmentDigit(value: '8', size: 42, color: '#3b82f6'),
+      ],
+    ),
+    Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(context.tx('Amarelo')),
+        SgSegmentDigit(value: '8', size: 42, color: '#eab308'),
+      ],
+    ),
+    Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(context.tx('Verde')),
+        SgSegmentDigit(value: '8', size: 42, color: '#22c55e'),
+      ],
+    ),
+    Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(context.tx('Branco')),
+        Container(
+          padding: const EdgeInsets.all(4),
+          decoration: BoxDecoration(
+            color: const Color(0xFF171717),
+            borderRadius: BorderRadius.circular(4),
+          ),
+          child: const SgSegmentDigit(
+            value: '8',
+            size: 42,
+            color: '#f8fafc',
+          ),
+        ),
+      ],
+    ),
+  ],
+)
+''';
+
+  /// Region `sg-segment-digit-relogio`.
+  static const String sgSegmentDigitRelogio = r'''
+Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    Row(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        SgSegmentDigit(value: hh[0], size: 36),
+        const SizedBox(width: 4),
+        SgSegmentDigit(value: hh[1], size: 36),
+        const SizedBox(width: 4),
+        const SgSegmentDigit(value: ':', size: 36),
+        const SizedBox(width: 4),
+        SgSegmentDigit(value: mm[0], size: 36),
+        const SizedBox(width: 4),
+        SgSegmentDigit(value: mm[1], size: 36),
+        const SizedBox(width: 4),
+        const SgSegmentDigit(value: ':', size: 36),
+        const SizedBox(width: 4),
+        SgSegmentDigit(value: ss[0], size: 36),
+        const SizedBox(width: 4),
+        SgSegmentDigit(value: ss[1], size: 36),
+      ],
+    ),
+    const SizedBox(height: 12),
+    SgButton(
+      label: Text(context.tx('+1 segundo')),
+      onClick: () => setState(() => _segundos++),
+    ),
   ],
 )
 ''';
 
   /// Region `sg-segment-digit-tamanhos`.
   static const String sgSegmentDigitTamanhos = r'''
-const Wrap(
-  spacing: 8,
-  runSpacing: 8,
-  crossAxisAlignment: WrapCrossAlignment.end,
+Wrap(
+  spacing: 24,
+  runSpacing: 12,
   children: [
-    SgSegmentDigit(value: '8', size: 10),
-    SgSegmentDigit(value: '8', size: 16),
-    SgSegmentDigit(value: '8', size: 32),
-    SgSegmentDigit(value: '8', size: 64),
-    SgSegmentDigit(value: '8', size: 100),
+    Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(context.tx('Pequeno')),
+        SgSegmentDigit(value: '8', size: 18),
+      ],
+    ),
+    Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(context.tx('Médio')),
+        SgSegmentDigit(value: '8', size: 32),
+      ],
+    ),
+    Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(context.tx('Grande')),
+        SgSegmentDigit(value: '8', size: 52),
+      ],
+    ),
   ],
 )
 ''';

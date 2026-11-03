@@ -36,6 +36,25 @@ Future<void> _abre(WidgetTester t) async {
 }
 
 void main() {
+  testWidgets(
+    'em 467x715 a lista vira cartoes com rolagem infinita, sem paginador (P139.F1.T8)',
+    (t) async {
+      setSize(t, const Size(467, 715));
+      await t.pumpWidget(
+        app(
+          DefaultAssetBundle(
+            bundle: _BundleDeArquivos(),
+            child: const SingleChildScrollView(child: ClientesCrud()),
+          ),
+        ),
+      );
+      await settle(t);
+      expect(find.byKey(const ValueKey('sg-dt-cards')), findsOneWidget);
+      expect(find.byKey(const ValueKey('sg-dt-first')), findsNothing);
+      expect(find.byKey(const ValueKey('sg-dt-infinite-text')), findsOneWidget);
+    },
+  );
+
   testWidgets('carrega o JSON e lista os clientes', (t) async {
     await _abre(t);
     expect(find.text('Ana Lima'), findsOneWidget);

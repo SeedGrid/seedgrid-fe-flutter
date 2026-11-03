@@ -347,7 +347,9 @@ class _ExampleSection extends StatelessWidget {
               border: Border.all(color: Theme.of(context).dividerColor),
               borderRadius: BorderRadius.circular(8),
             ),
-            child: example.preview,
+            // Align solta a largura apertada do Container(width: infinity): sem isso um widget solto
+            // (avatar, badge, relogio, digito) estica ate a largura toda, ao contrario do React (inline).
+            child: Align(alignment: Alignment.topLeft, child: example.preview),
           ),
           const SizedBox(height: 8),
           SgCodeBlock(code: example.code),
@@ -487,7 +489,10 @@ class _SgPlaygroundState extends State<SgPlayground> {
             border: Border.all(color: Theme.of(context).dividerColor),
             borderRadius: BorderRadius.circular(8),
           ),
-          child: widget.builder(context, Map.unmodifiable(_values)),
+          child: Align(
+            alignment: Alignment.topLeft,
+            child: widget.builder(context, Map.unmodifiable(_values)),
+          ),
         ),
         const SizedBox(height: 8),
         SgCodeBlock(code: widget.codeBuilder(Map.unmodifiable(_values))),
