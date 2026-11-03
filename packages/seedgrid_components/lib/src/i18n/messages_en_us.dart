@@ -127,6 +127,8 @@ const Map<String, String> componentsMessagesEnUs = <String, String>{
   'components.gadgets.gauge.value': 'Value',
   'components.datatable.empty': 'No records found.',
   'components.datatable.loading': 'Loading data...',
+  'components.datatable.loadingMore': 'Loading more...',
+  'components.datatable.endOfList': 'End of list.',
   'components.datatable.globalFilterPlaceholder': 'Search in all columns',
   'components.datatable.clearFilters': 'Clear filters',
   'components.datatable.pagination': 'Pagination',

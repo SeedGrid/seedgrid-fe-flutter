@@ -1471,6 +1471,12 @@
   },
   {
    "componente": "SgDatatable",
+   "prop": "onLoadMore",
+   "motivo": "funcao",
+   "ts": "((event: SgDatatablePageEvent) => void)"
+  },
+  {
+   "componente": "SgDatatable",
    "prop": "onPage",
    "motivo": "funcao",
    "ts": "((event: SgDatatablePageEvent) => void)"
@@ -4358,7 +4364,7 @@
   "tipoGenerico": {
    "lista": 62,
    "uniao": 116,
-   "funcao": 228,
+   "funcao": 229,
    "tipo-nomeado-a-portar": 143
   }
  }

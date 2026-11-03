@@ -3778,11 +3778,16 @@
             "description": "Indica estado de carregamento."
           },
           {
+            "name": "infiniteScroll",
+            "type": "bool?",
+            "required": false,
+            "description": "Rolagem infinita: sem paginador, ao chegar perto do fim avanca a pagina (rows). Padrao ligado nos cartoes e desligado na tabela; exige paginator."
+          },
+          {
             "name": "mobileMode",
             "type": "SgDatatableMobileMode?",
             "required": false,
-            "default": "scroll",
-            "description": "Comportamento quando o container fica abaixo de 600 px (SG_DATATABLE_MOBILE_BREAKPOINT): scroll rola a tabela; cards mostra cada linha como cartao.",
+            "description": "Omitido (padrao): automatico - cartoes abaixo de 600 px do container, tabela acima; cards forca cartoes e scroll forca a tabela.",
             "values": [
               "scroll",
               "cards"
@@ -3790,6 +3795,12 @@
           },
           {
             "name": "onFilter",
+            "type": "Function?",
+            "required": false,
+            "typeExact": false
+          },
+          {
+            "name": "onLoadMore",
             "type": "Function?",
             "required": false,
             "typeExact": false
@@ -3965,7 +3976,7 @@
             "title": "Modo cartões (celular)",
             "file": "apps/seedgrid_showcase/lib/pages/sg_datatable_page.dart",
             "kind": "dart",
-            "code": "SizedBox(\n  width: 420,\n  child: SgDatatable(\n    title: context.tx('Pessoas (cartões)'),\n    value: _pessoas,\n    columns: const [\n      SgDatatableColumn(\n        field: 'id',\n        header: 'Id',\n        cardHidden: true,\n      ),\n      SgDatatableColumn(\n        field: 'nome',\n        header: 'Nome',\n        sortable: true,\n        filter: true,\n        cardTitle: true,\n      ),\n      SgDatatableColumn(\n        field: 'cidade',\n        header: 'Cidade',\n        sortable: true,\n        filter: true,\n      ),\n      SgDatatableColumn(\n        field: 'idade',\n        header: 'Idade',\n        sortable: true,\n      ),\n    ],\n    dataKey: 'id',\n    mobileMode: SgDatatableMobileMode.cards,\n    selectionMode: SgDatatableSelectionMode.single,\n    showColumnFilters: true,\n    paginator: true,\n    rows: 4,\n  ),\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgRadioGroup(\n      id: 'modo-cartoes',\n      title: 'mobileMode',\n      orientation: SgRadioGroupOrientation.horizontal,\n      source: const [\n        SgRadioGroupOption(label: 'cards', value: 'cards'),\n        SgRadioGroupOption(label: 'scroll', value: 'scroll'),\n      ],\n      value: _modoCartoes.name,\n      onChange: (v) => setState(\n        () => _modoCartoes = v == 'scroll'\n            ? SgDatatableMobileMode.scroll\n            : SgDatatableMobileMode.cards,\n      ),\n    ),\n    SizedBox(\n      width: 420,\n      child: SgDatatable(\n        title: context.tx('Pessoas (cartões)'),\n        value: _pessoas,\n        columns: const [\n          SgDatatableColumn(\n            field: 'id',\n            header: 'Id',\n            cardHidden: true,\n          ),\n          SgDatatableColumn(\n            field: 'nome',\n            header: 'Nome',\n            sortable: true,\n            filter: true,\n            cardTitle: true,\n          ),\n          SgDatatableColumn(\n            field: 'cidade',\n            header: 'Cidade',\n            sortable: true,\n            filter: true,\n          ),\n          SgDatatableColumn(\n            field: 'idade',\n            header: 'Idade',\n            sortable: true,\n          ),\n        ],\n        dataKey: 'id',\n        mobileMode: _modoCartoes,\n        infiniteScroll: false,\n        selectionMode: SgDatatableSelectionMode.single,\n        showColumnFilters: true,\n        paginator: true,\n        rows: 4,\n      ),\n    ),\n  ],\n)"
           },
           {
             "id": "sg-datatable-colunas",
@@ -3979,7 +3990,7 @@
             "title": "Controle por código",
             "file": "apps/seedgrid_showcase/lib/pages/sg_datatable_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgDatatable(\n      value: _pessoas,\n      columns: _colunas,\n      paginator: true,\n      rows: 5,\n      showGlobalFilter: true,\n      controller: _controller,\n    ),\n    const SizedBox(height: 8),\n    Wrap(\n      spacing: 8,\n      runSpacing: 8,\n      children: [\n        SgButton(\n          label: Text(context.tx('Ir para a página 3')),\n          onClick: () => _controller.goToPage(3),\n        ),\n        SgButton(\n          label: Text(context.tx('Limpar filtros')),\n          onClick: () => _controller.clearFilters(),\n        ),\n        SgButton(\n          label: Text(context.tx('Remover ordem')),\n          onClick: () => _controller.resetSort(),\n        ),\n      ],\n    ),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgDatatable(\n      value: _pessoas,\n      columns: _colunas,\n      paginator: true,\n      infiniteScroll: false,\n      rows: 5,\n      showGlobalFilter: true,\n      controller: _controller,\n    ),\n    const SizedBox(height: 8),\n    Wrap(\n      spacing: 8,\n      runSpacing: 8,\n      children: [\n        SgButton(\n          label: Text(context.tx('Ir para a página 3')),\n          onClick: () => _controller.goToPage(3),\n        ),\n        SgButton(\n          label: Text(context.tx('Limpar filtros')),\n          onClick: () => _controller.clearFilters(),\n        ),\n        SgButton(\n          label: Text(context.tx('Remover ordem')),\n          onClick: () => _controller.resetSort(),\n        ),\n      ],\n    ),\n  ],\n)"
           },
           {
             "id": "sg-datatable-estados",
@@ -3993,21 +4004,28 @@
             "title": "Filtros",
             "file": "apps/seedgrid_showcase/lib/pages/sg_datatable_page.dart",
             "kind": "dart",
-            "code": "SgDatatable(\n  value: _pessoas,\n  columns: [\n    SgDatatableColumn(\n      field: 'nome',\n      header: context.tx('Nome'),\n      filter: true,\n    ),\n    SgDatatableColumn(\n      field: 'cidade',\n      header: context.tx('Cidade'),\n      filter: true,\n      filterMatchMode: SgDatatableFilterMatchMode.startsWith,\n    ),\n    SgDatatableColumn(\n      field: 'salario',\n      header: context.tx('Salário'),\n      excludeGlobalFilter: true,\n    ),\n  ],\n  paginator: true,\n  rows: 5,\n  showGlobalFilter: true,\n  showColumnFilters: true,\n  showClearFiltersButton: true,\n)"
+            "code": "SgDatatable(\n  value: _pessoas,\n  columns: [\n    SgDatatableColumn(\n      field: 'nome',\n      header: context.tx('Nome'),\n      filter: true,\n    ),\n    SgDatatableColumn(\n      field: 'cidade',\n      header: context.tx('Cidade'),\n      filter: true,\n      filterMatchMode: SgDatatableFilterMatchMode.startsWith,\n    ),\n    SgDatatableColumn(\n      field: 'salario',\n      header: context.tx('Salário'),\n      excludeGlobalFilter: true,\n    ),\n  ],\n  paginator: true,\n  infiniteScroll: false,\n  rows: 5,\n  showGlobalFilter: true,\n  showColumnFilters: true,\n  showClearFiltersButton: true,\n)"
           },
           {
             "id": "sg-datatable-lazy",
             "title": "Carga sob demanda (lazy)",
             "file": "apps/seedgrid_showcase/lib/pages/sg_datatable_page.dart",
             "kind": "dart",
-            "code": "SgDatatable(\n  value: _paginaLazy,\n  columns: _colunas,\n  lazy: true,\n  paginator: true,\n  rows: 5,\n  first: _first,\n  totalRecords: _pessoas.length,\n  onPage: _carregar,\n)"
+            "code": "SgDatatable(\n  value: _paginaLazy,\n  columns: _colunas,\n  lazy: true,\n  paginator: true,\n  infiniteScroll: false,\n  rows: 5,\n  first: _first,\n  totalRecords: _pessoas.length,\n  onPage: _carregar,\n)"
           },
           {
             "id": "sg-datatable-paginacao",
             "title": "Paginação",
             "file": "apps/seedgrid_showcase/lib/pages/sg_datatable_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgDatatable(\n      value: _pessoas,\n      columns: _colunas,\n      paginator: true,\n      rows: 5,\n      rowsPerPageOptions: const [5, 10, 25],\n      onPage: (e) => setState(\n        () => _evento =\n            'página ${e.page} de ${e.pageCount} (first ${e.first})',\n      ),\n    ),\n    Text('Último onPage: $_evento'),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgDatatable(\n      value: _pessoas,\n      columns: _colunas,\n      paginator: true,\n      infiniteScroll: false,\n      rows: 5,\n      rowsPerPageOptions: const [5, 10, 25],\n      onPage: (e) => setState(\n        () => _evento =\n            'página ${e.page} de ${e.pageCount} (first ${e.first})',\n      ),\n    ),\n    Text('Último onPage: $_evento'),\n  ],\n)"
+          },
+          {
+            "id": "sg-datatable-rolagem-infinita",
+            "title": "Rolagem infinita (infiniteScroll)",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_datatable_page.dart",
+            "kind": "dart",
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgRadioGroup(\n      id: 'rolagem-infinita',\n      title: 'infiniteScroll',\n      orientation: SgRadioGroupOrientation.horizontal,\n      source: const [\n        SgRadioGroupOption(label: 'true', value: 'true'),\n        SgRadioGroupOption(label: 'false', value: 'false'),\n      ],\n      value: _rolagemInfinita.toString(),\n      onChange: (v) =>\n          setState(() => _rolagemInfinita = v != 'false'),\n    ),\n    SizedBox(\n      width: 420,\n      height: 360,\n      child: SingleChildScrollView(\n        child: SgDatatable(\n          title: context.tx('Pessoas (rolagem infinita)'),\n          value: _pessoas,\n          columns: const [\n            SgDatatableColumn(\n              field: 'id',\n              header: 'Id',\n              cardHidden: true,\n            ),\n            SgDatatableColumn(\n              field: 'nome',\n              header: 'Nome',\n              cardTitle: true,\n            ),\n            SgDatatableColumn(field: 'cidade', header: 'Cidade'),\n            SgDatatableColumn(field: 'idade', header: 'Idade'),\n          ],\n          dataKey: 'id',\n          mobileMode: SgDatatableMobileMode.cards,\n          infiniteScroll: _rolagemInfinita,\n          paginator: true,\n          rows: 4,\n        ),\n      ),\n    ),\n  ],\n)"
           },
           {
             "id": "sg-datatable-selecao",

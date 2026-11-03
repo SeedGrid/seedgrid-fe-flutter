@@ -93,6 +93,8 @@ class SgDatatablePage extends StatefulWidget {
 class _SgDatatablePageState extends State<SgDatatablePage> {
   String _evento = 'nenhum evento ainda';
   Object? _selecionadas;
+  SgDatatableMobileMode _modoCartoes = SgDatatableMobileMode.cards;
+  bool _rolagemInfinita = true;
   final SgDatatableController _controller = SgDatatableController();
   int _first = 0;
   List<SgDatatableRow> _paginaLazy = _pessoas.take(5).toList();
@@ -126,7 +128,7 @@ class _SgDatatablePageState extends State<SgDatatablePage> {
       ShowcaseExample(
         title: 'Paginação',
         description:
-            'paginator, rows, rowsPerPageOptions e onPage (first, rows, page, pageCount, totalRecords).',
+            'paginator, rows, rowsPerPageOptions e onPage (first, rows, page, pageCount, totalRecords). infiniteScroll: false mantém o paginador também em tela estreita: abaixo de 600 px o padrão viraria cartões com rolagem infinita.',
         preview:
             // #region sg-datatable-paginacao
             Column(
@@ -136,6 +138,7 @@ class _SgDatatablePageState extends State<SgDatatablePage> {
                   value: _pessoas,
                   columns: _colunas,
                   paginator: true,
+                  infiniteScroll: false,
                   rows: 5,
                   rowsPerPageOptions: const [5, 10, 25],
                   onPage: (e) => setState(
@@ -180,31 +183,36 @@ class _SgDatatablePageState extends State<SgDatatablePage> {
             'showGlobalFilter, showColumnFilters, filterMatchMode por coluna e showClearFiltersButton.',
         preview:
             // #region sg-datatable-filtros
-            SgDatatable(
-              value: _pessoas,
-              columns: [
-                SgDatatableColumn(
-                  field: 'nome',
-                  header: context.tx('Nome'),
-                  filter: true,
+            SizedBox(
+              height: 420,
+              child: SingleChildScrollView(
+                child: SgDatatable(
+                  value: _pessoas,
+                  columns: [
+                    SgDatatableColumn(
+                      field: 'nome',
+                      header: context.tx('Nome'),
+                      filter: true,
+                    ),
+                    SgDatatableColumn(
+                      field: 'cidade',
+                      header: context.tx('Cidade'),
+                      filter: true,
+                      filterMatchMode: SgDatatableFilterMatchMode.startsWith,
+                    ),
+                    SgDatatableColumn(
+                      field: 'salario',
+                      header: context.tx('Salário'),
+                      excludeGlobalFilter: true,
+                    ),
+                  ],
+                  paginator: true,
+                  rows: 5,
+                  showGlobalFilter: true,
+                  showColumnFilters: true,
+                  showClearFiltersButton: true,
                 ),
-                SgDatatableColumn(
-                  field: 'cidade',
-                  header: context.tx('Cidade'),
-                  filter: true,
-                  filterMatchMode: SgDatatableFilterMatchMode.startsWith,
-                ),
-                SgDatatableColumn(
-                  field: 'salario',
-                  header: context.tx('Salário'),
-                  excludeGlobalFilter: true,
-                ),
-              ],
-              paginator: true,
-              rows: 5,
-              showGlobalFilter: true,
-              showColumnFilters: true,
-              showClearFiltersButton: true,
+              ),
             ),
         // #endregion
         code: SgDatatablePageSnippets.sgDatatableFiltros,
@@ -347,13 +355,18 @@ class _SgDatatablePageState extends State<SgDatatablePage> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SgDatatable(
-                  value: _pessoas,
-                  columns: _colunas,
-                  paginator: true,
-                  rows: 5,
-                  showGlobalFilter: true,
-                  controller: _controller,
+                SizedBox(
+                  height: 420,
+                  child: SingleChildScrollView(
+                    child: SgDatatable(
+                      value: _pessoas,
+                      columns: _colunas,
+                      paginator: true,
+                      rows: 5,
+                      showGlobalFilter: true,
+                      controller: _controller,
+                    ),
+                  ),
                 ),
                 const SizedBox(height: 8),
                 Wrap(
@@ -411,49 +424,127 @@ class _SgDatatablePageState extends State<SgDatatablePage> {
       ShowcaseExample(
         title: 'Modo cartões (celular)',
         description:
-            'mobileMode: cards troca a tabela por cartões "coluna: valor" quando o container tem menos de 600 px. cardTitle usa a coluna como título do cartão e cardHidden a deixa de fora. Ordenação vira um seletor, os filtros vão para um painel aberto por botão; seleção, ações, rodapé e paginação continuam.',
+            'Por padrão (mobileMode omitido) a tabela vira cartões "coluna: valor" quando o container tem menos de 600 px; mobileMode: cards força os cartões e scroll força a tabela, em qualquer largura. cardTitle usa a coluna como título do cartão e cardHidden a deixa de fora. Ordenação vira um seletor, os filtros vão para um painel aberto por botão; seleção, ações, rodapé e paginação continuam.',
         preview:
             // #region sg-datatable-cartoes
-            SizedBox(
-              width: 420,
-              child: SgDatatable(
-                title: context.tx('Pessoas (cartões)'),
-                value: _pessoas,
-                columns: const [
-                  SgDatatableColumn(
-                    field: 'id',
-                    header: 'Id',
-                    cardHidden: true,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SgRadioGroup(
+                  id: 'modo-cartoes',
+                  title: 'mobileMode',
+                  orientation: SgRadioGroupOrientation.horizontal,
+                  source: const [
+                    SgRadioGroupOption(label: 'cards', value: 'cards'),
+                    SgRadioGroupOption(label: 'scroll', value: 'scroll'),
+                  ],
+                  value: _modoCartoes.name,
+                  onChange: (v) => setState(
+                    () => _modoCartoes = v == 'scroll'
+                        ? SgDatatableMobileMode.scroll
+                        : SgDatatableMobileMode.cards,
                   ),
-                  SgDatatableColumn(
-                    field: 'nome',
-                    header: 'Nome',
-                    sortable: true,
-                    filter: true,
-                    cardTitle: true,
+                ),
+                SizedBox(
+                  width: 420,
+                  height: 360,
+                  child: SingleChildScrollView(
+                    child: SgDatatable(
+                      title: context.tx('Pessoas (cartões)'),
+                      value: _pessoas,
+                      columns: const [
+                        SgDatatableColumn(
+                          field: 'id',
+                          header: 'Id',
+                          cardHidden: true,
+                        ),
+                        SgDatatableColumn(
+                          field: 'nome',
+                          header: 'Nome',
+                          sortable: true,
+                          filter: true,
+                          cardTitle: true,
+                        ),
+                        SgDatatableColumn(
+                          field: 'cidade',
+                          header: 'Cidade',
+                          sortable: true,
+                          filter: true,
+                        ),
+                        SgDatatableColumn(
+                          field: 'idade',
+                          header: 'Idade',
+                          sortable: true,
+                        ),
+                      ],
+                      dataKey: 'id',
+                      mobileMode: _modoCartoes,
+                      selectionMode: SgDatatableSelectionMode.single,
+                      showColumnFilters: true,
+                      paginator: true,
+                      rows: 4,
+                    ),
                   ),
-                  SgDatatableColumn(
-                    field: 'cidade',
-                    header: 'Cidade',
-                    sortable: true,
-                    filter: true,
-                  ),
-                  SgDatatableColumn(
-                    field: 'idade',
-                    header: 'Idade',
-                    sortable: true,
-                  ),
-                ],
-                dataKey: 'id',
-                mobileMode: SgDatatableMobileMode.cards,
-                selectionMode: SgDatatableSelectionMode.single,
-                showColumnFilters: true,
-                paginator: true,
-                rows: 4,
-              ),
+                ),
+              ],
             ),
         // #endregion
         code: SgDatatablePageSnippets.sgDatatableCartoes,
+      ),
+      ShowcaseExample(
+        title: 'Rolagem infinita (infiniteScroll)',
+        description:
+            'Sem paginador: ao rolar até perto do fim (toque, roda do mouse ou barra de rolagem) a tabela avança a página (rows) e acrescenta os próximos registros, com indicador de carregando e de fim da lista. Padrão ligado nos cartões e desligado na tabela; exige paginator. Com lazy, quem usa acrescenta a próxima página em value (first/rows/page em onPage/onLoadMore).',
+        preview:
+            // #region sg-datatable-rolagem-infinita
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SgRadioGroup(
+                  id: 'rolagem-infinita',
+                  title: 'infiniteScroll',
+                  orientation: SgRadioGroupOrientation.horizontal,
+                  source: const [
+                    SgRadioGroupOption(label: 'true', value: 'true'),
+                    SgRadioGroupOption(label: 'false', value: 'false'),
+                  ],
+                  value: _rolagemInfinita.toString(),
+                  onChange: (v) =>
+                      setState(() => _rolagemInfinita = v != 'false'),
+                ),
+                SizedBox(
+                  width: 420,
+                  height: 360,
+                  child: SingleChildScrollView(
+                    child: SgDatatable(
+                      title: context.tx('Pessoas (rolagem infinita)'),
+                      value: _pessoas,
+                      columns: const [
+                        SgDatatableColumn(
+                          field: 'id',
+                          header: 'Id',
+                          cardHidden: true,
+                        ),
+                        SgDatatableColumn(
+                          field: 'nome',
+                          header: 'Nome',
+                          cardTitle: true,
+                        ),
+                        SgDatatableColumn(field: 'cidade', header: 'Cidade'),
+                        SgDatatableColumn(field: 'idade', header: 'Idade'),
+                      ],
+                      dataKey: 'id',
+                      mobileMode: SgDatatableMobileMode.cards,
+                      infiniteScroll: _rolagemInfinita,
+                      paginator: true,
+                      rows: 4,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgDatatablePageSnippets.sgDatatableRolagemInfinita,
       ),
     ];
 

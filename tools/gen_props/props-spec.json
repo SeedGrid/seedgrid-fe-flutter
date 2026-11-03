@@ -3344,6 +3344,14 @@
      "semanticRole": "data"
     },
     {
+     "name": "infiniteScroll",
+     "optional": true,
+     "ts": "boolean | undefined",
+     "alias": null,
+     "description": "Rolagem infinita: sem paginador, ao chegar perto do fim avanca a pagina (rows). Padrao ligado nos cartoes e desligado na tabela; exige paginator.",
+     "semanticRole": "behavior"
+    },
+    {
      "name": "lazy",
      "optional": true,
      "ts": "boolean | undefined",
@@ -3369,9 +3377,7 @@
       "scroll",
       "cards"
      ],
-     "description": "Comportamento quando o container fica abaixo de 600 px (SG_DATATABLE_MOBILE_BREAKPOINT): scroll rola a tabela; cards mostra cada linha como cartao.",
-     "default": "scroll",
-     "defaultFonte": "codigo"
+     "description": "Omitido (padrao): automatico - cartoes abaixo de 600 px do container, tabela acima; cards forca cartoes e scroll forca a tabela."
     },
     {
      "name": "onFilter",
@@ -3386,6 +3392,14 @@
      "ts": "((value: string) => void) | undefined",
      "alias": null,
      "fn": true
+    },
+    {
+     "name": "onLoadMore",
+     "optional": true,
+     "ts": "((event: SgDatatablePageEvent) => void) | undefined",
+     "alias": null,
+     "description": "Chamado (alem de onPage) quando a rolagem infinita pede a proxima pagina.",
+     "semanticRole": "event"
     },
     {
      "name": "onPage",

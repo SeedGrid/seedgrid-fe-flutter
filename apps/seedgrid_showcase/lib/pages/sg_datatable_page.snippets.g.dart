@@ -79,43 +79,66 @@ SgDatatable(
 
   /// Region `sg-datatable-cartoes`.
   static const String sgDatatableCartoes = r'''
-SizedBox(
-  width: 420,
-  child: SgDatatable(
-    title: context.tx('Pessoas (cartões)'),
-    value: _pessoas,
-    columns: const [
-      SgDatatableColumn(
-        field: 'id',
-        header: 'Id',
-        cardHidden: true,
+Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    SgRadioGroup(
+      id: 'modo-cartoes',
+      title: 'mobileMode',
+      orientation: SgRadioGroupOrientation.horizontal,
+      source: const [
+        SgRadioGroupOption(label: 'cards', value: 'cards'),
+        SgRadioGroupOption(label: 'scroll', value: 'scroll'),
+      ],
+      value: _modoCartoes.name,
+      onChange: (v) => setState(
+        () => _modoCartoes = v == 'scroll'
+            ? SgDatatableMobileMode.scroll
+            : SgDatatableMobileMode.cards,
       ),
-      SgDatatableColumn(
-        field: 'nome',
-        header: 'Nome',
-        sortable: true,
-        filter: true,
-        cardTitle: true,
+    ),
+    SizedBox(
+      width: 420,
+      height: 360,
+      child: SingleChildScrollView(
+        child: SgDatatable(
+          title: context.tx('Pessoas (cartões)'),
+          value: _pessoas,
+          columns: const [
+            SgDatatableColumn(
+              field: 'id',
+              header: 'Id',
+              cardHidden: true,
+            ),
+            SgDatatableColumn(
+              field: 'nome',
+              header: 'Nome',
+              sortable: true,
+              filter: true,
+              cardTitle: true,
+            ),
+            SgDatatableColumn(
+              field: 'cidade',
+              header: 'Cidade',
+              sortable: true,
+              filter: true,
+            ),
+            SgDatatableColumn(
+              field: 'idade',
+              header: 'Idade',
+              sortable: true,
+            ),
+          ],
+          dataKey: 'id',
+          mobileMode: _modoCartoes,
+          selectionMode: SgDatatableSelectionMode.single,
+          showColumnFilters: true,
+          paginator: true,
+          rows: 4,
+        ),
       ),
-      SgDatatableColumn(
-        field: 'cidade',
-        header: 'Cidade',
-        sortable: true,
-        filter: true,
-      ),
-      SgDatatableColumn(
-        field: 'idade',
-        header: 'Idade',
-        sortable: true,
-      ),
-    ],
-    dataKey: 'id',
-    mobileMode: SgDatatableMobileMode.cards,
-    selectionMode: SgDatatableSelectionMode.single,
-    showColumnFilters: true,
-    paginator: true,
-    rows: 4,
-  ),
+    ),
+  ],
 )
 ''';
 
@@ -156,13 +179,18 @@ SgDatatable(
 Column(
   crossAxisAlignment: CrossAxisAlignment.start,
   children: [
-    SgDatatable(
-      value: _pessoas,
-      columns: _colunas,
-      paginator: true,
-      rows: 5,
-      showGlobalFilter: true,
-      controller: _controller,
+    SizedBox(
+      height: 420,
+      child: SingleChildScrollView(
+        child: SgDatatable(
+          value: _pessoas,
+          columns: _colunas,
+          paginator: true,
+          rows: 5,
+          showGlobalFilter: true,
+          controller: _controller,
+        ),
+      ),
     ),
     const SizedBox(height: 8),
     Wrap(
@@ -213,31 +241,36 @@ Column(
 
   /// Region `sg-datatable-filtros`.
   static const String sgDatatableFiltros = r'''
-SgDatatable(
-  value: _pessoas,
-  columns: [
-    SgDatatableColumn(
-      field: 'nome',
-      header: context.tx('Nome'),
-      filter: true,
+SizedBox(
+  height: 420,
+  child: SingleChildScrollView(
+    child: SgDatatable(
+      value: _pessoas,
+      columns: [
+        SgDatatableColumn(
+          field: 'nome',
+          header: context.tx('Nome'),
+          filter: true,
+        ),
+        SgDatatableColumn(
+          field: 'cidade',
+          header: context.tx('Cidade'),
+          filter: true,
+          filterMatchMode: SgDatatableFilterMatchMode.startsWith,
+        ),
+        SgDatatableColumn(
+          field: 'salario',
+          header: context.tx('Salário'),
+          excludeGlobalFilter: true,
+        ),
+      ],
+      paginator: true,
+      rows: 5,
+      showGlobalFilter: true,
+      showColumnFilters: true,
+      showClearFiltersButton: true,
     ),
-    SgDatatableColumn(
-      field: 'cidade',
-      header: context.tx('Cidade'),
-      filter: true,
-      filterMatchMode: SgDatatableFilterMatchMode.startsWith,
-    ),
-    SgDatatableColumn(
-      field: 'salario',
-      header: context.tx('Salário'),
-      excludeGlobalFilter: true,
-    ),
-  ],
-  paginator: true,
-  rows: 5,
-  showGlobalFilter: true,
-  showColumnFilters: true,
-  showClearFiltersButton: true,
+  ),
 )
 ''';
 
@@ -264,6 +297,7 @@ Column(
       value: _pessoas,
       columns: _colunas,
       paginator: true,
+      infiniteScroll: false,
       rows: 5,
       rowsPerPageOptions: const [5, 10, 25],
       onPage: (e) => setState(
@@ -272,6 +306,56 @@ Column(
       ),
     ),
     Text('Último onPage: $_evento'),
+  ],
+)
+''';
+
+  /// Region `sg-datatable-rolagem-infinita`.
+  static const String sgDatatableRolagemInfinita = r'''
+Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    SgRadioGroup(
+      id: 'rolagem-infinita',
+      title: 'infiniteScroll',
+      orientation: SgRadioGroupOrientation.horizontal,
+      source: const [
+        SgRadioGroupOption(label: 'true', value: 'true'),
+        SgRadioGroupOption(label: 'false', value: 'false'),
+      ],
+      value: _rolagemInfinita.toString(),
+      onChange: (v) =>
+          setState(() => _rolagemInfinita = v != 'false'),
+    ),
+    SizedBox(
+      width: 420,
+      height: 360,
+      child: SingleChildScrollView(
+        child: SgDatatable(
+          title: context.tx('Pessoas (rolagem infinita)'),
+          value: _pessoas,
+          columns: const [
+            SgDatatableColumn(
+              field: 'id',
+              header: 'Id',
+              cardHidden: true,
+            ),
+            SgDatatableColumn(
+              field: 'nome',
+              header: 'Nome',
+              cardTitle: true,
+            ),
+            SgDatatableColumn(field: 'cidade', header: 'Cidade'),
+            SgDatatableColumn(field: 'idade', header: 'Idade'),
+          ],
+          dataKey: 'id',
+          mobileMode: SgDatatableMobileMode.cards,
+          infiniteScroll: _rolagemInfinita,
+          paginator: true,
+          rows: 4,
+        ),
+      ),
+    ),
   ],
 )
 ''';

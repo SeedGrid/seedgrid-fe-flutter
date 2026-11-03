@@ -88,9 +88,8 @@ Widget fromProps(Map<String, dynamic> p, List<SgDatatableRow> rows) {
     showClearFiltersButton: p['showClearFiltersButton'] == true,
     loading: p['loading'] == true,
     emptyMessage: p['emptyMessage'] as String?,
-    mobileMode:
-        SgDatatableMobileMode.fromValue(p['mobileMode'] as String?) ??
-        SgDatatableMobileMode.scroll,
+    mobileMode: SgDatatableMobileMode.fromValue(p['mobileMode'] as String?),
+    infiniteScroll: p['infiniteScroll'] as bool?,
   );
 }
 

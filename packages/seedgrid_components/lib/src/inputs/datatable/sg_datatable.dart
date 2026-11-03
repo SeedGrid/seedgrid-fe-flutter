@@ -38,8 +38,12 @@
 //   tableClassName           nao-aplicavel (aceita so para cumprir o contrato; sem efeito)
 //   rowClassName             nao-aplicavel (idem; classes CSS nao existem no Flutter)
 //   groupBoxProps            parcial   (SgListGroupBoxProps: title, width e height, o que o SgGroupBox tem)
-//   mobileMode               portada   (SgDatatableMobileMode: scroll | cards; P127 - abaixo de 600 px de largura do
-//                                       CONTAINER, como o React, cada linha vira um cartao "coluna: valor")
+//   mobileMode               portada   (SgDatatableMobileMode: scroll | cards; P127 - omitido (null) = automatico: abaixo de
+//                                       600 px de largura do CONTAINER, como o React, cada linha vira um cartao
+//                                       "coluna: valor"; cards forca cartoes e scroll forca a tabela)
+//   infiniteScroll           portada   (P137 - rolagem infinita: sem paginador, ao chegar perto do fim avanca a pagina;
+//                                       padrao ligado nos cartoes e desligado na tabela; exige paginator)
+//   onLoadMore               portada   (ValueChanged<SgDatatablePageEvent>, alem de onPage)
 //   showColumnManager        portada
 //   columnManagerLabel       portada
 //   columnManagerMaxHeight   portada   (numero ou 'Npx'/'Nrem')
@@ -59,6 +63,7 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart' show RenderAbstractViewport;
 import 'package:seedgrid_theme/seedgrid_theme.dart';
 
 import '../../buttons/sg_button.dart';
@@ -141,7 +146,9 @@ class SgDatatable extends StatefulWidget implements SgDatatableProps {
     this.showColumnManager = true,
     this.columnManagerLabel,
     this.columnManagerMaxHeight = 320,
-    this.mobileMode = SgDatatableMobileMode.scroll,
+    this.mobileMode,
+    this.infiniteScroll,
+    this.onLoadMore,
     this.controller,
   });
 
@@ -232,10 +239,21 @@ class SgDatatable extends StatefulWidget implements SgDatatableProps {
   @override
   final Object? columnManagerMaxHeight;
 
-  /// `scroll` (padrao): a tabela rola na horizontal; `cards`: abaixo de [kDatatableMobileBreakpoint] de largura do
-  /// container cada linha vira um cartao `rotulo: valor`, mantendo ordenacao, selecao, acoes, rodape e paginacao.
+  /// Omitido (padrao): automatico - abaixo de [kDatatableMobileBreakpoint] de largura do container cada linha vira
+  /// um cartao `rotulo: valor` (mantendo ordenacao, selecao, acoes, rodape e paginacao); acima, tabela.
+  /// `cards` forca cartoes e `scroll` forca a tabela (rolagem horizontal) em qualquer largura.
   @override
-  final SgDatatableMobileMode mobileMode;
+  final SgDatatableMobileMode? mobileMode;
+
+  /// Rolagem infinita: sem paginador, ao chegar perto do fim da lista avanca a pagina (`rows`) e acrescenta os proximos
+  /// registros, com indicador de carregando e de fim. Padrao: ligada quando a lista e' exibida como cartoes, desligada na
+  /// tabela. Exige [paginator]. Com [lazy], o pai acrescenta a proxima pagina a [value] (first/rows/page em [onPage]/[onLoadMore]).
+  @override
+  final bool? infiniteScroll;
+
+  /// Chamado (alem de [onPage]) quando a rolagem infinita pede a proxima pagina.
+  @override
+  final ValueChanged<SgDatatablePageEvent>? onLoadMore;
 
   /// `ref` do React.
   final SgDatatableController? controller;
@@ -324,6 +342,10 @@ class _SgDatatableState extends State<SgDatatable> {
   // resultado do ultimo build (para controller e callbacks)
   List<SgDatatableRow> _sortedRows = const [];
   List<SgDatatableRow> _pagedRows = const [];
+  // rolagem infinita (P137)
+  int _loadedPages = 1;
+  int _infiniteRequestedLen = -1;
+  String _infiniteKey = '';
   int _total = 0;
   int _pageCount = 1;
   int _lastReconciled = -1;
@@ -604,6 +626,32 @@ class _SgDatatableState extends State<SgDatatable> {
         totalRecords: total,
       ),
     );
+  }
+
+  /// Rolagem infinita: pede a proxima pagina (nao-lazy: amplia a janela; lazy: o pai acrescenta a value).
+  void _loadMore() {
+    if (widget.loading) return;
+    final rows = _currentRows;
+    final int nextFirst;
+    if (widget.lazy) {
+      if (_infiniteRequestedLen == widget.value.length) return;
+      _infiniteRequestedLen = widget.value.length;
+      nextFirst = widget.value.length;
+    } else {
+      nextFirst = _loadedPages * rows;
+      setState(() => _loadedPages++);
+    }
+    final total = _total;
+    final pageCount = _ceilDiv(total < 1 ? 1 : total, rows);
+    final event = SgDatatablePageEvent(
+      first: nextFirst,
+      rows: rows,
+      page: nextFirst ~/ rows + 1,
+      pageCount: pageCount < 1 ? 1 : pageCount,
+      totalRecords: total,
+    );
+    widget.onPage?.call(event);
+    widget.onLoadMore?.call(event);
   }
 
   static int _ceilDiv(int a, int b) => (a + b - 1) ~/ b;
@@ -933,10 +981,33 @@ class _SgDatatableState extends State<SgDatatable> {
       });
     }
 
+    // ordenar/filtrar/mudar o tamanho da pagina recomeca a rolagem infinita na primeira pagina
+    final infiniteKey =
+        '$_currentSortField|$_currentSortOrder|$_currentGlobalFilter|$_currentFilters|$rows';
+    if (infiniteKey != _infiniteKey) {
+      _infiniteKey = infiniteKey;
+      _loadedPages = 1;
+      _infiniteRequestedLen = -1;
+    }
+
     final box = widget.groupBoxProps;
     Widget contentFor(bool cardsMode) => LayoutBuilder(
       builder: (context, c) {
         final boundedHeight = c.hasBoundedHeight;
+        final infinite =
+            widget.paginator && (widget.infiniteScroll ?? cardsMode);
+        final shown = (!infinite || lazy)
+            ? paged
+            : _sortedRows.sublist(
+                0,
+                (_loadedPages * rows).clamp(0, _sortedRows.length),
+              );
+        _pagedRows = shown;
+        final hasMore =
+            infinite &&
+            (lazy
+                ? widget.value.length < total
+                : _sortedRows.length > _loadedPages * rows);
         final children = <Widget>[
           if (widget.showGlobalFilter || widget.showClearFiltersButton)
             _toolbar(context, i18n, theme),
@@ -945,12 +1016,27 @@ class _SgDatatableState extends State<SgDatatable> {
             i18n,
             theme,
             visible: visibleDesc,
-            paged: paged,
+            paged: shown,
             safeFirst: safeFirst,
             boundedHeight: boundedHeight,
             cards: cardsMode,
+            keepRowsWhileLoading: infinite,
           ),
-          if (widget.paginator)
+          if (infinite)
+            _DtInfiniteSentinel(
+              key: const ValueKey('sg-dt-infinite'),
+              hasMore: hasMore,
+              itemCount: shown.length,
+              onLoadMore: _loadMore,
+              text: hasMore
+                  ? (widget.loading
+                        ? t(i18n, 'components.datatable.loadingMore')
+                        : '')
+                  : (shown.isNotEmpty
+                        ? t(i18n, 'components.datatable.endOfList')
+                        : ''),
+            ),
+          if (widget.paginator && !infinite)
             _paginator(
               context,
               i18n,
@@ -982,13 +1068,20 @@ class _SgDatatableState extends State<SgDatatable> {
       child: contentFor(cardsMode),
     );
     // O corte e medido no container da tabela (fora do SgGroupBox), como o React mede o elemento raiz.
-    Widget result = widget.mobileMode == SgDatatableMobileMode.cards
-        ? LayoutBuilder(
-            builder: (context, oc) => groupBox(
-              oc.maxWidth.isFinite && oc.maxWidth < kDatatableMobileBreakpoint,
-            ),
-          )
-        : groupBox(false);
+    final Widget result0;
+    switch (widget.mobileMode) {
+      case SgDatatableMobileMode.cards:
+        result0 = groupBox(true);
+      case SgDatatableMobileMode.scroll:
+        result0 = groupBox(false);
+      case null:
+        result0 = LayoutBuilder(
+          builder: (context, oc) => groupBox(
+            oc.maxWidth.isFinite && oc.maxWidth < kDatatableMobileBreakpoint,
+          ),
+        );
+    }
+    Widget result = result0;
     final id = widget.id;
     if (id != null && id.isNotEmpty) {
       result = Semantics(container: true, identifier: id, child: result);
@@ -1082,6 +1175,7 @@ class _SgDatatableState extends State<SgDatatable> {
     required int safeFirst,
     required bool boundedHeight,
     bool cards = false,
+    bool keepRowsWhileLoading = false,
   }) {
     final cols = [for (final x in visible) x.column];
     final keys = [for (final x in visible) x.key];
@@ -1114,6 +1208,7 @@ class _SgDatatableState extends State<SgDatatable> {
             paged: paged,
             safeFirst: safeFirst,
             boundedHeight: boundedHeight,
+            keepRowsWhileLoading: keepRowsWhileLoading,
           )
         : LayoutBuilder(
             builder: (context, c) {
@@ -1542,6 +1637,7 @@ class _SgDatatableState extends State<SgDatatable> {
     required List<SgDatatableRow> paged,
     required int safeFirst,
     required bool boundedHeight,
+    bool keepRowsWhileLoading = false,
   }) {
     SgDatatableColumn? titleCol;
     for (final c in cols) {
@@ -1713,7 +1809,7 @@ class _SgDatatableState extends State<SgDatatable> {
     }
 
     Widget list;
-    if (widget.loading) {
+    if (widget.loading && !(keepRowsWhileLoading && paged.isNotEmpty)) {
       list = _messageRow(
         theme,
         t(i18n, 'components.datatable.loading'),
@@ -2091,6 +2187,98 @@ class _SgDatatableState extends State<SgDatatable> {
 }
 
 // ======================================================================= pecas visuais
+
+/// Sentinela da rolagem infinita: quando entra na area visivel do Scrollable vertical ancestral (ou nao ha rolagem
+/// ancestral, entao tudo cabe) pede a proxima pagina. Equivale ao IntersectionObserver do React.
+class _DtInfiniteSentinel extends StatefulWidget {
+  const _DtInfiniteSentinel({
+    super.key,
+    required this.hasMore,
+    required this.itemCount,
+    required this.onLoadMore,
+    required this.text,
+  });
+
+  final bool hasMore;
+  final int itemCount;
+  final VoidCallback onLoadMore;
+  final String text;
+
+  /// Antecedencia (px) com que a proxima pagina e' pedida antes de o sentinela aparecer.
+  static const double margin = 80;
+
+  @override
+  State<_DtInfiniteSentinel> createState() => _DtInfiniteSentinelState();
+}
+
+class _DtInfiniteSentinelState extends State<_DtInfiniteSentinel> {
+  ScrollPosition? _position;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final next = Scrollable.maybeOf(context, axis: Axis.vertical)?.position;
+    if (!identical(next, _position)) {
+      _position?.removeListener(_check);
+      _position = next;
+      _position?.addListener(_check);
+    }
+    _schedule();
+  }
+
+  @override
+  void didUpdateWidget(covariant _DtInfiniteSentinel oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    _schedule();
+  }
+
+  @override
+  void dispose() {
+    _position?.removeListener(_check);
+    super.dispose();
+  }
+
+  void _schedule() {
+    if (!widget.hasMore) return;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) _check();
+    });
+  }
+
+  void _check() {
+    if (!mounted || !widget.hasMore) return;
+    if (_visible()) widget.onLoadMore();
+  }
+
+  bool _visible() {
+    final box = context.findRenderObject();
+    if (box is! RenderBox || !box.attached) return false;
+    final pos = _position;
+    if (pos == null || !pos.hasPixels || !pos.hasViewportDimension) return true;
+    final viewport = RenderAbstractViewport.maybeOf(box);
+    if (viewport == null) return true;
+    final offset = viewport.getOffsetToReveal(box, 0.0).offset;
+    return offset <=
+        pos.pixels + pos.viewportDimension + _DtInfiniteSentinel.margin;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Semantics(
+      liveRegion: true,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 4),
+        child: Center(
+          child: Text(
+            widget.text,
+            key: const ValueKey('sg-dt-infinite-text'),
+            style: Theme.of(context).textTheme.bodySmall,
+          ),
+        ),
+      ),
+    );
+  }
+}
 
 class _DtTextField extends StatelessWidget {
   const _DtTextField({

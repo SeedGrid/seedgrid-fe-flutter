@@ -26,18 +26,22 @@ abstract interface class SgDatatableProps {
   Object? get groupBoxProps;
   /// Padrão: `true`.
   bool? get hoverableRows;
+  /// Rolagem infinita: sem paginador, ao chegar perto do fim avança a página (rows). Padrão ligado nos cartões e desligado na tabela; exige paginator.
+  bool? get infiniteScroll;
   /// Identificador da tabela usado para DOM e persistencia do layout de colunas.
   String? get id;
   /// Padrão: `false`.
   bool? get lazy;
   /// Indica estado de carregamento. Padrão: `false`.
   bool? get loading;
-  /// Comportamento quando o container fica abaixo de 600 px (SG_DATATABLE_MOBILE_BREAKPOINT): scroll rola a tabela; cards mostra cada linha como cartao. Padrão: `scroll`.
+  /// Omitido (padrão): automático — cartões abaixo de 600 px do contêiner, tabela acima; `cards` força cartões e `scroll` força a tabela.
   SgDatatableMobileMode? get mobileMode;
   /// Tipo TS: `((event: SgDatatableFilterEvent) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onFilter;
   /// Tipo TS: `((value: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onGlobalFilterChange;
+  /// Chamado (além de onPage) quando a rolagem infinita pede a próxima página. Tipo TS: `((event: SgDatatablePageEvent) =&gt; void)` (sem tradução exata; ver excecoes.json).
+  Function? get onLoadMore;
   /// Callback de paginacao. Tipo TS: `((event: SgDatatablePageEvent) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onPage;
   /// Tipo TS: `((selection: SgDatatableSelection&lt;T&gt;) =&gt; void)` (sem tradução exata; ver excecoes.json).
@@ -194,13 +198,20 @@ const List<SgPropSpec> sgDatatablePropSpecs = <SgPropSpec>[
     description: 'Indica estado de carregamento.',
   ),
   SgPropSpec(
+    name: 'infiniteScroll',
+    reactName: 'infiniteScroll',
+    type: 'bool?',
+    tsType: 'boolean',
+    required: false,
+    description: 'Rolagem infinita: sem paginador, ao chegar perto do fim avanca a pagina (rows). Padrao ligado nos cartoes e desligado na tabela; exige paginator.',
+  ),
+  SgPropSpec(
     name: 'mobileMode',
     reactName: 'mobileMode',
     type: 'SgDatatableMobileMode?',
     tsType: 'SgDatatableMobileMode',
     required: false,
-    defaultValue: 'scroll',
-    description: 'Comportamento quando o container fica abaixo de 600 px (SG_DATATABLE_MOBILE_BREAKPOINT): scroll rola a tabela; cards mostra cada linha como cartao.',
+    description: 'Omitido (padrao): automatico - cartoes abaixo de 600 px do container, tabela acima; cards forca cartoes e scroll forca a tabela.',
     values: <String>['scroll', 'cards'],
   ),
   SgPropSpec(
@@ -208,6 +219,14 @@ const List<SgPropSpec> sgDatatablePropSpecs = <SgPropSpec>[
     reactName: 'onFilter',
     type: 'Function?',
     tsType: '((event: SgDatatableFilterEvent) => void)',
+    required: false,
+    exact: false,
+  ),
+  SgPropSpec(
+    name: 'onLoadMore',
+    reactName: 'onLoadMore',
+    type: 'Function?',
+    tsType: '((event: SgDatatablePageEvent) => void)',
     required: false,
     exact: false,
   ),

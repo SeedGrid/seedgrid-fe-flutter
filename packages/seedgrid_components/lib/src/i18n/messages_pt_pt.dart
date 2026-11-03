@@ -128,6 +128,8 @@ const Map<String, String> componentsMessagesPtPt = <String, String>{
   'components.gadgets.gauge.value': 'Valor',
   'components.datatable.empty': 'Nenhum registo encontrado.',
   'components.datatable.loading': 'A carregar dados...',
+  'components.datatable.loadingMore': 'A carregar mais...',
+  'components.datatable.endOfList': 'Fim da lista.',
   'components.datatable.globalFilterPlaceholder':
       'Pesquisar em todas as colunas',
   'components.datatable.clearFilters': 'Limpar filtros',

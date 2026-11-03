@@ -6,7 +6,7 @@
 // Uso (na raiz do repo seedgrid-fe-flutter):
 //   node packages/seedgrid_components/test/widgets/datatable_vectors/generate.mjs <pasta do pacote react>
 // Gera packages/seedgrid_components/test/widgets/datatable_vectors/vectors.json (deterministico).
-// P127: a chave `cardCases` (modo cartoes, mobileMode="cards") e' renderizada no CLIENTE (react-dom/client em jsdom,
+// P127: a chave `cardCases` (modo cartoes; mobileMode omitido = automatico pela largura, "cards"/"scroll" forcam) e' renderizada no CLIENTE (react-dom/client em jsdom,
 // com a largura do container simulada), porque o modo depende da medicao do container. As demais chaves nao mudam.
 import fs from "node:fs";
 import os from "node:os";
@@ -345,10 +345,13 @@ addCard("cards plain with footer", { ...CM, columns: CARD_COLS });
 addCard("cards no cardTitle", { ...CM, columns: CARD_COLS_NO_TITLE });
 addCard("cards hidden column", { ...CM, columns: CARD_COLS_HIDDEN });
 addCard("cards width 599", { ...CM, columns: CARD_COLS_NO_FOOTER }, { width: 599 });
-addCard("cards width 600 is table", { ...CM, columns: CARD_COLS_NO_FOOTER }, { width: 600 });
-addCard("cards width 900 is table", { ...CM, columns: CARD_COLS_NO_FOOTER }, { width: 900 });
-addCard("scroll default at 400 is table", { columns: CARD_COLS_NO_FOOTER });
-addCard("scroll explicit at 400 is table", { mobileMode: "scroll", columns: CARD_COLS_NO_FOOTER });
+addCard("cards forced at 900 is cards", { ...CM, columns: CARD_COLS_NO_FOOTER }, { width: 900 });
+addCard("default (omitted) at 400 is cards", { columns: CARD_COLS_NO_FOOTER });
+addCard("default (omitted) at 599 is cards", { columns: CARD_COLS_NO_FOOTER }, { width: 599 });
+addCard("default (omitted) at 600 is table", { columns: CARD_COLS_NO_FOOTER }, { width: 600 });
+addCard("default (omitted) at 900 is table", { columns: CARD_COLS_NO_FOOTER }, { width: 900 });
+addCard("scroll forced at 400 is table", { mobileMode: "scroll", columns: CARD_COLS_NO_FOOTER });
+addCard("scroll forced at 900 is table", { mobileMode: "scroll", columns: CARD_COLS_NO_FOOTER }, { width: 900 });
 for (const f of ["name", "age", "score", "city"]) {
   for (const order of [1, -1]) addCard("cards sort " + f + " " + order, { ...CM, columns: CARD_COLS_NO_FOOTER, sortField: f, sortOrder: order });
 }
@@ -356,9 +359,20 @@ addCard("cards sort none", { ...CM, columns: CARD_COLS_NO_FOOTER, sortField: "na
 addCard("cards selection single", { ...CM, columns: CARD_COLS_NO_FOOTER, dataKey: "id", selectionMode: "single", selection: { id: 3 } });
 addCard("cards selection multiple", { ...CM, columns: CARD_COLS_NO_FOOTER, dataKey: "id", selectionMode: "multiple", selection: [{ id: 2 }, { id: 5 }] });
 addCard("cards selection no mode", { ...CM, columns: CARD_COLS_NO_FOOTER, dataKey: "id", selection: { id: 3 } });
-addCard("cards paginator rows=5 first=0", { ...CM, columns: CARD_COLS, paginator: true, rows: 5 });
-addCard("cards paginator rows=5 first=10", { ...CM, columns: CARD_COLS, paginator: true, rows: 5, first: 10 });
-addCard("cards paginator rowsPerPageOptions", { ...CM, columns: CARD_COLS_NO_FOOTER, paginator: true, rows: 10, rowsPerPageOptions: [5, 10, 25] });
+addCard("cards paginator rows=5 first=0", { ...CM, columns: CARD_COLS, paginator: true, rows: 5, infiniteScroll: false });
+addCard("cards paginator rows=5 first=10", { ...CM, columns: CARD_COLS, paginator: true, rows: 5, first: 10, infiniteScroll: false });
+addCard("cards paginator rowsPerPageOptions", { ...CM, columns: CARD_COLS_NO_FOOTER, paginator: true, rows: 10, rowsPerPageOptions: [5, 10, 25], infiniteScroll: false });
+// P137: rolagem infinita (padrao nos cartoes, sem paginador). A acao "loadMore" faz o sentinela entrar na area visivel.
+addCard("cards infinite rows=5 initial", { ...CM, columns: CARD_COLS_NO_FOOTER, paginator: true, rows: 5 });
+addCard("cards infinite rows=5 one load", { ...CM, columns: CARD_COLS_NO_FOOTER, paginator: true, rows: 5 }, { actions: ["loadMore"] });
+addCard("cards infinite rows=10 end of list", { ...CM, columns: CARD_COLS_NO_FOOTER, paginator: true, rows: 10 }, { actions: ["loadMore", "loadMore"] });
+addCard("cards infinite rows=10 extra load is a no-op", { ...CM, columns: CARD_COLS_NO_FOOTER, paginator: true, rows: 10 }, { actions: ["loadMore", "loadMore", "loadMore"] });
+addCard("cards infinite default (omitted) at 400", { columns: CARD_COLS_NO_FOOTER, paginator: true, rows: 5 });
+addCard("cards infinite sorted, one load", { ...CM, columns: CARD_COLS_NO_FOOTER, paginator: true, rows: 5, sortField: "name", sortOrder: -1 }, { actions: ["loadMore"] });
+addCard("cards infinite with global filter", { ...CM, columns: CARD_COLS_NO_FOOTER, paginator: true, rows: 3, globalFilter: "a" }, { actions: ["loadMore"] });
+addCard("cards infinite empty", { ...CM, columns: CARD_COLS_NO_FOOTER, paginator: true, rows: 5, rowsData: [] });
+addCard("table 900 infinite explicit", { columns: CARD_COLS_NO_FOOTER, paginator: true, rows: 5, infiniteScroll: true }, { width: 900 });
+addCard("table 900 default keeps paginator", { columns: CARD_COLS_NO_FOOTER, paginator: true, rows: 5 }, { width: 900 });
 addCard("cards globalFilter", { ...CM, columns: CARD_COLS, showGlobalFilter: true, globalFilter: "jo" });
 addCard("cards globalFilter + clear", { ...CM, columns: CARD_COLS_NO_FOOTER, showGlobalFilter: true, showClearFiltersButton: true, globalFilter: "ana" });
 addCard("cards filters closed", { ...CM, columns: CARD_COLS_NO_FOOTER, showColumnFilters: true, filters: { name: "a" } });
@@ -388,6 +402,14 @@ function renderCards(c) {
   set("window", w); set("document", w.document); set("navigator", w.navigator); set("HTMLElement", w.HTMLElement);
   set("Node", w.Node); set("Event", w.Event); set("MouseEvent", w.MouseEvent); set("getComputedStyle", w.getComputedStyle.bind(w));
   w.HTMLElement.prototype.getBoundingClientRect = () => ({ x: 0, y: 0, top: 0, left: 0, right: c.width, bottom: 0, width: c.width, height: 0 });
+  const ioPrev = Object.getOwnPropertyDescriptor(globalThis, "IntersectionObserver");
+  const observers = new Set();
+  set("IntersectionObserver", class {
+    constructor(cb) { this.cb = cb; this.targets = new Set(); observers.add(this); }
+    observe(el) { this.targets.add(el); }
+    unobserve(el) { this.targets.delete(el); }
+    disconnect() { this.targets.clear(); observers.delete(this); }
+  });
   try {
     // recarrega o bundle com window definido: o hook de largura escolhe useLayoutEffect quando ha window
     delete require_cache[bundleFile];
@@ -407,9 +429,16 @@ function renderCards(c) {
         if (!b) throw new Error("botao Filters nao encontrado em " + c.name);
         dtc.flushSync(() => b.click());
       }
+      if (a === "loadMore") {
+        dtc.flushSync(() => {
+          for (const o of [...observers]) if (o.targets.size) o.cb([{ isIntersecting: true, target: [...o.targets][0] }]);
+        });
+      }
     }
     return extractCards(host);
   } finally {
+    if (ioPrev) Object.defineProperty(globalThis, "IntersectionObserver", ioPrev);
+    else delete globalThis.IntersectionObserver;
     for (const n of names) {
       if (prev[n]) Object.defineProperty(globalThis, n, prev[n]);
       else delete globalThis[n];
@@ -443,6 +472,7 @@ function extractCards(host) {
       : null,
     globalInput: toolbarInput ? { placeholder: toolbarInput.getAttribute("placeholder"), value: toolbarInput.getAttribute("value") ?? "" } : null,
     clearButton: [...host.querySelectorAll("button")].some((b) => txt(b) === "Clear filters"),
+    infinite: host.querySelector("[data-sg-infinite-sentinel]") ? { text: txt(host.querySelector("[data-sg-infinite-sentinel]")) } : null,
   };
   if (!root) return { mode: "table", ...common };
   const sortSelect = root.querySelector('select[aria-label="Sort by"]');

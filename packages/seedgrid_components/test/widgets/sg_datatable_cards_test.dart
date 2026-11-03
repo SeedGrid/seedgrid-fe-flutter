@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:ui' as ui;
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
@@ -69,7 +70,9 @@ void main() {
 
   for (final c in cardCases) {
     testWidgets('React x Dart (cartoes): ${c['name']}', (t) async {
-      t.view.physicalSize = const Size(1400, 6000);
+      // rolagem infinita: janela baixa para o sentinela NAO estar visivel de inicio (a acao loadMore rola ate o fim)
+      final infiniteCase = (c['name'] as String).contains('infinite');
+      t.view.physicalSize = Size(1400, infiniteCase ? 300 : 6000);
       t.view.devicePixelRatio = 1;
       addTearDown(t.view.reset);
       final sem = t.ensureSemantics();
@@ -86,6 +89,35 @@ void main() {
           await t.tap(find.byKey(const ValueKey('sg-dt-card-filters-toggle')));
           await t.pump();
         }
+        if (a == 'loadMore') {
+          final pos = t
+              .state<ScrollableState>(find.byType(Scrollable).first)
+              .position;
+          pos.jumpTo(pos.maxScrollExtent);
+          await t.pump();
+          await t.pump();
+        }
+      }
+
+      // rolagem infinita: sentinela presente/ausente e seu texto (fim da lista / carregando mais)
+      final inf = exp['infinite'] as Map<String, dynamic>?;
+      final infText = find.byKey(const ValueKey('sg-dt-infinite-text'));
+      if (inf == null) {
+        expect(infText, findsNothing, reason: 'sem rolagem infinita');
+      } else {
+        expect(
+          infText,
+          findsOneWidget,
+          reason: 'sentinela da rolagem infinita',
+        );
+        expect(t.widget<Text>(infText).data ?? '', inf['text']);
+      }
+      if (exp['mode'] == 'table') {
+        expect(
+          find.byKey(const ValueKey('sg-dt-first')).evaluate().isNotEmpty,
+          exp['pager'] != null,
+          reason: 'paginador na tabela',
+        );
       }
 
       final cardsRoot = find.byKey(const ValueKey('sg-dt-cards'));
@@ -323,7 +355,8 @@ void main() {
 
   Widget table({
     double width = 400,
-    SgDatatableMobileMode mode = SgDatatableMobileMode.cards,
+    SgDatatableMobileMode? mode,
+    bool? infiniteScroll,
     List<SgDatatableColumn> cols = columns,
     SgDatatableSelectionMode? selectionMode,
     ValueChanged<Object?>? onSelectionChange,
@@ -345,16 +378,84 @@ void main() {
       showColumnFilters: showColumnFilters,
       paginator: paginator,
       rows: rows,
+      infiniteScroll: infiniteScroll,
     ),
     width: width,
   );
 
-  testWidgets('padrao (scroll) continua tabela em container estreito', (
-    t,
-  ) async {
+  testWidgets('scroll forca a tabela mesmo em container estreito', (t) async {
     await t.pumpWidget(table(mode: SgDatatableMobileMode.scroll));
     expect(find.byKey(const ValueKey('sg-dt-cards')), findsNothing);
     expect(find.byKey(const ValueKey('sg-dt-row-0')), findsOneWidget);
+  });
+
+  testWidgets('padrao (omitido): cartoes em container estreito', (t) async {
+    await t.pumpWidget(table());
+    expect(find.byKey(const ValueKey('sg-dt-cards')), findsOneWidget);
+  });
+
+  testWidgets(
+    'rolagem infinita: roda do mouse (web) e barra de rolagem pedem a proxima pagina',
+    (t) async {
+      t.view.physicalSize = const Size(1400, 300);
+      t.view.devicePixelRatio = 1;
+      addTearDown(t.view.reset);
+      final events = <SgDatatablePageEvent>[];
+      await t.pumpWidget(
+        hostW(
+          SgDatatable(
+            value: [
+              for (var i = 1; i <= 12; i++)
+                {'id': i, 'name': 'Pessoa $i', 'age': i},
+            ],
+            columns: columns,
+            dataKey: 'id',
+            paginator: true,
+            rows: 4,
+            onLoadMore: events.add,
+          ),
+          width: 400,
+        ),
+      );
+      await t.pump();
+      expect(cardFinder().evaluate().length, 4);
+      expect(find.byKey(const ValueKey('sg-dt-first')), findsNothing);
+
+      // roda do mouse (PointerScrollEvent), como na web
+      Future<void> wheel(double dy) async {
+        final g = await t.createGesture(kind: PointerDeviceKind.mouse);
+        await g.addPointer(location: const Offset(200, 150));
+        await g.moveTo(const Offset(200, 150));
+        await t.sendEventToBinding(
+          PointerScrollEvent(
+            position: const Offset(200, 150),
+            scrollDelta: Offset(0, dy),
+          ),
+        );
+        await t.pump();
+        await t.pump();
+        await g.removePointer();
+      }
+
+      await wheel(3000);
+      expect(cardFinder().evaluate().length, 8);
+      await wheel(3000);
+      expect(cardFinder().evaluate().length, 12);
+      expect(events.map((e) => e.first).toList(), [4, 8]);
+      expect(
+        t.widget<Text>(find.byKey(const ValueKey('sg-dt-infinite-text'))).data,
+        isNotEmpty,
+        reason: 'fim da lista',
+      );
+    },
+  );
+
+  testWidgets('cards forca cartoes mesmo em container largo', (t) async {
+    t.view.physicalSize = const Size(1400, 4000);
+    t.view.devicePixelRatio = 1;
+    addTearDown(t.view.reset);
+    await t.pumpWidget(table(width: 900, mode: SgDatatableMobileMode.cards));
+    expect(find.byKey(const ValueKey('sg-dt-cards')), findsOneWidget);
   });
 
   testWidgets('cards: 599 vira cartoes, 600 continua tabela', (t) async {
@@ -501,7 +602,7 @@ void main() {
     t.view.physicalSize = const Size(1400, 4000);
     t.view.devicePixelRatio = 1;
     addTearDown(t.view.reset);
-    await t.pumpWidget(table(paginator: true, rows: 2));
+    await t.pumpWidget(table(paginator: true, rows: 2, infiniteScroll: false));
     expect(cardFinder(), findsNWidgets(2));
     await t.tap(find.byKey(const ValueKey('sg-dt-next')));
     await t.pump();

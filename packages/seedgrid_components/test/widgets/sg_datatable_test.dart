@@ -916,6 +916,7 @@ void main() {
           paginator: true,
           rows: 10,
           first: 150,
+          infiniteScroll: false,
         ),
         width: 360,
       ),
