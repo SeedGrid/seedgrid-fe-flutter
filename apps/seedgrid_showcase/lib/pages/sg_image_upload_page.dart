@@ -1,5 +1,5 @@
-// Showcase do SgImageUpload. O codigo exibido em cada exemplo e o trecho entre `// #region` e
-// `// #endregion` deste arquivo: exatamente o que esta renderizado.
+// Showcase do SgImageUpload (composicao do SgFileUpload). O codigo exibido em cada exemplo e o trecho entre
+// `// #region` e `// #endregion` deste arquivo: exatamente o que esta renderizado.
 import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
@@ -16,7 +16,8 @@ class SgImageUploadPage extends StatefulWidget {
 
 class _SgImageUploadPageState extends State<SgImageUploadPage> {
   final SgFormController _form = SgFormController();
-  String? _info;
+  List<SgFile> _uma = const [];
+  List<SgFile> _galeria = const [];
   String _enviado = '';
 
   @override
@@ -31,7 +32,7 @@ class _SgImageUploadPageState extends State<SgImageUploadPage> {
       ShowcaseExample(
         title: 'Básico',
         description:
-            'O onChange entrega a imagem escolhida (ou null ao remover); o envio ao servidor é do host.',
+            'O onChange entrega a lista de imagens (de uma); o envio ao servidor é do host. O tipo é conferido pelo conteúdo do arquivo.',
         preview:
             // #region sg-image-upload-basico
             Column(
@@ -40,30 +41,53 @@ class _SgImageUploadPageState extends State<SgImageUploadPage> {
                 SgImageUpload(
                   id: 'foto',
                   labelText: 'Foto',
-                  onChange: (file) => setState(
-                    () => _info = file == null
-                        ? null
-                        : '${file.name} (${file.size} bytes)',
-                  ),
+                  onChange: (files) => setState(() => _uma = files),
                 ),
                 const SizedBox(height: 8),
-                Text('Valor atual: ${_info ?? '-'}'),
+                Text(
+                  'Valor atual: ${_uma.isEmpty ? '-' : '${_uma.first.name} (${_uma.first.size} bytes)'}',
+                ),
               ],
             ),
         // #endregion
         code: SgImageUploadPageSnippets.sgImageUploadBasico,
       ),
       ShowcaseExample(
+        title: 'Várias imagens',
+        description:
+            'maxFiles maior que 1 liga a seleção múltipla e mostra a grade de miniaturas. As imagens recusadas não derrubam as demais.',
+        preview:
+            // #region sg-image-upload-varias
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SgImageUpload(
+                  id: 'galeria',
+                  labelText: 'Galeria',
+                  maxFiles: 4,
+                  maxSizePerFile: '2MB',
+                  maxSizeTotal: '6MB',
+                  hintText: 'Até 4 imagens, 2 MB cada e 6 MB no total.',
+                  onChange: (files) => setState(() => _galeria = files),
+                ),
+                const SizedBox(height: 8),
+                Text('Imagens: ${_galeria.length}'),
+              ],
+            ),
+        // #endregion
+        code: SgImageUploadPageSnippets.sgImageUploadVarias,
+      ),
+      ShowcaseExample(
         title: 'Regras de validação',
         description:
-            'accept, maxSizeBytes, minWidth/minHeight e aspect recusam a imagem com uma mensagem e disparam onError.',
+            'accept, maxSizePerFile, minWidth/minHeight e aspect recusam a imagem com uma mensagem e disparam onError.',
         preview:
             // #region sg-image-upload-regras
             const SgImageUpload(
               id: 'avatar',
               labelText: 'Avatar',
               accept: 'image/png,image/jpeg',
-              maxSizeBytes: 2 * 1024 * 1024,
+              maxSizePerFile: '2MB',
               minWidth: 200,
               minHeight: 200,
               aspect: 1,
@@ -75,14 +99,19 @@ class _SgImageUploadPageState extends State<SgImageUploadPage> {
       ShowcaseExample(
         title: 'Imagem já salva',
         description:
-            'Um valor em texto é tratado como URL de uma imagem existente e já aparece na pré-visualização.',
+            'Um SgFile com url é uma imagem existente no servidor e já aparece na pré-visualização.',
         preview:
             // #region sg-image-upload-salva
             const SgImageUpload(
               id: 'logo',
               labelText: 'Logotipo',
-              defaultValue:
-                  'https://upload.wikimedia.org/wikipedia/commons/4/47/PNG_transparency_demonstration_1.png',
+              defaultValue: [
+                SgFile(
+                  name: 'logo.png',
+                  url:
+                      'https://upload.wikimedia.org/wikipedia/commons/4/47/PNG_transparency_demonstration_1.png',
+                ),
+              ],
               previewHeight: 96,
             ),
         // #endregion
@@ -105,7 +134,7 @@ class _SgImageUploadPageState extends State<SgImageUploadPage> {
       ShowcaseExample(
         title: 'Dentro de um formulário',
         description:
-            'O formulário guarda a imagem escolhida e valida o obrigatório.',
+            'O formulário guarda a lista de imagens e valida o obrigatório.',
         preview:
             // #region sg-image-upload-formulario
             Column(
@@ -123,8 +152,8 @@ class _SgImageUploadPageState extends State<SgImageUploadPage> {
                   label: Text(context.tx('Enviar')),
                   onClick: () => _form.handleSubmit(
                     (values) => setState(
-                      () =>
-                          _enviado = (values['documento'] as SgImageFile).name,
+                      () => _enviado =
+                          (values['documento'] as List).cast<SgFile>().first.name,
                     ),
                   ),
                 ),
@@ -139,14 +168,14 @@ class _SgImageUploadPageState extends State<SgImageUploadPage> {
     return SgShowcasePage(
       name: 'SgImageUpload',
       description:
-          'Escolhe uma imagem, valida e mostra a pré-visualização. Não envia nada: entrega o arquivo ao pai.',
+          'Escolhe uma ou várias imagens, mostra as miniaturas e valida tipo, tamanho, dimensão e proporção. Composição do SgFileUpload. Não envia nada: entrega os arquivos ao pai.',
       examples: examples,
       propSpecs: [
         ...sgPropSpecs['SgImageUpload']!,
         const SgPropSpec(
           name: 'picker',
           reactName: '-',
-          type: 'SgImagePicker?',
+          type: 'SgFilePicker?',
           tsType: '-',
           required: false,
           description:
@@ -158,6 +187,7 @@ class _SgImageUploadPageState extends State<SgImageUploadPage> {
         specs: sgPropSpecs['SgImageUpload']!
             .where(
               (s) => const {
+                'maxFiles',
                 'disabled',
                 'readOnly',
                 'required',
@@ -166,8 +196,11 @@ class _SgImageUploadPageState extends State<SgImageUploadPage> {
             )
             .toList(),
         builder: (context, v) => SgImageUpload(
+          // A chave refaz o campo quando o limite muda.
+          key: ValueKey('pg-${v['maxFiles']}'),
           id: 'pg',
           labelText: 'Rótulo',
+          maxFiles: v['maxFiles'] as num?,
           disabled: v['disabled'] as bool?,
           readOnly: v['readOnly'] as bool?,
           required: v['required'] as bool?,

@@ -33,6 +33,7 @@ export 'sg_dock_zone.g.dart';
 export 'sg_environment_provider.g.dart';
 export 'sg_expandable_panel.g.dart';
 export 'sg_fade_digit.g.dart';
+export 'sg_file_upload.g.dart';
 export 'sg_flip_digit.g.dart';
 export 'sg_float_action_button.g.dart';
 export 'sg_grid.g.dart';

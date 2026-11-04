@@ -164,6 +164,19 @@ for (const name of [...valueExports].sort()) {
   }
 }
 
+// Contratos escritos ANTES do componente existir no React (ex.: P141, Flutter primeiro): tools/gen_props/contratos/*.json
+// substituem a entrada do componente. Apague o arquivo quando o React implementar o contrato (o compilador volta a mandar).
+const contratosDir = path.join(path.dirname(outFile), "contratos");
+if (fs.existsSync(contratosDir)) {
+  for (const f of fs.readdirSync(contratosDir).filter((n) => n.endsWith(".json")).sort()) {
+    const doc = JSON.parse(fs.readFileSync(path.join(contratosDir, f), "utf8"));
+    for (const [name, comp] of Object.entries(doc)) {
+      components[name] = comp;
+      console.log("contrato manual aplicado: " + name + " (" + f + ")");
+    }
+  }
+}
+
 const pj = JSON.parse(fs.readFileSync(path.join(pkg, "package.json"), "utf8"));
 const doc = { fonte: "@seedgrid/fe-components src (compilador TypeScript + *.meta.ts)", versaoReact: pj.version, gerador: "tools/gen_props/extract.mjs", components };
 fs.mkdirSync(path.dirname(outFile), { recursive: true });

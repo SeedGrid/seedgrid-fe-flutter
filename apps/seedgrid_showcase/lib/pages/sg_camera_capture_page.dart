@@ -1,5 +1,7 @@
 // Showcase do SgCameraCapture. O codigo exibido em cada exemplo e o trecho entre `// #region` e
 // `// #endregion` deste arquivo: exatamente o que esta renderizado.
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
@@ -14,7 +16,8 @@ class SgCameraCapturePage extends StatefulWidget {
 }
 
 class _SgCameraCapturePageState extends State<SgCameraCapturePage> {
-  String? _captured;
+  Uint8List? _captured;
+  Uint8List? _selfie;
   String? _cameraError;
 
   @override
@@ -35,12 +38,12 @@ class _SgCameraCapturePageState extends State<SgCameraCapturePage> {
                     id: 'foto',
                     labelText: 'Foto',
                     previewHeight: 240,
-                    onCapture: (image) =>
-                        setState(() => _captured = '${image.length} bytes'),
+                    onCapture: (image) => setState(() => _captured = image),
                   ),
                 ),
                 const SizedBox(height: 8),
-                Text('Valor atual: ${_captured ?? '-'}'),
+                Text('Valor atual: ${_captured?.length ?? '-'} bytes'),
+                if (_captured != null) Image.memory(_captured!, width: 160),
               ],
             ),
         // #endregion
@@ -52,15 +55,25 @@ class _SgCameraCapturePageState extends State<SgCameraCapturePage> {
             'guide: oval com a câmera frontal ajuda a centralizar o rosto.',
         preview:
             // #region sg-camera-capture-oval
-            const SizedBox(
-              width: 320,
-              child: SgCameraCapture(
-                id: 'selfie',
-                labelText: 'Selfie',
-                previewHeight: 280,
-                facing: SgCameraCaptureFacing.user,
-                guide: SgCameraCaptureGuide.oval,
-              ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  width: 320,
+                  child: SgCameraCapture(
+                    id: 'selfie',
+                    labelText: 'Selfie',
+                    previewHeight: 280,
+                    facing: SgCameraCaptureFacing.user,
+                    guide: SgCameraCaptureGuide.oval,
+                    onCapture: (image) => setState(() => _selfie = image),
+                  ),
+                ),
+                if (_selfie != null) ...[
+                  const SizedBox(height: 8),
+                  Image.memory(_selfie!, width: 160),
+                ],
+              ],
             ),
         // #endregion
         code: SgCameraCapturePageSnippets.sgCameraCaptureOval,

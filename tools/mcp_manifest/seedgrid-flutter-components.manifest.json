@@ -1976,28 +1976,28 @@
             "title": "Básico",
             "file": "apps/seedgrid_showcase/lib/pages/sg_camera_capture_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgCameraCapture(\n      id: 'foto',\n      labelText: 'Foto',\n      onCapture: (image) =>\n          setState(() => _captured = '${image.length} bytes'),\n    ),\n    const SizedBox(height: 8),\n    Text('Valor atual: ${_captured ?? '-'}'),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SizedBox(\n      width: 320,\n      child: SgCameraCapture(\n        id: 'foto',\n        labelText: 'Foto',\n        previewHeight: 240,\n        onCapture: (image) => setState(() => _captured = image),\n      ),\n    ),\n    const SizedBox(height: 8),\n    Text('Valor atual: ${_captured?.length ?? '-'} bytes'),\n    if (_captured != null) Image.memory(_captured!, width: 160),\n  ],\n)"
           },
           {
             "id": "sg-camera-capture-erros",
             "title": "Erros de câmera",
             "file": "apps/seedgrid_showcase/lib/pages/sg_camera_capture_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgCameraCapture(\n      id: 'foto-erros',\n      labelText: 'Foto',\n      onError: (code, message) =>\n          setState(() => _cameraError = '${code.name}: $message'),\n    ),\n    const SizedBox(height: 8),\n    Text('Valor atual: ${_cameraError ?? '-'}'),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SizedBox(\n      width: 320,\n      child: SgCameraCapture(\n        id: 'foto-erros',\n        labelText: 'Foto',\n        previewHeight: 240,\n        onError: (code, message) =>\n            setState(() => _cameraError = '${code.name}: $message'),\n      ),\n    ),\n    const SizedBox(height: 8),\n    Text('Valor atual: ${_cameraError ?? '-'}'),\n  ],\n)"
           },
           {
             "id": "sg-camera-capture-oval",
             "title": "Guia oval (selfie)",
             "file": "apps/seedgrid_showcase/lib/pages/sg_camera_capture_page.dart",
             "kind": "dart",
-            "code": "const SgCameraCapture(\n  id: 'selfie',\n  labelText: 'Selfie',\n  facing: SgCameraCaptureFacing.user,\n  guide: SgCameraCaptureGuide.oval,\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SizedBox(\n      width: 320,\n      child: SgCameraCapture(\n        id: 'selfie',\n        labelText: 'Selfie',\n        previewHeight: 280,\n        facing: SgCameraCaptureFacing.user,\n        guide: SgCameraCaptureGuide.oval,\n        onCapture: (image) => setState(() => _selfie = image),\n      ),\n    ),\n    if (_selfie != null) ...[\n      const SizedBox(height: 8),\n      Image.memory(_selfie!, width: 160),\n    ],\n  ],\n)"
           },
           {
             "id": "sg-camera-capture-retangular",
             "title": "Guia retangular (documento)",
             "file": "apps/seedgrid_showcase/lib/pages/sg_camera_capture_page.dart",
             "kind": "dart",
-            "code": "const SgCameraCapture(\n  id: 'documento',\n  labelText: 'Documento',\n  facing: SgCameraCaptureFacing.environment,\n  guide: SgCameraCaptureGuide.rect,\n  resolution: SgCameraCaptureResolution.high,\n  previewHeight: 240,\n)"
+            "code": "const SizedBox(\n  width: 360,\n  child: SgCameraCapture(\n    id: 'documento',\n    labelText: 'Documento',\n    facing: SgCameraCaptureFacing.environment,\n    guide: SgCameraCaptureGuide.rect,\n    resolution: SgCameraCaptureResolution.high,\n    previewHeight: 240,\n  ),\n)"
           }
         ],
         "parity": {
@@ -5524,6 +5524,223 @@
       }
     },
     {
+      "componentId": "sg-file-upload",
+      "exportName": "SgFileUpload",
+      "sgMeta": {
+        "version": "2026.7.1",
+        "componentId": "sg-file-upload",
+        "package": "seedgrid_components",
+        "exportName": "SgFileUpload",
+        "slug": "sg-file-upload",
+        "displayName": "SgFileUpload",
+        "category": "input",
+        "subcategory": "",
+        "description": "Escolhe um ou varios arquivos (clique ou arrastar e soltar), confere o tipo pelo conteudo e valida quantidade e tamanho (por arquivo e total). Nao envia nada ao servidor: entrega os arquivos ao pai.",
+        "tags": [],
+        "props": [
+          {
+            "name": "accept",
+            "type": "String?",
+            "required": false,
+            "description": "Tipos extras em texto livre (.pdf, image/png, image/*), separados por virgula; soma-se ao mediaType."
+          },
+          {
+            "name": "control",
+            "type": "Object?",
+            "required": false,
+            "typeExact": false
+          },
+          {
+            "name": "defaultValue",
+            "type": "List<Object?>?",
+            "required": false,
+            "description": "Arquivos iniciais (campo nao controlado).",
+            "typeExact": false
+          },
+          {
+            "name": "disabled",
+            "type": "bool?",
+            "required": false,
+            "default": "false",
+            "description": "Desabilita a escolha e a remocao."
+          },
+          {
+            "name": "error",
+            "type": "String?",
+            "required": false
+          },
+          {
+            "name": "hintText",
+            "type": "String?",
+            "required": false
+          },
+          {
+            "name": "id",
+            "type": "String",
+            "required": true,
+            "description": "Identificador unico do campo."
+          },
+          {
+            "name": "label",
+            "type": "String?",
+            "required": false,
+            "description": "Rotulo exibido acima da area."
+          },
+          {
+            "name": "labelText",
+            "type": "String?",
+            "required": false
+          },
+          {
+            "name": "maxFiles",
+            "type": "num?",
+            "required": false,
+            "default": "1",
+            "description": "Quantos arquivos o campo guarda (padrao 1). Com 1, escolher outro substitui; maior que 1 liga a selecao multipla e a grade."
+          },
+          {
+            "name": "maxSizePerFile",
+            "type": "Object?",
+            "required": false,
+            "description": "Tamanho maximo de cada arquivo: bytes (numero) ou texto com unidade (\"500KB\", \"1.5MB\", \"1GB\").",
+            "typeExact": false
+          },
+          {
+            "name": "maxSizeTotal",
+            "type": "Object?",
+            "required": false,
+            "description": "Tamanho maximo da soma dos arquivos: bytes (numero) ou texto com unidade.",
+            "typeExact": false
+          },
+          {
+            "name": "mediaType",
+            "type": "List<Object?>?",
+            "required": false,
+            "description": "Tipos aceitos: image, video, audio, pdf, doc, docx, xls, xlsx, ppt, pptx, csv, txt, zip ou all. O tipo e conferido pelo conteudo do arquivo.",
+            "typeExact": false
+          },
+          {
+            "name": "name",
+            "type": "String?",
+            "required": false,
+            "description": "Nome do campo para formularios."
+          },
+          {
+            "name": "onChange",
+            "type": "Function?",
+            "required": false,
+            "description": "Lista de arquivos validos apos escolher ou remover. O envio ao servidor e do host.",
+            "typeExact": false
+          },
+          {
+            "name": "onEnter",
+            "type": "Function?",
+            "required": false,
+            "typeExact": false
+          },
+          {
+            "name": "onError",
+            "type": "Function?",
+            "required": false,
+            "description": "Arquivo recusado (type, size, total, count): codigo, mensagem ja traduzida e nome do arquivo. Os demais arquivos escolhidos seguem validos.",
+            "typeExact": false
+          },
+          {
+            "name": "onExit",
+            "type": "Function?",
+            "required": false,
+            "typeExact": false
+          },
+          {
+            "name": "readOnly",
+            "type": "bool?",
+            "required": false
+          },
+          {
+            "name": "required",
+            "type": "bool?",
+            "required": false
+          },
+          {
+            "name": "requiredMessage",
+            "type": "String?",
+            "required": false
+          },
+          {
+            "name": "rules",
+            "type": "Object?",
+            "required": false,
+            "typeExact": false
+          },
+          {
+            "name": "value",
+            "type": "List<Object?>?",
+            "required": false,
+            "description": "Arquivos controlados (sempre lista; um arquivo = lista de um).",
+            "typeExact": false
+          }
+        ],
+        "examples": [
+          {
+            "id": "sg-file-upload-basico",
+            "title": "Básico",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_file_upload_page.dart",
+            "kind": "dart",
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgFileUpload(\n      id: 'anexo',\n      labelText: 'Anexo',\n      onChange: (files) => setState(() => _um = files),\n    ),\n    const SizedBox(height: 8),\n    Text(\n      'Valor atual: ${_um.isEmpty ? '-' : _um.map((f) => f.name).join(', ')}',\n    ),\n  ],\n)"
+          },
+          {
+            "id": "sg-file-upload-desabilitado",
+            "title": "Desabilitado",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_file_upload_page.dart",
+            "kind": "dart",
+            "code": "const SgFileUpload(\n  id: 'anexo-desabilitado',\n  labelText: 'Anexo',\n  disabled: true,\n  defaultValue: [SgFile(name: 'contrato.pdf', size: 482304)],\n)"
+          },
+          {
+            "id": "sg-file-upload-formulario",
+            "title": "Dentro de um formulário",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_file_upload_page.dart",
+            "kind": "dart",
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgFileUpload(\n      id: 'comprovantes',\n      name: 'comprovantes',\n      control: _form,\n      labelText: 'Comprovantes',\n      maxFiles: 3,\n      rules: const SgRules(required: 'Anexe ao menos um arquivo'),\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _form.handleSubmit(\n        (values) => setState(\n          () => _enviado =\n              '${(values['comprovantes'] as List).length} arquivo(s)',\n        ),\n      ),\n    ),\n    if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),\n  ],\n)"
+          },
+          {
+            "id": "sg-file-upload-limites",
+            "title": "Limites de tamanho",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_file_upload_page.dart",
+            "kind": "dart",
+            "code": "const SgFileUpload(\n  id: 'limites',\n  labelText: 'Documentos',\n  maxFiles: 5,\n  maxSizePerFile: '2MB',\n  maxSizeTotal: '5MB',\n  hintText: 'Até 5 arquivos, 2 MB cada e 5 MB no total.',\n)"
+          },
+          {
+            "id": "sg-file-upload-tipos",
+            "title": "Tipos aceitos",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_file_upload_page.dart",
+            "kind": "dart",
+            "code": "const SgFileUpload(\n  id: 'planilha',\n  labelText: 'Planilha ou PDF',\n  mediaType: [\n    SgMediaType.pdf,\n    SgMediaType.xls,\n    SgMediaType.xlsx,\n  ],\n  maxFiles: 2,\n)"
+          },
+          {
+            "id": "sg-file-upload-varios",
+            "title": "Vários arquivos",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_file_upload_page.dart",
+            "kind": "dart",
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgFileUpload(\n      id: 'anexos',\n      labelText: 'Anexos',\n      maxFiles: 3,\n      hintText: 'Até 3 arquivos.',\n      onChange: (files) => setState(() => _varios = files),\n      onError: (code, message, fileName) =>\n          setState(() => _erro = '$fileName: ${code.name}'),\n    ),\n    const SizedBox(height: 8),\n    Text('Arquivos: ${_varios.length}'),\n    Text('Última recusa: $_erro'),\n  ],\n)"
+          }
+        ],
+        "parity": {
+          "status": "parcial",
+          "reason": "Contrato escrito primeiro (P141, Flutter primeiro): o toque abre o seletor do sistema (file_picker), o valor é uma lista de SgFile e o tipo é conferido pelo conteúdo do arquivo; sem arrastar e soltar."
+        },
+        "omittedProps": [
+          {
+            "name": "className",
+            "reason": "Estilo por classe ou style inline não existe no Flutter; use as props padding, margin, width, height e customColors."
+          },
+          {
+            "name": "register",
+            "reason": "Não se aplica no Flutter: todo campo é controlado pelo valor e pelo onChange (ou pelo SgFormController)."
+          }
+        ]
+      }
+    },
+    {
       "componentId": "sg-flip-digit",
       "exportName": "SgFlipDigit",
       "sgMeta": {
@@ -6199,15 +6416,14 @@
         "displayName": "SgImageUpload",
         "category": "input",
         "subcategory": "",
-        "description": "Seleciona uma imagem (clique ou arrastar e soltar), valida tipo, tamanho, dimensao minima e proporcao, mostra a pre-visualizacao e permite remover. Nao envia nada ao servidor: entrega o arquivo ao pai.",
+        "description": "Escolhe uma ou varias imagens, mostra as miniaturas e valida tipo, tamanho, dimensao minima e proporcao. Composicao do SgFileUpload. Nao envia nada ao servidor: entrega os arquivos ao pai.",
         "tags": [],
         "props": [
           {
             "name": "accept",
             "type": "String?",
             "required": false,
-            "default": "image/*",
-            "description": "Tipos aceitos (image/*, image/png, .png), separados por virgula."
+            "description": "Restringe os formatos de imagem em texto livre (.png, image/jpeg), separados por virgula."
           },
           {
             "name": "aspect",
@@ -6223,9 +6439,9 @@
           },
           {
             "name": "defaultValue",
-            "type": "Object?",
+            "type": "List<Object?>?",
             "required": false,
-            "description": "Imagem inicial (campo nao controlado).",
+            "description": "Imagens iniciais (campo nao controlado).",
             "typeExact": false
           },
           {
@@ -6263,10 +6479,25 @@
             "required": false
           },
           {
-            "name": "maxSizeBytes",
+            "name": "maxFiles",
             "type": "num?",
             "required": false,
-            "description": "Tamanho maximo em bytes."
+            "default": "1",
+            "description": "Quantas imagens o campo guarda (padrao 1). Com 1, escolher outra substitui; maior que 1 liga a selecao multipla e a grade de miniaturas."
+          },
+          {
+            "name": "maxSizePerFile",
+            "type": "Object?",
+            "required": false,
+            "description": "Tamanho maximo de cada imagem: bytes (numero) ou texto com unidade (\"500KB\", \"2MB\").",
+            "typeExact": false
+          },
+          {
+            "name": "maxSizeTotal",
+            "type": "Object?",
+            "required": false,
+            "description": "Tamanho maximo da soma das imagens: bytes (numero) ou texto com unidade.",
+            "typeExact": false
           },
           {
             "name": "minHeight",
@@ -6290,7 +6521,7 @@
             "name": "onChange",
             "type": "Function?",
             "required": false,
-            "description": "Arquivo valido escolhido ou null ao remover.",
+            "description": "Lista de imagens validas apos escolher ou remover. O envio ao servidor e do host.",
             "typeExact": false
           },
           {
@@ -6303,7 +6534,7 @@
             "name": "onError",
             "type": "Function?",
             "required": false,
-            "description": "Arquivo recusado (type, size, dimension, aspect).",
+            "description": "Arquivo recusado (type, size, total, count, dimension, aspect): codigo, mensagem ja traduzida e nome do arquivo. Os demais arquivos escolhidos seguem validos.",
             "typeExact": false
           },
           {
@@ -6317,7 +6548,7 @@
             "type": "num?",
             "required": false,
             "default": "160",
-            "description": "Altura da area de pre-visualizacao em px (padrao 160)."
+            "description": "Altura da miniatura em px (padrao 160)."
           },
           {
             "name": "readOnly",
@@ -6342,9 +6573,9 @@
           },
           {
             "name": "value",
-            "type": "Object?",
+            "type": "List<Object?>?",
             "required": false,
-            "description": "Imagem controlada: arquivo escolhido ou URL de uma imagem ja salva.",
+            "description": "Imagens controladas (sempre lista; uma imagem = lista de uma).",
             "typeExact": false
           }
         ],
@@ -6354,7 +6585,7 @@
             "title": "Básico",
             "file": "apps/seedgrid_showcase/lib/pages/sg_image_upload_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgImageUpload(\n      id: 'foto',\n      labelText: 'Foto',\n      onChange: (file) => setState(\n        () => _info = file == null\n            ? null\n            : '${file.name} (${file.size} bytes)',\n      ),\n    ),\n    const SizedBox(height: 8),\n    Text('Valor atual: ${_info ?? '-'}'),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgImageUpload(\n      id: 'foto',\n      labelText: 'Foto',\n      onChange: (files) => setState(() => _uma = files),\n    ),\n    const SizedBox(height: 8),\n    Text(\n      'Valor atual: ${_uma.isEmpty ? '-' : '${_uma.first.name} (${_uma.first.size} bytes)'}',\n    ),\n  ],\n)"
           },
           {
             "id": "sg-image-upload-desabilitado",
@@ -6368,26 +6599,33 @@
             "title": "Dentro de um formulário",
             "file": "apps/seedgrid_showcase/lib/pages/sg_image_upload_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgImageUpload(\n      id: 'documento',\n      name: 'documento',\n      control: _form,\n      labelText: 'Foto do documento',\n      rules: const SgRules(required: 'Escolha uma imagem'),\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _form.handleSubmit(\n        (values) => setState(\n          () =>\n              _enviado = (values['documento'] as SgImageFile).name,\n        ),\n      ),\n    ),\n    if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgImageUpload(\n      id: 'documento',\n      name: 'documento',\n      control: _form,\n      labelText: 'Foto do documento',\n      rules: const SgRules(required: 'Escolha uma imagem'),\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _form.handleSubmit(\n        (values) => setState(\n          () => _enviado =\n              (values['documento'] as List).cast<SgFile>().first.name,\n        ),\n      ),\n    ),\n    if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),\n  ],\n)"
           },
           {
             "id": "sg-image-upload-regras",
             "title": "Regras de validação",
             "file": "apps/seedgrid_showcase/lib/pages/sg_image_upload_page.dart",
             "kind": "dart",
-            "code": "const SgImageUpload(\n  id: 'avatar',\n  labelText: 'Avatar',\n  accept: 'image/png,image/jpeg',\n  maxSizeBytes: 2 * 1024 * 1024,\n  minWidth: 200,\n  minHeight: 200,\n  aspect: 1,\n  hintText: 'PNG ou JPEG, até 2 MB, quadrada, mínimo 200 × 200 px.',\n)"
+            "code": "const SgImageUpload(\n  id: 'avatar',\n  labelText: 'Avatar',\n  accept: 'image/png,image/jpeg',\n  maxSizePerFile: '2MB',\n  minWidth: 200,\n  minHeight: 200,\n  aspect: 1,\n  hintText: 'PNG ou JPEG, até 2 MB, quadrada, mínimo 200 × 200 px.',\n)"
           },
           {
             "id": "sg-image-upload-salva",
             "title": "Imagem já salva",
             "file": "apps/seedgrid_showcase/lib/pages/sg_image_upload_page.dart",
             "kind": "dart",
-            "code": "const SgImageUpload(\n  id: 'logo',\n  labelText: 'Logotipo',\n  defaultValue:\n      'https://upload.wikimedia.org/wikipedia/commons/4/47/PNG_transparency_demonstration_1.png',\n  previewHeight: 96,\n)"
+            "code": "const SgImageUpload(\n  id: 'logo',\n  labelText: 'Logotipo',\n  defaultValue: [\n    SgFile(\n      name: 'logo.png',\n      url:\n          'https://upload.wikimedia.org/wikipedia/commons/4/47/PNG_transparency_demonstration_1.png',\n    ),\n  ],\n  previewHeight: 96,\n)"
+          },
+          {
+            "id": "sg-image-upload-varias",
+            "title": "Várias imagens",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_image_upload_page.dart",
+            "kind": "dart",
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgImageUpload(\n      id: 'galeria',\n      labelText: 'Galeria',\n      maxFiles: 4,\n      maxSizePerFile: '2MB',\n      maxSizeTotal: '6MB',\n      hintText: 'Até 4 imagens, 2 MB cada e 6 MB no total.',\n      onChange: (files) => setState(() => _galeria = files),\n    ),\n    const SizedBox(height: 8),\n    Text('Imagens: ${_galeria.length}'),\n  ],\n)"
           }
         ],
         "parity": {
-          "status": "portado",
-          "reason": "O toque abre o seletor do sistema (file_picker) em vez de input type=file com arrastar e soltar; o valor é uma SgImageFile (nome e bytes), e texto em value/defaultValue é a URL de uma imagem salva; não há recorte nem compressão; os validadores do componente rodam no envio do formulário."
+          "status": "parcial",
+          "reason": "O contrato mudou no P141 (valor sempre lista, maxFiles, maxSizePerFile e maxSizeTotal, composição do SgFileUpload) e a outra plataforma ainda tem a API antiga; aqui o toque abre o seletor do sistema (file_picker), o valor é uma lista de SgFile (nome e bytes) e não há arrastar e soltar."
         },
         "omittedProps": [
           {
@@ -8962,6 +9200,13 @@
             "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgInputDateTime(\n      id: 'quando',\n      labelText: 'Quando',\n      onChange: (value, local) => setState(() => _instante = value),\n    ),\n    const SizedBox(height: 8),\n    Text('Valor atual: ${_instante ?? '-'}'),\n  ],\n)"
           },
           {
+            "id": "sg-input-date-time-eventos",
+            "title": "Eventos",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_input_date_time_page.dart",
+            "kind": "dart",
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgInputDateTime(\n      id: 'eventos',\n      labelText: 'Quando',\n      onChange: (value, local) =>\n          setState(() => _evento = 'onChange: ${value ?? local}'),\n      onEnter: () => setState(() => _evento = 'onEnter'),\n      onExit: () => setState(() => _evento = 'onExit'),\n    ),\n    const SizedBox(height: 8),\n    Text('Último evento: $_evento'),\n  ],\n)"
+          },
+          {
             "id": "sg-input-date-time-formulario",
             "title": "Dentro de um formulário",
             "file": "apps/seedgrid_showcase/lib/pages/sg_input_date_time_page.dart",
@@ -8973,7 +9218,7 @@
             "title": "Fusos horários",
             "file": "apps/seedgrid_showcase/lib/pages/sg_input_date_time_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgInputDateTime(\n      id: 'fuso-utc',\n      labelText: 'UTC',\n      timeZone: 'UTC',\n      value: _fuso,\n      onChange: (value, local) =>\n          setState(() => _fuso = value ?? ''),\n    ),\n    const SizedBox(height: 12),\n    SgInputDateTime(\n      id: 'fuso-sp',\n      labelText: '-03:00',\n      timeZone: '-03:00',\n      value: _fuso,\n      onChange: (value, local) =>\n          setState(() => _fuso = value ?? ''),\n    ),\n    const SizedBox(height: 12),\n    SgInputDateTime(\n      id: 'fuso-in',\n      labelText: '+05:30',\n      timeZone: '+05:30',\n      value: _fuso,\n      onChange: (value, local) =>\n          setState(() => _fuso = value ?? ''),\n    ),\n    const SizedBox(height: 8),\n    Text('Valor atual: ${_fuso.isEmpty ? '-' : _fuso}'),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgInputDateTime(\n      id: 'fuso-utc',\n      labelText: 'UTC',\n      timeZone: 'UTC',\n      value: _fuso,\n      // Campo incompleto (null) nao mexe nos outros: so um instante valido atualiza.\n      onChange: (value, local) {\n        if (value != null) setState(() => _fuso = value);\n      },\n    ),\n    const SizedBox(height: 12),\n    SgInputDateTime(\n      id: 'fuso-sp',\n      labelText: '-03:00',\n      timeZone: '-03:00',\n      value: _fuso,\n      // Campo incompleto (null) nao mexe nos outros: so um instante valido atualiza.\n      onChange: (value, local) {\n        if (value != null) setState(() => _fuso = value);\n      },\n    ),\n    const SizedBox(height: 12),\n    SgInputDateTime(\n      id: 'fuso-in',\n      labelText: '+05:30',\n      timeZone: '+05:30',\n      value: _fuso,\n      // Campo incompleto (null) nao mexe nos outros: so um instante valido atualiza.\n      onChange: (value, local) {\n        if (value != null) setState(() => _fuso = value);\n      },\n    ),\n    const SizedBox(height: 8),\n    Text('Valor atual: $_fuso'),\n  ],\n)"
           },
           {
             "id": "sg-input-date-time-limites",

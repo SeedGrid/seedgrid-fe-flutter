@@ -11,14 +11,12 @@ Column(
     SgImageUpload(
       id: 'foto',
       labelText: 'Foto',
-      onChange: (file) => setState(
-        () => _info = file == null
-            ? null
-            : '${file.name} (${file.size} bytes)',
-      ),
+      onChange: (files) => setState(() => _uma = files),
     ),
     const SizedBox(height: 8),
-    Text('Valor atual: ${_info ?? '-'}'),
+    Text(
+      'Valor atual: ${_uma.isEmpty ? '-' : '${_uma.first.name} (${_uma.first.size} bytes)'}',
+    ),
   ],
 )
 ''';
@@ -49,8 +47,8 @@ Column(
       label: Text(context.tx('Enviar')),
       onClick: () => _form.handleSubmit(
         (values) => setState(
-          () =>
-              _enviado = (values['documento'] as SgImageFile).name,
+          () => _enviado =
+              (values['documento'] as List).cast<SgFile>().first.name,
         ),
       ),
     ),
@@ -65,7 +63,7 @@ const SgImageUpload(
   id: 'avatar',
   labelText: 'Avatar',
   accept: 'image/png,image/jpeg',
-  maxSizeBytes: 2 * 1024 * 1024,
+  maxSizePerFile: '2MB',
   minWidth: 200,
   minHeight: 200,
   aspect: 1,
@@ -78,9 +76,34 @@ const SgImageUpload(
 const SgImageUpload(
   id: 'logo',
   labelText: 'Logotipo',
-  defaultValue:
-      'https://upload.wikimedia.org/wikipedia/commons/4/47/PNG_transparency_demonstration_1.png',
+  defaultValue: [
+    SgFile(
+      name: 'logo.png',
+      url:
+          'https://upload.wikimedia.org/wikipedia/commons/4/47/PNG_transparency_demonstration_1.png',
+    ),
+  ],
   previewHeight: 96,
+)
+''';
+
+  /// Region `sg-image-upload-varias`.
+  static const String sgImageUploadVarias = r'''
+Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    SgImageUpload(
+      id: 'galeria',
+      labelText: 'Galeria',
+      maxFiles: 4,
+      maxSizePerFile: '2MB',
+      maxSizeTotal: '6MB',
+      hintText: 'Até 4 imagens, 2 MB cada e 6 MB no total.',
+      onChange: (files) => setState(() => _galeria = files),
+    ),
+    const SizedBox(height: 8),
+    Text('Imagens: ${_galeria.length}'),
+  ],
 )
 ''';
 }

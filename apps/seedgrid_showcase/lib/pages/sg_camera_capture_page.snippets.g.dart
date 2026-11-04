@@ -14,12 +14,12 @@ Column(
         id: 'foto',
         labelText: 'Foto',
         previewHeight: 240,
-        onCapture: (image) =>
-            setState(() => _captured = '${image.length} bytes'),
+        onCapture: (image) => setState(() => _captured = image),
       ),
     ),
     const SizedBox(height: 8),
-    Text('Valor atual: ${_captured ?? '-'}'),
+    Text('Valor atual: ${_captured?.length ?? '-'} bytes'),
+    if (_captured != null) Image.memory(_captured!, width: 160),
   ],
 )
 ''';
@@ -47,15 +47,25 @@ Column(
 
   /// Region `sg-camera-capture-oval`.
   static const String sgCameraCaptureOval = r'''
-const SizedBox(
-  width: 320,
-  child: SgCameraCapture(
-    id: 'selfie',
-    labelText: 'Selfie',
-    previewHeight: 280,
-    facing: SgCameraCaptureFacing.user,
-    guide: SgCameraCaptureGuide.oval,
-  ),
+Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    SizedBox(
+      width: 320,
+      child: SgCameraCapture(
+        id: 'selfie',
+        labelText: 'Selfie',
+        previewHeight: 280,
+        facing: SgCameraCaptureFacing.user,
+        guide: SgCameraCaptureGuide.oval,
+        onCapture: (image) => setState(() => _selfie = image),
+      ),
+    ),
+    if (_selfie != null) ...[
+      const SizedBox(height: 8),
+      Image.memory(_selfie!, width: 160),
+    ],
+  ],
 )
 ''';
 

@@ -1,5 +1,5 @@
-// SgImageUpload (P133): paridade da logica pura com o React (image_upload_vectors/vectors.json, gerado a partir de
-// imageUploadLogic.ts) e comportamento do widget (escolher, recusar, remover, URL salva, desabilitado, formulario).
+// SgImageUpload (P133, refeito no P141 como composicao do SgFileUpload): paridade das regras de imagem com o React
+// (image_upload_vectors) e comportamento do widget (uma imagem, varias, recusas por arquivo, dimensao, formulario).
 import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
@@ -30,8 +30,12 @@ final Uint8List _png = base64Decode(
   'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==',
 );
 
-SgImagePicker pickerOf(SgImageFile? file) =>
-    (accept) async => file;
+List<SgFile> png(List<String> names) => [
+  for (final n in names) SgFile(name: n, bytes: _png),
+];
+
+SgFilePicker pickerOf(List<SgFile> files) =>
+    (request) async => files;
 
 void main() {
   final doc =
@@ -90,91 +94,166 @@ void main() {
     );
     tearDown(resetComponentsI18n);
 
-    testWidgets('escolhe, mostra o nome e remove', (t) async {
-      final calls = <String?>[];
+    testWidgets('uma imagem: escolhe, mostra a miniatura e remove', (t) async {
+      final calls = <List<String>>[];
       await t.pumpWidget(
         host(
           SgImageUpload(
             id: 'up',
             label: 'Foto',
-            picker: pickerOf(SgImageFile(name: 'foto.png', bytes: _png)),
-            onChange: (f) => calls.add(f?.name),
+            picker: pickerOf(png(['foto.png'])),
+            onChange: (f) => calls.add([for (final x in f) x.name]),
           ),
         ),
       );
       await t.tap(find.byKey(const ValueKey('sg-image-open-up')));
       await t.pump();
-      expect(calls, ['foto.png']);
-      expect(find.byKey(const ValueKey('sg-image-preview-up')), findsOneWidget);
-      expect(find.textContaining('foto.png'), findsOneWidget);
-      await t.tap(find.byKey(const ValueKey('sg-image-remove-up')));
+      expect(calls, [
+        ['foto.png'],
+      ]);
+      expect(
+        find.byKey(const ValueKey('sg-image-preview-up-foto.png')),
+        findsOneWidget,
+      );
+      await t.tap(find.byKey(const ValueKey('sg-image-remove-up-0')));
       await t.pump();
-      expect(calls, ['foto.png', null]);
-      expect(find.byKey(const ValueKey('sg-image-preview-up')), findsNothing);
+      expect(calls.last, isEmpty);
+      expect(find.byKey(const ValueKey('sg-image-open-up')), findsOneWidget);
     });
 
-    testWidgets('sem tipo nem extensao conhecida, vale o conteudo do arquivo', (
-      t,
-    ) async {
-      final calls = <String?>[];
-      final errors = <SgImageError>[];
+    testWidgets('com maxFiles 1, escolher outra substitui', (t) async {
+      var next = png(['a.png']);
+      List<SgFile>? last;
       await t.pumpWidget(
         host(
           SgImageUpload(
             id: 'up',
-            picker: pickerOf(SgImageFile(name: 'foto.xyz', bytes: _png)),
-            onChange: (f) => calls.add(f?.name),
-            onError: (code, message) => errors.add(code),
+            picker: (_) async => next,
+            onChange: (f) => last = f,
+          ),
+        ),
+      );
+      await t.tap(find.byKey(const ValueKey('sg-image-open-up')));
+      await t.pump();
+      next = png(['b.png']);
+      await t.tap(find.byKey(const ValueKey('sg-image-change-up')));
+      await t.pump();
+      expect([for (final f in last!) f.name], ['b.png']);
+    });
+
+    testWidgets('varias imagens: grade, limite maxFiles e erro por arquivo', (
+      t,
+    ) async {
+      final errors = <String>[];
+      List<SgFile>? last;
+      await t.pumpWidget(
+        host(
+          SgImageUpload(
+            id: 'up',
+            maxFiles: 2,
+            picker: pickerOf(png(['a.png', 'b.png', 'c.png'])),
+            onChange: (f) => last = f,
+            onError: (code, message, name) => errors.add('$name:${code.name}'),
+          ),
+        ),
+      );
+      await t.tap(find.byKey(const ValueKey('sg-image-open-up')));
+      await t.pump();
+      expect([for (final f in last!) f.name], ['a.png', 'b.png']);
+      expect(errors, ['c.png:count']);
+      expect(find.byKey(const ValueKey('sg-image-item-up-1')), findsOneWidget);
+      expect(find.textContaining('c.png'), findsOneWidget);
+      // cheio: a area de escolha some.
+      expect(find.byKey(const ValueKey('sg-image-open-up')), findsNothing);
+    });
+
+    testWidgets('recusa tipo e tamanho por arquivo; os outros seguem', (
+      t,
+    ) async {
+      final errors = <String>[];
+      List<SgFile>? last;
+      await t.pumpWidget(
+        host(
+          SgImageUpload(
+            id: 'up',
+            maxFiles: 5,
+            maxSizePerFile: '1KB',
+            picker: pickerOf([
+              SgFile(name: 'ok.png', bytes: _png),
+              SgFile(
+                name: 'doc.pdf',
+                bytes: Uint8List.fromList([0x25, 0x50, 0x44, 0x46, 0x2d]),
+                mimeType: 'application/pdf',
+              ),
+              SgFile(
+                name: 'grande.png',
+                bytes: Uint8List(2000)..setAll(0, _png),
+                mimeType: 'image/png',
+              ),
+            ]),
+            onChange: (f) => last = f,
+            onError: (code, message, name) => errors.add('$name:${code.name}'),
+          ),
+        ),
+      );
+      await t.tap(find.byKey(const ValueKey('sg-image-open-up')));
+      await t.pump();
+      expect([for (final f in last!) f.name], ['ok.png']);
+      expect(errors, ['doc.pdf:type', 'grande.png:size']);
+      expect(find.textContaining('1,0 KB'), findsOneWidget);
+    });
+
+    testWidgets('imagem com extensao desconhecida vale pelo conteudo (.jfif)', (
+      t,
+    ) async {
+      final errors = <String>[];
+      List<SgFile>? last;
+      final jpeg = Uint8List.fromList([0xff, 0xd8, 0xff, 0xe0, 0, 0x10]);
+      await t.pumpWidget(
+        host(
+          SgImageUpload(
+            id: 'up',
+            picker: pickerOf([SgFile(name: '71cd3918.jfif', bytes: jpeg)]),
+            onChange: (f) => last = f,
+            onError: (code, message, name) => errors.add(name),
           ),
         ),
       );
       await t.tap(find.byKey(const ValueKey('sg-image-open-up')));
       await t.pump();
       expect(errors, isEmpty);
-      expect(calls, ['foto.xyz']);
+      expect(last!.single.name, '71cd3918.jfif');
     });
 
-    testWidgets('recusa tipo e tamanho com onError e mensagem', (t) async {
-      final errors = <SgImageError>[];
-      var file = SgImageFile(
-        name: 'doc.pdf',
-        bytes: _png,
-        mimeType: 'application/pdf',
-      );
+    testWidgets('accept restringe os formatos de imagem', (t) async {
+      final errors = <String>[];
       await t.pumpWidget(
         host(
           SgImageUpload(
             id: 'up',
-            accept: 'image/png',
-            maxSizeBytes: 50,
-            picker: (_) async => file,
-            onError: (code, message) => errors.add(code),
+            accept: '.jpg',
+            picker: pickerOf(png(['a.png'])),
+            onError: (code, message, name) => errors.add('$name:${code.name}'),
           ),
         ),
       );
-      await t.tap(find.byKey(const ValueKey('sg-image-open-up')));
+      await t.runAsync(() async {
+        await t.tap(find.byKey(const ValueKey('sg-image-open-up')));
+        await Future<void>.delayed(const Duration(milliseconds: 100));
+      });
       await t.pump();
-      expect(errors, [SgImageError.type]);
-      file = SgImageFile(
-        name: 'grande.png',
-        bytes: Uint8List(500),
-        mimeType: 'image/png',
-      );
-      await t.tap(find.byKey(const ValueKey('sg-image-open-up')));
-      await t.pump();
-      expect(errors.last, SgImageError.size);
-      expect(find.textContaining('50 B'), findsOneWidget);
+      expect(errors, ['a.png:type']);
     });
 
     testWidgets('valida dimensao minima lendo a imagem', (t) async {
-      SgImageError? last;
+      final errors = <String>[];
       await t.pumpWidget(
         host(
           SgImageUpload(
             id: 'up',
             minWidth: 100,
-            picker: pickerOf(SgImageFile(name: 'a.png', bytes: _png)),
-            onError: (code, message) => last = code,
+            picker: pickerOf(png(['a.png'])),
+            onError: (code, message, name) => errors.add('$name:${code.name}'),
           ),
         ),
       );
@@ -183,7 +262,7 @@ void main() {
         await Future<void>.delayed(const Duration(milliseconds: 200));
       });
       await t.pump();
-      expect(last, SgImageError.dimension);
+      expect(errors, ['a.png:dimension']);
     });
 
     testWidgets('desabilitado nao abre o seletor e nao mostra remover', (
@@ -195,7 +274,9 @@ void main() {
           SgImageUpload(
             id: 'up',
             disabled: true,
-            defaultValue: 'https://x.test/a.png',
+            defaultValue: const [
+              SgFile(name: 'a.png', url: 'https://x.test/a.png'),
+            ],
             picker: (_) async {
               opened = true;
               return null;
@@ -203,13 +284,12 @@ void main() {
           ),
         ),
       );
-      await t.tap(find.byKey(const ValueKey('sg-image-open-up')));
-      await t.pump();
       expect(opened, isFalse);
-      expect(find.byKey(const ValueKey('sg-image-remove-up')), findsNothing);
+      expect(find.byKey(const ValueKey('sg-image-remove-up-0')), findsNothing);
+      expect(find.byKey(const ValueKey('sg-image-change-up')), findsNothing);
     });
 
-    testWidgets('formulario guarda a imagem escolhida', (t) async {
+    testWidgets('formulario guarda a lista de imagens', (t) async {
       final form = SgFormController();
       await t.pumpWidget(
         host(
@@ -217,13 +297,17 @@ void main() {
             id: 'up',
             name: 'foto',
             control: form,
-            picker: pickerOf(SgImageFile(name: 'foto.png', bytes: _png)),
+            maxFiles: 3,
+            picker: pickerOf(png(['a.png', 'b.png'])),
           ),
         ),
       );
       await t.tap(find.byKey(const ValueKey('sg-image-open-up')));
       await t.pump();
-      expect((form.getValue('foto') as SgImageFile).name, 'foto.png');
+      expect(
+        [for (final f in form.getValue('foto') as List) (f as SgFile).name],
+        ['a.png', 'b.png'],
+      );
     });
   });
 }

@@ -1,9 +1,9 @@
 {
  "versaoReact": "2026.7.1",
  "resumo": {
-  "total": 92,
-  "portado": 92,
-  "parcial": 0,
+  "total": 93,
+  "portado": 91,
+  "parcial": 2,
   "pendente": 0,
   "naoAplicavel": 0
  },
@@ -309,6 +309,16 @@
    "propsGenericas": 0
   },
   {
+   "componente": "SgFileUpload",
+   "onda": 1,
+   "status": "parcial",
+   "motivo": "o React ainda nao tem este componente: o contrato foi escrito primeiro (P141, Flutter antes do React); o toque abre o seletor do sistema (file_picker), o valor e uma lista de SgFile (nome e bytes), sem arrastar e soltar; o tipo e conferido pelo conteudo do arquivo (assinatura); picker extra substitui o seletor; o React vem depois da validacao do dono (P141.F4)",
+   "onde": "packages/seedgrid_components/lib/src/inputs/files/sg_file_upload.dart",
+   "props": 25,
+   "propsOmitidas": 2,
+   "propsGenericas": 11
+  },
+  {
    "componente": "SgFlipDigit",
    "onda": 4,
    "status": "portado",
@@ -351,12 +361,12 @@
   {
    "componente": "SgImageUpload",
    "onda": 1,
-   "status": "portado",
-   "motivo": "o React usa input type=file com arrastar e soltar e o File do navegador; aqui o toque abre o seletor do sistema (file_picker) e o valor e uma SgImageFile (nome e bytes); sem arrastar e soltar; value/defaultValue em texto sao a URL de uma imagem salva (Image.network); picker extra substitui o seletor; recorte e compressao ficam fora (decisao do dono); validadores do componente rodam no submit",
+   "status": "parcial",
+   "motivo": "o contrato mudou no P141 (valor sempre lista, maxFiles, maxSizePerFile e maxSizeTotal, composicao do SgFileUpload) e o React ainda tem a API antiga de uma imagem so; aqui o toque abre o seletor do sistema (file_picker), o valor e uma lista de SgFile (nome e bytes; uma URL salva entra como SgFile com url), sem arrastar e soltar; recorte e compressao ficam fora (decisao do dono); o React se alinha na P141.F4",
    "onde": "packages/seedgrid_components/lib/src/inputs/files/sg_image_upload.dart",
-   "props": 26,
+   "props": 28,
    "propsOmitidas": 2,
-   "propsGenericas": 8
+   "propsGenericas": 10
   },
   {
    "componente": "SgInputBirthDate",

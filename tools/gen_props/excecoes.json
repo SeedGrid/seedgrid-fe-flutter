@@ -207,6 +207,16 @@
    "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
   },
   {
+   "componente": "SgFileUpload",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgFileUpload",
+   "prop": "register",
+   "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
+  },
+  {
    "componente": "SgFlipDigit",
    "prop": "className",
    "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
@@ -1680,6 +1690,72 @@
    "ts": "SgExpandablePanelSize"
   },
   {
+   "componente": "SgFileUpload",
+   "prop": "control",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "any"
+  },
+  {
+   "componente": "SgFileUpload",
+   "prop": "defaultValue",
+   "motivo": "lista",
+   "ts": "File[]"
+  },
+  {
+   "componente": "SgFileUpload",
+   "prop": "maxSizePerFile",
+   "motivo": "uniao",
+   "ts": "number | string"
+  },
+  {
+   "componente": "SgFileUpload",
+   "prop": "maxSizeTotal",
+   "motivo": "uniao",
+   "ts": "number | string"
+  },
+  {
+   "componente": "SgFileUpload",
+   "prop": "mediaType",
+   "motivo": "lista",
+   "ts": "MediaType[]"
+  },
+  {
+   "componente": "SgFileUpload",
+   "prop": "onChange",
+   "motivo": "funcao",
+   "ts": "((files: File[]) => void)"
+  },
+  {
+   "componente": "SgFileUpload",
+   "prop": "onEnter",
+   "motivo": "funcao",
+   "ts": "(() => void)"
+  },
+  {
+   "componente": "SgFileUpload",
+   "prop": "onError",
+   "motivo": "funcao",
+   "ts": "((code: FileErrorCode, message: string, fileName: string) => void)"
+  },
+  {
+   "componente": "SgFileUpload",
+   "prop": "onExit",
+   "motivo": "funcao",
+   "ts": "(() => void)"
+  },
+  {
+   "componente": "SgFileUpload",
+   "prop": "rules",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "RegisterOptions<any>"
+  },
+  {
+   "componente": "SgFileUpload",
+   "prop": "value",
+   "motivo": "lista",
+   "ts": "File[]"
+  },
+  {
    "componente": "SgFloatActionButton",
    "prop": "actions",
    "motivo": "lista",
@@ -1748,14 +1824,26 @@
   {
    "componente": "SgImageUpload",
    "prop": "defaultValue",
+   "motivo": "lista",
+   "ts": "File[]"
+  },
+  {
+   "componente": "SgImageUpload",
+   "prop": "maxSizePerFile",
    "motivo": "uniao",
-   "ts": "string | File"
+   "ts": "number | string"
+  },
+  {
+   "componente": "SgImageUpload",
+   "prop": "maxSizeTotal",
+   "motivo": "uniao",
+   "ts": "number | string"
   },
   {
    "componente": "SgImageUpload",
    "prop": "onChange",
    "motivo": "funcao",
-   "ts": "((file: File) => void)"
+   "ts": "((files: File[]) => void)"
   },
   {
    "componente": "SgImageUpload",
@@ -1767,7 +1855,7 @@
    "componente": "SgImageUpload",
    "prop": "onError",
    "motivo": "funcao",
-   "ts": "((code: ImageErrorCode, message: string) => void)"
+   "ts": "((code: FileErrorCode, message: string, fileName: string) => void)"
   },
   {
    "componente": "SgImageUpload",
@@ -1784,8 +1872,8 @@
   {
    "componente": "SgImageUpload",
    "prop": "value",
-   "motivo": "uniao",
-   "ts": "string | File"
+   "motivo": "lista",
+   "ts": "File[]"
   },
   {
    "componente": "SgInputBirthDate",
@@ -4557,13 +4645,13 @@
   }
  ],
  "resumo": {
-  "omitidas": 160,
+  "omitidas": 162,
   "renomeadas": 48,
   "tipoGenerico": {
-   "lista": 63,
-   "uniao": 125,
-   "funcao": 241,
-   "tipo-nomeado-a-portar": 148
+   "lista": 68,
+   "uniao": 127,
+   "funcao": 245,
+   "tipo-nomeado-a-portar": 150
   }
  }
 }

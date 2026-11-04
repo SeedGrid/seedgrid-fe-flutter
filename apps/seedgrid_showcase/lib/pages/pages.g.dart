@@ -33,6 +33,7 @@ import 'sg_dock_zone_page.dart';
 import 'sg_environment_provider_page.dart';
 import 'sg_expandable_panel_page.dart';
 import 'sg_fade_digit_page.dart';
+import 'sg_file_upload_page.dart';
 import 'sg_flip_digit_page.dart';
 import 'sg_float_action_button_page.dart';
 import 'sg_grid_page.dart';
@@ -129,11 +130,12 @@ final List<ShowcasePageEntry> kShowcasePages = <ShowcasePageEntry>[
   (name: 'SgEnvironmentProvider', file: 'lib/pages/sg_environment_provider_page.dart', examples: 4, description: 'Ambiente com namespace, escopo e estratégia de persistência (local, API ou as duas) para os componentes SeedGrid e para o estado persistido.', builder: (_) => const SgEnvironmentProviderPage()),
   (name: 'SgExpandablePanel', file: 'lib/pages/sg_expandable_panel_page.dart', examples: 7, description: 'Painel que expande para um lado, empurrando o conteúdo (inline) ou sobre a tela (overlay).', builder: (_) => const SgExpandablePanelPage()),
   (name: 'SgFadeDigit', file: 'lib/pages/sg_fade_digit_page.dart', examples: 3, description: 'Cartão que apaga o dígito atual e acende o novo, como uma lâmpada ou display trocando de valor.', builder: (_) => const SgFadeDigitPage()),
+  (name: 'SgFileUpload', file: 'lib/pages/sg_file_upload_page.dart', examples: 6, description: 'Escolhe um ou vários arquivos, confere o tipo pelo conteúdo e valida quantidade e tamanho. Não envia nada: entrega os arquivos ao pai.', builder: (_) => const SgFileUploadPage()),
   (name: 'SgFlipDigit', file: 'lib/pages/sg_flip_digit_page.dart', examples: 8, description: 'Cartão que vira como num relógio de aeroporto: um caractere, animado por uma carta com perspectiva 3D.', builder: (_) => const SgFlipDigitPage()),
   (name: 'SgFloatActionButton', file: 'lib/pages/sg_float_action_button_page.dart', examples: 6, description: 'Botão de ação flutuante para a tarefa de maior destaque, com hint, posição, arrastar e speed-dial de ações secundárias.', builder: (_) => const SgFloatActionButtonPage()),
   (name: 'SgGrid', file: 'lib/pages/sg_grid_page.dart', examples: 5, description: 'Grade de colunas 1fr com colunas por breakpoint, largura mínima automática, span e rowSpan.', builder: (_) => const SgGridPage()),
   (name: 'SgGroupBox', file: 'lib/pages/sg_group_box_page.dart', examples: 3, description: 'Caixa com legenda sobre a borda para agrupar campos relacionados.', builder: (_) => const SgGroupBoxPage()),
-  (name: 'SgImageUpload', file: 'lib/pages/sg_image_upload_page.dart', examples: 5, description: 'Escolhe uma imagem, valida e mostra a pré-visualização. Não envia nada: entrega o arquivo ao pai.', builder: (_) => const SgImageUploadPage()),
+  (name: 'SgImageUpload', file: 'lib/pages/sg_image_upload_page.dart', examples: 6, description: 'Escolhe uma ou várias imagens, mostra as miniaturas e valida tipo, tamanho, dimensão e proporção. Composição do SgFileUpload. Não envia nada: entrega os arquivos ao pai.', builder: (_) => const SgImageUploadPage()),
   (name: 'SgInputBirthDate', file: 'lib/pages/sg_input_birth_date_page.dart', examples: 4, description: 'Data de nascimento: SgInputDate com limites derivados de minAge/maxAge e validação de idade ao sair do campo.', builder: (_) => const SgInputBirthDatePage()),
   (name: 'SgInputCNPJ', file: 'lib/pages/sg_input_cnpj_page.dart', examples: 10, description: 'Campo de CNPJ (numérico e alfanumérico) com máscara 00.000.000/0000-00, validação dos dígitos e consulta opcional na base pública.', builder: (_) => const SgInputCNPJPage()),
   (name: 'SgInputCPF', file: 'lib/pages/sg_input_cpf_page.dart', examples: 10, description: 'Campo de CPF com máscara 000.000.000-00 e validação dos dígitos verificadores.', builder: (_) => const SgInputCPFPage()),

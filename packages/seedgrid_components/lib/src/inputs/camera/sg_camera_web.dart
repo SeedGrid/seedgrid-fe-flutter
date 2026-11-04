@@ -55,6 +55,10 @@ class _WebCameraBackend implements SgCameraBackend {
       ..setProperty('width', '100%')
       ..setProperty('height', '100%')
       ..setProperty('object-fit', 'cover');
+    // Selfie: a previa da camera frontal e espelhada (como um espelho); a foto capturada nao.
+    if (camera.facing == SgCameraCaptureFacing.user) {
+      video.style.setProperty('transform', 'scaleX(-1)');
+    }
     final viewType = 'sg-camera-capture-${_viewCounter++}';
     ui_web.platformViewRegistry.registerViewFactory(viewType, (int _) => video);
     try {

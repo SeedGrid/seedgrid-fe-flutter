@@ -13,6 +13,7 @@ const Map<String, IconData> kMenuIcons = {
   'SgInputDate': LucideIcons.calendarDays,
   'SgInputDateTime': LucideIcons.calendarDays,
   'SgImageUpload': LucideIcons.imagePlus,
+  'SgFileUpload': LucideIcons.fileUp,
   'SgCameraCapture': LucideIcons.camera,
   'SgInputBirthDate': LucideIcons.cake,
   'SgToggleSwitch': LucideIcons.toggleLeft,

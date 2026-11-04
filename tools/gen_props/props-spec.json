@@ -5340,16 +5340,14 @@
    "kind": "component",
    "file": "inputs/SgImageUpload.tsx",
    "category": "input",
-   "description": "Seleciona uma imagem (clique ou arrastar e soltar), valida tipo, tamanho, dimensao minima e proporcao, mostra a pre-visualizacao e permite remover. Nao envia nada ao servidor: entrega o arquivo ao pai.",
+   "description": "Escolhe uma ou varias imagens, mostra as miniaturas e valida tipo, tamanho, dimensao minima e proporcao. Composicao do SgFileUpload. Nao envia nada ao servidor: entrega os arquivos ao pai.",
    "props": [
     {
      "name": "accept",
      "optional": true,
      "ts": "string | undefined",
      "alias": null,
-     "doc": "Tipos aceitos: `image/*` (padrao), `image/png`, `.png`, separados por virgula.",
-     "description": "Tipos aceitos (image/*, image/png, .png), separados por virgula.",
-     "default": "image/*",
+     "description": "Restringe os formatos de imagem em texto livre (.png, image/jpeg), separados por virgula.",
      "semanticRole": "validation"
     },
     {
@@ -5357,7 +5355,6 @@
      "optional": true,
      "ts": "number | undefined",
      "alias": null,
-     "doc": "Proporcao largura/altura exigida (1 = quadrada, 16 / 9).",
      "description": "Proporcao largura/altura exigida (1 = quadrada).",
      "semanticRole": "validation"
     },
@@ -5376,9 +5373,10 @@
     {
      "name": "defaultValue",
      "optional": true,
-     "ts": "string | File | null | undefined",
+     "ts": "File[] | undefined",
      "alias": null,
-     "doc": "Imagem inicial (campo nao controlado)."
+     "description": "Imagens iniciais (campo nao controlado).",
+     "semanticRole": "data"
     },
     {
      "name": "disabled",
@@ -5424,12 +5422,28 @@
      "alias": null
     },
     {
-     "name": "maxSizeBytes",
+     "name": "maxFiles",
      "optional": true,
      "ts": "number | undefined",
      "alias": null,
-     "doc": "Tamanho maximo em bytes.",
-     "description": "Tamanho maximo em bytes.",
+     "description": "Quantas imagens o campo guarda (padrao 1). Com 1, escolher outra substitui; maior que 1 liga a selecao multipla e a grade de miniaturas.",
+     "default": "1",
+     "semanticRole": "validation"
+    },
+    {
+     "name": "maxSizePerFile",
+     "optional": true,
+     "ts": "number | string | undefined",
+     "alias": null,
+     "description": "Tamanho maximo de cada imagem: bytes (numero) ou texto com unidade (\"500KB\", \"2MB\").",
+     "semanticRole": "validation"
+    },
+    {
+     "name": "maxSizeTotal",
+     "optional": true,
+     "ts": "number | string | undefined",
+     "alias": null,
+     "description": "Tamanho maximo da soma das imagens: bytes (numero) ou texto com unidade.",
      "semanticRole": "validation"
     },
     {
@@ -5437,7 +5451,6 @@
      "optional": true,
      "ts": "number | undefined",
      "alias": null,
-     "doc": "Altura minima em px.",
      "description": "Altura minima em px.",
      "semanticRole": "validation"
     },
@@ -5446,7 +5459,6 @@
      "optional": true,
      "ts": "number | undefined",
      "alias": null,
-     "doc": "Largura minima em px.",
      "description": "Largura minima em px.",
      "semanticRole": "validation"
     },
@@ -5461,12 +5473,11 @@
     {
      "name": "onChange",
      "optional": true,
-     "ts": "((file: File | null) => void) | undefined",
+     "ts": "((files: File[]) => void) | undefined",
      "alias": null,
-     "fn": true,
-     "doc": "Disparado ao escolher (arquivo valido) ou remover (`null`). O envio ao servidor e do host.",
-     "description": "Arquivo valido escolhido ou null ao remover.",
-     "semanticRole": "event"
+     "description": "Lista de imagens validas apos escolher ou remover. O envio ao servidor e do host.",
+     "semanticRole": "event",
+     "fn": true
     },
     {
      "name": "onEnter",
@@ -5478,12 +5489,11 @@
     {
      "name": "onError",
      "optional": true,
-     "ts": "((code: ImageErrorCode, message: string) => void) | undefined",
+     "ts": "((code: FileErrorCode, message: string, fileName: string) => void) | undefined",
      "alias": null,
-     "fn": true,
-     "doc": "Disparado quando o arquivo escolhido e recusado. `message` ja vem traduzida.",
-     "description": "Arquivo recusado (type, size, dimension, aspect).",
-     "semanticRole": "event"
+     "description": "Arquivo recusado (type, size, total, count, dimension, aspect): codigo, mensagem ja traduzida e nome do arquivo. Os demais arquivos escolhidos seguem validos.",
+     "semanticRole": "event",
+     "fn": true
     },
     {
      "name": "onExit",
@@ -5497,9 +5507,9 @@
      "optional": true,
      "ts": "number | undefined",
      "alias": null,
-     "doc": "Altura da area de pre-visualizacao em px (padrao 160).",
+     "description": "Altura da miniatura em px (padrao 160).",
      "default": "160",
-     "defaultFonte": "codigo"
+     "semanticRole": "appearance"
     },
     {
      "name": "readOnly",
@@ -5535,10 +5545,9 @@
     {
      "name": "value",
      "optional": true,
-     "ts": "string | File | null | undefined",
+     "ts": "File[] | undefined",
      "alias": null,
-     "doc": "Imagem controlada: `File` escolhido, URL (`string`) de uma imagem ja salva, ou `null`.",
-     "description": "Imagem controlada: arquivo escolhido ou URL de uma imagem ja salva.",
+     "description": "Imagens controladas (sempre lista; uma imagem = lista de uma).",
      "semanticRole": "data"
     }
    ]
@@ -17412,6 +17421,197 @@
      "doc": "Valor controlado. Ausente = o componente guarda o proprio estado.",
      "description": "Recorte selecionado no modo controlado: { year, kind, part }, com part em base 1 (1..2 no semestre, 1..4 no trimestre, 1..6 no bimestre).",
      "semanticRole": "value"
+    }
+   ]
+  },
+  "SgFileUpload": {
+   "kind": "component",
+   "file": "inputs/SgFileUpload.tsx",
+   "category": "input",
+   "description": "Escolhe um ou varios arquivos (clique ou arrastar e soltar), confere o tipo pelo conteudo e valida quantidade e tamanho (por arquivo e total). Nao envia nada ao servidor: entrega os arquivos ao pai.",
+   "props": [
+    {
+     "name": "accept",
+     "optional": true,
+     "ts": "string | undefined",
+     "alias": null,
+     "description": "Tipos extras em texto livre (.pdf, image/png, image/*), separados por virgula; soma-se ao mediaType.",
+     "semanticRole": "validation"
+    },
+    {
+     "name": "className",
+     "optional": true,
+     "ts": "string | undefined",
+     "alias": null
+    },
+    {
+     "name": "control",
+     "optional": true,
+     "ts": "any",
+     "alias": null
+    },
+    {
+     "name": "defaultValue",
+     "optional": true,
+     "ts": "File[] | undefined",
+     "alias": null,
+     "description": "Arquivos iniciais (campo nao controlado).",
+     "semanticRole": "data"
+    },
+    {
+     "name": "disabled",
+     "optional": true,
+     "ts": "boolean | undefined",
+     "alias": null,
+     "description": "Desabilita a escolha e a remocao.",
+     "default": false,
+     "semanticRole": "appearance"
+    },
+    {
+     "name": "error",
+     "optional": true,
+     "ts": "string | undefined",
+     "alias": null
+    },
+    {
+     "name": "hintText",
+     "optional": true,
+     "ts": "string | undefined",
+     "alias": null
+    },
+    {
+     "name": "id",
+     "optional": false,
+     "ts": "string",
+     "alias": null,
+     "description": "Identificador unico do campo.",
+     "semanticRole": "data"
+    },
+    {
+     "name": "label",
+     "optional": true,
+     "ts": "string | undefined",
+     "alias": null,
+     "description": "Rotulo exibido acima da area.",
+     "semanticRole": "label"
+    },
+    {
+     "name": "labelText",
+     "optional": true,
+     "ts": "string | undefined",
+     "alias": null
+    },
+    {
+     "name": "maxFiles",
+     "optional": true,
+     "ts": "number | undefined",
+     "alias": null,
+     "description": "Quantos arquivos o campo guarda (padrao 1). Com 1, escolher outro substitui; maior que 1 liga a selecao multipla e a grade.",
+     "default": "1",
+     "semanticRole": "validation"
+    },
+    {
+     "name": "maxSizePerFile",
+     "optional": true,
+     "ts": "number | string | undefined",
+     "alias": null,
+     "description": "Tamanho maximo de cada arquivo: bytes (numero) ou texto com unidade (\"500KB\", \"1.5MB\", \"1GB\").",
+     "semanticRole": "validation"
+    },
+    {
+     "name": "maxSizeTotal",
+     "optional": true,
+     "ts": "number | string | undefined",
+     "alias": null,
+     "description": "Tamanho maximo da soma dos arquivos: bytes (numero) ou texto com unidade.",
+     "semanticRole": "validation"
+    },
+    {
+     "name": "mediaType",
+     "optional": true,
+     "ts": "MediaType[] | undefined",
+     "alias": null,
+     "description": "Tipos aceitos: image, video, audio, pdf, doc, docx, xls, xlsx, ppt, pptx, csv, txt, zip ou all. O tipo e conferido pelo conteudo do arquivo.",
+     "semanticRole": "validation"
+    },
+    {
+     "name": "name",
+     "optional": true,
+     "ts": "string | undefined",
+     "alias": null,
+     "description": "Nome do campo para formularios.",
+     "semanticRole": "data"
+    },
+    {
+     "name": "onChange",
+     "optional": true,
+     "ts": "((files: File[]) => void) | undefined",
+     "alias": null,
+     "description": "Lista de arquivos validos apos escolher ou remover. O envio ao servidor e do host.",
+     "semanticRole": "event",
+     "fn": true
+    },
+    {
+     "name": "onEnter",
+     "optional": true,
+     "ts": "(() => void) | undefined",
+     "alias": null,
+     "fn": true
+    },
+    {
+     "name": "onError",
+     "optional": true,
+     "ts": "((code: FileErrorCode, message: string, fileName: string) => void) | undefined",
+     "alias": null,
+     "description": "Arquivo recusado (type, size, total, count): codigo, mensagem ja traduzida e nome do arquivo. Os demais arquivos escolhidos seguem validos.",
+     "semanticRole": "event",
+     "fn": true
+    },
+    {
+     "name": "onExit",
+     "optional": true,
+     "ts": "(() => void) | undefined",
+     "alias": null,
+     "fn": true
+    },
+    {
+     "name": "readOnly",
+     "optional": true,
+     "ts": "boolean | undefined",
+     "alias": null
+    },
+    {
+     "name": "register",
+     "optional": true,
+     "ts": "UseFormRegister<any> | undefined",
+     "alias": null,
+     "fn": true
+    },
+    {
+     "name": "required",
+     "optional": true,
+     "ts": "boolean | undefined",
+     "alias": null
+    },
+    {
+     "name": "requiredMessage",
+     "optional": true,
+     "ts": "string | undefined",
+     "alias": null
+    },
+    {
+     "name": "rules",
+     "optional": true,
+     "ts": "RegisterOptions<any> | undefined",
+     "alias": null
+    },
+    {
+     "name": "value",
+     "optional": true,
+     "ts": "File[] | undefined",
+     "alias": null,
+     "description": "Arquivos controlados (sempre lista; um arquivo = lista de um).",
+     "semanticRole": "data"
     }
    ]
   }

@@ -1,0 +1,206 @@
+{
+ "Restringe os formatos de imagem em texto livre (.png, image/jpeg), separados por virgula.": [
+  "Restricts the image formats with free text (.png, image/jpeg), comma separated.",
+  "Restringe os formatos de imagem em texto livre (.png, image/jpeg), separados por vírgula.",
+  "Restringe los formatos de imagen con texto libre (.png, image/jpeg), separados por coma.",
+  "Restreint les formats d'image en texte libre (.png, image/jpeg), séparés par des virgules."
+ ],
+ "Imagens iniciais (campo nao controlado).": [
+  "Initial images (uncontrolled field).",
+  "Imagens iniciais (campo não controlado).",
+  "Imágenes iniciales (campo no controlado).",
+  "Images initiales (champ non contrôlé)."
+ ],
+ "Quantas imagens o campo guarda (padrao 1). Com 1, escolher outra substitui; maior que 1 liga a selecao multipla e a grade de miniaturas.": [
+  "How many images the field holds (default 1). With 1, picking another replaces it; above 1 turns on multiple selection and the thumbnail grid.",
+  "Quantas imagens o campo guarda (padrão 1). Com 1, escolher outra substitui; maior que 1 liga a seleção múltipla e a grelha de miniaturas.",
+  "Cuántas imágenes guarda el campo (por defecto 1). Con 1, elegir otra la reemplaza; mayor que 1 activa la selección múltiple y la cuadrícula de miniaturas.",
+  "Combien d'images le champ contient (1 par défaut). Avec 1, en choisir une autre remplace ; au-dessus de 1, active la sélection multiple et la grille de miniatures."
+ ],
+ "Tamanho maximo de cada imagem: bytes (numero) ou texto com unidade (\"500KB\", \"2MB\").": [
+  "Maximum size of each image: bytes (number) or text with a unit (\"500KB\", \"2MB\").",
+  "Tamanho máximo de cada imagem: bytes (número) ou texto com unidade (\"500KB\", \"2MB\").",
+  "Tamaño máximo de cada imagen: bytes (número) o texto con unidad (\"500KB\", \"2MB\").",
+  "Taille maximale de chaque image : octets (nombre) ou texte avec unité (\"500KB\", \"2MB\")."
+ ],
+ "Tamanho maximo da soma das imagens: bytes (numero) ou texto com unidade.": [
+  "Maximum total size of all images: bytes (number) or text with a unit.",
+  "Tamanho máximo da soma das imagens: bytes (número) ou texto com unidade.",
+  "Tamaño máximo de la suma de las imágenes: bytes (número) o texto con unidad.",
+  "Taille maximale de la somme des images : octets (nombre) ou texte avec unité."
+ ],
+ "Lista de imagens validas apos escolher ou remover. O envio ao servidor e do host.": [
+  "List of valid images after picking or removing. Uploading to the server is up to the host.",
+  "Lista de imagens válidas após escolher ou remover. O envio ao servidor é do anfitrião.",
+  "Lista de imágenes válidas tras elegir o quitar. El envío al servidor es del anfitrión.",
+  "Liste des images valides après sélection ou suppression. L'envoi au serveur revient à l'hôte."
+ ],
+ "Arquivo recusado (type, size, total, count, dimension, aspect): codigo, mensagem ja traduzida e nome do arquivo. Os demais arquivos escolhidos seguem validos.": [
+  "Rejected file (type, size, total, count, dimension, aspect): code, already translated message and file name. The other chosen files stay valid.",
+  "Ficheiro recusado (type, size, total, count, dimension, aspect): código, mensagem já traduzida e nome do ficheiro. Os restantes ficheiros escolhidos continuam válidos.",
+  "Archivo rechazado (type, size, total, count, dimension, aspect): código, mensaje ya traducido y nombre del archivo. Los demás archivos elegidos siguen siendo válidos.",
+  "Fichier refusé (type, size, total, count, dimension, aspect) : code, message déjà traduit et nom du fichier. Les autres fichiers choisis restent valides."
+ ],
+ "Altura da miniatura em px (padrao 160).": [
+  "Thumbnail height in px (default 160).",
+  "Altura da miniatura em px (padrão 160).",
+  "Altura de la miniatura en px (por defecto 160).",
+  "Hauteur de la miniature en px (160 par défaut)."
+ ],
+ "Imagens controladas (sempre lista; uma imagem = lista de uma).": [
+  "Controlled images (always a list; one image = a list of one).",
+  "Imagens controladas (sempre lista; uma imagem = lista de uma).",
+  "Imágenes controladas (siempre lista; una imagen = lista de una).",
+  "Images contrôlées (toujours une liste ; une image = liste d'une)."
+ ],
+ "Tipos extras em texto livre (.pdf, image/png, image/*), separados por virgula; soma-se ao mediaType.": [
+  "Extra types as free text (.pdf, image/png, image/*), comma separated; added to mediaType.",
+  "Tipos extra em texto livre (.pdf, image/png, image/*), separados por vírgula; soma-se ao mediaType.",
+  "Tipos extra en texto libre (.pdf, image/png, image/*), separados por coma; se suma a mediaType.",
+  "Types supplémentaires en texte libre (.pdf, image/png, image/*), séparés par des virgules ; s'ajoutent à mediaType."
+ ],
+ "Arquivos iniciais (campo nao controlado).": [
+  "Initial files (uncontrolled field).",
+  "Ficheiros iniciais (campo não controlado).",
+  "Archivos iniciales (campo no controlado).",
+  "Fichiers initiaux (champ non contrôlé)."
+ ],
+ "Quantos arquivos o campo guarda (padrao 1). Com 1, escolher outro substitui; maior que 1 liga a selecao multipla e a grade.": [
+  "How many files the field holds (default 1). With 1, picking another replaces it; above 1 turns on multiple selection and the grid.",
+  "Quantos ficheiros o campo guarda (padrão 1). Com 1, escolher outro substitui; maior que 1 liga a seleção múltipla e a grelha.",
+  "Cuántos archivos guarda el campo (por defecto 1). Con 1, elegir otro lo reemplaza; mayor que 1 activa la selección múltiple y la cuadrícula.",
+  "Combien de fichiers le champ contient (1 par défaut). Avec 1, en choisir un autre remplace ; au-dessus de 1, active la sélection multiple et la grille."
+ ],
+ "Tamanho maximo de cada arquivo: bytes (numero) ou texto com unidade (\"500KB\", \"1.5MB\", \"1GB\").": [
+  "Maximum size of each file: bytes (number) or text with a unit (\"500KB\", \"1.5MB\", \"1GB\").",
+  "Tamanho máximo de cada ficheiro: bytes (número) ou texto com unidade (\"500KB\", \"1.5MB\", \"1GB\").",
+  "Tamaño máximo de cada archivo: bytes (número) o texto con unidad (\"500KB\", \"1.5MB\", \"1GB\").",
+  "Taille maximale de chaque fichier : octets (nombre) ou texte avec unité (\"500KB\", \"1.5MB\", \"1GB\")."
+ ],
+ "Tamanho maximo da soma dos arquivos: bytes (numero) ou texto com unidade.": [
+  "Maximum total size of all files: bytes (number) or text with a unit.",
+  "Tamanho máximo da soma dos ficheiros: bytes (número) ou texto com unidade.",
+  "Tamaño máximo de la suma de los archivos: bytes (número) o texto con unidad.",
+  "Taille maximale de la somme des fichiers : octets (nombre) ou texte avec unité."
+ ],
+ "Tipos aceitos: image, video, audio, pdf, doc, docx, xls, xlsx, ppt, pptx, csv, txt, zip ou all. O tipo e conferido pelo conteudo do arquivo.": [
+  "Accepted types: image, video, audio, pdf, doc, docx, xls, xlsx, ppt, pptx, csv, txt, zip or all. The type is checked against the file content.",
+  "Tipos aceites: image, video, audio, pdf, doc, docx, xls, xlsx, ppt, pptx, csv, txt, zip ou all. O tipo é conferido pelo conteúdo do ficheiro.",
+  "Tipos aceptados: image, video, audio, pdf, doc, docx, xls, xlsx, ppt, pptx, csv, txt, zip o all. El tipo se comprueba por el contenido del archivo.",
+  "Types acceptés : image, video, audio, pdf, doc, docx, xls, xlsx, ppt, pptx, csv, txt, zip ou all. Le type est vérifié d'après le contenu du fichier."
+ ],
+ "Lista de arquivos validos apos escolher ou remover. O envio ao servidor e do host.": [
+  "List of valid files after picking or removing. Uploading to the server is up to the host.",
+  "Lista de ficheiros válidos após escolher ou remover. O envio ao servidor é do anfitrião.",
+  "Lista de archivos válidos tras elegir o quitar. El envío al servidor es del anfitrión.",
+  "Liste des fichiers valides après sélection ou suppression. L'envoi au serveur revient à l'hôte."
+ ],
+ "Arquivo recusado (type, size, total, count): codigo, mensagem ja traduzida e nome do arquivo. Os demais arquivos escolhidos seguem validos.": [
+  "Rejected file (type, size, total, count): code, already translated message and file name. The other chosen files stay valid.",
+  "Ficheiro recusado (type, size, total, count): código, mensagem já traduzida e nome do ficheiro. Os restantes ficheiros escolhidos continuam válidos.",
+  "Archivo rechazado (type, size, total, count): código, mensaje ya traducido y nombre del archivo. Los demás archivos elegidos siguen siendo válidos.",
+  "Fichier refusé (type, size, total, count) : code, message déjà traduit et nom du fichier. Les autres fichiers choisis restent valides."
+ ],
+ "Arquivos controlados (sempre lista; um arquivo = lista de um).": [
+  "Controlled files (always a list; one file = a list of one).",
+  "Ficheiros controlados (sempre lista; um ficheiro = lista de um).",
+  "Archivos controlados (siempre lista; un archivo = lista de uno).",
+  "Fichiers contrôlés (toujours une liste ; un fichier = liste d'un)."
+ ],
+ "Um arquivo de qualquer tipo. O onChange entrega a lista (de um); o envio ao servidor é do host.": [
+  "One file of any type. onChange hands over the list (of one); uploading to the server is up to the host.",
+  "Um ficheiro de qualquer tipo. O onChange entrega a lista (de um); o envio ao servidor é do anfitrião.",
+  "Un archivo de cualquier tipo. onChange entrega la lista (de uno); el envío al servidor es del anfitrión.",
+  "Un fichier de n'importe quel type. onChange remet la liste (d'un) ; l'envoi au serveur revient à l'hôte."
+ ],
+ "Vários arquivos": [
+  "Several files",
+  "Vários ficheiros",
+  "Varios archivos",
+  "Plusieurs fichiers"
+ ],
+ "maxFiles maior que 1 liga a seleção múltipla; os escolhidos se somam até o limite. Cada recusa é por arquivo.": [
+  "maxFiles above 1 turns on multiple selection; chosen files add up to the limit. Each rejection is per file.",
+  "maxFiles maior que 1 liga a seleção múltipla; os escolhidos somam-se até ao limite. Cada recusa é por ficheiro.",
+  "maxFiles mayor que 1 activa la selección múltiple; los elegidos se suman hasta el límite. Cada rechazo es por archivo.",
+  "maxFiles supérieur à 1 active la sélection multiple ; les fichiers choisis s'additionnent jusqu'à la limite. Chaque refus est par fichier."
+ ],
+ "Tipos aceitos": [
+  "Accepted types",
+  "Tipos aceites",
+  "Tipos aceptados",
+  "Types acceptés"
+ ],
+ "mediaType aceita grupos (image, video, audio) e formatos (pdf, xls, xlsx...). O tipo é conferido pelo conteúdo do arquivo, não só pela extensão.": [
+  "mediaType accepts groups (image, video, audio) and formats (pdf, xls, xlsx...). The type is checked against the file content, not just the extension.",
+  "mediaType aceita grupos (image, video, audio) e formatos (pdf, xls, xlsx...). O tipo é conferido pelo conteúdo do ficheiro, não só pela extensão.",
+  "mediaType acepta grupos (image, video, audio) y formatos (pdf, xls, xlsx...). El tipo se comprueba por el contenido del archivo, no solo por la extensión.",
+  "mediaType accepte des groupes (image, video, audio) et des formats (pdf, xls, xlsx...). Le type est vérifié d'après le contenu du fichier, pas seulement l'extension."
+ ],
+ "Limites de tamanho": [
+  "Size limits",
+  "Limites de tamanho",
+  "Límites de tamaño",
+  "Limites de taille"
+ ],
+ "maxSizePerFile e maxSizeTotal aceitam bytes ou texto com unidade (\"500KB\", \"1.5MB\", \"1GB\").": [
+  "maxSizePerFile and maxSizeTotal accept bytes or text with a unit (\"500KB\", \"1.5MB\", \"1GB\").",
+  "maxSizePerFile e maxSizeTotal aceitam bytes ou texto com unidade (\"500KB\", \"1.5MB\", \"1GB\").",
+  "maxSizePerFile y maxSizeTotal aceptan bytes o texto con unidad (\"500KB\", \"1.5MB\", \"1GB\").",
+  "maxSizePerFile et maxSizeTotal acceptent des octets ou un texte avec unité (\"500KB\", \"1.5MB\", \"1GB\")."
+ ],
+ "O formulário guarda a lista de arquivos e valida o obrigatório.": [
+  "The form stores the list of files and validates the required rule.",
+  "O formulário guarda a lista de ficheiros e valida o obrigatório.",
+  "El formulario guarda la lista de archivos y valida lo obligatorio.",
+  "Le formulaire conserve la liste des fichiers et valide l'obligatoire."
+ ],
+ "Extra do Flutter: regra assíncrona por arquivo, depois da conferência de tipo (é como o SgImageUpload confere dimensão e proporção).": [
+  "Flutter extra: asynchronous per-file rule, after the type check (it is how SgImageUpload checks dimension and aspect).",
+  "Extra do Flutter: regra assíncrona por ficheiro, depois da conferência de tipo (é como o SgImageUpload confere dimensão e proporção).",
+  "Extra de Flutter: regla asíncrona por archivo, tras la comprobación de tipo (así SgImageUpload comprueba dimensión y proporción).",
+  "Extra Flutter : règle asynchrone par fichier, après la vérification du type (c'est ainsi que SgImageUpload vérifie dimension et proportion)."
+ ],
+ "Extra do Flutter: miniatura de cada arquivo (sem ela, a lista usa o ícone do tipo).": [
+  "Flutter extra: thumbnail of each file (without it, the list uses the type icon).",
+  "Extra do Flutter: miniatura de cada ficheiro (sem ela, a lista usa o ícone do tipo).",
+  "Extra de Flutter: miniatura de cada archivo (sin ella, la lista usa el icono del tipo).",
+  "Extra Flutter : miniature de chaque fichier (sans elle, la liste utilise l'icône du type)."
+ ],
+ "Extra do Flutter: lado da miniatura em px.": [
+  "Flutter extra: thumbnail side in px.",
+  "Extra do Flutter: lado da miniatura em px.",
+  "Extra de Flutter: lado de la miniatura en px.",
+  "Extra Flutter : côté de la miniature en px."
+ ],
+ "Extra do Flutter: prefixo das chaves dos widgets internos.": [
+  "Flutter extra: prefix of the inner widget keys.",
+  "Extra do Flutter: prefixo das chaves dos widgets internos.",
+  "Extra de Flutter: prefijo de las claves de los widgets internos.",
+  "Extra Flutter : préfixe des clés des widgets internes."
+ ],
+ "Extra do Flutter: chave de i18n do texto da área vazia (um arquivo).": [
+  "Flutter extra: i18n key of the empty-area text (one file).",
+  "Extra do Flutter: chave de i18n do texto da área vazia (um ficheiro).",
+  "Extra de Flutter: clave de i18n del texto del área vacía (un archivo).",
+  "Extra Flutter : clé i18n du texte de la zone vide (un fichier)."
+ ],
+ "Extra do Flutter: chave de i18n do texto da área vazia (vários arquivos).": [
+  "Flutter extra: i18n key of the empty-area text (several files).",
+  "Extra do Flutter: chave de i18n do texto da área vazia (vários ficheiros).",
+  "Extra de Flutter: clave de i18n del texto del área vacía (varios archivos).",
+  "Extra Flutter : clé i18n du texte de la zone vide (plusieurs fichiers)."
+ ],
+ "Extra do Flutter: texto dos tipos aceitos na mensagem de tipo recusado.": [
+  "Flutter extra: text of the accepted types in the rejected-type message.",
+  "Extra do Flutter: texto dos tipos aceites na mensagem de tipo recusado.",
+  "Extra de Flutter: texto de los tipos aceptados en el mensaje de tipo rechazado.",
+  "Extra Flutter : texte des types acceptés dans le message de type refusé."
+ ],
+ "Escolhe um ou vários arquivos, confere o tipo pelo conteúdo e valida quantidade e tamanho. Não envia nada: entrega os arquivos ao pai.": [
+  "Picks one or several files, checks the type against the content and validates count and size. It never uploads: it hands the files to the parent.",
+  "Escolhe um ou vários ficheiros, confere o tipo pelo conteúdo e valida quantidade e tamanho. Não envia nada: entrega os ficheiros ao pai.",
+  "Elige uno o varios archivos, comprueba el tipo por el contenido y valida cantidad y tamaño. No envía nada: entrega los archivos al padre.",
+  "Choisit un ou plusieurs fichiers, vérifie le type d'après le contenu et valide nombre et taille. Il n'envoie rien : il remet les fichiers au parent."
+ ]
+}

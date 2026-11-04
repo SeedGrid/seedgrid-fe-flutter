@@ -35,6 +35,7 @@ import 'sg_dock_zone.g.dart';
 import 'sg_environment_provider.g.dart';
 import 'sg_expandable_panel.g.dart';
 import 'sg_fade_digit.g.dart';
+import 'sg_file_upload.g.dart';
 import 'sg_flip_digit.g.dart';
 import 'sg_float_action_button.g.dart';
 import 'sg_grid.g.dart';
@@ -130,6 +131,7 @@ const Map<String, List<SgPropSpec>> sgPropSpecs = <String, List<SgPropSpec>>{
   'SgEnvironmentProvider': sgEnvironmentProviderPropSpecs,
   'SgExpandablePanel': sgExpandablePanelPropSpecs,
   'SgFadeDigit': sgFadeDigitPropSpecs,
+  'SgFileUpload': sgFileUploadPropSpecs,
   'SgFlipDigit': sgFlipDigitPropSpecs,
   'SgFloatActionButton': sgFloatActionButtonPropSpecs,
   'SgGrid': sgGridPropSpecs,

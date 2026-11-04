@@ -145,7 +145,7 @@ Cada nome abaixo leva à página do componente no showcase ao vivo. O estado de 
 </details>
 
 <details>
-<summary><b>⌨️ Entrada de dados</b> · 33 componentes · <i>Campos de texto, máscaras, números, datas, escolha e seleção</i></summary>
+<summary><b>⌨️ Entrada de dados</b> · 34 componentes · <i>Campos de texto, máscaras, números, datas, escolha e seleção</i></summary>
 
 | Componente | O que faz |
 |---|---|
@@ -153,7 +153,8 @@ Cada nome abaixo leva à página do componente no showcase ao vivo. O estado de 
 | [`SgCameraCapture`](https://components-flutter.seedgrid.com.br/sg-camera-capture) | Pré-visualização da câmera com guia de enquadramento, troca de câmera e captura. |
 | [`SgCheckboxGroup`](https://components-flutter.seedgrid.com.br/sg-checkbox-group) | Grupo de caixas de seleção múltipla com título, orientação, estilo highlight, "selecionar todos" e ligação a formulário. |
 | [`SgCombobox`](https://components-flutter.seedgrid.com.br/sg-combobox) | Seleção de um item de uma lista (local ou assíncrona), com escolha por id e busca por tecla digitada. |
-| [`SgImageUpload`](https://components-flutter.seedgrid.com.br/sg-image-upload) | Escolhe uma imagem, valida e mostra a pré-visualização. |
+| [`SgFileUpload`](https://components-flutter.seedgrid.com.br/sg-file-upload) | Escolhe um ou vários arquivos, confere o tipo pelo conteúdo e valida quantidade e tamanho. |
+| [`SgImageUpload`](https://components-flutter.seedgrid.com.br/sg-image-upload) | Escolhe uma ou várias imagens, mostra as miniaturas e valida tipo, tamanho, dimensão e proporção. |
 | [`SgInputBirthDate`](https://components-flutter.seedgrid.com.br/sg-input-birth-date) | Data de nascimento: SgInputDate com limites derivados de minAge/maxAge e validação de idade ao sair do campo. |
 | [`SgInputCNPJ`](https://components-flutter.seedgrid.com.br/sg-input-cnpj) | Campo de CNPJ (numérico e alfanumérico) com máscara 00.000.000/0000-00, validação dos dígitos e consulta opcional na base pública. |
 | [`SgInputCPF`](https://components-flutter.seedgrid.com.br/sg-input-cpf) | Campo de CPF com máscara 000.000.000-00 e validação dos dígitos verificadores. |

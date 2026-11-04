@@ -118,5 +118,47 @@
   "Imagem controlada: ficheiro escolhido ou URL de uma imagem já guardada.",
   "Imagen controlada: archivo elegido o URL de una imagen ya guardada.",
   "Image contrôlée : fichier choisi ou URL d'une image déjà enregistrée."
+ ],
+ "O onChange entrega a lista de imagens (de uma); o envio ao servidor é do host. O tipo é conferido pelo conteúdo do arquivo.": [
+  "onChange hands over the list of images (of one); uploading to the server is up to the host. The type is checked against the file content.",
+  "O onChange entrega a lista de imagens (de uma); o envio ao servidor é do anfitrião. O tipo é conferido pelo conteúdo do ficheiro.",
+  "onChange entrega la lista de imágenes (de una); el envío al servidor es del anfitrión. El tipo se comprueba por el contenido del archivo.",
+  "onChange remet la liste d'images (d'une) ; l'envoi au serveur revient à l'hôte. Le type est vérifié d'après le contenu du fichier."
+ ],
+ "Várias imagens": [
+  "Several images",
+  "Várias imagens",
+  "Varias imágenes",
+  "Plusieurs images"
+ ],
+ "maxFiles maior que 1 liga a seleção múltipla e mostra a grade de miniaturas. As imagens recusadas não derrubam as demais.": [
+  "maxFiles above 1 turns on multiple selection and shows the thumbnail grid. Rejected images do not drop the others.",
+  "maxFiles maior que 1 liga a seleção múltipla e mostra a grelha de miniaturas. As imagens recusadas não derrubam as restantes.",
+  "maxFiles mayor que 1 activa la selección múltiple y muestra la cuadrícula de miniaturas. Las imágenes rechazadas no descartan las demás.",
+  "maxFiles supérieur à 1 active la sélection multiple et affiche la grille de miniatures. Les images refusées n'écartent pas les autres."
+ ],
+ "accept, maxSizePerFile, minWidth/minHeight e aspect recusam a imagem com uma mensagem e disparam onError.": [
+  "accept, maxSizePerFile, minWidth/minHeight and aspect reject the image with a message and fire onError.",
+  "accept, maxSizePerFile, minWidth/minHeight e aspect recusam a imagem com uma mensagem e disparam onError.",
+  "accept, maxSizePerFile, minWidth/minHeight y aspect rechazan la imagen con un mensaje y disparan onError.",
+  "accept, maxSizePerFile, minWidth/minHeight et aspect refusent l'image avec un message et déclenchent onError."
+ ],
+ "Um SgFile com url é uma imagem existente no servidor e já aparece na pré-visualização.": [
+  "An SgFile with a url is an image that already exists on the server and shows up in the preview.",
+  "Um SgFile com url é uma imagem existente no servidor e já aparece na pré-visualização.",
+  "Un SgFile con url es una imagen existente en el servidor y ya aparece en la vista previa.",
+  "Un SgFile avec url est une image déjà présente sur le serveur et apparaît dans l'aperçu."
+ ],
+ "O formulário guarda a lista de imagens e valida o obrigatório.": [
+  "The form stores the list of images and validates the required rule.",
+  "O formulário guarda a lista de imagens e valida o obrigatório.",
+  "El formulario guarda la lista de imágenes y valida lo obligatorio.",
+  "Le formulaire conserve la liste des images et valide l'obligatoire."
+ ],
+ "Escolhe uma ou várias imagens, mostra as miniaturas e valida tipo, tamanho, dimensão e proporção. Composição do SgFileUpload. Não envia nada: entrega os arquivos ao pai.": [
+  "Picks one or several images, shows thumbnails and validates type, size, dimension and aspect. Composition of SgFileUpload. It never uploads: it hands the files to the parent.",
+  "Escolhe uma ou várias imagens, mostra as miniaturas e valida tipo, tamanho, dimensão e proporção. Composição do SgFileUpload. Não envia nada: entrega os ficheiros ao pai.",
+  "Elige una o varias imágenes, muestra las miniaturas y valida tipo, tamaño, dimensión y proporción. Composición de SgFileUpload. No envía nada: entrega los archivos al padre.",
+  "Choisit une ou plusieurs images, affiche les miniatures et valide type, taille, dimension et proportion. Composition de SgFileUpload. Il n'envoie rien : il remet les fichiers au parent."
  ]
 }
