@@ -258,26 +258,33 @@ class SgFileUpload extends StatefulWidget implements SgFileUploadProps {
   @override
   final List<SgFile>? value;
 
-  /// Extra do Flutter: substitui o seletor do sistema (testes, ou outra origem de arquivo).
+  /// Extra do Flutter (nao existe no React): substitui o seletor do sistema (testes, ou outra origem de arquivo).
   final SgFilePicker? picker;
 
-  /// Extra do Flutter: regra extra por arquivo (e como o [SgImageUpload] confere dimensao e proporcao).
+  /// Regra extra por arquivo (e como o [SgImageUpload] confere dimensao e proporcao).
+  @override
   final SgFileCheck? extraCheck;
 
-  /// Extra do Flutter: miniatura de cada arquivo (e como o [SgImageUpload] mostra a imagem).
+  /// Miniatura de cada arquivo (e como o [SgImageUpload] mostra a imagem).
+  @override
   final SgFileThumbnailBuilder? thumbnailBuilder;
 
-  /// Extra do Flutter: lado da miniatura em px (padrao 96).
+  /// Lado da miniatura em px (padrao 96).
+  @override
   final double? thumbnailSize;
 
-  /// Extra do Flutter: prefixo das chaves dos widgets (`sg-file`, `sg-image`).
+  /// Prefixo das chaves dos widgets (`sg-file`, `sg-image`).
+  @override
   final String keyPrefix;
 
-  /// Extra do Flutter: chaves de texto do i18n para a area vazia (um arquivo / varios).
+  /// Chaves de texto do i18n para a area vazia (um arquivo / varios).
+  @override
   final String? dropTextKey;
+  @override
   final String? dropManyTextKey;
 
-  /// Extra do Flutter: texto dos tipos aceitos na mensagem de tipo recusado (padrao: mediaType/accept).
+  /// Texto dos tipos aceitos na mensagem de tipo recusado (padrao: mediaType/accept).
+  @override
   final String? typeNames;
 
   @override

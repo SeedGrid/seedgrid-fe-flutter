@@ -6,39 +6,46 @@
 
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgFileUpload` no React — Escolhe um ou varios arquivos (clique ou arrastar e soltar), confere o tipo pelo conteudo e valida quantidade e tamanho (por arquivo e total). Nao envia nada ao servidor: entrega os arquivos ao pai.
+/// Props públicas de `SgFileUpload` no React — Seleciona um ou varios arquivos (clique ou arrastar e soltar), confere o tipo pelo conteudo e valida quantidade e tamanho (por arquivo e total). Mostra a lista com o icone do tipo e permite remover. Nao envia nada ao servidor: entrega os arquivos ao pai.
 /// O widget deve declarar `implements SgFileUploadProps`.
 abstract interface class SgFileUploadProps {
   /// Tipos extras em texto livre (.pdf, image/png, image/*), separados por virgula; soma-se ao mediaType.
   String? get accept;
   /// Tipo TS: `any` (sem tradução exata; ver excecoes.json).
   Object? get control;
-  /// Arquivos iniciais (campo nao controlado). Tipo TS: `File[]` (sem tradução exata; ver excecoes.json).
+  /// Arquivos iniciais (campo nao controlado). Tipo TS: `SgFileValue[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get defaultValue;
   /// Desabilita a escolha e a remocao. Padrão: `false`.
   bool? get disabled;
+  String? get dropManyTextKey;
+  /// Chaves de i18n do texto da area vazia (um arquivo / varios).
+  String? get dropTextKey;
   String? get error;
+  /// Regra extra, assincrona, por arquivo (depois da conferencia de tipo). E como o SgImageUpload confere dimensao. Tipo TS: `((file: File, info: { mime: string; }) =&gt; Promise&lt;SgFileRejection&gt;)` (sem tradução exata; ver excecoes.json).
+  Function? get extraCheck;
   String? get hintText;
   /// Identificador unico do campo.
   String get id;
+  /// Prefixo do `data-sg` dos elementos internos (`sg-file`, `sg-image`). Padrão: `sg-file`.
+  String? get keyPrefix;
   /// Rotulo exibido acima da area.
   String? get label;
   String? get labelText;
-  /// Quantos arquivos o campo guarda (padrao 1). Com 1, escolher outro substitui; maior que 1 liga a selecao multipla e a grade. Padrão: `1`.
+  /// Quantos arquivos o campo guarda. Com 1, escolher outro substitui; maior que 1 liga a selecao multipla. Padrão: `1`.
   num? get maxFiles;
-  /// Tamanho maximo de cada arquivo: bytes (numero) ou texto com unidade ("500KB", "1.5MB", "1GB"). Tipo TS: `number | string` (sem tradução exata; ver excecoes.json).
+  /// Tamanho maximo de cada arquivo: bytes (numero) ou texto com unidade ("500KB", "1.5MB", "1GB"). Tipo TS: `SizeLimit` (sem tradução exata; ver excecoes.json).
   Object? get maxSizePerFile;
-  /// Tamanho maximo da soma dos arquivos: bytes (numero) ou texto com unidade. Tipo TS: `number | string` (sem tradução exata; ver excecoes.json).
+  /// Tamanho maximo da soma dos arquivos: bytes (numero) ou texto com unidade. Tipo TS: `SizeLimit` (sem tradução exata; ver excecoes.json).
   Object? get maxSizeTotal;
   /// Tipos aceitos: image, video, audio, pdf, doc, docx, xls, xlsx, ppt, pptx, csv, txt, zip ou all. O tipo e conferido pelo conteudo do arquivo. Tipo TS: `MediaType[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get mediaType;
   /// Nome do campo para formularios.
   String? get name;
-  /// Lista de arquivos validos apos escolher ou remover. O envio ao servidor e do host. Tipo TS: `((files: File[]) =&gt; void)` (sem tradução exata; ver excecoes.json).
+  /// Lista de arquivos validos apos escolher ou remover. Tipo TS: `((files: SgFileValue[]) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onChange;
   /// Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onEnter;
-  /// Arquivo recusado (type, size, total, count): codigo, mensagem ja traduzida e nome do arquivo. Os demais arquivos escolhidos seguem validos. Tipo TS: `((code: FileErrorCode, message: string, fileName: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
+  /// Arquivo recusado (type, size, total, count). Os demais seguem validos. Tipo TS: `((code: FileErrorCode, message: string, fileName: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onError;
   /// Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onExit;
@@ -47,7 +54,13 @@ abstract interface class SgFileUploadProps {
   String? get requiredMessage;
   /// Tipo TS: `RegisterOptions&lt;any&gt;` (sem tradução exata; ver excecoes.json).
   Object? get rules;
-  /// Arquivos controlados (sempre lista; um arquivo = lista de um). Tipo TS: `File[]` (sem tradução exata; ver excecoes.json).
+  /// Miniatura de cada arquivo (sem ela, a lista usa o icone do tipo). Tipo TS: `((file: SgFileValue, size: number) =&gt; React.ReactNode)` (sem tradução exata; ver excecoes.json).
+  Function? get thumbnailBuilder;
+  /// Lado da miniatura em px (padrao 96). Padrão: `96`.
+  num? get thumbnailSize;
+  /// Texto dos tipos aceitos na mensagem de tipo recusado (padrao: mediaType/accept).
+  String? get typeNames;
+  /// Arquivos controlados (sempre lista; um arquivo = lista de um). Um arquivo ja salvo entra como { name, url }. Tipo TS: `SgFileValue[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get value;
 }
 
@@ -73,7 +86,7 @@ const List<SgPropSpec> sgFileUploadPropSpecs = <SgPropSpec>[
     name: 'defaultValue',
     reactName: 'defaultValue',
     type: 'List<Object?>?',
-    tsType: 'File[]',
+    tsType: 'SgFileValue[]',
     required: false,
     description: 'Arquivos iniciais (campo nao controlado).',
     exact: false,
@@ -88,11 +101,35 @@ const List<SgPropSpec> sgFileUploadPropSpecs = <SgPropSpec>[
     description: 'Desabilita a escolha e a remocao.',
   ),
   SgPropSpec(
+    name: 'dropManyTextKey',
+    reactName: 'dropManyTextKey',
+    type: 'String?',
+    tsType: 'string',
+    required: false,
+  ),
+  SgPropSpec(
+    name: 'dropTextKey',
+    reactName: 'dropTextKey',
+    type: 'String?',
+    tsType: 'string',
+    required: false,
+    description: 'Chaves de i18n do texto da area vazia (um arquivo / varios).',
+  ),
+  SgPropSpec(
     name: 'error',
     reactName: 'error',
     type: 'String?',
     tsType: 'string',
     required: false,
+  ),
+  SgPropSpec(
+    name: 'extraCheck',
+    reactName: 'extraCheck',
+    type: 'Function?',
+    tsType: '((file: File, info: { mime: string; }) => Promise<SgFileRejection>)',
+    required: false,
+    description: 'Regra extra, assincrona, por arquivo (depois da conferencia de tipo). E como o SgImageUpload confere dimensao.',
+    exact: false,
   ),
   SgPropSpec(
     name: 'hintText',
@@ -108,6 +145,15 @@ const List<SgPropSpec> sgFileUploadPropSpecs = <SgPropSpec>[
     tsType: 'string',
     required: true,
     description: 'Identificador unico do campo.',
+  ),
+  SgPropSpec(
+    name: 'keyPrefix',
+    reactName: 'keyPrefix',
+    type: 'String?',
+    tsType: 'string',
+    required: false,
+    defaultValue: 'sg-file',
+    description: 'Prefixo do `data-sg` dos elementos internos (`sg-file`, `sg-image`).',
   ),
   SgPropSpec(
     name: 'label',
@@ -131,13 +177,13 @@ const List<SgPropSpec> sgFileUploadPropSpecs = <SgPropSpec>[
     tsType: 'number',
     required: false,
     defaultValue: '1',
-    description: 'Quantos arquivos o campo guarda (padrao 1). Com 1, escolher outro substitui; maior que 1 liga a selecao multipla e a grade.',
+    description: 'Quantos arquivos o campo guarda. Com 1, escolher outro substitui; maior que 1 liga a selecao multipla.',
   ),
   SgPropSpec(
     name: 'maxSizePerFile',
     reactName: 'maxSizePerFile',
     type: 'Object?',
-    tsType: 'number | string',
+    tsType: 'SizeLimit',
     required: false,
     description: 'Tamanho maximo de cada arquivo: bytes (numero) ou texto com unidade ("500KB", "1.5MB", "1GB").',
     exact: false,
@@ -146,7 +192,7 @@ const List<SgPropSpec> sgFileUploadPropSpecs = <SgPropSpec>[
     name: 'maxSizeTotal',
     reactName: 'maxSizeTotal',
     type: 'Object?',
-    tsType: 'number | string',
+    tsType: 'SizeLimit',
     required: false,
     description: 'Tamanho maximo da soma dos arquivos: bytes (numero) ou texto com unidade.',
     exact: false,
@@ -172,9 +218,9 @@ const List<SgPropSpec> sgFileUploadPropSpecs = <SgPropSpec>[
     name: 'onChange',
     reactName: 'onChange',
     type: 'Function?',
-    tsType: '((files: File[]) => void)',
+    tsType: '((files: SgFileValue[]) => void)',
     required: false,
-    description: 'Lista de arquivos validos apos escolher ou remover. O envio ao servidor e do host.',
+    description: 'Lista de arquivos validos apos escolher ou remover.',
     exact: false,
   ),
   SgPropSpec(
@@ -191,7 +237,7 @@ const List<SgPropSpec> sgFileUploadPropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '((code: FileErrorCode, message: string, fileName: string) => void)',
     required: false,
-    description: 'Arquivo recusado (type, size, total, count): codigo, mensagem ja traduzida e nome do arquivo. Os demais arquivos escolhidos seguem validos.',
+    description: 'Arquivo recusado (type, size, total, count). Os demais seguem validos.',
     exact: false,
   ),
   SgPropSpec(
@@ -232,12 +278,38 @@ const List<SgPropSpec> sgFileUploadPropSpecs = <SgPropSpec>[
     exact: false,
   ),
   SgPropSpec(
+    name: 'thumbnailBuilder',
+    reactName: 'thumbnailBuilder',
+    type: 'Function?',
+    tsType: '((file: SgFileValue, size: number) => React.ReactNode)',
+    required: false,
+    description: 'Miniatura de cada arquivo (sem ela, a lista usa o icone do tipo).',
+    exact: false,
+  ),
+  SgPropSpec(
+    name: 'thumbnailSize',
+    reactName: 'thumbnailSize',
+    type: 'num?',
+    tsType: 'number',
+    required: false,
+    defaultValue: '96',
+    description: 'Lado da miniatura em px (padrao 96).',
+  ),
+  SgPropSpec(
+    name: 'typeNames',
+    reactName: 'typeNames',
+    type: 'String?',
+    tsType: 'string',
+    required: false,
+    description: 'Texto dos tipos aceitos na mensagem de tipo recusado (padrao: mediaType/accept).',
+  ),
+  SgPropSpec(
     name: 'value',
     reactName: 'value',
     type: 'List<Object?>?',
-    tsType: 'File[]',
+    tsType: 'SgFileValue[]',
     required: false,
-    description: 'Arquivos controlados (sempre lista; um arquivo = lista de um).',
+    description: 'Arquivos controlados (sempre lista; um arquivo = lista de um). Um arquivo ja salvo entra como { name, url }.',
     exact: false,
   ),
 ];

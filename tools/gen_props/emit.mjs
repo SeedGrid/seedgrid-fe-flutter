@@ -26,6 +26,11 @@ const OMIT = new Map([
   ["key", "React-only: Key do widget"],
 ]);
 
+// Props que so existem no React para UM componente (nao ha equivalente a portar). Chave: Componente.prop.
+const OMIT_COMPONENTE = new Map([
+  ["SgFileUpload.pickerAccept", "React-only: atributo accept do seletor do navegador (derivado de mediaType/accept); no Flutter o seletor de arquivos do sistema e a prop picker (extra do Flutter)"],
+]);
+
 // Props que no React sao `ReactNode` mas sao so texto na pratica (title="x", label="x"): o React aceita string
 // ou JSX, entao o contrato Dart e `Object?` (String ou Widget) e o widget converte com `sgNode`
 // (lib/src/props/sg_node.dart). Demais ReactNode seguem `Widget`. Para ampliar: acrescente aqui, mude o
@@ -144,6 +149,7 @@ for (const comp of compNames) {
   let usesWidget = false;
   let usesEnum = false;
   for (const p of c.props) {
+    if (OMIT_COMPONENTE.has(`${comp}.${p.name}`)) { exceptions.omitidas.push({ componente: comp, prop: p.name, motivo: OMIT_COMPONENTE.get(`${comp}.${p.name}`) }); continue; }
     if (OMIT.has(p.name)) { exceptions.omitidas.push({ componente: comp, prop: p.name, motivo: OMIT.get(p.name) }); continue; }
     let name = p.name;
     let note = "";

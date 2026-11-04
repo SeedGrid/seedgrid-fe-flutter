@@ -202,5 +202,29 @@
   "Escolhe um ou vários ficheiros, confere o tipo pelo conteúdo e valida quantidade e tamanho. Não envia nada: entrega os ficheiros ao pai.",
   "Elige uno o varios archivos, comprueba el tipo por el contenido y valida cantidad y tamaño. No envía nada: entrega los archivos al padre.",
   "Choisit un ou plusieurs fichiers, vérifie le type d'après le contenu et valide nombre et taille. Il n'envoie rien : il remet les fichiers au parent."
+ ],
+ "Quantos arquivos o campo guarda. Com 1, escolher outro substitui; maior que 1 liga a selecao multipla.": [
+  "How many files the field holds. With 1, picking another replaces it; above 1 turns on multiple selection.",
+  "Quantos ficheiros o campo guarda. Com 1, escolher outro substitui; maior que 1 liga a seleção múltipla.",
+  "Cuántos archivos guarda el campo. Con 1, elegir otro lo reemplaza; mayor que 1 activa la selección múltiple.",
+  "Combien de fichiers le champ contient. Avec 1, en choisir un autre remplace ; au-dessus de 1, active la sélection multiple."
+ ],
+ "Lista de arquivos validos apos escolher ou remover.": [
+  "List of valid files after picking or removing.",
+  "Lista de ficheiros válidos após escolher ou remover.",
+  "Lista de archivos válidos tras elegir o quitar.",
+  "Liste des fichiers valides après sélection ou suppression."
+ ],
+ "Arquivo recusado (type, size, total, count). Os demais seguem validos.": [
+  "Rejected file (type, size, total, count). The others stay valid.",
+  "Ficheiro recusado (type, size, total, count). Os restantes continuam válidos.",
+  "Archivo rechazado (type, size, total, count). Los demás siguen siendo válidos.",
+  "Fichier refusé (type, size, total, count). Les autres restent valides."
+ ],
+ "Arquivos controlados (sempre lista; um arquivo = lista de um). Um arquivo ja salvo entra como { name, url }.": [
+  "Controlled files (always a list; one file = a list of one). An already saved file goes in as { name, url }.",
+  "Ficheiros controlados (sempre lista; um ficheiro = lista de um). Um ficheiro já guardado entra como { name, url }.",
+  "Archivos controlados (siempre lista; un archivo = lista de uno). Un archivo ya guardado entra como { name, url }.",
+  "Fichiers contrôlés (toujours une liste ; un fichier = liste d'un). Un fichier déjà enregistré entre comme { name, url }."
  ]
 }

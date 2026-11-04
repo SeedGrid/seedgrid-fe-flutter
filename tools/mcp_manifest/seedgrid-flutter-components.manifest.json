@@ -1997,7 +1997,7 @@
             "title": "Guia retangular (documento)",
             "file": "apps/seedgrid_showcase/lib/pages/sg_camera_capture_page.dart",
             "kind": "dart",
-            "code": "const SizedBox(\n  width: 360,\n  child: SgCameraCapture(\n    id: 'documento',\n    labelText: 'Documento',\n    facing: SgCameraCaptureFacing.environment,\n    guide: SgCameraCaptureGuide.rect,\n    resolution: SgCameraCaptureResolution.high,\n    previewHeight: 240,\n  ),\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SizedBox(\n      width: 360,\n      child: SgCameraCapture(\n        id: 'documento',\n        labelText: 'Documento',\n        facing: SgCameraCaptureFacing.environment,\n        guide: SgCameraCaptureGuide.rect,\n        resolution: SgCameraCaptureResolution.high,\n        previewHeight: 240,\n        onCapture: (image) => setState(() => _documento = image),\n      ),\n    ),\n    if (_documento != null) ...[\n      const SizedBox(height: 8),\n      Image.memory(_documento!, width: 160),\n    ],\n  ],\n)"
           }
         ],
         "parity": {
@@ -5535,7 +5535,7 @@
         "displayName": "SgFileUpload",
         "category": "input",
         "subcategory": "",
-        "description": "Escolhe um ou varios arquivos (clique ou arrastar e soltar), confere o tipo pelo conteudo e valida quantidade e tamanho (por arquivo e total). Nao envia nada ao servidor: entrega os arquivos ao pai.",
+        "description": "Seleciona um ou varios arquivos (clique ou arrastar e soltar), confere o tipo pelo conteudo e valida quantidade e tamanho (por arquivo e total). Mostra a lista com o icone do tipo e permite remover. Nao envia nada ao servidor: entrega os arquivos ao pai.",
         "tags": [],
         "props": [
           {
@@ -5565,9 +5565,27 @@
             "description": "Desabilita a escolha e a remocao."
           },
           {
+            "name": "dropManyTextKey",
+            "type": "String?",
+            "required": false
+          },
+          {
+            "name": "dropTextKey",
+            "type": "String?",
+            "required": false,
+            "description": "Chaves de i18n do texto da area vazia (um arquivo / varios)."
+          },
+          {
             "name": "error",
             "type": "String?",
             "required": false
+          },
+          {
+            "name": "extraCheck",
+            "type": "Function?",
+            "required": false,
+            "description": "Regra extra, assincrona, por arquivo (depois da conferencia de tipo). E como o SgImageUpload confere dimensao.",
+            "typeExact": false
           },
           {
             "name": "hintText",
@@ -5579,6 +5597,13 @@
             "type": "String",
             "required": true,
             "description": "Identificador unico do campo."
+          },
+          {
+            "name": "keyPrefix",
+            "type": "String?",
+            "required": false,
+            "default": "sg-file",
+            "description": "Prefixo do `data-sg` dos elementos internos (`sg-file`, `sg-image`)."
           },
           {
             "name": "label",
@@ -5596,7 +5621,7 @@
             "type": "num?",
             "required": false,
             "default": "1",
-            "description": "Quantos arquivos o campo guarda (padrao 1). Com 1, escolher outro substitui; maior que 1 liga a selecao multipla e a grade."
+            "description": "Quantos arquivos o campo guarda. Com 1, escolher outro substitui; maior que 1 liga a selecao multipla."
           },
           {
             "name": "maxSizePerFile",
@@ -5629,7 +5654,7 @@
             "name": "onChange",
             "type": "Function?",
             "required": false,
-            "description": "Lista de arquivos validos apos escolher ou remover. O envio ao servidor e do host.",
+            "description": "Lista de arquivos validos apos escolher ou remover.",
             "typeExact": false
           },
           {
@@ -5642,7 +5667,7 @@
             "name": "onError",
             "type": "Function?",
             "required": false,
-            "description": "Arquivo recusado (type, size, total, count): codigo, mensagem ja traduzida e nome do arquivo. Os demais arquivos escolhidos seguem validos.",
+            "description": "Arquivo recusado (type, size, total, count). Os demais seguem validos.",
             "typeExact": false
           },
           {
@@ -5673,10 +5698,30 @@
             "typeExact": false
           },
           {
+            "name": "thumbnailBuilder",
+            "type": "Function?",
+            "required": false,
+            "description": "Miniatura de cada arquivo (sem ela, a lista usa o icone do tipo).",
+            "typeExact": false
+          },
+          {
+            "name": "thumbnailSize",
+            "type": "num?",
+            "required": false,
+            "default": "96",
+            "description": "Lado da miniatura em px (padrao 96)."
+          },
+          {
+            "name": "typeNames",
+            "type": "String?",
+            "required": false,
+            "description": "Texto dos tipos aceitos na mensagem de tipo recusado (padrao: mediaType/accept)."
+          },
+          {
             "name": "value",
             "type": "List<Object?>?",
             "required": false,
-            "description": "Arquivos controlados (sempre lista; um arquivo = lista de um).",
+            "description": "Arquivos controlados (sempre lista; um arquivo = lista de um). Um arquivo ja salvo entra como { name, url }.",
             "typeExact": false
           }
         ],
@@ -5726,12 +5771,16 @@
         ],
         "parity": {
           "status": "parcial",
-          "reason": "Contrato escrito primeiro (P141, Flutter primeiro): o toque abre o seletor do sistema (file_picker), o valor é uma lista de SgFile e o tipo é conferido pelo conteúdo do arquivo; sem arrastar e soltar."
+          "reason": "O contrato é o mesmo (P141); aqui o toque abre o seletor do sistema (file_picker), o valor é uma lista de SgFile e não há arrastar e soltar."
         },
         "omittedProps": [
           {
             "name": "className",
             "reason": "Estilo por classe ou style inline não existe no Flutter; use as props padding, margin, width, height e customColors."
+          },
+          {
+            "name": "pickerAccept",
+            "reason": "Não existe no Flutter: o seletor de arquivos do sistema é aberto pelo componente (tipos de mediaType e accept); use a prop picker para trocar a origem dos arquivos."
           },
           {
             "name": "register",
@@ -6416,7 +6465,7 @@
         "displayName": "SgImageUpload",
         "category": "input",
         "subcategory": "",
-        "description": "Escolhe uma ou varias imagens, mostra as miniaturas e valida tipo, tamanho, dimensao minima e proporcao. Composicao do SgFileUpload. Nao envia nada ao servidor: entrega os arquivos ao pai.",
+        "description": "Seleciona uma ou varias imagens (clique ou arrastar e soltar), valida tipo (pelo conteudo), tamanho, dimensao minima e proporcao, mostra as miniaturas e permite remover. Composicao do SgFileUpload. Nao envia nada ao servidor: entrega os arquivos ao pai.",
         "tags": [],
         "props": [
           {
@@ -6441,7 +6490,7 @@
             "name": "defaultValue",
             "type": "List<Object?>?",
             "required": false,
-            "description": "Imagens iniciais (campo nao controlado).",
+            "description": "Arquivos iniciais (campo nao controlado).",
             "typeExact": false
           },
           {
@@ -6483,7 +6532,7 @@
             "type": "num?",
             "required": false,
             "default": "1",
-            "description": "Quantas imagens o campo guarda (padrao 1). Com 1, escolher outra substitui; maior que 1 liga a selecao multipla e a grade de miniaturas."
+            "description": "Quantas imagens o campo guarda. Com 1, escolher outra substitui; maior que 1 liga a selecao multipla e a grade de miniaturas."
           },
           {
             "name": "maxSizePerFile",
@@ -6521,7 +6570,7 @@
             "name": "onChange",
             "type": "Function?",
             "required": false,
-            "description": "Lista de imagens validas apos escolher ou remover. O envio ao servidor e do host.",
+            "description": "Lista de imagens validas apos escolher ou remover.",
             "typeExact": false
           },
           {
@@ -6534,7 +6583,7 @@
             "name": "onError",
             "type": "Function?",
             "required": false,
-            "description": "Arquivo recusado (type, size, total, count, dimension, aspect): codigo, mensagem ja traduzida e nome do arquivo. Os demais arquivos escolhidos seguem validos.",
+            "description": "Imagem recusada (type, size, total, count, dimension, aspect). As demais seguem validas.",
             "typeExact": false
           },
           {
@@ -6548,7 +6597,7 @@
             "type": "num?",
             "required": false,
             "default": "160",
-            "description": "Altura da miniatura em px (padrao 160)."
+            "description": "Altura da miniatura em px (padrao 160; na grade, no maximo 120)."
           },
           {
             "name": "readOnly",
@@ -6575,7 +6624,7 @@
             "name": "value",
             "type": "List<Object?>?",
             "required": false,
-            "description": "Imagens controladas (sempre lista; uma imagem = lista de uma).",
+            "description": "Imagens controladas (sempre lista; uma imagem = lista de uma). Uma imagem ja salva entra como { name, url }.",
             "typeExact": false
           }
         ],
@@ -6625,7 +6674,7 @@
         ],
         "parity": {
           "status": "parcial",
-          "reason": "O contrato mudou no P141 (valor sempre lista, maxFiles, maxSizePerFile e maxSizeTotal, composição do SgFileUpload) e a outra plataforma ainda tem a API antiga; aqui o toque abre o seletor do sistema (file_picker), o valor é uma lista de SgFile (nome e bytes) e não há arrastar e soltar."
+          "reason": "O contrato é o mesmo (P141, composição do SgFileUpload); aqui o toque abre o seletor do sistema (file_picker), o valor é uma lista de SgFile e não há arrastar e soltar."
         },
         "omittedProps": [
           {

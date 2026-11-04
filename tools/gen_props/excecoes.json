@@ -213,6 +213,11 @@
   },
   {
    "componente": "SgFileUpload",
+   "prop": "pickerAccept",
+   "motivo": "React-only: atributo accept do seletor do navegador (derivado de mediaType/accept); no Flutter o seletor de arquivos do sistema e a prop picker (extra do Flutter)"
+  },
+  {
+   "componente": "SgFileUpload",
    "prop": "register",
    "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
   },
@@ -1699,19 +1704,25 @@
    "componente": "SgFileUpload",
    "prop": "defaultValue",
    "motivo": "lista",
-   "ts": "File[]"
+   "ts": "SgFileValue[]"
+  },
+  {
+   "componente": "SgFileUpload",
+   "prop": "extraCheck",
+   "motivo": "funcao",
+   "ts": "((file: File, info: { mime: string; }) => Promise<SgFileRejection>)"
   },
   {
    "componente": "SgFileUpload",
    "prop": "maxSizePerFile",
-   "motivo": "uniao",
-   "ts": "number | string"
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "SizeLimit"
   },
   {
    "componente": "SgFileUpload",
    "prop": "maxSizeTotal",
-   "motivo": "uniao",
-   "ts": "number | string"
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "SizeLimit"
   },
   {
    "componente": "SgFileUpload",
@@ -1723,7 +1734,7 @@
    "componente": "SgFileUpload",
    "prop": "onChange",
    "motivo": "funcao",
-   "ts": "((files: File[]) => void)"
+   "ts": "((files: SgFileValue[]) => void)"
   },
   {
    "componente": "SgFileUpload",
@@ -1751,9 +1762,15 @@
   },
   {
    "componente": "SgFileUpload",
+   "prop": "thumbnailBuilder",
+   "motivo": "funcao",
+   "ts": "((file: SgFileValue, size: number) => React.ReactNode)"
+  },
+  {
+   "componente": "SgFileUpload",
    "prop": "value",
    "motivo": "lista",
-   "ts": "File[]"
+   "ts": "SgFileValue[]"
   },
   {
    "componente": "SgFloatActionButton",
@@ -1825,25 +1842,25 @@
    "componente": "SgImageUpload",
    "prop": "defaultValue",
    "motivo": "lista",
-   "ts": "File[]"
+   "ts": "SgFileValue[]"
   },
   {
    "componente": "SgImageUpload",
    "prop": "maxSizePerFile",
-   "motivo": "uniao",
-   "ts": "number | string"
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "SizeLimit"
   },
   {
    "componente": "SgImageUpload",
    "prop": "maxSizeTotal",
-   "motivo": "uniao",
-   "ts": "number | string"
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "SizeLimit"
   },
   {
    "componente": "SgImageUpload",
    "prop": "onChange",
    "motivo": "funcao",
-   "ts": "((files: File[]) => void)"
+   "ts": "((files: SgFileValue[]) => void)"
   },
   {
    "componente": "SgImageUpload",
@@ -1873,7 +1890,7 @@
    "componente": "SgImageUpload",
    "prop": "value",
    "motivo": "lista",
-   "ts": "File[]"
+   "ts": "SgFileValue[]"
   },
   {
    "componente": "SgInputBirthDate",
@@ -4645,13 +4662,13 @@
   }
  ],
  "resumo": {
-  "omitidas": 162,
+  "omitidas": 163,
   "renomeadas": 48,
   "tipoGenerico": {
    "lista": 68,
-   "uniao": 127,
-   "funcao": 245,
-   "tipo-nomeado-a-portar": 150
+   "uniao": 123,
+   "funcao": 247,
+   "tipo-nomeado-a-portar": 154
   }
  }
 }

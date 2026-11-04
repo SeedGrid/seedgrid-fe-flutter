@@ -160,5 +160,29 @@
   "Escolhe uma ou várias imagens, mostra as miniaturas e valida tipo, tamanho, dimensão e proporção. Composição do SgFileUpload. Não envia nada: entrega os ficheiros ao pai.",
   "Elige una o varias imágenes, muestra las miniaturas y valida tipo, tamaño, dimensión y proporción. Composición de SgFileUpload. No envía nada: entrega los archivos al padre.",
   "Choisit une ou plusieurs images, affiche les miniatures et valide type, taille, dimension et proportion. Composition de SgFileUpload. Il n'envoie rien : il remet les fichiers au parent."
+ ],
+ "Quantas imagens o campo guarda. Com 1, escolher outra substitui; maior que 1 liga a selecao multipla e a grade de miniaturas.": [
+  "How many images the field holds. With 1, picking another replaces it; above 1 turns on multiple selection and the thumbnail grid.",
+  "Quantas imagens o campo guarda. Com 1, escolher outra substitui; maior que 1 liga a seleção múltipla e a grelha de miniaturas.",
+  "Cuántas imágenes guarda el campo. Con 1, elegir otra la reemplaza; mayor que 1 activa la selección múltiple y la cuadrícula de miniaturas.",
+  "Combien d'images le champ contient. Avec 1, en choisir une autre remplace ; au-dessus de 1, active la sélection multiple et la grille de miniatures."
+ ],
+ "Lista de imagens validas apos escolher ou remover.": [
+  "List of valid images after picking or removing.",
+  "Lista de imagens válidas após escolher ou remover.",
+  "Lista de imágenes válidas tras elegir o quitar.",
+  "Liste des images valides après sélection ou suppression."
+ ],
+ "Imagem recusada (type, size, total, count, dimension, aspect). As demais seguem validas.": [
+  "Rejected image (type, size, total, count, dimension, aspect). The others stay valid.",
+  "Imagem recusada (type, size, total, count, dimension, aspect). As restantes continuam válidas.",
+  "Imagen rechazada (type, size, total, count, dimension, aspect). Las demás siguen siendo válidas.",
+  "Image refusée (type, size, total, count, dimension, aspect). Les autres restent valides."
+ ],
+ "Imagens controladas (sempre lista; uma imagem = lista de uma). Uma imagem ja salva entra como { name, url }.": [
+  "Controlled images (always a list; one image = a list of one). An already saved image goes in as { name, url }.",
+  "Imagens controladas (sempre lista; uma imagem = lista de uma). Uma imagem já guardada entra como { name, url }.",
+  "Imágenes controladas (siempre lista; una imagen = lista de una). Una imagen ya guardada entra como { name, url }.",
+  "Images contrôlées (toujours une liste ; une image = liste d'une). Une image déjà enregistrée entre comme { name, url }."
  ]
 }

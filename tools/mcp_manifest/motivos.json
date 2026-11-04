@@ -27,7 +27,7 @@
     "SgInputBirthDate": "Campo com máscara por idioma e calendário próprio: data impossível (31/02) mostra Data inválida e alwaysFloat não tem efeito; recriar por key perde o foco (precisa de controller externo no SgInputText); os validadores do componente rodam no envio do formulário.",
     "SgInputDate": "Campo com máscara por idioma e calendário próprio: data impossível (31/02) mostra Data inválida e alwaysFloat não tem efeito; recriar por key perde o foco (precisa de controller externo no SgInputText); os validadores do componente rodam no envio do formulário.",
     "SgInputDateTime": "Campo com máscara por idioma, calendário próprio e seletor de hora do Material; o valor é o instante ISO 8601 UTC. Fuso: local, UTC ou deslocamento fixo; nome IANA (America/Sao_Paulo) cai em local porque o pacote não traz banco de fusos; alwaysFloat não tem efeito; data impossível mostra Data e hora inválidas; os validadores do componente rodam no envio do formulário.",
-    "SgImageUpload": "O contrato mudou no P141 (valor sempre lista, maxFiles, maxSizePerFile e maxSizeTotal, composição do SgFileUpload) e a outra plataforma ainda tem a API antiga; aqui o toque abre o seletor do sistema (file_picker), o valor é uma lista de SgFile (nome e bytes) e não há arrastar e soltar.",
+    "SgImageUpload": "O contrato é o mesmo (P141, composição do SgFileUpload); aqui o toque abre o seletor do sistema (file_picker), o valor é uma lista de SgFile e não há arrastar e soltar.",
     "SgCameraCapture": "Usa o pacote camera (dependência nova do seedgrid_components) com um SgCameraBackend injetável; a imagem sai como bytes JPEG em vez de Blob; a câmera pausa em segundo plano e reabre ao voltar; não há onFrame (a análise de qualidade é do host); não testado em dispositivo real.",
     "SgInputCNPJ": "Consulta de rede por cliente injetável (SgViaCepResult e SgHttpClient); o placeholder por país não foi portado; inputProps e props de classe não existem; os validadores do componente rodam no envio do formulário. Não testado em IME nem em dispositivo.",
     "SgInputPostalCode": "Consulta de rede por cliente injetável (SgViaCepResult e SgHttpClient); o placeholder por país não foi portado; inputProps e props de classe não existem; os validadores do componente rodam no envio do formulário. Não testado em IME nem em dispositivo.",
@@ -65,13 +65,14 @@
     "SgToolbarIconButton": "icon é um Widget (não texto nem nome de ícone); a dica fica sempre abaixo; as severidades success e warning usam a cor de destaque; showLabel tem padrão true; onClick pode ser assíncrono e mostra o indicador de carregamento.",
     "SgTreeView": "Navegação por teclado própria (setas, Home/End, Enter, Espaço e * como extra); a altura máxima é a prop maxHeight, em px (padrão 60% da altura da tela); SgTreeConfirmBar.sticky sem efeito; layout de celular próprio (busca em linha, barra empilhada); medido com 10.100 nós em debug de teste: primeira construção 142 ms, 19 linhas construídas, quadro de rolagem médio 59,6 ms (release, dispositivo e GPU não medidos).",
     "SgWizard": "Valida a etapa por SgFormController.trigger(fields) (SgWizardPage.fields e SgWizard.control são extras) e também pelos campos sem formulário (SgValidationScope): os campos da etapa se validam sob demanda e bloqueiam o avanço.",
-    "SgFileUpload": "Contrato escrito primeiro (P141, Flutter primeiro): o toque abre o seletor do sistema (file_picker), o valor é uma lista de SgFile e o tipo é conferido pelo conteúdo do arquivo; sem arrastar e soltar."
+    "SgFileUpload": "O contrato é o mesmo (P141); aqui o toque abre o seletor do sistema (file_picker), o valor é uma lista de SgFile e não há arrastar e soltar."
   },
   "omitidas": {
     "estilo: React-only (ADR N); equivalentes: padding, margin, width, height, customColors": "Estilo por classe ou style inline não existe no Flutter; use as props padding, margin, width, height e customColors.",
     "estilo: React-only (ADR N)": "Estilo por classe ou style inline não existe no Flutter; use as props de estilo do próprio componente.",
     "nao aplicavel: todo campo Flutter e controlado (ADR N)": "Não se aplica no Flutter: todo campo é controlado pelo valor e pelo onChange (ou pelo SgFormController).",
-    "React-only: vira controller/GlobalKey por componente": "Não existe no Flutter: use o controller ou a GlobalKey próprios do componente."
+    "React-only: vira controller/GlobalKey por componente": "Não existe no Flutter: use o controller ou a GlobalKey próprios do componente.",
+    "React-only: atributo accept do seletor do navegador (derivado de mediaType/accept); no Flutter o seletor de arquivos do sistema e a prop picker (extra do Flutter)": "Não existe no Flutter: o seletor de arquivos do sistema é aberto pelo componente (tipos de mediaType e accept); use a prop picker para trocar a origem dos arquivos."
   },
   "descricoes": {
     "Campo numerico com suporte a valores inteiros e decimais, validacao de limites e integracao com react-hook-form.": "Campo numerico com suporte a valores inteiros e decimais, validacao de limites e integracao com formulario (SgFormController).",

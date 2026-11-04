@@ -9,139 +9,97 @@ const Map<String, String> componentsMessagesFr = <String, String>{
   'components.password.show': 'Afficher le mot de passe',
   'components.password.hide': 'Masquer le mot de passe',
   'components.password.generate': 'Générer un mot de passe',
-  'components.password.common':
-      'Le mot de passe est trop courant. Choisissez-en un plus fort.',
+  'components.password.common': 'Le mot de passe est trop courant. Choisissez-en un plus fort.',
   'components.password.minSize': 'Minimum de {min} caractères.',
   'components.password.upper': 'Au moins 1 lettre majuscule.',
   'components.password.lower': 'Au moins 1 lettre minuscule.',
   'components.password.number': 'Au moins 1 chiffre.',
   'components.password.special': 'Au moins 1 caractère spécial.',
   'components.password.noRepeat': 'Ne répétez pas des caractères en séquence.',
-  'components.password.noSeqAsc':
-      'N\'utilisez pas de séquences ascendantes (ex. 1234, abcd).',
-  'components.password.noSeqDesc':
-      'N\'utilisez pas de séquences descendantes (ex. 4321, dcba).',
+  'components.password.noSeqAsc': 'N\'utilisez pas de séquences ascendantes (ex. 1234, abcd).',
+  'components.password.noSeqDesc': 'N\'utilisez pas de séquences descendantes (ex. 4321, dcba).',
   'components.inputs.required': 'Champ obligatoire.',
-  'components.inputs.maxLength':
-      'Le champ doit contenir au maximum {max} caractère(s).',
-  'components.inputs.minLength':
-      'Le champ doit contenir au moins {min} caractère(s).',
+  'components.inputs.maxLength': 'Le champ doit contenir au maximum {max} caractère(s).',
+  'components.inputs.minLength': 'Le champ doit contenir au moins {min} caractère(s).',
   'components.inputs.minWords': 'Le champ doit contenir au moins {min} mot(s).',
   'components.inputs.textarea.required': 'Ce champ est obligatoire.',
-  'components.inputs.textarea.maxLength':
-      'Le texte doit contenir au maximum {max} caractère(s).',
-  'components.inputs.textarea.minLength':
-      'Le texte doit contenir au moins {min} caractère(s).',
-  'components.inputs.textarea.minWords':
-      'Le texte doit contenir au moins {min} mot(s).',
-  'components.inputs.textarea.minLines':
-      'Le texte doit contenir au moins {min} ligne(s).',
+  'components.inputs.textarea.maxLength': 'Le texte doit contenir au maximum {max} caractère(s).',
+  'components.inputs.textarea.minLength': 'Le texte doit contenir au moins {min} caractère(s).',
+  'components.inputs.textarea.minWords': 'Le texte doit contenir au moins {min} mot(s).',
+  'components.inputs.textarea.minLines': 'Le texte doit contenir au moins {min} ligne(s).',
   'components.inputs.cpf.length': 'Le CPF doit contenir 11 chiffres.',
   'components.inputs.cpf.invalid': 'CPF invalide.',
   'components.inputs.cnpj.length': 'Le CNPJ doit contenir 14 chiffres.',
   'components.inputs.cnpj.invalid': 'CNPJ invalide.',
   'components.inputs.postalCode.BR.length': 'Le CEP doit contenir 8 chiffres.',
   'components.inputs.postalCode.BR.invalid': 'CEP invalide.',
-  'components.inputs.postalCode.PT.length':
-      'Le code postal doit contenir 7 chiffres.',
+  'components.inputs.postalCode.PT.length': 'Le code postal doit contenir 7 chiffres.',
   'components.inputs.postalCode.PT.invalid': 'Code postal invalide.',
-  'components.inputs.postalCode.US.length':
-      'Le code ZIP doit contenir 5 ou 9 chiffres.',
+  'components.inputs.postalCode.US.length': 'Le code ZIP doit contenir 5 ou 9 chiffres.',
   'components.inputs.postalCode.US.invalid': 'Code ZIP invalide.',
-  'components.inputs.postalCode.ES.length':
-      'Le code postal doit contenir 5 chiffres.',
+  'components.inputs.postalCode.ES.length': 'Le code postal doit contenir 5 chiffres.',
   'components.inputs.postalCode.ES.invalid': 'Code postal invalide.',
-  'components.inputs.postalCode.UY.length':
-      'Le code postal doit contenir 5 chiffres.',
+  'components.inputs.postalCode.UY.length': 'Le code postal doit contenir 5 chiffres.',
   'components.inputs.postalCode.UY.invalid': 'Code postal invalide.',
-  'components.inputs.postalCode.AR.length':
-      'Le code postal doit contenir 4 ou 8 caractères.',
+  'components.inputs.postalCode.AR.length': 'Le code postal doit contenir 4 ou 8 caractères.',
   'components.inputs.postalCode.AR.invalid': 'Code postal invalide.',
-  'components.inputs.postalCode.PY.length':
-      'Le code postal doit contenir 6 chiffres.',
+  'components.inputs.postalCode.PY.length': 'Le code postal doit contenir 6 chiffres.',
   'components.inputs.postalCode.PY.invalid': 'Code postal invalide.',
   'components.inputs.phone.invalid': 'Numéro de téléphone invalide.',
   'components.inputs.email.invalid': 'Email invalide.',
   'components.inputs.otp.slot': 'Code à usage unique {slot}',
   'components.inputs.otp.group': 'Code à usage unique',
   'components.inputs.toggle.ariaLabel': 'Basculer option',
-  'components.inputs.email.tempInvalid':
-      'Les emails temporaires ne sont pas autorisés.',
+  'components.inputs.email.tempInvalid': 'Les emails temporaires ne sont pas autorisés.',
   'components.inputs.date.invalid': 'Date invalide.',
-  'components.inputs.date.range':
-      'La date doit être comprise entre {min} et {max}.',
+  'components.inputs.date.range': 'La date doit être comprise entre {min} et {max}.',
   'components.inputs.date.min': 'La date doit être le {min} ou après.',
   'components.inputs.date.max': 'La date doit être le {max} ou avant.',
   'components.inputs.datetime.invalid': 'Date et heure invalides.',
-  'components.inputs.datetime.range':
-      'La date et l\'heure doivent être comprises entre {min} et {max}.',
-  'components.inputs.datetime.min':
-      'La date et l\'heure doivent être le {min} ou après.',
-  'components.inputs.datetime.max':
-      'La date et l\'heure doivent être le {max} ou avant.',
-  'components.inputs.imageupload.drop':
-      'Faites glisser une image ici ou cliquez pour choisir',
+  'components.inputs.datetime.range': 'La date et l\'heure doivent être comprises entre {min} et {max}.',
+  'components.inputs.datetime.min': 'La date et l\'heure doivent être le {min} ou après.',
+  'components.inputs.datetime.max': 'La date et l\'heure doivent être le {max} ou avant.',
+  'components.inputs.imageupload.drop': 'Faites glisser une image ici ou cliquez pour choisir',
   'components.inputs.imageupload.change': 'Changer',
   'components.inputs.imageupload.remove': 'Supprimer l\'image',
   'components.inputs.imageupload.loading': 'Lecture de l\'image...',
-  'components.inputs.imageupload.type':
-      'Type de fichier non accepté. Utilisez : {accept}.',
+  'components.inputs.imageupload.type': 'Type de fichier non accepté. Utilisez : {accept}.',
   'components.inputs.imageupload.size': 'L\'image doit peser au maximum {max}.',
-  'components.inputs.imageupload.dimension':
-      'L\'image doit faire au moins {minWidth} × {minHeight} px.',
-  'components.inputs.imageupload.aspect':
-      'Le format de l\'image doit être {aspect}.',
-  'components.inputs.fileupload.drop':
-      'Faites glisser un fichier ici ou cliquez pour choisir',
-  'components.inputs.fileupload.dropMany':
-      'Faites glisser des fichiers ici ou cliquez pour choisir (jusqu\'à {max})',
+  'components.inputs.imageupload.dimension': 'L\'image doit faire au moins {minWidth} × {minHeight} px.',
+  'components.inputs.imageupload.aspect': 'Le format de l\'image doit être {aspect}.',
+  'components.inputs.fileupload.drop': 'Faites glisser un fichier ici ou cliquez pour choisir',
+  'components.inputs.fileupload.dropMany': 'Faites glisser des fichiers ici ou cliquez pour choisir (jusqu\'à {max})',
   'components.inputs.fileupload.remove': 'Supprimer le fichier',
   'components.inputs.fileupload.loading': 'Lecture du fichier...',
-  'components.inputs.fileupload.type':
-      'Type de fichier non accepté. Acceptés : {types}.',
-  'components.inputs.fileupload.size':
-      'Le fichier doit peser au maximum {max}.',
-  'components.inputs.fileupload.total':
-      'Les fichiers ensemble doivent peser au maximum {max}.',
-  'components.inputs.fileupload.count':
-      '{max} fichiers au maximum sont autorisés.',
+  'components.inputs.fileupload.type': 'Type de fichier non accepté. Acceptés : {types}.',
+  'components.inputs.fileupload.size': 'Le fichier doit peser au maximum {max}.',
+  'components.inputs.fileupload.total': 'Les fichiers ensemble doivent peser au maximum {max}.',
+  'components.inputs.fileupload.count': '{max} fichiers au maximum sont autorisés.',
   'components.inputs.fileupload.file': '{name} : {message}',
-  'components.inputs.imageupload.dropMany':
-      'Faites glisser des images ici ou cliquez pour choisir (jusqu\'à {max})',
+  'components.inputs.imageupload.dropMany': 'Faites glisser des images ici ou cliquez pour choisir (jusqu\'à {max})',
   'components.inputs.camera.capture': 'Prendre une photo',
   'components.inputs.camera.switch': 'Changer de caméra',
   'components.inputs.camera.starting': 'Démarrage de la caméra...',
-  'components.inputs.camera.permission':
-      'Autorisation de la caméra refusée. Autorisez l\'accès dans le navigateur ou les réglages du système.',
-  'components.inputs.camera.noCamera':
-      'Aucune caméra trouvée sur cet appareil.',
+  'components.inputs.camera.permission': 'Autorisation de la caméra refusée. Autorisez l\'accès dans le navigateur ou les réglages du système.',
+  'components.inputs.camera.noCamera': 'Aucune caméra trouvée sur cet appareil.',
   'components.inputs.camera.failed': 'Impossible d\'ouvrir la caméra.',
   'components.inputs.camera.retry': 'Réessayer',
-  'components.inputs.birthdate.required':
-      'Veuillez renseigner votre date de naissance.',
-  'components.validators.password.empty':
-      'Le mot de passe ne peut pas être vide.',
+  'components.inputs.birthdate.required': 'Veuillez renseigner votre date de naissance.',
+  'components.validators.password.empty': 'Le mot de passe ne peut pas être vide.',
   'components.validators.password.minSize': 'minimum de {min} caractères',
   'components.validators.password.upper': 'doit inclure une lettre majuscule',
   'components.validators.password.lower': 'doit inclure une lettre minuscule',
   'components.validators.password.number': 'doit inclure un chiffre',
   'components.validators.password.special': 'doit inclure un caractère spécial',
-  'components.validators.password.sequence':
-      'ne peut pas contenir de séquences (ex. abc, 123)',
-  'components.validators.password.repeated':
-      'ne peut pas contenir de caractères répétés en séquence (ex. aaa, 1111)',
+  'components.validators.password.sequence': 'ne peut pas contenir de séquences (ex. abc, 123)',
+  'components.validators.password.repeated': 'ne peut pas contenir de caractères répétés en séquence (ex. aaa, 1111)',
   'components.validators.password.invalid': 'Mot de passe invalide : {reasons}',
-  'components.validators.birthdate.configMissing':
-      'Configuration invalide : fournissez minAge et/ou maxAge.',
-  'components.validators.birthdate.configRange':
-      'Configuration invalide : minAge doit être <= maxAge.',
+  'components.validators.birthdate.configMissing': 'Configuration invalide : fournissez minAge et/ou maxAge.',
+  'components.validators.birthdate.configRange': 'Configuration invalide : minAge doit être <= maxAge.',
   'components.validators.birthdate.invalidDate': 'Date invalide.',
-  'components.validators.birthdate.ageBetween':
-      'L\'âge doit être compris entre {min} et {max} ans.',
-  'components.validators.birthdate.ageMin':
-      'L\'âge doit être d\'au moins {min} ans.',
-  'components.validators.birthdate.ageMax':
-      'L\'âge doit être d\'au plus {max} ans.',
+  'components.validators.birthdate.ageBetween': 'L\'âge doit être compris entre {min} et {max} ans.',
+  'components.validators.birthdate.ageMin': 'L\'âge doit être d\'au moins {min} ans.',
+  'components.validators.birthdate.ageMax': 'L\'âge doit être d\'au plus {max} ans.',
   'components.autocomplete.empty': 'Aucun enregistrement trouvé.',
   'components.autocomplete.loading': 'Chargement...',
   'components.inputs.number.min': 'La valeur doit être au moins {min}.',
@@ -151,8 +109,7 @@ const Map<String, String> componentsMessagesFr = <String, String>{
   'components.fab.yes': 'Oui',
   'components.fab.no': 'Non',
   'components.dock.resetPosition': 'Réinitialiser la position',
-  'components.dock.resetConfirm':
-      'Voulez-vous vraiment réinitialiser la position du dock par défaut ?',
+  'components.dock.resetConfirm': 'Voulez-vous vraiment réinitialiser la position du dock par défaut ?',
   'components.dock.dropHere': 'Déposer ici',
   'components.actions.cancel': 'Annuler',
   'components.actions.confirm': 'Confirmer',
@@ -187,8 +144,7 @@ const Map<String, String> componentsMessagesFr = <String, String>{
   'components.datatable.loading': 'Chargement des données...',
   'components.datatable.loadingMore': 'Chargement de plus...',
   'components.datatable.endOfList': 'Fin de la liste.',
-  'components.datatable.globalFilterPlaceholder':
-      'Rechercher dans toutes les colonnes',
+  'components.datatable.globalFilterPlaceholder': 'Rechercher dans toutes les colonnes',
   'components.datatable.clearFilters': 'Effacer les filtres',
   'components.datatable.pagination': 'Pagination',
   'components.datatable.first': 'Premiere page',
@@ -268,8 +224,7 @@ const Map<String, String> componentsMessagesFr = <String, String>{
   'components.textEditor.toolbar.clear': 'Effacer',
   'components.textEditor.prompt.url': 'URL',
   'components.textEditor.prompt.imageUrl': 'URL de l\'image',
-  'components.textEditor.help.cssEmbedded':
-      'Le CSS est integre dans le document HTML enregistre.',
+  'components.textEditor.help.cssEmbedded': 'Le CSS est integre dans le document HTML enregistre.',
   'components.gadgets.clock.theme': 'Theme',
   'components.gadgets.clock.selectTheme': 'Selectionnez un theme...',
   'components.gadgets.clock.searchTheme': 'Rechercher un theme',

@@ -16,23 +16,17 @@ const Map<String, String> componentsMessagesPtBr = <String, String>{
   'components.password.number': 'Pelo menos 1 número.',
   'components.password.special': 'Pelo menos 1 caractere especial.',
   'components.password.noRepeat': 'Não repetir caracteres em sequência.',
-  'components.password.noSeqAsc':
-      'Não usar sequências crescentes (ex: 1234, abcd).',
-  'components.password.noSeqDesc':
-      'Não usar sequências decrescentes (ex: 4321, dcba).',
+  'components.password.noSeqAsc': 'Não usar sequências crescentes (ex: 1234, abcd).',
+  'components.password.noSeqDesc': 'Não usar sequências decrescentes (ex: 4321, dcba).',
   'components.inputs.required': 'Campo obrigatório.',
   'components.inputs.maxLength': 'Campo deve ter no máximo {max} letra(s).',
   'components.inputs.minLength': 'Campo tem de ter no mínimo {min} letra(s).',
   'components.inputs.minWords': 'Campo tem de ter no mínimo {min} palavra(s).',
   'components.inputs.textarea.required': 'Campo de preenchimento obrigatório.',
-  'components.inputs.textarea.maxLength':
-      'Texto deve ter no máximo {max} letra(s).',
-  'components.inputs.textarea.minLength':
-      'Texto tem de ter no mínimo {min} letra(s).',
-  'components.inputs.textarea.minWords':
-      'Texto tem de ter no mínimo {min} palavra(s).',
-  'components.inputs.textarea.minLines':
-      'Texto tem de ter no mínimo {min} linha(s).',
+  'components.inputs.textarea.maxLength': 'Texto deve ter no máximo {max} letra(s).',
+  'components.inputs.textarea.minLength': 'Texto tem de ter no mínimo {min} letra(s).',
+  'components.inputs.textarea.minWords': 'Texto tem de ter no mínimo {min} palavra(s).',
+  'components.inputs.textarea.minLines': 'Texto tem de ter no mínimo {min} linha(s).',
   'components.inputs.cpf.length': 'CPF deve ter 11 dígitos.',
   'components.inputs.cpf.invalid': 'CPF inválido.',
   'components.inputs.cnpj.length': 'CNPJ deve ter 14 dígitos.',
@@ -47,8 +41,7 @@ const Map<String, String> componentsMessagesPtBr = <String, String>{
   'components.inputs.postalCode.ES.invalid': 'Código postal inválido.',
   'components.inputs.postalCode.UY.length': 'Código postal deve ter 5 dígitos.',
   'components.inputs.postalCode.UY.invalid': 'Código postal inválido.',
-  'components.inputs.postalCode.AR.length':
-      'Código postal deve ter 4 ou 8 caracteres.',
+  'components.inputs.postalCode.AR.length': 'Código postal deve ter 4 ou 8 caracteres.',
   'components.inputs.postalCode.AR.invalid': 'Código postal inválido.',
   'components.inputs.postalCode.PY.length': 'Código postal deve ter 6 dígitos.',
   'components.inputs.postalCode.PY.invalid': 'Código postal inválido.',
@@ -63,45 +56,32 @@ const Map<String, String> componentsMessagesPtBr = <String, String>{
   'components.inputs.date.min': 'Data deve ser a partir de {min}.',
   'components.inputs.date.max': 'Data deve ser até {max}.',
   'components.inputs.datetime.invalid': 'Data e hora inválidas.',
-  'components.inputs.datetime.range':
-      'Data e hora devem estar entre {min} e {max}.',
+  'components.inputs.datetime.range': 'Data e hora devem estar entre {min} e {max}.',
   'components.inputs.datetime.min': 'Data e hora devem ser a partir de {min}.',
   'components.inputs.datetime.max': 'Data e hora devem ser até {max}.',
-  'components.inputs.imageupload.drop':
-      'Arraste uma imagem aqui ou clique para escolher',
+  'components.inputs.imageupload.drop': 'Arraste uma imagem aqui ou clique para escolher',
   'components.inputs.imageupload.change': 'Trocar',
   'components.inputs.imageupload.remove': 'Remover imagem',
   'components.inputs.imageupload.loading': 'Lendo a imagem...',
-  'components.inputs.imageupload.type':
-      'Tipo de arquivo não aceito. Use: {accept}.',
+  'components.inputs.imageupload.type': 'Tipo de arquivo não aceito. Use: {accept}.',
   'components.inputs.imageupload.size': 'A imagem deve ter no máximo {max}.',
-  'components.inputs.imageupload.dimension':
-      'A imagem deve ter pelo menos {minWidth} × {minHeight} px.',
-  'components.inputs.imageupload.aspect':
-      'A proporção da imagem deve ser {aspect}.',
-  'components.inputs.fileupload.drop':
-      'Arraste um arquivo aqui ou clique para escolher',
-  'components.inputs.fileupload.dropMany':
-      'Arraste arquivos aqui ou clique para escolher (até {max})',
+  'components.inputs.imageupload.dimension': 'A imagem deve ter pelo menos {minWidth} × {minHeight} px.',
+  'components.inputs.imageupload.aspect': 'A proporção da imagem deve ser {aspect}.',
+  'components.inputs.fileupload.drop': 'Arraste um arquivo aqui ou clique para escolher',
+  'components.inputs.fileupload.dropMany': 'Arraste arquivos aqui ou clique para escolher (até {max})',
   'components.inputs.fileupload.remove': 'Remover arquivo',
   'components.inputs.fileupload.loading': 'Lendo o arquivo...',
-  'components.inputs.fileupload.type':
-      'Tipo de arquivo não aceito. Aceitos: {types}.',
+  'components.inputs.fileupload.type': 'Tipo de arquivo não aceito. Aceitos: {types}.',
   'components.inputs.fileupload.size': 'O arquivo deve ter no máximo {max}.',
-  'components.inputs.fileupload.total':
-      'Os arquivos juntos devem ter no máximo {max}.',
-  'components.inputs.fileupload.count':
-      'São permitidos no máximo {max} arquivos.',
+  'components.inputs.fileupload.total': 'Os arquivos juntos devem ter no máximo {max}.',
+  'components.inputs.fileupload.count': 'São permitidos no máximo {max} arquivos.',
   'components.inputs.fileupload.file': '{name}: {message}',
-  'components.inputs.imageupload.dropMany':
-      'Arraste imagens aqui ou clique para escolher (até {max})',
+  'components.inputs.imageupload.dropMany': 'Arraste imagens aqui ou clique para escolher (até {max})',
   'components.inputs.camera.capture': 'Tirar foto',
   'components.inputs.camera.switch': 'Trocar câmera',
   'components.inputs.camera.starting': 'Iniciando a câmera...',
-  'components.inputs.camera.permission':
-      'Permissão da câmera negada. Libere o acesso no navegador ou nas configurações do sistema.',
-  'components.inputs.camera.noCamera':
-      'Nenhuma câmera encontrada neste dispositivo.',
+  'components.inputs.camera.permission': 'Permissão da câmera negada. Libere o acesso no navegador ou nas configurações do sistema.',
+  'components.inputs.camera.noCamera': 'Nenhuma câmera encontrada neste dispositivo.',
   'components.inputs.camera.failed': 'Não foi possível abrir a câmera.',
   'components.inputs.camera.retry': 'Tentar novamente',
   'components.inputs.birthdate.required': 'Informe a data de nascimento.',
@@ -111,22 +91,15 @@ const Map<String, String> componentsMessagesPtBr = <String, String>{
   'components.validators.password.lower': 'deve conter letra minúscula',
   'components.validators.password.number': 'deve conter número',
   'components.validators.password.special': 'deve conter caractere especial',
-  'components.validators.password.sequence':
-      'não pode conter sequências (ex.: abc, 123)',
-  'components.validators.password.repeated':
-      'não pode conter caracteres repetidos em série (ex.: aaa, 1111)',
+  'components.validators.password.sequence': 'não pode conter sequências (ex.: abc, 123)',
+  'components.validators.password.repeated': 'não pode conter caracteres repetidos em série (ex.: aaa, 1111)',
   'components.validators.password.invalid': 'Senha inválida: {reasons}',
-  'components.validators.birthdate.configMissing':
-      'Configuração inválida: informe minAge e/ou maxAge.',
-  'components.validators.birthdate.configRange':
-      'Configuração inválida: minAge deve ser <= maxAge.',
+  'components.validators.birthdate.configMissing': 'Configuração inválida: informe minAge e/ou maxAge.',
+  'components.validators.birthdate.configRange': 'Configuração inválida: minAge deve ser <= maxAge.',
   'components.validators.birthdate.invalidDate': 'Data inválida.',
-  'components.validators.birthdate.ageBetween':
-      'A idade deve estar entre {min} e {max} anos.',
-  'components.validators.birthdate.ageMin':
-      'A idade deve ser de pelo menos {min} anos.',
-  'components.validators.birthdate.ageMax':
-      'A idade deve ser de no máximo {max} anos.',
+  'components.validators.birthdate.ageBetween': 'A idade deve estar entre {min} e {max} anos.',
+  'components.validators.birthdate.ageMin': 'A idade deve ser de pelo menos {min} anos.',
+  'components.validators.birthdate.ageMax': 'A idade deve ser de no máximo {max} anos.',
   'components.autocomplete.empty': 'Nenhum registro encontrado.',
   'components.autocomplete.loading': 'Carregando...',
   'components.inputs.number.min': 'Valor deve ser no mínimo {min}.',
@@ -136,8 +109,7 @@ const Map<String, String> componentsMessagesPtBr = <String, String>{
   'components.fab.yes': 'Sim',
   'components.fab.no': 'Não',
   'components.dock.resetPosition': 'Resetar posição',
-  'components.dock.resetConfirm':
-      'Tem certeza que deseja resetar a posição do dock para o padrão?',
+  'components.dock.resetConfirm': 'Tem certeza que deseja resetar a posição do dock para o padrão?',
   'components.dock.dropHere': 'Solte aqui',
   'components.actions.cancel': 'Cancelar',
   'components.actions.confirm': 'Confirmar',
@@ -252,8 +224,7 @@ const Map<String, String> componentsMessagesPtBr = <String, String>{
   'components.textEditor.toolbar.clear': 'Limpar',
   'components.textEditor.prompt.url': 'URL',
   'components.textEditor.prompt.imageUrl': 'URL da imagem',
-  'components.textEditor.help.cssEmbedded':
-      'O CSS e incorporado dentro do documento HTML salvo.',
+  'components.textEditor.help.cssEmbedded': 'O CSS e incorporado dentro do documento HTML salvo.',
   'components.gadgets.clock.theme': 'Tema',
   'components.gadgets.clock.selectTheme': 'Selecione um tema...',
   'components.gadgets.clock.searchTheme': 'Pesquisar tema',

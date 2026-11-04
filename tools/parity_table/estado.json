@@ -66,7 +66,7 @@
   },
   "SgImageUpload": {
     "status": "parcial",
-    "motivo": "o contrato mudou no P141 (valor sempre lista, maxFiles, maxSizePerFile e maxSizeTotal, composicao do SgFileUpload) e o React ainda tem a API antiga de uma imagem so; aqui o toque abre o seletor do sistema (file_picker), o valor e uma lista de SgFile (nome e bytes; uma URL salva entra como SgFile com url), sem arrastar e soltar; recorte e compressao ficam fora (decisao do dono); o React se alinha na P141.F4"
+    "motivo": "aqui o toque abre o seletor do sistema (file_picker), o valor e uma lista de SgFile (nome e bytes; imagem ja salva entra com url), sem arrastar e soltar; o React tem o mesmo contrato (P141, composicao do SgFileUpload) mas aceita arrastar e soltar e entrega File do navegador; recorte e compressao ficam fora"
   },
   "SgCameraCapture": {
     "status": "portado",
@@ -266,6 +266,6 @@
   },
   "SgFileUpload": {
     "status": "parcial",
-    "motivo": "o React ainda nao tem este componente: o contrato foi escrito primeiro (P141, Flutter antes do React); o toque abre o seletor do sistema (file_picker), o valor e uma lista de SgFile (nome e bytes), sem arrastar e soltar; o tipo e conferido pelo conteudo do arquivo (assinatura); picker extra substitui o seletor; o React vem depois da validacao do dono (P141.F4)"
+    "motivo": "aqui o toque abre o seletor do sistema (file_picker), o valor e uma lista de SgFile (nome e bytes; arquivo ja salvo entra com url), sem arrastar e soltar; o React tem o mesmo contrato (P141) mas aceita arrastar e soltar e entrega File do navegador"
   }
 }
