@@ -476,12 +476,13 @@ class _SgInputDateTimeState extends State<SgInputDateTime> {
     if (widget.validateOnBlur == false || _internalError != null) {
       _validate(text);
     }
-    _enforceControlled();
+    _enforceControlled(complete: _seen.isNotEmpty);
   }
 
-  /// Campo controlado (`value`): se o pai nao adotou o que foi digitado, o campo volta ao `value`.
-  void _enforceControlled() {
-    if (_bound || widget.value == null) return;
+  /// Campo controlado (`value`): se o pai nao adotou um instante COMPLETO digitado, o campo volta ao `value`.
+  /// Texto incompleto nunca e revertido: senao nao daria para digitar por cima de um valor.
+  void _enforceControlled({required bool complete}) {
+    if (!complete || _bound || widget.value == null) return;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted || _bound || widget.value == null) return;
       final text = sgDisplayDateTime(_localOf(widget.value), _locale, _seconds);

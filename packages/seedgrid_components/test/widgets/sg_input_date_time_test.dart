@@ -164,6 +164,43 @@ void main() {
       expect(text(t, 'dt'), '25/12/2026 09:05');
     });
 
+    testWidgets(
+      'controlado: digitar por cima (incompleto) nao volta ao value',
+      (t) async {
+        await t.pumpWidget(
+          host(
+            const SgInputDateTime(
+              id: 'dt',
+              timeZone: 'UTC',
+              value: '2026-11-03T17:30:00Z',
+            ),
+          ),
+        );
+        await t.enterText(field('dt'), '0411202608');
+        await t.pump();
+        await t.pump();
+        expect(text(t, 'dt'), '04/11/2026 08');
+      },
+    );
+
+    testWidgets('controlado: instante completo recusado pelo pai volta', (
+      t,
+    ) async {
+      await t.pumpWidget(
+        host(
+          const SgInputDateTime(
+            id: 'dt',
+            timeZone: 'UTC',
+            value: '2026-11-03T17:30:00Z',
+          ),
+        ),
+      );
+      await t.enterText(field('dt'), '041120260830');
+      await t.pump();
+      await t.pump();
+      expect(text(t, 'dt'), '03/11/2026 17:30');
+    });
+
     testWidgets('showSeconds mostra e aceita segundos', (t) async {
       String? last;
       await t.pumpWidget(

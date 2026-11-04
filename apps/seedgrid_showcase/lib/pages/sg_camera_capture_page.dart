@@ -29,11 +29,15 @@ class _SgCameraCapturePageState extends State<SgCameraCapturePage> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SgCameraCapture(
-                  id: 'foto',
-                  labelText: 'Foto',
-                  onCapture: (image) =>
-                      setState(() => _captured = '${image.length} bytes'),
+                SizedBox(
+                  width: 320,
+                  child: SgCameraCapture(
+                    id: 'foto',
+                    labelText: 'Foto',
+                    previewHeight: 240,
+                    onCapture: (image) =>
+                        setState(() => _captured = '${image.length} bytes'),
+                  ),
                 ),
                 const SizedBox(height: 8),
                 Text('Valor atual: ${_captured ?? '-'}'),
@@ -48,11 +52,15 @@ class _SgCameraCapturePageState extends State<SgCameraCapturePage> {
             'guide: oval com a câmera frontal ajuda a centralizar o rosto.',
         preview:
             // #region sg-camera-capture-oval
-            const SgCameraCapture(
-              id: 'selfie',
-              labelText: 'Selfie',
-              facing: SgCameraCaptureFacing.user,
-              guide: SgCameraCaptureGuide.oval,
+            const SizedBox(
+              width: 320,
+              child: SgCameraCapture(
+                id: 'selfie',
+                labelText: 'Selfie',
+                previewHeight: 280,
+                facing: SgCameraCaptureFacing.user,
+                guide: SgCameraCaptureGuide.oval,
+              ),
             ),
         // #endregion
         code: SgCameraCapturePageSnippets.sgCameraCaptureOval,
@@ -63,13 +71,16 @@ class _SgCameraCapturePageState extends State<SgCameraCapturePage> {
             'guide: rect com a câmera traseira e resolução alta, para documentos.',
         preview:
             // #region sg-camera-capture-retangular
-            const SgCameraCapture(
-              id: 'documento',
-              labelText: 'Documento',
-              facing: SgCameraCaptureFacing.environment,
-              guide: SgCameraCaptureGuide.rect,
-              resolution: SgCameraCaptureResolution.high,
-              previewHeight: 240,
+            const SizedBox(
+              width: 360,
+              child: SgCameraCapture(
+                id: 'documento',
+                labelText: 'Documento',
+                facing: SgCameraCaptureFacing.environment,
+                guide: SgCameraCaptureGuide.rect,
+                resolution: SgCameraCaptureResolution.high,
+                previewHeight: 240,
+              ),
             ),
         // #endregion
         code: SgCameraCapturePageSnippets.sgCameraCaptureRetangular,
@@ -83,11 +94,15 @@ class _SgCameraCapturePageState extends State<SgCameraCapturePage> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SgCameraCapture(
-                  id: 'foto-erros',
-                  labelText: 'Foto',
-                  onError: (code, message) =>
-                      setState(() => _cameraError = '${code.name}: $message'),
+                SizedBox(
+                  width: 320,
+                  child: SgCameraCapture(
+                    id: 'foto-erros',
+                    labelText: 'Foto',
+                    previewHeight: 240,
+                    onError: (code, message) =>
+                        setState(() => _cameraError = '${code.name}: $message'),
+                  ),
                 ),
                 const SizedBox(height: 8),
                 Text('Valor atual: ${_cameraError ?? '-'}'),
@@ -127,21 +142,28 @@ class _SgCameraCapturePageState extends State<SgCameraCapturePage> {
               }.contains(s.name),
             )
             .toList(),
-        builder: (context, v) => SgCameraCapture(
-          // A chave refaz o componente quando a câmera inicial muda.
-          key: ValueKey('pg-${v['facing']}-${v['resolution']}'),
-          id: 'pg',
-          labelText: 'Rótulo',
-          previewHeight: 240,
-          guide: SgCameraCaptureGuide.fromValue(v['guide'] as String?),
-          facing: SgCameraCaptureFacing.fromValue(v['facing'] as String?),
-          resolution: SgCameraCaptureResolution.fromValue(
-            v['resolution'] as String?,
+        builder: (context, v) => SizedBox(
+          width: 320,
+          child: SgCameraCapture(
+            // A chave refaz o componente quando a câmera inicial muda.
+            key: ValueKey('pg-${v['facing']}-${v['resolution']}'),
+            id: 'pg',
+            labelText: 'Rótulo',
+            previewHeight: 240,
+            guide: SgCameraCaptureGuide.fromValue(v['guide'] as String?),
+            facing: SgCameraCaptureFacing.fromValue(v['facing'] as String?),
+            resolution: SgCameraCaptureResolution.fromValue(
+              v['resolution'] as String?,
+            ),
+            allowSwitch: v['allowSwitch'] as bool?,
           ),
-          allowSwitch: v['allowSwitch'] as bool?,
         ),
         codeBuilder: (v) {
-          final args = <String>["id: 'pg'", "labelText: 'Rótulo'"];
+          final args = <String>[
+            "id: 'pg'",
+            "labelText: 'Rótulo'",
+            'previewHeight: 240',
+          ];
           for (final e in v.entries) {
             if (e.value == null || e.value == false) continue;
             args.add(switch (e.key) {
@@ -154,7 +176,7 @@ class _SgCameraCapturePageState extends State<SgCameraCapturePage> {
               _ => '${e.key}: ${e.value}',
             });
           }
-          return 'SgCameraCapture(\n  ${args.join(',\n  ')},\n)';
+          return 'SizedBox(\n  width: 320,\n  child: SgCameraCapture(\n    ${args.join(',\n    ')},\n  ),\n)';
         },
       ),
     );
