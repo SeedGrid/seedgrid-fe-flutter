@@ -400,6 +400,9 @@ class SgPropsTable extends StatelessWidget {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: DataTable(
+        // A descricao pode ter varias linhas: a linha cresce com o texto (altura maxima padrao, 48, cortava).
+        dataRowMinHeight: 48,
+        dataRowMaxHeight: double.infinity,
         columns: [
           DataColumn(label: Text(context.tr('colProp'))),
           DataColumn(label: Text(context.tr('colType'))),
@@ -418,7 +421,10 @@ class SgPropsTable extends StatelessWidget {
                 DataCell(
                   ConstrainedBox(
                     constraints: const BoxConstraints(maxWidth: 420),
-                    child: Text(context.tx(s.description ?? '-')),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8),
+                      child: Text(context.tx(s.description ?? '-')),
+                    ),
                   ),
                 ),
               ],
