@@ -85,7 +85,7 @@ void main() {
           // O conteudo acima do titulo, dentro do viewport, e so o respiro: nada do ultimo exemplo ali.
           expect(top, lessThan(kAnchorGap + 24));
           expect(
-            find.textContaining('Último exemplo'),
+            find.textContaining('Exemplo 6 — Último exemplo'),
             findsOneWidget,
           ); // existe na arvore, mas fora do viewport
           final lastTop =

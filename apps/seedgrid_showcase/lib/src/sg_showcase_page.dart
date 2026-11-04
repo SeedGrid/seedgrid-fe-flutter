@@ -182,7 +182,7 @@ class SgShowcasePageState extends State<SgShowcasePage> {
       for (var i = 0; i < widget.examples.length; i++)
         _AnchorLink(
           key: ValueKey('link-exemplo-${i + 1}'),
-          label: '${context.tr('example')} ${i + 1}',
+          label: '${i + 1}) ${context.tx(widget.examples[i].title)}',
           onTap: () => _go('exemplo-${i + 1}'),
         ),
       if (widget.playground != null)
@@ -285,10 +285,15 @@ class _AnchorLink extends StatelessWidget {
   final VoidCallback onTap;
 
   @override
-  Widget build(BuildContext context) => ActionChip(
-    label: Text(label),
-    onPressed: onTap,
-    visualDensity: VisualDensity.compact,
+  Widget build(BuildContext context) => ConstrainedBox(
+    // Titulo longo nao pode passar da largura de uma tela estreita (o link precisa caber para ser tocado).
+    constraints: const BoxConstraints(maxWidth: 260),
+    child: ActionChip(
+      label: Text(label, maxLines: 1, overflow: TextOverflow.ellipsis),
+      tooltip: label,
+      onPressed: onTap,
+      visualDensity: VisualDensity.compact,
+    ),
   );
 }
 

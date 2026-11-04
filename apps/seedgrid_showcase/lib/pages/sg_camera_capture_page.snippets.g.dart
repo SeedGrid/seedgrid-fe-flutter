@@ -71,16 +71,26 @@ Column(
 
   /// Region `sg-camera-capture-retangular`.
   static const String sgCameraCaptureRetangular = r'''
-const SizedBox(
-  width: 360,
-  child: SgCameraCapture(
-    id: 'documento',
-    labelText: 'Documento',
-    facing: SgCameraCaptureFacing.environment,
-    guide: SgCameraCaptureGuide.rect,
-    resolution: SgCameraCaptureResolution.high,
-    previewHeight: 240,
-  ),
+Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    SizedBox(
+      width: 360,
+      child: SgCameraCapture(
+        id: 'documento',
+        labelText: 'Documento',
+        facing: SgCameraCaptureFacing.environment,
+        guide: SgCameraCaptureGuide.rect,
+        resolution: SgCameraCaptureResolution.high,
+        previewHeight: 240,
+        onCapture: (image) => setState(() => _documento = image),
+      ),
+    ),
+    if (_documento != null) ...[
+      const SizedBox(height: 8),
+      Image.memory(_documento!, width: 160),
+    ],
+  ],
 )
 ''';
 }

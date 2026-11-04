@@ -18,6 +18,7 @@ class SgCameraCapturePage extends StatefulWidget {
 class _SgCameraCapturePageState extends State<SgCameraCapturePage> {
   Uint8List? _captured;
   Uint8List? _selfie;
+  Uint8List? _documento;
   String? _cameraError;
 
   @override
@@ -84,16 +85,26 @@ class _SgCameraCapturePageState extends State<SgCameraCapturePage> {
             'guide: rect com a câmera traseira e resolução alta, para documentos.',
         preview:
             // #region sg-camera-capture-retangular
-            const SizedBox(
-              width: 360,
-              child: SgCameraCapture(
-                id: 'documento',
-                labelText: 'Documento',
-                facing: SgCameraCaptureFacing.environment,
-                guide: SgCameraCaptureGuide.rect,
-                resolution: SgCameraCaptureResolution.high,
-                previewHeight: 240,
-              ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  width: 360,
+                  child: SgCameraCapture(
+                    id: 'documento',
+                    labelText: 'Documento',
+                    facing: SgCameraCaptureFacing.environment,
+                    guide: SgCameraCaptureGuide.rect,
+                    resolution: SgCameraCaptureResolution.high,
+                    previewHeight: 240,
+                    onCapture: (image) => setState(() => _documento = image),
+                  ),
+                ),
+                if (_documento != null) ...[
+                  const SizedBox(height: 8),
+                  Image.memory(_documento!, width: 160),
+                ],
+              ],
             ),
         // #endregion
         code: SgCameraCapturePageSnippets.sgCameraCaptureRetangular,
