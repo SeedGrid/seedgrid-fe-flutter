@@ -35,6 +35,12 @@ abstract class SgCameraSession {
   Future<void> dispose();
 }
 
+/// Sessao que sabe quando o sistema tomou a camera (ex.: no celular, outro aplicativo abriu e a faixa de video
+/// terminou): o campo reabre a camera sozinho ao ser avisado.
+abstract class SgInterruptibleSession implements SgCameraSession {
+  VoidCallback? onInterrupted;
+}
+
 /// Acesso a camera. Erros devem sair como [SgCameraException] (ou qualquer excecao: vira `failed`).
 abstract class SgCameraBackend {
   Future<List<SgCameraInfo>> list();
@@ -283,6 +289,11 @@ class _SgCameraCaptureState extends State<SgCameraCapture>
         return;
       }
       _session = session;
+      if (session is SgInterruptibleSession) {
+        session.onInterrupted = () {
+          if (generation == _generation && mounted) _open();
+        };
+      }
       if (mounted) setState(() => _status = _Status.ready);
     } catch (e) {
       if (generation != _generation) return;

@@ -70,11 +70,44 @@ class _WebCameraBackend implements SgCameraBackend {
   }
 }
 
-class _WebSession implements SgCameraSession {
-  _WebSession(this.stream, this.video, this.viewType);
+class _WebSession implements SgInterruptibleSession {
+  _WebSession(this.stream, this.video, this.viewType) {
+    // No celular, ao abrir outro aplicativo (ou trocar de aba) o navegador encerra a faixa de video; ao voltar
+    // a imagem fica congelada. Ao a pagina voltar a ficar visivel, se a faixa terminou, avisamos para reabrir.
+    web.document.addEventListener('visibilitychange', _onVisibility);
+    for (final track in stream.getTracks().toDart) {
+      track.addEventListener('ended', _onEnded);
+    }
+  }
   final web.MediaStream stream;
   final web.HTMLVideoElement video;
   final String viewType;
+  bool _disposed = false;
+
+  @override
+  VoidCallback? onInterrupted;
+
+  late final JSFunction _onVisibility = ((web.Event _) {
+    if (web.document.visibilityState != 'visible') return;
+    // Da um instante para o navegador religar a camera sozinho; se a faixa terminou, ficou muda ou o
+    // video parou (iOS deixa a imagem congelada), reabre.
+    Timer(const Duration(milliseconds: 700), () {
+      if (_disposed) return;
+      final dead = stream.getTracks().toDart.any(
+        (t) => t.readyState != 'live' || t.muted,
+      );
+      if (dead || video.paused || video.ended) _notify();
+    });
+  }).toJS;
+
+  late final JSFunction _onEnded = ((web.Event _) {
+    // Parada com a pagina visivel (ex.: camera tomada por outro app); em segundo plano espera a volta.
+    if (web.document.visibilityState == 'visible') _notify();
+  }).toJS;
+
+  void _notify() {
+    if (!_disposed) onInterrupted?.call();
+  }
 
   @override
   Widget buildPreview() => HtmlElementView(viewType: viewType);
@@ -102,6 +135,8 @@ class _WebSession implements SgCameraSession {
 
   @override
   Future<void> dispose() async {
+    _disposed = true;
+    web.document.removeEventListener('visibilitychange', _onVisibility);
     final tracks = stream.getTracks().toDart;
     for (final track in tracks) {
       track.stop();
