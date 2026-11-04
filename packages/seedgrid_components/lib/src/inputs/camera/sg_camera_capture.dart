@@ -7,6 +7,7 @@ import 'dart:async';
 import 'dart:typed_data';
 
 import 'package:camera/camera.dart' as cam;
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 
 import '../../buttons/sg_button.dart';
@@ -193,6 +194,7 @@ class _SgCameraCaptureState extends State<SgCameraCapture>
   _Status _status = _Status.starting;
   SgCameraSession? _session;
   int _generation = 0;
+  bool _pausedByLifecycle = false;
 
   @override
   void initState() {
@@ -216,10 +218,19 @@ class _SgCameraCaptureState extends State<SgCameraCapture>
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
+    // No navegador o foco muda o tempo todo (aviso de permissao, o proprio video): fechar e reabrir a
+    // camera nesses eventos cria um ciclo. O navegador ja pausa a camera quando a aba some.
+    if (kIsWeb) return;
     if (state == AppLifecycleState.resumed) {
-      _open();
-    } else if (state == AppLifecycleState.inactive ||
-        state == AppLifecycleState.paused) {
+      if (_pausedByLifecycle) {
+        _pausedByLifecycle = false;
+        _open();
+      }
+    } else if (state == AppLifecycleState.paused ||
+        state == AppLifecycleState.hidden) {
+      // `inactive` fica de fora: tambem ocorre com o aviso de permissao do sistema.
+      if (_pausedByLifecycle) return;
+      _pausedByLifecycle = true;
       _release();
       if (mounted) setState(() => _status = _Status.starting);
     }

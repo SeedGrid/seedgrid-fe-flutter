@@ -27,25 +27,77 @@ class SgImageFile {
 /// Seletor de imagem (devolve nulo se o usuario cancelar). Troque para testar ou para outra origem.
 typedef SgImagePicker = Future<SgImageFile?> Function(String? accept);
 
-String _mimeOf(String name) {
+String _mimeOfName(String name) {
   final ext = name.contains('.') ? name.split('.').last.toLowerCase() : '';
   return switch (ext) {
     'png' => 'image/png',
-    'jpg' || 'jpeg' => 'image/jpeg',
+    'jpg' || 'jpeg' || 'jfif' || 'jpe' => 'image/jpeg',
     'gif' => 'image/gif',
     'webp' => 'image/webp',
     'bmp' => 'image/bmp',
     'svg' => 'image/svg+xml',
     'heic' => 'image/heic',
+    'heif' => 'image/heif',
+    'avif' => 'image/avif',
+    'tif' || 'tiff' => 'image/tiff',
+    'ico' => 'image/x-icon',
     _ => '',
   };
+}
+
+bool _startsWith(Uint8List b, List<int> sig, [int at = 0]) {
+  if (b.length < at + sig.length) return false;
+  for (var i = 0; i < sig.length; i++) {
+    if (b[at + i] != sig[i]) return false;
+  }
+  return true;
+}
+
+/// Tipo MIME pelo conteudo (assinatura do arquivo); vazio se nao reconhecido.
+String _mimeOfBytes(Uint8List b) {
+  if (_startsWith(b, [0x89, 0x50, 0x4E, 0x47])) return 'image/png';
+  if (_startsWith(b, [0xFF, 0xD8, 0xFF])) return 'image/jpeg';
+  if (_startsWith(b, [0x47, 0x49, 0x46, 0x38])) return 'image/gif';
+  if (_startsWith(b, [0x52, 0x49, 0x46, 0x46]) &&
+      _startsWith(b, [0x57, 0x45, 0x42, 0x50], 8)) {
+    return 'image/webp';
+  }
+  if (_startsWith(b, [0x42, 0x4D])) return 'image/bmp';
+  if (_startsWith(b, [0x49, 0x49, 0x2A, 0x00]) ||
+      _startsWith(b, [0x4D, 0x4D, 0x00, 0x2A])) {
+    return 'image/tiff';
+  }
+  if (_startsWith(b, [0x00, 0x00, 0x01, 0x00])) return 'image/x-icon';
+  if (_startsWith(b, [0x66, 0x74, 0x79, 0x70], 4)) {
+    final brand = String.fromCharCodes(b.skip(8).take(4));
+    if (brand.startsWith('avif') || brand.startsWith('avis')) {
+      return 'image/avif';
+    }
+    if (brand.startsWith('hei') || brand.startsWith('mif')) {
+      return 'image/heic';
+    }
+  }
+  final head = String.fromCharCodes(b.take(256)).toLowerCase();
+  if (head.contains('<svg')) return 'image/svg+xml';
+  return '';
+}
+
+/// A extensao manda; sem ela (ou desconhecida), vale o conteudo do arquivo.
+String _mimeOf(String name, [Uint8List? bytes]) {
+  final byName = _mimeOfName(name);
+  if (byName.isNotEmpty) return byName;
+  return bytes == null ? '' : _mimeOfBytes(bytes);
 }
 
 Future<SgImageFile?> _defaultPicker(String? accept) async {
   final r = await FilePicker.pickFiles(type: FileType.image, withData: true);
   final f = r?.files.single;
   if (f == null || f.bytes == null) return null;
-  return SgImageFile(name: f.name, bytes: f.bytes!, mimeType: _mimeOf(f.name));
+  return SgImageFile(
+    name: f.name,
+    bytes: f.bytes!,
+    mimeType: _mimeOf(f.name, f.bytes),
+  );
 }
 
 /// Campo de escolha de imagem. Valor = [SgImageFile] (ou URL em texto para uma imagem salva).
@@ -277,7 +329,9 @@ class _SgImageUploadState extends State<SgImageUpload> {
     }
     final code = sgValidateImage(
       name: file.name,
-      type: file.mimeType ?? _mimeOf(file.name),
+      type: (file.mimeType?.isNotEmpty ?? false)
+          ? file.mimeType!
+          : _mimeOf(file.name, file.bytes),
       size: file.size,
       width: dims?.width,
       height: dims?.height,

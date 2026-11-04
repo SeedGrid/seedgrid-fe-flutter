@@ -113,6 +113,27 @@ void main() {
       expect(find.byKey(const ValueKey('sg-image-preview-up')), findsNothing);
     });
 
+    testWidgets('sem tipo nem extensao conhecida, vale o conteudo do arquivo', (
+      t,
+    ) async {
+      final calls = <String?>[];
+      final errors = <SgImageError>[];
+      await t.pumpWidget(
+        host(
+          SgImageUpload(
+            id: 'up',
+            picker: pickerOf(SgImageFile(name: 'foto.xyz', bytes: _png)),
+            onChange: (f) => calls.add(f?.name),
+            onError: (code, message) => errors.add(code),
+          ),
+        ),
+      );
+      await t.tap(find.byKey(const ValueKey('sg-image-open-up')));
+      await t.pump();
+      expect(errors, isEmpty);
+      expect(calls, ['foto.xyz']);
+    });
+
     testWidgets('recusa tipo e tamanho com onError e mensagem', (t) async {
       final errors = <SgImageError>[];
       var file = SgImageFile(

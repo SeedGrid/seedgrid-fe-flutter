@@ -236,6 +236,9 @@ void main() {
       await settle(t);
       t.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
       await settle(t);
+      expect(backend.sessions.single.disposed, isFalse);
+      t.binding.handleAppLifecycleStateChanged(AppLifecycleState.paused);
+      await settle(t);
       expect(backend.sessions.single.disposed, isTrue);
       t.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
       await settle(t);

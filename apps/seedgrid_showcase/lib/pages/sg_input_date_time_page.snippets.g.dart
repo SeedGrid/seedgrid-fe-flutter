@@ -55,8 +55,10 @@ Column(
       labelText: 'UTC',
       timeZone: 'UTC',
       value: _fuso,
-      onChange: (value, local) =>
-          setState(() => _fuso = value ?? ''),
+      // Campo incompleto (null) nao mexe nos outros: so um instante valido atualiza.
+      onChange: (value, local) {
+        if (value != null) setState(() => _fuso = value);
+      },
     ),
     const SizedBox(height: 12),
     SgInputDateTime(
@@ -64,8 +66,10 @@ Column(
       labelText: '-03:00',
       timeZone: '-03:00',
       value: _fuso,
-      onChange: (value, local) =>
-          setState(() => _fuso = value ?? ''),
+      // Campo incompleto (null) nao mexe nos outros: so um instante valido atualiza.
+      onChange: (value, local) {
+        if (value != null) setState(() => _fuso = value);
+      },
     ),
     const SizedBox(height: 12),
     SgInputDateTime(
@@ -73,11 +77,13 @@ Column(
       labelText: '+05:30',
       timeZone: '+05:30',
       value: _fuso,
-      onChange: (value, local) =>
-          setState(() => _fuso = value ?? ''),
+      // Campo incompleto (null) nao mexe nos outros: so um instante valido atualiza.
+      onChange: (value, local) {
+        if (value != null) setState(() => _fuso = value);
+      },
     ),
     const SizedBox(height: 8),
-    Text('Valor atual: ${_fuso.isEmpty ? '-' : _fuso}'),
+    Text('Valor atual: $_fuso'),
   ],
 )
 ''';
