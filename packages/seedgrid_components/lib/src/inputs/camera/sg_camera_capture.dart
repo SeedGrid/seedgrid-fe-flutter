@@ -8,6 +8,7 @@ import 'dart:typed_data';
 
 import 'package:camera/camera.dart' as cam;
 import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:flutter/services.dart' show DeviceOrientation;
 import 'package:flutter/material.dart';
 
 import '../../buttons/sg_button.dart';
@@ -117,7 +118,31 @@ class _SystemSession implements SgCameraSession {
   final cam.CameraController controller;
 
   @override
-  Widget buildPreview() => cam.CameraPreview(controller);
+  Widget buildPreview() {
+    // O CameraPreview tem proporcao propria; dentro de uma caixa de tamanho fixo ele era esticado (imagem
+    // deformada). Preenche a caixa mantendo a proporcao (corta o excesso), como o object-fit: cover do web.
+    // `aspectRatio` do controller e sempre paisagem (largura/altura do sensor); o CameraPreview a inverte quando
+    // o aparelho esta em pe. Repetimos a mesma regra para a caixa ter a proporcao que ele vai usar.
+    final orientation =
+        controller.value.lockedCaptureOrientation ??
+        controller.value.deviceOrientation;
+    final landscape =
+        orientation == DeviceOrientation.landscapeLeft ||
+        orientation == DeviceOrientation.landscapeRight;
+    final aspect = landscape
+        ? controller.value.aspectRatio
+        : 1 / controller.value.aspectRatio;
+    return ClipRect(
+      child: FittedBox(
+        fit: BoxFit.cover,
+        child: SizedBox(
+          width: 1000 * aspect,
+          height: 1000,
+          child: cam.CameraPreview(controller),
+        ),
+      ),
+    );
+  }
 
   @override
   Future<Uint8List> capture() async {
