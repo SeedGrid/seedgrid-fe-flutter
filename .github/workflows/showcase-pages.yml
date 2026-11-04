@@ -35,7 +35,9 @@ jobs:
 
       - name: Build web
         working-directory: apps/seedgrid_showcase
-        run: flutter build web --release --base-href /
+        run: |
+          VERSION=$(grep -m1 '^version:' ../../packages/seedgrid_components/pubspec.yaml | awk '{print $2}')
+          flutter build web --release --base-href /             --dart-define=SG_VERSION="$VERSION"             --dart-define=SG_BUILD="${GITHUB_SHA::7}"             --dart-define=SG_BUILT_AT="$(date -u +'%Y-%m-%d %H:%M UTC')"
 
       # O Pages nao tem fallback de SPA: um 404.html igual ao index.html faz /sg-button abrir direto.
       - name: Fallback de SPA, CNAME e .nojekyll

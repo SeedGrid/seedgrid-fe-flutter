@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 
 import '../pages/pages.g.dart';
+import 'build_info.dart';
 import 'showcase_i18n.dart';
 import 'showcase_menu.dart' show kCategoryOrder, menuGroups;
 
@@ -26,6 +27,12 @@ class ShowcaseHomePage extends StatelessWidget {
         Text(context.tr('homeTitle'), style: theme.textTheme.headlineMedium),
         const SizedBox(height: 8),
         Text(context.tr('homeIntro')),
+        const SizedBox(height: 8),
+        SelectableText(
+          sgBuildLabel(),
+          key: const ValueKey('home-versao'),
+          style: theme.textTheme.bodySmall,
+        ),
         for (final cat in kCategoryOrder)
           if (groups[cat] != null)
             _Category(

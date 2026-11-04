@@ -15,6 +15,8 @@ import '../../generated/enums.g.dart';
 import '../../generated/sg_camera_capture.g.dart';
 import '../../i18n/i18n.dart';
 import 'sg_camera_logic.dart';
+import 'sg_camera_web_stub.dart'
+    if (dart.library.js_interop) 'sg_camera_web.dart';
 
 /// Camera disponivel no dispositivo.
 class SgCameraInfo {
@@ -51,12 +53,16 @@ class SgCameraException implements Exception {
   String toString() => 'SgCameraException($code)';
 }
 
-/// Backend padrao: pacote `camera`.
+/// Backend padrao: `getUserMedia` no navegador; pacote `camera` nas demais plataformas.
 class SgSystemCameraBackend implements SgCameraBackend {
   const SgSystemCameraBackend();
 
+  static final SgCameraBackend? _web = kIsWeb ? createWebCameraBackend() : null;
+
   @override
   Future<List<SgCameraInfo>> list() async {
+    final web = _web;
+    if (web != null) return web.list();
     try {
       final all = await cam.availableCameras();
       return [
@@ -79,6 +85,8 @@ class SgSystemCameraBackend implements SgCameraBackend {
     SgCameraInfo camera,
     SgCameraCaptureResolution resolution,
   ) async {
+    final web = _web;
+    if (web != null) return web.open(camera, resolution);
     final controller = cam.CameraController(
       camera.native as cam.CameraDescription,
       switch (resolution) {
