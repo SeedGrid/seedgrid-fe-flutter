@@ -36,7 +36,7 @@ jobs:
       - name: Build web
         working-directory: apps/seedgrid_showcase
         run: |
-          VERSION=$(grep -m1 '^version:' ../../packages/seedgrid_components/pubspec.yaml | awk '{print $2}')
+          VERSION=$(grep -m1 '^version:' ../../packages/seedgrid_components/pubspec.yaml | awk '{print $2}' | tr -d '')
           flutter build web --release --base-href /             --dart-define=SG_VERSION="$VERSION"             --dart-define=SG_BUILD="${GITHUB_SHA::7}"             --dart-define=SG_BUILT_AT="$(date -u +'%Y-%m-%d %H:%M UTC')"
 
       # O Pages nao tem fallback de SPA: um 404.html igual ao index.html faz /sg-button abrir direto.
