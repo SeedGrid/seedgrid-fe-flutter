@@ -19,6 +19,7 @@ class _SgInputDateTimePageState extends State<SgInputDateTimePage> {
   String? _instante;
   String _fuso = '2026-11-03T17:30:00.000Z';
   String _enviado = '';
+  String _evento = '-';
 
   @override
   void dispose() {
@@ -161,6 +162,30 @@ class _SgInputDateTimePageState extends State<SgInputDateTimePage> {
             ),
         // #endregion
         code: SgInputDateTimePageSnippets.sgInputDateTimeFormulario,
+      ),
+      ShowcaseExample(
+        title: 'Eventos',
+        description:
+            'onChange (instante ou null), onEnter (foco) e onExit (saída) informam o que o usuário fez.',
+        preview:
+            // #region sg-input-date-time-eventos
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SgInputDateTime(
+                  id: 'eventos',
+                  labelText: 'Quando',
+                  onChange: (value, local) =>
+                      setState(() => _evento = 'onChange: ${value ?? local}'),
+                  onEnter: () => setState(() => _evento = 'onEnter'),
+                  onExit: () => setState(() => _evento = 'onExit'),
+                ),
+                const SizedBox(height: 8),
+                Text('Último evento: $_evento'),
+              ],
+            ),
+        // #endregion
+        code: SgInputDateTimePageSnippets.sgInputDateTimeEventos,
       ),
     ];
 

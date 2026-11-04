@@ -19,6 +19,25 @@ Column(
 )
 ''';
 
+  /// Region `sg-input-date-time-eventos`.
+  static const String sgInputDateTimeEventos = r'''
+Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    SgInputDateTime(
+      id: 'eventos',
+      labelText: 'Quando',
+      onChange: (value, local) =>
+          setState(() => _evento = 'onChange: ${value ?? local}'),
+      onEnter: () => setState(() => _evento = 'onEnter'),
+      onExit: () => setState(() => _evento = 'onExit'),
+    ),
+    const SizedBox(height: 8),
+    Text('Último evento: $_evento'),
+  ],
+)
+''';
+
   /// Region `sg-input-date-time-formulario`.
   static const String sgInputDateTimeFormulario = r'''
 Column(
