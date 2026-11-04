@@ -145,19 +145,22 @@ Cada nome abaixo leva à página do componente no showcase ao vivo. O estado de 
 </details>
 
 <details>
-<summary><b>⌨️ Entrada de dados</b> · 30 componentes · <i>Campos de texto, máscaras, números, datas, escolha e seleção</i></summary>
+<summary><b>⌨️ Entrada de dados</b> · 33 componentes · <i>Campos de texto, máscaras, números, datas, escolha e seleção</i></summary>
 
 | Componente | O que faz |
 |---|---|
 | [`SgAutocomplete`](https://components-flutter.seedgrid.com.br/sg-autocomplete) | Campo de texto com sugestões vindas de uma fonte (lista ou assíncrona), com busca com atraso, cache, grupos e valor livre. |
+| [`SgCameraCapture`](https://components-flutter.seedgrid.com.br/sg-camera-capture) | Pré-visualização da câmera com guia de enquadramento, troca de câmera e captura. |
 | [`SgCheckboxGroup`](https://components-flutter.seedgrid.com.br/sg-checkbox-group) | Grupo de caixas de seleção múltipla com título, orientação, estilo highlight, "selecionar todos" e ligação a formulário. |
 | [`SgCombobox`](https://components-flutter.seedgrid.com.br/sg-combobox) | Seleção de um item de uma lista (local ou assíncrona), com escolha por id e busca por tecla digitada. |
+| [`SgImageUpload`](https://components-flutter.seedgrid.com.br/sg-image-upload) | Escolhe uma imagem, valida e mostra a pré-visualização. |
 | [`SgInputBirthDate`](https://components-flutter.seedgrid.com.br/sg-input-birth-date) | Data de nascimento: SgInputDate com limites derivados de minAge/maxAge e validação de idade ao sair do campo. |
 | [`SgInputCNPJ`](https://components-flutter.seedgrid.com.br/sg-input-cnpj) | Campo de CNPJ (numérico e alfanumérico) com máscara 00.000.000/0000-00, validação dos dígitos e consulta opcional na base pública. |
 | [`SgInputCPF`](https://components-flutter.seedgrid.com.br/sg-input-cpf) | Campo de CPF com máscara 000.000.000-00 e validação dos dígitos verificadores. |
 | [`SgInputCPFCNPJ`](https://components-flutter.seedgrid.com.br/sg-input-cpfcnpj) | Campo único que aceita CPF ou CNPJ e decide pela quantidade de caracteres. |
 | [`SgInputCurrency`](https://components-flutter.seedgrid.com.br/sg-input-currency) | Campo de moeda com símbolo, posição e separadores do idioma (Intl), casas da moeda, limites e ligação a formulário. |
 | [`SgInputDate`](https://components-flutter.seedgrid.com.br/sg-input-date) | Campo de data com máscara do idioma e calendário próprio. |
+| [`SgInputDateTime`](https://components-flutter.seedgrid.com.br/sg-input-date-time) | Campo de data e hora que entrega e recebe instantes ISO 8601 em UTC, exibindo a hora no fuso escolhido. |
 | [`SgInputEmail`](https://components-flutter.seedgrid.com.br/sg-input-email) | Campo de e-mail com validação de formato, bloqueio de e-mails descartáveis e ligação a formulário. |
 | [`SgInputNumber`](https://components-flutter.seedgrid.com.br/sg-input-number) | Campo numérico com formatação por idioma, casas decimais, sinal, limites e ligação a formulário (SgForm). |
 | [`SgInputOTP`](https://components-flutter.seedgrid.com.br/sg-input-otp) | Campo de código de uso único com vários campos: máscara, colar o código inteiro,  |

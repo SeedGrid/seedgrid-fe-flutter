@@ -11,9 +11,9 @@ import 'support/page_checks.dart';
 
 void main() {
   test(
-    'o catalogo cobre os 89 componentes do React e cada pagina registrada tem entrada no menu',
+    'o catalogo cobre os 92 componentes do React e cada pagina registrada tem entrada no menu',
     () {
-      expect(kCatalog.length, 89);
+      expect(kCatalog.length, 92);
       final grouped = menuGroups(
         '',
       ).values.expand((l) => l).map((e) => e.name).toSet();
@@ -83,7 +83,7 @@ void main() {
     expect(find.textContaining('Ação ('), findsOneWidget);
     final pendentes = kCatalog.where((e) => e.status == 'pendente').toList();
     if (pendentes.isEmpty)
-      return; // 89 de 89 portados: nada esmaecido para conferir
+      return; // 92 de 92 portados: nada esmaecido para conferir
     final key = ValueKey('nav-${pendentes.first.name}');
     await revealInMenu(t, find.byKey(key));
     final tile = t.widget<ListTile>(find.byKey(key));

@@ -203,13 +203,44 @@ void main() {
           SgToolbarIconButtonSeverity.primary => '--primary',
           SgToolbarIconButtonSeverity.danger => '--destructive',
           SgToolbarIconButtonSeverity.plain => '--muted',
-          SgToolbarIconButtonSeverity.secondary ||
-          SgToolbarIconButtonSeverity.info ||
-          SgToolbarIconButtonSeverity.help => '--secondary',
-          _ => '--accent',
+          // Severidades com cor propria vem dos tokens do SgButton (P140).
+          SgToolbarIconButtonSeverity.secondary => '--sg-btn-secondary-bg',
+          SgToolbarIconButtonSeverity.info => '--sg-btn-info-bg',
+          SgToolbarIconButtonSeverity.help => '--sg-btn-help-bg',
+          SgToolbarIconButtonSeverity.success => '--sg-btn-success-bg',
+          SgToolbarIconButtonSeverity.warning => '--sg-btn-warning-bg',
         };
         expect(bg, _light.color(name), reason: s.value);
       }
+    });
+
+    testWidgets('severity: cada severidade tem uma cor distinta (P140)', (
+      t,
+    ) async {
+      final cores = <String, Color>{};
+      for (final s in SgToolbarIconButtonSeverity.values) {
+        await t.pumpWidget(
+          host(
+            Center(
+              child: SgToolbarIconButton(icon: const Text('Sa'), severity: s),
+            ),
+          ),
+        );
+        final d =
+            t
+                    .widget<AnimatedContainer>(
+                      find.descendant(
+                        of: find.byType(SgToolbarIconButton),
+                        matching: find.byType(AnimatedContainer),
+                      ),
+                    )
+                    .decoration!
+                as BoxDecoration;
+        cores[s.value] = d.color!;
+      }
+      // plain (muted) e primary ja eram distintos; success/warning/info/secondary/help colapsavam.
+      final valores = cores.values.map((c) => c.toARGB32()).toSet();
+      expect(valores.length, cores.length, reason: cores.toString());
     });
 
     testWidgets('acessibilidade: usa hint, senao label', (t) async {

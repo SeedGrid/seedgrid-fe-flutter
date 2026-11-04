@@ -263,7 +263,7 @@ const List<SgPropSpec> sgLinearGaugePropSpecs = <SgPropSpec>[
     tsType: 'SgLinearGaugePointerShape',
     required: false,
     defaultValue: 'triangle',
-    values: <String>['circle', 'triangle', 'inverted-triangle', 'diamond', 'rect'],
+    values: <String>['circle', 'rect', 'triangle', 'inverted-triangle', 'diamond'],
   ),
   SgPropSpec(
     name: 'primaryPointerSize',

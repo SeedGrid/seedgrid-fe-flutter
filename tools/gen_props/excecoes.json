@@ -47,6 +47,11 @@
    "motivo": "estilo: React-only (ADR 50)"
   },
   {
+   "componente": "SgCameraCapture",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
    "componente": "SgCard",
    "prop": "className",
    "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
@@ -227,6 +232,16 @@
    "motivo": "estilo: React-only (ADR 50)"
   },
   {
+   "componente": "SgImageUpload",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgImageUpload",
+   "prop": "register",
+   "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
+  },
+  {
    "componente": "SgInputBirthDate",
    "prop": "className",
    "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
@@ -313,6 +328,21 @@
   },
   {
    "componente": "SgInputDate",
+   "prop": "register",
+   "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
+  },
+  {
+   "componente": "SgInputDateTime",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
+   "componente": "SgInputDateTime",
+   "prop": "labelClassName",
+   "motivo": "estilo: React-only (ADR 50)"
+  },
+  {
+   "componente": "SgInputDateTime",
    "prop": "register",
    "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
   },
@@ -1110,6 +1140,18 @@
    "ts": "0 | 1 | 2 | 3 | 4 | 5 | 6"
   },
   {
+   "componente": "SgCameraCapture",
+   "prop": "onCapture",
+   "motivo": "funcao",
+   "ts": "((image: Blob) => void)"
+  },
+  {
+   "componente": "SgCameraCapture",
+   "prop": "onError",
+   "motivo": "funcao",
+   "ts": "((code: CameraErrorCode, message: string) => void)"
+  },
+  {
    "componente": "SgCard",
    "prop": "defaultPosition",
    "motivo": "tipo-nomeado-a-portar",
@@ -1698,6 +1740,54 @@
    "ts": "string | number"
   },
   {
+   "componente": "SgImageUpload",
+   "prop": "control",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "any"
+  },
+  {
+   "componente": "SgImageUpload",
+   "prop": "defaultValue",
+   "motivo": "uniao",
+   "ts": "string | File"
+  },
+  {
+   "componente": "SgImageUpload",
+   "prop": "onChange",
+   "motivo": "funcao",
+   "ts": "((file: File) => void)"
+  },
+  {
+   "componente": "SgImageUpload",
+   "prop": "onEnter",
+   "motivo": "funcao",
+   "ts": "(() => void)"
+  },
+  {
+   "componente": "SgImageUpload",
+   "prop": "onError",
+   "motivo": "funcao",
+   "ts": "((code: ImageErrorCode, message: string) => void)"
+  },
+  {
+   "componente": "SgImageUpload",
+   "prop": "onExit",
+   "motivo": "funcao",
+   "ts": "(() => void)"
+  },
+  {
+   "componente": "SgImageUpload",
+   "prop": "rules",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "RegisterOptions<any>"
+  },
+  {
+   "componente": "SgImageUpload",
+   "prop": "value",
+   "motivo": "uniao",
+   "ts": "string | File"
+  },
+  {
    "componente": "SgInputBirthDate",
    "prop": "borderRadius",
    "motivo": "uniao",
@@ -2239,6 +2329,108 @@
   },
   {
    "componente": "SgInputDate",
+   "prop": "width",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgInputDateTime",
+   "prop": "borderRadius",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgInputDateTime",
+   "prop": "control",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "any"
+  },
+  {
+   "componente": "SgInputDateTime",
+   "prop": "defaultValue",
+   "motivo": "uniao",
+   "ts": "string | Date"
+  },
+  {
+   "componente": "SgInputDateTime",
+   "prop": "iconButtons",
+   "motivo": "lista",
+   "ts": "React.ReactNode[]"
+  },
+  {
+   "componente": "SgInputDateTime",
+   "prop": "inputProps",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "(React.InputHTMLAttributes<HTMLInputElement> & { ref?: React.Ref<HTMLInputElement>; })"
+  },
+  {
+   "componente": "SgInputDateTime",
+   "prop": "labelWidth",
+   "motivo": "uniao",
+   "ts": "string | number"
+  },
+  {
+   "componente": "SgInputDateTime",
+   "prop": "maxDate",
+   "motivo": "uniao",
+   "ts": "string | Date"
+  },
+  {
+   "componente": "SgInputDateTime",
+   "prop": "minDate",
+   "motivo": "uniao",
+   "ts": "string | Date"
+  },
+  {
+   "componente": "SgInputDateTime",
+   "prop": "onChange",
+   "motivo": "funcao",
+   "ts": "((value: string, local: string) => void)"
+  },
+  {
+   "componente": "SgInputDateTime",
+   "prop": "onClear",
+   "motivo": "funcao",
+   "ts": "(() => void)"
+  },
+  {
+   "componente": "SgInputDateTime",
+   "prop": "onEnter",
+   "motivo": "funcao",
+   "ts": "((() => void) & (() => void))"
+  },
+  {
+   "componente": "SgInputDateTime",
+   "prop": "onExit",
+   "motivo": "funcao",
+   "ts": "((() => void) & (() => void))"
+  },
+  {
+   "componente": "SgInputDateTime",
+   "prop": "onValidation",
+   "motivo": "funcao",
+   "ts": "((message: string) => void)"
+  },
+  {
+   "componente": "SgInputDateTime",
+   "prop": "rules",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "RegisterOptions<any>"
+  },
+  {
+   "componente": "SgInputDateTime",
+   "prop": "validation",
+   "motivo": "funcao",
+   "ts": "((value: string) => string)"
+  },
+  {
+   "componente": "SgInputDateTime",
+   "prop": "value",
+   "motivo": "uniao",
+   "ts": "string | Date"
+  },
+  {
+   "componente": "SgInputDateTime",
    "prop": "width",
    "motivo": "uniao",
    "ts": "string | number"
@@ -4214,6 +4406,12 @@
    "motivo": "ADR 50 (valor invertido)"
   },
   {
+   "componente": "SgInputDateTime",
+   "de": "enabled",
+   "para": "disabled",
+   "motivo": "ADR 50 (valor invertido)"
+  },
+  {
    "componente": "SgInputEmail",
    "de": "enabled",
    "para": "disabled",
@@ -4359,13 +4557,13 @@
   }
  ],
  "resumo": {
-  "omitidas": 154,
-  "renomeadas": 47,
+  "omitidas": 160,
+  "renomeadas": 48,
   "tipoGenerico": {
-   "lista": 62,
-   "uniao": 116,
-   "funcao": 229,
-   "tipo-nomeado-a-portar": 143
+   "lista": 63,
+   "uniao": 125,
+   "funcao": 241,
+   "tipo-nomeado-a-portar": 148
   }
  }
 }

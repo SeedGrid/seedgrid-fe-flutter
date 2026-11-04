@@ -1593,6 +1593,141 @@
     }
    ]
   },
+  "SgCameraCapture": {
+   "kind": "component",
+   "file": "inputs/SgCameraCapture.tsx",
+   "category": "input",
+   "description": "Pre-visualizacao da camera com guia de enquadramento (oval ou retangulo), alternancia entre frontal e traseira e captura que devolve a imagem ao pai. Mostra os estados sem permissao e sem camera. Nao envia nada ao servidor.",
+   "props": [
+    {
+     "name": "allowSwitch",
+     "optional": true,
+     "ts": "boolean | undefined",
+     "alias": null,
+     "doc": "Mostra o botao de alternar entre frontal e traseira (padrao `true`).",
+     "description": "Mostra o botao de alternar entre frontal e traseira.",
+     "default": true,
+     "semanticRole": "appearance"
+    },
+    {
+     "name": "className",
+     "optional": true,
+     "ts": "string | undefined",
+     "alias": null
+    },
+    {
+     "name": "disabled",
+     "optional": true,
+     "ts": "boolean | undefined",
+     "alias": null,
+     "description": "Nao abre a camera nem permite capturar.",
+     "default": false,
+     "semanticRole": "appearance"
+    },
+    {
+     "name": "facing",
+     "optional": true,
+     "ts": "CameraFacing | undefined",
+     "alias": null,
+     "enum": [
+      "user",
+      "environment"
+     ],
+     "doc": "Camera inicial: `user` (frontal) ou `environment` (traseira). Padrao `user`.",
+     "description": "Camera inicial: frontal (user) ou traseira (environment).",
+     "default": "user",
+     "semanticRole": "appearance"
+    },
+    {
+     "name": "guide",
+     "optional": true,
+     "ts": "CameraGuide | undefined",
+     "alias": null,
+     "enum": [
+      "none",
+      "oval",
+      "rect"
+     ],
+     "doc": "Guia de enquadramento sobre a pre-visualizacao: `none` (padrao), `oval` ou `rect`.",
+     "description": "Guia de enquadramento sobre a pre-visualizacao.",
+     "default": "none",
+     "semanticRole": "appearance"
+    },
+    {
+     "name": "hintText",
+     "optional": true,
+     "ts": "string | undefined",
+     "alias": null
+    },
+    {
+     "name": "id",
+     "optional": false,
+     "ts": "string",
+     "alias": null,
+     "description": "Identificador unico do componente.",
+     "semanticRole": "data"
+    },
+    {
+     "name": "label",
+     "optional": true,
+     "ts": "string | undefined",
+     "alias": null,
+     "description": "Rotulo exibido acima da pre-visualizacao.",
+     "semanticRole": "label"
+    },
+    {
+     "name": "labelText",
+     "optional": true,
+     "ts": "string | undefined",
+     "alias": null
+    },
+    {
+     "name": "onCapture",
+     "optional": true,
+     "ts": "((image: Blob) => void) | undefined",
+     "alias": null,
+     "fn": true,
+     "doc": "Disparado ao capturar, com a imagem JPEG. O envio ao servidor e do host.",
+     "description": "Imagem JPEG capturada.",
+     "semanticRole": "event"
+    },
+    {
+     "name": "onError",
+     "optional": true,
+     "ts": "((code: CameraErrorCode, message: string) => void) | undefined",
+     "alias": null,
+     "fn": true,
+     "doc": "Disparado quando a camera nao abre: `permission`, `noCamera` ou `failed`. `message` ja vem traduzida.",
+     "description": "Camera indisponivel (permission, noCamera, failed).",
+     "semanticRole": "event"
+    },
+    {
+     "name": "previewHeight",
+     "optional": true,
+     "ts": "number | undefined",
+     "alias": null,
+     "doc": "Altura da pre-visualizacao em px (padrao 320).",
+     "description": "Altura da pre-visualizacao em px.",
+     "default": 320,
+     "semanticRole": "appearance"
+    },
+    {
+     "name": "resolution",
+     "optional": true,
+     "ts": "CameraResolution | undefined",
+     "alias": null,
+     "enum": [
+      "low",
+      "medium",
+      "high"
+     ],
+     "doc": "Resolucao pedida: `low` (640x480), `medium` (1280x720, padrao) ou `high` (1920x1080).",
+     "description": "Resolucao pedida (640x480, 1280x720, 1920x1080).",
+     "default": "medium",
+     "semanticRole": "appearance"
+    }
+   ]
+  },
   "SgCard": {
    "kind": "component",
    "file": "layout/SgCard.tsx",
@@ -3251,7 +3386,7 @@
    "kind": "component",
    "file": "inputs/SgDatatable.tsx",
    "category": "data",
-   "description": "Tabela de dados interativa com colunas configuraveis, paginacao, ordenacao, filtro, selecao e persistencia de layout de colunas.",
+   "description": "Tabela de dados interativa com colunas configuraveis, paginacao, ordenacao, filtro, selecao e persistencia de layout de colunas. Em celular vira lista de cartoes automaticamente (mobileMode omitido = automatico).",
    "props": [
     {
      "name": "className",
@@ -3348,7 +3483,9 @@
      "optional": true,
      "ts": "boolean | undefined",
      "alias": null,
-     "description": "Rolagem infinita: sem paginador, ao chegar perto do fim avanca a pagina (rows). Padrao ligado nos cartoes e desligado na tabela; exige paginator.",
+     "doc": "Rolagem infinita (P137): sem paginador, ao chegar perto do fim avanca a pagina do `rows` existente.\r\nPadrao: ligada quando a lista e' exibida como cartoes (abaixo de 600 px no modo automatico) e desligada na tabela.\r\nExige `paginator` (e' o `rows` que define o tamanho de cada pagina). Com `lazy`, o pai acrescenta a proxima pagina a `value`.",
+     "description": "Rolagem infinita: sem paginador, ao chegar perto do fim da lista avanca a pagina (rows) e acrescenta os proximos registros, com indicador de carregando e de fim da lista. Padrao ligado quando a lista e exibida como cartoes (abaixo de 600 px no modo automatico) e desligado na tabela. Exige paginator. Com lazy, o pai acrescenta a proxima pagina a value (first/rows/page vem em onPage/onLoadMore).",
+     "default": "(true nos cartoes, false na tabela)",
      "semanticRole": "behavior"
     },
     {
@@ -3377,7 +3514,10 @@
       "scroll",
       "cards"
      ],
-     "description": "Omitido (padrao): automatico - cartoes abaixo de 600 px do container, tabela acima; cards forca cartoes e scroll forca a tabela."
+     "doc": "Omitido (padrao): automatico - cartoes quando o container fica abaixo de SG_DATATABLE_MOBILE_BREAKPOINT (600 px), tabela acima. `cards` forca cartoes e `scroll` forca a tabela (rolagem horizontal) em qualquer largura.",
+     "description": "Comportamento em tela estreita. Omitido (padrao): cartoes quando o container fica abaixo de 600 px, tabela acima; cards: forca cartoes em qualquer largura; scroll: forca a tabela com rolagem horizontal. Nos cartoes mantem ordenacao, selecao, acoes, rodape e paginacao.",
+     "default": "(omitido = automatico)",
+     "semanticRole": "behavior"
     },
     {
      "name": "onFilter",
@@ -3398,6 +3538,8 @@
      "optional": true,
      "ts": "((event: SgDatatablePageEvent) => void) | undefined",
      "alias": null,
+     "fn": true,
+     "doc": "Chamado (alem de `onPage`) quando a rolagem infinita pede a proxima pagina.",
      "description": "Chamado (alem de onPage) quando a rolagem infinita pede a proxima pagina.",
      "semanticRole": "event"
     },
@@ -5191,6 +5333,213 @@
      "alias": null,
      "description": "Largura do bloco de agrupamento.",
      "semanticRole": "behavior"
+    }
+   ]
+  },
+  "SgImageUpload": {
+   "kind": "component",
+   "file": "inputs/SgImageUpload.tsx",
+   "category": "input",
+   "description": "Seleciona uma imagem (clique ou arrastar e soltar), valida tipo, tamanho, dimensao minima e proporcao, mostra a pre-visualizacao e permite remover. Nao envia nada ao servidor: entrega o arquivo ao pai.",
+   "props": [
+    {
+     "name": "accept",
+     "optional": true,
+     "ts": "string | undefined",
+     "alias": null,
+     "doc": "Tipos aceitos: `image/*` (padrao), `image/png`, `.png`, separados por virgula.",
+     "description": "Tipos aceitos (image/*, image/png, .png), separados por virgula.",
+     "default": "image/*",
+     "semanticRole": "validation"
+    },
+    {
+     "name": "aspect",
+     "optional": true,
+     "ts": "number | undefined",
+     "alias": null,
+     "doc": "Proporcao largura/altura exigida (1 = quadrada, 16 / 9).",
+     "description": "Proporcao largura/altura exigida (1 = quadrada).",
+     "semanticRole": "validation"
+    },
+    {
+     "name": "className",
+     "optional": true,
+     "ts": "string | undefined",
+     "alias": null
+    },
+    {
+     "name": "control",
+     "optional": true,
+     "ts": "any",
+     "alias": null
+    },
+    {
+     "name": "defaultValue",
+     "optional": true,
+     "ts": "string | File | null | undefined",
+     "alias": null,
+     "doc": "Imagem inicial (campo nao controlado)."
+    },
+    {
+     "name": "disabled",
+     "optional": true,
+     "ts": "boolean | undefined",
+     "alias": null,
+     "description": "Desabilita a escolha e a remocao.",
+     "default": false,
+     "semanticRole": "appearance"
+    },
+    {
+     "name": "error",
+     "optional": true,
+     "ts": "string | undefined",
+     "alias": null
+    },
+    {
+     "name": "hintText",
+     "optional": true,
+     "ts": "string | undefined",
+     "alias": null
+    },
+    {
+     "name": "id",
+     "optional": false,
+     "ts": "string",
+     "alias": null,
+     "description": "Identificador unico do campo.",
+     "semanticRole": "data"
+    },
+    {
+     "name": "label",
+     "optional": true,
+     "ts": "string | undefined",
+     "alias": null,
+     "description": "Rotulo exibido acima da area.",
+     "semanticRole": "label"
+    },
+    {
+     "name": "labelText",
+     "optional": true,
+     "ts": "string | undefined",
+     "alias": null
+    },
+    {
+     "name": "maxSizeBytes",
+     "optional": true,
+     "ts": "number | undefined",
+     "alias": null,
+     "doc": "Tamanho maximo em bytes.",
+     "description": "Tamanho maximo em bytes.",
+     "semanticRole": "validation"
+    },
+    {
+     "name": "minHeight",
+     "optional": true,
+     "ts": "number | undefined",
+     "alias": null,
+     "doc": "Altura minima em px.",
+     "description": "Altura minima em px.",
+     "semanticRole": "validation"
+    },
+    {
+     "name": "minWidth",
+     "optional": true,
+     "ts": "number | undefined",
+     "alias": null,
+     "doc": "Largura minima em px.",
+     "description": "Largura minima em px.",
+     "semanticRole": "validation"
+    },
+    {
+     "name": "name",
+     "optional": true,
+     "ts": "string | undefined",
+     "alias": null,
+     "description": "Nome do campo para formularios.",
+     "semanticRole": "data"
+    },
+    {
+     "name": "onChange",
+     "optional": true,
+     "ts": "((file: File | null) => void) | undefined",
+     "alias": null,
+     "fn": true,
+     "doc": "Disparado ao escolher (arquivo valido) ou remover (`null`). O envio ao servidor e do host.",
+     "description": "Arquivo valido escolhido ou null ao remover.",
+     "semanticRole": "event"
+    },
+    {
+     "name": "onEnter",
+     "optional": true,
+     "ts": "(() => void) | undefined",
+     "alias": null,
+     "fn": true
+    },
+    {
+     "name": "onError",
+     "optional": true,
+     "ts": "((code: ImageErrorCode, message: string) => void) | undefined",
+     "alias": null,
+     "fn": true,
+     "doc": "Disparado quando o arquivo escolhido e recusado. `message` ja vem traduzida.",
+     "description": "Arquivo recusado (type, size, dimension, aspect).",
+     "semanticRole": "event"
+    },
+    {
+     "name": "onExit",
+     "optional": true,
+     "ts": "(() => void) | undefined",
+     "alias": null,
+     "fn": true
+    },
+    {
+     "name": "previewHeight",
+     "optional": true,
+     "ts": "number | undefined",
+     "alias": null,
+     "doc": "Altura da area de pre-visualizacao em px (padrao 160).",
+     "default": "160",
+     "defaultFonte": "codigo"
+    },
+    {
+     "name": "readOnly",
+     "optional": true,
+     "ts": "boolean | undefined",
+     "alias": null
+    },
+    {
+     "name": "register",
+     "optional": true,
+     "ts": "UseFormRegister<any> | undefined",
+     "alias": null,
+     "fn": true
+    },
+    {
+     "name": "required",
+     "optional": true,
+     "ts": "boolean | undefined",
+     "alias": null
+    },
+    {
+     "name": "requiredMessage",
+     "optional": true,
+     "ts": "string | undefined",
+     "alias": null
+    },
+    {
+     "name": "rules",
+     "optional": true,
+     "ts": "RegisterOptions<any> | undefined",
+     "alias": null
+    },
+    {
+     "name": "value",
+     "optional": true,
+     "ts": "string | File | null | undefined",
+     "alias": null,
+     "doc": "Imagem controlada: `File` escolhido, URL (`string`) de uma imagem ja salva, ou `null`.",
+     "description": "Imagem controlada: arquivo escolhido ou URL de uma imagem ja salva.",
+     "semanticRole": "data"
     }
    ]
   },
@@ -7375,6 +7724,402 @@
      "ts": "((value: string) => string | null) | undefined",
      "alias": null,
      "fn": true
+    },
+    {
+     "name": "width",
+     "optional": true,
+     "ts": "string | number | undefined",
+     "alias": null
+    },
+    {
+     "name": "withBorder",
+     "optional": true,
+     "ts": "boolean | undefined",
+     "alias": null
+    }
+   ]
+  },
+  "SgInputDateTime": {
+   "kind": "component",
+   "file": "inputs/SgInputDateTime.tsx",
+   "category": "input",
+   "description": "Campo de data e hora que entrega e recebe instantes ISO 8601 em UTC, exibindo a hora no fuso escolhido, com limites, passo de minutos e validacao.",
+   "props": [
+    {
+     "name": "alwaysFloat",
+     "optional": true,
+     "ts": "boolean | undefined",
+     "alias": null
+    },
+    {
+     "name": "borderRadius",
+     "optional": true,
+     "ts": "string | number | undefined",
+     "alias": null
+    },
+    {
+     "name": "className",
+     "optional": true,
+     "ts": "string | undefined",
+     "alias": null
+    },
+    {
+     "name": "clearButton",
+     "optional": true,
+     "ts": "boolean | undefined",
+     "alias": null
+    },
+    {
+     "name": "control",
+     "optional": true,
+     "ts": "any",
+     "alias": null
+    },
+    {
+     "name": "defaultValue",
+     "optional": true,
+     "ts": "string | Date | null | undefined",
+     "alias": null,
+     "doc": "Instante inicial (campo nao controlado).",
+     "description": "Instante inicial (nao controlado).",
+     "semanticRole": "data"
+    },
+    {
+     "name": "elevation",
+     "optional": true,
+     "ts": "\"none\" | \"sm\" | \"md\" | \"lg\" | undefined",
+     "alias": null,
+     "enum": [
+      "none",
+      "sm",
+      "md",
+      "lg"
+     ]
+    },
+    {
+     "name": "enabled",
+     "optional": true,
+     "ts": "boolean | undefined",
+     "alias": null
+    },
+    {
+     "name": "error",
+     "optional": true,
+     "ts": "string | undefined",
+     "alias": null
+    },
+    {
+     "name": "filled",
+     "optional": true,
+     "ts": "boolean | undefined",
+     "alias": null
+    },
+    {
+     "name": "hintText",
+     "optional": true,
+     "ts": "string | undefined",
+     "alias": null
+    },
+    {
+     "name": "iconButtons",
+     "optional": true,
+     "ts": "React.ReactNode[] | undefined",
+     "alias": null
+    },
+    {
+     "name": "id",
+     "optional": false,
+     "ts": "string",
+     "alias": null,
+     "description": "Identificador unico do campo.",
+     "semanticRole": "data"
+    },
+    {
+     "name": "inputProps",
+     "optional": true,
+     "ts": "(React.InputHTMLAttributes<HTMLInputElement> & { ref?: React.Ref<HTMLInputElement>; }) | undefined",
+     "alias": null
+    },
+    {
+     "name": "label",
+     "optional": true,
+     "ts": "string | undefined",
+     "alias": null,
+     "description": "Rotulo principal exibido ao usuario.",
+     "semanticRole": "label"
+    },
+    {
+     "name": "labelAlign",
+     "optional": true,
+     "ts": "\"start\" | \"center\" | \"end\" | undefined",
+     "alias": null,
+     "enum": [
+      "start",
+      "center",
+      "end"
+     ]
+    },
+    {
+     "name": "labelClassName",
+     "optional": true,
+     "ts": "string | undefined",
+     "alias": null
+    },
+    {
+     "name": "labelPosition",
+     "optional": true,
+     "ts": "\"float\" | \"top\" | \"left\" | undefined",
+     "alias": null,
+     "enum": [
+      "float",
+      "top",
+      "left"
+     ]
+    },
+    {
+     "name": "labelText",
+     "optional": true,
+     "ts": "string | undefined",
+     "alias": null
+    },
+    {
+     "name": "labelWidth",
+     "optional": true,
+     "ts": "string | number | undefined",
+     "alias": null
+    },
+    {
+     "name": "maxDate",
+     "optional": true,
+     "ts": "string | Date | undefined",
+     "alias": null,
+     "doc": "Maior instante permitido (ISO 8601 ou `Date`).",
+     "description": "Maior instante permitido.",
+     "semanticRole": "validation"
+    },
+    {
+     "name": "maxLength",
+     "optional": true,
+     "ts": "number | undefined",
+     "alias": null
+    },
+    {
+     "name": "maxLengthMessage",
+     "optional": true,
+     "ts": "string | undefined",
+     "alias": null
+    },
+    {
+     "name": "minDate",
+     "optional": true,
+     "ts": "string | Date | undefined",
+     "alias": null,
+     "doc": "Menor instante permitido (ISO 8601 ou `Date`).",
+     "description": "Menor instante permitido.",
+     "semanticRole": "validation"
+    },
+    {
+     "name": "minLength",
+     "optional": true,
+     "ts": "number | undefined",
+     "alias": null
+    },
+    {
+     "name": "minLengthMessage",
+     "optional": true,
+     "ts": "string | undefined",
+     "alias": null
+    },
+    {
+     "name": "minNumberOfWords",
+     "optional": true,
+     "ts": "number | undefined",
+     "alias": null
+    },
+    {
+     "name": "minNumberOfWordsMessage",
+     "optional": true,
+     "ts": "string | undefined",
+     "alias": null
+    },
+    {
+     "name": "minuteStep",
+     "optional": true,
+     "ts": "number | undefined",
+     "alias": null,
+     "doc": "Passo dos minutos (1, 5, 10, 15, 30...). Ignorado com `showSeconds`.",
+     "description": "Passo dos minutos (5, 10, 15, 30).",
+     "semanticRole": "validation"
+    },
+    {
+     "name": "name",
+     "optional": true,
+     "ts": "string | undefined",
+     "alias": null,
+     "description": "Nome do campo para formularios.",
+     "semanticRole": "data"
+    },
+    {
+     "name": "onChange",
+     "optional": true,
+     "ts": "((value: string | null, local: string) => void) | undefined",
+     "alias": null,
+     "fn": true,
+     "doc": "Disparado a cada alteracao com o instante em ISO 8601 UTC (`2026-11-03T17:30:00.000Z`) ou `null` se o\ncampo ficou vazio/incompleto/invalido; `local` e o texto do campo (`2026-11-03T14:30`) no fuso do campo.",
+     "description": "Instante ISO UTC (ou null) e texto local do campo.",
+     "semanticRole": "event"
+    },
+    {
+     "name": "onClear",
+     "optional": true,
+     "ts": "(() => void) | undefined",
+     "alias": null,
+     "fn": true
+    },
+    {
+     "name": "onEnter",
+     "optional": true,
+     "ts": "((() => void) & (() => void)) | undefined",
+     "alias": null,
+     "fn": true,
+     "doc": "Disparado ao receber foco — padrao seedgrid."
+    },
+    {
+     "name": "onExit",
+     "optional": true,
+     "ts": "((() => void) & (() => void)) | undefined",
+     "alias": null,
+     "fn": true,
+     "doc": "Disparado ao perder o foco (apos validacao) — padrao seedgrid."
+    },
+    {
+     "name": "onValidation",
+     "optional": true,
+     "ts": "((message: string | null) => void) | undefined",
+     "alias": null,
+     "fn": true
+    },
+    {
+     "name": "placeholder",
+     "optional": true,
+     "ts": "string | undefined",
+     "alias": null
+    },
+    {
+     "name": "prefixIcon",
+     "optional": true,
+     "ts": "React.ReactNode",
+     "alias": "ReactNode"
+    },
+    {
+     "name": "prefixText",
+     "optional": true,
+     "ts": "string | undefined",
+     "alias": null
+    },
+    {
+     "name": "readOnly",
+     "optional": true,
+     "ts": "boolean | undefined",
+     "alias": null
+    },
+    {
+     "name": "register",
+     "optional": true,
+     "ts": "UseFormRegister<any> | undefined",
+     "alias": null,
+     "fn": true
+    },
+    {
+     "name": "required",
+     "optional": true,
+     "ts": "boolean | undefined",
+     "alias": null,
+     "description": "Marca o campo como obrigatorio.",
+     "default": false,
+     "semanticRole": "validation"
+    },
+    {
+     "name": "requiredMessage",
+     "optional": true,
+     "ts": "string | undefined",
+     "alias": null
+    },
+    {
+     "name": "rules",
+     "optional": true,
+     "ts": "RegisterOptions<any> | undefined",
+     "alias": null
+    },
+    {
+     "name": "showCharCounter",
+     "optional": true,
+     "ts": "boolean | undefined",
+     "alias": null
+    },
+    {
+     "name": "showSeconds",
+     "optional": true,
+     "ts": "boolean | undefined",
+     "alias": null,
+     "doc": "Mostra e aceita segundos.",
+     "description": "Mostra e aceita segundos.",
+     "default": false,
+     "semanticRole": "appearance"
+    },
+    {
+     "name": "suffixText",
+     "optional": true,
+     "ts": "string | undefined",
+     "alias": null
+    },
+    {
+     "name": "textInputType",
+     "optional": true,
+     "ts": "\"none\" | \"email\" | \"search\" | \"tel\" | \"text\" | \"url\" | \"numeric\" | \"decimal\" | undefined",
+     "alias": null,
+     "enum": [
+      "none",
+      "email",
+      "search",
+      "tel",
+      "text",
+      "url",
+      "numeric",
+      "decimal"
+     ]
+    },
+    {
+     "name": "timeZone",
+     "optional": true,
+     "ts": "string | undefined",
+     "alias": null,
+     "doc": "Fuso em que o campo mostra e interpreta a hora: \"local\" (padrao), \"UTC\", \"+03:00\" ou nome IANA.",
+     "description": "Fuso do campo: local, UTC, deslocamento (+03:00) ou nome IANA.",
+     "default": "local",
+     "semanticRole": "data"
+    },
+    {
+     "name": "validateOnBlur",
+     "optional": true,
+     "ts": "boolean | undefined",
+     "alias": null
+    },
+    {
+     "name": "validation",
+     "optional": true,
+     "ts": "((value: string) => string | null) | undefined",
+     "alias": null,
+     "fn": true
+    },
+    {
+     "name": "value",
+     "optional": true,
+     "ts": "string | Date | null | undefined",
+     "alias": null,
+     "doc": "Instante controlado: ISO 8601 (com offset ou \"Z\") ou `Date`. `null`/\"\" limpa o campo.",
+     "description": "Instante controlado (ISO 8601 ou Date).",
+     "semanticRole": "data"
     },
     {
      "name": "width",
@@ -10691,10 +11436,10 @@
      "alias": null,
      "enum": [
       "circle",
+      "rect",
       "triangle",
       "inverted-triangle",
-      "diamond",
-      "rect"
+      "diamond"
      ],
      "default": "triangle",
      "defaultFonte": "codigo"

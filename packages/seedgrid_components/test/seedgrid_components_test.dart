@@ -19,7 +19,7 @@ void main() {
 
   test('todo componente do React tem especificacao em Dart', () {
     expect(sgPropSpecs.keys.toSet(), components.keys.toSet());
-    expect(components.length, 89);
+    expect(components.length, 92);
   });
 
   test(

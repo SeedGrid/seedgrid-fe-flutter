@@ -60,6 +60,18 @@
     "status": "portado",
     "motivo": "o React usa input type=date nativo; aqui campo com mascara por idioma e calendario proprio: data impossivel (31/02) mostra Data invalida (no nativo o valor vira vazio) e alwaysFloat nao tem efeito; recriar por key perde o foco (precisa de controller externo no SgInputText); pegadinha de fuso do validateBirthDate mantida; validadores do componente rodam no submit (decisao do dono)"
   },
+  "SgInputDateTime": {
+    "status": "portado",
+    "motivo": "o React usa input type=datetime-local nativo; aqui campo com mascara por idioma, calendario proprio e seletor de hora do Material. O valor e o instante ISO 8601 UTC. Fuso: local, UTC ou deslocamento fixo; nome IANA (America/Sao_Paulo) cai em local porque o pacote nao traz banco de fusos (sem dependencia nova); alwaysFloat nao tem efeito; data impossivel (31/02) mostra Data e hora invalidas; validadores do componente rodam no submit (decisao do dono)"
+  },
+  "SgImageUpload": {
+    "status": "portado",
+    "motivo": "o React usa input type=file com arrastar e soltar e o File do navegador; aqui o toque abre o seletor do sistema (file_picker) e o valor e uma SgImageFile (nome e bytes); sem arrastar e soltar; value/defaultValue em texto sao a URL de uma imagem salva (Image.network); picker extra substitui o seletor; recorte e compressao ficam fora (decisao do dono); validadores do componente rodam no submit"
+  },
+  "SgCameraCapture": {
+    "status": "portado",
+    "motivo": "o React usa getUserMedia e devolve um Blob; aqui o pacote camera (dependencia nova do seedgrid_components, decisao do dono) com SgCameraBackend injetavel e a imagem sai como Uint8List JPEG; a camera pausa em segundo plano e reabre ao voltar; onFrame fica fora da primeira versao (analise de qualidade e do host); nao testado em dispositivo real"
+  },
   "SgInputBirthDate": {
     "status": "portado",
     "motivo": "o React usa input type=date nativo; aqui campo com mascara por idioma e calendario proprio: data impossivel (31/02) mostra Data invalida (no nativo o valor vira vazio) e alwaysFloat nao tem efeito; recriar por key perde o foco (precisa de controller externo no SgInputText); pegadinha de fuso do validateBirthDate mantida; validadores do componente rodam no submit (decisao do dono)"

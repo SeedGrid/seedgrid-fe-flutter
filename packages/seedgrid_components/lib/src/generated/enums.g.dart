@@ -394,6 +394,62 @@ enum SgCalendarWeekdayFormat {
   }
 }
 
+/// Valores aceitos pelo React: `user`, `environment`.
+enum SgCameraCaptureFacing {
+  user('user'),
+  environment('environment');
+
+  const SgCameraCaptureFacing(this.value);
+
+  /// String equivalente no React.
+  final String value;
+
+  static SgCameraCaptureFacing? fromValue(String? v) {
+    for (final e in values) {
+      if (e.value == v) return e;
+    }
+    return null;
+  }
+}
+
+/// Valores aceitos pelo React: `none`, `oval`, `rect`.
+enum SgCameraCaptureGuide {
+  none('none'),
+  oval('oval'),
+  rect('rect');
+
+  const SgCameraCaptureGuide(this.value);
+
+  /// String equivalente no React.
+  final String value;
+
+  static SgCameraCaptureGuide? fromValue(String? v) {
+    for (final e in values) {
+      if (e.value == v) return e;
+    }
+    return null;
+  }
+}
+
+/// Valores aceitos pelo React: `low`, `medium`, `high`.
+enum SgCameraCaptureResolution {
+  low('low'),
+  medium('medium'),
+  high('high');
+
+  const SgCameraCaptureResolution(this.value);
+
+  /// String equivalente no React.
+  final String value;
+
+  static SgCameraCaptureResolution? fromValue(String? v) {
+    for (final e in values) {
+      if (e.value == v) return e;
+    }
+    return null;
+  }
+}
+
 /// Valores aceitos pelo React: `default`, `outlined`, `flat`, `elevated`.
 enum SgCardCardStyle {
   defaultValue('default'),
@@ -1785,6 +1841,88 @@ enum SgInputDateTextInputType {
 }
 
 /// Valores aceitos pelo React: `none`, `sm`, `md`, `lg`.
+enum SgInputDateTimeElevation {
+  none('none'),
+  sm('sm'),
+  md('md'),
+  lg('lg');
+
+  const SgInputDateTimeElevation(this.value);
+
+  /// String equivalente no React.
+  final String value;
+
+  static SgInputDateTimeElevation? fromValue(String? v) {
+    for (final e in values) {
+      if (e.value == v) return e;
+    }
+    return null;
+  }
+}
+
+/// Valores aceitos pelo React: `start`, `center`, `end`.
+enum SgInputDateTimeLabelAlign {
+  start('start'),
+  center('center'),
+  end('end');
+
+  const SgInputDateTimeLabelAlign(this.value);
+
+  /// String equivalente no React.
+  final String value;
+
+  static SgInputDateTimeLabelAlign? fromValue(String? v) {
+    for (final e in values) {
+      if (e.value == v) return e;
+    }
+    return null;
+  }
+}
+
+/// Valores aceitos pelo React: `float`, `top`, `left`.
+enum SgInputDateTimeLabelPosition {
+  float('float'),
+  top('top'),
+  left('left');
+
+  const SgInputDateTimeLabelPosition(this.value);
+
+  /// String equivalente no React.
+  final String value;
+
+  static SgInputDateTimeLabelPosition? fromValue(String? v) {
+    for (final e in values) {
+      if (e.value == v) return e;
+    }
+    return null;
+  }
+}
+
+/// Valores aceitos pelo React: `none`, `email`, `search`, `tel`, `text`, `url`, `numeric`, `decimal`.
+enum SgInputDateTimeTextInputType {
+  none('none'),
+  email('email'),
+  search('search'),
+  tel('tel'),
+  text('text'),
+  url('url'),
+  numeric('numeric'),
+  decimal('decimal');
+
+  const SgInputDateTimeTextInputType(this.value);
+
+  /// String equivalente no React.
+  final String value;
+
+  static SgInputDateTimeTextInputType? fromValue(String? v) {
+    for (final e in values) {
+      if (e.value == v) return e;
+    }
+    return null;
+  }
+}
+
+/// Valores aceitos pelo React: `none`, `sm`, `md`, `lg`.
 enum SgInputEmailElevation {
   none('none'),
   sm('sm'),
@@ -2475,13 +2613,13 @@ enum SgLinearGaugeOrientation {
   }
 }
 
-/// Valores aceitos pelo React: `circle`, `triangle`, `inverted-triangle`, `diamond`, `rect`.
+/// Valores aceitos pelo React: `circle`, `rect`, `triangle`, `inverted-triangle`, `diamond`.
 enum SgLinearGaugePrimaryPointerShape {
   circle('circle'),
+  rect('rect'),
   triangle('triangle'),
   invertedTriangle('inverted-triangle'),
-  diamond('diamond'),
-  rect('rect');
+  diamond('diamond');
 
   const SgLinearGaugePrimaryPointerShape(this.value);
 

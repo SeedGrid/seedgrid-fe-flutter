@@ -48,6 +48,13 @@
    "soNoGeneratedProps": []
   },
   {
+   "componente": "SgCameraCapture",
+   "soNoCompilador": [
+    "className"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
    "componente": "SgCard",
    "soNoCompilador": [
     "className"
@@ -204,6 +211,16 @@
    "soNoGeneratedProps": []
   },
   {
+   "componente": "SgImageUpload",
+   "soNoCompilador": [
+    "className",
+    "control",
+    "register",
+    "rules"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
    "componente": "SgInputBirthDate",
    "soNoCompilador": [
     "borderRadius",
@@ -274,6 +291,20 @@
   },
   {
    "componente": "SgInputDate",
+   "soNoCompilador": [
+    "borderRadius",
+    "className",
+    "control",
+    "elevation",
+    "inputProps",
+    "labelClassName",
+    "register",
+    "rules"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
+   "componente": "SgInputDateTime",
    "soNoCompilador": [
     "borderRadius",
     "className",

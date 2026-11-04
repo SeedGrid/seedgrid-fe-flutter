@@ -1,0 +1,108 @@
+// dart format off
+// GERADO por tools/showcase_snippets/extract.mjs. NAO EDITE A MAO.
+// Cada constante e o trecho entre `// #region` e `// #endregion` de sg_input_date_time_page.dart: o mesmo codigo que a pagina renderiza.
+
+abstract final class SgInputDateTimePageSnippets {
+  /// Region `sg-input-date-time-basico`.
+  static const String sgInputDateTimeBasico = r'''
+Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    SgInputDateTime(
+      id: 'quando',
+      labelText: 'Quando',
+      onChange: (value, local) => setState(() => _instante = value),
+    ),
+    const SizedBox(height: 8),
+    Text('Valor atual: ${_instante ?? '-'}'),
+  ],
+)
+''';
+
+  /// Region `sg-input-date-time-formulario`.
+  static const String sgInputDateTimeFormulario = r'''
+Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    SgInputDateTime(
+      id: 'consulta',
+      name: 'consulta',
+      control: _form,
+      labelText: 'Consulta',
+      timeZone: '-03:00',
+      rules: const SgRules(required: 'Informe a data e a hora'),
+    ),
+    const SizedBox(height: 12),
+    SgButton(
+      label: Text(context.tx('Enviar')),
+      onClick: () => _form.handleSubmit(
+        (values) =>
+            setState(() => _enviado = '${values['consulta']}'),
+      ),
+    ),
+    if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),
+  ],
+)
+''';
+
+  /// Region `sg-input-date-time-fusos`.
+  static const String sgInputDateTimeFusos = r'''
+Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    SgInputDateTime(
+      id: 'fuso-utc',
+      labelText: 'UTC',
+      timeZone: 'UTC',
+      value: _fuso,
+      onChange: (value, local) =>
+          setState(() => _fuso = value ?? ''),
+    ),
+    const SizedBox(height: 12),
+    SgInputDateTime(
+      id: 'fuso-sp',
+      labelText: '-03:00',
+      timeZone: '-03:00',
+      value: _fuso,
+      onChange: (value, local) =>
+          setState(() => _fuso = value ?? ''),
+    ),
+    const SizedBox(height: 12),
+    SgInputDateTime(
+      id: 'fuso-in',
+      labelText: '+05:30',
+      timeZone: '+05:30',
+      value: _fuso,
+      onChange: (value, local) =>
+          setState(() => _fuso = value ?? ''),
+    ),
+    const SizedBox(height: 8),
+    Text('Valor atual: ${_fuso.isEmpty ? '-' : _fuso}'),
+  ],
+)
+''';
+
+  /// Region `sg-input-date-time-limites`.
+  static const String sgInputDateTimeLimites = r'''
+const SgInputDateTime(
+  id: 'limites',
+  labelText: 'Agendamento',
+  timeZone: 'UTC',
+  minDate: '2026-11-01T08:00:00Z',
+  maxDate: '2026-11-30T18:00:00Z',
+  minuteStep: 15,
+  required: true,
+)
+''';
+
+  /// Region `sg-input-date-time-segundos`.
+  static const String sgInputDateTimeSegundos = r'''
+const SgInputDateTime(
+  id: 'segundos',
+  labelText: 'Evento',
+  timeZone: 'UTC',
+  defaultValue: '2026-11-03T17:30:45Z',
+  showSeconds: true,
+)
+''';
+}

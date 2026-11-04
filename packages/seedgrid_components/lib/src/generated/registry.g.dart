@@ -14,6 +14,7 @@ import 'sg_badge_overlay.g.dart';
 import 'sg_breadcrumb.g.dart';
 import 'sg_button.g.dart';
 import 'sg_calendar.g.dart';
+import 'sg_camera_capture.g.dart';
 import 'sg_card.g.dart';
 import 'sg_carousel.g.dart';
 import 'sg_checkbox_group.g.dart';
@@ -38,12 +39,14 @@ import 'sg_flip_digit.g.dart';
 import 'sg_float_action_button.g.dart';
 import 'sg_grid.g.dart';
 import 'sg_group_box.g.dart';
+import 'sg_image_upload.g.dart';
 import 'sg_input_birth_date.g.dart';
 import 'sg_input_cnpj.g.dart';
 import 'sg_input_cpf.g.dart';
 import 'sg_input_cpfcnpj.g.dart';
 import 'sg_input_currency.g.dart';
 import 'sg_input_date.g.dart';
+import 'sg_input_date_time.g.dart';
 import 'sg_input_email.g.dart';
 import 'sg_input_number.g.dart';
 import 'sg_input_otp.g.dart';
@@ -106,6 +109,7 @@ const Map<String, List<SgPropSpec>> sgPropSpecs = <String, List<SgPropSpec>>{
   'SgBreadcrumb': sgBreadcrumbPropSpecs,
   'SgButton': sgButtonPropSpecs,
   'SgCalendar': sgCalendarPropSpecs,
+  'SgCameraCapture': sgCameraCapturePropSpecs,
   'SgCard': sgCardPropSpecs,
   'SgCarousel': sgCarouselPropSpecs,
   'SgCheckboxGroup': sgCheckboxGroupPropSpecs,
@@ -130,12 +134,14 @@ const Map<String, List<SgPropSpec>> sgPropSpecs = <String, List<SgPropSpec>>{
   'SgFloatActionButton': sgFloatActionButtonPropSpecs,
   'SgGrid': sgGridPropSpecs,
   'SgGroupBox': sgGroupBoxPropSpecs,
+  'SgImageUpload': sgImageUploadPropSpecs,
   'SgInputBirthDate': sgInputBirthDatePropSpecs,
   'SgInputCNPJ': sgInputCNPJPropSpecs,
   'SgInputCPF': sgInputCPFPropSpecs,
   'SgInputCPFCNPJ': sgInputCPFCNPJPropSpecs,
   'SgInputCurrency': sgInputCurrencyPropSpecs,
   'SgInputDate': sgInputDatePropSpecs,
+  'SgInputDateTime': sgInputDateTimePropSpecs,
   'SgInputEmail': sgInputEmailPropSpecs,
   'SgInputNumber': sgInputNumberPropSpecs,
   'SgInputOTP': sgInputOTPPropSpecs,

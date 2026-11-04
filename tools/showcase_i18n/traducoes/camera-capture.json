@@ -1,0 +1,110 @@
+{
+ "Pré-visualização da câmera com guia de enquadramento, troca de câmera e captura. Não envia nada: entrega a imagem ao pai.": [
+  "Camera preview with a framing guide, camera switching and capture. It never uploads: it hands the image to the parent.",
+  "Pré-visualização da câmara com guia de enquadramento, troca de câmara e captura. Não envia nada: entrega a imagem ao pai.",
+  "Vista previa de la cámara con guía de encuadre, cambio de cámara y captura. No envía nada: entrega la imagen al padre.",
+  "Aperçu de la caméra avec guide de cadrage, changement de caméra et capture. Il n'envoie rien : il remet l'image au parent."
+ ],
+ "O onCapture entrega a imagem JPEG (bytes); o envio ao servidor é do host. Exige a permissão de câmera do sistema.": [
+  "onCapture delivers the JPEG image (bytes); uploading is up to the host. Requires the system camera permission.",
+  "O onCapture entrega a imagem JPEG (bytes); o envio ao servidor é do host. Exige a permissão de câmara do sistema.",
+  "onCapture entrega la imagen JPEG (bytes); el envío al servidor es del host. Requiere el permiso de cámara del sistema.",
+  "onCapture fournit l'image JPEG (octets) ; l'envoi au serveur revient à l'hôte. Nécessite l'autorisation caméra du système."
+ ],
+ "Guia oval (selfie)": [
+  "Oval guide (selfie)",
+  "Guia oval (selfie)",
+  "Guía ovalada (selfie)",
+  "Guide ovale (selfie)"
+ ],
+ "guide: oval com a câmera frontal ajuda a centralizar o rosto.": [
+  "guide: oval with the front camera helps center the face.",
+  "guide: oval com a câmara frontal ajuda a centrar o rosto.",
+  "guide: oval con la cámara frontal ayuda a centrar el rostro.",
+  "guide: oval avec la caméra frontale aide à centrer le visage."
+ ],
+ "Guia retangular (documento)": [
+  "Rectangular guide (document)",
+  "Guia retangular (documento)",
+  "Guía rectangular (documento)",
+  "Guide rectangulaire (document)"
+ ],
+ "guide: rect com a câmera traseira e resolução alta, para documentos.": [
+  "guide: rect with the back camera and high resolution, for documents.",
+  "guide: rect com a câmara traseira e resolução alta, para documentos.",
+  "guide: rect con la cámara trasera y resolución alta, para documentos.",
+  "guide: rect avec la caméra arrière et une haute résolution, pour les documents."
+ ],
+ "Erros de câmera": [
+  "Camera errors",
+  "Erros de câmara",
+  "Errores de cámara",
+  "Erreurs de caméra"
+ ],
+ "Sem permissão, sem câmera ou falha: o componente mostra o estado e chama onError com o código.": [
+  "No permission, no camera or failure: the component shows the state and calls onError with the code.",
+  "Sem permissão, sem câmara ou falha: o componente mostra o estado e chama onError com o código.",
+  "Sin permiso, sin cámara o fallo: el componente muestra el estado y llama a onError con el código.",
+  "Sans autorisation, sans caméra ou échec : le composant affiche l'état et appelle onError avec le code."
+ ],
+ "Extra do Flutter: origem da câmera (padrão: pacote camera); troque para testes ou outra fonte.": [
+  "Flutter extra: camera source (default: the camera package); replace for tests or another source.",
+  "Extra do Flutter: origem da câmara (predefinição: pacote camera); troque para testes ou outra fonte.",
+  "Extra de Flutter: origen de la cámara (por defecto: paquete camera); cámbialo para pruebas u otra fuente.",
+  "Extra Flutter : source de la caméra (par défaut : paquet camera) ; remplacez pour les tests ou une autre source."
+ ],
+ "Mostra o botao de alternar entre frontal e traseira.": [
+  "Shows the button to switch between front and back.",
+  "Mostra o botão de alternar entre frontal e traseira.",
+  "Muestra el botón para alternar entre frontal y trasera.",
+  "Affiche le bouton pour alterner entre frontale et arrière."
+ ],
+ "Camera inicial: frontal (user) ou traseira (environment).": [
+  "Initial camera: front (user) or back (environment).",
+  "Câmara inicial: frontal (user) ou traseira (environment).",
+  "Cámara inicial: frontal (user) o trasera (environment).",
+  "Caméra initiale : frontale (user) ou arrière (environment)."
+ ],
+ "Guia de enquadramento sobre a pre-visualizacao.": [
+  "Framing guide over the preview.",
+  "Guia de enquadramento sobre a pré-visualização.",
+  "Guía de encuadre sobre la vista previa.",
+  "Guide de cadrage sur l'aperçu."
+ ],
+ "Resolucao pedida (640x480, 1280x720, 1920x1080).": [
+  "Requested resolution (640x480, 1280x720, 1920x1080).",
+  "Resolução pedida (640x480, 1280x720, 1920x1080).",
+  "Resolución pedida (640x480, 1280x720, 1920x1080).",
+  "Résolution demandée (640x480, 1280x720, 1920x1080)."
+ ],
+ "Altura da pre-visualizacao em px.": [
+  "Preview height in px.",
+  "Altura da pré-visualização em px.",
+  "Altura de la vista previa en px.",
+  "Hauteur de l'aperçu en px."
+ ],
+ "Nao abre a camera nem permite capturar.": [
+  "Does not open the camera nor allow capturing.",
+  "Não abre a câmara nem permite capturar.",
+  "No abre la cámara ni permite capturar.",
+  "N'ouvre pas la caméra et ne permet pas de capturer."
+ ],
+ "Imagem JPEG capturada.": [
+  "Captured JPEG image.",
+  "Imagem JPEG capturada.",
+  "Imagen JPEG capturada.",
+  "Image JPEG capturée."
+ ],
+ "Camera indisponivel (permission, noCamera, failed).": [
+  "Camera unavailable (permission, noCamera, failed).",
+  "Câmara indisponível (permission, noCamera, failed).",
+  "Cámara no disponible (permission, noCamera, failed).",
+  "Caméra indisponible (permission, noCamera, failed)."
+ ],
+ "Rotulo exibido acima da pre-visualizacao.": [
+  "Label shown above the preview.",
+  "Rótulo exibido acima da pré-visualização.",
+  "Etiqueta mostrada sobre la vista previa.",
+  "Libellé affiché au-dessus de l'aperçu."
+ ]
+}

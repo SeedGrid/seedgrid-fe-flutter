@@ -13,6 +13,7 @@ import 'sg_badge_overlay_page.dart';
 import 'sg_breadcrumb_page.dart';
 import 'sg_button_page.dart';
 import 'sg_calendar_page.dart';
+import 'sg_camera_capture_page.dart';
 import 'sg_card_page.dart';
 import 'sg_carousel_page.dart';
 import 'sg_checkbox_group_page.dart';
@@ -36,12 +37,14 @@ import 'sg_flip_digit_page.dart';
 import 'sg_float_action_button_page.dart';
 import 'sg_grid_page.dart';
 import 'sg_group_box_page.dart';
+import 'sg_image_upload_page.dart';
 import 'sg_input_birth_date_page.dart';
 import 'sg_input_cnpj_page.dart';
 import 'sg_input_cpf_page.dart';
 import 'sg_input_cpfcnpj_page.dart';
 import 'sg_input_currency_page.dart';
 import 'sg_input_date_page.dart';
+import 'sg_input_date_time_page.dart';
 import 'sg_input_email_page.dart';
 import 'sg_input_number_page.dart';
 import 'sg_input_otp_page.dart';
@@ -106,6 +109,7 @@ final List<ShowcasePageEntry> kShowcasePages = <ShowcasePageEntry>[
   (name: 'SgBreadcrumb', file: 'lib/pages/sg_breadcrumb_page.dart', examples: 4, description: 'Trilha de navegação com separador, ícone de início, colapso dos itens do meio e variantes.', builder: (_) => const SgBreadcrumbPage()),
   (name: 'SgButton', file: 'lib/pages/sg_button_page.dart', examples: 5, description: 'Botão de ação com severidade, aparência, forma, loading e ícones, para ações principais e secundárias.', builder: (_) => const SgButtonPage()),
   (name: 'SgCalendar', file: 'lib/pages/sg_calendar_page.dart', examples: 5, description: 'Calendário mensal em formato de gadget, com locale, vários meses, limites, dias bloqueados e cartão configurável.', builder: (_) => const SgCalendarPage()),
+  (name: 'SgCameraCapture', file: 'lib/pages/sg_camera_capture_page.dart', examples: 4, description: 'Pré-visualização da câmera com guia de enquadramento, troca de câmera e captura. Não envia nada: entrega a imagem ao pai.', builder: (_) => const SgCameraCapturePage()),
   (name: 'SgCard', file: 'lib/pages/sg_card_page.dart', examples: 7, description: 'Cartão com cabeçalho, corpo e rodapé; pode ser clicável, recolhível ou arrastável.', builder: (_) => const SgCardPage()),
   (name: 'SgCarousel', file: 'lib/pages/sg_carousel_page.dart', examples: 4, description: 'Carrossel de itens com setas, indicadores, reprodução automática, vários itens visíveis e orientação vertical.', builder: (_) => const SgCarouselPage()),
   (name: 'SgCheckboxGroup', file: 'lib/pages/sg_checkbox_group_page.dart', examples: 5, description: 'Grupo de caixas de seleção múltipla com título, orientação, estilo highlight, "selecionar todos" e ligação a formulário.', builder: (_) => const SgCheckboxGroupPage()),
@@ -129,12 +133,14 @@ final List<ShowcasePageEntry> kShowcasePages = <ShowcasePageEntry>[
   (name: 'SgFloatActionButton', file: 'lib/pages/sg_float_action_button_page.dart', examples: 6, description: 'Botão de ação flutuante para a tarefa de maior destaque, com hint, posição, arrastar e speed-dial de ações secundárias.', builder: (_) => const SgFloatActionButtonPage()),
   (name: 'SgGrid', file: 'lib/pages/sg_grid_page.dart', examples: 5, description: 'Grade de colunas 1fr com colunas por breakpoint, largura mínima automática, span e rowSpan.', builder: (_) => const SgGridPage()),
   (name: 'SgGroupBox', file: 'lib/pages/sg_group_box_page.dart', examples: 3, description: 'Caixa com legenda sobre a borda para agrupar campos relacionados.', builder: (_) => const SgGroupBoxPage()),
+  (name: 'SgImageUpload', file: 'lib/pages/sg_image_upload_page.dart', examples: 5, description: 'Escolhe uma imagem, valida e mostra a pré-visualização. Não envia nada: entrega o arquivo ao pai.', builder: (_) => const SgImageUploadPage()),
   (name: 'SgInputBirthDate', file: 'lib/pages/sg_input_birth_date_page.dart', examples: 4, description: 'Data de nascimento: SgInputDate com limites derivados de minAge/maxAge e validação de idade ao sair do campo.', builder: (_) => const SgInputBirthDatePage()),
   (name: 'SgInputCNPJ', file: 'lib/pages/sg_input_cnpj_page.dart', examples: 10, description: 'Campo de CNPJ (numérico e alfanumérico) com máscara 00.000.000/0000-00, validação dos dígitos e consulta opcional na base pública.', builder: (_) => const SgInputCNPJPage()),
   (name: 'SgInputCPF', file: 'lib/pages/sg_input_cpf_page.dart', examples: 10, description: 'Campo de CPF com máscara 000.000.000-00 e validação dos dígitos verificadores.', builder: (_) => const SgInputCPFPage()),
   (name: 'SgInputCPFCNPJ', file: 'lib/pages/sg_input_cpfcnpj_page.dart', examples: 4, description: 'Campo único que aceita CPF ou CNPJ e decide pela quantidade de caracteres.', builder: (_) => const SgInputCPFCNPJPage()),
   (name: 'SgInputCurrency', file: 'lib/pages/sg_input_currency_page.dart', examples: 5, description: 'Campo de moeda com símbolo, posição e separadores do idioma (Intl), casas da moeda, limites e ligação a formulário.', builder: (_) => const SgInputCurrencyPage()),
   (name: 'SgInputDate', file: 'lib/pages/sg_input_date_page.dart', examples: 4, description: 'Campo de data com máscara do idioma e calendário próprio. O valor é a data ISO yyyy-MM-dd.', builder: (_) => const SgInputDatePage()),
+  (name: 'SgInputDateTime', file: 'lib/pages/sg_input_date_time_page.dart', examples: 5, description: 'Campo de data e hora que entrega e recebe instantes ISO 8601 em UTC, exibindo a hora no fuso escolhido.', builder: (_) => const SgInputDateTimePage()),
   (name: 'SgInputEmail', file: 'lib/pages/sg_input_email_page.dart', examples: 11, description: 'Campo de e-mail com validação de formato, bloqueio de e-mails descartáveis e ligação a formulário.', builder: (_) => const SgInputEmailPage()),
   (name: 'SgInputNumber', file: 'lib/pages/sg_input_number_page.dart', examples: 5, description: 'Campo numérico com formatação por idioma, casas decimais, sinal, limites e ligação a formulário (SgForm).', builder: (_) => const SgInputNumberPage()),
   (name: 'SgInputOTP', file: 'lib/pages/sg_input_otp_page.dart', examples: 6, description: 'Campo de código de uso único com vários campos: máscara, colar o código inteiro, ' 'conclusão, validação, controller e ligação a formulário.', builder: (_) => const SgInputOTPPage()),

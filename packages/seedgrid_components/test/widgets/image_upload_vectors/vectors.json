@@ -1,0 +1,1365 @@
+{
+  "accept": [
+    {
+      "name": "foto.png",
+      "type": "image/png",
+      "accept": null,
+      "out": true
+    },
+    {
+      "name": "foto.png",
+      "type": "image/png",
+      "accept": "",
+      "out": true
+    },
+    {
+      "name": "foto.png",
+      "type": "image/png",
+      "accept": "image/*",
+      "out": true
+    },
+    {
+      "name": "foto.png",
+      "type": "image/png",
+      "accept": "image/png",
+      "out": true
+    },
+    {
+      "name": "foto.png",
+      "type": "image/png",
+      "accept": "image/png,image/jpeg",
+      "out": true
+    },
+    {
+      "name": "foto.png",
+      "type": "image/png",
+      "accept": ".png",
+      "out": true
+    },
+    {
+      "name": "foto.png",
+      "type": "image/png",
+      "accept": ".png, .JPG",
+      "out": true
+    },
+    {
+      "name": "foto.png",
+      "type": "image/png",
+      "accept": "application/pdf",
+      "out": false
+    },
+    {
+      "name": "foto.png",
+      "type": "image/png",
+      "accept": "image/*,.pdf",
+      "out": true
+    },
+    {
+      "name": "FOTO.JPG",
+      "type": "image/jpeg",
+      "accept": null,
+      "out": true
+    },
+    {
+      "name": "FOTO.JPG",
+      "type": "image/jpeg",
+      "accept": "",
+      "out": true
+    },
+    {
+      "name": "FOTO.JPG",
+      "type": "image/jpeg",
+      "accept": "image/*",
+      "out": true
+    },
+    {
+      "name": "FOTO.JPG",
+      "type": "image/jpeg",
+      "accept": "image/png",
+      "out": false
+    },
+    {
+      "name": "FOTO.JPG",
+      "type": "image/jpeg",
+      "accept": "image/png,image/jpeg",
+      "out": true
+    },
+    {
+      "name": "FOTO.JPG",
+      "type": "image/jpeg",
+      "accept": ".png",
+      "out": false
+    },
+    {
+      "name": "FOTO.JPG",
+      "type": "image/jpeg",
+      "accept": ".png, .JPG",
+      "out": true
+    },
+    {
+      "name": "FOTO.JPG",
+      "type": "image/jpeg",
+      "accept": "application/pdf",
+      "out": false
+    },
+    {
+      "name": "FOTO.JPG",
+      "type": "image/jpeg",
+      "accept": "image/*,.pdf",
+      "out": true
+    },
+    {
+      "name": "icone.svg",
+      "type": "image/svg+xml",
+      "accept": null,
+      "out": true
+    },
+    {
+      "name": "icone.svg",
+      "type": "image/svg+xml",
+      "accept": "",
+      "out": true
+    },
+    {
+      "name": "icone.svg",
+      "type": "image/svg+xml",
+      "accept": "image/*",
+      "out": true
+    },
+    {
+      "name": "icone.svg",
+      "type": "image/svg+xml",
+      "accept": "image/png",
+      "out": false
+    },
+    {
+      "name": "icone.svg",
+      "type": "image/svg+xml",
+      "accept": "image/png,image/jpeg",
+      "out": false
+    },
+    {
+      "name": "icone.svg",
+      "type": "image/svg+xml",
+      "accept": ".png",
+      "out": false
+    },
+    {
+      "name": "icone.svg",
+      "type": "image/svg+xml",
+      "accept": ".png, .JPG",
+      "out": false
+    },
+    {
+      "name": "icone.svg",
+      "type": "image/svg+xml",
+      "accept": "application/pdf",
+      "out": false
+    },
+    {
+      "name": "icone.svg",
+      "type": "image/svg+xml",
+      "accept": "image/*,.pdf",
+      "out": true
+    },
+    {
+      "name": "doc.pdf",
+      "type": "application/pdf",
+      "accept": null,
+      "out": false
+    },
+    {
+      "name": "doc.pdf",
+      "type": "application/pdf",
+      "accept": "",
+      "out": true
+    },
+    {
+      "name": "doc.pdf",
+      "type": "application/pdf",
+      "accept": "image/*",
+      "out": false
+    },
+    {
+      "name": "doc.pdf",
+      "type": "application/pdf",
+      "accept": "image/png",
+      "out": false
+    },
+    {
+      "name": "doc.pdf",
+      "type": "application/pdf",
+      "accept": "image/png,image/jpeg",
+      "out": false
+    },
+    {
+      "name": "doc.pdf",
+      "type": "application/pdf",
+      "accept": ".png",
+      "out": false
+    },
+    {
+      "name": "doc.pdf",
+      "type": "application/pdf",
+      "accept": ".png, .JPG",
+      "out": false
+    },
+    {
+      "name": "doc.pdf",
+      "type": "application/pdf",
+      "accept": "application/pdf",
+      "out": true
+    },
+    {
+      "name": "doc.pdf",
+      "type": "application/pdf",
+      "accept": "image/*,.pdf",
+      "out": true
+    },
+    {
+      "name": "sem-tipo.png",
+      "type": "",
+      "accept": null,
+      "out": false
+    },
+    {
+      "name": "sem-tipo.png",
+      "type": "",
+      "accept": "",
+      "out": true
+    },
+    {
+      "name": "sem-tipo.png",
+      "type": "",
+      "accept": "image/*",
+      "out": false
+    },
+    {
+      "name": "sem-tipo.png",
+      "type": "",
+      "accept": "image/png",
+      "out": false
+    },
+    {
+      "name": "sem-tipo.png",
+      "type": "",
+      "accept": "image/png,image/jpeg",
+      "out": false
+    },
+    {
+      "name": "sem-tipo.png",
+      "type": "",
+      "accept": ".png",
+      "out": true
+    },
+    {
+      "name": "sem-tipo.png",
+      "type": "",
+      "accept": ".png, .JPG",
+      "out": true
+    },
+    {
+      "name": "sem-tipo.png",
+      "type": "",
+      "accept": "application/pdf",
+      "out": false
+    },
+    {
+      "name": "sem-tipo.png",
+      "type": "",
+      "accept": "image/*,.pdf",
+      "out": false
+    },
+    {
+      "name": "sem-ext",
+      "type": "image/webp",
+      "accept": null,
+      "out": true
+    },
+    {
+      "name": "sem-ext",
+      "type": "image/webp",
+      "accept": "",
+      "out": true
+    },
+    {
+      "name": "sem-ext",
+      "type": "image/webp",
+      "accept": "image/*",
+      "out": true
+    },
+    {
+      "name": "sem-ext",
+      "type": "image/webp",
+      "accept": "image/png",
+      "out": false
+    },
+    {
+      "name": "sem-ext",
+      "type": "image/webp",
+      "accept": "image/png,image/jpeg",
+      "out": false
+    },
+    {
+      "name": "sem-ext",
+      "type": "image/webp",
+      "accept": ".png",
+      "out": false
+    },
+    {
+      "name": "sem-ext",
+      "type": "image/webp",
+      "accept": ".png, .JPG",
+      "out": false
+    },
+    {
+      "name": "sem-ext",
+      "type": "image/webp",
+      "accept": "application/pdf",
+      "out": false
+    },
+    {
+      "name": "sem-ext",
+      "type": "image/webp",
+      "accept": "image/*,.pdf",
+      "out": true
+    }
+  ],
+  "validate": [
+    {
+      "file": {
+        "name": "a.png",
+        "type": "image/png",
+        "size": 500,
+        "width": 300,
+        "height": 300
+      },
+      "rules": {},
+      "out": null
+    },
+    {
+      "file": {
+        "name": "a.png",
+        "type": "image/png",
+        "size": 5000,
+        "width": 300,
+        "height": 300
+      },
+      "rules": {},
+      "out": null
+    },
+    {
+      "file": {
+        "name": "a.png",
+        "type": "image/png",
+        "size": 500,
+        "width": 150,
+        "height": 150
+      },
+      "rules": {},
+      "out": null
+    },
+    {
+      "file": {
+        "name": "a.png",
+        "type": "image/png",
+        "size": 500,
+        "width": 400,
+        "height": 300
+      },
+      "rules": {},
+      "out": null
+    },
+    {
+      "file": {
+        "name": "a.png",
+        "type": "image/png",
+        "size": 500,
+        "width": 1920,
+        "height": 1080
+      },
+      "rules": {},
+      "out": null
+    },
+    {
+      "file": {
+        "name": "a.png",
+        "type": "image/png",
+        "size": 500,
+        "width": 1000,
+        "height": 990
+      },
+      "rules": {},
+      "out": null
+    },
+    {
+      "file": {
+        "name": "a.jpg",
+        "type": "image/jpeg",
+        "size": 500,
+        "width": 300,
+        "height": 300
+      },
+      "rules": {},
+      "out": null
+    },
+    {
+      "file": {
+        "name": "a.png",
+        "type": "image/png",
+        "size": 500
+      },
+      "rules": {},
+      "out": null
+    },
+    {
+      "file": {
+        "name": "a.pdf",
+        "type": "application/pdf",
+        "size": 9999,
+        "width": 10,
+        "height": 10
+      },
+      "rules": {},
+      "out": "type"
+    },
+    {
+      "file": {
+        "name": "a.png",
+        "type": "image/png",
+        "size": 500,
+        "width": 300,
+        "height": 300
+      },
+      "rules": {
+        "accept": "image/png"
+      },
+      "out": null
+    },
+    {
+      "file": {
+        "name": "a.png",
+        "type": "image/png",
+        "size": 5000,
+        "width": 300,
+        "height": 300
+      },
+      "rules": {
+        "accept": "image/png"
+      },
+      "out": null
+    },
+    {
+      "file": {
+        "name": "a.png",
+        "type": "image/png",
+        "size": 500,
+        "width": 150,
+        "height": 150
+      },
+      "rules": {
+        "accept": "image/png"
+      },
+      "out": null
+    },
+    {
+      "file": {
+        "name": "a.png",
+        "type": "image/png",
+        "size": 500,
+        "width": 400,
+        "height": 300
+      },
+      "rules": {
+        "accept": "image/png"
+      },
+      "out": null
+    },
+    {
+      "file": {
+        "name": "a.png",
+        "type": "image/png",
+        "size": 500,
+        "width": 1920,
+        "height": 1080
+      },
+      "rules": {
+        "accept": "image/png"
+      },
+      "out": null
+    },
+    {
+      "file": {
+        "name": "a.png",
+        "type": "image/png",
+        "size": 500,
+        "width": 1000,
+        "height": 990
+      },
+      "rules": {
+        "accept": "image/png"
+      },
+      "out": null
+    },
+    {
+      "file": {
+        "name": "a.jpg",
+        "type": "image/jpeg",
+        "size": 500,
+        "width": 300,
+        "height": 300
+      },
+      "rules": {
+        "accept": "image/png"
+      },
+      "out": "type"
+    },
+    {
+      "file": {
+        "name": "a.png",
+        "type": "image/png",
+        "size": 500
+      },
+      "rules": {
+        "accept": "image/png"
+      },
+      "out": null
+    },
+    {
+      "file": {
+        "name": "a.pdf",
+        "type": "application/pdf",
+        "size": 9999,
+        "width": 10,
+        "height": 10
+      },
+      "rules": {
+        "accept": "image/png"
+      },
+      "out": "type"
+    },
+    {
+      "file": {
+        "name": "a.png",
+        "type": "image/png",
+        "size": 500,
+        "width": 300,
+        "height": 300
+      },
+      "rules": {
+        "maxSizeBytes": 1000
+      },
+      "out": null
+    },
+    {
+      "file": {
+        "name": "a.png",
+        "type": "image/png",
+        "size": 5000,
+        "width": 300,
+        "height": 300
+      },
+      "rules": {
+        "maxSizeBytes": 1000
+      },
+      "out": "size"
+    },
+    {
+      "file": {
+        "name": "a.png",
+        "type": "image/png",
+        "size": 500,
+        "width": 150,
+        "height": 150
+      },
+      "rules": {
+        "maxSizeBytes": 1000
+      },
+      "out": null
+    },
+    {
+      "file": {
+        "name": "a.png",
+        "type": "image/png",
+        "size": 500,
+        "width": 400,
+        "height": 300
+      },
+      "rules": {
+        "maxSizeBytes": 1000
+      },
+      "out": null
+    },
+    {
+      "file": {
+        "name": "a.png",
+        "type": "image/png",
+        "size": 500,
+        "width": 1920,
+        "height": 1080
+      },
+      "rules": {
+        "maxSizeBytes": 1000
+      },
+      "out": null
+    },
+    {
+      "file": {
+        "name": "a.png",
+        "type": "image/png",
+        "size": 500,
+        "width": 1000,
+        "height": 990
+      },
+      "rules": {
+        "maxSizeBytes": 1000
+      },
+      "out": null
+    },
+    {
+      "file": {
+        "name": "a.jpg",
+        "type": "image/jpeg",
+        "size": 500,
+        "width": 300,
+        "height": 300
+      },
+      "rules": {
+        "maxSizeBytes": 1000
+      },
+      "out": null
+    },
+    {
+      "file": {
+        "name": "a.png",
+        "type": "image/png",
+        "size": 500
+      },
+      "rules": {
+        "maxSizeBytes": 1000
+      },
+      "out": null
+    },
+    {
+      "file": {
+        "name": "a.pdf",
+        "type": "application/pdf",
+        "size": 9999,
+        "width": 10,
+        "height": 10
+      },
+      "rules": {
+        "maxSizeBytes": 1000
+      },
+      "out": "type"
+    },
+    {
+      "file": {
+        "name": "a.png",
+        "type": "image/png",
+        "size": 500,
+        "width": 300,
+        "height": 300
+      },
+      "rules": {
+        "minWidth": 200,
+        "minHeight": 100
+      },
+      "out": null
+    },
+    {
+      "file": {
+        "name": "a.png",
+        "type": "image/png",
+        "size": 5000,
+        "width": 300,
+        "height": 300
+      },
+      "rules": {
+        "minWidth": 200,
+        "minHeight": 100
+      },
+      "out": null
+    },
+    {
+      "file": {
+        "name": "a.png",
+        "type": "image/png",
+        "size": 500,
+        "width": 150,
+        "height": 150
+      },
+      "rules": {
+        "minWidth": 200,
+        "minHeight": 100
+      },
+      "out": "dimension"
+    },
+    {
+      "file": {
+        "name": "a.png",
+        "type": "image/png",
+        "size": 500,
+        "width": 400,
+        "height": 300
+      },
+      "rules": {
+        "minWidth": 200,
+        "minHeight": 100
+      },
+      "out": null
+    },
+    {
+      "file": {
+        "name": "a.png",
+        "type": "image/png",
+        "size": 500,
+        "width": 1920,
+        "height": 1080
+      },
+      "rules": {
+        "minWidth": 200,
+        "minHeight": 100
+      },
+      "out": null
+    },
+    {
+      "file": {
+        "name": "a.png",
+        "type": "image/png",
+        "size": 500,
+        "width": 1000,
+        "height": 990
+      },
+      "rules": {
+        "minWidth": 200,
+        "minHeight": 100
+      },
+      "out": null
+    },
+    {
+      "file": {
+        "name": "a.jpg",
+        "type": "image/jpeg",
+        "size": 500,
+        "width": 300,
+        "height": 300
+      },
+      "rules": {
+        "minWidth": 200,
+        "minHeight": 100
+      },
+      "out": null
+    },
+    {
+      "file": {
+        "name": "a.png",
+        "type": "image/png",
+        "size": 500
+      },
+      "rules": {
+        "minWidth": 200,
+        "minHeight": 100
+      },
+      "out": null
+    },
+    {
+      "file": {
+        "name": "a.pdf",
+        "type": "application/pdf",
+        "size": 9999,
+        "width": 10,
+        "height": 10
+      },
+      "rules": {
+        "minWidth": 200,
+        "minHeight": 100
+      },
+      "out": "type"
+    },
+    {
+      "file": {
+        "name": "a.png",
+        "type": "image/png",
+        "size": 500,
+        "width": 300,
+        "height": 300
+      },
+      "rules": {
+        "aspect": 1
+      },
+      "out": null
+    },
+    {
+      "file": {
+        "name": "a.png",
+        "type": "image/png",
+        "size": 5000,
+        "width": 300,
+        "height": 300
+      },
+      "rules": {
+        "aspect": 1
+      },
+      "out": null
+    },
+    {
+      "file": {
+        "name": "a.png",
+        "type": "image/png",
+        "size": 500,
+        "width": 150,
+        "height": 150
+      },
+      "rules": {
+        "aspect": 1
+      },
+      "out": null
+    },
+    {
+      "file": {
+        "name": "a.png",
+        "type": "image/png",
+        "size": 500,
+        "width": 400,
+        "height": 300
+      },
+      "rules": {
+        "aspect": 1
+      },
+      "out": "aspect"
+    },
+    {
+      "file": {
+        "name": "a.png",
+        "type": "image/png",
+        "size": 500,
+        "width": 1920,
+        "height": 1080
+      },
+      "rules": {
+        "aspect": 1
+      },
+      "out": "aspect"
+    },
+    {
+      "file": {
+        "name": "a.png",
+        "type": "image/png",
+        "size": 500,
+        "width": 1000,
+        "height": 990
+      },
+      "rules": {
+        "aspect": 1
+      },
+      "out": null
+    },
+    {
+      "file": {
+        "name": "a.jpg",
+        "type": "image/jpeg",
+        "size": 500,
+        "width": 300,
+        "height": 300
+      },
+      "rules": {
+        "aspect": 1
+      },
+      "out": null
+    },
+    {
+      "file": {
+        "name": "a.png",
+        "type": "image/png",
+        "size": 500
+      },
+      "rules": {
+        "aspect": 1
+      },
+      "out": null
+    },
+    {
+      "file": {
+        "name": "a.pdf",
+        "type": "application/pdf",
+        "size": 9999,
+        "width": 10,
+        "height": 10
+      },
+      "rules": {
+        "aspect": 1
+      },
+      "out": "type"
+    },
+    {
+      "file": {
+        "name": "a.png",
+        "type": "image/png",
+        "size": 500,
+        "width": 300,
+        "height": 300
+      },
+      "rules": {
+        "aspect": 1.7777777777777777,
+        "aspectTolerance": 0.1
+      },
+      "out": "aspect"
+    },
+    {
+      "file": {
+        "name": "a.png",
+        "type": "image/png",
+        "size": 5000,
+        "width": 300,
+        "height": 300
+      },
+      "rules": {
+        "aspect": 1.7777777777777777,
+        "aspectTolerance": 0.1
+      },
+      "out": "aspect"
+    },
+    {
+      "file": {
+        "name": "a.png",
+        "type": "image/png",
+        "size": 500,
+        "width": 150,
+        "height": 150
+      },
+      "rules": {
+        "aspect": 1.7777777777777777,
+        "aspectTolerance": 0.1
+      },
+      "out": "aspect"
+    },
+    {
+      "file": {
+        "name": "a.png",
+        "type": "image/png",
+        "size": 500,
+        "width": 400,
+        "height": 300
+      },
+      "rules": {
+        "aspect": 1.7777777777777777,
+        "aspectTolerance": 0.1
+      },
+      "out": "aspect"
+    },
+    {
+      "file": {
+        "name": "a.png",
+        "type": "image/png",
+        "size": 500,
+        "width": 1920,
+        "height": 1080
+      },
+      "rules": {
+        "aspect": 1.7777777777777777,
+        "aspectTolerance": 0.1
+      },
+      "out": null
+    },
+    {
+      "file": {
+        "name": "a.png",
+        "type": "image/png",
+        "size": 500,
+        "width": 1000,
+        "height": 990
+      },
+      "rules": {
+        "aspect": 1.7777777777777777,
+        "aspectTolerance": 0.1
+      },
+      "out": "aspect"
+    },
+    {
+      "file": {
+        "name": "a.jpg",
+        "type": "image/jpeg",
+        "size": 500,
+        "width": 300,
+        "height": 300
+      },
+      "rules": {
+        "aspect": 1.7777777777777777,
+        "aspectTolerance": 0.1
+      },
+      "out": "aspect"
+    },
+    {
+      "file": {
+        "name": "a.png",
+        "type": "image/png",
+        "size": 500
+      },
+      "rules": {
+        "aspect": 1.7777777777777777,
+        "aspectTolerance": 0.1
+      },
+      "out": null
+    },
+    {
+      "file": {
+        "name": "a.pdf",
+        "type": "application/pdf",
+        "size": 9999,
+        "width": 10,
+        "height": 10
+      },
+      "rules": {
+        "aspect": 1.7777777777777777,
+        "aspectTolerance": 0.1
+      },
+      "out": "type"
+    },
+    {
+      "file": {
+        "name": "a.png",
+        "type": "image/png",
+        "size": 500,
+        "width": 300,
+        "height": 300
+      },
+      "rules": {
+        "accept": "image/png",
+        "maxSizeBytes": 5000,
+        "minWidth": 100,
+        "minHeight": 100,
+        "aspect": 1
+      },
+      "out": null
+    },
+    {
+      "file": {
+        "name": "a.png",
+        "type": "image/png",
+        "size": 5000,
+        "width": 300,
+        "height": 300
+      },
+      "rules": {
+        "accept": "image/png",
+        "maxSizeBytes": 5000,
+        "minWidth": 100,
+        "minHeight": 100,
+        "aspect": 1
+      },
+      "out": null
+    },
+    {
+      "file": {
+        "name": "a.png",
+        "type": "image/png",
+        "size": 500,
+        "width": 150,
+        "height": 150
+      },
+      "rules": {
+        "accept": "image/png",
+        "maxSizeBytes": 5000,
+        "minWidth": 100,
+        "minHeight": 100,
+        "aspect": 1
+      },
+      "out": null
+    },
+    {
+      "file": {
+        "name": "a.png",
+        "type": "image/png",
+        "size": 500,
+        "width": 400,
+        "height": 300
+      },
+      "rules": {
+        "accept": "image/png",
+        "maxSizeBytes": 5000,
+        "minWidth": 100,
+        "minHeight": 100,
+        "aspect": 1
+      },
+      "out": "aspect"
+    },
+    {
+      "file": {
+        "name": "a.png",
+        "type": "image/png",
+        "size": 500,
+        "width": 1920,
+        "height": 1080
+      },
+      "rules": {
+        "accept": "image/png",
+        "maxSizeBytes": 5000,
+        "minWidth": 100,
+        "minHeight": 100,
+        "aspect": 1
+      },
+      "out": "aspect"
+    },
+    {
+      "file": {
+        "name": "a.png",
+        "type": "image/png",
+        "size": 500,
+        "width": 1000,
+        "height": 990
+      },
+      "rules": {
+        "accept": "image/png",
+        "maxSizeBytes": 5000,
+        "minWidth": 100,
+        "minHeight": 100,
+        "aspect": 1
+      },
+      "out": null
+    },
+    {
+      "file": {
+        "name": "a.jpg",
+        "type": "image/jpeg",
+        "size": 500,
+        "width": 300,
+        "height": 300
+      },
+      "rules": {
+        "accept": "image/png",
+        "maxSizeBytes": 5000,
+        "minWidth": 100,
+        "minHeight": 100,
+        "aspect": 1
+      },
+      "out": "type"
+    },
+    {
+      "file": {
+        "name": "a.png",
+        "type": "image/png",
+        "size": 500
+      },
+      "rules": {
+        "accept": "image/png",
+        "maxSizeBytes": 5000,
+        "minWidth": 100,
+        "minHeight": 100,
+        "aspect": 1
+      },
+      "out": null
+    },
+    {
+      "file": {
+        "name": "a.pdf",
+        "type": "application/pdf",
+        "size": 9999,
+        "width": 10,
+        "height": 10
+      },
+      "rules": {
+        "accept": "image/png",
+        "maxSizeBytes": 5000,
+        "minWidth": 100,
+        "minHeight": 100,
+        "aspect": 1
+      },
+      "out": "type"
+    }
+  ],
+  "bytes": [
+    {
+      "bytes": 0,
+      "locale": "en-US",
+      "out": "0 B"
+    },
+    {
+      "bytes": 0,
+      "locale": "pt-BR",
+      "out": "0 B"
+    },
+    {
+      "bytes": 0,
+      "locale": "es",
+      "out": "0 B"
+    },
+    {
+      "bytes": 1,
+      "locale": "en-US",
+      "out": "1 B"
+    },
+    {
+      "bytes": 1,
+      "locale": "pt-BR",
+      "out": "1 B"
+    },
+    {
+      "bytes": 1,
+      "locale": "es",
+      "out": "1 B"
+    },
+    {
+      "bytes": 1023,
+      "locale": "en-US",
+      "out": "1023 B"
+    },
+    {
+      "bytes": 1023,
+      "locale": "pt-BR",
+      "out": "1023 B"
+    },
+    {
+      "bytes": 1023,
+      "locale": "es",
+      "out": "1023 B"
+    },
+    {
+      "bytes": 1024,
+      "locale": "en-US",
+      "out": "1.0 KB"
+    },
+    {
+      "bytes": 1024,
+      "locale": "pt-BR",
+      "out": "1,0 KB"
+    },
+    {
+      "bytes": 1024,
+      "locale": "es",
+      "out": "1,0 KB"
+    },
+    {
+      "bytes": 1536,
+      "locale": "en-US",
+      "out": "1.5 KB"
+    },
+    {
+      "bytes": 1536,
+      "locale": "pt-BR",
+      "out": "1,5 KB"
+    },
+    {
+      "bytes": 1536,
+      "locale": "es",
+      "out": "1,5 KB"
+    },
+    {
+      "bytes": 1048576,
+      "locale": "en-US",
+      "out": "1.0 MB"
+    },
+    {
+      "bytes": 1048576,
+      "locale": "pt-BR",
+      "out": "1,0 MB"
+    },
+    {
+      "bytes": 1048576,
+      "locale": "es",
+      "out": "1,0 MB"
+    },
+    {
+      "bytes": 2621440,
+      "locale": "en-US",
+      "out": "2.5 MB"
+    },
+    {
+      "bytes": 2621440,
+      "locale": "pt-BR",
+      "out": "2,5 MB"
+    },
+    {
+      "bytes": 2621440,
+      "locale": "es",
+      "out": "2,5 MB"
+    },
+    {
+      "bytes": 1073741824,
+      "locale": "en-US",
+      "out": "1.0 GB"
+    },
+    {
+      "bytes": 1073741824,
+      "locale": "pt-BR",
+      "out": "1,0 GB"
+    },
+    {
+      "bytes": 1073741824,
+      "locale": "es",
+      "out": "1,0 GB"
+    },
+    {
+      "bytes": 5368709120,
+      "locale": "en-US",
+      "out": "5.0 GB"
+    },
+    {
+      "bytes": 5368709120,
+      "locale": "pt-BR",
+      "out": "5,0 GB"
+    },
+    {
+      "bytes": 5368709120,
+      "locale": "es",
+      "out": "5,0 GB"
+    },
+    {
+      "bytes": -5,
+      "locale": "en-US",
+      "out": "0 B"
+    },
+    {
+      "bytes": -5,
+      "locale": "pt-BR",
+      "out": "0 B"
+    },
+    {
+      "bytes": -5,
+      "locale": "es",
+      "out": "0 B"
+    }
+  ],
+  "aspect": [
+    {
+      "aspect": 1,
+      "out": "1:1"
+    },
+    {
+      "aspect": 1.3333333333333333,
+      "out": "4:3"
+    },
+    {
+      "aspect": 1.5,
+      "out": "3:2"
+    },
+    {
+      "aspect": 1.7777777777777777,
+      "out": "16:9"
+    },
+    {
+      "aspect": 0.75,
+      "out": "3:4"
+    },
+    {
+      "aspect": 0.6666666666666666,
+      "out": "2:3"
+    },
+    {
+      "aspect": 0.5625,
+      "out": "9:16"
+    },
+    {
+      "aspect": 1.5,
+      "out": "3:2"
+    },
+    {
+      "aspect": 1.7777,
+      "out": "1.78"
+    },
+    {
+      "aspect": 2.5,
+      "out": "2.50"
+    }
+  ]
+}

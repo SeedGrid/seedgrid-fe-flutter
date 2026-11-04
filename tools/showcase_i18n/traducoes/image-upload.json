@@ -1,0 +1,122 @@
+{
+ "Escolhe uma imagem, valida e mostra a pré-visualização. Não envia nada: entrega o arquivo ao pai.": [
+  "Picks an image, validates it and shows a preview. It never uploads: it hands the file to the parent.",
+  "Escolhe uma imagem, valida e mostra a pré-visualização. Não envia nada: entrega o ficheiro ao pai.",
+  "Elige una imagen, la valida y muestra la vista previa. No envía nada: entrega el archivo al padre.",
+  "Choisit une image, la valide et affiche l'aperçu. Il n'envoie rien : il remet le fichier au parent."
+ ],
+ "O onChange entrega a imagem escolhida (ou null ao remover); o envio ao servidor é do host.": [
+  "onChange delivers the chosen image (or null on remove); uploading to a server is up to the host.",
+  "O onChange entrega a imagem escolhida (ou null ao remover); o envio ao servidor é do host.",
+  "onChange entrega la imagen elegida (o null al quitar); el envío al servidor es del host.",
+  "onChange fournit l'image choisie (ou null à la suppression) ; l'envoi au serveur revient à l'hôte."
+ ],
+ "Regras de validação": [
+  "Validation rules",
+  "Regras de validação",
+  "Reglas de validación",
+  "Règles de validation"
+ ],
+ "accept, maxSizeBytes, minWidth/minHeight e aspect recusam a imagem com uma mensagem e disparam onError.": [
+  "accept, maxSizeBytes, minWidth/minHeight and aspect reject the image with a message and fire onError.",
+  "accept, maxSizeBytes, minWidth/minHeight e aspect recusam a imagem com uma mensagem e disparam onError.",
+  "accept, maxSizeBytes, minWidth/minHeight y aspect rechazan la imagen con un mensaje y disparan onError.",
+  "accept, maxSizeBytes, minWidth/minHeight et aspect refusent l'image avec un message et déclenchent onError."
+ ],
+ "Imagem já salva": [
+  "Already saved image",
+  "Imagem já guardada",
+  "Imagen ya guardada",
+  "Image déjà enregistrée"
+ ],
+ "Um valor em texto é tratado como URL de uma imagem existente e já aparece na pré-visualização.": [
+  "A string value is treated as the URL of an existing image and shows in the preview right away.",
+  "Um valor em texto é tratado como URL de uma imagem existente e já aparece na pré-visualização.",
+  "Un valor de texto se trata como la URL de una imagen existente y aparece en la vista previa.",
+  "Une valeur texte est traitée comme l'URL d'une image existante et s'affiche dans l'aperçu."
+ ],
+ "Não permite escolher nem remover.": [
+  "Does not allow choosing or removing.",
+  "Não permite escolher nem remover.",
+  "No permite elegir ni quitar.",
+  "Ne permet ni de choisir ni de supprimer."
+ ],
+ "O formulário guarda a imagem escolhida e valida o obrigatório.": [
+  "The form stores the chosen image and validates the required rule.",
+  "O formulário guarda a imagem escolhida e valida o obrigatório.",
+  "El formulario guarda la imagen elegida y valida lo obligatorio.",
+  "Le formulaire conserve l'image choisie et valide le champ obligatoire."
+ ],
+ "Extra do Flutter: substitui o seletor do sistema (testes ou outra origem de arquivo).": [
+  "Flutter extra: replaces the system picker (tests or another file source).",
+  "Extra do Flutter: substitui o seletor do sistema (testes ou outra origem de ficheiro).",
+  "Extra de Flutter: sustituye el selector del sistema (pruebas u otro origen de archivo).",
+  "Extra Flutter : remplace le sélecteur du système (tests ou autre source de fichier)."
+ ],
+ "Tipos aceitos (image/*, image/png, .png), separados por virgula.": [
+  "Accepted types (image/*, image/png, .png), comma separated.",
+  "Tipos aceites (image/*, image/png, .png), separados por vírgula.",
+  "Tipos aceptados (image/*, image/png, .png), separados por coma.",
+  "Types acceptés (image/*, image/png, .png), séparés par des virgules."
+ ],
+ "Proporcao largura/altura exigida (1 = quadrada).": [
+  "Required width/height ratio (1 = square).",
+  "Proporção largura/altura exigida (1 = quadrada).",
+  "Proporción ancho/alto exigida (1 = cuadrada).",
+  "Rapport largeur/hauteur exigé (1 = carré)."
+ ],
+ "Tamanho maximo em bytes.": [
+  "Maximum size in bytes.",
+  "Tamanho máximo em bytes.",
+  "Tamaño máximo en bytes.",
+  "Taille maximale en octets."
+ ],
+ "Largura minima em px.": [
+  "Minimum width in px.",
+  "Largura mínima em px.",
+  "Ancho mínimo en px.",
+  "Largeur minimale en px."
+ ],
+ "Altura minima em px.": [
+  "Minimum height in px.",
+  "Altura mínima em px.",
+  "Alto mínimo en px.",
+  "Hauteur minimale en px."
+ ],
+ "Desabilita a escolha e a remocao.": [
+  "Disables choosing and removing.",
+  "Desativa a escolha e a remoção.",
+  "Deshabilita elegir y quitar.",
+  "Désactive le choix et la suppression."
+ ],
+ "Rotulo exibido acima da area.": [
+  "Label shown above the area.",
+  "Rótulo exibido acima da área.",
+  "Etiqueta mostrada sobre el área.",
+  "Libellé affiché au-dessus de la zone."
+ ],
+ "Nome do campo para formularios.": [
+  "Field name for forms.",
+  "Nome do campo para formulários.",
+  "Nombre del campo para formularios.",
+  "Nom du champ pour les formulaires."
+ ],
+ "Arquivo valido escolhido ou null ao remover.": [
+  "Valid file chosen, or null on remove.",
+  "Ficheiro válido escolhido ou null ao remover.",
+  "Archivo válido elegido, o null al quitar.",
+  "Fichier valide choisi, ou null à la suppression."
+ ],
+ "Arquivo recusado (type, size, dimension, aspect).": [
+  "Rejected file (type, size, dimension, aspect).",
+  "Ficheiro recusado (type, size, dimension, aspect).",
+  "Archivo rechazado (type, size, dimension, aspect).",
+  "Fichier refusé (type, size, dimension, aspect)."
+ ],
+ "Imagem controlada: arquivo escolhido ou URL de uma imagem ja salva.": [
+  "Controlled image: chosen file or the URL of an already saved image.",
+  "Imagem controlada: ficheiro escolhido ou URL de uma imagem já guardada.",
+  "Imagen controlada: archivo elegido o URL de una imagen ya guardada.",
+  "Image contrôlée : fichier choisi ou URL d'une image déjà enregistrée."
+ ]
+}

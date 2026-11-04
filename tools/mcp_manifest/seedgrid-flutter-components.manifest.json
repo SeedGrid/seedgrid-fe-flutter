@@ -827,6 +827,13 @@
         ],
         "examples": [
           {
+            "id": "sg-avatar-basico",
+            "title": "Básico",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_avatar_page.dart",
+            "kind": "dart",
+            "code": "Wrap(\n  spacing: 12,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgAvatar(label: Text(context.tx('P'))),\n    SgAvatar(\n      icon: Icon(Icons.person),\n      severity: SgAvatarSeverity.secondary,\n    ),\n    SgAvatar(\n      src: 'https://i.pravatar.cc/150?img=32',\n      label: Text(context.tx('Amy Elsner')),\n    ),\n  ],\n)"
+          },
+          {
             "id": "sg-avatar-conteudo",
             "title": "Iniciais, ícone e fallback",
             "file": "apps/seedgrid_showcase/lib/pages/sg_avatar_page.dart",
@@ -835,10 +842,17 @@
           },
           {
             "id": "sg-avatar-cores",
-            "title": "Cores customizadas",
+            "title": "Severity e Cores Customizadas",
             "file": "apps/seedgrid_showcase/lib/pages/sg_avatar_page.dart",
             "kind": "dart",
-            "code": "SgAvatar(\n  label: Text(context.tx('Roxo Real')),\n  customColors: SgAvatarCustomColors(\n    bg: Color(0xFF7C3AED),\n    fg: Colors.white,\n    border: Color(0xFF6D28D9),\n  ),\n)"
+            "code": "Wrap(\n  spacing: 12,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgAvatar(\n      label: Text(context.tx('P')),\n      severity: SgAvatarSeverity.primary,\n    ),\n    SgAvatar(\n      label: Text(context.tx('S')),\n      severity: SgAvatarSeverity.success,\n    ),\n    SgAvatar(\n      label: Text(context.tx('D')),\n      severity: SgAvatarSeverity.danger,\n    ),\n    SgAvatar(\n      icon: Icon(Icons.photo_camera),\n      severity: SgAvatarSeverity.custom,\n      customColors: SgAvatarCustomColors(\n        bg: Color(0xFF7C3AED),\n        fg: Color(0xFFFFFFFF),\n        border: Color(0xFF5B21B6),\n        ring: Color(0x597C3AED),\n      ),\n    ),\n  ],\n)"
+          },
+          {
+            "id": "sg-avatar-grupo",
+            "title": "Avatar Group",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_avatar_page.dart",
+            "kind": "dart",
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgAvatarGroup(\n      children: [\n        SgAvatar(\n          src: 'https://i.pravatar.cc/150?img=32',\n          label: Text(context.tx('Amy Elsner')),\n        ),\n        SgAvatar(\n          src: 'https://i.pravatar.cc/150?img=47',\n          label: Text(context.tx('Asiya Javayant')),\n        ),\n        SgAvatar(\n          src: 'https://i.pravatar.cc/150?img=12',\n          label: Text(context.tx('Onyama Limba')),\n        ),\n        SgAvatar(\n          src: 'https://i.pravatar.cc/150?img=56',\n          label: Text(context.tx('Ioni Bowcher')),\n        ),\n      ],\n    ),\n    const SizedBox(height: 16),\n    SgAvatarGroup(\n      max: 3,\n      total: 6,\n      size: SgAvatarSize.sm,\n      moreSeverity: SgAvatarSeverity.secondary,\n      children: [\n        SgAvatar(\n          icon: Icon(Icons.group),\n          severity: SgAvatarSeverity.info,\n          size: SgAvatarSize.sm,\n        ),\n        SgAvatar(\n          label: Text(context.tx('AL')),\n          severity: SgAvatarSeverity.success,\n          size: SgAvatarSize.sm,\n        ),\n        SgAvatar(\n          label: Text(context.tx('BK')),\n          severity: SgAvatarSeverity.warning,\n          size: SgAvatarSize.sm,\n        ),\n        SgAvatar(\n          label: Text(context.tx('CM')),\n          severity: SgAvatarSeverity.danger,\n          size: SgAvatarSize.sm,\n        ),\n      ],\n    ),\n  ],\n)"
           },
           {
             "id": "sg-avatar-imagem",
@@ -855,18 +869,11 @@
             "code": "Wrap(\n  spacing: 12,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgAvatar(\n      label: Text(context.tx('Ana Lima')),\n      title: context.tx('Abrir perfil'),\n      onClick: () => setState(() => _cliques++),\n    ),\n    SgAvatar(\n      label: Text(context.tx('Bia Souza')),\n      disabled: true,\n      onClick: () {},\n    ),\n    Text('Cliques: $_cliques'),\n  ],\n)"
           },
           {
-            "id": "sg-avatar-severidades",
-            "title": "Severidades",
-            "file": "apps/seedgrid_showcase/lib/pages/sg_avatar_page.dart",
-            "kind": "dart",
-            "code": "Wrap(\n  spacing: 12,\n  runSpacing: 12,\n  children: [\n    for (final s in SgAvatarSeverity.values)\n      SgAvatar(label: Text(s.value), severity: s),\n  ],\n)"
-          },
-          {
             "id": "sg-avatar-tamanhos",
-            "title": "Tamanhos e formas",
+            "title": "Shape e Tamanho",
             "file": "apps/seedgrid_showcase/lib/pages/sg_avatar_page.dart",
             "kind": "dart",
-            "code": "Wrap(\n  spacing: 12,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgAvatar(label: Text(context.tx('XS')), size: SgAvatarSize.xs),\n    SgAvatar(label: Text(context.tx('SM')), size: SgAvatarSize.sm),\n    SgAvatar(label: Text(context.tx('MD'))),\n    SgAvatar(label: Text(context.tx('LG')), size: SgAvatarSize.lg),\n    SgAvatar(label: Text(context.tx('XL')), size: SgAvatarSize.xl),\n    SgAvatar(\n      label: Text(context.tx('Quadrado')),\n      shape: SgAvatarShape.square,\n      size: SgAvatarSize.lg,\n    ),\n    SgAvatar(label: Text(context.tx('Sem borda')), bordered: false),\n  ],\n)"
+            "code": "Wrap(\n  spacing: 12,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgAvatar(\n      label: Text(context.tx('C')),\n      shape: SgAvatarShape.circle,\n    ),\n    SgAvatar(\n      label: Text(context.tx('S')),\n      shape: SgAvatarShape.square,\n    ),\n    SgAvatar(label: Text(context.tx('XS')), size: SgAvatarSize.xs),\n    SgAvatar(label: Text(context.tx('LG')), size: SgAvatarSize.lg),\n    SgAvatar(\n      src: 'https://i.pravatar.cc/150?img=47',\n      label: Text(context.tx('Asiya Javayant')),\n      shape: SgAvatarShape.square,\n    ),\n  ],\n)"
           }
         ],
         "parity": {
@@ -1184,11 +1191,25 @@
         ],
         "examples": [
           {
-            "id": "sg-badge-contador",
-            "title": "Contador com limite",
+            "id": "sg-badge-acoes",
+            "title": "Ações",
             "file": "apps/seedgrid_showcase/lib/pages/sg_badge_page.dart",
             "kind": "dart",
-            "code": "const Wrap(\n  spacing: 8,\n  runSpacing: 8,\n  children: [\n    SgBadge(count: 5, severity: SgBadgeSeverity.danger),\n    SgBadge(count: 150, max: 99, severity: SgBadgeSeverity.danger),\n    SgBadge(count: 0),\n    SgBadge(count: 0, showZero: false),\n  ],\n)"
+            "code": "Wrap(\n  spacing: 8,\n  runSpacing: 8,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgBadge(\n      value: Text(context.tx('Remover auto')),\n      removable: true,\n      autoRemove: true,\n      onRemove: () => setState(() => _ultimo = 'removida (auto)'),\n    ),\n    if (_manualVisivel)\n      SgBadge(\n        value: Text(context.tx('Remover manual')),\n        removable: true,\n        autoRemove: false,\n        onRemove: () => setState(() {\n          _manualVisivel = false;\n          _ultimo = 'removida (manual)';\n        }),\n      ),\n    Text('Último evento: $_ultimo'),\n  ],\n)"
+          },
+          {
+            "id": "sg-badge-basico",
+            "title": "Básico",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_badge_page.dart",
+            "kind": "dart",
+            "code": "Wrap(\n  spacing: 8,\n  runSpacing: 8,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgBadge(value: Text(context.tx('Admin'))),\n    SgBadge(\n      value: Text(context.tx('Pendente')),\n      severity: SgBadgeSeverity.warning,\n      badgeStyle: SgBadgeBadgeStyle.soft,\n    ),\n    SgBadge(\n      value: Text(context.tx('Pago')),\n      severity: SgBadgeSeverity.success,\n      badgeStyle: SgBadgeBadgeStyle.solid,\n    ),\n  ],\n)"
+          },
+          {
+            "id": "sg-badge-contador",
+            "title": "Contador e dot",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_badge_page.dart",
+            "kind": "dart",
+            "code": "const Wrap(\n  spacing: 8,\n  runSpacing: 8,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgBadge(count: 3, severity: SgBadgeSeverity.danger),\n    SgBadge(count: 120, max: 99, severity: SgBadgeSeverity.danger),\n    SgBadge(dot: true, severity: SgBadgeSeverity.success),\n    SgBadge(\n      dot: true,\n      severity: SgBadgeSeverity.success,\n      pulse: true,\n    ),\n  ],\n)"
           },
           {
             "id": "sg-badge-cores",
@@ -1198,11 +1219,11 @@
             "code": "SgBadge(\n  value: Text(context.tx('Roxo')),\n  customColors: SgBadgeCustomColors(\n    bg: Color(0xFF7C3AED),\n    fg: Colors.white,\n    border: Color(0xFF6D28D9),\n  ),\n)"
           },
           {
-            "id": "sg-badge-dot",
-            "title": "Ponto de status",
+            "id": "sg-badge-forma",
+            "title": "Forma e ícones",
             "file": "apps/seedgrid_showcase/lib/pages/sg_badge_page.dart",
             "kind": "dart",
-            "code": "Wrap(\n  spacing: 16,\n  runSpacing: 16,\n  children: [\n    SgBadge(\n      dot: true,\n      severity: SgBadgeSeverity.success,\n      hint: context.tx('Online'),\n    ),\n    SgBadge(\n      dot: true,\n      severity: SgBadgeSeverity.danger,\n      pulse: true,\n      hint: context.tx('Ao vivo'),\n    ),\n    SgBadge(\n      dot: true,\n      severity: SgBadgeSeverity.neutral,\n      hint: context.tx('Ausente'),\n    ),\n  ],\n)"
+            "code": "Wrap(\n  spacing: 8,\n  runSpacing: 8,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgBadge(value: Text(context.tx('quadrado')), rounded: false),\n    SgBadge(\n      value: Text(context.tx('favorito')),\n      leftIcon: Icon(Icons.star),\n    ),\n    SgBadge(\n      value: Text(context.tx('próximo')),\n      rightIcon: Icon(Icons.arrow_forward),\n    ),\n  ],\n)"
           },
           {
             "id": "sg-badge-interativo",
@@ -1213,17 +1234,24 @@
           },
           {
             "id": "sg-badge-severidades",
-            "title": "Severidades e estilos",
+            "title": "Severidades",
             "file": "apps/seedgrid_showcase/lib/pages/sg_badge_page.dart",
             "kind": "dart",
             "code": "Wrap(\n  spacing: 8,\n  runSpacing: 8,\n  children: [\n    for (final s in SgBadgeSeverity.values)\n      SgBadge(value: Text(s.value), severity: s),\n    for (final st in SgBadgeBadgeStyle.values)\n      SgBadge(\n        value: Text(st.value),\n        badgeStyle: st,\n        severity: SgBadgeSeverity.danger,\n      ),\n  ],\n)"
           },
           {
             "id": "sg-badge-tamanhos",
-            "title": "Tamanhos, forma e ícones",
+            "title": "Tamanhos",
             "file": "apps/seedgrid_showcase/lib/pages/sg_badge_page.dart",
             "kind": "dart",
-            "code": "Wrap(\n  spacing: 8,\n  runSpacing: 8,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgBadge(value: Text(context.tx('xs')), size: SgBadgeSize.xs),\n    SgBadge(value: Text(context.tx('sm')), size: SgBadgeSize.sm),\n    SgBadge(value: Text(context.tx('md'))),\n    SgBadge(value: Text(context.tx('lg')), size: SgBadgeSize.lg),\n    SgBadge(value: Text(context.tx('quadrado')), rounded: false),\n    SgBadge(\n      value: Text(context.tx('favorito')),\n      leftIcon: Icon(Icons.star),\n    ),\n    SgBadge(\n      value: Text(context.tx('próximo')),\n      rightIcon: Icon(Icons.arrow_forward),\n    ),\n  ],\n)"
+            "code": "Wrap(\n  spacing: 8,\n  runSpacing: 8,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgBadge(value: Text(context.tx('XS')), size: SgBadgeSize.xs),\n    SgBadge(value: Text(context.tx('SM')), size: SgBadgeSize.sm),\n    SgBadge(value: Text(context.tx('MD')), size: SgBadgeSize.md),\n    SgBadge(value: Text(context.tx('LG')), size: SgBadgeSize.lg),\n  ],\n)"
+          },
+          {
+            "id": "sg-badge-variantes",
+            "title": "Variantes",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_badge_page.dart",
+            "kind": "dart",
+            "code": "Wrap(\n  spacing: 8,\n  runSpacing: 8,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgBadge(\n      value: Text(context.tx('Solid')),\n      badgeStyle: SgBadgeBadgeStyle.solid,\n    ),\n    SgBadge(\n      value: Text(context.tx('Soft')),\n      badgeStyle: SgBadgeBadgeStyle.soft,\n      severity: SgBadgeSeverity.secondary,\n    ),\n    SgBadge(\n      value: Text(context.tx('Outline')),\n      badgeStyle: SgBadgeBadgeStyle.outline,\n      severity: SgBadgeSeverity.info,\n    ),\n    SgBadge(\n      value: Text(context.tx('Ghost')),\n      badgeStyle: SgBadgeBadgeStyle.ghost,\n      severity: SgBadgeSeverity.neutral,\n    ),\n  ],\n)"
           }
         ],
         "parity": {
@@ -1832,6 +1860,156 @@
           "reason": "33 locales com dados gerados do Intl (pt, en, es, fr, de, it, nl, ja, zh, ko, ru, pl, sv, tr, da, nb, fi, cs, hu, uk, el e variantes regionais); locale sem dados cai no idioma e depois em en-US; cardProps é SgCalendarCardProps (subconjunto do SgCard); datas em texto só ISO 8601; a prop extra today fixa o dia de hoje; ícones desenhados com CustomPaint."
         },
         "omittedProps": []
+      }
+    },
+    {
+      "componentId": "sg-camera-capture",
+      "exportName": "SgCameraCapture",
+      "sgMeta": {
+        "version": "2026.7.1",
+        "componentId": "sg-camera-capture",
+        "package": "seedgrid_components",
+        "exportName": "SgCameraCapture",
+        "slug": "sg-camera-capture",
+        "displayName": "SgCameraCapture",
+        "category": "input",
+        "subcategory": "",
+        "description": "Pre-visualizacao da camera com guia de enquadramento (oval ou retangulo), alternancia entre frontal e traseira e captura que devolve a imagem ao pai. Mostra os estados sem permissao e sem camera. Nao envia nada ao servidor.",
+        "tags": [],
+        "props": [
+          {
+            "name": "allowSwitch",
+            "type": "bool?",
+            "required": false,
+            "default": "true",
+            "description": "Mostra o botao de alternar entre frontal e traseira."
+          },
+          {
+            "name": "disabled",
+            "type": "bool?",
+            "required": false,
+            "default": "false",
+            "description": "Nao abre a camera nem permite capturar."
+          },
+          {
+            "name": "facing",
+            "type": "SgCameraCaptureFacing?",
+            "required": false,
+            "default": "user",
+            "description": "Camera inicial: frontal (user) ou traseira (environment).",
+            "values": [
+              "user",
+              "environment"
+            ]
+          },
+          {
+            "name": "guide",
+            "type": "SgCameraCaptureGuide?",
+            "required": false,
+            "default": "none",
+            "description": "Guia de enquadramento sobre a pre-visualizacao.",
+            "values": [
+              "none",
+              "oval",
+              "rect"
+            ]
+          },
+          {
+            "name": "hintText",
+            "type": "String?",
+            "required": false
+          },
+          {
+            "name": "id",
+            "type": "String",
+            "required": true,
+            "description": "Identificador unico do componente."
+          },
+          {
+            "name": "label",
+            "type": "String?",
+            "required": false,
+            "description": "Rotulo exibido acima da pre-visualizacao."
+          },
+          {
+            "name": "labelText",
+            "type": "String?",
+            "required": false
+          },
+          {
+            "name": "onCapture",
+            "type": "Function?",
+            "required": false,
+            "description": "Imagem JPEG capturada.",
+            "typeExact": false
+          },
+          {
+            "name": "onError",
+            "type": "Function?",
+            "required": false,
+            "description": "Camera indisponivel (permission, noCamera, failed).",
+            "typeExact": false
+          },
+          {
+            "name": "previewHeight",
+            "type": "num?",
+            "required": false,
+            "default": "320",
+            "description": "Altura da pre-visualizacao em px."
+          },
+          {
+            "name": "resolution",
+            "type": "SgCameraCaptureResolution?",
+            "required": false,
+            "default": "medium",
+            "description": "Resolucao pedida (640x480, 1280x720, 1920x1080).",
+            "values": [
+              "low",
+              "medium",
+              "high"
+            ]
+          }
+        ],
+        "examples": [
+          {
+            "id": "sg-camera-capture-basico",
+            "title": "Básico",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_camera_capture_page.dart",
+            "kind": "dart",
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgCameraCapture(\n      id: 'foto',\n      labelText: 'Foto',\n      onCapture: (image) =>\n          setState(() => _captured = '${image.length} bytes'),\n    ),\n    const SizedBox(height: 8),\n    Text('Valor atual: ${_captured ?? '-'}'),\n  ],\n)"
+          },
+          {
+            "id": "sg-camera-capture-erros",
+            "title": "Erros de câmera",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_camera_capture_page.dart",
+            "kind": "dart",
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgCameraCapture(\n      id: 'foto-erros',\n      labelText: 'Foto',\n      onError: (code, message) =>\n          setState(() => _cameraError = '${code.name}: $message'),\n    ),\n    const SizedBox(height: 8),\n    Text('Valor atual: ${_cameraError ?? '-'}'),\n  ],\n)"
+          },
+          {
+            "id": "sg-camera-capture-oval",
+            "title": "Guia oval (selfie)",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_camera_capture_page.dart",
+            "kind": "dart",
+            "code": "const SgCameraCapture(\n  id: 'selfie',\n  labelText: 'Selfie',\n  facing: SgCameraCaptureFacing.user,\n  guide: SgCameraCaptureGuide.oval,\n)"
+          },
+          {
+            "id": "sg-camera-capture-retangular",
+            "title": "Guia retangular (documento)",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_camera_capture_page.dart",
+            "kind": "dart",
+            "code": "const SgCameraCapture(\n  id: 'documento',\n  labelText: 'Documento',\n  facing: SgCameraCaptureFacing.environment,\n  guide: SgCameraCaptureGuide.rect,\n  resolution: SgCameraCaptureResolution.high,\n  previewHeight: 240,\n)"
+          }
+        ],
+        "parity": {
+          "status": "portado",
+          "reason": "Usa o pacote camera (dependência nova do seedgrid_components) com um SgCameraBackend injetável; a imagem sai como bytes JPEG em vez de Blob; a câmera pausa em segundo plano e reabre ao voltar; não há onFrame (a análise de qualidade é do host); não testado em dispositivo real."
+        },
+        "omittedProps": [
+          {
+            "name": "className",
+            "reason": "Estilo por classe ou style inline não existe no Flutter; use as props padding, margin, width, height e customColors."
+          }
+        ]
       }
     },
     {
@@ -3692,7 +3870,7 @@
         "displayName": "SgDatatable",
         "category": "data",
         "subcategory": "",
-        "description": "Tabela de dados interativa com colunas configuraveis, paginacao, ordenacao, filtro, selecao e persistencia de layout de colunas.",
+        "description": "Tabela de dados interativa com colunas configuraveis, paginacao, ordenacao, filtro, selecao e persistencia de layout de colunas. Em celular vira lista de cartoes automaticamente (mobileMode omitido = automatico).",
         "tags": [],
         "props": [
           {
@@ -3765,6 +3943,13 @@
             "description": "Identificador da tabela usado para DOM e persistencia do layout de colunas."
           },
           {
+            "name": "infiniteScroll",
+            "type": "bool?",
+            "required": false,
+            "default": "(true nos cartoes, false na tabela)",
+            "description": "Rolagem infinita: sem paginador, ao chegar perto do fim da lista avanca a pagina (rows) e acrescenta os proximos registros, com indicador de carregando e de fim da lista. Padrao ligado quando a lista e exibida como cartoes (abaixo de 600 px no modo automatico) e desligado na tabela. Exige paginator. Com lazy, o pai acrescenta a proxima pagina a value (first/rows/page vem em onPage/onLoadMore)."
+          },
+          {
             "name": "lazy",
             "type": "bool?",
             "required": false,
@@ -3778,16 +3963,11 @@
             "description": "Indica estado de carregamento."
           },
           {
-            "name": "infiniteScroll",
-            "type": "bool?",
-            "required": false,
-            "description": "Rolagem infinita: sem paginador, ao chegar perto do fim avanca a pagina (rows). Padrao ligado nos cartoes e desligado na tabela; exige paginator."
-          },
-          {
             "name": "mobileMode",
             "type": "SgDatatableMobileMode?",
             "required": false,
-            "description": "Omitido (padrao): automatico - cartoes abaixo de 600 px do container, tabela acima; cards forca cartoes e scroll forca a tabela.",
+            "default": "(omitido = automatico)",
+            "description": "Comportamento em tela estreita. Omitido (padrao): cartoes quando o container fica abaixo de 600 px, tabela acima; cards: forca cartoes em qualquer largura; scroll: forca a tabela com rolagem horizontal. Nos cartoes mantem ordenacao, selecao, acoes, rodape e paginacao.",
             "values": [
               "scroll",
               "cards"
@@ -3800,15 +3980,16 @@
             "typeExact": false
           },
           {
-            "name": "onLoadMore",
+            "name": "onGlobalFilterChange",
             "type": "Function?",
             "required": false,
             "typeExact": false
           },
           {
-            "name": "onGlobalFilterChange",
+            "name": "onLoadMore",
             "type": "Function?",
             "required": false,
+            "description": "Chamado (alem de onPage) quando a rolagem infinita pede a proxima pagina.",
             "typeExact": false
           },
           {
@@ -3976,7 +4157,7 @@
             "title": "Modo cartões (celular)",
             "file": "apps/seedgrid_showcase/lib/pages/sg_datatable_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgRadioGroup(\n      id: 'modo-cartoes',\n      title: 'mobileMode',\n      orientation: SgRadioGroupOrientation.horizontal,\n      source: const [\n        SgRadioGroupOption(label: 'cards', value: 'cards'),\n        SgRadioGroupOption(label: 'scroll', value: 'scroll'),\n      ],\n      value: _modoCartoes.name,\n      onChange: (v) => setState(\n        () => _modoCartoes = v == 'scroll'\n            ? SgDatatableMobileMode.scroll\n            : SgDatatableMobileMode.cards,\n      ),\n    ),\n    SizedBox(\n      width: 420,\n      child: SgDatatable(\n        title: context.tx('Pessoas (cartões)'),\n        value: _pessoas,\n        columns: const [\n          SgDatatableColumn(\n            field: 'id',\n            header: 'Id',\n            cardHidden: true,\n          ),\n          SgDatatableColumn(\n            field: 'nome',\n            header: 'Nome',\n            sortable: true,\n            filter: true,\n            cardTitle: true,\n          ),\n          SgDatatableColumn(\n            field: 'cidade',\n            header: 'Cidade',\n            sortable: true,\n            filter: true,\n          ),\n          SgDatatableColumn(\n            field: 'idade',\n            header: 'Idade',\n            sortable: true,\n          ),\n        ],\n        dataKey: 'id',\n        mobileMode: _modoCartoes,\n        infiniteScroll: false,\n        selectionMode: SgDatatableSelectionMode.single,\n        showColumnFilters: true,\n        paginator: true,\n        rows: 4,\n      ),\n    ),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgRadioGroup(\n      id: 'modo-cartoes',\n      title: 'mobileMode',\n      orientation: SgRadioGroupOrientation.horizontal,\n      source: const [\n        SgRadioGroupOption(label: 'cards', value: 'cards'),\n        SgRadioGroupOption(label: 'scroll', value: 'scroll'),\n      ],\n      value: _modoCartoes.name,\n      onChange: (v) => setState(\n        () => _modoCartoes = v == 'scroll'\n            ? SgDatatableMobileMode.scroll\n            : SgDatatableMobileMode.cards,\n      ),\n    ),\n    SizedBox(\n      width: 420,\n      height: 360,\n      child: SingleChildScrollView(\n        child: SgDatatable(\n          title: context.tx('Pessoas (cartões)'),\n          value: _pessoas,\n          columns: const [\n            SgDatatableColumn(\n              field: 'id',\n              header: 'Id',\n              cardHidden: true,\n            ),\n            SgDatatableColumn(\n              field: 'nome',\n              header: 'Nome',\n              sortable: true,\n              filter: true,\n              cardTitle: true,\n            ),\n            SgDatatableColumn(\n              field: 'cidade',\n              header: 'Cidade',\n              sortable: true,\n              filter: true,\n            ),\n            SgDatatableColumn(\n              field: 'idade',\n              header: 'Idade',\n              sortable: true,\n            ),\n          ],\n          dataKey: 'id',\n          mobileMode: _modoCartoes,\n          selectionMode: SgDatatableSelectionMode.single,\n          showColumnFilters: true,\n          paginator: true,\n          rows: 4,\n        ),\n      ),\n    ),\n  ],\n)"
           },
           {
             "id": "sg-datatable-colunas",
@@ -3990,7 +4171,7 @@
             "title": "Controle por código",
             "file": "apps/seedgrid_showcase/lib/pages/sg_datatable_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgDatatable(\n      value: _pessoas,\n      columns: _colunas,\n      paginator: true,\n      infiniteScroll: false,\n      rows: 5,\n      showGlobalFilter: true,\n      controller: _controller,\n    ),\n    const SizedBox(height: 8),\n    Wrap(\n      spacing: 8,\n      runSpacing: 8,\n      children: [\n        SgButton(\n          label: Text(context.tx('Ir para a página 3')),\n          onClick: () => _controller.goToPage(3),\n        ),\n        SgButton(\n          label: Text(context.tx('Limpar filtros')),\n          onClick: () => _controller.clearFilters(),\n        ),\n        SgButton(\n          label: Text(context.tx('Remover ordem')),\n          onClick: () => _controller.resetSort(),\n        ),\n      ],\n    ),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SizedBox(\n      height: 420,\n      child: SingleChildScrollView(\n        child: SgDatatable(\n          value: _pessoas,\n          columns: _colunas,\n          paginator: true,\n          rows: 5,\n          showGlobalFilter: true,\n          controller: _controller,\n        ),\n      ),\n    ),\n    const SizedBox(height: 8),\n    Wrap(\n      spacing: 8,\n      runSpacing: 8,\n      children: [\n        SgButton(\n          label: Text(context.tx('Ir para a página 3')),\n          onClick: () => _controller.goToPage(3),\n        ),\n        SgButton(\n          label: Text(context.tx('Limpar filtros')),\n          onClick: () => _controller.clearFilters(),\n        ),\n        SgButton(\n          label: Text(context.tx('Remover ordem')),\n          onClick: () => _controller.resetSort(),\n        ),\n      ],\n    ),\n  ],\n)"
           },
           {
             "id": "sg-datatable-estados",
@@ -4004,14 +4185,14 @@
             "title": "Filtros",
             "file": "apps/seedgrid_showcase/lib/pages/sg_datatable_page.dart",
             "kind": "dart",
-            "code": "SgDatatable(\n  value: _pessoas,\n  columns: [\n    SgDatatableColumn(\n      field: 'nome',\n      header: context.tx('Nome'),\n      filter: true,\n    ),\n    SgDatatableColumn(\n      field: 'cidade',\n      header: context.tx('Cidade'),\n      filter: true,\n      filterMatchMode: SgDatatableFilterMatchMode.startsWith,\n    ),\n    SgDatatableColumn(\n      field: 'salario',\n      header: context.tx('Salário'),\n      excludeGlobalFilter: true,\n    ),\n  ],\n  paginator: true,\n  infiniteScroll: false,\n  rows: 5,\n  showGlobalFilter: true,\n  showColumnFilters: true,\n  showClearFiltersButton: true,\n)"
+            "code": "SizedBox(\n  height: 420,\n  child: SingleChildScrollView(\n    child: SgDatatable(\n      value: _pessoas,\n      columns: [\n        SgDatatableColumn(\n          field: 'nome',\n          header: context.tx('Nome'),\n          filter: true,\n        ),\n        SgDatatableColumn(\n          field: 'cidade',\n          header: context.tx('Cidade'),\n          filter: true,\n          filterMatchMode: SgDatatableFilterMatchMode.startsWith,\n        ),\n        SgDatatableColumn(\n          field: 'salario',\n          header: context.tx('Salário'),\n          excludeGlobalFilter: true,\n        ),\n      ],\n      paginator: true,\n      rows: 5,\n      showGlobalFilter: true,\n      showColumnFilters: true,\n      showClearFiltersButton: true,\n    ),\n  ),\n)"
           },
           {
             "id": "sg-datatable-lazy",
             "title": "Carga sob demanda (lazy)",
             "file": "apps/seedgrid_showcase/lib/pages/sg_datatable_page.dart",
             "kind": "dart",
-            "code": "SgDatatable(\n  value: _paginaLazy,\n  columns: _colunas,\n  lazy: true,\n  paginator: true,\n  infiniteScroll: false,\n  rows: 5,\n  first: _first,\n  totalRecords: _pessoas.length,\n  onPage: _carregar,\n)"
+            "code": "SgDatatable(\n  value: _paginaLazy,\n  columns: _colunas,\n  lazy: true,\n  paginator: true,\n  rows: 5,\n  first: _first,\n  totalRecords: _pessoas.length,\n  onPage: _carregar,\n)"
           },
           {
             "id": "sg-datatable-paginacao",
@@ -5387,6 +5568,20 @@
         ],
         "examples": [
           {
+            "id": "sg-flip-digit-auto",
+            "title": "Auto increment",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_flip_digit_page.dart",
+            "kind": "dart",
+            "code": "Wrap(\n  spacing: 16,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgFlipDigit(value: '$_auto'),\n    SgButton(\n      label: Text(context.tx(_rodando ? 'Parar' : 'Iniciar')),\n      onClick: _alternar,\n    ),\n  ],\n)"
+          },
+          {
+            "id": "sg-flip-digit-basico",
+            "title": "Básico (0-9)",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_flip_digit_page.dart",
+            "kind": "dart",
+            "code": "Wrap(\n  spacing: 16,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgFlipDigit(value: '$_digito'),\n    Wrap(\n      spacing: 8,\n      runSpacing: 8,\n      children: [\n        SgButton(\n          label: Text(context.tx('Próximo (+1)')),\n          onClick: () =>\n              setState(() => _digito = (_digito + 1) % 10),\n        ),\n        SgButton(\n          label: Text(context.tx('Anterior (-1)')),\n          onClick: () =>\n              setState(() => _digito = (_digito + 9) % 10),\n        ),\n        SgButton(\n          label: Text(context.tx('Aleatório')),\n          onClick: () => setState(\n            () => _digito = DateTime.now().microsecond % 10,\n          ),\n        ),\n      ],\n    ),\n  ],\n)"
+          },
+          {
             "id": "sg-flip-digit-contador",
             "title": "Contador",
             "file": "apps/seedgrid_showcase/lib/pages/sg_flip_digit_page.dart",
@@ -5394,11 +5589,18 @@
             "code": "Wrap(\n  spacing: 16,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgFlipDigit(value: '${_n % 10}', fontSize: 56),\n    SgButton(\n      label: const Text('+1'),\n      onClick: () => setState(() => _n++),\n    ),\n    SgButton(\n      label: Text(context.tx('Zerar')),\n      appearance: SgAppearance.outline,\n      onClick: () => setState(() => _n = 0),\n    ),\n  ],\n)"
           },
           {
-            "id": "sg-flip-digit-letras",
-            "title": "Letras",
+            "id": "sg-flip-digit-letras-az",
+            "title": "Letras (A-Z)",
             "file": "apps/seedgrid_showcase/lib/pages/sg_flip_digit_page.dart",
             "kind": "dart",
-            "code": "Wrap(\n  spacing: 16,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgFlipDigit(value: _letter, fontSize: 56),\n    SgButton(\n      label: Text(context.tx('Próxima letra')),\n      onClick: () => setState(\n        () => _letter = String.fromCharCode(\n          65 + (_letter.codeUnitAt(0) - 64) % 26,\n        ),\n      ),\n    ),\n  ],\n)"
+            "code": "Wrap(\n  spacing: 16,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgFlipDigit(value: String.fromCharCode(65 + _letra)),\n    SgButton(\n      label: Text(context.tx('Próxima letra')),\n      onClick: () => setState(() => _letra = (_letra + 1) % 26),\n    ),\n  ],\n)"
+          },
+          {
+            "id": "sg-flip-digit-sequencia",
+            "title": "Sequência estilo relógio",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_flip_digit_page.dart",
+            "kind": "dart",
+            "code": "const Wrap(\n  spacing: 8,\n  runSpacing: 8,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgFlipDigit(value: '2'),\n    SgFlipDigit(value: '3'),\n    Text(\n      ':',\n      style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),\n    ),\n    SgFlipDigit(value: '4'),\n    SgFlipDigit(value: '5'),\n  ],\n)"
           },
           {
             "id": "sg-flip-digit-tamanhos",
@@ -5406,6 +5608,13 @@
             "file": "apps/seedgrid_showcase/lib/pages/sg_flip_digit_page.dart",
             "kind": "dart",
             "code": "Wrap(\n  spacing: 24,\n  runSpacing: 16,\n  crossAxisAlignment: WrapCrossAlignment.end,\n  children: [\n    SgFlipDigit(value: '${_n % 10}', fontSize: 28),\n    SgFlipDigit(value: '${_n % 10}', fontSize: 48),\n    SgFlipDigit(value: '${_n % 10}', fontSize: 72),\n  ],\n)"
+          },
+          {
+            "id": "sg-flip-digit-variacoes",
+            "title": "Variações de tamanho",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_flip_digit_page.dart",
+            "kind": "dart",
+            "code": "Wrap(\n  spacing: 24,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.end,\n  children: [\n    Column(\n      children: [\n        Text(context.tx('Pequeno')),\n        const SgFlipDigit(value: '5', fontSize: 45),\n      ],\n    ),\n    Column(\n      children: [\n        Text(context.tx('Médio')),\n        const SgFlipDigit(value: '5'),\n      ],\n    ),\n    Column(\n      children: [\n        Text(context.tx('Grande')),\n        const SgFlipDigit(value: '5', fontSize: 120),\n      ],\n    ),\n  ],\n)"
           },
           {
             "id": "sg-flip-digit-varios",
@@ -5974,6 +6183,220 @@
           {
             "name": "style",
             "reason": "Estilo por classe ou style inline não existe no Flutter; use as props de estilo do próprio componente."
+          }
+        ]
+      }
+    },
+    {
+      "componentId": "sg-image-upload",
+      "exportName": "SgImageUpload",
+      "sgMeta": {
+        "version": "2026.7.1",
+        "componentId": "sg-image-upload",
+        "package": "seedgrid_components",
+        "exportName": "SgImageUpload",
+        "slug": "sg-image-upload",
+        "displayName": "SgImageUpload",
+        "category": "input",
+        "subcategory": "",
+        "description": "Seleciona uma imagem (clique ou arrastar e soltar), valida tipo, tamanho, dimensao minima e proporcao, mostra a pre-visualizacao e permite remover. Nao envia nada ao servidor: entrega o arquivo ao pai.",
+        "tags": [],
+        "props": [
+          {
+            "name": "accept",
+            "type": "String?",
+            "required": false,
+            "default": "image/*",
+            "description": "Tipos aceitos (image/*, image/png, .png), separados por virgula."
+          },
+          {
+            "name": "aspect",
+            "type": "num?",
+            "required": false,
+            "description": "Proporcao largura/altura exigida (1 = quadrada)."
+          },
+          {
+            "name": "control",
+            "type": "Object?",
+            "required": false,
+            "typeExact": false
+          },
+          {
+            "name": "defaultValue",
+            "type": "Object?",
+            "required": false,
+            "description": "Imagem inicial (campo nao controlado).",
+            "typeExact": false
+          },
+          {
+            "name": "disabled",
+            "type": "bool?",
+            "required": false,
+            "default": "false",
+            "description": "Desabilita a escolha e a remocao."
+          },
+          {
+            "name": "error",
+            "type": "String?",
+            "required": false
+          },
+          {
+            "name": "hintText",
+            "type": "String?",
+            "required": false
+          },
+          {
+            "name": "id",
+            "type": "String",
+            "required": true,
+            "description": "Identificador unico do campo."
+          },
+          {
+            "name": "label",
+            "type": "String?",
+            "required": false,
+            "description": "Rotulo exibido acima da area."
+          },
+          {
+            "name": "labelText",
+            "type": "String?",
+            "required": false
+          },
+          {
+            "name": "maxSizeBytes",
+            "type": "num?",
+            "required": false,
+            "description": "Tamanho maximo em bytes."
+          },
+          {
+            "name": "minHeight",
+            "type": "num?",
+            "required": false,
+            "description": "Altura minima em px."
+          },
+          {
+            "name": "minWidth",
+            "type": "num?",
+            "required": false,
+            "description": "Largura minima em px."
+          },
+          {
+            "name": "name",
+            "type": "String?",
+            "required": false,
+            "description": "Nome do campo para formularios."
+          },
+          {
+            "name": "onChange",
+            "type": "Function?",
+            "required": false,
+            "description": "Arquivo valido escolhido ou null ao remover.",
+            "typeExact": false
+          },
+          {
+            "name": "onEnter",
+            "type": "Function?",
+            "required": false,
+            "typeExact": false
+          },
+          {
+            "name": "onError",
+            "type": "Function?",
+            "required": false,
+            "description": "Arquivo recusado (type, size, dimension, aspect).",
+            "typeExact": false
+          },
+          {
+            "name": "onExit",
+            "type": "Function?",
+            "required": false,
+            "typeExact": false
+          },
+          {
+            "name": "previewHeight",
+            "type": "num?",
+            "required": false,
+            "default": "160",
+            "description": "Altura da area de pre-visualizacao em px (padrao 160)."
+          },
+          {
+            "name": "readOnly",
+            "type": "bool?",
+            "required": false
+          },
+          {
+            "name": "required",
+            "type": "bool?",
+            "required": false
+          },
+          {
+            "name": "requiredMessage",
+            "type": "String?",
+            "required": false
+          },
+          {
+            "name": "rules",
+            "type": "Object?",
+            "required": false,
+            "typeExact": false
+          },
+          {
+            "name": "value",
+            "type": "Object?",
+            "required": false,
+            "description": "Imagem controlada: arquivo escolhido ou URL de uma imagem ja salva.",
+            "typeExact": false
+          }
+        ],
+        "examples": [
+          {
+            "id": "sg-image-upload-basico",
+            "title": "Básico",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_image_upload_page.dart",
+            "kind": "dart",
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgImageUpload(\n      id: 'foto',\n      labelText: 'Foto',\n      onChange: (file) => setState(\n        () => _info = file == null\n            ? null\n            : '${file.name} (${file.size} bytes)',\n      ),\n    ),\n    const SizedBox(height: 8),\n    Text('Valor atual: ${_info ?? '-'}'),\n  ],\n)"
+          },
+          {
+            "id": "sg-image-upload-desabilitado",
+            "title": "Desabilitado",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_image_upload_page.dart",
+            "kind": "dart",
+            "code": "const SgImageUpload(\n  id: 'foto-desabilitada',\n  labelText: 'Foto',\n  disabled: true,\n)"
+          },
+          {
+            "id": "sg-image-upload-formulario",
+            "title": "Dentro de um formulário",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_image_upload_page.dart",
+            "kind": "dart",
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgImageUpload(\n      id: 'documento',\n      name: 'documento',\n      control: _form,\n      labelText: 'Foto do documento',\n      rules: const SgRules(required: 'Escolha uma imagem'),\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _form.handleSubmit(\n        (values) => setState(\n          () =>\n              _enviado = (values['documento'] as SgImageFile).name,\n        ),\n      ),\n    ),\n    if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),\n  ],\n)"
+          },
+          {
+            "id": "sg-image-upload-regras",
+            "title": "Regras de validação",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_image_upload_page.dart",
+            "kind": "dart",
+            "code": "const SgImageUpload(\n  id: 'avatar',\n  labelText: 'Avatar',\n  accept: 'image/png,image/jpeg',\n  maxSizeBytes: 2 * 1024 * 1024,\n  minWidth: 200,\n  minHeight: 200,\n  aspect: 1,\n  hintText: 'PNG ou JPEG, até 2 MB, quadrada, mínimo 200 × 200 px.',\n)"
+          },
+          {
+            "id": "sg-image-upload-salva",
+            "title": "Imagem já salva",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_image_upload_page.dart",
+            "kind": "dart",
+            "code": "const SgImageUpload(\n  id: 'logo',\n  labelText: 'Logotipo',\n  defaultValue:\n      'https://upload.wikimedia.org/wikipedia/commons/4/47/PNG_transparency_demonstration_1.png',\n  previewHeight: 96,\n)"
+          }
+        ],
+        "parity": {
+          "status": "portado",
+          "reason": "O toque abre o seletor do sistema (file_picker) em vez de input type=file com arrastar e soltar; o valor é uma SgImageFile (nome e bytes), e texto em value/defaultValue é a URL de uma imagem salva; não há recorte nem compressão; os validadores do componente rodam no envio do formulário."
+        },
+        "omittedProps": [
+          {
+            "name": "className",
+            "reason": "Estilo por classe ou style inline não existe no Flutter; use as props padding, margin, width, height e customColors."
+          },
+          {
+            "name": "register",
+            "reason": "Não se aplica no Flutter: todo campo é controlado pelo valor e pelo onChange (ou pelo SgFormController)."
           }
         ]
       }
@@ -8187,6 +8610,389 @@
         "parity": {
           "status": "portado",
           "reason": "Campo com máscara por idioma e calendário próprio: data impossível (31/02) mostra Data inválida e alwaysFloat não tem efeito; recriar por key perde o foco (precisa de controller externo no SgInputText); os validadores do componente rodam no envio do formulário."
+        },
+        "omittedProps": [
+          {
+            "name": "className",
+            "reason": "Estilo por classe ou style inline não existe no Flutter; use as props padding, margin, width, height e customColors."
+          },
+          {
+            "name": "labelClassName",
+            "reason": "Estilo por classe ou style inline não existe no Flutter; use as props de estilo do próprio componente."
+          },
+          {
+            "name": "register",
+            "reason": "Não se aplica no Flutter: todo campo é controlado pelo valor e pelo onChange (ou pelo SgFormController)."
+          }
+        ]
+      }
+    },
+    {
+      "componentId": "sg-input-date-time",
+      "exportName": "SgInputDateTime",
+      "sgMeta": {
+        "version": "2026.7.1",
+        "componentId": "sg-input-date-time",
+        "package": "seedgrid_components",
+        "exportName": "SgInputDateTime",
+        "slug": "sg-input-date-time",
+        "displayName": "SgInputDateTime",
+        "category": "input",
+        "subcategory": "",
+        "description": "Campo de data e hora que entrega e recebe instantes ISO 8601 em UTC, exibindo a hora no fuso escolhido, com limites, passo de minutos e validacao.",
+        "tags": [],
+        "props": [
+          {
+            "name": "alwaysFloat",
+            "type": "bool?",
+            "required": false
+          },
+          {
+            "name": "borderRadius",
+            "type": "Object?",
+            "required": false,
+            "typeExact": false
+          },
+          {
+            "name": "clearButton",
+            "type": "bool?",
+            "required": false
+          },
+          {
+            "name": "control",
+            "type": "Object?",
+            "required": false,
+            "typeExact": false
+          },
+          {
+            "name": "defaultValue",
+            "type": "Object?",
+            "required": false,
+            "description": "Instante inicial (nao controlado).",
+            "typeExact": false
+          },
+          {
+            "name": "elevation",
+            "type": "SgInputDateTimeElevation?",
+            "required": false,
+            "values": [
+              "none",
+              "sm",
+              "md",
+              "lg"
+            ]
+          },
+          {
+            "name": "disabled",
+            "type": "bool?",
+            "required": false
+          },
+          {
+            "name": "error",
+            "type": "String?",
+            "required": false
+          },
+          {
+            "name": "filled",
+            "type": "bool?",
+            "required": false
+          },
+          {
+            "name": "hintText",
+            "type": "String?",
+            "required": false
+          },
+          {
+            "name": "iconButtons",
+            "type": "List<Object?>?",
+            "required": false,
+            "typeExact": false
+          },
+          {
+            "name": "id",
+            "type": "String",
+            "required": true,
+            "description": "Identificador unico do campo."
+          },
+          {
+            "name": "inputProps",
+            "type": "Object?",
+            "required": false,
+            "typeExact": false
+          },
+          {
+            "name": "label",
+            "type": "String?",
+            "required": false,
+            "description": "Rotulo principal exibido ao usuario."
+          },
+          {
+            "name": "labelAlign",
+            "type": "SgInputDateTimeLabelAlign?",
+            "required": false,
+            "values": [
+              "start",
+              "center",
+              "end"
+            ]
+          },
+          {
+            "name": "labelPosition",
+            "type": "SgInputDateTimeLabelPosition?",
+            "required": false,
+            "values": [
+              "float",
+              "top",
+              "left"
+            ]
+          },
+          {
+            "name": "labelText",
+            "type": "String?",
+            "required": false
+          },
+          {
+            "name": "labelWidth",
+            "type": "Object?",
+            "required": false,
+            "typeExact": false
+          },
+          {
+            "name": "maxDate",
+            "type": "Object?",
+            "required": false,
+            "description": "Maior instante permitido.",
+            "typeExact": false
+          },
+          {
+            "name": "maxLength",
+            "type": "num?",
+            "required": false
+          },
+          {
+            "name": "maxLengthMessage",
+            "type": "String?",
+            "required": false
+          },
+          {
+            "name": "minDate",
+            "type": "Object?",
+            "required": false,
+            "description": "Menor instante permitido.",
+            "typeExact": false
+          },
+          {
+            "name": "minLength",
+            "type": "num?",
+            "required": false
+          },
+          {
+            "name": "minLengthMessage",
+            "type": "String?",
+            "required": false
+          },
+          {
+            "name": "minNumberOfWords",
+            "type": "num?",
+            "required": false
+          },
+          {
+            "name": "minNumberOfWordsMessage",
+            "type": "String?",
+            "required": false
+          },
+          {
+            "name": "minuteStep",
+            "type": "num?",
+            "required": false,
+            "description": "Passo dos minutos (5, 10, 15, 30)."
+          },
+          {
+            "name": "name",
+            "type": "String?",
+            "required": false,
+            "description": "Nome do campo para formularios."
+          },
+          {
+            "name": "onChange",
+            "type": "Function?",
+            "required": false,
+            "description": "Instante ISO UTC (ou null) e texto local do campo.",
+            "typeExact": false
+          },
+          {
+            "name": "onClear",
+            "type": "Function?",
+            "required": false,
+            "typeExact": false
+          },
+          {
+            "name": "onEnter",
+            "type": "Function?",
+            "required": false,
+            "description": "Disparado ao receber foco — padrao seedgrid.",
+            "typeExact": false
+          },
+          {
+            "name": "onExit",
+            "type": "Function?",
+            "required": false,
+            "description": "Disparado ao perder o foco (apos validacao) — padrao seedgrid.",
+            "typeExact": false
+          },
+          {
+            "name": "onValidation",
+            "type": "Function?",
+            "required": false,
+            "typeExact": false
+          },
+          {
+            "name": "placeholder",
+            "type": "String?",
+            "required": false
+          },
+          {
+            "name": "prefixIcon",
+            "type": "Widget?",
+            "required": false
+          },
+          {
+            "name": "prefixText",
+            "type": "String?",
+            "required": false
+          },
+          {
+            "name": "readOnly",
+            "type": "bool?",
+            "required": false
+          },
+          {
+            "name": "required",
+            "type": "bool?",
+            "required": false,
+            "default": "false",
+            "description": "Marca o campo como obrigatorio."
+          },
+          {
+            "name": "requiredMessage",
+            "type": "String?",
+            "required": false
+          },
+          {
+            "name": "rules",
+            "type": "Object?",
+            "required": false,
+            "typeExact": false
+          },
+          {
+            "name": "showCharCounter",
+            "type": "bool?",
+            "required": false
+          },
+          {
+            "name": "showSeconds",
+            "type": "bool?",
+            "required": false,
+            "default": "false",
+            "description": "Mostra e aceita segundos."
+          },
+          {
+            "name": "suffixText",
+            "type": "String?",
+            "required": false
+          },
+          {
+            "name": "textInputType",
+            "type": "SgInputDateTimeTextInputType?",
+            "required": false,
+            "values": [
+              "none",
+              "email",
+              "search",
+              "tel",
+              "text",
+              "url",
+              "numeric",
+              "decimal"
+            ]
+          },
+          {
+            "name": "timeZone",
+            "type": "String?",
+            "required": false,
+            "default": "local",
+            "description": "Fuso do campo: local, UTC, deslocamento (+03:00) ou nome IANA."
+          },
+          {
+            "name": "validateOnBlur",
+            "type": "bool?",
+            "required": false
+          },
+          {
+            "name": "validation",
+            "type": "Function?",
+            "required": false,
+            "typeExact": false
+          },
+          {
+            "name": "value",
+            "type": "Object?",
+            "required": false,
+            "description": "Instante controlado (ISO 8601 ou Date).",
+            "typeExact": false
+          },
+          {
+            "name": "width",
+            "type": "Object?",
+            "required": false,
+            "typeExact": false
+          },
+          {
+            "name": "withBorder",
+            "type": "bool?",
+            "required": false
+          }
+        ],
+        "examples": [
+          {
+            "id": "sg-input-date-time-basico",
+            "title": "Básico",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_input_date_time_page.dart",
+            "kind": "dart",
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgInputDateTime(\n      id: 'quando',\n      labelText: 'Quando',\n      onChange: (value, local) => setState(() => _instante = value),\n    ),\n    const SizedBox(height: 8),\n    Text('Valor atual: ${_instante ?? '-'}'),\n  ],\n)"
+          },
+          {
+            "id": "sg-input-date-time-formulario",
+            "title": "Dentro de um formulário",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_input_date_time_page.dart",
+            "kind": "dart",
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgInputDateTime(\n      id: 'consulta',\n      name: 'consulta',\n      control: _form,\n      labelText: 'Consulta',\n      timeZone: '-03:00',\n      rules: const SgRules(required: 'Informe a data e a hora'),\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _form.handleSubmit(\n        (values) =>\n            setState(() => _enviado = '${values['consulta']}'),\n      ),\n    ),\n    if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),\n  ],\n)"
+          },
+          {
+            "id": "sg-input-date-time-fusos",
+            "title": "Fusos horários",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_input_date_time_page.dart",
+            "kind": "dart",
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgInputDateTime(\n      id: 'fuso-utc',\n      labelText: 'UTC',\n      timeZone: 'UTC',\n      value: _fuso,\n      onChange: (value, local) =>\n          setState(() => _fuso = value ?? ''),\n    ),\n    const SizedBox(height: 12),\n    SgInputDateTime(\n      id: 'fuso-sp',\n      labelText: '-03:00',\n      timeZone: '-03:00',\n      value: _fuso,\n      onChange: (value, local) =>\n          setState(() => _fuso = value ?? ''),\n    ),\n    const SizedBox(height: 12),\n    SgInputDateTime(\n      id: 'fuso-in',\n      labelText: '+05:30',\n      timeZone: '+05:30',\n      value: _fuso,\n      onChange: (value, local) =>\n          setState(() => _fuso = value ?? ''),\n    ),\n    const SizedBox(height: 8),\n    Text('Valor atual: ${_fuso.isEmpty ? '-' : _fuso}'),\n  ],\n)"
+          },
+          {
+            "id": "sg-input-date-time-limites",
+            "title": "Limites e passo de minutos",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_input_date_time_page.dart",
+            "kind": "dart",
+            "code": "const SgInputDateTime(\n  id: 'limites',\n  labelText: 'Agendamento',\n  timeZone: 'UTC',\n  minDate: '2026-11-01T08:00:00Z',\n  maxDate: '2026-11-30T18:00:00Z',\n  minuteStep: 15,\n  required: true,\n)"
+          },
+          {
+            "id": "sg-input-date-time-segundos",
+            "title": "Com segundos",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_input_date_time_page.dart",
+            "kind": "dart",
+            "code": "const SgInputDateTime(\n  id: 'segundos',\n  labelText: 'Evento',\n  timeZone: 'UTC',\n  defaultValue: '2026-11-03T17:30:45Z',\n  showSeconds: true,\n)"
+          }
+        ],
+        "parity": {
+          "status": "portado",
+          "reason": "Campo com máscara por idioma, calendário próprio e seletor de hora do Material; o valor é o instante ISO 8601 UTC. Fuso: local, UTC ou deslocamento fixo; nome IANA (America/Sao_Paulo) cai em local porque o pacote não traz banco de fusos; alwaysFloat não tem efeito; data impossível mostra Data e hora inválidas; os validadores do componente rodam no envio do formulário."
         },
         "omittedProps": [
           {
@@ -11711,10 +12517,10 @@
             "default": "triangle",
             "values": [
               "circle",
+              "rect",
               "triangle",
               "inverted-triangle",
-              "diamond",
-              "rect"
+              "diamond"
             ]
           },
           {
@@ -13018,11 +13824,25 @@
         ],
         "examples": [
           {
+            "id": "sg-neon-digit-basico",
+            "title": "Básico",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_neon_digit_page.dart",
+            "kind": "dart",
+            "code": "Wrap(\n  spacing: 16,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgNeonDigit(\n      value: '$_digito',\n      color: '#f8fafc',\n      backgroundColor: '#120f2b',\n      shadowColor: '#8b5cf6',\n    ),\n    Wrap(\n      spacing: 8,\n      runSpacing: 8,\n      children: [\n        SgButton(\n          label: Text(context.tx('Próximo (+1)')),\n          onClick: () =>\n              setState(() => _digito = (_digito + 1) % 10),\n        ),\n        SgButton(\n          label: Text(context.tx('Anterior (-1)')),\n          onClick: () =>\n              setState(() => _digito = (_digito + 9) % 10),\n        ),\n      ],\n    ),\n  ],\n)"
+          },
+          {
             "id": "sg-neon-digit-brilho",
             "title": "Brilho neon",
             "file": "apps/seedgrid_showcase/lib/pages/sg_neon_digit_page.dart",
             "kind": "dart",
             "code": "const Wrap(\n  spacing: 32,\n  runSpacing: 32,\n  children: [\n    SgNeonDigit(value: '24'),\n    SgNeonDigit(\n      value: '59',\n      color: '#ff7ad9',\n      shadowColor: '#ff00aa',\n      backgroundColor: '#1a0612',\n    ),\n    SgNeonDigit(\n      value: 'GO',\n      color: '#7dd3fc',\n      shadowColor: '#0ea5e9',\n      backgroundColor: '#04121c',\n    ),\n  ],\n)"
+          },
+          {
+            "id": "sg-neon-digit-escala",
+            "title": "Escala e leitura",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_neon_digit_page.dart",
+            "kind": "dart",
+            "code": "const Wrap(\n  spacing: 16,\n  runSpacing: 16,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgNeonDigit(value: '5', fontSize: 24, padding: 10),\n    SgNeonDigit(value: '5', fontSize: 44, padding: 14),\n    SgNeonDigit(value: '5', fontSize: 72, padding: 18),\n  ],\n)"
           },
           {
             "id": "sg-neon-digit-fonte",
@@ -13032,6 +13852,13 @@
             "code": "const Wrap(\n  spacing: 32,\n  runSpacing: 32,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgNeonDigit(value: '8', shadowStrength: 0.3, fontSize: 36),\n    SgNeonDigit(value: '8', shadowStrength: 2, fontSize: 36),\n    SgNeonDigit(\n      value: 'OK',\n      fontWeight: 'bold',\n      letterSpacing: 6,\n      padding: 20,\n      rounded: 28,\n    ),\n    SgNeonDigit(value: '7', fontWeight: 300, fontSize: 64),\n  ],\n)"
           },
           {
+            "id": "sg-neon-digit-script",
+            "title": "Neon script (referência visual)",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_neon_digit_page.dart",
+            "kind": "dart",
+            "code": "const Wrap(\n  spacing: 16,\n  runSpacing: 16,\n  children: [\n    SgNeonDigit(\n      value: 'Your Text',\n      color: '#e4fbff',\n      backgroundColor: '#090f22',\n      shadowColor: '#47d1ff',\n      font:\n          '\"Brush Script MT\", \"Segoe Script\", \"Lucida Handwriting\", cursive',\n      fontWeight: 500,\n      fontSize: 62,\n      padding: 18,\n      shadowStrength: 1.25,\n    ),\n    SgNeonDigit(\n      value: 'Your Text',\n      color: '#fff7e5',\n      backgroundColor: '#1c120b',\n      shadowColor: '#ffae1a',\n      font:\n          '\"Brush Script MT\", \"Segoe Script\", \"Lucida Handwriting\", cursive',\n      fontWeight: 500,\n      fontSize: 62,\n      padding: 18,\n      shadowStrength: 1.25,\n    ),\n  ],\n)"
+          },
+          {
             "id": "sg-neon-digit-sem-animacao",
             "title": "Sem animação",
             "file": "apps/seedgrid_showcase/lib/pages/sg_neon_digit_page.dart",
@@ -13039,11 +13866,25 @@
             "code": "Builder(\n  builder: (context) {\n    var value = 1;\n    return StatefulBuilder(\n      builder: (context, set) => Row(\n        mainAxisSize: MainAxisSize.min,\n        children: [\n          SgNeonDigit(value: '$value', animateOnChange: false),\n          const SizedBox(width: 24),\n          FilledButton(\n            onPressed: () => set(() => value = value % 9 + 1),\n            child: Text(context.tx('Próximo')),\n          ),\n        ],\n      ),\n    );\n  },\n)"
           },
           {
+            "id": "sg-neon-digit-texto",
+            "title": "Texto em neon",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_neon_digit_page.dart",
+            "kind": "dart",
+            "code": "Wrap(\n  spacing: 16,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgNeonDigit(\n      value: const ['teste', 'seedgrid', 'your text'][_palavra],\n      color: '#e2f6ff',\n      backgroundColor: '#101934',\n      shadowColor: '#47d1ff',\n    ),\n    SgButton(\n      label: Text(context.tx('Trocar texto')),\n      onClick: () => setState(() => _palavra = (_palavra + 1) % 3),\n    ),\n  ],\n)"
+          },
+          {
             "id": "sg-neon-digit-troca",
             "title": "Troca de valor com apagar e acender",
             "file": "apps/seedgrid_showcase/lib/pages/sg_neon_digit_page.dart",
             "kind": "dart",
             "code": "Builder(\n  builder: (context) {\n    var value = 1;\n    return StatefulBuilder(\n      builder: (context, set) => Row(\n        mainAxisSize: MainAxisSize.min,\n        children: [\n          SgNeonDigit(value: '$value', transitionMs: 400),\n          const SizedBox(width: 24),\n          FilledButton(\n            onPressed: () => set(() => value = value % 9 + 1),\n            child: Text(context.tx('Próximo')),\n          ),\n        ],\n      ),\n    );\n  },\n)"
+          },
+          {
+            "id": "sg-neon-digit-variacoes",
+            "title": "Variações de color/background/shadow",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_neon_digit_page.dart",
+            "kind": "dart",
+            "code": "const Wrap(\n  spacing: 16,\n  runSpacing: 16,\n  children: [\n    SgNeonDigit(\n      value: 'teste',\n      color: '#e2f6ff',\n      backgroundColor: '#0b1130',\n      shadowColor: '#38bdf8',\n    ),\n    SgNeonDigit(\n      value: 'teste',\n      color: '#f5e9ff',\n      backgroundColor: '#170f2b',\n      shadowColor: '#a855f7',\n    ),\n    SgNeonDigit(\n      value: 'teste',\n      color: '#fff7e8',\n      backgroundColor: '#2a1a14',\n      shadowColor: '#fb923c',\n    ),\n  ],\n)"
           }
         ],
         "parity": {
@@ -15620,25 +16461,32 @@
             "code": "Wrap(\n  spacing: 8,\n  runSpacing: 8,\n  children: [\n    for (final c in '0123456789-:'.split(''))\n      SgSegmentDigit(value: c, size: 48),\n  ],\n)"
           },
           {
+            "id": "sg-segment-digit-basico",
+            "title": "Básico (0-9)",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_segment_digit_page.dart",
+            "kind": "dart",
+            "code": "Wrap(\n  spacing: 16,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgSegmentDigit(value: '$_digito', size: 64),\n    Wrap(\n      spacing: 8,\n      runSpacing: 8,\n      children: [\n        SgButton(\n          label: Text(context.tx('Próximo (+1)')),\n          onClick: () =>\n              setState(() => _digito = (_digito + 1) % 10),\n        ),\n        SgButton(\n          label: Text(context.tx('Anterior (-1)')),\n          onClick: () =>\n              setState(() => _digito = (_digito + 9) % 10),\n        ),\n        SgButton(\n          label: Text(context.tx('Aleatório')),\n          onClick: () => setState(\n            () => _digito = DateTime.now().microsecond % 10,\n          ),\n        ),\n      ],\n    ),\n  ],\n)"
+          },
+          {
             "id": "sg-segment-digit-cores",
             "title": "Cores",
             "file": "apps/seedgrid_showcase/lib/pages/sg_segment_digit_page.dart",
             "kind": "dart",
-            "code": "const Wrap(\n  spacing: 8,\n  runSpacing: 8,\n  children: [\n    SgSegmentDigit(value: '1', size: 48),\n    SgSegmentDigit(value: '2', size: 48, color: '#ef4444'),\n    SgSegmentDigit(value: '3', size: 48, color: 'rgb(37, 99, 235)'),\n    SgSegmentDigit(\n      value: '4',\n      size: 48,\n      color: 'rgba(22, 163, 74, 0.5)',\n    ),\n  ],\n)"
+            "code": "Wrap(\n  spacing: 24,\n  runSpacing: 12,\n  children: [\n    Column(\n      crossAxisAlignment: CrossAxisAlignment.start,\n      children: [\n        Text(context.tx('Padrão')),\n        SgSegmentDigit(value: '8', size: 42),\n      ],\n    ),\n    Column(\n      crossAxisAlignment: CrossAxisAlignment.start,\n      children: [\n        Text(context.tx('Azul')),\n        SgSegmentDigit(value: '8', size: 42, color: '#3b82f6'),\n      ],\n    ),\n    Column(\n      crossAxisAlignment: CrossAxisAlignment.start,\n      children: [\n        Text(context.tx('Amarelo')),\n        SgSegmentDigit(value: '8', size: 42, color: '#eab308'),\n      ],\n    ),\n    Column(\n      crossAxisAlignment: CrossAxisAlignment.start,\n      children: [\n        Text(context.tx('Verde')),\n        SgSegmentDigit(value: '8', size: 42, color: '#22c55e'),\n      ],\n    ),\n    Column(\n      crossAxisAlignment: CrossAxisAlignment.start,\n      children: [\n        Text(context.tx('Branco')),\n        Container(\n          padding: const EdgeInsets.all(4),\n          decoration: BoxDecoration(\n            color: const Color(0xFF171717),\n            borderRadius: BorderRadius.circular(4),\n          ),\n          child: const SgSegmentDigit(\n            value: '8',\n            size: 42,\n            color: '#f8fafc',\n          ),\n        ),\n      ],\n    ),\n  ],\n)"
           },
           {
-            "id": "sg-segment-digit-hora",
-            "title": "Hora em dígitos",
+            "id": "sg-segment-digit-relogio",
+            "title": "Composição estilo relógio",
             "file": "apps/seedgrid_showcase/lib/pages/sg_segment_digit_page.dart",
             "kind": "dart",
-            "code": "const Row(\n  mainAxisSize: MainAxisSize.min,\n  children: [\n    SgSegmentDigit(value: '1', size: 56),\n    SizedBox(width: 6),\n    SgSegmentDigit(value: '4', size: 56),\n    SizedBox(width: 6),\n    SgSegmentDigit(value: ':', size: 56),\n    SizedBox(width: 6),\n    SgSegmentDigit(value: '0', size: 56),\n    SizedBox(width: 6),\n    SgSegmentDigit(value: '7', size: 56),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    Row(\n      mainAxisSize: MainAxisSize.min,\n      crossAxisAlignment: CrossAxisAlignment.end,\n      children: [\n        SgSegmentDigit(value: hh[0], size: 36),\n        const SizedBox(width: 4),\n        SgSegmentDigit(value: hh[1], size: 36),\n        const SizedBox(width: 4),\n        const SgSegmentDigit(value: ':', size: 36),\n        const SizedBox(width: 4),\n        SgSegmentDigit(value: mm[0], size: 36),\n        const SizedBox(width: 4),\n        SgSegmentDigit(value: mm[1], size: 36),\n        const SizedBox(width: 4),\n        const SgSegmentDigit(value: ':', size: 36),\n        const SizedBox(width: 4),\n        SgSegmentDigit(value: ss[0], size: 36),\n        const SizedBox(width: 4),\n        SgSegmentDigit(value: ss[1], size: 36),\n      ],\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('+1 segundo')),\n      onClick: () => setState(() => _segundos++),\n    ),\n  ],\n)"
           },
           {
             "id": "sg-segment-digit-tamanhos",
             "title": "Tamanhos",
             "file": "apps/seedgrid_showcase/lib/pages/sg_segment_digit_page.dart",
             "kind": "dart",
-            "code": "const Wrap(\n  spacing: 8,\n  runSpacing: 8,\n  crossAxisAlignment: WrapCrossAlignment.end,\n  children: [\n    SgSegmentDigit(value: '8', size: 10),\n    SgSegmentDigit(value: '8', size: 16),\n    SgSegmentDigit(value: '8', size: 32),\n    SgSegmentDigit(value: '8', size: 64),\n    SgSegmentDigit(value: '8', size: 100),\n  ],\n)"
+            "code": "Wrap(\n  spacing: 24,\n  runSpacing: 12,\n  children: [\n    Column(\n      crossAxisAlignment: CrossAxisAlignment.start,\n      children: [\n        Text(context.tx('Pequeno')),\n        SgSegmentDigit(value: '8', size: 18),\n      ],\n    ),\n    Column(\n      crossAxisAlignment: CrossAxisAlignment.start,\n      children: [\n        Text(context.tx('Médio')),\n        SgSegmentDigit(value: '8', size: 32),\n      ],\n    ),\n    Column(\n      crossAxisAlignment: CrossAxisAlignment.start,\n      children: [\n        Text(context.tx('Grande')),\n        SgSegmentDigit(value: '8', size: 52),\n      ],\n    ),\n  ],\n)"
           }
         ],
         "parity": {

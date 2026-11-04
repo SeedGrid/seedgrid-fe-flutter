@@ -1,8 +1,8 @@
 {
  "versaoReact": "2026.7.1",
  "resumo": {
-  "total": 89,
-  "portado": 89,
+  "total": 92,
+  "portado": 92,
   "parcial": 0,
   "pendente": 0,
   "naoAplicavel": 0
@@ -97,6 +97,16 @@
    "props": 19,
    "propsOmitidas": 0,
    "propsGenericas": 12
+  },
+  {
+   "componente": "SgCameraCapture",
+   "onda": 1,
+   "status": "portado",
+   "motivo": "o React usa getUserMedia e devolve um Blob; aqui o pacote camera (dependencia nova do seedgrid_components, decisao do dono) com SgCameraBackend injetavel e a imagem sai como Uint8List JPEG; a camera pausa em segundo plano e reabre ao voltar; onFrame fica fora da primeira versao (analise de qualidade e do host); nao testado em dispositivo real",
+   "onde": "packages/seedgrid_components/lib/src/inputs/camera/sg_camera_capture.dart",
+   "props": 13,
+   "propsOmitidas": 1,
+   "propsGenericas": 2
   },
   {
    "componente": "SgCard",
@@ -339,6 +349,16 @@
    "propsGenericas": 2
   },
   {
+   "componente": "SgImageUpload",
+   "onda": 1,
+   "status": "portado",
+   "motivo": "o React usa input type=file com arrastar e soltar e o File do navegador; aqui o toque abre o seletor do sistema (file_picker) e o valor e uma SgImageFile (nome e bytes); sem arrastar e soltar; value/defaultValue em texto sao a URL de uma imagem salva (Image.network); picker extra substitui o seletor; recorte e compressao ficam fora (decisao do dono); validadores do componente rodam no submit",
+   "onde": "packages/seedgrid_components/lib/src/inputs/files/sg_image_upload.dart",
+   "props": 26,
+   "propsOmitidas": 2,
+   "propsGenericas": 8
+  },
+  {
    "componente": "SgInputBirthDate",
    "onda": 1,
    "status": "portado",
@@ -397,6 +417,16 @@
    "props": 48,
    "propsOmitidas": 3,
    "propsGenericas": 15
+  },
+  {
+   "componente": "SgInputDateTime",
+   "onda": 1,
+   "status": "portado",
+   "motivo": "o React usa input type=datetime-local nativo; aqui campo com mascara por idioma, calendario proprio e seletor de hora do Material. O valor e o instante ISO 8601 UTC. Fuso: local, UTC ou deslocamento fixo; nome IANA (America/Sao_Paulo) cai em local porque o pacote nao traz banco de fusos (sem dependencia nova); alwaysFloat nao tem efeito; data impossivel (31/02) mostra Data e hora invalidas; validadores do componente rodam no submit (decisao do dono)",
+   "onde": "packages/seedgrid_components/lib/src/inputs/masked/sg_input_date_time.dart",
+   "props": 53,
+   "propsOmitidas": 3,
+   "propsGenericas": 17
   },
   {
    "componente": "SgInputEmail",
