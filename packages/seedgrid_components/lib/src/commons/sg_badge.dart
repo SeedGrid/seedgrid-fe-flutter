@@ -73,9 +73,12 @@ SgBadgeColors resolveBadgeColors(
     fg: custom?.fg ?? base.fg,
     border: border,
     softBg: custom?.softBg ?? bg.withValues(alpha: 0.14),
-    softFg: custom?.softFg ?? bg,
+    // neutral: o texto soft/ghost usa o foreground do muted (a propria cor de fundo some no escuro).
+    softFg:
+        custom?.softFg ?? (severity == SgBadgeSeverity.neutral ? base.fg : bg),
     hoverBg: custom?.hoverBg ?? bg.withValues(alpha: 0.12),
-    hoverFg: custom?.hoverFg ?? bg,
+    hoverFg:
+        custom?.hoverFg ?? (severity == SgBadgeSeverity.neutral ? base.fg : bg),
     hoverBorder: custom?.hoverBorder ?? border,
     ring: custom?.ring ?? base.ring,
   );
@@ -308,12 +311,12 @@ class _SgBadgeState extends State<SgBadge> with SingleTickerProviderStateMixin {
       SgBadgeBadgeStyle.soft => (c.softBg, c.softFg, Colors.transparent),
       SgBadgeBadgeStyle.outline => (
         hovered ? c.hoverBg : Colors.transparent,
-        hovered ? c.hoverFg : c.bg,
+        hovered ? c.hoverFg : c.softFg,
         hovered ? c.hoverBorder : c.border,
       ),
       SgBadgeBadgeStyle.ghost => (
         hovered ? c.hoverBg : Colors.transparent,
-        hovered ? c.hoverFg : c.bg,
+        hovered ? c.hoverFg : c.softFg,
         hovered ? c.hoverBorder : Colors.transparent,
       ),
     };

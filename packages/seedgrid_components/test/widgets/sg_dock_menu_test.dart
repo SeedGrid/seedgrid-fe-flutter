@@ -114,6 +114,21 @@ void main() {
     );
 
     testWidgets(
+      'a sombra segue o raio do dock: sem retangulo quadrado atras (P140.F2.T1)',
+      (t) async {
+        await t.pumpWidget(host(SgDockMenu(items: _items())));
+        final dockPaint = find.ancestor(
+          of: _container,
+          matching: find.byType(CustomPaint),
+        );
+        final render = t.renderObject(dockPaint.first);
+        // A sombra e desenhada com drawRRect (nunca drawRect): o canto acompanha o borderRadius.
+        expect(render, paints..rrect());
+        expect(render, isNot(paints..rect()));
+      },
+    );
+
+    testWidgets(
       'os itens nao ficam dentro de um recorte do dock (P139.F1.T1)',
       (t) async {
         await t.pumpWidget(host(SgDockMenu(items: _items())));

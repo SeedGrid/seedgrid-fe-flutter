@@ -22,8 +22,46 @@ class SeverityColors {
   final Color bg, fg, border, ring;
 }
 
+/// Mantem [preferred] se tiver contraste >= 3:1 sobre [bg]; senao troca por preto/branco (o que contrastar mais).
+/// O gerador de tema escolhe o texto pela luminancia (limiar 0,5) e deixa branco sobre o azul `info` do escuro
+/// (2,7:1); corrigir no gerador mudaria o texto de todos os botoes (paridade com o React): aqui e so a severidade.
+Color legibleOn(Color bg, Color preferred) {
+  double ratio(Color a, Color b) {
+    final la = a.computeLuminance(), lb = b.computeLuminance();
+    return (la > lb ? la + 0.05 : lb + 0.05) /
+        (la > lb ? lb + 0.05 : la + 0.05);
+  }
+
+  if (ratio(preferred, bg) >= 3) return preferred;
+  const dark = Color(0xFF0B0B0C), light = Color(0xFFFFFFFF);
+  return ratio(dark, bg) >= ratio(light, bg) ? dark : light;
+}
+
+/// Cores semanticas da severidade, lidas dos tokens `--sg-btn-<severidade>-*` do gerador de tema (os mesmos do
+/// SgButton). Sao eles que distinguem success/warning/info/secondary; os aliases legados (`--tertiary`,
+/// `--accent`) colapsam tudo no mesmo cinza no tema semente (P140). Null se o tema nao tiver o token.
+SeverityColors? semanticSeverityColors(SgTheme t, String severity) {
+  final base = '--sg-btn-$severity';
+  if (!t.vars.containsKey('$base-bg') || !t.vars.containsKey('$base-fg')) {
+    return null;
+  }
+  Color pick(String suffix, Color fallback) =>
+      t.vars.containsKey('$base-$suffix') ? t.color('$base-$suffix') : fallback;
+  final bg = t.color('$base-bg');
+  return SeverityColors(
+    bg: bg,
+    fg: legibleOn(bg, t.color('$base-fg')),
+    border: pick('border', bg),
+    ring: pick('ring', bg.withValues(alpha: 0.35)),
+  );
+}
+
 /// Paleta base das severidades `primary|secondary|success|warning|danger|info|neutral` (`custom` usa a de `primary`).
 SeverityColors severityColors(SgTheme t, String severity) {
+  if (const {'secondary', 'success', 'warning', 'info'}.contains(severity)) {
+    final semantic = semanticSeverityColors(t, severity);
+    if (semantic != null) return semantic;
+  }
   Color c(List<String> chain) => tokenChain(t, chain);
   final ring = tokenChain(t, ['--ring']);
   switch (severity) {

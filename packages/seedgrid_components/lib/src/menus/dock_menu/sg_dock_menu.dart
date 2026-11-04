@@ -569,7 +569,10 @@ class _SgDockMenuState extends State<SgDockMenu> {
           onLongPress: _openContextMenu,
           child: CustomPaint(
             key: _dockKey,
-            painter: _ElevationPainter(_shadows(widget.elevation)),
+            painter: _ElevationPainter(
+              _shadows(widget.elevation),
+              borderRadius,
+            ),
             child: dockBody,
           ),
         ),
@@ -805,18 +808,30 @@ List<BoxShadow> _shadows(SgDockMenuElevation? e) => switch (e ??
 /// Sombra do CSS: retangular (o `div` externo do React nao tem raio) e desenhada so FORA da caixa
 /// (o `box-shadow` do CSS nao aparece por baixo de um fundo translucido).
 class _ElevationPainter extends CustomPainter {
-  const _ElevationPainter(this.shadows);
+  const _ElevationPainter(this.shadows, this.radius);
   final List<BoxShadow> shadows;
+  final double radius;
 
+  // A sombra segue o raio do dock (RRect): com Rect saia um retangulo quadrado atras da parte arredondada (P140).
   @override
   void paint(Canvas canvas, Size size) {
     if (shadows.isEmpty) return;
-    final rect = Offset.zero & size;
+    final rrect = RRect.fromRectAndRadius(
+      Offset.zero & size,
+      Radius.circular(radius),
+    );
+    // Recorta o EXTERIOR do RRect (a sombra so aparece fora do dock).
     canvas.save();
-    canvas.clipRect(rect, clipOp: ui.ClipOp.difference);
+    final outside = Path()
+      ..fillType = PathFillType.evenOdd
+      ..addRect(
+        Rect.fromLTWH(-4096, -4096, size.width + 8192, size.height + 8192),
+      )
+      ..addRRect(rrect);
+    canvas.clipPath(outside, doAntiAlias: true);
     for (final s in shadows) {
-      canvas.drawRect(
-        rect.shift(s.offset).inflate(s.spreadRadius),
+      canvas.drawRRect(
+        rrect.shift(s.offset).inflate(s.spreadRadius),
         s.toPaint(),
       );
     }
@@ -825,7 +840,7 @@ class _ElevationPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(_ElevationPainter old) =>
-      !listEquals(old.shadows, shadows);
+      !listEquals(old.shadows, shadows) || old.radius != radius;
 }
 
 class _DockDelegate extends SingleChildLayoutDelegate {

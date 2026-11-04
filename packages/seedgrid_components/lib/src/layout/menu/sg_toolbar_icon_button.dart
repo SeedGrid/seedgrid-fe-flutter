@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:seedgrid_theme/seedgrid_theme.dart';
 
+import '../../commons/commons_colors.dart';
 import '../../generated/enums.g.dart';
 import '../../generated/sg_toolbar_icon_button.g.dart';
 import '../../theme_access.dart';
@@ -45,6 +46,32 @@ class SgToolbarScope extends InheritedWidget {
   SgToolbarIconButtonSeverity severity,
 ) {
   Color c(String name) => theme.color(name);
+  // Severidades com cor propria no tema (tokens do SgButton): sem isso secondary/info/help/success/warning
+  // colapsavam no mesmo cinza dos aliases legados (P140).
+  final semantic = switch (severity) {
+    SgToolbarIconButtonSeverity.secondary => semanticSeverityColors(
+      theme,
+      'secondary',
+    ),
+    SgToolbarIconButtonSeverity.info => semanticSeverityColors(theme, 'info'),
+    SgToolbarIconButtonSeverity.help => semanticSeverityColors(theme, 'help'),
+    SgToolbarIconButtonSeverity.success => semanticSeverityColors(
+      theme,
+      'success',
+    ),
+    SgToolbarIconButtonSeverity.warning => semanticSeverityColors(
+      theme,
+      'warning',
+    ),
+    _ => null,
+  };
+  if (semantic != null) {
+    return (
+      bg: semantic.bg,
+      fg: semantic.fg,
+      ring: semantic.bg.withValues(alpha: 0.35),
+    );
+  }
   Color bg, fg;
   switch (severity) {
     case SgToolbarIconButtonSeverity.primary:

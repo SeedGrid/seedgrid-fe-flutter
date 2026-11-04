@@ -61,10 +61,6 @@ const _fundoProprio = {
   'SgRoller3DDigit',
   'SgStringAnimator',
   'SgFadeDigit',
-  // P139: os exemplos agora espelham os do React (soft/outline/ghost com secondary, warning, info e neutral).
-  // No tema semente padrao, em modo escuro, esses quatro tokens tem o MESMO fundo cinza escuro; o texto com a
-  // propria cor fica ~1,3:1, igual ao React. E limite do gerador de tema (ver DIVERGENCIAS_DO_REACT.md), nao do widget.
-  'SgBadge',
 };
 
 void main() {
