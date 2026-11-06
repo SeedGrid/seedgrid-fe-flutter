@@ -3412,7 +3412,10 @@
      "name": "columnManagerLabel",
      "optional": true,
      "ts": "string | undefined",
-     "alias": null
+     "alias": null,
+     "description": "Titulo do painel de colunas. Vence o dicionario (components.datatable.columns).",
+     "default": "(dicionario)",
+     "semanticRole": "appearance"
     },
     {
      "name": "columnManagerMaxHeight",
@@ -3427,7 +3430,7 @@
      "optional": false,
      "ts": "SgDatatableColumn<T>[]",
      "alias": null,
-     "description": "Definicao das colunas da tabela.",
+     "description": "Definicao das colunas da tabela. column.filterPlaceholder vence o dicionario (components.datatable.columnFilterPlaceholder).",
      "semanticRole": "data"
     },
     {
@@ -3440,7 +3443,10 @@
      "name": "emptyMessage",
      "optional": true,
      "ts": "string | undefined",
-     "alias": null
+     "alias": null,
+     "description": "Mensagem exibida quando nao ha registros. Vence o dicionario (components.datatable.empty).",
+     "default": "(dicionario)",
+     "semanticRole": "appearance"
     },
     {
      "name": "filters",
@@ -3464,7 +3470,10 @@
      "name": "globalFilterPlaceholder",
      "optional": true,
      "ts": "string | undefined",
-     "alias": null
+     "alias": null,
+     "description": "Placeholder da busca global. Vence o dicionario (components.datatable.globalFilterPlaceholder).",
+     "default": "(dicionario)",
+     "semanticRole": "appearance"
     },
     {
      "name": "groupBoxProps",
@@ -13272,7 +13281,7 @@
     {
      "name": "itemTemplate",
      "optional": true,
-     "ts": "((item: SgOrderListItem, state: { index: number; selected: boolean; disabled: boolean; }) => React.ReactNode) | undefined",
+     "ts": "((item: SgOrderListItem, state: { index: number; selected: boolean; enabled: boolean; }) => React.ReactNode) | undefined",
      "alias": null,
      "fn": true
     },
@@ -14124,7 +14133,7 @@
     {
      "name": "itemTemplate",
      "optional": true,
-     "ts": "((item: SgPickListItem, state: { index: number; selected: boolean; disabled: boolean; list: SgPickListListName; }) => React.ReactNode) | undefined",
+     "ts": "((item: SgPickListItem, state: { index: number; selected: boolean; enabled: boolean; list: SgPickListListName; }) => React.ReactNode) | undefined",
      "alias": null,
      "fn": true
     },

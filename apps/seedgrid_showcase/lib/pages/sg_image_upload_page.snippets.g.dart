@@ -57,6 +57,17 @@ Column(
 )
 ''';
 
+  /// Region `sg-image-upload-idioma`.
+  static const String sgImageUploadIdioma = r'''
+const SgComponentsI18nProvider(
+  locale: 'fr',
+  messages: {
+    'components.inputs.imageupload.drop': 'Arraste a foto aqui',
+  },
+  child: SgImageUpload(id: 'idioma', labelText: 'Foto'),
+)
+''';
+
   /// Region `sg-image-upload-regras`.
   static const String sgImageUploadRegras = r'''
 const SgImageUpload(

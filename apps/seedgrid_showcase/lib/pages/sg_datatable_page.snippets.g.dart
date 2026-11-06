@@ -274,6 +274,35 @@ SizedBox(
 )
 ''';
 
+  /// Region `sg-datatable-idioma`.
+  static const String sgDatatableIdioma = r'''
+const SgComponentsI18nProvider(
+  locale: 'fr',
+  messages: {
+    'components.datatable.empty': 'Texto do dicionário (não aparece)',
+  },
+  child: SgDatatable(
+    id: 'datatable-idioma',
+    title: 'Produtos',
+    value: [],
+    columns: [
+      SgDatatableColumn(
+        field: 'code',
+        header: 'Código',
+        filter: true,
+        filterPlaceholder: 'Digite o código',
+      ),
+      SgDatatableColumn(field: 'name', header: 'Nome', filter: true),
+    ],
+    dataKey: 'code',
+    showGlobalFilter: true,
+    showColumnFilters: true,
+    globalFilterPlaceholder: 'Buscar produtos',
+    emptyMessage: 'Nenhum produto cadastrado.',
+  ),
+)
+''';
+
   /// Region `sg-datatable-lazy`.
   static const String sgDatatableLazy = r'''
 SgDatatable(

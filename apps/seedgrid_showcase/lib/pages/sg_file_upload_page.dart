@@ -129,6 +129,22 @@ class _SgFileUploadPageState extends State<SgFileUploadPage> {
         // #endregion
         code: SgFileUploadPageSnippets.sgFileUploadDesabilitado,
       ),
+      ShowcaseExample(
+        title: 'Idioma e textos (i18n)',
+        description:
+            'Os textos internos vêm do dicionário components.inputs.fileupload.*. Envolva o componente em SgComponentsI18nProvider (ou chame setComponentsI18n) para trocar o idioma e use messages para substituir uma chave.',
+        preview:
+            // #region sg-file-upload-idioma
+            const SgComponentsI18nProvider(
+              locale: 'fr',
+              messages: {
+                'components.inputs.fileupload.drop': 'Arraste o contrato aqui',
+              },
+              child: SgFileUpload(id: 'idioma', labelText: 'Anexo'),
+            ),
+        // #endregion
+        code: SgFileUploadPageSnippets.sgFileUploadIdioma,
+      ),
       // Exemplo só do Flutter (depois dos que espelham o React).
       ShowcaseExample(
         title: 'Dentro de um formulário',

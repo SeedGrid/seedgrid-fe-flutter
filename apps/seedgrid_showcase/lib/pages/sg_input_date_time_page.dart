@@ -132,6 +132,30 @@ class _SgInputDateTimePageState extends State<SgInputDateTimePage> {
         // #endregion
         code: SgInputDateTimePageSnippets.sgInputDateTimeSegundos,
       ),
+      ShowcaseExample(
+        title: 'Idioma e textos (i18n)',
+        description:
+            'Os textos internos vêm do dicionário components.inputs.datetime.*. Envolva o componente em SgComponentsI18nProvider (ou chame setComponentsI18n) para trocar o idioma e use messages para substituir uma chave.',
+        preview:
+            // #region sg-input-date-time-idioma
+            const SgComponentsI18nProvider(
+              locale: 'fr',
+              messages: {
+                'components.inputs.datetime.min':
+                    'Escolha uma data a partir de {min}.',
+              },
+              child: SgInputDateTime(
+                id: 'idioma',
+                labelText: 'Agendamento',
+                timeZone: 'UTC',
+                minDate: '2026-11-01T08:00:00Z',
+                defaultValue: '2026-10-01T10:00:00Z',
+                required: true,
+              ),
+            ),
+        // #endregion
+        code: SgInputDateTimePageSnippets.sgInputDateTimeIdioma,
+      ),
       // Exemplo só do Flutter (depois dos que espelham o React).
       ShowcaseExample(
         title: 'Dentro de um formulário',

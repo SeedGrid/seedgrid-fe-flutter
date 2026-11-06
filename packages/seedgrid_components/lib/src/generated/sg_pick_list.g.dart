@@ -26,7 +26,7 @@ abstract interface class SgPickListProps {
   String? get id;
   /// Padrão: ``.
   String? get itemClassName;
-  /// Tipo TS: `((item: SgPickListItem, state: { index: number; selected: boolean; disabled: boolean; list: SgPickListListName; }) =&gt; React.ReactNode)` (sem tradução exata; ver excecoes.json).
+  /// Tipo TS: `((item: SgPickListItem, state: { index: number; selected: boolean; enabled: boolean; list: SgPickListListName; }) =&gt; React.ReactNode)` (sem tradução exata; ver excecoes.json).
   Function? get itemTemplate;
   /// Padrão: ``.
   String? get listClassName;
@@ -149,7 +149,7 @@ const List<SgPropSpec> sgPickListPropSpecs = <SgPropSpec>[
     name: 'itemTemplate',
     reactName: 'itemTemplate',
     type: 'Function?',
-    tsType: '((item: SgPickListItem, state: { index: number; selected: boolean; disabled: boolean; list: SgPickListListName; }) => React.ReactNode)',
+    tsType: '((item: SgPickListItem, state: { index: number; selected: boolean; enabled: boolean; list: SgPickListListName; }) => React.ReactNode)',
     required: false,
     exact: false,
   ),

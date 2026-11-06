@@ -135,6 +135,20 @@ class _SgCameraCapturePageState extends State<SgCameraCapturePage> {
         // #endregion
         code: SgCameraCapturePageSnippets.sgCameraCaptureErros,
       ),
+      ShowcaseExample(
+        title: 'Idioma e textos (i18n)',
+        description:
+            'Os textos internos vêm do dicionário components.inputs.camera.*. Envolva o componente em SgComponentsI18nProvider (ou chame setComponentsI18n) para trocar o idioma e use messages para substituir uma chave.',
+        preview:
+            // #region sg-camera-capture-idioma
+            const SgComponentsI18nProvider(
+              locale: 'fr',
+              messages: {'components.inputs.camera.capture': 'Tirar foto agora'},
+              child: SgCameraCapture(id: 'idioma', labelText: 'Foto'),
+            ),
+        // #endregion
+        code: SgCameraCapturePageSnippets.sgCameraCaptureIdioma,
+      ),
     ];
 
     return SgShowcasePage(

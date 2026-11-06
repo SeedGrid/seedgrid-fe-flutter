@@ -107,6 +107,25 @@ Column(
 )
 ''';
 
+  /// Region `sg-input-date-time-idioma`.
+  static const String sgInputDateTimeIdioma = r'''
+const SgComponentsI18nProvider(
+  locale: 'fr',
+  messages: {
+    'components.inputs.datetime.min':
+        'Escolha uma data a partir de {min}.',
+  },
+  child: SgInputDateTime(
+    id: 'idioma',
+    labelText: 'Agendamento',
+    timeZone: 'UTC',
+    minDate: '2026-11-01T08:00:00Z',
+    defaultValue: '2026-10-01T10:00:00Z',
+    required: true,
+  ),
+)
+''';
+
   /// Region `sg-input-date-time-limites`.
   static const String sgInputDateTimeLimites = r'''
 const SgInputDateTime(

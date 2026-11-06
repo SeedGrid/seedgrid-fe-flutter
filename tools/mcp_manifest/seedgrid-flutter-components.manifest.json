@@ -2057,6 +2057,13 @@
             "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SizedBox(\n      width: 320,\n      child: SgCameraCapture(\n        id: 'foto-erros',\n        labelText: 'Foto',\n        previewHeight: 240,\n        onError: (code, message) =>\n            setState(() => _cameraError = '${code.name}: $message'),\n      ),\n    ),\n    const SizedBox(height: 8),\n    Text('Valor atual: ${_cameraError ?? '-'}'),\n  ],\n)"
           },
           {
+            "id": "sg-camera-capture-idioma",
+            "title": "Idioma e textos (i18n)",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_camera_capture_page.dart",
+            "kind": "dart",
+            "code": "const SgComponentsI18nProvider(\n  locale: 'fr',\n  messages: {'components.inputs.camera.capture': 'Tirar foto agora'},\n  child: SgCameraCapture(id: 'idioma', labelText: 'Foto'),\n)"
+          },
+          {
             "id": "sg-camera-capture-oval",
             "title": "Guia oval (selfie)",
             "file": "apps/seedgrid_showcase/lib/pages/sg_camera_capture_page.dart",
@@ -4080,7 +4087,9 @@
           {
             "name": "columnManagerLabel",
             "type": "String?",
-            "required": false
+            "required": false,
+            "default": "(dicionario)",
+            "description": "Titulo do painel de colunas. Vence o dicionario (components.datatable.columns)."
           },
           {
             "name": "columnManagerMaxHeight",
@@ -4093,7 +4102,7 @@
             "name": "columns",
             "type": "List<Object?>",
             "required": true,
-            "description": "Definicao das colunas da tabela.",
+            "description": "Definicao das colunas da tabela. column.filterPlaceholder vence o dicionario (components.datatable.columnFilterPlaceholder).",
             "typeExact": false
           },
           {
@@ -4104,7 +4113,9 @@
           {
             "name": "emptyMessage",
             "type": "String?",
-            "required": false
+            "required": false,
+            "default": "(dicionario)",
+            "description": "Mensagem exibida quando nao ha registros. Vence o dicionario (components.datatable.empty)."
           },
           {
             "name": "filters",
@@ -4125,7 +4136,9 @@
           {
             "name": "globalFilterPlaceholder",
             "type": "String?",
-            "required": false
+            "required": false,
+            "default": "(dicionario)",
+            "description": "Placeholder da busca global. Vence o dicionario (components.datatable.globalFilterPlaceholder)."
           },
           {
             "name": "groupBoxProps",
@@ -4390,6 +4403,13 @@
             "file": "apps/seedgrid_showcase/lib/pages/sg_datatable_page.dart",
             "kind": "dart",
             "code": "SizedBox(\n  height: 420,\n  child: SingleChildScrollView(\n    child: SgDatatable(\n      value: _pessoas,\n      columns: [\n        SgDatatableColumn(\n          field: 'nome',\n          header: context.tx('Nome'),\n          filter: true,\n        ),\n        SgDatatableColumn(\n          field: 'cidade',\n          header: context.tx('Cidade'),\n          filter: true,\n          filterMatchMode: SgDatatableFilterMatchMode.startsWith,\n        ),\n        SgDatatableColumn(\n          field: 'salario',\n          header: context.tx('Salário'),\n          excludeGlobalFilter: true,\n        ),\n      ],\n      paginator: true,\n      rows: 5,\n      showGlobalFilter: true,\n      showColumnFilters: true,\n      showClearFiltersButton: true,\n    ),\n  ),\n)"
+          },
+          {
+            "id": "sg-datatable-idioma",
+            "title": "Idioma e textos (i18n)",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_datatable_page.dart",
+            "kind": "dart",
+            "code": "const SgComponentsI18nProvider(\n  locale: 'fr',\n  messages: {\n    'components.datatable.empty': 'Texto do dicionário (não aparece)',\n  },\n  child: SgDatatable(\n    id: 'datatable-idioma',\n    title: 'Produtos',\n    value: [],\n    columns: [\n      SgDatatableColumn(\n        field: 'code',\n        header: 'Código',\n        filter: true,\n        filterPlaceholder: 'Digite o código',\n      ),\n      SgDatatableColumn(field: 'name', header: 'Nome', filter: true),\n    ],\n    dataKey: 'code',\n    showGlobalFilter: true,\n    showColumnFilters: true,\n    globalFilterPlaceholder: 'Buscar produtos',\n    emptyMessage: 'Nenhum produto cadastrado.',\n  ),\n)"
           },
           {
             "id": "sg-datatable-lazy",
@@ -5952,6 +5972,13 @@
             "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgFileUpload(\n      id: 'comprovantes',\n      name: 'comprovantes',\n      control: _form,\n      labelText: 'Comprovantes',\n      maxFiles: 3,\n      rules: const SgRules(required: 'Anexe ao menos um arquivo'),\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _form.handleSubmit(\n        (values) => setState(\n          () => _enviado =\n              '${(values['comprovantes'] as List).length} arquivo(s)',\n        ),\n      ),\n    ),\n    if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),\n  ],\n)"
           },
           {
+            "id": "sg-file-upload-idioma",
+            "title": "Idioma e textos (i18n)",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_file_upload_page.dart",
+            "kind": "dart",
+            "code": "const SgComponentsI18nProvider(\n  locale: 'fr',\n  messages: {\n    'components.inputs.fileupload.drop': 'Arraste o contrato aqui',\n  },\n  child: SgFileUpload(id: 'idioma', labelText: 'Anexo'),\n)"
+          },
+          {
             "id": "sg-file-upload-limites",
             "title": "Limites de tamanho",
             "file": "apps/seedgrid_showcase/lib/pages/sg_file_upload_page.dart",
@@ -6909,6 +6936,13 @@
             "file": "apps/seedgrid_showcase/lib/pages/sg_image_upload_page.dart",
             "kind": "dart",
             "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgImageUpload(\n      id: 'documento',\n      name: 'documento',\n      control: _form,\n      labelText: 'Foto do documento',\n      rules: const SgRules(required: 'Escolha uma imagem'),\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _form.handleSubmit(\n        (values) => setState(\n          () => _enviado =\n              (values['documento'] as List).cast<SgFile>().first.name,\n        ),\n      ),\n    ),\n    if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),\n  ],\n)"
+          },
+          {
+            "id": "sg-image-upload-idioma",
+            "title": "Idioma e textos (i18n)",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_image_upload_page.dart",
+            "kind": "dart",
+            "code": "const SgComponentsI18nProvider(\n  locale: 'fr',\n  messages: {\n    'components.inputs.imageupload.drop': 'Arraste a foto aqui',\n  },\n  child: SgImageUpload(id: 'idioma', labelText: 'Foto'),\n)"
           },
           {
             "id": "sg-image-upload-regras",
@@ -9696,6 +9730,13 @@
             "file": "apps/seedgrid_showcase/lib/pages/sg_input_date_time_page.dart",
             "kind": "dart",
             "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgInputDateTime(\n      id: 'fuso-utc',\n      labelText: 'UTC',\n      timeZone: 'UTC',\n      value: _fuso,\n      // Campo incompleto (null) nao mexe nos outros: so um instante valido atualiza.\n      onChange: (value, local) {\n        if (value != null) setState(() => _fuso = value);\n      },\n    ),\n    const SizedBox(height: 12),\n    SgInputDateTime(\n      id: 'fuso-sp',\n      labelText: '-03:00',\n      timeZone: '-03:00',\n      value: _fuso,\n      // Campo incompleto (null) nao mexe nos outros: so um instante valido atualiza.\n      onChange: (value, local) {\n        if (value != null) setState(() => _fuso = value);\n      },\n    ),\n    const SizedBox(height: 12),\n    SgInputDateTime(\n      id: 'fuso-in',\n      labelText: '+05:30',\n      timeZone: '+05:30',\n      value: _fuso,\n      // Campo incompleto (null) nao mexe nos outros: so um instante valido atualiza.\n      onChange: (value, local) {\n        if (value != null) setState(() => _fuso = value);\n      },\n    ),\n    const SizedBox(height: 8),\n    Text('Valor atual: $_fuso'),\n  ],\n)"
+          },
+          {
+            "id": "sg-input-date-time-idioma",
+            "title": "Idioma e textos (i18n)",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_input_date_time_page.dart",
+            "kind": "dart",
+            "code": "const SgComponentsI18nProvider(\n  locale: 'fr',\n  messages: {\n    'components.inputs.datetime.min':\n        'Escolha uma data a partir de {min}.',\n  },\n  child: SgInputDateTime(\n    id: 'idioma',\n    labelText: 'Agendamento',\n    timeZone: 'UTC',\n    minDate: '2026-11-01T08:00:00Z',\n    defaultValue: '2026-10-01T10:00:00Z',\n    required: true,\n  ),\n)"
           },
           {
             "id": "sg-input-date-time-limites",

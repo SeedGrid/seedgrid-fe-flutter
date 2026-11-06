@@ -25,7 +25,7 @@ abstract interface class SgOrderListProps {
   String? get id;
   /// Padrão: ``.
   String? get itemClassName;
-  /// Tipo TS: `((item: SgOrderListItem, state: { index: number; selected: boolean; disabled: boolean; }) =&gt; React.ReactNode)` (sem tradução exata; ver excecoes.json).
+  /// Tipo TS: `((item: SgOrderListItem, state: { index: number; selected: boolean; enabled: boolean; }) =&gt; React.ReactNode)` (sem tradução exata; ver excecoes.json).
   Function? get itemTemplate;
   /// Padrão: ``.
   String? get listClassName;
@@ -131,7 +131,7 @@ const List<SgPropSpec> sgOrderListPropSpecs = <SgPropSpec>[
     name: 'itemTemplate',
     reactName: 'itemTemplate',
     type: 'Function?',
-    tsType: '((item: SgOrderListItem, state: { index: number; selected: boolean; disabled: boolean; }) => React.ReactNode)',
+    tsType: '((item: SgOrderListItem, state: { index: number; selected: boolean; enabled: boolean; }) => React.ReactNode)',
     required: false,
     exact: false,
   ),

@@ -130,6 +130,22 @@ class _SgImageUploadPageState extends State<SgImageUploadPage> {
         // #endregion
         code: SgImageUploadPageSnippets.sgImageUploadDesabilitado,
       ),
+      ShowcaseExample(
+        title: 'Idioma e textos (i18n)',
+        description:
+            'Os textos internos vêm do dicionário components.inputs.imageupload.*. Envolva o componente em SgComponentsI18nProvider (ou chame setComponentsI18n) para trocar o idioma e use messages para substituir uma chave.',
+        preview:
+            // #region sg-image-upload-idioma
+            const SgComponentsI18nProvider(
+              locale: 'fr',
+              messages: {
+                'components.inputs.imageupload.drop': 'Arraste a foto aqui',
+              },
+              child: SgImageUpload(id: 'idioma', labelText: 'Foto'),
+            ),
+        // #endregion
+        code: SgImageUploadPageSnippets.sgImageUploadIdioma,
+      ),
       // Exemplo só do Flutter (depois dos que espelham o React).
       ShowcaseExample(
         title: 'Dentro de um formulário',

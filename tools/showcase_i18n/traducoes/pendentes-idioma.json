@@ -1,0 +1,62 @@
+{
+ "Os textos internos vêm do dicionário components.inputs.fileupload.*. Envolva o componente em SgComponentsI18nProvider (ou chame setComponentsI18n) para trocar o idioma e use messages para substituir uma chave.": [
+  "Built-in texts come from the components.inputs.fileupload.* dictionary. Wrap the component in SgComponentsI18nProvider (or call setComponentsI18n) to change the language, and use messages to override a key.",
+  "Os textos internos vêm do dicionário components.inputs.fileupload.*. Envolva o componente em SgComponentsI18nProvider (ou chame setComponentsI18n) para mudar o idioma e use messages para substituir uma chave.",
+  "Los textos internos vienen del diccionario components.inputs.fileupload.*. Envuelve el componente en SgComponentsI18nProvider (o llama a setComponentsI18n) para cambiar el idioma y usa messages para reemplazar una clave.",
+  "Les textes internes proviennent du dictionnaire components.inputs.fileupload.*. Enveloppez le composant dans SgComponentsI18nProvider (ou appelez setComponentsI18n) pour changer la langue, et utilisez messages pour remplacer une clé."
+ ],
+ "Os textos internos vêm do dicionário components.inputs.imageupload.*. Envolva o componente em SgComponentsI18nProvider (ou chame setComponentsI18n) para trocar o idioma e use messages para substituir uma chave.": [
+  "Built-in texts come from the components.inputs.imageupload.* dictionary. Wrap the component in SgComponentsI18nProvider (or call setComponentsI18n) to change the language, and use messages to override a key.",
+  "Os textos internos vêm do dicionário components.inputs.imageupload.*. Envolva o componente em SgComponentsI18nProvider (ou chame setComponentsI18n) para mudar o idioma e use messages para substituir uma chave.",
+  "Los textos internos vienen del diccionario components.inputs.imageupload.*. Envuelve el componente en SgComponentsI18nProvider (o llama a setComponentsI18n) para cambiar el idioma y usa messages para reemplazar una clave.",
+  "Les textes internes proviennent du dictionnaire components.inputs.imageupload.*. Enveloppez le composant dans SgComponentsI18nProvider (ou appelez setComponentsI18n) pour changer la langue, et utilisez messages pour remplacer une clé."
+ ],
+ "Os textos internos vêm do dicionário components.inputs.camera.*. Envolva o componente em SgComponentsI18nProvider (ou chame setComponentsI18n) para trocar o idioma e use messages para substituir uma chave.": [
+  "Built-in texts come from the components.inputs.camera.* dictionary. Wrap the component in SgComponentsI18nProvider (or call setComponentsI18n) to change the language, and use messages to override a key.",
+  "Os textos internos vêm do dicionário components.inputs.camera.*. Envolva o componente em SgComponentsI18nProvider (ou chame setComponentsI18n) para mudar o idioma e use messages para substituir uma chave.",
+  "Los textos internos vienen del diccionario components.inputs.camera.*. Envuelve el componente en SgComponentsI18nProvider (o llama a setComponentsI18n) para cambiar el idioma y usa messages para reemplazar una clave.",
+  "Les textes internes proviennent du dictionnaire components.inputs.camera.*. Enveloppez le composant dans SgComponentsI18nProvider (ou appelez setComponentsI18n) pour changer la langue, et utilisez messages pour remplacer une clé."
+ ],
+ "Os textos internos vêm do dicionário components.inputs.datetime.*. Envolva o componente em SgComponentsI18nProvider (ou chame setComponentsI18n) para trocar o idioma e use messages para substituir uma chave.": [
+  "Built-in texts come from the components.inputs.datetime.* dictionary. Wrap the component in SgComponentsI18nProvider (or call setComponentsI18n) to change the language, and use messages to override a key.",
+  "Os textos internos vêm do dicionário components.inputs.datetime.*. Envolva o componente em SgComponentsI18nProvider (ou chame setComponentsI18n) para mudar o idioma e use messages para substituir uma chave.",
+  "Los textos internos vienen del diccionario components.inputs.datetime.*. Envuelve el componente en SgComponentsI18nProvider (o llama a setComponentsI18n) para cambiar el idioma y usa messages para reemplazar una clave.",
+  "Les textes internes proviennent du dictionnaire components.inputs.datetime.*. Enveloppez le composant dans SgComponentsI18nProvider (ou appelez setComponentsI18n) pour changer la langue, et utilisez messages pour remplacer une clé."
+ ],
+ "Os textos internos vêm do dicionário components.datatable.*. Envolva o componente em SgComponentsI18nProvider (ou chame setComponentsI18n) para trocar o idioma e use messages para substituir uma chave. As props de texto (emptyMessage, columnManagerLabel, globalFilterPlaceholder e column.filterPlaceholder) vencem o dicionário; sem elas, vale components.datatable.*.": [
+  "Built-in texts come from the components.datatable.* dictionary. Wrap the component in SgComponentsI18nProvider (or call setComponentsI18n) to change the language, and use messages to override a key. The text props (emptyMessage, columnManagerLabel, globalFilterPlaceholder and column.filterPlaceholder) win over the dictionary; without them, components.datatable.* applies.",
+  "Os textos internos vêm do dicionário components.datatable.*. Envolva o componente em SgComponentsI18nProvider (ou chame setComponentsI18n) para mudar o idioma e use messages para substituir uma chave. As props de texto (emptyMessage, columnManagerLabel, globalFilterPlaceholder e column.filterPlaceholder) prevalecem sobre o dicionário; sem elas, vale components.datatable.*.",
+  "Los textos internos vienen del diccionario components.datatable.*. Envuelve el componente en SgComponentsI18nProvider (o llama a setComponentsI18n) para cambiar el idioma y usa messages para reemplazar una clave. Las props de texto (emptyMessage, columnManagerLabel, globalFilterPlaceholder y column.filterPlaceholder) prevalecen sobre el diccionario; sin ellas, vale components.datatable.*.",
+  "Les textes internes proviennent du dictionnaire components.datatable.*. Enveloppez le composant dans SgComponentsI18nProvider (ou appelez setComponentsI18n) pour changer la langue, et utilisez messages pour remplacer une clé. Les props de texte (emptyMessage, columnManagerLabel, globalFilterPlaceholder et column.filterPlaceholder) l'emportent sur le dictionnaire ; sans elles, components.datatable.* s'applique."
+ ],
+ "Idioma e textos (i18n)": [
+  "Language and texts (i18n)",
+  "Idioma e textos (i18n)",
+  "Idioma y textos (i18n)",
+  "Langue et textes (i18n)"
+ ],
+ "Titulo do painel de colunas. Vence o dicionario (components.datatable.columns).": [
+  "Title of the columns panel. Wins over the dictionary (components.datatable.columns).",
+  "Título do painel de colunas. Prevalece sobre o dicionário (components.datatable.columns).",
+  "Título del panel de columnas. Prevalece sobre el diccionario (components.datatable.columns).",
+  "Titre du panneau des colonnes. L'emporte sur le dictionnaire (components.datatable.columns)."
+ ],
+ "Definicao das colunas da tabela. column.filterPlaceholder vence o dicionario (components.datatable.columnFilterPlaceholder).": [
+  "Table column definitions. column.filterPlaceholder wins over the dictionary (components.datatable.columnFilterPlaceholder).",
+  "Definição das colunas da tabela. column.filterPlaceholder prevalece sobre o dicionário (components.datatable.columnFilterPlaceholder).",
+  "Definición de las columnas de la tabla. column.filterPlaceholder prevalece sobre el diccionario (components.datatable.columnFilterPlaceholder).",
+  "Définition des colonnes du tableau. column.filterPlaceholder l'emporte sur le dictionnaire (components.datatable.columnFilterPlaceholder)."
+ ],
+ "Mensagem exibida quando nao ha registros. Vence o dicionario (components.datatable.empty).": [
+  "Message shown when there are no records. Wins over the dictionary (components.datatable.empty).",
+  "Mensagem apresentada quando não há registos. Prevalece sobre o dicionário (components.datatable.empty).",
+  "Mensaje mostrado cuando no hay registros. Prevalece sobre el diccionario (components.datatable.empty).",
+  "Message affiché lorsqu'il n'y a aucun enregistrement. L'emporte sur le dictionnaire (components.datatable.empty)."
+ ],
+ "Placeholder da busca global. Vence o dicionario (components.datatable.globalFilterPlaceholder).": [
+  "Global search placeholder. Wins over the dictionary (components.datatable.globalFilterPlaceholder).",
+  "Placeholder da pesquisa global. Prevalece sobre o dicionário (components.datatable.globalFilterPlaceholder).",
+  "Placeholder de la búsqueda global. Prevalece sobre el diccionario (components.datatable.globalFilterPlaceholder).",
+  "Placeholder de la recherche globale. L'emporte sur le dictionnaire (components.datatable.globalFilterPlaceholder)."
+ ]
+}

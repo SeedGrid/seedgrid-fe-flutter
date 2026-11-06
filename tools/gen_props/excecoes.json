@@ -3647,7 +3647,7 @@
    "componente": "SgOrderList",
    "prop": "itemTemplate",
    "motivo": "funcao",
-   "ts": "((item: SgOrderListItem, state: { index: number; selected: boolean; disabled: boolean; }) => React.ReactNode)"
+   "ts": "((item: SgOrderListItem, state: { index: number; selected: boolean; enabled: boolean; }) => React.ReactNode)"
   },
   {
    "componente": "SgOrderList",
@@ -3797,7 +3797,7 @@
    "componente": "SgPickList",
    "prop": "itemTemplate",
    "motivo": "funcao",
-   "ts": "((item: SgPickListItem, state: { index: number; selected: boolean; disabled: boolean; list: SgPickListListName; }) => React.ReactNode)"
+   "ts": "((item: SgPickListItem, state: { index: number; selected: boolean; enabled: boolean; list: SgPickListListName; }) => React.ReactNode)"
   },
   {
    "componente": "SgPickList",

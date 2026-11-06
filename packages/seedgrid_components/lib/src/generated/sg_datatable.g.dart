@@ -10,17 +10,20 @@ import '../props/sg_prop_spec.dart';
 /// Props públicas de `SgDatatable` no React — Tabela de dados interativa com colunas configuraveis, paginacao, ordenacao, filtro, selecao e persistencia de layout de colunas. Em celular vira lista de cartoes automaticamente (mobileMode omitido = automatico).
 /// O widget deve declarar `implements SgDatatableProps`.
 abstract interface class SgDatatableProps {
+  /// Titulo do painel de colunas. Vence o dicionario (components.datatable.columns). Padrão: `(dicionario)`.
   String? get columnManagerLabel;
   /// Padrão: `320`. Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get columnManagerMaxHeight;
-  /// Definicao das colunas da tabela. Tipo TS: `SgDatatableColumn&lt;T&gt;[]` (sem tradução exata; ver excecoes.json).
+  /// Definicao das colunas da tabela. column.filterPlaceholder vence o dicionario (components.datatable.columnFilterPlaceholder). Tipo TS: `SgDatatableColumn&lt;T&gt;[]` (sem tradução exata; ver excecoes.json).
   List<Object?> get columns;
   String? get dataKey;
+  /// Mensagem exibida quando nao ha registros. Vence o dicionario (components.datatable.empty). Padrão: `(dicionario)`.
   String? get emptyMessage;
   /// Tipo TS: `Record&lt;string, string&gt;` (sem tradução exata; ver excecoes.json).
   Object? get filters;
   num? get first;
   String? get globalFilter;
+  /// Placeholder da busca global. Vence o dicionario (components.datatable.globalFilterPlaceholder). Padrão: `(dicionario)`.
   String? get globalFilterPlaceholder;
   /// Padrão: `{}`. Tipo TS: `(Omit&lt;Partial&lt;SgGroupBoxProps&gt;, "title" | "children"&gt; & { title?: string; })` (sem tradução exata; ver excecoes.json).
   Object? get groupBoxProps;
@@ -93,6 +96,8 @@ const List<SgPropSpec> sgDatatablePropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
+    defaultValue: '(dicionario)',
+    description: 'Titulo do painel de colunas. Vence o dicionario (components.datatable.columns).',
   ),
   SgPropSpec(
     name: 'columnManagerMaxHeight',
@@ -109,7 +114,7 @@ const List<SgPropSpec> sgDatatablePropSpecs = <SgPropSpec>[
     type: 'List<Object?>',
     tsType: 'SgDatatableColumn<T>[]',
     required: true,
-    description: 'Definicao das colunas da tabela.',
+    description: 'Definicao das colunas da tabela. column.filterPlaceholder vence o dicionario (components.datatable.columnFilterPlaceholder).',
     exact: false,
   ),
   SgPropSpec(
@@ -125,6 +130,8 @@ const List<SgPropSpec> sgDatatablePropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
+    defaultValue: '(dicionario)',
+    description: 'Mensagem exibida quando nao ha registros. Vence o dicionario (components.datatable.empty).',
   ),
   SgPropSpec(
     name: 'filters',
@@ -154,6 +161,8 @@ const List<SgPropSpec> sgDatatablePropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
+    defaultValue: '(dicionario)',
+    description: 'Placeholder da busca global. Vence o dicionario (components.datatable.globalFilterPlaceholder).',
   ),
   SgPropSpec(
     name: 'groupBoxProps',

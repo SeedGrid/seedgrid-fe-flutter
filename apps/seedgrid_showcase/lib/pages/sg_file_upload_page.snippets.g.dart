@@ -59,6 +59,17 @@ Column(
 )
 ''';
 
+  /// Region `sg-file-upload-idioma`.
+  static const String sgFileUploadIdioma = r'''
+const SgComponentsI18nProvider(
+  locale: 'fr',
+  messages: {
+    'components.inputs.fileupload.drop': 'Arraste o contrato aqui',
+  },
+  child: SgFileUpload(id: 'idioma', labelText: 'Anexo'),
+)
+''';
+
   /// Region `sg-file-upload-limites`.
   static const String sgFileUploadLimites = r'''
 const SgFileUpload(
