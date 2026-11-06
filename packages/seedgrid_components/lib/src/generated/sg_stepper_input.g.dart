@@ -13,8 +13,8 @@ abstract interface class SgStepperInputProps {
   /// Tipo TS: `any` (sem tradução exata; ver excecoes.json).
   Object? get control;
   num? get defaultValue;
-  /// Desabilita interacao. Padrão: `false`.
-  bool? get disabled;
+  /// Desabilita interacao. Padrão: `true`.
+  bool? get enabled;
   String? get error;
   /// Identificador unico do componente.
   String get id;
@@ -64,12 +64,12 @@ const List<SgPropSpec> sgStepperInputPropSpecs = <SgPropSpec>[
     required: false,
   ),
   SgPropSpec(
-    name: 'disabled',
-    reactName: 'disabled',
+    name: 'enabled',
+    reactName: 'enabled',
     type: 'bool?',
     tsType: 'boolean',
     required: false,
-    defaultValue: 'false',
+    defaultValue: 'true',
     description: 'Desabilita interacao.',
   ),
   SgPropSpec(

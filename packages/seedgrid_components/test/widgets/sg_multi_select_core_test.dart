@@ -8,7 +8,7 @@ const _opts = [
   SgMultiSelectOption(label: 'Alpha', value: 'a'),
   SgMultiSelectOption(label: 'Beta', value: 'b', chipLabel: 'B'),
   SgMultiSelectOption(label: 'Gamma', value: 'c'),
-  SgMultiSelectOption(label: 'Delta', value: 'd', disabled: true),
+  SgMultiSelectOption(label: 'Delta', value: 'd', enabled: false),
 ];
 
 KeyDownEvent down(LogicalKeyboardKey k) => KeyDownEvent(

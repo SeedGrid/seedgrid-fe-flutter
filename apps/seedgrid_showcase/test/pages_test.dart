@@ -49,29 +49,63 @@ void main() {
     );
   });
 
-  testWidgets('SgInputText: exemplo de formulario valida e envia', (t) async {
+  testWidgets('SgInputText: Basico envia o valor do formulario', (t) async {
     setSize(t, kSizes.values.last);
     await t.pumpWidget(app(const SgInputTextPage()));
-    await tapLink(t, const ValueKey('link-exemplo-15'));
-    await t.tap(find.text('Enviar'));
-    await settle(t);
-    expect(find.text('Informe o e-mail'), findsOneWidget);
-    await t.enterText(find.byKey(const ValueKey('input-email')), 'ruim');
-    await settle(t);
-    expect(find.text('E-mail inválido'), findsOneWidget);
-    await t.enterText(find.byKey(const ValueKey('input-email')), 'a@b.co');
+    await tapLink(t, const ValueKey('link-exemplo-1'));
+    await t.enterText(find.byKey(const ValueKey('input-demo-basic')), 'Maria');
     await settle(t);
     await t.tap(find.text('Enviar'));
     await settle(t);
-    expect(find.text('Enviado: a@b.co'), findsOneWidget);
+    expect(find.text('Valor: Maria'), findsOneWidget);
+  });
+
+  testWidgets('SgInputText: Obrigatorio mostra a mensagem padrao e a customizada', (
+    t,
+  ) async {
+    setSize(t, kSizes.values.last);
+    await t.pumpWidget(app(const SgInputTextPage()));
+    await tapLink(t, const ValueKey('link-exemplo-2'));
+    await t.tap(find.byKey(const ValueKey('input-demo-required-custom')));
+    await t.enterText(
+      find.byKey(const ValueKey('input-demo-required-custom')),
+      'x',
+    );
+    await t.enterText(
+      find.byKey(const ValueKey('input-demo-required-custom')),
+      '',
+    );
+    await t.testTextInput.receiveAction(TextInputAction.done);
+    await t.tap(find.byKey(const ValueKey('input-demo-required')));
+    await settle(t);
+    await t.tap(find.byKey(const ValueKey('input-demo-required-custom')));
+    await settle(t);
+    await t.tap(find.byKey(const ValueKey('input-demo-required')));
+    await settle(t);
+    expect(find.text('Preencha este campo!'), findsOneWidget);
+  });
+
+  testWidgets('SgInputText: Controlado seta e limpa o valor por fora', (t) async {
+    setSize(t, kSizes.values.last);
+    await t.pumpWidget(app(const SgInputTextPage()));
+    await tapLink(t, const ValueKey('link-exemplo-3'));
+    expect(find.text('Estado atual: "Texto inicial"'), findsOneWidget);
+    await t.tap(find.text('Simular preenchimento via API'));
+    await settle(t);
+    expect(find.text('Estado atual: "Texto vindo da API"'), findsOneWidget);
+    await t.tap(find.text('Limpar campo'));
+    await settle(t);
+    expect(find.text('Estado atual: ""'), findsOneWidget);
   });
 
   testWidgets(
     'app: navegacao entre paginas e troca claro/escuro com tokens do tema',
     (t) async {
       setSize(t, kSizes.values.last);
-      await t.pumpWidget(const ShowcaseApp());
+      await t.pumpWidget(const ShowcaseApp(initialMenuCollapsed: false));
       // A primeira pagina do menu muda conforme os componentes portados: ir ate SgButton.
+      await settle(t);
+      await openAllGroups(t);
       await t.tap(find.byKey(const ValueKey('sg-menu-row-SgButton')));
       await settle(t);
       final light = SgTheme.fromInput(defaultSeedTheme, Brightness.light);

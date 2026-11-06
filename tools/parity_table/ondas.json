@@ -22,6 +22,7 @@
  "SgInputDateTime": 1,
  "SgImageUpload": 1,
  "SgFileUpload": 1,
+ "SgNotificationBell": 1,
  "SgCameraCapture": 1,
  "SgInputNumber": 1,
  "SgInputCurrency": 1,

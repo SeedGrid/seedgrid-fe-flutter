@@ -71,7 +71,7 @@ class _SgToolbarIconButtonPageState extends State<SgToolbarIconButtonPage> {
                 SgToolbarIconButton(
                   icon: Icon(Icons.lock_outline),
                   label: context.tx('Bloqueado'),
-                  disabled: true,
+                  enabled: false,
                 ),
                 SgToolbarIconButton(
                   icon: Icon(Icons.sync),
@@ -109,7 +109,7 @@ class _SgToolbarIconButtonPageState extends State<SgToolbarIconButtonPage> {
                 'label',
                 'hint',
                 'severity',
-                'disabled',
+                'enabled',
                 'loading',
                 'hideLabel',
                 'showLabel',
@@ -123,7 +123,7 @@ class _SgToolbarIconButtonPageState extends State<SgToolbarIconButtonPage> {
           severity:
               SgToolbarIconButtonSeverity.fromValue(v['severity'] as String?) ??
               SgToolbarIconButtonSeverity.plain,
-          disabled: (v['disabled'] as bool?) ?? false,
+          enabled: (v['enabled'] as bool?) ?? true,
           loading: (v['loading'] as bool?) ?? false,
           hideLabel: (v['hideLabel'] as bool?) ?? false,
           showLabel: (v['showLabel'] as bool?) ?? true,

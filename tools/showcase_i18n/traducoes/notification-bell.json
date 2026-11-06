@@ -1,0 +1,152 @@
+{
+ "Simular notificação": [
+  "Simulate notification",
+  "Simular notificação",
+  "Simular notificación",
+  "Simuler une notification"
+ ],
+ "Tipos com ícone e ação": [
+  "Types with icon and action",
+  "Tipos com ícone e ação",
+  "Tipos con icono y acción",
+  "Types avec icône et action"
+ ],
+ "types liga cada tipo de notificação a um ícone e à ação de abrir (por exemplo, baixar o relatório). Os callbacks avisam o que o usuário fez.": [
+  "types links each notification type to an icon and to the open action (for example, downloading the report). The callbacks report what the user did.",
+  "types liga cada tipo de notificação a um ícone e à ação de abrir (por exemplo, descarregar o relatório). Os callbacks avisam o que o utilizador fez.",
+  "types vincula cada tipo de notificación a un icono y a la acción de abrir (por ejemplo, descargar el informe). Los callbacks avisan lo que hizo el usuario.",
+  "types associe chaque type de notification à une icône et à l'action d'ouverture (par exemple, télécharger le rapport). Les callbacks signalent ce que l'utilisateur a fait."
+ ],
+ "Extra do Flutter: cria o cliente do Pulse quando o sino abre a própria conexão (o SDK ainda não é dependência do pacote).": [
+  "Flutter extra: creates the Pulse client when the bell opens its own connection (the SDK is not yet a dependency of the package).",
+  "Extra do Flutter: cria o cliente do Pulse quando o sino abre a própria ligação (o SDK ainda não é dependência do pacote).",
+  "Extra de Flutter: crea el cliente de Pulse cuando la campana abre su propia conexión (el SDK aún no es dependencia del paquete).",
+  "Extra de Flutter : crée le client Pulse quand la cloche ouvre sa propre connexion (le SDK n'est pas encore une dépendance du paquet)."
+ ],
+ "Sino de notificações do usuário logado: contador de não lidas, lista, marcar como lida, excluir e limpar. Conecta-se sozinho ao Pulse e, com ele desligado, faz polling de reserva. Sem regra de negócio: cada tipo tem seu ícone e sua ação.": [
+  "Notification bell for the signed-in user: unread counter, list, mark as read, delete and clear. It connects to Pulse by itself and, with Pulse off, falls back to polling. No business rules: each type has its own icon and action.",
+  "Sino de notificações do utilizador autenticado: contador de não lidas, lista, marcar como lida, eliminar e limpar. Liga-se sozinho ao Pulse e, com ele desligado, faz polling de reserva. Sem regra de negócio: cada tipo tem o seu ícone e a sua ação.",
+  "Campana de notificaciones del usuario conectado: contador de no leídas, lista, marcar como leída, eliminar y limpiar. Se conecta solo a Pulse y, con él apagado, hace polling de respaldo. Sin reglas de negocio: cada tipo tiene su icono y su acción.",
+  "Cloche de notifications de l'utilisateur connecté : compteur de non lues, liste, marquer comme lue, supprimer et vider. Elle se connecte seule à Pulse et, Pulse éteint, passe au polling de secours. Aucune règle métier : chaque type a son icône et son action."
+ ],
+ "Base das rotas da extension user-notifications (BFF, mesma origem).": [
+  "Base of the user-notifications extension routes (BFF, same origin).",
+  "Base das rotas da extension user-notifications (BFF, mesma origem).",
+  "Base de las rutas de la extension user-notifications (BFF, mismo origen).",
+  "Base des routes de l'extension user-notifications (BFF, même origine)."
+ ],
+ "Evento do Pulse que dispara a leitura.": [
+  "Pulse event that triggers the read.",
+  "Evento do Pulse que dispara a leitura.",
+  "Evento de Pulse que dispara la lectura.",
+  "Événement Pulse qui déclenche la lecture."
+ ],
+ "Substitui o fetch (apps sem BFF, testes, demonstracao).": [
+  "Replaces fetch (apps without a BFF, tests, demos).",
+  "Substitui o fetch (apps sem BFF, testes, demonstração).",
+  "Sustituye el fetch (apps sin BFF, pruebas, demostración).",
+  "Remplace le fetch (applis sans BFF, tests, démonstration)."
+ ],
+ "Maximo de notificacoes na lista; as mais antigas saem.": [
+  "Maximum notifications in the list; the oldest drop out.",
+  "Máximo de notificações na lista; as mais antigas saem.",
+  "Máximo de notificaciones en la lista; las más antiguas salen.",
+  "Maximum de notifications dans la liste ; les plus anciennes sortent."
+ ],
+ "Chegou uma notificacao nova (aviso do Pulse).": [
+  "A new notification arrived (Pulse notice).",
+  "Chegou uma notificação nova (aviso do Pulse).",
+  "Llegó una notificación nueva (aviso de Pulse).",
+  "Une nouvelle notification est arrivée (avis Pulse)."
+ ],
+ "O usuario excluiu uma notificacao.": [
+  "The user deleted a notification.",
+  "O utilizador eliminou uma notificação.",
+  "El usuario eliminó una notificación.",
+  "L'utilisateur a supprimé une notification."
+ ],
+ "O usuario abriu uma notificacao (depois do onOpen do tipo).": [
+  "The user opened a notification (after the type's onOpen).",
+  "O utilizador abriu uma notificação (depois do onOpen do tipo).",
+  "El usuario abrió una notificación (después del onOpen del tipo).",
+  "L'utilisateur a ouvert une notification (après le onOpen du type)."
+ ],
+ "O polling consultou a API: contador, instante da ultima consulta e motivo (disabled ou unavailable).": [
+  "The polling queried the API: counter, time of the last query and reason (disabled or unavailable).",
+  "O polling consultou a API: contador, instante da última consulta e motivo (disabled ou unavailable).",
+  "El polling consultó la API: contador, instante de la última consulta y motivo (disabled o unavailable).",
+  "Le polling a interrogé l'API : compteur, instant de la dernière requête et motif (disabled ou unavailable)."
+ ],
+ "Intervalo do polling de reserva (so com o Pulse desligado ou fora do ar), preso entre 30 e 60 s, com jitter e backoff em erro.": [
+  "Fallback polling interval (only with Pulse off or down), clamped between 30 and 60 s, with jitter and backoff on error.",
+  "Intervalo do polling de reserva (só com o Pulse desligado ou fora do ar), preso entre 30 e 60 s, com jitter e backoff em erro.",
+  "Intervalo del polling de respaldo (solo con Pulse apagado o caído), limitado entre 30 y 60 s, con jitter y backoff en error.",
+  "Intervalle du polling de secours (seulement Pulse éteint ou hors service), borné entre 30 et 60 s, avec jitter et backoff en cas d'erreur."
+ ],
+ "Opcoes do fetch (ex.: headers com Authorization quando nao ha cookie).": [
+  "Fetch options (e.g. headers with Authorization when there is no cookie).",
+  "Opções do fetch (ex.: headers com Authorization quando não há cookie).",
+  "Opciones del fetch (p. ej.: headers con Authorization cuando no hay cookie).",
+  "Options du fetch (ex. : headers avec Authorization quand il n'y a pas de cookie)."
+ ],
+ "Rota que entrega o token do Pulse; usada quando nao ha SgRealtimeProvider acima.": [
+  "Route that delivers the Pulse token; used when there is no SgRealtimeProvider above.",
+  "Rota que entrega o token do Pulse; usada quando não há SgRealtimeProvider acima.",
+  "Ruta que entrega el token de Pulse; se usa cuando no hay SgRealtimeProvider arriba.",
+  "Route qui fournit le jeton Pulse ; utilisée quand il n'y a pas de SgRealtimeProvider au-dessus."
+ ],
+ "Tipo da notificacao -> icone e acao ao abrir (onOpen). O sino nao conhece o negocio.": [
+  "Notification type -> icon and open action (onOpen). The bell knows nothing about the business.",
+  "Tipo da notificação -> ícone e ação ao abrir (onOpen). O sino não conhece o negócio.",
+  "Tipo de notificación -> icono y acción al abrir (onOpen). La campana no conoce el negocio.",
+  "Type de notification -> icône et action à l'ouverture (onOpen). La cloche ignore le métier."
+ ],
+ "Toque no sino. Aqui não há servidor: a caixa vive em memória e um Pulse simulado avisa na hora quando o botão cria uma notificação nova (sem Pulse, a lista se atualiza ao abrir o sino e no polling de reserva). placement escolhe o lado em que o painel abre.": [
+  "Tap the bell. There is no server here: the inbox lives in memory and a simulated Pulse notifies instantly when the button creates a new notification (without Pulse, the list refreshes when the bell opens and on the fallback polling). placement chooses the side the panel opens on.",
+  "Toque no sino. Aqui não há servidor: a caixa vive em memória e um Pulse simulado avisa na hora quando o botão cria uma notificação nova (sem Pulse, a lista se atualiza ao abrir o sino e no polling de reserva). placement escolhe o lado em que o painel abre.",
+  "Toca la campana. Aquí no hay servidor: la bandeja vive en memoria y un Pulse simulado avisa al instante cuando el botón crea una notificación nueva (sin Pulse, la lista se actualiza al abrir la campana y en el polling de respaldo). placement elige el lado en el que se abre el panel.",
+  "Touchez la cloche. Il n'y a pas de serveur ici : la boîte vit en mémoire et un Pulse simulé prévient aussitôt quand le bouton crée une notification (sans Pulse, la liste se met à jour à l'ouverture de la cloche et lors du polling de secours). placement choisit le côté d'ouverture du panneau."
+ ],
+ "Interruptor Não lidas": [
+  "Unread-only switch",
+  "Interruptor Não lidas",
+  "Interruptor No leídas",
+  "Interrupteur Non lues"
+ ],
+ "Sem o interruptor": [
+  "Without the switch",
+  "Sem o interruptor",
+  "Sin el interruptor",
+  "Sans l'interrupteur"
+ ],
+ "O painel traz o interruptor Não lidas (aqui, com defaultUnreadOnly desligado, abre em Todas). Ligado, tocar numa notificação a tira da lista e o contador cai na hora; desligado, mostra todas. A escolha não persiste entre recargas.": [
+  "The panel has the Unread only switch (here, with defaultUnreadOnly off, it opens on All). When on, tapping a notification removes it from the list and the counter drops at once; when off, it shows all. The choice is not kept across reloads.",
+  "O painel traz o interruptor Não lidas (aqui, com defaultUnreadOnly desligado, abre em Todas). Ligado, tocar numa notificação a tira da lista e o contador cai na hora; desligado, mostra todas. A escolha não persiste entre recargas.",
+  "El panel trae el interruptor No leídas (aquí, con defaultUnreadOnly desactivado, abre en Todas). Activado, al tocar una notificación sale de la lista y el contador baja al instante; desactivado, muestra todas. La elección no se conserva al recargar.",
+  "Le panneau a l'interrupteur Non lues (ici, avec defaultUnreadOnly désactivé, il s'ouvre sur Toutes). Activé, toucher une notification la retire de la liste et le compteur baisse aussitôt ; désactivé, il montre tout. Le choix n'est pas conservé au rechargement."
+ ],
+ "showUnreadToggle: false esconde só o interruptor: o sino continua e o painel lista todas as notificações.": [
+  "showUnreadToggle: false hides only the switch: the bell stays and the panel lists every notification.",
+  "showUnreadToggle: false esconde só o interruptor: o sino continua e o painel lista todas as notificações.",
+  "showUnreadToggle: false oculta solo el interruptor: la campana sigue y el panel lista todas las notificaciones.",
+  "showUnreadToggle: false masque seulement l'interrupteur : la cloche reste et le panneau liste toutes les notifications."
+ ],
+ "O painel abre em Não lidas (ainda não clicadas); ignorada com showUnreadToggle=false e não persiste entre recargas.": [
+  "The panel opens on Unread only (not yet clicked); ignored with showUnreadToggle=false and not kept across reloads.",
+  "O painel abre em Não lidas (ainda não clicadas); ignorada com showUnreadToggle=false e não persiste entre recarregamentos.",
+  "El panel abre en No leídas (aún no pulsadas); se ignora con showUnreadToggle=false y no se conserva al recargar.",
+  "Le panneau s'ouvre sur Non lues (pas encore cliquées) ; ignorée avec showUnreadToggle=false et non conservée au rechargement."
+ ],
+ "Mostra o interruptor Não lidas no topo do painel; false esconde só o interruptor (o sino fica) e o painel lista tudo.": [
+  "Shows the Unread only switch at the top of the panel; false hides only the switch (the bell stays) and the panel lists everything.",
+  "Mostra o interruptor Não lidas no topo do painel; false esconde só o interruptor (o sino fica) e o painel lista tudo.",
+  "Muestra el interruptor No leídas en la parte superior del panel; false oculta solo el interruptor (la campana queda) y el panel lista todo.",
+  "Affiche l'interrupteur Non lues en haut du panneau ; false masque seulement l'interrupteur (la cloche reste) et le panneau liste tout."
+ ],
+ "De que lado do sino o painel abre (como o placement do SgPopup); auto escolhe o lado em que cabe.": [
+  "Which side of the bell the panel opens on (like SgPopup placement); auto picks the side where it fits.",
+  "De que lado do sino o painel abre (como o placement do SgPopup); auto escolhe o lado em que cabe.",
+  "De qué lado de la campana se abre el panel (como el placement de SgPopup); auto elige el lado en que cabe.",
+  "De quel côté de la cloche le panneau s'ouvre (comme le placement de SgPopup) ; auto choisit le côté où il tient."
+ ]
+}

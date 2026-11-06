@@ -26,7 +26,7 @@ class SgInputTextSearch extends StatefulWidget
     this.clearButton,
     this.control,
     this.elevation,
-    this.disabled,
+    this.enabled,
     this.error,
     this.filled,
     this.hintText,
@@ -96,7 +96,9 @@ class SgInputTextSearch extends StatefulWidget
   @override
   final SgInputTextSearchElevation? elevation;
   @override
-  final bool? disabled;
+  final bool? enabled;
+
+  bool get _disabled => !(enabled ?? true);
   @override
   final String? error;
   @override
@@ -243,7 +245,7 @@ class _SgInputTextSearchState extends State<SgInputTextSearch> {
       clearButton: w.clearButton,
       control: w.control,
       elevation: SgInputTextElevation.fromValue(w.elevation?.value),
-      disabled: w.disabled,
+      enabled: !(w._disabled),
       error: w.error,
       filled: w.filled,
       hintText: w.hintText,

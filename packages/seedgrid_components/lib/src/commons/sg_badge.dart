@@ -117,7 +117,7 @@ class SgBadge extends StatefulWidget implements SgBadgeProps {
     this.removeAriaLabel,
     this.autoRemove = false,
     this.onClick,
-    this.disabled,
+    this.enabled,
     this.title,
     this.hint,
     this.customColors,
@@ -164,7 +164,7 @@ class SgBadge extends StatefulWidget implements SgBadgeProps {
   @override
   final VoidCallback? onClick;
   @override
-  final bool? disabled;
+  final bool? enabled;
   @override
   final String? title;
   @override
@@ -299,7 +299,7 @@ class _SgBadgeState extends State<SgBadge> with SingleTickerProviderStateMixin {
 
     final s = _sizes[w.size]!;
     final isButton = w.onClick != null;
-    final disabled = w.disabled ?? false;
+    final disabled = !(w.enabled ?? true);
     final hovered =
         _hover &&
         !disabled &&

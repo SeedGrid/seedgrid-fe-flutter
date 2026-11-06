@@ -17,8 +17,8 @@ abstract interface class SgRealtimeProviderProps {
   Widget get child;
   /// Opções avançadas do cliente do Pulse (reconexão, `webSocketImpl` em testes...). Tipo TS: `Omit&lt;ConnectInput, "getToken" | "accountKey" | "baseUrl"&gt;` (sem tradução exata; ver excecoes.json).
   Object? get connectOptions;
-  /// Liga/desliga (ex.: false enquanto nao ha usuario logado). Padrão: `true`. No React a prop se chama `enabled` (valor invertido); ver ADR 50.
-  bool? get disabled;
+  /// Liga/desliga (ex.: false enquanto nao ha usuario logado). Padrão: `true`.
+  bool? get enabled;
   /// Substitui o pedido de token inteiro (apps sem BFF, testes). Tipo TS: `(() =&gt; Promise&lt;SgRealtimeConnectResponse&gt;)` (sem tradução exata; ver excecoes.json).
   Function? get fetchToken;
   /// Endereço do Pulse, usado quando o token não traz `connectUrl` (Pulse sem endereço público).
@@ -58,7 +58,7 @@ const List<SgPropSpec> sgRealtimeProviderPropSpecs = <SgPropSpec>[
     exact: false,
   ),
   SgPropSpec(
-    name: 'disabled',
+    name: 'enabled',
     reactName: 'enabled',
     type: 'bool?',
     tsType: 'boolean',

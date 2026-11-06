@@ -75,7 +75,7 @@ class SgAvatar extends StatefulWidget implements SgAvatarProps {
     this.shape = SgAvatarShape.circle,
     this.severity = SgAvatarSeverity.primary,
     this.bordered = true,
-    this.disabled = false,
+    this.enabled = true,
     this.customColors,
     this.imageClassName,
     this.child,
@@ -105,7 +105,7 @@ class SgAvatar extends StatefulWidget implements SgAvatarProps {
   @override
   final bool bordered;
   @override
-  final bool disabled;
+  final bool enabled;
   @override
   final SgAvatarCustomColors? customColors;
 
@@ -239,7 +239,7 @@ class _SgAvatarState extends State<SgAvatar> {
         borderRadius: BorderRadius.circular(radius),
         border: Border.all(color: w.bordered ? c.border : Colors.transparent),
         boxShadow: [
-          if (interactive && _focused && !w.disabled)
+          if (interactive && _focused && w.enabled)
             BoxShadow(color: c.ring, spreadRadius: 2),
         ],
       ),
@@ -256,26 +256,26 @@ class _SgAvatarState extends State<SgAvatar> {
 
     if (interactive) {
       body = MouseRegion(
-        cursor: w.disabled
+        cursor: !w.enabled
             ? SystemMouseCursors.forbidden
             : SystemMouseCursors.click,
         child: Focus(
-          canRequestFocus: !w.disabled,
+          canRequestFocus: w.enabled,
           onFocusChange: (f) => setState(() => _focused = f),
           child: GestureDetector(
             behavior: HitTestBehavior.opaque,
-            onTap: w.disabled ? null : w.onClick,
+            onTap: !w.enabled ? null : w.onClick,
             child: body,
           ),
         ),
       );
     }
-    if (w.disabled) body = Opacity(opacity: 0.55, child: body);
+    if (!w.enabled) body = Opacity(opacity: 0.55, child: body);
     if (w.title != null) body = Tooltip(message: w.title!, child: body);
     return Semantics(
       label: ariaLabel,
       button: interactive,
-      enabled: interactive ? !w.disabled : null,
+      enabled: interactive ? w.enabled : null,
       image: showImage,
       child: body,
     );

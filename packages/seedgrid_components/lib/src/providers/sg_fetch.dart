@@ -24,10 +24,17 @@ class SgFetchRequest {
 
 /// Resposta HTTP (equivale ao `Response`: `ok`, `status` e `json()`).
 class SgFetchResponse {
-  const SgFetchResponse(this.status, [this.body = '']);
+  const SgFetchResponse(
+    this.status, [
+    this.body = '',
+    this.headers = const <String, String>{},
+  ]);
 
   final int status;
   final String body;
+
+  /// Cabecalhos da resposta com as chaves em minusculas (`etag`, `cache-control`...); vazio se o fetcher nao os traz.
+  final Map<String, String> headers;
 
   bool get ok => status >= 200 && status < 300;
 
@@ -43,15 +50,13 @@ typedef SgFetcher = Future<SgFetchResponse> Function(SgFetchRequest request);
 Future<SgFetchResponse> sgDefaultFetcher(SgFetchRequest request) async {
   final client = SgHttpClient(const HttpClientOptions(baseUrl: ''));
   try {
-    final json = await client.request(
+    final res = await client.send(
       request.url,
       method: request.method,
       headers: request.headers.isEmpty ? null : request.headers,
       body: request.body,
     );
-    return SgFetchResponse(200, json == null ? '' : jsonEncode(json));
-  } on SgHttpException catch (e) {
-    return SgFetchResponse(e.status, e.body);
+    return SgFetchResponse(res.status, res.body, res.headers);
   } finally {
     client.close();
   }

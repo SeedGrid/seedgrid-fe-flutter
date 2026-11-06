@@ -629,7 +629,7 @@ void main() {
           host(const SgInputNumber(id: 'n', clearButton: false)),
         );
         expect(find.byKey(const ValueKey('clear-n')), findsNothing);
-        await t.pumpWidget(host(const SgInputNumber(id: 'n', disabled: true)));
+        await t.pumpWidget(host(const SgInputNumber(id: 'n', enabled: false)));
         expect(find.byKey(const ValueKey('clear-n')), findsNothing);
         expect(t.widget<TextField>(field()).enabled, isFalse);
         final out = <String>[];
@@ -987,7 +987,7 @@ void main() {
               SgInputNumber(
                 id: 'g3',
                 labelText: 'Desabilitado',
-                disabled: true,
+                enabled: false,
                 initialValue: '10',
               ),
               SizedBox(height: 12),

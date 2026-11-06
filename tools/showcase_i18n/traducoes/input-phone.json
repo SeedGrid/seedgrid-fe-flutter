@@ -1,0 +1,10 @@
+{
+"Telefone": ["Phone","Telefone","Telefono","Telephone"],
+"(00) 00000-0000": ["(00) 00000-0000","(00) 00000-0000","(00) 00000-0000","(00) 00000-0000"],
+"Telefone obrigatório": ["Required phone","Telefone obrigatorio","Telefono obligatorio","Telephone obligatoire"],
+"Informe o telefone.": ["Please enter the phone.","Informe o telefone.","Informe el telefono.","Veuillez saisir le telephone."],
+"Telefone inválido.": ["Invalid phone.","Telefone invalido.","Telefono invalido.","Telephone invalide."],
+"DDD inválido.": ["Invalid area code.","DDD invalido.","DDD invalido.","Indicatif regional invalide."],
+"Telefone com label e hint.": ["Phone with label and hint.","Telefone com label e hint.","Telefono con label y hint.","Telephone avec libelle et indice."],
+"Personaliza mensagem de telefone inválido.": ["Custom invalid phone message.","Personaliza mensagem de telefone invalido.","Mensaje personalizado de telefono invalido.","Message de telephone invalide personnalise."]
+}

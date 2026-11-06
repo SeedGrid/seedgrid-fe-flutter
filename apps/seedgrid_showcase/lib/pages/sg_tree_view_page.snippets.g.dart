@@ -34,7 +34,7 @@ Column(
         SgTreeNode(
           id: 'bloqueado',
           label: context.tx('Bloqueado'),
-          disabled: true,
+          enabled: false,
         ),
       ],
     ),

@@ -4,7 +4,7 @@ const OPTS = [
   { label: "Um", value: 1 },
   { label: "Dois", value: 2 },
   { label: "Tres", value: 3 },
-  { label: "Quatro", value: 4, disabled: true },
+  { label: "Quatro", value: 4, enabled: false },
 ];
 const OPTS_STR = [{ label: "Um", value: "1" }, { label: "Dois", value: "2" }];
 const tog = (label) => ({ op: "toggle", label });
@@ -88,7 +88,7 @@ export const checkboxgroup = [
     steps: [fsv([2, 3]), tog("Um"), snap("marcou Um depois do setValue"), tog("Dois"), snap("desmarcou Dois")],
   },
   {
-    id: "h-disabled-mostra-valor", items: OPTS, props: { value: [2], disabled: true },
+    id: "h-disabled-mostra-valor", items: OPTS, props: { value: [2], enabled: false },
     steps: [snap("inicial"), tog("Um"), snap("tentou marcar"), setv([3]), snap("prop mudou")],
   },
   {
@@ -96,7 +96,7 @@ export const checkboxgroup = [
     steps: [snap("inicial"), tog("Um"), snap("tentou marcar"), setv([3]), snap("prop mudou")],
   },
   {
-    id: "h-disabled-form-setvalue", items: OPTS, form: { defaults: { f: [1] } }, props: { disabled: true },
+    id: "h-disabled-form-setvalue", items: OPTS, form: { defaults: { f: [1] } }, props: { enabled: false },
     steps: [snap("inicial"), fsv([3]), snap("setValue"), freset(), snap("reset")],
   },
 ];
@@ -164,7 +164,7 @@ export const radiogroup = [
     steps: [fsv(3), pick("Dois"), snap("escolheu Dois depois do setValue"), fsv(1), snap("setValue 1")],
   },
   {
-    id: "h-disabled-mostra-valor", items: OPTS, props: { value: 2, disabled: true },
+    id: "h-disabled-mostra-valor", items: OPTS, props: { value: 2, enabled: false },
     steps: [snap("inicial"), pick("Um"), snap("tentou escolher"), setv(3), snap("prop mudou")],
   },
   {
@@ -172,7 +172,7 @@ export const radiogroup = [
     steps: [snap("inicial"), pick("Um"), snap("tentou escolher"), setv(3), snap("prop mudou")],
   },
   {
-    id: "h-disabled-form-setvalue", items: OPTS, form: { defaults: { f: 1 } }, props: { disabled: true },
+    id: "h-disabled-form-setvalue", items: OPTS, form: { defaults: { f: 1 } }, props: { enabled: false },
     steps: [snap("inicial"), fsv(3), snap("setValue"), freset(), snap("reset")],
   },
 ];
@@ -240,7 +240,7 @@ export const toggleswitch = [
     steps: [fsv(true), toggle, snap("clicou depois do setValue"), fsv(true), snap("setValue true")],
   },
   {
-    id: "h-disabled-mostra-valor", props: { checked: true, disabled: true },
+    id: "h-disabled-mostra-valor", props: { checked: true, enabled: false },
     steps: [snap("inicial"), toggle, snap("tentou clicar"), { op: "props", set: { checked: false } }, snap("prop mudou")],
   },
   {
@@ -248,7 +248,7 @@ export const toggleswitch = [
     steps: [snap("inicial"), toggle, snap("tentou clicar"), { op: "props", set: { checked: false } }, snap("prop mudou")],
   },
   {
-    id: "h-disabled-form-setvalue", form: { defaults: { f: false } }, props: { disabled: true },
+    id: "h-disabled-form-setvalue", form: { defaults: { f: false } }, props: { enabled: false },
     steps: [snap("inicial"), fsv(true), snap("setValue"), freset(), snap("reset")],
   },
 ];
@@ -283,8 +283,8 @@ export const slider = [
     steps: [ftrigger, snap("trigger com 3"), fsv(0, true), snap("setValue 0 validando"), fsv(null, true), snap("setValue null validando"), freset(), snap("reset")],
   },
   { id: "g-interagir-depois-de-setar", form: { defaults: { f: 1 } }, props: {}, steps: [fsv(9), drag(2), snap("arrastou depois do setValue"), fsv(9), snap("setValue 9")] },
-  { id: "h-disabled-mostra-valor", props: { value: 5, disabled: true }, steps: [snap("inicial"), drag(8), snap("tentou arrastar"), setv(7), snap("prop mudou")] },
-  { id: "h-disabled-form-setvalue", form: { defaults: { f: 1 } }, props: { disabled: true }, steps: [snap("inicial"), fsv(8), snap("setValue"), freset(), snap("reset")] },
+  { id: "h-disabled-mostra-valor", props: { value: 5, enabled: false }, steps: [snap("inicial"), drag(8), snap("tentou arrastar"), setv(7), snap("prop mudou")] },
+  { id: "h-disabled-form-setvalue", form: { defaults: { f: 1 } }, props: { enabled: false }, steps: [snap("inicial"), fsv(8), snap("setValue"), freset(), snap("reset")] },
 ];
 
 // ---------------------------------------------------------------------------------------------- SgRating
@@ -325,7 +325,7 @@ export const rating = [
     steps: [ftrigger, snap("com erro"), rate(2), snap("apos avaliar")],
   },
   { id: "g-interagir-depois-de-setar", form: { defaults: { f: 1 } }, props: {}, steps: [fsv(4), rate(2), snap("clicou 2 depois do setValue"), fsv(4), snap("setValue 4")] },
-  { id: "h-disabled-mostra-valor", props: { value: 3, disabled: true }, steps: [snap("inicial"), rate(5), snap("tentou clicar"), setv(1), snap("prop mudou")] },
+  { id: "h-disabled-mostra-valor", props: { value: 3, enabled: false }, steps: [snap("inicial"), rate(5), snap("tentou clicar"), setv(1), snap("prop mudou")] },
   { id: "h-readonly-mostra-valor", props: { value: 3, readOnly: true }, steps: [snap("inicial"), rate(5), snap("tentou clicar"), setv(1), snap("prop mudou")] },
-  { id: "h-disabled-form-setvalue", form: { defaults: { f: 1 } }, props: { disabled: true }, steps: [snap("inicial"), fsv(4), snap("setValue"), freset(), snap("reset")] },
+  { id: "h-disabled-form-setvalue", form: { defaults: { f: 1 } }, props: { enabled: false }, steps: [snap("inicial"), fsv(4), snap("setValue"), freset(), snap("reset")] },
 ];

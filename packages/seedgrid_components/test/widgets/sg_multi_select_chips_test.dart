@@ -10,7 +10,7 @@ const _opts = [
   SgMultiSelectOption(label: 'Alpha', value: 'a'),
   SgMultiSelectOption(label: 'Beta', value: 'b', chipLabel: 'B'),
   SgMultiSelectOption(label: 'Gamma', value: 'c'),
-  SgMultiSelectOption(label: 'Delta', value: 'd', disabled: true),
+  SgMultiSelectOption(label: 'Delta', value: 'd', enabled: false),
 ];
 
 final _theme = SgTheme.fromInput(defaultSeedTheme, Brightness.light);
@@ -357,7 +357,7 @@ void main() {
             options: _opts,
             value: ['a'],
             clearable: true,
-            disabled: true,
+            enabled: false,
           ),
         ),
       );
@@ -630,7 +630,7 @@ void main() {
     testWidgets('campo desabilitado ignora o teclado', (t) async {
       size(t, 1280);
       await t.pumpWidget(
-        host(const SgMultiSelectChips(id: 'c', options: _opts, disabled: true)),
+        host(const SgMultiSelectChips(id: 'c', options: _opts, enabled: false)),
       );
       await key(t, LogicalKeyboardKey.arrowDown);
       expect(listOpen(), isFalse);

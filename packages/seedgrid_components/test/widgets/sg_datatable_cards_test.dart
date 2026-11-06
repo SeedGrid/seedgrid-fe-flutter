@@ -211,7 +211,7 @@ void main() {
           ),
         );
         expect(
-          dir.disabled != true,
+          dir.enabled != false,
           sort['directionEnabled'],
           reason: 'botao de direcao',
         );

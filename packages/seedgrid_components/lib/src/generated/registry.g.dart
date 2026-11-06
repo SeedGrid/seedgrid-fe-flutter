@@ -63,6 +63,7 @@ import 'sg_menu.g.dart';
 import 'sg_multi_select.g.dart';
 import 'sg_multi_select_chips.g.dart';
 import 'sg_neon_digit.g.dart';
+import 'sg_notification_bell.g.dart';
 import 'sg_order_list.g.dart';
 import 'sg_page_control.g.dart';
 import 'sg_page_control_page.g.dart';
@@ -159,6 +160,7 @@ const Map<String, List<SgPropSpec>> sgPropSpecs = <String, List<SgPropSpec>>{
   'SgMultiSelect': sgMultiSelectPropSpecs,
   'SgMultiSelectChips': sgMultiSelectChipsPropSpecs,
   'SgNeonDigit': sgNeonDigitPropSpecs,
+  'SgNotificationBell': sgNotificationBellPropSpecs,
   'SgOrderList': sgOrderListPropSpecs,
   'SgPageControl': sgPageControlPropSpecs,
   'SgPageControlPage': sgPageControlPagePropSpecs,

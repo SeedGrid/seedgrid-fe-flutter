@@ -34,7 +34,7 @@ class SgMultiSelectChips extends StatefulWidget
     this.labelText,
     this.width,
     this.borderRadius,
-    this.disabled,
+    this.enabled,
     this.required,
     this.control,
     this.name,
@@ -84,7 +84,9 @@ class SgMultiSelectChips extends StatefulWidget
   @override
   final Object? borderRadius;
   @override
-  final bool? disabled;
+  final bool? enabled;
+
+  bool get _disabled => !(enabled ?? true);
 
   /// So mostra o `*` no rotulo; nao valida (no React tambem nao: use `rules`).
   @override
@@ -157,7 +159,7 @@ class _SgMultiSelectChipsState extends State<SgMultiSelectChips>
   }
 
   void _openOrClose() {
-    if (widget.disabled == true) return;
+    if (widget._disabled) return;
     if (_ms.open) {
       _ms.closeDropdown();
     } else {
@@ -184,7 +186,7 @@ class _SgMultiSelectChipsState extends State<SgMultiSelectChips>
     final theme = sgThemeOf(context);
     final colors = SgMultiSelectColors(theme);
     final i18n = useComponentsI18n(context);
-    final disabled = w.disabled == true;
+    final disabled = w._disabled;
     final emptyText = w.emptyText ?? t(i18n, 'components.autocomplete.empty');
     final placeholder =
         w.placeholder ?? t(i18n, 'components.inputs.select.placeholder');

@@ -53,7 +53,7 @@ void main() {
       host(
         SgButton(
           label: const Text('A'),
-          disabled: true,
+          enabled: false,
           onClick: () => clicks++,
         ),
       ),
@@ -248,7 +248,7 @@ void main() {
                   SgButton(label: Text('sm'), size: SgSize.sm),
                   SgButton(label: Text('lg'), size: SgSize.lg),
                   SgButton(label: Text('loading'), loading: true),
-                  SgButton(label: Text('disabled'), disabled: true),
+                  SgButton(label: Text('disabled'), enabled: false),
                   SgButton(leftIcon: Icon(Icons.add)),
                   SgButton(label: Text('sombra'), elevation: SgElevation.md),
                 ],

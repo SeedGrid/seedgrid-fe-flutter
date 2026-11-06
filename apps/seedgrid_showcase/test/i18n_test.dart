@@ -25,7 +25,7 @@ void main() {
     tester.view.physicalSize = const Size(1400, 1000);
     tester.view.devicePixelRatio = 1;
     addTearDown(tester.view.reset);
-    await tester.pumpWidget(const ShowcaseApp());
+    await tester.pumpWidget(const ShowcaseApp(initialMenuCollapsed: false));
     expect(find.text('SeedGrid para Flutter'), findsOneWidget);
 
     await tester.tap(_chip('en-US'));

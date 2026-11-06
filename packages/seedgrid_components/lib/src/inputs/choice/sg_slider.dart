@@ -19,7 +19,7 @@ class SgSlider extends StatefulWidget implements SgSliderProps {
     this.ariaLabel,
     this.control,
     this.defaultValue,
-    this.disabled = false,
+    this.enabled = true,
     this.error,
     this.inputProps,
     this.name,
@@ -45,7 +45,7 @@ class SgSlider extends StatefulWidget implements SgSliderProps {
   @override
   final num? defaultValue;
   @override
-  final bool disabled;
+  final bool enabled;
   @override
   final String? error;
 
@@ -181,7 +181,7 @@ class _SgSliderState extends State<SgSlider> {
         divisions: divisions,
         semanticFormatterCallback: null,
         label: null,
-        onChanged: (w.disabled || range <= 0) ? null : _change,
+        onChanged: (!w.enabled || range <= 0) ? null : _change,
       ),
     );
 
@@ -197,7 +197,7 @@ class _SgSliderState extends State<SgSlider> {
           children: [
             Semantics(
               label: w.ariaLabel,
-              child: Opacity(opacity: w.disabled ? 0.6 : 1, child: slider),
+              child: Opacity(opacity: !w.enabled ? 0.6 : 1, child: slider),
             ),
             choiceErrorText(
               context,

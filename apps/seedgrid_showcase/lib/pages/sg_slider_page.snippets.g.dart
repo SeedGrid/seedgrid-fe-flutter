@@ -38,7 +38,7 @@ const Column(
       minValue: 0,
       maxValue: 10,
       defaultValue: 7,
-      disabled: true,
+      enabled: false,
     ),
     SgSlider(
       id: 'erro',

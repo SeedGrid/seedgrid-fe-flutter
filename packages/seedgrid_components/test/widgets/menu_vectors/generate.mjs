@@ -65,7 +65,7 @@ const trees = {
         { id: "customers", label: "Clientes", children: [
           { id: "vip", label: "VIP", url: "/vip" },
           { id: "all", label: "Todos", hasOnClick: true },
-          { id: "off", label: "Inativos", disabled: true }
+          { id: "off", label: "Inativos", enabled: false }
         ] }
       ]
     },
@@ -75,7 +75,7 @@ const trees = {
         { id: "dupe", label: "Pedidos (atalho)", url: "/orders" }
       ]
     },
-    { id: "settings", label: "Configurações", disabled: true },
+    { id: "settings", label: "Configurações", enabled: false },
     { id: "help", label: "Ajuda", hasOnClick: true },
     { id: "empty", label: "Vazio", children: [] },
     { id: "both", label: "Ambos", url: "/both", children: [{ id: "both-a", label: "Filho de Ambos", url: "/both/a" }] }

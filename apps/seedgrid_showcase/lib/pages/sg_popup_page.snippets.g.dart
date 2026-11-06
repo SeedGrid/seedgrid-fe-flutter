@@ -34,7 +34,7 @@ Row(
         ),
         SgPopupAction(
           label: context.tx('Indisponível'),
-          disabled: true,
+          enabled: false,
         ),
         SgPopupAction(
           label: context.tx('Excluir'),

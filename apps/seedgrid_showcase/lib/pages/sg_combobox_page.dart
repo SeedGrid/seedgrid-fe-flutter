@@ -71,7 +71,7 @@ class _SgComboboxPageState extends State<SgComboboxPage> {
                       id: 3,
                       label: context.tx('Diretor'),
                       group: 'Gestão',
-                      disabled: true,
+                      enabled: false,
                     ),
                     SgAutocompleteItem(
                       id: 4,
@@ -178,7 +178,7 @@ class _SgComboboxPageState extends State<SgComboboxPage> {
               (s) => const {
                 'openOnFocus',
                 'grouped',
-                'disabled',
+                'enabled',
                 'filled',
                 'required',
                 'placeholder',
@@ -192,7 +192,7 @@ class _SgComboboxPageState extends State<SgComboboxPage> {
           labelText: 'Item',
           openOnFocus: (v['openOnFocus'] as bool?) ?? false,
           grouped: v['grouped'] as bool?,
-          disabled: v['disabled'] as bool?,
+          enabled: v['enabled'] as bool?,
           filled: v['filled'] as bool?,
           required: v['required'] as bool?,
           placeholder: v['placeholder'] as String?,

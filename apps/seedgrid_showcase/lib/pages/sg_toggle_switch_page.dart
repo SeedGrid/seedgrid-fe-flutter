@@ -76,7 +76,7 @@ class _SgToggleSwitchPageState extends State<SgToggleSwitchPage> {
                 SgToggleSwitch(
                   id: 'off',
                   label: context.tx('disabled'),
-                  disabled: true,
+                  enabled: false,
                 ),
               ],
             ),
@@ -150,7 +150,7 @@ class _SgToggleSwitchPageState extends State<SgToggleSwitchPage> {
                   id: 'remoto',
                   label: context.tx('Sincronizar'),
                   checked: _remoto,
-                  disabled: _salvando,
+                  enabled: !_salvando,
                   onChange: (v) async {
                     setState(() => _salvando = true);
                     await Future<void>.delayed(
@@ -227,7 +227,7 @@ class _SgToggleSwitchPageState extends State<SgToggleSwitchPage> {
               (s) => const {
                 'label',
                 'description',
-                'disabled',
+                'enabled',
                 'readOnly',
                 'required',
                 'defaultChecked',
@@ -239,7 +239,7 @@ class _SgToggleSwitchPageState extends State<SgToggleSwitchPage> {
           id: 'pg',
           label: (v['label'] as String?) ?? 'Chave',
           description: v['description'] as String?,
-          disabled: v['disabled'] as bool?,
+          enabled: v['enabled'] as bool?,
           readOnly: v['readOnly'] as bool?,
           required: v['required'] as bool?,
           defaultChecked: v['defaultChecked'] as bool?,

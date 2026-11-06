@@ -459,7 +459,7 @@ void main() {
     });
 
     testWidgets('disabled desabilita os tres campos', (t) async {
-      await t.pumpWidget(host(const SgYearPartSelector(disabled: true)));
+      await t.pumpWidget(host(const SgYearPartSelector(enabled: false)));
       for (final p in ['year', 'kind', 'part']) {
         expect(t.widget<TextField>(field(p)).enabled, isFalse, reason: p);
       }

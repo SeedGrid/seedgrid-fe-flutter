@@ -283,7 +283,7 @@ void main() {
       (t) async {
         final out = <String>[];
         await t.pumpWidget(
-          host(SgInputCurrency(id: 'c', disabled: true, onChange: out.add)),
+          host(SgInputCurrency(id: 'c', enabled: false, onChange: out.add)),
         );
         expect(t.widget<TextField>(field()).enabled, isFalse);
         expect(find.byKey(const ValueKey('clear-c')), findsNothing);
@@ -564,7 +564,7 @@ void main() {
               SgInputCurrency(
                 id: 'g5',
                 labelText: 'Desabilitado',
-                disabled: true,
+                enabled: false,
                 initialValue: '10',
               ),
             ],

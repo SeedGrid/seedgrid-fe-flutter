@@ -171,7 +171,7 @@ class _SgYearPartSelectorPageState extends State<SgYearPartSelectorPage> {
                 SgYearPartSelector(
                   id: 'desabilitado',
                   label: context.tx('Desabilitado'),
-                  disabled: true,
+                  enabled: false,
                 ),
               ],
             ),
@@ -201,7 +201,7 @@ class _SgYearPartSelectorPageState extends State<SgYearPartSelectorPage> {
         specs: sgPropSpecs['SgYearPartSelector']!
             .where(
               (s) => const {
-                'disabled',
+                'enabled',
                 'required',
                 'label',
                 'locale',
@@ -211,7 +211,7 @@ class _SgYearPartSelectorPageState extends State<SgYearPartSelectorPage> {
         builder: (context, v) => SgYearPartSelector(
           id: 'pg',
           label: v['label'] as String?,
-          disabled: v['disabled'] as bool?,
+          enabled: v['enabled'] as bool?,
           required: v['required'] as bool?,
           locale: (v['locale'] as String?) ?? 'pt-BR',
         ),

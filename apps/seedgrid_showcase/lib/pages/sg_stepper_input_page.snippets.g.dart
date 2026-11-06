@@ -44,7 +44,7 @@ const Column(
       minValue: 0,
       maxValue: 10,
       defaultValue: 4,
-      disabled: true,
+      enabled: false,
       width: 160,
     ),
     SizedBox(height: 12),

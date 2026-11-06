@@ -14,7 +14,7 @@ class SgMultiSelectOption {
     required this.label,
     required this.value,
     this.chipLabel,
-    this.disabled,
+    this.enabled,
   });
 
   /// Texto da lista (e o que a busca procura).
@@ -24,7 +24,7 @@ class SgMultiSelectOption {
   /// Texto curto do item JA selecionado: o chip do SgMultiSelectChips e o resumo do SgMultiSelect.
   /// Sem ele, vale o `label`. Ex.: `label: '3 - Filial Centro'`, `chipLabel: '3'`.
   final String? chipLabel;
-  final bool? disabled;
+  final bool? enabled;
 }
 
 /// `String(x)` do JavaScript para string ou numero (5.0 vira "5", como no JS).
@@ -167,7 +167,7 @@ class SgMultiSelectController extends ChangeNotifier {
   }
 
   void toggleOption(SgMultiSelectOption option) {
-    if (option.disabled == true) return;
+    if (option.enabled == false) return;
     final already = isSelected(option.value);
     if (already) {
       _setSelected(

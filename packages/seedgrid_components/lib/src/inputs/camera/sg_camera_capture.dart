@@ -160,7 +160,7 @@ class SgCameraCapture extends StatefulWidget implements SgCameraCaptureProps {
     super.key,
     required this.id,
     this.allowSwitch,
-    this.disabled,
+    this.enabled,
     this.facing,
     this.guide,
     this.hintText,
@@ -182,7 +182,7 @@ class SgCameraCapture extends StatefulWidget implements SgCameraCaptureProps {
 
   /// Nao abre a camera nem permite capturar.
   @override
-  final bool? disabled;
+  final bool? enabled;
 
   /// Camera inicial (padrao `user`, a frontal).
   @override
@@ -249,7 +249,7 @@ class _SgCameraCaptureState extends State<SgCameraCapture>
       _facing = widget.facing!;
       _open();
     } else if (old.resolution != widget.resolution ||
-        old.disabled != widget.disabled ||
+        (old.enabled ?? true) != (widget.enabled ?? true) ||
         old.backend != widget.backend) {
       _open();
     }
@@ -291,7 +291,7 @@ class _SgCameraCaptureState extends State<SgCameraCapture>
 
   Future<void> _open() async {
     _release();
-    if (widget.disabled ?? false) {
+    if (!(widget.enabled ?? true)) {
       if (mounted) setState(() => _status = _Status.starting);
       return;
     }
@@ -370,7 +370,7 @@ class _SgCameraCaptureState extends State<SgCameraCapture>
         _status == _Status.permission ||
         _status == _Status.noCamera ||
         _status == _Status.failed;
-    final disabled = widget.disabled ?? false;
+    final disabled = !(widget.enabled ?? true);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -458,7 +458,7 @@ class _SgCameraCaptureState extends State<SgCameraCapture>
             SgButton(
               key: ValueKey('sg-camera-capture-${widget.id}'),
               label: Text(t(i18n, 'components.inputs.camera.capture')),
-              disabled: disabled || _status != _Status.ready,
+              enabled: !(disabled || _status != _Status.ready),
               onClick: _capture,
             ),
             if (widget.allowSwitch ?? true)
@@ -466,7 +466,7 @@ class _SgCameraCaptureState extends State<SgCameraCapture>
                 key: ValueKey('sg-camera-switch-${widget.id}'),
                 label: Text(t(i18n, 'components.inputs.camera.switch')),
                 appearance: SgAppearance.outline,
-                disabled: disabled,
+                enabled: !disabled,
                 onClick: _switch,
               ),
           ],

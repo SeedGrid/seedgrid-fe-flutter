@@ -1,0 +1,14 @@
+{
+"Documento": ["Document","Documento","Documento","Document"],
+"CPF ou CNPJ": ["CPF or CNPJ","CPF ou CNPJ","CPF o CNPJ","CPF ou CNPJ"],
+"Documento obrigatório": ["Required document","Documento obrigatorio","Documento obligatorio","Document obligatoire"],
+"Informe o CPF/CNPJ.": ["Please enter the CPF/CNPJ.","Informe o CPF/CNPJ.","Informe el CPF/CNPJ.","Veuillez saisir le CPF/CNPJ."],
+"Documento inválido.": ["Invalid document.","Documento invalido.","Documento invalido.","Document invalide."],
+"Documento não pode iniciar com 00.": ["Document cannot start with 00.","Documento nao pode iniciar com 00.","El documento no puede comenzar con 00.","Le document ne peut pas commencer par 00."],
+"Falha ao consultar a API.": ["Failed to call API.","Falha ao consultar a API.","Fallo al consultar la API.","Echec de l'appel a l'API."],
+"CPF/CNPJ com label e hint.": ["CPF/CNPJ with label and hint.","CPF/CNPJ com label e hint.","CPF/CNPJ con label y hint.","CPF/CNPJ avec libelle et indice."],
+"Personaliza mensagem de documento inválido.": ["Custom invalid document message.","Personaliza mensagem de documento invalido.","Mensaje personalizado de documento invalido.","Message de document invalide personnalise."],
+"Exemplo CNPJ alfanumérico": ["Alphanumeric CNPJ example","Exemplo CNPJ alfanumerico","Ejemplo CNPJ alfanumerico","Exemple de CNPJ alphanumerique"],
+"Aceita letras (A-Z) no corpo do CNPJ.": ["Accepts letters (A-Z) in the CNPJ body.","Aceita letras (A-Z) no corpo do CNPJ.","Acepta letras (A-Z) en el cuerpo del CNPJ.","Accepte les lettres (A-Z) dans le corps du CNPJ."],
+"Quando o documento é um CNPJ numérico válido, consulta publica.cnpj.ws para confirmar que ele existe.": ["When the document is a valid numeric CNPJ, calls publica.cnpj.ws to confirm it exists.","Quando o documento e um CNPJ numerico valido, consulta publica.cnpj.ws para confirmar que existe.","Cuando el documento es un CNPJ numerico valido, consulta publica.cnpj.ws para confirmar que existe.","Quand le document est un CNPJ numerique valide, appelle publica.cnpj.ws pour confirmer qu'il existe."]
+}

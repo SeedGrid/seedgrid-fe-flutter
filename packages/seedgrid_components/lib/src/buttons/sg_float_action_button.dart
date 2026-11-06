@@ -36,7 +36,7 @@ class SgFABAction {
     this.onClick,
     this.severity,
     this.floatActionButtonStyle,
-    this.disabled = false,
+    this.enabled = true,
   });
 
   final Widget icon;
@@ -46,7 +46,7 @@ class SgFABAction {
 
   /// Sinonimo de [severity] (so vale quando [severity] e nulo, como no React).
   final SgFloatActionButtonFloatActionButtonStyle? floatActionButtonStyle;
-  final bool disabled;
+  final bool enabled;
 }
 
 /// `offset` do React (`{ x?: number; y?: number }`).
@@ -306,7 +306,7 @@ class SgFloatActionButton extends StatefulWidget
     this.size = SgFloatActionButtonSize.md,
     this.shape = SgFloatActionButtonShape.circle,
     this.elevation = SgFloatActionButtonElevation.md,
-    this.disabled = false,
+    this.enabled = true,
     this.loading = false,
     this.autoHideOnScroll = false,
     this.hideDirection = SgFloatActionButtonHideDirection.down,
@@ -360,7 +360,7 @@ class SgFloatActionButton extends StatefulWidget
   @override
   final SgFloatActionButtonElevation elevation;
   @override
-  final bool disabled;
+  final bool enabled;
   @override
   final bool loading;
   @override
@@ -600,7 +600,7 @@ class _SgFloatActionButtonState extends State<SgFloatActionButton>
   // ---------------------------------------------------------------- abrir/fechar (speed-dial)
 
   bool get _hasActions => widget.actions != null && widget.actions!.isNotEmpty;
-  bool get _isOff => widget.disabled || widget.loading;
+  bool get _isOff => !widget.enabled || widget.loading;
 
   void _setOpen(bool v) {
     if (_open == v) return;
@@ -1423,7 +1423,7 @@ class _FabActionItemState extends State<_FabActionItem> {
                 )!
               : SgFloatActionButtonSeverity.plain);
     final c = _severityColors(widget.theme, sev);
-    final off = a.disabled;
+    final off = !a.enabled;
     final bg = off
         ? c.bg
         : _pressed

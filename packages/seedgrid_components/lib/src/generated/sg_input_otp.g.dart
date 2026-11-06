@@ -12,8 +12,8 @@ abstract interface class SgInputOTPProps {
   /// Tipo TS: `any` (sem tradução exata; ver excecoes.json).
   Object? get control;
   String? get defaultValue;
-  /// Padrão: `true`. No React a prop se chama `enabled` (valor invertido); ver ADR 50.
-  bool? get disabled;
+  /// Padrão: `true`.
+  bool? get enabled;
   String? get error;
   String? get groupClassName;
   String? get hintText;
@@ -77,7 +77,7 @@ const List<SgPropSpec> sgInputOTPPropSpecs = <SgPropSpec>[
     required: false,
   ),
   SgPropSpec(
-    name: 'disabled',
+    name: 'enabled',
     reactName: 'enabled',
     type: 'bool?',
     tsType: 'boolean',

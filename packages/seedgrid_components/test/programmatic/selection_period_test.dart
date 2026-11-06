@@ -190,7 +190,7 @@ void main() {
     testWidgets('h: disabled mostra o valor e o botao nao abre', (t) async {
       await _mount(
         t,
-        const SgPeriodSelector(value: PeriodPreset.today, disabled: true),
+        const SgPeriodSelector(value: PeriodPreset.today, enabled: false),
       );
       expect(_text(t, pid), 'Hoje');
       await t.tap(
@@ -201,7 +201,7 @@ void main() {
       expect(find.byKey(const ValueKey('sg-select-popup')), findsNothing);
       await _mount(
         t,
-        const SgPeriodSelector(value: PeriodPreset.thisYear, disabled: true),
+        const SgPeriodSelector(value: PeriodPreset.thisYear, enabled: false),
       );
       expect(_text(t, pid), 'Este ano');
     });
@@ -306,7 +306,7 @@ void main() {
         t,
         SgYearPartSelector(
           today: today,
-          disabled: true,
+          enabled: false,
           value: const YearPartValue(
             year: 2019,
             kind: YearPartKind.semester,

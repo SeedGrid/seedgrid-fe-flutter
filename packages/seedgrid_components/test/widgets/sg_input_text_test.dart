@@ -211,7 +211,7 @@ void main() {
       expect(cleared, 1);
       expect(t.widget<TextField>(field('a')).controller!.text, '');
       await t.pumpWidget(
-        host(const SgInputText(id: 'a', disabled: true, initialValue: 'x')),
+        host(const SgInputText(id: 'a', enabled: false, initialValue: 'x')),
       );
       expect(find.byKey(const ValueKey('clear-a')), findsNothing);
       await t.pumpWidget(
@@ -222,7 +222,7 @@ void main() {
   );
 
   testWidgets('disabled e readOnly', (t) async {
-    await t.pumpWidget(host(const SgInputText(id: 'a', disabled: true)));
+    await t.pumpWidget(host(const SgInputText(id: 'a', enabled: false)));
     expect(t.widget<TextField>(field('a')).enabled, isFalse);
     await t.pumpWidget(host(const SgInputText(id: 'a', readOnly: true)));
     expect(t.widget<TextField>(field('a')).readOnly, isTrue);
@@ -418,7 +418,7 @@ void main() {
               SgInputText(
                 id: 'g3',
                 labelText: 'Desabilitado',
-                disabled: true,
+                enabled: false,
                 initialValue: 'bloqueado',
               ),
               SizedBox(height: 12),

@@ -84,7 +84,7 @@ Column(
     SgYearPartSelector(
       id: 'desabilitado',
       label: context.tx('Desabilitado'),
-      disabled: true,
+      enabled: false,
     ),
   ],
 )

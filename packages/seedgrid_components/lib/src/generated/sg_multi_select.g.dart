@@ -20,8 +20,7 @@ abstract interface class SgMultiSelectProps {
   Object? get control;
   SgMultiSelectElevation? get elevation;
   String? get emptyText;
-  /// No React a prop se chama `enabled` (valor invertido); ver ADR 50.
-  bool? get disabled;
+  bool? get enabled;
   String? get error;
   bool? get filled;
   String? get hintText;
@@ -122,7 +121,7 @@ const List<SgPropSpec> sgMultiSelectPropSpecs = <SgPropSpec>[
     required: false,
   ),
   SgPropSpec(
-    name: 'disabled',
+    name: 'enabled',
     reactName: 'enabled',
     type: 'bool?',
     tsType: 'boolean',

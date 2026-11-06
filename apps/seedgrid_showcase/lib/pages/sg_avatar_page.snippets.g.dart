@@ -163,7 +163,7 @@ Wrap(
     ),
     SgAvatar(
       label: Text(context.tx('Bia Souza')),
-      disabled: true,
+      enabled: false,
       onClick: () {},
     ),
     Text('Cliques: $_cliques'),

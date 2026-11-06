@@ -23,7 +23,7 @@ class SgInputBirthDate extends StatefulWidget implements SgInputBirthDateProps {
     this.clearButton,
     this.control,
     this.elevation,
-    this.disabled,
+    this.enabled,
     this.error,
     this.filled,
     this.hintText,
@@ -90,7 +90,9 @@ class SgInputBirthDate extends StatefulWidget implements SgInputBirthDateProps {
   final SgInputBirthDateElevation? elevation;
 
   @override
-  final bool? disabled;
+  final bool? enabled;
+
+  bool get _disabled => !(enabled ?? true);
 
   @override
   final String? error;
@@ -315,7 +317,7 @@ class _SgInputBirthDateState extends State<SgInputBirthDate> {
       elevation: SgInputDateElevation.values
           .where((e) => e.value == (widget.elevation as dynamic)?.value)
           .firstOrNull,
-      disabled: widget.disabled,
+      enabled: !(widget._disabled),
       error: resolveFieldError(widget.error, _internalError),
       filled: widget.filled,
       hintText: widget.hintText,

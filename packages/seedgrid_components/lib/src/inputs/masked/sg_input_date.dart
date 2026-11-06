@@ -12,6 +12,7 @@ import '../../generated/sg_input_date.g.dart';
 import '../../i18n/i18n.dart';
 import '../sg_input_text.dart';
 import 'masked_core.dart';
+import 'sg_date_time_logic.dart' show sgLocalizedDate;
 import 'sg_date_picker.dart';
 
 /// Teto de ano de 4 digitos do campo (o `WIDGET_MAX_DATE` do React); so vale para o calendario.
@@ -27,13 +28,14 @@ String? sgToDateValue(Object? v) {
   );
 }
 
-/// `formatDateDisplay` do React (usado nas mensagens de intervalo): ISO em en-US, dd/MM/yyyy nos demais.
+/// `formatDateDisplay` do React (usado nas mensagens de intervalo): data no idioma pelo `intl` (igual ao SgInputDateTime).
 String sgFormatDateDisplay(String? iso, String locale) {
   if (iso == null || iso.isEmpty) return '';
-  if (locale == 'en-US') return iso;
-  final p = iso.split('-');
+  final p = (iso.length >= 10 ? iso.substring(0, 10) : iso).split('-');
   if (p.length < 3 || p.any((e) => e.isEmpty)) return iso;
-  return '${p[2]}/${p[1]}/${p[0]}';
+  final y = int.tryParse(p[0]), m = int.tryParse(p[1]), d = int.tryParse(p[2]);
+  if (y == null || m == null || d == null) return iso;
+  return sgLocalizedDate(y, m, d, locale);
 }
 
 bool _usesMonthFirst(String locale) => locale == 'en-US' || locale == 'en';
@@ -83,7 +85,7 @@ class SgInputDate extends StatefulWidget implements SgInputDateProps {
     this.clearButton,
     this.control,
     this.elevation,
-    this.disabled,
+    this.enabled,
     this.error,
     this.filled,
     this.hintText,
@@ -151,7 +153,9 @@ class SgInputDate extends StatefulWidget implements SgInputDateProps {
   final SgInputDateElevation? elevation;
 
   @override
-  final bool? disabled;
+  final bool? enabled;
+
+  bool get _disabled => !(enabled ?? true);
 
   @override
   final String? error;
@@ -432,7 +436,7 @@ class _SgInputDateState extends State<SgInputDate> {
   /// Validador do componente para `trigger`/`handleSubmit` (o mesmo do blur): intervalo e,
   /// nos derivados (aniversario), [SgInputDate.formValidator]. Desabilitado nao falha.
   String? _formValidate(Object? value) {
-    if (!mounted || widget.disabled == true) return null;
+    if (!mounted || widget._disabled) return null;
     final i18n = useComponentsI18n(context);
     // Valida o que o campo mostra (como no blur): texto que nao e data aparece vazio (D10).
     final iso = sgNormalizeDateValue(value, i18n.locale);
@@ -558,7 +562,7 @@ class _SgInputDateState extends State<SgInputDate> {
   Widget build(BuildContext context) {
     final locale = _locale;
     final formError = _bound ? _form!.errorOf(widget.name!)?.message : null;
-    final locked = (widget.disabled ?? false) || (widget.readOnly ?? false);
+    final locked = (widget._disabled) || (widget.readOnly ?? false);
     return SgInputText(
       id: widget.id,
       borderRadius: widget.borderRadius,
@@ -566,7 +570,7 @@ class _SgInputDateState extends State<SgInputDate> {
       elevation: SgInputTextElevation.fromValue(
         (widget.elevation as dynamic)?.value as String?,
       ),
-      disabled: widget.disabled,
+      enabled: !(widget._disabled),
       error: resolveFieldError(widget.error, formError, _internalError),
       filled: widget.filled,
       hintText: widget.hintText,

@@ -13,8 +13,8 @@ import '../props/sg_prop_spec.dart';
 abstract interface class SgPageControlPageProps {
   /// Conteudo exibido no painel desta pagina. No React e `children`.
   Widget get child;
-  /// Desabilita a selecao da pagina. Padrão: `false`.
-  bool? get disabled;
+  /// Desabilita a selecao da pagina. Padrão: `true`.
+  bool? get enabled;
   /// Oculta a pagina sem remove-la da estrutura. Padrão: `false`.
   bool? get hidden;
   /// Descricao curta associada a aba.
@@ -41,12 +41,12 @@ const List<SgPropSpec> sgPageControlPagePropSpecs = <SgPropSpec>[
     description: 'Conteudo exibido no painel desta pagina.',
   ),
   SgPropSpec(
-    name: 'disabled',
-    reactName: 'disabled',
+    name: 'enabled',
+    reactName: 'enabled',
     type: 'bool?',
     tsType: 'boolean',
     required: false,
-    defaultValue: 'false',
+    defaultValue: 'true',
     description: 'Desabilita a selecao da pagina.',
   ),
   SgPropSpec(

@@ -16,7 +16,7 @@ const slug = (n) =>
     .replace(/([A-Z]+)([A-Z][a-z])/g, "$1-$2")
     .toLowerCase();
 
-const catalog = [...fs.readFileSync(path.join(app, "src", "catalog.g.dart"), "utf8").matchAll(/\(name: '(\w+)', category: '(\w+)'/g)].map((m) => ({ name: m[1], category: m[2] }));
+const catalog = [...fs.readFileSync(path.join(app, "src", "catalog.g.dart"), "utf8").matchAll(/\(name: '(\w+)', category: '(\w+)', wave: \d+, status: '([\w-]+)'/g)].map((m) => ({ name: m[1], category: m[2], status: m[3] }));
 const descriptions = new Map(
   [...fs.readFileSync(path.join(app, "pages", "pages.g.dart"), "utf8").matchAll(/\(name: '(\w+)'.*?description: '((?:[^'\\]|\\.)*)'/g)].map((m) => [m[1], m[2].replace(/\\'/g, "'").replace(/\\\$/g, "$")]),
 );
@@ -33,6 +33,9 @@ const categorias = [
   ["provider", "🔌 Providers", "Idioma, ambiente e persistência"],
   ["outros", "📚 Exemplos completos", "Telas inteiras montadas só com componentes SeedGrid"],
 ];
+
+// Componentes sem contrapartida no React (status 'somente-flutter' do catalogo; ver tools/parity_table/somente_flutter.json).
+const somenteFlutter = new Set(catalog.filter((c) => c.status === "somente-flutter").map((c) => c.name));
 
 const curta = (t) => {
   if (!t) return "";
@@ -53,9 +56,12 @@ for (const [id, titulo, sub] of categorias) {
   out += `<details>\n<summary><b>${titulo}</b> · ${nomes.length} ${id === "outros" ? (nomes.length === 1 ? "exemplo" : "exemplos") : "componentes"} · <i>${sub}</i></summary>\n\n| Componente | O que faz |\n|---|---|\n`;
   for (const n of nomes) {
     const link = pagesWithShowcase.has(n) ? `[\`${n}\`](${DEMO}/${slug(n)})` : `\`${n}\``;
-    out += `| ${link} | ${curta(descriptions.get(n))} |\n`;
+    out += `| ${link} | ${curta(descriptions.get(n))}${somenteFlutter.has(n) ? " **(somente Flutter)**" : ""} |\n`;
   }
   out += "\n</details>\n\n";
+}
+if (somenteFlutter.size) {
+  out += "### Componentes somente Flutter\n\nSem contrapartida no React e sem exigência de paridade: " + [...somenteFlutter].sort().map((n) => `[\`${n}\`](${DEMO}/${slug(n)})`).join(", ") + ". Quem usa o React já tem o recurso nativo do navegador (por exemplo `input type=color`). Estão na seção própria de [`docs/PARIDADE.md`](docs/PARIDADE.md) e não contam como pendentes.\n\n";
 }
 out = out.replace(/\n+$/, "\n");
 

@@ -26,7 +26,7 @@ Column(
 const SgImageUpload(
   id: 'foto-desabilitada',
   labelText: 'Foto',
-  disabled: true,
+  enabled: false,
 )
 ''';
 

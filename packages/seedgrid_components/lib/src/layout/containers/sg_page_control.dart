@@ -36,7 +36,7 @@ class SgPageControlPage extends StatelessWidget
     super.key,
     required this.title,
     required this.child,
-    this.disabled = false,
+    this.enabled = true,
     this.hidden = false,
     this.hint,
     this.icon,
@@ -50,7 +50,7 @@ class SgPageControlPage extends StatelessWidget
   @override
   final Widget child;
   @override
-  final bool disabled;
+  final bool enabled;
   @override
   final bool hidden;
 
@@ -240,7 +240,7 @@ class _SgPageControlState extends State<SgPageControl> {
 
   void _select(String id, List<_Record> visible) {
     final index = visible.indexWhere((r) => r.id == id);
-    if (index < 0 || visible[index].page.disabled) return;
+    if (index < 0 || !visible[index].page.enabled) return;
     if (!_controlled) setState(() => _internalId = id);
     final ctx = SgPageControlContext(
       index: index,
@@ -372,7 +372,7 @@ class _SgPageControlState extends State<SgPageControl> {
 
     Widget tab(int index, _Record r) {
       final isActive = r.id == activeId;
-      final disabled = r.page.disabled;
+      final disabled = !r.page.enabled;
       final Color fg = isActive
           ? (pills ? p.primaryForeground : p.primary)
           : p.mutedForeground;
@@ -587,7 +587,7 @@ class _SgPageControlState extends State<SgPageControl> {
                       for (final r in visible)
                         DropdownMenuItem(
                           value: r.id,
-                          enabled: !r.page.disabled,
+                          enabled: r.page.enabled,
                           child: Text(_optionLabel(r)),
                         ),
                     ],

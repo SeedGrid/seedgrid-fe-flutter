@@ -21,7 +21,7 @@ Mesmos nomes de widget, mesmas props, mesmos valores: quem já usa o SeedGrid em
 
 ## ✨ Por que usar
 
-- **Familiar.** É um porte dos componentes React (`@seedgrid/fe-components`): `SgButton`, `SgDatatable`, `SgInputCurrency`, `SgForm`... com as mesmas props e os mesmos valores. Eventos mantêm o nome do React (`onClick`, `onChange`), e `enabled` vira `disabled`.
+- **Familiar.** É um porte dos componentes React (`@seedgrid/fe-components`): `SgButton`, `SgDatatable`, `SgInputCurrency`, `SgForm`... com as mesmas props e os mesmos valores. Eventos mantêm o nome do React (`onClick`, `onChange`), e `enabled` continua `enabled` (default `true`; `enabled: false` desabilita), igual ao React.
 - **Completo.** **89 de 89** componentes portados: botões, campos com máscara (CPF, CNPJ, telefone, CEP, moeda), tabela com filtro, ordenação e paginação, formulários, menus, docks, diálogos, avisos, gadgets e mais.
 - **Tema de verdade.** Escala de cores a partir de uma cor semente, claro/escuro e raio de borda, tudo em tempo de execução (`SeedThemeProvider`).
 - **Cinco idiomas.** pt-BR, pt-PT, en-US, es e fr nos textos dos componentes, com validações traduzidas.
@@ -145,13 +145,14 @@ Cada nome abaixo leva à página do componente no showcase ao vivo. O estado de 
 </details>
 
 <details>
-<summary><b>⌨️ Entrada de dados</b> · 34 componentes · <i>Campos de texto, máscaras, números, datas, escolha e seleção</i></summary>
+<summary><b>⌨️ Entrada de dados</b> · 35 componentes · <i>Campos de texto, máscaras, números, datas, escolha e seleção</i></summary>
 
 | Componente | O que faz |
 |---|---|
 | [`SgAutocomplete`](https://components-flutter.seedgrid.com.br/sg-autocomplete) | Campo de texto com sugestões vindas de uma fonte (lista ou assíncrona), com busca com atraso, cache, grupos e valor livre. |
 | [`SgCameraCapture`](https://components-flutter.seedgrid.com.br/sg-camera-capture) | Pré-visualização da câmera com guia de enquadramento, troca de câmera e captura. |
 | [`SgCheckboxGroup`](https://components-flutter.seedgrid.com.br/sg-checkbox-group) | Grupo de caixas de seleção múltipla com título, orientação, estilo highlight, "selecionar todos" e ligação a formulário. |
+| [`SgColorPicker`](https://components-flutter.seedgrid.com.br/sg-color-picker) | Seletor de cor com área em gradiente (saturação e brilho) e barra de matiz, ou três barras, prévia, campo hex (#RRGGBB), cores predefinidas e… **(somente Flutter)** |
 | [`SgCombobox`](https://components-flutter.seedgrid.com.br/sg-combobox) | Seleção de um item de uma lista (local ou assíncrona), com escolha por id e busca por tecla digitada. |
 | [`SgFileUpload`](https://components-flutter.seedgrid.com.br/sg-file-upload) | Escolhe um ou vários arquivos, confere o tipo pelo conteúdo e valida quantidade e tamanho. |
 | [`SgImageUpload`](https://components-flutter.seedgrid.com.br/sg-image-upload) | Escolhe uma ou várias imagens, mostra as miniaturas e valida tipo, tamanho, dimensão e proporção. |
@@ -233,7 +234,7 @@ Cada nome abaixo leva à página do componente no showcase ao vivo. O estado de 
 </details>
 
 <details>
-<summary><b>💬 Feedback e exibição</b> · 12 componentes · <i>Avisos, diálogos, avatares, selos e indicadores</i></summary>
+<summary><b>💬 Feedback e exibição</b> · 13 componentes · <i>Avisos, diálogos, avatares, selos e indicadores</i></summary>
 
 | Componente | O que faz |
 |---|---|
@@ -243,6 +244,7 @@ Cada nome abaixo leva à página do componente no showcase ao vivo. O estado de 
 | [`SgBadgeOverlay`](https://components-flutter.seedgrid.com.br/sg-badge-overlay) | Posiciona um selo (SgBadge) sobre um canto ou borda de outro widget. |
 | [`SgConfirmationDialog`](https://components-flutter.seedgrid.com.br/sg-confirmation-dialog) | Diálogo de confirmação com mensagem, ícone de severidade e botões cancelar e confirmar. |
 | [`SgDialog`](https://components-flutter.seedgrid.com.br/sg-dialog) | Diálogo modal com título, corpo e rodapé, foco preso, fechamento por Esc e fundo, severidade, animação e fechamento automático. |
+| [`SgNotificationBell`](https://components-flutter.seedgrid.com.br/sg-notification-bell) | Sino de notificações do usuário logado: contador de não lidas, lista, marcar como lida, excluir e limpar. |
 | [`SgPopup`](https://components-flutter.seedgrid.com.br/sg-popup) | Painel flutuante ancorado em um widget, com título, conteúdo e ações; posiciona sozinho dentro da tela. |
 | [`SgSkeleton`](https://components-flutter.seedgrid.com.br/sg-skeleton) | Marcador de carregamento com formas, dimensões flexíveis e animações wave, pulse ou nenhuma. |
 | [`SgToaster`](https://components-flutter.seedgrid.com.br/sg-toaster) | Renderiza os toasts da API imperativa (toast) em um canto da tela, com cores por tipo, ação, botão de fechar e tempo de vida. |
@@ -297,6 +299,10 @@ Cada nome abaixo leva à página do componente no showcase ao vivo. O estado de 
 | [`CrudClientes`](https://components-flutter.seedgrid.com.br/crud-clientes) | Exemplo de CRUD completo só com componentes SeedGrid: lista com busca e tabela, tela de novo/editar com formulário, exclusão com confirmação e… |
 
 </details>
+
+### Componentes somente Flutter
+
+Sem contrapartida no React e sem exigência de paridade: [`SgColorPicker`](https://components-flutter.seedgrid.com.br/sg-color-picker). Quem usa o React já tem o recurso nativo do navegador (por exemplo `input type=color`). Estão na seção própria de [`docs/PARIDADE.md`](docs/PARIDADE.md) e não contam como pendentes.
 
 <!-- componentes:fim -->
 
@@ -372,7 +378,7 @@ As ferramentas usam Node 22 e leem o repositório React, que **não é alterado*
 - Widget escrito à mão declara `implements <Comp>Props` (gerado): o analisador acusa prop faltando.
 - Não editar arquivos `*.g.dart`, `props-spec.json`, `excecoes.json`, `snippets.g.dart`, `docs/PARIDADE.md`.
 - Exemplo do showcase: o código exibido é o trecho entre `// #region` e `// #endregion` da própria página.
-- Sem `className`/`style`; `enabled` vira `disabled`; eventos mantêm o nome do React (ADR 50).
+- Sem `className`/`style`; `enabled` continua `enabled` (nunca `disabled`: substitui a regra antiga do ADR 50); eventos mantêm o nome do React.
 - Sem referência a PrimeFaces/PrimeReact em exemplos.
 - Arquivos em UTF-8.
 
@@ -380,7 +386,7 @@ As ferramentas usam Node 22 e leem o repositório React, que **não é alterado*
 
 1. Ler o componente React (`../seedgrid-fe-components/packages/seedgrid-fe-components/src/<grupo>/<Comp>.tsx`) e o contrato gerado em `packages/seedgrid_components/lib/src/generated/<comp>.g.dart`.
 2. Escrever o widget em `packages/seedgrid_components/lib/src/<grupo>/` com `implements <Comp>Props`; exportar no **barril do grupo** (`lib/src/commons/commons.dart`, `lib/src/inputs/{text,masked,number,choice}_inputs.dart`), nunca no arquivo raiz.
-3. Props que o React herda do HTML (`onClick`, `disabled`, `children`...) entram como lista fechada (ADR 50).
+3. Props que o React herda do HTML (`onClick`, `children`...) entram como lista fechada (ADR 50).
 4. Testes em `packages/seedgrid_components/test/widgets/<comp>_test.dart` (cada prop pública, estados, formulário, golden quando indicado).
 5. Página de showcase: `apps/seedgrid_showcase/lib/pages/<snake>_page.dart` com `class <Comp>Page extends StatelessWidget` (construtor `const` sem argumentos) usando `SgShowcasePage`, exemplos com `// #region <id>` ... `// #endregion` e `SgPlayground`. Depois: `node tools/showcase_snippets/extract.mjs`. Os testes de âncoras, props e código 1:1 rodam sozinhos para toda página.
 6. `dart format lib test` **antes** de `extract.mjs`; `bash tools/ci.sh` verde.

@@ -171,7 +171,7 @@ void main() {
               SgAccordionItem(
                 title: Text('b'),
                 content: Text('B'),
-                disabled: true,
+                enabled: false,
               ),
             ],
           ),

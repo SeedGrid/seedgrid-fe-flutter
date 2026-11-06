@@ -477,7 +477,7 @@ void main() {
         host(
           const SgCard(
             collapsible: true,
-            disabled: true,
+            enabled: false,
             title: Text('T'),
             child: Text('corpo'),
           ),
@@ -531,7 +531,7 @@ void main() {
       await t.pumpWidget(
         host(
           SgCard(
-            disabled: true,
+            enabled: false,
             onClick: () => n++,
             child: const Text('corpo'),
           ),
@@ -776,7 +776,7 @@ void main() {
         host(
           const SgCard(
             draggable: true,
-            disabled: true,
+            enabled: false,
             title: Text('T'),
             child: Text('x'),
           ),
@@ -881,7 +881,7 @@ void main() {
             c(
               'f',
               const SgCard(
-                disabled: true,
+                enabled: false,
                 title: Text('desabilitado'),
                 child: Text('corpo'),
               ),

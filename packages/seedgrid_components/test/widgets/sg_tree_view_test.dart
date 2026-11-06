@@ -49,7 +49,7 @@ List<SgTreeNode> sample() => const [
     ],
   ),
   SgTreeNode(id: 'c', label: 'Graos'),
-  SgTreeNode(id: 'd', label: 'Bloqueado', disabled: true),
+  SgTreeNode(id: 'd', label: 'Bloqueado', enabled: false),
 ];
 
 Finder row(String id) => find.byKey(ValueKey('tree-row-$id'));
@@ -186,7 +186,7 @@ void main() {
             id: 'x',
             label: 'X',
             icon: 'pasta',
-            disabled: true,
+            enabled: false,
             meta: 7,
             children: [SgTreeNodeJson(id: 'y', label: 'Y')],
           ),
@@ -200,7 +200,7 @@ void main() {
         {'pasta': icon},
       );
       expect(nodes[0].icon, same(icon));
-      expect(nodes[0].disabled, isTrue);
+      expect(nodes[0].enabled == false, isTrue);
       expect(nodes[0].meta, 7);
       expect(nodes[0].children!.single.id, 'y');
       expect(nodes[1].icon, isNull);
@@ -361,10 +361,10 @@ void main() {
                 SgTreeNode(
                   id: 'x',
                   label: 'X',
-                  disabled: true,
+                  enabled: false,
                   children: [SgTreeNode(id: 'x1', label: 'X1')],
                 ),
-                SgTreeNode(id: 'd', label: 'D', disabled: true),
+                SgTreeNode(id: 'd', label: 'D', enabled: false),
               ],
               onLeafClick: leaves.add,
             ),
@@ -595,7 +595,7 @@ void main() {
         expect(
           t
               .widget<SgButton>(find.byKey(const ValueKey('tree-confirm')))
-              .disabled,
+              .enabled == false,
           isTrue,
         );
         await tapCheck(t, 'a');
@@ -607,7 +607,7 @@ void main() {
         expect(
           t
               .widget<SgButton>(find.byKey(const ValueKey('tree-confirm')))
-              .disabled,
+              .enabled == false,
           isFalse,
         );
       },
@@ -650,7 +650,7 @@ void main() {
         expect(
           t
               .widget<SgButton>(find.byKey(const ValueKey('tree-confirm')))
-              .disabled,
+              .enabled == false,
           isFalse,
           reason: 'habilitado mesmo vazio',
         );
@@ -1167,7 +1167,7 @@ void main() {
                   checkedIds: const ['a1'],
                   ariaLabel: 'Permissao de leitura',
                   onCheckedChange: (ids) => got = ids,
-                  disabled: (n) => n.id == 'c',
+                  enabled: (n) => n.id != 'c',
                   adornment: (n) => n.id == 'a1'
                       ? const Icon(Icons.star, key: ValueKey('estrela'))
                       : null,

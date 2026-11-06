@@ -312,7 +312,7 @@ class SgTreeViewState extends State<SgTreeView>
   }
 
   void _toggleCheck(SgTreeNode node, Set<String> checkedSet) {
-    if (!widget.checkable || (node.disabled ?? false)) return;
+    if (!widget.checkable || !(node.enabled ?? true)) return;
     final next = {...checkedSet};
     final st = computeCheckedState(node.id, _maps.childrenById, checkedSet);
     setBranchChecked(
@@ -325,7 +325,7 @@ class SgTreeViewState extends State<SgTreeView>
   }
 
   void _labelTap(SgTreeNode node) {
-    if (node.disabled ?? false) return;
+    if (!(node.enabled ?? true)) return;
     final hasChildren = node.children != null && node.children!.isNotEmpty;
     if (!hasChildren) {
       widget.onLeafClick?.call(node.id);
@@ -415,13 +415,13 @@ class SgTreeViewState extends State<SgTreeView>
     } else if (key == LogicalKeyboardKey.end) {
       move(_rows.length - 1);
     } else if (key == LogicalKeyboardKey.arrowRight) {
-      if (hasChildren && !open && !(n.disabled ?? false)) {
+      if (hasChildren && !open && (n.enabled ?? true)) {
         _toggleExpand(n);
       } else if (hasChildren && open) {
         move(i + 1);
       }
     } else if (key == LogicalKeyboardKey.arrowLeft) {
-      if (hasChildren && open && !(n.disabled ?? false)) {
+      if (hasChildren && open && (n.enabled ?? true)) {
         _toggleExpand(n);
       } else {
         final p = _maps.parentById[n.id];
@@ -816,7 +816,7 @@ class SgTreeViewState extends State<SgTreeView>
                 severity: SgSeverity.secondary,
                 appearance: SgAppearance.outline,
                 shape: SgButtonShape.rounded,
-                disabled: disabled,
+                enabled: !disabled,
                 onClick: clearChecked,
                 label: Text(t(i18n, 'components.actions.clear')),
               ),
@@ -824,7 +824,7 @@ class SgTreeViewState extends State<SgTreeView>
                 key: const ValueKey('tree-confirm'),
                 elevation: SgElevation.sm,
                 shape: SgButtonShape.rounded,
-                disabled: disabled,
+                enabled: !disabled,
                 onClick: () {
                   cfg.onConfirm(selected);
                   if (cfg.resetAfterConfirm ?? false) clearChecked();
@@ -869,7 +869,7 @@ class SgTreeViewState extends State<SgTreeView>
     final node = row.node;
     final hasChildren = node.children != null && node.children!.isNotEmpty;
     final isOpen = expandedSet.contains(node.id);
-    final isDisabled = node.disabled ?? false;
+    final isDisabled = !(node.enabled ?? true);
     final checkedState = widget.checkable
         ? computeCheckedState(
             node.id,
@@ -1063,7 +1063,7 @@ class SgTreeViewState extends State<SgTreeView>
       case SgTreeTrackCustom():
         return cell([Flexible(child: track.render(node))]);
       case SgTreeTrackBoolean():
-        final disabled = nodeDisabled || (track.disabled?.call(node) ?? false);
+        final disabled = nodeDisabled || (track.enabled?.call(node) == false);
         final state = computeCheckedState(
           node.id,
           _maps.childrenById,
@@ -1091,7 +1091,7 @@ class SgTreeViewState extends State<SgTreeView>
           ?adornment,
         ]);
       case SgTreeTrackEnum():
-        final disabled = nodeDisabled || (track.disabled?.call(node) ?? false);
+        final disabled = nodeDisabled || (track.enabled?.call(node) == false);
         final result = computeCascadeValue(
           node.id,
           _maps.childrenById,

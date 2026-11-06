@@ -1,0 +1,11 @@
+{
+ "_comentario": "Componentes SOMENTE FLUTTER: nao existem no React e NAO exigem paridade (status 'somente-flutter', fora dos totais de pendente/portado). Lido por tools/parity_table/generate.mjs (tabela de paridade, catalogo do showcase, README) e por tools/mcp_manifest/export.mjs. Cada um precisa de widget Dart (arquivo), pagina no showcase e props escritas a mao (packages/seedgrid_components/lib/src/props/sg_flutter_only_prop_specs.dart).",
+ "componentes": {
+  "SgColorPicker": {
+   "categoria": "input",
+   "descricao": "Seletor de cor com sliders de matiz, saturação e brilho, prévia, campo hex (#RRGGBB) e cores predefinidas; showSgColorPicker abre o painel num diálogo.",
+   "motivo": "O React usa o seletor nativo do navegador (input type=color); o Flutter não tem equivalente nativo, então este componente é próprio e não exige paridade.",
+   "arquivo": "packages/seedgrid_components/lib/src/inputs/color/sg_color_picker.dart"
+  }
+ }
+}

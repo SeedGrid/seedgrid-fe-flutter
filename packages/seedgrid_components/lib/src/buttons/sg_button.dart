@@ -1,6 +1,6 @@
 // Porte de SgButton (React: src/buttons/SgButton.tsx). Mesmos nomes de prop, valores e defaults.
-// Props herdadas do HTML no React (`onClick`, `disabled`, `type`, `children`) ficam fora do contrato
-// gerado; aqui entram como o conjunto fechado: onClick, disabled, type, child (ADR 50).
+// Props herdadas do HTML no React (`onClick`, `type`, `children`) ficam fora do contrato
+// gerado; aqui entram como o conjunto fechado: onClick, type, child (ADR 50).
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:seedgrid_theme/seedgrid_theme.dart';
@@ -174,7 +174,7 @@ class SgButton extends StatefulWidget implements SgButtonProps {
     this.loading = false,
     this.customColors,
     this.onClick,
-    this.disabled,
+    this.enabled,
     this.type = SgButtonType.button,
     this.child,
   });
@@ -207,8 +207,8 @@ class SgButton extends StatefulWidget implements SgButtonProps {
   /// `onClick` do botao HTML.
   final VoidCallback? onClick;
 
-  /// `disabled` do botao HTML.
-  final bool? disabled;
+  /// `enabled`: quando false, desabilita o botao (padrao true).
+  final bool? enabled;
 
   /// `type` do botao HTML.
   final SgButtonType type;
@@ -245,7 +245,7 @@ class _SgButtonState extends State<SgButton> {
     final t = sgThemeOf(context);
     final w = widget;
     final content = sgNode(w.child) ?? sgNode(w.label);
-    final isDisabled = (w.disabled ?? false) || w.loading;
+    final isDisabled = !(w.enabled ?? true) || w.loading;
     final iconOnly =
         w.iconOnly ??
         (content == null && (w.leftIcon != null || w.rightIcon != null));

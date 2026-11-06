@@ -102,7 +102,7 @@ SgFABAction act(String label, {VoidCallback? onClick, bool disabled = false}) =>
       icon: Icon(Icons.star, key: ValueKey('icon-$label')),
       label: label,
       onClick: onClick,
-      disabled: disabled,
+      enabled: !(disabled),
     );
 
 Offset iconCenter(WidgetTester t, String label) =>
@@ -540,7 +540,7 @@ void main() {
           t,
           SgFloatActionButton(
             absolute: true,
-            disabled: true,
+            enabled: false,
             onClick: () => clicks++,
           ),
         );
@@ -1320,7 +1320,7 @@ void main() {
         const SgFloatActionButton(
           absolute: true,
           enableDragDrop: true,
-          disabled: true,
+          enabled: false,
         ),
       );
       final before = rect(t);

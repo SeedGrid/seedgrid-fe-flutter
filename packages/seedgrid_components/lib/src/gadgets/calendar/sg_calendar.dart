@@ -29,7 +29,7 @@ class SgCalendarCardProps {
     this.collapsible,
     this.defaultOpen,
     this.description,
-    this.disabled,
+    this.enabled,
     this.dragPersistKey,
     this.draggable,
     this.footer,
@@ -53,7 +53,7 @@ class SgCalendarCardProps {
   final bool? collapsible;
   final bool? defaultOpen;
   final Widget? description;
-  final bool? disabled;
+  final bool? enabled;
   final String? dragPersistKey;
   final bool? draggable;
   final Widget? footer;
@@ -481,7 +481,7 @@ class _SgCalendarState extends State<SgCalendar> {
       collapsible: cp?.collapsible ?? true,
       defaultOpen: cp?.defaultOpen ?? true,
       description: cp?.description,
-      disabled: cp?.disabled ?? false,
+      enabled: cp?.enabled ?? true,
       dragPersistKey: cp?.dragPersistKey,
       draggable: cp?.draggable ?? true,
       footer: cp?.footer,

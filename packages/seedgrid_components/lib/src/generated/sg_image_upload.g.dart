@@ -17,8 +17,8 @@ abstract interface class SgImageUploadProps {
   Object? get control;
   /// Arquivos iniciais (campo nao controlado). Tipo TS: `SgFileValue[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get defaultValue;
-  /// Desabilita a escolha e a remocao. Padrão: `false`.
-  bool? get disabled;
+  /// Desabilita a escolha e a remocao. Padrão: `true`.
+  bool? get enabled;
   String? get error;
   String? get hintText;
   /// Identificador unico do campo.
@@ -93,12 +93,12 @@ const List<SgPropSpec> sgImageUploadPropSpecs = <SgPropSpec>[
     exact: false,
   ),
   SgPropSpec(
-    name: 'disabled',
-    reactName: 'disabled',
+    name: 'enabled',
+    reactName: 'enabled',
     type: 'bool?',
     tsType: 'boolean',
     required: false,
-    defaultValue: 'false',
+    defaultValue: 'true',
     description: 'Desabilita a escolha e a remocao.',
   ),
   SgPropSpec(

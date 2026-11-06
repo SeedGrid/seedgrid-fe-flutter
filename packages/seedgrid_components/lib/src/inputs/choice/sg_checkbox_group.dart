@@ -19,14 +19,14 @@ class SgCheckboxGroupOption {
     required this.value,
     this.checked,
     this.icon,
-    this.disabled,
+    this.enabled,
   });
 
   final String label;
   final Object value;
   final bool? checked;
   final Widget? icon;
-  final bool? disabled;
+  final bool? enabled;
 }
 
 /// Equivale a `SgCheckboxGroupRef` do React (getChecked/setChecked/checkAll/clearAll).
@@ -49,7 +49,7 @@ class SgCheckboxGroup extends StatefulWidget implements SgCheckboxGroupProps {
     this.orientation = SgCheckboxGroupOrientation.vertical,
     this.selectionStyle = SgCheckboxGroupSelectionStyle.checkbox,
     this.iconOnly = false,
-    this.disabled = false,
+    this.enabled = true,
     this.readOnly = false,
     this.required = false,
     this.onChange,
@@ -82,7 +82,7 @@ class SgCheckboxGroup extends StatefulWidget implements SgCheckboxGroupProps {
   @override
   final bool iconOnly;
   @override
-  final bool disabled;
+  final bool enabled;
   @override
   final bool readOnly;
   @override
@@ -187,7 +187,7 @@ class _SgCheckboxGroupState extends State<SgCheckboxGroup> {
 
   List<Object> get _enabledValues => [
     for (final o in widget.source)
-      if (!(o.disabled ?? false)) o.value,
+      if ((o.enabled ?? true)) o.value,
   ];
 
   void _emit(List<Object> next) {
@@ -200,7 +200,7 @@ class _SgCheckboxGroupState extends State<SgCheckboxGroup> {
   }
 
   void _toggle(Object v) {
-    if (widget.disabled || widget.readOnly) return;
+    if (!widget.enabled || widget.readOnly) return;
     final cur = _current;
     _emit(
       cur.contains(v)
@@ -213,7 +213,7 @@ class _SgCheckboxGroupState extends State<SgCheckboxGroup> {
   }
 
   void _checkAll() {
-    if (widget.disabled || widget.readOnly) return;
+    if (!widget.enabled || widget.readOnly) return;
     final enabled = _enabledValues;
     // Igual ao React: compara o tamanho da selecao inteira com o das opcoes habilitadas.
     _emit(_current.length == enabled.length ? <Object>[] : enabled);
@@ -241,7 +241,7 @@ class _SgCheckboxGroupState extends State<SgCheckboxGroup> {
           label: w.source[i].label,
           icon: w.source[i].icon,
           selected: current.contains(w.source[i].value),
-          disabled: w.disabled || (w.source[i].disabled ?? false),
+          enabled: w.enabled && (w.source[i].enabled ?? true),
           readOnly: w.readOnly,
           highlight: highlight,
           iconOnly: w.iconOnly,
@@ -270,7 +270,7 @@ class _SgCheckboxGroupState extends State<SgCheckboxGroup> {
                   selected: allChecked,
                   indeterminate: some,
                   bold: true,
-                  disabled: w.disabled,
+                  enabled: w.enabled,
                   readOnly: w.readOnly,
                   onTap: _checkAll,
                 ),

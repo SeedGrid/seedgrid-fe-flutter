@@ -717,7 +717,7 @@ void main() {
             id: 'o',
             mask: '99',
             defaultValue: '1',
-            disabled: true,
+            enabled: false,
             onChange: changes.add,
           ),
         ),
@@ -1025,7 +1025,7 @@ void main() {
                 label: 'Desabilitado',
                 mask: '9999',
                 defaultValue: '12',
-                disabled: true,
+                enabled: false,
               ),
               SizedBox(height: 12),
               SgInputOTP(

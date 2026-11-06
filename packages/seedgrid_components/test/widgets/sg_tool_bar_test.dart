@@ -39,7 +39,7 @@ SgToolbarIconButton btn(
   icon: Text(label.substring(0, 2)),
   label: label,
   hint: hint,
-  disabled: disabled,
+  enabled: !(disabled),
   onClick: onClick,
 );
 

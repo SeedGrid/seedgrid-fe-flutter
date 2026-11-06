@@ -77,7 +77,7 @@ void main() {
       name: name,
       control: control,
       rules: rules,
-      disabled: disabled,
+      enabled: !(disabled),
       readOnly: readOnly,
       onChange: onChange,
     );
@@ -352,7 +352,7 @@ void main() {
       name: name,
       control: control,
       rules: rules,
-      disabled: disabled,
+      enabled: !(disabled),
       readOnly: readOnly,
       onChange: onChange,
     );

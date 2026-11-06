@@ -80,7 +80,7 @@ SizedBox(
         id: 'ajustes',
         label: context.tx('Ajustes'),
         icon: Icon(Icons.settings_outlined),
-        disabled: true,
+        enabled: false,
       ),
     ],
   ),

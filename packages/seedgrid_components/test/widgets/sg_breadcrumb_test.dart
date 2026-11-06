@@ -32,7 +32,7 @@ SgBreadcrumbItem item(
   id: id,
   label: Text(label ?? id),
   href: href,
-  disabled: disabled,
+  enabled: !disabled,
   hidden: hidden,
   onClick: onClick,
   icon: icon,

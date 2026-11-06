@@ -111,7 +111,7 @@ class _SgStepperInputPageState extends State<SgStepperInputPage> {
                   minValue: 0,
                   maxValue: 10,
                   defaultValue: 4,
-                  disabled: true,
+                  enabled: false,
                   width: 160,
                 ),
                 SizedBox(height: 12),
@@ -178,14 +178,14 @@ class _SgStepperInputPageState extends State<SgStepperInputPage> {
       propSpecs: sgPropSpecs['SgStepperInput']!,
       playground: SgPlayground(
         specs: sgPropSpecs['SgStepperInput']!
-            .where((s) => const {'disabled', 'readOnly'}.contains(s.name))
+            .where((s) => const {'enabled', 'readOnly'}.contains(s.name))
             .toList(),
         builder: (context, v) => SgStepperInput(
           id: 'pg',
           minValue: 0,
           maxValue: 10,
           defaultValue: 3,
-          disabled: v['disabled'] as bool?,
+          enabled: v['enabled'] as bool?,
           readOnly: v['readOnly'] as bool?,
           width: 160,
         ),

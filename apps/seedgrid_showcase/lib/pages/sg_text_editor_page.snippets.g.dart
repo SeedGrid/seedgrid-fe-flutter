@@ -79,7 +79,7 @@ const Column(
     SgTextEditor(
       id: 'editor-desabilitado',
       height: 120,
-      disabled: true,
+      enabled: false,
       defaultValueHtml: '<p>Somente leitura</p>',
     ),
     SizedBox(height: 16),

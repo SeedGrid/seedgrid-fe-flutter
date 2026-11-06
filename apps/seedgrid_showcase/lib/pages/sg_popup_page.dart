@@ -93,7 +93,7 @@ class _SgPopupPageState extends State<SgPopupPage> {
                     ),
                     SgPopupAction(
                       label: context.tx('Indisponível'),
-                      disabled: true,
+                      enabled: false,
                     ),
                     SgPopupAction(
                       label: context.tx('Excluir'),

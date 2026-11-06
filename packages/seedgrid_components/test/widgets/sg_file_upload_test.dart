@@ -2,6 +2,7 @@
 // quantidade, erro por arquivo, desabilitado, formulario). A logica pura tem os vetores em sg_file_logic_test.dart.
 import 'dart:typed_data';
 
+import 'package:desktop_drop/desktop_drop.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
@@ -77,6 +78,70 @@ void main() {
     expect(calls.last, '');
     expect(find.byKey(const ValueKey('sg-file-open-f')), findsOneWidget);
   });
+
+  testWidgets(
+    'arrastar e soltar: um arquivo fica com o primeiro; varios somam',
+    (t) async {
+      DropDoneDetails drop(List<String> names) => DropDoneDetails(
+        files: [
+          for (final n in names)
+            DropItemFile.fromData(Uint8List.fromList(_pdf), path: n),
+        ],
+        localPosition: Offset.zero,
+        globalPosition: Offset.zero,
+      );
+      final single = <String>[];
+      await t.pumpWidget(
+        host(
+          SgFileUpload(
+            id: 'd',
+            label: 'Anexo',
+            picker: pickerOf(const []),
+            onChange: (files) => single.add(names(files)),
+          ),
+        ),
+      );
+      var target = t.widget<DropTarget>(
+        find.byKey(const ValueKey('sg-file-drop-d')),
+      );
+      target.onDragEntered?.call(
+        DropEventDetails(
+          localPosition: Offset.zero,
+          globalPosition: Offset.zero,
+        ),
+      );
+      await t.pump();
+      target.onDragDone?.call(drop(['a.pdf', 'b.pdf']));
+      await t.runAsync(
+        () => Future<void>.delayed(const Duration(milliseconds: 50)),
+      );
+      await t.pump();
+      expect(single.last, 'a.pdf');
+
+      final multi = <String>[];
+      await t.pumpWidget(const SizedBox());
+      await t.pumpWidget(
+        host(
+          SgFileUpload(
+            id: 'm',
+            label: 'Anexos',
+            maxFiles: 5,
+            picker: pickerOf(const []),
+            onChange: (files) => multi.add(names(files)),
+          ),
+        ),
+      );
+      target = t.widget<DropTarget>(
+        find.byKey(const ValueKey('sg-file-drop-m')),
+      );
+      target.onDragDone?.call(drop(['a.pdf', 'b.pdf']));
+      await t.runAsync(
+        () => Future<void>.delayed(const Duration(milliseconds: 50)),
+      );
+      await t.pump();
+      expect(multi.last, 'a.pdf,b.pdf');
+    },
+  );
 
   testWidgets('varios arquivos: soma, respeita maxFiles e vira lista', (
     t,
@@ -179,7 +244,7 @@ void main() {
       host(
         SgFileUpload(
           id: 'f',
-          disabled: true,
+          enabled: false,
           defaultValue: [pdf('a.pdf')],
           picker: (_) async {
             opened = true;

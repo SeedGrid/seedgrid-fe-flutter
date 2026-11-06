@@ -177,7 +177,7 @@ void main() {
           id: 'a',
           minValue: 0,
           maxValue: 100,
-          disabled: true,
+          enabled: false,
           onChange: changes.add,
         ),
       ),
@@ -359,7 +359,7 @@ void main() {
               minValue: 0,
               maxValue: 100,
               defaultValue: 70,
-              disabled: true,
+              enabled: false,
             ),
             SgSlider(
               id: 'g4',

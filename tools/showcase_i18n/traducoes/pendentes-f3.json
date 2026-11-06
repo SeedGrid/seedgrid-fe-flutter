@@ -1,0 +1,1352 @@
+{
+ "Submit": [
+  "Submit",
+  "Submeter",
+  "Enviar",
+  "Envoyer"
+ ],
+ "Disabled": [
+  "Disabled",
+  "Desativado",
+  "Deshabilitado",
+  "Désactivé"
+ ],
+ "Elevated Buttons": [
+  "Elevated Buttons",
+  "Botões elevados",
+  "Botones elevados",
+  "Boutons surélevés"
+ ],
+ "Rounded Buttons": [
+  "Rounded Buttons",
+  "Botões arredondados",
+  "Botones redondeados",
+  "Boutons arrondis"
+ ],
+ "Ghost Buttons (Flat)": [
+  "Ghost Buttons (Flat)",
+  "Botões fantasma (planos)",
+  "Botones fantasma (planos)",
+  "Boutons fantômes (plats)"
+ ],
+ "Outlined + Elevation": [
+  "Outlined + Elevation",
+  "Contorno + elevação",
+  "Contorno + elevación",
+  "Contour + élévation"
+ ],
+ "Outlined Buttons": [
+  "Outlined Buttons",
+  "Botões com contorno",
+  "Botones con contorno",
+  "Boutons avec contour"
+ ],
+ "Processing...": [
+  "Processing...",
+  "A processar...",
+  "Procesando...",
+  "Traitement en cours..."
+ ],
+ "Saving...": [
+  "Saving...",
+  "A guardar...",
+  "Guardando...",
+  "Enregistrement..."
+ ],
+ "Deleting...": [
+  "Deleting...",
+  "A eliminar...",
+  "Eliminando...",
+  "Suppression..."
+ ],
+ "Brand Dark": [
+  "Brand Dark",
+  "Marca escura",
+  "Marca oscura",
+  "Marque sombre"
+ ],
+ "Pink": [
+  "Pink",
+  "Rosa",
+  "Rosa",
+  "Rose"
+ ],
+ "Violet Outline": [
+  "Violet Outline",
+  "Contorno violeta",
+  "Contorno violeta",
+  "Contour violet"
+ ],
+ "Botão padrão com onClick e estado desabilitado (enabled: false).": [
+  "Default button with onClick and disabled state (enabled: false).",
+  "Botão padrão com onClick e estado desativado (enabled: false).",
+  "Botón predeterminado con onClick y estado deshabilitado (enabled: false).",
+  "Bouton par défaut avec onClick et état désactivé (enabled: false)."
+ ],
+ "Exemplos completos com ícones para validar appearance, shape e elevation.": [
+  "Complete examples with icons to validate appearance, shape and elevation.",
+  "Exemplos completos com ícones para validar appearance, shape e elevation.",
+  "Ejemplos completos con iconos para validar appearance, shape y elevation.",
+  "Exemples complets avec icônes pour valider appearance, shape et elevation."
+ ],
+ "Severities": [
+  "Severities",
+  "Severidades",
+  "Severidades",
+  "Sévérités"
+ ],
+ "severity: primary, secondary, success, info, warning, help ou danger.": [
+  "severity: primary, secondary, success, info, warning, help or danger.",
+  "severity: primary, secondary, success, info, warning, help ou danger.",
+  "severity: primary, secondary, success, info, warning, help o danger.",
+  "severity: primary, secondary, success, info, warning, help ou danger."
+ ],
+ "appearance: solid + elevation: sm.": [
+  "appearance: solid + elevation: sm.",
+  "appearance: solid + elevation: sm.",
+  "appearance: solid + elevation: sm.",
+  "appearance: solid + elevation: sm."
+ ],
+ "shape: rounded para formato pill.": [
+  "shape: rounded for pill shape.",
+  "shape: rounded para formato pílula.",
+  "shape: rounded para forma de píldora.",
+  "shape: rounded pour une forme de pilule."
+ ],
+ "appearance: ghost - sem fundo, apenas texto colorido.": [
+  "appearance: ghost - no background, colored text only.",
+  "appearance: ghost - sem fundo, apenas texto colorido.",
+  "appearance: ghost - sin fondo, solo texto de color.",
+  "appearance: ghost - sans fond, uniquement du texte coloré."
+ ],
+ "appearance: outline + elevation: sm.": [
+  "appearance: outline + elevation: sm.",
+  "appearance: outline + elevation: sm.",
+  "appearance: outline + elevation: sm.",
+  "appearance: outline + elevation: sm."
+ ],
+ "appearance: outline - apenas bordas coloridas.": [
+  "appearance: outline - colored borders only.",
+  "appearance: outline - apenas contornos coloridos.",
+  "appearance: outline - solo bordes de color.",
+  "appearance: outline - uniquement des bordures colorées."
+ ],
+ "Rounded Icon Buttons": [
+  "Rounded Icon Buttons",
+  "Botões de ícone arredondados",
+  "Botones de icono redondeados",
+  "Boutons d'icône arrondis"
+ ],
+ "shape: rounded + só ícone - botões circulares.": [
+  "shape: rounded + icon only - circular buttons.",
+  "shape: rounded + só ícone - botões circulares.",
+  "shape: rounded + solo icono - botones circulares.",
+  "shape: rounded + icône seule - boutons circulaires."
+ ],
+ "Rounded Text Icon Buttons": [
+  "Rounded Text Icon Buttons",
+  "Botões de ícone arredondados com texto",
+  "Botones de icono redondeados con texto",
+  "Boutons d'icône arrondis avec texte"
+ ],
+ "shape: rounded + só ícone + appearance: ghost.": [
+  "shape: rounded + icon only + appearance: ghost.",
+  "shape: rounded + só ícone + appearance: ghost.",
+  "shape: rounded + solo icono + appearance: ghost.",
+  "shape: rounded + icône seule + appearance: ghost."
+ ],
+ "Rounded and Outlined Icon Buttons": [
+  "Rounded and Outlined Icon Buttons",
+  "Botões de ícone arredondados com contorno",
+  "Botones de icono redondeados con contorno",
+  "Boutons d'icône arrondis avec contour"
+ ],
+ "shape: rounded + só ícone + appearance: outline.": [
+  "shape: rounded + icon only + appearance: outline.",
+  "shape: rounded + só ícone + appearance: outline.",
+  "shape: rounded + solo icono + appearance: outline.",
+  "shape: rounded + icône seule + appearance: outline."
+ ],
+ "Sizes": [
+  "Sizes",
+  "Tamanhos",
+  "Tamaños",
+  "Tailles"
+ ],
+ "size: sm, md ou lg.": [
+  "size: sm, md or lg.",
+  "size: sm, md ou lg.",
+  "size: sm, md o lg.",
+  "size: sm, md ou lg."
+ ],
+ "Loading": [
+  "Loading",
+  "A carregar",
+  "Cargando",
+  "Chargement"
+ ],
+ "loading: true exibe spinner e desabilita o botão.": [
+  "loading: true shows a spinner and disables the button.",
+  "loading: true mostra um indicador de progresso e desativa o botão.",
+  "loading: true muestra un indicador de carga y deshabilita el botón.",
+  "loading: true affiche un indicateur de chargement et désactive le bouton."
+ ],
+ "Custom Colors": [
+  "Custom Colors",
+  "Cores personalizadas",
+  "Colores personalizados",
+  "Couleurs personnalisées"
+ ],
+ "customColors permite definir qualquer cor (bg, fg, border, hoverBg, ring).": [
+  "customColors lets you define any color (bg, fg, border, hoverBg, ring).",
+  "customColors permite definir qualquer cor (bg, fg, border, hoverBg, ring).",
+  "customColors permite definir cualquier color (bg, fg, border, hoverBg, ring).",
+  "customColors permet de définir n'importe quelle couleur (bg, fg, border, hoverBg, ring)."
+ ],
+ "Índice Ativo": [
+  "Active Index",
+  "Índice ativo",
+  "Índice activo",
+  "Index actif"
+ ],
+ "Índice mudou para": [
+  "Index changed to",
+  "O índice mudou para",
+  "El índice cambió a",
+  "L'index est passé à"
+ ],
+ "Navegue pelo carrossel para ver os eventos...": [
+  "Navigate the carousel to see the events...",
+  "Navegue pelo carrossel para ver os eventos...",
+  "Navega por el carrusel para ver los eventos...",
+  "Naviguez dans le carrousel pour voir les événements..."
+ ],
+ "Básico - Horizontal": [
+  "Basic - Horizontal",
+  "Básico - Horizontal",
+  "Básico - Horizontal",
+  "Basique - Horizontal"
+ ],
+ "Carrossel horizontal simples com um item visível por vez": [
+  "Simple horizontal carousel with one visible item at a time",
+  "Carrossel horizontal simples com um item visível de cada vez",
+  "Carrusel horizontal simple con un elemento visible a la vez",
+  "Carrousel horizontal simple avec un élément visible à la fois"
+ ],
+ "Múltiplos itens visíveis": [
+  "Multiple visible items",
+  "Vários itens visíveis",
+  "Varios elementos visibles",
+  "Plusieurs éléments visibles"
+ ],
+ "Carrossel mostrando 3 itens de uma vez": [
+  "Carousel showing 3 items at once",
+  "Carrossel a mostrar 3 itens de uma vez",
+  "Carrusel que muestra 3 elementos a la vez",
+  "Carrousel affichant 3 éléments à la fois"
+ ],
+ "Auto play": [
+  "Auto play",
+  "Reprodução automática",
+  "Reproducción automática",
+  "Lecture automatique"
+ ],
+ "Carrossel com navegação automática (a cada 2 segundos)": [
+  "Carousel with automatic navigation (every 2 seconds)",
+  "Carrossel com navegação automática (a cada 2 segundos)",
+  "Carrusel con navegación automática (cada 2 segundos)",
+  "Carrousel avec navigation automatique (toutes les 2 secondes)"
+ ],
+ "Orientação vertical": [
+  "Vertical orientation",
+  "Orientação vertical",
+  "Orientación vertical",
+  "Orientation verticale"
+ ],
+ "Carrossel com navegação vertical": [
+  "Carousel with vertical navigation",
+  "Carrossel com navegação vertical",
+  "Carrusel con navegación vertical",
+  "Carrousel avec navigation verticale"
+ ],
+ "Vertical - Múltiplos itens": [
+  "Vertical - Multiple items",
+  "Vertical - Vários itens",
+  "Vertical - Varios elementos",
+  "Vertical - Plusieurs éléments"
+ ],
+ "Carrossel vertical mostrando 3 itens de uma vez": [
+  "Vertical carousel showing 3 items at once",
+  "Carrossel vertical a mostrar 3 itens de uma vez",
+  "Carrusel vertical que muestra 3 elementos a la vez",
+  "Carrousel vertical affichant 3 éléments à la fois"
+ ],
+ "Sem modo circular": [
+  "No circular mode",
+  "Sem modo circular",
+  "Sin modo circular",
+  "Sans mode circulaire"
+ ],
+ "Carrossel que para no final (sem loop infinito)": [
+  "Carousel that stops at the end (no infinite loop)",
+  "Carrossel que para no fim (sem ciclo infinito)",
+  "Carrusel que se detiene al final (sin bucle infinito)",
+  "Carrousel qui s'arrête à la fin (sans boucle infinie)"
+ ],
+ "Sem indicadores": [
+  "No indicators",
+  "Sem indicadores",
+  "Sin indicadores",
+  "Sans indicateurs"
+ ],
+ "Carrossel sem os indicadores (dots) na parte inferior": [
+  "Carousel without the indicators (dots) at the bottom",
+  "Carrossel sem os indicadores (pontos) na parte inferior",
+  "Carrusel sin los indicadores (puntos) en la parte inferior",
+  "Carrousel sans les indicateurs (points) en bas"
+ ],
+ "Sem navegadores": [
+  "No navigation buttons",
+  "Sem botões de navegação",
+  "Sin botones de navegación",
+  "Sans boutons de navigation"
+ ],
+ "Carrossel sem os botões de navegação (apenas indicadores)": [
+  "Carousel without navigation buttons (indicators only)",
+  "Carrossel sem os botões de navegação (apenas indicadores)",
+  "Carrusel sin los botones de navegación (solo indicadores)",
+  "Carrousel sans les boutons de navigation (indicateurs uniquement)"
+ ],
+ "Gap customizado": [
+  "Custom gap",
+  "Espaçamento personalizado",
+  "Espaciado personalizado",
+  "Espacement personnalisé"
+ ],
+ "Carrossel com espaçamento personalizado entre itens (gap: 32px)": [
+  "Carousel with custom spacing between items (gap: 32px)",
+  "Carrossel com espaçamento personalizado entre itens (gap: 32px)",
+  "Carrusel con espaciado personalizado entre elementos (gap: 32px)",
+  "Carrousel avec espacement personnalisé entre les éléments (gap: 32px)"
+ ],
+ "Com callbacks": [
+  "With callbacks",
+  "Com callbacks",
+  "Con callbacks",
+  "Avec callbacks"
+ ],
+ "Carrossel com evento de mudança de índice": [
+  "Carousel with index change event",
+  "Carrossel com evento de mudança de índice",
+  "Carrusel con evento de cambio de índice",
+  "Carrousel avec événement de changement d'index"
+ ],
+ "Exemplo responsivo": [
+  "Responsive example",
+  "Exemplo responsivo",
+  "Ejemplo responsivo",
+  "Exemple adaptatif"
+ ],
+ "Carrossel que se adapta ao tamanho da tela mostrando diferentes quantidades de itens": [
+  "Carousel that adapts to the screen size showing different numbers of items",
+  "Carrossel que se adapta ao tamanho do ecrã a mostrar diferentes quantidades de itens",
+  "Carrusel que se adapta al tamaño de la pantalla mostrando diferentes cantidades de elementos",
+  "Carrousel qui s'adapte à la taille de l'écran en affichant différentes quantités d'éléments"
+ ],
+ "Escolha as opções": [
+  "Choose the options",
+  "Escolha as opções",
+  "Elige las opciones",
+  "Choisissez les options"
+ ],
+ "Opção 1": [
+  "Option 1",
+  "Opção 1",
+  "Opción 1",
+  "Option 1"
+ ],
+ "Opção 2": [
+  "Option 2",
+  "Opção 2",
+  "Opción 2",
+  "Option 2"
+ ],
+ "Opção 3": [
+  "Option 3",
+  "Opção 3",
+  "Opción 3",
+  "Option 3"
+ ],
+ "Valores selecionados": [
+  "Selected values",
+  "Valores selecionados",
+  "Valores seleccionados",
+  "Valeurs sélectionnées"
+ ],
+ "Selecione frutas": [
+  "Select fruits",
+  "Selecione frutas",
+  "Selecciona frutas",
+  "Sélectionnez des fruits"
+ ],
+ "Uva": [
+  "Grape",
+  "Uva",
+  "Uva",
+  "Raisin"
+ ],
+ "Escolha ações": [
+  "Choose actions",
+  "Escolha ações",
+  "Elige acciones",
+  "Choisissez des actions"
+ ],
+ "Importante": [
+  "Important",
+  "Importante",
+  "Importante",
+  "Important"
+ ],
+ "Curtir": [
+  "Like",
+  "Gostar",
+  "Me gusta",
+  "J'aime"
+ ],
+ "Escolha formas": [
+  "Choose shapes",
+  "Escolha formas",
+  "Elige formas",
+  "Choisissez des formes"
+ ],
+ "Círculo": [
+  "Circle",
+  "Círculo",
+  "Círculo",
+  "Cercle"
+ ],
+ "Triângulo": [
+  "Triangle",
+  "Triângulo",
+  "Triángulo",
+  "Triangle"
+ ],
+ "Seleção controlada": [
+  "Controlled selection",
+  "Seleção controlada",
+  "Selección controlada",
+  "Sélection contrôlée"
+ ],
+ "Frutas favoritas": [
+  "Favorite fruits",
+  "Frutas favoritas",
+  "Frutas favoritas",
+  "Fruits préférés"
+ ],
+ "Definir Maçã": [
+  "Set Apple",
+  "Definir Maçã",
+  "Establecer Manzana",
+  "Définir Pomme"
+ ],
+ "Banana + Uva": [
+  "Banana + Grape",
+  "Banana + Uva",
+  "Banana + Uva",
+  "Banane + Raisin"
+ ],
+ "Selecionar Todos": [
+  "Select All",
+  "Selecionar todos",
+  "Seleccionar todos",
+  "Tout sélectionner"
+ ],
+ "Valor atual": [
+  "Current value",
+  "Valor atual",
+  "Valor actual",
+  "Valeur actuelle"
+ ],
+ "Nível de prioridade": [
+  "Priority level",
+  "Nível de prioridade",
+  "Nivel de prioridad",
+  "Niveau de priorité"
+ ],
+ "Baixa": [
+  "Low",
+  "Baixa",
+  "Baja",
+  "Basse"
+ ],
+ "Média": [
+  "Medium",
+  "Média",
+  "Media",
+  "Moyenne"
+ ],
+ "Alta": [
+  "High",
+  "Alta",
+  "Alta",
+  "Haute"
+ ],
+ "Opções desabilitadas": [
+  "Disabled options",
+  "Opções desativadas",
+  "Opciones deshabilitadas",
+  "Options désactivées"
+ ],
+ "Configuração atual (somente leitura)": [
+  "Current configuration (read-only)",
+  "Configuração atual (apenas leitura)",
+  "Configuración actual (solo lectura)",
+  "Configuration actuelle (lecture seule)"
+ ],
+ "Preferência de contato *": [
+  "Contact preference *",
+  "Preferência de contacto *",
+  "Preferencia de contacto *",
+  "Préférence de contact *"
+ ],
+ "Presencial": [
+  "In person",
+  "Presencial",
+  "Presencial",
+  "En personne"
+ ],
+ "Dados do formulário": [
+  "Form data",
+  "Dados do formulário",
+  "Datos del formulario",
+  "Données du formulaire"
+ ],
+ "Condições climáticas": [
+  "Weather conditions",
+  "Condições meteorológicas",
+  "Condiciones climáticas",
+  "Conditions météorologiques"
+ ],
+ "Sol": [
+  "Sun",
+  "Sol",
+  "Sol",
+  "Soleil"
+ ],
+ "Lua": [
+  "Moon",
+  "Lua",
+  "Luna",
+  "Lune"
+ ],
+ "Nuvem": [
+  "Cloud",
+  "Nuvem",
+  "Nube",
+  "Nuage"
+ ],
+ "Opções": [
+  "Options",
+  "Opções",
+  "Opciones",
+  "Options"
+ ],
+ "Reserva": [
+  "Reservation",
+  "Reserva",
+  "Reserva",
+  "Réservation"
+ ],
+ "Alerta": [
+  "Alert",
+  "Alerta",
+  "Alerta",
+  "Alerte"
+ ],
+ "Escolha com estilo customizado": [
+  "Choice with custom style",
+  "Escolha com estilo personalizado",
+  "Elección con estilo personalizado",
+  "Choix avec style personnalisé"
+ ],
+ "Escolha suas frutas": [
+  "Choose your fruits",
+  "Escolha as suas frutas",
+  "Elige tus frutas",
+  "Choisissez vos fruits"
+ ],
+ "Sem label customizado (usa i18n)": [
+  "No custom label (uses i18n)",
+  "Sem label personalizado (usa i18n)",
+  "Sin label personalizado (usa i18n)",
+  "Sans label personnalisé (utilise i18n)"
+ ],
+ "Exemplo de marcar todos": [
+  "Check all example",
+  "Exemplo de marcar todos",
+  "Ejemplo de marcar todos",
+  "Exemple de tout cocher"
+ ],
+ "Com checkAllLabel e checkAllIcon": [
+  "With checkAllLabel and checkAllIcon",
+  "Com checkAllLabel e checkAllIcon",
+  "Con checkAllLabel y checkAllIcon",
+  "Avec checkAllLabel et checkAllIcon"
+ ],
+ "Com label + ícone customizados": [
+  "With custom label + icon",
+  "Com label + ícone personalizados",
+  "Con label + icono personalizados",
+  "Avec label + icône personnalisés"
+ ],
+ "Marcar tudo": [
+  "Check all",
+  "Marcar tudo",
+  "Marcar todo",
+  "Tout cocher"
+ ],
+ "Frutas favoritas (inicial pelo source)": [
+  "Favorite fruits (initial from source)",
+  "Frutas favoritas (inicial pelo source)",
+  "Frutas favoritas (inicial desde source)",
+  "Fruits préférés (initial via source)"
+ ],
+ "Selecione as opções": [
+  "Select the options",
+  "Selecione as opções",
+  "Selecciona las opciones",
+  "Sélectionnez les options"
+ ],
+ "Saída": [
+  "Output",
+  "Saída",
+  "Salida",
+  "Sortie"
+ ],
+ "Orientação Horizontal": [
+  "Horizontal Orientation",
+  "Orientação horizontal",
+  "Orientación horizontal",
+  "Orientation horizontale"
+ ],
+ "Com Ícones": [
+  "With Icons",
+  "Com ícones",
+  "Con iconos",
+  "Avec icônes"
+ ],
+ "Apenas Ícones (Icon Only)": [
+  "Icons Only (Icon Only)",
+  "Apenas ícones (Icon Only)",
+  "Solo iconos (Icon Only)",
+  "Icônes uniquement (Icon Only)"
+ ],
+ "Seleção Controlada": [
+  "Controlled Selection",
+  "Seleção controlada",
+  "Selección controlada",
+  "Sélection contrôlée"
+ ],
+ "Controle Externo (setValue/getValue)": [
+  "External Control (setValue/getValue)",
+  "Controlo externo (setValue/getValue)",
+  "Control externo (setValue/getValue)",
+  "Contrôle externe (setValue/getValue)"
+ ],
+ "Com Opção Desabilitada": [
+  "With Disabled Option",
+  "Com opção desativada",
+  "Con opción deshabilitada",
+  "Avec option désactivée"
+ ],
+ "Grupo Desabilitado": [
+  "Disabled Group",
+  "Grupo desativado",
+  "Grupo deshabilitado",
+  "Groupe désactivé"
+ ],
+ "Somente Leitura": [
+  "Read-Only",
+  "Apenas leitura",
+  "Solo lectura",
+  "Lecture seule"
+ ],
+ "Obrigatório com Validação": [
+  "Required with Validation",
+  "Obrigatório com validação",
+  "Obligatorio con validación",
+  "Obligatoire avec validation"
+ ],
+ "Horizontal com Ícones Coloridos": [
+  "Horizontal with Colored Icons",
+  "Horizontal com ícones coloridos",
+  "Horizontal con iconos de colores",
+  "Horizontal avec icônes colorées"
+ ],
+ "Estilo de Seleção Highlight (Lista)": [
+  "Highlight Selection Style (List)",
+  "Estilo de seleção Highlight (lista)",
+  "Estilo de selección Highlight (lista)",
+  "Style de sélection Highlight (liste)"
+ ],
+ "Com GroupBox Customizado": [
+  "With Custom GroupBox",
+  "Com GroupBox personalizado",
+  "Con GroupBox personalizado",
+  "Avec GroupBox personnalisé"
+ ],
+ "Formulário - Register": [
+  "Form - Register",
+  "Formulário - Register",
+  "Formulario - Register",
+  "Formulaire - Register"
+ ],
+ "Marcar Todos (showCheckAll)": [
+  "Check All (showCheckAll)",
+  "Marcar todos (showCheckAll)",
+  "Marcar todos (showCheckAll)",
+  "Tout cocher (showCheckAll)"
+ ],
+ "Checkbox 'Selecionar todos' separado por divisor, com estado indeterminado quando parcialmente selecionado": [
+  "'Select all' checkbox separated by a divider, with indeterminate state when partially selected",
+  "Checkbox 'Selecionar todos' separada por divisor, com estado indeterminado quando parcialmente selecionada",
+  "Checkbox 'Seleccionar todos' separado por un divisor, con estado indeterminado cuando está parcialmente seleccionado",
+  "Case à cocher « Tout sélectionner » séparée par un séparateur, avec état indéterminé lorsqu'elle est partiellement sélectionnée"
+ ],
+ "Checked inicial no source": [
+  "Initial checked in source",
+  "Checked inicial no source",
+  "Checked inicial en el source",
+  "Checked initial dans le source"
+ ],
+ "Estado inicial definido diretamente na prop checked de cada opção (modo não controlado)": [
+  "Initial state set directly on each option's checked prop (uncontrolled mode)",
+  "Estado inicial definido diretamente na prop checked de cada opção (modo não controlado)",
+  "Estado inicial definido directamente en la prop checked de cada opción (modo no controlado)",
+  "État initial défini directement dans la prop checked de chaque option (mode non contrôlé)"
+ ],
+ "Controller imperativo (getChecked / checkAll / clearAll)": [
+  "Imperative controller (getChecked / checkAll / clearAll)",
+  "Controller imperativo (getChecked / checkAll / clearAll)",
+  "Controller imperativo (getChecked / checkAll / clearAll)",
+  "Controller impératif (getChecked / checkAll / clearAll)"
+ ],
+ "Acesso imperativo via SgCheckboxGroupController: getChecked, checkAll, clearAll, setChecked": [
+  "Imperative access via SgCheckboxGroupController: getChecked, checkAll, clearAll, setChecked",
+  "Acesso imperativo via SgCheckboxGroupController: getChecked, checkAll, clearAll, setChecked",
+  "Acceso imperativo mediante SgCheckboxGroupController: getChecked, checkAll, clearAll, setChecked",
+  "Accès impératif via SgCheckboxGroupController : getChecked, checkAll, clearAll, setChecked"
+ ],
+ "8 positions": [
+  "8 positions",
+  "8 posições",
+  "8 posiciones",
+  "8 positions"
+ ],
+ "Adicionar novo": [
+  "Add new",
+  "Adicionar novo",
+  "Añadir nuevo",
+  "Ajouter un nouveau"
+ ],
+ "Novo usuário": [
+  "New user",
+  "Novo utilizador",
+  "Nuevo usuario",
+  "Nouvel utilisateur"
+ ],
+ "Novo arquivo": [
+  "New file",
+  "Novo ficheiro",
+  "Nuevo archivo",
+  "Nouveau fichier"
+ ],
+ "Nova pasta": [
+  "New folder",
+  "Nova pasta",
+  "Nueva carpeta",
+  "Nouveau dossier"
+ ],
+ "Edit": [
+  "Edit",
+  "Editar",
+  "Editar",
+  "Modifier"
+ ],
+ "Star": [
+  "Star",
+  "Estrela",
+  "Estrella",
+  "Étoile"
+ ],
+ "Posições": [
+  "Positions",
+  "Posições",
+  "Posiciones",
+  "Positions"
+ ],
+ "O FAB pode ser posicionado em 8 pontos da área usando a prop position.": [
+  "The FAB can be positioned at 8 points of the area using the position prop.",
+  "O FAB pode ser posicionado em 8 pontos da área através da prop position.",
+  "El FAB se puede posicionar en 8 puntos del área mediante la prop position.",
+  "Le FAB peut être positionné à 8 endroits de la zone grâce à la prop position."
+ ],
+ "Cores do tema: primary, secondary, success, info, warning, help, danger e plain.": [
+  "Theme colors: primary, secondary, success, info, warning, help, danger and plain.",
+  "Cores do tema: primary, secondary, success, info, warning, help, danger e plain.",
+  "Colores del tema: primary, secondary, success, info, warning, help, danger y plain.",
+  "Couleurs du thème : primary, secondary, success, info, warning, help, danger et plain."
+ ],
+ "Formas e Tamanhos": [
+  "Shapes and Sizes",
+  "Formas e tamanhos",
+  "Formas y tamaños",
+  "Formes et tailles"
+ ],
+ "Combine shape (circle, rounded, square) com size (sm, md, lg).": [
+  "Combine shape (circle, rounded, square) with size (sm, md, lg).",
+  "Combine shape (circle, rounded, square) com size (sm, md, lg).",
+  "Combina shape (circle, rounded, square) con size (sm, md, lg).",
+  "Combinez shape (circle, rounded, square) avec size (sm, md, lg)."
+ ],
+ "Controle a sombra com elevation: none, sm, md ou lg.": [
+  "Control the shadow with elevation: none, sm, md or lg.",
+  "Controle a sombra com elevation: none, sm, md ou lg.",
+  "Controla la sombra con elevation: none, sm, md o lg.",
+  "Contrôlez l'ombre avec elevation : none, sm, md ou lg."
+ ],
+ "Dica (Tooltip)": [
+  "Tip (Tooltip)",
+  "Dica (Tooltip)",
+  "Sugerencia (Tooltip)",
+  "Info-bulle (Tooltip)"
+ ],
+ "Exibe um tooltip ao passar o mouse (ou manter pressionado) sobre o FAB.": [
+  "Shows a tooltip when hovering (or long-pressing) over the FAB.",
+  "Mostra um tooltip ao passar o rato (ou manter premido) sobre o FAB.",
+  "Muestra un tooltip al pasar el ratón (o mantener pulsado) sobre el FAB.",
+  "Affiche une info-bulle au survol (ou appui prolongé) du FAB."
+ ],
+ "Ações (Speed Dial)": [
+  "Actions (Speed Dial)",
+  "Ações (Speed Dial)",
+  "Acciones (Speed Dial)",
+  "Actions (Speed Dial)"
+ ],
+ "Clique no FAB para expandir botões de ação em diferentes direções.": [
+  "Click the FAB to expand action buttons in different directions.",
+  "Clique no FAB para expandir botões de ação em diferentes direções.",
+  "Haz clic en el FAB para expandir botones de acción en diferentes direcciones.",
+  "Cliquez sur le FAB pour déployer des boutons d'action dans différentes directions."
+ ],
+ "Circle Layout": [
+  "Circle Layout",
+  "Disposição em círculo",
+  "Disposición circular",
+  "Disposition en cercle"
+ ],
+ "Actions arranged in a full circle around the button": [
+  "Actions arranged in a full circle around the button",
+  "Ações dispostas num círculo completo à volta do botão",
+  "Acciones dispuestas en un círculo completo alrededor del botón",
+  "Actions disposées en cercle complet autour du bouton"
+ ],
+ "Semi-Circle Layout": [
+  "Semi-Circle Layout",
+  "Disposição em semicírculo",
+  "Disposición semicircular",
+  "Disposition en demi-cercle"
+ ],
+ "Actions arranged in a semi-circle (180°) in different directions": [
+  "Actions arranged in a semi-circle (180°) in different directions",
+  "Ações dispostas num semicírculo (180°) em diferentes direções",
+  "Acciones dispuestas en un semicírculo (180°) en diferentes direcciones",
+  "Actions disposées en demi-cercle (180°) dans différentes directions"
+ ],
+ "Quarter-Circle Layout": [
+  "Quarter-Circle Layout",
+  "Disposição em quarto de círculo",
+  "Disposición en cuarto de círculo",
+  "Disposition en quart de cercle"
+ ],
+ "Actions arranged in a quarter circle (90°) in different directions": [
+  "Actions arranged in a quarter circle (90°) in different directions",
+  "Ações dispostas num quarto de círculo (90°) em diferentes direções",
+  "Acciones dispuestas en un cuarto de círculo (90°) en diferentes direcciones",
+  "Actions disposées en quart de cercle (90°) dans différentes directions"
+ ],
+ "Active Icon": [
+  "Active Icon",
+  "Ícone ativo",
+  "Icono activo",
+  "Icône active"
+ ],
+ "Show a different icon when the menu is open": [
+  "Show a different icon when the menu is open",
+  "Mostra um ícone diferente quando o menu está aberto",
+  "Muestra un icono diferente cuando el menú está abierto",
+  "Affiche une icône différente lorsque le menu est ouvert"
+ ],
+ "Diferentes tipos de animação: scale, fade, rotate, slide, pulse e none (disparadas ao passar o mouse).": [
+  "Different animation types: scale, fade, rotate, slide, pulse and none (triggered on mouse hover).",
+  "Diferentes tipos de animação: scale, fade, rotate, slide, pulse e none (disparadas ao passar o rato).",
+  "Diferentes tipos de animación: scale, fade, rotate, slide, pulse y none (se activan al pasar el ratón).",
+  "Différents types d'animation : scale, fade, rotate, slide, pulse et none (déclenchées au survol de la souris)."
+ ],
+ "Cor Customizada": [
+  "Custom Color",
+  "Cor personalizada",
+  "Color personalizado",
+  "Couleur personnalisée"
+ ],
+ "Use a prop color para definir uma cor personalizada (hex, rgb, hsl ou variável CSS).": [
+  "Use the color prop to set a custom color (hex, rgb, hsl or CSS variable).",
+  "Use a prop color para definir uma cor personalizada (hex, rgb, hsl ou variável CSS).",
+  "Usa la prop color para definir un color personalizado (hex, rgb, hsl o variable CSS).",
+  "Utilisez la prop color pour définir une couleur personnalisée (hex, rgb, hsl ou variable CSS)."
+ ],
+ "Loading e Desabilitado": [
+  "Loading and Disabled",
+  "Loading e desativado",
+  "Loading y deshabilitado",
+  "Loading et désactivé"
+ ],
+ "Estados loading e disabled.": [
+  "loading and disabled states.",
+  "Estados loading e disabled.",
+  "Estados loading y disabled.",
+  "États loading et disabled."
+ ],
+ "Arrastar e soltar": [
+  "Drag and drop",
+  "Arrastar e largar",
+  "Arrastrar y soltar",
+  "Glisser-déposer"
+ ],
+ "Arraste o FAB para reposicionar. A posição fica salva no armazenamento local (dragId).": [
+  "Drag the FAB to reposition it. The position is saved in local storage (dragId).",
+  "Arraste o FAB para o reposicionar. A posição fica guardada no armazenamento local (dragId).",
+  "Arrastra el FAB para reposicionarlo. La posición se guarda en el almacenamiento local (dragId).",
+  "Faites glisser le FAB pour le repositionner. La position est enregistrée dans le stockage local (dragId)."
+ ],
+ "Escolha uma opção": [
+  "Choose an option",
+  "Escolha uma opção",
+  "Elige una opción",
+  "Choisissez une option"
+ ],
+ "Valor selecionado": [
+  "Selected value",
+  "Valor selecionado",
+  "Valor seleccionado",
+  "Valeur sélectionnée"
+ ],
+ "Selecione uma fruta": [
+  "Select a fruit",
+  "Selecione uma fruta",
+  "Selecciona una fruta",
+  "Sélectionnez un fruit"
+ ],
+ "Escolha uma ação": [
+  "Choose an action",
+  "Escolha uma ação",
+  "Elige una acción",
+  "Choisissez une action"
+ ],
+ "Escolha uma forma": [
+  "Choose a shape",
+  "Escolha uma forma",
+  "Elige una forma",
+  "Choisissez une forme"
+ ],
+ "Nenhum": [
+  "None",
+  "Nenhum",
+  "Ninguno",
+  "Aucun"
+ ],
+ "Fruta favorita": [
+  "Favorite fruit",
+  "Fruta favorita",
+  "Fruta favorita",
+  "Fruit préféré"
+ ],
+ "Definir Banana": [
+  "Set Banana",
+  "Definir Banana",
+  "Establecer Banana",
+  "Définir Banane"
+ ],
+ "Definir Laranja": [
+  "Set Orange",
+  "Definir Laranja",
+  "Establecer Naranja",
+  "Définir Orange"
+ ],
+ "Condição climática": [
+  "Weather condition",
+  "Condição meteorológica",
+  "Condición climática",
+  "Condition météorologique"
+ ],
+ "Escolha sua fruta": [
+  "Choose your fruit",
+  "Escolha a sua fruta",
+  "Elige tu fruta",
+  "Choisissez votre fruit"
+ ],
+ "Orientation Horizontal": [
+  "Orientation Horizontal",
+  "Orientação horizontal",
+  "Orientación horizontal",
+  "Orientation horizontale"
+ ],
+ "Grupo Disabled": [
+  "Disabled Group",
+  "Grupo disabled",
+  "Grupo disabled",
+  "Groupe disabled"
+ ],
+ "Read-only": [
+  "Read-only",
+  "Apenas leitura",
+  "Solo lectura",
+  "Lecture seule"
+ ],
+ "Selection Style Highlight (Lista)": [
+  "Selection Style Highlight (List)",
+  "Selection Style Highlight (lista)",
+  "Selection Style Highlight (lista)",
+  "Selection Style Highlight (liste)"
+ ],
+ "Passe o mouse e clique nas meias estrelas": [
+  "Hover and click the half stars",
+  "Passe o rato e clique nas meias estrelas",
+  "Pasa el ratón y haz clic en las medias estrellas",
+  "Survolez et cliquez sur les demi-étoiles"
+ ],
+ "Selecionado": [
+  "Selected",
+  "Selecionado",
+  "Seleccionado",
+  "Sélectionné"
+ ],
+ "Hover": [
+  "Hover",
+  "Hover",
+  "Hover",
+  "Hover"
+ ],
+ "nenhum": [
+  "none",
+  "nenhum",
+  "ninguno",
+  "aucun"
+ ],
+ "sm / 5 estrelas": [
+  "sm / 5 stars",
+  "sm / 5 estrelas",
+  "sm / 5 estrellas",
+  "sm / 5 étoiles"
+ ],
+ "lg / 5 estrelas": [
+  "lg / 5 stars",
+  "lg / 5 estrelas",
+  "lg / 5 estrellas",
+  "lg / 5 étoiles"
+ ],
+ "10 estrelas": [
+  "10 stars",
+  "10 estrelas",
+  "10 estrellas",
+  "10 étoiles"
+ ],
+ "Curtidas": [
+  "Likes",
+  "Gostos",
+  "Me gusta",
+  "J'aime"
+ ],
+ "Fogo": [
+  "Fire",
+  "Fogo",
+  "Fuego",
+  "Feu"
+ ],
+ "Callbacks": [
+  "Callbacks",
+  "Callbacks",
+  "Callbacks",
+  "Callbacks"
+ ],
+ "Máximo": [
+  "Maximum",
+  "Máximo",
+  "Máximo",
+  "Maximum"
+ ],
+ "Limpar log": [
+  "Clear log",
+  "Limpar registo",
+  "Limpiar registro",
+  "Effacer le journal"
+ ],
+ "Sem eventos": [
+  "No events",
+  "Sem eventos",
+  "Sin eventos",
+  "Aucun événement"
+ ],
+ "Avalie o produto": [
+  "Rate the product",
+  "Avalie o produto",
+  "Valora el producto",
+  "Évaluez le produit"
+ ],
+ "Avalie o filme": [
+  "Rate the movie",
+  "Avalie o filme",
+  "Valora la película",
+  "Évaluez le film"
+ ],
+ "Enviar avaliação": [
+  "Submit rating",
+  "Enviar avaliação",
+  "Enviar valoración",
+  "Envoyer l'évaluation"
+ ],
+ "Último envio": [
+  "Last submission",
+  "Último envio",
+  "Último envío",
+  "Dernier envoi"
+ ],
+ "Avaliação obrigatória": [
+  "Rating required",
+  "Avaliação obrigatória",
+  "Valoración obligatoria",
+  "Évaluation obligatoire"
+ ],
+ "Informe uma avaliação antes de continuar": [
+  "Provide a rating before continuing",
+  "Indique uma avaliação antes de continuar",
+  "Indica una valoración antes de continuar",
+  "Indiquez une évaluation avant de continuer"
+ ],
+ "Nota 1": [
+  "Rating 1",
+  "Nota 1",
+  "Nota 1",
+  "Note 1"
+ ],
+ "Nota 5": [
+  "Rating 5",
+  "Nota 5",
+  "Nota 5",
+  "Note 5"
+ ],
+ "Exemplo controlado com estado.": [
+  "Controlled example with state.",
+  "Exemplo controlado com estado.",
+  "Ejemplo controlado con estado.",
+  "Exemple contrôlé avec état."
+ ],
+ "Meia estrela + tooltip": [
+  "Half star + tooltip",
+  "Meia estrela + tooltip",
+  "Media estrella + tooltip",
+  "Demi-étoile + tooltip"
+ ],
+ "Permite clicar nas metades e exibir valor no hover.": [
+  "Allows clicking the halves and showing the value on hover.",
+  "Permite clicar nas metades e mostrar o valor no hover.",
+  "Permite hacer clic en las mitades y mostrar el valor al pasar el ratón.",
+  "Permet de cliquer sur les moitiés et d'afficher la valeur au survol."
+ ],
+ "Read-only e desabilitado": [
+  "Read-only and disabled",
+  "Apenas leitura e desativado",
+  "Solo lectura y deshabilitado",
+  "Lecture seule et désactivé"
+ ],
+ "Visualização sem interação e estado desabilitado.": [
+  "View without interaction and disabled state.",
+  "Visualização sem interação e estado desativado.",
+  "Visualización sin interacción y estado deshabilitado.",
+  "Affichage sans interaction et état désactivé."
+ ],
+ "Tamanhos e quantidade de estrelas": [
+  "Sizes and number of stars",
+  "Tamanhos e quantidade de estrelas",
+  "Tamaños y cantidad de estrellas",
+  "Tailles et nombre d'étoiles"
+ ],
+ "Controle de size e stars.": [
+  "Control of size and stars.",
+  "Controlo de size e stars.",
+  "Control de size y stars.",
+  "Contrôle de size et stars."
+ ],
+ "Cores e ícones customizados": [
+  "Custom colors and icons",
+  "Cores e ícones personalizados",
+  "Colores e iconos personalizados",
+  "Couleurs et icônes personnalisées"
+ ],
+ "Troca de cores e ícones de preenchido/vazio.": [
+  "Swapping colors and icons for filled/empty.",
+  "Troca de cores e ícones de preenchido/vazio.",
+  "Cambio de colores e iconos de lleno/vacío.",
+  "Changement des couleurs et icônes pour plein/vide."
+ ],
+ "Exemplo com onChange e onHover + log de eventos.": [
+  "Example with onChange and onHover + event log.",
+  "Exemplo com onChange e onHover + registo de eventos.",
+  "Ejemplo con onChange y onHover + registro de eventos.",
+  "Exemple avec onChange et onHover + journal des événements."
+ ],
+ "Formulário (SgFormController)": [
+  "Form (SgFormController)",
+  "Formulário (SgFormController)",
+  "Formulario (SgFormController)",
+  "Formulaire (SgFormController)"
+ ],
+ "Uso com control/name e envio.": [
+  "Usage with control/name and submission.",
+  "Utilização com control/name e envio.",
+  "Uso con control/name y envío.",
+  "Utilisation avec control/name et envoi."
+ ],
+ "Exemplo com required e requiredMessage.": [
+  "Example with required and requiredMessage.",
+  "Exemplo com required e requiredMessage.",
+  "Ejemplo con required y requiredMessage.",
+  "Exemple avec required et requiredMessage."
+ ],
+ "Update": [
+  "Update",
+  "Atualizar",
+  "Actualizar",
+  "Mettre à jour"
+ ],
+ "Delete": [
+  "Delete",
+  "Eliminar",
+  "Eliminar",
+  "Supprimer"
+ ],
+ "Home": [
+  "Home",
+  "Início",
+  "Inicio",
+  "Accueil"
+ ],
+ "Save": [
+  "Save",
+  "Guardar",
+  "Guardar",
+  "Enregistrer"
+ ],
+ "Exportar PDF": [
+  "Export PDF",
+  "Exportar PDF",
+  "Exportar PDF",
+  "Exporter en PDF"
+ ],
+ "Compartilhar por e-mail": [
+  "Share by email",
+  "Partilhar por e-mail",
+  "Compartir por correo electrónico",
+  "Partager par e-mail"
+ ],
+ "Importar": [
+  "Import",
+  "Importar",
+  "Importar",
+  "Importer"
+ ],
+ "Baixar modelo": [
+  "Download template",
+  "Transferir modelo",
+  "Descargar plantilla",
+  "Télécharger le modèle"
+ ],
+ "Disabled outline": [
+  "Disabled outline",
+  "Contorno desativado",
+  "Contorno deshabilitado",
+  "Contour désactivé"
+ ],
+ "Salvando...": [
+  "Saving...",
+  "A guardar...",
+  "Guardando...",
+  "Enregistrement..."
+ ],
+ "Processando...": [
+  "Processing...",
+  "A processar...",
+  "Procesando...",
+  "Traitement en cours..."
+ ],
+ "Delete (disabled)": [
+  "Delete (disabled)",
+  "Eliminar (desativado)",
+  "Eliminar (deshabilitado)",
+  "Supprimer (désactivé)"
+ ],
+ "Split button com ação principal e dropdown de itens.": [
+  "Split button with primary action and item dropdown.",
+  "Split button com ação principal e dropdown de itens.",
+  "Split button con acción principal y dropdown de elementos.",
+  "Split button avec action principale et dropdown d'éléments."
+ ],
+ "appearance: outline - bordas coloridas sem preenchimento.": [
+  "appearance: outline - colored borders without fill.",
+  "appearance: outline - contornos coloridos sem preenchimento.",
+  "appearance: outline - bordes de color sin relleno.",
+  "appearance: outline - bordures colorées sans remplissage."
+ ],
+ "leftIcon na ação principal e icon nos itens do menu.": [
+  "leftIcon on the primary action and icon on the menu items.",
+  "leftIcon na ação principal e icon nos itens do menu.",
+  "leftIcon en la acción principal e icon en los elementos del menú.",
+  "leftIcon sur l'action principale et icon sur les éléments du menu."
+ ],
+ "Separadores de menu": [
+  "Menu separators",
+  "Separadores de menu",
+  "Separadores de menú",
+  "Séparateurs de menu"
+ ],
+ "separator: true para dividir grupos de itens no menu.": [
+  "separator: true to divide groups of items in the menu.",
+  "separator: true para dividir grupos de itens no menu.",
+  "separator: true para dividir grupos de elementos en el menú.",
+  "separator: true pour séparer les groupes d'éléments du menu."
+ ],
+ "enabled: false desabilita o split button inteiro.": [
+  "enabled: false disables the entire split button.",
+  "enabled: false desativa o split button inteiro.",
+  "enabled: false deshabilita todo el split button.",
+  "enabled: false désactive l'ensemble du split button."
+ ],
+ "loading: true exibe spinner na ação principal e desabilita o menu.": [
+  "loading: true shows a spinner on the primary action and disables the menu.",
+  "loading: true mostra um indicador de progresso na ação principal e desativa o menu.",
+  "loading: true muestra un indicador de carga en la acción principal y deshabilita el menú.",
+  "loading: true affiche un indicateur de chargement sur l'action principale et désactive le menu."
+ ],
+ "Itens desabilitados": [
+  "Disabled items",
+  "Itens desativados",
+  "Elementos deshabilitados",
+  "Éléments désactivés"
+ ],
+ "Itens individuais do menu podem ser desabilitados (enabled: false).": [
+  "Individual menu items can be disabled (enabled: false).",
+  "Os itens individuais do menu podem ser desativados (enabled: false).",
+  "Los elementos individuales del menú se pueden deshabilitar (enabled: false).",
+  "Les éléments individuels du menu peuvent être désactivés (enabled: false)."
+ ]
+}

@@ -1,0 +1,188 @@
+{
+ "Instalação": [
+  "Installation",
+  "Instalação",
+  "Instalación",
+  "Installation"
+ ],
+ "Adicione o pacote ao projeto.": [
+  "Add the package to your project.",
+  "Adicione o pacote ao projeto.",
+  "Añade el paquete al proyecto.",
+  "Ajoutez le paquet au projet."
+ ],
+ "Setup básico": [
+  "Basic setup",
+  "Configuração básica",
+  "Configuración básica",
+  "Configuration de base"
+ ],
+ "Configure o provider na raiz da aplicação.": [
+  "Set up the provider at the root of the app.",
+  "Configure o provider na raiz da aplicação.",
+  "Configura el provider en la raíz de la aplicación.",
+  "Configurez le provider à la racine de l'application."
+ ],
+ "Hook useSgTheme": [
+  "useSgTheme hook",
+  "Hook useSgTheme",
+  "Hook useSgTheme",
+  "Hook useSgTheme"
+ ],
+ "Acesse e altere o tema em qualquer widget.": [
+  "Read and change the theme in any widget.",
+  "Aceda e altere o tema em qualquer widget.",
+  "Accede y cambia el tema en cualquier widget.",
+  "Lisez et modifiez le thème dans n'importe quel widget."
+ ],
+ "Lendo os tokens": [
+  "Reading the tokens",
+  "A ler os tokens",
+  "Leyendo los tokens",
+  "Lecture des tokens"
+ ],
+ "Todas as cores ficam disponíveis como tokens, com os mesmos nomes das CSS variables do React.": [
+  "All colors are available as tokens, with the same names as the React CSS variables.",
+  "Todas as cores ficam disponíveis como tokens, com os mesmos nomes das CSS variables do React.",
+  "Todos los colores están disponibles como tokens, con los mismos nombres que las CSS variables de React.",
+  "Toutes les couleurs sont disponibles sous forme de tokens, avec les mêmes noms que les CSS variables de React."
+ ],
+ "Cores predefinidas e cor personalizada": [
+  "Preset colors and custom color",
+  "Cores predefinidas e cor personalizada",
+  "Colores predefinidos y color personalizado",
+  "Couleurs prédéfinies et couleur personnalisée"
+ ],
+ "Escolha uma cor semente, digite um #RRGGBB ou ajuste o raio: o tema muda ao vivo. O botão de tema da barra abre o editor, que só aplica ao clicar em Aplicar.": [
+  "Pick a seed color, type a #RRGGBB or adjust the radius: the theme changes live. The theme button in the bar opens the editor, which only applies when you click Apply.",
+  "Escolha uma cor semente, escreva um #RRGGBB ou ajuste o raio: o tema muda em direto. O botão de tema da barra abre o editor, que só aplica ao clicar em Aplicar.",
+  "Elige un color semilla, escribe un #RRGGBB o ajusta el radio: el tema cambia en vivo. El botón de tema de la barra abre el editor, que solo aplica al hacer clic en Aplicar.",
+  "Choisissez une couleur de base, saisissez un #RRGGBB ou réglez le rayon : le thème change en direct. Le bouton de thème de la barre ouvre l'éditeur, qui n'applique qu'au clic sur Appliquer."
+ ],
+ "Paletas de cores": [
+  "Color palettes",
+  "Paletas de cores",
+  "Paletas de colores",
+  "Palettes de couleurs"
+ ],
+ "Cada cor possui escala de 50 a 900.": [
+  "Each color has a scale from 50 to 900.",
+  "Cada cor possui escala de 50 a 900.",
+  "Cada color tiene una escala de 50 a 900.",
+  "Chaque couleur possède une échelle de 50 à 900."
+ ],
+ "Primary (muda com a semente)": [
+  "Primary (changes with the seed)",
+  "Primary (muda com a semente)",
+  "Primary (cambia con la semilla)",
+  "Primary (change avec la couleur de base)"
+ ],
+ "Secondary (muda com a semente)": [
+  "Secondary (changes with the seed)",
+  "Secondary (muda com a semente)",
+  "Secondary (cambia con la semilla)",
+  "Secondary (change avec la couleur de base)"
+ ],
+ "Tertiary (muda com a semente)": [
+  "Tertiary (changes with the seed)",
+  "Tertiary (muda com a semente)",
+  "Tertiary (cambia con la semilla)",
+  "Tertiary (change avec la couleur de base)"
+ ],
+ "Cores semânticas": [
+  "Semantic colors",
+  "Cores semânticas",
+  "Colores semánticos",
+  "Couleurs sémantiques"
+ ],
+ "Cores fixas para convenções universais de UI/UX.": [
+  "Fixed colors for universal UI/UX conventions.",
+  "Cores fixas para convenções universais de UI/UX.",
+  "Colores fijos para convenciones universales de UI/UX.",
+  "Couleurs fixes pour les conventions universelles d'UI/UX."
+ ],
+ "Success (verde fixo)": [
+  "Success (fixed green)",
+  "Success (verde fixo)",
+  "Success (verde fijo)",
+  "Success (vert fixe)"
+ ],
+ "Info (azul fixo)": [
+  "Info (fixed blue)",
+  "Info (azul fixo)",
+  "Info (azul fijo)",
+  "Info (bleu fixe)"
+ ],
+ "Warning (amarelo fixo)": [
+  "Warning (fixed yellow)",
+  "Warning (amarelo fixo)",
+  "Warning (amarillo fijo)",
+  "Warning (jaune fixe)"
+ ],
+ "Error (vermelho fixo)": [
+  "Error (fixed red)",
+  "Error (vermelho fixo)",
+  "Error (rojo fijo)",
+  "Error (rouge fixe)"
+ ],
+ "Cores neutras": [
+  "Neutral colors",
+  "Cores neutras",
+  "Colores neutros",
+  "Couleurs neutres"
+ ],
+ "Cores harmonizadas com a semente.": [
+  "Colors harmonized with the seed.",
+  "Cores harmonizadas com a semente.",
+  "Colores armonizados con la semilla.",
+  "Couleurs harmonisées avec la couleur de base."
+ ],
+ "Tokens de componentes": [
+  "Component tokens",
+  "Tokens de componentes",
+  "Tokens de componentes",
+  "Tokens de composants"
+ ],
+ "Variáveis semânticas para componentes específicos.": [
+  "Semantic variables for specific components.",
+  "Variáveis semânticas para componentes específicos.",
+  "Variables semánticas para componentes específicos.",
+  "Variables sémantiques pour des composants spécifiques."
+ ],
+ "Estado atual do tema": [
+  "Current theme state",
+  "Estado atual do tema",
+  "Estado actual del tema",
+  "État actuel du thème"
+ ],
+ "Modo atual": [
+  "Current mode",
+  "Modo atual",
+  "Modo actual",
+  "Mode actuel"
+ ],
+ "Cor semente": [
+  "Seed color",
+  "Cor semente",
+  "Color semilla",
+  "Couleur de base"
+ ],
+ "Persistência": [
+  "Persistence",
+  "Persistência",
+  "Persistencia",
+  "Persistance"
+ ],
+ "No Flutter o tema não é salvo sozinho: a escolha vale só para a sessão.": [
+  "In Flutter the theme is not saved automatically: the choice only lasts for the session.",
+  "No Flutter o tema não é guardado sozinho: a escolha vale só para a sessão.",
+  "En Flutter el tema no se guarda solo: la elección vale solo para la sesión.",
+  "Dans Flutter le thème n'est pas enregistré automatiquement : le choix ne vaut que pour la session."
+ ],
+ "O SeedThemeProvider guarda seed, modo e raio em memória. Para lembrar a escolha entre sessões, salve a seed (por exemplo com shared_preferences) e passe-a em initialTheme ao iniciar o app.": [
+  "SeedThemeProvider keeps seed, mode and radius in memory. To remember the choice across sessions, save the seed (for example with shared_preferences) and pass it in initialTheme when the app starts.",
+  "O SeedThemeProvider guarda seed, modo e raio em memória. Para lembrar a escolha entre sessões, guarde a seed (por exemplo com shared_preferences) e passe-a em initialTheme ao iniciar a app.",
+  "SeedThemeProvider guarda seed, modo y radio en memoria. Para recordar la elección entre sesiones, guarda la seed (por ejemplo con shared_preferences) y pásala en initialTheme al iniciar la app.",
+  "SeedThemeProvider garde seed, mode et rayon en mémoire. Pour conserver le choix entre les sessions, enregistrez la seed (par exemple avec shared_preferences) et passez-la dans initialTheme au démarrage de l'app."
+ ]
+}

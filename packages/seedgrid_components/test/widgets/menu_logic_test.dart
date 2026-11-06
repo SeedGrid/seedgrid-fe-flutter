@@ -19,7 +19,7 @@ SgMenuNode node(Map<String, dynamic> j) => SgMenuNode(
   id: j['id'] as String,
   label: j['label'] as String,
   url: j['url'] as String?,
-  disabled: (j['disabled'] as bool?) ?? false,
+  enabled: !((j['disabled'] as bool?) ?? false),
   onClick: j['hasOnClick'] == true ? () {} : null,
   children: j['children'] == null
       ? null

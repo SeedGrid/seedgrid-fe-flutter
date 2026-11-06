@@ -119,7 +119,7 @@ void main() {
   testWidgets('disabled e readOnly nao mudam a nota', (t) async {
     final changes = <num>[];
     await t.pumpWidget(
-      host(SgRating(disabled: true, value: 2, onChange: changes.add)),
+      host(SgRating(enabled: false, value: 2, onChange: changes.add)),
     );
     await tapStar(t, 5);
     await t.tap(cancel());
@@ -435,7 +435,7 @@ void main() {
             SgRating(
               id: 'g6',
               label: 'Desabilitada',
-              disabled: true,
+              enabled: false,
               value: 3,
               cancel: false,
             ),

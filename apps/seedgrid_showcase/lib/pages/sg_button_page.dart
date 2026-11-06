@@ -1,5 +1,5 @@
-// Showcase do SgButton. O codigo exibido em cada exemplo e o trecho entre `// #region` e
-// `// #endregion` deste arquivo: exatamente o que esta renderizado.
+// Showcase do SgButton. Mesmos exemplos, na mesma ordem, do showcase React (a fonte da verdade). O codigo
+// exibido em cada exemplo e o trecho entre `// #region` e `// #endregion` deste arquivo.
 import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
@@ -7,167 +7,598 @@ import 'sg_button_page.snippets.g.dart';
 import '../src/sg_showcase_page.dart';
 import '../src/showcase_i18n.dart';
 
-class SgButtonPage extends StatelessWidget {
+class SgButtonPage extends StatefulWidget {
   const SgButtonPage({super.key});
+
+  @override
+  State<SgButtonPage> createState() => _SgButtonPageState();
+}
+
+class _SgButtonPageState extends State<SgButtonPage> {
+  bool _loading = false;
 
   @override
   Widget build(BuildContext context) {
     final examples = <ShowcaseExample>[
       ShowcaseExample(
-        title: 'Severidades',
-        description: 'Define o peso visual e semântico da ação.',
+        title: 'Básico',
+        description:
+            'Botão padrão com onClick e estado desabilitado (enabled: false).',
         preview:
-            // #region sg-button-severidades
+            // #region sg-button-basico
             Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              children: [
-                SgButton(label: Text(context.tx('Primary')), onClick: () {}),
-                SgButton(
-                  label: Text(context.tx('Secondary')),
-                  severity: SgSeverity.secondary,
-                  onClick: () {},
-                ),
-                SgButton(
-                  label: Text(context.tx('Success')),
-                  severity: SgSeverity.success,
-                  onClick: () {},
-                ),
-                SgButton(
-                  label: Text(context.tx('Info')),
-                  severity: SgSeverity.info,
-                  onClick: () {},
-                ),
-                SgButton(
-                  label: Text(context.tx('Warning')),
-                  severity: SgSeverity.warning,
-                  onClick: () {},
-                ),
-                SgButton(
-                  label: Text(context.tx('Help')),
-                  severity: SgSeverity.help,
-                  onClick: () {},
-                ),
-                SgButton(
-                  label: Text(context.tx('Danger')),
-                  severity: SgSeverity.danger,
-                  onClick: () {},
-                ),
-              ],
-            ),
-        // #endregion
-        code: SgButtonPageSnippets.sgButtonSeveridades,
-      ),
-      ShowcaseExample(
-        title: 'Aparências',
-        preview:
-            // #region sg-button-aparencias
-            Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              children: [
-                SgButton(label: Text(context.tx('Solid')), onClick: () {}),
-                SgButton(
-                  label: Text(context.tx('Outline')),
-                  appearance: SgAppearance.outline,
-                  onClick: () {},
-                ),
-                SgButton(
-                  label: Text(context.tx('Ghost')),
-                  appearance: SgAppearance.ghost,
-                  onClick: () {},
-                ),
-              ],
-            ),
-        // #endregion
-        code: SgButtonPageSnippets.sgButtonAparencias,
-      ),
-      ShowcaseExample(
-        title: 'Tamanhos, formas e sombra',
-        preview:
-            // #region sg-button-tamanhos
-            Wrap(
-              spacing: 8,
-              runSpacing: 8,
+              spacing: 12,
+              runSpacing: 12,
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
                 SgButton(
-                  label: Text(context.tx('Small')),
-                  size: SgSize.sm,
-                  onClick: () {},
+                  label: Text(context.tx('Submit')),
+                  loading: _loading,
+                  onClick: () {
+                    setState(() => _loading = true);
+                    Future.delayed(const Duration(milliseconds: 1200), () {
+                      if (mounted) setState(() => _loading = false);
+                    });
+                  },
                 ),
-                SgButton(label: Text(context.tx('Medium')), onClick: () {}),
-                SgButton(
-                  label: Text(context.tx('Large')),
-                  size: SgSize.lg,
-                  onClick: () {},
-                ),
-                SgButton(
-                  label: Text(context.tx('Rounded')),
-                  shape: SgButtonShape.rounded,
-                  onClick: () {},
-                ),
-                SgButton(
-                  label: Text(context.tx('Square')),
-                  shape: SgButtonShape.square,
-                  onClick: () {},
-                ),
-                SgButton(
-                  label: Text(context.tx('Sombra')),
-                  elevation: SgElevation.md,
-                  onClick: () {},
-                ),
+                SgButton(label: Text(context.tx('Disabled')), enabled: false),
               ],
             ),
         // #endregion
-        code: SgButtonPageSnippets.sgButtonTamanhos,
+        code: SgButtonPageSnippets.sgButtonBasico,
       ),
       ShowcaseExample(
-        title: 'Ícones, loading e desabilitado',
+        title: 'Ícones',
+        description:
+            'Exemplos completos com ícones para validar appearance, shape e elevation.',
         preview:
             // #region sg-button-icones
-            Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              crossAxisAlignment: WrapCrossAlignment.center,
-              children: [
-                SgButton(
-                  label: Text(context.tx('Adicionar')),
-                  leftIcon: const Icon(Icons.add),
-                  onClick: () {},
-                ),
-                SgButton(
-                  label: Text(context.tx('Próximo')),
-                  rightIcon: const Icon(Icons.arrow_forward),
-                  onClick: () {},
-                ),
-                SgButton(leftIcon: const Icon(Icons.search), onClick: () {}),
-                SgButton(label: Text(context.tx('Salvando')), loading: true),
-                SgButton(
-                  label: Text(context.tx('Desabilitado')),
-                  disabled: true,
-                ),
-              ],
+            Builder(
+              builder: (context) {
+                const severidades = [
+                  ('Primary', SgSeverity.primary),
+                  ('Secondary', SgSeverity.secondary),
+                  ('Success', SgSeverity.success),
+                  ('Info', SgSeverity.info),
+                  ('Warning', SgSeverity.warning),
+                  ('Help', SgSeverity.help),
+                  ('Danger', SgSeverity.danger),
+                ];
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      context.tx('Elevated Buttons'),
+                      style: const TextStyle(fontWeight: FontWeight.w500),
+                    ),
+                    const SizedBox(height: 8),
+                    Wrap(
+                      spacing: 12,
+                      runSpacing: 12,
+                      children: [
+                        for (final (nome, severity) in severidades)
+                          SgButton(
+                            label: Text(context.tx(nome)),
+                            severity: severity,
+                            appearance: SgAppearance.solid,
+                            elevation: SgElevation.sm,
+                            leftIcon: const Icon(Icons.check),
+                            onClick: () {},
+                          ),
+                      ],
+                    ),
+                    const SizedBox(height: 16),
+                    Text(
+                      context.tx('Rounded Buttons'),
+                      style: const TextStyle(fontWeight: FontWeight.w500),
+                    ),
+                    const SizedBox(height: 8),
+                    Wrap(
+                      spacing: 12,
+                      runSpacing: 12,
+                      children: [
+                        for (final (nome, severity) in severidades)
+                          SgButton(
+                            label: Text(context.tx(nome)),
+                            severity: severity,
+                            shape: SgButtonShape.rounded,
+                            leftIcon: const Icon(Icons.check),
+                            onClick: () {},
+                          ),
+                      ],
+                    ),
+                    const SizedBox(height: 16),
+                    Text(
+                      context.tx('Ghost Buttons (Flat)'),
+                      style: const TextStyle(fontWeight: FontWeight.w500),
+                    ),
+                    const SizedBox(height: 8),
+                    Wrap(
+                      spacing: 12,
+                      runSpacing: 12,
+                      children: [
+                        for (final (nome, severity) in severidades)
+                          SgButton(
+                            label: Text(context.tx(nome)),
+                            severity: severity,
+                            appearance: SgAppearance.ghost,
+                            leftIcon: const Icon(Icons.check),
+                            onClick: () {},
+                          ),
+                      ],
+                    ),
+                    const SizedBox(height: 16),
+                    Text(
+                      context.tx('Outlined + Elevation'),
+                      style: const TextStyle(fontWeight: FontWeight.w500),
+                    ),
+                    const SizedBox(height: 8),
+                    Wrap(
+                      spacing: 12,
+                      runSpacing: 12,
+                      children: [
+                        for (final (nome, severity) in severidades)
+                          SgButton(
+                            label: Text(context.tx(nome)),
+                            severity: severity,
+                            appearance: SgAppearance.outline,
+                            elevation: SgElevation.sm,
+                            leftIcon: const Icon(Icons.check),
+                            onClick: () {},
+                          ),
+                      ],
+                    ),
+                    const SizedBox(height: 16),
+                    Text(
+                      context.tx('Outlined Buttons'),
+                      style: const TextStyle(fontWeight: FontWeight.w500),
+                    ),
+                    const SizedBox(height: 8),
+                    Wrap(
+                      spacing: 12,
+                      runSpacing: 12,
+                      children: [
+                        for (final (nome, severity) in severidades)
+                          SgButton(
+                            label: Text(context.tx(nome)),
+                            severity: severity,
+                            appearance: SgAppearance.outline,
+                            leftIcon: const Icon(Icons.check),
+                            onClick: () {},
+                          ),
+                      ],
+                    ),
+                  ],
+                );
+              },
             ),
         // #endregion
         code: SgButtonPageSnippets.sgButtonIcones,
       ),
       ShowcaseExample(
-        title: 'Cores customizadas',
+        title: 'Severities',
+        description:
+            'severity: primary, secondary, success, info, warning, help ou danger.',
         preview:
-            // #region sg-button-cores
-            SgButton(
-              label: Text(context.tx('Roxo')),
-              customColors: const SgButtonCustomColors(
-                bg: Color(0xFF7C3AED),
-                fg: Colors.white,
-                border: Color(0xFF6D28D9),
-                hoverBg: Color(0xFF6D28D9),
-              ),
-              onClick: () {},
+            // #region sg-button-severities
+            Wrap(
+              spacing: 12,
+              runSpacing: 12,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                for (final (nome, severity) in const [
+                  ('Primary', SgSeverity.primary),
+                  ('Secondary', SgSeverity.secondary),
+                  ('Success', SgSeverity.success),
+                  ('Info', SgSeverity.info),
+                  ('Warning', SgSeverity.warning),
+                  ('Help', SgSeverity.help),
+                  ('Danger', SgSeverity.danger),
+                ])
+                  SgButton(
+                    label: Text(context.tx(nome)),
+                    severity: severity,
+                    onClick: () {},
+                  ),
+              ],
             ),
         // #endregion
-        code: SgButtonPageSnippets.sgButtonCores,
+        code: SgButtonPageSnippets.sgButtonSeverities,
+      ),
+      ShowcaseExample(
+        title: 'Elevated Buttons',
+        description:
+            'appearance: solid + elevation: sm.',
+        preview:
+            // #region sg-button-elevated
+            Wrap(
+              spacing: 12,
+              runSpacing: 12,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                for (final (nome, severity) in const [
+                  ('Primary', SgSeverity.primary),
+                  ('Secondary', SgSeverity.secondary),
+                  ('Success', SgSeverity.success),
+                  ('Info', SgSeverity.info),
+                  ('Warning', SgSeverity.warning),
+                  ('Help', SgSeverity.help),
+                  ('Danger', SgSeverity.danger),
+                ])
+                  SgButton(
+                    label: Text(context.tx(nome)),
+                    severity: severity,
+                    appearance: SgAppearance.solid,
+                    elevation: SgElevation.sm,
+                    onClick: () {},
+                  ),
+              ],
+            ),
+        // #endregion
+        code: SgButtonPageSnippets.sgButtonElevated,
+      ),
+      ShowcaseExample(
+        title: 'Rounded Buttons',
+        description:
+            'shape: rounded para formato pill.',
+        preview:
+            // #region sg-button-rounded
+            Wrap(
+              spacing: 12,
+              runSpacing: 12,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                for (final (nome, severity) in const [
+                  ('Primary', SgSeverity.primary),
+                  ('Secondary', SgSeverity.secondary),
+                  ('Success', SgSeverity.success),
+                  ('Info', SgSeverity.info),
+                  ('Warning', SgSeverity.warning),
+                  ('Help', SgSeverity.help),
+                  ('Danger', SgSeverity.danger),
+                ])
+                  SgButton(
+                    label: Text(context.tx(nome)),
+                    severity: severity,
+                    shape: SgButtonShape.rounded,
+                    onClick: () {},
+                  ),
+              ],
+            ),
+        // #endregion
+        code: SgButtonPageSnippets.sgButtonRounded,
+      ),
+      ShowcaseExample(
+        title: 'Ghost Buttons (Flat)',
+        description:
+            'appearance: ghost - sem fundo, apenas texto colorido.',
+        preview:
+            // #region sg-button-ghost
+            Wrap(
+              spacing: 12,
+              runSpacing: 12,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                for (final (nome, severity) in const [
+                  ('Primary', SgSeverity.primary),
+                  ('Secondary', SgSeverity.secondary),
+                  ('Success', SgSeverity.success),
+                  ('Info', SgSeverity.info),
+                  ('Warning', SgSeverity.warning),
+                  ('Help', SgSeverity.help),
+                  ('Danger', SgSeverity.danger),
+                ])
+                  SgButton(
+                    label: Text(context.tx(nome)),
+                    severity: severity,
+                    appearance: SgAppearance.ghost,
+                    onClick: () {},
+                  ),
+              ],
+            ),
+        // #endregion
+        code: SgButtonPageSnippets.sgButtonGhost,
+      ),
+      ShowcaseExample(
+        title: 'Outlined + Elevation',
+        description:
+            'appearance: outline + elevation: sm.',
+        preview:
+            // #region sg-button-outlined-elevation
+            Wrap(
+              spacing: 12,
+              runSpacing: 12,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                for (final (nome, severity) in const [
+                  ('Primary', SgSeverity.primary),
+                  ('Secondary', SgSeverity.secondary),
+                  ('Success', SgSeverity.success),
+                  ('Info', SgSeverity.info),
+                  ('Warning', SgSeverity.warning),
+                  ('Help', SgSeverity.help),
+                  ('Danger', SgSeverity.danger),
+                ])
+                  SgButton(
+                    label: Text(context.tx(nome)),
+                    severity: severity,
+                    appearance: SgAppearance.outline,
+                    elevation: SgElevation.sm,
+                    onClick: () {},
+                  ),
+              ],
+            ),
+        // #endregion
+        code: SgButtonPageSnippets.sgButtonOutlinedElevation,
+      ),
+      ShowcaseExample(
+        title: 'Outlined Buttons',
+        description:
+            'appearance: outline - apenas bordas coloridas.',
+        preview:
+            // #region sg-button-outlined
+            Wrap(
+              spacing: 12,
+              runSpacing: 12,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                for (final (nome, severity) in const [
+                  ('Primary', SgSeverity.primary),
+                  ('Secondary', SgSeverity.secondary),
+                  ('Success', SgSeverity.success),
+                  ('Info', SgSeverity.info),
+                  ('Warning', SgSeverity.warning),
+                  ('Help', SgSeverity.help),
+                  ('Danger', SgSeverity.danger),
+                ])
+                  SgButton(
+                    label: Text(context.tx(nome)),
+                    severity: severity,
+                    appearance: SgAppearance.outline,
+                    onClick: () {},
+                  ),
+              ],
+            ),
+        // #endregion
+        code: SgButtonPageSnippets.sgButtonOutlined,
+      ),
+      ShowcaseExample(
+        title: 'Rounded Icon Buttons',
+        description:
+            'shape: rounded + só ícone - botões circulares.',
+        preview:
+            // #region sg-button-rounded-icon
+            Wrap(
+              spacing: 12,
+              runSpacing: 12,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                for (final (severity, icone) in const [
+                  (SgSeverity.primary, Icons.bookmark),
+                  (SgSeverity.secondary, Icons.search),
+                  (SgSeverity.success, Icons.group),
+                  (SgSeverity.info, Icons.notifications),
+                  (SgSeverity.help, Icons.favorite),
+                  (SgSeverity.danger, Icons.close),
+                  (SgSeverity.warning, Icons.check),
+                ])
+                  SgButton(
+                    severity: severity,
+                    shape: SgButtonShape.rounded,
+                    leftIcon: Icon(icone),
+                    onClick: () {},
+                  ),
+              ],
+            ),
+        // #endregion
+        code: SgButtonPageSnippets.sgButtonRoundedIcon,
+      ),
+      ShowcaseExample(
+        title: 'Rounded Text Icon Buttons',
+        description:
+            'shape: rounded + só ícone + appearance: ghost.',
+        preview:
+            // #region sg-button-rounded-text-icon
+            Wrap(
+              spacing: 12,
+              runSpacing: 12,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                for (final (severity, icone) in const [
+                  (SgSeverity.primary, Icons.bookmark),
+                  (SgSeverity.secondary, Icons.search),
+                  (SgSeverity.success, Icons.group),
+                  (SgSeverity.info, Icons.notifications),
+                  (SgSeverity.help, Icons.favorite),
+                  (SgSeverity.danger, Icons.close),
+                  (SgSeverity.warning, Icons.check),
+                ])
+                  SgButton(
+                    severity: severity,
+                    shape: SgButtonShape.rounded,
+                    appearance: SgAppearance.ghost,
+                    leftIcon: Icon(icone),
+                    onClick: () {},
+                  ),
+              ],
+            ),
+        // #endregion
+        code: SgButtonPageSnippets.sgButtonRoundedTextIcon,
+      ),
+      ShowcaseExample(
+        title: 'Rounded and Outlined Icon Buttons',
+        description:
+            'shape: rounded + só ícone + appearance: outline.',
+        preview:
+            // #region sg-button-rounded-outlined-icon
+            Wrap(
+              spacing: 12,
+              runSpacing: 12,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                for (final (severity, icone) in const [
+                  (SgSeverity.primary, Icons.bookmark),
+                  (SgSeverity.secondary, Icons.search),
+                  (SgSeverity.success, Icons.group),
+                  (SgSeverity.info, Icons.notifications),
+                  (SgSeverity.help, Icons.favorite),
+                  (SgSeverity.danger, Icons.close),
+                  (SgSeverity.warning, Icons.check),
+                ])
+                  SgButton(
+                    severity: severity,
+                    shape: SgButtonShape.rounded,
+                    appearance: SgAppearance.outline,
+                    leftIcon: Icon(icone),
+                    onClick: () {},
+                  ),
+              ],
+            ),
+        // #endregion
+        code: SgButtonPageSnippets.sgButtonRoundedOutlinedIcon,
+      ),
+      ShowcaseExample(
+        title: 'Sizes',
+        description:
+            'size: sm, md ou lg.',
+        preview:
+            // #region sg-button-sizes
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Wrap(
+                  spacing: 12,
+                  runSpacing: 12,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  children: [
+                    SgButton(
+                      label: Text(context.tx('Small')),
+                      size: SgSize.sm,
+                      onClick: () {},
+                    ),
+                    SgButton(
+                      label: Text(context.tx('Medium')),
+                      size: SgSize.md,
+                      onClick: () {},
+                    ),
+                    SgButton(
+                      label: Text(context.tx('Large')),
+                      size: SgSize.lg,
+                      onClick: () {},
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 12),
+                Wrap(
+                  spacing: 12,
+                  runSpacing: 12,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  children: [
+                    SgButton(
+                      size: SgSize.sm,
+                      shape: SgButtonShape.rounded,
+                      leftIcon: const Icon(Icons.check),
+                      onClick: () {},
+                    ),
+                    SgButton(
+                      size: SgSize.md,
+                      shape: SgButtonShape.rounded,
+                      leftIcon: const Icon(Icons.check),
+                      onClick: () {},
+                    ),
+                    SgButton(
+                      size: SgSize.lg,
+                      shape: SgButtonShape.rounded,
+                      leftIcon: const Icon(Icons.check),
+                      onClick: () {},
+                    ),
+                  ],
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgButtonPageSnippets.sgButtonSizes,
+      ),
+      ShowcaseExample(
+        title: 'Loading',
+        description:
+            'loading: true exibe spinner e desabilita o botão.',
+        preview:
+            // #region sg-button-loading
+            Wrap(
+              spacing: 12,
+              runSpacing: 12,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                SgButton(label: Text(context.tx('Processing...')), loading: true),
+                SgButton(
+                  label: Text(context.tx('Saving...')),
+                  severity: SgSeverity.success,
+                  loading: true,
+                ),
+                SgButton(
+                  label: Text(context.tx('Deleting...')),
+                  severity: SgSeverity.danger,
+                  loading: true,
+                  leftIcon: const Icon(Icons.close),
+                ),
+                SgButton(
+                  shape: SgButtonShape.rounded,
+                  loading: true,
+                  leftIcon: const Icon(Icons.check),
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgButtonPageSnippets.sgButtonLoading,
+      ),
+      ShowcaseExample(
+        title: 'Custom Colors',
+        description:
+            'customColors permite definir qualquer cor (bg, fg, border, hoverBg, ring).',
+        preview:
+            // #region sg-button-custom-colors
+            Wrap(
+              spacing: 12,
+              runSpacing: 12,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                SgButton(
+                  label: Text(context.tx('Brand Dark')),
+                  customColors: const SgButtonCustomColors(
+                    bg: Color(0xFF0F172A),
+                    fg: Color(0xFFFFFFFF),
+                    hoverBg: Color(0xFF020617),
+                    ring: Color(0x590F172A),
+                  ),
+                  onClick: () {},
+                ),
+                SgButton(
+                  label: Text(context.tx('Pink')),
+                  customColors: const SgButtonCustomColors(
+                    bg: Color(0xFFEC4899),
+                    fg: Color(0xFFFFFFFF),
+                    border: Color(0xFFDB2777),
+                    hoverBg: Color(0xFFDB2777),
+                    ring: Color(0x59EC4899),
+                  ),
+                  onClick: () {},
+                ),
+                SgButton(
+                  label: Text(context.tx('Violet Outline')),
+                  appearance: SgAppearance.outline,
+                  customColors: const SgButtonCustomColors(
+                    bg: Color(0xFF8B5CF6),
+                    fg: Color(0xFF8B5CF6),
+                    border: Color(0xFF8B5CF6),
+                    ring: Color(0x598B5CF6),
+                  ),
+                  onClick: () {},
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgButtonPageSnippets.sgButtonCustomColors,
       ),
     ];
 
@@ -188,12 +619,12 @@ class SgButtonPage extends StatelessWidget {
           exact: true,
         ),
         const SgPropSpec(
-          name: 'disabled',
-          reactName: 'disabled',
+          name: 'enabled',
+          reactName: 'enabled',
           type: 'bool?',
           tsType: 'boolean',
           required: false,
-          defaultValue: 'false',
+          defaultValue: 'true',
           description: 'Desabilita o botão (herdado do botão HTML no React).',
         ),
         const SgPropSpec(

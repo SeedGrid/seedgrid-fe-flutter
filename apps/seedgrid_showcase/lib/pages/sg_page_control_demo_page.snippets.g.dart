@@ -22,7 +22,7 @@ SgPageControl(
     SgPageControlPage(
       id: 'bloqueada',
       title: Text(context.tx('Bloqueada')),
-      disabled: true,
+      enabled: false,
       child: Text(context.tx('Nunca aparece.')),
     ),
   ],

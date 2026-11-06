@@ -22,7 +22,7 @@ class SgAutocompleteItem {
     required this.label,
     this.value,
     this.group,
-    this.disabled = false,
+    this.enabled = true,
     this.data,
   });
 
@@ -31,7 +31,7 @@ class SgAutocompleteItem {
   final String label;
   final String? value;
   final String? group;
-  final bool disabled;
+  final bool enabled;
   final Object? data;
 }
 
@@ -54,7 +54,7 @@ SgAutocompleteItem sgDefaultMapItem(Object? raw) {
       label: '${label ?? ''}',
       value: raw['value'] is String ? raw['value'] as String : null,
       group: raw['group'] is String ? raw['group'] as String : null,
-      disabled: raw['disabled'] is bool ? raw['disabled'] as bool : false,
+      enabled: raw['enabled'] is bool ? raw['enabled'] as bool : true,
       data: raw['data'],
     );
   }
@@ -239,18 +239,18 @@ class _SgSelectListState extends State<SgSelectList> {
     return KeyedSubtree(
       key: _key(index),
       child: MouseRegion(
-        cursor: item.disabled
+        cursor: !item.enabled
             ? SystemMouseCursors.forbidden
             : SystemMouseCursors.click,
-        onEnter: item.disabled || widget.onHover == null
+        onEnter: !item.enabled || widget.onHover == null
             ? null
             : (_) => widget.onHover!(index),
         child: Opacity(
-          opacity: item.disabled ? 0.5 : 1,
+          opacity: !item.enabled ? 0.5 : 1,
           child: InkWell(
             key: ValueKey('sg-opt-${item.id}'),
             canRequestFocus: false,
-            onTap: item.disabled ? null : () => widget.onTap(index),
+            onTap: !item.enabled ? null : () => widget.onTap(index),
             child: Container(
               color: active ? t.muted.withValues(alpha: 0.12) : null,
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),

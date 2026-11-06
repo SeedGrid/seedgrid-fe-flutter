@@ -19,8 +19,7 @@ abstract interface class SgInputBirthDateProps {
   /// Tipo TS: `any` (sem tradução exata; ver excecoes.json).
   Object? get control;
   SgInputBirthDateElevation? get elevation;
-  /// No React a prop se chama `enabled` (valor invertido); ver ADR 50.
-  bool? get disabled;
+  bool? get enabled;
   String? get error;
   bool? get filled;
   String? get hintText;
@@ -124,7 +123,7 @@ const List<SgPropSpec> sgInputBirthDatePropSpecs = <SgPropSpec>[
     values: <String>['none', 'sm', 'md', 'lg'],
   ),
   SgPropSpec(
-    name: 'disabled',
+    name: 'enabled',
     reactName: 'enabled',
     type: 'bool?',
     tsType: 'boolean',

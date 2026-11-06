@@ -86,7 +86,7 @@ class _SgMultiSelectPageState extends State<SgMultiSelectPage> {
                 SgMultiSelectOption(
                   label: context.tx('Cinza (indisponível)'),
                   value: 'cinza',
-                  disabled: true,
+                  enabled: false,
                 ),
               ],
             ),
@@ -230,7 +230,7 @@ class _SgMultiSelectPageState extends State<SgMultiSelectPage> {
               (s) => const {
                 'searchable',
                 'clearable',
-                'disabled',
+                'enabled',
                 'required',
                 'filled',
                 'placeholder',
@@ -246,7 +246,7 @@ class _SgMultiSelectPageState extends State<SgMultiSelectPage> {
           options: playgroundOptions,
           searchable: (v['searchable'] as bool?) ?? false,
           clearable: (v['clearable'] as bool?) ?? false,
-          disabled: v['disabled'] as bool?,
+          enabled: v['enabled'] as bool?,
           required: v['required'] as bool?,
           filled: v['filled'] as bool?,
           placeholder: v['placeholder'] as String?,

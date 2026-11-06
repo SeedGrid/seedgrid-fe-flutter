@@ -12,8 +12,8 @@ import '../props/sg_prop_spec.dart';
 abstract interface class SgRadioGroupProps {
   /// Tipo TS: `any` (sem tradução exata; ver excecoes.json).
   Object? get control;
-  /// Padrão: `false`.
-  bool? get disabled;
+  /// Padrão: `true`.
+  bool? get enabled;
   String? get error;
   /// Padrão: `{}`. Tipo TS: `(Omit&lt;Partial&lt;SgGroupBoxProps&gt;, "title" | "children"&gt; & { title?: string; })` (sem tradução exata; ver excecoes.json).
   Object? get groupBoxProps;
@@ -54,12 +54,12 @@ const List<SgPropSpec> sgRadioGroupPropSpecs = <SgPropSpec>[
     exact: false,
   ),
   SgPropSpec(
-    name: 'disabled',
-    reactName: 'disabled',
+    name: 'enabled',
+    reactName: 'enabled',
     type: 'bool?',
     tsType: 'boolean',
     required: false,
-    defaultValue: 'false',
+    defaultValue: 'true',
   ),
   SgPropSpec(
     name: 'error',

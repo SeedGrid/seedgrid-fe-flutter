@@ -96,7 +96,7 @@ class _SgSliderPageState extends State<SgSliderPage> {
                   minValue: 0,
                   maxValue: 10,
                   defaultValue: 7,
-                  disabled: true,
+                  enabled: false,
                 ),
                 SgSlider(
                   id: 'erro',
@@ -154,7 +154,7 @@ class _SgSliderPageState extends State<SgSliderPage> {
       playground: SgPlayground(
         specs: sgPropSpecs['SgSlider']!
             .where(
-              (s) => const {'disabled', 'error', 'ariaLabel'}.contains(s.name),
+              (s) => const {'enabled', 'error', 'ariaLabel'}.contains(s.name),
             )
             .toList(),
         builder: (context, v) => SgSlider(
@@ -162,7 +162,7 @@ class _SgSliderPageState extends State<SgSliderPage> {
           minValue: 0,
           maxValue: 100,
           defaultValue: 40,
-          disabled: (v['disabled'] as bool?) ?? false,
+          enabled: (v['enabled'] as bool?) ?? true,
           error: v['error'] as String?,
           ariaLabel: v['ariaLabel'] as String?,
         ),

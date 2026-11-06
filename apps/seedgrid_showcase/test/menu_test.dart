@@ -11,9 +11,17 @@ import 'support/page_checks.dart';
 
 void main() {
   test(
-    'o catalogo cobre os 93 componentes do React e cada pagina registrada tem entrada no menu',
+    'o catalogo cobre os 94 componentes do React (+ os somente Flutter) e cada pagina registrada tem entrada no menu',
     () {
-      expect(kCatalog.length, 93);
+      final soFlutter = kCatalog.where((e) => e.status == 'somente-flutter');
+      expect(kCatalog.length - soFlutter.length, 94);
+      expect(soFlutter.map((e) => e.name), ['SgColorPicker']);
+      // Somente Flutter nunca e pendente: tem pagina propria e nao esta no registro do React.
+      for (final e in soFlutter) {
+        expect(kShowcasePages.any((p) => p.name == e.name), isTrue, reason: e.name);
+        expect(sgPropSpecs.containsKey(e.name), isFalse, reason: e.name);
+        expect(sgFlutterOnlyPropSpecs.containsKey(e.name), isTrue, reason: e.name);
+      }
       final grouped = menuGroups(
         '',
       ).values.expand((l) => l).map((e) => e.name).toSet();
@@ -61,7 +69,9 @@ void main() {
     'abre na pagina inicial com um card por componente e abre a pagina ao tocar',
     (t) async {
       setSize(t, kSizes.values.last);
-      await t.pumpWidget(const ShowcaseApp(initialUri: null));
+      await t.pumpWidget(
+        const ShowcaseApp(initialUri: null, initialMenuCollapsed: false),
+      );
       await settle(t);
       expect(find.byKey(const ValueKey('home-resumo')), findsOneWidget);
       // a lista e lazy: o primeiro card (categoria Acao) ja esta montado
@@ -78,12 +88,13 @@ void main() {
     t,
   ) async {
     setSize(t, kSizes.values.last);
-    await t.pumpWidget(const ShowcaseApp());
+    await t.pumpWidget(const ShowcaseApp(initialMenuCollapsed: false));
     await settle(t);
     expect(find.textContaining('Ação ('), findsOneWidget);
     final pendentes = kCatalog.where((e) => e.status == 'pendente').toList();
-    if (pendentes.isEmpty)
-      return; // 93 de 93 portados: nada esmaecido para conferir
+    if (pendentes.isEmpty) {
+      return; // 94 de 94 portados: nada esmaecido para conferir
+    }
     final key = ValueKey('nav-${pendentes.first.name}');
     await revealInMenu(t, find.byKey(key));
     final tile = t.widget<ListTile>(find.byKey(key));
@@ -102,7 +113,7 @@ void main() {
     'busca do SgMenu sugere os componentes e nao acha o que nao existe',
     (t) async {
       setSize(t, kSizes.values.last);
-      await t.pumpWidget(const ShowcaseApp());
+      await t.pumpWidget(const ShowcaseApp(initialMenuCollapsed: false));
       await settle(t);
       final campo = find.descendant(
         of: find.byKey(const ValueKey('sg-menu-search')),
@@ -120,11 +131,12 @@ void main() {
 
   testWidgets('escolher um componente abre a pagina; Inicio volta', (t) async {
     setSize(t, kSizes.values.last);
-    await t.pumpWidget(const ShowcaseApp());
+    await t.pumpWidget(const ShowcaseApp(initialMenuCollapsed: false));
     await settle(t);
+    await openAllGroups(t);
     await t.tap(find.byKey(const ValueKey('sg-menu-row-SgButton')));
     await settle(t);
-    expect(find.text('Exemplo 1 — Severidades'), findsOneWidget);
+    expect(find.text('Exemplo 1 — Básico'), findsOneWidget);
     await t.tap(find.byKey(const ValueKey('sg-menu-row-inicio')));
     await settle(t);
     expect(find.byKey(const ValueKey('home-resumo')), findsOneWidget);
@@ -132,8 +144,11 @@ void main() {
 
   testWidgets('painel de tema: cor semente e raio mudam os tokens', (t) async {
     setSize(t, kSizes.values.last);
-    await t.pumpWidget(const ShowcaseApp(initialUri: null));
+    await t.pumpWidget(
+      const ShowcaseApp(initialUri: null, initialMenuCollapsed: false),
+    );
     await settle(t);
+    await openAllGroups(t);
     await t.tap(find.byKey(const ValueKey('sg-menu-row-SgButton')));
     await settle(t);
     Color primaryBg() =>
@@ -149,7 +164,7 @@ void main() {
                 as BoxDecoration)
             .color!;
     final before = primaryBg();
-    await t.tap(find.byKey(const ValueKey('menu-tema')));
+    await t.tap(find.text('Sistema de Tema'));
     await settle(t);
     await t.ensureVisible(find.byKey(const ValueKey('tema-cor-#EF4444')));
     await settle(t);
@@ -163,7 +178,8 @@ void main() {
     expect(primaryBg(), isNot(before));
 
     // Cor livre: so aplica um #RRGGBB completo.
-    await revealInMenu(t, find.byKey(const ValueKey('tema-cor-livre')));
+    await t.ensureVisible(find.byKey(const ValueKey('tema-cor-livre')));
+    await settle(t);
     await t.enterText(find.byKey(const ValueKey('tema-cor-livre')), '#7C3A');
     await settle(t);
     expect(primaryBg(), red.btnPrimaryBg);
@@ -180,16 +196,17 @@ void main() {
     t,
   ) async {
     setSize(t, kSizes.values.first);
-    await t.pumpWidget(const ShowcaseApp(initialUri: null));
+    await t.pumpWidget(
+      const ShowcaseApp(initialUri: null, initialMenuCollapsed: false),
+    );
     await settle(t);
     await t.tap(find.byKey(const ValueKey('abrir-tema')));
     await settle(t);
-    expect(find.byKey(const ValueKey('tema-cor-livre')), findsOneWidget);
-    await t.tap(find.byKey(const ValueKey('tema-cor-#EF4444')));
+    expect(find.byKey(const ValueKey('tema-editor')), findsOneWidget);
+    expect(find.byKey(const ValueKey('tema-editor-cor-livre')), findsOneWidget);
+    await t.tap(find.byKey(const ValueKey('tema-editor-cor-#EF4444')));
     await settle(t);
-    final chip = t.widget<ChoiceChip>(
-      find.byKey(const ValueKey('tema-cor-#EF4444')),
-    );
-    expect(chip.selected, isTrue);
+    // Rascunho: o app so muda no Aplicar (ver theme_editor_test.dart); aqui o rascunho ja marca a cor.
+    expect(find.byIcon(Icons.check), findsOneWidget);
   });
 }

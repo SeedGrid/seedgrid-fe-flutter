@@ -52,7 +52,7 @@ class SgYearPartSelector extends StatefulWidget
     this.minYear,
     this.maxYear,
     this.locale = 'pt-BR',
-    this.disabled,
+    this.enabled,
     this.required,
     this.today,
   });
@@ -89,7 +89,7 @@ class SgYearPartSelector extends StatefulWidget
   @override
   final String locale;
   @override
-  final bool? disabled;
+  final bool? enabled;
   @override
   final bool? required;
 
@@ -168,7 +168,7 @@ class _SgYearPartSelectorState extends State<SgYearPartSelector> {
       source: yearItems,
       value: current.year,
       openOnFocus: true,
-      disabled: w.disabled,
+      enabled: (w.enabled ?? true),
       required: w.required,
       onValueChange: (v) {
         if (v == null) return;
@@ -182,7 +182,7 @@ class _SgYearPartSelectorState extends State<SgYearPartSelector> {
             source: kindItems,
             value: current.kind.value,
             openOnFocus: true,
-            disabled: w.disabled,
+            enabled: (w.enabled ?? true),
             required: w.required,
             onValueChange: (raw) {
               if (raw == null) return;
@@ -199,7 +199,7 @@ class _SgYearPartSelectorState extends State<SgYearPartSelector> {
       source: partItems,
       value: current.part,
       openOnFocus: true,
-      disabled: w.disabled,
+      enabled: (w.enabled ?? true),
       required: w.required,
       onValueChange: (raw) {
         if (raw == null) return;

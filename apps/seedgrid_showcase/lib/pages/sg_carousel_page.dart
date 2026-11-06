@@ -1,10 +1,12 @@
-// Showcase do SgCarousel. O codigo exibido em cada exemplo e o trecho entre `// #region` e
-// `// #endregion` deste arquivo: exatamente o que esta renderizado.
+// Showcase do SgCarousel. Mesmos exemplos, na mesma ordem, do showcase React (a fonte da verdade). O codigo
+// exibido em cada exemplo e o trecho entre `// #region` e `// #endregion` deste arquivo: exatamente o que
+// esta renderizado.
 import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
 import '../src/sg_showcase_page.dart';
 import '../src/showcase_i18n.dart';
+import '../src/showcase_log_box.dart';
 import 'sg_carousel_page.snippets.g.dart';
 
 class SgCarouselPage extends StatefulWidget {
@@ -15,9 +17,17 @@ class SgCarouselPage extends StatefulWidget {
 }
 
 class _SgCarouselPageState extends State<SgCarouselPage> {
-  int _slide = 0;
+  int _activeIndex = 0;
+  final List<String> _eventLog = [];
 
-  static List<Widget> _slides(int n) => [
+  void _log(String message) {
+    final now = DateTime.now().toString().substring(11, 19);
+    _eventLog.insert(0, '[$now] $message');
+    if (_eventLog.length > 10) _eventLog.removeLast();
+  }
+
+  // Equivale ao createCarouselItems do React (cartoes coloridos no lugar das fotos).
+  static List<Widget> _slides([int n = 6]) => [
     for (var i = 0; i < n; i++)
       Container(
         decoration: BoxDecoration(
@@ -25,9 +35,22 @@ class _SgCarouselPageState extends State<SgCarouselPage> {
           borderRadius: BorderRadius.circular(8),
         ),
         alignment: Alignment.center,
-        child: Text(
-          'Slide ${i + 1}',
-          style: const TextStyle(color: Colors.white, fontSize: 20),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              'Item ${i + 1}',
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Text(
+              'Slide ${i + 1}',
+              style: const TextStyle(color: Colors.white, fontSize: 14),
+            ),
+          ],
         ),
       ),
   ];
@@ -36,68 +59,257 @@ class _SgCarouselPageState extends State<SgCarouselPage> {
   Widget build(BuildContext context) {
     final examples = <ShowcaseExample>[
       ShowcaseExample(
-        title: 'Básico',
-        description: context.txf(
-          'Setas, indicadores e deslizar o dedo. Slide atual: {slide}.',
-          {'slide': _slide + 1},
-        ),
+        title: 'Básico - Horizontal',
+        description: 'Carrossel horizontal simples com um item visível por vez',
         preview:
             // #region sg-carousel-basico
-            SgCarousel(
-              height: 160,
-              items: _slides(5),
-              onIndexChange: (i) => setState(() => _slide = i),
+            SizedBox(
+              height: 256,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: SgCarousel(
+                  items: _slides(),
+                  numVisible: 1,
+                  orientation: SgCarouselOrientation.horizontal,
+                  height: '100%',
+                ),
+              ),
             ),
         // #endregion
         code: SgCarouselPageSnippets.sgCarouselBasico,
       ),
       ShowcaseExample(
-        title: 'Vários itens visíveis',
+        title: 'Múltiplos itens visíveis',
+        description: 'Carrossel mostrando 3 itens de uma vez',
         preview:
-            // #region sg-carousel-varios
-            SgCarousel(
-              height: 120,
-              items: _slides(8),
-              numVisible: 3,
-              numScroll: 2,
-              gap: 12,
-              circular: false,
+            // #region sg-carousel-multiplos
+            SizedBox(
+              height: 256,
+              child: SgCarousel(
+                items: _slides(),
+                numVisible: 3,
+                numScroll: 1,
+                orientation: SgCarouselOrientation.horizontal,
+                height: '100%',
+              ),
             ),
         // #endregion
-        code: SgCarouselPageSnippets.sgCarouselVarios,
+        code: SgCarouselPageSnippets.sgCarouselMultiplos,
       ),
       ShowcaseExample(
-        title: 'Reprodução automática',
-        description:
-            'Avança a cada 2 s e pausa enquanto você toca ou passa o mouse.',
+        title: 'Auto play',
+        description: 'Carrossel com navegação automática (a cada 2 segundos)',
         preview:
             // #region sg-carousel-autoplay
-            SgCarousel(
-              height: 140,
-              items: _slides(4),
-              autoPlay: true,
-              autoPlayInterval: 2000,
-              showNavigators: false,
+            SizedBox(
+              height: 256,
+              child: SgCarousel(
+                items: _slides(),
+                numVisible: 1,
+                autoPlay: true,
+                autoPlayInterval: 2000,
+                orientation: SgCarouselOrientation.horizontal,
+                height: '100%',
+              ),
             ),
         // #endregion
         code: SgCarouselPageSnippets.sgCarouselAutoplay,
       ),
       ShowcaseExample(
-        title: 'Vertical e navegadores próprios',
+        title: 'Orientação vertical',
+        description: 'Carrossel com navegação vertical',
         preview:
             // #region sg-carousel-vertical
-            SgCarousel(
-              height: 200,
-              width: 260,
-              orientation: SgCarouselOrientation.vertical,
-              items: _slides(4),
-              customNavigators: const SgCarouselNavigators(
-                prev: Icon(Icons.expand_less),
-                next: Icon(Icons.expand_more),
-              ),
+            SgGrid(
+              columns: 1,
+              justify: SgGridJustify.center,
+              children: [
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: SizedBox(
+                    width: 320,
+                    height: 384,
+                    child: SgCarousel(
+                      items: _slides(),
+                      numVisible: 1,
+                      orientation: SgCarouselOrientation.vertical,
+                      height: '100%',
+                    ),
+                  ),
+                ),
+              ],
             ),
         // #endregion
         code: SgCarouselPageSnippets.sgCarouselVertical,
+      ),
+      ShowcaseExample(
+        title: 'Vertical - Múltiplos itens',
+        description: 'Carrossel vertical mostrando 3 itens de uma vez',
+        preview:
+            // #region sg-carousel-vertical-multiplos
+            SgGrid(
+              columns: 1,
+              justify: SgGridJustify.center,
+              children: [
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: SizedBox(
+                    width: 320,
+                    height: 384,
+                    child: SgCarousel(
+                      items: _slides(),
+                      numVisible: 3,
+                      numScroll: 1,
+                      orientation: SgCarouselOrientation.vertical,
+                      height: '100%',
+                      gap: 8,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgCarouselPageSnippets.sgCarouselVerticalMultiplos,
+      ),
+      ShowcaseExample(
+        title: 'Sem modo circular',
+        description: 'Carrossel que para no final (sem loop infinito)',
+        preview:
+            // #region sg-carousel-sem-circular
+            SizedBox(
+              height: 256,
+              child: SgCarousel(
+                items: _slides(),
+                numVisible: 1,
+                circular: false,
+                orientation: SgCarouselOrientation.horizontal,
+                height: '100%',
+              ),
+            ),
+        // #endregion
+        code: SgCarouselPageSnippets.sgCarouselSemCircular,
+      ),
+      ShowcaseExample(
+        title: 'Sem indicadores',
+        description: 'Carrossel sem os indicadores (dots) na parte inferior',
+        preview:
+            // #region sg-carousel-sem-indicadores
+            SizedBox(
+              height: 256,
+              child: SgCarousel(
+                items: _slides(),
+                numVisible: 1,
+                showIndicators: false,
+                orientation: SgCarouselOrientation.horizontal,
+                height: '100%',
+              ),
+            ),
+        // #endregion
+        code: SgCarouselPageSnippets.sgCarouselSemIndicadores,
+      ),
+      ShowcaseExample(
+        title: 'Sem navegadores',
+        description: 'Carrossel sem os botões de navegação (apenas indicadores)',
+        preview:
+            // #region sg-carousel-sem-navegadores
+            SizedBox(
+              height: 256,
+              child: SgCarousel(
+                items: _slides(),
+                numVisible: 1,
+                showNavigators: false,
+                autoPlay: true,
+                autoPlayInterval: 2500,
+                orientation: SgCarouselOrientation.horizontal,
+                height: '100%',
+              ),
+            ),
+        // #endregion
+        code: SgCarouselPageSnippets.sgCarouselSemNavegadores,
+      ),
+      ShowcaseExample(
+        title: 'Gap customizado',
+        description: 'Carrossel com espaçamento personalizado entre itens (gap: 32px)',
+        preview:
+            // #region sg-carousel-gap
+            SizedBox(
+              height: 256,
+              child: SgCarousel(
+                items: _slides(),
+                numVisible: 3,
+                numScroll: 1,
+                gap: 32,
+                orientation: SgCarouselOrientation.horizontal,
+                height: '100%',
+              ),
+            ),
+        // #endregion
+        code: SgCarouselPageSnippets.sgCarouselGap,
+      ),
+      ShowcaseExample(
+        title: 'Com callbacks',
+        description: 'Carrossel com evento de mudança de índice',
+        preview:
+            // #region sg-carousel-callbacks
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.all(12),
+                  color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.05),
+                  child: Text('${context.tx('Índice Ativo')}: $_activeIndex'),
+                ),
+                const SizedBox(height: 16),
+                SizedBox(
+                  height: 256,
+                  child: SgCarousel(
+                    items: _slides(),
+                    numVisible: 2,
+                    numScroll: 1,
+                    orientation: SgCarouselOrientation.horizontal,
+                    height: '100%',
+                    onIndexChange: (index) => setState(() {
+                      _activeIndex = index;
+                      _log('${context.tx('Índice mudou para')}: $index');
+                    }),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                ShowcaseLogBox(
+                  entries: _eventLog,
+                  hint: context.tx('Navegue pelo carrossel para ver os eventos...'),
+                  height: 128,
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgCarouselPageSnippets.sgCarouselCallbacks,
+      ),
+      ShowcaseExample(
+        title: 'Exemplo responsivo',
+        description: 'Carrossel que se adapta ao tamanho da tela mostrando diferentes quantidades de itens',
+        preview:
+            // #region sg-carousel-responsivo
+            Builder(
+              builder: (context) {
+                final width = MediaQuery.sizeOf(context).width;
+                final visible = width >= 1024 ? 4 : (width >= 768 ? 2 : 1);
+                return SizedBox(
+                  height: 256,
+                  child: SgCarousel(
+                    key: ValueKey(visible),
+                    items: _slides(),
+                    numVisible: visible,
+                    numScroll: visible == 4 ? 2 : 1,
+                    orientation: SgCarouselOrientation.horizontal,
+                    height: '100%',
+                  ),
+                );
+              },
+            ),
+        // #endregion
+        code: SgCarouselPageSnippets.sgCarouselResponsivo,
       ),
     ];
 

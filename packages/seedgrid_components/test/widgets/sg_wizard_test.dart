@@ -25,7 +25,7 @@ Finder finish() => find.byKey(const ValueKey('wizard-finish'));
 Finder step(int i) => find.byKey(ValueKey('wizard-step-$i'));
 
 bool disabled(WidgetTester t, Finder f) =>
-    t.widget<SgButton>(f).disabled ?? false;
+    t.widget<SgButton>(f).enabled == false;
 
 void main() {
   setUp(resetComponentsI18n);
@@ -812,7 +812,7 @@ void main() {
             children: [
               const SgWizardPage(
                 title: 'Dados',
-                child: SgInputText(id: 'x', required: true, disabled: true),
+                child: SgInputText(id: 'x', required: true, enabled: false),
               ),
               SgWizardPage(title: 'Fim', child: const Text('conteudo fim')),
             ],

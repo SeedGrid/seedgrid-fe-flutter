@@ -17,8 +17,7 @@ abstract interface class SgToggleSwitchProps {
   Object? get control;
   bool? get defaultChecked;
   String? get description;
-  /// No React a prop se chama `enabled` (valor invertido); ver ADR 50.
-  bool? get disabled;
+  bool? get enabled;
   String? get error;
   /// Identificador unico do componente.
   String get id;
@@ -82,7 +81,7 @@ const List<SgPropSpec> sgToggleSwitchPropSpecs = <SgPropSpec>[
     required: false,
   ),
   SgPropSpec(
-    name: 'disabled',
+    name: 'enabled',
     reactName: 'enabled',
     type: 'bool?',
     tsType: 'boolean',

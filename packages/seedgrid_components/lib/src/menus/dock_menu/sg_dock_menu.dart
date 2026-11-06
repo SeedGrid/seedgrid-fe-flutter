@@ -36,7 +36,7 @@ class SgDockMenuItem {
     required this.icon,
     required this.label,
     this.onClick,
-    this.disabled = false,
+    this.enabled = true,
     this.badge,
   });
 
@@ -49,11 +49,11 @@ class SgDockMenuItem {
   /// Texto do rotulo (aparece ao passar o mouse) e rotulo de acessibilidade.
   final String label;
 
-  /// Chamado ao tocar/clicar no item (nao chamado quando [disabled]).
+  /// Chamado ao tocar/clicar no item (nao chamado quando [enabled] = false).
   final VoidCallback? onClick;
 
   /// Item desabilitado: sem clique, opaco pela metade e cursor "proibido".
-  final bool disabled;
+  final bool enabled;
 
   /// Conteudo do selo (`string | number`). `null`, vazio e `0` nao mostram selo.
   final Object? badge;
@@ -430,7 +430,7 @@ class _SgDockMenuState extends State<SgDockMenu> {
   // ---------------------------------------------------------------- itens
 
   void _itemClick(SgDockMenuItem item) {
-    if (item.disabled) return;
+    if (!item.enabled) return;
     if (_dragMoved) {
       _dragMoved = false;
       return;
@@ -616,9 +616,9 @@ class _SgDockMenuState extends State<SgDockMenu> {
     final badgeText = _badgeText(item.badge);
 
     final content = Opacity(
-      opacity: item.disabled ? 0.5 : 1,
+      opacity: item.enabled ? 1 : 0.5,
       child: MouseRegion(
-        cursor: item.disabled
+        cursor: !item.enabled
             ? SystemMouseCursors.forbidden
             : SystemMouseCursors.click,
         onEnter: (_) => setState(() => _hoveredIndex = index),
@@ -928,12 +928,12 @@ class _DockButtonState extends State<_DockButton> {
     final radius = BorderRadius.circular(widget.radius);
     return Semantics(
       button: true,
-      enabled: !item.disabled,
+      enabled: item.enabled,
       label: item.label,
       excludeSemantics: true,
-      onTap: item.disabled ? null : widget.onPressed,
+      onTap: !item.enabled ? null : widget.onPressed,
       child: FocusableActionDetector(
-        enabled: !item.disabled,
+        enabled: item.enabled,
         onShowFocusHighlight: (v) => setState(() => _focusRing = v),
         actions: {
           ActivateIntent: CallbackAction<ActivateIntent>(
@@ -945,7 +945,7 @@ class _DockButtonState extends State<_DockButton> {
         },
         child: GestureDetector(
           behavior: HitTestBehavior.opaque,
-          onTap: item.disabled ? null : widget.onPressed,
+          onTap: !item.enabled ? null : widget.onPressed,
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 200),
             curve: Curves.ease,

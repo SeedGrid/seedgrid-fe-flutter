@@ -4,7 +4,7 @@ const MS = [
   { value: 1, label: "Um" },
   { value: 2, label: "Dois" },
   { value: 3, label: "Tres" },
-  { value: 4, label: "Quatro", disabled: true },
+  { value: 4, label: "Quatro", enabled: false },
 ];
 const MSTR = [{ value: "1", label: "Um" }, { value: "2", label: "Dois" }];
 const MCHIP = [{ value: 1, label: "1 - Filial Centro", chipLabel: "1" }, { value: 2, label: "2 - Filial Norte", chipLabel: "2" }];
@@ -107,11 +107,11 @@ export default function scenarios(chips) {
       steps: [open, setv([3]), snap("prop com painel aberto"), tog("Dois"), snap("clicou (pai nao acompanha)")],
     },
     {
-      id: "h-disabled-mostra-valor", items: MS, props: { value: [2], disabled: true, clearable: true },
+      id: "h-disabled-mostra-valor", items: MS, props: { value: [2], enabled: false, clearable: true },
       steps: [snap("inicial"), open, snap("tentou abrir"), setv([3]), snap("prop mudou")],
     },
     {
-      id: "h-disabled-form-setvalue", items: MS, form: { defaults: { f: [1] } }, props: { disabled: true },
+      id: "h-disabled-form-setvalue", items: MS, form: { defaults: { f: [1] } }, props: { enabled: false },
       steps: [snap("inicial"), fsv([3]), snap("setValue"), freset(), snap("reset")],
     },
   ];
@@ -125,7 +125,7 @@ export default function scenarios(chips) {
         id: "e-remover-chip-form", items: MS, form: { defaults: { f: [1, 2, 3] } }, props: {},
         steps: [{ op: "removeChip", label: "Dois" }, snap("removeu Dois"), fsv([1, 2, 3]), snap("setValue de novo")],
       },
-      { id: "h-disabled-sem-botao-remover", items: MS, props: { value: [1, 2], disabled: true }, steps: [snap("inicial")] },
+      { id: "h-disabled-sem-botao-remover", items: MS, props: { value: [1, 2], enabled: false }, steps: [snap("inicial")] },
     );
   }
   return list;

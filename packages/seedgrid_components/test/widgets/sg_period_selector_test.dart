@@ -268,7 +268,7 @@ void main() {
     );
 
     testWidgets('disabled desabilita o campo', (t) async {
-      await t.pumpWidget(host(const SgPeriodSelector(disabled: true)));
+      await t.pumpWidget(host(const SgPeriodSelector(enabled: false)));
       expect(t.widget<TextField>(field('sg-period-selector')).enabled, isFalse);
     });
 
@@ -384,7 +384,7 @@ void main() {
     testWidgets('campos de data herdam disabled', (t) async {
       await t.pumpWidget(
         host(
-          const SgPeriodSelector(value: PeriodPreset.custom, disabled: true),
+          const SgPeriodSelector(value: PeriodPreset.custom, enabled: false),
         ),
       );
       await frames(t);

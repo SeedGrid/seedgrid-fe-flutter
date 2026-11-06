@@ -98,7 +98,12 @@ void main() {
     'tocar num link atualiza a URL com a ancora; trocar de pagina troca o caminho',
     (t) async {
       setSize(t, kSizes.values.last);
-      await t.pumpWidget(ShowcaseApp(initialUri: Uri.parse('/sg-button')));
+      await t.pumpWidget(
+        ShowcaseApp(
+          initialUri: Uri.parse('/sg-button'),
+          initialMenuCollapsed: false,
+        ),
+      );
       await settle(t);
       await tapLink(t, const ValueKey('link-exemplo-2'));
       expect(urls.last, '/sg-button#exemplo-2');

@@ -221,7 +221,7 @@ class _SgInputDateTimePageState extends State<SgInputDateTimePage> {
               (s) => const {
                 'labelPosition',
                 'filled',
-                'disabled',
+                'enabled',
                 'readOnly',
                 'clearButton',
                 'required',
@@ -239,7 +239,7 @@ class _SgInputDateTimePageState extends State<SgInputDateTimePage> {
             v['labelPosition'] as String?,
           ),
           filled: v['filled'] as bool?,
-          disabled: v['disabled'] as bool?,
+          enabled: v['enabled'] as bool?,
           readOnly: v['readOnly'] as bool?,
           clearButton: v['clearButton'] as bool?,
           required: v['required'] as bool?,

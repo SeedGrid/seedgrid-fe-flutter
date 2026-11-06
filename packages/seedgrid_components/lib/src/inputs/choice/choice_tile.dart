@@ -17,7 +17,7 @@ class ChoiceTile extends StatefulWidget {
     required this.onTap,
     this.icon,
     this.indeterminate = false,
-    this.disabled = false,
+    this.enabled = true,
     this.readOnly = false,
     this.highlight = false,
     this.iconOnly = false,
@@ -34,7 +34,7 @@ class ChoiceTile extends StatefulWidget {
   final bool selected;
   final bool indeterminate;
   final Widget? icon;
-  final bool disabled;
+  final bool enabled;
   final bool readOnly;
   final bool highlight;
   final bool iconOnly;
@@ -56,10 +56,10 @@ class _ChoiceTileState extends State<ChoiceTile> {
   bool _focused = false;
   bool _hover = false;
 
-  bool get _inert => widget.disabled || widget.readOnly;
+  bool get _inert => !widget.enabled || widget.readOnly;
 
   KeyEventResult _key(FocusNode _, KeyEvent e) {
-    if (e is! KeyDownEvent || widget.disabled) return KeyEventResult.ignored;
+    if (e is! KeyDownEvent || !widget.enabled) return KeyEventResult.ignored;
     final k = e.logicalKey;
     if (k == LogicalKeyboardKey.space ||
         (k == LogicalKeyboardKey.enter && widget.kind == ChoiceKind.check)) {
@@ -173,17 +173,17 @@ class _ChoiceTileState extends State<ChoiceTile> {
       checked: w.kind == ChoiceKind.check ? w.selected : null,
       selected: w.kind == ChoiceKind.radio ? w.selected : null,
       inMutuallyExclusiveGroup: w.kind == ChoiceKind.radio ? true : null,
-      enabled: !w.disabled,
+      enabled: w.enabled,
       label: w.label,
       child: Opacity(
-        opacity: w.disabled ? 0.5 : 1,
+        opacity: w.enabled ? 1 : 0.5,
         child: Focus(
           focusNode: w.focusNode,
-          canRequestFocus: !w.disabled,
+          canRequestFocus: w.enabled,
           onFocusChange: (f) => setState(() => _focused = f),
           onKeyEvent: _key,
           child: MouseRegion(
-            cursor: w.disabled
+            cursor: !w.enabled
                 ? SystemMouseCursors.forbidden
                 : (w.readOnly
                       ? SystemMouseCursors.basic

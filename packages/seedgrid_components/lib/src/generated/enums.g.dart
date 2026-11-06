@@ -2854,6 +2854,27 @@ enum SgMultiSelectTextInputType {
   }
 }
 
+/// Valores aceitos pelo React: `top`, `left`, `right`, `bottom`, `auto`.
+enum SgNotificationBellPlacement {
+  top('top'),
+  left('left'),
+  right('right'),
+  bottom('bottom'),
+  auto('auto');
+
+  const SgNotificationBellPlacement(this.value);
+
+  /// String equivalente no React.
+  final String value;
+
+  static SgNotificationBellPlacement? fromValue(String? v) {
+    for (final e in values) {
+      if (e.value == v) return e;
+    }
+    return null;
+  }
+}
+
 /// Valores aceitos pelo React: `left`, `right`.
 enum SgOrderListControlsPosition {
   left('left'),

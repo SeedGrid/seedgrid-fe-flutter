@@ -30,7 +30,7 @@ class SgInputTextArea extends StatefulWidget implements SgInputTextAreaProps {
     this.clearButton,
     this.control,
     this.elevation,
-    this.disabled,
+    this.enabled,
     this.error,
     this.filled,
     this.height,
@@ -88,7 +88,9 @@ class SgInputTextArea extends StatefulWidget implements SgInputTextAreaProps {
   @override
   final SgInputTextAreaElevation? elevation;
   @override
-  final bool? disabled;
+  final bool? enabled;
+
+  bool get _disabled => !(enabled ?? true);
   @override
   final String? error;
   @override
@@ -327,7 +329,7 @@ class _SgInputTextAreaState extends State<SgInputTextArea>
   /// Validacao de etapa do SgWizard para campo fora de formulario: a mesma validacao da perda de foco.
   @override
   bool validateNow() {
-    if (!mounted || _bound || widget.disabled == true) return true;
+    if (!mounted || _bound || widget._disabled) return true;
     if ((widget.validateOnBlur ?? true) || _interacted) _validate(_text.text);
     final propError = widget.error;
     return _internalError == null && (propError == null || propError.isEmpty);
@@ -369,7 +371,7 @@ class _SgInputTextAreaState extends State<SgInputTextArea>
 
   /// Validador do componente para `trigger`/`handleSubmit` (o mesmo do blur); desabilitado nao falha.
   String? _formValidate(Object? value) {
-    if (!mounted || widget.disabled == true) return null;
+    if (!mounted || widget._disabled) return null;
     return _messageFor('${value ?? ''}'.replaceAll('\r\n', '\n'));
   }
 
@@ -420,8 +422,10 @@ class _SgInputTextAreaState extends State<SgInputTextArea>
     final error = resolveFieldError(w.error, formError, _internalError);
     final hasError =
         error != null || (_bound && _form!.errorOf(w.name!) != null);
-    final locked = (w.disabled ?? false) || (w.readOnly ?? false);
-    final canClear = (w.clearButton ?? true) && !locked;
+    final locked = (w._disabled) || (w.readOnly ?? false);
+    // O X so aparece com texto, mas o espaco dele fica reservado (o texto do campo nao anda).
+    final clearEnabled = (w.clearButton ?? true) && !locked;
+    final canClear = clearEnabled && _text.text.isNotEmpty;
     final radius = BorderRadius.circular((w.borderRadius ?? 6).toDouble());
     final showBorder = (w.withBorder ?? true) || hasError;
 
@@ -441,7 +445,7 @@ class _SgInputTextAreaState extends State<SgInputTextArea>
       key: ValueKey('textarea-${w.id}'),
       controller: _text,
       focusNode: _focus,
-      enabled: !(w.disabled ?? false),
+      enabled: !(w._disabled),
       readOnly: w.readOnly ?? false,
       autofocus: w.autofocus,
       keyboardType: TextInputType.multiline,
@@ -455,7 +459,7 @@ class _SgInputTextAreaState extends State<SgInputTextArea>
         ...?w.inputFormatters,
       ],
       style: TextStyle(
-        color: (w.disabled ?? false) ? theme.inputDisabledFg : theme.inputFg,
+        color: (w._disabled) ? theme.inputDisabledFg : theme.inputFg,
       ),
       decoration: InputDecoration(
         labelText: isFloat ? labelText : null,
@@ -465,13 +469,13 @@ class _SgInputTextAreaState extends State<SgInputTextArea>
         counterText: '',
         isDense: true,
         filled: true,
-        fillColor: (w.disabled ?? false)
+        fillColor: (w._disabled)
             ? theme.inputDisabledBg
             : ((w.filled ?? false) ? theme.mutedSurface : theme.inputBg),
         contentPadding: EdgeInsets.fromLTRB(
           w.prefixIcon != null ? 40 : 12,
           16,
-          canClear ? 40 : 12,
+          clearEnabled ? 40 : 12,
           12,
         ),
         prefixIcon: w.prefixIcon == null

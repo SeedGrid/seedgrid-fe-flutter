@@ -79,7 +79,7 @@ class SgInputDateTime extends StatefulWidget implements SgInputDateTimeProps {
     this.control,
     this.defaultValue,
     this.elevation,
-    this.disabled,
+    this.enabled,
     this.error,
     this.filled,
     this.hintText,
@@ -147,7 +147,9 @@ class SgInputDateTime extends StatefulWidget implements SgInputDateTimeProps {
   final SgInputDateTimeElevation? elevation;
 
   @override
-  final bool? disabled;
+  final bool? enabled;
+
+  bool get _disabled => !(enabled ?? true);
 
   @override
   final String? error;
@@ -303,6 +305,7 @@ class _SgInputDateTimeState extends State<SgInputDateTime> {
   SgFormController? _form;
   String? _registeredName;
   bool _initialized = false;
+  String? _lastLocale;
 
   String get _locale => useComponentsI18n(context).locale;
   bool get _seconds => widget.showSeconds ?? false;
@@ -330,6 +333,7 @@ class _SgInputDateTimeState extends State<SgInputDateTime> {
       _seen = initial == null ? '' : '$initial';
       _text = sgDisplayDateTime(_localOf(initial), _locale, _seconds);
     }
+    _followLocale();
     if (_bound) {
       _registeredName = widget.name;
       _form!.registerField(
@@ -394,7 +398,7 @@ class _SgInputDateTimeState extends State<SgInputDateTime> {
   }
 
   String? _formValidate(Object? value) {
-    if (!mounted || widget.disabled == true) return null;
+    if (!mounted || widget._disabled) return null;
     final i18n = useComponentsI18n(context);
     final text = sgDisplayDateTime(_localOf(value), i18n.locale, _seconds);
     return _messageFor(text);
@@ -451,6 +455,27 @@ class _SgInputDateTimeState extends State<SgInputDateTime> {
           : t(i18n, 'components.inputs.datetime.max', {'max': max});
     }
     return null;
+  }
+
+  /// Troca de idioma com o campo ja preenchido: o texto digitado volta a ser exibido no formato do novo idioma e a
+  /// mensagem de erro visivel e recalculada (min/max/faixa trazem a data no idioma), em vez de ficar no idioma antigo.
+  void _followLocale() {
+    final locale = _locale;
+    final previous = _lastLocale;
+    _lastLocale = locale;
+    if (previous == null || previous == locale) return;
+    if (_text.isNotEmpty) {
+      final local = sgLocalFromDisplay(_text, previous, _seconds);
+      if (local.isNotEmpty) _text = sgDisplayDateTime(local, locale, _seconds);
+    }
+    if (_internalError != null) {
+      final m = _messageFor(_text);
+      _internalError = m;
+      // didChangeDependencies roda durante o build: avisar o pai so depois do quadro.
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) widget.onValidation?.call(m);
+      });
+    }
   }
 
   void _validate(String text) {
@@ -563,13 +588,13 @@ class _SgInputDateTimeState extends State<SgInputDateTime> {
   Widget build(BuildContext context) {
     final locale = _locale;
     final formError = _bound ? _form!.errorOf(widget.name!)?.message : null;
-    final locked = (widget.disabled ?? false) || (widget.readOnly ?? false);
+    final locked = (widget._disabled) || (widget.readOnly ?? false);
     return SgInputText(
       id: widget.id,
       borderRadius: widget.borderRadius,
       clearButton: widget.clearButton,
       elevation: SgInputTextElevation.fromValue(widget.elevation?.value),
-      disabled: widget.disabled,
+      enabled: !(widget._disabled),
       error: resolveFieldError(widget.error, formError, _internalError),
       filled: widget.filled,
       hintText: widget.hintText,

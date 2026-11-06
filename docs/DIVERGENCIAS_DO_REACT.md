@@ -90,3 +90,22 @@ a barra já nascia com 5 segmentos verdes (parecia "senha forte" sem digitar nad
 
 **Testes:** `test/widgets/sg_input_password_test.dart` ('segmentos e cores por pontuacao') e, no React,
 `tests/inputs-dom.test.mjs`.
+
+### 2026-11-06 - 4. Componentes somente Flutter (sem contrapartida no React)
+
+**React:** não tem o componente; para escolher cor usa o seletor nativo do navegador (`input type=color`).
+
+**Flutter:** `SgColorPicker` (e o helper `showSgColorPicker`) existe só aqui, porque o Flutter não tem seletor de cor
+nativo. Não exige paridade nem entra em fila de porte.
+
+**Regra geral de registro** (qualquer componente somente Flutter):
+1. entra em `tools/parity_table/somente_flutter.json` (nome, categoria, descrição, motivo, arquivo); nunca em
+   `props-spec.json`/`estado.json`, que são o espelho do React;
+2. `tools/parity_table/generate.mjs` o lista na seção própria "Somente Flutter (sem paridade com o React)" de
+   `docs/PARIDADE.md` e em `docs/paridade.json` (`somenteFlutter`, fora dos totais e **nunca pendente**) e o põe no
+   catálogo do showcase com `status: 'somente-flutter'` (onda 0); o README e o manifesto do MCP o listam marcando-o;
+3. suas props são escritas à mão (`packages/seedgrid_components/lib/src/props/sg_flutter_only_prop_specs.dart`), sem
+   `implements XProps`; o `sgPropSpecs` gerado continua sendo só o do React;
+4. no showcase é uma página normal (exemplos numerados, `SgPlayground`, Referência de Props completa).
+
+**Testes:** `test/widgets/sg_color_picker_test.dart` (inclui a conferência das props) e `menu_test.dart` do showcase.

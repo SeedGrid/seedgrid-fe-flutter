@@ -51,7 +51,7 @@ class Harness {
   }) => MaterialApp(
     home: SgRealtimeProvider(
       channels: channels,
-      disabled: disabled,
+      enabled: !(disabled ?? false),
       pulseUrl: pulseUrl,
       connectOptions: connectOptions,
       fetchToken: customFetch ? fetchToken : null,
@@ -189,7 +189,7 @@ void main() {
       expect(h.connections, isEmpty);
     });
 
-    testWidgets('disabled: true => disabled, sem token nem conexao', (t) async {
+    testWidgets('enabled: false => disabled, sem token nem conexao', (t) async {
       final h = Harness();
       await t.pumpWidget(h.app(disabled: true));
       await settle(t);

@@ -232,7 +232,7 @@ void main() {
           SgAvatar(
             label: const Text('Ana'),
             onClick: () => n++,
-            disabled: true,
+            enabled: false,
           ),
         ),
       );

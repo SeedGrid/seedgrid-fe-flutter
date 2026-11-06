@@ -25,8 +25,7 @@ abstract interface class SgInputPasswordProps {
   /// Exibe um botao para gerar automaticamente uma senha forte aleatoria (respeita as regras de politica). Padrão: `false`.
   bool? get createNewPasswordButton;
   SgInputPasswordElevation? get elevation;
-  /// No React a prop se chama `enabled` (valor invertido); ver ADR 50.
-  bool? get disabled;
+  bool? get enabled;
   String? get error;
   bool? get filled;
   /// Oculta a senha inicialmente. Padrão: `true`.
@@ -170,7 +169,7 @@ const List<SgPropSpec> sgInputPasswordPropSpecs = <SgPropSpec>[
     values: <String>['none', 'sm', 'md', 'lg'],
   ),
   SgPropSpec(
-    name: 'disabled',
+    name: 'enabled',
     reactName: 'enabled',
     type: 'bool?',
     tsType: 'boolean',

@@ -19,7 +19,7 @@ void main() {
 
   test('todo componente do React tem especificacao em Dart', () {
     expect(sgPropSpecs.keys.toSet(), components.keys.toSet());
-    expect(components.length, 93);
+    expect(components.length, 94);
   });
 
   test(
@@ -67,12 +67,12 @@ void main() {
   );
 
   test(
-    'enabled vira disabled e children vira child, com o nome do React guardado',
+    'enabled fica enabled e children vira child, com o nome do React guardado',
     () {
       final input = {for (final p in sgPropSpecs['SgInputText']!) p.name: p};
-      expect(input.containsKey('enabled'), isFalse);
-      expect(input['disabled']!.reactName, 'enabled');
-      expect(input['disabled']!.type, 'bool?');
+      expect(input.containsKey('disabled'), isFalse);
+      expect(input['enabled']!.reactName, 'enabled');
+      expect(input['enabled']!.type, 'bool?');
       expect(input.containsKey('className'), isFalse);
       expect(input.containsKey('register'), isFalse);
     },

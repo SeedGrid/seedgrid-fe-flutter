@@ -26,6 +26,28 @@ const Map<String, Map<String, String>> kShowcaseMessages = {
     'toggleTheme': 'Claro / escuro',
     'language': 'Idioma',
     'theme': 'Tema',
+    'themeSystem': 'Sistema de Tema',
+    'creditsLicenses': 'Créditos / Licenças',
+    'expandGroups': 'Expandir todos os grupos',
+    'collapseGroups': 'Recolher todos os grupos',
+    'themeTitle': 'SeedThemeProvider',
+    'themeSubtitle':
+        'Sistema de temas baseado em uma cor semente que gera paletas harmoniosas automaticamente.',
+    'themePalette': 'Paleta gerada',
+    'paletteSeed': 'Semente (primary)',
+    'paletteSecondary': 'Secondary',
+    'paletteTertiary': 'Tertiary',
+    'paletteSurface': 'Superfície',
+    'themeNote':
+        'Ao trocar a cor semente, o raio ou o modo claro/escuro, todos os componentes desta página acompanham. A escolha vale só para esta sessão.',
+    'creditsTitle': 'Créditos e Bibliotecas de Terceiros',
+    'creditsSubtitle':
+        'Lista das bibliotecas open-source usadas nos componentes SeedGrid para Flutter, com a licença e o link de cada uma.',
+    'creditsUsedIn': 'Usada em',
+    'creditsLicense': 'Licença',
+    'creditsAllLicenses': 'Ver todas as licenças do Flutter',
+    'creditsCompliance':
+        'Todas as bibliotecas listadas acima são distribuídas sob licenças compatíveis com uso open-source e comercial. Os créditos acima são fornecidos conforme exigido por cada licença.',
     'radius': 'Raio',
     'example': 'Exemplo',
     'playground': 'Playground',
@@ -64,6 +86,25 @@ const Map<String, Map<String, String>> kShowcaseMessages = {
     'color.#F59E0B': 'Amarelo',
     'color.#10B981': 'Verde',
     'customColor': 'Cor personalizada (#RRGGBB)',
+    'editorTitle': 'Editor de Tema',
+    'editorMode': 'Modo',
+    'editorToDark': 'Mudar para escuro',
+    'editorToLight': 'Mudar para claro',
+    'editorCustomColor': 'Cor personalizada',
+    'editorInvalidHex': 'Cor hexadecimal inválida',
+    'editorPresets': 'Cores predefinidas',
+    'editorTokenPreview': 'Prévia de tokens',
+    'editorPalette': 'Paleta de cores',
+    'editorSemantic': 'Tokens semânticos',
+    'editorComponentTokens': 'Tokens de componentes',
+    'editorComponents': 'Componentes',
+    'editorCancel': 'Cancelar',
+    'editorApply': 'Aplicar',
+    'editorCustom': 'Personalizada',
+    'editorPickColor': 'Escolher cor',
+    'editorHue': 'Matiz',
+    'editorSaturation': 'Saturação',
+    'editorBrightness': 'Brilho',
   },
   'en-US': {
     'home': 'Home',
@@ -72,6 +113,28 @@ const Map<String, Map<String, String>> kShowcaseMessages = {
     'toggleTheme': 'Light / dark',
     'language': 'Language',
     'theme': 'Theme',
+    'themeSystem': 'Theme System',
+    'creditsLicenses': 'Credits / Licenses',
+    'expandGroups': 'Expand all groups',
+    'collapseGroups': 'Collapse all groups',
+    'themeTitle': 'SeedThemeProvider',
+    'themeSubtitle':
+        'Theme system based on a single seed color that automatically generates harmonic palettes.',
+    'themePalette': 'Generated palette',
+    'paletteSeed': 'Seed (primary)',
+    'paletteSecondary': 'Secondary',
+    'paletteTertiary': 'Tertiary',
+    'paletteSurface': 'Surface',
+    'themeNote':
+        'When you change the seed color, the radius or light/dark mode, every component on this page follows. The choice lasts for this session only.',
+    'creditsTitle': 'Credits and Third-Party Libraries',
+    'creditsSubtitle':
+        'List of the open-source libraries used by the SeedGrid components for Flutter, with each license and link.',
+    'creditsUsedIn': 'Used in',
+    'creditsLicense': 'License',
+    'creditsAllLicenses': 'See all Flutter licenses',
+    'creditsCompliance':
+        'All libraries listed above are distributed under licenses compatible with open-source and commercial use. Credits are provided as required by each license.',
     'radius': 'Radius',
     'example': 'Example',
     'playground': 'Playground',
@@ -110,6 +173,25 @@ const Map<String, Map<String, String>> kShowcaseMessages = {
     'color.#F59E0B': 'Yellow',
     'color.#10B981': 'Green',
     'customColor': 'Custom color (#RRGGBB)',
+    'editorTitle': 'Theme Editor',
+    'editorMode': 'Mode',
+    'editorToDark': 'Switch to dark',
+    'editorToLight': 'Switch to light',
+    'editorCustomColor': 'Custom color',
+    'editorInvalidHex': 'Invalid hex color',
+    'editorPresets': 'Preset colors',
+    'editorTokenPreview': 'Token preview',
+    'editorPalette': 'Color palette',
+    'editorSemantic': 'Semantic tokens',
+    'editorComponentTokens': 'Component tokens',
+    'editorComponents': 'Components',
+    'editorCancel': 'Cancel',
+    'editorApply': 'Apply',
+    'editorCustom': 'Custom',
+    'editorPickColor': 'Pick a color',
+    'editorHue': 'Hue',
+    'editorSaturation': 'Saturation',
+    'editorBrightness': 'Brightness',
   },
   'pt-PT': {
     'home': 'Início',
@@ -118,6 +200,28 @@ const Map<String, Map<String, String>> kShowcaseMessages = {
     'toggleTheme': 'Claro / escuro',
     'language': 'Idioma',
     'theme': 'Tema',
+    'themeSystem': 'Sistema de Tema',
+    'creditsLicenses': 'Créditos / Licenças',
+    'expandGroups': 'Expandir todos os grupos',
+    'collapseGroups': 'Recolher todos os grupos',
+    'themeTitle': 'SeedThemeProvider',
+    'themeSubtitle':
+        'Sistema de temas baseado numa cor semente que gera paletas harmoniosas automaticamente.',
+    'themePalette': 'Paleta gerada',
+    'paletteSeed': 'Semente (primary)',
+    'paletteSecondary': 'Secondary',
+    'paletteTertiary': 'Tertiary',
+    'paletteSurface': 'Superfície',
+    'themeNote':
+        'Ao mudar a cor semente, o raio ou o modo claro/escuro, todos os componentes desta página acompanham. A escolha vale só para esta sessão.',
+    'creditsTitle': 'Créditos e Bibliotecas de Terceiros',
+    'creditsSubtitle':
+        'Lista das bibliotecas open-source usadas nos componentes SeedGrid para Flutter, com a licença e a ligação de cada uma.',
+    'creditsUsedIn': 'Usada em',
+    'creditsLicense': 'Licença',
+    'creditsAllLicenses': 'Ver todas as licenças do Flutter',
+    'creditsCompliance':
+        'Todas as bibliotecas acima são distribuídas sob licenças compatíveis com uso open-source e comercial. Estes créditos são apresentados conforme exigido por cada licença.',
     'radius': 'Raio',
     'example': 'Exemplo',
     'playground': 'Playground',
@@ -156,6 +260,25 @@ const Map<String, Map<String, String>> kShowcaseMessages = {
     'color.#F59E0B': 'Amarelo',
     'color.#10B981': 'Verde',
     'customColor': 'Cor personalizada (#RRGGBB)',
+    'editorTitle': 'Editor de Tema',
+    'editorMode': 'Modo',
+    'editorToDark': 'Mudar para escuro',
+    'editorToLight': 'Mudar para claro',
+    'editorCustomColor': 'Cor personalizada',
+    'editorInvalidHex': 'Cor hexadecimal inválida',
+    'editorPresets': 'Cores predefinidas',
+    'editorTokenPreview': 'Pré-visualização de tokens',
+    'editorPalette': 'Paleta de cores',
+    'editorSemantic': 'Tokens semânticos',
+    'editorComponentTokens': 'Tokens de componentes',
+    'editorComponents': 'Componentes',
+    'editorCancel': 'Cancelar',
+    'editorApply': 'Aplicar',
+    'editorCustom': 'Personalizada',
+    'editorPickColor': 'Escolher cor',
+    'editorHue': 'Matiz',
+    'editorSaturation': 'Saturação',
+    'editorBrightness': 'Brilho',
   },
   'es': {
     'home': 'Inicio',
@@ -164,6 +287,28 @@ const Map<String, Map<String, String>> kShowcaseMessages = {
     'toggleTheme': 'Claro / oscuro',
     'language': 'Idioma',
     'theme': 'Tema',
+    'themeSystem': 'Sistema de Tema',
+    'creditsLicenses': 'Créditos / Licencias',
+    'expandGroups': 'Expandir todos los grupos',
+    'collapseGroups': 'Contraer todos los grupos',
+    'themeTitle': 'SeedThemeProvider',
+    'themeSubtitle':
+        'Sistema de temas basado en un color semilla que genera paletas armoniosas automáticamente.',
+    'themePalette': 'Paleta generada',
+    'paletteSeed': 'Semilla (primary)',
+    'paletteSecondary': 'Secondary',
+    'paletteTertiary': 'Tertiary',
+    'paletteSurface': 'Superficie',
+    'themeNote':
+        'Al cambiar el color semilla, el radio o el modo claro/oscuro, todos los componentes de esta página lo siguen. La elección vale solo para esta sesión.',
+    'creditsTitle': 'Créditos y Bibliotecas de Terceros',
+    'creditsSubtitle':
+        'Lista de las bibliotecas open-source usadas en los componentes SeedGrid para Flutter, con la licencia y el enlace de cada una.',
+    'creditsUsedIn': 'Usada en',
+    'creditsLicense': 'Licencia',
+    'creditsAllLicenses': 'Ver todas las licencias de Flutter',
+    'creditsCompliance':
+        'Todas las bibliotecas listadas arriba se distribuyen con licencias compatibles con uso open-source y comercial. Los créditos se muestran según lo exigido por cada licencia.',
     'radius': 'Radio',
     'example': 'Ejemplo',
     'playground': 'Playground',
@@ -202,6 +347,25 @@ const Map<String, Map<String, String>> kShowcaseMessages = {
     'color.#F59E0B': 'Amarillo',
     'color.#10B981': 'Verde',
     'customColor': 'Color personalizado (#RRGGBB)',
+    'editorTitle': 'Editor de Tema',
+    'editorMode': 'Modo',
+    'editorToDark': 'Cambiar a oscuro',
+    'editorToLight': 'Cambiar a claro',
+    'editorCustomColor': 'Color personalizado',
+    'editorInvalidHex': 'Color hexadecimal inválido',
+    'editorPresets': 'Colores predefinidos',
+    'editorTokenPreview': 'Vista previa de tokens',
+    'editorPalette': 'Paleta de colores',
+    'editorSemantic': 'Tokens semánticos',
+    'editorComponentTokens': 'Tokens de componentes',
+    'editorComponents': 'Componentes',
+    'editorCancel': 'Cancelar',
+    'editorApply': 'Aplicar',
+    'editorCustom': 'Personalizado',
+    'editorPickColor': 'Elegir color',
+    'editorHue': 'Matiz',
+    'editorSaturation': 'Saturación',
+    'editorBrightness': 'Brillo',
   },
   'fr': {
     'home': 'Accueil',
@@ -210,6 +374,28 @@ const Map<String, Map<String, String>> kShowcaseMessages = {
     'toggleTheme': 'Clair / sombre',
     'language': 'Langue',
     'theme': 'Thème',
+    'themeSystem': 'Système de Thème',
+    'creditsLicenses': 'Crédits / Licences',
+    'expandGroups': 'Déplier tous les groupes',
+    'collapseGroups': 'Replier tous les groupes',
+    'themeTitle': 'SeedThemeProvider',
+    'themeSubtitle':
+        'Système de thèmes basé sur une couleur de départ qui génère automatiquement des palettes harmonieuses.',
+    'themePalette': 'Palette générée',
+    'paletteSeed': 'Départ (primary)',
+    'paletteSecondary': 'Secondary',
+    'paletteTertiary': 'Tertiary',
+    'paletteSurface': 'Surface',
+    'themeNote':
+        'Quand vous changez la couleur de départ, le rayon ou le mode clair/sombre, tous les composants de cette page suivent. Le choix ne vaut que pour cette session.',
+    'creditsTitle': 'Crédits et Bibliothèques Tierces',
+    'creditsSubtitle':
+        'Liste des bibliothèques open-source utilisées par les composants SeedGrid pour Flutter, avec la licence et le lien de chacune.',
+    'creditsUsedIn': 'Utilisée dans',
+    'creditsLicense': 'Licence',
+    'creditsAllLicenses': 'Voir toutes les licences de Flutter',
+    'creditsCompliance':
+        "Toutes les bibliothèques listées ci-dessus sont distribuées sous des licences compatibles avec un usage open-source et commercial. Les crédits sont fournis comme exigé par chaque licence.",
     'radius': 'Rayon',
     'example': 'Exemple',
     'playground': 'Playground',
@@ -248,6 +434,25 @@ const Map<String, Map<String, String>> kShowcaseMessages = {
     'color.#F59E0B': 'Jaune',
     'color.#10B981': 'Vert',
     'customColor': 'Couleur personnalisée (#RRGGBB)',
+    'editorTitle': 'Éditeur de thème',
+    'editorMode': 'Mode',
+    'editorToDark': 'Passer en sombre',
+    'editorToLight': 'Passer en clair',
+    'editorCustomColor': 'Couleur personnalisée',
+    'editorInvalidHex': 'Couleur hexadécimale invalide',
+    'editorPresets': 'Couleurs prédéfinies',
+    'editorTokenPreview': 'Aperçu des tokens',
+    'editorPalette': 'Palette de couleurs',
+    'editorSemantic': 'Tokens sémantiques',
+    'editorComponentTokens': 'Tokens de composants',
+    'editorComponents': 'Composants',
+    'editorCancel': 'Annuler',
+    'editorApply': 'Appliquer',
+    'editorCustom': 'Personnalisée',
+    'editorPickColor': 'Choisir une couleur',
+    'editorHue': 'Teinte',
+    'editorSaturation': 'Saturation',
+    'editorBrightness': 'Luminosité',
   },
 };
 
@@ -332,33 +537,48 @@ class _ShowcaseI18nScopeState extends State<ShowcaseI18nScope> {
 
 /// Seletor de idioma (menu lateral).
 class ShowcaseLanguagePicker extends StatelessWidget {
-  const ShowcaseLanguagePicker({super.key});
+  const ShowcaseLanguagePicker({super.key, this.trailing = const []});
+
+  /// Acoes no fim da linha (tema e claro/escuro).
+  final List<Widget> trailing;
 
   @override
   Widget build(BuildContext context) {
     final i18n = ShowcaseI18n.maybeOf(context);
     final current = i18n?.locale ?? 'pt-BR';
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+    // Faixa no alto da pagina (como a barra de idioma do React): rotulo e as bandeiras em uma linha.
+    return Container(
+      key: const ValueKey('faixa-idioma'),
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.surfaceContainerLow,
+        border: Border(
+          bottom: BorderSide(color: Theme.of(context).dividerColor),
+        ),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(context.tr('language')),
-          const SizedBox(height: 4),
-          Wrap(
-            key: const ValueKey('idioma'),
-            spacing: 6,
-            runSpacing: 4,
-            children: [
-              for (final l in kShowcaseLocales)
-                ChoiceChip(
-                  label: Text('${kShowcaseFlags[l] ?? ''} $l'),
-                  selected: l == current,
-                  visualDensity: VisualDensity.compact,
-                  onSelected: (_) => i18n?.setLocale(l),
-                ),
-            ],
+          Expanded(
+            child: Wrap(
+              key: const ValueKey('idioma'),
+              spacing: 6,
+              runSpacing: 4,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                Text(context.tr('language')),
+                for (final l in kShowcaseLocales)
+                  ChoiceChip(
+                    label: Text('${kShowcaseFlags[l] ?? ''} $l'),
+                    selected: l == current,
+                    visualDensity: VisualDensity.compact,
+                    onSelected: (_) => i18n?.setLocale(l),
+                  ),
+              ],
+            ),
           ),
+          ...trailing,
         ],
       ),
     );

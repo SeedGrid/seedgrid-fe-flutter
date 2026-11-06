@@ -1,11 +1,12 @@
 {
  "versaoReact": "2026.7.1",
  "resumo": {
-  "total": 93,
+  "total": 94,
   "portado": 91,
-  "parcial": 2,
+  "parcial": 3,
   "pendente": 0,
-  "naoAplicavel": 0
+  "naoAplicavel": 0,
+  "somenteFlutter": 1
  },
  "componentes": [
   {
@@ -84,7 +85,7 @@
    "status": "portado",
    "motivo": "",
    "onde": "packages/seedgrid_components/lib/src/buttons/sg_button.dart",
-   "props": 11,
+   "props": 12,
    "propsOmitidas": 0,
    "propsGenericas": 1
   },
@@ -312,7 +313,7 @@
    "componente": "SgFileUpload",
    "onda": 1,
    "status": "parcial",
-   "motivo": "aqui o toque abre o seletor do sistema (file_picker), o valor e uma lista de SgFile (nome e bytes; arquivo ja salvo entra com url), sem arrastar e soltar; o React tem o mesmo contrato (P141) mas aceita arrastar e soltar e entrega File do navegador",
+   "motivo": "arrastar e soltar (desktop_drop) e toque (seletor do sistema, file_picker) como no React; so o valor difere: lista de SgFile (nome e bytes; arquivo ja salvo entra com url) em vez de File do navegador",
    "onde": "packages/seedgrid_components/lib/src/inputs/files/sg_file_upload.dart",
    "props": 33,
    "propsOmitidas": 3,
@@ -362,7 +363,7 @@
    "componente": "SgImageUpload",
    "onda": 1,
    "status": "parcial",
-   "motivo": "aqui o toque abre o seletor do sistema (file_picker), o valor e uma lista de SgFile (nome e bytes; imagem ja salva entra com url), sem arrastar e soltar; o React tem o mesmo contrato (P141, composicao do SgFileUpload) mas aceita arrastar e soltar e entrega File do navegador; recorte e compressao ficam fora",
+   "motivo": "arrastar e soltar (desktop_drop) e toque (seletor do sistema, file_picker) como no React; so o valor difere: lista de SgFile (nome e bytes; imagem ja salva entra com url) em vez de File do navegador; recorte e compressao ficam fora",
    "onde": "packages/seedgrid_components/lib/src/inputs/files/sg_image_upload.dart",
    "props": 28,
    "propsOmitidas": 2,
@@ -589,6 +590,16 @@
    "propsGenericas": 1
   },
   {
+   "componente": "SgNotificationBell",
+   "onda": 1,
+   "status": "parcial",
+   "motivo": "mesmo contrato e mesmos vetores de logica (P129); aqui o Pulse entra por connectionFactory (extra do Flutter: o SDK de Pulse ainda nao e dependencia do pacote), apiUrl e tokenEndpoint precisam ser absolutos (nao ha origem de pagina), o painel abre ao lado do sino conforme placement (auto, top, right, bottom, left; mesma regra do React e sempre dentro da janela) e como folha de baixo abaixo de 600 px, o toque do tipo e onOpen de SgNotificationTypeConfig, e nao ha className/style",
+   "onde": "packages/seedgrid_components/lib/src/feedback/sg_notification_bell.dart",
+   "props": 16,
+   "propsOmitidas": 1,
+   "propsGenericas": 7
+  },
+  {
    "componente": "SgOrderList",
    "onda": 3,
    "status": "portado",
@@ -702,7 +713,7 @@
    "componente": "SgRealtimeProvider",
    "onda": 2,
    "status": "portado",
-   "motivo": "o cliente entra por connectionFactory (SgPulseConnection injetavel; sem ele o status fica unavailable; adaptador do SDK Pulse em lib/src/providers/PULSE_ADAPTER.md, nao ligado por dependencia); tokenEndpoint precisa de URL absoluta; enabled virou disabled, children virou child; hooks viraram widget e funcao; decisao do dono pendente: ligar o SDK Pulse por dependencia so depois de seedgrid_pulse_subscriber ir ao pub.dev (hoje o adaptador esta documentado; o provider com ele foi executado ao vivo contra o Pulse real em 2026-10-27: conectou, recebeu a mensagem do proprio usuario e nao recebeu a de outro; reconexao com mensagem pendente tambem verificada; modo processed, que exige ack, nao exercitado)",
+   "motivo": "o cliente entra por connectionFactory (SgPulseConnection injetavel; sem ele o status fica unavailable; adaptador do SDK Pulse em lib/src/providers/PULSE_ADAPTER.md, nao ligado por dependencia); tokenEndpoint precisa de URL absoluta; children virou child; hooks viraram widget e funcao; decisao do dono pendente: ligar o SDK Pulse por dependencia so depois de seedgrid_pulse_subscriber ir ao pub.dev (hoje o adaptador esta documentado; o provider com ele foi executado ao vivo contra o Pulse real em 2026-10-27: conectou, recebeu a mensagem do proprio usuario e nao recebeu a de outro; reconexao com mensagem pendente tambem verificada; modo processed, que exige ack, nao exercitado)",
    "onde": "packages/seedgrid_components/lib/src/providers/sg_realtime_provider.dart",
    "props": 8,
    "propsOmitidas": 0,
@@ -812,7 +823,7 @@
    "componente": "SgTextEditor",
    "onda": 6,
    "status": "portado",
-   "motivo": "motor nativo flutter_quill (MIT) em vez de TipTap; conteudo trafega como HTML via conversor proprio (HTML do TipTap lido e reescrito igual em 160+ fixtures do TipTap real; 154 de 166 saidas do Dart relidas pelo TipTap real iguais ao canonico). Preservados com atributos proprios: sub+sup juntos, <mark> sem cor, cor com alfa, nome de cor e tamanho em em/pt/%, ol start (numerado na tela no primeiro nivel) e linguagem do bloco de codigo. Sem tabela, por decisao do dono (tabelas e iframes sao descartados e a barra nao tem botao de tabela). Limites do modelo Delta (linear): <br> vira U+2028, item de lista com varios paragrafos vira um item com quebra suave, citacao com lista/titulo/citacao aninhada achata, titulo dentro de item de lista vira item comum; regras de markdown (# , - , 1. , >) e Ctrl+Z/atalhos so os do flutter_quill; cor do texto e destaque por seletor proprio (paleta + hex) no lugar do input color; Salvar/Carregar HTML via file_picker (extra htmlFilePicker); onSave recebe SgTextEditorFile no lugar de File; dialogos de link/imagem proprios no lugar de window.prompt (cancelar nao remove o link); disabled reativo (no React so vale na criacao); sem className/style (ADR 50); nao testado em dispositivo/IME",
+   "motivo": "motor nativo flutter_quill (MIT) em vez de TipTap; conteudo trafega como HTML via conversor proprio (HTML do TipTap lido e reescrito igual em 160+ fixtures do TipTap real; 154 de 166 saidas do Dart relidas pelo TipTap real iguais ao canonico). Preservados com atributos proprios: sub+sup juntos, <mark> sem cor, cor com alfa, nome de cor e tamanho em em/pt/%, ol start (numerado na tela no primeiro nivel) e linguagem do bloco de codigo. Sem tabela, por decisao do dono (tabelas e iframes sao descartados e a barra nao tem botao de tabela). Limites do modelo Delta (linear): <br> vira U+2028, item de lista com varios paragrafos vira um item com quebra suave, citacao com lista/titulo/citacao aninhada achata, titulo dentro de item de lista vira item comum; regras de markdown (# , - , 1. , >) e Ctrl+Z/atalhos so os do flutter_quill; cor do texto e destaque por seletor proprio (paleta + hex) no lugar do input color; Salvar/Carregar HTML via file_picker (extra htmlFilePicker); onSave recebe SgTextEditorFile no lugar de File; dialogos de link/imagem proprios no lugar de window.prompt (cancelar nao remove o link); enabled reativo (no React so vale na criacao); sem className/style (ADR 50); nao testado em dispositivo/IME",
    "onde": "packages/seedgrid_components/lib/src/inputs/editor/sg_text_editor.dart",
    "props": 22,
    "propsOmitidas": 3,
@@ -852,7 +863,7 @@
    "componente": "SgToggleSwitch",
    "onda": 1,
    "status": "portado",
-   "motivo": "enabled virou disabled (ADR 50); goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50); validadores do componente rodam no submit (decisao do dono)",
+   "motivo": "goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50); validadores do componente rodam no submit (decisao do dono)",
    "onde": "packages/seedgrid_components/lib/src/inputs/choice/sg_toggle_switch.dart",
    "props": 27,
    "propsOmitidas": 3,
@@ -937,6 +948,16 @@
    "props": 11,
    "propsOmitidas": 1,
    "propsGenericas": 3
+  }
+ ],
+ "somenteFlutter": [
+  {
+   "componente": "SgColorPicker",
+   "status": "somente-flutter",
+   "categoria": "input",
+   "descricao": "Seletor de cor com sliders de matiz, saturação e brilho, prévia, campo hex (#RRGGBB) e cores predefinidas; showSgColorPicker abre o painel num diálogo.",
+   "motivo": "O React usa o seletor nativo do navegador (input type=color); o Flutter não tem equivalente nativo, então este componente é próprio e não exige paridade.",
+   "onde": "packages/seedgrid_components/lib/src/inputs/color/sg_color_picker.dart"
   }
  ]
 }

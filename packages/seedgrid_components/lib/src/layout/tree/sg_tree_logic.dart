@@ -88,7 +88,7 @@ SgTreeFilter filterTreeByQuery(List<SgTreeNode> nodes, String query) {
             id: n.id,
             label: n.label,
             icon: n.icon,
-            disabled: n.disabled,
+            enabled: n.enabled,
             meta: n.meta,
             children: kids.isNotEmpty
                 ? kids
@@ -230,7 +230,7 @@ List<SgTreeNode> sgTreeFromJson(
       SgTreeNode(
         id: n.id,
         label: n.label,
-        disabled: n.disabled,
+        enabled: n.enabled,
         icon: n.icon == null || iconRegistry == null
             ? null
             : iconRegistry[n.icon],

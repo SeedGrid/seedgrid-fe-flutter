@@ -243,7 +243,7 @@ class _OptionRow extends StatelessWidget {
     final max = controller.maxSelected;
     final reachedMax =
         !checked && max != null && controller.resolvedValue.length >= max;
-    final disabled = option.disabled == true || reachedMax;
+    final disabled = option.enabled == false || reachedMax;
     return Semantics(
       selected: checked,
       enabled: !disabled,

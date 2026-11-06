@@ -13,7 +13,7 @@ Widget build(
 }) => SgInputBirthDate(
   id: o.id,
   labelText: o.labelText,
-  disabled: o.disabled,
+  enabled: !(o.disabled ?? false),
   readOnly: o.readOnly,
   error: o.error,
   required: o.required,

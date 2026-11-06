@@ -36,7 +36,7 @@ class _SgAccordionPageState extends State<SgAccordionPage> {
     SgAccordionItem(
       title: Text('Indisponível'),
       content: Text('Este item está desabilitado.'),
-      disabled: true,
+      enabled: false,
     ),
   ];
 
@@ -70,7 +70,7 @@ class _SgAccordionPageState extends State<SgAccordionPage> {
                 SgAccordionItem(
                   title: Text(context.tx('Indisponível')),
                   content: Text(context.tx('Este item está desabilitado.')),
-                  disabled: true,
+                  enabled: false,
                 ),
               ],
             ),

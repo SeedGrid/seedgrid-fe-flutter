@@ -1,5 +1,5 @@
-// Porte de SgToggleSwitch (React: src/inputs/SgToggleSwitch.tsx). `enabled` do React vira
-// `disabled` (ADR 50). O `SgSwitch` do React e um alias: aqui tambem (SgSwitch).
+// Porte de SgToggleSwitch (React: src/inputs/SgToggleSwitch.tsx). `enabled` do React continua
+// `enabled` (padronizado nos dois lados; substitui a regra antiga do ADR 50). O `SgSwitch` do React e um alias: aqui tambem (SgSwitch).
 import 'package:flutter/material.dart';
 import 'package:seedgrid_theme/seedgrid_theme.dart';
 import 'package:flutter/services.dart';
@@ -20,7 +20,7 @@ class SgToggleSwitch extends StatefulWidget implements SgToggleSwitchProps {
     this.control,
     this.defaultChecked,
     this.description,
-    this.disabled,
+    this.enabled,
     this.error,
     this.inputProps,
     this.label,
@@ -56,7 +56,9 @@ class SgToggleSwitch extends StatefulWidget implements SgToggleSwitchProps {
 
   /// No React: `enabled` (valor invertido).
   @override
-  final bool? disabled;
+  final bool? enabled;
+
+  bool get _disabled => !(enabled ?? true);
   @override
   final String? error;
 
@@ -186,7 +188,7 @@ class _SgToggleSwitchState extends State<SgToggleSwitch>
       ? _toBool(_binding.value)
       : (_controlled ? widget.checked! : _internal);
   bool get _readOnly => widget.readOnly ?? false;
-  bool get _disabled => widget.disabled ?? false;
+  bool get _disabled => widget._disabled;
 
   void _setError(String? m) {
     setState(() => _internalError = m);

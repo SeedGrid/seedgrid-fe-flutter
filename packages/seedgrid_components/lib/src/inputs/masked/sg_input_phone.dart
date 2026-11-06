@@ -22,7 +22,7 @@ class SgInputPhone extends StatelessWidget implements SgInputPhoneProps {
     this.clearButton,
     this.control,
     this.elevation,
-    this.disabled,
+    this.enabled,
     this.error,
     this.filled,
     this.hintText,
@@ -87,7 +87,9 @@ class SgInputPhone extends StatelessWidget implements SgInputPhoneProps {
   final SgInputPhoneElevation? elevation;
 
   @override
-  final bool? disabled;
+  final bool? enabled;
+
+  bool get _disabled => !(enabled ?? true);
 
   @override
   final String? error;
@@ -241,7 +243,7 @@ class SgInputPhone extends StatelessWidget implements SgInputPhoneProps {
         clearButton: clearButton,
         control: control,
         elevation: elevation,
-        disabled: disabled,
+        disabled: _disabled,
         error: error,
         filled: filled,
         hintText: hintText,

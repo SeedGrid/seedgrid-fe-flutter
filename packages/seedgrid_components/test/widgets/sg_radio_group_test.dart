@@ -19,7 +19,7 @@ Widget host(Widget child, {double width = 480}) => MaterialApp(
 const sizes = [
   SgRadioGroupOption(label: 'Small', value: 's'),
   SgRadioGroupOption(label: 'Medium', value: 'm'),
-  SgRadioGroupOption(label: 'Large', value: 'l', disabled: true),
+  SgRadioGroupOption(label: 'Large', value: 'l', enabled: false),
   SgRadioGroupOption(label: 'Huge', value: 10),
 ];
 
@@ -75,7 +75,7 @@ void main() {
         SgRadioGroup(
           id: 'g',
           source: sizes,
-          disabled: true,
+          enabled: false,
           onChange: changes.add,
         ),
       ),

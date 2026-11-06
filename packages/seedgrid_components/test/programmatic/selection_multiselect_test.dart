@@ -12,7 +12,7 @@ List<SgMultiSelectOption> _options(ScenarioState s) => [
       value: (raw as Map)['value'] as Object,
       label: raw['label'] as String,
       chipLabel: raw['chipLabel'] as String?,
-      disabled: raw['disabled'] as bool?,
+      enabled: raw['enabled'] as bool?,
     ),
 ];
 
@@ -30,7 +30,7 @@ class MultiAdapter extends VectorAdapter {
         : null;
     final options = _options(s);
     void onChange(List<Object> v) => s.events.add(v);
-    final disabled = s.props['disabled'] == true ? true : null;
+    final disabled = s.props['enabled'] == false ? true : null;
     final searchable = s.props['searchable'] == true;
     final clearable = s.props['clearable'] == true;
     final max = (s.props['maxSelected'] as num?);
@@ -40,7 +40,7 @@ class MultiAdapter extends VectorAdapter {
         options: options,
         value: value,
         onChange: onChange,
-        disabled: disabled,
+        enabled: !(disabled ?? false),
         searchable: searchable,
         clearable: clearable,
         maxSelected: max,
@@ -55,7 +55,7 @@ class MultiAdapter extends VectorAdapter {
       options: options,
       value: value,
       onChange: onChange,
-      disabled: disabled,
+      enabled: !(disabled ?? false),
       searchable: searchable,
       clearable: clearable,
       maxSelected: max,
@@ -81,7 +81,7 @@ class MultiAdapter extends VectorAdapter {
   ) async {
     switch (step['op']) {
       case 'open':
-        if (s.props['disabled'] == true) {
+        if (s.props['enabled'] == false) {
           await t.tap(
             find.byKey(const ValueKey('input-m')),
             warnIfMissed: false,

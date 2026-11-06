@@ -136,7 +136,7 @@ SizedBox(
             id: 'lock',
             icon: const Icon(Icons.lock),
             label: context.tx('Bloqueado'),
-            disabled: true,
+            enabled: false,
           ),
         ],
       ),

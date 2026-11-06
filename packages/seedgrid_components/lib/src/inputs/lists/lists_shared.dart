@@ -291,7 +291,7 @@ class ListControlButton extends StatelessWidget {
       child: SgButton(
         size: SgSize.sm,
         appearance: SgAppearance.outline,
-        disabled: disabled,
+        enabled: !disabled,
         onClick: onClick,
         label: Text(label),
       ),

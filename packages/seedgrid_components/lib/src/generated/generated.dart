@@ -61,6 +61,7 @@ export 'sg_menu.g.dart';
 export 'sg_multi_select.g.dart';
 export 'sg_multi_select_chips.g.dart';
 export 'sg_neon_digit.g.dart';
+export 'sg_notification_bell.g.dart';
 export 'sg_order_list.g.dart';
 export 'sg_page_control.g.dart';
 export 'sg_page_control_page.g.dart';

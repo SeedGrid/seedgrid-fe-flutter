@@ -132,7 +132,7 @@ SgPickList(
     SgPickListItem(
       label: context.tx('Bloqueado'),
       value: 3,
-      disabled: true,
+      enabled: false,
     ),
   ],
   target: const [],

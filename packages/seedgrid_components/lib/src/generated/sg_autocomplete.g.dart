@@ -28,8 +28,7 @@ abstract interface class SgAutocompleteProps {
   /// Debounce da pesquisa em milissegundos. Padrão: `300`.
   num? get delay;
   SgAutocompleteElevation? get elevation;
-  /// No React a prop se chama `enabled` (valor invertido); ver ADR 50.
-  bool? get disabled;
+  bool? get enabled;
   String? get error;
   bool? get filled;
   /// Tipo TS: `((item: SgAutocompleteItem) =&gt; string)` (sem tradução exata; ver excecoes.json).
@@ -197,7 +196,7 @@ const List<SgPropSpec> sgAutocompletePropSpecs = <SgPropSpec>[
     values: <String>['none', 'sm', 'md', 'lg'],
   ),
   SgPropSpec(
-    name: 'disabled',
+    name: 'enabled',
     reactName: 'enabled',
     type: 'bool?',
     tsType: 'boolean',

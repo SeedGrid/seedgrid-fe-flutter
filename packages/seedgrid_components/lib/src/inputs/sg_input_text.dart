@@ -27,7 +27,7 @@ class SgInputText extends StatefulWidget implements SgInputTextProps {
     this.clearButton,
     this.control,
     this.elevation,
-    this.disabled,
+    this.enabled,
     this.error,
     this.filled,
     this.hintText,
@@ -90,7 +90,9 @@ class SgInputText extends StatefulWidget implements SgInputTextProps {
   @override
   final SgInputTextElevation? elevation;
   @override
-  final bool? disabled;
+  final bool? enabled;
+
+  bool get _disabled => !(enabled ?? true);
   @override
   final String? error;
   @override
@@ -379,7 +381,7 @@ class _SgInputTextState extends State<SgInputText> implements SgSelfValidating {
   /// `trigger`): roda a mesma validacao da perda de foco e diz se ficou sem erro. Campo desabilitado passa.
   @override
   bool validateNow() {
-    if (!mounted || _bound || widget.disabled == true) return true;
+    if (!mounted || _bound || widget._disabled) return true;
     if ((widget.validateOnBlur ?? true) || _interacted) {
       _runValidation(_validationText);
     }
@@ -390,7 +392,7 @@ class _SgInputTextState extends State<SgInputText> implements SgSelfValidating {
   /// Validador do componente para o formulario (`trigger`/`handleSubmit`): o mesmo que roda no blur.
   /// Campo desabilitado nao falha; vazio so falha se for obrigatorio (o validador decide).
   Future<String?> _formValidate(Object? value) async {
-    if (!mounted || widget.disabled == true) return null;
+    if (!mounted || widget._disabled) return null;
     final text = _strip(value);
     final extra = widget.formValidator;
     if (extra != null) {
@@ -551,9 +553,10 @@ class _SgInputTextState extends State<SgInputText> implements SgSelfValidating {
     final error = resolveFieldError(w.error, formError, _internalError);
     final hasError =
         error != null || (_bound && _form!.errorOf(w.name!) != null);
-    final locked = (w.disabled ?? false) || (w.readOnly ?? false);
-    final canClear =
-        (w.clearButton ?? true) && !locked && _text.text.isNotEmpty;
+    final locked = (w._disabled) || (w.readOnly ?? false);
+    // O X so aparece com texto, mas o espaco dele fica reservado (o texto do campo nao anda).
+    final clearEnabled = (w.clearButton ?? true) && !locked;
+    final canClear = clearEnabled && _text.text.isNotEmpty;
     final radius = BorderRadius.circular((w.borderRadius ?? 8).toDouble());
     final position = w.labelPosition ?? SgInputTextLabelPosition.float;
     final labelStr = w.labelText ?? w.label;
@@ -571,7 +574,7 @@ class _SgInputTextState extends State<SgInputText> implements SgSelfValidating {
       key: ValueKey('input-${w.id}'),
       controller: _text,
       focusNode: _focus,
-      enabled: !(w.disabled ?? false),
+      enabled: !(w._disabled),
       readOnly: w.readOnly ?? false,
       obscureText: w.type == 'password',
       keyboardType: _keyboard(),
@@ -588,7 +591,7 @@ class _SgInputTextState extends State<SgInputText> implements SgSelfValidating {
         ...?w.inputFormatters,
       ],
       style: TextStyle(
-        color: (w.disabled ?? false) ? t.inputDisabledFg : t.inputFg,
+        color: (w._disabled) ? t.inputDisabledFg : t.inputFg,
       ),
       decoration: InputDecoration(
         labelText: position == SgInputTextLabelPosition.float ? labelStr : null,
@@ -598,17 +601,19 @@ class _SgInputTextState extends State<SgInputText> implements SgSelfValidating {
         prefixText: w.prefixText,
         suffixText: w.suffixText,
         prefixIcon: w.prefixIcon,
-        suffixIcon: (canClear || (w.iconButtons?.isNotEmpty ?? false))
+        suffixIcon: (clearEnabled || (w.iconButtons?.isNotEmpty ?? false))
             ? Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  if (canClear)
-                    IconButton(
-                      key: ValueKey('clear-${w.id}'),
-                      icon: const Icon(Icons.close, size: 16),
-                      onPressed: _clear,
-                      tooltip: null,
-                    ),
+                  if (clearEnabled)
+                    canClear
+                        ? IconButton(
+                            key: ValueKey('clear-${w.id}'),
+                            icon: const Icon(Icons.close, size: 16),
+                            onPressed: _clear,
+                            tooltip: null,
+                          )
+                        : const SizedBox(width: 40, height: 40),
                   ...?w.iconButtons,
                 ],
               )
@@ -617,7 +622,7 @@ class _SgInputTextState extends State<SgInputText> implements SgSelfValidating {
             ? '${_text.text.length}${w.maxLength != null ? '/${w.maxLength}' : ''}'
             : '',
         filled: true,
-        fillColor: (w.disabled ?? false)
+        fillColor: (w._disabled)
             ? t.inputDisabledBg
             : ((w.filled ?? false) ? t.mutedSurface : t.inputBg),
         hintStyle: TextStyle(color: t.inputPlaceholder),

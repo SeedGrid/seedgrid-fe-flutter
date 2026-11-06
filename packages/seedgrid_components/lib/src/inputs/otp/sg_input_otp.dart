@@ -3,7 +3,7 @@
 // Diferencas de plataforma (ver tools/parity_table/estado.json):
 //  - O `ref` imperativo (SgInputOTPRef) vira [SgInputOTPController] (`controller:`), com os mesmos
 //    metodos: focus([slotIndex]), clear(), getRawValue(), getMaskedValue().
-//  - `enabled` do React vira `disabled` (ADR 50). `register` nao existe (ADR 49): liga por `name` +
+//  - `enabled` do React continua `enabled` (padronizado nos dois lados; substitui a regra antiga do ADR 50). `register` nao existe (ADR 49): liga por `name` +
 //    `control` (SgFormController) ou pelo SgForm mais proximo.
 //  - `inputProps` e as props de classe CSS (`groupClassName`, `slotClassName`, `separatorClassName`)
 //    nao tem equivalente: aceitas so para cumprir o contrato, sem efeito. O que `inputProps` fazia
@@ -50,7 +50,7 @@ class SgInputOTP extends StatefulWidget implements SgInputOTPProps {
     required this.id,
     this.control,
     this.defaultValue,
-    this.disabled,
+    this.enabled,
     this.error,
     this.groupClassName,
     this.hintText,
@@ -89,7 +89,9 @@ class SgInputOTP extends StatefulWidget implements SgInputOTPProps {
 
   /// No React: `enabled` (valor invertido).
   @override
-  final bool? disabled;
+  final bool? enabled;
+
+  bool get _disabled => !(enabled ?? true);
   @override
   final String? error;
 
@@ -196,7 +198,7 @@ class _SgInputOTPState extends State<SgInputOTP> implements SgSelfValidating {
   bool get _bound => widget.name != null && _form != null;
   bool get _required => widget.required ?? false;
   bool get _validateOnBlur => widget.validateOnBlur ?? true;
-  bool get _isDisabled => widget.disabled ?? false;
+  bool get _isDisabled => widget._disabled;
   bool get _isReadOnly => widget.readOnly ?? false;
 
   @override
@@ -395,7 +397,7 @@ class _SgInputOTPState extends State<SgInputOTP> implements SgSelfValidating {
 
   /// Validador do componente para `trigger`/`handleSubmit` (o mesmo do blur); desabilitado nao falha.
   String? _formValidate(Object? value) {
-    if (!mounted || widget.disabled == true) return null;
+    if (!mounted || widget._disabled) return null;
     final slots = textToSlotValues('${value ?? ''}', _mask.slots);
     return _messageFor(
       slotValuesToRaw(slots),

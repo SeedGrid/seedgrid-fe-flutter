@@ -47,7 +47,7 @@ class SgMultiSelect extends StatefulWidget implements SgMultiSelectProps {
     this.borderRadius,
     this.control,
     this.elevation,
-    this.disabled,
+    this.enabled,
     this.error,
     this.filled,
     this.hintText,
@@ -117,7 +117,9 @@ class SgMultiSelect extends StatefulWidget implements SgMultiSelectProps {
   @override
   final SgMultiSelectElevation? elevation;
   @override
-  final bool? disabled;
+  final bool? enabled;
+
+  bool get _disabled => !(enabled ?? true);
   @override
   final String? error;
   @override
@@ -254,7 +256,7 @@ class _SgMultiSelectState extends State<SgMultiSelect>
   Widget build(BuildContext context) {
     final w = widget;
     final i18n = useComponentsI18n(context);
-    final disabled = w.disabled == true;
+    final disabled = w._disabled;
     final emptyText = w.emptyText ?? t(i18n, 'components.autocomplete.empty');
     final placeholder =
         w.placeholder ?? t(i18n, 'components.inputs.select.placeholder');
@@ -325,7 +327,7 @@ class _SgMultiSelectState extends State<SgMultiSelect>
         clearButton: false,
         iconButtons: [icons],
         placeholder: placeholder,
-        disabled: w.disabled,
+        enabled: !(w._disabled),
         error: resolveFieldError(w.error, boundErrorMessage),
         borderRadius: sgPixels(w.borderRadius),
         elevation: SgInputTextElevation.fromValue(w.elevation?.value),

@@ -86,7 +86,7 @@ class SgCard extends StatefulWidget implements SgCardProps {
     this.defaultOpen = true,
     this.defaultPosition,
     this.description,
-    this.disabled = false,
+    this.enabled = true,
     this.dragPersistKey,
     this.draggable = false,
     this.footer,
@@ -141,7 +141,7 @@ class SgCard extends StatefulWidget implements SgCardProps {
   @override
   final Object? description;
   @override
-  final bool disabled;
+  final bool enabled;
   @override
   final String? dragPersistKey;
 
@@ -271,7 +271,7 @@ class _SgCardState extends State<SgCard> {
   void _toggle() => _setOpen(!_isOpen);
 
   void _onHeaderTap() {
-    if (!widget.collapsible || !widget.toggleOnHeaderClick || widget.disabled) {
+    if (!widget.collapsible || !widget.toggleOnHeaderClick || !widget.enabled) {
       return;
     }
     _toggle();
@@ -283,7 +283,7 @@ class _SgCardState extends State<SgCard> {
       !widget.draggable;
 
   void _dragStart(DragStartDetails d) {
-    if (!widget.draggable || widget.disabled) return;
+    if (!widget.draggable || !widget.enabled) return;
     _movedByUser = true;
     setState(() => _dragging = true);
   }
@@ -388,7 +388,7 @@ class _SgCardState extends State<SgCard> {
   }
 
   KeyEventResult _headerKey(FocusNode n, KeyEvent e) {
-    if (!widget.collapsible || !widget.toggleOnHeaderClick || widget.disabled) {
+    if (!widget.collapsible || !widget.toggleOnHeaderClick || !widget.enabled) {
       return KeyEventResult.ignored;
     }
     if (e is KeyDownEvent &&
@@ -439,7 +439,7 @@ class _SgCardState extends State<SgCard> {
         ),
       ],
     };
-    final hoverShadows = _isInteractive && _hover && !w.disabled
+    final hoverShadows = _isInteractive && _hover && w.enabled
         ? const [
             BoxShadow(
               color: Color(0x1A000000),
@@ -464,7 +464,7 @@ class _SgCardState extends State<SgCard> {
           : t(i18n, 'components.actions.expand'),
       child: InkResponse(
         key: const ValueKey('sg-card-toggle'),
-        onTap: w.disabled ? null : _toggle,
+        onTap: !w.enabled ? null : _toggle,
         radius: 20,
         child: SizedBox(
           width: 36,
@@ -556,7 +556,7 @@ class _SgCardState extends State<SgCard> {
                   toggleButton(),
               ],
             );
-      final canToggle = w.collapsible && w.toggleOnHeaderClick && !w.disabled;
+      final canToggle = w.collapsible && w.toggleOnHeaderClick && w.enabled;
       Widget head = Container(
         key: const ValueKey('sg-card-header'),
         width: double.infinity,
@@ -567,7 +567,7 @@ class _SgCardState extends State<SgCard> {
         ),
         child: inner,
       );
-      final canDrag = w.draggable && !w.disabled;
+      final canDrag = w.draggable && w.enabled;
       head = RawGestureDetector(
         behavior: HitTestBehavior.opaque,
         gestures: <Type, GestureRecognizerFactory>{
@@ -598,7 +598,7 @@ class _SgCardState extends State<SgCard> {
         );
       }
       headerNode = MouseRegion(
-        cursor: w.disabled
+        cursor: !w.enabled
             ? MouseCursor.defer
             : w.draggable
             ? (_dragging
@@ -668,7 +668,7 @@ class _SgCardState extends State<SgCard> {
     Widget card = AnimatedContainer(
       duration: const Duration(milliseconds: 150),
       clipBehavior: Clip.antiAlias,
-      transform: _isInteractive && _pressed && !w.disabled
+      transform: _isInteractive && _pressed && w.enabled
           ? Matrix4.translationValues(0, 0.5, 0)
           : Matrix4.identity(),
       decoration: BoxDecoration(
@@ -677,7 +677,7 @@ class _SgCardState extends State<SgCard> {
         border: Border.all(color: borderColor),
         boxShadow: [
           ...hoverShadows,
-          if (_isInteractive && _focused && !w.disabled)
+          if (_isInteractive && _focused && w.enabled)
             BoxShadow(
               color: p.primary.withValues(alpha: 0.35),
               spreadRadius: 4,
@@ -690,16 +690,16 @@ class _SgCardState extends State<SgCard> {
     if (_isInteractive) {
       card = Semantics(
         button: true,
-        enabled: !w.disabled,
+        enabled: w.enabled,
         child: MouseRegion(
-          cursor: w.disabled ? MouseCursor.defer : SystemMouseCursors.click,
+          cursor: !w.enabled ? MouseCursor.defer : SystemMouseCursors.click,
           onEnter: (_) => setState(() => _hover = true),
           onExit: (_) => setState(() => _hover = false),
           child: Focus(
-            canRequestFocus: !w.disabled,
+            canRequestFocus: w.enabled,
             onFocusChange: (f) => setState(() => _focused = f),
             onKeyEvent: (_, e) {
-              if (!w.disabled &&
+              if (w.enabled &&
                   e is KeyDownEvent &&
                   (e.logicalKey == LogicalKeyboardKey.enter ||
                       e.logicalKey == LogicalKeyboardKey.space)) {
@@ -710,12 +710,12 @@ class _SgCardState extends State<SgCard> {
             },
             child: GestureDetector(
               behavior: HitTestBehavior.opaque,
-              onTapDown: w.disabled
+              onTapDown: !w.enabled
                   ? null
                   : (_) => setState(() => _pressed = true),
               onTapCancel: () => setState(() => _pressed = false),
               onTapUp: (_) => setState(() => _pressed = false),
-              onTap: w.disabled ? null : w.onClick,
+              onTap: !w.enabled ? null : w.onClick,
               child: card,
             ),
           ),
@@ -724,12 +724,12 @@ class _SgCardState extends State<SgCard> {
     } else if (w.onClick != null) {
       card = GestureDetector(
         behavior: HitTestBehavior.translucent,
-        onTap: w.disabled ? null : w.onClick,
+        onTap: !w.enabled ? null : w.onClick,
         child: card,
       );
     }
 
-    if (w.disabled) {
+    if (!w.enabled) {
       card = Opacity(opacity: 0.6, child: IgnorePointer(child: card));
     }
     if (w.draggable && Overlay.maybeOf(context) != null) {

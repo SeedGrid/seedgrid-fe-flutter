@@ -8,6 +8,7 @@ import 'package:seedgrid_components/seedgrid_components.dart';
 import 'sg_input_cnpj_page.snippets.g.dart';
 import '../src/sg_showcase_page.dart';
 import '../src/showcase_i18n.dart';
+import '../src/showcase_log_box.dart';
 
 class SgInputCNPJPage extends StatefulWidget {
   const SgInputCNPJPage({super.key});
@@ -17,71 +18,106 @@ class SgInputCNPJPage extends StatefulWidget {
 }
 
 class _SgInputCNPJPageState extends State<SgInputCNPJPage> {
-  final SgFormController _form = SgFormController();
-  String _evento = 'nenhum';
-  String _enviado = '';
+  String _basico = '';
+  String? _validationMsg;
+  final List<String> _eventLog = [];
   Object? _publicaResultado;
   String? _publicaErro;
 
-  @override
-  void dispose() {
-    _form.dispose();
-    super.dispose();
-  }
+  void _log(String entry) => setState(() => _eventLog.insert(0, entry));
 
   @override
   Widget build(BuildContext context) {
     final examples = <ShowcaseExample>[
       ShowcaseExample(
         title: 'Básico',
-        description:
-            'Aceita o CNPJ numérico e o alfanumérico (letras viram maiúsculas).',
+        description: 'CNPJ com label e hint.',
         preview:
             // #region sg-input-cnpj-basico
-            const SgInputCNPJ(id: 'cnpj', labelText: 'CNPJ'),
+            SizedBox(
+              width: 320,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SgInputCNPJ(
+                    id: 'demo-basic',
+                    labelText: context.tx('CNPJ'),
+                    hintText: context.tx('00.000.000/0000-00'),
+                    onChange: (v) => setState(() => _basico = v),
+                  ),
+                  const SizedBox(height: 8),
+                  Text('${context.tx('Valor')}: $_basico'),
+                ],
+              ),
+            ),
         // #endregion
         code: SgInputCnpjPageSnippets.sgInputCnpjBasico,
       ),
       ShowcaseExample(
-        title: 'Obrigatório e mensagens próprias',
+        title: 'CNPJ alfanumérico',
+        description: 'Exemplo com letras (A-Z) no corpo e DVs numéricos.',
         preview:
-            // #region sg-input-cnpj-obrigatorio
-            const SgInputCNPJ(
-              id: 'cnpj-obrigatorio',
-              labelText: 'CNPJ da empresa',
-              required: true,
-              requiredMessage: 'Informe o CNPJ',
-              invalidMessage: 'CNPJ inválido, confira os dígitos',
+            // #region sg-input-cnpj-alfanumerico
+            SizedBox(
+              width: 320,
+              child: SgInputCNPJ(
+                id: 'demo-alnum',
+                labelText: context.tx('CNPJ alfanumérico'),
+                hintText: '00.000.000/E08G-12',
+                initialValue: '00.000.000/E08G-12',
+              ),
             ),
         // #endregion
-        code: SgInputCnpjPageSnippets.sgInputCnpjObrigatorio,
+        code: SgInputCnpjPageSnippets.sgInputCnpjAlfanumerico,
       ),
       ShowcaseExample(
-        title: 'Consulta na base pública',
+        title: 'Exemplos válidos (alfanumérico)',
+        description: 'Lista de CNPJs alfanuméricos válidos.',
+        preview:
+            // #region sg-input-cnpj-lista-alfanumerica
+            const SelectableText(
+              '// Exemplos válidos\n'
+              '00.000.000/E08G-12  (raw: 00000000E08G12)\n'
+              'GK.IPC.PIK/0001-52  (raw: GKIPCPIK000152)\n'
+              'AB.12C.345/D6E7-99  (raw: AB12C345D6E799)\n'
+              '12.ABC.345/DE67-34  (raw: 12ABC345DE6734)\n'
+              'A1.B2C.3D4/E5F6-68  (raw: A1B2C3D4E5F668)\n'
+              'ZX.CVB.NM1/2345-84  (raw: ZXCVBNM1234584)',
+              style: TextStyle(fontFamily: 'monospace', fontSize: 12),
+            ),
+        // #endregion
+        code: SgInputCnpjPageSnippets.sgInputCnpjListaAlfanumerica,
+      ),
+      ShowcaseExample(
+        title: 'Validação Pública CNPJ',
         description:
-            'Consulta de verdade em publica.cnpj.ws (precisa de internet; a API limita a 3 consultas por minuto). Para testar sem rede, passe publicaCnpjFetch.',
+            'Consulta publica.cnpj.ws para verificar se o CNPJ existe.',
         preview:
             // #region sg-input-cnpj-consulta
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SgInputCNPJ(
-                  id: 'cnpj-consulta',
-                  labelText: 'CNPJ com consulta',
-                  validateWithPublicaCnpj: true,
-                  publicaCnpjErrorMessage: 'CNPJ não encontrado na Receita',
-                  onPublicaCnpjResult: (data) => setState(() {
-                    _publicaResultado = data;
-                    _publicaErro = null;
-                  }),
-                  onPublicaCnpjError: (_) => setState(
-                    () => _publicaErro =
-                        'Não foi possível consultar a base pública agora.',
+                SizedBox(
+                  width: 320,
+                  child: SgInputCNPJ(
+                    id: 'demo-publica',
+                    labelText: context.tx('CNPJ'),
+                    hintText: context.tx('00.000.000/0000-00'),
+                    validateWithPublicaCnpj: true,
+                    publicaCnpjErrorMessage: context.tx('CNPJ não encontrado.'),
+                    onPublicaCnpjResult: (data) => setState(() {
+                      _publicaResultado = data;
+                      _publicaErro = null;
+                    }),
+                    onPublicaCnpjError: (_) => setState(
+                      () =>
+                          _publicaErro = context.tx('Falha ao consultar API.'),
+                    ),
                   ),
                 ),
                 if (_publicaResultado != null) ...[
                   const SizedBox(height: 8),
-                  Text(context.tx('Resultado da consulta')),
+                  Text(context.tx('Resultado Publica CNPJ')),
                   ConstrainedBox(
                     constraints: const BoxConstraints(maxHeight: 240),
                     child: SingleChildScrollView(
@@ -94,35 +130,137 @@ class _SgInputCNPJPageState extends State<SgInputCNPJPage> {
                   ),
                 ],
                 if (_publicaErro != null) Text(_publicaErro!),
+                const SizedBox(height: 8),
+                Text(
+                  context.tx(
+                    'Se a API estiver fora do ar, o componente não bloqueia o usuário.',
+                  ),
+                ),
               ],
             ),
         // #endregion
         code: SgInputCnpjPageSnippets.sgInputCnpjConsulta,
       ),
       ShowcaseExample(
+        title: 'Obrigatório',
+        description: 'Valida se está vazio e mostra mensagem customizada.',
+        preview:
+            // #region sg-input-cnpj-obrigatorio
+            Column(
+              children: [
+                SizedBox(
+                  width: 320,
+                  child: SgInputCNPJ(
+                    id: 'demo-required',
+                    labelText: context.tx('CNPJ obrigatório'),
+                    hintText: context.tx('Obrigatório'),
+                    required: true,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                SizedBox(
+                  width: 320,
+                  child: SgInputCNPJ(
+                    id: 'demo-required-custom',
+                    labelText: context.tx('Mensagem customizada'),
+                    hintText: context.tx('Obrigatório'),
+                    required: true,
+                    requiredMessage: context.tx('Informe o CNPJ.'),
+                  ),
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgInputCnpjPageSnippets.sgInputCnpjObrigatorio,
+      ),
+      ShowcaseExample(
+        title: 'Mensagem de tamanho',
+        description: 'Personaliza mensagem quando CNPJ não tem 14 dígitos.',
+        preview:
+            // #region sg-input-cnpj-tamanho
+            SizedBox(
+              width: 320,
+              child: SgInputCNPJ(
+                id: 'demo-length',
+                labelText: context.tx('CNPJ'),
+                hintText: context.tx('00.000.000/0000-00'),
+                lengthMessage: context.tx('CNPJ deve ter 14 dígitos.'),
+              ),
+            ),
+        // #endregion
+        code: SgInputCnpjPageSnippets.sgInputCnpjTamanho,
+      ),
+      ShowcaseExample(
+        title: 'Mensagem inválida',
+        description: 'Personaliza mensagem de CNPJ inválido.',
+        preview:
+            // #region sg-input-cnpj-invalida
+            SizedBox(
+              width: 320,
+              child: SgInputCNPJ(
+                id: 'demo-invalid',
+                labelText: context.tx('CNPJ'),
+                hintText: context.tx('00.000.000/0000-00'),
+                invalidMessage: context.tx('CNPJ inválido.'),
+              ),
+            ),
+        // #endregion
+        code: SgInputCnpjPageSnippets.sgInputCnpjInvalida,
+      ),
+      ShowcaseExample(
+        title: 'Validação customizada',
+        description: 'Função de validação retorna mensagem ou null.',
+        preview:
+            // #region sg-input-cnpj-validacao
+            SizedBox(
+              width: 320,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SgInputCNPJ(
+                    id: 'demo-validation',
+                    labelText: context.tx('CNPJ'),
+                    hintText: context.tx('00.000.000/0000-00'),
+                    validation: (v) => v.startsWith('00')
+                        ? context.tx('CNPJ não pode iniciar com 00.')
+                        : null,
+                    onValidation: (msg) => setState(() => _validationMsg = msg),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    'onValidation: ${_validationMsg == null ? context.tx('válido') : '"$_validationMsg"'}',
+                  ),
+                ],
+              ),
+            ),
+        // #endregion
+        code: SgInputCnpjPageSnippets.sgInputCnpjValidacao,
+      ),
+      ShowcaseExample(
         title: 'Variações visuais',
-        description:
-            'filled alterna o fundo preenchido; withBorder remove a borda.',
+        description: 'Sem borda (withBorder=false) e preenchido (filled=true).',
         preview:
             // #region sg-input-cnpj-variacoes
-            const Column(
+            Column(
               children: [
-                SgInputCNPJ(
-                  id: 'preenchido',
-                  labelText: 'Preenchido',
-                  filled: true,
+                SizedBox(
+                  width: 320,
+                  child: SgInputCNPJ(
+                    id: 'demo-noborder',
+                    labelText: context.tx('Sem borda'),
+                    hintText: context.tx('CNPJ'),
+                    withBorder: false,
+                  ),
                 ),
-                SizedBox(height: 12),
-                SgInputCNPJ(
-                  id: 'vazado',
-                  labelText: 'Sem preenchimento',
-                  filled: false,
-                ),
-                SizedBox(height: 12),
-                SgInputCNPJ(
-                  id: 'semborda',
-                  labelText: 'Sem borda',
-                  withBorder: false,
+                const SizedBox(height: 12),
+                SizedBox(
+                  width: 320,
+                  child: SgInputCNPJ(
+                    id: 'demo-filled',
+                    labelText: context.tx('Preenchido'),
+                    hintText: context.tx('CNPJ'),
+                    filled: true,
+                  ),
                 ),
               ],
             ),
@@ -131,80 +269,96 @@ class _SgInputCNPJPageState extends State<SgInputCNPJPage> {
       ),
       ShowcaseExample(
         title: 'Sem botão de limpar',
-        description:
-            'clearButton: false esconde o botão de limpar (por padrão ele aparece com texto).',
+        description: 'clearButton=false remove o X do input.',
         preview:
             // #region sg-input-cnpj-sem-limpar
-            const SgInputCNPJ(
-              id: 'semlimpar',
-              labelText: 'CNPJ',
-              initialValue: '05952365000130',
-              clearButton: false,
+            SizedBox(
+              width: 320,
+              child: SgInputCNPJ(
+                id: 'demo-noclear',
+                labelText: context.tx('Sem limpar'),
+                hintText: context.tx('CNPJ'),
+                clearButton: false,
+              ),
             ),
         // #endregion
         code: SgInputCnpjPageSnippets.sgInputCnpjSemLimpar,
       ),
       ShowcaseExample(
         title: 'Largura e borda',
-        description:
-            'width aceita número (px) ou porcentagem; borderRadius arredonda os cantos.',
+        description: 'width e borderRadius customizáveis.',
         preview:
             // #region sg-input-cnpj-largura
-            const SgInputCNPJ(
-              id: 'largura',
-              labelText: 'CNPJ',
-              width: 240,
-              borderRadius: 20,
+            Wrap(
+              spacing: 16,
+              runSpacing: 12,
+              children: [
+                SgInputCNPJ(
+                  id: 'demo-w200',
+                  labelText: context.tx('200px'),
+                  hintText: context.tx('CNPJ'),
+                  width: 200,
+                ),
+                SgInputCNPJ(
+                  id: 'demo-w300',
+                  labelText: context.tx('300px arredondado'),
+                  hintText: context.tx('CNPJ'),
+                  width: 300,
+                  borderRadius: 20,
+                ),
+              ],
             ),
         // #endregion
         code: SgInputCnpjPageSnippets.sgInputCnpjLargura,
       ),
       ShowcaseExample(
-        title: 'Desabilitado e somente leitura',
-        description:
-            'disabled bloqueia o campo; readOnly deixa copiar, mas não editar.',
+        title: 'Desabilitado',
+        description: 'enabled=false desabilita.',
         preview:
-            // #region sg-input-cnpj-estados
-            const Column(
-              children: [
-                SgInputCNPJ(
-                  id: 'desabilitado',
-                  labelText: 'Desabilitado',
-                  initialValue: '05952365000130',
-                  disabled: true,
-                ),
-                SizedBox(height: 12),
-                SgInputCNPJ(
-                  id: 'leitura',
-                  labelText: 'Somente leitura',
-                  initialValue: '05952365000130',
-                  readOnly: true,
-                ),
-              ],
+            // #region sg-input-cnpj-desabilitado
+            SizedBox(
+              width: 320,
+              child: SgInputCNPJ(
+                id: 'demo-disabled',
+                labelText: context.tx('Desabilitado'),
+                hintText: context.tx('CNPJ'),
+                enabled: false,
+                initialValue: '00.000.000/0000-00',
+              ),
             ),
         // #endregion
-        code: SgInputCnpjPageSnippets.sgInputCnpjEstados,
+        code: SgInputCnpjPageSnippets.sgInputCnpjDesabilitado,
       ),
       ShowcaseExample(
         title: 'Eventos',
-        description:
-            'onChange, onEnter (foco), onExit (saída) e onClear informam o que o usuário fez.',
+        description: 'onEnter, onExit, onChange, onClear, onValidation.',
         preview:
             // #region sg-input-cnpj-eventos
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SgInputCNPJ(
-                  id: 'eventos',
-                  labelText: 'CNPJ',
-                  onChange: (v) => setState(() => _evento = 'onChange: $v'),
-                  onEnter: () => setState(() => _evento = 'onEnter'),
-                  onExit: () => setState(() => _evento = 'onExit'),
-                  onClear: () => setState(() => _evento = 'onClear'),
-                ),
-                const SizedBox(height: 8),
-                Text('Último evento: $_evento'),
-              ],
+            SizedBox(
+              width: 320,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SgInputCNPJ(
+                    id: 'demo-events',
+                    labelText: context.tx('Digite e observe o log'),
+                    hintText: context.tx('CNPJ'),
+                    required: true,
+                    onChange: (v) => _log('onChange: "$v"'),
+                    onEnter: () => _log(context.tx('onEnter (focus)')),
+                    onExit: () => _log(context.tx('onExit (blur)')),
+                    onClear: () => _log('onClear'),
+                    onValidation: (msg) =>
+                        _log('onValidation: ${msg ?? context.tx('válido')}'),
+                  ),
+                  const SizedBox(height: 12),
+                  ShowcaseLogBox(
+                    entries: _eventLog,
+                    hint: context.tx('Interaja com o input...'),
+                    height: 160,
+                  ),
+                ],
+              ),
             ),
         // #endregion
         code: SgInputCnpjPageSnippets.sgInputCnpjEventos,
@@ -212,54 +366,43 @@ class _SgInputCNPJPageState extends State<SgInputCNPJPage> {
       ShowcaseExample(
         title: 'Posição do rótulo',
         description:
-            'labelPosition: float (padrão), top ou left; labelWidth fixa a largura do rótulo à esquerda.',
+            'Compare os modos de rótulo: flutuante, acima e à esquerda.',
         preview:
             // #region sg-input-cnpj-rotulo
-            const Column(
+            Wrap(
+              spacing: 16,
+              runSpacing: 12,
               children: [
-                SgInputCNPJ(
-                  id: 'topo',
-                  labelText: 'Rótulo no topo',
-                  labelPosition: SgInputCNPJLabelPosition.top,
+                SizedBox(
+                  width: 280,
+                  child: SgInputCNPJ(
+                    id: 'sg-input-cnpj-label-float',
+                    labelText: context.tx('Flutuante'),
+                    labelPosition: SgInputCNPJLabelPosition.float,
+                  ),
                 ),
-                SizedBox(height: 12),
-                SgInputCNPJ(
-                  id: 'esquerda',
-                  labelText: 'À esquerda',
-                  labelPosition: SgInputCNPJLabelPosition.left,
-                  labelWidth: 110,
+                SizedBox(
+                  width: 280,
+                  child: SgInputCNPJ(
+                    id: 'sg-input-cnpj-label-top',
+                    labelText: context.tx('Acima'),
+                    labelPosition: SgInputCNPJLabelPosition.top,
+                  ),
+                ),
+                SizedBox(
+                  width: 360,
+                  child: SgInputCNPJ(
+                    id: 'sg-input-cnpj-label-left',
+                    labelText: context.tx('Esquerda'),
+                    labelPosition: SgInputCNPJLabelPosition.left,
+                    labelWidth: 140,
+                    labelAlign: SgInputCNPJLabelAlign.end,
+                  ),
                 ),
               ],
             ),
         // #endregion
         code: SgInputCnpjPageSnippets.sgInputCnpjRotulo,
-      ),
-      ShowcaseExample(
-        title: 'Dentro de um formulário',
-        preview:
-            // #region sg-input-cnpj-formulario
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SgInputCNPJ(
-                  id: 'campo',
-                  name: 'campo',
-                  control: _form,
-                  labelText: 'Campo',
-                  rules: const SgRules(required: 'Preencha o campo'),
-                ),
-                const SizedBox(height: 12),
-                SgButton(
-                  label: Text(context.tx('Enviar')),
-                  onClick: () => _form.handleSubmit(
-                    (values) => setState(() => _enviado = '${values['campo']}'),
-                  ),
-                ),
-                if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),
-              ],
-            ),
-        // #endregion
-        code: SgInputCnpjPageSnippets.sgInputCnpjFormulario,
       ),
     ];
 
@@ -331,7 +474,7 @@ class _SgInputCNPJPageState extends State<SgInputCNPJPage> {
               (s) => const {
                 'labelPosition',
                 'filled',
-                'disabled',
+                'enabled',
                 'readOnly',
                 'clearButton',
                 'required',
@@ -349,7 +492,7 @@ class _SgInputCNPJPageState extends State<SgInputCNPJPage> {
             v['labelPosition'] as String?,
           ),
           filled: v['filled'] as bool?,
-          disabled: v['disabled'] as bool?,
+          enabled: v['enabled'] as bool?,
           readOnly: v['readOnly'] as bool?,
           clearButton: v['clearButton'] as bool?,
           required: v['required'] as bool?,

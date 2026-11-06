@@ -1,0 +1,23 @@
+{
+"CNPJ": ["CNPJ","CNPJ","CNPJ","CNPJ"],
+"00.000.000/0000-00": ["00.000.000/0000-00","00.000.000/0000-00","00.000.000/0000-00","00.000.000/0000-00"],
+"CNPJ alfanumérico": ["Alphanumeric CNPJ","CNPJ alfanumerico","CNPJ alfanumerico","CNPJ alphanumerique"],
+"CNPJ não encontrado.": ["CNPJ not found.","CNPJ nao encontrado.","CNPJ no encontrado.","CNPJ introuvable."],
+"Falha ao consultar API.": ["Failed to call API.","Falha ao consultar API.","Fallo al consultar la API.","Echec de l'appel a l'API."],
+"Resultado Publica CNPJ": ["Publica CNPJ result","Resultado Publica CNPJ","Resultado Publica CNPJ","Resultat Publica CNPJ"],
+"Se a API estiver fora do ar, o componente não bloqueia o usuário.": ["If the API is down, the component does not block the user.","Se a API estiver fora do ar, o componente nao bloqueia o utilizador.","Si la API esta fuera de servicio, el componente no bloquea al usuario.","Si l'API est indisponible, le composant ne bloque pas l'utilisateur."],
+"CNPJ obrigatório": ["Required CNPJ","CNPJ obrigatorio","CNPJ obligatorio","CNPJ obligatoire"],
+"Informe o CNPJ.": ["Please enter the CNPJ.","Informe o CNPJ.","Informe el CNPJ.","Veuillez saisir le CNPJ."],
+"CNPJ deve ter 14 dígitos.": ["CNPJ must have 14 digits.","CNPJ deve ter 14 digitos.","El CNPJ debe tener 14 digitos.","Le CNPJ doit avoir 14 chiffres."],
+"CNPJ inválido.": ["Invalid CNPJ.","CNPJ invalido.","CNPJ invalido.","CNPJ invalide."],
+"CNPJ não pode iniciar com 00.": ["CNPJ cannot start with 00.","CNPJ nao pode iniciar com 00.","El CNPJ no puede comenzar con 00.","Le CNPJ ne peut pas commencer par 00."],
+"CNPJ com label e hint.": ["CNPJ with label and hint.","CNPJ com label e hint.","CNPJ con label y hint.","CNPJ avec libelle et indice."],
+"Exemplo com letras (A-Z) no corpo e DVs numéricos.": ["Example with letters (A-Z) in the body and numeric check digits.","Exemplo com letras (A-Z) no corpo e DVs numericos.","Ejemplo con letras (A-Z) en el cuerpo y DV numericos.","Exemple avec lettres (A-Z) dans le corps et chiffres de controle numeriques."],
+"Exemplos válidos (alfanumérico)": ["Valid examples (alphanumeric)","Exemplos validos (alfanumerico)","Ejemplos validos (alfanumerico)","Exemples valides (alphanumeriques)"],
+"Lista de CNPJs alfanuméricos válidos.": ["List of valid alphanumeric CNPJs.","Lista de CNPJs alfanumericos validos.","Lista de CNPJs alfanumericos validos.","Liste de CNPJ alphanumeriques valides."],
+"Validação Pública CNPJ": ["Publica CNPJ validation","Validacao Publica CNPJ","Validacion Publica CNPJ","Validation Publica CNPJ"],
+"Consulta publica.cnpj.ws para verificar se o CNPJ existe.": ["Calls publica.cnpj.ws to verify the CNPJ exists.","Consulta publica.cnpj.ws para verificar se o CNPJ existe.","Consulta publica.cnpj.ws para verificar si el CNPJ existe.","Appelle publica.cnpj.ws pour verifier que le CNPJ existe."],
+"Mensagem de tamanho": ["Length message","Mensagem de tamanho","Mensaje de longitud","Message de longueur"],
+"Personaliza mensagem quando CNPJ não tem 14 dígitos.": ["Custom message when CNPJ does not have 14 digits.","Personaliza mensagem quando CNPJ nao tem 14 digitos.","Mensaje personalizado cuando el CNPJ no tiene 14 digitos.","Message personnalise quand le CNPJ n'a pas 14 chiffres."],
+"Personaliza mensagem de CNPJ inválido.": ["Custom invalid CNPJ message.","Personaliza mensagem de CNPJ invalido.","Mensaje personalizado de CNPJ invalido.","Message de CNPJ invalide personnalise."]
+}

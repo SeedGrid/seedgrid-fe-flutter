@@ -189,7 +189,7 @@ class _SgInputTextSearchPageState extends State<SgInputTextSearchPage> {
               (s) => const {
                 'labelPosition',
                 'filled',
-                'disabled',
+                'enabled',
                 'readOnly',
                 'clearButton',
                 'placeholder',
@@ -203,7 +203,7 @@ class _SgInputTextSearchPageState extends State<SgInputTextSearchPage> {
             v['labelPosition'] as String?,
           ),
           filled: v['filled'] as bool?,
-          disabled: v['disabled'] as bool?,
+          enabled: v['enabled'] as bool?,
           readOnly: v['readOnly'] as bool?,
           clearButton: v['clearButton'] as bool?,
           placeholder: v['placeholder'] as String?,

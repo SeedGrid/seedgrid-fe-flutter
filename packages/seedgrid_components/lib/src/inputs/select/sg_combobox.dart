@@ -44,7 +44,7 @@ class SgCombobox<T> extends StatefulWidget implements SgComboboxProps {
     this.borderRadius,
     this.control,
     this.elevation,
-    this.disabled,
+    this.enabled,
     this.error,
     this.filled,
     this.hintText,
@@ -132,7 +132,9 @@ class SgCombobox<T> extends StatefulWidget implements SgComboboxProps {
   @override
   final SgComboboxElevation? elevation;
   @override
-  final bool? disabled;
+  final bool? enabled;
+
+  bool get _disabled => !(enabled ?? true);
   @override
   final String? error;
   @override
@@ -225,7 +227,7 @@ class _SgComboboxState<T> extends State<SgCombobox<T>> {
 
   bool get _bound => widget.name != null && _outer != null;
   bool get _grouped => widget.grouped ?? widget.groupped ?? false;
-  bool get _disabled => widget.disabled ?? false;
+  bool get _disabled => widget._disabled;
   bool get _controlled => _bound || widget.value != null;
   Object? get _resolvedValue => _bound
       ? _outer!.getValue(widget.name!)
@@ -406,7 +408,7 @@ class _SgComboboxState<T> extends State<SgCombobox<T>> {
   void _selectIndex(int index) {
     if (index < 0 || index >= _entries.length) return;
     final entry = _entries[index];
-    if (entry.item.disabled) return;
+    if (!entry.item.enabled) return;
     _setSelectedValue(entry.item.id);
     setState(() => _lastSelectedLabel = entry.item.label);
     widget.onSelect?.call(entry.raw);
@@ -420,7 +422,7 @@ class _SgComboboxState<T> extends State<SgCombobox<T>> {
     for (var offset = 1; offset <= entries.length; offset++) {
       final index = (start + offset + entries.length) % entries.length;
       final e = entries[index];
-      if (e.item.disabled) continue;
+      if (!e.item.enabled) continue;
       if (e.item.label.toLowerCase().startsWith(q)) return index;
     }
     return -1;
@@ -452,7 +454,7 @@ class _SgComboboxState<T> extends State<SgCombobox<T>> {
     }
     if (next < 0) return;
     final entry = available[next];
-    if (entry.item.disabled) return;
+    if (!entry.item.enabled) return;
     _setSelectedValue(entry.item.id);
     setState(() {
       _lastSelectedLabel = entry.item.label;
@@ -590,7 +592,7 @@ class _SgComboboxState<T> extends State<SgCombobox<T>> {
           clearButton: false,
           iconButtons: [button],
           error: resolveFieldError(w.error, outerError),
-          disabled: w.disabled,
+          enabled: !(w._disabled),
           borderRadius: w.borderRadius,
           elevation: w.elevation == null
               ? null

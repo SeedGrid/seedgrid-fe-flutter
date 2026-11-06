@@ -193,7 +193,7 @@ void main() {
     await t.tap(find.text('b'));
     expect(n, 1);
     await t.pumpWidget(
-      host(SgBadge(value: const Text('b'), onClick: () => n++, disabled: true)),
+      host(SgBadge(value: const Text('b'), onClick: () => n++, enabled: false)),
     );
     await t.tap(find.text('b'), warnIfMissed: false);
     expect(n, 1);

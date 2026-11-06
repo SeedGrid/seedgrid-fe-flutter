@@ -32,9 +32,23 @@ Future<void> settle(WidgetTester t) async {
   }
 }
 
+/// O menu abre com so o grupo da pagina aberta (como o React): o botao do rodape abre todos os grupos.
+Future<void> openAllGroups(WidgetTester t) async {
+  final all = find.byKey(const ValueKey('menu-alternar-grupos'));
+  if (all.evaluate().isEmpty) return;
+  final label = find.descendant(of: all, matching: find.byType(Text));
+  final text = t.widget<Text>(label.first).data ?? '';
+  if (text.toLowerCase().contains('expandir') ||
+      text.toLowerCase().contains('expand')) {
+    await t.tap(all);
+    await settle(t);
+  }
+}
+
 /// Leva um item do menu lateral para a area visivel: o menu e uma lista preguicosa (grupos distantes
 /// nao existem na arvore ate rolar), entao primeiro rola ate o item ser construido e depois o traz para a tela.
 Future<void> revealInMenu(WidgetTester t, Finder item) async {
+  await openAllGroups(t);
   final menu = find
       .descendant(
         of: find.byKey(const ValueKey('menu-lista')),
@@ -140,7 +154,7 @@ void definePageChecks(ShowcasePageEntry page) {
           reason: 'toda pagina tem SgPlayground',
         );
         await tapLink(t, const ValueKey('link-props-reference'));
-        final specs = sgPropSpecs[page.name];
+        final specs = sgPropSpecs[page.name] ?? sgFlutterOnlyPropSpecs[page.name];
         if (specs != null) {
           final table = find.byType(DataTable);
           for (final spec in specs) {

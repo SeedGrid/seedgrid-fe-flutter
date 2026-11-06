@@ -562,6 +562,11 @@
    "motivo": "estilo: React-only (ADR 50)"
   },
   {
+   "componente": "SgNotificationBell",
+   "prop": "className",
+   "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
+  },
+  {
    "componente": "SgOrderList",
    "prop": "className",
    "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
@@ -3585,6 +3590,48 @@
    "ts": "string | number"
   },
   {
+   "componente": "SgNotificationBell",
+   "prop": "fetcher",
+   "motivo": "funcao",
+   "ts": "((input: string, init?: RequestInit) => Promise<Response>)"
+  },
+  {
+   "componente": "SgNotificationBell",
+   "prop": "onNotification",
+   "motivo": "funcao",
+   "ts": "((notification: SgNotification) => void)"
+  },
+  {
+   "componente": "SgNotificationBell",
+   "prop": "onNotificationDelete",
+   "motivo": "funcao",
+   "ts": "((notification: SgNotification) => void)"
+  },
+  {
+   "componente": "SgNotificationBell",
+   "prop": "onOpen",
+   "motivo": "funcao",
+   "ts": "((notification: SgNotification) => void)"
+  },
+  {
+   "componente": "SgNotificationBell",
+   "prop": "onPollingTick",
+   "motivo": "funcao",
+   "ts": "((stats: SgPollingStats) => void)"
+  },
+  {
+   "componente": "SgNotificationBell",
+   "prop": "requestInit",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "RequestInit"
+  },
+  {
+   "componente": "SgNotificationBell",
+   "prop": "types",
+   "motivo": "tipo-nomeado-a-portar",
+   "ts": "Record<string, SgNotificationTypeConfig>"
+  },
+  {
    "componente": "SgOrderList",
    "prop": "control",
    "motivo": "tipo-nomeado-a-portar",
@@ -4373,12 +4420,6 @@
  ],
  "renomeadas": [
   {
-   "componente": "SgAutocomplete",
-   "de": "enabled",
-   "para": "disabled",
-   "motivo": "ADR 50 (valor invertido)"
-  },
-  {
    "componente": "SgAvatar",
    "de": "children",
    "para": "child",
@@ -4413,12 +4454,6 @@
    "de": "children",
    "para": "child",
    "motivo": "ADR 50"
-  },
-  {
-   "componente": "SgCombobox",
-   "de": "enabled",
-   "para": "disabled",
-   "motivo": "ADR 50 (valor invertido)"
   },
   {
    "componente": "SgComponentsI18nProvider",
@@ -4475,114 +4510,6 @@
    "motivo": "ADR 50"
   },
   {
-   "componente": "SgInputBirthDate",
-   "de": "enabled",
-   "para": "disabled",
-   "motivo": "ADR 50 (valor invertido)"
-  },
-  {
-   "componente": "SgInputCNPJ",
-   "de": "enabled",
-   "para": "disabled",
-   "motivo": "ADR 50 (valor invertido)"
-  },
-  {
-   "componente": "SgInputCPF",
-   "de": "enabled",
-   "para": "disabled",
-   "motivo": "ADR 50 (valor invertido)"
-  },
-  {
-   "componente": "SgInputCPFCNPJ",
-   "de": "enabled",
-   "para": "disabled",
-   "motivo": "ADR 50 (valor invertido)"
-  },
-  {
-   "componente": "SgInputCurrency",
-   "de": "enabled",
-   "para": "disabled",
-   "motivo": "ADR 50 (valor invertido)"
-  },
-  {
-   "componente": "SgInputDate",
-   "de": "enabled",
-   "para": "disabled",
-   "motivo": "ADR 50 (valor invertido)"
-  },
-  {
-   "componente": "SgInputDateTime",
-   "de": "enabled",
-   "para": "disabled",
-   "motivo": "ADR 50 (valor invertido)"
-  },
-  {
-   "componente": "SgInputEmail",
-   "de": "enabled",
-   "para": "disabled",
-   "motivo": "ADR 50 (valor invertido)"
-  },
-  {
-   "componente": "SgInputNumber",
-   "de": "enabled",
-   "para": "disabled",
-   "motivo": "ADR 50 (valor invertido)"
-  },
-  {
-   "componente": "SgInputOTP",
-   "de": "enabled",
-   "para": "disabled",
-   "motivo": "ADR 50 (valor invertido)"
-  },
-  {
-   "componente": "SgInputPassword",
-   "de": "enabled",
-   "para": "disabled",
-   "motivo": "ADR 50 (valor invertido)"
-  },
-  {
-   "componente": "SgInputPhone",
-   "de": "enabled",
-   "para": "disabled",
-   "motivo": "ADR 50 (valor invertido)"
-  },
-  {
-   "componente": "SgInputPostalCode",
-   "de": "enabled",
-   "para": "disabled",
-   "motivo": "ADR 50 (valor invertido)"
-  },
-  {
-   "componente": "SgInputText",
-   "de": "enabled",
-   "para": "disabled",
-   "motivo": "ADR 50 (valor invertido)"
-  },
-  {
-   "componente": "SgInputTextArea",
-   "de": "enabled",
-   "para": "disabled",
-   "motivo": "ADR 50 (valor invertido)"
-  },
-  {
-   "componente": "SgInputTextSearch",
-   "de": "enabled",
-   "para": "disabled",
-   "motivo": "ADR 50 (valor invertido)"
-  },
-  {
-   "componente": "SgMultiSelect",
-   "de": "enabled",
-   "para": "disabled",
-   "motivo": "ADR 50 (valor invertido)"
-  },
-  {
-   "componente": "SgMultiSelectChips",
-   "de": "enabled",
-   "para": "disabled",
-   "motivo": "ADR 50 (valor invertido)"
-  },
-  {
    "componente": "SgPageControl",
    "de": "children",
    "para": "child",
@@ -4613,12 +4540,6 @@
    "motivo": "ADR 50"
   },
   {
-   "componente": "SgRealtimeProvider",
-   "de": "enabled",
-   "para": "disabled",
-   "motivo": "ADR 50 (valor invertido)"
-  },
-  {
    "componente": "SgScreen",
    "de": "children",
    "para": "child",
@@ -4635,12 +4556,6 @@
    "de": "children",
    "para": "child",
    "motivo": "ADR 50"
-  },
-  {
-   "componente": "SgToggleSwitch",
-   "de": "enabled",
-   "para": "disabled",
-   "motivo": "ADR 50 (valor invertido)"
   },
   {
    "componente": "SgToolBar",
@@ -4662,13 +4577,13 @@
   }
  ],
  "resumo": {
-  "omitidas": 163,
-  "renomeadas": 48,
+  "omitidas": 164,
+  "renomeadas": 26,
   "tipoGenerico": {
    "lista": 68,
    "uniao": 123,
-   "funcao": 247,
-   "tipo-nomeado-a-portar": 154
+   "funcao": 252,
+   "tipo-nomeado-a-portar": 156
   }
  }
 }

@@ -20,8 +20,7 @@ abstract interface class SgInputTextSearchProps {
   /// Atraso do debounce em milissegundos antes de disparar onSearchChange. Padrão: `350`.
   num? get debounceMs;
   SgInputTextSearchElevation? get elevation;
-  /// No React a prop se chama `enabled` (valor invertido); ver ADR 50.
-  bool? get disabled;
+  bool? get enabled;
   String? get error;
   bool? get filled;
   String? get hintText;
@@ -124,7 +123,7 @@ const List<SgPropSpec> sgInputTextSearchPropSpecs = <SgPropSpec>[
     values: <String>['none', 'sm', 'md', 'lg'],
   ),
   SgPropSpec(
-    name: 'disabled',
+    name: 'enabled',
     reactName: 'enabled',
     type: 'bool?',
     tsType: 'boolean',

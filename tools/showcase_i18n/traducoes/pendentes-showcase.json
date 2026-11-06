@@ -1,0 +1,440 @@
+{
+ "Quando false, desabilita a interacao do botao.": [
+  "When false, disables the button interaction.",
+  "Quando false, desabilita a interação do botão.",
+  "Cuando es false, deshabilita la interacción del botón.",
+  "Quand false, désactive l'interaction du bouton."
+ ],
+ "Rolagem infinita: sem paginador, ao chegar perto do fim da lista avanca a pagina (rows) e acrescenta os proximos registros, com indicador de carregando e de fim da lista. Padrao ligado quando a lista e exibida como cartoes (abaixo de 600 px no modo automatico) e desligado na tabela. Exige paginator. Com lazy, o pai acrescenta a proxima pagina a value (first/rows/page vem em onPage/onLoadMore).": [
+  "Infinite scroll: with no paginator, near the end of the list it advances the page (rows) and appends the next records, with a loading indicator and an end-of-list indicator. On by default when the list is shown as cards (below 600 px in automatic mode) and off in the table. Requires paginator. With lazy, the parent appends the next page to value (first/rows/page come in onPage/onLoadMore).",
+  "Scroll infinito: sem paginador, ao chegar perto do fim da lista avança a página (rows) e acrescenta os próximos registos, com indicador de carregamento e de fim da lista. Ligado por omissão quando a lista é apresentada como cartões (abaixo de 600 px no modo automático) e desligado na tabela. Requer paginator. Com lazy, o pai acrescenta a página seguinte a value (first/rows/page vêm em onPage/onLoadMore).",
+  "Desplazamiento infinito: sin paginador, al acercarse al final de la lista avanza la página (rows) y añade los siguientes registros, con indicador de carga y de fin de lista. Activado por defecto cuando la lista se muestra como tarjetas (por debajo de 600 px en modo automático) y desactivado en la tabla. Requiere paginator. Con lazy, el padre añade la página siguiente a value (first/rows/page llegan en onPage/onLoadMore).",
+  "Défilement infini : sans paginateur, à l'approche de la fin de la liste il avance la page (rows) et ajoute les enregistrements suivants, avec un indicateur de chargement et de fin de liste. Activé par défaut quand la liste est affichée en cartes (sous 600 px en mode automatique) et désactivé dans le tableau. Nécessite paginator. Avec lazy, le parent ajoute la page suivante à value (first/rows/page arrivent dans onPage/onLoadMore)."
+ ],
+ "Comportamento em tela estreita. Omitido (padrao): cartoes quando o container fica abaixo de 600 px, tabela acima; cards: forca cartoes em qualquer largura; scroll: forca a tabela com rolagem horizontal. Nos cartoes mantem ordenacao, selecao, acoes, rodape e paginacao.": [
+  "Behavior on narrow screens. Omitted (default): cards when the container is below 600 px, table above; cards: forces cards at any width; scroll: forces the table with horizontal scrolling. In cards, sorting, selection, actions, footer and pagination are kept.",
+  "Comportamento em ecrã estreito. Omitido (por omissão): cartões quando o contentor fica abaixo de 600 px, tabela acima; cards: força cartões em qualquer largura; scroll: força a tabela com scroll horizontal. Nos cartões mantém ordenação, seleção, ações, rodapé e paginação.",
+  "Comportamiento en pantalla estrecha. Omitido (por defecto): tarjetas cuando el contenedor queda por debajo de 600 px, tabla por encima; cards: fuerza tarjetas en cualquier ancho; scroll: fuerza la tabla con desplazamiento horizontal. En las tarjetas se mantienen ordenación, selección, acciones, pie y paginación.",
+  "Comportement sur écran étroit. Omis (par défaut) : cartes quand le conteneur est sous 600 px, tableau au-dessus ; cards : force les cartes à toute largeur ; scroll : force le tableau avec défilement horizontal. Dans les cartes, tri, sélection, actions, pied de tableau et pagination sont conservés."
+ ],
+ "Chamado (alem de onPage) quando a rolagem infinita pede a proxima pagina.": [
+  "Called (besides onPage) when infinite scroll asks for the next page.",
+  "Chamado (além de onPage) quando o scroll infinito pede a página seguinte.",
+  "Llamado (además de onPage) cuando el desplazamiento infinito pide la página siguiente.",
+  "Appelé (en plus de onPage) quand le défilement infini demande la page suivante."
+ ],
+ "P": [
+  "P",
+  "P",
+  "P",
+  "P"
+ ],
+ "Amy Elsner": [
+  "Amy Elsner",
+  "Amy Elsner",
+  "Amy Elsner",
+  "Amy Elsner"
+ ],
+ "C": [
+  "C",
+  "C",
+  "C",
+  "C"
+ ],
+ "S": [
+  "S",
+  "S",
+  "S",
+  "S"
+ ],
+ "Asiya Javayant": [
+  "Asiya Javayant",
+  "Asiya Javayant",
+  "Asiya Javayant",
+  "Asiya Javayant"
+ ],
+ "D": [
+  "D",
+  "D",
+  "D",
+  "D"
+ ],
+ "Onyama Limba": [
+  "Onyama Limba",
+  "Onyama Limba",
+  "Onyama Limba",
+  "Onyama Limba"
+ ],
+ "Ioni Bowcher": [
+  "Ioni Bowcher",
+  "Ioni Bowcher",
+  "Ioni Bowcher",
+  "Ioni Bowcher"
+ ],
+ "AL": [
+  "AL",
+  "AL",
+  "AL",
+  "AL"
+ ],
+ "BK": [
+  "BK",
+  "BK",
+  "BK",
+  "BK"
+ ],
+ "CM": [
+  "CM",
+  "CM",
+  "CM",
+  "CM"
+ ],
+ "Uso básico com label, ícone e imagem.": [
+  "Basic usage with label, icon and image.",
+  "Utilização básica com label, ícone e imagem.",
+  "Uso básico con label, icono e imagen.",
+  "Utilisation de base avec label, icône et image."
+ ],
+ "Shape e Tamanho": [
+  "Shape and Size",
+  "Shape e Tamanho",
+  "Shape y Tamaño",
+  "Shape et Taille"
+ ],
+ "Combinações de shape e size.": [
+  "Combinations of shape and size.",
+  "Combinações de shape e size.",
+  "Combinaciones de shape y size.",
+  "Combinaisons de shape et size."
+ ],
+ "Severity e Cores Customizadas": [
+  "Severity and Custom Colors",
+  "Severity e Cores Personalizadas",
+  "Severity y Colores Personalizados",
+  "Severity et Couleurs Personnalisées"
+ ],
+ "Preset por severity e override de cores.": [
+  "Preset by severity and color override.",
+  "Predefinição por severity e substituição de cores.",
+  "Preset por severity y sobrescritura de colores.",
+  "Préréglage par severity et surcharge des couleurs."
+ ],
+ "Avatar Group": [
+  "Avatar Group",
+  "Avatar Group",
+  "Avatar Group",
+  "Avatar Group"
+ ],
+ "Agrupamento com sobreposição e contador automático.": [
+  "Grouping with overlap and automatic counter.",
+  "Agrupamento com sobreposição e contador automático.",
+  "Agrupación con superposición y contador automático.",
+  "Regroupement avec chevauchement et compteur automatique."
+ ],
+ "Admin": [
+  "Admin",
+  "Admin",
+  "Admin",
+  "Admin"
+ ],
+ "Pago": [
+  "Paid",
+  "Pago",
+  "Pagado",
+  "Payé"
+ ],
+ "Soft": [
+  "Soft",
+  "Soft",
+  "Soft",
+  "Soft"
+ ],
+ "Remover auto": [
+  "Auto remove",
+  "Remover auto",
+  "Quitar auto",
+  "Retirer auto"
+ ],
+ "Remover manual": [
+  "Manual remove",
+  "Remover manual",
+  "Quitar manual",
+  "Retirer manuel"
+ ],
+ "Uso básico: value, severity e badgeStyle.": [
+  "Basic usage: value, severity and badgeStyle.",
+  "Utilização básica: value, severity e badgeStyle.",
+  "Uso básico: value, severity y badgeStyle.",
+  "Utilisation de base : value, severity et badgeStyle."
+ ],
+ "Solid, soft, outline e ghost.": [
+  "Solid, soft, outline and ghost.",
+  "Solid, soft, outline e ghost.",
+  "Solid, soft, outline y ghost.",
+  "Solid, soft, outline et ghost."
+ ],
+ "XS, SM, MD e LG.": [
+  "XS, SM, MD and LG.",
+  "XS, SM, MD e LG.",
+  "XS, SM, MD y LG.",
+  "XS, SM, MD et LG."
+ ],
+ "Contador e dot": [
+  "Counter and dot",
+  "Contador e dot",
+  "Contador y dot",
+  "Compteur et dot"
+ ],
+ "Badge numérico, max e indicador.": [
+  "Numeric badge, max and indicator.",
+  "Badge numérico, max e indicador.",
+  "Badge numérico, max e indicador.",
+  "Badge numérique, max et indicateur."
+ ],
+ "Removível e clicável.": [
+  "Removable and clickable.",
+  "Removível e clicável.",
+  "Eliminable y clicable.",
+  "Amovible et cliquable."
+ ],
+ "Cada severidade e cada estilo (solid, soft, outline, ghost).": [
+  "Each severity and each style (solid, soft, outline, ghost).",
+  "Cada severidade e cada estilo (solid, soft, outline, ghost).",
+  "Cada severidad y cada estilo (solid, soft, outline, ghost).",
+  "Chaque sévérité et chaque style (solid, soft, outline, ghost)."
+ ],
+ "Forma e ícones": [
+  "Shape and icons",
+  "Forma e ícones",
+  "Forma e iconos",
+  "Forme et icônes"
+ ],
+ "rounded: false, leftIcon e rightIcon.": [
+  "rounded: false, leftIcon and rightIcon.",
+  "rounded: false, leftIcon e rightIcon.",
+  "rounded: false, leftIcon y rightIcon.",
+  "rounded: false, leftIcon et rightIcon."
+ ],
+ "Pessoas (cartões)": [
+  "People (cards)",
+  "Pessoas (cartões)",
+  "Personas (tarjetas)",
+  "Personnes (cartes)"
+ ],
+ "Pessoas (rolagem infinita)": [
+  "People (infinite scroll)",
+  "Pessoas (scroll infinito)",
+  "Personas (desplazamiento infinito)",
+  "Personnes (défilement infini)"
+ ],
+ "paginator, rows, rowsPerPageOptions e onPage (first, rows, page, pageCount, totalRecords). infiniteScroll: false mantém o paginador também em tela estreita: abaixo de 600 px o padrão viraria cartões com rolagem infinita.": [
+  "paginator, rows, rowsPerPageOptions and onPage (first, rows, page, pageCount, totalRecords). infiniteScroll: false keeps the paginator on narrow screens too: below 600 px the default would turn into cards with infinite scroll.",
+  "paginator, rows, rowsPerPageOptions e onPage (first, rows, page, pageCount, totalRecords). infiniteScroll: false mantém o paginador também em ecrã estreito: abaixo de 600 px o padrão passaria a cartões com scroll infinito.",
+  "paginator, rows, rowsPerPageOptions y onPage (first, rows, page, pageCount, totalRecords). infiniteScroll: false mantiene el paginador también en pantalla estrecha: por debajo de 600 px el valor por defecto pasaría a tarjetas con desplazamiento infinito.",
+  "paginator, rows, rowsPerPageOptions et onPage (first, rows, page, pageCount, totalRecords). infiniteScroll: false garde le paginateur aussi sur écran étroit : sous 600 px, le comportement par défaut passerait en cartes avec défilement infini."
+ ],
+ "Modo cartões (celular)": [
+  "Cards mode (mobile)",
+  "Modo cartões (telemóvel)",
+  "Modo tarjetas (móvil)",
+  "Mode cartes (mobile)"
+ ],
+ "Por padrão (mobileMode omitido) a tabela vira cartões \"coluna: valor\" quando o container tem menos de 600 px; mobileMode: cards força os cartões e scroll força a tabela, em qualquer largura. cardTitle usa a coluna como título do cartão e cardHidden a deixa de fora. Ordenação vira um seletor, os filtros vão para um painel aberto por botão; seleção, ações, rodapé e paginação continuam.": [
+  "By default (mobileMode omitted) the table becomes \"column: value\" cards when the container is under 600 px; mobileMode: cards forces cards and scroll forces the table, at any width. cardTitle uses the column as the card title and cardHidden leaves it out. Sorting becomes a selector, filters go into a panel opened by a button; selection, actions, footer and pagination remain.",
+  "Por omissão (mobileMode omitido) a tabela passa a cartões \"coluna: valor\" quando o contentor tem menos de 600 px; mobileMode: cards força os cartões e scroll força a tabela, em qualquer largura. cardTitle usa a coluna como título do cartão e cardHidden deixa-a de fora. A ordenação passa a um seletor, os filtros vão para um painel aberto por botão; seleção, ações, rodapé e paginação mantêm-se.",
+  "Por defecto (mobileMode omitido) la tabla se convierte en tarjetas \"columna: valor\" cuando el contenedor tiene menos de 600 px; mobileMode: cards fuerza las tarjetas y scroll fuerza la tabla, en cualquier ancho. cardTitle usa la columna como título de la tarjeta y cardHidden la deja fuera. La ordenación pasa a un selector, los filtros van a un panel abierto por botón; selección, acciones, pie y paginación continúan.",
+  "Par défaut (mobileMode omis), le tableau devient des cartes « colonne : valeur » quand le conteneur fait moins de 600 px ; mobileMode: cards force les cartes et scroll force le tableau, à toute largeur. cardTitle utilise la colonne comme titre de la carte et cardHidden l'exclut. Le tri devient un sélecteur, les filtres vont dans un panneau ouvert par un bouton ; sélection, actions, pied de tableau et pagination restent."
+ ],
+ "Rolagem infinita (infiniteScroll)": [
+  "Infinite scroll (infiniteScroll)",
+  "Scroll infinito (infiniteScroll)",
+  "Desplazamiento infinito (infiniteScroll)",
+  "Défilement infini (infiniteScroll)"
+ ],
+ "Sem paginador: ao rolar até perto do fim (toque, roda do mouse ou barra de rolagem) a tabela avança a página (rows) e acrescenta os próximos registros, com indicador de carregando e de fim da lista. Padrão ligado nos cartões e desligado na tabela; exige paginator. Com lazy, quem usa acrescenta a próxima página em value (first/rows/page em onPage/onLoadMore).": [
+  "No paginator: when scrolling near the end (touch, mouse wheel or scroll bar) the table advances the page (rows) and appends the next records, with a loading indicator and an end-of-list indicator. On by default in cards and off in the table; requires paginator. With lazy, the caller appends the next page to value (first/rows/page in onPage/onLoadMore).",
+  "Sem paginador: ao deslocar até perto do fim (toque, roda do rato ou barra de deslocamento) a tabela avança a página (rows) e acrescenta os próximos registos, com indicador de carregamento e de fim da lista. Ligado por omissão nos cartões e desligado na tabela; requer paginator. Com lazy, quem usa acrescenta a página seguinte em value (first/rows/page em onPage/onLoadMore).",
+  "Sin paginador: al desplazarse cerca del final (toque, rueda del ratón o barra de desplazamiento) la tabla avanza la página (rows) y añade los siguientes registros, con indicador de carga y de fin de lista. Activado por defecto en las tarjetas y desactivado en la tabla; requiere paginator. Con lazy, quien lo usa añade la página siguiente en value (first/rows/page en onPage/onLoadMore).",
+  "Sans paginateur : en faisant défiler près de la fin (toucher, molette ou barre de défilement) le tableau avance la page (rows) et ajoute les enregistrements suivants, avec un indicateur de chargement et de fin de liste. Activé par défaut dans les cartes et désactivé dans le tableau ; nécessite paginator. Avec lazy, l'appelant ajoute la page suivante dans value (first/rows/page dans onPage/onLoadMore)."
+ ],
+ "Tabela de dados com colunas configuráveis, paginação, ordenação, filtros, seleção, carga sob demanda, layout de colunas persistente e modo cartões para celular (mobileMode).": [
+  "Data table with configurable columns, pagination, sorting, filters, selection, on-demand loading, persistent column layout and a cards mode for mobile (mobileMode).",
+  "Tabela de dados com colunas configuráveis, paginação, ordenação, filtros, seleção, carga a pedido, layout de colunas persistente e modo cartões para telemóvel (mobileMode).",
+  "Tabla de datos con columnas configurables, paginación, ordenación, filtros, selección, carga bajo demanda, diseño de columnas persistente y modo tarjetas para móvil (mobileMode).",
+  "Tableau de données avec colonnes configurables, pagination, tri, filtres, sélection, chargement à la demande, disposition des colonnes persistante et mode cartes pour mobile (mobileMode)."
+ ],
+ "Próximo (+1)": [
+  "Next (+1)",
+  "Seguinte (+1)",
+  "Siguiente (+1)",
+  "Suivant (+1)"
+ ],
+ "Anterior (-1)": [
+  "Previous (-1)",
+  "Anterior (-1)",
+  "Anterior (-1)",
+  "Précédent (-1)"
+ ],
+ "Básico (0-9)": [
+  "Basic (0-9)",
+  "Básico (0-9)",
+  "Básico (0-9)",
+  "De base (0-9)"
+ ],
+ "Incremento, decremento e valor aleatório.": [
+  "Increment, decrement and random value.",
+  "Incremento, decremento e valor aleatório.",
+  "Incremento, decremento y valor aleatorio.",
+  "Incrément, décrément et valeur aléatoire."
+ ],
+ "Letras (A-Z)": [
+  "Letters (A-Z)",
+  "Letras (A-Z)",
+  "Letras (A-Z)",
+  "Lettres (A-Z)"
+ ],
+ "Também aceita caracteres alfabéticos.": [
+  "Also accepts alphabetic characters.",
+  "Também aceita caracteres alfabéticos.",
+  "También acepta caracteres alfabéticos.",
+  "Accepte aussi les caractères alphabétiques."
+ ],
+ "Variações de tamanho": [
+  "Size variations",
+  "Variações de tamanho",
+  "Variaciones de tamaño",
+  "Variations de taille"
+ ],
+ "Ajuste de fontSize (a largura e a altura seguem dele).": [
+  "fontSize adjustment (width and height follow it).",
+  "Ajuste de fontSize (a largura e a altura seguem-no).",
+  "Ajuste de fontSize (el ancho y el alto lo siguen).",
+  "Réglage de fontSize (la largeur et la hauteur le suivent)."
+ ],
+ "Sequência estilo relógio": [
+  "Clock-style sequence",
+  "Sequência estilo relógio",
+  "Secuencia estilo reloj",
+  "Séquence style horloge"
+ ],
+ "Dígitos lado a lado com separador.": [
+  "Digits side by side with a separator.",
+  "Dígitos lado a lado com separador.",
+  "Dígitos lado a lado con separador.",
+  "Chiffres côte à côte avec séparateur."
+ ],
+ "Auto increment": [
+  "Auto increment",
+  "Auto increment",
+  "Auto increment",
+  "Auto increment"
+ ],
+ "Troca automática a cada 1,3 s.": [
+  "Automatic change every 1.3 s.",
+  "Troca automática a cada 1,3 s.",
+  "Cambio automático cada 1,3 s.",
+  "Changement automatique toutes les 1,3 s."
+ ],
+ "Trocar texto": [
+  "Change text",
+  "Trocar texto",
+  "Cambiar texto",
+  "Changer le texte"
+ ],
+ "Controle simples de dígito em estilo neon.": [
+  "Simple digit control in neon style.",
+  "Controlo simples de dígito em estilo neon.",
+  "Control simple de dígito en estilo neón.",
+  "Contrôle simple de chiffre en style néon."
+ ],
+ "Texto em neon": [
+  "Neon text",
+  "Texto em neon",
+  "Texto en neón",
+  "Texte néon"
+ ],
+ "Troca de palavras com o mesmo componente.": [
+  "Word swapping with the same component.",
+  "Troca de palavras com o mesmo componente.",
+  "Cambio de palabras con el mismo componente.",
+  "Changement de mots avec le même composant."
+ ],
+ "Neon script (referência visual)": [
+  "Neon script (visual reference)",
+  "Neon script (referência visual)",
+  "Neon script (referencia visual)",
+  "Neon script (référence visuelle)"
+ ],
+ "Visual inspirado nas imagens azul e laranja.": [
+  "Look inspired by the blue and orange images.",
+  "Visual inspirado nas imagens azul e laranja.",
+  "Aspecto inspirado en las imágenes azul y naranja.",
+  "Visuel inspiré des images bleue et orange."
+ ],
+ "Variações de color/background/shadow": [
+  "Variations of color/background/shadow",
+  "Variações de color/background/shadow",
+  "Variaciones de color/background/shadow",
+  "Variations de color/background/shadow"
+ ],
+ "Mesmo texto com paletas diferentes.": [
+  "Same text with different palettes.",
+  "Mesmo texto com paletas diferentes.",
+  "Mismo texto con paletas diferentes.",
+  "Même texte avec des palettes différentes."
+ ],
+ "Escala e leitura": [
+  "Scale and readability",
+  "Escala e leitura",
+  "Escala y lectura",
+  "Échelle et lisibilité"
+ ],
+ "fontSize e padding combinados.": [
+  "fontSize and padding combined.",
+  "fontSize e padding combinados.",
+  "fontSize y padding combinados.",
+  "fontSize et padding combinés."
+ ],
+ "+1 segundo": [
+  "+1 second",
+  "+1 segundo",
+  "+1 segundo",
+  "+1 seconde"
+ ],
+ "Branco": [
+  "White",
+  "Branco",
+  "Blanco",
+  "Blanc"
+ ],
+ "Troca manual de dígitos com controles.": [
+  "Manual digit change with controls.",
+  "Troca manual de dígitos com controlos.",
+  "Cambio manual de dígitos con controles.",
+  "Changement manuel des chiffres avec des contrôles."
+ ],
+ "Composição estilo relógio": [
+  "Clock-style composition",
+  "Composição estilo relógio",
+  "Composición estilo reloj",
+  "Composition style horloge"
+ ],
+ "Composição HH:MM:SS com separador ':' usando o próprio componente.": [
+  "HH:MM:SS composition with ':' separator using the component itself.",
+  "Composição HH:MM:SS com separador ':' usando o próprio componente.",
+  "Composición HH:MM:SS con separador ':' usando el propio componente.",
+  "Composition HH:MM:SS avec séparateur ':' en utilisant le composant lui-même."
+ ],
+ "Escala visual ajustando apenas a prop size.": [
+  "Visual scale adjusting only the size prop.",
+  "Escala visual ajustando apenas a prop size.",
+  "Escala visual ajustando solo la prop size.",
+  "Échelle visuelle en ajustant uniquement la prop size."
+ ],
+ "Exemplos de color por dígito.": [
+  "Per-digit color examples.",
+  "Exemplos de color por dígito.",
+  "Ejemplos de color por dígito.",
+  "Exemples de color par chiffre."
+ ]
+}

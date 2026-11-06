@@ -15,14 +15,22 @@ class SgCheckboxGroupPage extends StatefulWidget {
 }
 
 class _SgCheckboxGroupPageState extends State<SgCheckboxGroupPage> {
-  List<Object> _escolhidas = const [];
+  List<Object> _basico = const ['option1'];
+  List<Object> _horizontal = const [];
+  List<Object> _controlada = const ['option2'];
+  List<Object> _externo = const ['banana'];
+  List<Object> _highlight = const ['reserve'];
+  String _saida = '';
+  String _enviadoObrigatorio = '';
+  String _enviadoRegister = '';
   final SgCheckboxGroupController _controller = SgCheckboxGroupController();
-  final SgFormController _form = SgFormController();
-  String _enviado = '';
+  final SgFormController _formObrigatorio = SgFormController();
+  final SgFormController _formRegister = SgFormController();
 
   @override
   void dispose() {
-    _form.dispose();
+    _formObrigatorio.dispose();
+    _formRegister.dispose();
     super.dispose();
   }
 
@@ -31,207 +39,676 @@ class _SgCheckboxGroupPageState extends State<SgCheckboxGroupPage> {
     final examples = <ShowcaseExample>[
       ShowcaseExample(
         title: 'Básico',
-        description:
-            'Seleção múltipla; opções com checked começam marcadas e onChange entrega a lista.',
         preview:
             // #region sg-checkbox-group-basico
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SgCheckboxGroup(
-                  id: 'frutas',
-                  title: context.tx('Frutas'),
+                  id: 'basic',
+                  title: context.tx('Escolha as opções'),
+                  value: _basico,
+                  onChange: (v) => setState(() => _basico = v),
                   source: [
                     SgCheckboxGroupOption(
-                      label: context.tx('Maçã'),
-                      value: 'maca',
-                      checked: true,
+                      label: context.tx('Opção 1'),
+                      value: 'option1',
                     ),
                     SgCheckboxGroupOption(
-                      label: context.tx('Banana'),
-                      value: 'banana',
+                      label: context.tx('Opção 2'),
+                      value: 'option2',
                     ),
                     SgCheckboxGroupOption(
-                      label: context.tx('Cereja'),
-                      value: 'cereja',
-                      disabled: true,
+                      label: context.tx('Opção 3'),
+                      value: 'option3',
                     ),
                   ],
-                  onChange: (v) => setState(() => _escolhidas = v),
                 ),
-                Text('Escolhidas: ${_escolhidas.join(', ')}'),
+                const SizedBox(height: 8),
+                Text(
+                  '${context.tx('Valores selecionados')}: [${_basico.join(', ')}]',
+                ),
               ],
             ),
         // #endregion
         code: SgCheckboxGroupPageSnippets.sgCheckboxGroupBasico,
       ),
       ShowcaseExample(
-        title: 'Horizontal e highlight',
-        description:
-            'orientation horizontal quebra a linha; selectionStyle highlight troca a caixa por um cartão.',
+        title: 'Orientação Horizontal',
         preview:
-            // #region sg-checkbox-group-estilos
+            // #region sg-checkbox-group-orientacao-horizontal
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SgCheckboxGroup(
                   id: 'horizontal',
-                  title: context.tx('Horizontal'),
+                  title: context.tx('Selecione frutas'),
                   orientation: SgCheckboxGroupOrientation.horizontal,
-                  source: [
-                    SgCheckboxGroupOption(label: context.tx('Um'), value: 1),
-                    SgCheckboxGroupOption(
-                      label: context.tx('Dois'),
-                      value: 2,
-                      checked: true,
-                    ),
-                    SgCheckboxGroupOption(label: context.tx('Três'), value: 3),
-                  ],
-                ),
-                SizedBox(height: 16),
-                SgCheckboxGroup(
-                  id: 'highlight',
-                  title: context.tx('Highlight'),
-                  selectionStyle: SgCheckboxGroupSelectionStyle.highlight,
+                  value: _horizontal,
+                  onChange: (v) => setState(() => _horizontal = v),
                   source: [
                     SgCheckboxGroupOption(
-                      label: context.tx('Lista'),
-                      value: 'lista',
-                      checked: true,
-                      icon: Icon(Icons.list, size: 16),
+                      label: context.tx('Maçã'),
+                      value: 'apple',
                     ),
                     SgCheckboxGroupOption(
-                      label: context.tx('Grade'),
-                      value: 'grade',
-                      icon: Icon(Icons.grid_view, size: 16),
+                      label: context.tx('Banana'),
+                      value: 'banana',
                     ),
-                  ],
-                ),
-              ],
-            ),
-        // #endregion
-        code: SgCheckboxGroupPageSnippets.sgCheckboxGroupEstilos,
-      ),
-      ShowcaseExample(
-        title: 'Selecionar todos',
-        description:
-            'showCheckAll marca só as opções habilitadas e mostra o estado indeterminado.',
-        preview:
-            // #region sg-checkbox-group-todos
-            SgCheckboxGroup(
-              id: 'todos',
-              title: context.tx('Permissões'),
-              showCheckAll: true,
-              source: [
-                SgCheckboxGroupOption(
-                  label: context.tx('Ler'),
-                  value: 'r',
-                  checked: true,
-                ),
-                SgCheckboxGroupOption(
-                  label: context.tx('Escrever'),
-                  value: 'w',
-                ),
-                SgCheckboxGroupOption(
-                  label: context.tx('Apagar'),
-                  value: 'd',
-                  disabled: true,
-                ),
-              ],
-            ),
-        // #endregion
-        code: SgCheckboxGroupPageSnippets.sgCheckboxGroupTodos,
-      ),
-      ShowcaseExample(
-        title: 'Controle por código',
-        description:
-            'O SgCheckboxGroupController substitui o ref do React (getChecked, setChecked, checkAll, clearAll).',
-        preview:
-            // #region sg-checkbox-group-controller
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SgCheckboxGroup(
-                  id: 'ctrl',
-                  controller: _controller,
-                  source: const [
-                    SgCheckboxGroupOption(label: 'A', value: 'a'),
-                    SgCheckboxGroupOption(label: 'B', value: 'b'),
-                    SgCheckboxGroupOption(label: 'C', value: 'c'),
+                    SgCheckboxGroupOption(
+                      label: context.tx('Laranja'),
+                      value: 'orange',
+                    ),
+                    SgCheckboxGroupOption(
+                      label: context.tx('Uva'),
+                      value: 'grape',
+                    ),
                   ],
                 ),
                 const SizedBox(height: 8),
-                Wrap(
-                  spacing: 8,
-                  runSpacing: 8,
-                  children: [
-                    SgButton(
-                      label: Text(context.tx('Marcar todos')),
-                      size: SgSize.sm,
-                      onClick: _controller.checkAll,
-                    ),
-                    SgButton(
-                      label: Text(context.tx('Limpar')),
-                      size: SgSize.sm,
-                      appearance: SgAppearance.outline,
-                      onClick: _controller.clearAll,
-                    ),
-                    SgButton(
-                      label: Text(context.tx('Só B')),
-                      size: SgSize.sm,
-                      appearance: SgAppearance.outline,
-                      onClick: () => _controller.setChecked(['b']),
-                    ),
-                  ],
+                Text(
+                  '${context.tx('Valores selecionados')}: [${_horizontal.join(', ')}]',
                 ),
               ],
             ),
         // #endregion
-        code: SgCheckboxGroupPageSnippets.sgCheckboxGroupController,
+        code: SgCheckboxGroupPageSnippets.sgCheckboxGroupOrientacaoHorizontal,
       ),
       ShowcaseExample(
-        title: 'Dentro de um formulário',
-        description:
-            'name + control; required usa a mensagem do i18n e revalida a cada mudança depois do envio.',
+        title: 'Com Ícones',
         preview:
-            // #region sg-checkbox-group-formulario
+            // #region sg-checkbox-group-com-icones
+            SgCheckboxGroup(
+              id: 'with-icons',
+              title: context.tx('Escolha ações'),
+              source: [
+                SgCheckboxGroupOption(
+                  label: context.tx('Favorito'),
+                  value: 'favorite',
+                  icon: Icon(Icons.favorite, size: 16),
+                ),
+                SgCheckboxGroupOption(
+                  label: context.tx('Importante'),
+                  value: 'important',
+                  icon: Icon(Icons.star, size: 16),
+                ),
+                SgCheckboxGroupOption(
+                  label: context.tx('Curtir'),
+                  value: 'like',
+                  icon: Icon(Icons.thumb_up, size: 16),
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgCheckboxGroupPageSnippets.sgCheckboxGroupComIcones,
+      ),
+      ShowcaseExample(
+        title: 'Apenas Ícones (Icon Only)',
+        preview:
+            // #region sg-checkbox-group-apenas-icones
+            SgCheckboxGroup(
+              id: 'icon-only',
+              title: context.tx('Escolha formas'),
+              iconOnly: true,
+              source: [
+                SgCheckboxGroupOption(
+                  label: context.tx('Círculo'),
+                  value: 'circle',
+                  icon: Icon(Icons.circle, size: 20),
+                ),
+                SgCheckboxGroupOption(
+                  label: context.tx('Quadrado'),
+                  value: 'square',
+                  icon: Icon(Icons.square, size: 20),
+                ),
+                SgCheckboxGroupOption(
+                  label: context.tx('Triângulo'),
+                  value: 'triangle',
+                  icon: Icon(Icons.change_history, size: 20),
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgCheckboxGroupPageSnippets.sgCheckboxGroupApenasIcones,
+      ),
+      ShowcaseExample(
+        title: 'Seleção Controlada',
+        preview:
+            // #region sg-checkbox-group-selecao-controlada
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SgCheckboxGroup(
-                  id: 'interesses',
-                  name: 'interesses',
-                  control: _form,
-                  title: context.tx('Interesses'),
+                  id: 'controlled-selection',
+                  title: context.tx('Seleção controlada'),
+                  value: _controlada,
+                  onChange: (v) => setState(() => _controlada = v),
+                  source: [
+                    SgCheckboxGroupOption(
+                      label: context.tx('Opção 1'),
+                      value: 'option1',
+                    ),
+                    SgCheckboxGroupOption(
+                      label: context.tx('Opção 2'),
+                      value: 'option2',
+                    ),
+                    SgCheckboxGroupOption(
+                      label: context.tx('Opção 3'),
+                      value: 'option3',
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 8),
+                Text('${context.tx('Valor')}: [${_controlada.join(', ')}]'),
+              ],
+            ),
+        // #endregion
+        code: SgCheckboxGroupPageSnippets.sgCheckboxGroupSelecaoControlada,
+      ),
+      ShowcaseExample(
+        title: 'Controle Externo (setValue/getValue)',
+        preview:
+            // #region sg-checkbox-group-controle-externo
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SgCheckboxGroup(
+                  id: 'external-control',
+                  title: context.tx('Frutas favoritas'),
+                  value: _externo,
+                  onChange: (v) => setState(() => _externo = v),
+                  source: [
+                    SgCheckboxGroupOption(
+                      label: context.tx('Maçã'),
+                      value: 'apple',
+                    ),
+                    SgCheckboxGroupOption(
+                      label: context.tx('Banana'),
+                      value: 'banana',
+                    ),
+                    SgCheckboxGroupOption(
+                      label: context.tx('Laranja'),
+                      value: 'orange',
+                    ),
+                    SgCheckboxGroupOption(
+                      label: context.tx('Uva'),
+                      value: 'grape',
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 16),
+                SgGrid(
+                  columns: {'base': 2, 'md': 4},
+                  gap: 8,
+                  children: [
+                    SgButton(
+                      label: Text(context.tx('Definir Maçã')),
+                      onClick: () => setState(() => _externo = ['apple']),
+                    ),
+                    SgButton(
+                      label: Text(context.tx('Banana + Uva')),
+                      onClick: () => setState(() => _externo = ['banana', 'grape']),
+                    ),
+                    SgButton(
+                      label: Text(context.tx('Selecionar Todos')),
+                      onClick: () => setState(() => _externo = ['apple', 'banana', 'orange', 'grape']),
+                    ),
+                    SgButton(
+                      label: Text(context.tx('Limpar')),
+                      onClick: () => setState(() => _externo = []),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 16),
+                Text(
+                  '${context.tx('Valor atual')}: [${_externo.join(', ')}]',
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgCheckboxGroupPageSnippets.sgCheckboxGroupControleExterno,
+      ),
+      ShowcaseExample(
+        title: 'Com Opção Desabilitada',
+        preview:
+            // #region sg-checkbox-group-com-opcao-desabilitada
+            SgCheckboxGroup(
+              id: 'with-disabled-option',
+              title: context.tx('Nível de prioridade'),
+              source: [
+                SgCheckboxGroupOption(
+                  label: context.tx('Baixa'),
+                  value: 'low',
+                ),
+                SgCheckboxGroupOption(
+                  label: context.tx('Média'),
+                  value: 'medium',
+                ),
+                SgCheckboxGroupOption(
+                  label: context.tx('Alta'),
+                  value: 'high',
+                ),
+                SgCheckboxGroupOption(
+                  label: context.tx('Urgente'),
+                  value: 'urgent',
+                  enabled: false,
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgCheckboxGroupPageSnippets.sgCheckboxGroupComOpcaoDesabilitada,
+      ),
+      ShowcaseExample(
+        title: 'Grupo Desabilitado',
+        preview:
+            // #region sg-checkbox-group-grupo-desabilitado
+            SgCheckboxGroup(
+              id: 'disabled-group',
+              title: context.tx('Opções desabilitadas'),
+              value: const ['option2'],
+              enabled: false,
+              source: [
+                SgCheckboxGroupOption(
+                  label: context.tx('Opção 1'),
+                  value: 'option1',
+                ),
+                SgCheckboxGroupOption(
+                  label: context.tx('Opção 2'),
+                  value: 'option2',
+                ),
+                SgCheckboxGroupOption(
+                  label: context.tx('Opção 3'),
+                  value: 'option3',
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgCheckboxGroupPageSnippets.sgCheckboxGroupGrupoDesabilitado,
+      ),
+      ShowcaseExample(
+        title: 'Somente Leitura',
+        preview:
+            // #region sg-checkbox-group-somente-leitura
+            SgCheckboxGroup(
+              id: 'readonly',
+              title: context.tx('Configuração atual (somente leitura)'),
+              value: const ['banana', 'grape'],
+              readOnly: true,
+              source: [
+                SgCheckboxGroupOption(
+                  label: context.tx('Maçã'),
+                  value: 'apple',
+                ),
+                SgCheckboxGroupOption(
+                  label: context.tx('Banana'),
+                  value: 'banana',
+                ),
+                SgCheckboxGroupOption(
+                  label: context.tx('Laranja'),
+                  value: 'orange',
+                ),
+                SgCheckboxGroupOption(
+                  label: context.tx('Uva'),
+                  value: 'grape',
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgCheckboxGroupPageSnippets.sgCheckboxGroupSomenteLeitura,
+      ),
+      ShowcaseExample(
+        title: 'Obrigatório com Validação',
+        description:
+            'name + control; required usa a mensagem do i18n e revalida a cada mudança depois do envio.',
+        preview:
+            // #region sg-checkbox-group-obrigatorio-com-validacao
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SgCheckboxGroup(
+                  id: 'preference',
+                  title: context.tx('Preferência de contato *'),
+                  name: 'preference',
+                  control: _formObrigatorio,
                   required: true,
                   source: [
                     SgCheckboxGroupOption(
-                      label: context.tx('Esportes'),
-                      value: 'esportes',
+                      label: context.tx('Email'),
+                      value: 'email',
+                      icon: Icon(Icons.mail, size: 16),
                     ),
                     SgCheckboxGroupOption(
-                      label: context.tx('Música'),
-                      value: 'musica',
+                      label: context.tx('Telefone'),
+                      value: 'phone',
+                      icon: Icon(Icons.phone, size: 16),
                     ),
                     SgCheckboxGroupOption(
-                      label: context.tx('Leitura'),
-                      value: 'leitura',
+                      label: context.tx('Presencial'),
+                      value: 'in-person',
+                      icon: Icon(Icons.home, size: 16),
                     ),
                   ],
                 ),
                 const SizedBox(height: 12),
                 SgButton(
                   label: Text(context.tx('Enviar')),
-                  onClick: () => _form.handleSubmit(
-                    (values) =>
-                        setState(() => _enviado = '${values['interesses']}'),
+                  onClick: () => _formObrigatorio.handleSubmit(
+                    (values) => setState(() => _enviadoObrigatorio = '${values['preference']}'),
                   ),
                 ),
-                if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),
+                if (_enviadoObrigatorio.isNotEmpty)
+                  Text('${context.tx('Dados do formulário')}: $_enviadoObrigatorio'),
               ],
             ),
         // #endregion
-        code: SgCheckboxGroupPageSnippets.sgCheckboxGroupFormulario,
+        code: SgCheckboxGroupPageSnippets.sgCheckboxGroupObrigatorioComValidacao,
+      ),
+      ShowcaseExample(
+        title: 'Horizontal com Ícones Coloridos',
+        preview:
+            // #region sg-checkbox-group-horizontal-com-icones-coloridos
+            SgCheckboxGroup(
+              id: 'horizontal-colored',
+              title: context.tx('Condições climáticas'),
+              orientation: SgCheckboxGroupOrientation.horizontal,
+              source: [
+                SgCheckboxGroupOption(
+                  label: context.tx('Sol'),
+                  value: 'sun',
+                  icon: Icon(Icons.wb_sunny, size: 20, color: Colors.amber),
+                ),
+                SgCheckboxGroupOption(
+                  label: context.tx('Lua'),
+                  value: 'moon',
+                  icon: Icon(Icons.nightlight_round, size: 20, color: Colors.blue),
+                ),
+                SgCheckboxGroupOption(
+                  label: context.tx('Nuvem'),
+                  value: 'cloud',
+                  icon: Icon(Icons.cloud, size: 20, color: Colors.grey),
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgCheckboxGroupPageSnippets.sgCheckboxGroupHorizontalComIconesColoridos,
+      ),
+      ShowcaseExample(
+        title: 'Estilo de Seleção Highlight (Lista)',
+        preview:
+            // #region sg-checkbox-group-estilo-selecao-highlight
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 320),
+                  child:
+                    SgCheckboxGroup(
+                      id: 'highlight-list',
+                      title: context.tx('Opções'),
+                      selectionStyle: SgCheckboxGroupSelectionStyle.highlight,
+                      value: _highlight,
+                      onChange: (v) => setState(() => _highlight = v),
+                      source: [
+                        SgCheckboxGroupOption(
+                          label: context.tx('Reserva'),
+                          value: 'reserve',
+                          icon: Icon(Icons.account_balance, size: 16, color: Colors.indigo),
+                        ),
+                        SgCheckboxGroupOption(
+                          label: context.tx('Alerta'),
+                          value: 'alert',
+                          icon: Icon(Icons.notifications, size: 16, color: Colors.pink),
+                        ),
+                        SgCheckboxGroupOption(
+                          label: context.tx('Atualizar'),
+                          value: 'refresh',
+                          icon: Icon(Icons.refresh, size: 16, color: Colors.green),
+                        ),
+                      ],
+                    ),
+                ),
+
+                const SizedBox(height: 8),
+                Text('${context.tx('Valor')}: [${_highlight.join(', ')}]'),
+              ],
+            ),
+        // #endregion
+        code: SgCheckboxGroupPageSnippets.sgCheckboxGroupEstiloSelecaoHighlight,
+      ),
+      ShowcaseExample(
+        title: 'Com GroupBox Customizado',
+        preview:
+            // #region sg-checkbox-group-com-groupbox-customizado
+            SgCheckboxGroup(
+              id: 'custom-groupbox',
+              title: context.tx('Escolha com estilo customizado'),
+              groupBoxProps: SgChoiceGroupBoxProps(title: context.tx('Preferências')),
+              source: [
+                SgCheckboxGroupOption(
+                  label: context.tx('Favorito'),
+                  value: 'favorite',
+                  icon: Icon(Icons.favorite, size: 16),
+                ),
+                SgCheckboxGroupOption(
+                  label: context.tx('Importante'),
+                  value: 'important',
+                  icon: Icon(Icons.star, size: 16),
+                ),
+                SgCheckboxGroupOption(
+                  label: context.tx('Curtir'),
+                  value: 'like',
+                  icon: Icon(Icons.thumb_up, size: 16),
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgCheckboxGroupPageSnippets.sgCheckboxGroupComGroupboxCustomizado,
+      ),
+      ShowcaseExample(
+        title: 'Formulário - Register',
+        preview:
+            // #region sg-checkbox-group-formulario-register
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SgCheckboxGroup(
+                  id: 'fruits',
+                  title: context.tx('Escolha suas frutas'),
+                  name: 'fruits',
+                  control: _formRegister,
+                  source: [
+                    SgCheckboxGroupOption(
+                      label: context.tx('Maçã'),
+                      value: 'apple',
+                    ),
+                    SgCheckboxGroupOption(
+                      label: context.tx('Banana'),
+                      value: 'banana',
+                    ),
+                    SgCheckboxGroupOption(
+                      label: context.tx('Laranja'),
+                      value: 'orange',
+                    ),
+                    SgCheckboxGroupOption(
+                      label: context.tx('Uva'),
+                      value: 'grape',
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 12),
+                SgButton(
+                  label: Text(context.tx('Enviar')),
+                  onClick: () => _formRegister.handleSubmit(
+                    (values) => setState(() => _enviadoRegister = '${values['fruits']}'),
+                  ),
+                ),
+                if (_enviadoRegister.isNotEmpty)
+                  Text('${context.tx('Dados do formulário')}: $_enviadoRegister'),
+              ],
+            ),
+        // #endregion
+        code: SgCheckboxGroupPageSnippets.sgCheckboxGroupFormularioRegister,
+      ),
+      ShowcaseExample(
+        title: 'Marcar Todos (showCheckAll)',
+        description:
+            "Checkbox 'Selecionar todos' separado por divisor, com estado indeterminado quando parcialmente selecionado",
+        preview:
+            // #region sg-checkbox-group-marcar-todos
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(context.tx('Sem label customizado (usa i18n)')),
+                const SizedBox(height: 8),
+                SgCheckboxGroup(
+                  id: 'check-all',
+                  title: context.tx('Exemplo de marcar todos'),
+                  showCheckAll: true,
+                  source: [
+                    SgCheckboxGroupOption(
+                      label: context.tx('Opção 1'),
+                      value: 'option1',
+                    ),
+                    SgCheckboxGroupOption(
+                      label: context.tx('Opção 2'),
+                      value: 'option2',
+                    ),
+                    SgCheckboxGroupOption(
+                      label: context.tx('Opção 3'),
+                      value: 'option3',
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 24),
+                Text(context.tx('Com checkAllLabel e checkAllIcon')),
+                const SizedBox(height: 8),
+                SgCheckboxGroup(
+                  id: 'check-all-custom',
+                  title: context.tx('Com label + ícone customizados'),
+                  showCheckAll: true,
+                  checkAllLabel: context.tx('Marcar tudo'),
+                  checkAllIcon: Icon(Icons.star, size: 16, color: Colors.amber),
+                  source: [
+                    SgCheckboxGroupOption(
+                      label: context.tx('Opção 1'),
+                      value: 'option1',
+                    ),
+                    SgCheckboxGroupOption(
+                      label: context.tx('Opção 2'),
+                      value: 'option2',
+                    ),
+                    SgCheckboxGroupOption(
+                      label: context.tx('Opção 3'),
+                      value: 'option3',
+                    ),
+                  ],
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgCheckboxGroupPageSnippets.sgCheckboxGroupMarcarTodos,
+      ),
+      ShowcaseExample(
+        title: 'Checked inicial no source',
+        description:
+            'Estado inicial definido diretamente na prop checked de cada opção (modo não controlado)',
+        preview:
+            // #region sg-checkbox-group-checked-inicial
+            SgCheckboxGroup(
+              id: 'source-checked',
+              title: context.tx('Frutas favoritas (inicial pelo source)'),
+              source: [
+                SgCheckboxGroupOption(
+                  label: context.tx('Maçã'),
+                  value: 'apple',
+                ),
+                SgCheckboxGroupOption(
+                  label: context.tx('Banana'),
+                  value: 'banana',
+                  checked: true,
+                ),
+                SgCheckboxGroupOption(
+                  label: context.tx('Laranja'),
+                  value: 'orange',
+                ),
+                SgCheckboxGroupOption(
+                  label: context.tx('Uva'),
+                  value: 'grape',
+                  checked: true,
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgCheckboxGroupPageSnippets.sgCheckboxGroupCheckedInicial,
+      ),
+      ShowcaseExample(
+        title: 'Controller imperativo (getChecked / checkAll / clearAll)',
+        description:
+            'Acesso imperativo via SgCheckboxGroupController: getChecked, checkAll, clearAll, setChecked',
+        preview:
+            // #region sg-checkbox-group-controller-imperativo
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SgCheckboxGroup(
+                  id: 'ref-example',
+                  title: context.tx('Selecione as opções'),
+                  controller: _controller,
+                  showCheckAll: true,
+                  source: [
+                    SgCheckboxGroupOption(
+                      label: context.tx('Opção 1'),
+                      value: 'option1',
+                    ),
+                    SgCheckboxGroupOption(
+                      label: context.tx('Opção 2'),
+                      value: 'option2',
+                    ),
+                    SgCheckboxGroupOption(
+                      label: context.tx('Opção 3'),
+                      value: 'option3',
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 8),
+                SgGrid(
+                  columns: {'base': 2, 'md': 4},
+                  gap: 8,
+                  children: [
+                    SgButton(
+                      label: Text('getChecked()'),
+                      onClick: () => setState(() {
+                        _saida = _controller.getChecked().toString();
+                      }),
+                    ),
+                    SgButton(
+                      label: Text('checkAll()'),
+                      onClick: () => setState(() {
+                        _controller.checkAll();
+                        _saida = 'checkAll()';
+                      }),
+                    ),
+                    SgButton(
+                      label: Text('clearAll()'),
+                      onClick: () => setState(() {
+                        _controller.clearAll();
+                        _saida = 'clearAll()';
+                      }),
+                    ),
+                    SgButton(
+                      label: Text('setChecked'),
+                      onClick: () => setState(() {
+                        _controller.setChecked(['option2']);
+                        _saida = "setChecked(['option2'])";
+                      }),
+                    ),
+                  ],
+                ),
+                if (_saida.isNotEmpty) Text('${context.tx('Saída')}: $_saida'),
+              ],
+            ),
+        // #endregion
+        code: SgCheckboxGroupPageSnippets.sgCheckboxGroupControllerImperativo,
       ),
     ];
 
@@ -259,7 +736,7 @@ class _SgCheckboxGroupPageState extends State<SgCheckboxGroupPage> {
                 'orientation',
                 'selectionStyle',
                 'iconOnly',
-                'disabled',
+                'enabled',
                 'readOnly',
                 'required',
                 'showCheckAll',
@@ -281,7 +758,7 @@ class _SgCheckboxGroupPageState extends State<SgCheckboxGroupPage> {
               ) ??
               SgCheckboxGroupSelectionStyle.checkbox,
           iconOnly: (v['iconOnly'] as bool?) ?? false,
-          disabled: (v['disabled'] as bool?) ?? false,
+          enabled: (v['enabled'] as bool?) ?? true,
           readOnly: (v['readOnly'] as bool?) ?? false,
           required: (v['required'] as bool?) ?? false,
           showCheckAll: (v['showCheckAll'] as bool?) ?? false,

@@ -1,0 +1,11 @@
+{
+"000.000.000-00": ["000.000.000-00","000.000.000-00","000.000.000-00","000.000.000-00"],
+"CPF obrigatório": ["Required CPF","CPF obrigatorio","CPF obligatorio","CPF obligatoire"],
+"Informe o CPF.": ["Please enter the CPF.","Informe o CPF.","Informe el CPF.","Veuillez saisir le CPF."],
+"CPF deve ter 11 dígitos.": ["CPF must have 11 digits.","CPF deve ter 11 digitos.","El CPF debe tener 11 digitos.","Le CPF doit avoir 11 chiffres."],
+"CPF inválido.": ["Invalid CPF.","CPF invalido.","CPF invalido.","CPF invalide."],
+"CPF não pode iniciar com 123.": ["CPF cannot start with 123.","CPF nao pode iniciar com 123.","El CPF no puede comenzar con 123.","Le CPF ne peut pas commencer par 123."],
+"CPF com label e hint.": ["CPF with label and hint.","CPF com label e hint.","CPF con label y hint.","CPF avec libelle et indice."],
+"Personaliza mensagem quando CPF não tem 11 dígitos.": ["Custom message when CPF does not have 11 digits.","Personaliza mensagem quando CPF nao tem 11 digitos.","Mensaje personalizado cuando el CPF no tiene 11 digitos.","Message personnalise quand le CPF n'a pas 11 chiffres."],
+"Personaliza mensagem de CPF inválido.": ["Custom invalid CPF message.","Personaliza mensagem de CPF invalido.","Mensaje personalizado de CPF invalido.","Message de CPF invalide personnalise."]
+}

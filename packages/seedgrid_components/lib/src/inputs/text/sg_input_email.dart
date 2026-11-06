@@ -23,7 +23,7 @@ class SgInputEmail extends StatefulWidget implements SgInputEmailProps {
     this.clearButton,
     this.control,
     this.elevation,
-    this.disabled,
+    this.enabled,
     this.error,
     this.filled,
     this.hintText,
@@ -90,7 +90,9 @@ class SgInputEmail extends StatefulWidget implements SgInputEmailProps {
   @override
   final SgInputEmailElevation? elevation;
   @override
-  final bool? disabled;
+  final bool? enabled;
+
+  bool get _disabled => !(enabled ?? true);
   @override
   final String? error;
   @override
@@ -281,7 +283,7 @@ class _SgInputEmailState extends State<SgInputEmail> {
       clearButton: w.clearButton,
       control: w.control,
       elevation: SgInputTextElevation.fromValue(w.elevation?.value),
-      disabled: w.disabled,
+      enabled: !(w._disabled),
       error: w.error ?? _internalError,
       filled: w.filled,
       hintText: w.hintText,

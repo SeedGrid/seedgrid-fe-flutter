@@ -13,7 +13,7 @@ List<SgCheckboxGroupOption> _cbOptions(ScenarioState s) => [
       label: (raw as Map)['label'] as String,
       value: raw['value'] as Object,
       checked: raw['checked'] as bool?,
-      disabled: raw['disabled'] as bool?,
+      enabled: raw['enabled'] as bool?,
     ),
 ];
 
@@ -26,7 +26,7 @@ class CheckboxAdapter extends VectorAdapter {
     id: 'g',
     source: _cbOptions(s),
     value: s.form == null ? (s.prop('value') as List?)?.cast<Object>() : null,
-    disabled: s.props['disabled'] == true,
+    enabled: s.props['enabled'] != false,
     readOnly: s.props['readOnly'] == true,
     required: s.props['required'] == true,
     showCheckAll: s.props['showCheckAll'] == true,
@@ -90,7 +90,7 @@ List<SgRadioGroupOption> _rgOptions(ScenarioState s) => [
     SgRadioGroupOption(
       label: (raw as Map)['label'] as String,
       value: raw['value'] as Object,
-      disabled: raw['disabled'] as bool?,
+      enabled: raw['enabled'] as bool?,
     ),
 ];
 
@@ -103,7 +103,7 @@ class RadioAdapter extends VectorAdapter {
     id: 'g',
     source: _rgOptions(s),
     value: s.form == null ? s.prop('value') : null,
-    disabled: s.props['disabled'] == true,
+    enabled: s.props['enabled'] != false,
     readOnly: s.props['readOnly'] == true,
     required: s.props['required'] == true,
     onChange: (v) => s.events.add(v),
@@ -154,7 +154,7 @@ class ToggleAdapter extends VectorAdapter {
       label: 'Ativo',
       checked: c is bool ? c : null,
       defaultChecked: s.props['defaultChecked'] as bool?,
-      disabled: s.props['disabled'] == true ? true : null,
+      enabled: s.props['enabled'] as bool?,
       readOnly: s.props['readOnly'] == true ? true : null,
       required: s.props['required'] == true ? true : null,
       onChange: (v) => s.events.add(v),
@@ -218,7 +218,7 @@ class SliderAdapter extends VectorAdapter {
     step: (s.props['step'] as num?) ?? 1,
     value: s.form == null ? s.prop('value') as num? : null,
     defaultValue: s.props['defaultValue'] as num?,
-    disabled: s.props['disabled'] == true,
+    enabled: s.props['enabled'] != false,
     onChange: (v) => s.events.add(v),
     name: s.form == null ? null : 'f',
     control: s.form,
@@ -262,7 +262,7 @@ class RatingAdapter extends VectorAdapter {
     value: s.form == null ? ((s.prop('value') as num?) ?? 0) : 0,
     stars: (s.props['stars'] as num?) ?? 5,
     allowHalf: s.props['allowHalf'] == true,
-    disabled: s.props['disabled'] == true,
+    enabled: s.props['enabled'] != false,
     readOnly: s.props['readOnly'] == true,
     required: s.props['required'] == true,
     onChange: (v) => s.events.add(v),

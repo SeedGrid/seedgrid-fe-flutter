@@ -67,7 +67,7 @@ Column(
           id: 3,
           label: context.tx('Diretor'),
           group: 'Gestão',
-          disabled: true,
+          enabled: false,
         ),
         SgAutocompleteItem(
           id: 4,

@@ -879,7 +879,7 @@ class _ToolbarOverflowState extends State<_ToolbarOverflow> {
             label: w.label ?? w.hint ?? '',
             hint: w.hint,
             icon: w.icon,
-            disabled: w.disabled,
+            enabled: w.enabled,
             onClick: w.onClick == null ? null : () => w.onClick!(),
           ),
         );

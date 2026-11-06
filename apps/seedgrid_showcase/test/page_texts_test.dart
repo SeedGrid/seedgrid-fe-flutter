@@ -35,14 +35,18 @@ void main() {
     tester.view.devicePixelRatio = 1;
     addTearDown(tester.view.reset);
     await tester.pumpWidget(const ShowcaseApp());
-    final card = find.byKey(const ValueKey('card-SgButton'));
+    final card = find.byKey(const ValueKey('card-SgRating'));
     await tester.ensureVisible(card);
+    await tester.pumpAndSettle();
     await tester.tap(card);
-    await tester.pump(const Duration(seconds: 1));
-    expect(find.text('Adicionar'), findsWidgets);
+    await tester.pumpAndSettle();
+    // so o Text renderizado: o bloco de codigo (EditableText) tambem traz o texto em pt-BR.
+    Finder visivel(String x) => find.byWidgetPredicate((w) => w is Text && (w.data ?? '').contains(x));
+    const pt = 'Valor atual';
+    expect(visivel(pt), findsWidgets);
     await tester.tap(find.text('${kShowcaseFlags['en-US']} en-US'));
     await tester.pump(const Duration(seconds: 1));
-    expect(find.text('Adicionar'), findsNothing);
-    expect(find.text('Add'), findsWidgets);
+    expect(visivel(pt), findsNothing);
+    expect(visivel(kShowcaseTexts[pt]![0]), findsWidgets);
   });
 }

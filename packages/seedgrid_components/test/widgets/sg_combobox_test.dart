@@ -38,7 +38,7 @@ const frutas = ['Abacate', 'Abacaxi', 'Banana', 'Laranja', 'Uva'];
 const itens = [
   SgAutocompleteItem(id: 1, label: 'Um'),
   SgAutocompleteItem(id: 2, label: 'Dois'),
-  SgAutocompleteItem(id: 3, label: 'Tres', disabled: true),
+  SgAutocompleteItem(id: 3, label: 'Tres', enabled: false),
   SgAutocompleteItem(id: 4, label: 'Quatro'),
 ];
 
@@ -117,7 +117,7 @@ void main() {
 
     testWidgets('desabilitado nao abre', (t) async {
       await t.pumpWidget(
-        host(const SgCombobox<String>(id: 'c', source: frutas, disabled: true)),
+        host(const SgCombobox<String>(id: 'c', source: frutas, enabled: false)),
       );
       await t.tap(field('c'), warnIfMissed: false);
       await t.tap(button('c'), warnIfMissed: false);
@@ -727,7 +727,7 @@ void main() {
                 source: frutas,
                 labelText: 'Desabilitado',
                 value: 'Uva',
-                disabled: true,
+                enabled: false,
               ),
               SizedBox(height: 12),
               // O aberto fica por ultimo: a lista cobre o que estiver abaixo dele.

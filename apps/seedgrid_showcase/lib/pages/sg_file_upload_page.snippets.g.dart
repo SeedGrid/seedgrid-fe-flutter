@@ -26,7 +26,7 @@ Column(
 const SgFileUpload(
   id: 'anexo-desabilitado',
   labelText: 'Anexo',
-  disabled: true,
+  enabled: false,
   defaultValue: [SgFile(name: 'contrato.pdf', size: 482304)],
 )
 ''';

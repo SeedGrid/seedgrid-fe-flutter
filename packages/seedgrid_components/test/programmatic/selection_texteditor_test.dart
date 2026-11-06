@@ -218,13 +218,13 @@ void main() {
   ) async {
     await _mount(
       t,
-      const SgTextEditor(id: 'e', disabled: true, valueHtml: '<p>fixo</p>'),
+      const SgTextEditor(id: 'e', enabled: false, valueHtml: '<p>fixo</p>'),
     );
     expect(_html(t), '<p>fixo</p>');
     expect(_ctrl(t).readOnly, isTrue);
     await _mount(
       t,
-      const SgTextEditor(id: 'e', disabled: true, valueHtml: '<p>outro</p>'),
+      const SgTextEditor(id: 'e', enabled: false, valueHtml: '<p>outro</p>'),
     );
     expect(_html(t), '<p>outro</p>');
   });

@@ -17,7 +17,7 @@ class SgAccordionItem {
     this.id,
     required this.title,
     required this.content,
-    this.disabled = false,
+    this.enabled = true,
     this.icon,
     this.end,
     this.headerBackgroundColor,
@@ -27,7 +27,7 @@ class SgAccordionItem {
   final Object? id;
   final Widget title;
   final Widget content;
-  final bool disabled;
+  final bool enabled;
   final Widget? icon;
 
   /// So na orientacao vertical, antes do chevron.
@@ -157,7 +157,7 @@ class _SgAccordionState extends State<SgAccordion> {
 
   void _toggle(int index) {
     final item = widget.items[index];
-    if (item.disabled) return;
+    if (!item.enabled) return;
     final open = _open;
     final isOpen = open.contains(index);
     if (isOpen && !widget.collapsible) return;
@@ -244,13 +244,13 @@ class _SgAccordionState extends State<SgAccordion> {
 
       final header = Semantics(
         button: true,
-        enabled: !item.disabled,
+        enabled: item.enabled,
         expanded: isOpen,
         child: Opacity(
-          opacity: item.disabled ? 0.55 : 1,
+          opacity: !item.enabled ? 0.55 : 1,
           child: InkWell(
             key: ValueKey('sg-accordion-header-$key'),
-            onTap: item.disabled ? null : () => _toggle(index),
+            onTap: !item.enabled ? null : () => _toggle(index),
             child: Container(
               width: horizontal ? headerW : double.infinity,
               height: horizontal ? double.infinity : null,

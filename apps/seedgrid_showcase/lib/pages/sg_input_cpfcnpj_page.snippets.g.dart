@@ -3,28 +3,61 @@
 // Cada constante e o trecho entre `// #region` e `// #endregion` de sg_input_cpfcnpj_page.dart: o mesmo codigo que a pagina renderiza.
 
 abstract final class SgInputCpfcnpjPageSnippets {
-  /// Region `sg-input-cpfcnpj-basico`.
-  static const String sgInputCpfcnpjBasico = r'''
-const SgInputCPFCNPJ(id: 'documento', labelText: 'CPF ou CNPJ')
+  /// Region `sg-input-cpf-cnpj-alfanumerico`.
+  static const String sgInputCpfCnpjAlfanumerico = r'''
+SizedBox(
+  width: 320,
+  child: SgInputCPFCNPJ(
+    id: 'demo-alnum',
+    labelText: context.tx('CNPJ alfanumérico'),
+    hintText: '00.000.000/E08G-12',
+    initialValue: '00.000.000/E08G-12',
+  ),
+)
 ''';
 
-  /// Region `sg-input-cpfcnpj-consulta`.
-  static const String sgInputCpfcnpjConsulta = r'''
+  /// Region `sg-input-cpf-cnpj-basico`.
+  static const String sgInputCpfCnpjBasico = r'''
+SizedBox(
+  width: 320,
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      SgInputCPFCNPJ(
+        id: 'demo-basic',
+        labelText: context.tx('Documento'),
+        hintText: context.tx('CPF ou CNPJ'),
+        onChange: (v) => setState(() => _basico = v),
+      ),
+      const SizedBox(height: 8),
+      Text('${context.tx('Valor')}: $_basico'),
+    ],
+  ),
+)
+''';
+
+  /// Region `sg-input-cpf-cnpj-consulta`.
+  static const String sgInputCpfCnpjConsulta = r'''
 Column(
   crossAxisAlignment: CrossAxisAlignment.start,
   children: [
-    SgInputCPFCNPJ(
-      id: 'documento-consulta',
-      labelText: 'CPF ou CNPJ com consulta',
-      validateWithPublicaCnpj: true,
-      publicaCnpjErrorMessage: 'CNPJ não encontrado na Receita',
-      onPublicaCnpjResult: (data) => setState(() {
-        _publicaResultado = data;
-        _publicaErro = null;
-      }),
-      onPublicaCnpjError: (_) => setState(
-        () => _publicaErro =
-            'Não foi possível consultar a base pública agora.',
+    SizedBox(
+      width: 320,
+      child: SgInputCPFCNPJ(
+        id: 'demo-publica',
+        labelText: context.tx('Documento'),
+        hintText: context.tx('CPF ou CNPJ'),
+        validateWithPublicaCnpj: true,
+        publicaCnpjErrorMessage: context.tx('CNPJ não encontrado.'),
+        onPublicaCnpjResult: (data) => setState(() {
+          _publicaResultado = data;
+          _publicaErro = null;
+        }),
+        onPublicaCnpjError: (_) => setState(
+          () => _publicaErro = context.tx(
+            'Falha ao consultar a API.',
+          ),
+        ),
       ),
     ),
     if (_publicaResultado != null) ...[
@@ -46,38 +79,226 @@ Column(
 )
 ''';
 
-  /// Region `sg-input-cpfcnpj-formulario`.
-  static const String sgInputCpfcnpjFormulario = r'''
-Column(
-  crossAxisAlignment: CrossAxisAlignment.start,
+  /// Region `sg-input-cpf-cnpj-desabilitado`.
+  static const String sgInputCpfCnpjDesabilitado = r'''
+SizedBox(
+  width: 320,
+  child: SgInputCPFCNPJ(
+    id: 'demo-disabled',
+    labelText: context.tx('Desabilitado'),
+    hintText: context.tx('Documento'),
+    enabled: false,
+    initialValue: '00.000.000/0000-00',
+  ),
+)
+''';
+
+  /// Region `sg-input-cpf-cnpj-eventos`.
+  static const String sgInputCpfCnpjEventos = r'''
+SizedBox(
+  width: 320,
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      SgInputCPFCNPJ(
+        id: 'demo-events',
+        labelText: context.tx('Digite e observe o log'),
+        hintText: context.tx('Documento'),
+        required: true,
+        onChange: (v) => _log('onChange: "$v"'),
+        onEnter: () => _log(context.tx('onEnter (focus)')),
+        onExit: () => _log(context.tx('onExit (blur)')),
+        onClear: () => _log('onClear'),
+        onValidation: (msg) =>
+            _log('onValidation: ${msg ?? context.tx('válido')}'),
+      ),
+      const SizedBox(height: 12),
+      ShowcaseLogBox(
+        entries: _eventLog,
+        hint: context.tx('Interaja com o input...'),
+        height: 160,
+      ),
+    ],
+  ),
+)
+''';
+
+  /// Region `sg-input-cpf-cnpj-invalida`.
+  static const String sgInputCpfCnpjInvalida = r'''
+SizedBox(
+  width: 320,
+  child: SgInputCPFCNPJ(
+    id: 'demo-invalid',
+    labelText: context.tx('Documento'),
+    hintText: context.tx('CPF ou CNPJ'),
+    invalidMessage: context.tx('Documento inválido.'),
+  ),
+)
+''';
+
+  /// Region `sg-input-cpf-cnpj-largura`.
+  static const String sgInputCpfCnpjLargura = r'''
+Wrap(
+  spacing: 16,
+  runSpacing: 12,
   children: [
     SgInputCPFCNPJ(
-      id: 'campo',
-      name: 'campo',
-      control: _form,
-      labelText: 'Campo',
-      rules: const SgRules(required: 'Preencha o campo'),
+      id: 'demo-w200',
+      labelText: context.tx('200px'),
+      hintText: context.tx('Documento'),
+      width: 200,
     ),
-    const SizedBox(height: 12),
-    SgButton(
-      label: Text(context.tx('Enviar')),
-      onClick: () => _form.handleSubmit(
-        (values) => setState(() => _enviado = '${values['campo']}'),
-      ),
+    SgInputCPFCNPJ(
+      id: 'demo-w300',
+      labelText: context.tx('300px arredondado'),
+      hintText: context.tx('Documento'),
+      width: 300,
+      borderRadius: 20,
     ),
-    if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),
   ],
 )
 ''';
 
-  /// Region `sg-input-cpfcnpj-obrigatorio`.
-  static const String sgInputCpfcnpjObrigatorio = r'''
-const SgInputCPFCNPJ(
-  id: 'documento-obrigatorio',
-  labelText: 'Documento',
-  required: true,
-  requiredMessage: 'Informe o documento',
-  lengthMessage: 'Documento incompleto',
+  /// Region `sg-input-cpf-cnpj-lista-alfanumerica`.
+  static const String sgInputCpfCnpjListaAlfanumerica = r'''
+const SelectableText(
+  '// Exemplos válidos\n'
+  '00.000.000/E08G-12  (raw: 00000000E08G12)\n'
+  'GK.IPC.PIK/0001-52  (raw: GKIPCPIK000152)\n'
+  'AB.12C.345/D6E7-99  (raw: AB12C345D6E799)\n'
+  '12.ABC.345/DE67-34  (raw: 12ABC345DE6734)\n'
+  'A1.B2C.3D4/E5F6-68  (raw: A1B2C3D4E5F668)\n'
+  'ZX.CVB.NM1/2345-84  (raw: ZXCVBNM1234584)',
+  style: TextStyle(fontFamily: 'monospace', fontSize: 12),
+)
+''';
+
+  /// Region `sg-input-cpf-cnpj-obrigatorio`.
+  static const String sgInputCpfCnpjObrigatorio = r'''
+Column(
+  children: [
+    SizedBox(
+      width: 320,
+      child: SgInputCPFCNPJ(
+        id: 'demo-required',
+        labelText: context.tx('Documento obrigatório'),
+        hintText: context.tx('Obrigatório'),
+        required: true,
+      ),
+    ),
+    const SizedBox(height: 12),
+    SizedBox(
+      width: 320,
+      child: SgInputCPFCNPJ(
+        id: 'demo-required-custom',
+        labelText: context.tx('Mensagem customizada'),
+        hintText: context.tx('Obrigatório'),
+        required: true,
+        requiredMessage: context.tx('Informe o CPF/CNPJ.'),
+      ),
+    ),
+  ],
+)
+''';
+
+  /// Region `sg-input-cpf-cnpj-rotulo`.
+  static const String sgInputCpfCnpjRotulo = r'''
+Wrap(
+  spacing: 16,
+  runSpacing: 12,
+  children: [
+    SizedBox(
+      width: 280,
+      child: SgInputCPFCNPJ(
+        id: 'sg-input-cpf-cnpj-label-float',
+        labelText: context.tx('Flutuante'),
+        labelPosition: SgInputCPFCNPJLabelPosition.float,
+      ),
+    ),
+    SizedBox(
+      width: 280,
+      child: SgInputCPFCNPJ(
+        id: 'sg-input-cpf-cnpj-label-top',
+        labelText: context.tx('Acima'),
+        labelPosition: SgInputCPFCNPJLabelPosition.top,
+      ),
+    ),
+    SizedBox(
+      width: 360,
+      child: SgInputCPFCNPJ(
+        id: 'sg-input-cpf-cnpj-label-left',
+        labelText: context.tx('Esquerda'),
+        labelPosition: SgInputCPFCNPJLabelPosition.left,
+        labelWidth: 140,
+        labelAlign: SgInputCPFCNPJLabelAlign.end,
+      ),
+    ),
+  ],
+)
+''';
+
+  /// Region `sg-input-cpf-cnpj-sem-limpar`.
+  static const String sgInputCpfCnpjSemLimpar = r'''
+SizedBox(
+  width: 320,
+  child: SgInputCPFCNPJ(
+    id: 'demo-noclear',
+    labelText: context.tx('Sem limpar'),
+    hintText: context.tx('Documento'),
+    clearButton: false,
+  ),
+)
+''';
+
+  /// Region `sg-input-cpf-cnpj-validacao`.
+  static const String sgInputCpfCnpjValidacao = r'''
+SizedBox(
+  width: 320,
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      SgInputCPFCNPJ(
+        id: 'demo-validation',
+        labelText: context.tx('Documento'),
+        hintText: context.tx('CPF ou CNPJ'),
+        validation: (v) => v.startsWith('00')
+            ? context.tx('Documento não pode iniciar com 00.')
+            : null,
+        onValidation: (msg) => setState(() => _validationMsg = msg),
+      ),
+      const SizedBox(height: 8),
+      Text(
+        'onValidation: ${_validationMsg == null ? context.tx('válido') : '"$_validationMsg"'}',
+      ),
+    ],
+  ),
+)
+''';
+
+  /// Region `sg-input-cpf-cnpj-variacoes`.
+  static const String sgInputCpfCnpjVariacoes = r'''
+Column(
+  children: [
+    SizedBox(
+      width: 320,
+      child: SgInputCPFCNPJ(
+        id: 'demo-noborder',
+        labelText: context.tx('Sem borda'),
+        hintText: context.tx('Documento'),
+        withBorder: false,
+      ),
+    ),
+    const SizedBox(height: 12),
+    SizedBox(
+      width: 320,
+      child: SgInputCPFCNPJ(
+        id: 'demo-filled',
+        labelText: context.tx('Preenchido'),
+        hintText: context.tx('Documento'),
+        filled: true,
+      ),
+    ),
+  ],
 )
 ''';
 }

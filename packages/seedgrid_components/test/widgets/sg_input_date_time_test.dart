@@ -108,6 +108,26 @@ void main() {
         );
       }
     });
+    // P146.F2.T1: mesma entrada e mesma saida esperada do teste do React (input-datetime.test.mjs).
+    test('formatWallClock por idioma (min/max das mensagens)', () {
+      const esperado = {
+        'pt-BR': '05/11/2026 14:30',
+        'pt-PT': '05/11/2026 14:30',
+        'en-US': '11/5/2026 14:30',
+        'es': '5/11/2026 14:30',
+        'fr': '05/11/2026 14:30',
+      };
+      esperado.forEach((locale, out) {
+        expect(sgFormatWallClock('2026-11-05T14:30', locale), out, reason: locale);
+      });
+      expect(
+        sgFormatWallClock('2026-11-05T14:30:09', 'es', showSeconds: true),
+        '5/11/2026 14:30:09',
+      );
+    });
+    test('formatWallClock com idioma desconhecido nao falha', () {
+      expect(sgFormatWallClock('2026-11-05T14:30', 'xx-YY'), '05/11/2026 14:30');
+    });
   });
 
   group('widget', () {
@@ -199,6 +219,46 @@ void main() {
       await t.pump();
       await t.pump();
       expect(text(t, 'dt'), '03/11/2026 17:30');
+    });
+
+    // P146.F2.T3: ao trocar o idioma com a mensagem de erro visivel, ela (e o texto do campo) acompanham o idioma.
+    testWidgets('troca de idioma recalcula a mensagem de erro e o texto', (
+      t,
+    ) async {
+      final locale = ValueNotifier<String>('pt-BR');
+      addTearDown(locale.dispose);
+      await t.pumpWidget(
+        host(
+          ValueListenableBuilder<String>(
+            valueListenable: locale,
+            builder: (_, loc, __) => SgComponentsI18nProvider(
+              locale: loc,
+              child: const Column(
+                children: [
+                  SgInputDateTime(
+                    id: 'dt',
+                    timeZone: 'UTC',
+                    minDate: '2026-11-05T10:00:00Z',
+                  ),
+                  SgInputText(id: 'other'),
+                ],
+              ),
+            ),
+          ),
+        ),
+      );
+      await t.enterText(field('dt'), '011120260830');
+      await t.pump();
+      await t.tap(field('other'));
+      await t.pump();
+      expect(text(t, 'dt'), '01/11/2026 08:30');
+      expect(find.textContaining('05/11/2026 10:00'), findsOneWidget);
+      locale.value = 'en-US';
+      await t.pump();
+      await t.pump();
+      expect(text(t, 'dt'), '11/01/2026 08:30');
+      expect(find.textContaining('11/5/2026 10:00'), findsOneWidget);
+      expect(find.textContaining('05/11/2026 10:00'), findsNothing);
     });
 
     testWidgets('showSeconds mostra e aceita segundos', (t) async {

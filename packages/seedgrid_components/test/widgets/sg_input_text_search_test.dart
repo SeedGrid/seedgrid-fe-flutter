@@ -236,7 +236,7 @@ void main() {
     expect(t.getSize(field('s')).width, 250);
     expect(t.widget<TextField>(field('s')).decoration!.hintText, 'digite');
     await t.pumpWidget(
-      host(SgInputTextSearch(id: 's', onSearchChange: (_) {}, disabled: true)),
+      host(SgInputTextSearch(id: 's', onSearchChange: (_) {}, enabled: false)),
     );
     expect(t.widget<TextField>(field('s')).enabled, isFalse);
     await t.pumpWidget(

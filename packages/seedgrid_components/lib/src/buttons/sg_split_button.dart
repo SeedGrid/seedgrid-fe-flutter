@@ -22,14 +22,14 @@ class SgSplitButtonItem {
     required this.label,
     this.icon,
     this.onClick,
-    this.disabled = false,
+    this.enabled = true,
     this.separator = false,
   });
 
   final String label;
   final Widget? icon;
   final VoidCallback? onClick;
-  final bool disabled;
+  final bool enabled;
 
   /// Linha separadora ANTES do item (ignorada no primeiro item, como no React).
   final bool separator;
@@ -79,7 +79,7 @@ class SgSplitButton extends StatefulWidget implements SgSplitButtonProps {
     this.size = SgSize.md,
     this.shape = SgSplitButtonShape.defaultValue,
     this.elevation = SgElevation.none,
-    this.disabled = false,
+    this.enabled = true,
     this.loading = false,
     this.onClick,
     this.customColors,
@@ -102,7 +102,7 @@ class SgSplitButton extends StatefulWidget implements SgSplitButtonProps {
   @override
   final SgElevation elevation;
   @override
-  final bool disabled;
+  final bool enabled;
   @override
   final bool loading;
   @override
@@ -152,11 +152,11 @@ class _SgSplitButtonState extends State<SgSplitButton> {
   }
 
   void _toggle() {
-    if (!widget.disabled && !widget.loading) _setOpen(!_open);
+    if (widget.enabled && !widget.loading) _setOpen(!_open);
   }
 
   void _itemClick(SgSplitButtonItem item) {
-    if (item.disabled) return;
+    if (!item.enabled) return;
     item.onClick?.call();
     _setOpen(false);
   }
@@ -316,7 +316,7 @@ class _SgSplitButtonState extends State<SgSplitButton> {
                   shape: w.shape,
                   elevation: w.elevation,
                   customColors: w.customColors,
-                  disabled: w.disabled || w.loading,
+                  enabled: !(!w.enabled || w.loading),
                   loading: w.loading,
                   label: w.label,
                   leftIcon: w.leftIcon,
@@ -331,7 +331,7 @@ class _SgSplitButtonState extends State<SgSplitButton> {
                   shape: w.shape,
                   elevation: w.elevation,
                   customColors: w.customColors,
-                  disabled: w.disabled || w.loading,
+                  enabled: !(!w.enabled || w.loading),
                   leftIcon: const Icon(Icons.expand_more),
                   semanticLabel: menuLabel,
                   expanded: _open,
@@ -375,21 +375,21 @@ class _MenuRowState extends State<_MenuRow> {
     final s = widget.size;
     return Semantics(
       button: true,
-      enabled: !it.disabled,
+      enabled: it.enabled,
       child: Opacity(
-        opacity: it.disabled ? 0.5 : 1,
+        opacity: !it.enabled ? 0.5 : 1,
         child: MouseRegion(
-          cursor: it.disabled
+          cursor: !it.enabled
               ? SystemMouseCursors.forbidden
               : SystemMouseCursors.click,
           onEnter: (_) => setState(() => _hover = true),
           onExit: (_) => setState(() => _hover = false),
           child: GestureDetector(
             behavior: HitTestBehavior.opaque,
-            onTap: it.disabled ? null : widget.onTap,
+            onTap: !it.enabled ? null : widget.onTap,
             child: Container(
               constraints: BoxConstraints(minHeight: widget.minHeight),
-              color: _hover && !it.disabled ? widget.hover : null,
+              color: _hover && it.enabled ? widget.hover : null,
               padding: EdgeInsets.symmetric(horizontal: s.px, vertical: s.py),
               child: Row(
                 children: [
@@ -440,7 +440,7 @@ class _Segment extends StatefulWidget {
     required this.size,
     required this.shape,
     required this.elevation,
-    required this.disabled,
+    required this.enabled,
     required this.onTap,
     this.customColors,
     this.loading = false,
@@ -457,7 +457,8 @@ class _Segment extends StatefulWidget {
   final SgSplitButtonShape shape;
   final SgElevation elevation;
   final SgButtonCustomColors? customColors;
-  final bool disabled, loading;
+  final bool enabled;
+  final bool loading;
   final String? label;
   final Widget? leftIcon;
   final String? semanticLabel;
@@ -491,7 +492,7 @@ class _SegmentState extends State<_Segment> {
         ? BorderRadius.horizontal(left: Radius.circular(r))
         : BorderRadius.horizontal(right: Radius.circular(r));
 
-    final off = w.disabled;
+    final off = !w.enabled;
     final hovered = _hover && !off;
     final pressed = _pressed && !off;
     final (Color bg, Color fg, Color border) = switch (w.appearance) {

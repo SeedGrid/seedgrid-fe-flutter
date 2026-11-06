@@ -12,6 +12,8 @@ const spec = JSON.parse(fs.readFileSync(path.join(root, "tools/gen_props/props-s
 const ondas = JSON.parse(fs.readFileSync(path.join(root, "tools/parity_table/ondas.json"), "utf8"));
 const estado = JSON.parse(fs.readFileSync(path.join(root, "tools/parity_table/estado.json"), "utf8"));
 const exc = JSON.parse(fs.readFileSync(path.join(root, "tools/gen_props/excecoes.json"), "utf8"));
+// Componentes que so existem no Flutter (sem contrapartida no React, sem exigencia de paridade).
+const somenteFlutter = JSON.parse(fs.readFileSync(path.join(root, "tools/parity_table/somente_flutter.json"), "utf8")).componentes;
 
 // classes Dart escritas a mao (fora de generated/ e de tools)
 const classes = new Map();
@@ -60,18 +62,30 @@ for (const name of Object.keys(spec.components).sort()) {
   const props = spec.components[name].props.length;
   rows.push({ componente: name, onda: ondas[name], status, motivo, onde, props, propsOmitidas: omitidas[name] ?? 0, propsGenericas: genericas[name] ?? 0 });
 }
+const sf = [];
+for (const name of Object.keys(somenteFlutter).sort()) {
+  const c = somenteFlutter[name];
+  if (spec.components[name]) problemas.push(`${name}: esta em somente_flutter.json mas existe no React (use estado.json)`);
+  if (!classes.has(name)) problemas.push(`${name}: somente-flutter sem widget Dart`);
+  for (const k of ["categoria", "descricao", "motivo", "arquivo"]) if (!c[k]) problemas.push(`${name}: somente_flutter.json sem '${k}'`);
+  if (c.arquivo && !fs.existsSync(path.join(root, c.arquivo))) problemas.push(`${name}: arquivo '${c.arquivo}' nao existe`);
+  sf.push({ componente: name, status: "somente-flutter", categoria: c.categoria, descricao: c.descricao, motivo: c.motivo, onde: c.arquivo });
+}
 for (const n of Object.keys(ondas)) if (!spec.components[n]) problemas.push(`ondas.json tem '${n}' que nao existe no React`);
 for (const n of Object.keys(spec.components)) if (!(n in ondas)) problemas.push(`${n}: sem onda em ondas.json`);
 
 const count = (s) => rows.filter((r) => r.status === s).length;
 let md = `# Paridade React × Flutter\n\n> Gerado por \`node tools/parity_table/generate.mjs\` a partir do @seedgrid/fe-components ${spec.versaoReact}. Não edite à mão.\n\n`;
 md += `**${rows.length} componentes**: ${count("portado")} portados, ${count("parcial")} parciais, ${count("pendente")} pendentes, ${count("nao-aplicavel")} não aplicáveis.\n\n`;
-md += `"Props omitidas" = props do React que não existem no Flutter de propósito (\`className\`, \`style\`, \`register\`, HTML; ver ADR 50). "Props genéricas" = props cujo tipo Dart do contrato ainda é genérico (função, união, tipo a portar; ver \`tools/gen_props/excecoes.json\`).\n\n`;
+md += `**Somente Flutter (sem paridade com o React)**: ${sf.length} (${sf.map((s) => s.componente).join(", ")}); listados na seção própria abaixo e fora dos totais acima.\n\n`;
+md += `"Props omitidas" = props do React que não existem no Flutter de propósito (\`className\`, \`style\`, \`register\`, HTML; ver ADR 50). \`enabled\` tem o mesmo nome nos dois lados (padronizado; a regra antiga do ADR 50 que o renomeava para \`disabled\` foi substituída). "Props genéricas" = props cujo tipo Dart do contrato ainda é genérico (função, união, tipo a portar; ver \`tools/gen_props/excecoes.json\`).\n\n`;
 md += "| Onda | Componente | Estado | Props | Omitidas | Genéricas | Onde / motivo |\n|---|---|---|---|---|---|---|\n";
 for (const r of [...rows].sort((a, b) => a.onda - b.onda || a.componente.localeCompare(b.componente))) {
   md += `| ${r.onda} | ${r.componente} | ${r.status} | ${r.props} | ${r.propsOmitidas} | ${r.propsGenericas} | ${[r.onde, r.motivo].filter(Boolean).join(" — ")} |\n`;
 }
-const json = JSON.stringify({ versaoReact: spec.versaoReact, resumo: { total: rows.length, portado: count("portado"), parcial: count("parcial"), pendente: count("pendente"), naoAplicavel: count("nao-aplicavel") }, componentes: rows }, null, 1) + "\n";
+md += "\n## Somente Flutter (sem paridade com o React)\n\nComponentes que existem só no Flutter. Não contam como pendentes nem entram nos totais do React; ver \`tools/parity_table/somente_flutter.json\`.\n\n| Componente | Categoria | Estado | Onde | Motivo |\n|---|---|---|---|---|\n";
+for (const s of sf) md += `| ${s.componente} | ${s.categoria} | ${s.status} | ${s.onde} | ${s.motivo} |\n`;
+const json = JSON.stringify({ versaoReact: spec.versaoReact, resumo: { total: rows.length, portado: count("portado"), parcial: count("parcial"), pendente: count("pendente"), naoAplicavel: count("nao-aplicavel"), somenteFlutter: sf.length }, componentes: rows, somenteFlutter: sf }, null, 1) + "\n";
 
 if (problemas.length) {
   console.error("problemas:\n  " + problemas.join("\n  "));
@@ -92,6 +106,8 @@ const catalogLines = [
   ...[...rows]
     .sort((a, b) => a.componente.localeCompare(b.componente))
     .map((r) => `  (name: '${r.componente}', category: '${spec.components[r.componente].category ?? "outros"}', wave: ${r.onda}, status: '${r.status}'),`),
+  // Somente Flutter: onda 0 = fora do porte do React.
+  ...sf.map((s) => `  (name: '${s.componente}', category: '${s.categoria}', wave: 0, status: 'somente-flutter'),`),
   "];",
   "",
 ];
@@ -107,5 +123,5 @@ if (process.argv.includes("--check")) {
   fs.writeFileSync(mdFile, md);
   fs.writeFileSync(jsonFile, json);
   fs.writeFileSync(catalogFile, catalog);
-  console.log(`paridade: ${rows.length} componentes (${count("portado")} portados, ${count("parcial")} parciais, ${count("pendente")} pendentes, ${count("nao-aplicavel")} nao aplicaveis)`);
+  console.log(`paridade: ${rows.length} componentes (${count("portado")} portados, ${count("parcial")} parciais, ${count("pendente")} pendentes, ${count("nao-aplicavel")} nao aplicaveis) + ${sf.length} somente Flutter`);
 }

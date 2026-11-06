@@ -1,5 +1,5 @@
-// Showcase do SgSplitButton. O codigo exibido em cada exemplo e o trecho entre `// #region` e
-// `// #endregion` deste arquivo: exatamente o que esta renderizado.
+// Showcase do SgSplitButton. Mesmos exemplos, na mesma ordem, do showcase React (a fonte da verdade). O codigo
+// exibido em cada exemplo e o trecho entre `// #region` e `// #endregion` deste arquivo.
 import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
@@ -7,15 +7,8 @@ import '../src/sg_showcase_page.dart';
 import '../src/showcase_i18n.dart';
 import 'sg_split_button_page.snippets.g.dart';
 
-class SgSplitButtonPage extends StatefulWidget {
+class SgSplitButtonPage extends StatelessWidget {
   const SgSplitButtonPage({super.key});
-
-  @override
-  State<SgSplitButtonPage> createState() => _SgSplitButtonPageState();
-}
-
-class _SgSplitButtonPageState extends State<SgSplitButtonPage> {
-  String _ultima = '';
 
   @override
   Widget build(BuildContext context) {
@@ -23,213 +16,570 @@ class _SgSplitButtonPageState extends State<SgSplitButtonPage> {
       ShowcaseExample(
         title: 'Básico',
         description:
-            'Botão principal e seta que abre o menu de opções. Em tela estreita o menu vira painel de baixo.',
+            'Split button com ação principal e dropdown de itens.',
         preview:
             // #region sg-split-button-basico
-            Row(
-              children: [
-                SgSplitButton(
-                  label: context.tx('Salvar'),
-                  onClick: () => setState(() => _ultima = 'salvar'),
-                  items: [
-                    SgSplitButtonItem(
-                      label: context.tx('Salvar e fechar'),
-                      onClick: () =>
-                          setState(() => _ultima = 'salvar e fechar'),
-                    ),
-                    SgSplitButtonItem(
-                      label: context.tx('Salvar como rascunho'),
-                      onClick: () => setState(() => _ultima = 'rascunho'),
-                    ),
-                  ],
-                ),
-                const SizedBox(width: 12),
-                if (_ultima.isNotEmpty) Text('Última ação: $_ultima'),
-              ],
+            Builder(
+              builder: (context) {
+                final itens = [
+                  SgSplitButtonItem(
+                    label: context.tx('Update'),
+                    icon: const Icon(Icons.refresh),
+                    onClick: () {},
+                  ),
+                  SgSplitButtonItem(
+                    label: context.tx('Delete'),
+                    icon: const Icon(Icons.delete),
+                    onClick: () {},
+                  ),
+                  SgSplitButtonItem(
+                    label: context.tx('Home'),
+                    icon: const Icon(Icons.home),
+                    onClick: () {},
+                  ),
+                ];
+                return SgSplitButton(
+                  label: context.tx('Save'),
+                  leftIcon: const Icon(Icons.save),
+                  onClick: () {},
+                  items: itens,
+                );
+              },
             ),
         // #endregion
         code: SgSplitButtonPageSnippets.sgSplitButtonBasico,
       ),
       ShowcaseExample(
-        title: 'Ícones, separador e item desabilitado',
+        title: 'Severidades',
+        description:
+            'severity: primary, secondary, success, info, warning, help ou danger.',
         preview:
-            // #region sg-split-button-itens
-            SgSplitButton(
-              label: context.tx('Exportar'),
-              leftIcon: const Icon(Icons.download),
-              items: [
-                SgSplitButtonItem(
-                  label: context.tx('PDF'),
-                  icon: const Icon(Icons.picture_as_pdf),
-                  onClick: () {},
-                ),
-                SgSplitButtonItem(
-                  label: context.tx('Planilha'),
-                  icon: const Icon(Icons.table_chart),
-                  onClick: () {},
-                ),
-                SgSplitButtonItem(
-                  label: context.tx('Imprimir'),
-                  icon: const Icon(Icons.print),
-                  separator: true,
-                  onClick: () {},
-                ),
-                SgSplitButtonItem(
-                  label: context.tx('Indisponível'),
-                  disabled: true,
-                ),
-              ],
+            // #region sg-split-button-severidades
+            Builder(
+              builder: (context) {
+                final itens = [
+                  SgSplitButtonItem(
+                    label: context.tx('Update'),
+                    icon: const Icon(Icons.refresh),
+                    onClick: () {},
+                  ),
+                  SgSplitButtonItem(
+                    label: context.tx('Delete'),
+                    icon: const Icon(Icons.delete),
+                    onClick: () {},
+                  ),
+                  SgSplitButtonItem(
+                    label: context.tx('Home'),
+                    icon: const Icon(Icons.home),
+                    onClick: () {},
+                  ),
+                ];
+                return Wrap(
+                  spacing: 12,
+                  runSpacing: 12,
+                  children: [
+                    for (final (nome, severity) in const [
+                      ('Primary', SgSeverity.primary),
+                      ('Secondary', SgSeverity.secondary),
+                      ('Success', SgSeverity.success),
+                      ('Info', SgSeverity.info),
+                      ('Warning', SgSeverity.warning),
+                      ('Help', SgSeverity.help),
+                      ('Danger', SgSeverity.danger),
+                    ])
+                      SgSplitButton(
+                        label: context.tx(nome),
+                        severity: severity,
+                        onClick: () {},
+                        items: itens,
+                      ),
+                  ],
+                );
+              },
             ),
         // #endregion
-        code: SgSplitButtonPageSnippets.sgSplitButtonItens,
+        code: SgSplitButtonPageSnippets.sgSplitButtonSeveridades,
       ),
       ShowcaseExample(
-        title: 'Severidades e aparências',
+        title: 'Outlined',
+        description:
+            'appearance: outline - bordas coloridas sem preenchimento.',
         preview:
-            // #region sg-split-button-estilos
-            Wrap(
-              spacing: 12,
-              runSpacing: 12,
-              children: [
-                SgSplitButton(
-                  label: context.tx('Success'),
-                  severity: SgSeverity.success,
-                  items: [
-                    SgSplitButtonItem(
-                      label: context.tx('Opção'),
-                      onClick: () {},
-                    ),
+            // #region sg-split-button-outlined
+            Builder(
+              builder: (context) {
+                final itens = [
+                  SgSplitButtonItem(
+                    label: context.tx('Update'),
+                    icon: const Icon(Icons.refresh),
+                    onClick: () {},
+                  ),
+                  SgSplitButtonItem(
+                    label: context.tx('Delete'),
+                    icon: const Icon(Icons.delete),
+                    onClick: () {},
+                  ),
+                  SgSplitButtonItem(
+                    label: context.tx('Home'),
+                    icon: const Icon(Icons.home),
+                    onClick: () {},
+                  ),
+                ];
+                return Wrap(
+                  spacing: 12,
+                  runSpacing: 12,
+                  children: [
+                    for (final (nome, severity) in const [
+                      ('Primary', SgSeverity.primary),
+                      ('Secondary', SgSeverity.secondary),
+                      ('Success', SgSeverity.success),
+                      ('Info', SgSeverity.info),
+                      ('Warning', SgSeverity.warning),
+                      ('Help', SgSeverity.help),
+                      ('Danger', SgSeverity.danger),
+                    ])
+                      SgSplitButton(
+                        label: context.tx(nome),
+                        severity: severity,
+                        appearance: SgAppearance.outline,
+                        onClick: () {},
+                        items: itens,
+                      ),
                   ],
-                ),
-                SgSplitButton(
-                  label: context.tx('Danger'),
-                  severity: SgSeverity.danger,
-                  appearance: SgAppearance.outline,
-                  items: [
-                    SgSplitButtonItem(
-                      label: context.tx('Opção'),
-                      onClick: () {},
-                    ),
-                  ],
-                ),
-                SgSplitButton(
-                  label: context.tx('Help'),
-                  severity: SgSeverity.help,
-                  appearance: SgAppearance.ghost,
-                  items: [
-                    SgSplitButtonItem(
-                      label: context.tx('Opção'),
-                      onClick: () {},
-                    ),
-                  ],
-                ),
-              ],
+                );
+              },
             ),
         // #endregion
-        code: SgSplitButtonPageSnippets.sgSplitButtonEstilos,
+        code: SgSplitButtonPageSnippets.sgSplitButtonOutlined,
       ),
       ShowcaseExample(
-        title: 'Tamanhos, formas e sombra',
+        title: 'Ghost',
+        description:
+            'appearance: ghost - sem fundo, apenas texto colorido.',
+        preview:
+            // #region sg-split-button-ghost
+            Builder(
+              builder: (context) {
+                final itens = [
+                  SgSplitButtonItem(
+                    label: context.tx('Update'),
+                    icon: const Icon(Icons.refresh),
+                    onClick: () {},
+                  ),
+                  SgSplitButtonItem(
+                    label: context.tx('Delete'),
+                    icon: const Icon(Icons.delete),
+                    onClick: () {},
+                  ),
+                  SgSplitButtonItem(
+                    label: context.tx('Home'),
+                    icon: const Icon(Icons.home),
+                    onClick: () {},
+                  ),
+                ];
+                return Wrap(
+                  spacing: 12,
+                  runSpacing: 12,
+                  children: [
+                    for (final (nome, severity) in const [
+                      ('Primary', SgSeverity.primary),
+                      ('Secondary', SgSeverity.secondary),
+                      ('Success', SgSeverity.success),
+                      ('Info', SgSeverity.info),
+                      ('Warning', SgSeverity.warning),
+                      ('Help', SgSeverity.help),
+                      ('Danger', SgSeverity.danger),
+                    ])
+                      SgSplitButton(
+                        label: context.tx(nome),
+                        severity: severity,
+                        appearance: SgAppearance.ghost,
+                        onClick: () {},
+                        items: itens,
+                      ),
+                  ],
+                );
+              },
+            ),
+        // #endregion
+        code: SgSplitButtonPageSnippets.sgSplitButtonGhost,
+      ),
+      ShowcaseExample(
+        title: 'Elevated',
+        description:
+            'appearance: solid + elevation: sm.',
+        preview:
+            // #region sg-split-button-elevated
+            Builder(
+              builder: (context) {
+                final itens = [
+                  SgSplitButtonItem(
+                    label: context.tx('Update'),
+                    icon: const Icon(Icons.refresh),
+                    onClick: () {},
+                  ),
+                  SgSplitButtonItem(
+                    label: context.tx('Delete'),
+                    icon: const Icon(Icons.delete),
+                    onClick: () {},
+                  ),
+                  SgSplitButtonItem(
+                    label: context.tx('Home'),
+                    icon: const Icon(Icons.home),
+                    onClick: () {},
+                  ),
+                ];
+                return Wrap(
+                  spacing: 12,
+                  runSpacing: 12,
+                  children: [
+                    for (final (nome, severity) in const [
+                      ('Primary', SgSeverity.primary),
+                      ('Secondary', SgSeverity.secondary),
+                      ('Success', SgSeverity.success),
+                      ('Info', SgSeverity.info),
+                      ('Warning', SgSeverity.warning),
+                      ('Help', SgSeverity.help),
+                      ('Danger', SgSeverity.danger),
+                    ])
+                      SgSplitButton(
+                        label: context.tx(nome),
+                        severity: severity,
+                        appearance: SgAppearance.solid,
+                        elevation: SgElevation.sm,
+                        onClick: () {},
+                        items: itens,
+                      ),
+                  ],
+                );
+              },
+            ),
+        // #endregion
+        code: SgSplitButtonPageSnippets.sgSplitButtonElevated,
+      ),
+      ShowcaseExample(
+        title: 'Tamanhos',
+        description:
+            'size: sm, md ou lg.',
         preview:
             // #region sg-split-button-tamanhos
-            Wrap(
-              spacing: 12,
-              runSpacing: 12,
-              crossAxisAlignment: WrapCrossAlignment.center,
-              children: [
-                SgSplitButton(
-                  label: context.tx('Small'),
-                  size: SgSize.sm,
-                  items: [
-                    SgSplitButtonItem(
-                      label: context.tx('Opção'),
+            Builder(
+              builder: (context) {
+                final itens = [
+                  SgSplitButtonItem(
+                    label: context.tx('Update'),
+                    icon: const Icon(Icons.refresh),
+                    onClick: () {},
+                  ),
+                  SgSplitButtonItem(
+                    label: context.tx('Delete'),
+                    icon: const Icon(Icons.delete),
+                    onClick: () {},
+                  ),
+                  SgSplitButtonItem(
+                    label: context.tx('Home'),
+                    icon: const Icon(Icons.home),
+                    onClick: () {},
+                  ),
+                ];
+                return Wrap(
+                  spacing: 12,
+                  runSpacing: 12,
+                  children: [
+                    SgSplitButton(
+                      label: context.tx('Small'),
+                      size: SgSize.sm,
+                      leftIcon: const Icon(Icons.save),
                       onClick: () {},
+                      items: itens,
+                    ),
+                    SgSplitButton(
+                      label: context.tx('Medium'),
+                      size: SgSize.md,
+                      leftIcon: const Icon(Icons.save),
+                      onClick: () {},
+                      items: itens,
+                    ),
+                    SgSplitButton(
+                      label: context.tx('Large'),
+                      size: SgSize.lg,
+                      leftIcon: const Icon(Icons.save),
+                      onClick: () {},
+                      items: itens,
                     ),
                   ],
-                ),
-                SgSplitButton(
-                  label: context.tx('Large'),
-                  size: SgSize.lg,
-                  items: [
-                    SgSplitButtonItem(
-                      label: context.tx('Opção'),
-                      onClick: () {},
-                    ),
-                  ],
-                ),
-                SgSplitButton(
-                  label: context.tx('Rounded'),
-                  shape: SgSplitButtonShape.rounded,
-                  items: [
-                    SgSplitButtonItem(
-                      label: context.tx('Opção'),
-                      onClick: () {},
-                    ),
-                  ],
-                ),
-                SgSplitButton(
-                  label: context.tx('Square'),
-                  shape: SgSplitButtonShape.square,
-                  elevation: SgElevation.md,
-                  items: [
-                    SgSplitButtonItem(
-                      label: context.tx('Opção'),
-                      onClick: () {},
-                    ),
-                  ],
-                ),
-              ],
+                );
+              },
             ),
         // #endregion
         code: SgSplitButtonPageSnippets.sgSplitButtonTamanhos,
       ),
       ShowcaseExample(
-        title: 'Loading, desabilitado e cores customizadas',
+        title: 'Com ícones',
+        description:
+            'leftIcon na ação principal e icon nos itens do menu.',
         preview:
-            // #region sg-split-button-estados
-            Wrap(
-              spacing: 12,
-              runSpacing: 12,
-              children: [
-                SgSplitButton(
-                  label: context.tx('Enviando'),
-                  loading: true,
-                  items: [
-                    SgSplitButtonItem(
-                      label: context.tx('Opção'),
-                      onClick: () {},
-                    ),
-                  ],
-                ),
-                SgSplitButton(
-                  label: context.tx('Desabilitado'),
-                  disabled: true,
-                  items: [
-                    SgSplitButtonItem(
-                      label: context.tx('Opção'),
-                      onClick: () {},
-                    ),
-                  ],
-                ),
-                SgSplitButton(
-                  label: context.tx('Roxo'),
-                  customColors: const SgButtonCustomColors(
-                    bg: Color(0xFF7C3AED),
-                    fg: Colors.white,
-                    border: Color(0xFF6D28D9),
-                    hoverBg: Color(0xFF6D28D9),
+            // #region sg-split-button-com-icones
+            Builder(
+              builder: (context) {
+                final itens = [
+                  SgSplitButtonItem(
+                    label: context.tx('Update'),
+                    icon: const Icon(Icons.refresh),
+                    onClick: () {},
                   ),
-                  items: [
-                    SgSplitButtonItem(
-                      label: context.tx('Opção'),
+                  SgSplitButtonItem(
+                    label: context.tx('Delete'),
+                    icon: const Icon(Icons.delete),
+                    onClick: () {},
+                  ),
+                  SgSplitButtonItem(
+                    label: context.tx('Home'),
+                    icon: const Icon(Icons.home),
+                    onClick: () {},
+                  ),
+                ];
+                final itensArquivo = [
+                  SgSplitButtonItem(
+                    label: context.tx('Copiar'),
+                    icon: const Icon(Icons.copy),
+                    onClick: () {},
+                  ),
+                  SgSplitButtonItem(
+                    label: context.tx('Imprimir'),
+                    icon: const Icon(Icons.print),
+                    onClick: () {},
+                  ),
+                  SgSplitButtonItem(
+                    separator: true,
+                    label: context.tx('Exportar PDF'),
+                    icon: const Icon(Icons.picture_as_pdf),
+                    onClick: () {},
+                  ),
+                  SgSplitButtonItem(
+                    label: context.tx('Compartilhar por e-mail'),
+                    icon: const Icon(Icons.mail),
+                    onClick: () {},
+                  ),
+                ];
+                return Wrap(
+                  spacing: 12,
+                  runSpacing: 12,
+                  children: [
+                    SgSplitButton(
+                      label: context.tx('Save'),
+                      leftIcon: const Icon(Icons.save),
+                      severity: SgSeverity.primary,
                       onClick: () {},
+                      items: itens,
+                    ),
+                    SgSplitButton(
+                      label: context.tx('Novo'),
+                      leftIcon: const Icon(Icons.add),
+                      severity: SgSeverity.success,
+                      onClick: () {},
+                      items: [
+                        SgSplitButtonItem(
+                          label: context.tx('Importar'),
+                          icon: const Icon(Icons.upload),
+                          onClick: () {},
+                        ),
+                        SgSplitButtonItem(
+                          label: context.tx('Baixar modelo'),
+                          icon: const Icon(Icons.download),
+                          onClick: () {},
+                        ),
+                      ],
+                    ),
+                    SgSplitButton(
+                      label: context.tx('Compartilhar'),
+                      leftIcon: const Icon(Icons.share),
+                      severity: SgSeverity.info,
+                      onClick: () {},
+                      items: itensArquivo,
                     ),
                   ],
+                );
+              },
+            ),
+        // #endregion
+        code: SgSplitButtonPageSnippets.sgSplitButtonComIcones,
+      ),
+      ShowcaseExample(
+        title: 'Separadores de menu',
+        description:
+            'separator: true para dividir grupos de itens no menu.',
+        preview:
+            // #region sg-split-button-separadores
+            Builder(
+              builder: (context) {
+                final itensArquivo = [
+                  SgSplitButtonItem(
+                    label: context.tx('Copiar'),
+                    icon: const Icon(Icons.copy),
+                    onClick: () {},
+                  ),
+                  SgSplitButtonItem(
+                    label: context.tx('Imprimir'),
+                    icon: const Icon(Icons.print),
+                    onClick: () {},
+                  ),
+                  SgSplitButtonItem(
+                    separator: true,
+                    label: context.tx('Exportar PDF'),
+                    icon: const Icon(Icons.picture_as_pdf),
+                    onClick: () {},
+                  ),
+                  SgSplitButtonItem(
+                    label: context.tx('Compartilhar por e-mail'),
+                    icon: const Icon(Icons.mail),
+                    onClick: () {},
+                  ),
+                ];
+                return SgSplitButton(
+                  label: context.tx('Arquivo'),
+                  leftIcon: const Icon(Icons.description),
+                  severity: SgSeverity.secondary,
+                  onClick: () {},
+                  items: itensArquivo,
+                );
+              },
+            ),
+        // #endregion
+        code: SgSplitButtonPageSnippets.sgSplitButtonSeparadores,
+      ),
+      ShowcaseExample(
+        title: 'Disabled',
+        description:
+            'enabled: false desabilita o split button inteiro.',
+        preview:
+            // #region sg-split-button-disabled
+            Builder(
+              builder: (context) {
+                final itens = [
+                  SgSplitButtonItem(
+                    label: context.tx('Update'),
+                    icon: const Icon(Icons.refresh),
+                    onClick: () {},
+                  ),
+                  SgSplitButtonItem(
+                    label: context.tx('Delete'),
+                    icon: const Icon(Icons.delete),
+                    onClick: () {},
+                  ),
+                  SgSplitButtonItem(
+                    label: context.tx('Home'),
+                    icon: const Icon(Icons.home),
+                    onClick: () {},
+                  ),
+                ];
+                return Wrap(
+                  spacing: 12,
+                  runSpacing: 12,
+                  children: [
+                    SgSplitButton(
+                      label: context.tx('Save'),
+                      leftIcon: const Icon(Icons.save),
+                      enabled: false,
+                      onClick: () {},
+                      items: itens,
+                    ),
+                    SgSplitButton(
+                      label: context.tx('Disabled outline'),
+                      severity: SgSeverity.danger,
+                      appearance: SgAppearance.outline,
+                      enabled: false,
+                      onClick: () {},
+                      items: itens,
+                    ),
+                  ],
+                );
+              },
+            ),
+        // #endregion
+        code: SgSplitButtonPageSnippets.sgSplitButtonDisabled,
+      ),
+      ShowcaseExample(
+        title: 'Loading',
+        description:
+            'loading: true exibe spinner na ação principal e desabilita o menu.',
+        preview:
+            // #region sg-split-button-loading
+            Builder(
+              builder: (context) {
+                final itens = [
+                  SgSplitButtonItem(
+                    label: context.tx('Update'),
+                    icon: const Icon(Icons.refresh),
+                    onClick: () {},
+                  ),
+                  SgSplitButtonItem(
+                    label: context.tx('Delete'),
+                    icon: const Icon(Icons.delete),
+                    onClick: () {},
+                  ),
+                  SgSplitButtonItem(
+                    label: context.tx('Home'),
+                    icon: const Icon(Icons.home),
+                    onClick: () {},
+                  ),
+                ];
+                return Wrap(
+                  spacing: 12,
+                  runSpacing: 12,
+                  children: [
+                    SgSplitButton(
+                      label: context.tx('Salvando...'),
+                      leftIcon: const Icon(Icons.save),
+                      loading: true,
+                      onClick: () {},
+                      items: itens,
+                    ),
+                    SgSplitButton(
+                      label: context.tx('Processando...'),
+                      severity: SgSeverity.success,
+                      loading: true,
+                      onClick: () {},
+                      items: itens,
+                    ),
+                  ],
+                );
+              },
+            ),
+        // #endregion
+        code: SgSplitButtonPageSnippets.sgSplitButtonLoading,
+      ),
+      ShowcaseExample(
+        title: 'Itens desabilitados',
+        description:
+            'Itens individuais do menu podem ser desabilitados (enabled: false).',
+        preview:
+            // #region sg-split-button-itens-desabilitados
+            SgSplitButton(
+              label: context.tx('Ações'),
+              severity: SgSeverity.primary,
+              onClick: () {},
+              items: [
+                SgSplitButtonItem(
+                  label: context.tx('Update'),
+                  icon: const Icon(Icons.refresh),
+                  onClick: () {},
+                ),
+                SgSplitButtonItem(
+                  label: context.tx('Delete (disabled)'),
+                  icon: const Icon(Icons.delete),
+                  onClick: () {},
+                  enabled: false,
+                ),
+                SgSplitButtonItem(
+                  label: context.tx('Home'),
+                  icon: const Icon(Icons.home),
+                  onClick: () {},
                 ),
               ],
             ),
         // #endregion
-        code: SgSplitButtonPageSnippets.sgSplitButtonEstados,
+        code: SgSplitButtonPageSnippets.sgSplitButtonItensDesabilitados,
       ),
     ];
 
@@ -239,7 +589,7 @@ class _SgSplitButtonPageState extends State<SgSplitButtonPage> {
       'size',
       'shape',
       'elevation',
-      'disabled',
+      'enabled',
       'loading',
     };
     return SgShowcasePage(
@@ -267,7 +617,7 @@ class _SgSplitButtonPageState extends State<SgSplitButtonPage> {
           elevation:
               SgElevation.fromValue(v['elevation'] as String?) ??
               SgElevation.none,
-          disabled: (v['disabled'] as bool?) ?? false,
+          enabled: (v['enabled'] as bool?) ?? true,
           loading: (v['loading'] as bool?) ?? false,
           items: [
             SgSplitButtonItem(label: 'Salvar e fechar', onClick: () {}),

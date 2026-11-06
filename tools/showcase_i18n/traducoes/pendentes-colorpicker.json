@@ -1,0 +1,188 @@
+{
+ "Cor da marca": [
+  "Brand color",
+  "Cor da marca",
+  "Color de la marca",
+  "Couleur de la marque"
+ ],
+ "Voltar para azul": [
+  "Back to blue",
+  "Voltar para azul",
+  "Volver a azul",
+  "Revenir au bleu"
+ ],
+ "Escolher cor": [
+  "Pick a color",
+  "Escolher cor",
+  "Elegir color",
+  "Choisir une couleur"
+ ],
+ "defaultValue define a cor inicial; onChange entrega a cor em #RRGGBB maiúsculo a cada mudança válida.": [
+  "defaultValue sets the initial color; onChange delivers the color as uppercase #RRGGBB on every valid change.",
+  "defaultValue define a cor inicial; onChange entrega a cor em #RRGGBB maiúsculo a cada alteração válida.",
+  "defaultValue define el color inicial; onChange entrega el color en #RRGGBB en mayúsculas en cada cambio válido.",
+  "defaultValue définit la couleur initiale ; onChange fournit la couleur en #RRGGBB majuscule à chaque changement valide."
+ ],
+ "Com value, o pai decide a cor: o painel só muda quando o value muda.": [
+  "With value, the parent decides the color: the panel only changes when value changes.",
+  "Com value, o pai decide a cor: o painel só muda quando o value muda.",
+  "Con value, el padre decide el color: el panel solo cambia cuando value cambia.",
+  "Avec value, le parent décide de la couleur : le panneau ne change que lorsque value change."
+ ],
+ "Cores predefinidas": [
+  "Preset colors",
+  "Cores predefinidas",
+  "Colores predefinidos",
+  "Couleurs prédéfinies"
+ ],
+ "presets mostra uma paleta; tocar numa cor a escolhe.": [
+  "presets shows a palette; tapping a color picks it.",
+  "presets mostra uma paleta; tocar numa cor escolhe-a.",
+  "presets muestra una paleta; tocar un color lo elige.",
+  "presets affiche une palette ; toucher une couleur la choisit."
+ ],
+ "Sem campo hex": [
+  "Without hex field",
+  "Sem campo hex",
+  "Sin campo hex",
+  "Sans champ hex"
+ ],
+ "showHex: false esconde o campo de texto #RRGGBB.": [
+  "showHex: false hides the #RRGGBB text field.",
+  "showHex: false esconde o campo de texto #RRGGBB.",
+  "showHex: false oculta el campo de texto #RRGGBB.",
+  "showHex: false masque le champ de texte #RRGGBB."
+ ],
+ "enabled: false bloqueia os sliders, o campo hex e as cores predefinidas.": [
+  "enabled: false blocks the sliders, the hex field and the preset colors.",
+  "enabled: false bloqueia os sliders, o campo hex e as cores predefinidas.",
+  "enabled: false bloquea los sliders, el campo hex y los colores predefinidos.",
+  "enabled: false bloque les curseurs, le champ hex et les couleurs prédéfinies."
+ ],
+ "name + control ligam o seletor ao SgFormController; o valor enviado é o #RRGGBB.": [
+  "name + control bind the picker to the SgFormController; the submitted value is the #RRGGBB.",
+  "name + control ligam o seletor ao SgFormController; o valor enviado é o #RRGGBB.",
+  "name + control vinculan el selector al SgFormController; el valor enviado es el #RRGGBB.",
+  "name + control relient le sélecteur au SgFormController ; la valeur envoyée est le #RRGGBB."
+ ],
+ "Diálogo showSgColorPicker": [
+  "showSgColorPicker dialog",
+  "Diálogo showSgColorPicker",
+  "Diálogo showSgColorPicker",
+  "Boîte de dialogue showSgColorPicker"
+ ],
+ "showSgColorPicker abre o painel num diálogo e devolve a cor escolhida, ou null se cancelar.": [
+  "showSgColorPicker opens the panel in a dialog and returns the chosen color, or null if canceled.",
+  "showSgColorPicker abre o painel num diálogo e devolve a cor escolhida, ou null se cancelar.",
+  "showSgColorPicker abre el panel en un diálogo y devuelve el color elegido, o null si se cancela.",
+  "showSgColorPicker ouvre le panneau dans une boîte de dialogue et renvoie la couleur choisie, ou null en cas d'annulation."
+ ],
+ "Seletor de cor com sliders de matiz, saturação e brilho, prévia, campo hex (#RRGGBB), cores predefinidas e diálogo showSgColorPicker.": [
+  "Color picker with hue, saturation and brightness sliders, preview, hex field (#RRGGBB), preset colors and the showSgColorPicker dialog.",
+  "Seletor de cor com sliders de matiz, saturação e brilho, pré-visualização, campo hex (#RRGGBB), cores predefinidas e diálogo showSgColorPicker.",
+  "Selector de color con sliders de matiz, saturación y brillo, vista previa, campo hex (#RRGGBB), colores predefinidos y diálogo showSgColorPicker.",
+  "Sélecteur de couleur avec curseurs de teinte, saturation et luminosité, aperçu, champ hex (#RRGGBB), couleurs prédéfinies et boîte de dialogue showSgColorPicker."
+ ],
+ "Identificador único (base das chaves dos sliders, do campo hex e das cores predefinidas).": [
+  "Unique identifier (base of the keys of the sliders, the hex field and the preset colors).",
+  "Identificador único (base das chaves dos sliders, do campo hex e das cores predefinidas).",
+  "Identificador único (base de las claves de los sliders, del campo hex y de los colores predefinidos).",
+  "Identifiant unique (base des clés des curseurs, du champ hex et des couleurs prédéfinies)."
+ ],
+ "Rótulo de acessibilidade do painel.": [
+  "Accessibility label of the panel.",
+  "Rótulo de acessibilidade do painel.",
+  "Etiqueta de accesibilidad del panel.",
+  "Libellé d'accessibilité du panneau."
+ ],
+ "Controlador do formulário (usado junto com name).": [
+  "Form controller (used together with name).",
+  "Controlador do formulário (usado junto com name).",
+  "Controlador del formulario (se usa junto con name).",
+  "Contrôleur du formulaire (utilisé avec name)."
+ ],
+ "Cor inicial no formato #RRGGBB quando o componente não é controlado.": [
+  "Initial color in #RRGGBB format when the component is not controlled.",
+  "Cor inicial no formato #RRGGBB quando o componente não é controlado.",
+  "Color inicial en formato #RRGGBB cuando el componente no es controlado.",
+  "Couleur initiale au format #RRGGBB lorsque le composant n'est pas contrôlé."
+ ],
+ "Com false, bloqueia os sliders, o campo hex e as cores predefinidas.": [
+  "When false, blocks the sliders, the hex field and the preset colors.",
+  "Com false, bloqueia os sliders, o campo hex e as cores predefinidas.",
+  "Con false, bloquea los sliders, el campo hex y los colores predefinidos.",
+  "Avec false, bloque les curseurs, le champ hex et les couleurs prédéfinies."
+ ],
+ "Mensagem de erro externa, exibida abaixo do painel.": [
+  "External error message, shown below the panel.",
+  "Mensagem de erro externa, exibida abaixo do painel.",
+  "Mensaje de error externo, mostrado debajo del panel.",
+  "Message d'erreur externe, affiché sous le panneau."
+ ],
+ "Título exibido acima do painel.": [
+  "Title shown above the panel.",
+  "Título exibido acima do painel.",
+  "Título mostrado encima del panel.",
+  "Titre affiché au-dessus du panneau."
+ ],
+ "Nome do campo no formulário (usado junto com control ou dentro de SgForm).": [
+  "Field name in the form (used together with control or inside SgForm).",
+  "Nome do campo no formulário (usado junto com control ou dentro de SgForm).",
+  "Nombre del campo en el formulario (se usa junto con control o dentro de SgForm).",
+  "Nom du champ dans le formulaire (utilisé avec control ou dans un SgForm)."
+ ],
+ "Recebe a cor #RRGGBB (maiúscula) a cada mudança válida; hex inválido não emite.": [
+  "Receives the #RRGGBB color (uppercase) on every valid change; an invalid hex does not emit.",
+  "Recebe a cor #RRGGBB (maiúscula) a cada alteração válida; hex inválido não emite.",
+  "Recibe el color #RRGGBB (en mayúsculas) en cada cambio válido; un hex no válido no emite.",
+  "Reçoit la couleur #RRGGBB (majuscule) à chaque changement valide ; un hex invalide n'émet rien."
+ ],
+ "Cores predefinidas (#RRGGBB); tocar numa delas escolhe a cor. Entradas inválidas são ignoradas.": [
+  "Preset colors (#RRGGBB); tapping one picks the color. Invalid entries are ignored.",
+  "Cores predefinidas (#RRGGBB); tocar numa delas escolhe a cor. Entradas inválidas são ignoradas.",
+  "Colores predefinidos (#RRGGBB); tocar uno elige el color. Las entradas no válidas se ignoran.",
+  "Couleurs prédéfinies (#RRGGBB) ; toucher l'une d'elles choisit la couleur. Les entrées invalides sont ignorées."
+ ],
+ "Mostra o campo de texto hex (#RRGGBB) com validação.": [
+  "Shows the hex text field (#RRGGBB) with validation.",
+  "Mostra o campo de texto hex (#RRGGBB) com validação.",
+  "Muestra el campo de texto hex (#RRGGBB) con validación.",
+  "Affiche le champ de texte hex (#RRGGBB) avec validation."
+ ],
+ "Cor controlada no formato #RRGGBB; quando informada, o componente não guarda estado próprio.": [
+  "Controlled color in #RRGGBB format; when given, the component keeps no state of its own.",
+  "Cor controlada no formato #RRGGBB; quando informada, o componente não guarda estado próprio.",
+  "Color controlado en formato #RRGGBB; cuando se informa, el componente no guarda estado propio.",
+  "Couleur contrôlée au format #RRGGBB ; lorsqu'elle est fournie, le composant ne garde pas d'état propre."
+ ],
+ "Largura em px (número) ou texto \"N%\". Sem valor, ocupa até 360 px.": [
+  "Width in px (number) or \"N%\" text. Without a value, it takes up to 360 px.",
+  "Largura em px (número) ou texto \"N%\". Sem valor, ocupa até 360 px.",
+  "Ancho en px (número) o texto \"N%\". Sin valor, ocupa hasta 360 px.",
+  "Largeur en px (nombre) ou texte \"N%\". Sans valeur, occupe jusqu'à 360 px."
+ ],
+ "Barras (matiz, saturação e brilho)": [
+  "Bars (hue, saturation and brightness)",
+  "Barras (matiz, saturação e brilho)",
+  "Barras (matiz, saturación y brillo)",
+  "Barres (teinte, saturation et luminosité)"
+ ],
+ "mode: SgColorPickerMode.sliders troca o gradiente por três barras: matiz, saturação e brilho.": [
+  "mode: SgColorPickerMode.sliders replaces the gradient with three bars: hue, saturation and brightness.",
+  "mode: SgColorPickerMode.sliders troca o gradiente por três barras: matiz, saturação e brilho.",
+  "mode: SgColorPickerMode.sliders cambia el degradado por tres barras: matiz, saturación y brillo.",
+  "mode: SgColorPickerMode.sliders remplace le dégradé par trois barres : teinte, saturation et luminosité."
+ ],
+ "Seletor de cor com área em gradiente (saturação e brilho) e barra de matiz, ou três barras, prévia, campo hex (#RRGGBB), cores predefinidas e diálogo showSgColorPicker.": [
+  "Color picker with a gradient area (saturation and brightness) and a hue bar, or three bars, preview, hex field (#RRGGBB), preset colors and the showSgColorPicker dialog.",
+  "Seletor de cor com área em gradiente (saturação e brilho) e barra de matiz, ou três barras, pré-visualização, campo hex (#RRGGBB), cores predefinidas e diálogo showSgColorPicker.",
+  "Selector de color con área en degradado (saturación y brillo) y barra de matiz, o tres barras, vista previa, campo hex (#RRGGBB), colores predefinidos y diálogo showSgColorPicker.",
+  "Sélecteur de couleur avec zone en dégradé (saturation et luminosité) et barre de teinte, ou trois barres, aperçu, champ hex (#RRGGBB), couleurs prédéfinies et boîte de dialogue showSgColorPicker."
+ ],
+ "Forma de escolher a cor: gradient (clássico: área de saturação e brilho mais barra de matiz em gradiente) ou sliders (três barras: matiz, saturação e brilho).": [
+  "How the color is chosen: gradient (classic: saturation/brightness area plus a gradient hue bar) or sliders (three bars: hue, saturation and brightness).",
+  "Forma de escolher a cor: gradient (clássico: área de saturação e brilho mais barra de matiz em gradiente) ou sliders (três barras: matiz, saturação e brilho).",
+  "Forma de elegir el color: gradient (clásico: área de saturación y brillo más barra de matiz en degradado) o sliders (tres barras: matiz, saturación y brillo).",
+  "Façon de choisir la couleur : gradient (classique : zone de saturation et luminosité plus barre de teinte en dégradé) ou sliders (trois barres : teinte, saturation et luminosité)."
+ ]
+}

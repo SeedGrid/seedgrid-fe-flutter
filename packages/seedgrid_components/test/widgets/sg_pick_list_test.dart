@@ -28,7 +28,7 @@ void size(WidgetTester t, double w, [double h = 1400]) {
 const apple = SgPickListItem(label: 'Apple', value: 1);
 const banana = SgPickListItem(label: 'Banana', value: 2);
 const cherry = SgPickListItem(label: 'Cherry', value: 3);
-const date = SgPickListItem(label: 'Date', value: 4, disabled: true);
+const date = SgPickListItem(label: 'Date', value: 4, enabled: false);
 const fig = SgPickListItem(label: 'Fig', value: 5);
 
 Finder item(String list, Object v) => find.byKey(ValueKey('pl-$list-item-$v'));
@@ -772,7 +772,7 @@ void main() {
           SgPickList(
             source: const [apple],
             target: const [],
-            disabled: true,
+            enabled: false,
             onChange: events.add,
             onSourceSelectionChange: sels.add,
           ),
@@ -795,7 +795,7 @@ void main() {
                   matching: find.byType(SgButton),
                 ),
               )
-              .disabled,
+              .enabled == false,
           isTrue,
           reason: k,
         );

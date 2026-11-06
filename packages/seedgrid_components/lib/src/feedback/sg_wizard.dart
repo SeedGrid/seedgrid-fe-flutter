@@ -310,7 +310,7 @@ class _SgWizardState extends State<SgWizard> {
                 key: const ValueKey('wizard-next'),
                 label: Text(labels.next),
                 shape: SgButtonShape.rounded,
-                disabled: _validating || widget.nextDisabled,
+                enabled: !(_validating || widget.nextDisabled),
                 onClick: _goNext,
               )
             else
@@ -318,7 +318,7 @@ class _SgWizardState extends State<SgWizard> {
                 key: const ValueKey('wizard-finish'),
                 label: Text(labels.finish),
                 shape: SgButtonShape.rounded,
-                disabled: _finishing || _validating,
+                enabled: !(_finishing || _validating),
                 onClick: _finish,
               ),
           ],

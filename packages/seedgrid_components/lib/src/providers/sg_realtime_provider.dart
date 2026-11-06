@@ -143,15 +143,20 @@ bool matchesSgRealtimeEvent(String pattern, String event) {
 class _SgRealtimeScope extends InheritedWidget {
   const _SgRealtimeScope({
     required this.status,
+    required this.channels,
     required this.addListener,
     required super.child,
   });
 
   final SgRealtimeStatus status;
+
+  /// Channels que este provider assina.
+  final List<String> channels;
   final void Function() Function(SgRealtimeListener listener) addListener;
 
   @override
-  bool updateShouldNotify(_SgRealtimeScope old) => old.status != status;
+  bool updateShouldNotify(_SgRealtimeScope old) =>
+      old.status != status || old.channels.join(",") != channels.join(",");
 }
 
 /// Avisos em tempo real para o usuario logado, pelo SeedGrid Pulse.
@@ -170,7 +175,7 @@ class SgRealtimeProvider extends StatefulWidget
     this.tokenRequestInit,
     this.fetchToken,
     this.pulseUrl,
-    this.disabled,
+    this.enabled,
     this.connectOptions,
     this.connectionFactory,
     this.tokenFetcher,
@@ -201,9 +206,11 @@ class SgRealtimeProvider extends StatefulWidget
   @override
   final String? pulseUrl;
 
-  /// `enabled` no React (padrao `true`): `disabled: true` desliga (ex.: enquanto nao ha usuario logado).
+  /// `enabled` no React (padrao `true`): `enabled: false` desliga (ex.: enquanto nao ha usuario logado).
   @override
-  final bool? disabled;
+  final bool? enabled;
+
+  bool get _disabled => !(enabled ?? true);
 
   /// `connectOptions` do React: opcoes avancadas do cliente, repassadas a [SgPulseConnection.connect].
   @override
@@ -228,7 +235,7 @@ class _SgRealtimeProviderState extends State<SgRealtimeProvider> {
   SgPulseConnection? _connection;
   final List<StreamSubscription<Object?>> _subs = [];
 
-  bool get _enabled => !(widget.disabled ?? false);
+  bool get _enabled => !(widget._disabled);
   String get _channelsKey => widget.channels.join(',');
 
   @override
@@ -240,7 +247,7 @@ class _SgRealtimeProviderState extends State<SgRealtimeProvider> {
   @override
   void didUpdateWidget(SgRealtimeProvider old) {
     super.didUpdateWidget(old);
-    final oldEnabled = !(old.disabled ?? false);
+    final oldEnabled = old.enabled ?? true;
     if (oldEnabled != _enabled ||
         old.channels.join(',') != _channelsKey ||
         old.pulseUrl != widget.pulseUrl) {
@@ -307,12 +314,25 @@ class _SgRealtimeProviderState extends State<SgRealtimeProvider> {
     }
     if (mounted) setState(() {});
 
-    SgRealtimeConnectResponse first;
-    try {
-      first = await _connectResponse();
-    } catch (_) {
-      if (!cancelled()) _setStatus(SgRealtimeStatus.unavailable);
-      return;
+    // Falha temporaria (503, 429, rede) nao e definitiva: fica unavailable (a tela usa o polling) e tenta de novo
+    // com espera crescente (5 s ate 60 s). So enabled:false e definitivo.
+    SgRealtimeConnectResponse? first;
+    for (var attempt = 0; first == null; attempt++) {
+      try {
+        first = await _connectResponse();
+      } catch (_) {
+        if (cancelled()) return;
+        _setStatus(SgRealtimeStatus.unavailable);
+        final wait = Duration(
+          milliseconds: (5000 * (1 << (attempt > 4 ? 4 : attempt))).clamp(
+            5000,
+            60000,
+          ),
+        );
+        await _sleep(wait);
+        if (cancelled()) return;
+        _setStatus(SgRealtimeStatus.connecting);
+      }
     }
     if (cancelled()) return;
     if (!first.enabled || first.token == null || first.token!.isEmpty) {
@@ -355,8 +375,26 @@ class _SgRealtimeProviderState extends State<SgRealtimeProvider> {
     }
   }
 
+  Timer? _retryTimer;
+  Completer<void>? _retryWait;
+
+  /// Espera cancelavel: o `_stop` (troca de canais ou dispose) acorda a espera e solta o Timer.
+  Future<void> _sleep(Duration d) {
+    final done = Completer<void>();
+    _retryWait = done;
+    _retryTimer = Timer(d, () {
+      if (!done.isCompleted) done.complete();
+    });
+    return done.future;
+  }
+
   void _stop() {
     _run++;
+    _retryTimer?.cancel();
+    _retryTimer = null;
+    final waiting = _retryWait;
+    _retryWait = null;
+    if (waiting != null && !waiting.isCompleted) waiting.complete();
     for (final s in _subs) {
       unawaited(s.cancel());
     }
@@ -380,6 +418,7 @@ class _SgRealtimeProviderState extends State<SgRealtimeProvider> {
   @override
   Widget build(BuildContext context) => _SgRealtimeScope(
     status: _status,
+    channels: widget.channels,
     addListener: _addListener,
     child: widget.child,
   );
@@ -478,6 +517,14 @@ class _SgRealtimeEventListenerState extends State<SgRealtimeEventListener> {
 
   @override
   Widget build(BuildContext context) => widget.child;
+}
+
+/// Ha um [SgRealtimeProvider] acima? Com [channel], so conta se ele assina esse channel (o sino so reaproveita a
+/// conexao que ouve `user-notifications`; senao ficaria surdo e abre a propria).
+bool hasSgRealtimeProvider(BuildContext context, {String? channel}) {
+  final scope = context.dependOnInheritedWidgetOfExactType<_SgRealtimeScope>();
+  if (scope == null) return false;
+  return channel == null || scope.channels.contains(channel);
 }
 
 /// `useSgRealtimeStatus()`: `connected` falso => a tela usa o polling de reserva. Sem provider:

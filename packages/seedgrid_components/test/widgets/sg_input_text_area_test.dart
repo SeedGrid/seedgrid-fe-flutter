@@ -352,7 +352,7 @@ void main() {
   });
 
   testWidgets(
-    'botao de limpar: aparece mesmo vazio, limpa, dispara onChange("") e onClear; some se disabled/clearButton false',
+    'botao de limpar: so aparece com texto, limpa, dispara onChange("") e onClear; some se disabled/readOnly/clearButton false',
     (t) async {
       final changes = <String>[];
       var cleared = 0;
@@ -367,28 +367,43 @@ void main() {
       );
       expect(
         find.byKey(const ValueKey('textarea-clear-a')),
-        findsOneWidget,
-        reason: 'o React mostra o X mesmo vazio',
+        findsNothing,
+        reason: 'sem texto nao ha o que limpar (React e Flutter escondem o X)',
       );
       await t.enterText(field('a'), 'abc');
+      await t.pump();
       await t.tap(find.byKey(const ValueKey('textarea-clear-a')));
       await t.pump();
       expect(t.widget<TextField>(field('a')).controller!.text, '');
       expect(changes.last, '');
       expect(cleared, 1);
-      await fresh(t, host(const SgInputTextArea(id: 'a', disabled: true)));
+      await fresh(
+        t,
+        host(const SgInputTextArea(id: 'a', initialValue: 'x', enabled: false)),
+      );
       expect(find.byKey(const ValueKey('textarea-clear-a')), findsNothing);
-      await fresh(t, host(const SgInputTextArea(id: 'a', readOnly: true)));
+      await fresh(
+        t,
+        host(const SgInputTextArea(id: 'a', initialValue: 'x', readOnly: true)),
+      );
       expect(find.byKey(const ValueKey('textarea-clear-a')), findsNothing);
-      await fresh(t, host(const SgInputTextArea(id: 'a', clearButton: false)));
+      await fresh(
+        t,
+        host(
+          const SgInputTextArea(id: 'a', initialValue: 'x', clearButton: false),
+        ),
+      );
       expect(find.byKey(const ValueKey('textarea-clear-a')), findsNothing);
     },
   );
 
   testWidgets('disabled e readOnly', (t) async {
-    await t.pumpWidget(host(const SgInputTextArea(id: 'a', disabled: true)));
+    await t.pumpWidget(host(const SgInputTextArea(id: 'a', enabled: false)));
     expect(t.widget<TextField>(field('a')).enabled, isFalse);
-    await fresh(t, host(const SgInputTextArea(id: 'a', readOnly: true)));
+    await fresh(
+        t,
+        host(const SgInputTextArea(id: 'a', initialValue: 'x', readOnly: true)),
+      );
     expect(t.widget<TextField>(field('a')).readOnly, isTrue);
   });
 
@@ -566,7 +581,7 @@ void main() {
               SgInputTextArea(
                 id: 'g3',
                 labelText: 'Desabilitado',
-                disabled: true,
+                enabled: false,
                 initialValue: 'bloqueado',
               ),
               SizedBox(height: 12),

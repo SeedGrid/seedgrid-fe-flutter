@@ -410,7 +410,7 @@ void main() {
               actions: [
                 SgPopupAction(
                   label: 'Bloqueada',
-                  disabled: true,
+                  enabled: false,
                   onClick: () => n++,
                 ),
               ],

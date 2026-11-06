@@ -13,7 +13,7 @@ Widget build(
   id: o.id,
   labelText: o.labelText,
   placeholder: o.placeholder,
-  disabled: o.disabled,
+  enabled: !(o.disabled ?? false),
   readOnly: o.readOnly,
   clearButton: o.clearButton,
   error: o.error,
@@ -293,7 +293,7 @@ void main() {
         );
         await typeAndLeave('f', '01012025');
         expect(
-          find.text('Date must be between 2026-01-01 and 2026-12-31.'),
+          find.text('Date must be between 1/1/2026 and 12/31/2026.'),
           findsOneWidget,
         );
       },
@@ -621,5 +621,21 @@ void main() {
         ], reason: 'onSubmitted entrega a data ISO, como onChange');
       },
     );
+  });
+
+  // P146.F2.T1: mensagens de limite no idioma (mesma entrada/saida do teste do React, input-date.test.mjs).
+  test('sgFormatDateDisplay por idioma', () {
+    const esperado = {
+      'pt-BR': '05/11/2026',
+      'pt-PT': '05/11/2026',
+      'en-US': '11/5/2026',
+      'es': '5/11/2026',
+      'fr': '05/11/2026',
+    };
+    esperado.forEach((locale, out) {
+      expect(sgFormatDateDisplay('2026-11-05', locale), out, reason: locale);
+    });
+    expect(sgFormatDateDisplay('', 'es'), '');
+    expect(sgFormatDateDisplay('2026-11-05', 'xx-YY'), '05/11/2026');
   });
 }

@@ -14,7 +14,8 @@ abstract interface class SgPeriodSelectorProps {
   bool? get allowCustomPeriod;
   /// Integracao react-hook-form (opcional). Tipo TS: `Control&lt;FieldValues&gt;` (sem tradução exata; ver excecoes.json).
   Object? get control;
-  bool? get disabled;
+  /// Padrão: `true`.
+  bool? get enabled;
   String? get error;
   /// Identificador unico do campo. Padrão: `sg-period-selector`.
   String? get id;
@@ -67,11 +68,12 @@ const List<SgPropSpec> sgPeriodSelectorPropSpecs = <SgPropSpec>[
     exact: false,
   ),
   SgPropSpec(
-    name: 'disabled',
-    reactName: 'disabled',
+    name: 'enabled',
+    reactName: 'enabled',
     type: 'bool?',
     tsType: 'boolean',
     required: false,
+    defaultValue: 'true',
   ),
   SgPropSpec(
     name: 'error',

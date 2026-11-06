@@ -215,7 +215,7 @@ void main() {
       await mountForm(
         t,
         form,
-        const SgInputCPF(id: 'x', name: 'f', disabled: true),
+        const SgInputCPF(id: 'x', name: 'f', enabled: false),
       );
       await form.setValue('f', '12345678909');
       await t.pump();

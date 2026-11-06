@@ -81,7 +81,7 @@ void main() {
   ) async {
     final changes = <bool>[];
     await t.pumpWidget(
-      host(SgToggleSwitch(id: 'a', disabled: true, onChange: changes.add)),
+      host(SgToggleSwitch(id: 'a', enabled: false, onChange: changes.add)),
     );
     await t.tap(sw('a'));
     await t.pump();
@@ -111,7 +111,7 @@ void main() {
       1,
     );
     await t.pumpWidget(
-      host(const SgToggleSwitch(key: ValueKey('dis'), id: 'a', disabled: true)),
+      host(const SgToggleSwitch(key: ValueKey('dis'), id: 'a', enabled: false)),
     );
     expect(
       t
@@ -423,7 +423,7 @@ void main() {
             SgToggleSwitch(
               id: 'g5',
               label: 'Desabilitada',
-              disabled: true,
+              enabled: false,
               defaultChecked: true,
             ),
           ],

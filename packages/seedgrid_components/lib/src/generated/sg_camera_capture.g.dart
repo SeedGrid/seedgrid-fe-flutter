@@ -12,8 +12,8 @@ import '../props/sg_prop_spec.dart';
 abstract interface class SgCameraCaptureProps {
   /// Mostra o botao de alternar entre frontal e traseira. Padrão: `true`.
   bool? get allowSwitch;
-  /// Nao abre a camera nem permite capturar. Padrão: `false`.
-  bool? get disabled;
+  /// Nao abre a camera nem permite capturar. Padrão: `true`.
+  bool? get enabled;
   /// Camera inicial: frontal (user) ou traseira (environment). Padrão: `user`.
   SgCameraCaptureFacing? get facing;
   /// Guia de enquadramento sobre a pre-visualizacao. Padrão: `none`.
@@ -46,12 +46,12 @@ const List<SgPropSpec> sgCameraCapturePropSpecs = <SgPropSpec>[
     description: 'Mostra o botao de alternar entre frontal e traseira.',
   ),
   SgPropSpec(
-    name: 'disabled',
-    reactName: 'disabled',
+    name: 'enabled',
+    reactName: 'enabled',
     type: 'bool?',
     tsType: 'boolean',
     required: false,
-    defaultValue: 'false',
+    defaultValue: 'true',
     description: 'Nao abre a camera nem permite capturar.',
   ),
   SgPropSpec(

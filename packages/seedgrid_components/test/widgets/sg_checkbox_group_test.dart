@@ -19,7 +19,7 @@ Widget host(Widget child, {double width = 480}) => MaterialApp(
 const fruits = [
   SgCheckboxGroupOption(label: 'Apple', value: 'a'),
   SgCheckboxGroupOption(label: 'Banana', value: 'b', checked: true),
-  SgCheckboxGroupOption(label: 'Cherry', value: 'c', disabled: true),
+  SgCheckboxGroupOption(label: 'Cherry', value: 'c', enabled: false),
   SgCheckboxGroupOption(label: 'Date', value: 1),
 ];
 
@@ -93,7 +93,7 @@ void main() {
         SgCheckboxGroup(
           id: 'g',
           source: fruits,
-          disabled: true,
+          enabled: false,
           onChange: changes.add,
         ),
       ),
@@ -564,7 +564,7 @@ void main() {
                   value: 2,
                   icon: Icon(Icons.favorite, size: 16),
                 ),
-                SgCheckboxGroupOption(label: 'Tres', value: 3, disabled: true),
+                SgCheckboxGroupOption(label: 'Tres', value: 3, enabled: false),
               ],
             ),
             SizedBox(height: 16),

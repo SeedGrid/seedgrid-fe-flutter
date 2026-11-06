@@ -21,7 +21,7 @@ class SgConfirmationDialogButtonConfig {
     this.severity,
     this.appearance,
     this.shape,
-    this.disabled,
+    this.enabled,
     this.onClick,
   });
 
@@ -33,7 +33,7 @@ class SgConfirmationDialogButtonConfig {
   final SgSeverity? severity;
   final SgAppearance? appearance;
   final SgButtonShape? shape;
-  final bool? disabled;
+  final bool? enabled;
   final VoidCallback? onClick;
 }
 
@@ -323,7 +323,7 @@ class _SgConfirmationDialogState extends State<SgConfirmationDialog> {
             appearance: cancel?.appearance ?? SgAppearance.outline,
             severity: cancel?.severity ?? SgSeverity.secondary,
             shape: cancel?.shape ?? SgButtonShape.rounded,
-            disabled: cancel?.disabled,
+            enabled: cancel?.enabled,
             customColors: cancelColors,
             leftIcon: cancel?.icon ?? const Icon(Icons.close),
             onClick: _handleCancel,
@@ -338,7 +338,7 @@ class _SgConfirmationDialogState extends State<SgConfirmationDialog> {
                 _buttonSeverity(w.severity) ??
                 SgSeverity.primary,
             shape: confirm?.shape ?? SgButtonShape.rounded,
-            disabled: confirm?.disabled,
+            enabled: confirm?.enabled,
             leftIcon: confirm?.icon ?? const Icon(Icons.check),
             onClick: _handleConfirm,
             child: confirmLabel,

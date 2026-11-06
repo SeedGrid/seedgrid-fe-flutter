@@ -217,6 +217,7 @@ class _SgMenuState extends State<SgMenu> {
   String _searchValue = '';
   String? _focusedId;
   final Map<String, FocusNode> _focus = {};
+  final FocusNode _collapseFocus = FocusNode(debugLabel: 'sg-menu-collapse');
   SgMenuHorizontalAlign? _horizontalAlign;
   SgDockLayoutController? _dock;
   final GlobalKey _shellKey = GlobalKey(debugLabel: 'sg-menu-shell');
@@ -354,6 +355,7 @@ class _SgMenuState extends State<SgMenu> {
     _dock?.registerToolbar(_dockId, null);
     _persist?.removeListener(_onPersist);
     _persist?.dispose();
+    _collapseFocus.dispose();
     for (final f in _focus.values) {
       f.dispose();
     }
@@ -435,7 +437,7 @@ class _SgMenuState extends State<SgMenu> {
   }
 
   void _activate(SgMenuNode node) {
-    if (node.disabled) return;
+    if (!node.enabled) return;
     widget.onItemClick?.call(node);
     setState(() => _localActiveId = node.id);
     final hasUrl = node.url != null && node.url!.isNotEmpty;
@@ -590,100 +592,110 @@ class _SgMenuState extends State<SgMenu> {
     final hint = n.hint ?? (collapsed ? n.label : null);
     final fg = exact ? p.primary : p.foreground;
     final row = _HoverBox(
-      builder: (hover) => Container(
-        key: ValueKey('sg-menu-row-${n.id}'),
-        constraints: BoxConstraints(minHeight: _rowMin),
-        padding: collapsed
-            ? _rowPad.copyWith(left: 4, right: 4)
-            : _rowPad.copyWith(left: 8 + depth * widget.indent.toDouble()),
-        decoration: BoxDecoration(
-          color: _rowBg(p, exact, branch, hover && !n.disabled),
-          borderRadius: BorderRadius.circular(6),
-        ),
-        child: Row(
-          children: [
-            Expanded(
-              child: Focus(
-                focusNode: _focusOf(n.id),
-                onFocusChange: (f) {
-                  if (f) _focusedId = n.id;
-                },
-                child: Semantics(
-                  button: true,
-                  enabled: !n.disabled,
-                  selected: exact,
-                  label: n.label,
-                  child: GestureDetector(
-                    behavior: HitTestBehavior.opaque,
-                    onTap: n.disabled
-                        ? null
-                        : () {
-                            _focusOf(n.id).requestFocus();
-                            final intent = resolveMenuNodeActionIntent(
-                              variant: SgMenuActionVariant.panel,
-                              hasChildren: hasChildren,
-                              hasActionTarget: n.hasActionTarget,
-                              isCollapsed: collapsed,
-                            );
-                            if (intent == SgMenuActionIntent.toggle) {
-                              _toggleExpanded(n.id);
-                            } else {
-                              _activate(n);
-                            }
-                          },
-                    child: Row(
-                      children: [
-                        _iconBox(n, p),
-                        if (!collapsed) ...[
-                          SizedBox(width: _gap),
-                          Expanded(
-                            child: Text(
-                              n.label,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(fontSize: _fontSize, color: fg),
-                            ),
-                          ),
-                          if (n.badge != null) ...[
+      builder: (hover) => ListenableBuilder(
+        listenable: _focusOf(n.id),
+        builder: (context, _) => Container(
+          key: ValueKey('sg-menu-row-${n.id}'),
+          constraints: BoxConstraints(minHeight: _rowMin),
+          padding: collapsed
+              ? _rowPad.copyWith(left: 4, right: 4)
+              : _rowPad.copyWith(left: 8 + depth * widget.indent.toDouble()),
+          decoration: BoxDecoration(
+            color: _rowBg(p, exact, branch, hover && n.enabled),
+            borderRadius: BorderRadius.circular(6),
+            // foco de teclado visivel (Tab e setas)
+            border: _focusOf(n.id).hasFocus
+                ? Border.all(color: p.primary, width: 2)
+                : null,
+          ),
+          child: Row(
+            children: [
+              Expanded(
+                child: Focus(
+                  focusNode: _focusOf(n.id),
+                  onFocusChange: (f) {
+                    if (f) _focusedId = n.id;
+                  },
+                  child: Semantics(
+                    button: true,
+                    enabled: n.enabled,
+                    selected: exact,
+                    label: n.label,
+                    child: GestureDetector(
+                      behavior: HitTestBehavior.opaque,
+                      onTap: !n.enabled
+                          ? null
+                          : () {
+                              _focusOf(n.id).requestFocus();
+                              final intent = resolveMenuNodeActionIntent(
+                                variant: SgMenuActionVariant.panel,
+                                hasChildren: hasChildren,
+                                hasActionTarget: n.hasActionTarget,
+                                isCollapsed: collapsed,
+                              );
+                              if (intent == SgMenuActionIntent.toggle) {
+                                _toggleExpanded(n.id);
+                              } else {
+                                _activate(n);
+                              }
+                            },
+                      child: Row(
+                        children: [
+                          _iconBox(n, p),
+                          if (!collapsed) ...[
                             SizedBox(width: _gap),
-                            _badge(n, p),
+                            Expanded(
+                              child: Text(
+                                n.label,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  fontSize: _fontSize,
+                                  color: fg,
+                                ),
+                              ),
+                            ),
+                            if (n.badge != null) ...[
+                              SizedBox(width: _gap),
+                              _badge(n, p),
+                            ],
                           ],
                         ],
-                      ],
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-            if (!collapsed && hasChildren)
-              Semantics(
-                button: true,
-                label: t(
-                  useComponentsI18n(context),
-                  openNow
-                      ? 'components.actions.collapse'
-                      : 'components.actions.expand',
-                ),
-                child: GestureDetector(
-                  key: ValueKey('sg-menu-toggle-${n.id}'),
-                  behavior: HitTestBehavior.opaque,
-                  onTap: n.disabled ? null : () => _toggleExpanded(n.id),
-                  child: SizedBox(
-                    width: 28,
-                    height: 28,
-                    child: Icon(
-                      openNow ? Icons.expand_more : Icons.chevron_right,
-                      size: 16,
-                      color: p.foreground,
+              if (!collapsed && hasChildren)
+                Semantics(
+                  button: true,
+                  label: t(
+                    useComponentsI18n(context),
+                    openNow
+                        ? 'components.actions.collapse'
+                        : 'components.actions.expand',
+                  ),
+                  child: GestureDetector(
+                    key: ValueKey('sg-menu-toggle-${n.id}'),
+                    behavior: HitTestBehavior.opaque,
+                    onTap: !n.enabled ? null : () => _toggleExpanded(n.id),
+                    child: SizedBox(
+                      width: 28,
+                      height: 28,
+                      child: Icon(
+                        openNow ? Icons.expand_more : Icons.chevron_right,
+                        size: 16,
+                        color: p.foreground,
+                      ),
                     ),
                   ),
                 ),
-              ),
-          ],
+            ],
+          ),
         ),
       ),
     );
-    final disabled = n.disabled ? Opacity(opacity: 0.55, child: row) : row;
+    final disabled = !n.enabled ? Opacity(opacity: 0.55, child: row) : row;
     return Column(
       key: ValueKey('sg-menu-node-${n.id}'),
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -724,18 +736,18 @@ class _SgMenuState extends State<SgMenu> {
     return _withHint(
       n.hint,
       Opacity(
-        opacity: n.disabled ? 0.55 : 1,
+        opacity: !n.enabled ? 0.55 : 1,
         child: _HoverBox(
-          onEnter: n.disabled ? null : onEnter,
+          onEnter: !n.enabled ? null : onEnter,
           builder: (hover) => Semantics(
             button: true,
-            enabled: !n.disabled,
+            enabled: n.enabled,
             selected: exact,
             label: n.label,
             child: GestureDetector(
               key: ValueKey('sg-menu-flat-${n.id}'),
               behavior: HitTestBehavior.opaque,
-              onTap: n.disabled
+              onTap: !n.enabled
                   ? null
                   : onTapOverride ??
                         () {
@@ -758,7 +770,7 @@ class _SgMenuState extends State<SgMenu> {
                       ? p.muted.withValues(alpha: 0.7)
                       : branch
                       ? p.muted.withValues(alpha: 0.6)
-                      : hover && !n.disabled
+                      : hover && n.enabled
                       ? p.muted.withValues(alpha: 0.6)
                       : null,
                   borderRadius: BorderRadius.circular(6),
@@ -843,9 +855,9 @@ class _SgMenuState extends State<SgMenu> {
       return _withHint(
         n.hint,
         Opacity(
-          opacity: n.disabled ? 0.55 : 1,
+          opacity: !n.enabled ? 0.55 : 1,
           child: _HoverBox(
-            onEnter: n.disabled
+            onEnter: !n.enabled
                 ? null
                 : () {
                     final next = resolveMegaMenuHoverActiveId(
@@ -857,7 +869,7 @@ class _SgMenuState extends State<SgMenu> {
             builder: (hover) => GestureDetector(
               key: ValueKey('sg-menu-mega-${n.id}'),
               behavior: HitTestBehavior.opaque,
-              onTap: n.disabled
+              onTap: !n.enabled
                   ? null
                   : () {
                       final s = resolveMegaMenuInteraction(
@@ -877,7 +889,7 @@ class _SgMenuState extends State<SgMenu> {
                 decoration: BoxDecoration(
                   color: isActive
                       ? p.muted.withValues(alpha: 0.8)
-                      : hover && !n.disabled
+                      : hover && n.enabled
                       ? p.muted.withValues(alpha: 0.6)
                       : null,
                   borderRadius: BorderRadius.circular(6),
@@ -1078,25 +1090,52 @@ class _SgMenuState extends State<SgMenu> {
     required Widget icon,
     required VoidCallback onTap,
     required ContainerPalette p,
+    FocusNode? focusNode,
   }) => Semantics(
     button: true,
     label: label,
-    child: _HoverBox(
-      builder: (hover) => GestureDetector(
-        key: key,
-        behavior: HitTestBehavior.opaque,
-        onTap: onTap,
-        child: Container(
-          width: 32,
-          height: 32,
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            color: hover ? p.muted.withValues(alpha: 0.6) : p.background,
-            border: Border.all(color: p.border),
-            borderRadius: BorderRadius.circular(6),
-          ),
-          child: icon,
-        ),
+    // Alcancavel por Tab e acionado por Enter/Espaco, com anel de foco visivel.
+    child: Focus(
+      focusNode: focusNode,
+      onKeyEvent: (node, e) {
+        if (e is KeyDownEvent &&
+            (e.logicalKey == LogicalKeyboardKey.enter ||
+                e.logicalKey == LogicalKeyboardKey.numpadEnter ||
+                e.logicalKey == LogicalKeyboardKey.space)) {
+          onTap();
+          // O botao pode ser reconstruido em outro lugar da arvore (barra recolhida): devolve o foco.
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            if (mounted) focusNode?.requestFocus();
+          });
+          return KeyEventResult.handled;
+        }
+        return KeyEventResult.ignored;
+      },
+      child: Builder(
+        builder: (context) {
+          final focused = Focus.of(context).hasFocus;
+          return _HoverBox(
+            builder: (hover) => GestureDetector(
+              key: key,
+              behavior: HitTestBehavior.opaque,
+              onTap: onTap,
+              child: Container(
+                width: 32,
+                height: 32,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: hover ? p.muted.withValues(alpha: 0.6) : p.background,
+                  border: Border.all(
+                    color: focused ? p.primary : p.border,
+                    width: focused ? 2 : 1,
+                  ),
+                  borderRadius: BorderRadius.circular(6),
+                ),
+                child: icon,
+              ),
+            ),
+          );
+        },
       ),
     ),
   );
@@ -1135,6 +1174,7 @@ class _SgMenuState extends State<SgMenu> {
         widget.showCollapseButton && _menuStyle != SgMenuMenuStyle.drawer
         ? _smallButton(
             key: const ValueKey('sg-menu-collapse'),
+            focusNode: _collapseFocus,
             p: p,
             label: t(
               i18n,
@@ -1598,7 +1638,7 @@ class _SgMenuState extends State<SgMenu> {
     final nodeId = (item.data as Map?)?['nodeId'] as String?;
     if (nodeId == null) return;
     final node = _maps.nodeById[nodeId];
-    if (node == null || node.disabled) return;
+    if (node == null || !node.enabled) return;
     final chain = collectParentChain(_maps.parentById, node.id);
     final st = resolveMenuSearchSelectionState(
       currentExpandedIds: _expanded,

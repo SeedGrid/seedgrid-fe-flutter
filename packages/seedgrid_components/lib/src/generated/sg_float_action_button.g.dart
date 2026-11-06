@@ -27,11 +27,11 @@ abstract interface class SgFloatActionButtonProps {
   bool? get autoHideOnScroll;
   String? get color;
   SgFloatActionButtonDirection? get direction;
-  /// Desabilita a acao principal e as acoes derivadas. Padrão: `false`.
-  bool? get disabled;
   String? get dragId;
   /// Padrão: `md`.
   SgFloatActionButtonElevation? get elevation;
+  /// Desabilita a acao principal e as acoes derivadas. Padrão: `true`.
+  bool? get enabled;
   /// Padrão: `false`.
   bool? get enableDragDrop;
   SgFloatActionButtonFloatActionButtonStyle? get floatActionButtonStyle;
@@ -143,15 +143,6 @@ const List<SgPropSpec> sgFloatActionButtonPropSpecs = <SgPropSpec>[
     values: <String>['left', 'right', 'down', 'up'],
   ),
   SgPropSpec(
-    name: 'disabled',
-    reactName: 'disabled',
-    type: 'bool?',
-    tsType: 'boolean',
-    required: false,
-    defaultValue: 'false',
-    description: 'Desabilita a acao principal e as acoes derivadas.',
-  ),
-  SgPropSpec(
     name: 'dragId',
     reactName: 'dragId',
     type: 'String?',
@@ -166,6 +157,15 @@ const List<SgPropSpec> sgFloatActionButtonPropSpecs = <SgPropSpec>[
     required: false,
     defaultValue: 'md',
     values: <String>['none', 'sm', 'md', 'lg'],
+  ),
+  SgPropSpec(
+    name: 'enabled',
+    reactName: 'enabled',
+    type: 'bool?',
+    tsType: 'boolean',
+    required: false,
+    defaultValue: 'true',
+    description: 'Desabilita a acao principal e as acoes derivadas.',
   ),
   SgPropSpec(
     name: 'enableDragDrop',

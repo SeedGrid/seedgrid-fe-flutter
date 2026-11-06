@@ -341,7 +341,7 @@ class _SgMaskedInputState extends State<SgMaskedInput> {
       clearButton: c.clearButton,
       control: c.control,
       elevation: c.elevationText,
-      disabled: c.disabled,
+      enabled: !(c.disabled ?? false),
       error: resolveFieldError(c.error, _internalError),
       filled: c.filled,
       hintText: c.hintText,

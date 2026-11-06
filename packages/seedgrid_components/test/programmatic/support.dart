@@ -244,7 +244,9 @@ class Bench {
       }
     } else if (a.containsKey('clear')) {
       final key = comp == 'textarea' ? 'textarea-clear-x' : 'clear-x';
-      await t.tap(find.byKey(ValueKey(key)));
+      // O X so existe com texto (React e Flutter): em campo vazio nao ha o que clicar.
+      final clearBtn = find.byKey(ValueKey(key));
+      if (clearBtn.evaluate().isNotEmpty) await t.tap(clearBtn);
     } else if (a.containsKey('up')) {
       await t.tap(find.byKey(const ValueKey('stepper-up-x')));
     } else if (a.containsKey('down')) {
@@ -316,7 +318,7 @@ Widget buildComponent(Bench b) {
         name: name,
         control: form,
         rules: rules,
-        disabled: disabled,
+        enabled: !(disabled ?? false),
         required: required,
         maxLength: maxLength,
         minLength: minLength,
@@ -333,7 +335,7 @@ Widget buildComponent(Bench b) {
         name: name,
         control: form,
         rules: rules,
-        disabled: disabled,
+        enabled: !(disabled ?? false),
         required: required,
         initialValue: sv(vDefault),
         value: sv(vValue),
@@ -346,7 +348,7 @@ Widget buildComponent(Bench b) {
         name: name,
         control: form,
         rules: rules,
-        disabled: disabled,
+        enabled: !(disabled ?? false),
         required: required,
         hidePassword: false,
         initialValue: sv(vDefault),
@@ -360,7 +362,7 @@ Widget buildComponent(Bench b) {
         name: name,
         control: form,
         rules: rules,
-        disabled: disabled,
+        enabled: !(disabled ?? false),
         required: required,
         maxLength: maxLength,
         minLength: minLength,
@@ -375,7 +377,7 @@ Widget buildComponent(Bench b) {
         name: name,
         control: form,
         rules: rules,
-        disabled: disabled,
+        enabled: !(disabled ?? false),
         required: required,
         onChange: onChange,
         onValidation: onVal,
@@ -387,7 +389,7 @@ Widget buildComponent(Bench b) {
         name: name,
         control: form,
         rules: rules,
-        disabled: disabled,
+        enabled: !(disabled ?? false),
         required: required,
         initialValue: sv(vDefault),
         value: sv(vValue),
@@ -400,7 +402,7 @@ Widget buildComponent(Bench b) {
         name: name,
         control: form,
         rules: rules,
-        disabled: disabled,
+        enabled: !(disabled ?? false),
         required: required,
         initialValue: sv(vDefault),
         value: sv(vValue),
@@ -413,7 +415,7 @@ Widget buildComponent(Bench b) {
         name: name,
         control: form,
         rules: rules,
-        disabled: disabled,
+        enabled: !(disabled ?? false),
         required: required,
         initialValue: sv(vDefault),
         value: sv(vValue),
@@ -426,7 +428,7 @@ Widget buildComponent(Bench b) {
         name: name,
         control: form,
         rules: rules,
-        disabled: disabled,
+        enabled: !(disabled ?? false),
         required: required,
         initialValue: sv(vDefault),
         value: sv(vValue),
@@ -439,7 +441,7 @@ Widget buildComponent(Bench b) {
         name: name,
         control: form,
         rules: rules,
-        disabled: disabled,
+        enabled: !(disabled ?? false),
         required: required,
         country: _enum(SgInputPostalCodeCountry.fromValue, p['country']),
         initialValue: sv(vDefault),
@@ -453,7 +455,7 @@ Widget buildComponent(Bench b) {
         name: name,
         control: form,
         rules: rules,
-        disabled: disabled,
+        enabled: !(disabled ?? false),
         required: required,
         minDate: p['minDate'],
         maxDate: p['maxDate'],
@@ -468,7 +470,7 @@ Widget buildComponent(Bench b) {
         name: name,
         control: form,
         rules: rules,
-        disabled: disabled,
+        enabled: !(disabled ?? false),
         required: required,
         minAge: p['minAge'] as num?,
         maxAge: p['maxAge'] as num?,
@@ -483,7 +485,7 @@ Widget buildComponent(Bench b) {
         name: name,
         control: form,
         rules: rules,
-        disabled: disabled,
+        enabled: !(disabled ?? false),
         required: required,
         decimals: p['decimals'] as num?,
         allowNegative: p['allowNegative'] as bool?,
@@ -501,7 +503,7 @@ Widget buildComponent(Bench b) {
         name: name,
         control: form,
         rules: rules,
-        disabled: disabled,
+        enabled: !(disabled ?? false),
         required: required,
         currency: p['currency'] as String?,
         locale: p['locale'] as String?,
@@ -521,7 +523,7 @@ Widget buildComponent(Bench b) {
         name: name,
         control: form,
         rules: rules,
-        disabled: disabled,
+        enabled: !(disabled ?? false),
         minValue: p['minValue'] as num,
         maxValue: p['maxValue'] as num,
         step: p['step'] as num?,
@@ -561,6 +563,8 @@ Future<List<String>> runAndCompare(
   final b = Bench(t, s);
   await b.mount();
   final react = (s['steps'] as List).cast<Map<String, dynamic>>();
+  // O React nao conseguiu rodar (ex.: limpar um campo vazio, onde nao ha X): sem referencia, nada a comparar.
+  if (react.isEmpty) return <String>[];
   final actions = (s['actions'] as List).cast<Map<String, dynamic>>();
   String where(int i) =>
       '${s['id']} passo $i ${i == 0 ? '(inicial)' : jsonEncode(actions[i - 1])}';

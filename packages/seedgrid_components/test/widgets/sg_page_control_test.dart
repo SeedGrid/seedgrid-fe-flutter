@@ -35,7 +35,7 @@ SgPageControlPage page(
   id: id,
   title: Text('Aba $id'),
   hidden: hidden,
-  disabled: disabled,
+  enabled: !(disabled),
   hint: hint,
   icon: icon,
   child: content ?? Text('Conteudo $id'),

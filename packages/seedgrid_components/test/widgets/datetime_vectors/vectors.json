@@ -1217,25 +1217,25 @@
       "local": "2026-11-03T14:30",
       "locale": "en-US",
       "seconds": false,
-      "out": "2026-11-03 14:30"
+      "out": "11/3/2026 14:30"
     },
     {
       "local": "2026-11-03T14:30",
       "locale": "en-US",
       "seconds": true,
-      "out": "2026-11-03 14:30:00"
+      "out": "11/3/2026 14:30:00"
     },
     {
       "local": "2026-11-03T14:30",
       "locale": "es",
       "seconds": false,
-      "out": "03/11/2026 14:30"
+      "out": "3/11/2026 14:30"
     },
     {
       "local": "2026-11-03T14:30",
       "locale": "es",
       "seconds": true,
-      "out": "03/11/2026 14:30:00"
+      "out": "3/11/2026 14:30:00"
     },
     {
       "local": "2026-11-03T14:30",
@@ -1277,25 +1277,25 @@
       "local": "2026-11-03T14:30:45",
       "locale": "en-US",
       "seconds": false,
-      "out": "2026-11-03 14:30"
+      "out": "11/3/2026 14:30"
     },
     {
       "local": "2026-11-03T14:30:45",
       "locale": "en-US",
       "seconds": true,
-      "out": "2026-11-03 14:30:45"
+      "out": "11/3/2026 14:30:45"
     },
     {
       "local": "2026-11-03T14:30:45",
       "locale": "es",
       "seconds": false,
-      "out": "03/11/2026 14:30"
+      "out": "3/11/2026 14:30"
     },
     {
       "local": "2026-11-03T14:30:45",
       "locale": "es",
       "seconds": true,
-      "out": "03/11/2026 14:30:45"
+      "out": "3/11/2026 14:30:45"
     },
     {
       "local": "2026-11-03T14:30:45",
@@ -1308,6 +1308,126 @@
       "locale": "fr",
       "seconds": true,
       "out": "03/11/2026 14:30:45"
+    },
+    {
+      "local": "2026-01-09T08:05",
+      "locale": "pt-BR",
+      "seconds": false,
+      "out": "09/01/2026 08:05"
+    },
+    {
+      "local": "2026-01-09T08:05",
+      "locale": "pt-BR",
+      "seconds": true,
+      "out": "09/01/2026 08:05:00"
+    },
+    {
+      "local": "2026-01-09T08:05",
+      "locale": "pt-PT",
+      "seconds": false,
+      "out": "09/01/2026 08:05"
+    },
+    {
+      "local": "2026-01-09T08:05",
+      "locale": "pt-PT",
+      "seconds": true,
+      "out": "09/01/2026 08:05:00"
+    },
+    {
+      "local": "2026-01-09T08:05",
+      "locale": "en-US",
+      "seconds": false,
+      "out": "1/9/2026 08:05"
+    },
+    {
+      "local": "2026-01-09T08:05",
+      "locale": "en-US",
+      "seconds": true,
+      "out": "1/9/2026 08:05:00"
+    },
+    {
+      "local": "2026-01-09T08:05",
+      "locale": "es",
+      "seconds": false,
+      "out": "9/1/2026 08:05"
+    },
+    {
+      "local": "2026-01-09T08:05",
+      "locale": "es",
+      "seconds": true,
+      "out": "9/1/2026 08:05:00"
+    },
+    {
+      "local": "2026-01-09T08:05",
+      "locale": "fr",
+      "seconds": false,
+      "out": "09/01/2026 08:05"
+    },
+    {
+      "local": "2026-01-09T08:05",
+      "locale": "fr",
+      "seconds": true,
+      "out": "09/01/2026 08:05:00"
+    },
+    {
+      "local": "2026-11-25T23:59:07",
+      "locale": "pt-BR",
+      "seconds": false,
+      "out": "25/11/2026 23:59"
+    },
+    {
+      "local": "2026-11-25T23:59:07",
+      "locale": "pt-BR",
+      "seconds": true,
+      "out": "25/11/2026 23:59:07"
+    },
+    {
+      "local": "2026-11-25T23:59:07",
+      "locale": "pt-PT",
+      "seconds": false,
+      "out": "25/11/2026 23:59"
+    },
+    {
+      "local": "2026-11-25T23:59:07",
+      "locale": "pt-PT",
+      "seconds": true,
+      "out": "25/11/2026 23:59:07"
+    },
+    {
+      "local": "2026-11-25T23:59:07",
+      "locale": "en-US",
+      "seconds": false,
+      "out": "11/25/2026 23:59"
+    },
+    {
+      "local": "2026-11-25T23:59:07",
+      "locale": "en-US",
+      "seconds": true,
+      "out": "11/25/2026 23:59:07"
+    },
+    {
+      "local": "2026-11-25T23:59:07",
+      "locale": "es",
+      "seconds": false,
+      "out": "25/11/2026 23:59"
+    },
+    {
+      "local": "2026-11-25T23:59:07",
+      "locale": "es",
+      "seconds": true,
+      "out": "25/11/2026 23:59:07"
+    },
+    {
+      "local": "2026-11-25T23:59:07",
+      "locale": "fr",
+      "seconds": false,
+      "out": "25/11/2026 23:59"
+    },
+    {
+      "local": "2026-11-25T23:59:07",
+      "locale": "fr",
+      "seconds": true,
+      "out": "25/11/2026 23:59:07"
     },
     {
       "local": "lixo",

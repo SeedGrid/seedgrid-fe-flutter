@@ -20,8 +20,8 @@ abstract interface class SgAvatarProps {
   Widget? get child;
   /// Tipo TS: `SgAvatarCustomColors` (sem tradução exata; ver excecoes.json).
   Object? get customColors;
-  /// Padrão: `false`.
-  bool? get disabled;
+  /// Padrão: `true`.
+  bool? get enabled;
   /// Conteudo de fallback quando nao ha imagem.
   Widget? get fallback;
   Widget? get icon;
@@ -74,12 +74,12 @@ const List<SgPropSpec> sgAvatarPropSpecs = <SgPropSpec>[
     exact: false,
   ),
   SgPropSpec(
-    name: 'disabled',
-    reactName: 'disabled',
+    name: 'enabled',
+    reactName: 'enabled',
     type: 'bool?',
     tsType: 'boolean',
     required: false,
-    defaultValue: 'false',
+    defaultValue: 'true',
   ),
   SgPropSpec(
     name: 'fallback',

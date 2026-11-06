@@ -66,7 +66,7 @@ class _SgMenuPageState extends State<SgMenuPage> {
                     id: 'ajustes',
                     label: context.tx('Ajustes'),
                     icon: Icon(Icons.settings_outlined),
-                    disabled: true,
+                    enabled: false,
                   ),
                 ],
               ),

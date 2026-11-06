@@ -253,5 +253,30 @@ void main() {
       );
       expect(await c.request('/x'), {'a': 1});
     });
+    test(
+      'send: devolve status, corpo e cabecalhos em minusculas, sem lancar em 304/500',
+      () async {
+        final c = SgHttpClient(
+          const HttpClientOptions(baseUrl: 'https://api.x'),
+          client: MockClient((req) async {
+            if (req.headers['If-None-Match'] == 'W/"1"') {
+              return http.Response('', 304, headers: {'ETag': 'W/"1"'});
+            }
+            return http.Response('{"a":1}', 200, headers: {'ETag': 'W/"1"'});
+          }),
+        );
+        final ok = await c.send('/x');
+        expect(ok.status, 200);
+        expect(ok.body, '{"a":1}');
+        expect(ok.headers['etag'], 'W/"1"');
+        final notModified = await c.send(
+          '/x',
+          headers: {'If-None-Match': 'W/"1"'},
+        );
+        expect(notModified.status, 304);
+        expect(notModified.body, '');
+        expect(notModified.headers['etag'], 'W/"1"');
+      },
+    );
   });
 }

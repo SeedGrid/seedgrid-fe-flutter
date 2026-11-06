@@ -12,11 +12,11 @@ import '../props/sg_prop_spec.dart';
 abstract interface class SgPickListProps {
   /// Tipo TS: `any` (sem tradução exata; ver excecoes.json).
   Object? get control;
-  /// Desabilita interacao. Padrão: `false`.
-  bool? get disabled;
   /// Padrão: `true`.
   bool? get draggable;
   String? get emptyMessage;
+  /// Desabilita interacao. Padrão: `true`.
+  bool? get enabled;
   String? get error;
   /// Padrão: `contains`.
   SgPickListFilterMatchMode? get filterMatchMode;
@@ -81,15 +81,6 @@ const List<SgPropSpec> sgPickListPropSpecs = <SgPropSpec>[
     exact: false,
   ),
   SgPropSpec(
-    name: 'disabled',
-    reactName: 'disabled',
-    type: 'bool?',
-    tsType: 'boolean',
-    required: false,
-    defaultValue: 'false',
-    description: 'Desabilita interacao.',
-  ),
-  SgPropSpec(
     name: 'draggable',
     reactName: 'draggable',
     type: 'bool?',
@@ -103,6 +94,15 @@ const List<SgPropSpec> sgPickListPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
+  ),
+  SgPropSpec(
+    name: 'enabled',
+    reactName: 'enabled',
+    type: 'bool?',
+    tsType: 'boolean',
+    required: false,
+    defaultValue: 'true',
+    description: 'Desabilita interacao.',
   ),
   SgPropSpec(
     name: 'error',

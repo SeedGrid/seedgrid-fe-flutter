@@ -59,7 +59,7 @@ class _SgTreeViewPageState extends State<SgTreeViewPage> {
                     SgTreeNode(
                       id: 'bloqueado',
                       label: context.tx('Bloqueado'),
-                      disabled: true,
+                      enabled: false,
                     ),
                   ],
                 ),

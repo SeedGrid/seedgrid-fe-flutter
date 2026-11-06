@@ -32,7 +32,7 @@ class SgStepperInput extends StatefulWidget implements SgStepperInputProps {
     this.ariaLabel,
     this.control,
     this.defaultValue,
-    this.disabled,
+    this.enabled,
     this.error,
     this.inputProps,
     this.name,
@@ -63,7 +63,7 @@ class SgStepperInput extends StatefulWidget implements SgStepperInputProps {
 
   /// Padrao `false`.
   @override
-  final bool? disabled;
+  final bool? enabled;
   @override
   final String? error;
 
@@ -130,7 +130,7 @@ class _SgStepperInputState extends State<SgStepperInput> {
     return _clamp(_controlled ? widget.value! : _internal);
   }
 
-  bool get _locked => (widget.disabled ?? false) || (widget.readOnly ?? false);
+  bool get _locked => !(widget.enabled ?? true) || (widget.readOnly ?? false);
 
   // Sempre do valor ATUAL (nao de um closure do ultimo build): dois toques seguidos antes de redesenhar contam os dois.
   bool get _canIncrease => !_locked && _current < _max;
@@ -281,7 +281,7 @@ class _SgStepperInputState extends State<SgStepperInput> {
       _bound ? _form!.errorOf(widget.name!)?.message : null,
     );
     final hasError = err != null;
-    final disabled = widget.disabled ?? false;
+    final disabled = !(widget.enabled ?? true);
     final canDec = _canDecrease;
     final canInc = _canIncrease;
 

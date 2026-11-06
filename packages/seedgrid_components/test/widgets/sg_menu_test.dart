@@ -47,7 +47,7 @@ List<SgMenuNode> tree({List<String>? log}) => [
     hint: 'Ver relatorios',
     children: [SgMenuNode(id: 'monthly', label: 'Mensal', url: '/monthly')],
   ),
-  const SgMenuNode(id: 'off', label: 'Desligado', url: '/off', disabled: true),
+  const SgMenuNode(id: 'off', label: 'Desligado', url: '/off', enabled: false),
 ];
 
 Finder row(String id) => find.byKey(ValueKey('sg-menu-row-$id'));

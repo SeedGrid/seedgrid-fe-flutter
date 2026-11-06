@@ -70,7 +70,7 @@ Column(
       label: context.tx('Desabilitado'),
       mask: '9999',
       defaultValue: '12',
-      disabled: true,
+      enabled: false,
     ),
     SizedBox(height: 16),
     SgInputOTP(

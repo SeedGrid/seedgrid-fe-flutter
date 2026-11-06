@@ -22,10 +22,10 @@ abstract interface class SgRatingProps {
   String? get color;
   /// Tipo TS: `any` (sem tradução exata; ver excecoes.json).
   Object? get control;
-  /// Desabilita interacao. Padrão: `false`.
-  bool? get disabled;
   /// Color for empty stars Padrão: `hsl(var(--muted-foreground))`.
   String? get emptyColor;
+  /// Desabilita interacao. Padrão: `true`.
+  bool? get enabled;
   String? get error;
   /// Identificador unico do componente.
   String? get id;
@@ -104,15 +104,6 @@ const List<SgPropSpec> sgRatingPropSpecs = <SgPropSpec>[
     exact: false,
   ),
   SgPropSpec(
-    name: 'disabled',
-    reactName: 'disabled',
-    type: 'bool?',
-    tsType: 'boolean',
-    required: false,
-    defaultValue: 'false',
-    description: 'Desabilita interacao.',
-  ),
-  SgPropSpec(
     name: 'emptyColor',
     reactName: 'emptyColor',
     type: 'String?',
@@ -120,6 +111,15 @@ const List<SgPropSpec> sgRatingPropSpecs = <SgPropSpec>[
     required: false,
     defaultValue: 'hsl(var(--muted-foreground))',
     description: 'Color for empty stars',
+  ),
+  SgPropSpec(
+    name: 'enabled',
+    reactName: 'enabled',
+    type: 'bool?',
+    tsType: 'boolean',
+    required: false,
+    defaultValue: 'true',
+    description: 'Desabilita interacao.',
   ),
   SgPropSpec(
     name: 'error',

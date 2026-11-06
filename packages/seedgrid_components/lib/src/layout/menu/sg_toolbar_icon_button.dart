@@ -101,7 +101,7 @@ class SgToolbarIconButton extends StatefulWidget
     implements SgToolbarIconButtonProps {
   const SgToolbarIconButton({
     super.key,
-    this.disabled = false,
+    this.enabled = true,
     this.hideLabel = false,
     this.hint,
     this.icon,
@@ -113,7 +113,7 @@ class SgToolbarIconButton extends StatefulWidget
   });
 
   @override
-  final bool disabled;
+  final bool enabled;
 
   /// Esconde o rotulo e a dica (a toolbar usa quando esta recolhida/compacta).
   @override
@@ -155,7 +155,7 @@ class _SgToolbarIconButtonState extends State<SgToolbarIconButton> {
 
   void _click() {
     final cb = widget.onClick;
-    if (cb == null || widget.disabled || _loading) return;
+    if (cb == null || !widget.enabled || _loading) return;
     final result = cb();
     if (result is! Future) return;
     setState(() => _pending = true);
@@ -259,7 +259,7 @@ class _SgToolbarIconButtonState extends State<SgToolbarIconButton> {
         (widget.label != null && widget.label!.isNotEmpty) &&
         widget.showLabel &&
         !widget.hideLabel;
-    final enabled = !(widget.disabled || _loading);
+    final enabled = !(!widget.enabled || _loading);
     final a11y = widget.hint ?? widget.label;
 
     Widget lead;
@@ -329,7 +329,7 @@ class _SgToolbarIconButtonState extends State<SgToolbarIconButton> {
       ),
     );
 
-    face = Opacity(opacity: widget.disabled || _loading ? 0.5 : 1, child: face);
+    face = Opacity(opacity: !widget.enabled || _loading ? 0.5 : 1, child: face);
 
     return OverlayPortal(
       controller: _hint,

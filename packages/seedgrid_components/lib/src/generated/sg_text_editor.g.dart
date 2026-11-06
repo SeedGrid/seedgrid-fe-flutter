@@ -17,7 +17,8 @@ abstract interface class SgTextEditorProps {
   /// Padrão: ``.
   String? get cssText;
   String? get defaultValueHtml;
-  bool? get disabled;
+  /// Padrão: `true`.
+  bool? get enabled;
   String? get error;
   String? get fileName;
   /// Altura do editor. Padrão: `320`.
@@ -83,11 +84,12 @@ const List<SgPropSpec> sgTextEditorPropSpecs = <SgPropSpec>[
     required: false,
   ),
   SgPropSpec(
-    name: 'disabled',
-    reactName: 'disabled',
+    name: 'enabled',
+    reactName: 'enabled',
     type: 'bool?',
     tsType: 'boolean',
     required: false,
+    defaultValue: 'true',
   ),
   SgPropSpec(
     name: 'error',

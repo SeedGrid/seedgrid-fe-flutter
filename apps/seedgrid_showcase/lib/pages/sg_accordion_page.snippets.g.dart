@@ -26,7 +26,7 @@ SgAccordion(
     SgAccordionItem(
       title: Text(context.tx('Indisponível')),
       content: Text(context.tx('Este item está desabilitado.')),
-      disabled: true,
+      enabled: false,
     ),
   ],
 )

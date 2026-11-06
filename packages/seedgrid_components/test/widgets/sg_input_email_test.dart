@@ -266,7 +266,7 @@ void main() {
       'voce@empresa.com',
     );
     expect(find.text('dica'), findsOneWidget);
-    await t.pumpWidget(host(const SgInputEmail(id: 'e', disabled: true)));
+    await t.pumpWidget(host(const SgInputEmail(id: 'e', enabled: false)));
     expect(t.widget<TextField>(field('e')).enabled, isFalse);
     await t.pumpWidget(host(const SgInputEmail(id: 'e', readOnly: true)));
     expect(t.widget<TextField>(field('e')).readOnly, isTrue);
@@ -365,7 +365,7 @@ void main() {
               SgInputEmail(
                 id: 'g3',
                 labelText: 'Desabilitado',
-                disabled: true,
+                enabled: false,
                 initialValue: 'a@b.co',
               ),
             ],

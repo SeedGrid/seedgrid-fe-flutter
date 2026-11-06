@@ -896,7 +896,7 @@ class _SgDatatableState extends State<SgDatatable> {
         _resolveMessage(
           t(i18n, 'components.datatable.columns'),
           'components.datatable.columns',
-          'Colunas',
+          'Columns',
         );
   }
 
@@ -1662,13 +1662,13 @@ class _SgDatatableState extends State<SgDatatable> {
 
     String msg(String key, String fallback) =>
         _resolveMessage(t(i18n, key), key, fallback);
-    final sortByLabel = msg('components.datatable.sortBy', 'Ordenar por');
-    final sortNoneLabel = msg('components.datatable.sortNone', 'Sem ordem');
+    final sortByLabel = msg('components.datatable.sortBy', 'Sort by');
+    final sortNoneLabel = msg('components.datatable.sortNone', 'No order');
     final sortDirLabel = msg(
       'components.datatable.sortDirection',
-      'Inverter ordem',
+      'Reverse order',
     );
-    final filtersLabel = msg('components.datatable.filters', 'Filtros');
+    final filtersLabel = msg('components.datatable.filters', 'Filters');
 
     final sortField = _currentSortField;
     final sortOrder = _currentSortOrder;
@@ -1723,7 +1723,7 @@ class _SgDatatableState extends State<SgDatatable> {
               size: SgSize.sm,
               appearance: SgAppearance.outline,
               iconOnly: true,
-              disabled: !canFlip,
+              enabled: canFlip,
               onClick: canFlip
                   ? () => _commitSort(sortField, sortOrder == 1 ? -1 : 1)
                   : null,
@@ -2025,7 +2025,7 @@ class _SgDatatableState extends State<SgDatatable> {
             appearance: appearance,
             shape: SgButtonShape.defaultValue,
             iconOnly: true,
-            disabled: onClick == null,
+            enabled: onClick != null,
             onClick: onClick,
             leftIcon: child,
           )
@@ -2586,17 +2586,17 @@ class _ColumnPanel extends StatelessWidget {
     final dragLabel = _resolveMessage(
       _tr(i18n, 'components.datatable.dragToReorder'),
       'components.datatable.dragToReorder',
-      'Arrastar para reordenar',
+      'Drag to reorder',
     );
     final restoreLabel = _resolveMessage(
       _tr(i18n, 'components.datatable.restoreColumns'),
       'components.datatable.restoreColumns',
-      'Restaurar padrão',
+      'Restore default',
     );
     final showAllLabel = _resolveMessage(
       _tr(i18n, 'components.datatable.showAllColumns'),
       'components.datatable.showAllColumns',
-      'Mostrar todas',
+      'Show all',
     );
 
     final items = <Widget>[];

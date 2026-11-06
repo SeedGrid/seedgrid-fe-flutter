@@ -45,7 +45,7 @@ class SgPopupAction {
     this.icon,
     this.hint,
     this.severity,
-    this.disabled = false,
+    this.enabled = true,
     this.closeOnClick,
     this.onClick,
   });
@@ -54,7 +54,7 @@ class SgPopupAction {
   final String label;
   final String? hint;
   final SgPopupSeverity? severity;
-  final bool disabled;
+  final bool enabled;
 
   /// Padrao `true` (igual ao React).
   final bool? closeOnClick;
@@ -355,7 +355,7 @@ class _SgPopupState extends State<SgPopup> {
         ],
       );
       Widget button = Opacity(
-        opacity: a.disabled ? 0.5 : 1,
+        opacity: a.enabled ? 1 : 0.5,
         child: Material(
           color: base ?? Colors.transparent,
           borderRadius: BorderRadius.circular(4),
@@ -366,7 +366,7 @@ class _SgPopupState extends State<SgPopup> {
             hoverColor: hasSeverity
                 ? Colors.black.withValues(alpha: 0.05)
                 : muted.withValues(alpha: 0.8),
-            onTap: a.disabled
+            onTap: !a.enabled
                 ? null
                 : () {
                     a.onClick?.call();
@@ -388,7 +388,7 @@ class _SgPopupState extends State<SgPopup> {
                 border: Border(top: BorderSide(color: border)),
               )
             : null,
-        child: Semantics(button: true, enabled: !a.disabled, child: button),
+        child: Semantics(button: true, enabled: a.enabled, child: button),
       );
     }
 

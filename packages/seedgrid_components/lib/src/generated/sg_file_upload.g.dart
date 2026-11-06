@@ -15,11 +15,11 @@ abstract interface class SgFileUploadProps {
   Object? get control;
   /// Arquivos iniciais (campo nao controlado). Tipo TS: `SgFileValue[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get defaultValue;
-  /// Desabilita a escolha e a remocao. Padrão: `false`.
-  bool? get disabled;
   String? get dropManyTextKey;
   /// Chaves de i18n do texto da area vazia (um arquivo / varios).
   String? get dropTextKey;
+  /// Desabilita a escolha e a remocao. Padrão: `true`.
+  bool? get enabled;
   String? get error;
   /// Regra extra, assincrona, por arquivo (depois da conferencia de tipo). E como o SgImageUpload confere dimensao. Tipo TS: `((file: File, info: { mime: string; }) =&gt; Promise&lt;SgFileRejection&gt;)` (sem tradução exata; ver excecoes.json).
   Function? get extraCheck;
@@ -92,15 +92,6 @@ const List<SgPropSpec> sgFileUploadPropSpecs = <SgPropSpec>[
     exact: false,
   ),
   SgPropSpec(
-    name: 'disabled',
-    reactName: 'disabled',
-    type: 'bool?',
-    tsType: 'boolean',
-    required: false,
-    defaultValue: 'false',
-    description: 'Desabilita a escolha e a remocao.',
-  ),
-  SgPropSpec(
     name: 'dropManyTextKey',
     reactName: 'dropManyTextKey',
     type: 'String?',
@@ -114,6 +105,15 @@ const List<SgPropSpec> sgFileUploadPropSpecs = <SgPropSpec>[
     tsType: 'string',
     required: false,
     description: 'Chaves de i18n do texto da area vazia (um arquivo / varios).',
+  ),
+  SgPropSpec(
+    name: 'enabled',
+    reactName: 'enabled',
+    type: 'bool?',
+    tsType: 'boolean',
+    required: false,
+    defaultValue: 'true',
+    description: 'Desabilita a escolha e a remocao.',
   ),
   SgPropSpec(
     name: 'error',

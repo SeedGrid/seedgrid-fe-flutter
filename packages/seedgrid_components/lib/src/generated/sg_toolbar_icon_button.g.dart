@@ -12,8 +12,8 @@ import '../props/sg_prop_spec.dart';
 /// Props públicas de `SgToolbarIconButton` no React — Botao compacto para toolbars com icone, label opcional, hint, loading e severidade visual.
 /// O widget deve declarar `implements SgToolbarIconButtonProps`.
 abstract interface class SgToolbarIconButtonProps {
-  /// Desabilita interacao. Padrão: `false`.
-  bool? get disabled;
+  /// Desabilita interacao. Padrão: `true`.
+  bool? get enabled;
   bool? get hideLabel;
   /// Texto auxiliar usado como dica contextual.
   String? get hint;
@@ -34,12 +34,12 @@ abstract interface class SgToolbarIconButtonProps {
 /// Especificação das props de `SgToolbarIconButton` (tabela de props e playground do showcase).
 const List<SgPropSpec> sgToolbarIconButtonPropSpecs = <SgPropSpec>[
   SgPropSpec(
-    name: 'disabled',
-    reactName: 'disabled',
+    name: 'enabled',
+    reactName: 'enabled',
     type: 'bool?',
     tsType: 'boolean',
     required: false,
-    defaultValue: 'false',
+    defaultValue: 'true',
     description: 'Desabilita interacao.',
   ),
   SgPropSpec(

@@ -6,6 +6,7 @@ import 'package:seedgrid_components/seedgrid_components.dart';
 import 'sg_input_cpf_page.snippets.g.dart';
 import '../src/sg_showcase_page.dart';
 import '../src/showcase_i18n.dart';
+import '../src/showcase_log_box.dart';
 
 class SgInputCPFPage extends StatefulWidget {
   const SgInputCPFPage({super.key});
@@ -15,83 +16,159 @@ class SgInputCPFPage extends StatefulWidget {
 }
 
 class _SgInputCPFPageState extends State<SgInputCPFPage> {
-  final SgFormController _form = SgFormController();
-  String _evento = 'nenhum';
-  String _enviado = '';
+  String _basico = '';
+  String? _validationMsg;
+  final List<String> _eventLog = [];
 
-  @override
-  void dispose() {
-    _form.dispose();
-    super.dispose();
-  }
+  void _log(String entry) => setState(() => _eventLog.insert(0, entry));
 
   @override
   Widget build(BuildContext context) {
     final examples = <ShowcaseExample>[
       ShowcaseExample(
         title: 'Básico',
-        description:
-            'A máscara é aplicada a cada dígito; a validação aparece ao digitar e ao sair do campo.',
+        description: 'CPF com label e hint.',
         preview:
             // #region sg-input-cpf-basico
-            const SgInputCPF(id: 'cpf', labelText: 'CPF'),
+            SizedBox(
+              width: 320,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SgInputCPF(
+                    id: 'demo-basic',
+                    labelText: context.tx('CPF'),
+                    hintText: context.tx('000.000.000-00'),
+                    onChange: (v) => setState(() => _basico = v),
+                  ),
+                  const SizedBox(height: 8),
+                  Text('${context.tx('Valor')}: $_basico'),
+                ],
+              ),
+            ),
         // #endregion
         code: SgInputCpfPageSnippets.sgInputCpfBasico,
       ),
       ShowcaseExample(
-        title: 'Obrigatório e mensagens próprias',
+        title: 'Obrigatório',
+        description: 'Valida se está vazio e mostra mensagem customizada.',
         preview:
             // #region sg-input-cpf-obrigatorio
-            const SgInputCPF(
-              id: 'cpf-obrigatorio',
-              labelText: 'CPF do titular',
-              required: true,
-              requiredMessage: 'Informe o CPF',
-              lengthMessage: 'O CPF tem 11 dígitos',
-              invalidMessage: 'Esse CPF não existe',
+            Column(
+              children: [
+                SizedBox(
+                  width: 320,
+                  child: SgInputCPF(
+                    id: 'demo-required',
+                    labelText: context.tx('CPF obrigatório'),
+                    hintText: context.tx('Obrigatório'),
+                    required: true,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                SizedBox(
+                  width: 320,
+                  child: SgInputCPF(
+                    id: 'demo-required-custom',
+                    labelText: context.tx('Mensagem customizada'),
+                    hintText: context.tx('Obrigatório'),
+                    required: true,
+                    requiredMessage: context.tx('Informe o CPF.'),
+                  ),
+                ),
+              ],
             ),
         // #endregion
         code: SgInputCpfPageSnippets.sgInputCpfObrigatorio,
       ),
       ShowcaseExample(
-        title: 'Validação própria',
-        description:
-            'A função recebe o valor mascarado e devolve a mensagem ou null.',
+        title: 'Mensagem de tamanho',
+        description: 'Personaliza mensagem quando CPF não tem 11 dígitos.',
+        preview:
+            // #region sg-input-cpf-tamanho
+            SizedBox(
+              width: 320,
+              child: SgInputCPF(
+                id: 'demo-length',
+                labelText: context.tx('CPF'),
+                hintText: context.tx('000.000.000-00'),
+                lengthMessage: context.tx('CPF deve ter 11 dígitos.'),
+              ),
+            ),
+        // #endregion
+        code: SgInputCpfPageSnippets.sgInputCpfTamanho,
+      ),
+      ShowcaseExample(
+        title: 'Mensagem inválida',
+        description: 'Personaliza mensagem de CPF inválido.',
+        preview:
+            // #region sg-input-cpf-invalida
+            SizedBox(
+              width: 320,
+              child: SgInputCPF(
+                id: 'demo-invalid',
+                labelText: context.tx('CPF'),
+                hintText: context.tx('000.000.000-00'),
+                invalidMessage: context.tx('CPF inválido.'),
+              ),
+            ),
+        // #endregion
+        code: SgInputCpfPageSnippets.sgInputCpfInvalida,
+      ),
+      ShowcaseExample(
+        title: 'Validação customizada',
+        description: 'Função de validação retorna mensagem ou null.',
         preview:
             // #region sg-input-cpf-validacao
-            SgInputCPF(
-              id: 'cpf-regra',
-              labelText: 'CPF (não aceita 000...)',
-              validation: (v) =>
-                  v.startsWith('000') ? 'CPF de teste não permitido' : null,
+            SizedBox(
+              width: 320,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SgInputCPF(
+                    id: 'demo-validation',
+                    labelText: context.tx('CPF'),
+                    hintText: context.tx('000.000.000-00'),
+                    validation: (v) => v.startsWith('123')
+                        ? context.tx('CPF não pode iniciar com 123.')
+                        : null,
+                    onValidation: (msg) => setState(() => _validationMsg = msg),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    'onValidation: ${_validationMsg == null ? context.tx('válido') : '"$_validationMsg"'}',
+                  ),
+                ],
+              ),
             ),
         // #endregion
         code: SgInputCpfPageSnippets.sgInputCpfValidacao,
       ),
       ShowcaseExample(
         title: 'Variações visuais',
-        description:
-            'filled alterna o fundo preenchido; withBorder remove a borda.',
+        description: 'Sem borda (withBorder=false) e preenchido (filled=true).',
         preview:
             // #region sg-input-cpf-variacoes
-            const Column(
+            Column(
               children: [
-                SgInputCPF(
-                  id: 'preenchido',
-                  labelText: 'Preenchido',
-                  filled: true,
+                SizedBox(
+                  width: 320,
+                  child: SgInputCPF(
+                    id: 'demo-noborder',
+                    labelText: context.tx('Sem borda'),
+                    hintText: context.tx('CPF'),
+                    withBorder: false,
+                  ),
                 ),
-                SizedBox(height: 12),
-                SgInputCPF(
-                  id: 'vazado',
-                  labelText: 'Sem preenchimento',
-                  filled: false,
-                ),
-                SizedBox(height: 12),
-                SgInputCPF(
-                  id: 'semborda',
-                  labelText: 'Sem borda',
-                  withBorder: false,
+                const SizedBox(height: 12),
+                SizedBox(
+                  width: 320,
+                  child: SgInputCPF(
+                    id: 'demo-filled',
+                    labelText: context.tx('Preenchido'),
+                    hintText: context.tx('CPF'),
+                    filled: true,
+                  ),
                 ),
               ],
             ),
@@ -100,54 +177,96 @@ class _SgInputCPFPageState extends State<SgInputCPFPage> {
       ),
       ShowcaseExample(
         title: 'Sem botão de limpar',
-        description:
-            'clearButton: false esconde o botão de limpar (por padrão ele aparece com texto).',
+        description: 'clearButton=false remove o X do input.',
         preview:
             // #region sg-input-cpf-sem-limpar
-            const SgInputCPF(
-              id: 'semlimpar',
-              labelText: 'CPF',
-              initialValue: '12345678909',
-              clearButton: false,
+            SizedBox(
+              width: 320,
+              child: SgInputCPF(
+                id: 'demo-noclear',
+                labelText: context.tx('Sem limpar'),
+                hintText: context.tx('CPF'),
+                clearButton: false,
+              ),
             ),
         // #endregion
         code: SgInputCpfPageSnippets.sgInputCpfSemLimpar,
       ),
       ShowcaseExample(
         title: 'Largura e borda',
-        description:
-            'width aceita número (px) ou porcentagem; borderRadius arredonda os cantos.',
+        description: 'width e borderRadius customizáveis.',
         preview:
             // #region sg-input-cpf-largura
-            const SgInputCPF(
-              id: 'largura',
-              labelText: 'CPF',
-              width: 240,
-              borderRadius: 20,
+            Wrap(
+              spacing: 16,
+              runSpacing: 12,
+              children: [
+                SgInputCPF(
+                  id: 'demo-w200',
+                  labelText: context.tx('200px'),
+                  hintText: context.tx('CPF'),
+                  width: 200,
+                ),
+                SgInputCPF(
+                  id: 'demo-w300',
+                  labelText: context.tx('300px arredondado'),
+                  hintText: context.tx('CPF'),
+                  width: 300,
+                  borderRadius: 20,
+                ),
+              ],
             ),
         // #endregion
         code: SgInputCpfPageSnippets.sgInputCpfLargura,
       ),
       ShowcaseExample(
+        title: 'Desabilitado',
+        description: 'enabled=false desabilita.',
+        preview:
+            // #region sg-input-cpf-desabilitado
+            SizedBox(
+              width: 320,
+              child: SgInputCPF(
+                id: 'demo-disabled',
+                labelText: context.tx('Desabilitado'),
+                hintText: context.tx('CPF'),
+                enabled: false,
+                initialValue: '000.000.000-00',
+              ),
+            ),
+        // #endregion
+        code: SgInputCpfPageSnippets.sgInputCpfDesabilitado,
+      ),
+      ShowcaseExample(
         title: 'Eventos',
-        description:
-            'onChange, onEnter (foco), onExit (saída) e onClear informam o que o usuário fez.',
+        description: 'onEnter, onExit, onChange, onClear, onValidation.',
         preview:
             // #region sg-input-cpf-eventos
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SgInputCPF(
-                  id: 'eventos',
-                  labelText: 'CPF',
-                  onChange: (v) => setState(() => _evento = 'onChange: $v'),
-                  onEnter: () => setState(() => _evento = 'onEnter'),
-                  onExit: () => setState(() => _evento = 'onExit'),
-                  onClear: () => setState(() => _evento = 'onClear'),
-                ),
-                const SizedBox(height: 8),
-                Text('Último evento: $_evento'),
-              ],
+            SizedBox(
+              width: 320,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SgInputCPF(
+                    id: 'demo-events',
+                    labelText: context.tx('Digite e observe o log'),
+                    hintText: context.tx('CPF'),
+                    required: true,
+                    onChange: (v) => _log('onChange: "$v"'),
+                    onEnter: () => _log(context.tx('onEnter (focus)')),
+                    onExit: () => _log(context.tx('onExit (blur)')),
+                    onClear: () => _log('onClear'),
+                    onValidation: (msg) =>
+                        _log('onValidation: ${msg ?? context.tx('válido')}'),
+                  ),
+                  const SizedBox(height: 12),
+                  ShowcaseLogBox(
+                    entries: _eventLog,
+                    hint: context.tx('Interaja com o input...'),
+                    height: 160,
+                  ),
+                ],
+              ),
             ),
         // #endregion
         code: SgInputCpfPageSnippets.sgInputCpfEventos,
@@ -155,86 +274,43 @@ class _SgInputCPFPageState extends State<SgInputCPFPage> {
       ShowcaseExample(
         title: 'Posição do rótulo',
         description:
-            'labelPosition: float (padrão), top ou left; labelWidth fixa a largura do rótulo à esquerda.',
+            'Compare os modos de rótulo: flutuante, acima e à esquerda.',
         preview:
             // #region sg-input-cpf-rotulo
-            const Column(
+            Wrap(
+              spacing: 16,
+              runSpacing: 12,
               children: [
-                SgInputCPF(
-                  id: 'topo',
-                  labelText: 'Rótulo no topo',
-                  labelPosition: SgInputCPFLabelPosition.top,
+                SizedBox(
+                  width: 280,
+                  child: SgInputCPF(
+                    id: 'sg-input-cpf-label-float',
+                    labelText: context.tx('Flutuante'),
+                    labelPosition: SgInputCPFLabelPosition.float,
+                  ),
                 ),
-                SizedBox(height: 12),
-                SgInputCPF(
-                  id: 'esquerda',
-                  labelText: 'À esquerda',
-                  labelPosition: SgInputCPFLabelPosition.left,
-                  labelWidth: 110,
+                SizedBox(
+                  width: 280,
+                  child: SgInputCPF(
+                    id: 'sg-input-cpf-label-top',
+                    labelText: context.tx('Acima'),
+                    labelPosition: SgInputCPFLabelPosition.top,
+                  ),
+                ),
+                SizedBox(
+                  width: 360,
+                  child: SgInputCPF(
+                    id: 'sg-input-cpf-label-left',
+                    labelText: context.tx('Esquerda'),
+                    labelPosition: SgInputCPFLabelPosition.left,
+                    labelWidth: 140,
+                    labelAlign: SgInputCPFLabelAlign.end,
+                  ),
                 ),
               ],
             ),
         // #endregion
         code: SgInputCpfPageSnippets.sgInputCpfRotulo,
-      ),
-      ShowcaseExample(
-        title: 'Dentro de um formulário',
-        description: 'O formulário guarda o valor mascarado.',
-        preview:
-            // #region sg-input-cpf-formulario
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SgInputCPF(
-                  id: 'campo',
-                  name: 'campo',
-                  control: _form,
-                  labelText: 'Campo',
-                  rules: const SgRules(required: 'Preencha o campo'),
-                ),
-                const SizedBox(height: 12),
-                SgButton(
-                  label: Text(context.tx('Enviar')),
-                  onClick: () => _form.handleSubmit(
-                    (values) => setState(() => _enviado = '${values['campo']}'),
-                  ),
-                ),
-                if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),
-              ],
-            ),
-        // #endregion
-        code: SgInputCpfPageSnippets.sgInputCpfFormulario,
-      ),
-      ShowcaseExample(
-        title: 'Estados',
-        preview:
-            // #region sg-input-cpf-estados
-            const Column(
-              children: [
-                SgInputCPF(
-                  id: 'cpf-desabilitado',
-                  labelText: 'Desabilitado',
-                  disabled: true,
-                  initialValue: '529.982.247-25',
-                ),
-                SizedBox(height: 12),
-                SgInputCPF(
-                  id: 'cpf-leitura',
-                  labelText: 'Somente leitura',
-                  readOnly: true,
-                  initialValue: '529.982.247-25',
-                ),
-                SizedBox(height: 12),
-                SgInputCPF(
-                  id: 'cpf-erro',
-                  labelText: 'Erro externo',
-                  error: 'CPF já cadastrado',
-                  initialValue: '529.982.247-25',
-                ),
-              ],
-            ),
-        // #endregion
-        code: SgInputCpfPageSnippets.sgInputCpfEstados,
       ),
     ];
 
@@ -306,7 +382,7 @@ class _SgInputCPFPageState extends State<SgInputCPFPage> {
               (s) => const {
                 'labelPosition',
                 'filled',
-                'disabled',
+                'enabled',
                 'readOnly',
                 'clearButton',
                 'required',
@@ -324,7 +400,7 @@ class _SgInputCPFPageState extends State<SgInputCPFPage> {
             v['labelPosition'] as String?,
           ),
           filled: v['filled'] as bool?,
-          disabled: v['disabled'] as bool?,
+          enabled: v['enabled'] as bool?,
           readOnly: v['readOnly'] as bool?,
           clearButton: v['clearButton'] as bool?,
           required: v['required'] as bool?,

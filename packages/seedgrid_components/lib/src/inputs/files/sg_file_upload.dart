@@ -1,10 +1,11 @@
 // SgFileUpload (P141; Flutter primeiro, o React vem depois). Escolhe um ou varios arquivos, confere o tipo pelo
 // CONTEUDO (assinatura, nao so a extensao) e valida quantidade e tamanho (por arquivo e total). Nao envia nada:
 // entrega a lista de [SgFile] ao pai. O valor e SEMPRE uma lista (um arquivo = lista de um); `maxFiles` (padrao 1)
-// maior que 1 liga a selecao multipla e a grade. Diferencas assumidas em relacao ao React: sem arrastar e soltar
-// (o toque abre o seletor do sistema, `file_picker`); o valor e [SgFile] (nome + bytes), nao um `File` do navegador.
+// maior que 1 liga a selecao multipla e a grade. Arrastar e soltar (`desktop_drop`) e o toque (seletor do
+// sistema, `file_picker`) levam ao mesmo lugar. Diferenca assumida em relacao ao React: o valor e [SgFile] (nome + bytes), nao um `File` do navegador.
 import 'dart:typed_data';
 
+import 'package:desktop_drop/desktop_drop.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
@@ -149,7 +150,7 @@ class SgFileUpload extends StatefulWidget implements SgFileUploadProps {
     this.accept,
     this.control,
     this.defaultValue,
-    this.disabled,
+    this.enabled,
     this.error,
     this.hintText,
     this.label,
@@ -193,7 +194,7 @@ class SgFileUpload extends StatefulWidget implements SgFileUploadProps {
   final List<SgFile>? defaultValue;
 
   @override
-  final bool? disabled;
+  final bool? enabled;
 
   @override
   final String? error;
@@ -299,7 +300,7 @@ class SgFileUploadState extends State<SgFileUpload> {
   bool _initialized = false;
 
   bool get _bound => widget.name != null && _form != null;
-  bool get _locked => (widget.disabled ?? false) || (widget.readOnly ?? false);
+  bool get _locked => !(widget.enabled ?? true) || (widget.readOnly ?? false);
   int get _max => ((widget.maxFiles ?? 1).floor()).clamp(1, 1 << 30);
   bool get _multi => _max > 1;
 
@@ -391,6 +392,31 @@ class SgFileUploadState extends State<SgFileUpload> {
     });
     if (_bound) _form!.setValue(widget.name!, files.isEmpty ? null : files);
     widget.onChange?.call(files);
+  }
+
+  bool _dragging = false;
+
+  /// Arquivos soltos na area (como o `onDrop` do React): com um arquivo so, vale o primeiro.
+  Future<void> _onDrop(DropDoneDetails details) async {
+    if (mounted) setState(() => _dragging = false);
+    if (_locked || _loading) return;
+    final dropped = _multi ? details.files : details.files.take(1);
+    final files = <SgFile>[];
+    for (final f in dropped) {
+      try {
+        files.add(
+          SgFile(
+            name: f.name,
+            bytes: await f.readAsBytes(),
+            mimeType: sgMimeFromName(f.name),
+          ),
+        );
+      } catch (_) {
+        // pasta ou item que nao da para ler: ignorado
+      }
+    }
+    if (files.isEmpty || !mounted) return;
+    await addFiles(files);
   }
 
   Future<void> _pick() async {
@@ -601,10 +627,16 @@ class SgFileUploadState extends State<SgFileUpload> {
             padding: const EdgeInsets.all(16),
             alignment: Alignment.center,
             decoration: BoxDecoration(
-              color: scheme.surface,
+              color: _dragging
+                  ? scheme.primary.withValues(alpha: 0.08)
+                  : scheme.surface,
               borderRadius: BorderRadius.circular(6),
               border: Border.all(
-                color: hasError ? scheme.error : scheme.outlineVariant,
+                color: hasError
+                    ? scheme.error
+                    : _dragging
+                    ? scheme.primary
+                    : scheme.outlineVariant,
               ),
             ),
             child: _loading
@@ -620,6 +652,14 @@ class SgFileUploadState extends State<SgFileUpload> {
           ),
         ),
       ),
+    );
+    final dropZone = DropTarget(
+      key: ValueKey('${widget.keyPrefix}-drop-${widget.id}'),
+      enable: !_locked,
+      onDragEntered: (_) => setState(() => _dragging = true),
+      onDragExited: (_) => setState(() => _dragging = false),
+      onDragDone: _onDrop,
+      child: zone,
     );
     final items = <Widget>[
       for (var i = 0; i < files.length; i++) _item(context, files[i], i),
@@ -649,7 +689,7 @@ class SgFileUploadState extends State<SgFileUpload> {
                     ],
                   ),
           ),
-        if (showZone || _loading) zone,
+        if (showZone || _loading) dropZone,
         if (!_multi && files.isNotEmpty && !_locked && !_loading)
           Align(
             alignment: Alignment.centerLeft,

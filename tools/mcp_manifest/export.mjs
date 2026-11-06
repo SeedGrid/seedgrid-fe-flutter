@@ -44,6 +44,13 @@ const constPorComponente = new Map([...registry.matchAll(/^\s*'(\w+)':\s*(\w+),/
 
 const dartFiles = fs.readdirSync(generated).filter((f) => f.endsWith(".g.dart") && f !== "registry.g.dart");
 const dartTexts = dartFiles.map((f) => fs.readFileSync(path.join(generated, f), "utf8"));
+// Componentes SOMENTE FLUTTER (tools/parity_table/somente_flutter.json): props escritas a mao em sg_flutter_only_prop_specs.dart
+// (mesmo formato SgPropSpec dos gerados, entao o mesmo leitor serve).
+const somenteFlutter = json("tools", "parity_table", "somente_flutter.json").componentes;
+const flutterOnlyIndex = read("packages", "seedgrid_components", "lib", "src", "props", "sg_flutter_only_prop_specs.dart");
+const flutterOnlyConst = new Map([...flutterOnlyIndex.matchAll(/'(\w+)':\s*(\w+)/g)].map((m) => [m[1], m[2]]));
+const flutterOnlyImports = [...flutterOnlyIndex.matchAll(/^import '([^']+)';/gm)].map((m) => path.resolve(path.join(root, "packages", "seedgrid_components", "lib", "src", "props"), m[1]));
+for (const p of flutterOnlyImports) if (fs.existsSync(p)) dartTexts.push(fs.readFileSync(p, "utf8"));
 function propsDart(constName) {
   for (const text of dartTexts) {
     const at = text.indexOf(`const List<SgPropSpec> ${constName} =`);
@@ -146,6 +153,38 @@ for (const nome of [...constPorComponente.keys()].sort()) {
   });
 }
 
+// Somente Flutter: entram no manifesto com parity.status "somente-flutter" (fora da conta de paridade do React).
+for (const nome of Object.keys(somenteFlutter).sort()) {
+  const s = somenteFlutter[nome];
+  const constName = flutterOnlyConst.get(nome);
+  if (!constName) {
+    falhas.push(`${nome}: sem lista de props em sg_flutter_only_prop_specs.dart`);
+    continue;
+  }
+  const base = pagina.get(nome);
+  if (!base) falhas.push(`${nome}: componente somente Flutter sem pagina no showcase`);
+  components.push({
+    componentId: slug(nome),
+    exportName: nome,
+    sgMeta: {
+      version: packageVersion,
+      componentId: slug(nome),
+      package: "seedgrid_components",
+      exportName: nome,
+      slug: slug(nome),
+      displayName: nome,
+      category: s.categoria,
+      subcategory: "",
+      description: s.descricao,
+      tags: [],
+      props: propsDart(constName),
+      examples: base ? exemplos(base) : [],
+      parity: { status: "somente-flutter", reason: "Componente exclusivo do Flutter, sem contrapartida em outras plataformas e sem exigência de paridade." },
+      omittedProps: [],
+    },
+  });
+}
+
 const manifest = {
   schemaVersion: "1",
   platform: "flutter",
@@ -186,7 +225,9 @@ if (falhas.length) {
 }
 
 // --- verificacoes de aceite (MC.1) -------------------------------------------------------------------------
-const total = components.length;
+const total = components.filter((c) => c.sgMeta.parity.status !== "somente-flutter").length;
+const totalSomenteFlutter = components.length - total;
+if (totalSomenteFlutter !== Object.keys(somenteFlutter).length) throw new Error("somente Flutter nem todos no manifesto");
 const parcial = components.filter((c) => c.sgMeta.parity.status === "parcial").length;
 const portado = components.filter((c) => c.sgMeta.parity.status === "portado").length;
 if (total !== paridade.resumo.total) throw new Error(`${total} componentes no manifesto, paridade.json diz ${paridade.resumo.total}`);
@@ -200,8 +241,8 @@ if (check) {
     console.error("manifesto do MCP desatualizado: rode node tools/mcp_manifest/export.mjs");
     process.exit(1);
   }
-  console.log(`manifesto em dia (${total} componentes, ${exemplosTotal} exemplos)`);
+  console.log(`manifesto em dia (${total} componentes + ${totalSomenteFlutter} somente Flutter, ${exemplosTotal} exemplos)`);
 } else {
   fs.writeFileSync(OUT, text);
-  console.log(`manifesto gravado: ${total} componentes, ${exemplosTotal} exemplos, ${(text.length / 1024).toFixed(0)} KB`);
+  console.log(`manifesto gravado: ${total} componentes + ${totalSomenteFlutter} somente Flutter, ${exemplosTotal} exemplos, ${(text.length / 1024).toFixed(0)} KB`);
 }

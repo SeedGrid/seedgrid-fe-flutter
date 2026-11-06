@@ -16,8 +16,7 @@ abstract interface class SgMultiSelectChipsProps {
   /// Tipo TS: `any` (sem tradução exata; ver excecoes.json).
   Object? get control;
   String? get emptyText;
-  /// No React a prop se chama `enabled` (valor invertido); ver ADR 50.
-  bool? get disabled;
+  bool? get enabled;
   String? get error;
   /// Identificador unico do campo.
   String get id;
@@ -85,7 +84,7 @@ const List<SgPropSpec> sgMultiSelectChipsPropSpecs = <SgPropSpec>[
     required: false,
   ),
   SgPropSpec(
-    name: 'disabled',
+    name: 'enabled',
     reactName: 'enabled',
     type: 'bool?',
     tsType: 'boolean',

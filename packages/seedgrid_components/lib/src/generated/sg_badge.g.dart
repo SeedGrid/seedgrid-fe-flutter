@@ -20,9 +20,10 @@ abstract interface class SgBadgeProps {
   SgBadgeBadgeStyle? get badgeStyle;
   /// Tipo TS: `SgBadgeCustomColors` (sem tradução exata; ver excecoes.json).
   Object? get customColors;
-  bool? get disabled;
   /// Exibe um pequeno marcador visual adicional. Padrão: `false`.
   bool? get dot;
+  /// Padrão: `true`.
+  bool? get enabled;
   String? get hint;
   Widget? get leftIcon;
   num? get max;
@@ -87,13 +88,6 @@ const List<SgPropSpec> sgBadgePropSpecs = <SgPropSpec>[
     exact: false,
   ),
   SgPropSpec(
-    name: 'disabled',
-    reactName: 'disabled',
-    type: 'bool?',
-    tsType: 'boolean',
-    required: false,
-  ),
-  SgPropSpec(
     name: 'dot',
     reactName: 'dot',
     type: 'bool?',
@@ -101,6 +95,14 @@ const List<SgPropSpec> sgBadgePropSpecs = <SgPropSpec>[
     required: false,
     defaultValue: 'false',
     description: 'Exibe um pequeno marcador visual adicional.',
+  ),
+  SgPropSpec(
+    name: 'enabled',
+    reactName: 'enabled',
+    type: 'bool?',
+    tsType: 'boolean',
+    required: false,
+    defaultValue: 'true',
   ),
   SgPropSpec(
     name: 'hint',

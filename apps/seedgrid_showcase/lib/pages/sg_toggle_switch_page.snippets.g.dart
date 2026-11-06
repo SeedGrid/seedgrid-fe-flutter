@@ -73,7 +73,7 @@ Column(
     SgToggleSwitch(
       id: 'off',
       label: context.tx('disabled'),
-      disabled: true,
+      enabled: false,
     ),
   ],
 )
@@ -114,7 +114,7 @@ Column(
       id: 'remoto',
       label: context.tx('Sincronizar'),
       checked: _remoto,
-      disabled: _salvando,
+      enabled: !_salvando,
       onChange: (v) async {
         setState(() => _salvando = true);
         await Future<void>.delayed(

@@ -674,7 +674,8 @@ void main() {
       await t.tap(find.byKey(const ValueKey('sg-dt-column-manager')));
       await t.pumpAndSettle();
       expect(find.byKey(const ValueKey('sg-dt-column-panel')), findsOneWidget);
-      expect(find.text('Colunas'), findsOneWidget);
+      // sem idioma definido o padrao e en-US (a chave agora existe nos 5 idiomas)
+      expect(find.text('Columns'), findsOneWidget);
       await t.tap(find.byKey(const ValueKey('sg-dt-colmgr-toggle-field:name')));
       await t.pumpAndSettle();
       expect(find.byKey(const ValueKey('sg-dt-head-field:name')), findsNothing);

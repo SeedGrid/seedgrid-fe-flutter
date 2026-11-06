@@ -1,0 +1,22 @@
+{
+"exemplo@dominio.com": ["example@domain.com","exemplo@dominio.com","ejemplo@dominio.com","example@domain.com"],
+"Email obrigatório": ["Required email","Email obrigatorio","Email obligatorio","Email obligatoire"],
+"Informe o email.": ["Please enter the email.","Informe o email.","Informe el email.","Veuillez saisir l'e-mail."],
+"Email inválido.": ["Invalid email.","Email invalido.","Email invalido.","Email invalide."],
+"Sem bloqueio": ["No blocking","Sem bloqueio","Sin bloqueo","Pas de blocage"],
+"Somente domínio .com": ["Only .com domain","Apenas dominio .com","Solo dominio .com","Domaine .com uniquement"],
+"seu@dominio.com": ["you@domain.com","seu@dominio.com","tu@dominio.com","you@domain.com"],
+"Use domínio .com.": ["Use a .com domain.","Use um dominio .com.","Usa un dominio .com.","Utilisez un domaine .com."],
+"Email com label e hint.": ["Email with label and hint.","Email com label e hint.","Email con label y hint.","Email avec libelle et indice."],
+"Valida se está vazio e mostra mensagem customizada.": ["Validates empty value and shows custom message.","Valida se esta vazio e mostra mensagem customizada.","Valida si esta vacio y muestra mensaje personalizado.","Valide la valeur vide et affiche un message personnalise."],
+"Mensagem inválida": ["Invalid message","Mensagem invalida","Mensaje invalido","Message invalide"],
+"Personaliza mensagem de email inválido.": ["Customize the invalid email message.","Personaliza a mensagem de email invalido.","Personaliza el mensaje de email invalido.","Personnalisez le message d'e-mail invalide."],
+"Bloqueio de email temporário": ["Temporary email block","Bloqueio de email temporario","Bloqueo de email temporal","Blocage des e-mails temporaires"],
+"blockFakeMail=true (padrão) bloqueia domínios descartáveis.": ["blockFakeMail=true (default) blocks disposable domains.","blockFakeMail=true (padrao) bloqueia dominios descartaveis.","blockFakeMail=true (por defecto) bloquea dominios desechables.","blockFakeMail=true (par defaut) bloque les domaines jetables."],
+"Função de validação retorna mensagem ou null.": ["Validation function returns a message or null.","Funcao de validacao retorna mensagem ou null.","La funcion de validacion devuelve un mensaje o null.","La fonction de validation retourne un message ou null."],
+"Lista bloqueada padrão": ["Default blocked list","Lista bloqueada por defeito","Lista bloqueada por defecto","Liste bloquee par defaut"],
+"Domínios bloqueados por default.": ["Domains blocked by default.","Dominios bloqueados por defeito.","Dominios bloqueados por defecto.","Domaines bloques par defaut."],
+"Config JSON": ["JSON config","Config JSON","Config JSON","Configuration JSON"],
+"A aplicação host pode carregar um JSON e adicionar domínios em runtime.": ["The host app can load a JSON and add domains at runtime.","A aplicacao anfitria pode carregar um JSON e adicionar dominios em runtime.","La app host puede cargar un JSON y agregar dominios en runtime.","L'application hote peut charger un JSON et ajouter des domaines a l'execution."],
+"enabled=false desabilita.": ["enabled=false disables.","enabled=false desativa.","enabled=false deshabilita.","enabled=false desactive."]
+}

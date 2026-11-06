@@ -84,11 +84,11 @@ export default [
     steps: [{ op: "focus" }, fsv(2), snap("focado + setValue"), { op: "open" }, { op: "pick", label: "Tres" }, snap("escolheu")],
   },
   {
-    id: "h-disabled-mostra-valor", items: NUM, props: { value: 2, disabled: true },
+    id: "h-disabled-mostra-valor", items: NUM, props: { value: 2, enabled: false },
     steps: [snap("inicial"), { op: "open" }, snap("tentou abrir"), setv(3), snap("prop mudou")],
   },
   {
-    id: "h-disabled-form-setvalue", items: NUM, form: { defaults: { f: 1 } }, props: { disabled: true },
+    id: "h-disabled-form-setvalue", items: NUM, form: { defaults: { f: 1 } }, props: { enabled: false },
     steps: [snap("inicial"), fsv(3), snap("setValue"), freset(), snap("reset")],
   },
 ];

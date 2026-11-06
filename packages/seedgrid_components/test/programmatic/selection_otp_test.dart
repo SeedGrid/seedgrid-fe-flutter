@@ -20,7 +20,7 @@ class OtpAdapter extends VectorAdapter {
       value: p['value'] as String?,
       defaultValue: p['defaultValue'] as String?,
       mask: p['mask'] as String?,
-      disabled: p['disabled'] == true,
+      enabled: p['enabled'] != false,
       readOnly: p['readOnly'] == true,
       required: p['required'] == true,
       validation: p['validation'] == 'min3'

@@ -709,11 +709,11 @@
      "alias": null
     },
     {
-     "name": "disabled",
+     "name": "enabled",
      "optional": true,
      "ts": "boolean | undefined",
      "alias": null,
-     "default": "false",
+     "default": "true",
      "defaultFonte": "codigo"
     },
     {
@@ -966,12 +966,6 @@
      "alias": null
     },
     {
-     "name": "disabled",
-     "optional": true,
-     "ts": "boolean | undefined",
-     "alias": null
-    },
-    {
      "name": "dot",
      "optional": true,
      "ts": "boolean | undefined",
@@ -979,6 +973,14 @@
      "description": "Exibe um pequeno marcador visual adicional.",
      "default": false,
      "semanticRole": "appearance"
+    },
+    {
+     "name": "enabled",
+     "optional": true,
+     "ts": "boolean | undefined",
+     "alias": null,
+     "default": "true",
+     "defaultFonte": "codigo"
     },
     {
      "name": "hint",
@@ -1355,6 +1357,16 @@
      "defaultFonte": "codigo"
     },
     {
+     "name": "enabled",
+     "optional": true,
+     "ts": "boolean | undefined",
+     "alias": null,
+     "doc": "Quando false, desabilita o botão. Padrão: true.",
+     "description": "Quando false, desabilita a interacao do botao.",
+     "default": true,
+     "semanticRole": "behavior"
+    },
+    {
      "name": "iconOnly",
      "optional": true,
      "ts": "boolean | undefined",
@@ -1616,12 +1628,12 @@
      "alias": null
     },
     {
-     "name": "disabled",
+     "name": "enabled",
      "optional": true,
      "ts": "boolean | undefined",
      "alias": null,
      "description": "Nao abre a camera nem permite capturar.",
-     "default": false,
+     "default": true,
      "semanticRole": "appearance"
     },
     {
@@ -1860,14 +1872,6 @@
      "semanticRole": "label"
     },
     {
-     "name": "disabled",
-     "optional": true,
-     "ts": "boolean | undefined",
-     "alias": null,
-     "default": "false",
-     "defaultFonte": "codigo"
-    },
-    {
      "name": "draggable",
      "optional": true,
      "ts": "boolean | undefined",
@@ -1880,6 +1884,14 @@
      "optional": true,
      "ts": "string | undefined",
      "alias": null
+    },
+    {
+     "name": "enabled",
+     "optional": true,
+     "ts": "boolean | undefined",
+     "alias": null,
+     "default": "true",
+     "defaultFonte": "codigo"
     },
     {
      "name": "footer",
@@ -2188,11 +2200,11 @@
      "alias": null
     },
     {
-     "name": "disabled",
+     "name": "enabled",
      "optional": true,
      "ts": "boolean | undefined",
      "alias": null,
-     "default": "false",
+     "default": "true",
      "defaultFonte": "codigo"
     },
     {
@@ -4842,15 +4854,6 @@
      "doc": "Arquivos iniciais (campo nao controlado)."
     },
     {
-     "name": "disabled",
-     "optional": true,
-     "ts": "boolean | undefined",
-     "alias": null,
-     "description": "Desabilita a escolha e a remocao.",
-     "default": false,
-     "semanticRole": "appearance"
-    },
-    {
      "name": "dropManyTextKey",
      "optional": true,
      "ts": "string | undefined",
@@ -4862,6 +4865,15 @@
      "ts": "string | undefined",
      "alias": null,
      "doc": "Chaves de i18n do texto da area vazia (um arquivo / varios)."
+    },
+    {
+     "name": "enabled",
+     "optional": true,
+     "ts": "boolean | undefined",
+     "alias": null,
+     "description": "Desabilita a escolha e a remocao.",
+     "default": true,
+     "semanticRole": "appearance"
     },
     {
      "name": "error",
@@ -5218,15 +5230,6 @@
      ]
     },
     {
-     "name": "disabled",
-     "optional": true,
-     "ts": "boolean | undefined",
-     "alias": null,
-     "description": "Desabilita a acao principal e as acoes derivadas.",
-     "default": false,
-     "semanticRole": "behavior"
-    },
-    {
      "name": "dragId",
      "optional": true,
      "ts": "string | undefined",
@@ -5245,6 +5248,15 @@
      ],
      "default": "md",
      "defaultFonte": "codigo"
+    },
+    {
+     "name": "enabled",
+     "optional": true,
+     "ts": "boolean | undefined",
+     "alias": null,
+     "description": "Desabilita a acao principal e as acoes derivadas.",
+     "default": true,
+     "semanticRole": "behavior"
     },
     {
      "name": "enableDragDrop",
@@ -5639,12 +5651,12 @@
      "doc": "Arquivos iniciais (campo nao controlado)."
     },
     {
-     "name": "disabled",
+     "name": "enabled",
      "optional": true,
      "ts": "boolean | undefined",
      "alias": null,
      "description": "Desabilita a escolha e a remocao.",
-     "default": false,
+     "default": true,
      "semanticRole": "appearance"
     },
     {
@@ -13004,6 +13016,175 @@
     }
    ]
   },
+  "SgNotificationBell": {
+   "kind": "component",
+   "file": "notifications/SgNotificationBell.tsx",
+   "category": "feedback",
+   "description": "Sino de notificacoes do usuario logado: contador de nao lidas, lista de ate 100 notificacoes com titulo, texto, data e estado lida/nao lida, marcar como lida, excluir, marcar todas e limpar. Autonomo: conecta-se sozinho ao Pulse (token vindo do backend, sem apikey no front) e reaproveita o SgRealtimeProvider se houver; com o Pulse desligado faz polling de reserva. Sem regra de negocio: cada tipo de notificacao tem icone e acao ao abrir.",
+   "props": [
+    {
+     "name": "apiUrl",
+     "optional": true,
+     "ts": "string | undefined",
+     "alias": null,
+     "doc": "Base das rotas da extension `user-notifications`. Default: `/api/user-notifications` (BFF, mesma origem).",
+     "description": "Base das rotas da extension user-notifications (BFF, mesma origem).",
+     "default": "/api/user-notifications",
+     "semanticRole": "data"
+    },
+    {
+     "name": "className",
+     "optional": true,
+     "ts": "string | undefined",
+     "alias": null
+    },
+    {
+     "name": "defaultUnreadOnly",
+     "optional": true,
+     "ts": "boolean | undefined",
+     "alias": null,
+     "doc": "O painel abre em \"Nao lidas\" (ainda nao clicadas). Ignorada com `showUnreadToggle=false`. Nao persiste entre recargas. Default: true.",
+     "description": "O painel abre em Não lidas (ainda não clicadas); ignorada com showUnreadToggle=false e não persiste entre recargas.",
+     "default": "true",
+     "semanticRole": "behavior"
+    },
+    {
+     "name": "eventPattern",
+     "optional": true,
+     "ts": "string | undefined",
+     "alias": null,
+     "doc": "Evento do Pulse que dispara a leitura. Default: `user-notification.*`.",
+     "description": "Evento do Pulse que dispara a leitura.",
+     "default": "user-notification.*",
+     "semanticRole": "behavior"
+    },
+    {
+     "name": "fetcher",
+     "optional": true,
+     "ts": "((input: string, init?: RequestInit) => Promise<Response>) | undefined",
+     "alias": null,
+     "fn": true,
+     "doc": "Substitui o `fetch` (apps sem BFF, testes, demonstracao). Default: `fetch` global.",
+     "description": "Substitui o fetch (apps sem BFF, testes, demonstracao).",
+     "semanticRole": "behavior"
+    },
+    {
+     "name": "maxVisible",
+     "optional": true,
+     "ts": "number | undefined",
+     "alias": null,
+     "doc": "Maximo de notificacoes na lista. Default e maximo: 100 (uma pagina da rota).",
+     "description": "Maximo de notificacoes na lista; as mais antigas saem.",
+     "default": 100,
+     "semanticRole": "behavior"
+    },
+    {
+     "name": "onNotification",
+     "optional": true,
+     "ts": "((notification: SgNotification) => void) | undefined",
+     "alias": null,
+     "fn": true,
+     "doc": "Chegou uma notificacao nova (aviso do Pulse).",
+     "description": "Chegou uma notificacao nova (aviso do Pulse).",
+     "semanticRole": "event"
+    },
+    {
+     "name": "onNotificationDelete",
+     "optional": true,
+     "ts": "((notification: SgNotification) => void) | undefined",
+     "alias": null,
+     "fn": true,
+     "doc": "O usuario excluiu uma notificacao.",
+     "description": "O usuario excluiu uma notificacao.",
+     "semanticRole": "event"
+    },
+    {
+     "name": "onOpen",
+     "optional": true,
+     "ts": "((notification: SgNotification) => void) | undefined",
+     "alias": null,
+     "fn": true,
+     "doc": "O usuario abriu uma notificacao (depois do `onOpen` do tipo).",
+     "description": "O usuario abriu uma notificacao (depois do onOpen do tipo).",
+     "semanticRole": "event"
+    },
+    {
+     "name": "onPollingTick",
+     "optional": true,
+     "ts": "((stats: SgPollingStats) => void) | undefined",
+     "alias": null,
+     "fn": true,
+     "doc": "O polling consultou a API: contador, instante e motivo. Para medir o custo.",
+     "description": "O polling consultou a API: contador, instante da ultima consulta e motivo (disabled ou unavailable).",
+     "semanticRole": "event"
+    },
+    {
+     "name": "placement",
+     "optional": true,
+     "ts": "SgNotificationPlacement | undefined",
+     "alias": null,
+     "enum": [
+      "top",
+      "left",
+      "right",
+      "bottom",
+      "auto"
+     ],
+     "doc": "De que lado do sino o painel abre (como o `placement` do SgPopup). `auto` escolhe o lado em que cabe. Default: `auto`.",
+     "description": "De que lado do sino o painel abre (como o placement do SgPopup); auto escolhe o lado em que cabe.",
+     "default": "auto",
+     "semanticRole": "behavior"
+    },
+    {
+     "name": "pollIntervalMs",
+     "optional": true,
+     "ts": "number | undefined",
+     "alias": null,
+     "doc": "Intervalo do polling de reserva (so com o Pulse desligado ou fora do ar), preso entre 30 e 60 s. Default: 45000.",
+     "description": "Intervalo do polling de reserva (so com o Pulse desligado ou fora do ar), preso entre 30 e 60 s, com jitter e backoff em erro.",
+     "default": 45000,
+     "semanticRole": "behavior"
+    },
+    {
+     "name": "requestInit",
+     "optional": true,
+     "ts": "RequestInit | undefined",
+     "alias": null,
+     "doc": "Opcoes do `fetch` (ex.: `headers: { Authorization }` quando nao ha cookie).",
+     "description": "Opcoes do fetch (ex.: headers com Authorization quando nao ha cookie).",
+     "semanticRole": "behavior"
+    },
+    {
+     "name": "showUnreadToggle",
+     "optional": true,
+     "ts": "boolean | undefined",
+     "alias": null,
+     "doc": "Mostra o interruptor \"Nao lidas\" no topo do painel. `false` esconde so o interruptor (o sino fica) e o painel lista tudo. Default: true.",
+     "description": "Mostra o interruptor Não lidas no topo do painel; false esconde só o interruptor (o sino fica) e o painel lista tudo.",
+     "default": "true",
+     "semanticRole": "behavior"
+    },
+    {
+     "name": "tokenEndpoint",
+     "optional": true,
+     "ts": "string | undefined",
+     "alias": null,
+     "doc": "Rota que entrega o token do Pulse (usada se nao houver `SgRealtimeProvider` acima). Default: `/api/realtime/connect`.",
+     "description": "Rota que entrega o token do Pulse; usada quando nao ha SgRealtimeProvider acima.",
+     "default": "/api/realtime/connect",
+     "semanticRole": "behavior"
+    },
+    {
+     "name": "types",
+     "optional": true,
+     "ts": "Record<string, SgNotificationTypeConfig> | undefined",
+     "alias": null,
+     "doc": "Tipo -> icone e acao ao abrir. O sino nao conhece o negocio: relatorio e so um tipo.",
+     "description": "Tipo da notificacao -> icone e acao ao abrir (onOpen). O sino nao conhece o negocio.",
+     "semanticRole": "data"
+    }
+   ]
+  },
   "SgOrderList": {
    "kind": "component",
    "file": "inputs/SgOrderList.tsx",
@@ -13037,15 +13218,6 @@
      "defaultFonte": "codigo"
     },
     {
-     "name": "disabled",
-     "optional": true,
-     "ts": "boolean | undefined",
-     "alias": null,
-     "description": "Desabilita interacao.",
-     "default": false,
-     "semanticRole": "behavior"
-    },
-    {
      "name": "draggable",
      "optional": true,
      "ts": "boolean | undefined",
@@ -13059,6 +13231,15 @@
      "optional": true,
      "ts": "string | undefined",
      "alias": null
+    },
+    {
+     "name": "enabled",
+     "optional": true,
+     "ts": "boolean | undefined",
+     "alias": null,
+     "description": "Desabilita interacao.",
+     "default": true,
+     "semanticRole": "behavior"
     },
     {
      "name": "error",
@@ -13405,12 +13586,12 @@
      "alias": null
     },
     {
-     "name": "disabled",
+     "name": "enabled",
      "optional": true,
      "ts": "boolean | undefined",
      "alias": null,
      "description": "Desabilita a selecao da pagina.",
-     "default": false,
+     "default": true,
      "semanticRole": "behavior"
     },
     {
@@ -13688,10 +13869,12 @@
      "doc": "Integracao react-hook-form (opcional)."
     },
     {
-     "name": "disabled",
+     "name": "enabled",
      "optional": true,
      "ts": "boolean | undefined",
-     "alias": null
+     "alias": null,
+     "default": "true",
+     "defaultFonte": "codigo"
     },
     {
      "name": "error",
@@ -13873,15 +14056,6 @@
      "alias": null
     },
     {
-     "name": "disabled",
-     "optional": true,
-     "ts": "boolean | undefined",
-     "alias": null,
-     "description": "Desabilita interacao.",
-     "default": false,
-     "semanticRole": "behavior"
-    },
-    {
      "name": "draggable",
      "optional": true,
      "ts": "boolean | undefined",
@@ -13894,6 +14068,15 @@
      "optional": true,
      "ts": "string | undefined",
      "alias": null
+    },
+    {
+     "name": "enabled",
+     "optional": true,
+     "ts": "boolean | undefined",
+     "alias": null,
+     "description": "Desabilita interacao.",
+     "default": true,
+     "semanticRole": "behavior"
     },
     {
      "name": "error",
@@ -14783,11 +14966,11 @@
      "alias": null
     },
     {
-     "name": "disabled",
+     "name": "enabled",
      "optional": true,
      "ts": "boolean | undefined",
      "alias": null,
-     "default": "false",
+     "default": "true",
      "defaultFonte": "codigo"
     },
     {
@@ -14986,16 +15169,6 @@
      "alias": null
     },
     {
-     "name": "disabled",
-     "optional": true,
-     "ts": "boolean | undefined",
-     "alias": null,
-     "doc": "Disabled state",
-     "description": "Desabilita interacao.",
-     "default": false,
-     "semanticRole": "behavior"
-    },
-    {
      "name": "emptyColor",
      "optional": true,
      "ts": "string | undefined",
@@ -15003,6 +15176,16 @@
      "doc": "Color for empty stars",
      "default": "hsl(var(--muted-foreground))",
      "defaultFonte": "codigo"
+    },
+    {
+     "name": "enabled",
+     "optional": true,
+     "ts": "boolean | undefined",
+     "alias": null,
+     "doc": "Disabled state",
+     "description": "Desabilita interacao.",
+     "default": true,
+     "semanticRole": "behavior"
     },
     {
      "name": "error",
@@ -15633,12 +15816,12 @@
      "alias": null
     },
     {
-     "name": "disabled",
+     "name": "enabled",
      "optional": true,
      "ts": "boolean | undefined",
      "alias": null,
      "description": "Desabilita interacao.",
-     "default": false,
+     "default": true,
      "semanticRole": "behavior"
     },
     {
@@ -15766,15 +15949,6 @@
      "alias": null
     },
     {
-     "name": "disabled",
-     "optional": true,
-     "ts": "boolean | undefined",
-     "alias": null,
-     "description": "Desabilita a acao principal e o menu secundario.",
-     "default": false,
-     "semanticRole": "behavior"
-    },
-    {
      "name": "elevation",
      "optional": true,
      "ts": "Elevation | undefined",
@@ -15786,6 +15960,15 @@
      ],
      "default": "none",
      "defaultFonte": "codigo"
+    },
+    {
+     "name": "enabled",
+     "optional": true,
+     "ts": "boolean | undefined",
+     "alias": null,
+     "description": "Desabilita a acao principal e o menu secundario.",
+     "default": true,
+     "semanticRole": "behavior"
     },
     {
      "name": "items",
@@ -16000,12 +16183,12 @@
      "alias": null
     },
     {
-     "name": "disabled",
+     "name": "enabled",
      "optional": true,
      "ts": "boolean | undefined",
      "alias": null,
      "description": "Desabilita interacao.",
-     "default": false,
+     "default": true,
      "semanticRole": "behavior"
     },
     {
@@ -16282,10 +16465,12 @@
      "alias": null
     },
     {
-     "name": "disabled",
+     "name": "enabled",
      "optional": true,
      "ts": "boolean | undefined",
-     "alias": null
+     "alias": null,
+     "default": "true",
+     "defaultFonte": "codigo"
     },
     {
      "name": "error",
@@ -16930,12 +17115,12 @@
      "alias": null
     },
     {
-     "name": "disabled",
+     "name": "enabled",
      "optional": true,
      "ts": "boolean | undefined",
      "alias": null,
      "description": "Desabilita interacao.",
-     "default": false,
+     "default": true,
      "semanticRole": "behavior"
     },
     {
@@ -17605,12 +17790,12 @@
      "semanticRole": "appearance"
     },
     {
-     "name": "disabled",
+     "name": "enabled",
      "optional": true,
      "ts": "boolean | undefined",
      "alias": null,
      "description": "Desabilita os tres combos (ano, recorte e fatia).",
-     "default": false,
+     "default": true,
      "semanticRole": "behavior"
     },
     {

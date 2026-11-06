@@ -59,6 +59,7 @@ class SgShowcasePage extends StatefulWidget {
     required this.examples,
     required this.propSpecs,
     this.playground,
+    this.realUse,
   });
 
   final String name;
@@ -66,6 +67,10 @@ class SgShowcasePage extends StatefulWidget {
   final List<ShowcaseExample> examples;
   final List<SgPropSpec> propSpecs;
   final Widget? playground;
+
+  /// Secao de codigo SEM numero (nao entra nos links do cabecalho): o uso real do componente quando a demo usa
+  /// um substituto (ex.: backend simulado). O codigo dos exemplos numerados continua 1:1 com o renderizado.
+  final ({String title, String code})? realUse;
 
   @override
   State<SgShowcasePage> createState() => SgShowcasePageState();
@@ -251,6 +256,37 @@ class SgShowcasePageState extends State<SgShowcasePage> {
                       number: i + 1,
                       example: widget.examples[i],
                     ),
+                  if (widget.realUse != null) ...[
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 12),
+                      child: Text(
+                        context.tx(widget.realUse!.title),
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                    ),
+                    Container(
+                      key: const ValueKey('codigo-uso-real'),
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        color: Theme.of(
+                          context,
+                        ).colorScheme.surfaceContainerHighest,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: SelectableText(
+                          widget.realUse!.code,
+                          style: const TextStyle(
+                            fontFamily: 'monospace',
+                            fontSize: 13,
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 32),
+                  ],
                   if (widget.playground != null) ...[
                     _SectionTitle(
                       key: _playgroundKey,

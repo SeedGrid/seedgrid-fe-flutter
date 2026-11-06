@@ -20,7 +20,7 @@ class SgBreadcrumbItem {
     required this.label,
     this.href,
     this.icon,
-    this.disabled = false,
+    this.enabled = true,
     this.hidden = false,
     this.onClick,
   });
@@ -31,7 +31,7 @@ class SgBreadcrumbItem {
   /// Faz o item clicavel (nao navega sozinho: use `onNavigate`/`onClick`).
   final String? href;
   final Widget? icon;
-  final bool disabled;
+  final bool enabled;
 
   /// Itens escondidos nao entram no caminho.
   final bool hidden;
@@ -270,7 +270,7 @@ class SgBreadcrumb extends StatelessWidget implements SgBreadcrumbProps {
     Widget action(_Indexed e) {
       final item = e.item;
       final clickable =
-          !item.disabled && (item.href != null || item.onClick != null);
+          item.enabled && (item.href != null || item.onClick != null);
       final child = _Crumb(
         key: ValueKey('sg-breadcrumb-item-${item.id}'),
         padding: EdgeInsets.symmetric(horizontal: m.padH, vertical: m.padV),
@@ -287,7 +287,7 @@ class SgBreadcrumb extends StatelessWidget implements SgBreadcrumbProps {
           onNavigate?.call(item, e.index);
         },
       );
-      return item.disabled ? Opacity(opacity: 0.45, child: child) : child;
+      return !item.enabled ? Opacity(opacity: 0.45, child: child) : child;
     }
 
     Widget current(_Indexed e) => Container(
@@ -309,7 +309,7 @@ class SgBreadcrumb extends StatelessWidget implements SgBreadcrumbProps {
           MenuItemButton(
             key: ValueKey('sg-breadcrumb-overflow-${e.item.id}'),
             onPressed:
-                e.item.disabled ||
+                !e.item.enabled ||
                     (e.item.href == null && e.item.onClick == null)
                 ? null
                 : () {

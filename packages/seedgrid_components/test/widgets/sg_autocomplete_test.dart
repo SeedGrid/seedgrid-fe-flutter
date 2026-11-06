@@ -533,7 +533,7 @@ void main() {
             id: 'a',
             onSelect: selected.add,
             source: (q) => const [
-              SgAutocompleteItem(id: 1, label: 'Bloqueado', disabled: true),
+              SgAutocompleteItem(id: 1, label: 'Bloqueado', enabled: false),
               SgAutocompleteItem(id: 2, label: 'Livre'),
             ],
           ),
@@ -614,7 +614,7 @@ void main() {
         host(
           SgAutocomplete<String>(
             id: 'a',
-            disabled: true,
+            enabled: false,
             showDropDownButton: true,
             source: byQuery,
           ),

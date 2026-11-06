@@ -273,7 +273,7 @@ void main() {
         host(
           SgImageUpload(
             id: 'up',
-            disabled: true,
+            enabled: false,
             defaultValue: const [
               SgFile(name: 'a.png', url: 'https://x.test/a.png'),
             ],

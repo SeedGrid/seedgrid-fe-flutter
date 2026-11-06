@@ -18,6 +18,8 @@ abstract interface class SgButtonProps {
   Object? get customColors;
   /// Padrão: `none`.
   SgElevation? get elevation;
+  /// Quando false, desabilita a interacao do botao. Padrão: `true`.
+  bool? get enabled;
   bool? get iconOnly;
   /// Conteudo textual principal do botao. Aceita `String` ou `Widget` (React: `ReactNode`).
   Object? get label;
@@ -61,6 +63,15 @@ const List<SgPropSpec> sgButtonPropSpecs = <SgPropSpec>[
     required: false,
     defaultValue: 'none',
     values: <String>['none', 'sm', 'md'],
+  ),
+  SgPropSpec(
+    name: 'enabled',
+    reactName: 'enabled',
+    type: 'bool?',
+    tsType: 'boolean',
+    required: false,
+    defaultValue: 'true',
+    description: 'Quando false, desabilita a interacao do botao.',
   ),
   SgPropSpec(
     name: 'iconOnly',

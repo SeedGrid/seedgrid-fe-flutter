@@ -123,7 +123,7 @@ class _SgFileUploadPageState extends State<SgFileUploadPage> {
             const SgFileUpload(
               id: 'anexo-desabilitado',
               labelText: 'Anexo',
-              disabled: true,
+              enabled: false,
               defaultValue: [SgFile(name: 'contrato.pdf', size: 482304)],
             ),
         // #endregion
@@ -188,7 +188,7 @@ class _SgFileUploadPageState extends State<SgFileUploadPage> {
             .where(
               (s) => const {
                 'maxFiles',
-                'disabled',
+                'enabled',
                 'readOnly',
                 'required',
                 'hintText',
@@ -201,7 +201,7 @@ class _SgFileUploadPageState extends State<SgFileUploadPage> {
           id: 'pg',
           labelText: 'Rótulo',
           maxFiles: v['maxFiles'] as num?,
-          disabled: v['disabled'] as bool?,
+          enabled: v['enabled'] as bool?,
           readOnly: v['readOnly'] as bool?,
           required: v['required'] as bool?,
           hintText: v['hintText'] as String?,

@@ -11,8 +11,8 @@ import '../props/sg_prop_spec.dart';
 abstract interface class SgYearPartSelectorProps {
   /// Recortes oferecidos no combo. Reduza a lista quando o dominio so' aceita um deles (fechamento trimestral, por exemplo); com um unico item o combo de recorte deixa de fazer sentido na tela. Padrão: `SEMESTER,QUARTER,BIMESTER`. Tipo TS: `YearPartKind[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get allowedKinds;
-  /// Desabilita os tres combos (ano, recorte e fatia). Padrão: `false`.
-  bool? get disabled;
+  /// Desabilita os tres combos (ano, recorte e fatia). Padrão: `true`.
+  bool? get enabled;
   /// Prefixo dos ids dos tres controles internos (ano, recorte, fatia). Nao e' o id de um campo unico: o componente monta tres. Padrão: `sg-year-part-selector`.
   String? get id;
   /// Rotulo exibido ao usuario.
@@ -44,12 +44,12 @@ const List<SgPropSpec> sgYearPartSelectorPropSpecs = <SgPropSpec>[
     exact: false,
   ),
   SgPropSpec(
-    name: 'disabled',
-    reactName: 'disabled',
+    name: 'enabled',
+    reactName: 'enabled',
     type: 'bool?',
     tsType: 'boolean',
     required: false,
-    defaultValue: 'false',
+    defaultValue: 'true',
     description: 'Desabilita os tres combos (ano, recorte e fatia).',
   ),
   SgPropSpec(

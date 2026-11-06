@@ -9,7 +9,7 @@ class SgTreeNode {
     required this.label,
     this.icon,
     this.children,
-    this.disabled,
+    this.enabled,
     this.meta,
   });
 
@@ -17,7 +17,7 @@ class SgTreeNode {
   final String label;
   final Widget? icon;
   final List<SgTreeNode>? children;
-  final bool? disabled;
+  final bool? enabled;
   final Object? meta;
 }
 
@@ -27,7 +27,7 @@ class SgTreeNodeJson {
     required this.id,
     required this.label,
     this.icon,
-    this.disabled,
+    this.enabled,
     this.checked,
     this.children,
     this.meta,
@@ -36,7 +36,7 @@ class SgTreeNodeJson {
   final String id;
   final String label;
   final String? icon;
-  final bool? disabled;
+  final bool? enabled;
   final bool? checked;
   final List<SgTreeNodeJson>? children;
   final Object? meta;
@@ -70,14 +70,14 @@ class SgTreeTrackBoolean extends SgTreeTrack {
     super.width,
     required this.checkedIds,
     required this.onCheckedChange,
-    this.disabled,
+    this.enabled,
     this.ariaLabel,
     this.adornment,
   });
 
   final List<String> checkedIds;
   final ValueChanged<List<String>> onCheckedChange;
-  final bool Function(SgTreeNode node)? disabled;
+  final bool Function(SgTreeNode node)? enabled;
   final String? ariaLabel;
 
   /// Conteudo livre ao lado do controle, por no.
@@ -93,7 +93,7 @@ class SgTreeTrackEnum extends SgTreeTrack {
     required this.options,
     required this.valueByNodeId,
     required this.onChange,
-    this.disabled,
+    this.enabled,
     this.ariaLabel,
     this.placeholder,
     this.mixedLabel,
@@ -103,7 +103,7 @@ class SgTreeTrackEnum extends SgTreeTrack {
   final List<SgTreeTrackOption> options;
   final Map<String, String?> valueByNodeId;
   final ValueChanged<Map<String, String?>> onChange;
-  final bool Function(SgTreeNode node)? disabled;
+  final bool Function(SgTreeNode node)? enabled;
   final String? ariaLabel;
   final String? placeholder;
   final String? mixedLabel;

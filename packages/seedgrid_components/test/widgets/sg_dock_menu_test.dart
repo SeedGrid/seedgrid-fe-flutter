@@ -41,7 +41,7 @@ List<SgDockMenuItem> _items({
     icon: const Icon(Icons.settings),
     label: 'Ajustes',
     onClick: onC,
-    disabled: disabledC,
+    enabled: !disabledC,
   ),
 ];
 

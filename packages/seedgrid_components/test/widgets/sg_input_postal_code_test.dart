@@ -17,7 +17,7 @@ Widget build(
   id: o.id,
   labelText: o.labelText,
   placeholder: o.placeholder,
-  disabled: o.disabled,
+  enabled: !(o.disabled ?? false),
   readOnly: o.readOnly,
   clearButton: o.clearButton,
   error: o.error,

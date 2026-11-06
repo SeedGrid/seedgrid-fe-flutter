@@ -233,7 +233,7 @@ class _SgAvatarPageState extends State<SgAvatarPage> {
                 ),
                 SgAvatar(
                   label: Text(context.tx('Bia Souza')),
-                  disabled: true,
+                  enabled: false,
                   onClick: () {},
                 ),
                 Text('Cliques: $_cliques'),
@@ -295,7 +295,7 @@ class _SgAvatarPageState extends State<SgAvatarPage> {
                 'shape',
                 'severity',
                 'bordered',
-                'disabled',
+                'enabled',
               }.contains(s.name),
             )
             .toList(),
@@ -309,7 +309,7 @@ class _SgAvatarPageState extends State<SgAvatarPage> {
               SgAvatarSeverity.fromValue(v['severity'] as String?) ??
               SgAvatarSeverity.primary,
           bordered: (v['bordered'] as bool?) ?? true,
-          disabled: (v['disabled'] as bool?) ?? false,
+          enabled: (v['enabled'] as bool?) ?? true,
         ),
         codeBuilder: (v) {
           final args = <String>["label: const Text('Ana Lima')"];

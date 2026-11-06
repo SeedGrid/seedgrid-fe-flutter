@@ -32,7 +32,7 @@ class ComboboxAdapter extends VectorAdapter {
       id: 'c',
       source: source,
       value: s.form == null ? s.prop('value') : null,
-      disabled: s.props['disabled'] == true ? true : null,
+      enabled: s.props['enabled'] as bool?,
       onValueChange: s.events.add,
       name: s.form == null ? null : 'f',
       control: s.form,

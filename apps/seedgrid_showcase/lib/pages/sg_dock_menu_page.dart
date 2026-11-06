@@ -83,7 +83,7 @@ class SgDockMenuPage extends StatelessWidget {
                         id: 'lock',
                         icon: const Icon(Icons.lock),
                         label: context.tx('Bloqueado'),
-                        disabled: true,
+                        enabled: false,
                       ),
                     ],
                   ),
@@ -186,8 +186,8 @@ class SgDockMenuPage extends StatelessWidget {
       propSpecs: [
         ...sgPropSpecs['SgDockMenu']!,
         const SgPropSpec(
-          name: 'items[].disabled',
-          reactName: 'items[].disabled',
+          name: 'items[].enabled',
+          reactName: 'items[].enabled',
           type: 'bool',
           tsType: 'boolean',
           required: false,

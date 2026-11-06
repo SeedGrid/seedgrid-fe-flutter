@@ -22,14 +22,14 @@ class SgOrderListItem {
   const SgOrderListItem({
     required this.label,
     required this.value,
-    this.disabled = false,
+    this.enabled = true,
     this.icon,
     this.data,
   });
 
   final String label;
   final Object value;
-  final bool disabled;
+  final bool enabled;
   final Widget? icon;
   final Object? data;
 }
@@ -39,11 +39,11 @@ class SgOrderListItemState {
   const SgOrderListItemState({
     required this.index,
     required this.selected,
-    required this.disabled,
+    required this.enabled,
   });
   final int index;
   final bool selected;
-  final bool disabled;
+  final bool enabled;
 }
 
 /// Equivale a `SgOrderListRef` do React.
@@ -81,7 +81,7 @@ class SgOrderList extends StatefulWidget implements SgOrderListProps {
     this.showControls = true,
     this.controlsPosition = SgOrderListControlsPosition.left,
     this.draggable = true,
-    this.disabled = false,
+    this.enabled = true,
     this.readOnly = false,
     this.emptyMessage,
     this.itemTemplate,
@@ -120,7 +120,7 @@ class SgOrderList extends StatefulWidget implements SgOrderListProps {
   @override
   final bool draggable;
   @override
-  final bool disabled;
+  final bool enabled;
   @override
   final bool readOnly;
   @override
@@ -241,14 +241,14 @@ class _SgOrderListState extends State<SgOrderList> {
     if (!sameValues(_internalSel, next)) _internalSel = next;
   }
 
-  bool get _canInteract => !widget.disabled && !widget.readOnly;
+  bool get _canInteract => widget.enabled && !widget.readOnly;
   bool get _allowDrag => widget.draggable && _canInteract;
 
   Set<Object> get _movable {
     final sel = _selection.toSet();
     return {
       for (final i in _items)
-        if (sel.contains(i.value) && !i.disabled) i.value,
+        if (sel.contains(i.value) && i.enabled) i.value,
     };
   }
 
@@ -304,7 +304,7 @@ class _SgOrderListState extends State<SgOrderList> {
   }
 
   void _handleSelection(SgOrderListItem item, int index) {
-    if (!_canInteract || item.disabled) return;
+    if (!_canInteract || !item.enabled) return;
     final value = item.value;
     if (widget.selectionMode == SgOrderListSelectionMode.single) {
       _commitSelection([value]);
@@ -320,7 +320,7 @@ class _SgOrderListState extends State<SgOrderList> {
         final end = anchorIndex > index ? anchorIndex : index;
         final range = items
             .sublist(start, end + 1)
-            .where((e) => !e.disabled)
+            .where((e) => e.enabled)
             .map((e) => e.value)
             .toList();
         _commitSelection(
@@ -337,7 +337,7 @@ class _SgOrderListState extends State<SgOrderList> {
   }
 
   void _handleDragStart(SgOrderListItem item, int index) {
-    if (!_allowDrag || item.disabled) return;
+    if (!_allowDrag || !item.enabled) return;
     setState(() => _dragging = index);
     if (!_selection.contains(item.value)) {
       _commitSelection([item.value]);
@@ -399,13 +399,13 @@ class _SgOrderListState extends State<SgOrderList> {
   }
 
   Widget _entry(int index, SgOrderListItem item, Set<Object> selected) {
-    final itemDisabled = widget.disabled || item.disabled;
-    final dragOn = _allowDrag && !item.disabled;
+    final itemDisabled = !widget.enabled || !item.enabled;
+    final dragOn = _allowDrag && item.enabled;
     final isSelected = selected.contains(item.value);
     final state = SgOrderListItemState(
       index: index,
       selected: isSelected,
-      disabled: itemDisabled,
+      enabled: !itemDisabled,
     );
     final focus = _focus.putIfAbsent(index, FocusNode.new);
     Widget tile({bool dimmed = false, bool highlight = false}) => ListEntryTile(
@@ -481,7 +481,7 @@ class _SgOrderListState extends State<SgOrderList> {
       // O React escreve estes rotulos em ingles, sem i18n (a dica sim vem do i18n).
       label: literal,
       tooltip: t(i18n, tipKey),
-      disabled: !_canMove(dir),
+      disabled: !(!(!_canMove(dir))),
       onClick: () => _applyMove(dir),
     );
     return Column(

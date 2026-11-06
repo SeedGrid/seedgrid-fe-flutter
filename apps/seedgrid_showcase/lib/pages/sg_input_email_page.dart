@@ -1,10 +1,14 @@
 // Showcase do SgInputEmail. O codigo exibido em cada exemplo e o trecho entre `// #region` e
 // `// #endregion` deste arquivo: exatamente o que esta renderizado.
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:seedgrid_commons/seedgrid_commons.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
 import '../src/sg_showcase_page.dart';
 import '../src/showcase_i18n.dart';
+import '../src/showcase_log_box.dart';
 import 'sg_input_email_page.snippets.g.dart';
 
 class SgInputEmailPage extends StatefulWidget {
@@ -15,51 +19,65 @@ class SgInputEmailPage extends StatefulWidget {
 }
 
 class _SgInputEmailPageState extends State<SgInputEmailPage> {
-  final SgFormController _form = SgFormController();
-  String _evento = 'nenhum';
-  String _enviado = '';
+  String _basico = '';
+  String? _validationMsg;
+  final List<String> _eventLog = [];
 
-  @override
-  void dispose() {
-    _form.dispose();
-    super.dispose();
-  }
+  void _log(String entry) => setState(() => _eventLog.insert(0, entry));
 
   @override
   Widget build(BuildContext context) {
     final examples = <ShowcaseExample>[
       ShowcaseExample(
         title: 'Básico',
-        description: 'Valida o formato a cada digitação e ao sair do campo.',
+        description: 'Email com label e hint.',
         preview:
             // #region sg-input-email-basico
-            SgInputEmail(
-              id: 'email',
-              labelText: 'E-mail',
-              placeholder: context.tx('voce@empresa.com'),
+            SizedBox(
+              width: 320,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SgInputEmail(
+                    id: 'demo-basic',
+                    labelText: context.tx('Email'),
+                    hintText: context.tx('exemplo@dominio.com'),
+                    onChange: (v) => setState(() => _basico = v),
+                  ),
+                  const SizedBox(height: 8),
+                  Text('${context.tx('Valor')}: $_basico'),
+                ],
+              ),
             ),
         // #endregion
         code: SgInputEmailPageSnippets.sgInputEmailBasico,
       ),
       ShowcaseExample(
-        title: 'Obrigatório e mensagens próprias',
-        description: 'Saia do campo vazio para ver a mensagem de obrigatório.',
+        title: 'Obrigatório',
+        description: 'Valida se está vazio e mostra mensagem customizada.',
         preview:
             // #region sg-input-email-obrigatorio
-            const Column(
+            Column(
               children: [
-                SgInputEmail(
-                  id: 'obrigatorio',
-                  labelText: 'Obrigatório',
-                  required: true,
+                SizedBox(
+                  width: 320,
+                  child: SgInputEmail(
+                    id: 'demo-required',
+                    labelText: context.tx('Email obrigatório'),
+                    hintText: context.tx('Obrigatório'),
+                    required: true,
+                  ),
                 ),
-                SizedBox(height: 12),
-                SgInputEmail(
-                  id: 'proprias',
-                  labelText: 'Mensagens próprias',
-                  required: true,
-                  requiredMessage: 'Informe o e-mail do responsável',
-                  invalidMessage: 'Esse e-mail não parece certo',
+                const SizedBox(height: 12),
+                SizedBox(
+                  width: 320,
+                  child: SgInputEmail(
+                    id: 'demo-required-custom',
+                    labelText: context.tx('Mensagem customizada'),
+                    hintText: context.tx('Obrigatório'),
+                    required: true,
+                    requiredMessage: context.tx('Informe o email.'),
+                  ),
                 ),
               ],
             ),
@@ -67,73 +85,152 @@ class _SgInputEmailPageState extends State<SgInputEmailPage> {
         code: SgInputEmailPageSnippets.sgInputEmailObrigatorio,
       ),
       ShowcaseExample(
-        title: 'E-mails descartáveis',
-        description:
-            'Domínios temporários (yopmail.com, guerrillamail.com...) são bloqueados por padrão; blockFakeMail desliga e blockedEmailDomains acrescenta.',
+        title: 'Mensagem inválida',
+        description: 'Personaliza mensagem de email inválido.',
         preview:
-            // #region sg-input-email-descartaveis
-            const Column(
+            // #region sg-input-email-invalido
+            SizedBox(
+              width: 320,
+              child: SgInputEmail(
+                id: 'demo-invalid',
+                labelText: context.tx('Email'),
+                hintText: context.tx('exemplo@dominio.com'),
+                invalidMessage: context.tx('Email inválido.'),
+              ),
+            ),
+        // #endregion
+        code: SgInputEmailPageSnippets.sgInputEmailInvalido,
+      ),
+      ShowcaseExample(
+        title: 'Bloqueio de email temporário',
+        description:
+            'blockFakeMail=true (padrão) bloqueia domínios descartáveis.',
+        preview:
+            // #region sg-input-email-bloqueio
+            Column(
               children: [
-                SgInputEmail(
-                  id: 'padrao',
-                  labelText: 'Bloqueio padrão (tente a@yopmail.com)',
+                SizedBox(
+                  width: 320,
+                  child: SgInputEmail(
+                    id: 'demo-blocked',
+                    labelText: context.tx('Email'),
+                    hintText: context.tx('exemplo@dominio.com'),
+                  ),
                 ),
-                SizedBox(height: 12),
-                SgInputEmail(
-                  id: 'livre',
-                  labelText: 'blockFakeMail: false',
-                  blockFakeMail: false,
-                ),
-                SizedBox(height: 12),
-                SgInputEmail(
-                  id: 'extra',
-                  labelText: 'Bloqueia @concorrente.com',
-                  blockedEmailDomains: ['concorrente.com'],
+                const SizedBox(height: 12),
+                SizedBox(
+                  width: 320,
+                  child: SgInputEmail(
+                    id: 'demo-blocked-off',
+                    labelText: context.tx('Sem bloqueio'),
+                    hintText: context.tx('exemplo@dominio.com'),
+                    blockFakeMail: false,
+                  ),
                 ),
               ],
             ),
         // #endregion
-        code: SgInputEmailPageSnippets.sgInputEmailDescartaveis,
+        code: SgInputEmailPageSnippets.sgInputEmailBloqueio,
       ),
       ShowcaseExample(
-        title: 'Validação própria',
-        description: 'A validação própria vem antes da checagem de formato.',
+        title: 'Validação customizada',
+        description: 'Função de validação retorna mensagem ou null.',
         preview:
             // #region sg-input-email-validacao
-            SgInputEmail(
-              id: 'corporativo',
-              labelText: 'E-mail corporativo',
-              validation: (v) => v.endsWith('@empresa.com')
-                  ? null
-                  : 'Use o e-mail @empresa.com',
+            SizedBox(
+              width: 320,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SgInputEmail(
+                    id: 'demo-validation',
+                    labelText: context.tx('Somente domínio .com'),
+                    hintText: context.tx('seu@dominio.com'),
+                    validation: (v) => v.endsWith('.com')
+                        ? null
+                        : context.tx('Use domínio .com.'),
+                    onValidation: (msg) => setState(() => _validationMsg = msg),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    'onValidation: ${_validationMsg == null ? context.tx('válido') : '"$_validationMsg"'}',
+                  ),
+                ],
+              ),
             ),
         // #endregion
         code: SgInputEmailPageSnippets.sgInputEmailValidacao,
       ),
       ShowcaseExample(
-        title: 'Variações visuais',
+        title: 'Lista bloqueada padrão',
+        description: 'Domínios bloqueados por default.',
+        preview:
+            // #region sg-input-email-lista
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: Theme.of(
+                  context,
+                ).colorScheme.onSurface.withValues(alpha: 0.05),
+                border: Border.all(color: Theme.of(context).dividerColor),
+                borderRadius: BorderRadius.circular(4),
+              ),
+              child: Text(
+                defaultBlockedEmailDomains.join(', '),
+                style: const TextStyle(fontFamily: 'monospace', fontSize: 12),
+              ),
+            ),
+        // #endregion
+        code: SgInputEmailPageSnippets.sgInputEmailLista,
+      ),
+      ShowcaseExample(
+        title: 'Config JSON',
         description:
-            'filled alterna o fundo preenchido; withBorder remove a borda.',
+            'A aplicação host pode carregar um JSON e adicionar domínios em runtime.',
+        preview:
+            // #region sg-input-email-json
+            SizedBox(
+              width: 320,
+              child: SgInputEmail(
+                id: 'demo-json',
+                labelText: context.tx('Email'),
+                hintText: context.tx('exemplo@dominio.com'),
+                blockedEmailDomains:
+                    ((jsonDecode('{"blockedEmailDomains": ["concorrente.com"]}')
+                                as Map<String, dynamic>)['blockedEmailDomains']
+                            as List)
+                        .cast<String>(),
+              ),
+            ),
+        // #endregion
+        code: SgInputEmailPageSnippets.sgInputEmailJson,
+      ),
+      ShowcaseExample(
+        title: 'Variações visuais',
+        description: 'Sem borda (withBorder=false) e preenchido (filled=true).',
         preview:
             // #region sg-input-email-variacoes
-            const Column(
+            Column(
               children: [
-                SgInputEmail(
-                  id: 'preenchido',
-                  labelText: 'Preenchido',
-                  filled: true,
+                SizedBox(
+                  width: 320,
+                  child: SgInputEmail(
+                    id: 'demo-noborder',
+                    labelText: context.tx('Sem borda'),
+                    hintText: context.tx('Email'),
+                    withBorder: false,
+                  ),
                 ),
-                SizedBox(height: 12),
-                SgInputEmail(
-                  id: 'vazado',
-                  labelText: 'Sem preenchimento',
-                  filled: false,
-                ),
-                SizedBox(height: 12),
-                SgInputEmail(
-                  id: 'semborda',
-                  labelText: 'Sem borda',
-                  withBorder: false,
+                const SizedBox(height: 12),
+                SizedBox(
+                  width: 320,
+                  child: SgInputEmail(
+                    id: 'demo-filled',
+                    labelText: context.tx('Preenchido'),
+                    hintText: context.tx('Email'),
+                    filled: true,
+                  ),
                 ),
               ],
             ),
@@ -142,80 +239,96 @@ class _SgInputEmailPageState extends State<SgInputEmailPage> {
       ),
       ShowcaseExample(
         title: 'Sem botão de limpar',
-        description:
-            'clearButton: false esconde o botão de limpar (por padrão ele aparece com texto).',
+        description: 'clearButton=false remove o X do input.',
         preview:
             // #region sg-input-email-sem-limpar
-            const SgInputEmail(
-              id: 'semlimpar',
-              labelText: 'E-mail',
-              initialValue: 'ana@exemplo.com',
-              clearButton: false,
+            SizedBox(
+              width: 320,
+              child: SgInputEmail(
+                id: 'demo-noclear',
+                labelText: context.tx('Sem limpar'),
+                hintText: context.tx('Email'),
+                clearButton: false,
+              ),
             ),
         // #endregion
         code: SgInputEmailPageSnippets.sgInputEmailSemLimpar,
       ),
       ShowcaseExample(
         title: 'Largura e borda',
-        description:
-            'width aceita número (px) ou porcentagem; borderRadius arredonda os cantos.',
+        description: 'width e borderRadius customizáveis.',
         preview:
             // #region sg-input-email-largura
-            const SgInputEmail(
-              id: 'largura',
-              labelText: 'E-mail',
-              width: 240,
-              borderRadius: 20,
+            Wrap(
+              spacing: 16,
+              runSpacing: 12,
+              children: [
+                SgInputEmail(
+                  id: 'demo-w200',
+                  labelText: context.tx('200px'),
+                  hintText: context.tx('Email'),
+                  width: 200,
+                ),
+                SgInputEmail(
+                  id: 'demo-w300',
+                  labelText: context.tx('300px arredondado'),
+                  hintText: context.tx('Email'),
+                  width: 300,
+                  borderRadius: 20,
+                ),
+              ],
             ),
         // #endregion
         code: SgInputEmailPageSnippets.sgInputEmailLargura,
       ),
       ShowcaseExample(
-        title: 'Desabilitado e somente leitura',
-        description:
-            'disabled bloqueia o campo; readOnly deixa copiar, mas não editar.',
+        title: 'Desabilitado',
+        description: 'enabled=false desabilita.',
         preview:
-            // #region sg-input-email-estados
-            const Column(
-              children: [
-                SgInputEmail(
-                  id: 'desabilitado',
-                  labelText: 'Desabilitado',
-                  initialValue: 'ana@exemplo.com',
-                  disabled: true,
-                ),
-                SizedBox(height: 12),
-                SgInputEmail(
-                  id: 'leitura',
-                  labelText: 'Somente leitura',
-                  initialValue: 'ana@exemplo.com',
-                  readOnly: true,
-                ),
-              ],
+            // #region sg-input-email-desabilitado
+            SizedBox(
+              width: 320,
+              child: SgInputEmail(
+                id: 'demo-disabled',
+                labelText: context.tx('Desabilitado'),
+                hintText: context.tx('Email'),
+                enabled: false,
+                initialValue: context.tx('Não editável'),
+              ),
             ),
         // #endregion
-        code: SgInputEmailPageSnippets.sgInputEmailEstados,
+        code: SgInputEmailPageSnippets.sgInputEmailDesabilitado,
       ),
       ShowcaseExample(
         title: 'Eventos',
-        description:
-            'onChange, onEnter (foco), onExit (saída) e onClear informam o que o usuário fez.',
+        description: 'onEnter, onExit, onChange, onClear, onValidation.',
         preview:
             // #region sg-input-email-eventos
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SgInputEmail(
-                  id: 'eventos',
-                  labelText: 'E-mail',
-                  onChange: (v) => setState(() => _evento = 'onChange: $v'),
-                  onEnter: () => setState(() => _evento = 'onEnter'),
-                  onExit: () => setState(() => _evento = 'onExit'),
-                  onClear: () => setState(() => _evento = 'onClear'),
-                ),
-                const SizedBox(height: 8),
-                Text('Último evento: $_evento'),
-              ],
+            SizedBox(
+              width: 320,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SgInputEmail(
+                    id: 'demo-events',
+                    labelText: context.tx('Digite e observe o log'),
+                    hintText: context.tx('Email'),
+                    required: true,
+                    onChange: (v) => _log('onChange: "$v"'),
+                    onEnter: () => _log('onEnter (focus)'),
+                    onExit: () => _log('onExit (blur)'),
+                    onClear: () => _log('onClear'),
+                    onValidation: (msg) =>
+                        _log('onValidation: ${msg ?? context.tx('válido')}'),
+                  ),
+                  const SizedBox(height: 12),
+                  ShowcaseLogBox(
+                    entries: _eventLog,
+                    hint: context.tx('Interaja com o input...'),
+                    height: 160,
+                  ),
+                ],
+              ),
             ),
         // #endregion
         code: SgInputEmailPageSnippets.sgInputEmailEventos,
@@ -223,55 +336,43 @@ class _SgInputEmailPageState extends State<SgInputEmailPage> {
       ShowcaseExample(
         title: 'Posição do rótulo',
         description:
-            'labelPosition: float (padrão), top ou left; labelWidth fixa a largura do rótulo à esquerda.',
+            'Compare os modos de rótulo: flutuante, acima e à esquerda.',
         preview:
             // #region sg-input-email-rotulo
-            const Column(
+            Wrap(
+              spacing: 16,
+              runSpacing: 12,
               children: [
-                SgInputEmail(
-                  id: 'topo',
-                  labelText: 'Rótulo no topo',
-                  labelPosition: SgInputEmailLabelPosition.top,
+                SizedBox(
+                  width: 280,
+                  child: SgInputEmail(
+                    id: 'sg-input-email-label-float',
+                    labelText: context.tx('Flutuante'),
+                    labelPosition: SgInputEmailLabelPosition.float,
+                  ),
                 ),
-                SizedBox(height: 12),
-                SgInputEmail(
-                  id: 'esquerda',
-                  labelText: 'À esquerda',
-                  labelPosition: SgInputEmailLabelPosition.left,
-                  labelWidth: 110,
+                SizedBox(
+                  width: 280,
+                  child: SgInputEmail(
+                    id: 'sg-input-email-label-top',
+                    labelText: context.tx('Acima'),
+                    labelPosition: SgInputEmailLabelPosition.top,
+                  ),
+                ),
+                SizedBox(
+                  width: 360,
+                  child: SgInputEmail(
+                    id: 'sg-input-email-label-left',
+                    labelText: context.tx('Esquerda'),
+                    labelPosition: SgInputEmailLabelPosition.left,
+                    labelWidth: 140,
+                    labelAlign: SgInputEmailLabelAlign.end,
+                  ),
                 ),
               ],
             ),
         // #endregion
         code: SgInputEmailPageSnippets.sgInputEmailRotulo,
-      ),
-      ShowcaseExample(
-        title: 'Dentro de um formulário',
-        preview:
-            // #region sg-input-email-formulario
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SgInputEmail(
-                  id: 'form-email',
-                  name: 'email',
-                  control: _form,
-                  labelText: 'E-mail',
-                  required: true,
-                  requiredMessage: 'Informe o e-mail',
-                ),
-                const SizedBox(height: 12),
-                SgButton(
-                  label: Text(context.tx('Enviar')),
-                  onClick: () => _form.handleSubmit(
-                    (values) => setState(() => _enviado = '${values['email']}'),
-                  ),
-                ),
-                if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),
-              ],
-            ),
-        // #endregion
-        code: SgInputEmailPageSnippets.sgInputEmailFormulario,
       ),
     ];
 
@@ -356,7 +457,7 @@ class _SgInputEmailPageState extends State<SgInputEmailPage> {
                 'blockFakeMail',
                 'labelPosition',
                 'filled',
-                'disabled',
+                'enabled',
                 'readOnly',
                 'clearButton',
                 'placeholder',
@@ -373,7 +474,7 @@ class _SgInputEmailPageState extends State<SgInputEmailPage> {
             v['labelPosition'] as String?,
           ),
           filled: v['filled'] as bool?,
-          disabled: v['disabled'] as bool?,
+          enabled: v['enabled'] as bool?,
           readOnly: v['readOnly'] as bool?,
           clearButton: v['clearButton'] as bool?,
           placeholder: v['placeholder'] as String?,

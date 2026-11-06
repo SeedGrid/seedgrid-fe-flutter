@@ -157,11 +157,7 @@ for (const comp of compNames) {
       if (name === "aria-label") { name = "semanticLabel"; note = "No React e `aria-label` (Semantics no Flutter)."; exceptions.renomeadas.push({ componente: comp, de: "aria-label", para: "semanticLabel", motivo: "acessibilidade: Semantics" }); }
       else { exceptions.omitidas.push({ componente: comp, prop: p.name, motivo: "nome nao e identificador Dart (atributo HTML)" }); continue; }
     }
-    if (name === "enabled" && !c.props.some((x) => x.name === "disabled")) {
-      name = "disabled";
-      note = "No React a prop se chama `enabled` (valor invertido); ver ADR 50.";
-      exceptions.renomeadas.push({ componente: comp, de: "enabled", para: "disabled", motivo: "ADR 50 (valor invertido)" });
-    } else if (name === "children") {
+    if (name === "children") {
       name = "child";
       note = "No React e `children`.";
       exceptions.renomeadas.push({ componente: comp, de: "children", para: "child", motivo: "ADR 50" });
@@ -171,7 +167,7 @@ for (const comp of compNames) {
     const ty = dartType(comp, p);
     if (ty.enumName) { emittedEnums.add(ty.enumName); usesEnum = true; }
     if (ty.dart === "Widget") usesWidget = true;
-    const nullable = p.optional || name === "disabled" && p.name === "enabled";
+    const nullable = p.optional;
     const dartT = ty.dart + (nullable ? "?" : "");
     const desc = docLine(p.description ?? p.doc ?? "");
     const def = p.default !== undefined ? ` Padrão: \`${docLine(String(p.default))}\`.` : "";

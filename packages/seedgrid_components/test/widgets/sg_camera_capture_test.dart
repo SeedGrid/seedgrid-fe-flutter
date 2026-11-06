@@ -249,7 +249,7 @@ void main() {
     testWidgets('desabilitado nao abre a camera', (t) async {
       final backend = _FakeBackend();
       await t.pumpWidget(
-        host(SgCameraCapture(id: 'cam', disabled: true, backend: backend)),
+        host(SgCameraCapture(id: 'cam', enabled: false, backend: backend)),
       );
       await settle(t);
       expect(backend.sessions, isEmpty);

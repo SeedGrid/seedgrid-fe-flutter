@@ -24,7 +24,7 @@ class SgImageUpload extends StatelessWidget implements SgImageUploadProps {
     this.aspect,
     this.control,
     this.defaultValue,
-    this.disabled,
+    this.enabled,
     this.error,
     this.hintText,
     this.label,
@@ -67,7 +67,7 @@ class SgImageUpload extends StatelessWidget implements SgImageUploadProps {
   final List<SgFile>? defaultValue;
 
   @override
-  final bool? disabled;
+  final bool? enabled;
 
   @override
   final String? error;
@@ -233,7 +233,7 @@ class SgImageUpload extends StatelessWidget implements SgImageUploadProps {
       dropManyTextKey: 'components.inputs.imageupload.dropMany',
       control: control,
       defaultValue: defaultValue,
-      disabled: disabled,
+      enabled: enabled,
       error: error,
       hintText: hintText,
       label: label,

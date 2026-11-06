@@ -11,7 +11,7 @@ const List<SgOrderListItem> _tarefas = [
   SgOrderListItem(label: 'Escrever o plano', value: 1),
   SgOrderListItem(label: 'Revisar com o time', value: 2),
   SgOrderListItem(label: 'Publicar', value: 3),
-  SgOrderListItem(label: 'Arquivado', value: 4, disabled: true),
+  SgOrderListItem(label: 'Arquivado', value: 4, enabled: false),
   SgOrderListItem(label: 'Comemorar', value: 5),
 ];
 
@@ -214,7 +214,7 @@ class _SgOrderListPageState extends State<SgOrderListPage> {
                 'controlsPosition',
                 'showControls',
                 'draggable',
-                'disabled',
+                'enabled',
                 'readOnly',
                 'title',
               }.contains(s.name),
@@ -234,7 +234,7 @@ class _SgOrderListPageState extends State<SgOrderListPage> {
               SgOrderListControlsPosition.left,
           showControls: !((v['showControls'] as bool?) == false),
           draggable: !((v['draggable'] as bool?) == false),
-          disabled: (v['disabled'] as bool?) ?? false,
+          enabled: (v['enabled'] as bool?) ?? true,
           readOnly: (v['readOnly'] as bool?) ?? false,
           source: _tarefas,
         ),

@@ -30,7 +30,7 @@ const a = SgOrderListItem(label: 'A', value: 1);
 const b = SgOrderListItem(label: 'B', value: 2);
 const c = SgOrderListItem(label: 'C', value: 3);
 const d = SgOrderListItem(label: 'D', value: 4);
-const off = SgOrderListItem(label: 'Off', value: 9, disabled: true);
+const off = SgOrderListItem(label: 'Off', value: 9, enabled: false);
 
 Finder item(Object v) => find.byKey(ValueKey('ol-item-$v'));
 Finder list([String id = 'order-list']) => find.byKey(ValueKey(id));
@@ -55,7 +55,7 @@ bool btnDisabled(WidgetTester t, String dir) => t
         matching: find.byType(SgButton),
       ),
     )
-    .disabled!;
+    .enabled == false;
 
 Future<void> longDrag(WidgetTester t, Finder from, Offset to) async {
   final g = await t.startGesture(t.getCenter(from));
@@ -485,7 +485,7 @@ void main() {
           host(
             SgOrderList(
               source: const [a, b],
-              disabled: true,
+              enabled: false,
               selectedValues: const [2],
               onChange: events.add,
               onSelectionChange: sels.add,

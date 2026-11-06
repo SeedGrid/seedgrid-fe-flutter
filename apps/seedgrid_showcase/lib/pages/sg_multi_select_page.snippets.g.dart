@@ -50,7 +50,7 @@ SgMultiSelect(
     SgMultiSelectOption(
       label: context.tx('Cinza (indisponível)'),
       value: 'cinza',
-      disabled: true,
+      enabled: false,
     ),
   ],
 )

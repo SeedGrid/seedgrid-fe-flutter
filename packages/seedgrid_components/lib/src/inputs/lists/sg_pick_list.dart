@@ -22,14 +22,14 @@ class SgPickListItem {
   const SgPickListItem({
     required this.label,
     required this.value,
-    this.disabled = false,
+    this.enabled = true,
     this.icon,
     this.data,
   });
 
   final String label;
   final Object value;
-  final bool disabled;
+  final bool enabled;
   final Widget? icon;
   final Object? data;
 }
@@ -73,12 +73,12 @@ class SgPickListItemState {
   const SgPickListItemState({
     required this.index,
     required this.selected,
-    required this.disabled,
+    required this.enabled,
     required this.list,
   });
   final int index;
   final bool selected;
-  final bool disabled;
+  final bool enabled;
   final SgPickListListName list;
 }
 
@@ -129,7 +129,7 @@ class SgPickList extends StatefulWidget implements SgPickListProps {
     this.targetFilterPlaceholder,
     this.filterMatchMode = SgPickListFilterMatchMode.contains,
     this.draggable = true,
-    this.disabled = false,
+    this.enabled = true,
     this.readOnly = false,
     this.emptyMessage,
     this.itemTemplate,
@@ -190,7 +190,7 @@ class SgPickList extends StatefulWidget implements SgPickListProps {
   @override
   final bool draggable;
   @override
-  final bool disabled;
+  final bool enabled;
   @override
   final bool readOnly;
   @override
@@ -316,7 +316,7 @@ class _SgPickListState extends State<SgPickList> {
     return uniqueValues(raw.where((v) => items.any((i) => i.value == v)));
   }
 
-  bool get _canInteract => !widget.disabled && !widget.readOnly;
+  bool get _canInteract => widget.enabled && !widget.readOnly;
   bool get _dragEnabled => _canInteract && widget.draggable;
 
   // ------------------------------------------------------------ confirmacoes
@@ -356,11 +356,11 @@ class _SgPickListState extends State<SgPickList> {
     if (!_canInteract) return;
     final sel = _selection(SgPickListListName.source).toSet();
     final picked = _srcItems
-        .where((i) => sel.contains(i.value) && !i.disabled)
+        .where((i) => sel.contains(i.value) && i.enabled)
         .toList();
     if (picked.isEmpty) return;
     final nextSource = _srcItems
-        .where((i) => !(sel.contains(i.value) && !i.disabled))
+        .where((i) => !(sel.contains(i.value) && i.enabled))
         .toList();
     _commitValue(
       SgPickListValue(source: nextSource, target: [..._tgtItems, ...picked]),
@@ -375,9 +375,9 @@ class _SgPickListState extends State<SgPickList> {
 
   void _moveAllToTarget() {
     if (!_canInteract) return;
-    final picked = _srcItems.where((i) => !i.disabled).toList();
+    final picked = _srcItems.where((i) => i.enabled).toList();
     if (picked.isEmpty) return;
-    final nextSource = _srcItems.where((i) => i.disabled).toList();
+    final nextSource = _srcItems.where((i) => !i.enabled).toList();
     _commitValue(
       SgPickListValue(source: nextSource, target: [..._tgtItems, ...picked]),
       SgPickListChangeType.moveAllToTarget,
@@ -393,11 +393,11 @@ class _SgPickListState extends State<SgPickList> {
     if (!_canInteract) return;
     final sel = _selection(SgPickListListName.target).toSet();
     final picked = _tgtItems
-        .where((i) => sel.contains(i.value) && !i.disabled)
+        .where((i) => sel.contains(i.value) && i.enabled)
         .toList();
     if (picked.isEmpty) return;
     final nextTarget = _tgtItems
-        .where((i) => !(sel.contains(i.value) && !i.disabled))
+        .where((i) => !(sel.contains(i.value) && i.enabled))
         .toList();
     _commitValue(
       SgPickListValue(source: [..._srcItems, ...picked], target: nextTarget),
@@ -412,9 +412,9 @@ class _SgPickListState extends State<SgPickList> {
 
   void _moveAllToSource() {
     if (!_canInteract) return;
-    final picked = _tgtItems.where((i) => !i.disabled).toList();
+    final picked = _tgtItems.where((i) => i.enabled).toList();
     if (picked.isEmpty) return;
-    final nextTarget = _tgtItems.where((i) => i.disabled).toList();
+    final nextTarget = _tgtItems.where((i) => !i.enabled).toList();
     _commitValue(
       SgPickListValue(source: [..._srcItems, ...picked], target: nextTarget),
       SgPickListChangeType.moveAllToSource,
@@ -433,7 +433,7 @@ class _SgPickListState extends State<SgPickList> {
     if (from == SgPickListListName.source) {
       if (fromIndex < 0 || fromIndex >= _srcItems.length) return;
       final moving = _srcItems[fromIndex];
-      if (moving.disabled) return;
+      if (!moving.enabled) return;
       final nextSource = [..._srcItems]..removeAt(fromIndex);
       _commitValue(
         SgPickListValue(source: nextSource, target: [..._tgtItems, moving]),
@@ -450,7 +450,7 @@ class _SgPickListState extends State<SgPickList> {
     }
     if (fromIndex < 0 || fromIndex >= _tgtItems.length) return;
     final moving = _tgtItems[fromIndex];
-    if (moving.disabled) return;
+    if (!moving.enabled) return;
     final nextTarget = [..._tgtItems]..removeAt(fromIndex);
     _commitValue(
       SgPickListValue(source: [..._srcItems, moving], target: nextTarget),
@@ -470,7 +470,7 @@ class _SgPickListState extends State<SgPickList> {
     final items = list == SgPickListListName.source ? _srcItems : _tgtItems;
     final selected = _selection(list).toSet();
     if (selected.isEmpty) return;
-    bool movable(SgPickListItem i) => selected.contains(i.value) && !i.disabled;
+    bool movable(SgPickListItem i) => selected.contains(i.value) && i.enabled;
     final next = switch (direction) {
       'top' => pickMoveTop(items, movable),
       'up' => pickMoveUp(items, movable),
@@ -492,7 +492,7 @@ class _SgPickListState extends State<SgPickList> {
   }
 
   void _handleSelect(SgPickListListName list, SgPickListItem item) {
-    if (!_canInteract || item.disabled) return;
+    if (!_canInteract || !item.enabled) return;
     final current = _selection(list);
     if (widget.selectionMode == SgPickListSelectionMode.single) {
       _commitSelection(list, [item.value]);
@@ -506,7 +506,7 @@ class _SgPickListState extends State<SgPickList> {
   }
 
   void _handleTap(SgPickListListName list, int index, SgPickListItem item) {
-    if (!_canInteract || item.disabled) return;
+    if (!_canInteract || !item.enabled) return;
     final now = DateTime.now();
     final again =
         _lastTap == (list, index) &&
@@ -547,7 +547,7 @@ class _SgPickListState extends State<SgPickList> {
     final toList = to == SgPickListListName.source ? _srcItems : _tgtItems;
     if (drag.fromIndex < 0 || drag.fromIndex >= fromList.length) return;
     final moving = fromList[drag.fromIndex];
-    if (moving.disabled) return;
+    if (!moving.enabled) return;
     final nextFrom = [...fromList]..removeAt(drag.fromIndex);
     final nextTo = [...toList];
     nextTo.insert(toIndex.clamp(0, nextTo.length), moving);
@@ -607,13 +607,13 @@ class _SgPickListState extends State<SgPickList> {
     SgPickListItem item,
     Set<Object> selected,
   ) {
-    final itemDisabled = widget.disabled || item.disabled;
-    final dragOn = _dragEnabled && !item.disabled;
+    final itemDisabled = !widget.enabled || !item.enabled;
+    final dragOn = _dragEnabled && item.enabled;
     final isSelected = selected.contains(item.value);
     final state = SgPickListItemState(
       index: index,
       selected: isSelected,
-      disabled: itemDisabled,
+      enabled: !itemDisabled,
       list: list,
     );
     Widget tile({bool dimmed = false}) => ListEntryTile(

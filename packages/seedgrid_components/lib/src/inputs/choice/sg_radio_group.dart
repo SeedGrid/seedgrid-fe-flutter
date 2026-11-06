@@ -17,13 +17,13 @@ class SgRadioGroupOption {
     required this.label,
     required this.value,
     this.icon,
-    this.disabled,
+    this.enabled,
   });
 
   final String label;
   final Object value;
   final Widget? icon;
-  final bool? disabled;
+  final bool? enabled;
 }
 
 class SgRadioGroup extends StatefulWidget implements SgRadioGroupProps {
@@ -36,7 +36,7 @@ class SgRadioGroup extends StatefulWidget implements SgRadioGroupProps {
     this.orientation = SgRadioGroupOrientation.vertical,
     this.selectionStyle = SgRadioGroupSelectionStyle.radio,
     this.iconOnly = false,
-    this.disabled = false,
+    this.enabled = true,
     this.readOnly = false,
     this.required = false,
     this.onChange,
@@ -65,7 +65,7 @@ class SgRadioGroup extends StatefulWidget implements SgRadioGroupProps {
   @override
   final bool iconOnly;
   @override
-  final bool disabled;
+  final bool enabled;
   @override
   final bool readOnly;
   @override
@@ -161,7 +161,7 @@ class _SgRadioGroupState extends State<SgRadioGroup> {
       : (_isControlled ? widget.value : _internal);
 
   void _select(Object? v) {
-    if (widget.disabled || widget.readOnly) return;
+    if (!widget.enabled || widget.readOnly) return;
     // Um radio ja marcado nao dispara mudanca (no navegador nao ha `change`): nao reemite o mesmo valor.
     if (v != null && _current == v) return;
     if (_binding.bound) {
@@ -179,7 +179,7 @@ class _SgRadioGroupState extends State<SgRadioGroup> {
       final i = (from + delta * step) % n;
       final idx = i < 0 ? i + n : i;
       final o = widget.source[idx];
-      if (!(o.disabled ?? false)) {
+      if ((o.enabled ?? true)) {
         _nodes[idx].requestFocus();
         _select(o.value);
         return;
@@ -203,7 +203,7 @@ class _SgRadioGroupState extends State<SgRadioGroup> {
           label: w.source[i].label,
           icon: w.source[i].icon,
           selected: current == w.source[i].value,
-          disabled: w.disabled || (w.source[i].disabled ?? false),
+          enabled: w.enabled && (w.source[i].enabled ?? true),
           readOnly: w.readOnly,
           highlight: highlight,
           iconOnly: w.iconOnly,

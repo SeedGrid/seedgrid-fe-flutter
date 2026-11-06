@@ -416,7 +416,7 @@ class _SgCardPageState extends State<SgCardPage> {
                 'collapsible',
                 'defaultOpen',
                 'clickable',
-                'disabled',
+                'enabled',
                 'toggleOnHeaderClick',
               }.contains(s.name),
             )
@@ -435,7 +435,7 @@ class _SgCardPageState extends State<SgCardPage> {
           collapsible: (v['collapsible'] as bool?) ?? false,
           defaultOpen: (v['defaultOpen'] as bool?) ?? true,
           clickable: (v['clickable'] as bool?) ?? false,
-          disabled: (v['disabled'] as bool?) ?? false,
+          enabled: (v['enabled'] as bool?) ?? true,
           toggleOnHeaderClick: (v['toggleOnHeaderClick'] as bool?) ?? true,
           title: const Text('Título'),
           description: const Text('Descrição'),

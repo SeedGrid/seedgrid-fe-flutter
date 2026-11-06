@@ -93,7 +93,7 @@ for (const c of cases)
   validate.push({ ...c, out: L.validateDateTime(c.local, { required: c.required, min: c.min, max: c.max, timeZone: c.zone }) });
 
 const format = [];
-for (const l of ["2026-11-03T14:30", "2026-11-03T14:30:45", "lixo"])
+for (const l of ["2026-11-03T14:30", "2026-11-03T14:30:45", "2026-01-09T08:05", "2026-11-25T23:59:07", "lixo"])
   for (const loc of ["pt-BR", "pt-PT", "en-US", "es", "fr"])
     for (const s of [false, true])
       format.push({ local: l, locale: loc, seconds: s, out: L.formatWallClock(l, loc, s) });

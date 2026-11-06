@@ -28,7 +28,7 @@ class SgRating extends StatefulWidget implements SgRatingProps {
     this.cancelIcon,
     this.color,
     this.control,
-    this.disabled = false,
+    this.enabled = true,
     this.emptyColor,
     this.error,
     this.id,
@@ -64,7 +64,7 @@ class SgRating extends StatefulWidget implements SgRatingProps {
   @override
   final SgFormController? control;
   @override
-  final bool disabled;
+  final bool enabled;
 
   /// Cor da estrela vazia, mesmo formato de [color]. Padrao: `hsl(var(--muted-foreground))`.
   @override
@@ -190,7 +190,7 @@ class _SgRatingState extends State<SgRating> implements SgSelfValidating {
   /// Validacao de etapa do SgWizard para campo fora de formulario: `required` sem nota falha.
   @override
   bool validateNow() {
-    if (!mounted || _binding.bound || widget.disabled) return true;
+    if (!mounted || _binding.bound || !widget.enabled) return true;
     final i18n = useComponentsI18n(context);
     setState(
       () => _internalError = widget.required && _current == 0
@@ -200,7 +200,7 @@ class _SgRatingState extends State<SgRating> implements SgSelfValidating {
     return _internalError == null;
   }
 
-  bool get _interactive => !widget.disabled && !widget.readOnly;
+  bool get _interactive => widget.enabled && !widget.readOnly;
   num get _current {
     if (_binding.bound) {
       final v = _binding.value;
@@ -352,7 +352,7 @@ class _SgRatingState extends State<SgRating> implements SgSelfValidating {
     final row = MouseRegion(
       onExit: (_) => _setHover(null),
       child: Opacity(
-        opacity: w.disabled ? 0.5 : 1,
+        opacity: !w.enabled ? 0.5 : 1,
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [

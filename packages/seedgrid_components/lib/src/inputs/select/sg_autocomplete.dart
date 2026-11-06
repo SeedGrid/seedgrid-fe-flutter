@@ -52,7 +52,7 @@ class SgAutocomplete<T> extends StatefulWidget implements SgAutocompleteProps {
     this.clearButton,
     this.control,
     this.elevation,
-    this.disabled,
+    this.enabled,
     this.error,
     this.filled,
     this.hintText,
@@ -166,7 +166,9 @@ class SgAutocomplete<T> extends StatefulWidget implements SgAutocompleteProps {
   @override
   final SgAutocompleteElevation? elevation;
   @override
-  final bool? disabled;
+  final bool? enabled;
+
+  bool get _disabled => !(enabled ?? true);
   @override
   final String? error;
   @override
@@ -275,7 +277,7 @@ class _SgAutocompleteState<T> extends State<SgAutocomplete<T>> {
 
   bool get _bound => widget.name != null && _outer != null;
   bool get _grouped => widget.grouped ?? widget.groupped ?? false;
-  bool get _locked => (widget.disabled ?? false) || (widget.readOnly ?? false);
+  bool get _locked => (widget._disabled) || (widget.readOnly ?? false);
 
   String? get _valueProp =>
       _bound ? '${_outer!.getValue(widget.name!) ?? ''}' : widget.value;
@@ -510,7 +512,7 @@ class _SgAutocompleteState<T> extends State<SgAutocomplete<T>> {
   // ------------------------------------------------------------------ eventos
 
   void _selectItem(SgAutocompleteItem item) {
-    if (item.disabled) return;
+    if (!item.enabled) return;
     final selection = _selectionLabel(item);
     _debounce?.cancel();
     setState(() {
@@ -686,7 +688,7 @@ class _SgAutocompleteState<T> extends State<SgAutocomplete<T>> {
         focusNode: _focus,
         onChange: _handleInputChange,
         error: resolveFieldError(w.error, outerError, _internalError),
-        disabled: w.disabled,
+        enabled: !(w._disabled),
         readOnly: w.readOnly,
         borderRadius: w.borderRadius,
         iconButtons: [...?w.iconButtons, ?dropdownButton],
@@ -753,7 +755,7 @@ class _SgAutocompleteState<T> extends State<SgAutocomplete<T>> {
                 padding: EdgeInsets.zero,
                 child: Container(
                   key: const ValueKey('sg-autocomplete-render-value'),
-                  color: (w.disabled ?? false)
+                  color: (w._disabled)
                       ? sg.inputDisabledBg
                       : ((w.filled ?? false) ? sg.mutedSurface : sg.inputBg),
                   padding: const EdgeInsets.only(left: 12, right: 40),

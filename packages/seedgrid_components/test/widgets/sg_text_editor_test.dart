@@ -345,7 +345,7 @@ void main() {
         SgTextEditor(
           id: 'e',
           defaultValueHtml: '<p>Ola</p>',
-          disabled: true,
+          enabled: false,
           onChangeHtml: got.add,
         ),
       ),
@@ -356,7 +356,7 @@ void main() {
     await t.pump();
     expect(htmlOf(t), '<p>Ola</p>');
     expect(got, isEmpty);
-    expect(t.widget<SgButton>(tb('e', 'save')).disabled, isTrue);
+    expect(t.widget<SgButton>(tb('e', 'save')).enabled == false, isTrue);
     await t.pumpWidget(
       host(
         SgTextEditor(

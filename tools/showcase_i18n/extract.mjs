@@ -106,6 +106,16 @@ export function allTexts() {
   for (const f of fs.readdirSync(pagesDir).filter((x) => x.endsWith("_page.dart")).sort()) {
     for (const { texto, onde } of pageTexts(path.join(pagesDir, f))) if (!map.has(texto)) map.set(texto, onde);
   }
+  // Paginas fixas do shell (fora de lib/pages) que tambem usam context.tx.
+  const extra = path.join(root, "apps/seedgrid_showcase/lib/src/showcase_extra_pages.dart");
+  if (fs.existsSync(extra)) {
+    for (const { texto, onde } of pageTexts(extra)) if (!map.has(texto)) map.set(texto, onde);
+  }
+  // Props escritas a mao dos componentes somente Flutter (sem contrato gerado do React).
+  const flutterOnly = path.join(root, "packages/seedgrid_components/lib/src/inputs/color/sg_color_picker_props.dart");
+  if (fs.existsSync(flutterOnly)) {
+    for (const { texto, onde } of pageTexts(flutterOnly)) if (!map.has(texto)) map.set(texto, onde);
+  }
   return map;
 }
 

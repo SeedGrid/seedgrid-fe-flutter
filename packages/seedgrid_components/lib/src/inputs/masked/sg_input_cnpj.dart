@@ -23,7 +23,7 @@ class SgInputCNPJ extends StatelessWidget implements SgInputCNPJProps {
     this.clearButton,
     this.control,
     this.elevation,
-    this.disabled,
+    this.enabled,
     this.error,
     this.filled,
     this.hintText,
@@ -93,7 +93,9 @@ class SgInputCNPJ extends StatelessWidget implements SgInputCNPJProps {
   final SgInputCNPJElevation? elevation;
 
   @override
-  final bool? disabled;
+  final bool? enabled;
+
+  bool get _disabled => !(enabled ?? true);
 
   @override
   final String? error;
@@ -263,7 +265,7 @@ class SgInputCNPJ extends StatelessWidget implements SgInputCNPJProps {
         clearButton: clearButton,
         control: control,
         elevation: elevation,
-        disabled: disabled,
+        disabled: _disabled,
         error: error,
         filled: filled,
         hintText: hintText,

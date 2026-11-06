@@ -322,10 +322,10 @@ void main() {
             defaultOpen: true,
             message: const Text('m'),
             confirmButton: const SgConfirmationDialogButtonConfig(
-              disabled: true,
+              enabled: false,
             ),
             cancelButton: const SgConfirmationDialogButtonConfig(
-              disabled: true,
+              enabled: false,
             ),
             onConfirm: () => log.add('c'),
             onCancel: () => log.add('x'),

@@ -7,7 +7,7 @@ abstract final class SgRealtimeProviderPageSnippets {
   static const String sgRealtimeProviderDesligado = r'''
 SgRealtimeProvider(
   channels: const ['backup'],
-  disabled: true,
+  enabled: false,
   fetchToken: _token,
   child: Builder(
     builder: (context) => Text(

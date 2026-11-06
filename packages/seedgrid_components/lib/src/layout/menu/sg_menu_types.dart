@@ -10,7 +10,7 @@ class SgMenuNode {
     this.hint,
     this.url,
     this.children,
-    this.disabled = false,
+    this.enabled = true,
     this.icon,
     this.badge,
     this.onClick,
@@ -23,7 +23,7 @@ class SgMenuNode {
   final String? hint;
   final String? url;
   final List<SgMenuNode>? children;
-  final bool disabled;
+  final bool enabled;
   final Widget? icon;
 
   /// `string | number` no React.
@@ -45,7 +45,7 @@ class SgMenuNode {
     hint: hint,
     url: url,
     children: clearChildren ? null : (children ?? this.children),
-    disabled: disabled,
+    enabled: enabled,
     icon: icon,
     badge: badge,
     onClick: onClick,

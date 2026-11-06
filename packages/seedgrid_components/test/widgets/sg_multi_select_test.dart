@@ -8,7 +8,7 @@ const _opts = [
   SgMultiSelectOption(label: 'Alpha', value: 'a'),
   SgMultiSelectOption(label: 'Beta', value: 'b', chipLabel: 'B'),
   SgMultiSelectOption(label: 'Gamma', value: 'c'),
-  SgMultiSelectOption(label: 'Delta', value: 'd', disabled: true),
+  SgMultiSelectOption(label: 'Delta', value: 'd', enabled: false),
 ];
 
 Widget host(Widget child, {double width = 400}) => MaterialApp(
@@ -429,7 +429,7 @@ void main() {
             const SgMultiSelect(
               id: 'm',
               options: _opts,
-              disabled: true,
+              enabled: false,
               clearable: true,
               value: ['a'],
             ),
@@ -728,7 +728,7 @@ void main() {
     testWidgets('campo desabilitado ignora o teclado', (t) async {
       size(t, 1280);
       await t.pumpWidget(
-        host(const SgMultiSelect(id: 'm', options: _opts, disabled: true)),
+        host(const SgMultiSelect(id: 'm', options: _opts, enabled: false)),
       );
       await key(t, LogicalKeyboardKey.arrowDown);
       expect(listOpen(), isFalse);

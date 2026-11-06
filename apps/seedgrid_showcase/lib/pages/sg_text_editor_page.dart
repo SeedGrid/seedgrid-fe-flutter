@@ -155,7 +155,7 @@ class _SgTextEditorPageState extends State<SgTextEditorPage> {
                 SgTextEditor(
                   id: 'editor-desabilitado',
                   height: 120,
-                  disabled: true,
+                  enabled: false,
                   defaultValueHtml: '<p>Somente leitura</p>',
                 ),
                 SizedBox(height: 16),
@@ -194,7 +194,7 @@ class _SgTextEditorPageState extends State<SgTextEditorPage> {
         specs: sgPropSpecs['SgTextEditor']!
             .where(
               (s) => const {
-                'disabled',
+                'enabled',
                 'showCssEditor',
                 'placeholder',
                 'cssEditorLabel',
@@ -204,7 +204,7 @@ class _SgTextEditorPageState extends State<SgTextEditorPage> {
         builder: (context, v) => SgTextEditor(
           id: 'pg',
           height: 200,
-          disabled: v['disabled'] as bool?,
+          enabled: v['enabled'] as bool?,
           showCssEditor: v['showCssEditor'] as bool?,
           placeholder: v['placeholder'] as String?,
           cssEditorLabel: v['cssEditorLabel'] as String?,

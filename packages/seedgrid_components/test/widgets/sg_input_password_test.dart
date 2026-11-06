@@ -614,7 +614,7 @@ void main() {
       expect(find.text('0/15'), findsOneWidget);
       expect(t.getSize(find.byType(Column).first).width, 300);
       expect(find.text('minimo 8'), findsOneWidget);
-      await fresh(t, host(const SgInputPassword(id: 'p', disabled: true)));
+      await fresh(t, host(const SgInputPassword(id: 'p', enabled: false)));
       expect(t.widget<TextField>(field('p')).enabled, isFalse);
       await fresh(t, host(const SgInputPassword(id: 'p', readOnly: true)));
       expect(t.widget<TextField>(field('p')).readOnly, isTrue);

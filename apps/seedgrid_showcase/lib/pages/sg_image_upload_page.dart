@@ -125,7 +125,7 @@ class _SgImageUploadPageState extends State<SgImageUploadPage> {
             const SgImageUpload(
               id: 'foto-desabilitada',
               labelText: 'Foto',
-              disabled: true,
+              enabled: false,
             ),
         // #endregion
         code: SgImageUploadPageSnippets.sgImageUploadDesabilitado,
@@ -188,7 +188,7 @@ class _SgImageUploadPageState extends State<SgImageUploadPage> {
             .where(
               (s) => const {
                 'maxFiles',
-                'disabled',
+                'enabled',
                 'readOnly',
                 'required',
                 'hintText',
@@ -201,7 +201,7 @@ class _SgImageUploadPageState extends State<SgImageUploadPage> {
           id: 'pg',
           labelText: 'Rótulo',
           maxFiles: v['maxFiles'] as num?,
-          disabled: v['disabled'] as bool?,
+          enabled: v['enabled'] as bool?,
           readOnly: v['readOnly'] as bool?,
           required: v['required'] as bool?,
           hintText: v['hintText'] as String?,

@@ -28,7 +28,7 @@ List<SgSplitButtonItem> items([List<String>? log]) => [
   SgSplitButtonItem(
     label: 'Tres',
     onClick: () => log?.add('tres'),
-    disabled: true,
+    enabled: false,
   ),
 ];
 
@@ -202,7 +202,7 @@ void main() {
         SgSplitButton(
           label: 'S',
           items: items(),
-          disabled: true,
+          enabled: false,
           onClick: () => clicks++,
         ),
       ),

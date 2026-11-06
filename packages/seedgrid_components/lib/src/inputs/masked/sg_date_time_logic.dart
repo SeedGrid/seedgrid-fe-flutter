@@ -6,6 +6,9 @@
 // assumida: nome IANA ("America/Sao_Paulo") exige banco de fusos, que o pacote nao traz (sem dependencia nova);
 // aqui um nome IANA cai em "local". Ver DIVERGENCIAS_DO_REACT.md.
 
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/intl.dart';
+
 /// Codigo de erro da validacao (`null` = valido).
 enum SgDateTimeError { required, invalid, min, max, range }
 
@@ -145,7 +148,9 @@ SgDateTimeError? sgValidateDateTime(
   return belowMin ? SgDateTimeError.min : SgDateTimeError.max;
 }
 
-/// Texto de exibicao de um relogio de parede: dd/mm/aaaa HH:mm (en-US: aaaa-mm-dd HH:mm).
+/// Texto de exibicao de um relogio de parede, no idioma ativo: a data vem do `DateFormat` do `intl` (pt-BR/pt-PT
+/// 05/11/2026, en-US 11/5/2026, es 5/11/2026, fr 05/11/2026) e a hora e sempre 24h (HH:mm[:ss]), separadas por um espaco
+/// (igual ao `formatWallClock` do React). Se o `intl` nao conhece o idioma, cai em dd/mm/aaaa em vez de falhar.
 String sgFormatWallClock(
   String local,
   String locale, {
@@ -155,8 +160,24 @@ String sgFormatWallClock(
   if (m == null) return local;
   final time =
       '${m.group(4)}:${m.group(5)}${showSeconds ? ':${m.group(6) ?? '00'}' : ''}';
-  if (locale == 'en-US') {
-    return '${m.group(1)}-${m.group(2)}-${m.group(3)} $time';
+  return '${sgLocalizedDate(int.parse(m.group(1)!), int.parse(m.group(2)!), int.parse(m.group(3)!), locale)} $time';
+}
+
+bool _dateFormattingReady = false;
+
+/// Data no idioma (intl.DateFormat.yMd), sem falhar se o idioma nao existir.
+String sgLocalizedDate(int year, int month, int day, String locale) {
+  try {
+    if (!_dateFormattingReady) {
+      // Os dados do idioma entram de forma sincrona (date_symbol_data_local); o Future so sinaliza o fim.
+      initializeDateFormatting();
+      _dateFormattingReady = true;
+    }
+    return DateFormat.yMd(
+      locale.replaceAll('-', '_'),
+    ).format(DateTime.utc(year, month, day));
+  } catch (_) {
+    String two(int v) => v.toString().padLeft(2, '0');
+    return '${two(day)}/${two(month)}/$year';
   }
-  return '${m.group(3)}/${m.group(2)}/${m.group(1)} $time';
 }

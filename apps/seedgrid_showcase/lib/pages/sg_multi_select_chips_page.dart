@@ -211,7 +211,7 @@ class _SgMultiSelectChipsPageState extends State<SgMultiSelectChipsPage> {
               (s) => const {
                 'searchable',
                 'clearable',
-                'disabled',
+                'enabled',
                 'required',
                 'placeholder',
                 'labelText',
@@ -226,7 +226,7 @@ class _SgMultiSelectChipsPageState extends State<SgMultiSelectChipsPage> {
           value: const ['a', 'b'],
           searchable: (v['searchable'] as bool?) ?? false,
           clearable: (v['clearable'] as bool?) ?? false,
-          disabled: v['disabled'] as bool?,
+          enabled: v['enabled'] as bool?,
           required: v['required'] as bool?,
           placeholder: v['placeholder'] as String?,
           labelText: (v['labelText'] as String?) ?? 'Rótulo',

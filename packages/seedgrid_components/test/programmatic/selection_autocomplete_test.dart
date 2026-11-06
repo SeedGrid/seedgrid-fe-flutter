@@ -37,7 +37,7 @@ class AutocompleteAdapter extends VectorAdapter {
       allowCustomValue: s.props['allowCustomValue'] == true,
       required: s.props['required'] == true ? true : null,
       value: s.form == null ? s.prop('value') as String? : null,
-      disabled: s.props['disabled'] == true ? true : null,
+      enabled: s.props['enabled'] as bool?,
       onChange: s.events.add,
       name: s.form == null ? null : 'f',
       control: s.form,

@@ -1,0 +1,14 @@
+{
+"Valor mínimo (>= 1000)": ["Minimum value (>= 1000)","Valor minimo (>= 1000)","Valor minimo (>= 1000)","Valeur minimale (>= 1000)"],
+"Valor deve ser ≥ 1000.": ["Value must be a‰¥ 1000.","Valor deve ser ≥ 1000.","El valor debe ser a‰¥ 1000.","La valeur doit etre >= 1000."],
+"Preço (BRL)": ["Price (BRL)","Preco (BRL)","Precio (BRL)","Prix (BRL)"],
+"Price (USD)": ["Price (USD)","Price (USD)","Price (USD)","Prix (USD)"],
+"Preço (EUR)": ["Price (EUR)","Preco (EUR)","Precio (EUR)","Prix (EUR)"],
+"Sem símbolo": ["No symbol","Sem simbolo","Sin simbolo","Sans symbole"],
+"USD no sufixo": ["USD suffix","USD no sufixo","USD en sufijo","Suffixe USD"],
+"Valor para copiar": ["Value to copy","Valor para copiar","Valor para copiar","Valeur a copier"],
+"Moeda e locale": ["Currency and locale","Moeda e locale","Moneda y locale","Devise et locale"],
+"O display muda conforme currency + locale.": ["Display changes based on currency + locale.","O display muda conforme currency + locale.","El display cambia segun currency + locale.","L'affichage change selon la devise + la locale."],
+"Símbolo e posicionamento": ["Symbol and placement","Simbolo e posicionamento","Simbolo y posicion","Symbole et placement"],
+"Mostre/oculte símbolo e altere o posicionamento.": ["Show/hide symbol and change placement.","Mostre/oculte simbolo e altere o posicionamento.","Muestra/oculta simbolo y cambia la posicion.","Afficher/masquer le symbole et changer le placement."]
+}

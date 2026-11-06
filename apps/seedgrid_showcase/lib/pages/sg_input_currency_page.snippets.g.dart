@@ -5,131 +5,433 @@
 abstract final class SgInputCurrencyPageSnippets {
   /// Region `sg-input-currency-basico`.
   static const String sgInputCurrencyBasico = r'''
-Column(
-  crossAxisAlignment: CrossAxisAlignment.start,
+SizedBox(
+  width: 320,
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      SgInputCurrency(
+        id: 'demo-basic',
+        currency: 'BRL',
+        labelText: context.tx('Valor'),
+        name: 'valor',
+        control: _form,
+      ),
+      const SizedBox(height: 8),
+      SgButton(
+        size: SgSize.sm,
+        appearance: SgAppearance.outline,
+        label: Text(context.tx('Enviar')),
+        onClick: () => _form.handleSubmit(
+          (values) =>
+              setState(() => _enviado = '${values['valor']}'),
+        ),
+      ),
+      const SizedBox(height: 8),
+      Text('${context.tx('Valor')}: $_enviado'),
+    ],
+  ),
+)
+''';
+
+  /// Region `sg-input-currency-botoes`.
+  static const String sgInputCurrencyBotoes = r'''
+SizedBox(
+  width: 384,
+  child: Column(
+    children: [
+      SgInputCurrency(
+        id: 'demo-iconbtns',
+        currency: 'BRL',
+        labelText: context.tx('Valor para copiar'),
+        iconButtons: [
+          SgButton(
+            iconOnly: true,
+            size: SgSize.sm,
+            appearance: SgAppearance.outline,
+            leftIcon: const Icon(Icons.copy),
+            onClick: () => setState(
+              () => _iconLog.insert(0, context.tx('Copiado')),
+            ),
+          ),
+          SgButton(
+            iconOnly: true,
+            size: SgSize.sm,
+            appearance: SgAppearance.outline,
+            leftIcon: const Icon(Icons.notifications_outlined),
+            onClick: () => setState(
+              () => _iconLog.insert(
+                0,
+                context.tx('Alerta disparado!'),
+              ),
+            ),
+          ),
+        ],
+      ),
+      const SizedBox(height: 12),
+      ShowcaseLogBox(
+        entries: _iconLog,
+        hint: context.tx('Digite algo e clique nos ícones...'),
+        height: 96,
+      ),
+    ],
+  ),
+)
+''';
+
+  /// Region `sg-input-currency-controlado`.
+  static const String sgInputCurrencyControlado = r'''
+SizedBox(
+  width: 384,
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      SgInputCurrency(
+        id: 'demo-controlled',
+        currency: 'BRL',
+        labelText: context.tx('Valor controlado'),
+        name: 'controlled',
+        control: _form,
+      ),
+      const SizedBox(height: 12),
+      ListenableBuilder(
+        listenable: _form,
+        builder: (context, _) => Text(
+          '${context.tx('Estado atual')}: "${_form.getValue('controlled') ?? ''}"',
+        ),
+      ),
+      const SizedBox(height: 8),
+      Wrap(
+        spacing: 8,
+        runSpacing: 8,
+        children: [
+          SgButton(
+            size: SgSize.sm,
+            appearance: SgAppearance.outline,
+            label: Text(context.tx('Setar via API')),
+            onClick: () => _form.setValue('controlled', '12345.00'),
+          ),
+          SgButton(
+            size: SgSize.sm,
+            appearance: SgAppearance.outline,
+            label: Text(context.tx('Resetar')),
+            onClick: () => _form.setValue('controlled', '0.00'),
+          ),
+          SgButton(
+            size: SgSize.sm,
+            appearance: SgAppearance.outline,
+            severity: SgSeverity.danger,
+            label: Text(context.tx('Limpar')),
+            onClick: () => _form.setValue('controlled', ''),
+          ),
+        ],
+      ),
+    ],
+  ),
+)
+''';
+
+  /// Region `sg-input-currency-eventos`.
+  static const String sgInputCurrencyEventos = r'''
+SizedBox(
+  width: 320,
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      SgInputCurrency(
+        id: 'demo-events',
+        currency: 'BRL',
+        labelText: context.tx('Digite e observe o log'),
+        required: true,
+        onChange: (v) => _log('onChange: $v'),
+        onEnter: () => _log('onEnter (focus)'),
+        onExit: () => _log('onExit (blur)'),
+        onClear: () => _log('onClear'),
+        onValidation: (msg) =>
+            _log('onValidation: ${msg ?? context.tx('válido')}'),
+      ),
+      const SizedBox(height: 12),
+      ShowcaseLogBox(
+        entries: _eventLog,
+        hint: context.tx('Interaja com o input...'),
+        height: 160,
+      ),
+    ],
+  ),
+)
+''';
+
+  /// Region `sg-input-currency-largura`.
+  static const String sgInputCurrencyLargura = r'''
+Wrap(
+  spacing: 16,
+  runSpacing: 12,
   children: [
     SgInputCurrency(
-      id: 'preco',
-      labelText: 'Preço',
-      onChange: (v) => setState(() => _valor = v),
+      id: 'demo-w200',
+      currency: 'BRL',
+      labelText: context.tx('200px'),
+      width: 200,
     ),
-    const SizedBox(height: 8),
-    Text(
-      'onChange: ${_valor.isEmpty ? '(nada digitado)' : _valor}',
+    SgInputCurrency(
+      id: 'demo-w300',
+      currency: 'BRL',
+      labelText: context.tx('300px arredondado'),
+      width: 300,
+      borderRadius: 20,
     ),
   ],
 )
 ''';
 
-  /// Region `sg-input-currency-formulario`.
-  static const String sgInputCurrencyFormulario = r'''
+  /// Region `sg-input-currency-minmax`.
+  static const String sgInputCurrencyMinmax = r'''
+SizedBox(
+  width: 320,
+  child: SgInputCurrency(
+    id: 'demo-minmax',
+    currency: 'BRL',
+    labelText: context.tx('Entre 10 e 100'),
+    minValue: 10,
+    maxValue: 100,
+  ),
+)
+''';
+
+  /// Region `sg-input-currency-moeda`.
+  static const String sgInputCurrencyMoeda = r'''
 Column(
-  crossAxisAlignment: CrossAxisAlignment.start,
   children: [
-    SgInputCurrency(
-      id: 'preco-form',
-      name: 'preco',
-      control: _form,
-      labelText: 'Preço',
-      emptyValue: SgInputCurrencyEmptyValue.nullValue,
-      required: true,
-      requiredMessage: 'Informe o preço',
-      rules: SgRules(
-        validate: (v) =>
-            (num.tryParse('$v') ?? 0) > 0 ? true : 'Maior que zero',
+    SizedBox(
+      width: 320,
+      child: SgInputCurrency(
+        id: 'demo-brl',
+        labelText: context.tx('Preço (BRL)'),
+        currency: 'BRL',
+        locale: 'pt-BR',
       ),
     ),
     const SizedBox(height: 12),
-    SgButton(
-      label: Text(context.tx('Enviar')),
-      onClick: () => _form.handleSubmit(
-        (values) => setState(() => _enviado = '${values['preco']}'),
+    SizedBox(
+      width: 320,
+      child: SgInputCurrency(
+        id: 'demo-usd',
+        labelText: context.tx('Price (USD)'),
+        currency: 'USD',
+        locale: 'en-US',
       ),
     ),
-    if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),
+    const SizedBox(height: 12),
+    SizedBox(
+      width: 320,
+      child: SgInputCurrency(
+        id: 'demo-eur',
+        labelText: context.tx('Preço (EUR)'),
+        currency: 'EUR',
+        locale: 'pt-PT',
+      ),
+    ),
   ],
 )
 ''';
 
-  /// Region `sg-input-currency-moedas`.
-  static const String sgInputCurrencyMoedas = r'''
-const Column(
+  /// Region `sg-input-currency-obrigatorio`.
+  static const String sgInputCurrencyObrigatorio = r'''
+Column(
   children: [
-    SgInputCurrency(
-      id: 'usd',
-      labelText: 'Dólar (en-US)',
-      currency: 'USD',
-      locale: 'en-US',
-      initialValue: '1234.5',
+    SizedBox(
+      width: 320,
+      child: SgInputCurrency(
+        id: 'demo-required',
+        currency: 'BRL',
+        labelText: context.tx('Campo obrigatório'),
+        required: true,
+      ),
     ),
-    SizedBox(height: 12),
-    SgInputCurrency(
-      id: 'eur',
-      labelText: 'Euro (fr)',
-      currency: 'EUR',
-      locale: 'fr',
-      initialValue: '1234.5',
-    ),
-    SizedBox(height: 12),
-    SgInputCurrency(
-      id: 'jpy',
-      labelText: 'Iene (sem casas)',
-      currency: 'JPY',
-      initialValue: '1234',
+    const SizedBox(height: 12),
+    SizedBox(
+      width: 320,
+      child: SgInputCurrency(
+        id: 'demo-required-custom',
+        currency: 'BRL',
+        labelText: context.tx('Mensagem customizada'),
+        required: true,
+        requiredMessage: context.tx('Informe um valor.'),
+      ),
     ),
   ],
+)
+''';
+
+  /// Region `sg-input-currency-sem-decimais`.
+  static const String sgInputCurrencySemDecimais = r'''
+SizedBox(
+  width: 320,
+  child: SgInputCurrency(
+    id: 'demo-no-decimals',
+    currency: 'BRL',
+    labelText: context.tx('Quantidade'),
+    decimals: 0,
+  ),
+)
+''';
+
+  /// Region `sg-input-currency-sem-negativo`.
+  static const String sgInputCurrencySemNegativo = r'''
+SizedBox(
+  width: 320,
+  child: SgInputCurrency(
+    id: 'demo-no-negative',
+    currency: 'BRL',
+    labelText: context.tx('Apenas positivo'),
+    allowNegative: false,
+  ),
 )
 ''';
 
   /// Region `sg-input-currency-simbolo`.
   static const String sgInputCurrencySimbolo = r'''
-const Column(
+Column(
   children: [
-    SgInputCurrency(
-      id: 'codigo',
-      labelText: 'Código no fim',
-      currencyDisplay: SgInputCurrencyCurrencyDisplay.code,
-      currencySymbolPlacement:
-          SgInputCurrencyCurrencySymbolPlacement.suffix,
-      initialValue: '1234.5',
+    SizedBox(
+      width: 320,
+      child: SgInputCurrency(
+        id: 'demo-no-symbol',
+        labelText: context.tx('Sem símbolo'),
+        currency: 'BRL',
+        showCurrencySymbol: false,
+      ),
     ),
-    SizedBox(height: 12),
-    SgInputCurrency(
-      id: 'pontos',
-      labelText: 'Símbolo próprio',
-      currencySymbolOverride: 'pts',
-      initialValue: '10',
-    ),
-    SizedBox(height: 12),
-    SgInputCurrency(
-      id: 'semsimbolo',
-      labelText: 'Sem símbolo nem milhar',
-      showCurrencySymbol: false,
-      useGrouping: false,
-      initialValue: '1234567.8',
+    const SizedBox(height: 12),
+    SizedBox(
+      width: 320,
+      child: SgInputCurrency(
+        id: 'demo-code',
+        labelText: context.tx('USD no sufixo'),
+        currency: 'USD',
+        currencyDisplay: SgInputCurrencyCurrencyDisplay.code,
+        currencySymbolPlacement:
+            SgInputCurrencyCurrencySymbolPlacement.suffix,
+      ),
     ),
   ],
 )
 ''';
 
+  /// Region `sg-input-currency-standalone`.
+  static const String sgInputCurrencyStandalone = r'''
+SizedBox(
+  width: 384,
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      SgInputCurrency(
+        id: 'standalone-a',
+        currency: 'BRL',
+        labelText: context.tx('Entrada 1'),
+        onChange: (v) => _standalone['a'] = v,
+      ),
+      const SizedBox(height: 12),
+      SgInputCurrency(
+        id: 'standalone-b',
+        currency: 'BRL',
+        labelText: context.tx('Entrada 2'),
+        onChange: (v) => _standalone['b'] = v,
+      ),
+      const SizedBox(height: 12),
+      SgInputCurrency(
+        id: 'standalone-c',
+        currency: 'BRL',
+        labelText: context.tx('Entrada 3'),
+        onChange: (v) => _standalone['c'] = v,
+      ),
+      const SizedBox(height: 12),
+      SgButton(
+        size: SgSize.sm,
+        appearance: SgAppearance.outline,
+        label: Text(context.tx('Salvar')),
+        onClick: () => setState(
+          () => _standaloneResult = jsonEncode({
+            'a': _standalone['a'] ?? '',
+            'b': _standalone['b'] ?? '',
+            'c': _standalone['c'] ?? '',
+          }),
+        ),
+      ),
+      const SizedBox(height: 8),
+      Text(
+        '${context.tx('Resultado')}: ${_standaloneResult.isEmpty ? '-' : _standaloneResult}',
+      ),
+    ],
+  ),
+)
+''';
+
   /// Region `sg-input-currency-validacao`.
   static const String sgInputCurrencyValidacao = r'''
-const Column(
+SizedBox(
+  width: 320,
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      SgInputCurrency(
+        id: 'demo-validation',
+        labelText: context.tx('Valor mínimo (>= 1000)'),
+        currency: 'BRL',
+        validation: (v) {
+          final n = num.tryParse(v);
+          return n != null && n >= 1000
+              ? null
+              : context.tx('Valor deve ser ≥ 1000.');
+        },
+        onValidation: (msg) => setState(() => _validationMsg = msg),
+      ),
+      const SizedBox(height: 8),
+      Text(
+        'onValidation: ${_validationMsg == null ? context.tx('válido') : '"$_validationMsg"'}',
+      ),
+    ],
+  ),
+)
+''';
+
+  /// Region `sg-input-currency-variacoes`.
+  static const String sgInputCurrencyVariacoes = r'''
+Column(
   children: [
-    SgInputCurrency(
-      id: 'obrigatorio',
-      labelText: 'Obrigatório',
-      required: true,
+    SizedBox(
+      width: 320,
+      child: SgInputCurrency(
+        id: 'demo-noborder',
+        currency: 'BRL',
+        labelText: context.tx('Sem borda'),
+        withBorder: false,
+      ),
     ),
-    SizedBox(height: 12),
-    SgInputCurrency(
-      id: 'faixa',
-      labelText: 'Entre 10 e 500',
-      minValue: 10,
-      maxValue: 500,
-      maxValueMessage: 'Acima do limite',
+    const SizedBox(height: 12),
+    SizedBox(
+      width: 320,
+      child: SgInputCurrency(
+        id: 'demo-filled',
+        currency: 'BRL',
+        labelText: context.tx('Preenchido'),
+        filled: true,
+      ),
     ),
   ],
+)
+''';
+
+  /// Region `sg-input-currency-vazio`.
+  static const String sgInputCurrencyVazio = r'''
+SizedBox(
+  width: 320,
+  child: SgInputCurrency(
+    id: 'demo-empty',
+    currency: 'BRL',
+    labelText: context.tx('Pode ficar vazio'),
+    emptyValue: SgInputCurrencyEmptyValue.nullValue,
+  ),
 )
 ''';
 }

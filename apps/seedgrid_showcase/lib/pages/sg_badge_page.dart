@@ -223,7 +223,7 @@ class _SgBadgePageState extends State<SgBadgePage> {
                 SgBadge(
                   value: Text(context.tx('Desabilitado')),
                   badgeStyle: SgBadgeBadgeStyle.outline,
-                  disabled: true,
+                  enabled: false,
                   onClick: () {},
                 ),
                 if (_tagVisivel)

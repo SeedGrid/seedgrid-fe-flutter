@@ -213,7 +213,7 @@ class _SgRealtimeProviderPageState extends State<SgRealtimeProviderPage> {
             // #region sg-realtime-provider-desligado
             SgRealtimeProvider(
               channels: const ['backup'],
-              disabled: true,
+              enabled: false,
               fetchToken: _token,
               child: Builder(
                 builder: (context) => Text(
@@ -278,7 +278,7 @@ class _SgRealtimeProviderPageState extends State<SgRealtimeProviderPage> {
             // A chave faz o provider recomeçar quando a resposta simulada do backend muda.
             key: ValueKey('pg-$backend'),
             channels: const ['demo'],
-            disabled: v['disabled'] as bool?,
+            enabled: v['enabled'] as bool?,
             fetchToken: () async => switch (backend) {
               'desliga' => const SgRealtimeConnectResponse(enabled: false),
               'erro' => throw Exception('HTTP 503'),
@@ -296,7 +296,7 @@ class _SgRealtimeProviderPageState extends State<SgRealtimeProviderPage> {
         },
         codeBuilder: (v) {
           final args = <String>["channels: const ['demo']"];
-          if (v['disabled'] == true) args.add('disabled: true');
+          if (v['disabled'] == true) args.add('enabled: false');
           args.addAll([
             'fetchToken: seuBackend.pedirToken',
             'connectionFactory: () => PulseSdkConnection()',

@@ -408,7 +408,9 @@ class NumericFieldState extends State<NumericField>
     final hasError =
         error != null || (_bound && _form!.errorOf(c.name!) != null);
     final locked = _locked;
-    final canClear = (c.clearButton ?? true) && !locked;
+    // O X so aparece com texto, mas o espaco dele fica reservado (o texto do campo nao anda).
+    final clearEnabled = (c.clearButton ?? true) && !locked;
+    final canClear = clearEnabled && _text.text.isNotEmpty;
     final float = c.labelPosition == 'float';
     final labelStr = c.labelText ?? '';
     final radius = BorderRadius.circular(_dim(c.borderRadius, 400) ?? 6);
@@ -445,6 +447,7 @@ class NumericFieldState extends State<NumericField>
     );
 
     final suffixButtons = <Widget>[
+      if (clearEnabled && !canClear) const SizedBox(width: 24, height: 24),
       if (canClear)
         InkWell(
           key: ValueKey('clear-${c.id}'),

@@ -3,9 +3,37 @@
 // Cada constante e o trecho entre `// #region` e `// #endregion` de sg_input_cnpj_page.dart: o mesmo codigo que a pagina renderiza.
 
 abstract final class SgInputCnpjPageSnippets {
+  /// Region `sg-input-cnpj-alfanumerico`.
+  static const String sgInputCnpjAlfanumerico = r'''
+SizedBox(
+  width: 320,
+  child: SgInputCNPJ(
+    id: 'demo-alnum',
+    labelText: context.tx('CNPJ alfanumérico'),
+    hintText: '00.000.000/E08G-12',
+    initialValue: '00.000.000/E08G-12',
+  ),
+)
+''';
+
   /// Region `sg-input-cnpj-basico`.
   static const String sgInputCnpjBasico = r'''
-const SgInputCNPJ(id: 'cnpj', labelText: 'CNPJ')
+SizedBox(
+  width: 320,
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      SgInputCNPJ(
+        id: 'demo-basic',
+        labelText: context.tx('CNPJ'),
+        hintText: context.tx('00.000.000/0000-00'),
+        onChange: (v) => setState(() => _basico = v),
+      ),
+      const SizedBox(height: 8),
+      Text('${context.tx('Valor')}: $_basico'),
+    ],
+  ),
+)
 ''';
 
   /// Region `sg-input-cnpj-consulta`.
@@ -13,23 +41,27 @@ const SgInputCNPJ(id: 'cnpj', labelText: 'CNPJ')
 Column(
   crossAxisAlignment: CrossAxisAlignment.start,
   children: [
-    SgInputCNPJ(
-      id: 'cnpj-consulta',
-      labelText: 'CNPJ com consulta',
-      validateWithPublicaCnpj: true,
-      publicaCnpjErrorMessage: 'CNPJ não encontrado na Receita',
-      onPublicaCnpjResult: (data) => setState(() {
-        _publicaResultado = data;
-        _publicaErro = null;
-      }),
-      onPublicaCnpjError: (_) => setState(
-        () => _publicaErro =
-            'Não foi possível consultar a base pública agora.',
+    SizedBox(
+      width: 320,
+      child: SgInputCNPJ(
+        id: 'demo-publica',
+        labelText: context.tx('CNPJ'),
+        hintText: context.tx('00.000.000/0000-00'),
+        validateWithPublicaCnpj: true,
+        publicaCnpjErrorMessage: context.tx('CNPJ não encontrado.'),
+        onPublicaCnpjResult: (data) => setState(() {
+          _publicaResultado = data;
+          _publicaErro = null;
+        }),
+        onPublicaCnpjError: (_) => setState(
+          () =>
+              _publicaErro = context.tx('Falha ao consultar API.'),
+        ),
       ),
     ),
     if (_publicaResultado != null) ...[
       const SizedBox(height: 8),
-      Text(context.tx('Resultado da consulta')),
+      Text(context.tx('Resultado Publica CNPJ')),
       ConstrainedBox(
         constraints: const BoxConstraints(maxHeight: 240),
         child: SingleChildScrollView(
@@ -42,110 +74,169 @@ Column(
       ),
     ],
     if (_publicaErro != null) Text(_publicaErro!),
+    const SizedBox(height: 8),
+    Text(
+      context.tx(
+        'Se a API estiver fora do ar, o componente não bloqueia o usuário.',
+      ),
+    ),
   ],
 )
 ''';
 
-  /// Region `sg-input-cnpj-estados`.
-  static const String sgInputCnpjEstados = r'''
-const Column(
-  children: [
-    SgInputCNPJ(
-      id: 'desabilitado',
-      labelText: 'Desabilitado',
-      initialValue: '05952365000130',
-      disabled: true,
-    ),
-    SizedBox(height: 12),
-    SgInputCNPJ(
-      id: 'leitura',
-      labelText: 'Somente leitura',
-      initialValue: '05952365000130',
-      readOnly: true,
-    ),
-  ],
+  /// Region `sg-input-cnpj-desabilitado`.
+  static const String sgInputCnpjDesabilitado = r'''
+SizedBox(
+  width: 320,
+  child: SgInputCNPJ(
+    id: 'demo-disabled',
+    labelText: context.tx('Desabilitado'),
+    hintText: context.tx('CNPJ'),
+    enabled: false,
+    initialValue: '00.000.000/0000-00',
+  ),
 )
 ''';
 
   /// Region `sg-input-cnpj-eventos`.
   static const String sgInputCnpjEventos = r'''
-Column(
-  crossAxisAlignment: CrossAxisAlignment.start,
-  children: [
-    SgInputCNPJ(
-      id: 'eventos',
-      labelText: 'CNPJ',
-      onChange: (v) => setState(() => _evento = 'onChange: $v'),
-      onEnter: () => setState(() => _evento = 'onEnter'),
-      onExit: () => setState(() => _evento = 'onExit'),
-      onClear: () => setState(() => _evento = 'onClear'),
-    ),
-    const SizedBox(height: 8),
-    Text('Último evento: $_evento'),
-  ],
+SizedBox(
+  width: 320,
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      SgInputCNPJ(
+        id: 'demo-events',
+        labelText: context.tx('Digite e observe o log'),
+        hintText: context.tx('CNPJ'),
+        required: true,
+        onChange: (v) => _log('onChange: "$v"'),
+        onEnter: () => _log(context.tx('onEnter (focus)')),
+        onExit: () => _log(context.tx('onExit (blur)')),
+        onClear: () => _log('onClear'),
+        onValidation: (msg) =>
+            _log('onValidation: ${msg ?? context.tx('válido')}'),
+      ),
+      const SizedBox(height: 12),
+      ShowcaseLogBox(
+        entries: _eventLog,
+        hint: context.tx('Interaja com o input...'),
+        height: 160,
+      ),
+    ],
+  ),
 )
 ''';
 
-  /// Region `sg-input-cnpj-formulario`.
-  static const String sgInputCnpjFormulario = r'''
-Column(
-  crossAxisAlignment: CrossAxisAlignment.start,
-  children: [
-    SgInputCNPJ(
-      id: 'campo',
-      name: 'campo',
-      control: _form,
-      labelText: 'Campo',
-      rules: const SgRules(required: 'Preencha o campo'),
-    ),
-    const SizedBox(height: 12),
-    SgButton(
-      label: Text(context.tx('Enviar')),
-      onClick: () => _form.handleSubmit(
-        (values) => setState(() => _enviado = '${values['campo']}'),
-      ),
-    ),
-    if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),
-  ],
+  /// Region `sg-input-cnpj-invalida`.
+  static const String sgInputCnpjInvalida = r'''
+SizedBox(
+  width: 320,
+  child: SgInputCNPJ(
+    id: 'demo-invalid',
+    labelText: context.tx('CNPJ'),
+    hintText: context.tx('00.000.000/0000-00'),
+    invalidMessage: context.tx('CNPJ inválido.'),
+  ),
 )
 ''';
 
   /// Region `sg-input-cnpj-largura`.
   static const String sgInputCnpjLargura = r'''
-const SgInputCNPJ(
-  id: 'largura',
-  labelText: 'CNPJ',
-  width: 240,
-  borderRadius: 20,
+Wrap(
+  spacing: 16,
+  runSpacing: 12,
+  children: [
+    SgInputCNPJ(
+      id: 'demo-w200',
+      labelText: context.tx('200px'),
+      hintText: context.tx('CNPJ'),
+      width: 200,
+    ),
+    SgInputCNPJ(
+      id: 'demo-w300',
+      labelText: context.tx('300px arredondado'),
+      hintText: context.tx('CNPJ'),
+      width: 300,
+      borderRadius: 20,
+    ),
+  ],
+)
+''';
+
+  /// Region `sg-input-cnpj-lista-alfanumerica`.
+  static const String sgInputCnpjListaAlfanumerica = r'''
+const SelectableText(
+  '// Exemplos válidos\n'
+  '00.000.000/E08G-12  (raw: 00000000E08G12)\n'
+  'GK.IPC.PIK/0001-52  (raw: GKIPCPIK000152)\n'
+  'AB.12C.345/D6E7-99  (raw: AB12C345D6E799)\n'
+  '12.ABC.345/DE67-34  (raw: 12ABC345DE6734)\n'
+  'A1.B2C.3D4/E5F6-68  (raw: A1B2C3D4E5F668)\n'
+  'ZX.CVB.NM1/2345-84  (raw: ZXCVBNM1234584)',
+  style: TextStyle(fontFamily: 'monospace', fontSize: 12),
 )
 ''';
 
   /// Region `sg-input-cnpj-obrigatorio`.
   static const String sgInputCnpjObrigatorio = r'''
-const SgInputCNPJ(
-  id: 'cnpj-obrigatorio',
-  labelText: 'CNPJ da empresa',
-  required: true,
-  requiredMessage: 'Informe o CNPJ',
-  invalidMessage: 'CNPJ inválido, confira os dígitos',
+Column(
+  children: [
+    SizedBox(
+      width: 320,
+      child: SgInputCNPJ(
+        id: 'demo-required',
+        labelText: context.tx('CNPJ obrigatório'),
+        hintText: context.tx('Obrigatório'),
+        required: true,
+      ),
+    ),
+    const SizedBox(height: 12),
+    SizedBox(
+      width: 320,
+      child: SgInputCNPJ(
+        id: 'demo-required-custom',
+        labelText: context.tx('Mensagem customizada'),
+        hintText: context.tx('Obrigatório'),
+        required: true,
+        requiredMessage: context.tx('Informe o CNPJ.'),
+      ),
+    ),
+  ],
 )
 ''';
 
   /// Region `sg-input-cnpj-rotulo`.
   static const String sgInputCnpjRotulo = r'''
-const Column(
+Wrap(
+  spacing: 16,
+  runSpacing: 12,
   children: [
-    SgInputCNPJ(
-      id: 'topo',
-      labelText: 'Rótulo no topo',
-      labelPosition: SgInputCNPJLabelPosition.top,
+    SizedBox(
+      width: 280,
+      child: SgInputCNPJ(
+        id: 'sg-input-cnpj-label-float',
+        labelText: context.tx('Flutuante'),
+        labelPosition: SgInputCNPJLabelPosition.float,
+      ),
     ),
-    SizedBox(height: 12),
-    SgInputCNPJ(
-      id: 'esquerda',
-      labelText: 'À esquerda',
-      labelPosition: SgInputCNPJLabelPosition.left,
-      labelWidth: 110,
+    SizedBox(
+      width: 280,
+      child: SgInputCNPJ(
+        id: 'sg-input-cnpj-label-top',
+        labelText: context.tx('Acima'),
+        labelPosition: SgInputCNPJLabelPosition.top,
+      ),
+    ),
+    SizedBox(
+      width: 360,
+      child: SgInputCNPJ(
+        id: 'sg-input-cnpj-label-left',
+        labelText: context.tx('Esquerda'),
+        labelPosition: SgInputCNPJLabelPosition.left,
+        labelWidth: 140,
+        labelAlign: SgInputCNPJLabelAlign.end,
+      ),
     ),
   ],
 )
@@ -153,34 +244,77 @@ const Column(
 
   /// Region `sg-input-cnpj-sem-limpar`.
   static const String sgInputCnpjSemLimpar = r'''
-const SgInputCNPJ(
-  id: 'semlimpar',
-  labelText: 'CNPJ',
-  initialValue: '05952365000130',
-  clearButton: false,
+SizedBox(
+  width: 320,
+  child: SgInputCNPJ(
+    id: 'demo-noclear',
+    labelText: context.tx('Sem limpar'),
+    hintText: context.tx('CNPJ'),
+    clearButton: false,
+  ),
+)
+''';
+
+  /// Region `sg-input-cnpj-tamanho`.
+  static const String sgInputCnpjTamanho = r'''
+SizedBox(
+  width: 320,
+  child: SgInputCNPJ(
+    id: 'demo-length',
+    labelText: context.tx('CNPJ'),
+    hintText: context.tx('00.000.000/0000-00'),
+    lengthMessage: context.tx('CNPJ deve ter 14 dígitos.'),
+  ),
+)
+''';
+
+  /// Region `sg-input-cnpj-validacao`.
+  static const String sgInputCnpjValidacao = r'''
+SizedBox(
+  width: 320,
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      SgInputCNPJ(
+        id: 'demo-validation',
+        labelText: context.tx('CNPJ'),
+        hintText: context.tx('00.000.000/0000-00'),
+        validation: (v) => v.startsWith('00')
+            ? context.tx('CNPJ não pode iniciar com 00.')
+            : null,
+        onValidation: (msg) => setState(() => _validationMsg = msg),
+      ),
+      const SizedBox(height: 8),
+      Text(
+        'onValidation: ${_validationMsg == null ? context.tx('válido') : '"$_validationMsg"'}',
+      ),
+    ],
+  ),
 )
 ''';
 
   /// Region `sg-input-cnpj-variacoes`.
   static const String sgInputCnpjVariacoes = r'''
-const Column(
+Column(
   children: [
-    SgInputCNPJ(
-      id: 'preenchido',
-      labelText: 'Preenchido',
-      filled: true,
+    SizedBox(
+      width: 320,
+      child: SgInputCNPJ(
+        id: 'demo-noborder',
+        labelText: context.tx('Sem borda'),
+        hintText: context.tx('CNPJ'),
+        withBorder: false,
+      ),
     ),
-    SizedBox(height: 12),
-    SgInputCNPJ(
-      id: 'vazado',
-      labelText: 'Sem preenchimento',
-      filled: false,
-    ),
-    SizedBox(height: 12),
-    SgInputCNPJ(
-      id: 'semborda',
-      labelText: 'Sem borda',
-      withBorder: false,
+    const SizedBox(height: 12),
+    SizedBox(
+      width: 320,
+      child: SgInputCNPJ(
+        id: 'demo-filled',
+        labelText: context.tx('Preenchido'),
+        hintText: context.tx('CNPJ'),
+        filled: true,
+      ),
     ),
   ],
 )

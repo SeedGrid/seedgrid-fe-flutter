@@ -207,13 +207,13 @@ class _SgPeriodSelectorPageState extends State<SgPeriodSelectorPage> {
       playground: SgPlayground(
         specs: sgPropSpecs['SgPeriodSelector']!
             .where(
-              (s) => const {'disabled', 'required', 'locale'}.contains(s.name),
+              (s) => const {'enabled', 'required', 'locale'}.contains(s.name),
             )
             .toList(),
         builder: (context, v) => SgPeriodSelector(
           id: 'pg',
           label: 'Período',
-          disabled: v['disabled'] as bool?,
+          enabled: v['enabled'] as bool?,
           required: v['required'] as bool?,
           locale: (v['locale'] as String?) ?? 'pt-BR',
         ),

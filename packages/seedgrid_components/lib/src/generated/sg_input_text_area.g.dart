@@ -18,8 +18,7 @@ abstract interface class SgInputTextAreaProps {
   /// Tipo TS: `any` (sem tradução exata; ver excecoes.json).
   Object? get control;
   SgInputTextAreaElevation? get elevation;
-  /// No React a prop se chama `enabled` (valor invertido); ver ADR 50.
-  bool? get disabled;
+  bool? get enabled;
   String? get error;
   bool? get filled;
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
@@ -108,7 +107,7 @@ const List<SgPropSpec> sgInputTextAreaPropSpecs = <SgPropSpec>[
     values: <String>['none', 'sm', 'md', 'lg'],
   ),
   SgPropSpec(
-    name: 'disabled',
+    name: 'enabled',
     reactName: 'enabled',
     type: 'bool?',
     tsType: 'boolean',

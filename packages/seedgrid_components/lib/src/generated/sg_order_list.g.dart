@@ -14,11 +14,11 @@ abstract interface class SgOrderListProps {
   Object? get control;
   /// Padrão: `left`.
   SgOrderListControlsPosition? get controlsPosition;
-  /// Desabilita interacao. Padrão: `false`.
-  bool? get disabled;
   /// Permite arrastar itens. Padrão: `false`.
   bool? get draggable;
   String? get emptyMessage;
+  /// Desabilita interacao. Padrão: `true`.
+  bool? get enabled;
   String? get error;
   /// Padrão: `{}`. Tipo TS: `(Omit&lt;Partial&lt;SgGroupBoxProps&gt;, "title" | "children"&gt; & { title?: string; })` (sem tradução exata; ver excecoes.json).
   Object? get groupBoxProps;
@@ -72,15 +72,6 @@ const List<SgPropSpec> sgOrderListPropSpecs = <SgPropSpec>[
     values: <String>['left', 'right'],
   ),
   SgPropSpec(
-    name: 'disabled',
-    reactName: 'disabled',
-    type: 'bool?',
-    tsType: 'boolean',
-    required: false,
-    defaultValue: 'false',
-    description: 'Desabilita interacao.',
-  ),
-  SgPropSpec(
     name: 'draggable',
     reactName: 'draggable',
     type: 'bool?',
@@ -95,6 +86,15 @@ const List<SgPropSpec> sgOrderListPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
+  ),
+  SgPropSpec(
+    name: 'enabled',
+    reactName: 'enabled',
+    type: 'bool?',
+    tsType: 'boolean',
+    required: false,
+    defaultValue: 'true',
+    description: 'Desabilita interacao.',
   ),
   SgPropSpec(
     name: 'error',

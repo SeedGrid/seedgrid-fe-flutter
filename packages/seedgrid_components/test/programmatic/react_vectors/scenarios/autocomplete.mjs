@@ -83,11 +83,11 @@ export default [
     steps: [{ op: "open" }, setv("Beta"), snap("prop com painel aberto"), { op: "pick", label: "Delta" }, snap("escolheu")],
   },
   {
-    id: "h-disabled-mostra-valor", items: FR, props: { value: "Beta", disabled: true },
+    id: "h-disabled-mostra-valor", items: FR, props: { value: "Beta", enabled: false },
     steps: [snap("inicial"), { op: "open" }, snap("tentou abrir"), setv("Gama"), snap("prop mudou")],
   },
   {
-    id: "h-disabled-form-setvalue", items: FR, form: { defaults: { f: "Alfa" } }, props: { disabled: true },
+    id: "h-disabled-form-setvalue", items: FR, form: { defaults: { f: "Alfa" } }, props: { enabled: false },
     steps: [snap("inicial"), fsv("Gama"), snap("setValue"), freset(), snap("reset")],
   },
 ];

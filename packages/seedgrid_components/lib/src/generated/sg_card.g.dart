@@ -37,10 +37,10 @@ abstract interface class SgCardProps {
   /// Descricao ou subtitulo complementar do cabecalho. Aceita `String` ou `Widget` (React: `ReactNode`).
   Object? get description;
   /// Padrão: `false`.
-  bool? get disabled;
-  /// Padrão: `false`.
   bool? get draggable;
   String? get dragPersistKey;
+  /// Padrão: `true`.
+  bool? get enabled;
   Widget? get footer;
   String? get footerClassName;
   Widget? get header;
@@ -185,14 +185,6 @@ const List<SgPropSpec> sgCardPropSpecs = <SgPropSpec>[
     description: 'Descricao ou subtitulo complementar do cabecalho.',
   ),
   SgPropSpec(
-    name: 'disabled',
-    reactName: 'disabled',
-    type: 'bool?',
-    tsType: 'boolean',
-    required: false,
-    defaultValue: 'false',
-  ),
-  SgPropSpec(
     name: 'draggable',
     reactName: 'draggable',
     type: 'bool?',
@@ -206,6 +198,14 @@ const List<SgPropSpec> sgCardPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
+  ),
+  SgPropSpec(
+    name: 'enabled',
+    reactName: 'enabled',
+    type: 'bool?',
+    tsType: 'boolean',
+    required: false,
+    defaultValue: 'true',
   ),
   SgPropSpec(
     name: 'footer',

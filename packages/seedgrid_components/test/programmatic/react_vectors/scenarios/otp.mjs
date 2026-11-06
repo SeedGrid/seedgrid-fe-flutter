@@ -83,12 +83,12 @@ export default [
     steps: [focus(0), fsv("789"), snap("focado + setValue"), type(3, "4"), snap("digitou no slot 3"), blur, snap("depois do blur")],
   },
   {
-    id: "h-disabled-mostra-valor", props: { value: "12", disabled: true },
+    id: "h-disabled-mostra-valor", props: { value: "12", enabled: false },
     steps: [snap("inicial"), type(2, "3"), snap("tentou digitar"), setv("99"), snap("prop mudou")],
   },
   {
     id: "h-readonly-mostra-valor", props: { value: "12", readOnly: true },
     steps: [snap("inicial"), type(2, "3"), snap("tentou digitar"), setv("99"), snap("prop mudou")],
   },
-  { id: "h-disabled-form-setvalue", form: { defaults: { f: "12" } }, props: { disabled: true }, steps: [snap("inicial"), fsv("999"), snap("setValue"), freset(), snap("reset")] },
+  { id: "h-disabled-form-setvalue", form: { defaults: { f: "12" } }, props: { enabled: false }, steps: [snap("inicial"), fsv("999"), snap("setValue"), freset(), snap("reset")] },
 ];

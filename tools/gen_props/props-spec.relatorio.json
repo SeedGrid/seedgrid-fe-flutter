@@ -508,6 +508,13 @@
    "soNoGeneratedProps": []
   },
   {
+   "componente": "SgNotificationBell",
+   "soNoCompilador": [
+    "className"
+   ],
+   "soNoGeneratedProps": []
+  },
+  {
    "componente": "SgOrderList",
    "soNoCompilador": [
     "className",

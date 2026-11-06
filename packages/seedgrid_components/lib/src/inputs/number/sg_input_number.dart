@@ -23,7 +23,7 @@ class SgInputNumber extends StatelessWidget implements SgInputNumberProps {
     this.decimals,
     this.elevation,
     this.emptyValue,
-    this.disabled,
+    this.enabled,
     this.error,
     this.filled,
     this.hintText,
@@ -93,7 +93,9 @@ class SgInputNumber extends StatelessWidget implements SgInputNumberProps {
 
   /// No React a prop e `enabled` (valor invertido).
   @override
-  final bool? disabled;
+  final bool? enabled;
+
+  bool get _disabled => !(enabled ?? true);
   @override
   final String? error;
   @override
@@ -212,7 +214,7 @@ class SgInputNumber extends StatelessWidget implements SgInputNumberProps {
         width: width,
         clearButton: clearButton,
         filled: filled,
-        disabled: disabled,
+        disabled: _disabled,
         readOnly: readOnly,
         withBorder: withBorder,
         borderRadius: borderRadius,

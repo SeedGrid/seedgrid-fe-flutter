@@ -37,7 +37,7 @@ class SgClockCardProps {
     this.collapsible,
     this.defaultOpen,
     this.description,
-    this.disabled,
+    this.enabled,
     this.dragPersistKey,
     this.draggable,
     this.footer,
@@ -61,7 +61,7 @@ class SgClockCardProps {
   final bool? collapsible;
   final bool? defaultOpen;
   final Widget? description;
-  final bool? disabled;
+  final bool? enabled;
   final String? dragPersistKey;
   final bool? draggable;
   final Widget? footer;
@@ -379,7 +379,7 @@ class _SgClockState extends State<SgClock> {
       collapsible: cp?.collapsible ?? true,
       defaultOpen: cp?.defaultOpen ?? true,
       description: cp?.description,
-      disabled: cp?.disabled ?? false,
+      enabled: (cp?.enabled ?? true),
       dragPersistKey: persistKey,
       draggable: cp?.draggable ?? true,
       footer: cp?.footer,

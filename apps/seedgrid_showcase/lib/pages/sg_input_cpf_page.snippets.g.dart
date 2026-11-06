@@ -5,117 +5,163 @@
 abstract final class SgInputCpfPageSnippets {
   /// Region `sg-input-cpf-basico`.
   static const String sgInputCpfBasico = r'''
-const SgInputCPF(id: 'cpf', labelText: 'CPF')
+SizedBox(
+  width: 320,
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      SgInputCPF(
+        id: 'demo-basic',
+        labelText: context.tx('CPF'),
+        hintText: context.tx('000.000.000-00'),
+        onChange: (v) => setState(() => _basico = v),
+      ),
+      const SizedBox(height: 8),
+      Text('${context.tx('Valor')}: $_basico'),
+    ],
+  ),
+)
 ''';
 
-  /// Region `sg-input-cpf-estados`.
-  static const String sgInputCpfEstados = r'''
-const Column(
-  children: [
-    SgInputCPF(
-      id: 'cpf-desabilitado',
-      labelText: 'Desabilitado',
-      disabled: true,
-      initialValue: '529.982.247-25',
-    ),
-    SizedBox(height: 12),
-    SgInputCPF(
-      id: 'cpf-leitura',
-      labelText: 'Somente leitura',
-      readOnly: true,
-      initialValue: '529.982.247-25',
-    ),
-    SizedBox(height: 12),
-    SgInputCPF(
-      id: 'cpf-erro',
-      labelText: 'Erro externo',
-      error: 'CPF já cadastrado',
-      initialValue: '529.982.247-25',
-    ),
-  ],
+  /// Region `sg-input-cpf-desabilitado`.
+  static const String sgInputCpfDesabilitado = r'''
+SizedBox(
+  width: 320,
+  child: SgInputCPF(
+    id: 'demo-disabled',
+    labelText: context.tx('Desabilitado'),
+    hintText: context.tx('CPF'),
+    enabled: false,
+    initialValue: '000.000.000-00',
+  ),
 )
 ''';
 
   /// Region `sg-input-cpf-eventos`.
   static const String sgInputCpfEventos = r'''
-Column(
-  crossAxisAlignment: CrossAxisAlignment.start,
-  children: [
-    SgInputCPF(
-      id: 'eventos',
-      labelText: 'CPF',
-      onChange: (v) => setState(() => _evento = 'onChange: $v'),
-      onEnter: () => setState(() => _evento = 'onEnter'),
-      onExit: () => setState(() => _evento = 'onExit'),
-      onClear: () => setState(() => _evento = 'onClear'),
-    ),
-    const SizedBox(height: 8),
-    Text('Último evento: $_evento'),
-  ],
+SizedBox(
+  width: 320,
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      SgInputCPF(
+        id: 'demo-events',
+        labelText: context.tx('Digite e observe o log'),
+        hintText: context.tx('CPF'),
+        required: true,
+        onChange: (v) => _log('onChange: "$v"'),
+        onEnter: () => _log(context.tx('onEnter (focus)')),
+        onExit: () => _log(context.tx('onExit (blur)')),
+        onClear: () => _log('onClear'),
+        onValidation: (msg) =>
+            _log('onValidation: ${msg ?? context.tx('válido')}'),
+      ),
+      const SizedBox(height: 12),
+      ShowcaseLogBox(
+        entries: _eventLog,
+        hint: context.tx('Interaja com o input...'),
+        height: 160,
+      ),
+    ],
+  ),
 )
 ''';
 
-  /// Region `sg-input-cpf-formulario`.
-  static const String sgInputCpfFormulario = r'''
-Column(
-  crossAxisAlignment: CrossAxisAlignment.start,
-  children: [
-    SgInputCPF(
-      id: 'campo',
-      name: 'campo',
-      control: _form,
-      labelText: 'Campo',
-      rules: const SgRules(required: 'Preencha o campo'),
-    ),
-    const SizedBox(height: 12),
-    SgButton(
-      label: Text(context.tx('Enviar')),
-      onClick: () => _form.handleSubmit(
-        (values) => setState(() => _enviado = '${values['campo']}'),
-      ),
-    ),
-    if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),
-  ],
+  /// Region `sg-input-cpf-invalida`.
+  static const String sgInputCpfInvalida = r'''
+SizedBox(
+  width: 320,
+  child: SgInputCPF(
+    id: 'demo-invalid',
+    labelText: context.tx('CPF'),
+    hintText: context.tx('000.000.000-00'),
+    invalidMessage: context.tx('CPF inválido.'),
+  ),
 )
 ''';
 
   /// Region `sg-input-cpf-largura`.
   static const String sgInputCpfLargura = r'''
-const SgInputCPF(
-  id: 'largura',
-  labelText: 'CPF',
-  width: 240,
-  borderRadius: 20,
+Wrap(
+  spacing: 16,
+  runSpacing: 12,
+  children: [
+    SgInputCPF(
+      id: 'demo-w200',
+      labelText: context.tx('200px'),
+      hintText: context.tx('CPF'),
+      width: 200,
+    ),
+    SgInputCPF(
+      id: 'demo-w300',
+      labelText: context.tx('300px arredondado'),
+      hintText: context.tx('CPF'),
+      width: 300,
+      borderRadius: 20,
+    ),
+  ],
 )
 ''';
 
   /// Region `sg-input-cpf-obrigatorio`.
   static const String sgInputCpfObrigatorio = r'''
-const SgInputCPF(
-  id: 'cpf-obrigatorio',
-  labelText: 'CPF do titular',
-  required: true,
-  requiredMessage: 'Informe o CPF',
-  lengthMessage: 'O CPF tem 11 dígitos',
-  invalidMessage: 'Esse CPF não existe',
+Column(
+  children: [
+    SizedBox(
+      width: 320,
+      child: SgInputCPF(
+        id: 'demo-required',
+        labelText: context.tx('CPF obrigatório'),
+        hintText: context.tx('Obrigatório'),
+        required: true,
+      ),
+    ),
+    const SizedBox(height: 12),
+    SizedBox(
+      width: 320,
+      child: SgInputCPF(
+        id: 'demo-required-custom',
+        labelText: context.tx('Mensagem customizada'),
+        hintText: context.tx('Obrigatório'),
+        required: true,
+        requiredMessage: context.tx('Informe o CPF.'),
+      ),
+    ),
+  ],
 )
 ''';
 
   /// Region `sg-input-cpf-rotulo`.
   static const String sgInputCpfRotulo = r'''
-const Column(
+Wrap(
+  spacing: 16,
+  runSpacing: 12,
   children: [
-    SgInputCPF(
-      id: 'topo',
-      labelText: 'Rótulo no topo',
-      labelPosition: SgInputCPFLabelPosition.top,
+    SizedBox(
+      width: 280,
+      child: SgInputCPF(
+        id: 'sg-input-cpf-label-float',
+        labelText: context.tx('Flutuante'),
+        labelPosition: SgInputCPFLabelPosition.float,
+      ),
     ),
-    SizedBox(height: 12),
-    SgInputCPF(
-      id: 'esquerda',
-      labelText: 'À esquerda',
-      labelPosition: SgInputCPFLabelPosition.left,
-      labelWidth: 110,
+    SizedBox(
+      width: 280,
+      child: SgInputCPF(
+        id: 'sg-input-cpf-label-top',
+        labelText: context.tx('Acima'),
+        labelPosition: SgInputCPFLabelPosition.top,
+      ),
+    ),
+    SizedBox(
+      width: 360,
+      child: SgInputCPF(
+        id: 'sg-input-cpf-label-left',
+        labelText: context.tx('Esquerda'),
+        labelPosition: SgInputCPFLabelPosition.left,
+        labelWidth: 140,
+        labelAlign: SgInputCPFLabelAlign.end,
+      ),
     ),
   ],
 )
@@ -123,44 +169,77 @@ const Column(
 
   /// Region `sg-input-cpf-sem-limpar`.
   static const String sgInputCpfSemLimpar = r'''
-const SgInputCPF(
-  id: 'semlimpar',
-  labelText: 'CPF',
-  initialValue: '12345678909',
-  clearButton: false,
+SizedBox(
+  width: 320,
+  child: SgInputCPF(
+    id: 'demo-noclear',
+    labelText: context.tx('Sem limpar'),
+    hintText: context.tx('CPF'),
+    clearButton: false,
+  ),
+)
+''';
+
+  /// Region `sg-input-cpf-tamanho`.
+  static const String sgInputCpfTamanho = r'''
+SizedBox(
+  width: 320,
+  child: SgInputCPF(
+    id: 'demo-length',
+    labelText: context.tx('CPF'),
+    hintText: context.tx('000.000.000-00'),
+    lengthMessage: context.tx('CPF deve ter 11 dígitos.'),
+  ),
 )
 ''';
 
   /// Region `sg-input-cpf-validacao`.
   static const String sgInputCpfValidacao = r'''
-SgInputCPF(
-  id: 'cpf-regra',
-  labelText: 'CPF (não aceita 000...)',
-  validation: (v) =>
-      v.startsWith('000') ? 'CPF de teste não permitido' : null,
+SizedBox(
+  width: 320,
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      SgInputCPF(
+        id: 'demo-validation',
+        labelText: context.tx('CPF'),
+        hintText: context.tx('000.000.000-00'),
+        validation: (v) => v.startsWith('123')
+            ? context.tx('CPF não pode iniciar com 123.')
+            : null,
+        onValidation: (msg) => setState(() => _validationMsg = msg),
+      ),
+      const SizedBox(height: 8),
+      Text(
+        'onValidation: ${_validationMsg == null ? context.tx('válido') : '"$_validationMsg"'}',
+      ),
+    ],
+  ),
 )
 ''';
 
   /// Region `sg-input-cpf-variacoes`.
   static const String sgInputCpfVariacoes = r'''
-const Column(
+Column(
   children: [
-    SgInputCPF(
-      id: 'preenchido',
-      labelText: 'Preenchido',
-      filled: true,
+    SizedBox(
+      width: 320,
+      child: SgInputCPF(
+        id: 'demo-noborder',
+        labelText: context.tx('Sem borda'),
+        hintText: context.tx('CPF'),
+        withBorder: false,
+      ),
     ),
-    SizedBox(height: 12),
-    SgInputCPF(
-      id: 'vazado',
-      labelText: 'Sem preenchimento',
-      filled: false,
-    ),
-    SizedBox(height: 12),
-    SgInputCPF(
-      id: 'semborda',
-      labelText: 'Sem borda',
-      withBorder: false,
+    const SizedBox(height: 12),
+    SizedBox(
+      width: 320,
+      child: SgInputCPF(
+        id: 'demo-filled',
+        labelText: context.tx('Preenchido'),
+        hintText: context.tx('CPF'),
+        filled: true,
+      ),
     ),
   ],
 )

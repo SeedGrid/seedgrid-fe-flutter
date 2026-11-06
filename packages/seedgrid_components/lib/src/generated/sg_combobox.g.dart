@@ -18,8 +18,7 @@ abstract interface class SgComboboxProps {
   Object? get control;
   SgComboboxElevation? get elevation;
   String? get emptyText;
-  /// No React a prop se chama `enabled` (valor invertido); ver ADR 50.
-  bool? get disabled;
+  bool? get enabled;
   String? get error;
   bool? get filled;
   /// Agrupa resultados por categoria. Padrão: `false`.
@@ -128,7 +127,7 @@ const List<SgPropSpec> sgComboboxPropSpecs = <SgPropSpec>[
     required: false,
   ),
   SgPropSpec(
-    name: 'disabled',
+    name: 'enabled',
     reactName: 'enabled',
     type: 'bool?',
     tsType: 'boolean',

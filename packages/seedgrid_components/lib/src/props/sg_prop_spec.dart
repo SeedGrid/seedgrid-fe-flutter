@@ -13,7 +13,7 @@ class SgPropSpec {
     this.exact = true,
   });
 
-  /// Nome no Dart (pode diferir do React: `enabled` → `disabled`, `children` → `child`).
+  /// Nome no Dart (pode diferir do React: `children` → `child`).
   final String name;
 
   /// Nome no React.

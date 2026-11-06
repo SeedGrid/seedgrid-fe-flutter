@@ -82,7 +82,7 @@ class SgTextEditor extends StatefulWidget implements SgTextEditorProps {
     this.cssEditorLabel,
     this.cssText = '',
     this.defaultValueHtml,
-    this.disabled,
+    this.enabled,
     this.error,
     this.fileName,
     this.height = 320,
@@ -113,7 +113,7 @@ class SgTextEditor extends StatefulWidget implements SgTextEditorProps {
   @override
   final String? defaultValueHtml;
   @override
-  final bool? disabled;
+  final bool? enabled;
   @override
   final String? error;
   @override
@@ -152,7 +152,7 @@ class _SgTextEditorState extends State<SgTextEditor> {
   late final QuillController _c = QuillController(
     document: Document.fromDelta(SgTextEditorHtml.toDelta(_initialHtml())),
     selection: const TextSelection.collapsed(offset: 0),
-    readOnly: widget.disabled ?? false,
+    readOnly: !(widget.enabled ?? true),
   );
   final FocusNode _focus = FocusNode();
   final ScrollController _scroll = ScrollController();
@@ -175,7 +175,7 @@ class _SgTextEditorState extends State<SgTextEditor> {
   @override
   void initState() {
     super.initState();
-    _focus.canRequestFocus = !(widget.disabled ?? false);
+    _focus.canRequestFocus = (widget.enabled ?? true);
     _sub = _c.document.changes.listen(_onDocChange);
   }
 
@@ -221,8 +221,8 @@ class _SgTextEditorState extends State<SgTextEditor> {
   @override
   void didUpdateWidget(SgTextEditor old) {
     super.didUpdateWidget(old);
-    _c.readOnly = widget.disabled ?? false;
-    _focus.canRequestFocus = !(widget.disabled ?? false);
+    _c.readOnly = !(widget.enabled ?? true);
+    _focus.canRequestFocus = (widget.enabled ?? true);
     if (old.valueHtml != widget.valueHtml && !_bound) {
       final v = widget.valueHtml;
       if (v != null && v != _html) _setContent(v);
@@ -543,7 +543,7 @@ class _SgTextEditorState extends State<SgTextEditor> {
   Widget build(BuildContext context) {
     final theme = sgThemeOf(context);
     final i18n = useComponentsI18n(context);
-    final disabled = widget.disabled ?? false;
+    final disabled = !(widget.enabled ?? true);
     final radius = _radius();
     final formError = _bound ? _form!.errorOf(widget.name!)?.message : null;
     final error = resolveFieldError(widget.error, formError);

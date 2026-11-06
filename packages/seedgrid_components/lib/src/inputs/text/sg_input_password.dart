@@ -51,7 +51,7 @@ class SgInputPassword extends StatefulWidget implements SgInputPasswordProps {
     this.control,
     this.createNewPasswordButton = false,
     this.elevation,
-    this.disabled,
+    this.enabled,
     this.error,
     this.filled,
     this.hidePassword,
@@ -134,7 +134,9 @@ class SgInputPassword extends StatefulWidget implements SgInputPasswordProps {
   @override
   final SgInputPasswordElevation? elevation;
   @override
-  final bool? disabled;
+  final bool? enabled;
+
+  bool get _disabled => !(enabled ?? true);
   @override
   final String? error;
   @override
@@ -535,7 +537,7 @@ class _SgInputPasswordState extends State<SgInputPassword> {
       control: _ctl,
       value: _ctl == null ? _value : null,
       elevation: SgInputTextElevation.fromValue(w.elevation?.value),
-      disabled: w.disabled,
+      enabled: !(w._disabled),
       error: w.error ?? _internalError,
       filled: w.filled,
       hintText: w.hintText,

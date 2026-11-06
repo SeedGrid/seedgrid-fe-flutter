@@ -6,6 +6,7 @@ import 'package:seedgrid_components/seedgrid_components.dart';
 import 'sg_input_phone_page.snippets.g.dart';
 import '../src/sg_showcase_page.dart';
 import '../src/showcase_i18n.dart';
+import '../src/showcase_log_box.dart';
 
 class SgInputPhonePage extends StatefulWidget {
   const SgInputPhonePage({super.key});
@@ -15,67 +16,142 @@ class SgInputPhonePage extends StatefulWidget {
 }
 
 class _SgInputPhonePageState extends State<SgInputPhonePage> {
-  final SgFormController _form = SgFormController();
-  String _evento = 'nenhum';
-  String _enviado = '';
+  String _basico = '';
+  String? _validationMsg;
+  final List<String> _eventLog = [];
 
-  @override
-  void dispose() {
-    _form.dispose();
-    super.dispose();
-  }
+  void _log(String entry) => setState(() => _eventLog.insert(0, entry));
 
   @override
   Widget build(BuildContext context) {
     final examples = <ShowcaseExample>[
       ShowcaseExample(
         title: 'Básico',
-        description:
-            'Fixo (10 dígitos) e celular (11 dígitos) formatam sozinhos.',
+        description: 'Telefone com label e hint.',
         preview:
             // #region sg-input-phone-basico
-            const SgInputPhone(id: 'telefone', labelText: 'Telefone'),
+            SizedBox(
+              width: 320,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SgInputPhone(
+                    id: 'demo-basic',
+                    labelText: context.tx('Telefone'),
+                    hintText: context.tx('(00) 00000-0000'),
+                    onChange: (v) => setState(() => _basico = v),
+                  ),
+                  const SizedBox(height: 8),
+                  Text('${context.tx('Valor')}: "$_basico"'),
+                ],
+              ),
+            ),
         // #endregion
         code: SgInputPhonePageSnippets.sgInputPhoneBasico,
       ),
       ShowcaseExample(
-        title: 'Obrigatório e mensagem própria',
+        title: 'Obrigatório',
+        description: 'Valida se está vazio e mostra mensagem customizada.',
         preview:
             // #region sg-input-phone-obrigatorio
-            const SgInputPhone(
-              id: 'telefone-obrigatorio',
-              labelText: 'Celular',
-              required: true,
-              requiredMessage: 'Informe um telefone',
-              invalidMessage: 'Telefone incompleto',
+            Column(
+              children: [
+                SizedBox(
+                  width: 320,
+                  child: SgInputPhone(
+                    id: 'demo-required',
+                    labelText: context.tx('Telefone obrigatório'),
+                    hintText: context.tx('Obrigatório'),
+                    required: true,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                SizedBox(
+                  width: 320,
+                  child: SgInputPhone(
+                    id: 'demo-required-custom',
+                    labelText: context.tx('Mensagem customizada'),
+                    hintText: context.tx('Obrigatório'),
+                    required: true,
+                    requiredMessage: context.tx('Informe o telefone.'),
+                  ),
+                ),
+              ],
             ),
         // #endregion
         code: SgInputPhonePageSnippets.sgInputPhoneObrigatorio,
       ),
       ShowcaseExample(
+        title: 'Mensagem inválida',
+        description: 'Personaliza mensagem de telefone inválido.',
+        preview:
+            // #region sg-input-phone-invalida
+            SizedBox(
+              width: 320,
+              child: SgInputPhone(
+                id: 'demo-invalid',
+                labelText: context.tx('Telefone'),
+                hintText: context.tx('(00) 00000-0000'),
+                invalidMessage: context.tx('Telefone inválido.'),
+              ),
+            ),
+        // #endregion
+        code: SgInputPhonePageSnippets.sgInputPhoneInvalida,
+      ),
+      ShowcaseExample(
+        title: 'Validação customizada',
+        description: 'Função de validação retorna mensagem ou null.',
+        preview:
+            // #region sg-input-phone-validacao
+            SizedBox(
+              width: 320,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SgInputPhone(
+                    id: 'demo-validation',
+                    labelText: context.tx('Telefone'),
+                    hintText: context.tx('(00) 00000-0000'),
+                    validation: (v) => v.startsWith('(00)')
+                        ? context.tx('DDD inválido.')
+                        : null,
+                    onValidation: (msg) => setState(() => _validationMsg = msg),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    'onValidation: ${_validationMsg == null ? context.tx('válido') : '"$_validationMsg"'}',
+                  ),
+                ],
+              ),
+            ),
+        // #endregion
+        code: SgInputPhonePageSnippets.sgInputPhoneValidacao,
+      ),
+      ShowcaseExample(
         title: 'Variações visuais',
-        description:
-            'filled alterna o fundo preenchido; withBorder remove a borda.',
+        description: 'Sem borda (withBorder=false) e preenchido (filled=true).',
         preview:
             // #region sg-input-phone-variacoes
-            const Column(
+            Column(
               children: [
-                SgInputPhone(
-                  id: 'preenchido',
-                  labelText: 'Preenchido',
-                  filled: true,
+                SizedBox(
+                  width: 320,
+                  child: SgInputPhone(
+                    id: 'demo-noborder',
+                    labelText: context.tx('Sem borda'),
+                    hintText: context.tx('Telefone'),
+                    withBorder: false,
+                  ),
                 ),
-                SizedBox(height: 12),
-                SgInputPhone(
-                  id: 'vazado',
-                  labelText: 'Sem preenchimento',
-                  filled: false,
-                ),
-                SizedBox(height: 12),
-                SgInputPhone(
-                  id: 'semborda',
-                  labelText: 'Sem borda',
-                  withBorder: false,
+                const SizedBox(height: 12),
+                SizedBox(
+                  width: 320,
+                  child: SgInputPhone(
+                    id: 'demo-filled',
+                    labelText: context.tx('Preenchido'),
+                    hintText: context.tx('Telefone'),
+                    filled: true,
+                  ),
                 ),
               ],
             ),
@@ -84,80 +160,96 @@ class _SgInputPhonePageState extends State<SgInputPhonePage> {
       ),
       ShowcaseExample(
         title: 'Sem botão de limpar',
-        description:
-            'clearButton: false esconde o botão de limpar (por padrão ele aparece com texto).',
+        description: 'clearButton=false remove o X do input.',
         preview:
             // #region sg-input-phone-sem-limpar
-            const SgInputPhone(
-              id: 'semlimpar',
-              labelText: 'Telefone',
-              initialValue: '11987654321',
-              clearButton: false,
+            SizedBox(
+              width: 320,
+              child: SgInputPhone(
+                id: 'demo-noclear',
+                labelText: context.tx('Sem limpar'),
+                hintText: context.tx('Telefone'),
+                clearButton: false,
+              ),
             ),
         // #endregion
         code: SgInputPhonePageSnippets.sgInputPhoneSemLimpar,
       ),
       ShowcaseExample(
         title: 'Largura e borda',
-        description:
-            'width aceita número (px) ou porcentagem; borderRadius arredonda os cantos.',
+        description: 'width e borderRadius customizáveis.',
         preview:
             // #region sg-input-phone-largura
-            const SgInputPhone(
-              id: 'largura',
-              labelText: 'Telefone',
-              width: 240,
-              borderRadius: 20,
+            Wrap(
+              spacing: 16,
+              runSpacing: 12,
+              children: [
+                SgInputPhone(
+                  id: 'demo-w200',
+                  labelText: context.tx('200px'),
+                  hintText: context.tx('Telefone'),
+                  width: 200,
+                ),
+                SgInputPhone(
+                  id: 'demo-w300',
+                  labelText: context.tx('300px arredondado'),
+                  hintText: context.tx('Telefone'),
+                  width: 300,
+                  borderRadius: 20,
+                ),
+              ],
             ),
         // #endregion
         code: SgInputPhonePageSnippets.sgInputPhoneLargura,
       ),
       ShowcaseExample(
-        title: 'Desabilitado e somente leitura',
-        description:
-            'disabled bloqueia o campo; readOnly deixa copiar, mas não editar.',
+        title: 'Desabilitado',
+        description: 'enabled=false desabilita.',
         preview:
-            // #region sg-input-phone-estados
-            const Column(
-              children: [
-                SgInputPhone(
-                  id: 'desabilitado',
-                  labelText: 'Desabilitado',
-                  initialValue: '11987654321',
-                  disabled: true,
-                ),
-                SizedBox(height: 12),
-                SgInputPhone(
-                  id: 'leitura',
-                  labelText: 'Somente leitura',
-                  initialValue: '11987654321',
-                  readOnly: true,
-                ),
-              ],
+            // #region sg-input-phone-desabilitado
+            SizedBox(
+              width: 320,
+              child: SgInputPhone(
+                id: 'demo-disabled',
+                labelText: context.tx('Desabilitado'),
+                hintText: context.tx('Telefone'),
+                enabled: false,
+                initialValue: '(11) 99999-0000',
+              ),
             ),
         // #endregion
-        code: SgInputPhonePageSnippets.sgInputPhoneEstados,
+        code: SgInputPhonePageSnippets.sgInputPhoneDesabilitado,
       ),
       ShowcaseExample(
         title: 'Eventos',
-        description:
-            'onChange, onEnter (foco), onExit (saída) e onClear informam o que o usuário fez.',
+        description: 'onEnter, onExit, onChange, onClear, onValidation.',
         preview:
             // #region sg-input-phone-eventos
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SgInputPhone(
-                  id: 'eventos',
-                  labelText: 'Telefone',
-                  onChange: (v) => setState(() => _evento = 'onChange: $v'),
-                  onEnter: () => setState(() => _evento = 'onEnter'),
-                  onExit: () => setState(() => _evento = 'onExit'),
-                  onClear: () => setState(() => _evento = 'onClear'),
-                ),
-                const SizedBox(height: 8),
-                Text('Último evento: $_evento'),
-              ],
+            SizedBox(
+              width: 320,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SgInputPhone(
+                    id: 'demo-events',
+                    labelText: context.tx('Digite e observe o log'),
+                    hintText: context.tx('Telefone'),
+                    required: true,
+                    onChange: (v) => _log('onChange: "$v"'),
+                    onEnter: () => _log(context.tx('onEnter (focus)')),
+                    onExit: () => _log(context.tx('onExit (blur)')),
+                    onClear: () => _log('onClear'),
+                    onValidation: (msg) =>
+                        _log('onValidation: ${msg ?? context.tx('válido')}'),
+                  ),
+                  const SizedBox(height: 12),
+                  ShowcaseLogBox(
+                    entries: _eventLog,
+                    hint: context.tx('Interaja com o input...'),
+                    height: 160,
+                  ),
+                ],
+              ),
             ),
         // #endregion
         code: SgInputPhonePageSnippets.sgInputPhoneEventos,
@@ -165,54 +257,43 @@ class _SgInputPhonePageState extends State<SgInputPhonePage> {
       ShowcaseExample(
         title: 'Posição do rótulo',
         description:
-            'labelPosition: float (padrão), top ou left; labelWidth fixa a largura do rótulo à esquerda.',
+            'Compare os modos de rótulo: flutuante, acima e à esquerda.',
         preview:
             // #region sg-input-phone-rotulo
-            const Column(
+            Wrap(
+              spacing: 16,
+              runSpacing: 12,
               children: [
-                SgInputPhone(
-                  id: 'topo',
-                  labelText: 'Rótulo no topo',
-                  labelPosition: SgInputPhoneLabelPosition.top,
+                SizedBox(
+                  width: 280,
+                  child: SgInputPhone(
+                    id: 'sg-input-phone-label-float',
+                    labelText: context.tx('Flutuante'),
+                    labelPosition: SgInputPhoneLabelPosition.float,
+                  ),
                 ),
-                SizedBox(height: 12),
-                SgInputPhone(
-                  id: 'esquerda',
-                  labelText: 'À esquerda',
-                  labelPosition: SgInputPhoneLabelPosition.left,
-                  labelWidth: 110,
+                SizedBox(
+                  width: 280,
+                  child: SgInputPhone(
+                    id: 'sg-input-phone-label-top',
+                    labelText: context.tx('Acima'),
+                    labelPosition: SgInputPhoneLabelPosition.top,
+                  ),
+                ),
+                SizedBox(
+                  width: 360,
+                  child: SgInputPhone(
+                    id: 'sg-input-phone-label-left',
+                    labelText: context.tx('Esquerda'),
+                    labelPosition: SgInputPhoneLabelPosition.left,
+                    labelWidth: 140,
+                    labelAlign: SgInputPhoneLabelAlign.end,
+                  ),
                 ),
               ],
             ),
         // #endregion
         code: SgInputPhonePageSnippets.sgInputPhoneRotulo,
-      ),
-      ShowcaseExample(
-        title: 'Dentro de um formulário',
-        preview:
-            // #region sg-input-phone-formulario
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SgInputPhone(
-                  id: 'campo',
-                  name: 'campo',
-                  control: _form,
-                  labelText: 'Campo',
-                  rules: const SgRules(required: 'Preencha o campo'),
-                ),
-                const SizedBox(height: 12),
-                SgButton(
-                  label: Text(context.tx('Enviar')),
-                  onClick: () => _form.handleSubmit(
-                    (values) => setState(() => _enviado = '${values['campo']}'),
-                  ),
-                ),
-                if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),
-              ],
-            ),
-        // #endregion
-        code: SgInputPhonePageSnippets.sgInputPhoneFormulario,
       ),
     ];
 
@@ -284,7 +365,7 @@ class _SgInputPhonePageState extends State<SgInputPhonePage> {
               (s) => const {
                 'labelPosition',
                 'filled',
-                'disabled',
+                'enabled',
                 'readOnly',
                 'clearButton',
                 'required',
@@ -302,7 +383,7 @@ class _SgInputPhonePageState extends State<SgInputPhonePage> {
             v['labelPosition'] as String?,
           ),
           filled: v['filled'] as bool?,
-          disabled: v['disabled'] as bool?,
+          enabled: v['enabled'] as bool?,
           readOnly: v['readOnly'] as bool?,
           clearButton: v['clearButton'] as bool?,
           required: v['required'] as bool?,

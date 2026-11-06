@@ -16,10 +16,10 @@ abstract interface class SgSplitButtonProps {
   SgAppearance? get appearance;
   /// Tipo TS: `SgButtonCustomColors` (sem tradução exata; ver excecoes.json).
   Object? get customColors;
-  /// Desabilita a acao principal e o menu secundario. Padrão: `false`.
-  bool? get disabled;
   /// Padrão: `none`.
   SgElevation? get elevation;
+  /// Desabilita a acao principal e o menu secundario. Padrão: `true`.
+  bool? get enabled;
   /// Lista de acoes secundarias exibidas no menu dropdown. Tipo TS: `SgSplitButtonItem[]` (sem tradução exata; ver excecoes.json).
   List<Object?> get items;
   /// Conteudo textual principal da acao.
@@ -59,15 +59,6 @@ const List<SgPropSpec> sgSplitButtonPropSpecs = <SgPropSpec>[
     exact: false,
   ),
   SgPropSpec(
-    name: 'disabled',
-    reactName: 'disabled',
-    type: 'bool?',
-    tsType: 'boolean',
-    required: false,
-    defaultValue: 'false',
-    description: 'Desabilita a acao principal e o menu secundario.',
-  ),
-  SgPropSpec(
     name: 'elevation',
     reactName: 'elevation',
     type: 'SgElevation?',
@@ -75,6 +66,15 @@ const List<SgPropSpec> sgSplitButtonPropSpecs = <SgPropSpec>[
     required: false,
     defaultValue: 'none',
     values: <String>['none', 'sm', 'md'],
+  ),
+  SgPropSpec(
+    name: 'enabled',
+    reactName: 'enabled',
+    type: 'bool?',
+    tsType: 'boolean',
+    required: false,
+    defaultValue: 'true',
+    description: 'Desabilita a acao principal e o menu secundario.',
   ),
   SgPropSpec(
     name: 'items',

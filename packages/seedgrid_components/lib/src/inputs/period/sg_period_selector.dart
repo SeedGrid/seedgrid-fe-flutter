@@ -32,7 +32,7 @@ class SgPeriodSelector extends StatefulWidget implements SgPeriodSelectorProps {
     this.permitAll = true,
     this.allowCustomPeriod = true,
     this.locale = 'pt-BR',
-    this.disabled,
+    this.enabled,
     this.required,
     this.minDate,
     this.maxDate,
@@ -80,7 +80,7 @@ class SgPeriodSelector extends StatefulWidget implements SgPeriodSelectorProps {
   @override
   final String locale;
   @override
-  final bool? disabled;
+  final bool? enabled;
   @override
   final bool? required;
   @override
@@ -260,7 +260,7 @@ class _SgPeriodSelectorState extends State<SgPeriodSelector> {
               value: selected?.value,
               grouped: true,
               openOnFocus: true,
-              disabled: w.disabled,
+              enabled: (w.enabled ?? true),
               required: w.required,
               error: error,
               renderGroupHeader: (group) => group.isEmpty
@@ -293,7 +293,7 @@ class _SgPeriodSelectorState extends State<SgPeriodSelector> {
                 initialValue: _customStart,
                 minDate: w.minDate,
                 maxDate: w.maxDate,
-                disabled: w.disabled,
+                enabled: (w.enabled ?? true),
                 onChange: (next) {
                   setState(() => _customStart = next);
                   _emitCustom(next, _customEnd);
@@ -306,7 +306,7 @@ class _SgPeriodSelectorState extends State<SgPeriodSelector> {
                 initialValue: _customEnd,
                 minDate: w.minDate,
                 maxDate: w.maxDate,
-                disabled: w.disabled,
+                enabled: (w.enabled ?? true),
                 onChange: (next) {
                   setState(() => _customEnd = next);
                   _emitCustom(_customStart, next);

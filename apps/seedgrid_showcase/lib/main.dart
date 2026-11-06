@@ -12,6 +12,7 @@ import 'package:seedgrid_theme/seedgrid_theme.dart';
 
 import 'pages/pages.g.dart';
 import 'src/home_page.dart';
+import 'src/showcase_extra_pages.dart';
 import 'src/showcase_i18n.dart';
 import 'src/sg_showcase_page.dart';
 import 'src/showcase_menu.dart';
@@ -32,7 +33,14 @@ String showcaseSlug(String name) => name
 String? _namespace() => 'showcase';
 
 class ShowcaseApp extends StatelessWidget {
-  const ShowcaseApp({super.key, this.initialUri});
+  const ShowcaseApp({
+    super.key,
+    this.initialUri,
+    this.initialMenuCollapsed = true,
+  });
+
+  /// Como no React, o menu abre recolhido (so icones); o estado nao e lembrado entre recargas.
+  final bool initialMenuCollapsed;
 
   /// URL de entrada (`/sg-button#exemplo-3`). Padrao: a URL do navegador na web.
   final Uri? initialUri;
@@ -52,14 +60,22 @@ class ShowcaseApp extends StatelessWidget {
       ),
       child: ShowcaseI18nScope(child: SeedThemeProvider(child: child!)),
     ),
-    home: ShowcaseHome(initialUri: initialUri ?? (kIsWeb ? Uri.base : Uri())),
+    home: ShowcaseHome(
+      initialUri: initialUri ?? (kIsWeb ? Uri.base : Uri()),
+      initialMenuCollapsed: initialMenuCollapsed,
+    ),
   );
 }
 
 class ShowcaseHome extends StatefulWidget {
-  const ShowcaseHome({super.key, this.initialUri});
+  const ShowcaseHome({
+    super.key,
+    this.initialUri,
+    this.initialMenuCollapsed = true,
+  });
 
   final Uri? initialUri;
+  final bool initialMenuCollapsed;
 
   @override
   State<ShowcaseHome> createState() => _ShowcaseHomeState();
@@ -69,6 +85,7 @@ class _ShowcaseHomeState extends State<ShowcaseHome> {
   /// Nome da pagina aberta; nulo = pagina inicial.
   String? _page;
   String? _anchor;
+  late bool _menuCollapsed = widget.initialMenuCollapsed;
 
   @override
   void initState() {
@@ -77,21 +94,27 @@ class _ShowcaseHomeState extends State<ShowcaseHome> {
     final slug = uri == null || uri.pathSegments.isEmpty
         ? null
         : uri.pathSegments.last;
+    final fixed = kFixedPageSlugs.entries
+        .where((e) => e.value == slug)
+        .firstOrNull
+        ?.key;
     final found = slug == null
         ? null
         : kShowcasePages.where((p) => showcaseSlug(p.name) == slug).firstOrNull;
-    _page = found?.name;
+    _page = fixed ?? found?.name;
     // Ancora so vale se a pagina da URL existe.
-    _anchor = found == null || uri == null || uri.fragment.isEmpty
+    _anchor = (found == null) || uri == null || uri.fragment.isEmpty
         ? null
         : uri.fragment;
   }
+
+  String _slugOf(String page) => kFixedPageSlugs[page] ?? showcaseSlug(page);
 
   /// Escreve `/pagina#ancora` na barra de enderecos (web), sem empilhar historico.
   void _syncUrl() {
     SystemNavigator.routeInformationUpdated(
       uri: Uri(
-        path: _page == null ? '/' : '/${showcaseSlug(_page!)}',
+        path: _page == null ? '/' : '/${_slugOf(_page!)}',
         fragment: _anchor,
       ),
       replace: true,
@@ -105,6 +128,7 @@ class _ShowcaseHomeState extends State<ShowcaseHome> {
     final toggle = IconButton(
       key: const ValueKey('alternar-tema'),
       tooltip: context.tr('toggleTheme'),
+      visualDensity: VisualDensity.compact,
       icon: Icon(
         sg.currentMode == Brightness.dark ? Icons.light_mode : Icons.dark_mode,
       ),
@@ -115,7 +139,11 @@ class _ShowcaseHomeState extends State<ShowcaseHome> {
     final entry = _page == null
         ? null
         : kShowcasePages.where((p) => p.name == _page).firstOrNull;
-    final Widget content = entry == null
+    final Widget content = _page == kThemePage
+        ? const ShowcaseThemePage()
+        : _page == kCreditsPage
+        ? const ShowcaseCreditsPage()
+        : entry == null
         ? ShowcaseHomePage(
             onOpen: (name) {
               setState(() {
@@ -137,8 +165,12 @@ class _ShowcaseHomeState extends State<ShowcaseHome> {
             ),
           );
     final menu = ShowcaseMenu(
-      selected: entry?.name,
-      footer: const ShowcaseThemePanel(),
+      selected: _page == kThemePage || _page == kCreditsPage
+          ? _page
+          : entry?.name,
+      collapsed: wide && _menuCollapsed,
+      showCollapseButton: wide,
+      onCollapsedChange: (v) => setState(() => _menuCollapsed = v),
       onSelect: (name) {
         setState(() {
           _page = name;
@@ -148,47 +180,77 @@ class _ShowcaseHomeState extends State<ShowcaseHome> {
         if (!wide) Navigator.of(context).maybePop();
       },
     );
-    return Scaffold(
-      // Barra no topo em qualquer largura: respiro no alto e os botoes de tema e claro/escuro sempre a vista
-      // (na tela larga eles ficavam no pe do menu lateral, fora da tela em janelas baixas).
-      appBar: AppBar(
-        title: Text(entry?.name ?? context.tr('home')),
-        actions: [
-          IconButton(
-            key: const ValueKey('abrir-tema'),
-            tooltip: context.tr('theme'),
-            icon: const Icon(Icons.palette_outlined),
-            onPressed: () => showModalBottomSheet<void>(
-              context: context,
-              isScrollControlled: true,
-              showDragHandle: true,
-              builder: (_) => const SafeArea(
-                child: SingleChildScrollView(child: ShowcaseThemePanel()),
+    // Teclado: o primeiro Tab cai no menu (antes da barra e da faixa de idioma), que e a navegacao principal.
+    return FocusTraversalGroup(
+      policy: OrderedTraversalPolicy(),
+      child: Scaffold(
+        // Tema e claro/escuro ficam na linha do idioma (acima da barra), como no React.
+        appBar: AppBar(
+          title: Text(
+            _page == kThemePage
+                ? context.tr('themeSystem')
+                : _page == kCreditsPage
+                ? context.tr('creditsLicenses')
+                : entry?.name ?? context.tr('home'),
+          ),
+        ),
+        drawer: wide ? null : Drawer(child: SafeArea(child: menu)),
+        body: Stack(
+          fit: StackFit.expand,
+          children: [
+            SafeArea(
+              child: Column(
+                children: [
+                  ShowcaseLanguagePicker(
+                    trailing: [
+                      IconButton(
+                        key: const ValueKey('abrir-tema'),
+                        tooltip: context.tr('theme'),
+                        visualDensity: VisualDensity.compact,
+                        icon: const Icon(Icons.palette_outlined),
+                        onPressed: () => showModalBottomSheet<void>(
+                          context: context,
+                          isScrollControlled: true,
+                          showDragHandle: true,
+                          builder: (_) => const SafeArea(
+                            child: SingleChildScrollView(
+                              child: ShowcaseThemeEditor(),
+                            ),
+                          ),
+                        ),
+                      ),
+                      toggle,
+                    ],
+                  ),
+                  Expanded(
+                    child: wide
+                        ? Row(
+                            children: [
+                              AnimatedSize(
+                                duration: const Duration(milliseconds: 150),
+                                alignment: Alignment.centerLeft,
+                                child: SizedBox(
+                                  width: _menuCollapsed ? 56 : 280,
+                                  child: FocusTraversalOrder(
+                                    order: const NumericFocusOrder(0),
+                                    child: menu,
+                                  ),
+                                ),
+                              ),
+                              const VerticalDivider(width: 1),
+                              Expanded(child: content),
+                            ],
+                          )
+                        : content,
+                  ),
+                ],
               ),
             ),
-          ),
-          toggle,
-        ],
-      ),
-      drawer: wide ? null : Drawer(child: SafeArea(child: menu)),
-      body: Stack(
-        fit: StackFit.expand,
-        children: [
-          SafeArea(
-            child: wide
-                ? Row(
-                    children: [
-                      SizedBox(width: 260, child: menu),
-                      const VerticalDivider(width: 1),
-                      Expanded(child: content),
-                    ],
-                  )
-                : content,
-          ),
-          // Host global de toasts: qualquer pagina dispara `toast(...)` sem host local. O SgToaster
-          // tem a propria pagina com um toaster solto configuravel, entao ali o host global sai.
-          if (entry?.name != 'SgToaster') const SgToastHost(),
-        ],
+            // Host global de toasts: qualquer pagina dispara `toast(...)` sem host local. O SgToaster
+            // tem a propria pagina com um toaster solto configuravel, entao ali o host global sai.
+            if (entry?.name != 'SgToaster') const SgToastHost(),
+          ],
+        ),
       ),
     );
   }

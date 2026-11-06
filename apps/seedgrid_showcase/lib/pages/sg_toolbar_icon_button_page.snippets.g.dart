@@ -22,7 +22,7 @@ Wrap(
     SgToolbarIconButton(
       icon: Icon(Icons.lock_outline),
       label: context.tx('Bloqueado'),
-      disabled: true,
+      enabled: false,
     ),
     SgToolbarIconButton(
       icon: Icon(Icons.sync),

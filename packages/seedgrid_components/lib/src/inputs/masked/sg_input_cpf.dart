@@ -22,7 +22,7 @@ class SgInputCPF extends StatelessWidget implements SgInputCPFProps {
     this.clearButton,
     this.control,
     this.elevation,
-    this.disabled,
+    this.enabled,
     this.error,
     this.filled,
     this.hintText,
@@ -87,7 +87,9 @@ class SgInputCPF extends StatelessWidget implements SgInputCPFProps {
   final SgInputCPFElevation? elevation;
 
   @override
-  final bool? disabled;
+  final bool? enabled;
+
+  bool get _disabled => !(enabled ?? true);
 
   @override
   final String? error;
@@ -241,7 +243,7 @@ class SgInputCPF extends StatelessWidget implements SgInputCPFProps {
         clearButton: clearButton,
         control: control,
         elevation: elevation,
-        disabled: disabled,
+        disabled: _disabled,
         error: error,
         filled: filled,
         hintText: hintText,
