@@ -64,6 +64,24 @@
       "semPaginaFlutter": true,
       "motivo": "Hook ou provider do React: nao existe equivalente no Flutter e permanece so no React (decisao do dono, P153)."
     },
+    "SgGroupBox": {
+      "ignorarReact": [
+        "Classe customizada"
+      ],
+      "motivo": "className e CSS do React: o Flutter nao tem classe CSS; a aparencia do SgGroupBox no Flutter vem so de title, width e height (diferenca de linguagem, regra 2)."
+    },
+    "SgDockScreen": {
+      "ignorarFlutter": [
+        "Conteúdo no centro"
+      ],
+      "motivo": "No React o SgDockScreen nao tem a regra de levar um filho que nao e SgDockZone para a celula central (cada SgDockZone traz a propria posicao na grade CSS); no Flutter a grade posiciona o filho avulso no centro. Comportamento especifico do widget Flutter, sem equivalente publico no React."
+    },
+    "SgDockMenu": {
+      "ignorarReact": [
+        "Como prender dentro da área"
+      ],
+      "motivo": "O exemplo ensina o truque de CSS do React (container relative + style position absolute no dock). No Flutter nao ha CSS: o dock ja vive dentro de um Stack limitado em todos os exemplos (diferenca de linguagem, regra 2)."
+    },
     "SgToolbar": {
       "ignorarFlutter": [
         "Overflow: itens que não cabem vão para o menu \"…\""

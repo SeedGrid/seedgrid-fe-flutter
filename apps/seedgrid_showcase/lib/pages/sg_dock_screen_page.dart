@@ -15,9 +15,9 @@ class SgDockScreenPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final examples = <ShowcaseExample>[
       ShowcaseExample(
-        title: 'Tela com as cinco zonas',
+        title: 'Básico',
         description:
-            'Grade padrão: colunas laterais de 12rem (192) e centro flexível; topo e base com a altura do conteúdo.',
+            'Uso direto do SgDockScreen com quatro dock zones e área livre central, sem posicionamento manual.',
         preview:
             // #region sg-dock-screen-basico
             Container(

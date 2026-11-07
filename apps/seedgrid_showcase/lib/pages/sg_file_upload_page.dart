@@ -141,7 +141,6 @@ class _SgFileUploadPageState extends State<SgFileUploadPage> {
         // #endregion
         code: SgFileUploadPageSnippets.sgFileUploadIdioma,
       ),
-      // Exemplo só do Flutter (depois dos que espelham o React).
       ShowcaseExample(
         title: 'Dentro de um formulário',
         description:

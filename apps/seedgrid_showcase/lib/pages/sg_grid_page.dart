@@ -14,9 +14,90 @@ class SgGridPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final examples = <ShowcaseExample>[
       ShowcaseExample(
+        title: 'Colunas responsivas',
+        description: '`columns` com breakpoints e `span` por item.',
+        preview:
+            // #region sg-grid-breakpoints
+            SgGrid(
+              columns: const {'base': 1, 'sm': 2, 'md': 3, 'lg': 4},
+              gap: 12,
+              children: [
+                SgPanel(
+                  borderStyle: SgPanelBorderStyle.solid,
+                  children: const [Text('Card 1')],
+                ),
+                SgPanel(
+                  borderStyle: SgPanelBorderStyle.solid,
+                  children: const [Text('Card 2')],
+                ),
+                SgPanel(
+                  span: 2,
+                  borderStyle: SgPanelBorderStyle.solid,
+                  children: const [Text('Card 3 (span 2)')],
+                ),
+                SgPanel(
+                  borderStyle: SgPanelBorderStyle.solid,
+                  children: const [Text('Card 4')],
+                ),
+                SgPanel(
+                  borderStyle: SgPanelBorderStyle.solid,
+                  children: const [Text('Card 5')],
+                ),
+                SgPanel(
+                  borderStyle: SgPanelBorderStyle.solid,
+                  children: const [Text('Card 6')],
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgGridPageSnippets.sgGridBreakpoints,
+      ),
+      ShowcaseExample(
+        title: 'Auto-Fit + RowSpan',
+        description: 'Grid fluido com `minItemWidth`, `dense` e `rowHeight`.',
+        preview:
+            // #region sg-grid-auto
+            SgGrid(
+              minItemWidth: 256,
+              gap: 12,
+              rowHeight: 120,
+              dense: true,
+              children: [
+                SgPanel(
+                  borderStyle: SgPanelBorderStyle.solid,
+                  children: const [Text('Card A')],
+                ),
+                SgPanel(
+                  rowSpan: 2,
+                  borderStyle: SgPanelBorderStyle.solid,
+                  children: const [Text('Card B (rowSpan 2)')],
+                ),
+                SgPanel(
+                  borderStyle: SgPanelBorderStyle.solid,
+                  children: const [Text('Card C')],
+                ),
+                SgPanel(
+                  span: 2,
+                  borderStyle: SgPanelBorderStyle.solid,
+                  children: const [Text('Card D (span 2)')],
+                ),
+                SgPanel(
+                  borderStyle: SgPanelBorderStyle.solid,
+                  children: const [Text('Card E')],
+                ),
+                SgPanel(
+                  borderStyle: SgPanelBorderStyle.solid,
+                  children: const [Text('Card F')],
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgGridPageSnippets.sgGridAuto,
+      ),
+      ShowcaseExample(
         title: 'Colunas fixas',
         description:
-            'columns: 3 divide a largura em três colunas iguais; gap separa as células.',
+            'columns={3} divide a largura em três colunas iguais; gap separa as células.',
         preview:
             // #region sg-grid-colunas
             SgGrid(
@@ -32,79 +113,6 @@ class SgGridPage extends StatelessWidget {
             ),
         // #endregion
         code: SgGridPageSnippets.sgGridColunas,
-      ),
-      ShowcaseExample(
-        title: 'Colunas por breakpoint',
-        description:
-            'Os breakpoints medem a largura da janela (640, 768, 1024, 1280 e 1536 px), como o @media do React.',
-        preview:
-            // #region sg-grid-breakpoints
-            SgGrid(
-              columns: const {'base': 1, 'sm': 2, 'md': 3, 'lg': 4},
-              gap: 8,
-              children: [
-                for (var i = 1; i <= 8; i++)
-                  SgPanel(
-                    borderStyle: SgPanelBorderStyle.solid,
-                    children: [Text('Item $i')],
-                  ),
-              ],
-            ),
-        // #endregion
-        code: SgGridPageSnippets.sgGridBreakpoints,
-      ),
-      ShowcaseExample(
-        title: 'Largura mínima automática',
-        description:
-            'minItemWidth monta quantas colunas couberem; colunas vazias colapsam.',
-        preview:
-            // #region sg-grid-auto
-            SgGrid(
-              minItemWidth: 140,
-              gap: 8,
-              children: [
-                for (var i = 1; i <= 5; i++)
-                  SgPanel(
-                    borderStyle: SgPanelBorderStyle.solid,
-                    children: [Text('Cartão $i')],
-                  ),
-              ],
-            ),
-        // #endregion
-        code: SgGridPageSnippets.sgGridAuto,
-      ),
-      ShowcaseExample(
-        title: 'span e rowSpan',
-        description:
-            'Um SgPanel com span ou rowSpan ocupa várias colunas ou linhas.',
-        preview:
-            // #region sg-grid-span
-            SgGrid(
-              columns: 3,
-              gap: 8,
-              children: [
-                SgPanel(
-                  span: 2,
-                  borderStyle: SgPanelBorderStyle.solid,
-                  children: [Text(context.tx('span: 2'))],
-                ),
-                SgPanel(
-                  rowSpan: 2,
-                  borderStyle: SgPanelBorderStyle.solid,
-                  children: [Text(context.tx('rowSpan: 2'))],
-                ),
-                SgPanel(
-                  borderStyle: SgPanelBorderStyle.solid,
-                  children: const [Text('A')],
-                ),
-                SgPanel(
-                  borderStyle: SgPanelBorderStyle.solid,
-                  children: const [Text('B')],
-                ),
-              ],
-            ),
-        // #endregion
-        code: SgGridPageSnippets.sgGridSpan,
       ),
       ShowcaseExample(
         title: 'rowHeight, align e dense',

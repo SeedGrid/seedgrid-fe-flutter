@@ -54,26 +54,32 @@ Column(
 )
 ''';
 
-  /// Region `sg-datatable-aparencia`.
-  static const String sgDatatableAparencia = r'''
-SgDatatable(
-  id: 'pessoas-aparencia',
-  value: _pessoas.take(5).toList(),
-  columns: _colunas,
-  stripedRows: true,
-  showGridlines: true,
-  showColumnManager: false,
-)
-''';
-
   /// Region `sg-datatable-basico`.
   static const String sgDatatableBasico = r'''
-SgDatatable(
-  title: context.tx('Pessoas'),
-  value: _pessoas.take(6).toList(),
-  columns: _colunas,
-  stripedRows: true,
-  showGridlines: true,
+Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    SgDatatable(
+      id: 'datatable-basic',
+      title: context.tx('Pessoas'),
+      value: _pessoas,
+      columns: _colunas,
+      dataKey: 'id',
+      paginator: true,
+      infiniteScroll: false,
+      rows: 5,
+      rowsPerPageOptions: const [5, 10],
+      stripedRows: true,
+      showGridlines: true,
+      onPage: (e) => _pagina.value =
+          'página ${e.page} de ${e.pageCount} (first ${e.first})',
+    ),
+    ValueListenableBuilder<String>(
+      valueListenable: _pagina,
+      builder: (context, evento, _) =>
+          Text('${context.tx('Último onPage')}: $evento'),
+    ),
+  ],
 )
 ''';
 
@@ -151,7 +157,6 @@ SgDatatable(
     SgDatatableColumn(
       field: 'nome',
       header: context.tx('Nome'),
-      hideable: false,
       footer: 'Total',
     ),
     SgDatatableColumn(
@@ -167,10 +172,9 @@ SgDatatable(
     SgDatatableColumn(
       field: 'cidade',
       header: context.tx('Cidade'),
-      hidden: true,
     ),
   ],
-  columnManagerLabel: 'Colunas visíveis',
+  showColumnManager: false,
 )
 ''';
 
@@ -292,12 +296,61 @@ SizedBox(
         ),
       ],
       paginator: true,
+      infiniteScroll: false,
       rows: 5,
       showGlobalFilter: true,
       showColumnFilters: true,
       showClearFiltersButton: true,
     ),
   ),
+)
+''';
+
+  /// Region `sg-datatable-gerenciador`.
+  static const String sgDatatableGerenciador = r'''
+SgDatatable(
+  id: 'datatable-column-manager',
+  title: context.tx('Gerenciador de colunas e linhas estilizadas'),
+  value: _pessoas,
+  columns: [
+    SgDatatableColumn(
+      field: 'nome',
+      header: context.tx('Nome'),
+      sortable: true,
+      filter: true,
+      hideable: false,
+    ),
+    SgDatatableColumn(
+      field: 'cidade',
+      header: context.tx('Cidade'),
+      sortable: true,
+      filter: true,
+    ),
+    SgDatatableColumn(
+      field: 'idade',
+      header: context.tx('Idade'),
+      sortable: true,
+      align: SgDatatableColumnAlign.right,
+    ),
+    SgDatatableColumn(
+      field: 'salario',
+      header: context.tx('Salário'),
+      align: SgDatatableColumnAlign.right,
+      hidden: true,
+    ),
+  ],
+  dataKey: 'id',
+  paginator: true,
+  infiniteScroll: false,
+  rows: 5,
+  rowsPerPageOptions: const [5, 10],
+  showGlobalFilter: true,
+  showColumnFilters: true,
+  showClearFiltersButton: true,
+  showColumnManager: true,
+  columnManagerLabel: context.tx('Gerenciar colunas'),
+  stripedRows: true,
+  removableSort: false,
 )
 ''';
 
@@ -346,28 +399,6 @@ SgDatatable(
   first: _first,
   totalRecords: _pessoas.length,
   onPage: _carregar,
-)
-''';
-
-  /// Region `sg-datatable-paginacao`.
-  static const String sgDatatablePaginacao = r'''
-Column(
-  crossAxisAlignment: CrossAxisAlignment.start,
-  children: [
-    SgDatatable(
-      value: _pessoas,
-      columns: _colunas,
-      paginator: true,
-      infiniteScroll: false,
-      rows: 5,
-      rowsPerPageOptions: const [5, 10, 25],
-      onPage: (e) => setState(
-        () => _evento =
-            'página ${e.page} de ${e.pageCount} (first ${e.first})',
-      ),
-    ),
-    Text('Último onPage: $_evento'),
-  ],
 )
 ''';
 

@@ -17,22 +17,53 @@ Column(
             label: Text(a.value),
             appearance: SgAppearance.outline,
             size: SgSize.sm,
-            onClick: () => setState(() {
-              _anim = a;
-              _animacao = true;
-            }),
+            onClick: () {
+              _anim.value = a;
+              _animacao.value = true;
+            },
           ),
       ],
     ),
-    SgDialog(
-      open: _animacao,
-      onOpenChange: (open) => setState(() => _animacao = open),
-      animation: _anim,
-      transitionMs: 300,
-      autoCloseMs: 3000,
-      title: Text('Animação ${_anim.value}'),
-      child: Text(
-        context.tx('Este diálogo fecha sozinho em 3 segundos.'),
+    ListenableBuilder(
+      listenable: Listenable.merge([_animacao, _anim]),
+      builder: (context, _) => SgDialog(
+        open: _animacao.value,
+        onOpenChange: (v) => _animacao.value = v,
+        animation: _anim.value,
+        transitionMs: 300,
+        title: Text(
+          '${context.tx('Animação')} ${_anim.value.value}',
+        ),
+        child: Text(
+          context.tx(
+            'A animação define como o diálogo entra e sai.',
+          ),
+        ),
+      ),
+    ),
+  ],
+)
+''';
+
+  /// Region `sg-dialog-auto`.
+  static const String sgDialogAuto = r'''
+Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    SgButton(
+      label: Text(context.tx('Abrir auto close')),
+      appearance: SgAppearance.outline,
+      onClick: () => _auto.value = true,
+    ),
+    ValueListenableBuilder<bool>(
+      valueListenable: _auto,
+      builder: (context, open, _) => SgDialog(
+        open: open,
+        onOpenChange: (v) => _auto.value = v,
+        autoCloseMs: 3000,
+        title: Text(context.tx('Dialog temporizado')),
+        subtitle: Text(context.tx('Este dialog fecha sozinho.')),
+        child: Text(context.tx('Apenas uma informação rápida.')),
       ),
     ),
   ],
@@ -45,68 +76,141 @@ Column(
   crossAxisAlignment: CrossAxisAlignment.start,
   children: [
     SgButton(
-      label: Text(context.tx('Abrir diálogo')),
-      onClick: () => setState(() => _basico = true),
+      label: Text(context.tx('Abrir dialog')),
+      onClick: () => _basico.value = true,
     ),
-    SgDialog(
-      open: _basico,
-      onOpenChange: (open) => setState(() => _basico = open),
-      title: Text(context.tx('Novo cadastro')),
-      subtitle: Text(context.tx('Preencha os dados abaixo')),
-      footer: SgButton(
-        label: Text(context.tx('Salvar')),
-        onClick: () => setState(() => _basico = false),
+    ValueListenableBuilder<bool>(
+      valueListenable: _basico,
+      builder: (context, open, _) => SgDialog(
+        open: open,
+        onOpenChange: (v) => _basico.value = v,
+        title: Text(context.tx('Confirmar ação')),
+        subtitle: Text(
+          context.tx('Essa ação não pode ser desfeita.'),
+        ),
+        customColor: '#fff7ed',
+        elevation: 'lg',
+        leading: const Text('O'),
+        trailing: const Text('ID: 428'),
+        footer: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SgButton(
+              label: Text(context.tx('Cancelar')),
+              appearance: SgAppearance.ghost,
+              onClick: () => _basico.value = false,
+            ),
+            const SizedBox(width: 8),
+            SgButton(
+              label: Text(context.tx('Confirmar')),
+              onClick: () => _basico.value = false,
+            ),
+          ],
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(context.tx('Tem certeza que deseja continuar?')),
+            const SizedBox(height: 8),
+            SgInputText(
+              id: 'dialog-input',
+              hintText: context.tx('Escreva algo...'),
+            ),
+          ],
+        ),
       ),
-      child: Text(context.tx('O conteúdo do diálogo fica aqui.')),
     ),
   ],
 )
 ''';
 
-  /// Region `sg-dialog-cores`.
-  static const String sgDialogCores = r'''
+  /// Region `sg-dialog-estrito`.
+  static const String sgDialogEstrito = r'''
 Column(
   crossAxisAlignment: CrossAxisAlignment.start,
   children: [
     SgButton(
-      label: Text(context.tx('Abrir diálogo escuro')),
-      onClick: () => setState(() => _cores = true),
+      label: Text(context.tx('Abrir estrito')),
+      appearance: SgAppearance.outline,
+      onClick: () => _estrito.value = true,
     ),
-    SgDialog(
-      open: _cores,
-      onOpenChange: (open) => setState(() => _cores = open),
-      customColor: '#101820',
-      elevation: 'lg',
-      title: Text(context.tx('Modo escuro')),
-      subtitle: Text(context.tx('Paleta derivada da cor de fundo')),
-      child: Text(context.tx('Texto claro sobre fundo escuro.')),
+    ValueListenableBuilder<bool>(
+      valueListenable: _estrito,
+      builder: (context, open, _) => SgDialog(
+        open: open,
+        onOpenChange: (v) => _estrito.value = v,
+        closeable: false,
+        closeOnOverlayClick: false,
+        closeOnEsc: false,
+        title: Text(context.tx('Dialog estrito')),
+        subtitle: Text(context.tx('Não fecha por overlay ou ESC.')),
+        footer: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SgButton(
+              label: Text(context.tx('Cancelar')),
+              appearance: SgAppearance.ghost,
+              onClick: () => _estrito.value = false,
+            ),
+            const SizedBox(width: 8),
+            SgButton(
+              label: Text(context.tx('Confirmar')),
+              onClick: () => _estrito.value = false,
+            ),
+          ],
+        ),
+        child: Text(
+          context.tx(
+            'Use quando o usuário precisa tomar uma decisão.',
+          ),
+        ),
+      ),
     ),
   ],
 )
 ''';
 
-  /// Region `sg-dialog-fechamento`.
-  static const String sgDialogFechamento = r'''
+  /// Region `sg-dialog-sem-close`.
+  static const String sgDialogSemClose = r'''
 Column(
   crossAxisAlignment: CrossAxisAlignment.start,
   children: [
     SgButton(
-      label: Text(context.tx('Abrir diálogo obrigatório')),
-      onClick: () => setState(() => _fechamento = true),
+      label: Text(context.tx('Abrir sem close')),
+      appearance: SgAppearance.outline,
+      onClick: () => _semClose.value = true,
     ),
-    SgDialog(
-      open: _fechamento,
-      onOpenChange: (open) => setState(() => _fechamento = open),
-      closeable: false,
-      closeOnEsc: false,
-      closeOnOverlayClick: false,
-      title: Text(context.tx('Atenção')),
-      footer: SgButton(
-        label: Text(context.tx('Entendi')),
-        onClick: () => setState(() => _fechamento = false),
-      ),
-      child: Text(
-        context.tx('É preciso confirmar para continuar.'),
+    ValueListenableBuilder<bool>(
+      valueListenable: _semClose,
+      builder: (context, open, _) => SgDialog(
+        open: open,
+        onOpenChange: (v) => _semClose.value = v,
+        closeable: false,
+        title: Text(context.tx('Dialog sem close')),
+        subtitle: Text(
+          context.tx('Fechamento apenas pelos botões do footer.'),
+        ),
+        footer: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SgButton(
+              label: Text(context.tx('Cancelar')),
+              appearance: SgAppearance.ghost,
+              onClick: () => _semClose.value = false,
+            ),
+            const SizedBox(width: 8),
+            SgButton(
+              label: Text(context.tx('Confirmar')),
+              onClick: () => _semClose.value = false,
+            ),
+          ],
+        ),
+        child: Text(
+          context.tx(
+            'Use esse modo quando quiser forçar uma escolha explícita.',
+          ),
+        ),
       ),
     ),
   ],
@@ -126,28 +230,42 @@ Column(
           SgButton(
             label: Text(s.value),
             severity: s,
-            onClick: () => setState(() {
-              _sev = SgDialogSeverity.fromValue(s.value)!;
-              _severidade = true;
-            }),
+            onClick: () {
+              _sev.value = s;
+              _severidade.value = true;
+            },
           ),
       ],
     ),
-    SgDialog(
-      open: _severidade,
-      onOpenChange: (open) => setState(() => _severidade = open),
-      severity: _sev,
-      size: SgDialogSize.sm,
-      title: Text('Severidade ${_sev.value}'),
-      footer: SgButton(
-        label: Text(context.tx('Confirmar')),
-        severity:
-            SgSeverity.fromValue(_sev.value) ?? SgSeverity.primary,
-        onClick: () => setState(() => _severidade = false),
-      ),
-      child: Text(
-        context.tx(
-          'O fundo e a faixa do topo seguem a severidade escolhida.',
+    ListenableBuilder(
+      listenable: Listenable.merge([_severidade, _sev]),
+      builder: (context, _) => SgDialog(
+        open: _severidade.value,
+        onOpenChange: (v) => _severidade.value = v,
+        severity: SgDialogSeverity.fromValue(_sev.value.value)!,
+        title: Text(
+          '${context.tx('Severidade')}: ${_sev.value.value}',
+        ),
+        footer: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SgButton(
+              label: Text(context.tx('Cancelar')),
+              appearance: SgAppearance.ghost,
+              onClick: () => _severidade.value = false,
+            ),
+            const SizedBox(width: 8),
+            SgButton(
+              label: Text(context.tx('Confirmar')),
+              severity: _sev.value,
+              onClick: () => _severidade.value = false,
+            ),
+          ],
+        ),
+        child: Text(
+          context.tx(
+            'O fundo e a faixa do topo seguem a severidade escolhida.',
+          ),
         ),
       ),
     ),

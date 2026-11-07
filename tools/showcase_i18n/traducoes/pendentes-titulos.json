@@ -1781,6 +1781,24 @@
   "Fuente asíncrona + render personalizado",
   "Source asynchrone + rendu personnalise"
  ],
+ "Dados pessoais": [
+  "Personal data",
+  "Dados pessoais",
+  "Datos personales",
+  "Donnees personnelles"
+ ],
+ "Campo 1": [
+  "Field 1",
+  "Campo 1",
+  "Campo 1",
+  "Champ 1"
+ ],
+ "Campo 2": [
+  "Field 2",
+  "Campo 2",
+  "Campo 2",
+  "Champ 2"
+ ],
  "Etapa 1 - Dados pessoais": [
   "Step 1 - Personal data",
   "Etapa 1 - Dados pessoais",
@@ -2249,6 +2267,186 @@
   "Área principal",
   "Zone principale"
  ],
+ "Exemplo inline controlado com resize.": [
+  "Controlled inline example with resize.",
+  "Exemplo inline controlado com redimensionamento.",
+  "Ejemplo inline controlado con redimensionamiento.",
+  "Exemple inline contrôlé avec redimensionnement."
+ ],
+ "Fechar inspector": [
+  "Close inspector",
+  "Fechar inspector",
+  "Cerrar inspector",
+  "Fermer l'inspecteur"
+ ],
+ "Abrir inspector": [
+  "Open inspector",
+  "Abrir inspector",
+  "Abrir inspector",
+  "Ouvrir l'inspecteur"
+ ],
+ "Largura atual": [
+  "Current width",
+  "Largura atual",
+  "Ancho actual",
+  "Largeur actuelle"
+ ],
+ "Inspector": [
+  "Inspector",
+  "Inspector",
+  "Inspector",
+  "Inspecteur"
+ ],
+ "Rodapé inline": [
+  "Inline footer",
+  "Rodapé inline",
+  "Pie inline",
+  "Pied de page inline"
+ ],
+ "Conteúdo do inspector.": [
+  "Inspector content.",
+  "Conteúdo do inspector.",
+  "Contenido del inspector.",
+  "Contenu de l'inspecteur."
+ ],
+ "Abrir drawer": [
+  "Open drawer",
+  "Abrir drawer",
+  "Abrir drawer",
+  "Ouvrir le drawer"
+ ],
+ "Drawer com foco preso": [
+  "Drawer with trapped focus",
+  "Drawer com foco preso",
+  "Drawer con foco atrapado",
+  "Drawer avec focus piégé"
+ ],
+ "Props: placement, closeOnEsc, closeOnOutsideClick, trapFocus e showBackdrop.": [
+  "Props: placement, closeOnEsc, closeOnOutsideClick, trapFocus and showBackdrop.",
+  "Props: placement, closeOnEsc, closeOnOutsideClick, trapFocus e showBackdrop.",
+  "Props: placement, closeOnEsc, closeOnOutsideClick, trapFocus y showBackdrop.",
+  "Props : placement, closeOnEsc, closeOnOutsideClick, trapFocus et showBackdrop."
+ ],
+ "Somente ativos": [
+  "Active only",
+  "Somente ativos",
+  "Solo activos",
+  "Actifs uniquement"
+ ],
+ "Remontar defaultOpen": [
+  "Remount defaultOpen",
+  "Remontar defaultOpen",
+  "Remontar defaultOpen",
+  "Remonter defaultOpen"
+ ],
+ "Estado reportado": [
+  "Reported state",
+  "Estado reportado",
+  "Estado informado",
+  "État signalé"
+ ],
+ "aberto": [
+  "open",
+  "aberto",
+  "abierto",
+  "ouvert"
+ ],
+ "fechado": [
+  "closed",
+  "fechado",
+  "cerrado",
+  "fermé"
+ ],
+ "Painel estilizado": [
+  "Styled panel",
+  "Painel estilizado",
+  "Panel con estilo",
+  "Panneau stylisé"
+ ],
+ "Feche com ESC ou clique fora.": [
+  "Close with ESC or click outside.",
+  "Feche com ESC ou clique fora.",
+  "Cierre con ESC o haga clic fuera.",
+  "Fermez avec ÉCHAP ou cliquez à l'extérieur."
+ ],
+ "Props visuais: elevation, border e rounded. Prop de estado: defaultOpen.": [
+  "Visual props: elevation, border and rounded. State prop: defaultOpen.",
+  "Props visuais: elevation, border e rounded. Prop de estado: defaultOpen.",
+  "Props visuales: elevation, border y rounded. Prop de estado: defaultOpen.",
+  "Props visuelles : elevation, border et rounded. Prop d'état : defaultOpen."
+ ],
+ "Abrir painel com fade": [
+  "Open panel with fade",
+  "Abrir painel com fade",
+  "Abrir panel con fade",
+  "Ouvrir le panneau avec fade"
+ ],
+ "Props: role, ariaLabel, animation fade e closeOnOutsideClick=false.": [
+  "Props: role, ariaLabel, animation fade and closeOnOutsideClick=false.",
+  "Props: role, ariaLabel, animation fade e closeOnOutsideClick=false.",
+  "Props: role, ariaLabel, animation fade y closeOnOutsideClick=false.",
+  "Props : role, ariaLabel, animation fade et closeOnOutsideClick=false."
+ ],
+ "Abrir sem backdrop": [
+  "Open without backdrop",
+  "Abrir sem backdrop",
+  "Abrir sin backdrop",
+  "Ouvrir sans backdrop"
+ ],
+ "Sem backdrop": [
+  "No backdrop",
+  "Sem backdrop",
+  "Sin backdrop",
+  "Sans backdrop"
+ ],
+ "Props: showBackdrop=false e animation type none.": [
+  "Props: showBackdrop=false and animation type none.",
+  "Props: showBackdrop=false e animation type none.",
+  "Props: showBackdrop=false y animation type none.",
+  "Props : showBackdrop=false et animation type none."
+ ],
+ "Colunas responsivas": [
+  "Responsive Columns",
+  "Colunas responsivas",
+  "Columnas Responsivas",
+  "Colonnes responsives"
+ ],
+ "`columns` com breakpoints e `span` por item.": [
+  "`columns` with breakpoints and per-item `span`.",
+  "`columns` com breakpoints e `span` por item.",
+  "`columns` con breakpoints y `span` por item.",
+  "`columns` avec breakpoints et `span` par item."
+ ],
+ "Auto-Fit + RowSpan": [
+  "Auto-Fit + RowSpan",
+  "Auto-Fit + RowSpan",
+  "Auto-Fit + RowSpan",
+  "Auto-Fit + RowSpan"
+ ],
+ "Grid fluido com `minItemWidth`, `dense` e `rowHeight`.": [
+  "Fluid grid with `minItemWidth`, `dense`, and `rowHeight`.",
+  "Grid fluido com `minItemWidth`, `dense` e `rowHeight`.",
+  "Grid fluido con `minItemWidth`, `dense` y `rowHeight`.",
+  "Grille fluide avec `minItemWidth`, `dense` et `rowHeight`."
+ ],
+ "columns={3} divide a largura em três colunas iguais; gap separa as células.": [
+  "columns={3} splits the width into three equal columns; gap separates the cells.",
+  "columns={3} divide a largura em três colunas iguais; gap separa as células.",
+  "columns={3} divide el ancho en tres columnas iguales; gap separa las celdas.",
+  "columns={3} divise la largeur en trois colonnes égales ; gap sépare les cellules."
+ ],
+ "Quatro zonas (top/bottom/left/right) com toolbars arrastáveis.": [
+  "Four zones (top/bottom/left/right) with draggable toolbars.",
+  "Quatro zonas (top/bottom/left/right) com toolbars arrastáveis.",
+  "Cuatro zonas (top/bottom/left/right) con toolbars arrastrables.",
+  "Quatre zones (haut/bas/gauche/droite) avec des barres d'outils déplaçables."
+ ],
+ "Cada toolbar tem zona, ordem e recolhimento; o defaultState define o estado inicial.": [
+  "Each toolbar has a zone, order and collapsed state; defaultState sets the initial state.",
+  "Cada toolbar tem zona, ordem e recolhimento; o defaultState define o estado inicial.",
+  "Cada toolbar tiene zona, orden y estado contraído; defaultState define el estado inicial.",
+  "Chaque barre d'outils a une zone, un ordre et un état replié ; defaultState définit l'état initial."
+ ],
  "Esta área ocupa todo o espaço restante.": [
   "This area takes up all the remaining space.",
   "Esta área ocupa todo o espaço restante.",
@@ -2413,9 +2611,75 @@
  ],
  "Cadastro": [
   "Registration",
-  "Registo",
+  "Cadastro",
   "Registro",
-  "Enregistrement"
+  "Inscription"
+ ],
+ "CEP": [
+  "ZIP",
+  "CEP",
+  "CEP",
+  "ZIP"
+ ],
+ "Valores": [
+  "Values",
+  "Valores",
+  "Valores",
+  "Valeurs"
+ ],
+ "Largura 320px": [
+  "Width 320px",
+  "Largura 320px",
+  "Ancho 320px",
+  "Largeur 320px"
+ ],
+ "Altura 180px": [
+  "Height 180px",
+  "Altura 180px",
+  "Altura 180px",
+  "Hauteur 180px"
+ ],
+ "Uso simples do GroupBox.": [
+  "Simple GroupBox usage.",
+  "Uso simples do GroupBox.",
+  "Uso simple del GroupBox.",
+  "Utilisation simple du GroupBox."
+ ],
+ "Formulário": [
+  "Form",
+  "Formulário",
+  "Formulario",
+  "Formulaire"
+ ],
+ "Exemplo com inputs reais dentro do GroupBox.": [
+  "Example with real inputs inside GroupBox.",
+  "Exemplo com inputs reais dentro do GroupBox.",
+  "Ejemplo con inputs reales dentro del GroupBox.",
+  "Exemple avec de vrais champs a l'interieur du GroupBox."
+ ],
+ "Largura e altura customizáveis.": [
+  "Custom width and height.",
+  "Largura e altura personalizáveis.",
+  "Ancho y alto personalizables.",
+  "Largeur et hauteur personnalisees."
+ ],
+ "Use o SgGrid para dispor várias caixas lado a lado.": [
+  "Use SgGrid to lay out several boxes side by side.",
+  "Use o SgGrid para dispor várias caixas lado a lado.",
+  "Use SgGrid para disponer varias cajas una al lado de otra.",
+  "Utilisez SgGrid pour disposer plusieurs boîtes côte à côte."
+ ],
+ "Abrir dialog": [
+  "Open dialog",
+  "Abrir dialog",
+  "Abrir dialog",
+  "Ouvrir la boite de dialogue"
+ ],
+ "Confirmar ação": [
+  "Confirm action",
+  "Confirmar ação",
+  "Confirmar accion",
+  "Confirmer l'action"
  ],
  "Conteúdo: Cadastro": [
   "Content: Registration",
@@ -3266,8 +3530,92 @@
  "Tem certeza que deseja continuar?": [
   "Are you sure you want to continue?",
   "Tem certeza que deseja continuar?",
-  "Estas seguro de que deseas continuar?",
+  "¿Seguro que deseas continuar?",
   "Etes-vous sur de vouloir continuer ?"
+ ],
+ "Escreva algo...": [
+  "Type something...",
+  "Escreva algo...",
+  "Escribe algo...",
+  "Tapez quelque chose..."
+ ],
+ "Severidade": [
+  "Severity",
+  "Severidade",
+  "Severidad",
+  "Sévérité"
+ ],
+ "Abrir sem close": [
+  "Open without close",
+  "Abrir sem close",
+  "Abrir sin close",
+  "Ouvrir sans fermeture"
+ ],
+ "Dialog sem close": [
+  "Dialog without close",
+  "Dialog sem close",
+  "Dialog sin close",
+  "Boite de dialogue sans fermeture"
+ ],
+ "Fechamento apenas pelos botões do footer.": [
+  "Close only via footer buttons.",
+  "Fechamento apenas pelos botões do footer.",
+  "Cierre solo con botones del footer.",
+  "Fermer uniquement via les boutons du pied."
+ ],
+ "Use esse modo quando quiser forçar uma escolha explícita.": [
+  "Use this mode when you want explicit choices.",
+  "Use esse modo quando quiser forçar uma escolha explícita.",
+  "Usa este modo cuando quieras forzar una eleccion explicita.",
+  "Utilisez ce mode quand vous voulez des choix explicites."
+ ],
+ "Abrir estrito": [
+  "Open strict",
+  "Abrir estrito",
+  "Abrir estricto",
+  "Ouvrir strict"
+ ],
+ "Dialog estrito": [
+  "Strict dialog",
+  "Dialog estrito",
+  "Dialog estricto",
+  "Boite de dialogue stricte"
+ ],
+ "Não fecha por overlay ou ESC.": [
+  "Does not close on overlay or ESC.",
+  "Não fecha por overlay ou ESC.",
+  "No cierra por overlay o ESC.",
+  "Ne se ferme pas sur la superposition ou ESC."
+ ],
+ "Use quando o usuário precisa tomar uma decisão.": [
+  "Use when the user must decide explicitly.",
+  "Use quando o usuário precisa tomar uma decisão.",
+  "Usa cuando el usuario debe decidir explicitamente.",
+  "A utiliser quand l'utilisateur doit decider explicitement."
+ ],
+ "Abrir auto close": [
+  "Open auto close",
+  "Abrir auto close",
+  "Abrir auto close",
+  "Ouvrir fermeture auto"
+ ],
+ "Dialog temporizado": [
+  "Timed dialog",
+  "Dialog temporizado",
+  "Dialog temporizado",
+  "Boite de dialogue temporisee"
+ ],
+ "Este dialog fecha sozinho.": [
+  "This dialog closes by itself.",
+  "Este dialog fecha sozinho.",
+  "Este dialog se cierra solo.",
+  "Cette boite de dialogue se ferme d'elle-meme."
+ ],
+ "Apenas uma informação rápida.": [
+  "Just a quick piece of information.",
+  "Apenas uma informação rápida.",
+  "Solo una informacion rapida.",
+  "Juste une information rapide."
  ],
  "Abrir popup custom": [
   "Open custom popup",
@@ -3698,8 +4046,128 @@
  "Animação": [
   "Animation",
   "Animação",
-  "Animacion",
+  "Animación",
   "Animation"
+ ],
+ "A animação define como o diálogo entra e sai.": [
+  "The animation defines how the dialog enters and leaves.",
+  "A animação define como o diálogo entra e sai.",
+  "La animación define cómo entra y sale el diálogo.",
+  "L'animation définit comment la boîte de dialogue entre et sort."
+ ],
+ "Dialog com title, subtitle, leading e trailing.": [
+  "Dialog with title, subtitle, leading, and trailing.",
+  "Dialog com title, subtitle, leading e trailing.",
+  "Dialog con title, subtitle, leading y trailing.",
+  "Boite de dialogue avec titre, sous-titre, element de tete et de fin."
+ ],
+ "Cada severidade tinge o fundo e a faixa do topo do diálogo, como no SgWhistler.": [
+  "Each severity tints the dialog background and top stripe, like SgWhistler.",
+  "Cada severidade tinge o fundo e a faixa do topo do diálogo, como no SgWhistler.",
+  "Cada severidad tiñe el fondo y la franja superior del diálogo, como en SgWhistler.",
+  "Chaque sévérité teinte le fond et la bande du haut de la boîte de dialogue, comme SgWhistler."
+ ],
+ "Sem closeable": [
+  "No closeable",
+  "Sem closeable",
+  "Sin closeable",
+  "Non fermable"
+ ],
+ "Exemplo sem botão de fechar no header.": [
+  "Example without the close button in the header.",
+  "Exemplo sem botão de fechar no header.",
+  "Ejemplo sin boton de cierre en el header.",
+  "Exemple sans le bouton de fermeture dans l'en-tete."
+ ],
+ "Sem overlay e ESC": [
+  "No overlay and ESC",
+  "Sem overlay e ESC",
+  "Sin overlay y ESC",
+  "Sans superposition ni ESC"
+ ],
+ "Fechamento automático": [
+  "Auto close",
+  "Fecho automatico",
+  "Cierre automatico",
+  "Fermeture automatique"
+ ],
+ "Fecha automaticamente após alguns segundos.": [
+  "Closes automatically after a few seconds.",
+  "Fecha automaticamente após alguns segundos.",
+  "Se cierra automaticamente despues de unos segundos.",
+  "Se ferme automatiquement apres quelques secondes."
+ ],
+ "animation escolhe como o diálogo entra e sai (fade, zoom ou slideUp) e transitionMs define a duração.": [
+  "animation chooses how the dialog enters and leaves (fade, zoom or slideUp) and transitionMs sets the duration.",
+  "animation escolhe como o diálogo entra e sai (fade, zoom ou slideUp) e transitionMs define a duração.",
+  "animation elige cómo entra y sale el diálogo (fade, zoom o slideUp) y transitionMs define la duración.",
+  "animation choisit comment la boîte de dialogue entre et sort (fade, zoom ou slideUp) et transitionMs définit la durée."
+ ],
+ "Essa ação não pode ser desfeita.": [
+  "This action cannot be undone.",
+  "Essa ação não pode ser desfeita.",
+  "Esta accion no se puede deshacer.",
+  "Cette action ne peut pas etre annulee."
+ ],
+ "Inline Controlado + Resize": [
+  "Controlled Inline + Resize",
+  "Inline Controlado + Resize",
+  "Inline Controlado + Resize",
+  "Inline controle + redimensionnement"
+ ],
+ "Demonstra open/onOpenChange, size, resizable e onSizeChange.": [
+  "Demonstrates open/onOpenChange, size, resizable and onSizeChange.",
+  "Demonstra open/onOpenChange, size, resizable e onSizeChange.",
+  "Demuestra open/onOpenChange, size, resizable y onSizeChange.",
+  "Demontre open/onOpenChange, size, resizable et onSizeChange."
+ ],
+ "Overlay + Comportamento": [
+  "Overlay + Behavior",
+  "Overlay + Comportamento",
+  "Overlay + Comportamiento",
+  "Overlay + comportement"
+ ],
+ "Demonstra placement, closeOnEsc, closeOnOutsideClick, trapFocus, showBackdrop e handle.": [
+  "Demonstrates placement, closeOnEsc, closeOnOutsideClick, trapFocus, showBackdrop and handle.",
+  "Demonstra placement, closeOnEsc, closeOnOutsideClick, trapFocus, showBackdrop e handle.",
+  "Demuestra placement, closeOnEsc, closeOnOutsideClick, trapFocus, showBackdrop y handle.",
+  "Demontre placement, closeOnEsc, closeOnOutsideClick, trapFocus, showBackdrop et handle."
+ ],
+ "defaultOpen + Estilização": [
+  "defaultOpen + Styling",
+  "defaultOpen + Estilização",
+  "defaultOpen + Estilos",
+  "defaultOpen + style"
+ ],
+ "Demonstra defaultOpen, elevation, border, rounded, classes por área e style.": [
+  "Demonstrates defaultOpen, elevation, border, rounded, per-area classes and style.",
+  "Demonstra defaultOpen, elevation, border, rounded, classes por área e style.",
+  "Demuestra defaultOpen, elevation, border, rounded, clases por area y style.",
+  "Demontre defaultOpen, elevation, border, rounded, classes par zone et style."
+ ],
+ "Acessibilidade + Fade": [
+  "Accessibility + Fade",
+  "Acessibilidade + Fade",
+  "Accesibilidad + Fade",
+  "Accessibilite + fondu"
+ ],
+ "Demonstra role, ariaLabel, overlayClassName, animation fade e closeOnOutsideClick=false.": [
+  "Demonstrates role, ariaLabel, overlayClassName, fade animation and closeOnOutsideClick=false.",
+  "Demonstra role, ariaLabel, overlayClassName, animation fade e closeOnOutsideClick=false.",
+  "Demuestra role, ariaLabel, overlayClassName, animacion fade y closeOnOutsideClick=false.",
+  "Demontre role, ariaLabel, overlayClassName, animation en fondu et closeOnOutsideClick=false."
+ ],
+ "Sem Backdrop + Animation none": [
+  "No Backdrop + Animation none",
+  "Sem Backdrop + Animation none",
+  "Sin Backdrop + Animation none",
+  "Sans fond + animation none"
+ ],
+ "Demonstra showBackdrop=false, closeOnOutsideClick=false, closeOnEsc e animation none.": [
+  "Demonstrates showBackdrop=false, closeOnOutsideClick=false, closeOnEsc and animation none.",
+  "Demonstra showBackdrop=false, closeOnOutsideClick=false, closeOnEsc e animation none.",
+  "Demuestra showBackdrop=false, closeOnOutsideClick=false, closeOnEsc y animation none.",
+  "Demontre showBackdrop=false, closeOnOutsideClick=false, closeOnEsc et animation none."
  ],
  "Escolha entre \"wave\", \"pulse\" ou \"none\".": [
   "Choose between \"wave\", \"pulse\" or \"none\".",
@@ -4918,6 +5386,204 @@
   "Utilizadores",
   "Usuarios",
   "Utilisateurs"
+ ],
+ "Relatório": [
+  "Report",
+  "Relatório",
+  "Informe",
+  "Rapport"
+ ],
+ "Uso direto do SgDockScreen com quatro dock zones e área livre central, sem posicionamento manual.": [
+  "Direct SgDockScreen usage with four dock zones and a central free area, without manual positioning.",
+  "Uso direto do SgDockScreen com quatro dock zones e área livre central, sem posicionamento manual.",
+  "Uso directo de SgDockScreen con cuatro dock zones y area central libre, sin posicionamiento manual.",
+  "Usage direct de SgDockScreen avec quatre zones de dock et une zone centrale libre, sans positionnement manuel."
+ ],
+ "Dock padrão na base central com itens clicáveis.": [
+  "Default dock at bottom-center with clickable items.",
+  "Dock padrão na base central com itens clicáveis.",
+  "Dock por defecto en el centro inferior con items clicables.",
+  "Dock par defaut en bas au centre avec des items cliquables."
+ ],
+ "Badge externo": [
+  "External badge",
+  "Badge externo",
+  "Badge externo",
+  "Badge externe"
+ ],
+ "Atualize o badge por estado externo e reflita no dock em tempo real.": [
+  "Update badge from external state and reflect it in real time.",
+  "Atualize o badge por estado externo e reflita no dock em tempo real.",
+  "Actualiza el badge por estado externo y reflejalo en tiempo real.",
+  "Mettez a jour le badge depuis un etat externe et refletez-le en temps reel."
+ ],
+ "Exibe as 8 posições suportadas em uma grade.": [
+  "Shows the 8 supported positions in a grid.",
+  "Exibe as 8 posições suportadas em uma grade.",
+  "Muestra las 8 posiciones soportadas en una grilla.",
+  "Affiche les 8 positions prises en charge dans une grille."
+ ],
+ "Permite arrastar o dock e salvar a posição.": [
+  "Allows dragging and persisting dock position.",
+  "Permite arrastar o dock e salvar a posição.",
+  "Permite arrastrar y guardar la posicion del dock.",
+  "Permet de glisser et de conserver la position du dock."
+ ],
+ "Variantes visuais": [
+  "Visual variants",
+  "Variantes visuais",
+  "Variantes visuales",
+  "Variantes visuelles"
+ ],
+ "Sem magnify, sem labels e com estilo customizado.": [
+  "No magnify, no labels, and a custom style.",
+  "Sem magnify, sem labels e com estilo customizado.",
+  "No magnify, no labels, and custom style.",
+  "Sans grossissement, sans libelles et avec un style personnalise."
+ ],
+ "Muitos itens": [
+  "Many items",
+  "Muitos itens",
+  "Muchos items",
+  "Nombreux items"
+ ],
+ "Exemplo com uma lista maior de itens.": [
+  "Example with a larger list of items.",
+  "Exemplo com uma lista maior de itens.",
+  "Ejemplo con lista mayor de items.",
+  "Exemple avec une liste d'items plus grande."
+ ],
+ "Callbacks e desabilitado": [
+  "Callbacks and disabled",
+  "Callbacks e desativado",
+  "Callbacks y disabled",
+  "Callbacks et desactive"
+ ],
+ "Logs de clique e item desabilitado no mesmo exemplo.": [
+  "Click logs and a disabled item in the same example.",
+  "Logs de clique e item desabilitado no mesmo exemplo.",
+  "Logs de click e item deshabilitado en el mismo ejemplo.",
+  "Journaux de clic et un item desactive dans le meme exemple."
+ ],
+ "Clique em um item para gerar logs...": [
+  "Click an item to generate logs...",
+  "Clique em um item para gerar logs...",
+  "Haz click en un item para generar logs...",
+  "Cliquez sur un item pour generer des journaux..."
+ ],
+ "Básico com paginação e sort": [
+  "Basic with pagination and sort",
+  "Básico com paginação e sort",
+  "Basico con paginacion y sort",
+  "Basique avec pagination et tri"
+ ],
+ "infiniteScroll={false} mantém o paginador também em tela estreita: abaixo de 600 px o padrão viraria cartões com rolagem infinita.": [
+  "infiniteScroll={false} keeps the paginator on narrow screens too: below 600 px the default would turn the table into cards with infinite scroll.",
+  "infiniteScroll={false} mantém o paginador também em ecrã estreito: abaixo de 600 px o predefinido passaria a cartões com deslocação infinita.",
+  "infiniteScroll={false} mantiene el paginador también en pantallas estrechas: por debajo de 600 px el valor por defecto convertiría la tabla en tarjetas con desplazamiento infinito.",
+  "infiniteScroll={false} conserve le paginateur aussi sur les petits écrans : en dessous de 600 px, le comportement par défaut transformerait le tableau en cartes avec défilement infini."
+ ],
+ "Filtro global + filtros por coluna": [
+  "Global filter and column filters",
+  "Filtro global + filtros por coluna",
+  "Filtro global + filtros por columna",
+  "Filtre global et filtres de colonnes"
+ ],
+ "Seleção de linhas (single e multiple)": [
+  "Row selection (single and multiple)",
+  "Seleção de linhas (single e multiple)",
+  "Seleccion de filas (single y multiple)",
+  "Selection de lignes (simple et multiple)"
+ ],
+ "selectionMode single ou multiple, com dataKey e onSelectionChange; a seleção é entregue ao pai.": [
+  "selectionMode single or multiple, with dataKey and onSelectionChange; the selection is handed to the parent.",
+  "selectionMode single ou multiple, com dataKey e onSelectionChange; a seleção é entregue ao pai.",
+  "selectionMode single o multiple, con dataKey y onSelectionChange; la selección se entrega al padre.",
+  "selectionMode single ou multiple, avec dataKey et onSelectionChange ; la sélection est remise au parent."
+ ],
+ "Template customizado e footer": [
+  "Custom template and footer",
+  "Template customizado e footer",
+  "Template personalizado y footer",
+  "Modele et pied personnalises"
+ ],
+ "body desenha a célula e footer recebe as linhas processadas.": [
+  "body draws the cell and footer receives the processed rows.",
+  "body desenha a célula e footer recebe as linhas processadas.",
+  "body dibuja la celda y footer recibe las filas procesadas.",
+  "body dessine la cellule et footer reçoit les lignes traitées."
+ ],
+ "Gerenciador de colunas, visibilidade e estilos": [
+  "Column manager, visibility and styles",
+  "Gestor de colunas, visibilidade e estilos",
+  "Gestor de columnas, visibilidad y estilos",
+  "Gestionnaire de colonnes, visibilité et styles"
+ ],
+ "Mostra o gerenciador de colunas embutido e as props de visibilidade, ordem e estilo por coluna.": [
+  "Shows the built-in column manager plus the per-column visibility, order and styling props.",
+  "Mostra o gestor de colunas incorporado e as props de visibilidade, ordem e estilo por coluna.",
+  "Muestra el gestor de columnas integrado y las props de visibilidad, orden y estilo por columna.",
+  "Affiche le gestionnaire de colonnes intégré et les props de visibilité, d'ordre et de style par colonne."
+ ],
+ "Controle externo de página e ordenação": [
+  "External page and sort control",
+  "Controle externo de página e ordenação",
+  "Control externo de pagina y ordenacion",
+  "Controle externe de page et de tri"
+ ],
+ "A página e a ordenação são controladas por fora do componente, sem depender só da interação do usuário.": [
+  "Page and sorting are controlled from outside the component, not only by user interaction.",
+  "A página e a ordenação são controladas por fora do componente, sem depender só da interação do utilizador.",
+  "La página y el orden se controlan desde fuera del componente, sin depender solo de la interacción del usuario.",
+  "La page et le tri sont pilotés depuis l'extérieur du composant, sans dépendre seulement de l'interaction de l'utilisateur."
+ ],
+ "Server-side paginator (lazy)": [
+  "Server-side paginator (lazy)",
+  "Server-side paginator (lazy)",
+  "Server-side paginator (lazy)",
+  "Paginateur cote serveur (lazy)"
+ ],
+ "Loading e estado vazio": [
+  "Loading and empty state",
+  "Loading e estado vazio",
+  "Loading y estado vacio",
+  "Etat de chargement et etat vide"
+ ],
+ "Modo cartões no celular (mobileMode)": [
+  "Cards mode on mobile (mobileMode)",
+  "Modo cartões no telemóvel (mobileMode)",
+  "Modo tarjetas en móvil (mobileMode)",
+  "Mode cartes sur mobile (mobileMode)"
+ ],
+ "Último onPage": [
+  "Last onPage",
+  "Último onPage",
+  "Último onPage",
+  "Dernier onPage"
+ ],
+ "Gerenciador de colunas e linhas estilizadas": [
+  "Column manager and styled rows",
+  "Gestor de colunas e linhas estilizadas",
+  "Gestor de columnas y filas con estilo",
+  "Gestionnaire de colonnes et lignes stylisées"
+ ],
+ "Idade": [
+  "Age",
+  "Idade",
+  "Edad",
+  "Âge"
+ ],
+ "Gerenciar colunas": [
+  "Manage columns",
+  "Gerir colunas",
+  "Gestionar columnas",
+  "Gérer les colonnes"
+ ],
+ "Rodapé do painel estilizado.": [
+  "Styled panel footer.",
+  "Rodapé do painel estilizado.",
+  "Pie del panel con estilo.",
+  "Pied du panneau stylisé."
  ],
  "Configurações": [
   "Settings",

@@ -39,8 +39,8 @@ SizedBox(
           Positioned(
             left: 0,
             top: 60,
-            bottom: 0,
-            width: 150,
+            bottom: 60,
+            width: 100,
             child: SgDockZone(
               zone: SgDockZoneId.left,
               children: [
@@ -57,7 +57,52 @@ SizedBox(
               ],
             ),
           ),
-          Positioned.fill(
+          Positioned(
+            right: 0,
+            top: 60,
+            bottom: 60,
+            width: 100,
+            child: SgDockZone(
+              zone: SgDockZoneId.right,
+              children: [
+                SgButton(
+                  label: Text(context.tx('Usuários')),
+                  size: SgSize.sm,
+                  appearance: SgAppearance.ghost,
+                ),
+                SgButton(
+                  label: Text(context.tx('Ajustes')),
+                  size: SgSize.sm,
+                  appearance: SgAppearance.ghost,
+                ),
+              ],
+            ),
+          ),
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 0,
+            child: SgDockZone(
+              zone: SgDockZoneId.bottom,
+              children: [
+                SgButton(
+                  label: Text(context.tx('Painel')),
+                  size: SgSize.sm,
+                  appearance: SgAppearance.outline,
+                ),
+                SgButton(
+                  label: Text(context.tx('Relatório')),
+                  size: SgSize.sm,
+                  appearance: SgAppearance.outline,
+                ),
+              ],
+            ),
+          ),
+          Positioned(
+            left: 100,
+            right: 100,
+            top: 60,
+            bottom: 60,
             child: SgDockZone(
               zone: SgDockZoneId.free,
               child: Text(context.tx('Área central livre')),

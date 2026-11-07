@@ -7,56 +7,133 @@ import '../src/sg_showcase_page.dart';
 import '../src/showcase_i18n.dart';
 import 'sg_group_box_page.snippets.g.dart';
 
-class SgGroupBoxPage extends StatelessWidget {
+class SgGroupBoxPage extends StatefulWidget {
   const SgGroupBoxPage({super.key});
+
+  @override
+  State<SgGroupBoxPage> createState() => _SgGroupBoxPageState();
+}
+
+class _SgGroupBoxPageState extends State<SgGroupBoxPage> {
+  final SgFormController _form = SgFormController();
+
+  @override
+  void dispose() {
+    _form.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     final examples = <ShowcaseExample>[
       ShowcaseExample(
-        title: 'Agrupando campos',
-        description: 'A legenda fica sobre a borda, em caixa alta.',
+        title: 'Básico',
+        description: 'Uso simples do GroupBox.',
         preview:
-            // #region sg-group-box-campos
+            // #region sg-group-box-basico
             SgGroupBox(
-              title: context.tx('Dados do cliente'),
-              child: SgStack(
+              title: context.tx('Dados pessoais'),
+              child: SgGrid(
+                minItemWidth: 200,
                 gap: 12,
                 children: [
-                  SgInputText(id: 'gb-nome', labelText: 'Nome'),
-                  SgInputText(id: 'gb-email', labelText: 'E-mail'),
+                  SgInputText(id: 'gb-campo-1', labelText: context.tx('Campo 1')),
+                  SgInputText(id: 'gb-campo-2', labelText: context.tx('Campo 2')),
                 ],
               ),
             ),
         // #endregion
-        code: SgGroupBoxPageSnippets.sgGroupBoxCampos,
+        code: SgGroupBoxPageSnippets.sgGroupBoxBasico,
       ),
       ShowcaseExample(
-        title: 'Largura',
-        description:
-            'O padrão é a largura toda. width aceita px ("240px"), número e porcentagem ("50%").',
+        title: 'Formulário',
+        description: 'Exemplo com inputs reais dentro do GroupBox.',
         preview:
-            // #region sg-group-box-largura
-            SgStack(
-              gap: 12,
+            // #region sg-group-box-formulario
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SgGroupBox(
-                  title: context.tx('Metade'),
-                  width: '50%',
-                  child: Text(context.tx('width: "50%"')),
+                  title: context.tx('Cadastro'),
+                  child: SgGrid(
+                    minItemWidth: 240,
+                    gap: 16,
+                    children: [
+                      SgInputText(
+                        id: 'name',
+                        name: 'name',
+                        control: _form,
+                        labelText: context.tx('Nome completo'),
+                        required: true,
+                      ),
+                      SgInputEmail(
+                        id: 'email',
+                        name: 'email',
+                        control: _form,
+                        labelText: context.tx('Email'),
+                        required: true,
+                      ),
+                      SgInputPhone(
+                        id: 'phone',
+                        name: 'phone',
+                        control: _form,
+                        labelText: context.tx('Telefone'),
+                        required: true,
+                      ),
+                      SgInputPostalCode(
+                        id: 'cep',
+                        name: 'cep',
+                        control: _form,
+                        labelText: context.tx('CEP'),
+                        required: true,
+                      ),
+                      SgInputPassword(
+                        id: 'password',
+                        name: 'password',
+                        control: _form,
+                        labelText: context.tx('Senha'),
+                        required: true,
+                      ),
+                    ],
+                  ),
                 ),
-                SgGroupBox(
-                  title: context.tx('Fixa'),
-                  width: 240,
-                  child: Text(context.tx('width: 240')),
+                const SizedBox(height: 12),
+                ListenableBuilder(
+                  listenable: _form,
+                  builder: (context, _) =>
+                      Text('${context.tx('Valores')}: ${_form.getValues()}'),
                 ),
               ],
             ),
         // #endregion
-        code: SgGroupBoxPageSnippets.sgGroupBoxLargura,
+        code: SgGroupBoxPageSnippets.sgGroupBoxFormulario,
+      ),
+      ShowcaseExample(
+        title: 'Tamanho',
+        description: 'Largura e altura customizáveis.',
+        preview:
+            // #region sg-group-box-tamanho
+            SgStack(
+              gap: 12,
+              children: [
+                SgGroupBox(
+                  title: context.tx('Largura 320px'),
+                  width: 320,
+                  child: Text(context.tx('Conteúdo')),
+                ),
+                SgGroupBox(
+                  title: context.tx('Altura 180px'),
+                  height: 180,
+                  child: Text(context.tx('Conteúdo')),
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgGroupBoxPageSnippets.sgGroupBoxTamanho,
       ),
       ShowcaseExample(
         title: 'Várias caixas lado a lado',
+        description: 'Use o SgGrid para dispor várias caixas lado a lado.',
         preview:
             // #region sg-group-box-lado
             SgGrid(
