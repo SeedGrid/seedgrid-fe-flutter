@@ -16,11 +16,14 @@ class SgInputDatePage extends StatefulWidget {
 
 class _SgInputDatePageState extends State<SgInputDatePage> {
   final SgFormController _form = SgFormController();
-  String _enviado = '';
+  final ValueNotifier<String> _valor = ValueNotifier<String>('');
+  final ValueNotifier<String> _enviado = ValueNotifier<String>('');
 
   @override
   void dispose() {
     _form.dispose();
+    _valor.dispose();
+    _enviado.dispose();
     super.dispose();
   }
 
@@ -33,7 +36,23 @@ class _SgInputDatePageState extends State<SgInputDatePage> {
             'Digite ou abra o calendário; o valor entregue é a data ISO.',
         preview:
             // #region sg-input-date-basico
-            const SgInputDate(id: 'data', labelText: 'Data'),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SgInputDate(
+                  id: 'demo-basic',
+                  labelText: context.tx('Data'),
+                  hintText: context.tx('Selecione uma data'),
+                  onChange: (value) => _valor.value = value,
+                ),
+                const SizedBox(height: 8),
+                ValueListenableBuilder<String>(
+                  valueListenable: _valor,
+                  builder: (context, valor, _) =>
+                      Text(context.txf('Valor: {valor}', {'valor': valor})),
+                ),
+              ],
+            ),
         // #endregion
         code: SgInputDatePageSnippets.sgInputDateBasico,
       ),
@@ -43,28 +62,69 @@ class _SgInputDatePageState extends State<SgInputDatePage> {
             'Fora do intervalo aparece a mensagem; no calendário os dias ficam desabilitados.',
         preview:
             // #region sg-input-date-limites
-            const SgInputDate(
-              id: 'data-limites',
-              labelText: 'Dentro de 2026',
-              minDate: '2026-01-01',
-              maxDate: '2026-12-31',
-              initialValue: '2026-06-15',
+            SgInputDate(
+              id: 'demo-range',
+              labelText: context.tx('Período'),
+              minDate: '2020-01-01',
+              maxDate: '2030-12-31',
             ),
         // #endregion
         code: SgInputDatePageSnippets.sgInputDateLimites,
       ),
       ShowcaseExample(
         title: 'Obrigatório',
+        description: 'Valida campo vazio.',
         preview:
             // #region sg-input-date-obrigatorio
-            const SgInputDate(
-              id: 'data-obrigatoria',
-              labelText: 'Data da consulta',
+            SgInputDate(
+              id: 'demo-required',
+              labelText: context.tx('Data da consulta'),
               required: true,
-              requiredMessage: 'Escolha uma data',
+              requiredMessage: context.tx('Escolha uma data'),
             ),
         // #endregion
         code: SgInputDatePageSnippets.sgInputDateObrigatorio,
+      ),
+      ShowcaseExample(
+        title: 'Posição do rótulo',
+        description:
+            'Compare os modos de rótulo: flutuante, acima e à esquerda.',
+        preview:
+            // #region sg-input-date-rotulo
+            Wrap(
+              spacing: 16,
+              runSpacing: 12,
+              children: [
+                SizedBox(
+                  width: 280,
+                  child: SgInputDate(
+                    id: 'sg-input-date-label-float',
+                    labelText: context.tx('Flutuante'),
+                    labelPosition: SgInputDateLabelPosition.float,
+                  ),
+                ),
+                SizedBox(
+                  width: 280,
+                  child: SgInputDate(
+                    id: 'sg-input-date-label-top',
+                    labelText: context.tx('Acima'),
+                    labelPosition: SgInputDateLabelPosition.top,
+                  ),
+                ),
+                SizedBox(
+                  width: 360,
+                  child: SgInputDate(
+                    id: 'sg-input-date-label-left',
+                    labelText: context.tx('Esquerda'),
+                    labelPosition: SgInputDateLabelPosition.left,
+                    labelWidth: 140,
+                    labelAlign: SgInputDateLabelAlign.end,
+                  ),
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgInputDatePageSnippets.sgInputDateRotulo,
       ),
       ShowcaseExample(
         title: 'Dentro de um formulário',
@@ -78,18 +138,25 @@ class _SgInputDatePageState extends State<SgInputDatePage> {
                   id: 'campo',
                   name: 'campo',
                   control: _form,
-                  labelText: 'Campo',
+                  labelText: context.tx('Data'),
                   required: true,
-                  requiredMessage: 'Preencha o campo',
+                  requiredMessage: context.tx('Escolha uma data'),
                 ),
                 const SizedBox(height: 12),
                 SgButton(
                   label: Text(context.tx('Enviar')),
                   onClick: () => _form.handleSubmit(
-                    (values) => setState(() => _enviado = '${values['campo']}'),
+                    (values) => _enviado.value = '${values['campo']}',
                   ),
                 ),
-                if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),
+                ValueListenableBuilder<String>(
+                  valueListenable: _enviado,
+                  builder: (context, enviado, _) => enviado.isEmpty
+                      ? const SizedBox.shrink()
+                      : Text(
+                          context.txf('Enviado: {valor}', {'valor': enviado}),
+                        ),
+                ),
               ],
             ),
         // #endregion

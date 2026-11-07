@@ -1780,5 +1780,233 @@
   "Fonte assíncrona + render personalizado",
   "Fuente asíncrona + render personalizado",
   "Source asynchrone + rendu personnalise"
+ ],
+ "Data de nascimento": [
+  "Birth date",
+  "Data de nascimento",
+  "Fecha de nacimiento",
+  "Date de naissance"
+ ],
+ "Informe a data de nascimento.": [
+  "Please enter the birth date.",
+  "Informe a data de nascimento.",
+  "Informe la fecha de nacimiento.",
+  "Veuillez saisir la date de naissance."
+ ],
+ "Valida campo vazio.": [
+  "Validates empty field.",
+  "Valida campo vazio.",
+  "Valida campo vacío.",
+  "Valide le champ vide."
+ ],
+ "Faixa customizada": [
+  "Custom range",
+  "Faixa customizada",
+  "Rango personalizado",
+  "Plage personnalisée"
+ ],
+ "minAge e maxAge configuráveis.": [
+  "Configurable minAge and maxAge.",
+  "minAge e maxAge configuráveis.",
+  "minAge y maxAge configurables.",
+  "minAge et maxAge configurables."
+ ],
+ "O formulário guarda a data de nascimento.": [
+  "The form stores the birth date.",
+  "O formulário guarda a data de nascimento.",
+  "El formulario guarda la fecha de nacimiento.",
+  "Le formulaire conserve la date de naissance."
+ ],
+ "Data": [
+  "Date",
+  "Data",
+  "Fecha",
+  "Date"
+ ],
+ "Selecione uma data": [
+  "Select a date",
+  "Selecione uma data",
+  "Selecciona una fecha",
+  "Sélectionnez une date"
+ ],
+ "Data da consulta": [
+  "Appointment date",
+  "Data da consulta",
+  "Fecha de la cita",
+  "Date du rendez-vous"
+ ],
+ "Escolha uma data": [
+  "Choose a date",
+  "Escolha uma data",
+  "Elige una fecha",
+  "Choisissez une date"
+ ],
+ "Quando": [
+  "When",
+  "Quando",
+  "Cuándo",
+  "Quand"
+ ],
+ "Agendamento": [
+  "Appointment",
+  "Agendamento",
+  "Cita",
+  "Rendez-vous"
+ ],
+ "Evento": [
+  "Event",
+  "Evento",
+  "Evento",
+  "Événement"
+ ],
+ "Informe a data e a hora": [
+  "Enter the date and time",
+  "Informe a data e a hora",
+  "Informe la fecha y la hora",
+  "Saisissez la date et l'heure"
+ ],
+ "Escolha uma data a partir de {min}.": [
+  "Choose a date from {min} onwards.",
+  "Escolha uma data a partir de {min}.",
+  "Elige una fecha a partir del {min}.",
+  "Choisissez une date à partir du {min}."
+ ],
+ "Código OTP": [
+  "OTP code",
+  "Código OTP",
+  "Código OTP",
+  "Code OTP"
+ ],
+ "Digite os 6 dígitos": [
+  "Type the 6 digits",
+  "Digite os 6 dígitos",
+  "Escribe los 6 dígitos",
+  "Saisissez les 6 chiffres"
+ ],
+ "Token de acesso": [
+  "Access token",
+  "Token de acesso",
+  "Token de acceso",
+  "Jeton d'accès"
+ ],
+ "Formato: ###-###-99": [
+  "Format: ###-###-99",
+  "Formato: ###-###-99",
+  "Formato: ###-###-99",
+  "Format : ###-###-99"
+ ],
+ "Cole o código": [
+  "Paste the code",
+  "Cole o código",
+  "Pega el código",
+  "Collez le code"
+ ],
+ "Teste colando: \"AB1-CD2-34\"": [
+  "Try pasting: \"AB1-CD2-34\"",
+  "Teste a colar: \"AB1-CD2-34\"",
+  "Prueba pegando: \"AB1-CD2-34\"",
+  "Essayez de coller : \"AB1-CD2-34\""
+ ],
+ "(aguardando)": [
+  "(waiting)",
+  "(a aguardar)",
+  "(esperando)",
+  "(en attente)"
+ ],
+ "OTP por controle": [
+  "OTP via controller",
+  "OTP por controlo",
+  "OTP por controlador",
+  "OTP via contrôleur"
+ ],
+ "Use os botões abaixo": [
+  "Use the buttons below",
+  "Use os botões abaixo",
+  "Usa los botones de abajo",
+  "Utilisez les boutons ci-dessous"
+ ],
+ "Focar": [
+  "Focus",
+  "Focar",
+  "Enfocar",
+  "Focus"
+ ],
+ "Ler conteúdo": [
+  "Read content",
+  "Ler conteúdo",
+  "Leer contenido",
+  "Lire le contenu"
+ ],
+ "saída": [
+  "output",
+  "saída",
+  "salida",
+  "sortie"
+ ],
+ "Clique em \"Ler conteúdo\".": [
+  "Click \"Read content\".",
+  "Clique em \"Ler conteúdo\".",
+  "Haz clic en \"Leer contenido\".",
+  "Cliquez sur « Lire le contenu »."
+ ],
+ "Informe o código.": [
+  "Please enter the code.",
+  "Informe o código.",
+  "Informe el código.",
+  "Veuillez saisir le code."
+ ],
+ "O código tem 4 dígitos.": [
+  "The code has 4 digits.",
+  "O código tem 4 dígitos.",
+  "El código tiene 4 dígitos.",
+  "Le code comporte 4 chiffres."
+ ],
+ "Código expirado.": [
+  "Code expired.",
+  "Código expirado.",
+  "Código caducado.",
+  "Code expiré."
+ ],
+ "Máscara customizada": [
+  "Custom mask",
+  "Máscara customizada",
+  "Máscara personalizada",
+  "Masque personnalisé"
+ ],
+ "Colagem + onComplete": [
+  "Paste + onComplete",
+  "Colagem + onComplete",
+  "Pegado + onComplete",
+  "Collage + onComplete"
+ ],
+ "Cole um OTP e receba callback ao completar.": [
+  "Paste an OTP and receive a callback on completion.",
+  "Cole um OTP e receba callback ao completar.",
+  "Pega un OTP y recibe un callback al completar.",
+  "Collez un OTP et recevez le callback à la fin."
+ ],
+ "Acesso por ref ou controller": [
+  "Access via ref or controller",
+  "Acesso por ref ou controller",
+  "Acceso por ref o controller",
+  "Accès via ref ou controller"
+ ],
+ "O formulário guarda o valor sem separador.": [
+  "The form stores the value without separators.",
+  "O formulário guarda o valor sem separador.",
+  "El formulario guarda el valor sin separador.",
+  "Le formulaire conserve la valeur sans séparateur."
+ ],
+ "Erro externo, desabilitado e somente leitura.": [
+  "External error, disabled and read-only.",
+  "Erro externo, desativado e somente leitura.",
+  "Error externo, deshabilitado y solo lectura.",
+  "Erreur externe, désactivé et en lecture seule."
+ ],
+ "Confirmado: {valor}": [
+  "Confirmed: {valor}",
+  "Confirmado: {valor}",
+  "Confirmado: {valor}",
+  "Confirmé : {valor}"
  ]
 }

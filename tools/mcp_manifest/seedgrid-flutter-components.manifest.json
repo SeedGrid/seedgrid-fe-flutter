@@ -7538,32 +7538,39 @@
         ],
         "examples": [
           {
-            "id": "sg-input-birth-date-faixa",
-            "title": "Faixa de idade",
+            "id": "sg-input-birth-date-basico",
+            "title": "Básico",
             "file": "apps/seedgrid_showcase/lib/pages/sg_input_birth_date_page.dart",
             "kind": "dart",
-            "code": "const SgInputBirthDate(\n  id: 'nascimento-faixa',\n  labelText: 'Entre 18 e 65 anos',\n  minAge: 18,\n  maxAge: 65,\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgInputBirthDate(\n      id: 'demo-basic',\n      labelText: context.tx('Data de nascimento'),\n      minAge: 18,\n      onValidation: (msg) => _validacao.value = msg,\n    ),\n    const SizedBox(height: 8),\n    ValueListenableBuilder<String?>(\n      valueListenable: _validacao,\n      builder: (context, msg, _) =>\n          Text('onValidation: ${msg ?? context.tx('válido')}'),\n    ),\n  ],\n)"
+          },
+          {
+            "id": "sg-input-birth-date-faixa",
+            "title": "Faixa customizada",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_input_birth_date_page.dart",
+            "kind": "dart",
+            "code": "SgInputBirthDate(\n  id: 'demo-range',\n  labelText: context.tx('Data de nascimento'),\n  minAge: 12,\n  maxAge: 80,\n)"
           },
           {
             "id": "sg-input-birth-date-formulario",
             "title": "Dentro de um formulário",
             "file": "apps/seedgrid_showcase/lib/pages/sg_input_birth_date_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgInputBirthDate(\n      id: 'campo',\n      name: 'campo',\n      control: _form,\n      labelText: 'Campo',\n      minAge: 18,\n      required: true,\n      requiredMessage: 'Preencha o campo',\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _form.handleSubmit(\n        (values) => setState(() => _enviado = '${values['campo']}'),\n      ),\n    ),\n    if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),\n  ],\n)"
-          },
-          {
-            "id": "sg-input-birth-date-maior",
-            "title": "Maior de idade",
-            "file": "apps/seedgrid_showcase/lib/pages/sg_input_birth_date_page.dart",
-            "kind": "dart",
-            "code": "const SgInputBirthDate(\n  id: 'nascimento',\n  labelText: 'Data de nascimento',\n  minAge: 18,\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgInputBirthDate(\n      id: 'campo',\n      name: 'campo',\n      control: _form,\n      labelText: context.tx('Data de nascimento'),\n      minAge: 18,\n      required: true,\n      requiredMessage: context.tx('Informe a data de nascimento.'),\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _form.handleSubmit(\n        (values) => _enviado.value = '${values['campo']}',\n      ),\n    ),\n    ValueListenableBuilder<String>(\n      valueListenable: _enviado,\n      builder: (context, enviado, _) => enviado.isEmpty\n          ? const SizedBox.shrink()\n          : Text(\n              context.txf('Enviado: {valor}', {'valor': enviado}),\n            ),\n    ),\n  ],\n)"
           },
           {
             "id": "sg-input-birth-date-obrigatorio",
             "title": "Obrigatório",
             "file": "apps/seedgrid_showcase/lib/pages/sg_input_birth_date_page.dart",
             "kind": "dart",
-            "code": "const SgInputBirthDate(\n  id: 'nascimento-obrigatorio',\n  labelText: 'Nascimento',\n  minAge: 0,\n  required: true,\n  requiredMessage: 'Informe quando nasceu',\n)"
+            "code": "SgInputBirthDate(\n  id: 'demo-required',\n  labelText: context.tx('Data de nascimento'),\n  minAge: 18,\n  required: true,\n  requiredMessage: context.tx('Informe a data de nascimento.'),\n)"
+          },
+          {
+            "id": "sg-input-birth-date-rotulo",
+            "title": "Posição do rótulo",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_input_birth_date_page.dart",
+            "kind": "dart",
+            "code": "Wrap(\n  spacing: 16,\n  runSpacing: 12,\n  children: [\n    SizedBox(\n      width: 280,\n      child: SgInputBirthDate(\n        id: 'sg-input-birth-date-label-float',\n        labelText: context.tx('Flutuante'),\n        labelPosition: SgInputBirthDateLabelPosition.float,\n      ),\n    ),\n    SizedBox(\n      width: 280,\n      child: SgInputBirthDate(\n        id: 'sg-input-birth-date-label-top',\n        labelText: context.tx('Acima'),\n        labelPosition: SgInputBirthDateLabelPosition.top,\n      ),\n    ),\n    SizedBox(\n      width: 360,\n      child: SgInputBirthDate(\n        id: 'sg-input-birth-date-label-left',\n        labelText: context.tx('Esquerda'),\n        labelPosition: SgInputBirthDateLabelPosition.left,\n        labelWidth: 140,\n        labelAlign: SgInputBirthDateLabelAlign.end,\n      ),\n    ),\n  ],\n)"
           }
         ],
         "parity": {
@@ -9572,28 +9579,35 @@
             "title": "Básico",
             "file": "apps/seedgrid_showcase/lib/pages/sg_input_date_page.dart",
             "kind": "dart",
-            "code": "const SgInputDate(id: 'data', labelText: 'Data')"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgInputDate(\n      id: 'demo-basic',\n      labelText: context.tx('Data'),\n      hintText: context.tx('Selecione uma data'),\n      onChange: (value) => _valor.value = value,\n    ),\n    const SizedBox(height: 8),\n    ValueListenableBuilder<String>(\n      valueListenable: _valor,\n      builder: (context, valor, _) =>\n          Text(context.txf('Valor: {valor}', {'valor': valor})),\n    ),\n  ],\n)"
           },
           {
             "id": "sg-input-date-formulario",
             "title": "Dentro de um formulário",
             "file": "apps/seedgrid_showcase/lib/pages/sg_input_date_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgInputDate(\n      id: 'campo',\n      name: 'campo',\n      control: _form,\n      labelText: 'Campo',\n      required: true,\n      requiredMessage: 'Preencha o campo',\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _form.handleSubmit(\n        (values) => setState(() => _enviado = '${values['campo']}'),\n      ),\n    ),\n    if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgInputDate(\n      id: 'campo',\n      name: 'campo',\n      control: _form,\n      labelText: context.tx('Data'),\n      required: true,\n      requiredMessage: context.tx('Escolha uma data'),\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _form.handleSubmit(\n        (values) => _enviado.value = '${values['campo']}',\n      ),\n    ),\n    ValueListenableBuilder<String>(\n      valueListenable: _enviado,\n      builder: (context, enviado, _) => enviado.isEmpty\n          ? const SizedBox.shrink()\n          : Text(\n              context.txf('Enviado: {valor}', {'valor': enviado}),\n            ),\n    ),\n  ],\n)"
           },
           {
             "id": "sg-input-date-limites",
             "title": "Limites de data",
             "file": "apps/seedgrid_showcase/lib/pages/sg_input_date_page.dart",
             "kind": "dart",
-            "code": "const SgInputDate(\n  id: 'data-limites',\n  labelText: 'Dentro de 2026',\n  minDate: '2026-01-01',\n  maxDate: '2026-12-31',\n  initialValue: '2026-06-15',\n)"
+            "code": "SgInputDate(\n  id: 'demo-range',\n  labelText: context.tx('Período'),\n  minDate: '2020-01-01',\n  maxDate: '2030-12-31',\n)"
           },
           {
             "id": "sg-input-date-obrigatorio",
             "title": "Obrigatório",
             "file": "apps/seedgrid_showcase/lib/pages/sg_input_date_page.dart",
             "kind": "dart",
-            "code": "const SgInputDate(\n  id: 'data-obrigatoria',\n  labelText: 'Data da consulta',\n  required: true,\n  requiredMessage: 'Escolha uma data',\n)"
+            "code": "SgInputDate(\n  id: 'demo-required',\n  labelText: context.tx('Data da consulta'),\n  required: true,\n  requiredMessage: context.tx('Escolha uma data'),\n)"
+          },
+          {
+            "id": "sg-input-date-rotulo",
+            "title": "Posição do rótulo",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_input_date_page.dart",
+            "kind": "dart",
+            "code": "Wrap(\n  spacing: 16,\n  runSpacing: 12,\n  children: [\n    SizedBox(\n      width: 280,\n      child: SgInputDate(\n        id: 'sg-input-date-label-float',\n        labelText: context.tx('Flutuante'),\n        labelPosition: SgInputDateLabelPosition.float,\n      ),\n    ),\n    SizedBox(\n      width: 280,\n      child: SgInputDate(\n        id: 'sg-input-date-label-top',\n        labelText: context.tx('Acima'),\n        labelPosition: SgInputDateLabelPosition.top,\n      ),\n    ),\n    SizedBox(\n      width: 360,\n      child: SgInputDate(\n        id: 'sg-input-date-label-left',\n        labelText: context.tx('Esquerda'),\n        labelPosition: SgInputDateLabelPosition.left,\n        labelWidth: 140,\n        labelAlign: SgInputDateLabelAlign.end,\n      ),\n    ),\n  ],\n)"
           }
         ],
         "parity": {
@@ -9946,49 +9960,56 @@
             "title": "Básico",
             "file": "apps/seedgrid_showcase/lib/pages/sg_input_date_time_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgInputDateTime(\n      id: 'quando',\n      labelText: 'Quando',\n      onChange: (value, local) => setState(() => _instante = value),\n    ),\n    const SizedBox(height: 8),\n    Text('Valor atual: ${_instante ?? '-'}'),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgInputDateTime(\n      id: 'demo-basic',\n      labelText: context.tx('Quando'),\n      onChange: (value, local) => _instante.value = value,\n    ),\n    const SizedBox(height: 8),\n    ValueListenableBuilder<String?>(\n      valueListenable: _instante,\n      builder: (context, instante, _) => Text(\n        context.txf('Valor: {valor}', {'valor': instante ?? '-'}),\n      ),\n    ),\n  ],\n)"
           },
           {
             "id": "sg-input-date-time-eventos",
             "title": "Eventos",
             "file": "apps/seedgrid_showcase/lib/pages/sg_input_date_time_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgInputDateTime(\n      id: 'eventos',\n      labelText: 'Quando',\n      onChange: (value, local) =>\n          setState(() => _evento = 'onChange: ${value ?? local}'),\n      onEnter: () => setState(() => _evento = 'onEnter'),\n      onExit: () => setState(() => _evento = 'onExit'),\n    ),\n    const SizedBox(height: 8),\n    Text('Último evento: $_evento'),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgInputDateTime(\n      id: 'demo-events',\n      labelText: context.tx('Quando'),\n      onChange: (value, local) =>\n          _evento.value = 'onChange: ${value ?? local}',\n      onEnter: () => _evento.value = 'onEnter',\n      onExit: () => _evento.value = 'onExit',\n    ),\n    const SizedBox(height: 8),\n    ValueListenableBuilder<String>(\n      valueListenable: _evento,\n      builder: (context, evento, _) => Text(\n        context.txf('Último evento: {evento}', {'evento': evento}),\n      ),\n    ),\n  ],\n)"
           },
           {
             "id": "sg-input-date-time-formulario",
             "title": "Dentro de um formulário",
             "file": "apps/seedgrid_showcase/lib/pages/sg_input_date_time_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgInputDateTime(\n      id: 'consulta',\n      name: 'consulta',\n      control: _form,\n      labelText: 'Consulta',\n      timeZone: '-03:00',\n      required: true,\n      requiredMessage: 'Informe a data e a hora',\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _form.handleSubmit(\n        (values) =>\n            setState(() => _enviado = '${values['consulta']}'),\n      ),\n    ),\n    if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgInputDateTime(\n      id: 'demo-form',\n      name: 'consulta',\n      control: _form,\n      labelText: context.tx('Agendamento'),\n      timeZone: '-03:00',\n      required: true,\n      requiredMessage: context.tx('Informe a data e a hora'),\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _form.handleSubmit(\n        (values) => _enviado.value = '${values['consulta']}',\n      ),\n    ),\n    ValueListenableBuilder<String>(\n      valueListenable: _enviado,\n      builder: (context, enviado, _) => enviado.isEmpty\n          ? const SizedBox.shrink()\n          : Text(\n              context.txf('Enviado: {valor}', {'valor': enviado}),\n            ),\n    ),\n  ],\n)"
           },
           {
             "id": "sg-input-date-time-fusos",
             "title": "Fusos horários",
             "file": "apps/seedgrid_showcase/lib/pages/sg_input_date_time_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgInputDateTime(\n      id: 'fuso-utc',\n      labelText: 'UTC',\n      timeZone: 'UTC',\n      value: _fuso,\n      // Campo incompleto (null) nao mexe nos outros: so um instante valido atualiza.\n      onChange: (value, local) {\n        if (value != null) setState(() => _fuso = value);\n      },\n    ),\n    const SizedBox(height: 12),\n    SgInputDateTime(\n      id: 'fuso-sp',\n      labelText: '-03:00',\n      timeZone: '-03:00',\n      value: _fuso,\n      // Campo incompleto (null) nao mexe nos outros: so um instante valido atualiza.\n      onChange: (value, local) {\n        if (value != null) setState(() => _fuso = value);\n      },\n    ),\n    const SizedBox(height: 12),\n    SgInputDateTime(\n      id: 'fuso-in',\n      labelText: '+05:30',\n      timeZone: '+05:30',\n      value: _fuso,\n      // Campo incompleto (null) nao mexe nos outros: so um instante valido atualiza.\n      onChange: (value, local) {\n        if (value != null) setState(() => _fuso = value);\n      },\n    ),\n    const SizedBox(height: 8),\n    Text('Valor atual: $_fuso'),\n  ],\n)"
+            "code": "ValueListenableBuilder<String>(\n  valueListenable: _fuso,\n  builder: (context, fuso, _) => Column(\n    crossAxisAlignment: CrossAxisAlignment.start,\n    children: [\n      SgInputDateTime(\n        id: 'demo-zone-utc',\n        labelText: 'UTC',\n        timeZone: 'UTC',\n        value: fuso,\n        // Campo incompleto (null) não mexe nos outros: só um instante válido atualiza.\n        onChange: (value, local) {\n          if (value != null) _fuso.value = value;\n        },\n      ),\n      const SizedBox(height: 12),\n      SgInputDateTime(\n        id: 'demo-zone-sp',\n        labelText: '-03:00',\n        timeZone: '-03:00',\n        value: fuso,\n        onChange: (value, local) {\n          if (value != null) _fuso.value = value;\n        },\n      ),\n      const SizedBox(height: 12),\n      SgInputDateTime(\n        id: 'demo-zone-in',\n        labelText: '+05:30',\n        timeZone: '+05:30',\n        value: fuso,\n        onChange: (value, local) {\n          if (value != null) _fuso.value = value;\n        },\n      ),\n      const SizedBox(height: 8),\n      Text(context.txf('Valor: {valor}', {'valor': fuso})),\n    ],\n  ),\n)"
           },
           {
             "id": "sg-input-date-time-idioma",
             "title": "Idioma e textos (i18n)",
             "file": "apps/seedgrid_showcase/lib/pages/sg_input_date_time_page.dart",
             "kind": "dart",
-            "code": "const SgComponentsI18nProvider(\n  locale: 'fr',\n  messages: {\n    'components.inputs.datetime.min':\n        'Escolha uma data a partir de {min}.',\n  },\n  child: SgInputDateTime(\n    id: 'idioma',\n    labelText: 'Agendamento',\n    timeZone: 'UTC',\n    minDate: '2026-11-01T08:00:00Z',\n    defaultValue: '2026-10-01T10:00:00Z',\n    required: true,\n  ),\n)"
+            "code": "SgComponentsI18nProvider(\n  locale: 'fr',\n  messages: {\n    'components.inputs.datetime.min': context.tx(\n      'Escolha uma data a partir de {min}.',\n    ),\n  },\n  child: SgInputDateTime(\n    id: 'demo-i18n',\n    labelText: context.tx('Agendamento'),\n    timeZone: 'UTC',\n    minDate: '2026-11-01T08:00:00Z',\n    defaultValue: '2026-10-01T10:00:00Z',\n    required: true,\n  ),\n)"
           },
           {
             "id": "sg-input-date-time-limites",
             "title": "Limites e passo de minutos",
             "file": "apps/seedgrid_showcase/lib/pages/sg_input_date_time_page.dart",
             "kind": "dart",
-            "code": "const SgInputDateTime(\n  id: 'limites',\n  labelText: 'Agendamento',\n  timeZone: 'UTC',\n  minDate: '2026-11-01T08:00:00Z',\n  maxDate: '2026-11-30T18:00:00Z',\n  minuteStep: 15,\n  required: true,\n)"
+            "code": "SgInputDateTime(\n  id: 'demo-limits',\n  labelText: context.tx('Agendamento'),\n  timeZone: 'UTC',\n  minDate: '2026-11-01T08:00:00Z',\n  maxDate: '2026-11-30T18:00:00Z',\n  minuteStep: 15,\n  required: true,\n)"
+          },
+          {
+            "id": "sg-input-date-time-rotulo",
+            "title": "Posição do rótulo",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_input_date_time_page.dart",
+            "kind": "dart",
+            "code": "Wrap(\n  spacing: 16,\n  runSpacing: 12,\n  children: [\n    SizedBox(\n      width: 280,\n      child: SgInputDateTime(\n        id: 'sg-input-date-time-label-float',\n        labelText: context.tx('Flutuante'),\n        labelPosition: SgInputDateTimeLabelPosition.float,\n      ),\n    ),\n    SizedBox(\n      width: 280,\n      child: SgInputDateTime(\n        id: 'sg-input-date-time-label-top',\n        labelText: context.tx('Acima'),\n        labelPosition: SgInputDateTimeLabelPosition.top,\n      ),\n    ),\n    SizedBox(\n      width: 360,\n      child: SgInputDateTime(\n        id: 'sg-input-date-time-label-left',\n        labelText: context.tx('Esquerda'),\n        labelPosition: SgInputDateTimeLabelPosition.left,\n        labelWidth: 140,\n        labelAlign: SgInputDateTimeLabelAlign.end,\n      ),\n    ),\n  ],\n)"
           },
           {
             "id": "sg-input-date-time-segundos",
             "title": "Com segundos",
             "file": "apps/seedgrid_showcase/lib/pages/sg_input_date_time_page.dart",
             "kind": "dart",
-            "code": "const SgInputDateTime(\n  id: 'segundos',\n  labelText: 'Evento',\n  timeZone: 'UTC',\n  defaultValue: '2026-11-03T17:30:45Z',\n  showSeconds: true,\n)"
+            "code": "SgInputDateTime(\n  id: 'demo-seconds',\n  labelText: context.tx('Evento'),\n  timeZone: 'UTC',\n  defaultValue: '2026-11-03T17:30:45Z',\n  showSeconds: true,\n)"
           }
         ],
         "parity": {
@@ -11018,42 +11039,49 @@
             "title": "Básico",
             "file": "apps/seedgrid_showcase/lib/pages/sg_input_otp_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgInputOTP(\n      id: 'basico',\n      label: context.tx('Código de verificação'),\n      hintText: 'Enviamos 6 dígitos por SMS.',\n      onComplete: (v) => setState(() => _concluido = v),\n    ),\n    if (_concluido.isNotEmpty) Text('Código completo: $_concluido'),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgInputOTP(\n      id: 'otp-basic',\n      label: context.tx('Código OTP'),\n      hintText: context.tx('Digite os 6 dígitos'),\n      onChange: (value) => _mascara1.value = value,\n      onRawChange: (value) => _bruto1.value = value,\n    ),\n    const SizedBox(height: 12),\n    ListenableBuilder(\n      listenable: Listenable.merge([_mascara1, _bruto1]),\n      builder: (context, _) => Column(\n        crossAxisAlignment: CrossAxisAlignment.start,\n        children: [\n          Text(\n            'masked: ${_mascara1.value.isEmpty ? context.tx('(vazio)') : _mascara1.value}',\n          ),\n          Text(\n            'raw: ${_bruto1.value.isEmpty ? context.tx('(vazio)') : _bruto1.value}',\n          ),\n        ],\n      ),\n    ),\n  ],\n)"
+          },
+          {
+            "id": "sg-input-otp-colagem",
+            "title": "Colagem + onComplete",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_input_otp_page.dart",
+            "kind": "dart",
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgInputOTP(\n      id: 'otp-paste',\n      label: context.tx('Cole o código'),\n      hintText: context.tx('Teste colando: \"AB1-CD2-34\"'),\n      mask: '###-###-99',\n      onChange: (value) => _mascara3.value = value,\n      onRawChange: (value) => _bruto3.value = value,\n      onComplete: (value) => _completo.value = value,\n    ),\n    const SizedBox(height: 12),\n    ListenableBuilder(\n      listenable: Listenable.merge([_mascara3, _bruto3, _completo]),\n      builder: (context, _) => Column(\n        crossAxisAlignment: CrossAxisAlignment.start,\n        children: [\n          Text(\n            'masked: ${_mascara3.value.isEmpty ? context.tx('(vazio)') : _mascara3.value}',\n          ),\n          Text(\n            'raw: ${_bruto3.value.isEmpty ? context.tx('(vazio)') : _bruto3.value}',\n          ),\n          Text(\n            'onComplete: ${_completo.value.isEmpty ? context.tx('(aguardando)') : _completo.value}',\n          ),\n        ],\n      ),\n    ),\n  ],\n)"
           },
           {
             "id": "sg-input-otp-controller",
-            "title": "Controller (ref)",
+            "title": "Acesso por ref ou controller",
             "file": "apps/seedgrid_showcase/lib/pages/sg_input_otp_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgInputOTP(\n      id: 'ctrl',\n      mask: '99-99',\n      defaultValue: '1234',\n      controller: _controller,\n    ),\n    const SizedBox(height: 12),\n    Wrap(\n      spacing: 8,\n      runSpacing: 8,\n      children: [\n        SgButton(\n          label: Text(context.tx('Focar o 3º')),\n          size: SgSize.sm,\n          onClick: () => _controller.focus(2),\n        ),\n        SgButton(\n          label: Text(context.tx('Limpar')),\n          size: SgSize.sm,\n          severity: SgSeverity.secondary,\n          onClick: _controller.clear,\n        ),\n      ],\n    ),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgInputOTP(\n      id: 'otp-ref',\n      label: context.tx('OTP por controle'),\n      hintText: context.tx('Use os botões abaixo'),\n      mask: '###-###-99',\n      controller: _controller,\n    ),\n    const SizedBox(height: 12),\n    Wrap(\n      spacing: 8,\n      runSpacing: 8,\n      children: [\n        SgButton(\n          label: Text(context.tx('Focar')),\n          size: SgSize.sm,\n          appearance: SgAppearance.outline,\n          onClick: _controller.focus,\n        ),\n        SgButton(\n          label: Text(context.tx('Limpar')),\n          size: SgSize.sm,\n          appearance: SgAppearance.outline,\n          onClick: _controller.clear,\n        ),\n        SgButton(\n          label: Text(context.tx('Ler conteúdo')),\n          size: SgSize.sm,\n          appearance: SgAppearance.outline,\n          onClick: () {\n            final masked = _controller.getMaskedValue();\n            final raw = _controller.getRawValue();\n            _leitura.value =\n                'masked=\"${masked.isEmpty ? context.tx('(vazio)') : masked}\" | raw=\"${raw.isEmpty ? context.tx('(vazio)') : raw}\"';\n          },\n        ),\n      ],\n    ),\n    const SizedBox(height: 12),\n    ValueListenableBuilder<String?>(\n      valueListenable: _leitura,\n      builder: (context, leitura, _) => Text(\n        '${context.tx('saída')}: ${leitura ?? context.tx('Clique em \"Ler conteúdo\".')}',\n      ),\n    ),\n  ],\n)"
           },
           {
             "id": "sg-input-otp-estados",
             "title": "Estados",
             "file": "apps/seedgrid_showcase/lib/pages/sg_input_otp_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgInputOTP(\n      id: 'erro',\n      label: context.tx('Com erro'),\n      mask: '9999',\n      defaultValue: '1234',\n      error: 'Código expirado.',\n    ),\n    SizedBox(height: 16),\n    SgInputOTP(\n      id: 'desab',\n      label: context.tx('Desabilitado'),\n      mask: '9999',\n      defaultValue: '12',\n      enabled: false,\n    ),\n    SizedBox(height: 16),\n    SgInputOTP(\n      id: 'leitura',\n      label: context.tx('Somente leitura'),\n      mask: '9999',\n      defaultValue: '9876',\n      readOnly: true,\n    ),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgInputOTP(\n      id: 'otp-error',\n      label: context.tx('Com erro'),\n      mask: '9999',\n      defaultValue: '1234',\n      error: context.tx('Código expirado.'),\n    ),\n    const SizedBox(height: 16),\n    SgInputOTP(\n      id: 'otp-disabled',\n      label: context.tx('Desabilitado'),\n      mask: '9999',\n      defaultValue: '12',\n      enabled: false,\n    ),\n    const SizedBox(height: 16),\n    SgInputOTP(\n      id: 'otp-readonly',\n      label: context.tx('Somente leitura'),\n      mask: '9999',\n      defaultValue: '9876',\n      readOnly: true,\n    ),\n  ],\n)"
           },
           {
             "id": "sg-input-otp-formulario",
             "title": "Dentro de um formulário",
             "file": "apps/seedgrid_showcase/lib/pages/sg_input_otp_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgInputOTP(\n      id: 'form',\n      name: 'codigo',\n      control: _form,\n      label: context.tx('Código'),\n      mask: '9999',\n      required: true,\n      requiredMessage: 'Informe o código.',\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Confirmar')),\n      onClick: () => _form.handleSubmit(\n        (values) =>\n            setState(() => _enviado = '${values['codigo']}'),\n      ),\n    ),\n    if (_enviado.isNotEmpty) Text('Confirmado: $_enviado'),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgInputOTP(\n      id: 'otp-form',\n      name: 'codigo',\n      control: _form,\n      label: context.tx('Código'),\n      mask: '9999',\n      required: true,\n      requiredMessage: context.tx('Informe o código.'),\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Confirmar')),\n      onClick: () => _form.handleSubmit(\n        (values) => _confirmado.value = '${values['codigo']}',\n      ),\n    ),\n    ValueListenableBuilder<String>(\n      valueListenable: _confirmado,\n      builder: (context, confirmado, _) => confirmado.isEmpty\n          ? const SizedBox.shrink()\n          : Text(\n              context.txf('Confirmado: {valor}', {\n                'valor': confirmado,\n              }),\n            ),\n    ),\n  ],\n)"
           },
           {
             "id": "sg-input-otp-mascara",
-            "title": "Máscara com separador",
+            "title": "Máscara customizada",
             "file": "apps/seedgrid_showcase/lib/pages/sg_input_otp_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgInputOTP(\n      id: 'sep',\n      label: context.tx('Dígitos'),\n      mask: '999-999',\n    ),\n    SizedBox(height: 16),\n    SgInputOTP(\n      id: 'alfa',\n      label: context.tx('Alfanumérico'),\n      mask: '##-##-##',\n    ),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgInputOTP(\n      id: 'otp-mask',\n      label: context.tx('Token de acesso'),\n      hintText: context.tx('Formato: ###-###-99'),\n      mask: '###-###-99',\n      onChange: (value) => _mascara2.value = value,\n      onRawChange: (value) => _bruto2.value = value,\n    ),\n    const SizedBox(height: 12),\n    ListenableBuilder(\n      listenable: Listenable.merge([_mascara2, _bruto2]),\n      builder: (context, _) => Column(\n        crossAxisAlignment: CrossAxisAlignment.start,\n        children: [\n          Text(\n            'masked: ${_mascara2.value.isEmpty ? context.tx('(vazio)') : _mascara2.value}',\n          ),\n          Text(\n            'raw: ${_bruto2.value.isEmpty ? context.tx('(vazio)') : _bruto2.value}',\n          ),\n        ],\n      ),\n    ),\n  ],\n)"
           },
           {
             "id": "sg-input-otp-validacao",
             "title": "Validação",
             "file": "apps/seedgrid_showcase/lib/pages/sg_input_otp_page.dart",
             "kind": "dart",
-            "code": "SgInputOTP(\n  id: 'validacao',\n  label: context.tx('Código de convite'),\n  mask: '99-99',\n  required: true,\n  requiredMessage: 'Informe o código.',\n  validation: (raw, masked) =>\n      raw.length < 4 ? 'O código tem 4 dígitos.' : null,\n)"
+            "code": "SgInputOTP(\n  id: 'otp-validation',\n  label: context.tx('Código de convite'),\n  mask: '99-99',\n  required: true,\n  requiredMessage: context.tx('Informe o código.'),\n  validation: (raw, masked) => raw.length < 4\n      ? context.tx('O código tem 4 dígitos.')\n      : null,\n)"
           }
         ],
         "parity": {

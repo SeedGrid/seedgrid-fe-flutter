@@ -16,11 +16,14 @@ class SgInputBirthDatePage extends StatefulWidget {
 
 class _SgInputBirthDatePageState extends State<SgInputBirthDatePage> {
   final SgFormController _form = SgFormController();
-  String _enviado = '';
+  final ValueNotifier<String?> _validacao = ValueNotifier<String?>(null);
+  final ValueNotifier<String> _enviado = ValueNotifier<String>('');
 
   @override
   void dispose() {
     _form.dispose();
+    _validacao.dispose();
+    _enviado.dispose();
     super.dispose();
   }
 
@@ -28,47 +31,103 @@ class _SgInputBirthDatePageState extends State<SgInputBirthDatePage> {
   Widget build(BuildContext context) {
     final examples = <ShowcaseExample>[
       ShowcaseExample(
-        title: 'Maior de idade',
+        title: 'Básico',
         description: 'minAge: 18 limita a data máxima e valida a idade.',
         preview:
-            // #region sg-input-birth-date-maior
-            const SgInputBirthDate(
-              id: 'nascimento',
-              labelText: 'Data de nascimento',
-              minAge: 18,
+            // #region sg-input-birth-date-basico
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SgInputBirthDate(
+                  id: 'demo-basic',
+                  labelText: context.tx('Data de nascimento'),
+                  minAge: 18,
+                  onValidation: (msg) => _validacao.value = msg,
+                ),
+                const SizedBox(height: 8),
+                ValueListenableBuilder<String?>(
+                  valueListenable: _validacao,
+                  builder: (context, msg, _) =>
+                      Text('onValidation: ${msg ?? context.tx('válido')}'),
+                ),
+              ],
             ),
         // #endregion
-        code: SgInputBirthDatePageSnippets.sgInputBirthDateMaior,
-      ),
-      ShowcaseExample(
-        title: 'Faixa de idade',
-        preview:
-            // #region sg-input-birth-date-faixa
-            const SgInputBirthDate(
-              id: 'nascimento-faixa',
-              labelText: 'Entre 18 e 65 anos',
-              minAge: 18,
-              maxAge: 65,
-            ),
-        // #endregion
-        code: SgInputBirthDatePageSnippets.sgInputBirthDateFaixa,
+        code: SgInputBirthDatePageSnippets.sgInputBirthDateBasico,
       ),
       ShowcaseExample(
         title: 'Obrigatório',
+        description: 'Valida campo vazio.',
         preview:
             // #region sg-input-birth-date-obrigatorio
-            const SgInputBirthDate(
-              id: 'nascimento-obrigatorio',
-              labelText: 'Nascimento',
-              minAge: 0,
+            SgInputBirthDate(
+              id: 'demo-required',
+              labelText: context.tx('Data de nascimento'),
+              minAge: 18,
               required: true,
-              requiredMessage: 'Informe quando nasceu',
+              requiredMessage: context.tx('Informe a data de nascimento.'),
             ),
         // #endregion
         code: SgInputBirthDatePageSnippets.sgInputBirthDateObrigatorio,
       ),
       ShowcaseExample(
+        title: 'Faixa customizada',
+        description: 'minAge e maxAge configuráveis.',
+        preview:
+            // #region sg-input-birth-date-faixa
+            SgInputBirthDate(
+              id: 'demo-range',
+              labelText: context.tx('Data de nascimento'),
+              minAge: 12,
+              maxAge: 80,
+            ),
+        // #endregion
+        code: SgInputBirthDatePageSnippets.sgInputBirthDateFaixa,
+      ),
+      ShowcaseExample(
+        title: 'Posição do rótulo',
+        description:
+            'Compare os modos de rótulo: flutuante, acima e à esquerda.',
+        preview:
+            // #region sg-input-birth-date-rotulo
+            Wrap(
+              spacing: 16,
+              runSpacing: 12,
+              children: [
+                SizedBox(
+                  width: 280,
+                  child: SgInputBirthDate(
+                    id: 'sg-input-birth-date-label-float',
+                    labelText: context.tx('Flutuante'),
+                    labelPosition: SgInputBirthDateLabelPosition.float,
+                  ),
+                ),
+                SizedBox(
+                  width: 280,
+                  child: SgInputBirthDate(
+                    id: 'sg-input-birth-date-label-top',
+                    labelText: context.tx('Acima'),
+                    labelPosition: SgInputBirthDateLabelPosition.top,
+                  ),
+                ),
+                SizedBox(
+                  width: 360,
+                  child: SgInputBirthDate(
+                    id: 'sg-input-birth-date-label-left',
+                    labelText: context.tx('Esquerda'),
+                    labelPosition: SgInputBirthDateLabelPosition.left,
+                    labelWidth: 140,
+                    labelAlign: SgInputBirthDateLabelAlign.end,
+                  ),
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgInputBirthDatePageSnippets.sgInputBirthDateRotulo,
+      ),
+      ShowcaseExample(
         title: 'Dentro de um formulário',
+        description: 'O formulário guarda a data de nascimento.',
         preview:
             // #region sg-input-birth-date-formulario
             Column(
@@ -78,19 +137,26 @@ class _SgInputBirthDatePageState extends State<SgInputBirthDatePage> {
                   id: 'campo',
                   name: 'campo',
                   control: _form,
-                  labelText: 'Campo',
+                  labelText: context.tx('Data de nascimento'),
                   minAge: 18,
                   required: true,
-                  requiredMessage: 'Preencha o campo',
+                  requiredMessage: context.tx('Informe a data de nascimento.'),
                 ),
                 const SizedBox(height: 12),
                 SgButton(
                   label: Text(context.tx('Enviar')),
                   onClick: () => _form.handleSubmit(
-                    (values) => setState(() => _enviado = '${values['campo']}'),
+                    (values) => _enviado.value = '${values['campo']}',
                   ),
                 ),
-                if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),
+                ValueListenableBuilder<String>(
+                  valueListenable: _enviado,
+                  builder: (context, enviado, _) => enviado.isEmpty
+                      ? const SizedBox.shrink()
+                      : Text(
+                          context.txf('Enviado: {valor}', {'valor': enviado}),
+                        ),
+                ),
               ],
             ),
         // #endregion

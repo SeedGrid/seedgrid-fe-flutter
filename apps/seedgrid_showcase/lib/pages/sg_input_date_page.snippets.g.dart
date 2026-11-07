@@ -5,7 +5,23 @@
 abstract final class SgInputDatePageSnippets {
   /// Region `sg-input-date-basico`.
   static const String sgInputDateBasico = r'''
-const SgInputDate(id: 'data', labelText: 'Data')
+Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    SgInputDate(
+      id: 'demo-basic',
+      labelText: context.tx('Data'),
+      hintText: context.tx('Selecione uma data'),
+      onChange: (value) => _valor.value = value,
+    ),
+    const SizedBox(height: 8),
+    ValueListenableBuilder<String>(
+      valueListenable: _valor,
+      builder: (context, valor, _) =>
+          Text(context.txf('Valor: {valor}', {'valor': valor})),
+    ),
+  ],
+)
 ''';
 
   /// Region `sg-input-date-formulario`.
@@ -17,40 +33,82 @@ Column(
       id: 'campo',
       name: 'campo',
       control: _form,
-      labelText: 'Campo',
+      labelText: context.tx('Data'),
       required: true,
-      requiredMessage: 'Preencha o campo',
+      requiredMessage: context.tx('Escolha uma data'),
     ),
     const SizedBox(height: 12),
     SgButton(
       label: Text(context.tx('Enviar')),
       onClick: () => _form.handleSubmit(
-        (values) => setState(() => _enviado = '${values['campo']}'),
+        (values) => _enviado.value = '${values['campo']}',
       ),
     ),
-    if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),
+    ValueListenableBuilder<String>(
+      valueListenable: _enviado,
+      builder: (context, enviado, _) => enviado.isEmpty
+          ? const SizedBox.shrink()
+          : Text(
+              context.txf('Enviado: {valor}', {'valor': enviado}),
+            ),
+    ),
   ],
 )
 ''';
 
   /// Region `sg-input-date-limites`.
   static const String sgInputDateLimites = r'''
-const SgInputDate(
-  id: 'data-limites',
-  labelText: 'Dentro de 2026',
-  minDate: '2026-01-01',
-  maxDate: '2026-12-31',
-  initialValue: '2026-06-15',
+SgInputDate(
+  id: 'demo-range',
+  labelText: context.tx('Período'),
+  minDate: '2020-01-01',
+  maxDate: '2030-12-31',
 )
 ''';
 
   /// Region `sg-input-date-obrigatorio`.
   static const String sgInputDateObrigatorio = r'''
-const SgInputDate(
-  id: 'data-obrigatoria',
-  labelText: 'Data da consulta',
+SgInputDate(
+  id: 'demo-required',
+  labelText: context.tx('Data da consulta'),
   required: true,
-  requiredMessage: 'Escolha uma data',
+  requiredMessage: context.tx('Escolha uma data'),
+)
+''';
+
+  /// Region `sg-input-date-rotulo`.
+  static const String sgInputDateRotulo = r'''
+Wrap(
+  spacing: 16,
+  runSpacing: 12,
+  children: [
+    SizedBox(
+      width: 280,
+      child: SgInputDate(
+        id: 'sg-input-date-label-float',
+        labelText: context.tx('Flutuante'),
+        labelPosition: SgInputDateLabelPosition.float,
+      ),
+    ),
+    SizedBox(
+      width: 280,
+      child: SgInputDate(
+        id: 'sg-input-date-label-top',
+        labelText: context.tx('Acima'),
+        labelPosition: SgInputDateLabelPosition.top,
+      ),
+    ),
+    SizedBox(
+      width: 360,
+      child: SgInputDate(
+        id: 'sg-input-date-label-left',
+        labelText: context.tx('Esquerda'),
+        labelPosition: SgInputDateLabelPosition.left,
+        labelWidth: 140,
+        labelAlign: SgInputDateLabelAlign.end,
+      ),
+    ),
+  ],
 )
 ''';
 }
