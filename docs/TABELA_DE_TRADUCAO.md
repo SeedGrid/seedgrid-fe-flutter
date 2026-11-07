@@ -36,8 +36,8 @@ e cada uma aponta o arquivo que a comprova.
 | `useForm({ defaultValues })` | `SgFormController(defaultValues: {...})` | ADR 49; `form/sg_form.dart` (cabeçalho) |
 | `control={control}` e `name="x"` no campo | `control: form`, `name: 'x'` | ADR 49 item 3; `form/sg_form.dart` |
 | `register={register}` | não existe (todo campo é controlado); use `control` | ADR 49 item 4 |
-| `rules={{ required: 'msg', maxLength: {value: 10, message: 'm'} }}` | `rules: SgRules(required: 'msg', maxLength: SgRuleValue(10, 'm'))` | ADR 49 item 2; `form/sg_rules.dart` |
-| `required` no componente | `required: true` (+ `requiredMessage`); vira a regra com mensagem i18n | ADR 49 item 5; `form/sg_rules.dart` (`mergeRequiredRule`) |
+| `rules={{ required: 'msg', maxLength: {value: 10, message: 'm'} }}` | props diretas: `required: true, requiredMessage: 'msg', maxLength: 10, maxLengthMessage: 'm'` (ou `validation:`) | ADR 49 item 2; `form/sg_field_error.dart` |
+| `required` no componente | `required: true` (+ `requiredMessage`); vira a regra de obrigatório com mensagem i18n (nos campos que validam o formulário) | ADR 49 item 5; `form/sg_field_error.dart` (`requiredMessageFor`) |
 | `watch("x")` | `form.watch('x')` (só lê); para redesenhar, `ListenableBuilder(listenable: form, ...)` | `form/sg_form.dart` (`watch`) |
 | `watch()` / `getValues()` | `form.getValues()` (mapa imutável) | `form/sg_form.dart` (`getValues`) |
 | `setValue`, `reset`, `trigger`, `setError`, `clearErrors` | mesmos nomes em `SgFormController`; `setValue` e `trigger` devolvem `Future` | `form/sg_form.dart` |

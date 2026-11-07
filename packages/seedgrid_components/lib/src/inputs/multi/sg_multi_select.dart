@@ -10,7 +10,7 @@ import 'package:flutter/gestures.dart' show kTouchSlop;
 import 'package:flutter/material.dart';
 
 import '../../form/sg_form.dart';
-import '../../form/sg_rules.dart';
+import '../../form/sg_field_error.dart';
 import '../../generated/enums.g.dart';
 import '../../generated/sg_multi_select.g.dart';
 import '../../i18n/i18n.dart';
@@ -68,7 +68,6 @@ class SgMultiSelect extends StatefulWidget implements SgMultiSelectProps {
     this.prefixText,
     this.required,
     this.requiredMessage,
-    this.rules,
     this.suffixText,
     this.textInputType,
     this.validateOnBlur,
@@ -167,8 +166,6 @@ class SgMultiSelect extends StatefulWidget implements SgMultiSelectProps {
   @override
   final String? requiredMessage;
   @override
-  final SgRules? rules;
-  @override
   final String? suffixText;
   @override
   final SgMultiSelectTextInputType? textInputType;
@@ -202,7 +199,7 @@ class _SgMultiSelectState extends State<SgMultiSelect>
   @override
   SgFormController? get bindingControl => widget.control;
   @override
-  SgRules? get bindingRules => widget.rules;
+  String? get bindingRequired => null; // `required` e so visual, igual ao React
 
   @override
   void initState() {

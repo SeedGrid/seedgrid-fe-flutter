@@ -215,6 +215,33 @@ Column(
 )
 ''';
 
+  /// Region `sg-datatable-enabled`.
+  static const String sgDatatableEnabled = r'''
+SgDatatable(
+  id: 'datatable-enabled',
+  title: context.tx('Pessoas'),
+  value: [
+    {'id': 1, 'name': 'Ana'},
+    {'id': 2, 'name': 'Bruno'},
+    {'id': 3, 'name': 'Carla'},
+  ],
+  columns: const [
+    SgDatatableColumn(field: 'id', header: 'ID', sortable: true),
+    SgDatatableColumn(
+      field: 'name',
+      header: 'Nome',
+      sortable: true,
+      filter: true,
+    ),
+  ],
+  dataKey: 'id',
+  selectionMode: SgDatatableSelectionMode.single,
+  showGlobalFilter: true,
+  showColumnFilters: true,
+  enabled: false,
+)
+''';
+
   /// Region `sg-datatable-estados`.
   static const String sgDatatableEstados = r'''
 Column(
@@ -279,7 +306,8 @@ SizedBox(
 const SgComponentsI18nProvider(
   locale: 'fr',
   messages: {
-    'components.datatable.empty': 'Texto do dicionário (não aparece)',
+    'components.datatable.empty':
+        'Texto do dicionário (não aparece)',
   },
   child: SgDatatable(
     id: 'datatable-idioma',
@@ -292,7 +320,11 @@ const SgComponentsI18nProvider(
         filter: true,
         filterPlaceholder: 'Digite o código',
       ),
-      SgDatatableColumn(field: 'name', header: 'Nome', filter: true),
+      SgDatatableColumn(
+        field: 'name',
+        header: 'Nome',
+        filter: true,
+      ),
     ],
     dataKey: 'code',
     showGlobalFilter: true,

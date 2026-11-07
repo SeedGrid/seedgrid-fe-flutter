@@ -401,9 +401,9 @@ void main() {
     await t.pumpWidget(host(const SgInputTextArea(id: 'a', enabled: false)));
     expect(t.widget<TextField>(field('a')).enabled, isFalse);
     await fresh(
-        t,
-        host(const SgInputTextArea(id: 'a', initialValue: 'x', readOnly: true)),
-      );
+      t,
+      host(const SgInputTextArea(id: 'a', initialValue: 'x', readOnly: true)),
+    );
     expect(t.widget<TextField>(field('a')).readOnly, isTrue);
   });
 
@@ -515,7 +515,8 @@ void main() {
               name: 'obs',
               control: form,
               required: true,
-              rules: const SgRules(minLength: SgRuleValue(5, 'minimo 5')),
+              minLength: 5,
+              minLengthMessage: 'minimo 5',
             ),
           ),
         );

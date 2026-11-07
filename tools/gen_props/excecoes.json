@@ -17,6 +17,11 @@
    "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
   },
   {
+   "componente": "SgAutocomplete",
+   "prop": "rules",
+   "motivo": "nao aplicavel: a validacao do Flutter usa as props diretas (required, requiredMessage, minLength, validation...); o React repassa `rules` do react-hook-form"
+  },
+  {
    "componente": "SgBadge",
    "prop": "className",
    "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
@@ -78,6 +83,11 @@
   },
   {
    "componente": "SgCheckboxGroup",
+   "prop": "rules",
+   "motivo": "nao aplicavel: a validacao do Flutter usa as props diretas (required, requiredMessage, minLength, validation...); o React repassa `rules` do react-hook-form"
+  },
+  {
+   "componente": "SgCheckboxGroup",
    "prop": "style",
    "motivo": "estilo: React-only (ADR 50)"
   },
@@ -115,6 +125,11 @@
    "componente": "SgCombobox",
    "prop": "register",
    "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
+  },
+  {
+   "componente": "SgCombobox",
+   "prop": "rules",
+   "motivo": "nao aplicavel: a validacao do Flutter usa as props diretas (required, requiredMessage, minLength, validation...); o React repassa `rules` do react-hook-form"
   },
   {
    "componente": "SgConfirmationDialog",
@@ -222,6 +237,11 @@
    "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
   },
   {
+   "componente": "SgFileUpload",
+   "prop": "rules",
+   "motivo": "nao aplicavel: a validacao do Flutter usa as props diretas (required, requiredMessage, minLength, validation...); o React repassa `rules` do react-hook-form"
+  },
+  {
    "componente": "SgFlipDigit",
    "prop": "className",
    "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
@@ -257,6 +277,11 @@
    "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
   },
   {
+   "componente": "SgImageUpload",
+   "prop": "rules",
+   "motivo": "nao aplicavel: a validacao do Flutter usa as props diretas (required, requiredMessage, minLength, validation...); o React repassa `rules` do react-hook-form"
+  },
+  {
    "componente": "SgInputBirthDate",
    "prop": "className",
    "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
@@ -270,6 +295,11 @@
    "componente": "SgInputBirthDate",
    "prop": "register",
    "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
+  },
+  {
+   "componente": "SgInputBirthDate",
+   "prop": "rules",
+   "motivo": "nao aplicavel: a validacao do Flutter usa as props diretas (required, requiredMessage, minLength, validation...); o React repassa `rules` do react-hook-form"
   },
   {
    "componente": "SgInputCNPJ",
@@ -287,6 +317,11 @@
    "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
   },
   {
+   "componente": "SgInputCNPJ",
+   "prop": "rules",
+   "motivo": "nao aplicavel: a validacao do Flutter usa as props diretas (required, requiredMessage, minLength, validation...); o React repassa `rules` do react-hook-form"
+  },
+  {
    "componente": "SgInputCPF",
    "prop": "className",
    "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
@@ -300,6 +335,11 @@
    "componente": "SgInputCPF",
    "prop": "register",
    "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
+  },
+  {
+   "componente": "SgInputCPF",
+   "prop": "rules",
+   "motivo": "nao aplicavel: a validacao do Flutter usa as props diretas (required, requiredMessage, minLength, validation...); o React repassa `rules` do react-hook-form"
   },
   {
    "componente": "SgInputCPFCNPJ",
@@ -317,6 +357,11 @@
    "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
   },
   {
+   "componente": "SgInputCPFCNPJ",
+   "prop": "rules",
+   "motivo": "nao aplicavel: a validacao do Flutter usa as props diretas (required, requiredMessage, minLength, validation...); o React repassa `rules` do react-hook-form"
+  },
+  {
    "componente": "SgInputCurrency",
    "prop": "className",
    "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
@@ -330,6 +375,11 @@
    "componente": "SgInputCurrency",
    "prop": "register",
    "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
+  },
+  {
+   "componente": "SgInputCurrency",
+   "prop": "rules",
+   "motivo": "nao aplicavel: a validacao do Flutter usa as props diretas (required, requiredMessage, minLength, validation...); o React repassa `rules` do react-hook-form"
   },
   {
    "componente": "SgInputDate",
@@ -347,6 +397,11 @@
    "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
   },
   {
+   "componente": "SgInputDate",
+   "prop": "rules",
+   "motivo": "nao aplicavel: a validacao do Flutter usa as props diretas (required, requiredMessage, minLength, validation...); o React repassa `rules` do react-hook-form"
+  },
+  {
    "componente": "SgInputDateTime",
    "prop": "className",
    "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
@@ -360,6 +415,11 @@
    "componente": "SgInputDateTime",
    "prop": "register",
    "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
+  },
+  {
+   "componente": "SgInputDateTime",
+   "prop": "rules",
+   "motivo": "nao aplicavel: a validacao do Flutter usa as props diretas (required, requiredMessage, minLength, validation...); o React repassa `rules` do react-hook-form"
   },
   {
    "componente": "SgInputEmail",
@@ -377,6 +437,11 @@
    "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
   },
   {
+   "componente": "SgInputEmail",
+   "prop": "rules",
+   "motivo": "nao aplicavel: a validacao do Flutter usa as props diretas (required, requiredMessage, minLength, validation...); o React repassa `rules` do react-hook-form"
+  },
+  {
    "componente": "SgInputNumber",
    "prop": "className",
    "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
@@ -390,6 +455,11 @@
    "componente": "SgInputNumber",
    "prop": "register",
    "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
+  },
+  {
+   "componente": "SgInputNumber",
+   "prop": "rules",
+   "motivo": "nao aplicavel: a validacao do Flutter usa as props diretas (required, requiredMessage, minLength, validation...); o React repassa `rules` do react-hook-form"
   },
   {
    "componente": "SgInputOTP",
@@ -402,6 +472,11 @@
    "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
   },
   {
+   "componente": "SgInputOTP",
+   "prop": "rules",
+   "motivo": "nao aplicavel: a validacao do Flutter usa as props diretas (required, requiredMessage, minLength, validation...); o React repassa `rules` do react-hook-form"
+  },
+  {
    "componente": "SgInputPassword",
    "prop": "className",
    "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
@@ -415,6 +490,11 @@
    "componente": "SgInputPassword",
    "prop": "register",
    "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
+  },
+  {
+   "componente": "SgInputPassword",
+   "prop": "rules",
+   "motivo": "nao aplicavel: a validacao do Flutter usa as props diretas (required, requiredMessage, minLength, validation...); o React repassa `rules` do react-hook-form"
   },
   {
    "componente": "SgInputPhone",
@@ -432,6 +512,11 @@
    "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
   },
   {
+   "componente": "SgInputPhone",
+   "prop": "rules",
+   "motivo": "nao aplicavel: a validacao do Flutter usa as props diretas (required, requiredMessage, minLength, validation...); o React repassa `rules` do react-hook-form"
+  },
+  {
    "componente": "SgInputPostalCode",
    "prop": "className",
    "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
@@ -445,6 +530,11 @@
    "componente": "SgInputPostalCode",
    "prop": "register",
    "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
+  },
+  {
+   "componente": "SgInputPostalCode",
+   "prop": "rules",
+   "motivo": "nao aplicavel: a validacao do Flutter usa as props diretas (required, requiredMessage, minLength, validation...); o React repassa `rules` do react-hook-form"
   },
   {
    "componente": "SgInputText",
@@ -462,6 +552,11 @@
    "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
   },
   {
+   "componente": "SgInputText",
+   "prop": "rules",
+   "motivo": "nao aplicavel: a validacao do Flutter usa as props diretas (required, requiredMessage, minLength, validation...); o React repassa `rules` do react-hook-form"
+  },
+  {
    "componente": "SgInputTextArea",
    "prop": "className",
    "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
@@ -477,6 +572,11 @@
    "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
   },
   {
+   "componente": "SgInputTextArea",
+   "prop": "rules",
+   "motivo": "nao aplicavel: a validacao do Flutter usa as props diretas (required, requiredMessage, minLength, validation...); o React repassa `rules` do react-hook-form"
+  },
+  {
    "componente": "SgInputTextSearch",
    "prop": "className",
    "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
@@ -490,6 +590,11 @@
    "componente": "SgInputTextSearch",
    "prop": "register",
    "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
+  },
+  {
+   "componente": "SgInputTextSearch",
+   "prop": "rules",
+   "motivo": "nao aplicavel: a validacao do Flutter usa as props diretas (required, requiredMessage, minLength, validation...); o React repassa `rules` do react-hook-form"
   },
   {
    "componente": "SgLinearGauge",
@@ -537,6 +642,11 @@
    "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
   },
   {
+   "componente": "SgMultiSelect",
+   "prop": "rules",
+   "motivo": "nao aplicavel: a validacao do Flutter usa as props diretas (required, requiredMessage, minLength, validation...); o React repassa `rules` do react-hook-form"
+  },
+  {
    "componente": "SgMultiSelectChips",
    "prop": "className",
    "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
@@ -550,6 +660,11 @@
    "componente": "SgMultiSelectChips",
    "prop": "register",
    "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
+  },
+  {
+   "componente": "SgMultiSelectChips",
+   "prop": "rules",
+   "motivo": "nao aplicavel: a validacao do Flutter usa as props diretas (required, requiredMessage, minLength, validation...); o React repassa `rules` do react-hook-form"
   },
   {
    "componente": "SgNeonDigit",
@@ -575,6 +690,11 @@
    "componente": "SgOrderList",
    "prop": "register",
    "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
+  },
+  {
+   "componente": "SgOrderList",
+   "prop": "rules",
+   "motivo": "nao aplicavel: a validacao do Flutter usa as props diretas (required, requiredMessage, minLength, validation...); o React repassa `rules` do react-hook-form"
   },
   {
    "componente": "SgOrderList",
@@ -607,6 +727,11 @@
    "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
   },
   {
+   "componente": "SgPeriodSelector",
+   "prop": "rules",
+   "motivo": "nao aplicavel: a validacao do Flutter usa as props diretas (required, requiredMessage, minLength, validation...); o React repassa `rules` do react-hook-form"
+  },
+  {
    "componente": "SgPickList",
    "prop": "className",
    "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
@@ -615,6 +740,11 @@
    "componente": "SgPickList",
    "prop": "register",
    "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
+  },
+  {
+   "componente": "SgPickList",
+   "prop": "rules",
+   "motivo": "nao aplicavel: a validacao do Flutter usa as props diretas (required, requiredMessage, minLength, validation...); o React repassa `rules` do react-hook-form"
   },
   {
    "componente": "SgPickList",
@@ -653,6 +783,11 @@
   },
   {
    "componente": "SgRadioGroup",
+   "prop": "rules",
+   "motivo": "nao aplicavel: a validacao do Flutter usa as props diretas (required, requiredMessage, minLength, validation...); o React repassa `rules` do react-hook-form"
+  },
+  {
+   "componente": "SgRadioGroup",
    "prop": "style",
    "motivo": "estilo: React-only (ADR 50)"
   },
@@ -665,6 +800,11 @@
    "componente": "SgRating",
    "prop": "register",
    "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
+  },
+  {
+   "componente": "SgRating",
+   "prop": "rules",
+   "motivo": "nao aplicavel: a validacao do Flutter usa as props diretas (required, requiredMessage, minLength, validation...); o React repassa `rules` do react-hook-form"
   },
   {
    "componente": "SgRating",
@@ -707,6 +847,11 @@
    "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
   },
   {
+   "componente": "SgSlider",
+   "prop": "rules",
+   "motivo": "nao aplicavel: a validacao do Flutter usa as props diretas (required, requiredMessage, minLength, validation...); o React repassa `rules` do react-hook-form"
+  },
+  {
    "componente": "SgSplitButton",
    "prop": "className",
    "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
@@ -732,6 +877,11 @@
    "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
   },
   {
+   "componente": "SgStepperInput",
+   "prop": "rules",
+   "motivo": "nao aplicavel: a validacao do Flutter usa as props diretas (required, requiredMessage, minLength, validation...); o React repassa `rules` do react-hook-form"
+  },
+  {
    "componente": "SgStringAnimator",
    "prop": "className",
    "motivo": "estilo: React-only (ADR 50); equivalentes: padding, margin, width, height, customColors"
@@ -745,6 +895,11 @@
    "componente": "SgTextEditor",
    "prop": "register",
    "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
+  },
+  {
+   "componente": "SgTextEditor",
+   "prop": "rules",
+   "motivo": "nao aplicavel: a validacao do Flutter usa as props diretas (required, requiredMessage, minLength, validation...); o React repassa `rules` do react-hook-form"
   },
   {
    "componente": "SgTextEditor",
@@ -765,6 +920,11 @@
    "componente": "SgToggleSwitch",
    "prop": "register",
    "motivo": "nao aplicavel: todo campo Flutter e controlado (ADR 49)"
+  },
+  {
+   "componente": "SgToggleSwitch",
+   "prop": "rules",
+   "motivo": "nao aplicavel: a validacao do Flutter usa as props diretas (required, requiredMessage, minLength, validation...); o React repassa `rules` do react-hook-form"
   },
   {
    "componente": "SgToolBar",
@@ -990,12 +1150,6 @@
    "prop": "renderValue",
    "motivo": "funcao",
    "ts": "((item: SgAutocompleteItem) => React.ReactNode)"
-  },
-  {
-   "componente": "SgAutocomplete",
-   "prop": "rules",
-   "motivo": "tipo-nomeado-a-portar",
-   "ts": "RegisterOptions<any>"
   },
   {
    "componente": "SgAutocomplete",
@@ -1245,12 +1399,6 @@
   },
   {
    "componente": "SgCheckboxGroup",
-   "prop": "rules",
-   "motivo": "tipo-nomeado-a-portar",
-   "ts": "RegisterOptions<any>"
-  },
-  {
-   "componente": "SgCheckboxGroup",
    "prop": "source",
    "motivo": "lista",
    "ts": "SgCheckboxGroupOption[]"
@@ -1398,12 +1546,6 @@
    "prop": "renderValue",
    "motivo": "funcao",
    "ts": "((item: SgAutocompleteItem) => React.ReactNode)"
-  },
-  {
-   "componente": "SgCombobox",
-   "prop": "rules",
-   "motivo": "tipo-nomeado-a-portar",
-   "ts": "RegisterOptions<any>"
   },
   {
    "componente": "SgCombobox",
@@ -1761,12 +1903,6 @@
   },
   {
    "componente": "SgFileUpload",
-   "prop": "rules",
-   "motivo": "tipo-nomeado-a-portar",
-   "ts": "RegisterOptions<any>"
-  },
-  {
-   "componente": "SgFileUpload",
    "prop": "thumbnailBuilder",
    "motivo": "funcao",
    "ts": "((file: SgFileValue, size: number) => React.ReactNode)"
@@ -1887,12 +2023,6 @@
   },
   {
    "componente": "SgImageUpload",
-   "prop": "rules",
-   "motivo": "tipo-nomeado-a-portar",
-   "ts": "RegisterOptions<any>"
-  },
-  {
-   "componente": "SgImageUpload",
    "prop": "value",
    "motivo": "lista",
    "ts": "SgFileValue[]"
@@ -1971,12 +2101,6 @@
   },
   {
    "componente": "SgInputBirthDate",
-   "prop": "rules",
-   "motivo": "tipo-nomeado-a-portar",
-   "ts": "RegisterOptions<any>"
-  },
-  {
-   "componente": "SgInputBirthDate",
    "prop": "validation",
    "motivo": "funcao",
    "ts": "((value: string) => string)"
@@ -2067,12 +2191,6 @@
   },
   {
    "componente": "SgInputCNPJ",
-   "prop": "rules",
-   "motivo": "tipo-nomeado-a-portar",
-   "ts": "RegisterOptions<any>"
-  },
-  {
-   "componente": "SgInputCNPJ",
    "prop": "type",
    "motivo": "tipo-nomeado-a-portar",
    "ts": "React.HTMLInputTypeAttribute"
@@ -2148,12 +2266,6 @@
    "prop": "onValidation",
    "motivo": "funcao",
    "ts": "(((message: string) => void) & ((message: string) => void))"
-  },
-  {
-   "componente": "SgInputCPF",
-   "prop": "rules",
-   "motivo": "tipo-nomeado-a-portar",
-   "ts": "RegisterOptions<any>"
   },
   {
    "componente": "SgInputCPF",
@@ -2253,12 +2365,6 @@
   },
   {
    "componente": "SgInputCPFCNPJ",
-   "prop": "rules",
-   "motivo": "tipo-nomeado-a-portar",
-   "ts": "RegisterOptions<any>"
-  },
-  {
-   "componente": "SgInputCPFCNPJ",
    "prop": "type",
    "motivo": "tipo-nomeado-a-portar",
    "ts": "React.HTMLInputTypeAttribute"
@@ -2328,12 +2434,6 @@
    "prop": "onValidation",
    "motivo": "funcao",
    "ts": "((message: string) => void)"
-  },
-  {
-   "componente": "SgInputCurrency",
-   "prop": "rules",
-   "motivo": "tipo-nomeado-a-portar",
-   "ts": "RegisterOptions<any>"
   },
   {
    "componente": "SgInputCurrency",
@@ -2424,12 +2524,6 @@
    "prop": "onValidation",
    "motivo": "funcao",
    "ts": "((message: string) => void)"
-  },
-  {
-   "componente": "SgInputDate",
-   "prop": "rules",
-   "motivo": "tipo-nomeado-a-portar",
-   "ts": "RegisterOptions<any>"
   },
   {
    "componente": "SgInputDate",
@@ -2523,12 +2617,6 @@
   },
   {
    "componente": "SgInputDateTime",
-   "prop": "rules",
-   "motivo": "tipo-nomeado-a-portar",
-   "ts": "RegisterOptions<any>"
-  },
-  {
-   "componente": "SgInputDateTime",
    "prop": "validation",
    "motivo": "funcao",
    "ts": "((value: string) => string)"
@@ -2613,12 +2701,6 @@
   },
   {
    "componente": "SgInputEmail",
-   "prop": "rules",
-   "motivo": "tipo-nomeado-a-portar",
-   "ts": "RegisterOptions<any>"
-  },
-  {
-   "componente": "SgInputEmail",
    "prop": "validation",
    "motivo": "funcao",
    "ts": "(((value: string) => string) & ((value: string) => string))"
@@ -2691,12 +2773,6 @@
   },
   {
    "componente": "SgInputNumber",
-   "prop": "rules",
-   "motivo": "tipo-nomeado-a-portar",
-   "ts": "RegisterOptions<any>"
-  },
-  {
-   "componente": "SgInputNumber",
    "prop": "type",
    "motivo": "tipo-nomeado-a-portar",
    "ts": "React.HTMLInputTypeAttribute"
@@ -2766,12 +2842,6 @@
    "prop": "onValidation",
    "motivo": "funcao",
    "ts": "((message: string) => void)"
-  },
-  {
-   "componente": "SgInputOTP",
-   "prop": "rules",
-   "motivo": "tipo-nomeado-a-portar",
-   "ts": "RegisterOptions<any>"
   },
   {
    "componente": "SgInputOTP",
@@ -2853,12 +2923,6 @@
   },
   {
    "componente": "SgInputPassword",
-   "prop": "rules",
-   "motivo": "tipo-nomeado-a-portar",
-   "ts": "RegisterOptions<any>"
-  },
-  {
-   "componente": "SgInputPassword",
    "prop": "validation",
    "motivo": "funcao",
    "ts": "((value: string) => string)"
@@ -2928,12 +2992,6 @@
    "prop": "onValidation",
    "motivo": "funcao",
    "ts": "(((message: string) => void) & ((message: string) => void))"
-  },
-  {
-   "componente": "SgInputPhone",
-   "prop": "rules",
-   "motivo": "tipo-nomeado-a-portar",
-   "ts": "RegisterOptions<any>"
   },
   {
    "componente": "SgInputPhone",
@@ -3027,12 +3085,6 @@
   },
   {
    "componente": "SgInputPostalCode",
-   "prop": "rules",
-   "motivo": "tipo-nomeado-a-portar",
-   "ts": "RegisterOptions<any>"
-  },
-  {
-   "componente": "SgInputPostalCode",
    "prop": "type",
    "motivo": "tipo-nomeado-a-portar",
    "ts": "React.HTMLInputTypeAttribute"
@@ -3117,12 +3169,6 @@
   },
   {
    "componente": "SgInputText",
-   "prop": "rules",
-   "motivo": "tipo-nomeado-a-portar",
-   "ts": "RegisterOptions<any>"
-  },
-  {
-   "componente": "SgInputText",
    "prop": "type",
    "motivo": "tipo-nomeado-a-portar",
    "ts": "React.HTMLInputTypeAttribute"
@@ -3192,12 +3238,6 @@
    "prop": "onValidation",
    "motivo": "funcao",
    "ts": "((message: string) => void)"
-  },
-  {
-   "componente": "SgInputTextArea",
-   "prop": "rules",
-   "motivo": "tipo-nomeado-a-portar",
-   "ts": "RegisterOptions<any>"
   },
   {
    "componente": "SgInputTextArea",
@@ -3282,12 +3322,6 @@
    "prop": "onValidation",
    "motivo": "funcao",
    "ts": "((message: string) => void)"
-  },
-  {
-   "componente": "SgInputTextSearch",
-   "prop": "rules",
-   "motivo": "tipo-nomeado-a-portar",
-   "ts": "RegisterOptions<any>"
   },
   {
    "componente": "SgInputTextSearch",
@@ -3507,12 +3541,6 @@
   },
   {
    "componente": "SgMultiSelect",
-   "prop": "rules",
-   "motivo": "tipo-nomeado-a-portar",
-   "ts": "RegisterOptions<any>"
-  },
-  {
-   "componente": "SgMultiSelect",
    "prop": "validation",
    "motivo": "funcao",
    "ts": "((value: string) => string)"
@@ -3564,12 +3592,6 @@
    "prop": "options",
    "motivo": "lista",
    "ts": "SgMultiSelectOption[]"
-  },
-  {
-   "componente": "SgMultiSelectChips",
-   "prop": "rules",
-   "motivo": "tipo-nomeado-a-portar",
-   "ts": "RegisterOptions<any>"
   },
   {
    "componente": "SgMultiSelectChips",
@@ -3660,12 +3682,6 @@
    "prop": "onSelectionChange",
    "motivo": "funcao",
    "ts": "((values: (string | number)[]) => void)"
-  },
-  {
-   "componente": "SgOrderList",
-   "prop": "rules",
-   "motivo": "tipo-nomeado-a-portar",
-   "ts": "RegisterOptions<any>"
   },
   {
    "componente": "SgOrderList",
@@ -3776,12 +3792,6 @@
    "ts": "Date"
   },
   {
-   "componente": "SgPeriodSelector",
-   "prop": "rules",
-   "motivo": "tipo-nomeado-a-portar",
-   "ts": "RegisterOptions"
-  },
-  {
    "componente": "SgPickList",
    "prop": "control",
    "motivo": "tipo-nomeado-a-portar",
@@ -3816,12 +3826,6 @@
    "prop": "onTargetSelectionChange",
    "motivo": "funcao",
    "ts": "((values: (string | number)[]) => void)"
-  },
-  {
-   "componente": "SgPickList",
-   "prop": "rules",
-   "motivo": "tipo-nomeado-a-portar",
-   "ts": "RegisterOptions<any>"
   },
   {
    "componente": "SgPickList",
@@ -3951,12 +3955,6 @@
   },
   {
    "componente": "SgRadioGroup",
-   "prop": "rules",
-   "motivo": "tipo-nomeado-a-portar",
-   "ts": "RegisterOptions<any>"
-  },
-  {
-   "componente": "SgRadioGroup",
    "prop": "source",
    "motivo": "lista",
    "ts": "SgRadioGroupOption[]"
@@ -3984,12 +3982,6 @@
    "prop": "onHover",
    "motivo": "funcao",
    "ts": "((value: number) => void)"
-  },
-  {
-   "componente": "SgRating",
-   "prop": "rules",
-   "motivo": "tipo-nomeado-a-portar",
-   "ts": "RegisterOptions<any>"
   },
   {
    "componente": "SgRealtimeProvider",
@@ -4083,12 +4075,6 @@
   },
   {
    "componente": "SgSlider",
-   "prop": "rules",
-   "motivo": "tipo-nomeado-a-portar",
-   "ts": "RegisterOptions<any>"
-  },
-  {
-   "componente": "SgSlider",
    "prop": "width",
    "motivo": "uniao",
    "ts": "string | number"
@@ -4134,12 +4120,6 @@
    "prop": "onChange",
    "motivo": "funcao",
    "ts": "((value: number) => void)"
-  },
-  {
-   "componente": "SgStepperInput",
-   "prop": "rules",
-   "motivo": "tipo-nomeado-a-portar",
-   "ts": "RegisterOptions<any>"
   },
   {
    "componente": "SgStepperInput",
@@ -4190,12 +4170,6 @@
    "ts": "((file: File, meta: SgTextEditorSaveMeta) => void)"
   },
   {
-   "componente": "SgTextEditor",
-   "prop": "rules",
-   "motivo": "tipo-nomeado-a-portar",
-   "ts": "RegisterOptions<any>"
-  },
-  {
    "componente": "SgToastHost",
    "prop": "customColors",
    "motivo": "tipo-nomeado-a-portar",
@@ -4230,12 +4204,6 @@
    "prop": "onValidation",
    "motivo": "funcao",
    "ts": "((message: string) => void)"
-  },
-  {
-   "componente": "SgToggleSwitch",
-   "prop": "rules",
-   "motivo": "tipo-nomeado-a-portar",
-   "ts": "RegisterOptions<any>"
   },
   {
    "componente": "SgToggleSwitch",
@@ -4577,13 +4545,13 @@
   }
  ],
  "resumo": {
-  "omitidas": 164,
+  "omitidas": 196,
   "renomeadas": 26,
   "tipoGenerico": {
    "lista": 68,
    "uniao": 123,
    "funcao": 252,
-   "tipo-nomeado-a-portar": 156
+   "tipo-nomeado-a-portar": 124
   }
  }
 }

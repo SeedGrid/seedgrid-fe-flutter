@@ -176,7 +176,7 @@ class _SgPickListPageState extends State<SgPickListPage> {
       ShowcaseExample(
         title: 'Dentro de um formulário',
         description:
-            'name + control + rules: o valor do formulário são as duas listas; o erro some ao corrigir.',
+            'name + control: o valor do formulário são as duas listas.',
         preview:
             // #region sg-pick-list-formulario
             Column(
@@ -193,11 +193,6 @@ class _SgPickListPageState extends State<SgPickListPage> {
                     SgPickListItem(label: context.tx('Carla'), value: 'carla'),
                   ],
                   target: const [],
-                  rules: SgRules(
-                    validate: (v) => v is SgPickListValue && v.target.isNotEmpty
-                        ? true
-                        : 'Escolha ao menos uma pessoa',
-                  ),
                 ),
                 const SizedBox(height: 12),
                 SgButton(

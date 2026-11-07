@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:seedgrid_components/src/form/sg_field_error.dart';
 
 import 'masked_support.dart';
 
@@ -37,7 +38,6 @@ Widget build(
   withBorder: o.withBorder,
   borderRadius: o.borderRadius,
   hintText: o.hintText,
-  rules: o.rules,
   autofocus: o.autofocus,
   focusNode: o.focusNode,
   onSubmitted: o.onSubmitted,
@@ -565,7 +565,8 @@ void main() {
               Opts(
                 name: 'nasc',
                 control: form,
-                rules: const SgRules(required: 'Preencha a data'),
+                required: true,
+                requiredMessage: 'Preencha a data',
               ),
             ),
           ),

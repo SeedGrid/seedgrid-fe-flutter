@@ -41,7 +41,6 @@ class AutocompleteAdapter extends VectorAdapter {
       onChange: s.events.add,
       name: s.form == null ? null : 'f',
       control: s.form,
-      rules: s.rules,
     );
   }
 

@@ -65,8 +65,6 @@ abstract interface class SgInputCPFProps {
   bool? get required;
   /// Mensagem para ausencia de valor.
   String? get requiredMessage;
-  /// Tipo TS: `RegisterOptions&lt;any&gt;` (sem tradução exata; ver excecoes.json).
-  Object? get rules;
   bool? get showCharCounter;
   String? get suffixText;
   SgInputCPFTextInputType? get textInputType;
@@ -358,14 +356,6 @@ const List<SgPropSpec> sgInputCPFPropSpecs = <SgPropSpec>[
     tsType: 'string',
     required: false,
     description: 'Mensagem para ausencia de valor.',
-  ),
-  SgPropSpec(
-    name: 'rules',
-    reactName: 'rules',
-    type: 'Object?',
-    tsType: 'RegisterOptions<any>',
-    required: false,
-    exact: false,
   ),
   SgPropSpec(
     name: 'showCharCounter',

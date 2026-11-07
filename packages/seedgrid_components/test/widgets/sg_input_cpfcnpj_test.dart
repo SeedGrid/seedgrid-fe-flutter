@@ -49,7 +49,6 @@ Widget build(
   autofocus: o.autofocus,
   focusNode: o.focusNode,
   onSubmitted: o.onSubmitted,
-  rules: o.rules,
   lengthMessage: lengthMessage,
   invalidMessage: invalidMessage,
   validateWithPublicaCnpj: validateWithPublicaCnpj,

@@ -36,8 +36,6 @@ abstract interface class SgTextEditorProps {
   Function? get onSave;
   /// Texto de ajuda inicial.
   String? get placeholder;
-  /// Tipo TS: `RegisterOptions&lt;any&gt;` (sem tradução exata; ver excecoes.json).
-  Object? get rules;
   /// Padrão: `false`.
   bool? get showCssEditor;
   String? get valueHtml;
@@ -169,14 +167,6 @@ const List<SgPropSpec> sgTextEditorPropSpecs = <SgPropSpec>[
     tsType: 'string',
     required: false,
     description: 'Texto de ajuda inicial.',
-  ),
-  SgPropSpec(
-    name: 'rules',
-    reactName: 'rules',
-    type: 'Object?',
-    tsType: 'RegisterOptions<any>',
-    required: false,
-    exact: false,
   ),
   SgPropSpec(
     name: 'showCssEditor',

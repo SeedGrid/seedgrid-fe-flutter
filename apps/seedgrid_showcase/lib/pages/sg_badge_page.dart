@@ -244,7 +244,7 @@ class _SgBadgePageState extends State<SgBadgePage> {
         code: SgBadgePageSnippets.sgBadgeInterativo,
       ),
       ShowcaseExample(
-        title: 'Cores customizadas',
+        title: 'Cores personalizadas',
         preview:
             // #region sg-badge-cores
             SgBadge(

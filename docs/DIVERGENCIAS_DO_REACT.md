@@ -40,20 +40,19 @@ mesmo que o campo roda ao perder o foco. Um CPF inválido não passa: `onInvalid
 
 - `typedef SgFieldValidator = FutureOr<String?> Function(Object? value)`: recebe o valor do formulário e devolve a
   mensagem de erro, ou `null`.
-- `SgFormController.registerField(name, {rules, initialValue, validator})`: o `validator` fica ao lado das `rules`.
+- `SgFormController.registerField(name, {required, initialValue, validator})`: o `validator` fica ao lado da mensagem de obrigatório (`required`).
   `SgFormController.unregisterValidator(name, validator)` o remove (o campo chama no `dispose`; só remove se ainda for o
   mesmo validador, então um campo novo com o mesmo nome não é afetado).
-- `trigger`: para cada campo roda primeiro as `rules` (ordem do RHF: required, min/max, maxLength/minLength, pattern,
-  validate). O validador do componente só roda se as `rules` passaram, então o erro das `rules` vence. O erro do validador
+- `trigger`: para cada campo confere primeiro o obrigatório (`required`). O validador do componente só roda se o obrigatório passou, então o erro de obrigatório vence. O erro do validador
   tem `type: 'validate'` e a mensagem (i18n) que o campo mostra no blur. `trigger()` sem nomes cobre a união dos campos
-  com `rules` e dos campos com validador.
+  com obrigatório e dos campos com validador.
 - A mensagem entra em `errors` do formulário, então `resolveFieldError(error, erroDoFormulario, erroInterno)` continua
-  valendo e o erro fica visível sem código extra. `required` do componente continua indo para as `rules`
-  (`mergeRequiredRule`); nos campos em que o React não repassa `required` ao input interno (CPF, CNPJ, CPF/CNPJ, CEP,
+  valendo e o erro fica visível sem código extra. `required` do componente continua sendo a regra de obrigatório do formulário
+  (`requiredMessageFor`); nos campos em que o React não repassa `required` ao input interno (CPF, CNPJ, CPF/CNPJ, CEP,
   data de nascimento), o validador do componente também confere o obrigatório, então "obrigatório e vazio" falha no envio.
 - Campo desabilitado nunca falha. Campo vazio e não obrigatório não falha (o validador devolve `null`).
   `reset()` limpa os erros e o próximo `trigger` volta a validar.
-- Corrigir o valor depois de um envio revalida (já era assim para as `rules`), e agora usa também o validador.
+- Corrigir o valor depois de um envio revalida (já era assim para o obrigatório), e agora usa também o validador.
 
 **Quem registra o validador:**
 
@@ -71,10 +70,10 @@ mesmo que o campo roda ao perder o foco. Um CPF inválido não passa: `onInvalid
 | SgToggleSwitch | `required`, `validation` |
 | SgInputOTP | `required`, `validation(raw, masked)` |
 
-Os demais campos de escolha só têm `required`, que já vai para as `rules`; não precisaram de validador próprio.
+Os demais campos de escolha só têm `required`, que já é o obrigatório do formulário; não precisaram de validador próprio.
 
 **Testes:** `test/form/sg_form_component_validators_test.dart` (para cada tipo: inválido => `onInvalid` + erro visível,
-válido => `onValid`, `trigger` por campo, desabilitado, vazio opcional x obrigatório, `reset`, `rules` vencem; mais o
+válido => `onValid`, `trigger` por campo, desabilitado, vazio opcional x obrigatório, `reset`, obrigatório vence; mais o
 contrato `registerField(validator)` / `unregisterValidator`).
 
 **Riscos conhecidos:** com `validateWithViaCep` / `validateWithPublicaCnpj` ligados, o envio dispara a consulta de rede

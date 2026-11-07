@@ -33,7 +33,6 @@ class CheckboxAdapter extends VectorAdapter {
     onChange: (v) => s.events.add(v),
     name: s.form == null ? null : 'f',
     control: s.form,
-    rules: s.rules,
   );
 
   @override
@@ -109,7 +108,6 @@ class RadioAdapter extends VectorAdapter {
     onChange: (v) => s.events.add(v),
     name: s.form == null ? null : 'f',
     control: s.form,
-    rules: s.rules,
   );
 
   @override
@@ -160,7 +158,6 @@ class ToggleAdapter extends VectorAdapter {
       onChange: (v) => s.events.add(v),
       name: s.form == null ? null : 'f',
       control: s.form,
-      rules: s.rules,
     );
   }
 
@@ -222,7 +219,6 @@ class SliderAdapter extends VectorAdapter {
     onChange: (v) => s.events.add(v),
     name: s.form == null ? null : 'f',
     control: s.form,
-    rules: s.rules,
   );
 
   @override
@@ -268,7 +264,6 @@ class RatingAdapter extends VectorAdapter {
     onChange: (v) => s.events.add(v),
     name: s.form == null ? null : 'f',
     control: s.form,
-    rules: s.rules,
   );
 
   @override

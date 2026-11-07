@@ -520,57 +520,6 @@ void main() {
         expect(htmlOf(t), '<h1>Novo</h1>');
       },
     );
-
-    testWidgets('rules required: erro no envio, some depois de digitar', (
-      t,
-    ) async {
-      final form = SgFormController();
-      var ok = 0;
-      await t.pumpWidget(
-        host(
-          SgTextEditor(
-            id: 'e',
-            name: 'texto',
-            control: form,
-            rules: const SgRules(required: 'Informe o texto'),
-          ),
-        ),
-      );
-      await form.handleSubmit((_) => ok++);
-      await t.pump();
-      expect(ok, 0);
-      expect(find.text('Informe o texto'), findsOneWidget);
-      ctrl(t).replaceText(0, 0, 'oi', const TextSelection.collapsed(offset: 2));
-      await t.pump();
-      await t.pump();
-      expect(find.text('Informe o texto'), findsNothing);
-      await form.handleSubmit((_) => ok++);
-      expect(ok, 1);
-    });
-
-    testWidgets(
-      'pegadinha do React: apagar tudo deixa <p></p> e o required passa',
-      (t) async {
-        final form = SgFormController();
-        await t.pumpWidget(
-          host(
-            SgTextEditor(
-              id: 'e',
-              name: 'texto',
-              control: form,
-              rules: const SgRules(required: 'Informe'),
-            ),
-          ),
-        );
-        ctrl(
-          t,
-        ).replaceText(0, 0, 'oi', const TextSelection.collapsed(offset: 2));
-        ctrl(t).replaceText(0, 2, '', const TextSelection.collapsed(offset: 0));
-        await t.pump();
-        expect(form.getValue('texto'), '<p></p>');
-        expect(await form.trigger(['texto']), isTrue);
-      },
-    );
   });
 
   testWidgets(

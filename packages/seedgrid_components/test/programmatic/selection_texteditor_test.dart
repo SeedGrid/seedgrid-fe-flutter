@@ -170,34 +170,6 @@ void main() {
     expect(_html(t), empty, reason: 'valor que nao e texto conta como vazio');
   });
 
-  testWidgets(
-    'f: required: erro no envio e some ao setValue validando; volta ao esvaziar',
-    (t) async {
-      final form = SgFormController();
-      await _mount(
-        t,
-        SgTextEditor(
-          id: 'e',
-          name: 'f',
-          control: form,
-          rules: const SgRules(required: 'Informe'),
-        ),
-      );
-      await form.handleSubmit((_) {});
-      await frames(t);
-      expect(find.text('Informe'), findsOneWidget);
-      await form.setValue('f', '<p>ok</p>', shouldValidate: true);
-      await frames(t);
-      expect(find.text('Informe'), findsNothing);
-      await form.setValue('f', '', shouldValidate: true);
-      await frames(t);
-      expect(find.text('Informe'), findsOneWidget);
-      form.reset();
-      await frames(t);
-      expect(find.text('Informe'), findsNothing);
-    },
-  );
-
   testWidgets('g: setValue com o editor focado e depois digita no texto novo', (
     t,
   ) async {

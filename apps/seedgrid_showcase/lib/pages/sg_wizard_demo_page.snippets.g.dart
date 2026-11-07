@@ -24,6 +24,30 @@ Column(
 )
 ''';
 
+  /// Region `sg-wizard-enabled`.
+  static const String sgWizardEnabled = r'''
+SgWizard(
+  enabled: false,
+  initialStep: 1,
+  stepper: SgWizardStepper.numbered,
+  onFinish: () {},
+  children: [
+    SgWizardPage(
+      title: context.tx('Dados'),
+      child: Text(context.tx('Primeira etapa')),
+    ),
+    SgWizardPage(
+      title: context.tx('Revisão'),
+      child: Text(context.tx('Segunda etapa')),
+    ),
+    SgWizardPage(
+      title: context.tx('Confirmação'),
+      child: Text(context.tx('Terceira etapa')),
+    ),
+  ],
+)
+''';
+
   /// Region `sg-wizard-formulario`.
   static const String sgWizardFormulario = r'''
 SgWizard(
@@ -51,13 +75,11 @@ SgWizard(
         name: 'email',
         control: _form,
         labelText: 'E-mail',
-        rules: SgRules(
-          required: 'Informe o e-mail',
-          pattern: SgRuleValue(
-            RegExp(r'.+@.+\..+'),
-            'E-mail inválido',
-          ),
-        ),
+        required: true,
+        requiredMessage: 'Informe o e-mail',
+        validation: (v) => RegExp(r'.+@.+\..+').hasMatch(v)
+            ? null
+            : 'E-mail inválido',
       ),
     ),
   ],

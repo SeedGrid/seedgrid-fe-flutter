@@ -44,7 +44,7 @@ class _SgAvatarPageState extends State<SgAvatarPage> {
         code: SgAvatarPageSnippets.sgAvatarBasico,
       ),
       ShowcaseExample(
-        title: 'Shape e Tamanho',
+        title: 'Forma e tamanho',
         description: 'Combinações de shape e size.',
         preview:
             // #region sg-avatar-tamanhos
@@ -74,7 +74,7 @@ class _SgAvatarPageState extends State<SgAvatarPage> {
         code: SgAvatarPageSnippets.sgAvatarTamanhos,
       ),
       ShowcaseExample(
-        title: 'Severity e Cores Customizadas',
+        title: 'Severidade e cores personalizadas',
         description: 'Preset por severity e override de cores.',
         preview:
             // #region sg-avatar-cores
@@ -111,7 +111,7 @@ class _SgAvatarPageState extends State<SgAvatarPage> {
         code: SgAvatarPageSnippets.sgAvatarCores,
       ),
       ShowcaseExample(
-        title: 'Avatar Group',
+        title: 'Grupo de avatares',
         description: 'Agrupamento com sobreposição e contador automático.',
         preview:
             // #region sg-avatar-grupo

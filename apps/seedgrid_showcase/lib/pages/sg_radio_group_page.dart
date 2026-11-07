@@ -100,7 +100,8 @@ class _SgRadioGroupPageState extends State<SgRadioGroupPage> {
                       value: 'grape',
                     ),
                   ],
-                ),              ],
+                ),
+              ],
             ),
         // #endregion
         code: SgRadioGroupPageSnippets.sgRadioGroupOrientationHorizontal,
@@ -190,7 +191,9 @@ class _SgRadioGroupPageState extends State<SgRadioGroupPage> {
                   ],
                 ),
                 const SizedBox(height: 8),
-                Text('${context.tx('Valor')}: ${_controlada ?? context.tx('Nenhum')}'),
+                Text(
+                  '${context.tx('Valor')}: ${_controlada ?? context.tx('Nenhum')}',
+                ),
               ],
             ),
         // #endregion
@@ -251,7 +254,9 @@ class _SgRadioGroupPageState extends State<SgRadioGroupPage> {
                   ],
                 ),
                 const SizedBox(height: 16),
-                Text('${context.tx('Valor atual')}: ${_externo ?? context.tx('Nenhum')}'),
+                Text(
+                  '${context.tx('Valor atual')}: ${_externo ?? context.tx('Nenhum')}',
+                ),
               ],
             ),
         // #endregion
@@ -265,18 +270,9 @@ class _SgRadioGroupPageState extends State<SgRadioGroupPage> {
               id: 'with-disabled-option',
               title: context.tx('Nível de prioridade'),
               source: [
-                SgRadioGroupOption(
-                  label: context.tx('Baixa'),
-                  value: 'low',
-                ),
-                SgRadioGroupOption(
-                  label: context.tx('Média'),
-                  value: 'medium',
-                ),
-                SgRadioGroupOption(
-                  label: context.tx('Alta'),
-                  value: 'high',
-                ),
+                SgRadioGroupOption(label: context.tx('Baixa'), value: 'low'),
+                SgRadioGroupOption(label: context.tx('Média'), value: 'medium'),
+                SgRadioGroupOption(label: context.tx('Alta'), value: 'high'),
                 SgRadioGroupOption(
                   label: context.tx('Urgente'),
                   value: 'urgent',
@@ -324,10 +320,7 @@ class _SgRadioGroupPageState extends State<SgRadioGroupPage> {
               value: 'banana',
               readOnly: true,
               source: [
-                SgRadioGroupOption(
-                  label: context.tx('Maçã'),
-                  value: 'apple',
-                ),
+                SgRadioGroupOption(label: context.tx('Maçã'), value: 'apple'),
                 SgRadioGroupOption(
                   label: context.tx('Banana'),
                   value: 'banana',
@@ -336,10 +329,7 @@ class _SgRadioGroupPageState extends State<SgRadioGroupPage> {
                   label: context.tx('Laranja'),
                   value: 'orange',
                 ),
-                SgRadioGroupOption(
-                  label: context.tx('Uva'),
-                  value: 'grape',
-                ),
+                SgRadioGroupOption(label: context.tx('Uva'), value: 'grape'),
               ],
             ),
         // #endregion
@@ -379,11 +369,15 @@ class _SgRadioGroupPageState extends State<SgRadioGroupPage> {
                 SgButton(
                   label: Text(context.tx('Enviar')),
                   onClick: () => _formObrigatorio.handleSubmit(
-                    (values) => setState(() => _enviadoObrigatorio = '${values['preference']}'),
+                    (values) => setState(
+                      () => _enviadoObrigatorio = '${values['preference']}',
+                    ),
                   ),
                 ),
                 if (_enviadoObrigatorio.isNotEmpty)
-                  Text('${context.tx('Dados do formulário')}: $_enviadoObrigatorio'),
+                  Text(
+                    '${context.tx('Dados do formulário')}: $_enviadoObrigatorio',
+                  ),
               ],
             ),
         // #endregion
@@ -406,7 +400,11 @@ class _SgRadioGroupPageState extends State<SgRadioGroupPage> {
                 SgRadioGroupOption(
                   label: context.tx('Lua'),
                   value: 'moon',
-                  icon: Icon(Icons.nightlight_round, size: 20, color: Colors.blue),
+                  icon: Icon(
+                    Icons.nightlight_round,
+                    size: 20,
+                    color: Colors.blue,
+                  ),
                 ),
                 SgRadioGroupOption(
                   label: context.tx('Nuvem'),
@@ -427,35 +425,48 @@ class _SgRadioGroupPageState extends State<SgRadioGroupPage> {
               children: [
                 ConstrainedBox(
                   constraints: const BoxConstraints(maxWidth: 320),
-                  child:
-                    SgRadioGroup(
-                      id: 'highlight-list',
-                      title: context.tx('Opções'),
-                      selectionStyle: SgRadioGroupSelectionStyle.highlight,
-                      value: _highlight,
-                      onChange: (v) => setState(() => _highlight = v),
-                      source: [
-                        SgRadioGroupOption(
-                          label: context.tx('Reserva'),
-                          value: 'reserve',
-                          icon: Icon(Icons.account_balance, size: 16, color: Colors.indigo),
+                  child: SgRadioGroup(
+                    id: 'highlight-list',
+                    title: context.tx('Opções'),
+                    selectionStyle: SgRadioGroupSelectionStyle.highlight,
+                    value: _highlight,
+                    onChange: (v) => setState(() => _highlight = v),
+                    source: [
+                      SgRadioGroupOption(
+                        label: context.tx('Reserva'),
+                        value: 'reserve',
+                        icon: Icon(
+                          Icons.account_balance,
+                          size: 16,
+                          color: Colors.indigo,
                         ),
-                        SgRadioGroupOption(
-                          label: context.tx('Alerta'),
-                          value: 'alert',
-                          icon: Icon(Icons.notifications, size: 16, color: Colors.pink),
+                      ),
+                      SgRadioGroupOption(
+                        label: context.tx('Alerta'),
+                        value: 'alert',
+                        icon: Icon(
+                          Icons.notifications,
+                          size: 16,
+                          color: Colors.pink,
                         ),
-                        SgRadioGroupOption(
-                          label: context.tx('Atualizar'),
-                          value: 'refresh',
-                          icon: Icon(Icons.refresh, size: 16, color: Colors.green),
+                      ),
+                      SgRadioGroupOption(
+                        label: context.tx('Atualizar'),
+                        value: 'refresh',
+                        icon: Icon(
+                          Icons.refresh,
+                          size: 16,
+                          color: Colors.green,
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
+                  ),
                 ),
 
                 const SizedBox(height: 8),
-                Text('${context.tx('Valor')}: ${_highlight ?? context.tx('Nenhum')}'),
+                Text(
+                  '${context.tx('Valor')}: ${_highlight ?? context.tx('Nenhum')}',
+                ),
               ],
             ),
         // #endregion
@@ -468,7 +479,9 @@ class _SgRadioGroupPageState extends State<SgRadioGroupPage> {
             SgRadioGroup(
               id: 'custom-groupbox',
               title: context.tx('Escolha com estilo customizado'),
-              groupBoxProps: SgChoiceGroupBoxProps(title: context.tx('Preferências')),
+              groupBoxProps: SgChoiceGroupBoxProps(
+                title: context.tx('Preferências'),
+              ),
               source: [
                 SgRadioGroupOption(
                   label: context.tx('Favorito'),
@@ -524,11 +537,14 @@ class _SgRadioGroupPageState extends State<SgRadioGroupPage> {
                 SgButton(
                   label: Text(context.tx('Enviar')),
                   onClick: () => _formRegister.handleSubmit(
-                    (values) => setState(() => _enviadoRegister = '${values['fruit']}'),
+                    (values) =>
+                        setState(() => _enviadoRegister = '${values['fruit']}'),
                   ),
                 ),
                 if (_enviadoRegister.isNotEmpty)
-                  Text('${context.tx('Dados do formulário')}: $_enviadoRegister'),
+                  Text(
+                    '${context.tx('Dados do formulário')}: $_enviadoRegister',
+                  ),
               ],
             ),
         // #endregion

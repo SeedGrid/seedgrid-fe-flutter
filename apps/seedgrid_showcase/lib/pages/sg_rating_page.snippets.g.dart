@@ -163,7 +163,9 @@ Column(
   crossAxisAlignment: CrossAxisAlignment.start,
   children: [
     SgRating(
-      label: context.tx('Passe o mouse e clique nas meias estrelas'),
+      label: context.tx(
+        'Passe o mouse e clique nas meias estrelas',
+      ),
       value: _meia,
       allowHalf: true,
       showTooltip: true,

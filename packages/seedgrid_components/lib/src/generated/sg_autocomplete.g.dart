@@ -100,8 +100,6 @@ abstract interface class SgAutocompleteProps {
   Function? get renderValue;
   bool? get required;
   String? get requiredMessage;
-  /// Tipo TS: `RegisterOptions&lt;any&gt;` (sem tradução exata; ver excecoes.json).
-  Object? get rules;
   bool? get showCharCounter;
   /// Exibe o botao que abre/fecha a lista. Abre a lista completa quando o texto e uma selecao; preserva o filtro quando o usuario digitou. Padrão: `false`.
   bool? get showDropDownButton;
@@ -560,14 +558,6 @@ const List<SgPropSpec> sgAutocompletePropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-  ),
-  SgPropSpec(
-    name: 'rules',
-    reactName: 'rules',
-    type: 'Object?',
-    tsType: 'RegisterOptions<any>',
-    required: false,
-    exact: false,
   ),
   SgPropSpec(
     name: 'showCharCounter',

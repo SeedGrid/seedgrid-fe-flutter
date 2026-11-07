@@ -17,11 +17,24 @@ void main() {
     (t) async {
       setSize(t, kSizes.values.last);
       await t.pumpWidget(app(const SgSevenSegmentDigitPage()));
-      await tapLink(t, const ValueKey('link-exemplo-4'));
+      await tapLink(t, const ValueKey('link-exemplo-9'));
       SgSevenSegmentDigit digit() => t.widget<SgSevenSegmentDigit>(
         find.descendant(
           of: find
-              .ancestor(of: find.text('Próximo'), matching: find.byType(Row))
+              .ancestor(
+                of: find.text('Próximo'),
+                matching: find.byWidgetPredicate(
+                  (w) =>
+                      w is Row &&
+                      find
+                          .descendant(
+                            of: find.byWidget(w),
+                            matching: find.byType(SgSevenSegmentDigit),
+                          )
+                          .evaluate()
+                          .isNotEmpty,
+                ),
+              )
               .first,
           matching: find.byType(SgSevenSegmentDigit),
         ),
@@ -70,7 +83,7 @@ void main() {
   testWidgets('SgFadeDigit: o botao troca o digito apos 200 ms', (t) async {
     setSize(t, kSizes.values.last);
     await t.pumpWidget(app(const SgFadeDigitPage()));
-    await tapLink(t, const ValueKey('link-exemplo-3'));
+    await tapLink(t, const ValueKey('link-exemplo-9'));
     final button = find.text('Próximo');
     await t.ensureVisible(button);
     await t.tap(button);
@@ -79,7 +92,22 @@ void main() {
       const Duration(milliseconds: 250),
     ); // o setState do toque so vira timer no quadro seguinte
     // o digito do exemplo e o que esta na mesma linha do botao (o playground tem outro)
-    final row = find.ancestor(of: button, matching: find.byType(Row)).first;
+    final row = find
+        .ancestor(
+          of: button,
+          matching: find.byWidgetPredicate(
+            (w) =>
+                w is Row &&
+                find
+                    .descendant(
+                      of: find.byWidget(w),
+                      matching: find.byKey(const ValueKey('sg-fade-text')),
+                    )
+                    .evaluate()
+                    .isNotEmpty,
+          ),
+        )
+        .first;
     final shown = t
         .widget<Text>(
           find.descendant(

@@ -118,8 +118,7 @@ class _SgTextEditorPageState extends State<SgTextEditorPage> {
       ),
       ShowcaseExample(
         title: 'Dentro de um formulário',
-        description:
-            'name + control + rules, como no React. O valor do campo é o HTML do corpo.',
+        description: 'name + control: o valor do campo é o HTML do corpo.',
         preview:
             // #region sg-text-editor-formulario
             Column(
@@ -130,7 +129,6 @@ class _SgTextEditorPageState extends State<SgTextEditorPage> {
                   name: 'descricao',
                   control: _form,
                   height: 180,
-                  rules: const SgRules(required: 'Descreva o produto'),
                 ),
                 const SizedBox(height: 12),
                 SgButton(

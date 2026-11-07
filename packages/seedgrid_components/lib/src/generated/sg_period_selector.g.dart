@@ -41,8 +41,6 @@ abstract interface class SgPeriodSelectorProps {
   /// Data de referencia para resolver os presets (default: agora). Util em testes. Tipo TS: `Date` (sem tradução exata; ver excecoes.json).
   Object? get referenceDate;
   bool? get required;
-  /// Tipo TS: `RegisterOptions` (sem tradução exata; ver excecoes.json).
-  Object? get rules;
   /// Preset selecionado (modo controlado).
   SgPeriodSelectorValue? get value;
 }
@@ -193,14 +191,6 @@ const List<SgPropSpec> sgPeriodSelectorPropSpecs = <SgPropSpec>[
     type: 'bool?',
     tsType: 'boolean',
     required: false,
-  ),
-  SgPropSpec(
-    name: 'rules',
-    reactName: 'rules',
-    type: 'Object?',
-    tsType: 'RegisterOptions',
-    required: false,
-    exact: false,
   ),
   SgPropSpec(
     name: 'value',

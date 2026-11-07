@@ -170,8 +170,7 @@ class _SgColorPickerPageState extends State<SgColorPickerPage> {
                 SgButton(
                   label: Text(context.tx('Enviar')),
                   onClick: () => _form.handleSubmit(
-                    (values) =>
-                        setState(() => _enviado = '${values['marca']}'),
+                    (values) => setState(() => _enviado = '${values['marca']}'),
                   ),
                 ),
                 if (_enviado.isNotEmpty) Text(_enviado),
@@ -203,11 +202,7 @@ class _SgColorPickerPageState extends State<SgColorPickerPage> {
                     if (hex != null) setState(() => _dialogo = hex);
                   },
                 ),
-                Container(
-                  width: 32,
-                  height: 32,
-                  color: sgHexToColor(_dialogo),
-                ),
+                Container(width: 32, height: 32, color: sgHexToColor(_dialogo)),
                 Text(_dialogo),
               ],
             ),

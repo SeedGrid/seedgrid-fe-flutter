@@ -861,10 +861,11 @@ void main() {
     );
 
     testWidgets(
-      'rules: erro no envio aparece abaixo do campo e some ao marcar',
+      'a prop required NAO valida o formulario (so o asterisco, como no React)',
       (t) async {
         size(t, 1280);
         final form = SgFormController();
+        var valid = 0;
         await t.pumpWidget(
           host(
             SgMultiSelectChips(
@@ -872,41 +873,14 @@ void main() {
               options: _opts,
               name: 'tags',
               control: form,
-              rules: const SgRules(required: 'Escolha ao menos uma'),
+              required: true,
             ),
           ),
         );
-        await form.handleSubmit((_) {});
-        await t.pump();
-        expect(find.byKey(const ValueKey('multi-erro')), findsOneWidget);
-        expect(find.text('Escolha ao menos uma'), findsOneWidget);
-        await openList(t, 'c');
-        await t.tap(option('a'));
-        await t.pumpAndSettle();
-        expect(find.text('Escolha ao menos uma'), findsNothing);
+        await form.handleSubmit((_) => valid++);
+        expect(valid, 1);
       },
     );
-
-    testWidgets('a prop required NAO valida o formulario (so o asterisco)', (
-      t,
-    ) async {
-      size(t, 1280);
-      final form = SgFormController();
-      var valid = 0;
-      await t.pumpWidget(
-        host(
-          SgMultiSelectChips(
-            id: 'c',
-            options: _opts,
-            name: 'tags',
-            control: form,
-            required: true,
-          ),
-        ),
-      );
-      await form.handleSubmit((_) => valid++);
-      expect(valid, 1);
-    });
 
     testWidgets('error do componente vence o do formulario', (t) async {
       size(t, 1280);
@@ -919,7 +893,7 @@ void main() {
             name: 'tags',
             control: form,
             error: 'Do servidor',
-            rules: const SgRules(required: 'Do formulario'),
+            required: true,
           ),
         ),
       );

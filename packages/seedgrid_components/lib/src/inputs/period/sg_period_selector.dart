@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:seedgrid_theme/seedgrid_theme.dart';
 
 import '../../form/sg_form.dart';
-import '../../form/sg_rules.dart';
+import '../../form/sg_field_error.dart';
 import '../../generated/enums.g.dart';
 import '../../generated/sg_period_selector.g.dart';
 import '../../theme_access.dart';
@@ -40,7 +40,6 @@ class SgPeriodSelector extends StatefulWidget implements SgPeriodSelectorProps {
     this.error,
     this.control,
     this.name,
-    this.rules,
   });
 
   @override
@@ -97,8 +96,6 @@ class SgPeriodSelector extends StatefulWidget implements SgPeriodSelectorProps {
   final SgFormController? control;
   @override
   final String? name;
-  @override
-  final SgRules? rules;
 
   @override
   State<SgPeriodSelector> createState() => _SgPeriodSelectorState();
@@ -143,11 +140,7 @@ class _SgPeriodSelectorState extends State<SgPeriodSelector> {
 
   void _register() {
     if (_bound) {
-      _form!.registerField(
-        widget.name!,
-        rules: widget.rules,
-        initialValue: widget.value?.value,
-      );
+      _form!.registerField(widget.name!, initialValue: widget.value?.value);
     }
   }
 

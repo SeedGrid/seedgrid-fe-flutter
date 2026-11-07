@@ -5,7 +5,6 @@
 import 'package:flutter/widgets.dart';
 
 import '../../form/sg_form.dart';
-import '../../form/sg_rules.dart';
 import '../../generated/enums.g.dart';
 import '../../generated/sg_input_number.g.dart';
 import '../../i18n/i18n.dart';
@@ -50,7 +49,6 @@ class SgInputNumber extends StatelessWidget implements SgInputNumberProps {
     this.readOnly,
     this.required,
     this.requiredMessage,
-    this.rules,
     this.suffixText,
     this.textInputType,
     this.type,
@@ -159,8 +157,6 @@ class SgInputNumber extends StatelessWidget implements SgInputNumberProps {
   @override
   final String? requiredMessage;
   @override
-  final SgRules? rules;
-  @override
   final String? suffixText;
 
   /// Padrao `decimal` (teclado numerico com virgula).
@@ -220,7 +216,6 @@ class SgInputNumber extends StatelessWidget implements SgInputNumberProps {
         borderRadius: borderRadius,
         required: required,
         requiredMessage: requiredMessage,
-        rules: rules,
         name: name,
         control: control,
         error: error,

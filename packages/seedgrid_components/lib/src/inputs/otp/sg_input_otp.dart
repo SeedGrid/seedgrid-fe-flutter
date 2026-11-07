@@ -16,7 +16,7 @@ import 'package:seedgrid_theme/seedgrid_theme.dart';
 
 import '../../form/sg_form.dart';
 import '../../form/sg_validation_scope.dart';
-import '../../form/sg_rules.dart';
+import '../../form/sg_field_error.dart';
 import '../../generated/sg_input_otp.g.dart';
 import '../../i18n/i18n.dart';
 import '../../theme_access.dart';
@@ -68,7 +68,6 @@ class SgInputOTP extends StatefulWidget implements SgInputOTPProps {
     this.readOnly,
     this.required,
     this.requiredMessage,
-    this.rules,
     this.separatorClassName,
     this.slotClassName,
     this.validateOnBlur,
@@ -142,8 +141,6 @@ class SgInputOTP extends StatefulWidget implements SgInputOTPProps {
   final bool? required;
   @override
   final String? requiredMessage;
-  @override
-  final SgRules? rules;
 
   /// React-only (classe CSS); sem efeito.
   @override
@@ -264,8 +261,7 @@ class _SgInputOTPState extends State<SgInputOTP> implements SgSelfValidating {
     final i18n = useComponentsI18n(context);
     _form!.registerField(
       widget.name!,
-      rules: mergeRequiredRule(
-        widget.rules,
+      required: requiredMessageFor(
         widget.required,
         widget.requiredMessage ?? t(i18n, 'components.inputs.required'),
       ),

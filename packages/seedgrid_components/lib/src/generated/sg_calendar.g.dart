@@ -19,6 +19,8 @@ abstract interface class SgCalendarProps {
   Object? get defaultValue;
   /// Tipo TS: `string | Date` (sem tradução exata; ver excecoes.json).
   Object? get defaultViewDate;
+  /// Quando false, os dias, os botoes de mes anterior/proximo e o atalho hoje ficam desabilitados (nao focaveis); a data e o mes atuais continuam legiveis. Padrão: `true`.
+  bool? get enabled;
   /// Tipo TS: `((date: Date) =&gt; boolean)` (sem tradução exata; ver excecoes.json).
   Function? get isDateDisabled;
   /// Locale usado para formatacao de mes e dias. Padrão: `pt-BR`.
@@ -83,6 +85,15 @@ const List<SgPropSpec> sgCalendarPropSpecs = <SgPropSpec>[
     tsType: 'string | Date',
     required: false,
     exact: false,
+  ),
+  SgPropSpec(
+    name: 'enabled',
+    reactName: 'enabled',
+    type: 'bool?',
+    tsType: 'boolean',
+    required: false,
+    defaultValue: 'true',
+    description: 'Quando false, os dias, os botoes de mes anterior/proximo e o atalho hoje ficam desabilitados (nao focaveis); a data e o mes atuais continuam legiveis.',
   ),
   SgPropSpec(
     name: 'isDateDisabled',

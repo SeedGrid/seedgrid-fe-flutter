@@ -24,25 +24,29 @@ Builder(
         onClick: () {},
       ),
     ];
-    Widget caixa(double altura, String legenda, Widget fab) => SizedBox(
-      height: altura,
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          border: Border.all(color: Colors.black26),
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: Stack(
-          children: [
-            Positioned(
-              left: 12,
-              top: 8,
-              child: Text(legenda, style: Theme.of(context).textTheme.bodySmall),
+    Widget caixa(double altura, String legenda, Widget fab) =>
+        SizedBox(
+          height: altura,
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.black26),
+              borderRadius: BorderRadius.circular(8),
             ),
-            fab,
-          ],
-        ),
-      ),
-    );
+            child: Stack(
+              children: [
+                Positioned(
+                  left: 12,
+                  top: 8,
+                  child: Text(
+                    legenda,
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                ),
+                fab,
+              ],
+            ),
+          ),
+        );
     return caixa(
       288,
       'activeIcon changes when open',
@@ -89,7 +93,10 @@ Wrap(
               onClick: () {},
             ),
           ),
-          Text(animation.value, style: Theme.of(context).textTheme.bodySmall),
+          Text(
+            animation.value,
+            style: Theme.of(context).textTheme.bodySmall,
+          ),
         ],
       ),
   ],
@@ -117,25 +124,29 @@ Builder(
         onClick: () {},
       ),
     ];
-    Widget caixa(double altura, String legenda, Widget fab) => SizedBox(
-      height: altura,
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          border: Border.all(color: Colors.black26),
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: Stack(
-          children: [
-            Positioned(
-              left: 12,
-              top: 8,
-              child: Text(legenda, style: Theme.of(context).textTheme.bodySmall),
+    Widget caixa(double altura, String legenda, Widget fab) =>
+        SizedBox(
+          height: altura,
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.black26),
+              borderRadius: BorderRadius.circular(8),
             ),
-            fab,
-          ],
-        ),
-      ),
-    );
+            child: Stack(
+              children: [
+                Positioned(
+                  left: 12,
+                  top: 8,
+                  child: Text(
+                    legenda,
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                ),
+                fab,
+              ],
+            ),
+          ),
+        );
     return caixa(
       256,
       '',
@@ -175,25 +186,29 @@ Builder(
         onClick: () {},
       ),
     ];
-    Widget caixa(double altura, String legenda, Widget fab) => SizedBox(
-      height: altura,
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          border: Border.all(color: Colors.black26),
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: Stack(
-          children: [
-            Positioned(
-              left: 12,
-              top: 8,
-              child: Text(legenda, style: Theme.of(context).textTheme.bodySmall),
+    Widget caixa(double altura, String legenda, Widget fab) =>
+        SizedBox(
+          height: altura,
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.black26),
+              borderRadius: BorderRadius.circular(8),
             ),
-            fab,
-          ],
-        ),
-      ),
-    );
+            child: Stack(
+              children: [
+                Positioned(
+                  left: 12,
+                  top: 8,
+                  child: Text(
+                    legenda,
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                ),
+                fab,
+              ],
+            ),
+          ),
+        );
     return caixa(
       384,
       'type="circle"',
@@ -307,7 +322,10 @@ Wrap(
               onClick: () {},
             ),
           ),
-          Text(elevation.value, style: Theme.of(context).textTheme.bodySmall),
+          Text(
+            elevation.value,
+            style: Theme.of(context).textTheme.bodySmall,
+          ),
         ],
       ),
   ],
@@ -328,7 +346,10 @@ Wrap(
       Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(shape.value, style: Theme.of(context).textTheme.labelMedium),
+          Text(
+            shape.value,
+            style: Theme.of(context).textTheme.labelMedium,
+          ),
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -371,7 +392,10 @@ Wrap(
             onClick: () {},
           ),
         ),
-        Text('disabled', style: Theme.of(context).textTheme.bodySmall),
+        Text(
+          'disabled',
+          style: Theme.of(context).textTheme.bodySmall,
+        ),
       ],
     ),
     Column(
@@ -385,7 +409,10 @@ Wrap(
             onClick: () {},
           ),
         ),
-        Text('loading', style: Theme.of(context).textTheme.bodySmall),
+        Text(
+          'loading',
+          style: Theme.of(context).textTheme.bodySmall,
+        ),
       ],
     ),
   ],
@@ -499,88 +526,102 @@ Builder(
       ),
     ];
     final acoesSemRotulo = [
-      for (final a in acoes) SgFABAction(icon: a.icon, onClick: a.onClick),
+      for (final a in acoes)
+        SgFABAction(icon: a.icon, onClick: a.onClick),
     ];
-    Widget caixa(double altura, String legenda, Widget fab) => SizedBox(
-      height: altura,
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          border: Border.all(color: Colors.black26),
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: Stack(
-          children: [
-            Positioned(
-              left: 12,
-              top: 8,
-              child: Text(legenda, style: Theme.of(context).textTheme.bodySmall),
+    Widget caixa(double altura, String legenda, Widget fab) =>
+        SizedBox(
+          height: altura,
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.black26),
+              borderRadius: BorderRadius.circular(8),
             ),
-            fab,
-          ],
-        ),
-      ),
-    );
+            child: Stack(
+              children: [
+                Positioned(
+                  left: 12,
+                  top: 8,
+                  child: Text(
+                    legenda,
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                ),
+                fab,
+              ],
+            ),
+          ),
+        );
     return Column(
       children: [
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Expanded(child: caixa(
-              256,
-              'type="quarter-circle" direction="up"',
-              SgFloatActionButton(
-                absolute: true,
-                position: SgFloatActionButtonPosition.centerBottom,
-                actions: acoes,
-                type: SgFloatActionButtonType.quarterCircle,
-                direction: SgFloatActionButtonDirection.up,
-                severity: SgFloatActionButtonSeverity.secondary,
+            Expanded(
+              child: caixa(
+                256,
+                'type="quarter-circle" direction="up"',
+                SgFloatActionButton(
+                  absolute: true,
+                  position:
+                      SgFloatActionButtonPosition.centerBottom,
+                  actions: acoes,
+                  type: SgFloatActionButtonType.quarterCircle,
+                  direction: SgFloatActionButtonDirection.up,
+                  severity: SgFloatActionButtonSeverity.secondary,
+                ),
               ),
-            )),
+            ),
             const SizedBox(width: 32),
-            Expanded(child: caixa(
-              256,
-              'type="quarter-circle" direction="down"',
-              SgFloatActionButton(
-                absolute: true,
-                position: SgFloatActionButtonPosition.centerTop,
-                actions: acoes,
-                type: SgFloatActionButtonType.quarterCircle,
-                direction: SgFloatActionButtonDirection.down,
-                severity: SgFloatActionButtonSeverity.success,
+            Expanded(
+              child: caixa(
+                256,
+                'type="quarter-circle" direction="down"',
+                SgFloatActionButton(
+                  absolute: true,
+                  position: SgFloatActionButtonPosition.centerTop,
+                  actions: acoes,
+                  type: SgFloatActionButtonType.quarterCircle,
+                  direction: SgFloatActionButtonDirection.down,
+                  severity: SgFloatActionButtonSeverity.success,
+                ),
               ),
-            )),
+            ),
           ],
         ),
         const SizedBox(height: 32),
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Expanded(child: caixa(
-              192,
-              'type="quarter-circle" direction="left"',
-              SgFloatActionButton(
-                absolute: true,
-                position: SgFloatActionButtonPosition.rightCenter,
-                actions: acoesSemRotulo,
-                type: SgFloatActionButtonType.quarterCircle,
-                direction: SgFloatActionButtonDirection.left,
-                severity: SgFloatActionButtonSeverity.warning,
+            Expanded(
+              child: caixa(
+                192,
+                'type="quarter-circle" direction="left"',
+                SgFloatActionButton(
+                  absolute: true,
+                  position: SgFloatActionButtonPosition.rightCenter,
+                  actions: acoesSemRotulo,
+                  type: SgFloatActionButtonType.quarterCircle,
+                  direction: SgFloatActionButtonDirection.left,
+                  severity: SgFloatActionButtonSeverity.warning,
+                ),
               ),
-            )),
+            ),
             const SizedBox(width: 32),
-            Expanded(child: caixa(
-              192,
-              'type="quarter-circle" direction="right"',
-              SgFloatActionButton(
-                absolute: true,
-                position: SgFloatActionButtonPosition.leftCenter,
-                actions: acoesSemRotulo,
-                type: SgFloatActionButtonType.quarterCircle,
-                direction: SgFloatActionButtonDirection.right,
-                severity: SgFloatActionButtonSeverity.danger,
+            Expanded(
+              child: caixa(
+                192,
+                'type="quarter-circle" direction="right"',
+                SgFloatActionButton(
+                  absolute: true,
+                  position: SgFloatActionButtonPosition.leftCenter,
+                  actions: acoesSemRotulo,
+                  type: SgFloatActionButtonType.quarterCircle,
+                  direction: SgFloatActionButtonDirection.right,
+                  severity: SgFloatActionButtonSeverity.danger,
+                ),
               ),
-            )),
+            ),
           ],
         ),
       ],
@@ -624,87 +665,101 @@ Builder(
       ),
     ];
     final acoesSemRotulo = [
-      for (final a in acoes) SgFABAction(icon: a.icon, onClick: a.onClick),
+      for (final a in acoes)
+        SgFABAction(icon: a.icon, onClick: a.onClick),
     ];
-    Widget caixa(double altura, String legenda, Widget fab) => SizedBox(
-      height: altura,
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          border: Border.all(color: Colors.black26),
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: Stack(
-          children: [
-            Positioned(
-              left: 12,
-              top: 8,
-              child: Text(legenda, style: Theme.of(context).textTheme.bodySmall),
+    Widget caixa(double altura, String legenda, Widget fab) =>
+        SizedBox(
+          height: altura,
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.black26),
+              borderRadius: BorderRadius.circular(8),
             ),
-            fab,
-          ],
-        ),
-      ),
-    );
+            child: Stack(
+              children: [
+                Positioned(
+                  left: 12,
+                  top: 8,
+                  child: Text(
+                    legenda,
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                ),
+                fab,
+              ],
+            ),
+          ),
+        );
     return Column(
       children: [
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Expanded(child: caixa(
-              288,
-              'type="semi-circle" direction="up"',
-              SgFloatActionButton(
-                absolute: true,
-                position: SgFloatActionButtonPosition.centerBottom,
-                actions: acoesExtras,
-                type: SgFloatActionButtonType.semiCircle,
-                direction: SgFloatActionButtonDirection.up,
-                severity: SgFloatActionButtonSeverity.success,
+            Expanded(
+              child: caixa(
+                288,
+                'type="semi-circle" direction="up"',
+                SgFloatActionButton(
+                  absolute: true,
+                  position:
+                      SgFloatActionButtonPosition.centerBottom,
+                  actions: acoesExtras,
+                  type: SgFloatActionButtonType.semiCircle,
+                  direction: SgFloatActionButtonDirection.up,
+                  severity: SgFloatActionButtonSeverity.success,
+                ),
               ),
-            )),
+            ),
             const SizedBox(width: 32),
-            Expanded(child: caixa(
-              288,
-              'type="semi-circle" direction="down"',
-              SgFloatActionButton(
-                absolute: true,
-                position: SgFloatActionButtonPosition.centerTop,
-                actions: acoesExtras,
-                type: SgFloatActionButtonType.semiCircle,
-                direction: SgFloatActionButtonDirection.down,
-                severity: SgFloatActionButtonSeverity.warning,
+            Expanded(
+              child: caixa(
+                288,
+                'type="semi-circle" direction="down"',
+                SgFloatActionButton(
+                  absolute: true,
+                  position: SgFloatActionButtonPosition.centerTop,
+                  actions: acoesExtras,
+                  type: SgFloatActionButtonType.semiCircle,
+                  direction: SgFloatActionButtonDirection.down,
+                  severity: SgFloatActionButtonSeverity.warning,
+                ),
               ),
-            )),
+            ),
           ],
         ),
         const SizedBox(height: 32),
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Expanded(child: caixa(
-              192,
-              'type="semi-circle" direction="left"',
-              SgFloatActionButton(
-                absolute: true,
-                position: SgFloatActionButtonPosition.rightCenter,
-                actions: acoesSemRotulo,
-                type: SgFloatActionButtonType.semiCircle,
-                direction: SgFloatActionButtonDirection.left,
-                severity: SgFloatActionButtonSeverity.danger,
+            Expanded(
+              child: caixa(
+                192,
+                'type="semi-circle" direction="left"',
+                SgFloatActionButton(
+                  absolute: true,
+                  position: SgFloatActionButtonPosition.rightCenter,
+                  actions: acoesSemRotulo,
+                  type: SgFloatActionButtonType.semiCircle,
+                  direction: SgFloatActionButtonDirection.left,
+                  severity: SgFloatActionButtonSeverity.danger,
+                ),
               ),
-            )),
+            ),
             const SizedBox(width: 32),
-            Expanded(child: caixa(
-              192,
-              'type="semi-circle" direction="right"',
-              SgFloatActionButton(
-                absolute: true,
-                position: SgFloatActionButtonPosition.leftCenter,
-                actions: acoesSemRotulo,
-                type: SgFloatActionButtonType.semiCircle,
-                direction: SgFloatActionButtonDirection.right,
+            Expanded(
+              child: caixa(
+                192,
+                'type="semi-circle" direction="right"',
+                SgFloatActionButton(
+                  absolute: true,
+                  position: SgFloatActionButtonPosition.leftCenter,
+                  actions: acoesSemRotulo,
+                  type: SgFloatActionButtonType.semiCircle,
+                  direction: SgFloatActionButtonDirection.right,
+                ),
               ),
-            )),
+            ),
           ],
         ),
       ],
@@ -740,7 +795,10 @@ Wrap(
               onClick: () {},
             ),
           ),
-          Text(severity.value, style: Theme.of(context).textTheme.bodySmall),
+          Text(
+            severity.value,
+            style: Theme.of(context).textTheme.bodySmall,
+          ),
         ],
       ),
   ],
@@ -769,84 +827,98 @@ Builder(
       ),
     ];
     final acoesSemRotulo = [
-      for (final a in acoes) SgFABAction(icon: a.icon, onClick: a.onClick),
+      for (final a in acoes)
+        SgFABAction(icon: a.icon, onClick: a.onClick),
     ];
-    Widget caixa(double altura, String legenda, Widget fab) => SizedBox(
-      height: altura,
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          border: Border.all(color: Colors.black26),
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: Stack(
-          children: [
-            Positioned(
-              left: 12,
-              top: 8,
-              child: Text(legenda, style: Theme.of(context).textTheme.bodySmall),
+    Widget caixa(double altura, String legenda, Widget fab) =>
+        SizedBox(
+          height: altura,
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.black26),
+              borderRadius: BorderRadius.circular(8),
             ),
-            fab,
-          ],
-        ),
-      ),
-    );
+            child: Stack(
+              children: [
+                Positioned(
+                  left: 12,
+                  top: 8,
+                  child: Text(
+                    legenda,
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                ),
+                fab,
+              ],
+            ),
+          ),
+        );
     return Column(
       children: [
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Expanded(child: caixa(
-              288,
-              'type="linear" direction="up"',
-              SgFloatActionButton(
-                absolute: true,
-                position: SgFloatActionButtonPosition.centerBottom,
-                actions: acoes,
-                type: SgFloatActionButtonType.linear,
-                direction: SgFloatActionButtonDirection.up,
+            Expanded(
+              child: caixa(
+                288,
+                'type="linear" direction="up"',
+                SgFloatActionButton(
+                  absolute: true,
+                  position:
+                      SgFloatActionButtonPosition.centerBottom,
+                  actions: acoes,
+                  type: SgFloatActionButtonType.linear,
+                  direction: SgFloatActionButtonDirection.up,
+                ),
               ),
-            )),
+            ),
             const SizedBox(width: 32),
-            Expanded(child: caixa(
-              288,
-              'type="linear" direction="down"',
-              SgFloatActionButton(
-                absolute: true,
-                position: SgFloatActionButtonPosition.centerTop,
-                actions: acoes,
-                type: SgFloatActionButtonType.linear,
-                direction: SgFloatActionButtonDirection.down,
+            Expanded(
+              child: caixa(
+                288,
+                'type="linear" direction="down"',
+                SgFloatActionButton(
+                  absolute: true,
+                  position: SgFloatActionButtonPosition.centerTop,
+                  actions: acoes,
+                  type: SgFloatActionButtonType.linear,
+                  direction: SgFloatActionButtonDirection.down,
+                ),
               ),
-            )),
+            ),
           ],
         ),
         const SizedBox(height: 32),
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Expanded(child: caixa(
-              96,
-              'type="linear" direction="left"',
-              SgFloatActionButton(
-                absolute: true,
-                position: SgFloatActionButtonPosition.rightCenter,
-                actions: acoesSemRotulo,
-                type: SgFloatActionButtonType.linear,
-                direction: SgFloatActionButtonDirection.left,
+            Expanded(
+              child: caixa(
+                96,
+                'type="linear" direction="left"',
+                SgFloatActionButton(
+                  absolute: true,
+                  position: SgFloatActionButtonPosition.rightCenter,
+                  actions: acoesSemRotulo,
+                  type: SgFloatActionButtonType.linear,
+                  direction: SgFloatActionButtonDirection.left,
+                ),
               ),
-            )),
+            ),
             const SizedBox(width: 32),
-            Expanded(child: caixa(
-              96,
-              'type="linear" direction="right"',
-              SgFloatActionButton(
-                absolute: true,
-                position: SgFloatActionButtonPosition.leftCenter,
-                actions: acoesSemRotulo,
-                type: SgFloatActionButtonType.linear,
-                direction: SgFloatActionButtonDirection.right,
+            Expanded(
+              child: caixa(
+                96,
+                'type="linear" direction="right"',
+                SgFloatActionButton(
+                  absolute: true,
+                  position: SgFloatActionButtonPosition.leftCenter,
+                  actions: acoesSemRotulo,
+                  type: SgFloatActionButtonType.linear,
+                  direction: SgFloatActionButtonDirection.right,
+                ),
               ),
-            )),
+            ),
           ],
         ),
       ],

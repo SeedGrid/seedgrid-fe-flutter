@@ -27,8 +27,6 @@ abstract interface class SgSliderProps {
   String? get name;
   /// Callback de mudanca. Tipo TS: `((value: number) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onChange;
-  /// Tipo TS: `RegisterOptions&lt;any&gt;` (sem tradução exata; ver excecoes.json).
-  Object? get rules;
   /// Passo entre valores. Padrão: `1`.
   num? get step;
   /// Valor atual controlado.
@@ -123,14 +121,6 @@ const List<SgPropSpec> sgSliderPropSpecs = <SgPropSpec>[
     tsType: '((value: number) => void)',
     required: false,
     description: 'Callback de mudanca.',
-    exact: false,
-  ),
-  SgPropSpec(
-    name: 'rules',
-    reactName: 'rules',
-    type: 'Object?',
-    tsType: 'RegisterOptions<any>',
-    required: false,
     exact: false,
   ),
   SgPropSpec(

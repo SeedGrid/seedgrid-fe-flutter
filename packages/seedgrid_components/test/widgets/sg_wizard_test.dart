@@ -692,10 +692,7 @@ void main() {
     testWidgets('fields restringe a validacao aos campos da etapa', (t) async {
       final form = SgFormController();
       // 'email' ja foi registrado e esta invalido, mas nao pertence a etapa 1.
-      form.registerField(
-        'email',
-        rules: const SgRules(required: 'Informe o e-mail'),
-      );
+      form.registerField('email', required: 'Informe o e-mail');
       await t.pumpWidget(formWizard(form, restrictFields: true));
       await t.enterText(find.byKey(const ValueKey('input-nome')), 'Ana');
       await t.tap(next());

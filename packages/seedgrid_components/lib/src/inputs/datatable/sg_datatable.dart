@@ -138,6 +138,7 @@ class SgDatatable extends StatefulWidget implements SgDatatableProps {
     this.stripedRows = false,
     this.showGridlines = false,
     this.hoverableRows = true,
+    this.enabled = true,
     this.loading = false,
     this.emptyMessage,
     this.tableClassName = '',
@@ -216,6 +217,12 @@ class SgDatatable extends StatefulWidget implements SgDatatableProps {
   final bool showGridlines;
   @override
   final bool hoverableRows;
+
+  /// Habilita a tabela (padrao `true`). Com `false` ficam bloqueadas as acoes que mudam estado:
+  /// ordenacao, selecao de linhas, filtros (global e por coluna), limpar filtros e gerenciador de
+  /// colunas. Paginacao, rolagem e carga de mais linhas continuam funcionando.
+  @override
+  final bool enabled;
   @override
   final bool loading;
   @override
@@ -559,6 +566,7 @@ class _SgDatatableState extends State<SgDatatable> {
   ];
 
   void _toggleColumn(String key, {bool? forceVisible}) {
+    if (!widget.enabled) return;
     final isHidden = _hidden[key] == true;
     final willHide = forceVisible == null ? !isHidden : !forceVisible;
     if (willHide && _visibleDescriptors.length <= 1) return;
@@ -575,6 +583,7 @@ class _SgDatatableState extends State<SgDatatable> {
   }
 
   void _restoreDefaultColumns() {
+    if (!widget.enabled) return;
     final d = _descriptors();
     _set(() {
       _columnOrder = [for (final x in d) x.key];
@@ -584,6 +593,7 @@ class _SgDatatableState extends State<SgDatatable> {
   }
 
   void _showAllColumns() {
+    if (!widget.enabled) return;
     _set(() {
       _hidden = {for (final x in _descriptors()) x.key: false};
     });
@@ -662,6 +672,7 @@ class _SgDatatableState extends State<SgDatatable> {
   }
 
   void _commitSort(String? field, int order) {
+    if (!widget.enabled) return;
     setState(() {
       if (widget.sortField == null) _internalSortField = field;
       if (widget.sortOrder == null) _internalSortOrder = order;
@@ -672,11 +683,13 @@ class _SgDatatableState extends State<SgDatatable> {
   }
 
   void _commitSelection(Object? next) {
+    if (!widget.enabled) return;
     if (widget.selection == null) setState(() => _internalSelection = next);
     widget.onSelectionChange?.call(next);
   }
 
   void _commitFilters(Map<String, String> nextFilters, String nextGlobal) {
+    if (!widget.enabled) return;
     setState(() {
       if (widget.filters == null) _internalFilters = nextFilters;
       if (widget.globalFilter == null) _internalGlobalFilter = nextGlobal;
@@ -1082,6 +1095,13 @@ class _SgDatatableState extends State<SgDatatable> {
         );
     }
     Widget result = result0;
+    if (!widget.enabled) {
+      result = Semantics(
+        enabled: false,
+        container: true,
+        child: Opacity(opacity: 0.6, child: result),
+      );
+    }
     final id = widget.id;
     if (id != null && id.isNotEmpty) {
       result = Semantics(container: true, identifier: id, child: result);
@@ -1102,6 +1122,7 @@ class _SgDatatableState extends State<SgDatatable> {
             child: _DtTextField(
               key: const ValueKey('sg-dt-global-filter'),
               controller: _globalCtl,
+              enabled: widget.enabled,
               placeholder: globalLabel,
               dense: false,
               onChanged: (v) => _commitFilters(_currentFilters, v),
@@ -1192,7 +1213,7 @@ class _SgDatatableState extends State<SgDatatable> {
             child: _ManagerButton(
               label: label,
               open: _panelOpen,
-              onTap: _toggleManager,
+              onTap: widget.enabled ? _toggleManager : () {},
             ),
           ),
         ),
@@ -1425,6 +1446,7 @@ class _SgDatatableState extends State<SgDatatable> {
           child: _DtTextField(
             key: ValueKey('sg-dt-colfilter-$field'),
             controller: _filterCtl(field),
+            enabled: widget.enabled,
             dense: true,
             placeholder:
                 c.filterPlaceholder ??
@@ -1784,6 +1806,7 @@ class _SgDatatableState extends State<SgDatatable> {
                   return _DtTextField(
                     key: ValueKey('sg-dt-card-filter-$field'),
                     controller: _filterCtl(field),
+                    enabled: widget.enabled,
                     dense: false,
                     placeholder:
                         c.filterPlaceholder ??
@@ -2287,12 +2310,14 @@ class _DtTextField extends StatelessWidget {
     required this.placeholder,
     required this.onChanged,
     required this.dense,
+    this.enabled = true,
   });
 
   final TextEditingController controller;
   final String placeholder;
   final ValueChanged<String> onChanged;
   final bool dense;
+  final bool enabled;
 
   @override
   Widget build(BuildContext context) {
@@ -2304,6 +2329,7 @@ class _DtTextField extends StatelessWidget {
     final fs = dense ? 12.0 : 14.0;
     return TextField(
       controller: controller,
+      enabled: enabled,
       onChanged: onChanged,
       style: TextStyle(fontSize: fs, color: t.inputFg),
       decoration: InputDecoration(

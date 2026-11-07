@@ -161,15 +161,18 @@ class _SgImageUploadPageState extends State<SgImageUploadPage> {
                   name: 'documento',
                   control: _form,
                   labelText: 'Foto do documento',
-                  rules: const SgRules(required: 'Escolha uma imagem'),
+                  required: true,
+                  requiredMessage: 'Escolha uma imagem',
                 ),
                 const SizedBox(height: 12),
                 SgButton(
                   label: Text(context.tx('Enviar')),
                   onClick: () => _form.handleSubmit(
                     (values) => setState(
-                      () => _enviado =
-                          (values['documento'] as List).cast<SgFile>().first.name,
+                      () => _enviado = (values['documento'] as List)
+                          .cast<SgFile>()
+                          .first
+                          .name,
                     ),
                   ),
                 ),

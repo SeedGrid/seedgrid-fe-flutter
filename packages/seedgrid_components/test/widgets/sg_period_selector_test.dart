@@ -434,30 +434,6 @@ void main() {
       },
     );
 
-    testWidgets('rules.required mostra o erro no envio e some ao escolher', (
-      t,
-    ) async {
-      final form = SgFormController();
-      await t.pumpWidget(
-        host(
-          SgPeriodSelector(
-            name: 'periodo',
-            control: form,
-            rules: const SgRules(required: 'Escolha o periodo'),
-          ),
-        ),
-      );
-      await form.handleSubmit((_) {});
-      await frames(t);
-      expect(find.text('Escolha o periodo'), findsOneWidget);
-      await open(t);
-      await pick(t, PeriodPreset.today);
-      await t.pump(const Duration(milliseconds: 50));
-      await frames(t);
-      expect(find.text('Escolha o periodo'), findsNothing);
-      expect(form.errorOf('periodo'), isNull);
-    });
-
     testWidgets('usa o SgForm mais proximo quando nao ha control', (t) async {
       Map<String, Object?>? sent;
       await t.pumpWidget(

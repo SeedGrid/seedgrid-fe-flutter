@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:seedgrid_commons/seedgrid_commons.dart';
 
 import '../../form/sg_form.dart';
-import '../../form/sg_rules.dart';
+import '../../form/sg_field_error.dart';
 import '../../generated/enums.g.dart';
 import '../../generated/sg_input_birth_date.g.dart';
 import '../../i18n/i18n.dart';
@@ -52,7 +52,6 @@ class SgInputBirthDate extends StatefulWidget implements SgInputBirthDateProps {
     this.readOnly,
     this.required,
     this.requiredMessage,
-    this.rules,
     this.showCharCounter,
     this.suffixText,
     this.textInputType,
@@ -181,9 +180,6 @@ class SgInputBirthDate extends StatefulWidget implements SgInputBirthDateProps {
 
   @override
   final String? requiredMessage;
-
-  @override
-  final SgRules? rules;
 
   @override
   final bool? showCharCounter;
@@ -356,7 +352,6 @@ class _SgInputBirthDateState extends State<SgInputBirthDate> {
       prefixIcon: widget.prefixIcon,
       prefixText: widget.prefixText,
       readOnly: widget.readOnly,
-      rules: widget.rules,
       showCharCounter: widget.showCharCounter,
       suffixText: widget.suffixText,
       textInputType: SgInputDateTextInputType.values

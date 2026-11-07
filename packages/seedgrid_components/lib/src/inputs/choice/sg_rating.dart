@@ -6,7 +6,7 @@ import 'package:seedgrid_theme/seedgrid_theme.dart';
 
 import '../../form/sg_form.dart';
 import '../../form/sg_validation_scope.dart';
-import '../../form/sg_rules.dart';
+import '../../form/sg_field_error.dart';
 import '../../generated/enums.g.dart';
 import '../../generated/sg_rating.g.dart';
 import '../../i18n/i18n.dart';
@@ -41,7 +41,6 @@ class SgRating extends StatefulWidget implements SgRatingProps {
     this.readOnly = false,
     this.required = false,
     this.requiredMessage,
-    this.rules,
     this.showTooltip = false,
     this.size = SgRatingSize.md,
     this.stars = 5,
@@ -95,8 +94,6 @@ class SgRating extends StatefulWidget implements SgRatingProps {
   final bool required;
   @override
   final String? requiredMessage;
-  @override
-  final SgRules? rules;
 
   /// Mostra a nota sob o ponteiro acima da estrela.
   @override
@@ -169,8 +166,7 @@ class _SgRatingState extends State<SgRating> implements SgSelfValidating {
       context,
       control: widget.control,
       name: widget.name,
-      rules: mergeRequiredRule(
-        widget.rules,
+      required: requiredMessageFor(
         widget.required,
         widget.requiredMessage ?? t(i18n, 'components.rating.required'),
       ),

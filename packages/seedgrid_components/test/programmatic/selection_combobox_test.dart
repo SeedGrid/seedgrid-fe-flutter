@@ -36,7 +36,6 @@ class ComboboxAdapter extends VectorAdapter {
       onValueChange: s.events.add,
       name: s.form == null ? null : 'f',
       control: s.form,
-      rules: s.rules,
     );
   }
 

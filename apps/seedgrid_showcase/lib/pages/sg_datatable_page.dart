@@ -555,7 +555,8 @@ class _SgDatatablePageState extends State<SgDatatablePage> {
             const SgComponentsI18nProvider(
               locale: 'fr',
               messages: {
-                'components.datatable.empty': 'Texto do dicionário (não aparece)',
+                'components.datatable.empty':
+                    'Texto do dicionário (não aparece)',
               },
               child: SgDatatable(
                 id: 'datatable-idioma',
@@ -568,7 +569,11 @@ class _SgDatatablePageState extends State<SgDatatablePage> {
                     filter: true,
                     filterPlaceholder: 'Digite o código',
                   ),
-                  SgDatatableColumn(field: 'name', header: 'Nome', filter: true),
+                  SgDatatableColumn(
+                    field: 'name',
+                    header: 'Nome',
+                    filter: true,
+                  ),
                 ],
                 dataKey: 'code',
                 showGlobalFilter: true,
@@ -579,6 +584,38 @@ class _SgDatatablePageState extends State<SgDatatablePage> {
             ),
         // #endregion
         code: SgDatatablePageSnippets.sgDatatableIdioma,
+      ),
+      ShowcaseExample(
+        title: 'Desabilitado (enabled)',
+        description:
+            'Com enabled: false ordenação, seleção de linhas, filtros e gerenciador de colunas ficam bloqueados; paginação e rolagem continuam funcionando.',
+        preview:
+            // #region sg-datatable-enabled
+            SgDatatable(
+              id: 'datatable-enabled',
+              title: context.tx('Pessoas'),
+              value: [
+                {'id': 1, 'name': 'Ana'},
+                {'id': 2, 'name': 'Bruno'},
+                {'id': 3, 'name': 'Carla'},
+              ],
+              columns: const [
+                SgDatatableColumn(field: 'id', header: 'ID', sortable: true),
+                SgDatatableColumn(
+                  field: 'name',
+                  header: 'Nome',
+                  sortable: true,
+                  filter: true,
+                ),
+              ],
+              dataKey: 'id',
+              selectionMode: SgDatatableSelectionMode.single,
+              showGlobalFilter: true,
+              showColumnFilters: true,
+              enabled: false,
+            ),
+        // #endregion
+        code: SgDatatablePageSnippets.sgDatatableEnabled,
       ),
     ];
 

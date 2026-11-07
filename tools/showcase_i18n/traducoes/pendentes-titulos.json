@@ -1,0 +1,416 @@
+{
+ "Grupo de avatares": [
+  "Avatar Group",
+  "Grupo de avatares",
+  "Grupo de avatares",
+  "Groupe d'avatars"
+ ],
+ "Forma e tamanho": [
+  "Shape and Size",
+  "Forma e tamanho",
+  "Shape y Tamano",
+  "Forme et taille"
+ ],
+ "Incremento automático": [
+  "Auto increment",
+  "Incremento automático",
+  "Auto incremento",
+  "Auto increment"
+ ],
+ "Marcar todos (showCheckAll)": [
+  "Check All (showCheckAll)",
+  "Marcar todos (showCheckAll)",
+  "Marcar todos (showCheckAll)",
+  "Tout Cocher (showCheckAll)"
+ ],
+ "Severidade e cores personalizadas": [
+  "Severity and Custom Colors",
+  "Severidade e cores personalizadas",
+  "Severity y Colores Personalizados",
+  "Severite et couleurs personnalisees"
+ ],
+ "Cores personalizadas": [
+  "Custom colors",
+  "Cores personalizadas",
+  "Colores personalizados",
+  "Couleurs personnalisees"
+ ],
+ "Ciano": [
+  "Cyan",
+  "Ciano",
+  "Cian",
+  "Cyan"
+ ],
+ "Lima": [
+  "Lime",
+  "Lima",
+  "Lima",
+  "Citron vert"
+ ],
+ "Troca de dígitos com botões de controle.": [
+  "Digit switching with control buttons.",
+  "Troca de dígitos com botões de controlo.",
+  "Cambio de dígitos con botones de control.",
+  "Changement de chiffre avec les boutons de contrôle."
+ ],
+ "Texto matricial": [
+  "Matrix text",
+  "Texto matricial",
+  "Texto matricial",
+  "Texte matriciel"
+ ],
+ "Exibição de texto com letras, números e símbolos.": [
+  "Text rendering with letters, numbers, and symbols.",
+  "Apresentação de texto com letras, números e símbolos.",
+  "Visualización de texto con letras, números y símbolos.",
+  "Affichage de texte avec lettres, chiffres et symboles."
+ ],
+ "Variações de color/backgroundColor": [
+  "color/backgroundColor variants",
+  "Variações de color/backgroundColor",
+  "Variaciones de color/backgroundColor",
+  "Variantes de color/backgroundColor"
+ ],
+ "Exemplos de temas visuais.": [
+  "Visual theme examples.",
+  "Exemplos de temas visuais.",
+  "Ejemplos de temas visuales.",
+  "Exemples de thèmes visuels."
+ ],
+ "Escala da matriz": [
+  "Matrix scale",
+  "Escala da matriz",
+  "Escala de la matriz",
+  "Échelle de la matrice"
+ ],
+ "Ajuste de dotSize, gap e charGap.": [
+  "Adjust dotSize, gap, and charGap.",
+  "Ajuste de dotSize, gap e charGap.",
+  "Ajuste de dotSize, gap y charGap.",
+  "Ajustez dotSize, gap et charGap."
+ ],
+ "Animar nome": [
+  "Animate name",
+  "Animar nome",
+  "Animar nombre",
+  "Animer le nom"
+ ],
+ "Valor com 2 dígitos": [
+  "2-digit padded value",
+  "Valor com 2 dígitos",
+  "Valor con 2 dígitos",
+  "Valeur à 2 chiffres"
+ ],
+ "Animação de nomes": [
+  "Name animation",
+  "Animação de nomes",
+  "Animación de nombres",
+  "Animation de noms"
+ ],
+ "Composição de vários SgRoller3DDigit para animar texto - exemplo: \"LUCIANO\" -> \"MARTA\".": [
+  "Composition of several SgRoller3DDigit to animate text - example: \"LUCIANO\" -> \"MARTA\".",
+  "Composição de vários SgRoller3DDigit para animar texto - exemplo: \"LUCIANO\" -> \"MARTA\".",
+  "Composición de varios SgRoller3DDigit para animar texto - ejemplo: \"LUCIANO\" -> \"MARTA\".",
+  "Composition de plusieurs SgRoller3DDigit pour animer du texte - exemple : \"LUCIANO\" -> \"MARTA\"."
+ ],
+ "Ajuste de escala via prop fontSize.": [
+  "Scale adjustment via the fontSize prop.",
+  "Ajuste de escala através da prop fontSize.",
+  "Ajuste de escala mediante la prop fontSize.",
+  "Réglage de l'échelle via la prop fontSize."
+ ],
+ "Rosa": [
+  "Pink",
+  "Rosa",
+  "Rosa",
+  "Rose"
+ ],
+ "Âmbar": [
+  "Amber",
+  "Âmbar",
+  "Ámbar",
+  "Ambre"
+ ],
+ "Pequeno (40px)": [
+  "Small (40px)",
+  "Pequeno (40px)",
+  "Pequeño (40px)",
+  "Petit (40px)"
+ ],
+ "Médio (70px)": [
+  "Medium (70px)",
+  "Médio (70px)",
+  "Medio (70px)",
+  "Moyen (70px)"
+ ],
+ "Grande (110px)": [
+  "Large (110px)",
+  "Grande (110px)",
+  "Grande (110px)",
+  "Grand (110px)"
+ ],
+ "Troca manual entre dígitos numéricos.": [
+  "Manual switch between numeric digits.",
+  "Troca manual entre dígitos numéricos.",
+  "Cambio manual entre dígitos numéricos.",
+  "Changement manuel entre chiffres numériques."
+ ],
+ "Aceita qualquer caractere - letras, símbolos, espaços.": [
+  "Accepts any character - letters, symbols, spaces.",
+  "Aceita qualquer caractere - letras, símbolos, espaços.",
+  "Acepta cualquier carácter: letras, símbolos, espacios.",
+  "Accepte n'importe quel caractère - lettres, symboles, espaces."
+ ],
+ "color e backgroundColor são totalmente livres - qualquer paleta funciona.": [
+  "color and backgroundColor are completely free - any palette works.",
+  "color e backgroundColor são totalmente livres - qualquer paleta funciona.",
+  "color y backgroundColor son totalmente libres: cualquier paleta funciona.",
+  "color et backgroundColor sont totalement libres - toute palette fonctionne."
+ ],
+ "Incremento automático para validar transições contínuas e rápidas.": [
+  "Automatic increment to validate continuous, fast transitions.",
+  "Incremento automático para validar transições contínuas e rápidas.",
+  "Incremento automático para validar transiciones continuas y rápidas.",
+  "Incrément automatique pour valider les transitions continues et rapides."
+ ],
+ "Composição de vários SgFadeDigit em linha - cada dígito atualiza de forma independente.": [
+  "Several SgFadeDigit composed in a row - each digit updates independently.",
+  "Composição de vários SgFadeDigit em linha - cada dígito atualiza de forma independente.",
+  "Composición de varios SgFadeDigit en línea: cada dígito se actualiza de forma independiente.",
+  "Composition de plusieurs SgFadeDigit en ligne - chaque chiffre se met à jour indépendamment."
+ ],
+ "Ajuste de escala via fontSize - largura e altura do cartão são proporcionais.": [
+  "Scale adjustment via fontSize - card width and height are proportional.",
+  "Ajuste de escala via fontSize - largura e altura do cartão são proporcionais.",
+  "Ajuste de escala mediante fontSize: el ancho y el alto de la tarjeta son proporcionales.",
+  "Ajustement d'échelle via fontSize - la largeur et la hauteur de la carte sont proportionnelles."
+ ],
+ "Folhas sequenciais": [
+  "Sequential sheets",
+  "Folhas sequenciais",
+  "Hojas secuenciales",
+  "Feuilles sequentielles"
+ ],
+ "Variações de papel": [
+  "Paper variants",
+  "Variações de papel",
+  "Variaciones de papel",
+  "Variantes de papier"
+ ],
+ "Fontes": [
+  "Fonts",
+  "Fontes",
+  "Fuentes",
+  "Polices"
+ ],
+ "Descarte automático": [
+  "Auto discard",
+  "Descarte automático",
+  "Descarte automático",
+  "Rejet automatique"
+ ],
+ "Paginação imperativa (ref)": [
+  "Imperative pagination (ref)",
+  "Paginação imperativa (ref)",
+  "Paginacion imperativa (ref)",
+  "Pagination imperative (ref)"
+ ],
+ "Próximo (+1 folha)": [
+  "Next (+1 sheet)",
+  "Próximo (+1 folha)",
+  "Siguiente (+1 hoja)",
+  "Suivant (+1 feuille)"
+ ],
+ "Anterior (-1 folha)": [
+  "Previous (-1 sheet)",
+  "Anterior (-1 folha)",
+  "Anterior (-1 hoja)",
+  "Précédent (-1 feuille)"
+ ],
+ "Descartar folha": [
+  "Discard sheet",
+  "Descartar folha",
+  "Descartar hoja",
+  "Jeter la feuille"
+ ],
+ "Papel branco": [
+  "White paper",
+  "Papel branco",
+  "Papel blanco",
+  "Papier blanc"
+ ],
+ "Papel âmbar": [
+  "Amber paper",
+  "Papel âmbar",
+  "Papel ámbar",
+  "Papier ambre"
+ ],
+ "Papel azul frio": [
+  "Cool blue paper",
+  "Papel azul frio",
+  "Papel azul frío",
+  "Papier bleu froid"
+ ],
+ "Sans": [
+  "Sans",
+  "Sans",
+  "Sans",
+  "Sans"
+ ],
+ "Serif": [
+  "Serif",
+  "Serif",
+  "Serif",
+  "Serif"
+ ],
+ "Página": [
+  "Page",
+  "Página",
+  "Página",
+  "Page"
+ ],
+ "de": [
+  "of",
+  "de",
+  "de",
+  "sur"
+ ],
+ "Clique em Próximo para adicionar uma folha e em Anterior para remover uma.": [
+  "Click Next to add a sheet and Previous to remove one.",
+  "Clique em Próximo para adicionar uma folha e em Anterior para remover uma.",
+  "Haga clic en Siguiente para añadir una hoja y en Anterior para quitar una.",
+  "Cliquez sur Suivant pour ajouter une feuille et sur Précédent pour en retirer une."
+ ],
+ "Cada clique descarta uma folha e revela a seguinte.": [
+  "Each click discards a sheet and reveals the next one.",
+  "Cada clique descarta uma folha e revela a seguinte.",
+  "Cada clic descarta una hoja y revela la siguiente.",
+  "Chaque clic jette une feuille et révèle la suivante."
+ ],
+ "Exemplos com cores diferentes em color e backgroundColor.": [
+  "Examples with different color and backgroundColor values.",
+  "Exemplos com cores diferentes em color e backgroundColor.",
+  "Ejemplos con colores diferentes en color y backgroundColor.",
+  "Exemples avec des couleurs différentes dans color et backgroundColor."
+ ],
+ "Comparação de fontes no mesmo efeito de pilha.": [
+  "Font comparison under the same stack effect.",
+  "Comparação de fontes no mesmo efeito de pilha.",
+  "Comparación de fuentes con el mismo efecto de pila.",
+  "Comparaison de polices avec le même effet de pile."
+ ],
+ "Atualização contínua para observar a direção aleatória da folha descartada.": [
+  "Continuous updates to observe the random direction of the discarded sheet.",
+  "Atualização contínua para observar a direção aleatória da folha descartada.",
+  "Actualización continua para observar la dirección aleatoria de la hoja descartada.",
+  "Mise à jour continue pour observer la direction aléatoire de la feuille jetée."
+ ],
+ "totalNumberPages define o total de folhas. O controller expõe increasePage(), decreasePage() e page().": [
+  "totalNumberPages sets the total number of sheets. The controller exposes increasePage(), decreasePage() and page().",
+  "totalNumberPages define o total de folhas. O controller expõe increasePage(), decreasePage() e page().",
+  "totalNumberPages define el total de hojas. El controller expone increasePage(), decreasePage() y page().",
+  "totalNumberPages définit le nombre total de feuilles. Le controller expose increasePage(), decreasePage() et page()."
+ ],
+ "Hexadecimal (0-9 A-F)": [
+  "Hexadecimal (0-9 A-F)",
+  "Hexadecimal (0-9 A-F)",
+  "Hexadecimal (0-9 A-F)",
+  "Hexadecimal (0-9 A-F)"
+ ],
+ "Temas de cor": [
+  "Color themes",
+  "Temas de cor",
+  "Temas de color",
+  "Themes de couleur"
+ ],
+ "Tamanho e espessura": [
+  "Size and thickness",
+  "Tamanho e espessura",
+  "Tamano y espesor",
+  "Taille et epaisseur"
+ ],
+ "Próximo caractere": [
+  "Next character",
+  "Próximo caractere",
+  "Siguiente carácter",
+  "Caractère suivant"
+ ],
+ "Suporte a caracteres comuns de display de 7 segmentos.": [
+  "Support for common 7-segment display characters.",
+  "Suporte a caracteres comuns de display de 7 segmentos.",
+  "Soporte para caracteres comunes de display de 7 segmentos.",
+  "Prise en charge des caractères courants d'un afficheur 7 segments."
+ ],
+ "Exemplos com as paletas red, blue, yellow, green e white.": [
+  "Examples with the red, blue, yellow, green and white palettes.",
+  "Exemplos com as paletas red, blue, yellow, green e white.",
+  "Ejemplos con las paletas red, blue, yellow, green y white.",
+  "Exemples avec les palettes red, blue, yellow, green et white."
+ ],
+ "Escala do display via size e thickness.": [
+  "Display scale via size and thickness.",
+  "Escala do display via size e thickness.",
+  "Escala del display mediante size y thickness.",
+  "Échelle de l'afficheur via size et thickness."
+ ],
+ "Composição de vários dígitos para HH:MM:SS.": [
+  "Several digits composed for HH:MM:SS.",
+  "Composição de vários dígitos para HH:MM:SS.",
+  "Composición de varios dígitos para HH:MM:SS.",
+  "Composition de plusieurs chiffres pour HH:MM:SS."
+ ],
+ "Cada caractere acende os segmentos da tabela do display; sem glifo, apaga tudo.": [
+  "Each character lights the segments from the display table; with no glyph, everything turns off.",
+  "Cada caractere acende os segmentos da tabela do display; sem glifo, apaga tudo.",
+  "Cada carácter enciende los segmentos de la tabla del display; sin glifo, apaga todo.",
+  "Chaque caractère allume les segments de la table de l'afficheur ; sans glyphe, tout s'éteint."
+ ],
+ "Básico (mês atual)": [
+  "Basic (current month)",
+  "Básico (mês atual)",
+  "Basico (mes actual)",
+  "Basique (mois courant)"
+ ],
+ "Selecionado controlado + limite de datas": [
+  "Controlled selection + date range",
+  "Selecionado controlado + limite de datas",
+  "Seleccion controlada + rango de fechas",
+  "Selection controlee + plage de dates"
+ ],
+ "Locale + múltiplos meses": [
+  "Locale + multi-month",
+  "Locale + múltiplos meses",
+  "Locale + multi mes",
+  "Locale + multi-mois"
+ ],
+ "Domingo primeiro": [
+  "Sunday first",
+  "Domingo primeiro",
+  "Domingo primero",
+  "Dimanche d'abord"
+ ],
+ "Segunda primeiro": [
+  "Monday first",
+  "Segunda primeiro",
+  "Lunes primero",
+  "Lundi d'abord"
+ ],
+ "Configuração inicial com data selecionada e posição do cartão persistida.": [
+  "Initial setup with a selected date and persisted card position.",
+  "Configuração inicial com data selecionada e posição do cartão persistida.",
+  "Configuración inicial con fecha seleccionada y posición de la tarjeta persistida.",
+  "Configuration initiale avec date sélectionnée et position de la carte persistée."
+ ],
+ "Controle externo do valor, bloqueio de fins de semana e limite mínimo e máximo.": [
+  "External value control, weekends blocked and minimum and maximum limits.",
+  "Controlo externo do valor, bloqueio de fins de semana e limite mínimo e máximo.",
+  "Control externo del valor, bloqueo de fines de semana y límite mínimo y máximo.",
+  "Contrôle externe de la valeur, week-ends bloqués et limites minimale et maximale."
+ ],
+ "Alterna o locale, o primeiro dia da semana e a quantidade de meses (numberOfMonths, monthsPerLine = 3).": [
+  "Switches the locale, the first day of the week and the number of months (numberOfMonths, monthsPerLine = 3).",
+  "Alterna o locale, o primeiro dia da semana e a quantidade de meses (numberOfMonths, monthsPerLine = 3).",
+  "Alterna el locale, el primer día de la semana y la cantidad de meses (numberOfMonths, monthsPerLine = 3).",
+  "Bascule la locale, le premier jour de la semaine et le nombre de mois (numberOfMonths, monthsPerLine = 3)."
+ ]
+}

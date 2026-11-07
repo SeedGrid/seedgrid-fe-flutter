@@ -8,7 +8,6 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 
 import '../../form/sg_form.dart';
-import '../../form/sg_rules.dart';
 import '../../generated/sg_image_upload.g.dart';
 import '../../i18n/i18n.dart';
 import 'sg_file_logic.dart';
@@ -43,7 +42,6 @@ class SgImageUpload extends StatelessWidget implements SgImageUploadProps {
     this.readOnly,
     this.required,
     this.requiredMessage,
-    this.rules,
     this.value,
     this.picker,
   });
@@ -130,9 +128,6 @@ class SgImageUpload extends StatelessWidget implements SgImageUploadProps {
 
   @override
   final String? requiredMessage;
-
-  @override
-  final SgRules? rules;
 
   /// Imagens controladas (sempre lista).
   @override
@@ -249,7 +244,6 @@ class SgImageUpload extends StatelessWidget implements SgImageUploadProps {
       readOnly: readOnly,
       required: required,
       requiredMessage: requiredMessage,
-      rules: rules,
       value: value,
       picker: picker,
       extraCheck: (file) => _check(context, file),

@@ -143,7 +143,9 @@ class _SgCameraCapturePageState extends State<SgCameraCapturePage> {
             // #region sg-camera-capture-idioma
             const SgComponentsI18nProvider(
               locale: 'fr',
-              messages: {'components.inputs.camera.capture': 'Tirar foto agora'},
+              messages: {
+                'components.inputs.camera.capture': 'Tirar foto agora',
+              },
               child: SgCameraCapture(id: 'idioma', labelText: 'Foto'),
             ),
         // #endregion

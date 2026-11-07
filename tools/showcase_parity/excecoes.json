@@ -1,0 +1,11 @@
+{
+ "_aviso": "Diferencas aceitas entre React e Flutter (regras 2 e 3 do P148/P153): diferenca de linguagem ou de plataforma. Cada entrada tem o motivo. ignorarReact/ignorarFlutter = titulos que o verificador desconsidera nesse componente.",
+ "componentes": {
+  "SgPlayground": { "semPaginaFlutter": true, "motivo": "Playground e uma pagina utilitaria do showcase React; o Flutter tem SgPlayground embutido em cada pagina." },
+  "SgCheckboxGroup": {
+   "ignorarReact": ["React Hook Form - Register", "Ref imperativo (getChecked / checkAll / clearAll)"],
+   "ignorarFlutter": ["Formulário - Register", "Controller imperativo (getChecked / checkAll / clearAll)"],
+   "motivo": "RHF e ref sao especificos do React; no Flutter o par e o formulario e o controller (diferenca de linguagem, regra 2)."
+  }
+ }
+}

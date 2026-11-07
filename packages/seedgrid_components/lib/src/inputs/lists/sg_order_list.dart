@@ -8,7 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:seedgrid_theme/seedgrid_theme.dart';
 
 import '../../form/sg_form.dart';
-import '../../form/sg_rules.dart';
+import '../../form/sg_field_error.dart';
 import '../../generated/enums.g.dart';
 import '../../generated/sg_order_list.g.dart';
 import '../../i18n/i18n.dart';
@@ -91,7 +91,6 @@ class SgOrderList extends StatefulWidget implements SgOrderListProps {
     this.error,
     this.name,
     this.control,
-    this.rules,
     this.controller,
   });
 
@@ -144,8 +143,6 @@ class SgOrderList extends StatefulWidget implements SgOrderListProps {
   final String? name;
   @override
   final SgFormController? control;
-  @override
-  final SgRules? rules;
 
   /// `ref` do React.
   final SgOrderListController? controller;
@@ -178,12 +175,7 @@ class _SgOrderListState extends State<SgOrderList> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    _binding.bind(
-      context,
-      control: widget.control,
-      name: widget.name,
-      rules: widget.rules,
-    );
+    _binding.bind(context, control: widget.control, name: widget.name);
   }
 
   @override
@@ -193,12 +185,7 @@ class _SgOrderListState extends State<SgOrderList> {
       if (old.controller?._state == this) old.controller!._state = null;
       widget.controller?._state = this;
     }
-    _binding.bind(
-      context,
-      control: widget.control,
-      name: widget.name,
-      rules: widget.rules,
-    );
+    _binding.bind(context, control: widget.control, name: widget.name);
     // `useEffect([source])`: sem `value`, recomeca quando a lista de entrada muda.
     if (!_isControlled && !sameIdentity(old.source, widget.source)) {
       _internalItems = widget.source;

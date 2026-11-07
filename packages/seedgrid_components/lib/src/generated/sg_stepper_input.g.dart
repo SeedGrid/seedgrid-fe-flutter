@@ -29,8 +29,6 @@ abstract interface class SgStepperInputProps {
   Function? get onChange;
   /// Permite visualizacao sem edicao direta. Padrão: `false`.
   bool? get readOnly;
-  /// Tipo TS: `RegisterOptions&lt;any&gt;` (sem tradução exata; ver excecoes.json).
-  Object? get rules;
   /// Incremento e decremento aplicados. Padrão: `1`.
   num? get step;
   /// Valor atual controlado.
@@ -135,14 +133,6 @@ const List<SgPropSpec> sgStepperInputPropSpecs = <SgPropSpec>[
     required: false,
     defaultValue: 'false',
     description: 'Permite visualizacao sem edicao direta.',
-  ),
-  SgPropSpec(
-    name: 'rules',
-    reactName: 'rules',
-    type: 'Object?',
-    tsType: 'RegisterOptions<any>',
-    required: false,
-    exact: false,
   ),
   SgPropSpec(
     name: 'step',

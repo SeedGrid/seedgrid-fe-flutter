@@ -61,14 +61,11 @@ void main() {
   });
 
   testWidgets(
-    'SgPeriodSelector: formulario exige o periodo e envia o texto do preset',
+    'SgPeriodSelector: formulario envia o texto do preset',
     (t) async {
       setSize(t, kSizes.values.last);
       await t.pumpWidget(app(const SgPeriodSelectorPage()));
       await tapLink(t, const ValueKey('link-exemplo-5'));
-      await t.tap(find.text('Enviar'));
-      await settle(t);
-      expect(find.text('Escolha um período'), findsOneWidget);
       await escolher(t, 'periodo-form', 'THIS_MONTH');
       await t.tap(find.text('Enviar'));
       await settle(t);

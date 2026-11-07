@@ -8,7 +8,7 @@
 import 'package:flutter/material.dart';
 
 import '../../form/sg_form.dart';
-import '../../form/sg_rules.dart';
+import '../../form/sg_field_error.dart';
 import '../../generated/enums.g.dart';
 import '../../generated/sg_input_date_time.g.dart';
 import '../../i18n/i18n.dart';
@@ -111,7 +111,6 @@ class SgInputDateTime extends StatefulWidget implements SgInputDateTimeProps {
     this.readOnly,
     this.required,
     this.requiredMessage,
-    this.rules,
     this.showCharCounter,
     this.showSeconds,
     this.suffixText,
@@ -250,9 +249,6 @@ class SgInputDateTime extends StatefulWidget implements SgInputDateTimeProps {
   final String? requiredMessage;
 
   @override
-  final SgRules? rules;
-
-  @override
   final bool? showCharCounter;
 
   /// Mostra e aceita segundos.
@@ -338,7 +334,6 @@ class _SgInputDateTimeState extends State<SgInputDateTime> {
       _registeredName = widget.name;
       _form!.registerField(
         widget.name!,
-        rules: widget.rules,
         initialValue: _seen.isEmpty ? null : _seen,
         validator: _formValidate,
       );

@@ -51,8 +51,6 @@ abstract interface class SgImageUploadProps {
   bool? get readOnly;
   bool? get required;
   String? get requiredMessage;
-  /// Tipo TS: `RegisterOptions&lt;any&gt;` (sem tradução exata; ver excecoes.json).
-  Object? get rules;
   /// Imagens controladas (sempre lista; uma imagem = lista de uma). Uma imagem ja salva entra como { name, url }. Tipo TS: `SgFileValue[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get value;
 }
@@ -252,14 +250,6 @@ const List<SgPropSpec> sgImageUploadPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-  ),
-  SgPropSpec(
-    name: 'rules',
-    reactName: 'rules',
-    type: 'Object?',
-    tsType: 'RegisterOptions<any>',
-    required: false,
-    exact: false,
   ),
   SgPropSpec(
     name: 'value',

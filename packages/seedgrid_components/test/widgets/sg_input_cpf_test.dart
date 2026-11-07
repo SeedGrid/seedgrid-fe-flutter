@@ -42,7 +42,6 @@ Widget build(Opts o, {String? lengthMessage, String? invalidMessage}) =>
       autofocus: o.autofocus,
       focusNode: o.focusNode,
       onSubmitted: o.onSubmitted,
-      rules: o.rules,
       lengthMessage: lengthMessage,
       invalidMessage: invalidMessage,
     );

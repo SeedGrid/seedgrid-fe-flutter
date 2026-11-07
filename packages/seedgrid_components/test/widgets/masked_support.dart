@@ -2,8 +2,8 @@
 // repassadas, foco/blur, limpar, formulario) rodadas sobre um construtor por widget.
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:seedgrid_components/src/form/sg_field_error.dart';
 import 'package:seedgrid_components/src/form/sg_form.dart';
-import 'package:seedgrid_components/src/form/sg_rules.dart';
 import 'package:seedgrid_components/src/i18n/i18n.dart';
 import 'package:seedgrid_components/src/inputs/sg_input_text.dart';
 import 'package:seedgrid_theme/seedgrid_theme.dart';
@@ -11,7 +11,6 @@ import 'package:seedgrid_theme/seedgrid_theme.dart';
 // Os testes deste grupo importam os arquivos do proprio grupo (nao o barril raiz), assim nao
 // dependem de trabalho em andamento dos outros grupos.
 export 'package:seedgrid_components/src/form/sg_form.dart';
-export 'package:seedgrid_components/src/form/sg_rules.dart';
 export 'package:seedgrid_components/src/generated/generated.dart';
 export 'package:seedgrid_components/src/i18n/i18n.dart';
 export 'package:seedgrid_components/src/inputs/masked_inputs.dart';
@@ -72,7 +71,6 @@ class Opts {
     this.autofocus = false,
     this.focusNode,
     this.onSubmitted,
-    this.rules,
   });
 
   final String id;
@@ -108,7 +106,6 @@ class Opts {
   final bool autofocus;
   final FocusNode? focusNode;
   final ValueChanged<String>? onSubmitted;
-  final SgRules? rules;
 }
 
 typedef Build = Widget Function(Opts o);
@@ -381,7 +378,7 @@ void defineCommonChecks(
     );
 
     testWidgets(
-      'rules do formulario: required via rules bloqueia o envio vazio',
+      'required do campo bloqueia o envio vazio e mostra a mensagem',
       (t) async {
         final form = SgFormController();
         Map<String, SgFieldError>? invalid;
@@ -391,7 +388,8 @@ void defineCommonChecks(
               Opts(
                 name: 'campo',
                 control: form,
-                rules: const SgRules(required: 'Preencha'),
+                required: true,
+                requiredMessage: 'Preencha',
               ),
             ),
           ),

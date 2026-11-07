@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../form/sg_form.dart';
-import '../../form/sg_rules.dart';
 import '../../generated/enums.g.dart';
 import '../../generated/sg_input_text_search.g.dart';
 import '../sg_input_text.dart';
@@ -55,7 +54,6 @@ class SgInputTextSearch extends StatefulWidget
     this.readOnly,
     this.required,
     this.requiredMessage,
-    this.rules,
     this.showCharCounter,
     this.suffixText,
     this.textInputType,
@@ -159,8 +157,6 @@ class SgInputTextSearch extends StatefulWidget
   final bool? required;
   @override
   final String? requiredMessage;
-  @override
-  final SgRules? rules;
   @override
   final bool? showCharCounter;
   @override
@@ -273,7 +269,6 @@ class _SgInputTextSearchState extends State<SgInputTextSearch> {
       readOnly: w.readOnly,
       required: w.required,
       requiredMessage: w.requiredMessage,
-      rules: w.rules,
       showCharCounter: w.showCharCounter,
       suffixText: w.suffixText,
       textInputType: SgInputTextTextInputType.fromValue(w.textInputType?.value),

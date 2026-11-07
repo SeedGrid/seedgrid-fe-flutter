@@ -5,7 +5,6 @@
 import 'package:flutter/widgets.dart';
 
 import '../../form/sg_form.dart';
-import '../../form/sg_rules.dart';
 import '../../generated/enums.g.dart';
 import '../../generated/sg_input_currency.g.dart';
 import '../../i18n/i18n.dart';
@@ -61,7 +60,6 @@ class SgInputCurrency extends StatelessWidget implements SgInputCurrencyProps {
     this.readOnly,
     this.required,
     this.requiredMessage,
-    this.rules,
     this.showCurrencySymbol,
     this.suffixText,
     this.textInputType,
@@ -169,8 +167,6 @@ class SgInputCurrency extends StatelessWidget implements SgInputCurrencyProps {
   final bool? required;
   @override
   final String? requiredMessage;
-  @override
-  final SgRules? rules;
 
   /// Padrao `true`.
   @override
@@ -255,7 +251,6 @@ class SgInputCurrency extends StatelessWidget implements SgInputCurrencyProps {
         borderRadius: borderRadius,
         required: required,
         requiredMessage: requiredMessage,
-        rules: rules,
         name: name,
         control: control,
         error: error,

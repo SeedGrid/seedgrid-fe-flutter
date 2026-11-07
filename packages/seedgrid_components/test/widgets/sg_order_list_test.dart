@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:seedgrid_components/src/buttons/sg_button.dart';
 import 'package:seedgrid_components/src/form/sg_form.dart';
-import 'package:seedgrid_components/src/form/sg_rules.dart';
 import 'package:seedgrid_components/src/generated/enums.g.dart';
 import 'package:seedgrid_components/src/i18n/i18n.dart';
 import 'package:seedgrid_components/src/inputs/lists/lists_shared.dart';
@@ -48,14 +47,16 @@ Future<void> tapBtn(WidgetTester t, String dir) async {
   await t.pump();
 }
 
-bool btnDisabled(WidgetTester t, String dir) => t
-    .widget<SgButton>(
-      find.descendant(
-        of: find.byKey(ValueKey('ol-$dir')),
-        matching: find.byType(SgButton),
-      ),
-    )
-    .enabled == false;
+bool btnDisabled(WidgetTester t, String dir) =>
+    t
+        .widget<SgButton>(
+          find.descendant(
+            of: find.byKey(ValueKey('ol-$dir')),
+            matching: find.byType(SgButton),
+          ),
+        )
+        .enabled ==
+    false;
 
 Future<void> longDrag(WidgetTester t, Finder from, Offset to) async {
   final g = await t.startGesture(t.getCenter(from));
@@ -732,39 +733,6 @@ void main() {
         expect(labels(t), ['D', 'C']);
       },
     );
-
-    testWidgets('rules: o erro aparece apos o envio e some ao corrigir', (
-      t,
-    ) async {
-      size(t, 800);
-      final form = SgFormController(
-        defaultValues: {
-          'ordem': const [a, b, c],
-        },
-      );
-      await t.pumpWidget(
-        host(
-          SgOrderList(
-            name: 'ordem',
-            control: form,
-            source: const [a, b, c],
-            selectedValues: const [3],
-            rules: SgRules(
-              validate: (v) =>
-                  (v is List<SgOrderListItem> && v.first.value == 3)
-                  ? true
-                  : 'C deve ser o primeiro',
-            ),
-          ),
-        ),
-      );
-      await form.handleSubmit((_) {});
-      await t.pump();
-      expect(find.text('C deve ser o primeiro'), findsOneWidget);
-      await tapBtn(t, 'top');
-      await t.pump();
-      expect(find.text('C deve ser o primeiro'), findsNothing);
-    });
 
     testWidgets('usa o SgForm mais proximo quando nao ha control', (t) async {
       size(t, 800);

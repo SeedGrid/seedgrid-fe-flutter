@@ -169,7 +169,7 @@ class _SgPeriodSelectorPageState extends State<SgPeriodSelectorPage> {
       ShowcaseExample(
         title: 'Dentro de um formulário',
         description:
-            'name + control + rules, como no react-hook-form. O formulário guarda o texto do preset (por exemplo THIS_MONTH).',
+            'name + control: o formulário guarda o texto do preset (por exemplo THIS_MONTH).',
         preview:
             // #region sg-period-selector-formulario
             Column(
@@ -180,7 +180,6 @@ class _SgPeriodSelectorPageState extends State<SgPeriodSelectorPage> {
                   name: 'periodo',
                   control: _form,
                   label: context.tx('Período do relatório'),
-                  rules: const SgRules(required: 'Escolha um período'),
                 ),
                 const SizedBox(height: 12),
                 SgButton(

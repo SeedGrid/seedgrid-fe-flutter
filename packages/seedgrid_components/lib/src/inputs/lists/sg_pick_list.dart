@@ -6,7 +6,7 @@
 import 'package:flutter/material.dart';
 
 import '../../form/sg_form.dart';
-import '../../form/sg_rules.dart';
+import '../../form/sg_field_error.dart';
 import '../../generated/enums.g.dart';
 import '../../generated/sg_pick_list.g.dart';
 import '../../i18n/i18n.dart';
@@ -139,7 +139,6 @@ class SgPickList extends StatefulWidget implements SgPickListProps {
     this.error,
     this.name,
     this.control,
-    this.rules,
     this.controller,
   });
 
@@ -214,8 +213,6 @@ class SgPickList extends StatefulWidget implements SgPickListProps {
   final String? name;
   @override
   final SgFormController? control;
-  @override
-  final SgRules? rules;
 
   /// `ref` do React.
   final SgPickListController? controller;
@@ -256,12 +253,7 @@ class _SgPickListState extends State<SgPickList> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    _binding.bind(
-      context,
-      control: widget.control,
-      name: widget.name,
-      rules: widget.rules,
-    );
+    _binding.bind(context, control: widget.control, name: widget.name);
   }
 
   @override
@@ -271,12 +263,7 @@ class _SgPickListState extends State<SgPickList> {
       if (old.controller?._state == this) old.controller!._state = null;
       widget.controller?._state = this;
     }
-    _binding.bind(
-      context,
-      control: widget.control,
-      name: widget.name,
-      rules: widget.rules,
-    );
+    _binding.bind(context, control: widget.control, name: widget.name);
     // `useEffect([source, target])`: sem `value`, recomeca quando as listas de entrada mudam.
     if (!_isValueControlled &&
         (!sameIdentity(old.source, widget.source) ||

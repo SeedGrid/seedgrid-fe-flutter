@@ -95,7 +95,9 @@ SgCheckboxGroup(
 SgCheckboxGroup(
   id: 'custom-groupbox',
   title: context.tx('Escolha com estilo customizado'),
-  groupBoxProps: SgChoiceGroupBoxProps(title: context.tx('Preferências')),
+  groupBoxProps: SgChoiceGroupBoxProps(
+    title: context.tx('Preferências'),
+  ),
   source: [
     SgCheckboxGroupOption(
       label: context.tx('Favorito'),
@@ -147,18 +149,12 @@ SgCheckboxGroup(
   id: 'with-disabled-option',
   title: context.tx('Nível de prioridade'),
   source: [
-    SgCheckboxGroupOption(
-      label: context.tx('Baixa'),
-      value: 'low',
-    ),
+    SgCheckboxGroupOption(label: context.tx('Baixa'), value: 'low'),
     SgCheckboxGroupOption(
       label: context.tx('Média'),
       value: 'medium',
     ),
-    SgCheckboxGroupOption(
-      label: context.tx('Alta'),
-      value: 'high',
-    ),
+    SgCheckboxGroupOption(label: context.tx('Alta'), value: 'high'),
     SgCheckboxGroupOption(
       label: context.tx('Urgente'),
       value: 'urgent',
@@ -208,11 +204,14 @@ Column(
         ),
         SgButton(
           label: Text(context.tx('Banana + Uva')),
-          onClick: () => setState(() => _externo = ['banana', 'grape']),
+          onClick: () =>
+              setState(() => _externo = ['banana', 'grape']),
         ),
         SgButton(
           label: Text(context.tx('Selecionar Todos')),
-          onClick: () => setState(() => _externo = ['apple', 'banana', 'orange', 'grape']),
+          onClick: () => setState(
+            () => _externo = ['apple', 'banana', 'orange', 'grape'],
+          ),
         ),
         SgButton(
           label: Text(context.tx('Limpar')),
@@ -221,9 +220,7 @@ Column(
       ],
     ),
     const SizedBox(height: 16),
-    Text(
-      '${context.tx('Valor atual')}: [${_externo.join(', ')}]',
-    ),
+    Text('${context.tx('Valor atual')}: [${_externo.join(', ')}]'),
   ],
 )
 ''';
@@ -299,31 +296,42 @@ Column(
   children: [
     ConstrainedBox(
       constraints: const BoxConstraints(maxWidth: 320),
-      child:
-        SgCheckboxGroup(
-          id: 'highlight-list',
-          title: context.tx('Opções'),
-          selectionStyle: SgCheckboxGroupSelectionStyle.highlight,
-          value: _highlight,
-          onChange: (v) => setState(() => _highlight = v),
-          source: [
-            SgCheckboxGroupOption(
-              label: context.tx('Reserva'),
-              value: 'reserve',
-              icon: Icon(Icons.account_balance, size: 16, color: Colors.indigo),
+      child: SgCheckboxGroup(
+        id: 'highlight-list',
+        title: context.tx('Opções'),
+        selectionStyle: SgCheckboxGroupSelectionStyle.highlight,
+        value: _highlight,
+        onChange: (v) => setState(() => _highlight = v),
+        source: [
+          SgCheckboxGroupOption(
+            label: context.tx('Reserva'),
+            value: 'reserve',
+            icon: Icon(
+              Icons.account_balance,
+              size: 16,
+              color: Colors.indigo,
             ),
-            SgCheckboxGroupOption(
-              label: context.tx('Alerta'),
-              value: 'alert',
-              icon: Icon(Icons.notifications, size: 16, color: Colors.pink),
+          ),
+          SgCheckboxGroupOption(
+            label: context.tx('Alerta'),
+            value: 'alert',
+            icon: Icon(
+              Icons.notifications,
+              size: 16,
+              color: Colors.pink,
             ),
-            SgCheckboxGroupOption(
-              label: context.tx('Atualizar'),
-              value: 'refresh',
-              icon: Icon(Icons.refresh, size: 16, color: Colors.green),
+          ),
+          SgCheckboxGroupOption(
+            label: context.tx('Atualizar'),
+            value: 'refresh',
+            icon: Icon(
+              Icons.refresh,
+              size: 16,
+              color: Colors.green,
             ),
-          ],
-        ),
+          ),
+        ],
+      ),
     ),
 
     const SizedBox(height: 8),
@@ -365,11 +373,15 @@ Column(
     SgButton(
       label: Text(context.tx('Enviar')),
       onClick: () => _formRegister.handleSubmit(
-        (values) => setState(() => _enviadoRegister = '${values['fruits']}'),
+        (values) => setState(
+          () => _enviadoRegister = '${values['fruits']}',
+        ),
       ),
     ),
     if (_enviadoRegister.isNotEmpty)
-      Text('${context.tx('Dados do formulário')}: $_enviadoRegister'),
+      Text(
+        '${context.tx('Dados do formulário')}: $_enviadoRegister',
+      ),
   ],
 )
 ''';
@@ -413,7 +425,11 @@ SgCheckboxGroup(
     SgCheckboxGroupOption(
       label: context.tx('Lua'),
       value: 'moon',
-      icon: Icon(Icons.nightlight_round, size: 20, color: Colors.blue),
+      icon: Icon(
+        Icons.nightlight_round,
+        size: 20,
+        color: Colors.blue,
+      ),
     ),
     SgCheckboxGroupOption(
       label: context.tx('Nuvem'),
@@ -511,11 +527,15 @@ Column(
     SgButton(
       label: Text(context.tx('Enviar')),
       onClick: () => _formObrigatorio.handleSubmit(
-        (values) => setState(() => _enviadoObrigatorio = '${values['preference']}'),
+        (values) => setState(
+          () => _enviadoObrigatorio = '${values['preference']}',
+        ),
       ),
     ),
     if (_enviadoObrigatorio.isNotEmpty)
-      Text('${context.tx('Dados do formulário')}: $_enviadoObrigatorio'),
+      Text(
+        '${context.tx('Dados do formulário')}: $_enviadoObrigatorio',
+      ),
   ],
 )
 ''';
@@ -609,10 +629,7 @@ SgCheckboxGroup(
       label: context.tx('Laranja'),
       value: 'orange',
     ),
-    SgCheckboxGroupOption(
-      label: context.tx('Uva'),
-      value: 'grape',
-    ),
+    SgCheckboxGroupOption(label: context.tx('Uva'), value: 'grape'),
   ],
 )
 ''';

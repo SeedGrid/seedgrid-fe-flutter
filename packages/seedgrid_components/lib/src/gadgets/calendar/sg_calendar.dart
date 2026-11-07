@@ -84,6 +84,7 @@ class SgCalendar extends StatefulWidget implements SgCalendarProps {
     this.minDate,
     this.maxDate,
     this.isDateDisabled,
+    this.enabled = true,
     this.showTodayShortcut = true,
     this.cardTitle,
     this.cardProps,
@@ -133,6 +134,11 @@ class SgCalendar extends StatefulWidget implements SgCalendarProps {
   final Object? maxDate;
   @override
   final bool Function(DateTime date)? isDateDisabled;
+
+  /// Habilita o calendario (padrao `true`). Com `false` os dias, os botoes de mes anterior/proximo e
+  /// o atalho "hoje" ficam desabilitados (sem toque, sem foco); a data e o mes atuais seguem legiveis.
+  @override
+  final bool enabled;
   @override
   final bool showTodayShortcut;
   @override
@@ -216,6 +222,7 @@ class _SgCalendarState extends State<SgCalendar> {
   }
 
   bool _isDisabled(DateTime date) {
+    if (!widget.enabled) return true;
     final min = sgParseDateInput(widget.minDate);
     final max = sgParseDateInput(widget.maxDate);
     if (min != null && date.isBefore(min)) return true;
@@ -232,6 +239,7 @@ class _SgCalendarState extends State<SgCalendar> {
   }
 
   void _goToday() {
+    if (!widget.enabled) return;
     final now = sgNormalizeDate(widget.today ?? DateTime.now());
     if (!_isDisabled(now)) {
       if (!_valueControlled) setState(() => _internalValue = now);
@@ -301,6 +309,7 @@ class _SgCalendarState extends State<SgCalendar> {
             ],
             color: p.mutedForeground,
             hover: p.muted,
+            enabled: widget.enabled,
             onTap: () => _setMonthView(sgAddMonths(view, -1)),
           ),
           const SizedBox(width: 4),
@@ -314,6 +323,7 @@ class _SgCalendarState extends State<SgCalendar> {
             ],
             color: p.mutedForeground,
             hover: p.muted,
+            enabled: widget.enabled,
             onTap: () => _setMonthView(sgAddMonths(view, 1)),
           ),
           if (widget.showTodayShortcut) ...[
@@ -330,6 +340,7 @@ class _SgCalendarState extends State<SgCalendar> {
               hover: p.muted,
               border: p.border.withValues(alpha: 0.7),
               fill: p.muted.withValues(alpha: 0.4),
+              enabled: widget.enabled,
               onTap: _goToday,
             ),
           ],
@@ -662,6 +673,7 @@ class _NavButton extends StatefulWidget {
     required this.color,
     required this.hover,
     required this.onTap,
+    this.enabled = true,
     this.border,
     this.fill,
   });
@@ -673,6 +685,7 @@ class _NavButton extends StatefulWidget {
   final Color? border;
   final Color? fill;
   final VoidCallback onTap;
+  final bool enabled;
 
   @override
   State<_NavButton> createState() => _NavButtonState();
@@ -688,26 +701,34 @@ class _NavButtonState extends State<_NavButton> {
       message: w.label,
       child: Semantics(
         button: true,
+        enabled: w.enabled,
         label: w.label,
-        child: MouseRegion(
-          cursor: SystemMouseCursors.click,
-          onEnter: (_) => setState(() => _hover = true),
-          onExit: (_) => setState(() => _hover = false),
-          child: GestureDetector(
-            behavior: HitTestBehavior.opaque,
-            onTap: w.onTap,
-            child: Container(
-              width: 32,
-              height: 32,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: _hover ? w.hover : w.fill,
-                borderRadius: BorderRadius.circular(6),
-                border: w.border == null ? null : Border.all(color: w.border!),
-              ),
-              child: CustomPaint(
-                size: const Size(16, 16),
-                painter: _ChevronPainter(w.points, w.color),
+        child: Opacity(
+          opacity: w.enabled ? 1 : 0.4,
+          child: MouseRegion(
+            cursor: w.enabled
+                ? SystemMouseCursors.click
+                : SystemMouseCursors.forbidden,
+            onEnter: (_) => setState(() => _hover = w.enabled),
+            onExit: (_) => setState(() => _hover = false),
+            child: GestureDetector(
+              behavior: HitTestBehavior.opaque,
+              onTap: w.enabled ? w.onTap : null,
+              child: Container(
+                width: 32,
+                height: 32,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: _hover && w.enabled ? w.hover : w.fill,
+                  borderRadius: BorderRadius.circular(6),
+                  border: w.border == null
+                      ? null
+                      : Border.all(color: w.border!),
+                ),
+                child: CustomPaint(
+                  size: const Size(16, 16),
+                  painter: _ChevronPainter(w.points, w.color),
+                ),
               ),
             ),
           ),

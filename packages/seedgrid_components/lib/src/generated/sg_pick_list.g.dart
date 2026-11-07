@@ -39,8 +39,6 @@ abstract interface class SgPickListProps {
   Function? get onTargetSelectionChange;
   /// Padrão: `false`.
   bool? get readOnly;
-  /// Tipo TS: `RegisterOptions&lt;any&gt;` (sem tradução exata; ver excecoes.json).
-  Object? get rules;
   /// Modo de selecao nas listas. Padrão: `multiple`.
   SgPickListSelectionMode? get selectionMode;
   /// Padrão: `true`.
@@ -200,14 +198,6 @@ const List<SgPropSpec> sgPickListPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-  ),
-  SgPropSpec(
-    name: 'rules',
-    reactName: 'rules',
-    type: 'Object?',
-    tsType: 'RegisterOptions<any>',
-    required: false,
-    exact: false,
   ),
   SgPropSpec(
     name: 'selectionMode',

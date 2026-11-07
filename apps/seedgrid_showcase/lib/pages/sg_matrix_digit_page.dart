@@ -3,14 +3,192 @@ import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
 import '../src/sg_showcase_page.dart';
+import '../src/showcase_i18n.dart';
 import 'sg_matrix_digit_page.snippets.g.dart';
 
-class SgMatrixDigitPage extends StatelessWidget {
+class SgMatrixDigitPage extends StatefulWidget {
   const SgMatrixDigitPage({super.key});
+
+  @override
+  State<SgMatrixDigitPage> createState() => _SgMatrixDigitPageState();
+}
+
+class _SgMatrixDigitPageState extends State<SgMatrixDigitPage> {
+  int _digito = 0;
+  int _mensagem = 0;
+  static const _mensagens = ['SEEDGRID', 'MATRIX 2026', 'ABC-123'];
 
   @override
   Widget build(BuildContext context) {
     final examples = <ShowcaseExample>[
+      ShowcaseExample(
+        title: 'Básico (0-9)',
+        description: 'Troca de dígitos com botões de controle.',
+        preview:
+            // #region sg-matrix-digit-basico
+            Wrap(
+              spacing: 16,
+              runSpacing: 12,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                SgMatrixDigit(
+                  value: '$_digito',
+                  color: '#22d3ee',
+                  backgroundColor: '#0b1220',
+                ),
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: [
+                    SgButton(
+                      label: Text(context.tx('Próximo (+1)')),
+                      onClick: () =>
+                          setState(() => _digito = (_digito + 1) % 10),
+                    ),
+                    SgButton(
+                      label: Text(context.tx('Anterior (-1)')),
+                      onClick: () =>
+                          setState(() => _digito = (_digito + 9) % 10),
+                    ),
+                    SgButton(
+                      label: Text(context.tx('Aleatório')),
+                      onClick: () => setState(
+                        () => _digito = DateTime.now().microsecond % 10,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgMatrixDigitPageSnippets.sgMatrixDigitBasico,
+      ),
+      ShowcaseExample(
+        title: 'Texto matricial',
+        description: 'Exibição de texto com letras, números e símbolos.',
+        preview:
+            // #region sg-matrix-digit-texto-matricial
+            Wrap(
+              spacing: 12,
+              runSpacing: 12,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                SgMatrixDigit(
+                  value: _mensagens[_mensagem],
+                  color: '#a3e635',
+                  backgroundColor: '#06090f',
+                  dotSize: 8,
+                  gap: 2,
+                  charGap: 6,
+                ),
+                SgButton(
+                  label: Text(context.tx('Trocar texto')),
+                  onClick: () => setState(
+                    () => _mensagem = (_mensagem + 1) % _mensagens.length,
+                  ),
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgMatrixDigitPageSnippets.sgMatrixDigitTextoMatricial,
+      ),
+      ShowcaseExample(
+        title: 'Variações de color/backgroundColor',
+        description: 'Exemplos de temas visuais.',
+        preview:
+            // #region sg-matrix-digit-variacoes
+            Wrap(
+              spacing: 24,
+              runSpacing: 12,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(context.tx('Ciano')),
+                    const SgMatrixDigit(
+                      value: '2026',
+                      color: '#22d3ee',
+                      backgroundColor: '#0b1220',
+                    ),
+                  ],
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(context.tx('Lima')),
+                    const SgMatrixDigit(
+                      value: 'HELLO',
+                      color: '#a3e635',
+                      backgroundColor: '#05070b',
+                    ),
+                  ],
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(context.tx('Laranja')),
+                    const SgMatrixDigit(
+                      value: 'SG',
+                      color: '#fb923c',
+                      backgroundColor: '#101826',
+                    ),
+                  ],
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgMatrixDigitPageSnippets.sgMatrixDigitVariacoes,
+      ),
+      ShowcaseExample(
+        title: 'Escala da matriz',
+        description: 'Ajuste de dotSize, gap e charGap.',
+        preview:
+            // #region sg-matrix-digit-escala
+            Wrap(
+              spacing: 24,
+              runSpacing: 12,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(context.tx('Pequeno')),
+                    const SgMatrixDigit(
+                      value: '123',
+                      dotSize: 6,
+                      gap: 2,
+                      charGap: 4,
+                    ),
+                  ],
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(context.tx('Médio')),
+                    const SgMatrixDigit(
+                      value: '123',
+                      dotSize: 9,
+                      gap: 3,
+                      charGap: 7,
+                    ),
+                  ],
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(context.tx('Grande')),
+                    const SgMatrixDigit(
+                      value: '123',
+                      dotSize: 13,
+                      gap: 4,
+                      charGap: 10,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgMatrixDigitPageSnippets.sgMatrixDigitEscala,
+      ),
       ShowcaseExample(
         title: 'Texto em matriz de pontos',
         description:

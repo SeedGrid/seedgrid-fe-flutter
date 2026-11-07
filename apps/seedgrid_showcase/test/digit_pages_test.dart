@@ -76,6 +76,7 @@ void main() {
       setSize(t, kSizes.values.last);
       await t.pumpWidget(app(const SgDiscardDigitPage()));
       await settle(t);
+      await tapLink(t, const ValueKey('link-exemplo-7'));
       await t.tap(find.text('Próximo').first);
       await t.pump();
       // Os exemplos compartilham o contador: os 2 de descarte (1 e 5) soltam folha; o 2 (incoming) e o 4
@@ -84,12 +85,12 @@ void main() {
       await t.pump(const Duration(seconds: 1));
       expect(_flyingCards(), findsNothing);
 
-      await tapLink(t, const ValueKey('link-exemplo-3'));
+      await tapLink(t, const ValueKey('link-exemplo-9'));
       expect(find.text('Página 1 de 8'), findsOneWidget);
-      await t.tap(find.text('Próxima'));
+      await t.tap(find.text('Próxima').last);
       await t.pump();
       expect(find.text('Página 2 de 8'), findsOneWidget);
-      await t.tap(find.text('Anterior'));
+      await t.tap(find.text('Anterior').last);
       await t.pump();
       expect(find.text('Página 1 de 8'), findsOneWidget);
       await t.pump(const Duration(seconds: 1));

@@ -52,8 +52,6 @@ abstract interface class SgFileUploadProps {
   bool? get readOnly;
   bool? get required;
   String? get requiredMessage;
-  /// Tipo TS: `RegisterOptions&lt;any&gt;` (sem tradução exata; ver excecoes.json).
-  Object? get rules;
   /// Miniatura de cada arquivo (sem ela, a lista usa o icone do tipo). Tipo TS: `((file: SgFileValue, size: number) =&gt; React.ReactNode)` (sem tradução exata; ver excecoes.json).
   Function? get thumbnailBuilder;
   /// Lado da miniatura em px (padrao 96). Padrão: `96`.
@@ -268,14 +266,6 @@ const List<SgPropSpec> sgFileUploadPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-  ),
-  SgPropSpec(
-    name: 'rules',
-    reactName: 'rules',
-    type: 'Object?',
-    tsType: 'RegisterOptions<any>',
-    required: false,
-    exact: false,
   ),
   SgPropSpec(
     name: 'thumbnailBuilder',

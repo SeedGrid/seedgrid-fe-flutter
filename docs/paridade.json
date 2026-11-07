@@ -26,8 +26,8 @@
    "motivo": "renderValue cobre o texto com um conteiner opaco (o React usa texto transparente); itemTooltip vira Tooltip por toque longo, nao por hover; inputProps ignorado (ADR 50); sem autocorrect/spellCheck; nao testado em IME nem em dispositivo; golden com fonte de teste",
    "onde": "packages/seedgrid_components/lib/src/inputs/select/sg_autocomplete.dart",
    "props": 72,
-   "propsOmitidas": 3,
-   "propsGenericas": 26
+   "propsOmitidas": 4,
+   "propsGenericas": 25
   },
   {
    "componente": "SgAvatar",
@@ -95,7 +95,7 @@
    "status": "portado",
    "motivo": "33 locales com dados gerados do Intl (pt, en, es, fr, de, it, nl, ja, zh, ko, ru, pl, sv, tr, da, nb, fi, cs, hu, uk, el e variantes regionais); locale sem dados cai no idioma e depois em en-US; cardProps vira SgCalendarCardProps (subconjunto do SgCard); datas em texto so ISO 8601; prop extra today para fixar o hoje; defaultValue acrescentado a mao ate o gerador passar a manter props redeclaradas (ja mantem); icones SVG viraram CustomPaint; golden com fonte de teste",
    "onde": "packages/seedgrid_components/lib/src/gadgets/calendar/sg_calendar.dart",
-   "props": 19,
+   "props": 20,
    "propsOmitidas": 0,
    "propsGenericas": 12
   },
@@ -136,8 +136,8 @@
    "motivo": "destaque e relevo aproximados (bordas por Transform); groupBoxProps vira SgChoiceGroupBoxProps; a caixa e o SgGroupBox real; goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50)",
    "onde": "packages/seedgrid_components/lib/src/inputs/choice/sg_checkbox_group.dart",
    "props": 23,
-   "propsOmitidas": 3,
-   "propsGenericas": 6
+   "propsOmitidas": 4,
+   "propsGenericas": 5
   },
   {
    "componente": "SgClock",
@@ -186,8 +186,8 @@
    "motivo": "value nulo = nao controlado (Dart nao distingue null de indefinido); em tela estreita a lista e um painel de baixo (nao showModalBottomSheet, que tiraria o foco do campo); inputProps ignorado (ADR 50); sem autocorrect/spellCheck; nao testado em IME nem em dispositivo; golden com fonte de teste",
    "onde": "packages/seedgrid_components/lib/src/inputs/select/sg_combobox.dart",
    "props": 56,
-   "propsOmitidas": 3,
-   "propsGenericas": 21
+   "propsOmitidas": 4,
+   "propsGenericas": 20
   },
   {
    "componente": "SgComponentsI18nProvider",
@@ -215,7 +215,7 @@
    "status": "portado",
    "motivo": "tabela propria sem dependencia nova (two_dimensional_scrollables/TableView avaliada e descartada: exige altura de linha conhecida e nao mede conteudo); sem altura limitada pelo pai monta todas as linhas da pagina como o React (2.000 linhas sem paginador levam cerca de 1,9 s de build em teste), com altura limitada e mais de 100 linhas o corpo e virtualizado; ordenacao de texto aproxima a colacao ICU do localeCompare (vetores do React batem em 8.299 pares, mas locales exoticos podem divergir); className/style/tableClassName/rowClassName/bodyClassName/headerClassName/className de coluna nao existem (ADR 50); sortField/selection nulos significam nao controlado (Dart nao separa undefined de null); groupBoxProps vira SgListGroupBoxProps (title, width, height); ref vira controller; reordenar colunas por arrastar a alca funciona tambem por toque; painel de colunas vira painel de baixo com largura < 600; golden e teste em dispositivo nao feitos",
    "onde": "packages/seedgrid_components/lib/src/inputs/datatable/sg_datatable.dart",
-   "props": 44,
+   "props": 45,
    "propsOmitidas": 3,
    "propsGenericas": 15
   },
@@ -316,8 +316,8 @@
    "motivo": "arrastar e soltar (desktop_drop) e toque (seletor do sistema, file_picker) como no React; so o valor difere: lista de SgFile (nome e bytes; arquivo ja salvo entra com url) em vez de File do navegador",
    "onde": "packages/seedgrid_components/lib/src/inputs/files/sg_file_upload.dart",
    "props": 33,
-   "propsOmitidas": 3,
-   "propsGenericas": 13
+   "propsOmitidas": 4,
+   "propsGenericas": 12
   },
   {
    "componente": "SgFlipDigit",
@@ -366,8 +366,8 @@
    "motivo": "arrastar e soltar (desktop_drop) e toque (seletor do sistema, file_picker) como no React; so o valor difere: lista de SgFile (nome e bytes; imagem ja salva entra com url) em vez de File do navegador; recorte e compressao ficam fora",
    "onde": "packages/seedgrid_components/lib/src/inputs/files/sg_image_upload.dart",
    "props": 28,
-   "propsOmitidas": 2,
-   "propsGenericas": 10
+   "propsOmitidas": 3,
+   "propsGenericas": 9
   },
   {
    "componente": "SgInputBirthDate",
@@ -376,8 +376,8 @@
    "motivo": "o React usa input type=date nativo; aqui campo com mascara por idioma e calendario proprio: data impossivel (31/02) mostra Data invalida (no nativo o valor vira vazio) e alwaysFloat nao tem efeito; recriar por key perde o foco (precisa de controller externo no SgInputText); pegadinha de fuso do validateBirthDate mantida; validadores do componente rodam no submit (decisao do dono)",
    "onde": "packages/seedgrid_components/lib/src/inputs/masked/sg_input_birth_date.dart",
    "props": 50,
-   "propsOmitidas": 3,
-   "propsGenericas": 15
+   "propsOmitidas": 4,
+   "propsGenericas": 14
   },
   {
    "componente": "SgInputCNPJ",
@@ -386,8 +386,8 @@
    "motivo": "consulta de rede por cliente injetavel (SgViaCepResult no lugar do ViaCepResponse que lanca erro; SgHttpClient no CNPJ); placeholder por pais do React nunca e usado e nao foi portado; goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50); validadores do componente rodam no submit (decisao do dono)",
    "onde": "packages/seedgrid_components/lib/src/inputs/masked/sg_input_cnpj.dart",
    "props": 53,
-   "propsOmitidas": 3,
-   "propsGenericas": 17
+   "propsOmitidas": 4,
+   "propsGenericas": 16
   },
   {
    "componente": "SgInputCPF",
@@ -396,8 +396,8 @@
    "motivo": "",
    "onde": "packages/seedgrid_components/lib/src/inputs/masked/sg_input_cpf.dart",
    "props": 48,
-   "propsOmitidas": 3,
-   "propsGenericas": 14
+   "propsOmitidas": 4,
+   "propsGenericas": 13
   },
   {
    "componente": "SgInputCPFCNPJ",
@@ -406,8 +406,8 @@
    "motivo": "",
    "onde": "packages/seedgrid_components/lib/src/inputs/masked/sg_input_cpfcnpj.dart",
    "props": 53,
-   "propsOmitidas": 3,
-   "propsGenericas": 17
+   "propsOmitidas": 4,
+   "propsGenericas": 16
   },
   {
    "componente": "SgInputCurrency",
@@ -416,8 +416,8 @@
    "motivo": "sem Intl no Dart: simbolo, posicao e separadores vem de tabela gerada do Node (30 locales latinos; 162 moedas; fora da tabela so as escritas com digitos nao latinos ou agrupamento fora de 3 em 3), locale sem dados cai no idioma e depois em en-US; o React trata tecla e o Flutter recebe diferenca de texto (formatter converte); goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50); validadores do componente rodam no submit (decisao do dono)",
    "onde": "packages/seedgrid_components/lib/src/inputs/number/sg_input_currency.dart",
    "props": 49,
-   "propsOmitidas": 3,
-   "propsGenericas": 13
+   "propsOmitidas": 4,
+   "propsGenericas": 12
   },
   {
    "componente": "SgInputDate",
@@ -426,8 +426,8 @@
    "motivo": "o React usa input type=date nativo; aqui campo com mascara por idioma e calendario proprio: data impossivel (31/02) mostra Data invalida (no nativo o valor vira vazio) e alwaysFloat nao tem efeito; recriar por key perde o foco (precisa de controller externo no SgInputText); pegadinha de fuso do validateBirthDate mantida; validadores do componente rodam no submit (decisao do dono)",
    "onde": "packages/seedgrid_components/lib/src/inputs/masked/sg_input_date.dart",
    "props": 48,
-   "propsOmitidas": 3,
-   "propsGenericas": 15
+   "propsOmitidas": 4,
+   "propsGenericas": 14
   },
   {
    "componente": "SgInputDateTime",
@@ -436,8 +436,8 @@
    "motivo": "o React usa input type=datetime-local nativo; aqui campo com mascara por idioma, calendario proprio e seletor de hora do Material. O valor e o instante ISO 8601 UTC. Fuso: local, UTC ou deslocamento fixo; nome IANA (America/Sao_Paulo) cai em local porque o pacote nao traz banco de fusos (sem dependencia nova); alwaysFloat nao tem efeito; data impossivel (31/02) mostra Data e hora invalidas; validadores do componente rodam no submit (decisao do dono)",
    "onde": "packages/seedgrid_components/lib/src/inputs/masked/sg_input_date_time.dart",
    "props": 53,
-   "propsOmitidas": 3,
-   "propsGenericas": 17
+   "propsOmitidas": 4,
+   "propsGenericas": 16
   },
   {
    "componente": "SgInputEmail",
@@ -446,8 +446,8 @@
    "motivo": "inputProps/textareaProps ignorados; commonPasswordList sem efeito (igual ao React); goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50); validadores do componente rodam no submit (decisao do dono)",
    "onde": "packages/seedgrid_components/lib/src/inputs/text/sg_input_email.dart",
    "props": 48,
-   "propsOmitidas": 3,
-   "propsGenericas": 14
+   "propsOmitidas": 4,
+   "propsGenericas": 13
   },
   {
    "componente": "SgInputNumber",
@@ -456,8 +456,8 @@
    "motivo": "sem Intl no Dart: simbolo, posicao e separadores vem de tabela gerada do Node (30 locales latinos; 162 moedas; fora da tabela so as escritas com digitos nao latinos ou agrupamento fora de 3 em 3), locale sem dados cai no idioma e depois em en-US; o React trata tecla e o Flutter recebe diferenca de texto (formatter converte); goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50); validadores do componente rodam no submit (decisao do dono)",
    "onde": "packages/seedgrid_components/lib/src/inputs/number/sg_input_number.dart",
    "props": 46,
-   "propsOmitidas": 3,
-   "propsGenericas": 14
+   "propsOmitidas": 4,
+   "propsGenericas": 13
   },
   {
    "componente": "SgInputOTP",
@@ -466,8 +466,8 @@
    "motivo": "slot vazio guarda um caractere invisivel (U+200B) para o teclado virtual avisar o Backspace; colar 1 caractere num slot cheio e tratado como digitar (o React limparia os seguintes); inputProps e *ClassName aceitos sem efeito; nao testado em IME nem em dispositivo; golden com fonte de teste; validadores do componente rodam no submit (decisao do dono)",
    "onde": "packages/seedgrid_components/lib/src/inputs/otp/sg_input_otp.dart",
    "props": 30,
-   "propsOmitidas": 2,
-   "propsGenericas": 12
+   "propsOmitidas": 3,
+   "propsGenericas": 11
   },
   {
    "componente": "SgInputPassword",
@@ -476,8 +476,8 @@
    "motivo": "inputProps/textareaProps ignorados; commonPasswordList sem efeito (igual ao React); goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50); validadores do componente rodam no submit (decisao do dono)",
    "onde": "packages/seedgrid_components/lib/src/inputs/text/sg_input_password.dart",
    "props": 60,
-   "propsOmitidas": 3,
-   "propsGenericas": 14
+   "propsOmitidas": 4,
+   "propsGenericas": 13
   },
   {
    "componente": "SgInputPhone",
@@ -486,8 +486,8 @@
    "motivo": "",
    "onde": "packages/seedgrid_components/lib/src/inputs/masked/sg_input_phone.dart",
    "props": 48,
-   "propsOmitidas": 3,
-   "propsGenericas": 14
+   "propsOmitidas": 4,
+   "propsGenericas": 13
   },
   {
    "componente": "SgInputPostalCode",
@@ -496,8 +496,8 @@
    "motivo": "consulta de rede por cliente injetavel (SgViaCepResult no lugar do ViaCepResponse que lanca erro; SgHttpClient no CNPJ); placeholder por pais do React nunca e usado e nao foi portado; goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50); validadores do componente rodam no submit (decisao do dono)",
    "onde": "packages/seedgrid_components/lib/src/inputs/masked/sg_input_postal_code.dart",
    "props": 54,
-   "propsOmitidas": 3,
-   "propsGenericas": 17
+   "propsOmitidas": 4,
+   "propsGenericas": 16
   },
   {
    "componente": "SgInputText",
@@ -506,8 +506,8 @@
    "motivo": "sem inputProps (atributos do <input> nao tem equivalente; props nomeadas cobrem), value controlado pela prop value (nula = nao controlado; com name+formulario o valor do formulario manda e value e ignorado, como no React), golden com fonte de teste (sem comparacao visual com o React), nao testado em IME/dispositivo; i18n so das mensagens de validacao; validadores do componente rodam no submit (decisao do dono)",
    "onde": "packages/seedgrid_components/lib/src/inputs/sg_input_text.dart",
    "props": 46,
-   "propsOmitidas": 3,
-   "propsGenericas": 14
+   "propsOmitidas": 4,
+   "propsGenericas": 13
   },
   {
    "componente": "SgInputTextArea",
@@ -516,8 +516,8 @@
    "motivo": "inputProps/textareaProps ignorados; commonPasswordList sem efeito (igual ao React); goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50); validadores do componente rodam no submit (decisao do dono)",
    "onde": "packages/seedgrid_components/lib/src/inputs/text/sg_input_text_area.dart",
    "props": 43,
-   "propsOmitidas": 3,
-   "propsGenericas": 13
+   "propsOmitidas": 4,
+   "propsGenericas": 12
   },
   {
    "componente": "SgInputTextSearch",
@@ -526,8 +526,8 @@
    "motivo": "inputProps/textareaProps ignorados; commonPasswordList sem efeito (igual ao React); goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50); validadores do componente rodam no submit (decisao do dono)",
    "onde": "packages/seedgrid_components/lib/src/inputs/text/sg_input_text_search.dart",
    "props": 49,
-   "propsOmitidas": 3,
-   "propsGenericas": 15
+   "propsOmitidas": 4,
+   "propsGenericas": 14
   },
   {
    "componente": "SgLinearGauge",
@@ -566,8 +566,8 @@
    "motivo": "o React nao foca o campo ao tocar e o Flutter foca; a lista ancorada se alinha ao SgInputText inteiro; onClear/maxLengthMessage/minLengthMessage aceitos sem efeito (igual ao React); superficie do dropdown compartilhada (SgDropdownHost); a lista de opcoes continua propria; inputProps ignorado (ADR 50); sem autocorrect/spellCheck; nao testado em IME nem em dispositivo; golden com fonte de teste; onChange do usuario tambem dentro de formulario (decisao do dono)",
    "onde": "packages/seedgrid_components/lib/src/inputs/multi/sg_multi_select.dart",
    "props": 46,
-   "propsOmitidas": 3,
-   "propsGenericas": 13
+   "propsOmitidas": 4,
+   "propsGenericas": 12
   },
   {
    "componente": "SgMultiSelectChips",
@@ -576,8 +576,8 @@
    "motivo": "o item ativo da lista rola ate ficar visivel (o React nao faz); superficie do dropdown compartilhada (SgDropdownHost); a lista de opcoes continua propria; inputProps ignorado (ADR 50); sem autocorrect/spellCheck; nao testado em IME nem em dispositivo; golden com fonte de teste; onChange do usuario tambem dentro de formulario (decisao do dono)",
    "onde": "packages/seedgrid_components/lib/src/inputs/multi/sg_multi_select_chips.dart",
    "props": 25,
-   "propsOmitidas": 3,
-   "propsGenericas": 9
+   "propsOmitidas": 4,
+   "propsGenericas": 8
   },
   {
    "componente": "SgNeonDigit",
@@ -606,8 +606,8 @@
    "motivo": "arrastar por toque longo (LongPressDraggable, cerca de 150 ms) no lugar do arrastar nativo do navegador; PickList: mover pelo duplo toque em ate 300 ms; reinicio do estado ao trocar source/target compara por identidade dos itens; rotulos Top/Up/Down/Bottom do OrderList ficam em ingles como no React; listClassName/itemClassName sem efeito; groupBoxProps vira SgListGroupBoxProps",
    "onde": "packages/seedgrid_components/lib/src/inputs/lists/sg_order_list.dart",
    "props": 25,
-   "propsOmitidas": 3,
-   "propsGenericas": 9
+   "propsOmitidas": 4,
+   "propsGenericas": 8
   },
   {
    "componente": "SgPageControl",
@@ -646,8 +646,8 @@
    "motivo": "value nulo = nao controlado (o Combobox nao distingue null de indefinido), mas voltar o value para nulo limpa o campo; o campo de data de Periodo e o SgInputDate, que segue o locale do i18n global (no React tambem: a prop locale do seletor so troca os rotulos); os rotulos vem de mapas ASCII embutidos sem acento, iguais ao React (nao passam pelo i18n)",
    "onde": "packages/seedgrid_components/lib/src/inputs/period/sg_period_selector.dart",
    "props": 20,
-   "propsOmitidas": 1,
-   "propsGenericas": 6
+   "propsOmitidas": 2,
+   "propsGenericas": 5
   },
   {
    "componente": "SgPickList",
@@ -656,8 +656,8 @@
    "motivo": "arrastar por toque longo (LongPressDraggable, cerca de 150 ms) no lugar do arrastar nativo do navegador; PickList: mover pelo duplo toque em ate 300 ms; reinicio do estado ao trocar source/target compara por identidade dos itens; rotulos Top/Up/Down/Bottom do OrderList ficam em ingles como no React; listClassName/itemClassName sem efeito; groupBoxProps vira SgListGroupBoxProps",
    "onde": "packages/seedgrid_components/lib/src/inputs/lists/sg_pick_list.dart",
    "props": 36,
-   "propsOmitidas": 3,
-   "propsGenericas": 12
+   "propsOmitidas": 4,
+   "propsGenericas": 11
   },
   {
    "componente": "SgPopup",
@@ -696,8 +696,8 @@
    "motivo": "destaque e relevo aproximados (bordas por Transform); groupBoxProps vira SgChoiceGroupBoxProps; a caixa e o SgGroupBox real; goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50)",
    "onde": "packages/seedgrid_components/lib/src/inputs/choice/sg_radio_group.dart",
    "props": 20,
-   "propsOmitidas": 3,
-   "propsGenericas": 6
+   "propsOmitidas": 4,
+   "propsGenericas": 5
   },
   {
    "componente": "SgRating",
@@ -706,8 +706,8 @@
    "motivo": "color/emptyColor aceitam texto (#hex, rgb(), hsl(var(--token))) porque o contrato gerado fixa String; value nulo = nao controlado; teclado e extra do Flutter; goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50)",
    "onde": "packages/seedgrid_components/lib/src/inputs/choice/sg_rating.dart",
    "props": 26,
-   "propsOmitidas": 3,
-   "propsGenericas": 4
+   "propsOmitidas": 4,
+   "propsGenericas": 3
   },
   {
    "componente": "SgRealtimeProvider",
@@ -776,8 +776,8 @@
    "motivo": "e o Slider do Material tematizado, nao CustomPainter (o React usa o controle nativo do navegador); goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50)",
    "onde": "packages/seedgrid_components/lib/src/inputs/choice/sg_slider.dart",
    "props": 17,
-   "propsOmitidas": 2,
-   "propsGenericas": 5
+   "propsOmitidas": 3,
+   "propsGenericas": 4
   },
   {
    "componente": "SgSplitButton",
@@ -806,8 +806,8 @@
    "motivo": "",
    "onde": "packages/seedgrid_components/lib/src/inputs/number/sg_stepper_input.dart",
    "props": 19,
-   "propsOmitidas": 3,
-   "propsGenericas": 5
+   "propsOmitidas": 4,
+   "propsGenericas": 4
   },
   {
    "componente": "SgStringAnimator",
@@ -826,8 +826,8 @@
    "motivo": "motor nativo flutter_quill (MIT) em vez de TipTap; conteudo trafega como HTML via conversor proprio (HTML do TipTap lido e reescrito igual em 160+ fixtures do TipTap real; 154 de 166 saidas do Dart relidas pelo TipTap real iguais ao canonico). Preservados com atributos proprios: sub+sup juntos, <mark> sem cor, cor com alfa, nome de cor e tamanho em em/pt/%, ol start (numerado na tela no primeiro nivel) e linguagem do bloco de codigo. Sem tabela, por decisao do dono (tabelas e iframes sao descartados e a barra nao tem botao de tabela). Limites do modelo Delta (linear): <br> vira U+2028, item de lista com varios paragrafos vira um item com quebra suave, citacao com lista/titulo/citacao aninhada achata, titulo dentro de item de lista vira item comum; regras de markdown (# , - , 1. , >) e Ctrl+Z/atalhos so os do flutter_quill; cor do texto e destaque por seletor proprio (paleta + hex) no lugar do input color; Salvar/Carregar HTML via file_picker (extra htmlFilePicker); onSave recebe SgTextEditorFile no lugar de File; dialogos de link/imagem proprios no lugar de window.prompt (cancelar nao remove o link); enabled reativo (no React so vale na criacao); sem className/style (ADR 50); nao testado em dispositivo/IME",
    "onde": "packages/seedgrid_components/lib/src/inputs/editor/sg_text_editor.dart",
    "props": 22,
-   "propsOmitidas": 3,
-   "propsGenericas": 7
+   "propsOmitidas": 4,
+   "propsGenericas": 6
   },
   {
    "componente": "SgTimeProvider",
@@ -866,8 +866,8 @@
    "motivo": "goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50); validadores do componente rodam no submit (decisao do dono)",
    "onde": "packages/seedgrid_components/lib/src/inputs/choice/sg_toggle_switch.dart",
    "props": 27,
-   "propsOmitidas": 3,
-   "propsGenericas": 7
+   "propsOmitidas": 4,
+   "propsGenericas": 6
   },
   {
    "componente": "SgToolBar",
@@ -925,7 +925,7 @@
    "status": "portado",
    "motivo": "valida a etapa por SgFormController.trigger(fields) (SgWizardPage.fields e SgWizard.control sao extras) e tambem pelos campos sem formulario (SgValidationScope): o React foca e sai de cada input e conta [data-sg-error]; aqui os campos da etapa se validam sob demanda e bloqueiam o avanco",
    "onde": "packages/seedgrid_components/lib/src/feedback/sg_wizard.dart",
-   "props": 13,
+   "props": 14,
    "propsOmitidas": 2,
    "propsGenericas": 6
   },

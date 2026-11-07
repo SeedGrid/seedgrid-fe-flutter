@@ -138,7 +138,7 @@ class _SgStepperInputPageState extends State<SgStepperInputPage> {
       ),
       ShowcaseExample(
         title: 'Dentro de um formulário',
-        description: 'name + control + rules. O formulário guarda um número.',
+        description: 'name + control: o formulário guarda um número.',
         preview:
             // #region sg-stepper-input-formulario
             Column(
@@ -151,9 +151,6 @@ class _SgStepperInputPageState extends State<SgStepperInputPage> {
                   minValue: 0,
                   maxValue: 9,
                   width: 160,
-                  rules: SgRules(
-                    validate: (v) => (v as num) >= 2 ? true : 'Mínimo 2',
-                  ),
                 ),
                 const SizedBox(height: 12),
                 SgButton(

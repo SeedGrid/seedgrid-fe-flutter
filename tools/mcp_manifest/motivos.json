@@ -71,6 +71,7 @@
   "omitidas": {
     "estilo: React-only (ADR N); equivalentes: padding, margin, width, height, customColors": "Estilo por classe ou style inline não existe no Flutter; use as props padding, margin, width, height e customColors.",
     "estilo: React-only (ADR N)": "Estilo por classe ou style inline não existe no Flutter; use as props de estilo do próprio componente.",
+    "nao aplicavel: a validacao do Flutter usa as props diretas (required, requiredMessage, minLength, validation...); o React repassa `rules` do react-hook-form": "Não se aplica no Flutter: a validação usa as props diretas (required, requiredMessage, minLength, validation...), em vez de um objeto de regras.",
     "nao aplicavel: todo campo Flutter e controlado (ADR N)": "Não se aplica no Flutter: todo campo é controlado pelo valor e pelo onChange (ou pelo SgFormController).",
     "React-only: vira controller/GlobalKey por componente": "Não existe no Flutter: use o controller ou a GlobalKey próprios do componente.",
     "React-only: atributo accept do seletor do navegador (derivado de mediaType/accept); no Flutter o seletor de arquivos do sistema e a prop picker (extra do Flutter)": "Não existe no Flutter: o seletor de arquivos do sistema é aberto pelo componente (tipos de mediaType e accept); use a prop picker para trocar a origem dos arquivos."

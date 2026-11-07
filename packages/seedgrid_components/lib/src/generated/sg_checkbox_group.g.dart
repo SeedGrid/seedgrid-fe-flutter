@@ -35,8 +35,6 @@ abstract interface class SgCheckboxGroupProps {
   bool? get readOnly;
   /// Marca o grupo como obrigatorio. Padrão: `false`.
   bool? get required;
-  /// Tipo TS: `RegisterOptions&lt;any&gt;` (sem tradução exata; ver excecoes.json).
-  Object? get rules;
   /// Estilo visual de selecao. Padrão: `checkbox`.
   SgCheckboxGroupSelectionStyle? get selectionStyle;
   /// Exibe acao de marcar todos. Padrão: `false`.
@@ -162,14 +160,6 @@ const List<SgPropSpec> sgCheckboxGroupPropSpecs = <SgPropSpec>[
     required: false,
     defaultValue: 'false',
     description: 'Marca o grupo como obrigatorio.',
-  ),
-  SgPropSpec(
-    name: 'rules',
-    reactName: 'rules',
-    type: 'Object?',
-    tsType: 'RegisterOptions<any>',
-    required: false,
-    exact: false,
   ),
   SgPropSpec(
     name: 'selectionStyle',

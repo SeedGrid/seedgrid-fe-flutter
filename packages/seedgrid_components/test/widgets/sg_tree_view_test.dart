@@ -594,8 +594,9 @@ void main() {
         expect(find.text('Selected: 0 (leafs)'), findsOneWidget);
         expect(
           t
-              .widget<SgButton>(find.byKey(const ValueKey('tree-confirm')))
-              .enabled == false,
+                  .widget<SgButton>(find.byKey(const ValueKey('tree-confirm')))
+                  .enabled ==
+              false,
           isTrue,
         );
         await tapCheck(t, 'a');
@@ -606,8 +607,9 @@ void main() {
         );
         expect(
           t
-              .widget<SgButton>(find.byKey(const ValueKey('tree-confirm')))
-              .enabled == false,
+                  .widget<SgButton>(find.byKey(const ValueKey('tree-confirm')))
+                  .enabled ==
+              false,
           isFalse,
         );
       },
@@ -649,8 +651,9 @@ void main() {
         expect(find.text('Aplicar'), findsOneWidget);
         expect(
           t
-              .widget<SgButton>(find.byKey(const ValueKey('tree-confirm')))
-              .enabled == false,
+                  .widget<SgButton>(find.byKey(const ValueKey('tree-confirm')))
+                  .enabled ==
+              false,
           isFalse,
           reason: 'habilitado mesmo vazio',
         );

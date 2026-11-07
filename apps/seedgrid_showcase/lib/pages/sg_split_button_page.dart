@@ -15,8 +15,7 @@ class SgSplitButtonPage extends StatelessWidget {
     final examples = <ShowcaseExample>[
       ShowcaseExample(
         title: 'Básico',
-        description:
-            'Split button com ação principal e dropdown de itens.',
+        description: 'Split button com ação principal e dropdown de itens.',
         preview:
             // #region sg-split-button-basico
             Builder(
@@ -154,8 +153,7 @@ class SgSplitButtonPage extends StatelessWidget {
       ),
       ShowcaseExample(
         title: 'Ghost',
-        description:
-            'appearance: ghost - sem fundo, apenas texto colorido.',
+        description: 'appearance: ghost - sem fundo, apenas texto colorido.',
         preview:
             // #region sg-split-button-ghost
             Builder(
@@ -206,8 +204,7 @@ class SgSplitButtonPage extends StatelessWidget {
       ),
       ShowcaseExample(
         title: 'Elevated',
-        description:
-            'appearance: solid + elevation: sm.',
+        description: 'appearance: solid + elevation: sm.',
         preview:
             // #region sg-split-button-elevated
             Builder(
@@ -259,8 +256,7 @@ class SgSplitButtonPage extends StatelessWidget {
       ),
       ShowcaseExample(
         title: 'Tamanhos',
-        description:
-            'size: sm, md ou lg.',
+        description: 'size: sm, md ou lg.',
         preview:
             // #region sg-split-button-tamanhos
             Builder(
@@ -316,8 +312,7 @@ class SgSplitButtonPage extends StatelessWidget {
       ),
       ShowcaseExample(
         title: 'Com ícones',
-        description:
-            'leftIcon na ação principal e icon nos itens do menu.',
+        description: 'leftIcon na ação principal e icon nos itens do menu.',
         preview:
             // #region sg-split-button-com-icones
             Builder(
@@ -407,8 +402,7 @@ class SgSplitButtonPage extends StatelessWidget {
       ),
       ShowcaseExample(
         title: 'Separadores de menu',
-        description:
-            'separator: true para dividir grupos de itens no menu.',
+        description: 'separator: true para dividir grupos de itens no menu.',
         preview:
             // #region sg-split-button-separadores
             Builder(
@@ -450,8 +444,7 @@ class SgSplitButtonPage extends StatelessWidget {
       ),
       ShowcaseExample(
         title: 'Disabled',
-        description:
-            'enabled: false desabilita o split button inteiro.',
+        description: 'enabled: false desabilita o split button inteiro.',
         preview:
             // #region sg-split-button-disabled
             Builder(

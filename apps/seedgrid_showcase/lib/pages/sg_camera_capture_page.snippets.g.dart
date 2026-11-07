@@ -49,7 +49,9 @@ Column(
   static const String sgCameraCaptureIdioma = r'''
 const SgComponentsI18nProvider(
   locale: 'fr',
-  messages: {'components.inputs.camera.capture': 'Tirar foto agora'},
+  messages: {
+    'components.inputs.camera.capture': 'Tirar foto agora',
+  },
   child: SgCameraCapture(id: 'idioma', labelText: 'Foto'),
 )
 ''';

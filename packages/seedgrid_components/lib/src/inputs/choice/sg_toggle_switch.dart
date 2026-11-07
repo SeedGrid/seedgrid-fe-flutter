@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 
 import '../../form/sg_form.dart';
 import '../../form/sg_validation_scope.dart';
-import '../../form/sg_rules.dart';
+import '../../form/sg_field_error.dart';
 import '../../generated/sg_toggle_switch.g.dart';
 import '../../i18n/i18n.dart';
 import '../../theme_access.dart';
@@ -32,7 +32,6 @@ class SgToggleSwitch extends StatefulWidget implements SgToggleSwitchProps {
     this.readOnly,
     this.required,
     this.requiredMessage,
-    this.rules,
     this.switchClassName,
     this.thumbClassName,
     this.trackClassName,
@@ -83,8 +82,6 @@ class SgToggleSwitch extends StatefulWidget implements SgToggleSwitchProps {
   final bool? required;
   @override
   final String? requiredMessage;
-  @override
-  final SgRules? rules;
 
   /// React-only (classes CSS); sem efeito no Flutter.
   @override
@@ -165,8 +162,7 @@ class _SgToggleSwitchState extends State<SgToggleSwitch>
       context,
       control: widget.control,
       name: widget.name,
-      rules: mergeRequiredRule(
-        widget.rules,
+      required: requiredMessageFor(
         widget.required,
         widget.requiredMessage ?? t(i18n, 'components.inputs.required'),
       ),

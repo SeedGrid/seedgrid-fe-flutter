@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:seedgrid_components/src/buttons/sg_button.dart';
 import 'package:seedgrid_components/src/form/sg_form.dart';
-import 'package:seedgrid_components/src/form/sg_rules.dart';
 import 'package:seedgrid_components/src/generated/enums.g.dart';
 import 'package:seedgrid_components/src/i18n/i18n.dart';
 import 'package:seedgrid_components/src/inputs/lists/lists_shared.dart';
@@ -170,20 +169,6 @@ void main() {
       );
       expect(find.byKey(const ValueKey('minha-source')), findsOneWidget);
       expect(find.byKey(const ValueKey('minha-target')), findsOneWidget);
-    });
-
-    testWidgets('error aparece', (t) async {
-      size(t, 1000);
-      await t.pumpWidget(
-        host(
-          const SgPickList(
-            source: [],
-            target: [],
-            error: 'Escolha ao menos um',
-          ),
-        ),
-      );
-      expect(find.text('Escolha ao menos um'), findsOneWidget);
     });
 
     testWidgets(
@@ -789,13 +774,14 @@ void main() {
       ]) {
         expect(
           t
-              .widget<SgButton>(
-                find.descendant(
-                  of: find.byKey(ValueKey(k)),
-                  matching: find.byType(SgButton),
-                ),
-              )
-              .enabled == false,
+                  .widget<SgButton>(
+                    find.descendant(
+                      of: find.byKey(ValueKey(k)),
+                      matching: find.byType(SgButton),
+                    ),
+                  )
+                  .enabled ==
+              false,
           isTrue,
           reason: k,
         );
@@ -1164,44 +1150,30 @@ void main() {
       },
     );
 
-    testWidgets(
-      'rules: o erro do formulario aparece e some quando o valor passa a ser valido',
-      (t) async {
-        size(t, 1000);
-        // Com valor inicial no formulario: o validate so roda com valor preenchido (ver validateRules).
-        final form = SgFormController(
-          defaultValues: {
-            'itens': const SgPickListValue(source: [apple], target: []),
-          },
-        );
-        await t.pumpWidget(
-          host(
-            SgPickList(
-              name: 'itens',
-              control: form,
-              source: const [apple],
-              target: const [],
-              rules: SgRules(
-                validate: (v) => (v is SgPickListValue && v.target.isNotEmpty)
-                    ? true
-                    : 'Escolha ao menos um',
-              ),
-            ),
+    testWidgets('o erro do formulario aparece e some ao ser limpo', (t) async {
+      size(t, 1000);
+      final form = SgFormController(
+        defaultValues: {
+          'itens': const SgPickListValue(source: [apple], target: []),
+        },
+      );
+      await t.pumpWidget(
+        host(
+          SgPickList(
+            name: 'itens',
+            control: form,
+            source: const [apple],
+            target: const [],
           ),
-        );
-        await form.handleSubmit((_) {});
-        await t.pump();
-        expect(find.text('Escolha ao menos um'), findsOneWidget);
-        await tapBtn(t, 'pl-allToTarget');
-        await t.pump();
-        expect(
-          find.text('Escolha ao menos um'),
-          findsNothing,
-          reason: 'revalida a cada mudanca depois do envio',
-        );
-        expect(form.errorOf('itens'), isNull);
-      },
-    );
+        ),
+      );
+      form.setError('itens', 'Escolha ao menos um');
+      await t.pump();
+      expect(find.text('Escolha ao menos um'), findsOneWidget);
+      form.clearErrors(['itens']);
+      await t.pump();
+      expect(find.text('Escolha ao menos um'), findsNothing);
+    });
 
     testWidgets('usa o SgForm mais proximo quando nao ha control', (t) async {
       size(t, 1000);

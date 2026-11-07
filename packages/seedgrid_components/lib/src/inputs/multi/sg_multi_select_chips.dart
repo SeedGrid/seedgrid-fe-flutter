@@ -5,7 +5,7 @@ import '../list_narrow.dart';
 import 'package:flutter/material.dart';
 
 import '../../form/sg_form.dart';
-import '../../form/sg_rules.dart';
+import '../../form/sg_field_error.dart';
 import '../../generated/sg_multi_select_chips.g.dart';
 import '../../i18n/i18n.dart';
 import '../../theme_access.dart';
@@ -38,7 +38,6 @@ class SgMultiSelectChips extends StatefulWidget
     this.required,
     this.control,
     this.name,
-    this.rules,
     this.error,
   });
 
@@ -96,8 +95,6 @@ class SgMultiSelectChips extends StatefulWidget
   @override
   final String? name;
   @override
-  final SgRules? rules;
-  @override
   final String? error;
 
   @override
@@ -117,7 +114,7 @@ class _SgMultiSelectChipsState extends State<SgMultiSelectChips>
   @override
   SgFormController? get bindingControl => widget.control;
   @override
-  SgRules? get bindingRules => widget.rules;
+  String? get bindingRequired => null; // `required` e so visual, igual ao React
 
   @override
   void initState() {

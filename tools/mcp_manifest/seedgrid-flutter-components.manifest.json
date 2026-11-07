@@ -555,12 +555,6 @@
             "required": false
           },
           {
-            "name": "rules",
-            "type": "Object?",
-            "required": false,
-            "typeExact": false
-          },
-          {
             "name": "showCharCounter",
             "type": "bool?",
             "required": false
@@ -700,6 +694,10 @@
           {
             "name": "register",
             "reason": "Não se aplica no Flutter: todo campo é controlado pelo valor e pelo onChange (ou pelo SgFormController)."
+          },
+          {
+            "name": "rules",
+            "reason": "Não se aplica no Flutter: a validação usa as props diretas (required, requiredMessage, minLength, validation...), em vez de um objeto de regras."
           }
         ]
       }
@@ -842,14 +840,14 @@
           },
           {
             "id": "sg-avatar-cores",
-            "title": "Severity e Cores Customizadas",
+            "title": "Severidade e cores personalizadas",
             "file": "apps/seedgrid_showcase/lib/pages/sg_avatar_page.dart",
             "kind": "dart",
             "code": "Wrap(\n  spacing: 12,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgAvatar(\n      label: Text(context.tx('P')),\n      severity: SgAvatarSeverity.primary,\n    ),\n    SgAvatar(\n      label: Text(context.tx('S')),\n      severity: SgAvatarSeverity.success,\n    ),\n    SgAvatar(\n      label: Text(context.tx('D')),\n      severity: SgAvatarSeverity.danger,\n    ),\n    SgAvatar(\n      icon: Icon(Icons.photo_camera),\n      severity: SgAvatarSeverity.custom,\n      customColors: SgAvatarCustomColors(\n        bg: Color(0xFF7C3AED),\n        fg: Color(0xFFFFFFFF),\n        border: Color(0xFF5B21B6),\n        ring: Color(0x597C3AED),\n      ),\n    ),\n  ],\n)"
           },
           {
             "id": "sg-avatar-grupo",
-            "title": "Avatar Group",
+            "title": "Grupo de avatares",
             "file": "apps/seedgrid_showcase/lib/pages/sg_avatar_page.dart",
             "kind": "dart",
             "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgAvatarGroup(\n      children: [\n        SgAvatar(\n          src: 'https://i.pravatar.cc/150?img=32',\n          label: Text(context.tx('Amy Elsner')),\n        ),\n        SgAvatar(\n          src: 'https://i.pravatar.cc/150?img=47',\n          label: Text(context.tx('Asiya Javayant')),\n        ),\n        SgAvatar(\n          src: 'https://i.pravatar.cc/150?img=12',\n          label: Text(context.tx('Onyama Limba')),\n        ),\n        SgAvatar(\n          src: 'https://i.pravatar.cc/150?img=56',\n          label: Text(context.tx('Ioni Bowcher')),\n        ),\n      ],\n    ),\n    const SizedBox(height: 16),\n    SgAvatarGroup(\n      max: 3,\n      total: 6,\n      size: SgAvatarSize.sm,\n      moreSeverity: SgAvatarSeverity.secondary,\n      children: [\n        SgAvatar(\n          icon: Icon(Icons.group),\n          severity: SgAvatarSeverity.info,\n          size: SgAvatarSize.sm,\n        ),\n        SgAvatar(\n          label: Text(context.tx('AL')),\n          severity: SgAvatarSeverity.success,\n          size: SgAvatarSize.sm,\n        ),\n        SgAvatar(\n          label: Text(context.tx('BK')),\n          severity: SgAvatarSeverity.warning,\n          size: SgAvatarSize.sm,\n        ),\n        SgAvatar(\n          label: Text(context.tx('CM')),\n          severity: SgAvatarSeverity.danger,\n          size: SgAvatarSize.sm,\n        ),\n      ],\n    ),\n  ],\n)"
@@ -870,7 +868,7 @@
           },
           {
             "id": "sg-avatar-tamanhos",
-            "title": "Shape e Tamanho",
+            "title": "Forma e tamanho",
             "file": "apps/seedgrid_showcase/lib/pages/sg_avatar_page.dart",
             "kind": "dart",
             "code": "Wrap(\n  spacing: 12,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgAvatar(\n      label: Text(context.tx('C')),\n      shape: SgAvatarShape.circle,\n    ),\n    SgAvatar(\n      label: Text(context.tx('S')),\n      shape: SgAvatarShape.square,\n    ),\n    SgAvatar(label: Text(context.tx('XS')), size: SgAvatarSize.xs),\n    SgAvatar(label: Text(context.tx('LG')), size: SgAvatarSize.lg),\n    SgAvatar(\n      src: 'https://i.pravatar.cc/150?img=47',\n      label: Text(context.tx('Asiya Javayant')),\n      shape: SgAvatarShape.square,\n    ),\n  ],\n)"
@@ -1214,7 +1212,7 @@
           },
           {
             "id": "sg-badge-cores",
-            "title": "Cores customizadas",
+            "title": "Cores personalizadas",
             "file": "apps/seedgrid_showcase/lib/pages/sg_badge_page.dart",
             "kind": "dart",
             "code": "SgBadge(\n  value: Text(context.tx('Roxo')),\n  customColors: SgBadgeCustomColors(\n    bg: Color(0xFF7C3AED),\n    fg: Colors.white,\n    border: Color(0xFF6D28D9),\n  ),\n)"
@@ -1680,7 +1678,7 @@
             "title": "Loading",
             "file": "apps/seedgrid_showcase/lib/pages/sg_button_page.dart",
             "kind": "dart",
-            "code": "Wrap(\n  spacing: 12,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgButton(label: Text(context.tx('Processing...')), loading: true),\n    SgButton(\n      label: Text(context.tx('Saving...')),\n      severity: SgSeverity.success,\n      loading: true,\n    ),\n    SgButton(\n      label: Text(context.tx('Deleting...')),\n      severity: SgSeverity.danger,\n      loading: true,\n      leftIcon: const Icon(Icons.close),\n    ),\n    SgButton(\n      shape: SgButtonShape.rounded,\n      loading: true,\n      leftIcon: const Icon(Icons.check),\n    ),\n  ],\n)"
+            "code": "Wrap(\n  spacing: 12,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgButton(\n      label: Text(context.tx('Processing...')),\n      loading: true,\n    ),\n    SgButton(\n      label: Text(context.tx('Saving...')),\n      severity: SgSeverity.success,\n      loading: true,\n    ),\n    SgButton(\n      label: Text(context.tx('Deleting...')),\n      severity: SgSeverity.danger,\n      loading: true,\n      leftIcon: const Icon(Icons.close),\n    ),\n    SgButton(\n      shape: SgButtonShape.rounded,\n      loading: true,\n      leftIcon: const Icon(Icons.check),\n    ),\n  ],\n)"
           },
           {
             "id": "sg-button-outlined",
@@ -1783,6 +1781,13 @@
             "type": "Object?",
             "required": false,
             "typeExact": false
+          },
+          {
+            "name": "enabled",
+            "type": "bool?",
+            "required": false,
+            "default": "true",
+            "description": "Quando false, os dias, os botoes de mes anterior/proximo e o atalho hoje ficam desabilitados (nao focaveis); a data e o mes atuais continuam legiveis."
           },
           {
             "name": "isDateDisabled",
@@ -1905,6 +1910,13 @@
             "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgCalendar(\n      value: _escolhida,\n      viewDate: _mes,\n      onValueChange: (data) => setState(() => _escolhida = data),\n      onViewDateChange: (mes) => setState(() => _mes = mes),\n    ),\n    const SizedBox(height: 8),\n    Text(\n      'Escolhida: ${_escolhida.day}/${_escolhida.month}/${_escolhida.year}',\n    ),\n  ],\n)"
           },
           {
+            "id": "sg-calendar-enabled",
+            "title": "Desabilitado (enabled)",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_calendar_page.dart",
+            "kind": "dart",
+            "code": "const SgCalendar(\n  defaultValue: '2026-11-10',\n  defaultViewDate: '2026-11-01',\n  enabled: false,\n)"
+          },
+          {
             "id": "sg-calendar-idioma",
             "title": "Idioma e início da semana",
             "file": "apps/seedgrid_showcase/lib/pages/sg_calendar_page.dart",
@@ -1919,11 +1931,32 @@
             "code": "SgCalendar(\n  defaultValue: '2026-03-16',\n  minDate: '2026-03-10',\n  maxDate: '2026-03-27',\n  isDateDisabled: (data) =>\n      data.weekday == DateTime.saturday ||\n      data.weekday == DateTime.sunday,\n)"
           },
           {
+            "id": "sg-calendar-locale-meses",
+            "title": "Locale + múltiplos meses",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_calendar_page.dart",
+            "kind": "dart",
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    Wrap(\n      spacing: 8,\n      runSpacing: 8,\n      children: [\n        for (final l in const ['pt-BR', 'en-US', 'es'])\n          SgButton(\n            label: Text(l),\n            appearance: _locale == l\n                ? SgAppearance.solid\n                : SgAppearance.outline,\n            onClick: () => setState(() => _locale = l),\n          ),\n        SgButton(\n          label: Text(context.tx('Domingo primeiro')),\n          appearance: _inicioSemana == 0\n              ? SgAppearance.solid\n              : SgAppearance.outline,\n          onClick: () => setState(() => _inicioSemana = 0),\n        ),\n        SgButton(\n          label: Text(context.tx('Segunda primeiro')),\n          appearance: _inicioSemana == 1\n              ? SgAppearance.solid\n              : SgAppearance.outline,\n          onClick: () => setState(() => _inicioSemana = 1),\n        ),\n      ],\n    ),\n    const SizedBox(height: 8),\n    Wrap(\n      spacing: 8,\n      runSpacing: 8,\n      children: [\n        for (final n in const [1, 3, 6, 12])\n          SgButton(\n            label: Text(\n              '$n ${context.tx(n == 1 ? 'mês' : 'meses')}',\n            ),\n            appearance: _meses == n\n                ? SgAppearance.solid\n                : SgAppearance.outline,\n            onClick: () => setState(() => _meses = n),\n          ),\n      ],\n    ),\n    const SizedBox(height: 8),\n    SgCalendar(\n      locale: _locale,\n      weekStartsOn: _inicioSemana,\n      numberOfMonths: _meses,\n      monthsPerLine: 3,\n      defaultValue: '2026-03-10',\n      defaultViewDate: '2026-03-01',\n      cardTitle: const Text('Calendário i18n + vários meses'),\n      cardProps: const SgCalendarCardProps(\n        id: 'showcase-calendar-i18n',\n        dragPersistKey: 'showcase-calendar-i18n',\n      ),\n    ),\n  ],\n)"
+          },
+          {
+            "id": "sg-calendar-mes-atual",
+            "title": "Básico (mês atual)",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_calendar_page.dart",
+            "kind": "dart",
+            "code": "const SgCalendar(\n  locale: 'pt-BR',\n  defaultValue: '2026-03-10',\n  defaultViewDate: '2026-03-01',\n  cardTitle: Text('Calendário base'),\n  cardProps: SgCalendarCardProps(\n    id: 'showcase-calendar-basic',\n    dragPersistKey: 'showcase-calendar-basic',\n  ),\n)"
+          },
+          {
             "id": "sg-calendar-meses",
             "title": "Vários meses",
             "file": "apps/seedgrid_showcase/lib/pages/sg_calendar_page.dart",
             "kind": "dart",
             "code": "const SgCalendar(\n  numberOfMonths: 3,\n  monthsPerLine: 2,\n  showAdjacentMonths: false,\n  defaultViewDate: '2026-03-01',\n)"
+          },
+          {
+            "id": "sg-calendar-selecionado-limite",
+            "title": "Selecionado controlado + limite de datas",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_calendar_page.dart",
+            "kind": "dart",
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgCalendar(\n      value: _selecionado,\n      onValueChange: (data) => setState(() => _selecionado = data),\n      locale: 'pt-BR',\n      minDate: DateTime(2026, 3, 5),\n      maxDate: DateTime(2026, 3, 25),\n      isDateDisabled: (data) =>\n          data.weekday == DateTime.saturday ||\n          data.weekday == DateTime.sunday,\n      cardTitle: const Text('Agenda de visitas'),\n      cardProps: const SgCalendarCardProps(\n        id: 'showcase-calendar-range',\n        dragPersistKey: 'showcase-calendar-range',\n      ),\n    ),\n    const SizedBox(height: 8),\n    Text('${context.tx('Selecionado')}: $selecionadoTexto'),\n  ],\n)"
           }
         ],
         "parity": {
@@ -2061,7 +2094,7 @@
             "title": "Idioma e textos (i18n)",
             "file": "apps/seedgrid_showcase/lib/pages/sg_camera_capture_page.dart",
             "kind": "dart",
-            "code": "const SgComponentsI18nProvider(\n  locale: 'fr',\n  messages: {'components.inputs.camera.capture': 'Tirar foto agora'},\n  child: SgCameraCapture(id: 'idioma', labelText: 'Foto'),\n)"
+            "code": "const SgComponentsI18nProvider(\n  locale: 'fr',\n  messages: {\n    'components.inputs.camera.capture': 'Tirar foto agora',\n  },\n  child: SgCameraCapture(id: 'idioma', labelText: 'Foto'),\n)"
           },
           {
             "id": "sg-camera-capture-oval",
@@ -2518,7 +2551,7 @@
             "title": "Com callbacks",
             "file": "apps/seedgrid_showcase/lib/pages/sg_carousel_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    Container(\n      width: double.infinity,\n      padding: const EdgeInsets.all(12),\n      color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.05),\n      child: Text('${context.tx('Índice Ativo')}: $_activeIndex'),\n    ),\n    const SizedBox(height: 16),\n    SizedBox(\n      height: 256,\n      child: SgCarousel(\n        items: _slides(),\n        numVisible: 2,\n        numScroll: 1,\n        orientation: SgCarouselOrientation.horizontal,\n        height: '100%',\n        onIndexChange: (index) => setState(() {\n          _activeIndex = index;\n          _log('${context.tx('Índice mudou para')}: $index');\n        }),\n      ),\n    ),\n    const SizedBox(height: 16),\n    ShowcaseLogBox(\n      entries: _eventLog,\n      hint: context.tx('Navegue pelo carrossel para ver os eventos...'),\n      height: 128,\n    ),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    Container(\n      width: double.infinity,\n      padding: const EdgeInsets.all(12),\n      color: Theme.of(\n        context,\n      ).colorScheme.onSurface.withValues(alpha: 0.05),\n      child: Text('${context.tx('Índice Ativo')}: $_activeIndex'),\n    ),\n    const SizedBox(height: 16),\n    SizedBox(\n      height: 256,\n      child: SgCarousel(\n        items: _slides(),\n        numVisible: 2,\n        numScroll: 1,\n        orientation: SgCarouselOrientation.horizontal,\n        height: '100%',\n        onIndexChange: (index) => setState(() {\n          _activeIndex = index;\n          _log('${context.tx('Índice mudou para')}: $index');\n        }),\n      ),\n    ),\n    const SizedBox(height: 16),\n    ShowcaseLogBox(\n      entries: _eventLog,\n      hint: context.tx(\n        'Navegue pelo carrossel para ver os eventos...',\n      ),\n      height: 128,\n    ),\n  ],\n)"
           },
           {
             "id": "sg-carousel-gap",
@@ -2696,12 +2729,6 @@
             "description": "Marca o grupo como obrigatorio."
           },
           {
-            "name": "rules",
-            "type": "Object?",
-            "required": false,
-            "typeExact": false
-          },
-          {
             "name": "selectionStyle",
             "type": "SgCheckboxGroupSelectionStyle?",
             "required": false,
@@ -2767,7 +2794,7 @@
             "title": "Com GroupBox Customizado",
             "file": "apps/seedgrid_showcase/lib/pages/sg_checkbox_group_page.dart",
             "kind": "dart",
-            "code": "SgCheckboxGroup(\n  id: 'custom-groupbox',\n  title: context.tx('Escolha com estilo customizado'),\n  groupBoxProps: SgChoiceGroupBoxProps(title: context.tx('Preferências')),\n  source: [\n    SgCheckboxGroupOption(\n      label: context.tx('Favorito'),\n      value: 'favorite',\n      icon: Icon(Icons.favorite, size: 16),\n    ),\n    SgCheckboxGroupOption(\n      label: context.tx('Importante'),\n      value: 'important',\n      icon: Icon(Icons.star, size: 16),\n    ),\n    SgCheckboxGroupOption(\n      label: context.tx('Curtir'),\n      value: 'like',\n      icon: Icon(Icons.thumb_up, size: 16),\n    ),\n  ],\n)"
+            "code": "SgCheckboxGroup(\n  id: 'custom-groupbox',\n  title: context.tx('Escolha com estilo customizado'),\n  groupBoxProps: SgChoiceGroupBoxProps(\n    title: context.tx('Preferências'),\n  ),\n  source: [\n    SgCheckboxGroupOption(\n      label: context.tx('Favorito'),\n      value: 'favorite',\n      icon: Icon(Icons.favorite, size: 16),\n    ),\n    SgCheckboxGroupOption(\n      label: context.tx('Importante'),\n      value: 'important',\n      icon: Icon(Icons.star, size: 16),\n    ),\n    SgCheckboxGroupOption(\n      label: context.tx('Curtir'),\n      value: 'like',\n      icon: Icon(Icons.thumb_up, size: 16),\n    ),\n  ],\n)"
           },
           {
             "id": "sg-checkbox-group-com-icones",
@@ -2781,14 +2808,14 @@
             "title": "Com Opção Desabilitada",
             "file": "apps/seedgrid_showcase/lib/pages/sg_checkbox_group_page.dart",
             "kind": "dart",
-            "code": "SgCheckboxGroup(\n  id: 'with-disabled-option',\n  title: context.tx('Nível de prioridade'),\n  source: [\n    SgCheckboxGroupOption(\n      label: context.tx('Baixa'),\n      value: 'low',\n    ),\n    SgCheckboxGroupOption(\n      label: context.tx('Média'),\n      value: 'medium',\n    ),\n    SgCheckboxGroupOption(\n      label: context.tx('Alta'),\n      value: 'high',\n    ),\n    SgCheckboxGroupOption(\n      label: context.tx('Urgente'),\n      value: 'urgent',\n      enabled: false,\n    ),\n  ],\n)"
+            "code": "SgCheckboxGroup(\n  id: 'with-disabled-option',\n  title: context.tx('Nível de prioridade'),\n  source: [\n    SgCheckboxGroupOption(label: context.tx('Baixa'), value: 'low'),\n    SgCheckboxGroupOption(\n      label: context.tx('Média'),\n      value: 'medium',\n    ),\n    SgCheckboxGroupOption(label: context.tx('Alta'), value: 'high'),\n    SgCheckboxGroupOption(\n      label: context.tx('Urgente'),\n      value: 'urgent',\n      enabled: false,\n    ),\n  ],\n)"
           },
           {
             "id": "sg-checkbox-group-controle-externo",
             "title": "Controle Externo (setValue/getValue)",
             "file": "apps/seedgrid_showcase/lib/pages/sg_checkbox_group_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgCheckboxGroup(\n      id: 'external-control',\n      title: context.tx('Frutas favoritas'),\n      value: _externo,\n      onChange: (v) => setState(() => _externo = v),\n      source: [\n        SgCheckboxGroupOption(\n          label: context.tx('Maçã'),\n          value: 'apple',\n        ),\n        SgCheckboxGroupOption(\n          label: context.tx('Banana'),\n          value: 'banana',\n        ),\n        SgCheckboxGroupOption(\n          label: context.tx('Laranja'),\n          value: 'orange',\n        ),\n        SgCheckboxGroupOption(\n          label: context.tx('Uva'),\n          value: 'grape',\n        ),\n      ],\n    ),\n    const SizedBox(height: 16),\n    SgGrid(\n      columns: {'base': 2, 'md': 4},\n      gap: 8,\n      children: [\n        SgButton(\n          label: Text(context.tx('Definir Maçã')),\n          onClick: () => setState(() => _externo = ['apple']),\n        ),\n        SgButton(\n          label: Text(context.tx('Banana + Uva')),\n          onClick: () => setState(() => _externo = ['banana', 'grape']),\n        ),\n        SgButton(\n          label: Text(context.tx('Selecionar Todos')),\n          onClick: () => setState(() => _externo = ['apple', 'banana', 'orange', 'grape']),\n        ),\n        SgButton(\n          label: Text(context.tx('Limpar')),\n          onClick: () => setState(() => _externo = []),\n        ),\n      ],\n    ),\n    const SizedBox(height: 16),\n    Text(\n      '${context.tx('Valor atual')}: [${_externo.join(', ')}]',\n    ),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgCheckboxGroup(\n      id: 'external-control',\n      title: context.tx('Frutas favoritas'),\n      value: _externo,\n      onChange: (v) => setState(() => _externo = v),\n      source: [\n        SgCheckboxGroupOption(\n          label: context.tx('Maçã'),\n          value: 'apple',\n        ),\n        SgCheckboxGroupOption(\n          label: context.tx('Banana'),\n          value: 'banana',\n        ),\n        SgCheckboxGroupOption(\n          label: context.tx('Laranja'),\n          value: 'orange',\n        ),\n        SgCheckboxGroupOption(\n          label: context.tx('Uva'),\n          value: 'grape',\n        ),\n      ],\n    ),\n    const SizedBox(height: 16),\n    SgGrid(\n      columns: {'base': 2, 'md': 4},\n      gap: 8,\n      children: [\n        SgButton(\n          label: Text(context.tx('Definir Maçã')),\n          onClick: () => setState(() => _externo = ['apple']),\n        ),\n        SgButton(\n          label: Text(context.tx('Banana + Uva')),\n          onClick: () =>\n              setState(() => _externo = ['banana', 'grape']),\n        ),\n        SgButton(\n          label: Text(context.tx('Selecionar Todos')),\n          onClick: () => setState(\n            () => _externo = ['apple', 'banana', 'orange', 'grape'],\n          ),\n        ),\n        SgButton(\n          label: Text(context.tx('Limpar')),\n          onClick: () => setState(() => _externo = []),\n        ),\n      ],\n    ),\n    const SizedBox(height: 16),\n    Text('${context.tx('Valor atual')}: [${_externo.join(', ')}]'),\n  ],\n)"
           },
           {
             "id": "sg-checkbox-group-controller-imperativo",
@@ -2802,14 +2829,14 @@
             "title": "Estilo de Seleção Highlight (Lista)",
             "file": "apps/seedgrid_showcase/lib/pages/sg_checkbox_group_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    ConstrainedBox(\n      constraints: const BoxConstraints(maxWidth: 320),\n      child:\n        SgCheckboxGroup(\n          id: 'highlight-list',\n          title: context.tx('Opções'),\n          selectionStyle: SgCheckboxGroupSelectionStyle.highlight,\n          value: _highlight,\n          onChange: (v) => setState(() => _highlight = v),\n          source: [\n            SgCheckboxGroupOption(\n              label: context.tx('Reserva'),\n              value: 'reserve',\n              icon: Icon(Icons.account_balance, size: 16, color: Colors.indigo),\n            ),\n            SgCheckboxGroupOption(\n              label: context.tx('Alerta'),\n              value: 'alert',\n              icon: Icon(Icons.notifications, size: 16, color: Colors.pink),\n            ),\n            SgCheckboxGroupOption(\n              label: context.tx('Atualizar'),\n              value: 'refresh',\n              icon: Icon(Icons.refresh, size: 16, color: Colors.green),\n            ),\n          ],\n        ),\n    ),\n\n    const SizedBox(height: 8),\n    Text('${context.tx('Valor')}: [${_highlight.join(', ')}]'),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    ConstrainedBox(\n      constraints: const BoxConstraints(maxWidth: 320),\n      child: SgCheckboxGroup(\n        id: 'highlight-list',\n        title: context.tx('Opções'),\n        selectionStyle: SgCheckboxGroupSelectionStyle.highlight,\n        value: _highlight,\n        onChange: (v) => setState(() => _highlight = v),\n        source: [\n          SgCheckboxGroupOption(\n            label: context.tx('Reserva'),\n            value: 'reserve',\n            icon: Icon(\n              Icons.account_balance,\n              size: 16,\n              color: Colors.indigo,\n            ),\n          ),\n          SgCheckboxGroupOption(\n            label: context.tx('Alerta'),\n            value: 'alert',\n            icon: Icon(\n              Icons.notifications,\n              size: 16,\n              color: Colors.pink,\n            ),\n          ),\n          SgCheckboxGroupOption(\n            label: context.tx('Atualizar'),\n            value: 'refresh',\n            icon: Icon(\n              Icons.refresh,\n              size: 16,\n              color: Colors.green,\n            ),\n          ),\n        ],\n      ),\n    ),\n\n    const SizedBox(height: 8),\n    Text('${context.tx('Valor')}: [${_highlight.join(', ')}]'),\n  ],\n)"
           },
           {
             "id": "sg-checkbox-group-formulario-register",
             "title": "Formulário - Register",
             "file": "apps/seedgrid_showcase/lib/pages/sg_checkbox_group_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgCheckboxGroup(\n      id: 'fruits',\n      title: context.tx('Escolha suas frutas'),\n      name: 'fruits',\n      control: _formRegister,\n      source: [\n        SgCheckboxGroupOption(\n          label: context.tx('Maçã'),\n          value: 'apple',\n        ),\n        SgCheckboxGroupOption(\n          label: context.tx('Banana'),\n          value: 'banana',\n        ),\n        SgCheckboxGroupOption(\n          label: context.tx('Laranja'),\n          value: 'orange',\n        ),\n        SgCheckboxGroupOption(\n          label: context.tx('Uva'),\n          value: 'grape',\n        ),\n      ],\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _formRegister.handleSubmit(\n        (values) => setState(() => _enviadoRegister = '${values['fruits']}'),\n      ),\n    ),\n    if (_enviadoRegister.isNotEmpty)\n      Text('${context.tx('Dados do formulário')}: $_enviadoRegister'),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgCheckboxGroup(\n      id: 'fruits',\n      title: context.tx('Escolha suas frutas'),\n      name: 'fruits',\n      control: _formRegister,\n      source: [\n        SgCheckboxGroupOption(\n          label: context.tx('Maçã'),\n          value: 'apple',\n        ),\n        SgCheckboxGroupOption(\n          label: context.tx('Banana'),\n          value: 'banana',\n        ),\n        SgCheckboxGroupOption(\n          label: context.tx('Laranja'),\n          value: 'orange',\n        ),\n        SgCheckboxGroupOption(\n          label: context.tx('Uva'),\n          value: 'grape',\n        ),\n      ],\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _formRegister.handleSubmit(\n        (values) => setState(\n          () => _enviadoRegister = '${values['fruits']}',\n        ),\n      ),\n    ),\n    if (_enviadoRegister.isNotEmpty)\n      Text(\n        '${context.tx('Dados do formulário')}: $_enviadoRegister',\n      ),\n  ],\n)"
           },
           {
             "id": "sg-checkbox-group-grupo-desabilitado",
@@ -2823,11 +2850,11 @@
             "title": "Horizontal com Ícones Coloridos",
             "file": "apps/seedgrid_showcase/lib/pages/sg_checkbox_group_page.dart",
             "kind": "dart",
-            "code": "SgCheckboxGroup(\n  id: 'horizontal-colored',\n  title: context.tx('Condições climáticas'),\n  orientation: SgCheckboxGroupOrientation.horizontal,\n  source: [\n    SgCheckboxGroupOption(\n      label: context.tx('Sol'),\n      value: 'sun',\n      icon: Icon(Icons.wb_sunny, size: 20, color: Colors.amber),\n    ),\n    SgCheckboxGroupOption(\n      label: context.tx('Lua'),\n      value: 'moon',\n      icon: Icon(Icons.nightlight_round, size: 20, color: Colors.blue),\n    ),\n    SgCheckboxGroupOption(\n      label: context.tx('Nuvem'),\n      value: 'cloud',\n      icon: Icon(Icons.cloud, size: 20, color: Colors.grey),\n    ),\n  ],\n)"
+            "code": "SgCheckboxGroup(\n  id: 'horizontal-colored',\n  title: context.tx('Condições climáticas'),\n  orientation: SgCheckboxGroupOrientation.horizontal,\n  source: [\n    SgCheckboxGroupOption(\n      label: context.tx('Sol'),\n      value: 'sun',\n      icon: Icon(Icons.wb_sunny, size: 20, color: Colors.amber),\n    ),\n    SgCheckboxGroupOption(\n      label: context.tx('Lua'),\n      value: 'moon',\n      icon: Icon(\n        Icons.nightlight_round,\n        size: 20,\n        color: Colors.blue,\n      ),\n    ),\n    SgCheckboxGroupOption(\n      label: context.tx('Nuvem'),\n      value: 'cloud',\n      icon: Icon(Icons.cloud, size: 20, color: Colors.grey),\n    ),\n  ],\n)"
           },
           {
             "id": "sg-checkbox-group-marcar-todos",
-            "title": "Marcar Todos (showCheckAll)",
+            "title": "Marcar todos (showCheckAll)",
             "file": "apps/seedgrid_showcase/lib/pages/sg_checkbox_group_page.dart",
             "kind": "dart",
             "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    Text(context.tx('Sem label customizado (usa i18n)')),\n    const SizedBox(height: 8),\n    SgCheckboxGroup(\n      id: 'check-all',\n      title: context.tx('Exemplo de marcar todos'),\n      showCheckAll: true,\n      source: [\n        SgCheckboxGroupOption(\n          label: context.tx('Opção 1'),\n          value: 'option1',\n        ),\n        SgCheckboxGroupOption(\n          label: context.tx('Opção 2'),\n          value: 'option2',\n        ),\n        SgCheckboxGroupOption(\n          label: context.tx('Opção 3'),\n          value: 'option3',\n        ),\n      ],\n    ),\n    const SizedBox(height: 24),\n    Text(context.tx('Com checkAllLabel e checkAllIcon')),\n    const SizedBox(height: 8),\n    SgCheckboxGroup(\n      id: 'check-all-custom',\n      title: context.tx('Com label + ícone customizados'),\n      showCheckAll: true,\n      checkAllLabel: context.tx('Marcar tudo'),\n      checkAllIcon: Icon(Icons.star, size: 16, color: Colors.amber),\n      source: [\n        SgCheckboxGroupOption(\n          label: context.tx('Opção 1'),\n          value: 'option1',\n        ),\n        SgCheckboxGroupOption(\n          label: context.tx('Opção 2'),\n          value: 'option2',\n        ),\n        SgCheckboxGroupOption(\n          label: context.tx('Opção 3'),\n          value: 'option3',\n        ),\n      ],\n    ),\n  ],\n)"
@@ -2837,7 +2864,7 @@
             "title": "Obrigatório com Validação",
             "file": "apps/seedgrid_showcase/lib/pages/sg_checkbox_group_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgCheckboxGroup(\n      id: 'preference',\n      title: context.tx('Preferência de contato *'),\n      name: 'preference',\n      control: _formObrigatorio,\n      required: true,\n      source: [\n        SgCheckboxGroupOption(\n          label: context.tx('Email'),\n          value: 'email',\n          icon: Icon(Icons.mail, size: 16),\n        ),\n        SgCheckboxGroupOption(\n          label: context.tx('Telefone'),\n          value: 'phone',\n          icon: Icon(Icons.phone, size: 16),\n        ),\n        SgCheckboxGroupOption(\n          label: context.tx('Presencial'),\n          value: 'in-person',\n          icon: Icon(Icons.home, size: 16),\n        ),\n      ],\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _formObrigatorio.handleSubmit(\n        (values) => setState(() => _enviadoObrigatorio = '${values['preference']}'),\n      ),\n    ),\n    if (_enviadoObrigatorio.isNotEmpty)\n      Text('${context.tx('Dados do formulário')}: $_enviadoObrigatorio'),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgCheckboxGroup(\n      id: 'preference',\n      title: context.tx('Preferência de contato *'),\n      name: 'preference',\n      control: _formObrigatorio,\n      required: true,\n      source: [\n        SgCheckboxGroupOption(\n          label: context.tx('Email'),\n          value: 'email',\n          icon: Icon(Icons.mail, size: 16),\n        ),\n        SgCheckboxGroupOption(\n          label: context.tx('Telefone'),\n          value: 'phone',\n          icon: Icon(Icons.phone, size: 16),\n        ),\n        SgCheckboxGroupOption(\n          label: context.tx('Presencial'),\n          value: 'in-person',\n          icon: Icon(Icons.home, size: 16),\n        ),\n      ],\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _formObrigatorio.handleSubmit(\n        (values) => setState(\n          () => _enviadoObrigatorio = '${values['preference']}',\n        ),\n      ),\n    ),\n    if (_enviadoObrigatorio.isNotEmpty)\n      Text(\n        '${context.tx('Dados do formulário')}: $_enviadoObrigatorio',\n      ),\n  ],\n)"
           },
           {
             "id": "sg-checkbox-group-orientacao-horizontal",
@@ -2858,7 +2885,7 @@
             "title": "Somente Leitura",
             "file": "apps/seedgrid_showcase/lib/pages/sg_checkbox_group_page.dart",
             "kind": "dart",
-            "code": "SgCheckboxGroup(\n  id: 'readonly',\n  title: context.tx('Configuração atual (somente leitura)'),\n  value: const ['banana', 'grape'],\n  readOnly: true,\n  source: [\n    SgCheckboxGroupOption(\n      label: context.tx('Maçã'),\n      value: 'apple',\n    ),\n    SgCheckboxGroupOption(\n      label: context.tx('Banana'),\n      value: 'banana',\n    ),\n    SgCheckboxGroupOption(\n      label: context.tx('Laranja'),\n      value: 'orange',\n    ),\n    SgCheckboxGroupOption(\n      label: context.tx('Uva'),\n      value: 'grape',\n    ),\n  ],\n)"
+            "code": "SgCheckboxGroup(\n  id: 'readonly',\n  title: context.tx('Configuração atual (somente leitura)'),\n  value: const ['banana', 'grape'],\n  readOnly: true,\n  source: [\n    SgCheckboxGroupOption(\n      label: context.tx('Maçã'),\n      value: 'apple',\n    ),\n    SgCheckboxGroupOption(\n      label: context.tx('Banana'),\n      value: 'banana',\n    ),\n    SgCheckboxGroupOption(\n      label: context.tx('Laranja'),\n      value: 'orange',\n    ),\n    SgCheckboxGroupOption(label: context.tx('Uva'), value: 'grape'),\n  ],\n)"
           }
         ],
         "parity": {
@@ -2873,6 +2900,10 @@
           {
             "name": "register",
             "reason": "Não se aplica no Flutter: todo campo é controlado pelo valor e pelo onChange (ou pelo SgFormController)."
+          },
+          {
+            "name": "rules",
+            "reason": "Não se aplica no Flutter: a validação usa as props diretas (required, requiredMessage, minLength, validation...), em vez de um objeto de regras."
           },
           {
             "name": "style",
@@ -3602,12 +3633,6 @@
             "required": false
           },
           {
-            "name": "rules",
-            "type": "Object?",
-            "required": false,
-            "typeExact": false
-          },
-          {
             "name": "showCharCounter",
             "type": "bool?",
             "required": false
@@ -3682,7 +3707,7 @@
             "title": "Dentro de um formulário",
             "file": "apps/seedgrid_showcase/lib/pages/sg_combobox_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgCombobox<String>(\n      id: 'pagamento',\n      name: 'pagamento',\n      control: _form,\n      labelText: 'Forma de pagamento',\n      rules: const SgRules(required: 'Escolha uma forma'),\n      source: const ['Boleto', 'Cartão', 'Pix'],\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _form.handleSubmit(\n        (values) =>\n            setState(() => _enviado = '${values['pagamento']}'),\n      ),\n    ),\n    if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgCombobox<String>(\n      id: 'pagamento',\n      name: 'pagamento',\n      control: _form,\n      labelText: 'Forma de pagamento',\n      required: true,\n      requiredMessage: 'Escolha uma forma',\n      source: const ['Boleto', 'Cartão', 'Pix'],\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _form.handleSubmit(\n        (values) =>\n            setState(() => _enviado = '${values['pagamento']}'),\n      ),\n    ),\n    if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),\n  ],\n)"
           },
           {
             "id": "sg-combobox-itens",
@@ -3722,6 +3747,10 @@
           {
             "name": "register",
             "reason": "Não se aplica no Flutter: todo campo é controlado pelo valor e pelo onChange (ou pelo SgFormController)."
+          },
+          {
+            "name": "rules",
+            "reason": "Não se aplica no Flutter: a validação usa as props diretas (required, requiredMessage, minLength, validation...), em vez de um objeto de regras."
           }
         ]
       }
@@ -4118,6 +4147,13 @@
             "description": "Mensagem exibida quando nao ha registros. Vence o dicionario (components.datatable.empty)."
           },
           {
+            "name": "enabled",
+            "type": "bool?",
+            "required": false,
+            "default": "true",
+            "description": "Quando false, bloqueia as acoes que mudam estado: ordenacao, selecao de linhas, filtros (global e por coluna), limpar filtros e gerenciador de colunas. Paginacao, rolagem e carga de mais linhas continuam funcionando. Aparencia de desabilitado e aria-disabled."
+          },
+          {
             "name": "filters",
             "type": "Object?",
             "required": false,
@@ -4391,6 +4427,13 @@
             "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SizedBox(\n      height: 420,\n      child: SingleChildScrollView(\n        child: SgDatatable(\n          value: _pessoas,\n          columns: _colunas,\n          paginator: true,\n          rows: 5,\n          showGlobalFilter: true,\n          controller: _controller,\n        ),\n      ),\n    ),\n    const SizedBox(height: 8),\n    Wrap(\n      spacing: 8,\n      runSpacing: 8,\n      children: [\n        SgButton(\n          label: Text(context.tx('Ir para a página 3')),\n          onClick: () => _controller.goToPage(3),\n        ),\n        SgButton(\n          label: Text(context.tx('Limpar filtros')),\n          onClick: () => _controller.clearFilters(),\n        ),\n        SgButton(\n          label: Text(context.tx('Remover ordem')),\n          onClick: () => _controller.resetSort(),\n        ),\n      ],\n    ),\n  ],\n)"
           },
           {
+            "id": "sg-datatable-enabled",
+            "title": "Desabilitado (enabled)",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_datatable_page.dart",
+            "kind": "dart",
+            "code": "SgDatatable(\n  id: 'datatable-enabled',\n  title: context.tx('Pessoas'),\n  value: [\n    {'id': 1, 'name': 'Ana'},\n    {'id': 2, 'name': 'Bruno'},\n    {'id': 3, 'name': 'Carla'},\n  ],\n  columns: const [\n    SgDatatableColumn(field: 'id', header: 'ID', sortable: true),\n    SgDatatableColumn(\n      field: 'name',\n      header: 'Nome',\n      sortable: true,\n      filter: true,\n    ),\n  ],\n  dataKey: 'id',\n  selectionMode: SgDatatableSelectionMode.single,\n  showGlobalFilter: true,\n  showColumnFilters: true,\n  enabled: false,\n)"
+          },
+          {
             "id": "sg-datatable-estados",
             "title": "Carregando e vazio",
             "file": "apps/seedgrid_showcase/lib/pages/sg_datatable_page.dart",
@@ -4409,7 +4452,7 @@
             "title": "Idioma e textos (i18n)",
             "file": "apps/seedgrid_showcase/lib/pages/sg_datatable_page.dart",
             "kind": "dart",
-            "code": "const SgComponentsI18nProvider(\n  locale: 'fr',\n  messages: {\n    'components.datatable.empty': 'Texto do dicionário (não aparece)',\n  },\n  child: SgDatatable(\n    id: 'datatable-idioma',\n    title: 'Produtos',\n    value: [],\n    columns: [\n      SgDatatableColumn(\n        field: 'code',\n        header: 'Código',\n        filter: true,\n        filterPlaceholder: 'Digite o código',\n      ),\n      SgDatatableColumn(field: 'name', header: 'Nome', filter: true),\n    ],\n    dataKey: 'code',\n    showGlobalFilter: true,\n    showColumnFilters: true,\n    globalFilterPlaceholder: 'Buscar produtos',\n    emptyMessage: 'Nenhum produto cadastrado.',\n  ),\n)"
+            "code": "const SgComponentsI18nProvider(\n  locale: 'fr',\n  messages: {\n    'components.datatable.empty':\n        'Texto do dicionário (não aparece)',\n  },\n  child: SgDatatable(\n    id: 'datatable-idioma',\n    title: 'Produtos',\n    value: [],\n    columns: [\n      SgDatatableColumn(\n        field: 'code',\n        header: 'Código',\n        filter: true,\n        filterPlaceholder: 'Digite o código',\n      ),\n      SgDatatableColumn(\n        field: 'name',\n        header: 'Nome',\n        filter: true,\n      ),\n    ],\n    dataKey: 'code',\n    showGlobalFilter: true,\n    showColumnFilters: true,\n    globalFilterPlaceholder: 'Buscar produtos',\n    emptyMessage: 'Nenhum produto cadastrado.',\n  ),\n)"
           },
           {
             "id": "sg-datatable-lazy",
@@ -4835,6 +4878,20 @@
             "code": "Wrap(\n  spacing: 16,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgDiscardDigit(\n      value: '$_n',\n      fontSize: 48,\n      color: '#7c2d12',\n      backgroundColor: '#ffedd5',\n      fontWeight: 'bold',\n      transitionMs: 900,\n      stackDepth: 10,\n    ),\n    SgButton(\n      label: Text(context.tx('Próximo')),\n      onClick: () => setState(() => _n = _n % 9 + 1),\n    ),\n  ],\n)"
           },
           {
+            "id": "sg-discard-digit-auto-descarte",
+            "title": "Descarte automático",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_discard_digit_page.dart",
+            "kind": "dart",
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgDiscardDigit(\n      value: _contador.toString().padLeft(2, '0'),\n      color: '#0f172a',\n      font: sans,\n      backgroundColor: '#f8fafc',\n      fontSize: 62,\n      transitionMs: 700,\n      stackDepth: 15,\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx(_rodando ? 'Parar' : 'Iniciar')),\n      size: SgSize.sm,\n      onClick: _alternarAutomatico,\n    ),\n  ],\n)"
+          },
+          {
+            "id": "sg-discard-digit-basico",
+            "title": "Básico",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_discard_digit_page.dart",
+            "kind": "dart",
+            "code": "Wrap(\n  spacing: 16,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgDiscardDigit(\n      value: '7',\n      color: '#0f172a',\n      font: sans,\n      backgroundColor: '#f8fafc',\n      stackDepth: _pilha,\n    ),\n    Column(\n      crossAxisAlignment: CrossAxisAlignment.start,\n      children: [\n        SgButton(\n          label: Text(context.tx('Próximo (+1 folha)')),\n          onClick: () => setState(\n            () => _pilha = _pilha < 30 ? _pilha + 1 : 30,\n          ),\n        ),\n        const SizedBox(height: 8),\n        SgButton(\n          label: Text(context.tx('Anterior (-1 folha)')),\n          appearance: SgAppearance.outline,\n          onClick: () =>\n              setState(() => _pilha = _pilha > 2 ? _pilha - 1 : 2),\n        ),\n      ],\n    ),\n  ],\n)"
+          },
+          {
             "id": "sg-discard-digit-descarte",
             "title": "Descarte (padrão)",
             "file": "apps/seedgrid_showcase/lib/pages/sg_discard_digit_page.dart",
@@ -4849,6 +4906,27 @@
             "code": "Wrap(\n  spacing: 16,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgDiscardDigit(\n      value: '$_n',\n      changeAnimationMode:\n          SgDiscardDigitChangeAnimationMode.incoming,\n    ),\n    SgButton(\n      label: Text(context.tx('Próximo')),\n      onClick: () => setState(() => _n = _n % 9 + 1),\n    ),\n  ],\n)"
           },
           {
+            "id": "sg-discard-digit-folhas-sequenciais",
+            "title": "Folhas sequenciais",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_discard_digit_page.dart",
+            "kind": "dart",
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgDiscardDigit(\n      value: folhas[_folha],\n      color: '#111827',\n      font: sans,\n      backgroundColor: '#fffef7',\n      fontSize: 58,\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Descartar folha')),\n      size: SgSize.sm,\n      onClick: () =>\n          setState(() => _folha = (_folha + 1) % folhas.length),\n    ),\n  ],\n)"
+          },
+          {
+            "id": "sg-discard-digit-fontes",
+            "title": "Fontes",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_discard_digit_page.dart",
+            "kind": "dart",
+            "code": "Wrap(\n  spacing: 24,\n  runSpacing: 12,\n  children: [\n    Column(\n      crossAxisAlignment: CrossAxisAlignment.start,\n      children: [\n        Text(context.tx('Sans')),\n        const SgDiscardDigit(\n          value: '42',\n          color: '#0f172a',\n          font: sans,\n          backgroundColor: '#f8fafc',\n          fontSize: 60,\n        ),\n      ],\n    ),\n    Column(\n      crossAxisAlignment: CrossAxisAlignment.start,\n      children: [\n        Text(context.tx('Serif')),\n        const SgDiscardDigit(\n          value: '42',\n          color: '#1f2937',\n          font: serif,\n          backgroundColor: '#fffef7',\n          fontSize: 60,\n        ),\n      ],\n    ),\n  ],\n)"
+          },
+          {
+            "id": "sg-discard-digit-paginacao-ref",
+            "title": "Paginação imperativa (ref)",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_discard_digit_page.dart",
+            "kind": "dart",
+            "code": "Wrap(\n  spacing: 32,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.end,\n  children: [\n    SgDiscardDigit(\n      value: '$_paginaAtual',\n      controller: _ref,\n      totalNumberPages: totalPaginas,\n      fontSize: 64,\n    ),\n    Column(\n      crossAxisAlignment: CrossAxisAlignment.start,\n      children: [\n        Text(\n          '${context.tx('Página')} $_paginaAtual ${context.tx('de')} $totalPaginas',\n        ),\n        const SizedBox(height: 12),\n        Wrap(\n          spacing: 8,\n          runSpacing: 8,\n          children: [\n            SgButton(\n              label: Text(context.tx('Anterior')),\n              size: SgSize.sm,\n              enabled: _paginaAtual > 1,\n              onClick: () => setState(() {\n                _ref.decreasePage();\n                _paginaAtual = _ref.page();\n              }),\n            ),\n            SgButton(\n              label: Text(context.tx('Próxima')),\n              size: SgSize.sm,\n              enabled: _paginaAtual < totalPaginas,\n              onClick: () => setState(() {\n                _ref.increasePage();\n                _paginaAtual = _ref.page();\n              }),\n            ),\n          ],\n        ),\n      ],\n    ),\n  ],\n)"
+          },
+          {
             "id": "sg-discard-digit-paginas",
             "title": "Páginas de um monte",
             "file": "apps/seedgrid_showcase/lib/pages/sg_discard_digit_page.dart",
@@ -4861,6 +4939,13 @@
             "file": "apps/seedgrid_showcase/lib/pages/sg_discard_digit_page.dart",
             "kind": "dart",
             "code": "Wrap(\n  spacing: 16,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgDiscardDigit(value: '$_n', animateOnChange: false),\n    SgButton(\n      label: Text(context.tx('Próximo')),\n      onClick: () => setState(() => _n = _n % 9 + 1),\n    ),\n  ],\n)"
+          },
+          {
+            "id": "sg-discard-digit-variacoes-de-papel",
+            "title": "Variações de papel",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_discard_digit_page.dart",
+            "kind": "dart",
+            "code": "Wrap(\n  spacing: 24,\n  runSpacing: 12,\n  children: [\n    Column(\n      crossAxisAlignment: CrossAxisAlignment.start,\n      children: [\n        Text(context.tx('Papel branco')),\n        const SgDiscardDigit(\n          value: '7',\n          color: '#0f172a',\n          font: sans,\n          backgroundColor: '#f8fafc',\n        ),\n      ],\n    ),\n    Column(\n      crossAxisAlignment: CrossAxisAlignment.start,\n      children: [\n        Text(context.tx('Papel âmbar')),\n        const SgDiscardDigit(\n          value: '7',\n          color: '#4a2d13',\n          font: sans,\n          backgroundColor: '#fff4d6',\n        ),\n      ],\n    ),\n    Column(\n      crossAxisAlignment: CrossAxisAlignment.start,\n      children: [\n        Text(context.tx('Papel azul frio')),\n        const SgDiscardDigit(\n          value: '7',\n          color: '#0b2f50',\n          font: sans,\n          backgroundColor: '#e7f5ff',\n        ),\n      ],\n    ),\n  ],\n)"
           }
         ],
         "parity": {
@@ -5714,6 +5799,20 @@
         ],
         "examples": [
           {
+            "id": "sg-fade-digit-auto",
+            "title": "Incremento automático",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_fade_digit_page.dart",
+            "kind": "dart",
+            "code": "Wrap(\n  spacing: 16,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgFadeDigit(value: '$_contador'),\n    SgButton(\n      label: Text(context.tx(_rodando ? 'Parar' : 'Iniciar')),\n      onClick: _alternarContador,\n    ),\n  ],\n)"
+          },
+          {
+            "id": "sg-fade-digit-basico",
+            "title": "Básico (0-9)",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_fade_digit_page.dart",
+            "kind": "dart",
+            "code": "Wrap(\n  spacing: 16,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgFadeDigit(value: '$_digito'),\n    Wrap(\n      spacing: 8,\n      runSpacing: 8,\n      children: [\n        SgButton(\n          label: Text(context.tx('Próximo (+1)')),\n          onClick: () =>\n              setState(() => _digito = (_digito + 1) % 10),\n        ),\n        SgButton(\n          label: Text(context.tx('Anterior (-1)')),\n          onClick: () =>\n              setState(() => _digito = (_digito + 9) % 10),\n        ),\n        SgButton(\n          label: Text(context.tx('Aleatório')),\n          onClick: () => setState(\n            () => _digito = DateTime.now().microsecond % 10,\n          ),\n        ),\n      ],\n    ),\n  ],\n)"
+          },
+          {
             "id": "sg-fade-digit-cartao",
             "title": "Cartão com fade",
             "file": "apps/seedgrid_showcase/lib/pages/sg_fade_digit_page.dart",
@@ -5728,11 +5827,39 @@
             "code": "const Wrap(\n  spacing: 12,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.end,\n  children: [\n    SgFadeDigit(\n      value: '2',\n      color: '#111827',\n      backgroundColor: '#fde68a',\n    ),\n    SgFadeDigit(\n      value: '9',\n      fontSize: 40,\n      color: '#22c55e',\n      backgroundColor: '#052e16',\n    ),\n    SgFadeDigit(value: '0', fontSize: 100),\n    SgFadeDigit(value: '1', fontSize: 24, font: 'monospace'),\n  ],\n)"
           },
           {
+            "id": "sg-fade-digit-letras",
+            "title": "Letras (A-Z)",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_fade_digit_page.dart",
+            "kind": "dart",
+            "code": "Wrap(\n  spacing: 16,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgFadeDigit(value: String.fromCharCode(65 + _letra)),\n    SgButton(\n      label: Text(context.tx('Próxima letra')),\n      onClick: () => setState(() => _letra = (_letra + 1) % 26),\n    ),\n  ],\n)"
+          },
+          {
+            "id": "sg-fade-digit-personalizadas",
+            "title": "Cores personalizadas",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_fade_digit_page.dart",
+            "kind": "dart",
+            "code": "Wrap(\n  spacing: 16,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.end,\n  children: [\n    Column(\n      children: [\n        Text(context.tx('Padrão')),\n        const SgFadeDigit(\n          value: '7',\n          color: '#edebeb',\n          backgroundColor: '#333232',\n        ),\n      ],\n    ),\n    Column(\n      children: [\n        Text(context.tx('Verde')),\n        const SgFadeDigit(\n          value: '7',\n          color: '#4ade80',\n          backgroundColor: '#052e16',\n        ),\n      ],\n    ),\n    Column(\n      children: [\n        Text(context.tx('Azul')),\n        const SgFadeDigit(\n          value: '7',\n          color: '#60a5fa',\n          backgroundColor: '#0f172a',\n        ),\n      ],\n    ),\n    Column(\n      children: [\n        Text(context.tx('Rosa')),\n        const SgFadeDigit(\n          value: '7',\n          color: '#f472b6',\n          backgroundColor: '#2d0a1e',\n        ),\n      ],\n    ),\n    Column(\n      children: [\n        Text(context.tx('Âmbar')),\n        const SgFadeDigit(\n          value: '7',\n          color: '#fbbf24',\n          backgroundColor: '#1c1007',\n        ),\n      ],\n    ),\n  ],\n)"
+          },
+          {
+            "id": "sg-fade-digit-relogio",
+            "title": "Sequência estilo relógio",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_fade_digit_page.dart",
+            "kind": "dart",
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    Wrap(\n      spacing: 8,\n      runSpacing: 8,\n      crossAxisAlignment: WrapCrossAlignment.center,\n      children: [\n        SgFadeDigit(value: horas[0]),\n        SgFadeDigit(value: horas[1]),\n        const Text(\n          ':',\n          style: TextStyle(\n            fontSize: 36,\n            fontWeight: FontWeight.bold,\n          ),\n        ),\n        SgFadeDigit(value: minutos[0]),\n        SgFadeDigit(value: minutos[1]),\n        const Text(\n          ':',\n          style: TextStyle(\n            fontSize: 36,\n            fontWeight: FontWeight.bold,\n          ),\n        ),\n        SgFadeDigit(value: segundos[0]),\n        SgFadeDigit(value: segundos[1]),\n      ],\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(\n        context.tx(_relogioRodando ? 'Parar' : 'Iniciar'),\n      ),\n      size: SgSize.sm,\n      onClick: _alternarRelogio,\n    ),\n  ],\n)"
+          },
+          {
+            "id": "sg-fade-digit-tamanhos",
+            "title": "Tamanhos",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_fade_digit_page.dart",
+            "kind": "dart",
+            "code": "Wrap(\n  spacing: 24,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.end,\n  children: [\n    Column(\n      children: [\n        Text(context.tx('Pequeno (40px)')),\n        const SgFadeDigit(value: '5', fontSize: 40),\n      ],\n    ),\n    Column(\n      children: [\n        Text(context.tx('Médio (70px)')),\n        const SgFadeDigit(value: '5', fontSize: 70),\n      ],\n    ),\n    Column(\n      children: [\n        Text(context.tx('Grande (110px)')),\n        const SgFadeDigit(value: '5', fontSize: 110),\n      ],\n    ),\n  ],\n)"
+          },
+          {
             "id": "sg-fade-digit-troca",
             "title": "Troca de valor",
             "file": "apps/seedgrid_showcase/lib/pages/sg_fade_digit_page.dart",
             "kind": "dart",
-            "code": "Builder(\n  builder: (context) {\n    var value = 0;\n    return StatefulBuilder(\n      builder: (context, set) => Row(\n        mainAxisSize: MainAxisSize.min,\n        children: [\n          SgFadeDigit(value: '$value'),\n          const SizedBox(width: 24),\n          FilledButton(\n            onPressed: () => set(() => value = (value + 1) % 10),\n            child: Text(context.tx('Próximo')),\n          ),\n        ],\n      ),\n    );\n  },\n)"
+            "code": "Builder(\n  builder: (context) {\n    var value = 0;\n    return StatefulBuilder(\n      builder: (context, set) => Row(\n        mainAxisSize: MainAxisSize.min,\n        children: [\n          SgFadeDigit(value: '$value'),\n          const SizedBox(width: 24),\n          SgButton(\n            label: Text(context.tx('Próximo')),\n            onClick: () => set(() => value = (value + 1) % 10),\n          ),\n        ],\n      ),\n    );\n  },\n)"
           }
         ],
         "parity": {
@@ -5916,12 +6043,6 @@
             "required": false
           },
           {
-            "name": "rules",
-            "type": "Object?",
-            "required": false,
-            "typeExact": false
-          },
-          {
             "name": "thumbnailBuilder",
             "type": "Function?",
             "required": false,
@@ -5969,7 +6090,7 @@
             "title": "Dentro de um formulário",
             "file": "apps/seedgrid_showcase/lib/pages/sg_file_upload_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgFileUpload(\n      id: 'comprovantes',\n      name: 'comprovantes',\n      control: _form,\n      labelText: 'Comprovantes',\n      maxFiles: 3,\n      rules: const SgRules(required: 'Anexe ao menos um arquivo'),\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _form.handleSubmit(\n        (values) => setState(\n          () => _enviado =\n              '${(values['comprovantes'] as List).length} arquivo(s)',\n        ),\n      ),\n    ),\n    if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgFileUpload(\n      id: 'comprovantes',\n      name: 'comprovantes',\n      control: _form,\n      labelText: 'Comprovantes',\n      maxFiles: 3,\n      required: true,\n      requiredMessage: 'Anexe ao menos um arquivo',\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _form.handleSubmit(\n        (values) => setState(\n          () => _enviado =\n              '${(values['comprovantes'] as List).length} arquivo(s)',\n        ),\n      ),\n    ),\n    if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),\n  ],\n)"
           },
           {
             "id": "sg-file-upload-idioma",
@@ -5990,7 +6111,7 @@
             "title": "Tipos aceitos",
             "file": "apps/seedgrid_showcase/lib/pages/sg_file_upload_page.dart",
             "kind": "dart",
-            "code": "const SgFileUpload(\n  id: 'planilha',\n  labelText: 'Planilha ou PDF',\n  mediaType: [\n    SgMediaType.pdf,\n    SgMediaType.xls,\n    SgMediaType.xlsx,\n  ],\n  maxFiles: 2,\n)"
+            "code": "const SgFileUpload(\n  id: 'planilha',\n  labelText: 'Planilha ou PDF',\n  mediaType: [SgMediaType.pdf, SgMediaType.xls, SgMediaType.xlsx],\n  maxFiles: 2,\n)"
           },
           {
             "id": "sg-file-upload-varios",
@@ -6016,6 +6137,10 @@
           {
             "name": "register",
             "reason": "Não se aplica no Flutter: todo campo é controlado pelo valor e pelo onChange (ou pelo SgFormController)."
+          },
+          {
+            "name": "rules",
+            "reason": "Não se aplica no Flutter: a validação usa as props diretas (required, requiredMessage, minLength, validation...), em vez de um objeto de regras."
           }
         ]
       }
@@ -6066,7 +6191,7 @@
         "examples": [
           {
             "id": "sg-flip-digit-auto",
-            "title": "Auto increment",
+            "title": "Incremento automático",
             "file": "apps/seedgrid_showcase/lib/pages/sg_flip_digit_page.dart",
             "kind": "dart",
             "code": "Wrap(\n  spacing: 16,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgFlipDigit(value: '$_auto'),\n    SgButton(\n      label: Text(context.tx(_rodando ? 'Parar' : 'Iniciar')),\n      onClick: _alternar,\n    ),\n  ],\n)"
@@ -6415,28 +6540,28 @@
             "title": "Active Icon",
             "file": "apps/seedgrid_showcase/lib/pages/sg_float_action_button_page.dart",
             "kind": "dart",
-            "code": "Builder(\n  builder: (context) {\n    final acoes = [\n      SgFABAction(\n        icon: const Icon(Icons.person_add),\n        label: context.tx('Novo usuário'),\n        onClick: () {},\n      ),\n      SgFABAction(\n        icon: const Icon(Icons.note_add),\n        label: context.tx('Novo arquivo'),\n        onClick: () {},\n      ),\n      SgFABAction(\n        icon: const Icon(Icons.create_new_folder),\n        label: context.tx('Nova pasta'),\n        onClick: () {},\n      ),\n    ];\n    Widget caixa(double altura, String legenda, Widget fab) => SizedBox(\n      height: altura,\n      child: DecoratedBox(\n        decoration: BoxDecoration(\n          border: Border.all(color: Colors.black26),\n          borderRadius: BorderRadius.circular(8),\n        ),\n        child: Stack(\n          children: [\n            Positioned(\n              left: 12,\n              top: 8,\n              child: Text(legenda, style: Theme.of(context).textTheme.bodySmall),\n            ),\n            fab,\n          ],\n        ),\n      ),\n    );\n    return caixa(\n      288,\n      'activeIcon changes when open',\n      SgFloatActionButton(\n        absolute: true,\n        position: SgFloatActionButtonPosition.centerBottom,\n        actions: acoes,\n        type: SgFloatActionButtonType.semiCircle,\n        direction: SgFloatActionButtonDirection.up,\n        activeIcon: const Icon(Icons.settings),\n        severity: SgFloatActionButtonSeverity.secondary,\n      ),\n    );\n  },\n)"
+            "code": "Builder(\n  builder: (context) {\n    final acoes = [\n      SgFABAction(\n        icon: const Icon(Icons.person_add),\n        label: context.tx('Novo usuário'),\n        onClick: () {},\n      ),\n      SgFABAction(\n        icon: const Icon(Icons.note_add),\n        label: context.tx('Novo arquivo'),\n        onClick: () {},\n      ),\n      SgFABAction(\n        icon: const Icon(Icons.create_new_folder),\n        label: context.tx('Nova pasta'),\n        onClick: () {},\n      ),\n    ];\n    Widget caixa(double altura, String legenda, Widget fab) =>\n        SizedBox(\n          height: altura,\n          child: DecoratedBox(\n            decoration: BoxDecoration(\n              border: Border.all(color: Colors.black26),\n              borderRadius: BorderRadius.circular(8),\n            ),\n            child: Stack(\n              children: [\n                Positioned(\n                  left: 12,\n                  top: 8,\n                  child: Text(\n                    legenda,\n                    style: Theme.of(context).textTheme.bodySmall,\n                  ),\n                ),\n                fab,\n              ],\n            ),\n          ),\n        );\n    return caixa(\n      288,\n      'activeIcon changes when open',\n      SgFloatActionButton(\n        absolute: true,\n        position: SgFloatActionButtonPosition.centerBottom,\n        actions: acoes,\n        type: SgFloatActionButtonType.semiCircle,\n        direction: SgFloatActionButtonDirection.up,\n        activeIcon: const Icon(Icons.settings),\n        severity: SgFloatActionButtonSeverity.secondary,\n      ),\n    );\n  },\n)"
           },
           {
             "id": "sg-fab-animacoes",
             "title": "Animações",
             "file": "apps/seedgrid_showcase/lib/pages/sg_float_action_button_page.dart",
             "kind": "dart",
-            "code": "Wrap(\n  spacing: 24,\n  runSpacing: 24,\n  children: [\n    for (final animation in const [\n      SgFloatActionButtonAnimation.scale,\n      SgFloatActionButtonAnimation.fade,\n      SgFloatActionButtonAnimation.rotate,\n      SgFloatActionButtonAnimation.slide,\n      SgFloatActionButtonAnimation.pulse,\n      SgFloatActionButtonAnimation.none,\n    ])\n      Column(\n        mainAxisSize: MainAxisSize.min,\n        children: [\n          SizedBox.square(\n            dimension: 88,\n            child: SgFloatActionButton(\n              absolute: true,\n              animation: animation,\n              animationOn: SgFloatActionButtonAnimationOn.hover,\n              icon: const Icon(Icons.favorite),\n              severity: SgFloatActionButtonSeverity.danger,\n              size: SgFloatActionButtonSize.sm,\n              onClick: () {},\n            ),\n          ),\n          Text(animation.value, style: Theme.of(context).textTheme.bodySmall),\n        ],\n      ),\n  ],\n)"
+            "code": "Wrap(\n  spacing: 24,\n  runSpacing: 24,\n  children: [\n    for (final animation in const [\n      SgFloatActionButtonAnimation.scale,\n      SgFloatActionButtonAnimation.fade,\n      SgFloatActionButtonAnimation.rotate,\n      SgFloatActionButtonAnimation.slide,\n      SgFloatActionButtonAnimation.pulse,\n      SgFloatActionButtonAnimation.none,\n    ])\n      Column(\n        mainAxisSize: MainAxisSize.min,\n        children: [\n          SizedBox.square(\n            dimension: 88,\n            child: SgFloatActionButton(\n              absolute: true,\n              animation: animation,\n              animationOn: SgFloatActionButtonAnimationOn.hover,\n              icon: const Icon(Icons.favorite),\n              severity: SgFloatActionButtonSeverity.danger,\n              size: SgFloatActionButtonSize.sm,\n              onClick: () {},\n            ),\n          ),\n          Text(\n            animation.value,\n            style: Theme.of(context).textTheme.bodySmall,\n          ),\n        ],\n      ),\n  ],\n)"
           },
           {
             "id": "sg-fab-arrastar",
             "title": "Arrastar e soltar",
             "file": "apps/seedgrid_showcase/lib/pages/sg_float_action_button_page.dart",
             "kind": "dart",
-            "code": "Builder(\n  builder: (context) {\n    final acoes = [\n      SgFABAction(\n        icon: const Icon(Icons.person_add),\n        label: context.tx('Novo usuário'),\n        onClick: () {},\n      ),\n      SgFABAction(\n        icon: const Icon(Icons.note_add),\n        label: context.tx('Novo arquivo'),\n        onClick: () {},\n      ),\n      SgFABAction(\n        icon: const Icon(Icons.create_new_folder),\n        label: context.tx('Nova pasta'),\n        onClick: () {},\n      ),\n    ];\n    Widget caixa(double altura, String legenda, Widget fab) => SizedBox(\n      height: altura,\n      child: DecoratedBox(\n        decoration: BoxDecoration(\n          border: Border.all(color: Colors.black26),\n          borderRadius: BorderRadius.circular(8),\n        ),\n        child: Stack(\n          children: [\n            Positioned(\n              left: 12,\n              top: 8,\n              child: Text(legenda, style: Theme.of(context).textTheme.bodySmall),\n            ),\n            fab,\n          ],\n        ),\n      ),\n    );\n    return caixa(\n      256,\n      '',\n      SgFloatActionButton(\n        absolute: true,\n        enableDragDrop: true,\n        dragId: 'showcase-fab-drag',\n        actions: acoes,\n        type: SgFloatActionButtonType.linear,\n        direction: SgFloatActionButtonDirection.up,\n        severity: SgFloatActionButtonSeverity.info,\n        position: SgFloatActionButtonPosition.rightBottom,\n      ),\n    );\n  },\n)"
+            "code": "Builder(\n  builder: (context) {\n    final acoes = [\n      SgFABAction(\n        icon: const Icon(Icons.person_add),\n        label: context.tx('Novo usuário'),\n        onClick: () {},\n      ),\n      SgFABAction(\n        icon: const Icon(Icons.note_add),\n        label: context.tx('Novo arquivo'),\n        onClick: () {},\n      ),\n      SgFABAction(\n        icon: const Icon(Icons.create_new_folder),\n        label: context.tx('Nova pasta'),\n        onClick: () {},\n      ),\n    ];\n    Widget caixa(double altura, String legenda, Widget fab) =>\n        SizedBox(\n          height: altura,\n          child: DecoratedBox(\n            decoration: BoxDecoration(\n              border: Border.all(color: Colors.black26),\n              borderRadius: BorderRadius.circular(8),\n            ),\n            child: Stack(\n              children: [\n                Positioned(\n                  left: 12,\n                  top: 8,\n                  child: Text(\n                    legenda,\n                    style: Theme.of(context).textTheme.bodySmall,\n                  ),\n                ),\n                fab,\n              ],\n            ),\n          ),\n        );\n    return caixa(\n      256,\n      '',\n      SgFloatActionButton(\n        absolute: true,\n        enableDragDrop: true,\n        dragId: 'showcase-fab-drag',\n        actions: acoes,\n        type: SgFloatActionButtonType.linear,\n        direction: SgFloatActionButtonDirection.up,\n        severity: SgFloatActionButtonSeverity.info,\n        position: SgFloatActionButtonPosition.rightBottom,\n      ),\n    );\n  },\n)"
           },
           {
             "id": "sg-fab-circle",
             "title": "Circle Layout",
             "file": "apps/seedgrid_showcase/lib/pages/sg_float_action_button_page.dart",
             "kind": "dart",
-            "code": "Builder(\n  builder: (context) {\n    final acoes = [\n      SgFABAction(\n        icon: const Icon(Icons.person_add),\n        label: context.tx('Novo usuário'),\n        onClick: () {},\n      ),\n      SgFABAction(\n        icon: const Icon(Icons.note_add),\n        label: context.tx('Novo arquivo'),\n        onClick: () {},\n      ),\n      SgFABAction(\n        icon: const Icon(Icons.create_new_folder),\n        label: context.tx('Nova pasta'),\n        onClick: () {},\n      ),\n    ];\n    Widget caixa(double altura, String legenda, Widget fab) => SizedBox(\n      height: altura,\n      child: DecoratedBox(\n        decoration: BoxDecoration(\n          border: Border.all(color: Colors.black26),\n          borderRadius: BorderRadius.circular(8),\n        ),\n        child: Stack(\n          children: [\n            Positioned(\n              left: 12,\n              top: 8,\n              child: Text(legenda, style: Theme.of(context).textTheme.bodySmall),\n            ),\n            fab,\n          ],\n        ),\n      ),\n    );\n    return caixa(\n      384,\n      'type=\"circle\"',\n      SgFloatActionButton(\n        absolute: true,\n        position: SgFloatActionButtonPosition.centerTop,\n        offset: const SgFABOffset(y: 100),\n        actions: [\n          ...acoes,\n          ...acoes,\n          SgFABAction(\n            icon: const Icon(Icons.edit),\n            label: context.tx('Edit'),\n            onClick: () {},\n          ),\n        ],\n        type: SgFloatActionButtonType.circle,\n        radius: 120,\n        severity: SgFloatActionButtonSeverity.secondary,\n      ),\n    );\n  },\n)"
+            "code": "Builder(\n  builder: (context) {\n    final acoes = [\n      SgFABAction(\n        icon: const Icon(Icons.person_add),\n        label: context.tx('Novo usuário'),\n        onClick: () {},\n      ),\n      SgFABAction(\n        icon: const Icon(Icons.note_add),\n        label: context.tx('Novo arquivo'),\n        onClick: () {},\n      ),\n      SgFABAction(\n        icon: const Icon(Icons.create_new_folder),\n        label: context.tx('Nova pasta'),\n        onClick: () {},\n      ),\n    ];\n    Widget caixa(double altura, String legenda, Widget fab) =>\n        SizedBox(\n          height: altura,\n          child: DecoratedBox(\n            decoration: BoxDecoration(\n              border: Border.all(color: Colors.black26),\n              borderRadius: BorderRadius.circular(8),\n            ),\n            child: Stack(\n              children: [\n                Positioned(\n                  left: 12,\n                  top: 8,\n                  child: Text(\n                    legenda,\n                    style: Theme.of(context).textTheme.bodySmall,\n                  ),\n                ),\n                fab,\n              ],\n            ),\n          ),\n        );\n    return caixa(\n      384,\n      'type=\"circle\"',\n      SgFloatActionButton(\n        absolute: true,\n        position: SgFloatActionButtonPosition.centerTop,\n        offset: const SgFABOffset(y: 100),\n        actions: [\n          ...acoes,\n          ...acoes,\n          SgFABAction(\n            icon: const Icon(Icons.edit),\n            label: context.tx('Edit'),\n            onClick: () {},\n          ),\n        ],\n        type: SgFloatActionButtonType.circle,\n        radius: 120,\n        severity: SgFloatActionButtonSeverity.secondary,\n      ),\n    );\n  },\n)"
           },
           {
             "id": "sg-fab-cor",
@@ -6457,21 +6582,21 @@
             "title": "Elevação",
             "file": "apps/seedgrid_showcase/lib/pages/sg_float_action_button_page.dart",
             "kind": "dart",
-            "code": "Wrap(\n  spacing: 24,\n  runSpacing: 24,\n  children: [\n    for (final elevation in const [\n      SgFloatActionButtonElevation.none,\n      SgFloatActionButtonElevation.sm,\n      SgFloatActionButtonElevation.md,\n      SgFloatActionButtonElevation.lg,\n    ])\n      Column(\n        mainAxisSize: MainAxisSize.min,\n        children: [\n          SizedBox.square(\n            dimension: 104,\n            child: SgFloatActionButton(\n              absolute: true,\n              elevation: elevation,\n              onClick: () {},\n            ),\n          ),\n          Text(elevation.value, style: Theme.of(context).textTheme.bodySmall),\n        ],\n      ),\n  ],\n)"
+            "code": "Wrap(\n  spacing: 24,\n  runSpacing: 24,\n  children: [\n    for (final elevation in const [\n      SgFloatActionButtonElevation.none,\n      SgFloatActionButtonElevation.sm,\n      SgFloatActionButtonElevation.md,\n      SgFloatActionButtonElevation.lg,\n    ])\n      Column(\n        mainAxisSize: MainAxisSize.min,\n        children: [\n          SizedBox.square(\n            dimension: 104,\n            child: SgFloatActionButton(\n              absolute: true,\n              elevation: elevation,\n              onClick: () {},\n            ),\n          ),\n          Text(\n            elevation.value,\n            style: Theme.of(context).textTheme.bodySmall,\n          ),\n        ],\n      ),\n  ],\n)"
           },
           {
             "id": "sg-fab-formas-tamanhos",
             "title": "Formas e Tamanhos",
             "file": "apps/seedgrid_showcase/lib/pages/sg_float_action_button_page.dart",
             "kind": "dart",
-            "code": "Wrap(\n  spacing: 24,\n  runSpacing: 24,\n  children: [\n    for (final shape in const [\n      SgFloatActionButtonShape.circle,\n      SgFloatActionButtonShape.rounded,\n      SgFloatActionButtonShape.square,\n    ])\n      Column(\n        mainAxisSize: MainAxisSize.min,\n        children: [\n          Text(shape.value, style: Theme.of(context).textTheme.labelMedium),\n          Row(\n            mainAxisSize: MainAxisSize.min,\n            children: [\n              for (final (size, lado) in const [\n                (SgFloatActionButtonSize.sm, 88.0),\n                (SgFloatActionButtonSize.md, 104.0),\n                (SgFloatActionButtonSize.lg, 112.0),\n              ])\n                SizedBox.square(\n                  dimension: lado,\n                  child: SgFloatActionButton(\n                    absolute: true,\n                    shape: shape,\n                    size: size,\n                    onClick: () {},\n                  ),\n                ),\n            ],\n          ),\n        ],\n      ),\n  ],\n)"
+            "code": "Wrap(\n  spacing: 24,\n  runSpacing: 24,\n  children: [\n    for (final shape in const [\n      SgFloatActionButtonShape.circle,\n      SgFloatActionButtonShape.rounded,\n      SgFloatActionButtonShape.square,\n    ])\n      Column(\n        mainAxisSize: MainAxisSize.min,\n        children: [\n          Text(\n            shape.value,\n            style: Theme.of(context).textTheme.labelMedium,\n          ),\n          Row(\n            mainAxisSize: MainAxisSize.min,\n            children: [\n              for (final (size, lado) in const [\n                (SgFloatActionButtonSize.sm, 88.0),\n                (SgFloatActionButtonSize.md, 104.0),\n                (SgFloatActionButtonSize.lg, 112.0),\n              ])\n                SizedBox.square(\n                  dimension: lado,\n                  child: SgFloatActionButton(\n                    absolute: true,\n                    shape: shape,\n                    size: size,\n                    onClick: () {},\n                  ),\n                ),\n            ],\n          ),\n        ],\n      ),\n  ],\n)"
           },
           {
             "id": "sg-fab-loading-disabled",
             "title": "Loading e Desabilitado",
             "file": "apps/seedgrid_showcase/lib/pages/sg_float_action_button_page.dart",
             "kind": "dart",
-            "code": "Wrap(\n  spacing: 24,\n  runSpacing: 24,\n  children: [\n    Column(\n      mainAxisSize: MainAxisSize.min,\n      children: [\n        SizedBox.square(\n          dimension: 104,\n          child: SgFloatActionButton(\n            absolute: true,\n            enabled: false,\n            onClick: () {},\n          ),\n        ),\n        Text('disabled', style: Theme.of(context).textTheme.bodySmall),\n      ],\n    ),\n    Column(\n      mainAxisSize: MainAxisSize.min,\n      children: [\n        SizedBox.square(\n          dimension: 104,\n          child: SgFloatActionButton(\n            absolute: true,\n            loading: true,\n            onClick: () {},\n          ),\n        ),\n        Text('loading', style: Theme.of(context).textTheme.bodySmall),\n      ],\n    ),\n  ],\n)"
+            "code": "Wrap(\n  spacing: 24,\n  runSpacing: 24,\n  children: [\n    Column(\n      mainAxisSize: MainAxisSize.min,\n      children: [\n        SizedBox.square(\n          dimension: 104,\n          child: SgFloatActionButton(\n            absolute: true,\n            enabled: false,\n            onClick: () {},\n          ),\n        ),\n        Text(\n          'disabled',\n          style: Theme.of(context).textTheme.bodySmall,\n        ),\n      ],\n    ),\n    Column(\n      mainAxisSize: MainAxisSize.min,\n      children: [\n        SizedBox.square(\n          dimension: 104,\n          child: SgFloatActionButton(\n            absolute: true,\n            loading: true,\n            onClick: () {},\n          ),\n        ),\n        Text(\n          'loading',\n          style: Theme.of(context).textTheme.bodySmall,\n        ),\n      ],\n    ),\n  ],\n)"
           },
           {
             "id": "sg-fab-posicoes",
@@ -6485,28 +6610,28 @@
             "title": "Quarter-Circle Layout",
             "file": "apps/seedgrid_showcase/lib/pages/sg_float_action_button_page.dart",
             "kind": "dart",
-            "code": "Builder(\n  builder: (context) {\n    final acoes = [\n      SgFABAction(\n        icon: const Icon(Icons.person_add),\n        label: context.tx('Novo usuário'),\n        onClick: () {},\n      ),\n      SgFABAction(\n        icon: const Icon(Icons.note_add),\n        label: context.tx('Novo arquivo'),\n        onClick: () {},\n      ),\n      SgFABAction(\n        icon: const Icon(Icons.create_new_folder),\n        label: context.tx('Nova pasta'),\n        onClick: () {},\n      ),\n    ];\n    final acoesSemRotulo = [\n      for (final a in acoes) SgFABAction(icon: a.icon, onClick: a.onClick),\n    ];\n    Widget caixa(double altura, String legenda, Widget fab) => SizedBox(\n      height: altura,\n      child: DecoratedBox(\n        decoration: BoxDecoration(\n          border: Border.all(color: Colors.black26),\n          borderRadius: BorderRadius.circular(8),\n        ),\n        child: Stack(\n          children: [\n            Positioned(\n              left: 12,\n              top: 8,\n              child: Text(legenda, style: Theme.of(context).textTheme.bodySmall),\n            ),\n            fab,\n          ],\n        ),\n      ),\n    );\n    return Column(\n      children: [\n        Row(\n          crossAxisAlignment: CrossAxisAlignment.start,\n          children: [\n            Expanded(child: caixa(\n              256,\n              'type=\"quarter-circle\" direction=\"up\"',\n              SgFloatActionButton(\n                absolute: true,\n                position: SgFloatActionButtonPosition.centerBottom,\n                actions: acoes,\n                type: SgFloatActionButtonType.quarterCircle,\n                direction: SgFloatActionButtonDirection.up,\n                severity: SgFloatActionButtonSeverity.secondary,\n              ),\n            )),\n            const SizedBox(width: 32),\n            Expanded(child: caixa(\n              256,\n              'type=\"quarter-circle\" direction=\"down\"',\n              SgFloatActionButton(\n                absolute: true,\n                position: SgFloatActionButtonPosition.centerTop,\n                actions: acoes,\n                type: SgFloatActionButtonType.quarterCircle,\n                direction: SgFloatActionButtonDirection.down,\n                severity: SgFloatActionButtonSeverity.success,\n              ),\n            )),\n          ],\n        ),\n        const SizedBox(height: 32),\n        Row(\n          crossAxisAlignment: CrossAxisAlignment.start,\n          children: [\n            Expanded(child: caixa(\n              192,\n              'type=\"quarter-circle\" direction=\"left\"',\n              SgFloatActionButton(\n                absolute: true,\n                position: SgFloatActionButtonPosition.rightCenter,\n                actions: acoesSemRotulo,\n                type: SgFloatActionButtonType.quarterCircle,\n                direction: SgFloatActionButtonDirection.left,\n                severity: SgFloatActionButtonSeverity.warning,\n              ),\n            )),\n            const SizedBox(width: 32),\n            Expanded(child: caixa(\n              192,\n              'type=\"quarter-circle\" direction=\"right\"',\n              SgFloatActionButton(\n                absolute: true,\n                position: SgFloatActionButtonPosition.leftCenter,\n                actions: acoesSemRotulo,\n                type: SgFloatActionButtonType.quarterCircle,\n                direction: SgFloatActionButtonDirection.right,\n                severity: SgFloatActionButtonSeverity.danger,\n              ),\n            )),\n          ],\n        ),\n      ],\n    );\n  },\n)"
+            "code": "Builder(\n  builder: (context) {\n    final acoes = [\n      SgFABAction(\n        icon: const Icon(Icons.person_add),\n        label: context.tx('Novo usuário'),\n        onClick: () {},\n      ),\n      SgFABAction(\n        icon: const Icon(Icons.note_add),\n        label: context.tx('Novo arquivo'),\n        onClick: () {},\n      ),\n      SgFABAction(\n        icon: const Icon(Icons.create_new_folder),\n        label: context.tx('Nova pasta'),\n        onClick: () {},\n      ),\n    ];\n    final acoesSemRotulo = [\n      for (final a in acoes)\n        SgFABAction(icon: a.icon, onClick: a.onClick),\n    ];\n    Widget caixa(double altura, String legenda, Widget fab) =>\n        SizedBox(\n          height: altura,\n          child: DecoratedBox(\n            decoration: BoxDecoration(\n              border: Border.all(color: Colors.black26),\n              borderRadius: BorderRadius.circular(8),\n            ),\n            child: Stack(\n              children: [\n                Positioned(\n                  left: 12,\n                  top: 8,\n                  child: Text(\n                    legenda,\n                    style: Theme.of(context).textTheme.bodySmall,\n                  ),\n                ),\n                fab,\n              ],\n            ),\n          ),\n        );\n    return Column(\n      children: [\n        Row(\n          crossAxisAlignment: CrossAxisAlignment.start,\n          children: [\n            Expanded(\n              child: caixa(\n                256,\n                'type=\"quarter-circle\" direction=\"up\"',\n                SgFloatActionButton(\n                  absolute: true,\n                  position:\n                      SgFloatActionButtonPosition.centerBottom,\n                  actions: acoes,\n                  type: SgFloatActionButtonType.quarterCircle,\n                  direction: SgFloatActionButtonDirection.up,\n                  severity: SgFloatActionButtonSeverity.secondary,\n                ),\n              ),\n            ),\n            const SizedBox(width: 32),\n            Expanded(\n              child: caixa(\n                256,\n                'type=\"quarter-circle\" direction=\"down\"',\n                SgFloatActionButton(\n                  absolute: true,\n                  position: SgFloatActionButtonPosition.centerTop,\n                  actions: acoes,\n                  type: SgFloatActionButtonType.quarterCircle,\n                  direction: SgFloatActionButtonDirection.down,\n                  severity: SgFloatActionButtonSeverity.success,\n                ),\n              ),\n            ),\n          ],\n        ),\n        const SizedBox(height: 32),\n        Row(\n          crossAxisAlignment: CrossAxisAlignment.start,\n          children: [\n            Expanded(\n              child: caixa(\n                192,\n                'type=\"quarter-circle\" direction=\"left\"',\n                SgFloatActionButton(\n                  absolute: true,\n                  position: SgFloatActionButtonPosition.rightCenter,\n                  actions: acoesSemRotulo,\n                  type: SgFloatActionButtonType.quarterCircle,\n                  direction: SgFloatActionButtonDirection.left,\n                  severity: SgFloatActionButtonSeverity.warning,\n                ),\n              ),\n            ),\n            const SizedBox(width: 32),\n            Expanded(\n              child: caixa(\n                192,\n                'type=\"quarter-circle\" direction=\"right\"',\n                SgFloatActionButton(\n                  absolute: true,\n                  position: SgFloatActionButtonPosition.leftCenter,\n                  actions: acoesSemRotulo,\n                  type: SgFloatActionButtonType.quarterCircle,\n                  direction: SgFloatActionButtonDirection.right,\n                  severity: SgFloatActionButtonSeverity.danger,\n                ),\n              ),\n            ),\n          ],\n        ),\n      ],\n    );\n  },\n)"
           },
           {
             "id": "sg-fab-semi-circle",
             "title": "Semi-Circle Layout",
             "file": "apps/seedgrid_showcase/lib/pages/sg_float_action_button_page.dart",
             "kind": "dart",
-            "code": "Builder(\n  builder: (context) {\n    final acoes = [\n      SgFABAction(\n        icon: const Icon(Icons.person_add),\n        label: context.tx('Novo usuário'),\n        onClick: () {},\n      ),\n      SgFABAction(\n        icon: const Icon(Icons.note_add),\n        label: context.tx('Novo arquivo'),\n        onClick: () {},\n      ),\n      SgFABAction(\n        icon: const Icon(Icons.create_new_folder),\n        label: context.tx('Nova pasta'),\n        onClick: () {},\n      ),\n    ];\n    final acoesExtras = [\n      ...acoes,\n      SgFABAction(\n        icon: const Icon(Icons.edit),\n        label: context.tx('Edit'),\n        onClick: () {},\n      ),\n      SgFABAction(\n        icon: const Icon(Icons.star),\n        label: context.tx('Star'),\n        onClick: () {},\n      ),\n    ];\n    final acoesSemRotulo = [\n      for (final a in acoes) SgFABAction(icon: a.icon, onClick: a.onClick),\n    ];\n    Widget caixa(double altura, String legenda, Widget fab) => SizedBox(\n      height: altura,\n      child: DecoratedBox(\n        decoration: BoxDecoration(\n          border: Border.all(color: Colors.black26),\n          borderRadius: BorderRadius.circular(8),\n        ),\n        child: Stack(\n          children: [\n            Positioned(\n              left: 12,\n              top: 8,\n              child: Text(legenda, style: Theme.of(context).textTheme.bodySmall),\n            ),\n            fab,\n          ],\n        ),\n      ),\n    );\n    return Column(\n      children: [\n        Row(\n          crossAxisAlignment: CrossAxisAlignment.start,\n          children: [\n            Expanded(child: caixa(\n              288,\n              'type=\"semi-circle\" direction=\"up\"',\n              SgFloatActionButton(\n                absolute: true,\n                position: SgFloatActionButtonPosition.centerBottom,\n                actions: acoesExtras,\n                type: SgFloatActionButtonType.semiCircle,\n                direction: SgFloatActionButtonDirection.up,\n                severity: SgFloatActionButtonSeverity.success,\n              ),\n            )),\n            const SizedBox(width: 32),\n            Expanded(child: caixa(\n              288,\n              'type=\"semi-circle\" direction=\"down\"',\n              SgFloatActionButton(\n                absolute: true,\n                position: SgFloatActionButtonPosition.centerTop,\n                actions: acoesExtras,\n                type: SgFloatActionButtonType.semiCircle,\n                direction: SgFloatActionButtonDirection.down,\n                severity: SgFloatActionButtonSeverity.warning,\n              ),\n            )),\n          ],\n        ),\n        const SizedBox(height: 32),\n        Row(\n          crossAxisAlignment: CrossAxisAlignment.start,\n          children: [\n            Expanded(child: caixa(\n              192,\n              'type=\"semi-circle\" direction=\"left\"',\n              SgFloatActionButton(\n                absolute: true,\n                position: SgFloatActionButtonPosition.rightCenter,\n                actions: acoesSemRotulo,\n                type: SgFloatActionButtonType.semiCircle,\n                direction: SgFloatActionButtonDirection.left,\n                severity: SgFloatActionButtonSeverity.danger,\n              ),\n            )),\n            const SizedBox(width: 32),\n            Expanded(child: caixa(\n              192,\n              'type=\"semi-circle\" direction=\"right\"',\n              SgFloatActionButton(\n                absolute: true,\n                position: SgFloatActionButtonPosition.leftCenter,\n                actions: acoesSemRotulo,\n                type: SgFloatActionButtonType.semiCircle,\n                direction: SgFloatActionButtonDirection.right,\n              ),\n            )),\n          ],\n        ),\n      ],\n    );\n  },\n)"
+            "code": "Builder(\n  builder: (context) {\n    final acoes = [\n      SgFABAction(\n        icon: const Icon(Icons.person_add),\n        label: context.tx('Novo usuário'),\n        onClick: () {},\n      ),\n      SgFABAction(\n        icon: const Icon(Icons.note_add),\n        label: context.tx('Novo arquivo'),\n        onClick: () {},\n      ),\n      SgFABAction(\n        icon: const Icon(Icons.create_new_folder),\n        label: context.tx('Nova pasta'),\n        onClick: () {},\n      ),\n    ];\n    final acoesExtras = [\n      ...acoes,\n      SgFABAction(\n        icon: const Icon(Icons.edit),\n        label: context.tx('Edit'),\n        onClick: () {},\n      ),\n      SgFABAction(\n        icon: const Icon(Icons.star),\n        label: context.tx('Star'),\n        onClick: () {},\n      ),\n    ];\n    final acoesSemRotulo = [\n      for (final a in acoes)\n        SgFABAction(icon: a.icon, onClick: a.onClick),\n    ];\n    Widget caixa(double altura, String legenda, Widget fab) =>\n        SizedBox(\n          height: altura,\n          child: DecoratedBox(\n            decoration: BoxDecoration(\n              border: Border.all(color: Colors.black26),\n              borderRadius: BorderRadius.circular(8),\n            ),\n            child: Stack(\n              children: [\n                Positioned(\n                  left: 12,\n                  top: 8,\n                  child: Text(\n                    legenda,\n                    style: Theme.of(context).textTheme.bodySmall,\n                  ),\n                ),\n                fab,\n              ],\n            ),\n          ),\n        );\n    return Column(\n      children: [\n        Row(\n          crossAxisAlignment: CrossAxisAlignment.start,\n          children: [\n            Expanded(\n              child: caixa(\n                288,\n                'type=\"semi-circle\" direction=\"up\"',\n                SgFloatActionButton(\n                  absolute: true,\n                  position:\n                      SgFloatActionButtonPosition.centerBottom,\n                  actions: acoesExtras,\n                  type: SgFloatActionButtonType.semiCircle,\n                  direction: SgFloatActionButtonDirection.up,\n                  severity: SgFloatActionButtonSeverity.success,\n                ),\n              ),\n            ),\n            const SizedBox(width: 32),\n            Expanded(\n              child: caixa(\n                288,\n                'type=\"semi-circle\" direction=\"down\"',\n                SgFloatActionButton(\n                  absolute: true,\n                  position: SgFloatActionButtonPosition.centerTop,\n                  actions: acoesExtras,\n                  type: SgFloatActionButtonType.semiCircle,\n                  direction: SgFloatActionButtonDirection.down,\n                  severity: SgFloatActionButtonSeverity.warning,\n                ),\n              ),\n            ),\n          ],\n        ),\n        const SizedBox(height: 32),\n        Row(\n          crossAxisAlignment: CrossAxisAlignment.start,\n          children: [\n            Expanded(\n              child: caixa(\n                192,\n                'type=\"semi-circle\" direction=\"left\"',\n                SgFloatActionButton(\n                  absolute: true,\n                  position: SgFloatActionButtonPosition.rightCenter,\n                  actions: acoesSemRotulo,\n                  type: SgFloatActionButtonType.semiCircle,\n                  direction: SgFloatActionButtonDirection.left,\n                  severity: SgFloatActionButtonSeverity.danger,\n                ),\n              ),\n            ),\n            const SizedBox(width: 32),\n            Expanded(\n              child: caixa(\n                192,\n                'type=\"semi-circle\" direction=\"right\"',\n                SgFloatActionButton(\n                  absolute: true,\n                  position: SgFloatActionButtonPosition.leftCenter,\n                  actions: acoesSemRotulo,\n                  type: SgFloatActionButtonType.semiCircle,\n                  direction: SgFloatActionButtonDirection.right,\n                ),\n              ),\n            ),\n          ],\n        ),\n      ],\n    );\n  },\n)"
           },
           {
             "id": "sg-fab-severidades",
             "title": "Severidades",
             "file": "apps/seedgrid_showcase/lib/pages/sg_float_action_button_page.dart",
             "kind": "dart",
-            "code": "Wrap(\n  spacing: 24,\n  runSpacing: 24,\n  children: [\n    for (final severity in const [\n      SgFloatActionButtonSeverity.primary,\n      SgFloatActionButtonSeverity.secondary,\n      SgFloatActionButtonSeverity.success,\n      SgFloatActionButtonSeverity.info,\n      SgFloatActionButtonSeverity.warning,\n      SgFloatActionButtonSeverity.help,\n      SgFloatActionButtonSeverity.danger,\n      SgFloatActionButtonSeverity.plain,\n    ])\n      Column(\n        mainAxisSize: MainAxisSize.min,\n        children: [\n          SizedBox.square(\n            dimension: 104,\n            child: SgFloatActionButton(\n              absolute: true,\n              severity: severity,\n              onClick: () {},\n            ),\n          ),\n          Text(severity.value, style: Theme.of(context).textTheme.bodySmall),\n        ],\n      ),\n  ],\n)"
+            "code": "Wrap(\n  spacing: 24,\n  runSpacing: 24,\n  children: [\n    for (final severity in const [\n      SgFloatActionButtonSeverity.primary,\n      SgFloatActionButtonSeverity.secondary,\n      SgFloatActionButtonSeverity.success,\n      SgFloatActionButtonSeverity.info,\n      SgFloatActionButtonSeverity.warning,\n      SgFloatActionButtonSeverity.help,\n      SgFloatActionButtonSeverity.danger,\n      SgFloatActionButtonSeverity.plain,\n    ])\n      Column(\n        mainAxisSize: MainAxisSize.min,\n        children: [\n          SizedBox.square(\n            dimension: 104,\n            child: SgFloatActionButton(\n              absolute: true,\n              severity: severity,\n              onClick: () {},\n            ),\n          ),\n          Text(\n            severity.value,\n            style: Theme.of(context).textTheme.bodySmall,\n          ),\n        ],\n      ),\n  ],\n)"
           },
           {
             "id": "sg-fab-speed-dial",
             "title": "Ações (Speed Dial)",
             "file": "apps/seedgrid_showcase/lib/pages/sg_float_action_button_page.dart",
             "kind": "dart",
-            "code": "Builder(\n  builder: (context) {\n    final acoes = [\n      SgFABAction(\n        icon: const Icon(Icons.person_add),\n        label: context.tx('Novo usuário'),\n        onClick: () {},\n      ),\n      SgFABAction(\n        icon: const Icon(Icons.note_add),\n        label: context.tx('Novo arquivo'),\n        onClick: () {},\n      ),\n      SgFABAction(\n        icon: const Icon(Icons.create_new_folder),\n        label: context.tx('Nova pasta'),\n        onClick: () {},\n      ),\n    ];\n    final acoesSemRotulo = [\n      for (final a in acoes) SgFABAction(icon: a.icon, onClick: a.onClick),\n    ];\n    Widget caixa(double altura, String legenda, Widget fab) => SizedBox(\n      height: altura,\n      child: DecoratedBox(\n        decoration: BoxDecoration(\n          border: Border.all(color: Colors.black26),\n          borderRadius: BorderRadius.circular(8),\n        ),\n        child: Stack(\n          children: [\n            Positioned(\n              left: 12,\n              top: 8,\n              child: Text(legenda, style: Theme.of(context).textTheme.bodySmall),\n            ),\n            fab,\n          ],\n        ),\n      ),\n    );\n    return Column(\n      children: [\n        Row(\n          crossAxisAlignment: CrossAxisAlignment.start,\n          children: [\n            Expanded(child: caixa(\n              288,\n              'type=\"linear\" direction=\"up\"',\n              SgFloatActionButton(\n                absolute: true,\n                position: SgFloatActionButtonPosition.centerBottom,\n                actions: acoes,\n                type: SgFloatActionButtonType.linear,\n                direction: SgFloatActionButtonDirection.up,\n              ),\n            )),\n            const SizedBox(width: 32),\n            Expanded(child: caixa(\n              288,\n              'type=\"linear\" direction=\"down\"',\n              SgFloatActionButton(\n                absolute: true,\n                position: SgFloatActionButtonPosition.centerTop,\n                actions: acoes,\n                type: SgFloatActionButtonType.linear,\n                direction: SgFloatActionButtonDirection.down,\n              ),\n            )),\n          ],\n        ),\n        const SizedBox(height: 32),\n        Row(\n          crossAxisAlignment: CrossAxisAlignment.start,\n          children: [\n            Expanded(child: caixa(\n              96,\n              'type=\"linear\" direction=\"left\"',\n              SgFloatActionButton(\n                absolute: true,\n                position: SgFloatActionButtonPosition.rightCenter,\n                actions: acoesSemRotulo,\n                type: SgFloatActionButtonType.linear,\n                direction: SgFloatActionButtonDirection.left,\n              ),\n            )),\n            const SizedBox(width: 32),\n            Expanded(child: caixa(\n              96,\n              'type=\"linear\" direction=\"right\"',\n              SgFloatActionButton(\n                absolute: true,\n                position: SgFloatActionButtonPosition.leftCenter,\n                actions: acoesSemRotulo,\n                type: SgFloatActionButtonType.linear,\n                direction: SgFloatActionButtonDirection.right,\n              ),\n            )),\n          ],\n        ),\n      ],\n    );\n  },\n)"
+            "code": "Builder(\n  builder: (context) {\n    final acoes = [\n      SgFABAction(\n        icon: const Icon(Icons.person_add),\n        label: context.tx('Novo usuário'),\n        onClick: () {},\n      ),\n      SgFABAction(\n        icon: const Icon(Icons.note_add),\n        label: context.tx('Novo arquivo'),\n        onClick: () {},\n      ),\n      SgFABAction(\n        icon: const Icon(Icons.create_new_folder),\n        label: context.tx('Nova pasta'),\n        onClick: () {},\n      ),\n    ];\n    final acoesSemRotulo = [\n      for (final a in acoes)\n        SgFABAction(icon: a.icon, onClick: a.onClick),\n    ];\n    Widget caixa(double altura, String legenda, Widget fab) =>\n        SizedBox(\n          height: altura,\n          child: DecoratedBox(\n            decoration: BoxDecoration(\n              border: Border.all(color: Colors.black26),\n              borderRadius: BorderRadius.circular(8),\n            ),\n            child: Stack(\n              children: [\n                Positioned(\n                  left: 12,\n                  top: 8,\n                  child: Text(\n                    legenda,\n                    style: Theme.of(context).textTheme.bodySmall,\n                  ),\n                ),\n                fab,\n              ],\n            ),\n          ),\n        );\n    return Column(\n      children: [\n        Row(\n          crossAxisAlignment: CrossAxisAlignment.start,\n          children: [\n            Expanded(\n              child: caixa(\n                288,\n                'type=\"linear\" direction=\"up\"',\n                SgFloatActionButton(\n                  absolute: true,\n                  position:\n                      SgFloatActionButtonPosition.centerBottom,\n                  actions: acoes,\n                  type: SgFloatActionButtonType.linear,\n                  direction: SgFloatActionButtonDirection.up,\n                ),\n              ),\n            ),\n            const SizedBox(width: 32),\n            Expanded(\n              child: caixa(\n                288,\n                'type=\"linear\" direction=\"down\"',\n                SgFloatActionButton(\n                  absolute: true,\n                  position: SgFloatActionButtonPosition.centerTop,\n                  actions: acoes,\n                  type: SgFloatActionButtonType.linear,\n                  direction: SgFloatActionButtonDirection.down,\n                ),\n              ),\n            ),\n          ],\n        ),\n        const SizedBox(height: 32),\n        Row(\n          crossAxisAlignment: CrossAxisAlignment.start,\n          children: [\n            Expanded(\n              child: caixa(\n                96,\n                'type=\"linear\" direction=\"left\"',\n                SgFloatActionButton(\n                  absolute: true,\n                  position: SgFloatActionButtonPosition.rightCenter,\n                  actions: acoesSemRotulo,\n                  type: SgFloatActionButtonType.linear,\n                  direction: SgFloatActionButtonDirection.left,\n                ),\n              ),\n            ),\n            const SizedBox(width: 32),\n            Expanded(\n              child: caixa(\n                96,\n                'type=\"linear\" direction=\"right\"',\n                SgFloatActionButton(\n                  absolute: true,\n                  position: SgFloatActionButtonPosition.leftCenter,\n                  actions: acoesSemRotulo,\n                  type: SgFloatActionButtonType.linear,\n                  direction: SgFloatActionButtonDirection.right,\n                ),\n              ),\n            ),\n          ],\n        ),\n      ],\n    );\n  },\n)"
           }
         ],
         "parity": {
@@ -6902,12 +7027,6 @@
             "required": false
           },
           {
-            "name": "rules",
-            "type": "Object?",
-            "required": false,
-            "typeExact": false
-          },
-          {
             "name": "value",
             "type": "List<Object?>?",
             "required": false,
@@ -6935,7 +7054,7 @@
             "title": "Dentro de um formulário",
             "file": "apps/seedgrid_showcase/lib/pages/sg_image_upload_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgImageUpload(\n      id: 'documento',\n      name: 'documento',\n      control: _form,\n      labelText: 'Foto do documento',\n      rules: const SgRules(required: 'Escolha uma imagem'),\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _form.handleSubmit(\n        (values) => setState(\n          () => _enviado =\n              (values['documento'] as List).cast<SgFile>().first.name,\n        ),\n      ),\n    ),\n    if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgImageUpload(\n      id: 'documento',\n      name: 'documento',\n      control: _form,\n      labelText: 'Foto do documento',\n      required: true,\n      requiredMessage: 'Escolha uma imagem',\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _form.handleSubmit(\n        (values) => setState(\n          () => _enviado = (values['documento'] as List)\n              .cast<SgFile>()\n              .first\n              .name,\n        ),\n      ),\n    ),\n    if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),\n  ],\n)"
           },
           {
             "id": "sg-image-upload-idioma",
@@ -6978,6 +7097,10 @@
           {
             "name": "register",
             "reason": "Não se aplica no Flutter: todo campo é controlado pelo valor e pelo onChange (ou pelo SgFormController)."
+          },
+          {
+            "name": "rules",
+            "reason": "Não se aplica no Flutter: a validação usa as props diretas (required, requiredMessage, minLength, validation...), em vez de um objeto de regras."
           }
         ]
       }
@@ -7233,12 +7356,6 @@
             "required": false
           },
           {
-            "name": "rules",
-            "type": "Object?",
-            "required": false,
-            "typeExact": false
-          },
-          {
             "name": "showCharCounter",
             "type": "bool?",
             "required": false
@@ -7299,7 +7416,7 @@
             "title": "Dentro de um formulário",
             "file": "apps/seedgrid_showcase/lib/pages/sg_input_birth_date_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgInputBirthDate(\n      id: 'campo',\n      name: 'campo',\n      control: _form,\n      labelText: 'Campo',\n      minAge: 18,\n      rules: const SgRules(required: 'Preencha o campo'),\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _form.handleSubmit(\n        (values) => setState(() => _enviado = '${values['campo']}'),\n      ),\n    ),\n    if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgInputBirthDate(\n      id: 'campo',\n      name: 'campo',\n      control: _form,\n      labelText: 'Campo',\n      minAge: 18,\n      required: true,\n      requiredMessage: 'Preencha o campo',\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _form.handleSubmit(\n        (values) => setState(() => _enviado = '${values['campo']}'),\n      ),\n    ),\n    if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),\n  ],\n)"
           },
           {
             "id": "sg-input-birth-date-maior",
@@ -7332,6 +7449,10 @@
           {
             "name": "register",
             "reason": "Não se aplica no Flutter: todo campo é controlado pelo valor e pelo onChange (ou pelo SgFormController)."
+          },
+          {
+            "name": "rules",
+            "reason": "Não se aplica no Flutter: a validação usa as props diretas (required, requiredMessage, minLength, validation...), em vez de um objeto de regras."
           }
         ]
       }
@@ -7591,12 +7712,6 @@
             "required": false
           },
           {
-            "name": "rules",
-            "type": "Object?",
-            "required": false,
-            "typeExact": false
-          },
-          {
             "name": "showCharCounter",
             "type": "bool?",
             "required": false
@@ -7775,6 +7890,10 @@
           {
             "name": "register",
             "reason": "Não se aplica no Flutter: todo campo é controlado pelo valor e pelo onChange (ou pelo SgFormController)."
+          },
+          {
+            "name": "rules",
+            "reason": "Não se aplica no Flutter: a validação usa as props diretas (required, requiredMessage, minLength, validation...), em vez de um objeto de regras."
           }
         ]
       }
@@ -8012,12 +8131,6 @@
             "description": "Mensagem para ausencia de valor."
           },
           {
-            "name": "rules",
-            "type": "Object?",
-            "required": false,
-            "typeExact": false
-          },
-          {
             "name": "showCharCounter",
             "type": "bool?",
             "required": false
@@ -8168,6 +8281,10 @@
           {
             "name": "register",
             "reason": "Não se aplica no Flutter: todo campo é controlado pelo valor e pelo onChange (ou pelo SgFormController)."
+          },
+          {
+            "name": "rules",
+            "reason": "Não se aplica no Flutter: a validação usa as props diretas (required, requiredMessage, minLength, validation...), em vez de um objeto de regras."
           }
         ]
       }
@@ -8431,12 +8548,6 @@
             "required": false
           },
           {
-            "name": "rules",
-            "type": "Object?",
-            "required": false,
-            "typeExact": false
-          },
-          {
             "name": "showCharCounter",
             "type": "bool?",
             "required": false
@@ -8609,6 +8720,10 @@
           {
             "name": "register",
             "reason": "Não se aplica no Flutter: todo campo é controlado pelo valor e pelo onChange (ou pelo SgFormController)."
+          },
+          {
+            "name": "rules",
+            "reason": "Não se aplica no Flutter: a validação usa as props diretas (required, requiredMessage, minLength, validation...), em vez de um objeto de regras."
           }
         ]
       }
@@ -8840,12 +8955,6 @@
             "required": false
           },
           {
-            "name": "rules",
-            "type": "Object?",
-            "required": false,
-            "typeExact": false
-          },
-          {
             "name": "showCurrencySymbol",
             "type": "bool?",
             "required": false
@@ -9027,6 +9136,10 @@
           {
             "name": "register",
             "reason": "Não se aplica no Flutter: todo campo é controlado pelo valor e pelo onChange (ou pelo SgFormController)."
+          },
+          {
+            "name": "rules",
+            "reason": "Não se aplica no Flutter: a validação usa as props diretas (required, requiredMessage, minLength, validation...), em vez de um objeto de regras."
           }
         ]
       }
@@ -9273,12 +9386,6 @@
             "required": false
           },
           {
-            "name": "rules",
-            "type": "Object?",
-            "required": false,
-            "typeExact": false
-          },
-          {
             "name": "showCharCounter",
             "type": "bool?",
             "required": false
@@ -9339,7 +9446,7 @@
             "title": "Dentro de um formulário",
             "file": "apps/seedgrid_showcase/lib/pages/sg_input_date_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgInputDate(\n      id: 'campo',\n      name: 'campo',\n      control: _form,\n      labelText: 'Campo',\n      rules: const SgRules(required: 'Preencha o campo'),\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _form.handleSubmit(\n        (values) => setState(() => _enviado = '${values['campo']}'),\n      ),\n    ),\n    if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgInputDate(\n      id: 'campo',\n      name: 'campo',\n      control: _form,\n      labelText: 'Campo',\n      required: true,\n      requiredMessage: 'Preencha o campo',\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _form.handleSubmit(\n        (values) => setState(() => _enviado = '${values['campo']}'),\n      ),\n    ),\n    if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),\n  ],\n)"
           },
           {
             "id": "sg-input-date-limites",
@@ -9372,6 +9479,10 @@
           {
             "name": "register",
             "reason": "Não se aplica no Flutter: todo campo é controlado pelo valor e pelo onChange (ou pelo SgFormController)."
+          },
+          {
+            "name": "rules",
+            "reason": "Não se aplica no Flutter: a validação usa as props diretas (required, requiredMessage, minLength, validation...), em vez de um objeto de regras."
           }
         ]
       }
@@ -9628,12 +9739,6 @@
             "required": false
           },
           {
-            "name": "rules",
-            "type": "Object?",
-            "required": false,
-            "typeExact": false
-          },
-          {
             "name": "showCharCounter",
             "type": "bool?",
             "required": false
@@ -9722,7 +9827,7 @@
             "title": "Dentro de um formulário",
             "file": "apps/seedgrid_showcase/lib/pages/sg_input_date_time_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgInputDateTime(\n      id: 'consulta',\n      name: 'consulta',\n      control: _form,\n      labelText: 'Consulta',\n      timeZone: '-03:00',\n      rules: const SgRules(required: 'Informe a data e a hora'),\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _form.handleSubmit(\n        (values) =>\n            setState(() => _enviado = '${values['consulta']}'),\n      ),\n    ),\n    if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgInputDateTime(\n      id: 'consulta',\n      name: 'consulta',\n      control: _form,\n      labelText: 'Consulta',\n      timeZone: '-03:00',\n      required: true,\n      requiredMessage: 'Informe a data e a hora',\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _form.handleSubmit(\n        (values) =>\n            setState(() => _enviado = '${values['consulta']}'),\n      ),\n    ),\n    if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),\n  ],\n)"
           },
           {
             "id": "sg-input-date-time-fusos",
@@ -9769,6 +9874,10 @@
           {
             "name": "register",
             "reason": "Não se aplica no Flutter: todo campo é controlado pelo valor e pelo onChange (ou pelo SgFormController)."
+          },
+          {
+            "name": "rules",
+            "reason": "Não se aplica no Flutter: a validação usa as props diretas (required, requiredMessage, minLength, validation...), em vez de um objeto de regras."
           }
         ]
       }
@@ -10012,12 +10121,6 @@
             "required": false
           },
           {
-            "name": "rules",
-            "type": "Object?",
-            "required": false,
-            "typeExact": false
-          },
-          {
             "name": "showCharCounter",
             "type": "bool?",
             "required": false
@@ -10176,6 +10279,10 @@
           {
             "name": "register",
             "reason": "Não se aplica no Flutter: todo campo é controlado pelo valor e pelo onChange (ou pelo SgFormController)."
+          },
+          {
+            "name": "rules",
+            "reason": "Não se aplica no Flutter: a validação usa as props diretas (required, requiredMessage, minLength, validation...), em vez de um objeto de regras."
           }
         ]
       }
@@ -10410,12 +10517,6 @@
             "required": false
           },
           {
-            "name": "rules",
-            "type": "Object?",
-            "required": false,
-            "typeExact": false
-          },
-          {
             "name": "suffixText",
             "type": "String?",
             "required": false
@@ -10594,6 +10695,10 @@
           {
             "name": "register",
             "reason": "Não se aplica no Flutter: todo campo é controlado pelo valor e pelo onChange (ou pelo SgFormController)."
+          },
+          {
+            "name": "rules",
+            "reason": "Não se aplica no Flutter: a validação usa as props diretas (required, requiredMessage, minLength, validation...), em vez de um objeto de regras."
           }
         ]
       }
@@ -10740,12 +10845,6 @@
             "required": false
           },
           {
-            "name": "rules",
-            "type": "Object?",
-            "required": false,
-            "typeExact": false
-          },
-          {
             "name": "separatorClassName",
             "type": "String?",
             "required": false
@@ -10836,6 +10935,10 @@
           {
             "name": "register",
             "reason": "Não se aplica no Flutter: todo campo é controlado pelo valor e pelo onChange (ou pelo SgFormController)."
+          },
+          {
+            "name": "rules",
+            "reason": "Não se aplica no Flutter: a validação usa as props diretas (required, requiredMessage, minLength, validation...), em vez de um objeto de regras."
           }
         ]
       }
@@ -11135,12 +11238,6 @@
             "required": false
           },
           {
-            "name": "rules",
-            "type": "Object?",
-            "required": false,
-            "typeExact": false
-          },
-          {
             "name": "showCharCounter",
             "type": "bool?",
             "required": false
@@ -11281,6 +11378,10 @@
           {
             "name": "register",
             "reason": "Não se aplica no Flutter: todo campo é controlado pelo valor e pelo onChange (ou pelo SgFormController)."
+          },
+          {
+            "name": "rules",
+            "reason": "Não se aplica no Flutter: a validação usa as props diretas (required, requiredMessage, minLength, validation...), em vez de um objeto de regras."
           }
         ]
       }
@@ -11518,12 +11619,6 @@
             "required": false
           },
           {
-            "name": "rules",
-            "type": "Object?",
-            "required": false,
-            "typeExact": false
-          },
-          {
             "name": "showCharCounter",
             "type": "bool?",
             "required": false
@@ -11667,6 +11762,10 @@
           {
             "name": "register",
             "reason": "Não se aplica no Flutter: todo campo é controlado pelo valor e pelo onChange (ou pelo SgFormController)."
+          },
+          {
+            "name": "rules",
+            "reason": "Não se aplica no Flutter: a validação usa as props diretas (required, requiredMessage, minLength, validation...), em vez de um objeto de regras."
           }
         ]
       }
@@ -11931,12 +12030,6 @@
             "required": false
           },
           {
-            "name": "rules",
-            "type": "Object?",
-            "required": false,
-            "typeExact": false
-          },
-          {
             "name": "showCharCounter",
             "type": "bool?",
             "required": false
@@ -12138,6 +12231,10 @@
           {
             "name": "register",
             "reason": "Não se aplica no Flutter: todo campo é controlado pelo valor e pelo onChange (ou pelo SgFormController)."
+          },
+          {
+            "name": "rules",
+            "reason": "Não se aplica no Flutter: a validação usa as props diretas (required, requiredMessage, minLength, validation...), em vez de um objeto de regras."
           }
         ]
       }
@@ -12365,12 +12462,6 @@
             "required": false
           },
           {
-            "name": "rules",
-            "type": "Object?",
-            "required": false,
-            "typeExact": false
-          },
-          {
             "name": "showCharCounter",
             "type": "bool?",
             "required": false
@@ -12575,6 +12666,10 @@
           {
             "name": "register",
             "reason": "Não se aplica no Flutter: todo campo é controlado pelo valor e pelo onChange (ou pelo SgFormController)."
+          },
+          {
+            "name": "rules",
+            "reason": "Não se aplica no Flutter: a validação usa as props diretas (required, requiredMessage, minLength, validation...), em vez de um objeto de regras."
           }
         ]
       }
@@ -12793,12 +12888,6 @@
             "required": false
           },
           {
-            "name": "rules",
-            "type": "Object?",
-            "required": false,
-            "typeExact": false
-          },
-          {
             "name": "showCharCounter",
             "type": "bool?",
             "required": false
@@ -12976,6 +13065,10 @@
           {
             "name": "register",
             "reason": "Não se aplica no Flutter: todo campo é controlado pelo valor e pelo onChange (ou pelo SgFormController)."
+          },
+          {
+            "name": "rules",
+            "reason": "Não se aplica no Flutter: a validação usa as props diretas (required, requiredMessage, minLength, validation...), em vez de um objeto de regras."
           }
         ]
       }
@@ -13217,12 +13310,6 @@
             "required": false
           },
           {
-            "name": "rules",
-            "type": "Object?",
-            "required": false,
-            "typeExact": false
-          },
-          {
             "name": "showCharCounter",
             "type": "bool?",
             "required": false
@@ -13322,6 +13409,10 @@
           {
             "name": "register",
             "reason": "Não se aplica no Flutter: todo campo é controlado pelo valor e pelo onChange (ou pelo SgFormController)."
+          },
+          {
+            "name": "rules",
+            "reason": "Não se aplica no Flutter: a validação usa as props diretas (required, requiredMessage, minLength, validation...), em vez de um objeto de regras."
           }
         ]
       }
@@ -13676,11 +13767,25 @@
         ],
         "examples": [
           {
+            "id": "sg-matrix-digit-basico",
+            "title": "Básico (0-9)",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_matrix_digit_page.dart",
+            "kind": "dart",
+            "code": "Wrap(\n  spacing: 16,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgMatrixDigit(\n      value: '$_digito',\n      color: '#22d3ee',\n      backgroundColor: '#0b1220',\n    ),\n    Wrap(\n      spacing: 8,\n      runSpacing: 8,\n      children: [\n        SgButton(\n          label: Text(context.tx('Próximo (+1)')),\n          onClick: () =>\n              setState(() => _digito = (_digito + 1) % 10),\n        ),\n        SgButton(\n          label: Text(context.tx('Anterior (-1)')),\n          onClick: () =>\n              setState(() => _digito = (_digito + 9) % 10),\n        ),\n        SgButton(\n          label: Text(context.tx('Aleatório')),\n          onClick: () => setState(\n            () => _digito = DateTime.now().microsecond % 10,\n          ),\n        ),\n      ],\n    ),\n  ],\n)"
+          },
+          {
             "id": "sg-matrix-digit-cores",
             "title": "Cores e brilho",
             "file": "apps/seedgrid_showcase/lib/pages/sg_matrix_digit_page.dart",
             "kind": "dart",
             "code": "const Wrap(\n  spacing: 12,\n  runSpacing: 12,\n  children: [\n    SgMatrixDigit(\n      value: '12:34',\n      color: '#22c55e',\n      backgroundColor: '#04120a',\n      offColor: 'rgba(34, 197, 94, 0.15)',\n    ),\n    SgMatrixDigit(\n      value: 'OK',\n      color: '#f97316',\n      backgroundColor: '#1a0b02',\n      offColor: 'rgba(249, 115, 22, 0.15)',\n    ),\n    SgMatrixDigit(value: 'OFF', glow: false),\n  ],\n)"
+          },
+          {
+            "id": "sg-matrix-digit-escala",
+            "title": "Escala da matriz",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_matrix_digit_page.dart",
+            "kind": "dart",
+            "code": "Wrap(\n  spacing: 24,\n  runSpacing: 12,\n  children: [\n    Column(\n      crossAxisAlignment: CrossAxisAlignment.start,\n      children: [\n        Text(context.tx('Pequeno')),\n        const SgMatrixDigit(\n          value: '123',\n          dotSize: 6,\n          gap: 2,\n          charGap: 4,\n        ),\n      ],\n    ),\n    Column(\n      crossAxisAlignment: CrossAxisAlignment.start,\n      children: [\n        Text(context.tx('Médio')),\n        const SgMatrixDigit(\n          value: '123',\n          dotSize: 9,\n          gap: 3,\n          charGap: 7,\n        ),\n      ],\n    ),\n    Column(\n      crossAxisAlignment: CrossAxisAlignment.start,\n      children: [\n        Text(context.tx('Grande')),\n        const SgMatrixDigit(\n          value: '123',\n          dotSize: 13,\n          gap: 4,\n          charGap: 10,\n        ),\n      ],\n    ),\n  ],\n)"
           },
           {
             "id": "sg-matrix-digit-medidas",
@@ -13702,6 +13807,20 @@
             "file": "apps/seedgrid_showcase/lib/pages/sg_matrix_digit_page.dart",
             "kind": "dart",
             "code": "const SgMatrixDigit(value: 'Seed Grid 2026')"
+          },
+          {
+            "id": "sg-matrix-digit-texto-matricial",
+            "title": "Texto matricial",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_matrix_digit_page.dart",
+            "kind": "dart",
+            "code": "Wrap(\n  spacing: 12,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgMatrixDigit(\n      value: _mensagens[_mensagem],\n      color: '#a3e635',\n      backgroundColor: '#06090f',\n      dotSize: 8,\n      gap: 2,\n      charGap: 6,\n    ),\n    SgButton(\n      label: Text(context.tx('Trocar texto')),\n      onClick: () => setState(\n        () => _mensagem = (_mensagem + 1) % _mensagens.length,\n      ),\n    ),\n  ],\n)"
+          },
+          {
+            "id": "sg-matrix-digit-variacoes",
+            "title": "Variações de color/backgroundColor",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_matrix_digit_page.dart",
+            "kind": "dart",
+            "code": "Wrap(\n  spacing: 24,\n  runSpacing: 12,\n  children: [\n    Column(\n      crossAxisAlignment: CrossAxisAlignment.start,\n      children: [\n        Text(context.tx('Ciano')),\n        const SgMatrixDigit(\n          value: '2026',\n          color: '#22d3ee',\n          backgroundColor: '#0b1220',\n        ),\n      ],\n    ),\n    Column(\n      crossAxisAlignment: CrossAxisAlignment.start,\n      children: [\n        Text(context.tx('Lima')),\n        const SgMatrixDigit(\n          value: 'HELLO',\n          color: '#a3e635',\n          backgroundColor: '#05070b',\n        ),\n      ],\n    ),\n    Column(\n      crossAxisAlignment: CrossAxisAlignment.start,\n      children: [\n        Text(context.tx('Laranja')),\n        const SgMatrixDigit(\n          value: 'SG',\n          color: '#fb923c',\n          backgroundColor: '#101826',\n        ),\n      ],\n    ),\n  ],\n)"
           }
         ],
         "parity": {
@@ -14346,12 +14465,6 @@
             "required": false
           },
           {
-            "name": "rules",
-            "type": "Object?",
-            "required": false,
-            "typeExact": false
-          },
-          {
             "name": "searchable",
             "type": "bool?",
             "required": false,
@@ -14447,7 +14560,7 @@
             "title": "Dentro de um formulário",
             "file": "apps/seedgrid_showcase/lib/pages/sg_multi_select_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgMultiSelect(\n      id: 'tags',\n      name: 'tags',\n      control: _form,\n      labelText: 'Tags',\n      rules: const SgRules(required: 'Escolha ao menos uma tag'),\n      options: [\n        SgMultiSelectOption(\n          label: context.tx('Urgente'),\n          value: 'urgente',\n        ),\n        SgMultiSelectOption(\n          label: context.tx('Financeiro'),\n          value: 'fin',\n        ),\n        SgMultiSelectOption(\n          label: context.tx('Suporte'),\n          value: 'sup',\n        ),\n      ],\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _form.handleSubmit(\n        (values) => setState(() => _enviado = '${values['tags']}'),\n      ),\n    ),\n    if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgMultiSelect(\n      id: 'tags',\n      name: 'tags',\n      control: _form,\n      labelText: 'Tags',\n\n      options: [\n        SgMultiSelectOption(\n          label: context.tx('Urgente'),\n          value: 'urgente',\n        ),\n        SgMultiSelectOption(\n          label: context.tx('Financeiro'),\n          value: 'fin',\n        ),\n        SgMultiSelectOption(\n          label: context.tx('Suporte'),\n          value: 'sup',\n        ),\n      ],\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _form.handleSubmit(\n        (values) => setState(() => _enviado = '${values['tags']}'),\n      ),\n    ),\n    if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),\n  ],\n)"
           },
           {
             "id": "sg-multi-select-resumo",
@@ -14473,6 +14586,10 @@
           {
             "name": "register",
             "reason": "Não se aplica no Flutter: todo campo é controlado pelo valor e pelo onChange (ou pelo SgFormController)."
+          },
+          {
+            "name": "rules",
+            "reason": "Não se aplica no Flutter: a validação usa as props diretas (required, requiredMessage, minLength, validation...), em vez de um objeto de regras."
           }
         ]
       }
@@ -14596,12 +14713,6 @@
             "description": "Marca o campo como obrigatorio."
           },
           {
-            "name": "rules",
-            "type": "Object?",
-            "required": false,
-            "typeExact": false
-          },
-          {
             "name": "searchable",
             "type": "bool?",
             "required": false,
@@ -14661,7 +14772,7 @@
             "title": "Erro e formulário",
             "file": "apps/seedgrid_showcase/lib/pages/sg_multi_select_chips_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgMultiSelectChips(\n      id: 'areas',\n      name: 'areas',\n      control: _form,\n      labelText: 'Áreas',\n      required: true,\n      rules: const SgRules(required: 'Escolha ao menos uma área'),\n      options: [\n        SgMultiSelectOption(\n          label: context.tx('Vendas'),\n          value: 'vendas',\n        ),\n        SgMultiSelectOption(\n          label: context.tx('Compras'),\n          value: 'compras',\n        ),\n        SgMultiSelectOption(\n          label: context.tx('Estoque'),\n          value: 'estoque',\n        ),\n      ],\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _form.handleSubmit(\n        (values) => setState(() => _enviado = '${values['areas']}'),\n      ),\n    ),\n    if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgMultiSelectChips(\n      id: 'areas',\n      name: 'areas',\n      control: _form,\n      labelText: 'Áreas',\n      required: true,\n\n      options: [\n        SgMultiSelectOption(\n          label: context.tx('Vendas'),\n          value: 'vendas',\n        ),\n        SgMultiSelectOption(\n          label: context.tx('Compras'),\n          value: 'compras',\n        ),\n        SgMultiSelectOption(\n          label: context.tx('Estoque'),\n          value: 'estoque',\n        ),\n      ],\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _form.handleSubmit(\n        (values) => setState(() => _enviado = '${values['areas']}'),\n      ),\n    ),\n    if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),\n  ],\n)"
           }
         ],
         "parity": {
@@ -14680,6 +14791,10 @@
           {
             "name": "register",
             "reason": "Não se aplica no Flutter: todo campo é controlado pelo valor e pelo onChange (ou pelo SgFormController)."
+          },
+          {
+            "name": "rules",
+            "reason": "Não se aplica no Flutter: a validação usa as props diretas (required, requiredMessage, minLength, validation...), em vez de um objeto de regras."
           }
         ]
       }
@@ -15156,12 +15271,6 @@
             "default": "false"
           },
           {
-            "name": "rules",
-            "type": "Object?",
-            "required": false,
-            "typeExact": false
-          },
-          {
             "name": "selectedValues",
             "type": "List<Object?>?",
             "required": false,
@@ -15226,7 +15335,7 @@
             "title": "Dentro de um formulário",
             "file": "apps/seedgrid_showcase/lib/pages/sg_order_list_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgOrderList(\n      id: 'ranking',\n      name: 'ranking',\n      control: _form,\n      title: context.tx('Ranking'),\n      source: [\n        SgOrderListItem(label: context.tx('Ouro'), value: 'ouro'),\n        SgOrderListItem(label: context.tx('Prata'), value: 'prata'),\n        SgOrderListItem(\n          label: context.tx('Bronze'),\n          value: 'bronze',\n        ),\n      ],\n      rules: SgRules(\n        validate: (v) =>\n            v is List<SgOrderListItem> &&\n                v.isNotEmpty &&\n                v.first.value == 'ouro'\n            ? true\n            : 'O ouro deve ficar em primeiro',\n      ),\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _form.handleSubmit((values) {\n        final v = values['ranking'] as List<SgOrderListItem>?;\n        setState(\n          () => _enviado = v?.map((e) => e.label).join(' > ') ?? '',\n        );\n      }),\n    ),\n    if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgOrderList(\n      id: 'ranking',\n      name: 'ranking',\n      control: _form,\n      title: context.tx('Ranking'),\n      source: [\n        SgOrderListItem(label: context.tx('Ouro'), value: 'ouro'),\n        SgOrderListItem(label: context.tx('Prata'), value: 'prata'),\n        SgOrderListItem(\n          label: context.tx('Bronze'),\n          value: 'bronze',\n        ),\n      ],\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _form.handleSubmit((values) {\n        final v = values['ranking'] as List<SgOrderListItem>?;\n        setState(\n          () => _enviado = v?.map((e) => e.label).join(' > ') ?? '',\n        );\n      }),\n    ),\n    if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),\n  ],\n)"
           },
           {
             "id": "sg-order-list-single",
@@ -15255,6 +15364,10 @@
           {
             "name": "register",
             "reason": "Não se aplica no Flutter: todo campo é controlado pelo valor e pelo onChange (ou pelo SgFormController)."
+          },
+          {
+            "name": "rules",
+            "reason": "Não se aplica no Flutter: a validação usa as props diretas (required, requiredMessage, minLength, validation...), em vez de um objeto de regras."
           },
           {
             "name": "style",
@@ -15872,12 +15985,6 @@
             "required": false
           },
           {
-            "name": "rules",
-            "type": "Object?",
-            "required": false,
-            "typeExact": false
-          },
-          {
             "name": "value",
             "type": "SgPeriodSelectorValue?",
             "required": false,
@@ -15922,7 +16029,7 @@
             "title": "Dentro de um formulário",
             "file": "apps/seedgrid_showcase/lib/pages/sg_period_selector_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgPeriodSelector(\n      id: 'periodo-form',\n      name: 'periodo',\n      control: _form,\n      label: context.tx('Período do relatório'),\n      rules: const SgRules(required: 'Escolha um período'),\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _form.handleSubmit(\n        (values) =>\n            setState(() => _enviado = '${values['periodo']}'),\n      ),\n    ),\n    if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgPeriodSelector(\n      id: 'periodo-form',\n      name: 'periodo',\n      control: _form,\n      label: context.tx('Período do relatório'),\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _form.handleSubmit(\n        (values) =>\n            setState(() => _enviado = '${values['periodo']}'),\n      ),\n    ),\n    if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),\n  ],\n)"
           },
           {
             "id": "sg-period-selector-grupos",
@@ -15954,6 +16061,10 @@
           {
             "name": "className",
             "reason": "Estilo por classe ou style inline não existe no Flutter; use as props padding, margin, width, height e customColors."
+          },
+          {
+            "name": "rules",
+            "reason": "Não se aplica no Flutter: a validação usa as props diretas (required, requiredMessage, minLength, validation...), em vez de um objeto de regras."
           }
         ]
       }
@@ -16073,12 +16184,6 @@
             "type": "bool?",
             "required": false,
             "default": "false"
-          },
-          {
-            "name": "rules",
-            "type": "Object?",
-            "required": false,
-            "typeExact": false
           },
           {
             "name": "selectionMode",
@@ -16205,7 +16310,7 @@
             "title": "Dentro de um formulário",
             "file": "apps/seedgrid_showcase/lib/pages/sg_pick_list_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgPickList(\n      id: 'equipe',\n      name: 'equipe',\n      control: _form,\n      title: context.tx('Equipe'),\n      source: [\n        SgPickListItem(label: context.tx('Ana'), value: 'ana'),\n        SgPickListItem(label: context.tx('Bruno'), value: 'bruno'),\n        SgPickListItem(label: context.tx('Carla'), value: 'carla'),\n      ],\n      target: const [],\n      rules: SgRules(\n        validate: (v) => v is SgPickListValue && v.target.isNotEmpty\n            ? true\n            : 'Escolha ao menos uma pessoa',\n      ),\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _form.handleSubmit((values) {\n        final v = values['equipe'] as SgPickListValue?;\n        setState(\n          () => _enviado =\n              v?.target.map((e) => e.label).join(', ') ?? '',\n        );\n      }),\n    ),\n    if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgPickList(\n      id: 'equipe',\n      name: 'equipe',\n      control: _form,\n      title: context.tx('Equipe'),\n      source: [\n        SgPickListItem(label: context.tx('Ana'), value: 'ana'),\n        SgPickListItem(label: context.tx('Bruno'), value: 'bruno'),\n        SgPickListItem(label: context.tx('Carla'), value: 'carla'),\n      ],\n      target: const [],\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _form.handleSubmit((values) {\n        final v = values['equipe'] as SgPickListValue?;\n        setState(\n          () => _enviado =\n              v?.target.map((e) => e.label).join(', ') ?? '',\n        );\n      }),\n    ),\n    if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),\n  ],\n)"
           },
           {
             "id": "sg-pick-list-template",
@@ -16227,6 +16332,10 @@
           {
             "name": "register",
             "reason": "Não se aplica no Flutter: todo campo é controlado pelo valor e pelo onChange (ou pelo SgFormController)."
+          },
+          {
+            "name": "rules",
+            "reason": "Não se aplica no Flutter: a validação usa as props diretas (required, requiredMessage, minLength, validation...), em vez de um objeto de regras."
           },
           {
             "name": "style",
@@ -16980,12 +17089,6 @@
             "description": "Marca o grupo como obrigatorio."
           },
           {
-            "name": "rules",
-            "type": "Object?",
-            "required": false,
-            "typeExact": false
-          },
-          {
             "name": "selectionStyle",
             "type": "SgRadioGroupSelectionStyle?",
             "required": false,
@@ -17037,7 +17140,7 @@
             "title": "Com GroupBox Customizado",
             "file": "apps/seedgrid_showcase/lib/pages/sg_radio_group_page.dart",
             "kind": "dart",
-            "code": "SgRadioGroup(\n  id: 'custom-groupbox',\n  title: context.tx('Escolha com estilo customizado'),\n  groupBoxProps: SgChoiceGroupBoxProps(title: context.tx('Preferências')),\n  source: [\n    SgRadioGroupOption(\n      label: context.tx('Favorito'),\n      value: 'favorite',\n      icon: Icon(Icons.favorite, size: 16),\n    ),\n    SgRadioGroupOption(\n      label: context.tx('Importante'),\n      value: 'important',\n      icon: Icon(Icons.star, size: 16),\n    ),\n    SgRadioGroupOption(\n      label: context.tx('Curtir'),\n      value: 'like',\n      icon: Icon(Icons.thumb_up, size: 16),\n    ),\n  ],\n)"
+            "code": "SgRadioGroup(\n  id: 'custom-groupbox',\n  title: context.tx('Escolha com estilo customizado'),\n  groupBoxProps: SgChoiceGroupBoxProps(\n    title: context.tx('Preferências'),\n  ),\n  source: [\n    SgRadioGroupOption(\n      label: context.tx('Favorito'),\n      value: 'favorite',\n      icon: Icon(Icons.favorite, size: 16),\n    ),\n    SgRadioGroupOption(\n      label: context.tx('Importante'),\n      value: 'important',\n      icon: Icon(Icons.star, size: 16),\n    ),\n    SgRadioGroupOption(\n      label: context.tx('Curtir'),\n      value: 'like',\n      icon: Icon(Icons.thumb_up, size: 16),\n    ),\n  ],\n)"
           },
           {
             "id": "sg-radio-group-com-icones",
@@ -17051,21 +17154,21 @@
             "title": "Com Opção Desabilitada",
             "file": "apps/seedgrid_showcase/lib/pages/sg_radio_group_page.dart",
             "kind": "dart",
-            "code": "SgRadioGroup(\n  id: 'with-disabled-option',\n  title: context.tx('Nível de prioridade'),\n  source: [\n    SgRadioGroupOption(\n      label: context.tx('Baixa'),\n      value: 'low',\n    ),\n    SgRadioGroupOption(\n      label: context.tx('Média'),\n      value: 'medium',\n    ),\n    SgRadioGroupOption(\n      label: context.tx('Alta'),\n      value: 'high',\n    ),\n    SgRadioGroupOption(\n      label: context.tx('Urgente'),\n      value: 'urgent',\n      enabled: false,\n    ),\n  ],\n)"
+            "code": "SgRadioGroup(\n  id: 'with-disabled-option',\n  title: context.tx('Nível de prioridade'),\n  source: [\n    SgRadioGroupOption(label: context.tx('Baixa'), value: 'low'),\n    SgRadioGroupOption(label: context.tx('Média'), value: 'medium'),\n    SgRadioGroupOption(label: context.tx('Alta'), value: 'high'),\n    SgRadioGroupOption(\n      label: context.tx('Urgente'),\n      value: 'urgent',\n      enabled: false,\n    ),\n  ],\n)"
           },
           {
             "id": "sg-radio-group-controle-externo",
             "title": "Controle Externo (setValue/getValue)",
             "file": "apps/seedgrid_showcase/lib/pages/sg_radio_group_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgRadioGroup(\n      id: 'external-control',\n      title: context.tx('Fruta favorita'),\n      value: _externo,\n      onChange: (v) => setState(() => _externo = v),\n      source: [\n        SgRadioGroupOption(\n          label: context.tx('Maçã'),\n          value: 'apple',\n        ),\n        SgRadioGroupOption(\n          label: context.tx('Banana'),\n          value: 'banana',\n        ),\n        SgRadioGroupOption(\n          label: context.tx('Laranja'),\n          value: 'orange',\n        ),\n        SgRadioGroupOption(\n          label: context.tx('Uva'),\n          value: 'grape',\n        ),\n      ],\n    ),\n    const SizedBox(height: 16),\n    SgGrid(\n      columns: {'base': 2, 'md': 4},\n      gap: 8,\n      children: [\n        SgButton(\n          label: Text(context.tx('Definir Maçã')),\n          onClick: () => setState(() => _externo = 'apple'),\n        ),\n        SgButton(\n          label: Text(context.tx('Definir Banana')),\n          onClick: () => setState(() => _externo = 'banana'),\n        ),\n        SgButton(\n          label: Text(context.tx('Definir Laranja')),\n          onClick: () => setState(() => _externo = 'orange'),\n        ),\n        SgButton(\n          label: Text(context.tx('Limpar')),\n          onClick: () => setState(() => _externo = null),\n        ),\n      ],\n    ),\n    const SizedBox(height: 16),\n    Text('${context.tx('Valor atual')}: ${_externo ?? context.tx('Nenhum')}'),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgRadioGroup(\n      id: 'external-control',\n      title: context.tx('Fruta favorita'),\n      value: _externo,\n      onChange: (v) => setState(() => _externo = v),\n      source: [\n        SgRadioGroupOption(\n          label: context.tx('Maçã'),\n          value: 'apple',\n        ),\n        SgRadioGroupOption(\n          label: context.tx('Banana'),\n          value: 'banana',\n        ),\n        SgRadioGroupOption(\n          label: context.tx('Laranja'),\n          value: 'orange',\n        ),\n        SgRadioGroupOption(\n          label: context.tx('Uva'),\n          value: 'grape',\n        ),\n      ],\n    ),\n    const SizedBox(height: 16),\n    SgGrid(\n      columns: {'base': 2, 'md': 4},\n      gap: 8,\n      children: [\n        SgButton(\n          label: Text(context.tx('Definir Maçã')),\n          onClick: () => setState(() => _externo = 'apple'),\n        ),\n        SgButton(\n          label: Text(context.tx('Definir Banana')),\n          onClick: () => setState(() => _externo = 'banana'),\n        ),\n        SgButton(\n          label: Text(context.tx('Definir Laranja')),\n          onClick: () => setState(() => _externo = 'orange'),\n        ),\n        SgButton(\n          label: Text(context.tx('Limpar')),\n          onClick: () => setState(() => _externo = null),\n        ),\n      ],\n    ),\n    const SizedBox(height: 16),\n    Text(\n      '${context.tx('Valor atual')}: ${_externo ?? context.tx('Nenhum')}',\n    ),\n  ],\n)"
           },
           {
             "id": "sg-radio-group-formulario-register",
             "title": "Formulário - Register",
             "file": "apps/seedgrid_showcase/lib/pages/sg_radio_group_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgRadioGroup(\n      title: context.tx('Escolha sua fruta'),\n      name: 'fruit',\n      control: _formRegister,\n      source: [\n        SgRadioGroupOption(\n          label: context.tx('Maçã'),\n          value: 'apple',\n        ),\n        SgRadioGroupOption(\n          label: context.tx('Banana'),\n          value: 'banana',\n        ),\n        SgRadioGroupOption(\n          label: context.tx('Laranja'),\n          value: 'orange',\n        ),\n        SgRadioGroupOption(\n          label: context.tx('Uva'),\n          value: 'grape',\n        ),\n      ],\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _formRegister.handleSubmit(\n        (values) => setState(() => _enviadoRegister = '${values['fruit']}'),\n      ),\n    ),\n    if (_enviadoRegister.isNotEmpty)\n      Text('${context.tx('Dados do formulário')}: $_enviadoRegister'),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgRadioGroup(\n      title: context.tx('Escolha sua fruta'),\n      name: 'fruit',\n      control: _formRegister,\n      source: [\n        SgRadioGroupOption(\n          label: context.tx('Maçã'),\n          value: 'apple',\n        ),\n        SgRadioGroupOption(\n          label: context.tx('Banana'),\n          value: 'banana',\n        ),\n        SgRadioGroupOption(\n          label: context.tx('Laranja'),\n          value: 'orange',\n        ),\n        SgRadioGroupOption(\n          label: context.tx('Uva'),\n          value: 'grape',\n        ),\n      ],\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _formRegister.handleSubmit(\n        (values) =>\n            setState(() => _enviadoRegister = '${values['fruit']}'),\n      ),\n    ),\n    if (_enviadoRegister.isNotEmpty)\n      Text(\n        '${context.tx('Dados do formulário')}: $_enviadoRegister',\n      ),\n  ],\n)"
           },
           {
             "id": "sg-radio-group-grupo-disabled",
@@ -17079,42 +17182,42 @@
             "title": "Horizontal com Ícones Coloridos",
             "file": "apps/seedgrid_showcase/lib/pages/sg_radio_group_page.dart",
             "kind": "dart",
-            "code": "SgRadioGroup(\n  id: 'horizontal-colored',\n  title: context.tx('Condição climática'),\n  orientation: SgRadioGroupOrientation.horizontal,\n  source: [\n    SgRadioGroupOption(\n      label: context.tx('Sol'),\n      value: 'sun',\n      icon: Icon(Icons.wb_sunny, size: 20, color: Colors.amber),\n    ),\n    SgRadioGroupOption(\n      label: context.tx('Lua'),\n      value: 'moon',\n      icon: Icon(Icons.nightlight_round, size: 20, color: Colors.blue),\n    ),\n    SgRadioGroupOption(\n      label: context.tx('Nuvem'),\n      value: 'cloud',\n      icon: Icon(Icons.cloud, size: 20, color: Colors.grey),\n    ),\n  ],\n)"
+            "code": "SgRadioGroup(\n  id: 'horizontal-colored',\n  title: context.tx('Condição climática'),\n  orientation: SgRadioGroupOrientation.horizontal,\n  source: [\n    SgRadioGroupOption(\n      label: context.tx('Sol'),\n      value: 'sun',\n      icon: Icon(Icons.wb_sunny, size: 20, color: Colors.amber),\n    ),\n    SgRadioGroupOption(\n      label: context.tx('Lua'),\n      value: 'moon',\n      icon: Icon(\n        Icons.nightlight_round,\n        size: 20,\n        color: Colors.blue,\n      ),\n    ),\n    SgRadioGroupOption(\n      label: context.tx('Nuvem'),\n      value: 'cloud',\n      icon: Icon(Icons.cloud, size: 20, color: Colors.grey),\n    ),\n  ],\n)"
           },
           {
             "id": "sg-radio-group-obrigatorio-com-validacao",
             "title": "Obrigatório com Validação",
             "file": "apps/seedgrid_showcase/lib/pages/sg_radio_group_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgRadioGroup(\n      title: context.tx('Preferência de contato *'),\n      name: 'preference',\n      control: _formObrigatorio,\n      required: true,\n      source: [\n        SgRadioGroupOption(\n          label: context.tx('Email'),\n          value: 'email',\n          icon: Icon(Icons.mail, size: 16),\n        ),\n        SgRadioGroupOption(\n          label: context.tx('Telefone'),\n          value: 'phone',\n          icon: Icon(Icons.phone, size: 16),\n        ),\n        SgRadioGroupOption(\n          label: context.tx('Presencial'),\n          value: 'in-person',\n          icon: Icon(Icons.home, size: 16),\n        ),\n      ],\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _formObrigatorio.handleSubmit(\n        (values) => setState(() => _enviadoObrigatorio = '${values['preference']}'),\n      ),\n    ),\n    if (_enviadoObrigatorio.isNotEmpty)\n      Text('${context.tx('Dados do formulário')}: $_enviadoObrigatorio'),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgRadioGroup(\n      title: context.tx('Preferência de contato *'),\n      name: 'preference',\n      control: _formObrigatorio,\n      required: true,\n      source: [\n        SgRadioGroupOption(\n          label: context.tx('Email'),\n          value: 'email',\n          icon: Icon(Icons.mail, size: 16),\n        ),\n        SgRadioGroupOption(\n          label: context.tx('Telefone'),\n          value: 'phone',\n          icon: Icon(Icons.phone, size: 16),\n        ),\n        SgRadioGroupOption(\n          label: context.tx('Presencial'),\n          value: 'in-person',\n          icon: Icon(Icons.home, size: 16),\n        ),\n      ],\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _formObrigatorio.handleSubmit(\n        (values) => setState(\n          () => _enviadoObrigatorio = '${values['preference']}',\n        ),\n      ),\n    ),\n    if (_enviadoObrigatorio.isNotEmpty)\n      Text(\n        '${context.tx('Dados do formulário')}: $_enviadoObrigatorio',\n      ),\n  ],\n)"
           },
           {
             "id": "sg-radio-group-orientation-horizontal",
             "title": "Orientation Horizontal",
             "file": "apps/seedgrid_showcase/lib/pages/sg_radio_group_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgRadioGroup(\n      id: 'horizontal',\n      title: context.tx('Selecione uma fruta'),\n      orientation: SgRadioGroupOrientation.horizontal,\n      value: _fruta,\n      onChange: (v) => setState(() => _fruta = v),\n      source: [\n        SgRadioGroupOption(\n          label: context.tx('Maçã'),\n          value: 'apple',\n        ),\n        SgRadioGroupOption(\n          label: context.tx('Banana'),\n          value: 'banana',\n        ),\n        SgRadioGroupOption(\n          label: context.tx('Laranja'),\n          value: 'orange',\n        ),\n        SgRadioGroupOption(\n          label: context.tx('Uva'),\n          value: 'grape',\n        ),\n      ],\n    ),              ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgRadioGroup(\n      id: 'horizontal',\n      title: context.tx('Selecione uma fruta'),\n      orientation: SgRadioGroupOrientation.horizontal,\n      value: _fruta,\n      onChange: (v) => setState(() => _fruta = v),\n      source: [\n        SgRadioGroupOption(\n          label: context.tx('Maçã'),\n          value: 'apple',\n        ),\n        SgRadioGroupOption(\n          label: context.tx('Banana'),\n          value: 'banana',\n        ),\n        SgRadioGroupOption(\n          label: context.tx('Laranja'),\n          value: 'orange',\n        ),\n        SgRadioGroupOption(\n          label: context.tx('Uva'),\n          value: 'grape',\n        ),\n      ],\n    ),\n  ],\n)"
           },
           {
             "id": "sg-radio-group-read-only",
             "title": "Read-only",
             "file": "apps/seedgrid_showcase/lib/pages/sg_radio_group_page.dart",
             "kind": "dart",
-            "code": "SgRadioGroup(\n  id: 'readonly',\n  title: context.tx('Configuração atual (somente leitura)'),\n  value: 'banana',\n  readOnly: true,\n  source: [\n    SgRadioGroupOption(\n      label: context.tx('Maçã'),\n      value: 'apple',\n    ),\n    SgRadioGroupOption(\n      label: context.tx('Banana'),\n      value: 'banana',\n    ),\n    SgRadioGroupOption(\n      label: context.tx('Laranja'),\n      value: 'orange',\n    ),\n    SgRadioGroupOption(\n      label: context.tx('Uva'),\n      value: 'grape',\n    ),\n  ],\n)"
+            "code": "SgRadioGroup(\n  id: 'readonly',\n  title: context.tx('Configuração atual (somente leitura)'),\n  value: 'banana',\n  readOnly: true,\n  source: [\n    SgRadioGroupOption(label: context.tx('Maçã'), value: 'apple'),\n    SgRadioGroupOption(\n      label: context.tx('Banana'),\n      value: 'banana',\n    ),\n    SgRadioGroupOption(\n      label: context.tx('Laranja'),\n      value: 'orange',\n    ),\n    SgRadioGroupOption(label: context.tx('Uva'), value: 'grape'),\n  ],\n)"
           },
           {
             "id": "sg-radio-group-selecao-controlada",
             "title": "Seleção Controlada",
             "file": "apps/seedgrid_showcase/lib/pages/sg_radio_group_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgRadioGroup(\n      id: 'controlled-selection',\n      title: context.tx('Seleção controlada'),\n      value: _controlada,\n      onChange: (v) => setState(() => _controlada = v),\n      source: [\n        SgRadioGroupOption(\n          label: context.tx('Opção 1'),\n          value: 'option1',\n        ),\n        SgRadioGroupOption(\n          label: context.tx('Opção 2'),\n          value: 'option2',\n        ),\n        SgRadioGroupOption(\n          label: context.tx('Opção 3'),\n          value: 'option3',\n        ),\n      ],\n    ),\n    const SizedBox(height: 8),\n    Text('${context.tx('Valor')}: ${_controlada ?? context.tx('Nenhum')}'),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgRadioGroup(\n      id: 'controlled-selection',\n      title: context.tx('Seleção controlada'),\n      value: _controlada,\n      onChange: (v) => setState(() => _controlada = v),\n      source: [\n        SgRadioGroupOption(\n          label: context.tx('Opção 1'),\n          value: 'option1',\n        ),\n        SgRadioGroupOption(\n          label: context.tx('Opção 2'),\n          value: 'option2',\n        ),\n        SgRadioGroupOption(\n          label: context.tx('Opção 3'),\n          value: 'option3',\n        ),\n      ],\n    ),\n    const SizedBox(height: 8),\n    Text(\n      '${context.tx('Valor')}: ${_controlada ?? context.tx('Nenhum')}',\n    ),\n  ],\n)"
           },
           {
             "id": "sg-radio-group-selection-style-highlight",
             "title": "Selection Style Highlight (Lista)",
             "file": "apps/seedgrid_showcase/lib/pages/sg_radio_group_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    ConstrainedBox(\n      constraints: const BoxConstraints(maxWidth: 320),\n      child:\n        SgRadioGroup(\n          id: 'highlight-list',\n          title: context.tx('Opções'),\n          selectionStyle: SgRadioGroupSelectionStyle.highlight,\n          value: _highlight,\n          onChange: (v) => setState(() => _highlight = v),\n          source: [\n            SgRadioGroupOption(\n              label: context.tx('Reserva'),\n              value: 'reserve',\n              icon: Icon(Icons.account_balance, size: 16, color: Colors.indigo),\n            ),\n            SgRadioGroupOption(\n              label: context.tx('Alerta'),\n              value: 'alert',\n              icon: Icon(Icons.notifications, size: 16, color: Colors.pink),\n            ),\n            SgRadioGroupOption(\n              label: context.tx('Atualizar'),\n              value: 'refresh',\n              icon: Icon(Icons.refresh, size: 16, color: Colors.green),\n            ),\n          ],\n        ),\n    ),\n\n    const SizedBox(height: 8),\n    Text('${context.tx('Valor')}: ${_highlight ?? context.tx('Nenhum')}'),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    ConstrainedBox(\n      constraints: const BoxConstraints(maxWidth: 320),\n      child: SgRadioGroup(\n        id: 'highlight-list',\n        title: context.tx('Opções'),\n        selectionStyle: SgRadioGroupSelectionStyle.highlight,\n        value: _highlight,\n        onChange: (v) => setState(() => _highlight = v),\n        source: [\n          SgRadioGroupOption(\n            label: context.tx('Reserva'),\n            value: 'reserve',\n            icon: Icon(\n              Icons.account_balance,\n              size: 16,\n              color: Colors.indigo,\n            ),\n          ),\n          SgRadioGroupOption(\n            label: context.tx('Alerta'),\n            value: 'alert',\n            icon: Icon(\n              Icons.notifications,\n              size: 16,\n              color: Colors.pink,\n            ),\n          ),\n          SgRadioGroupOption(\n            label: context.tx('Atualizar'),\n            value: 'refresh',\n            icon: Icon(\n              Icons.refresh,\n              size: 16,\n              color: Colors.green,\n            ),\n          ),\n        ],\n      ),\n    ),\n\n    const SizedBox(height: 8),\n    Text(\n      '${context.tx('Valor')}: ${_highlight ?? context.tx('Nenhum')}',\n    ),\n  ],\n)"
           }
         ],
         "parity": {
@@ -17129,6 +17232,10 @@
           {
             "name": "register",
             "reason": "Não se aplica no Flutter: todo campo é controlado pelo valor e pelo onChange (ou pelo SgFormController)."
+          },
+          {
+            "name": "rules",
+            "reason": "Não se aplica no Flutter: a validação usa as props diretas (required, requiredMessage, minLength, validation...), em vez de um objeto de regras."
           },
           {
             "name": "style",
@@ -17268,12 +17375,6 @@
             "description": "Required message"
           },
           {
-            "name": "rules",
-            "type": "Object?",
-            "required": false,
-            "typeExact": false
-          },
-          {
             "name": "showTooltip",
             "type": "bool?",
             "required": false,
@@ -17342,7 +17443,7 @@
             "title": "Meia estrela + tooltip",
             "file": "apps/seedgrid_showcase/lib/pages/sg_rating_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgRating(\n      label: context.tx('Passe o mouse e clique nas meias estrelas'),\n      value: _meia,\n      allowHalf: true,\n      showTooltip: true,\n      onChange: (v) => setState(() => _meia = v),\n      onHover: (v) => setState(() => _meiaHover = v),\n    ),\n    const SizedBox(height: 8),\n    Text(\n      '${context.tx('Selecionado')}: $_meia | ${context.tx('Hover')}: ${_meiaHover ?? context.tx('nenhum')}',\n    ),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgRating(\n      label: context.tx(\n        'Passe o mouse e clique nas meias estrelas',\n      ),\n      value: _meia,\n      allowHalf: true,\n      showTooltip: true,\n      onChange: (v) => setState(() => _meia = v),\n      onHover: (v) => setState(() => _meiaHover = v),\n    ),\n    const SizedBox(height: 8),\n    Text(\n      '${context.tx('Selecionado')}: $_meia | ${context.tx('Hover')}: ${_meiaHover ?? context.tx('nenhum')}',\n    ),\n  ],\n)"
           },
           {
             "id": "sg-rating-obrigatorio",
@@ -17378,6 +17479,10 @@
           {
             "name": "register",
             "reason": "Não se aplica no Flutter: todo campo é controlado pelo valor e pelo onChange (ou pelo SgFormController)."
+          },
+          {
+            "name": "rules",
+            "reason": "Não se aplica no Flutter: a validação usa as props diretas (required, requiredMessage, minLength, validation...), em vez de um objeto de regras."
           },
           {
             "name": "style",
@@ -17540,7 +17645,7 @@
         "examples": [
           {
             "id": "sg-roller3d-digit-digitos",
-            "title": "Dígitos de 0 a 9",
+            "title": "Básico (0-9)",
             "file": "apps/seedgrid_showcase/lib/pages/sg_roller3d_digit_page.dart",
             "kind": "dart",
             "code": "Wrap(\n  spacing: 16,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgRoller3DDigit(value: '$_digit', fontSize: 32),\n    SgButton(\n      label: Text(context.tx('Próximo')),\n      onClick: () => setState(() => _digit = (_digit + 1) % 10),\n    ),\n    SgButton(\n      label: Text(context.tx('Aleatório')),\n      appearance: SgAppearance.outline,\n      onClick: () => setState(() => _digit = (_digit * 7 + 3) % 10),\n    ),\n  ],\n)"
@@ -17554,17 +17659,31 @@
           },
           {
             "id": "sg-roller3d-digit-letras",
-            "title": "Letras (A a Z)",
+            "title": "Letras (A-Z)",
             "file": "apps/seedgrid_showcase/lib/pages/sg_roller3d_digit_page.dart",
             "kind": "dart",
             "code": "Wrap(\n  spacing: 16,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgRoller3DDigit(\n      value: String.fromCharCode(65 + _letter),\n      items: List.generate(26, (i) => String.fromCharCode(65 + i)),\n      fontSize: 32,\n    ),\n    SgButton(\n      label: Text(context.tx('Próxima letra')),\n      onClick: () => setState(() => _letter = (_letter + 5) % 26),\n    ),\n  ],\n)"
           },
           {
             "id": "sg-roller3d-digit-minutos",
-            "title": "Minutos (00 a 59)",
+            "title": "Valor com 2 dígitos",
             "file": "apps/seedgrid_showcase/lib/pages/sg_roller3d_digit_page.dart",
             "kind": "dart",
             "code": "Wrap(\n  spacing: 16,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgRoller3DDigit(\n      value: _minute.toString().padLeft(2, '0'),\n      items: List.generate(60, (i) => i.toString().padLeft(2, '0')),\n      fontSize: 22,\n    ),\n    SgButton(\n      label: Text(context.tx('+7 minutos')),\n      onClick: () => setState(() => _minute = (_minute + 7) % 60),\n    ),\n  ],\n)"
+          },
+          {
+            "id": "sg-roller3d-digit-nomes",
+            "title": "Animação de nomes",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_roller3d_digit_page.dart",
+            "kind": "dart",
+            "code": "Wrap(\n  spacing: 8,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    for (final letra in _letrasDoNome())\n      SgRoller3DDigit(\n        value: letra,\n        items: _alfabeto,\n        fontSize: 28,\n        transitionMs: 110,\n      ),\n    SgButton(\n      label: Text(context.tx('Animar nome')),\n      size: SgSize.sm,\n      onClick: _animarNome,\n    ),\n  ],\n)"
+          },
+          {
+            "id": "sg-roller3d-digit-tamanhos",
+            "title": "Variações de tamanho",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_roller3d_digit_page.dart",
+            "kind": "dart",
+            "code": "Wrap(\n  spacing: 16,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.end,\n  children: [\n    for (final tamanho in const [16, 32, 56])\n      Column(\n        children: [\n          Text('${tamanho}px'),\n          SgRoller3DDigit(value: '5', fontSize: tamanho.toDouble()),\n        ],\n      ),\n  ],\n)"
           }
         ],
         "parity": {
@@ -17865,11 +17984,25 @@
             "code": "Wrap(\n  spacing: 8,\n  runSpacing: 8,\n  children: [\n    for (final c in '0123456789-AbCdEFHJLPUY'.split(''))\n      SgSevenSegmentDigit(\n        value: c,\n        size: 72,\n        thickness: 8,\n        padding: 8,\n      ),\n  ],\n)"
           },
           {
+            "id": "sg-seven-segment-digit-basico",
+            "title": "Básico (0-9)",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_seven_segment_digit_page.dart",
+            "kind": "dart",
+            "code": "Wrap(\n  spacing: 16,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgSevenSegmentDigit(value: '$_digito', palette: _paleta),\n    Column(\n      crossAxisAlignment: CrossAxisAlignment.start,\n      children: [\n        SgButton(\n          label: Text(context.tx('Próximo (+1)')),\n          size: SgSize.sm,\n          onClick: () =>\n              setState(() => _digito = (_digito + 1) % 10),\n        ),\n        const SizedBox(height: 8),\n        SgButton(\n          label: Text(context.tx('Anterior (-1)')),\n          size: SgSize.sm,\n          appearance: SgAppearance.outline,\n          onClick: () =>\n              setState(() => _digito = (_digito + 9) % 10),\n        ),\n        const SizedBox(height: 8),\n        SgButton(\n          label: Text(context.tx('Aleatório')),\n          size: SgSize.sm,\n          onClick: () => setState(\n            () => _digito = DateTime.now().microsecond % 10,\n          ),\n        ),\n        const SizedBox(height: 8),\n        Wrap(\n          spacing: 8,\n          runSpacing: 8,\n          children: [\n            for (final item in SgSevenSegmentDigitPalette.values)\n              SgButton(\n                label: Text(item.name),\n                size: SgSize.sm,\n                appearance: _paleta == item\n                    ? SgAppearance.solid\n                    : SgAppearance.outline,\n                onClick: () => setState(() => _paleta = item),\n              ),\n          ],\n        ),\n      ],\n    ),\n  ],\n)"
+          },
+          {
             "id": "sg-seven-segment-digit-contador",
             "title": "Contador com transição",
             "file": "apps/seedgrid_showcase/lib/pages/sg_seven_segment_digit_page.dart",
             "kind": "dart",
-            "code": "Builder(\n  builder: (context) {\n    var value =\n        0; // o estado fica na closure; o StatefulBuilder so reconstroi\n    return StatefulBuilder(\n      builder: (context, set) => Row(\n        mainAxisSize: MainAxisSize.min,\n        children: [\n          SgSevenSegmentDigit(\n            value: '$value',\n            size: 72,\n            thickness: 8,\n            padding: 8,\n            transitionMs: 200,\n          ),\n          const SizedBox(width: 16),\n          FilledButton(\n            onPressed: () => set(() => value = (value + 1) % 10),\n            child: Text(context.tx('Próximo')),\n          ),\n        ],\n      ),\n    );\n  },\n)"
+            "code": "Builder(\n  builder: (context) {\n    var value =\n        0; // o estado fica na closure; o StatefulBuilder so reconstroi\n    return StatefulBuilder(\n      builder: (context, set) => Row(\n        mainAxisSize: MainAxisSize.min,\n        children: [\n          SgSevenSegmentDigit(\n            value: '$value',\n            size: 72,\n            thickness: 8,\n            padding: 8,\n            transitionMs: 200,\n          ),\n          const SizedBox(width: 16),\n          SgButton(\n            label: Text(context.tx('Próximo')),\n            onClick: () => set(() => value = (value + 1) % 10),\n          ),\n        ],\n      ),\n    );\n  },\n)"
+          },
+          {
+            "id": "sg-seven-segment-digit-hexadecimal",
+            "title": "Hexadecimal (0-9 A-F)",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_seven_segment_digit_page.dart",
+            "kind": "dart",
+            "code": "Wrap(\n  spacing: 16,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgSevenSegmentDigit(\n      value: hex[_hexIndex],\n      color: '#f97316',\n      backgroundColor: '#180b05',\n      offColor: 'rgba(124,45,18,0.24)',\n    ),\n    SgButton(\n      label: Text(context.tx('Próximo caractere')),\n      size: SgSize.sm,\n      onClick: () =>\n          setState(() => _hexIndex = (_hexIndex + 1) % hex.length),\n    ),\n  ],\n)"
           },
           {
             "id": "sg-seven-segment-digit-medidas",
@@ -17884,6 +18017,27 @@
             "file": "apps/seedgrid_showcase/lib/pages/sg_seven_segment_digit_page.dart",
             "kind": "dart",
             "code": "Wrap(\n  spacing: 8,\n  runSpacing: 8,\n  children: [\n    for (final palette in SgSevenSegmentDigitPalette.values)\n      SgSevenSegmentDigit(\n        value: '8',\n        palette: palette,\n        size: 72,\n        thickness: 8,\n        padding: 8,\n      ),\n    const SgSevenSegmentDigit(\n      value: '8',\n      size: 72,\n      thickness: 8,\n      padding: 8,\n      color: '#ff00aa',\n      offColor: 'rgba(255, 0, 170, 0.15)',\n      backgroundColor: '#14000d',\n    ),\n  ],\n)"
+          },
+          {
+            "id": "sg-seven-segment-digit-relogio",
+            "title": "Composição estilo relógio",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_seven_segment_digit_page.dart",
+            "kind": "dart",
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    Wrap(\n      spacing: 4,\n      runSpacing: 8,\n      crossAxisAlignment: WrapCrossAlignment.center,\n      children: [\n        for (final c in hh.split(''))\n          SgSevenSegmentDigit(value: c, size: 86),\n        doisPontos,\n        for (final c in mm.split(''))\n          SgSevenSegmentDigit(value: c, size: 86),\n        doisPontos,\n        for (final c in ss.split(''))\n          SgSevenSegmentDigit(value: c, size: 86),\n      ],\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('+1 segundo')),\n      size: SgSize.sm,\n      onClick: () => setState(() => _segundos++),\n    ),\n  ],\n)"
+          },
+          {
+            "id": "sg-seven-segment-digit-tamanho-espessura",
+            "title": "Tamanho e espessura",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_seven_segment_digit_page.dart",
+            "kind": "dart",
+            "code": "Wrap(\n  spacing: 16,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.end,\n  children: [\n    Column(\n      crossAxisAlignment: CrossAxisAlignment.start,\n      children: [\n        Text(context.tx('Pequeno')),\n        const SgSevenSegmentDigit(\n          value: '5',\n          size: 72,\n          thickness: 10,\n        ),\n      ],\n    ),\n    Column(\n      crossAxisAlignment: CrossAxisAlignment.start,\n      children: [\n        Text(context.tx('Médio')),\n        const SgSevenSegmentDigit(\n          value: '5',\n          size: 108,\n          thickness: 14,\n        ),\n      ],\n    ),\n    Column(\n      crossAxisAlignment: CrossAxisAlignment.start,\n      children: [\n        Text(context.tx('Grande')),\n        const SgSevenSegmentDigit(\n          value: '5',\n          size: 148,\n          thickness: 18,\n        ),\n      ],\n    ),\n  ],\n)"
+          },
+          {
+            "id": "sg-seven-segment-digit-temas",
+            "title": "Temas de cor",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_seven_segment_digit_page.dart",
+            "kind": "dart",
+            "code": "Wrap(\n  spacing: 12,\n  runSpacing: 12,\n  children: [\n    for (final palette in SgSevenSegmentDigitPalette.values)\n      Column(\n        crossAxisAlignment: CrossAxisAlignment.start,\n        children: [\n          Text(palette.name),\n          SgSevenSegmentDigit(value: '8', palette: palette),\n        ],\n      ),\n  ],\n)"
           }
         ],
         "parity": {
@@ -18089,12 +18243,6 @@
             "typeExact": false
           },
           {
-            "name": "rules",
-            "type": "Object?",
-            "required": false,
-            "typeExact": false
-          },
-          {
             "name": "step",
             "type": "num?",
             "required": false,
@@ -18135,7 +18283,7 @@
             "title": "Dentro de um formulário",
             "file": "apps/seedgrid_showcase/lib/pages/sg_slider_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgSlider(\n      id: 'brilho',\n      name: 'brilho',\n      control: _form,\n      minValue: 0,\n      maxValue: 100,\n      step: 10,\n      rules: const SgRules(\n        min: SgRuleValue(20, 'Brilho mínimo: 20'),\n      ),\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _form.handleSubmit(\n        (values) =>\n            setState(() => _enviado = '${values['brilho']}'),\n      ),\n    ),\n    if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgSlider(\n      id: 'brilho',\n      name: 'brilho',\n      control: _form,\n      minValue: 0,\n      maxValue: 100,\n      step: 10,\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _form.handleSubmit(\n        (values) =>\n            setState(() => _enviado = '${values['brilho']}'),\n      ),\n    ),\n    if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),\n  ],\n)"
           },
           {
             "id": "sg-slider-passo",
@@ -18157,6 +18305,10 @@
           {
             "name": "register",
             "reason": "Não se aplica no Flutter: todo campo é controlado pelo valor e pelo onChange (ou pelo SgFormController)."
+          },
+          {
+            "name": "rules",
+            "reason": "Não se aplica no Flutter: a validação usa as props diretas (required, requiredMessage, minLength, validation...), em vez de um objeto de regras."
           }
         ]
       }
@@ -18586,12 +18738,6 @@
             "description": "Permite visualizacao sem edicao direta."
           },
           {
-            "name": "rules",
-            "type": "Object?",
-            "required": false,
-            "typeExact": false
-          },
-          {
             "name": "step",
             "type": "num?",
             "required": false,
@@ -18638,7 +18784,7 @@
             "title": "Dentro de um formulário",
             "file": "apps/seedgrid_showcase/lib/pages/sg_stepper_input_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgStepperInput(\n      id: 'qtd',\n      name: 'qtd',\n      control: _form,\n      minValue: 0,\n      maxValue: 9,\n      width: 160,\n      rules: SgRules(\n        validate: (v) => (v as num) >= 2 ? true : 'Mínimo 2',\n      ),\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _form.handleSubmit(\n        (values) => setState(() => _enviado = '${values['qtd']}'),\n      ),\n    ),\n    if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgStepperInput(\n      id: 'qtd',\n      name: 'qtd',\n      control: _form,\n      minValue: 0,\n      maxValue: 9,\n      width: 160,\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _form.handleSubmit(\n        (values) => setState(() => _enviado = '${values['qtd']}'),\n      ),\n    ),\n    if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),\n  ],\n)"
           },
           {
             "id": "sg-stepper-input-passo",
@@ -18664,6 +18810,10 @@
           {
             "name": "register",
             "reason": "Não se aplica no Flutter: todo campo é controlado pelo valor e pelo onChange (ou pelo SgFormController)."
+          },
+          {
+            "name": "rules",
+            "reason": "Não se aplica no Flutter: a validação usa as props diretas (required, requiredMessage, minLength, validation...), em vez de um objeto de regras."
           }
         ]
       }
@@ -18928,12 +19078,6 @@
             "description": "Texto de ajuda inicial."
           },
           {
-            "name": "rules",
-            "type": "Object?",
-            "required": false,
-            "typeExact": false
-          },
-          {
             "name": "showCssEditor",
             "type": "bool?",
             "required": false,
@@ -18979,7 +19123,7 @@
             "title": "Dentro de um formulário",
             "file": "apps/seedgrid_showcase/lib/pages/sg_text_editor_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgTextEditor(\n      id: 'editor-form',\n      name: 'descricao',\n      control: _form,\n      height: 180,\n      rules: const SgRules(required: 'Descreva o produto'),\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _form.handleSubmit(\n        (values) =>\n            setState(() => _enviado = '${values['descricao']}'),\n      ),\n    ),\n    if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgTextEditor(\n      id: 'editor-form',\n      name: 'descricao',\n      control: _form,\n      height: 180,\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _form.handleSubmit(\n        (values) =>\n            setState(() => _enviado = '${values['descricao']}'),\n      ),\n    ),\n    if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),\n  ],\n)"
           }
         ],
         "parity": {
@@ -18994,6 +19138,10 @@
           {
             "name": "register",
             "reason": "Não se aplica no Flutter: todo campo é controlado pelo valor e pelo onChange (ou pelo SgFormController)."
+          },
+          {
+            "name": "rules",
+            "reason": "Não se aplica no Flutter: a validação usa as props diretas (required, requiredMessage, minLength, validation...), em vez de um objeto de regras."
           },
           {
             "name": "style",
@@ -19402,12 +19550,6 @@
             "required": false
           },
           {
-            "name": "rules",
-            "type": "Object?",
-            "required": false,
-            "typeExact": false
-          },
-          {
             "name": "switchClassName",
             "type": "String?",
             "required": false
@@ -19507,6 +19649,10 @@
           {
             "name": "register",
             "reason": "Não se aplica no Flutter: todo campo é controlado pelo valor e pelo onChange (ou pelo SgFormController)."
+          },
+          {
+            "name": "rules",
+            "reason": "Não se aplica no Flutter: a validação usa as props diretas (required, requiredMessage, minLength, validation...), em vez de um objeto de regras."
           }
         ]
       }
@@ -20324,6 +20470,13 @@
             "description": "Paginas do wizard renderizadas em ordem."
           },
           {
+            "name": "enabled",
+            "type": "bool?",
+            "required": false,
+            "default": "true",
+            "description": "Quando false, o wizard inteiro fica desabilitado: Anterior, Proximo, Concluir e os passos do stepper deixam de responder; a etapa atual segue visivel. Diferente de nextDisabled, que so bloqueia o avanco."
+          },
+          {
             "name": "initialStep",
             "type": "num?",
             "required": false,
@@ -20412,11 +20565,18 @@
             "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgWizard(\n      onFinish: () => setState(() => _resultado = 'finalizado'),\n      children: [\n        SgWizardPage(\n          child: Text(context.tx('Etapa 1: dados pessoais')),\n        ),\n        SgWizardPage(child: Text(context.tx('Etapa 2: endereço'))),\n        SgWizardPage(child: Text(context.tx('Etapa 3: revisão'))),\n      ],\n    ),\n    const SizedBox(height: 12),\n    Text('Resultado: $_resultado'),\n  ],\n)"
           },
           {
+            "id": "sg-wizard-enabled",
+            "title": "Desabilitado (enabled)",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_wizard_demo_page.dart",
+            "kind": "dart",
+            "code": "SgWizard(\n  enabled: false,\n  initialStep: 1,\n  stepper: SgWizardStepper.numbered,\n  onFinish: () {},\n  children: [\n    SgWizardPage(\n      title: context.tx('Dados'),\n      child: Text(context.tx('Primeira etapa')),\n    ),\n    SgWizardPage(\n      title: context.tx('Revisão'),\n      child: Text(context.tx('Segunda etapa')),\n    ),\n    SgWizardPage(\n      title: context.tx('Confirmação'),\n      child: Text(context.tx('Terceira etapa')),\n    ),\n  ],\n)"
+          },
+          {
             "id": "sg-wizard-formulario",
             "title": "Validação por etapa com SgForm",
             "file": "apps/seedgrid_showcase/lib/pages/sg_wizard_demo_page.dart",
             "kind": "dart",
-            "code": "SgWizard(\n  control: _form,\n  stepper: SgWizardStepper.numbered,\n  onFinish: () {},\n  children: [\n    SgWizardPage(\n      title: context.tx('Nome'),\n      fields: const ['nome'],\n      child: SgInputText(\n        id: 'wz-nome',\n        name: 'nome',\n        control: _form,\n        labelText: 'Nome',\n        required: true,\n        requiredMessage: 'Informe o nome',\n      ),\n    ),\n    SgWizardPage(\n      title: context.tx('E-mail'),\n      fields: const ['email'],\n      child: SgInputText(\n        id: 'wz-email',\n        name: 'email',\n        control: _form,\n        labelText: 'E-mail',\n        rules: SgRules(\n          required: 'Informe o e-mail',\n          pattern: SgRuleValue(\n            RegExp(r'.+@.+\\..+'),\n            'E-mail inválido',\n          ),\n        ),\n      ),\n    ),\n  ],\n)"
+            "code": "SgWizard(\n  control: _form,\n  stepper: SgWizardStepper.numbered,\n  onFinish: () {},\n  children: [\n    SgWizardPage(\n      title: context.tx('Nome'),\n      fields: const ['nome'],\n      child: SgInputText(\n        id: 'wz-nome',\n        name: 'nome',\n        control: _form,\n        labelText: 'Nome',\n        required: true,\n        requiredMessage: 'Informe o nome',\n      ),\n    ),\n    SgWizardPage(\n      title: context.tx('E-mail'),\n      fields: const ['email'],\n      child: SgInputText(\n        id: 'wz-email',\n        name: 'email',\n        control: _form,\n        labelText: 'E-mail',\n        required: true,\n        requiredMessage: 'Informe o e-mail',\n        validation: (v) => RegExp(r'.+@.+\\..+').hasMatch(v)\n            ? null\n            : 'E-mail inválido',\n      ),\n    ),\n  ],\n)"
           },
           {
             "id": "sg-wizard-guardas",
@@ -20675,8 +20835,7 @@
           {
             "name": "id",
             "type": "String",
-            "required": true,
-            "description": "Identificador único (base das chaves dos sliders, do campo hex e das cores predefinidas)."
+            "required": true
           },
           {
             "name": "ariaLabel",
@@ -20693,15 +20852,13 @@
           {
             "name": "defaultValue",
             "type": "String?",
-            "required": false,
-            "description": "Cor inicial no formato #RRGGBB quando o componente não é controlado."
+            "required": false
           },
           {
             "name": "enabled",
             "type": "bool",
             "required": false,
-            "default": "true",
-            "description": "Com false, bloqueia os sliders, o campo hex e as cores predefinidas."
+            "default": "true"
           },
           {
             "name": "error",
@@ -20720,7 +20877,6 @@
             "type": "SgColorPickerMode",
             "required": false,
             "default": "gradient",
-            "description": "Forma de escolher a cor: gradient (clássico: área de saturação e brilho mais barra de matiz em gradiente) ou sliders (três barras: matiz, saturação e brilho).",
             "values": [
               "gradient",
               "sliders"
@@ -20729,21 +20885,18 @@
           {
             "name": "name",
             "type": "String?",
-            "required": false,
-            "description": "Nome do campo no formulário (usado junto com control ou dentro de SgForm)."
+            "required": false
           },
           {
             "name": "onChange",
             "type": "ValueChanged<String>?",
             "required": false,
-            "description": "Recebe a cor #RRGGBB (maiúscula) a cada mudança válida; hex inválido não emite.",
             "typeExact": false
           },
           {
             "name": "presets",
             "type": "List<String>?",
             "required": false,
-            "description": "Cores predefinidas (#RRGGBB); tocar numa delas escolhe a cor. Entradas inválidas são ignoradas.",
             "typeExact": false
           },
           {
@@ -20756,14 +20909,12 @@
           {
             "name": "value",
             "type": "String?",
-            "required": false,
-            "description": "Cor controlada no formato #RRGGBB; quando informada, o componente não guarda estado próprio."
+            "required": false
           },
           {
             "name": "width",
             "type": "Object?",
             "required": false,
-            "description": "Largura em px (número) ou texto \"N%\". Sem valor, ocupa até 360 px.",
             "typeExact": false
           }
         ],
@@ -20801,14 +20952,14 @@
             "title": "Diálogo showSgColorPicker",
             "file": "apps/seedgrid_showcase/lib/pages/sg_color_picker_page.dart",
             "kind": "dart",
-            "code": "Wrap(\n  spacing: 12,\n  runSpacing: 8,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgButton(\n      label: Text(context.tx('Escolher cor')),\n      onClick: () async {\n        final hex = await showSgColorPicker(\n          context,\n          id: 'cor-dialogo',\n          initialValue: _dialogo,\n          presets: const ['#EF4444', '#10B981', '#7C3AED'],\n        );\n        if (hex != null) setState(() => _dialogo = hex);\n      },\n    ),\n    Container(\n      width: 32,\n      height: 32,\n      color: sgHexToColor(_dialogo),\n    ),\n    Text(_dialogo),\n  ],\n)"
+            "code": "Wrap(\n  spacing: 12,\n  runSpacing: 8,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgButton(\n      label: Text(context.tx('Escolher cor')),\n      onClick: () async {\n        final hex = await showSgColorPicker(\n          context,\n          id: 'cor-dialogo',\n          initialValue: _dialogo,\n          presets: const ['#EF4444', '#10B981', '#7C3AED'],\n        );\n        if (hex != null) setState(() => _dialogo = hex);\n      },\n    ),\n    Container(width: 32, height: 32, color: sgHexToColor(_dialogo)),\n    Text(_dialogo),\n  ],\n)"
           },
           {
             "id": "sg-color-picker-formulario",
             "title": "Dentro de um formulário",
             "file": "apps/seedgrid_showcase/lib/pages/sg_color_picker_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgColorPicker(\n      id: 'cor-formulario',\n      name: 'marca',\n      control: _form,\n      presets: const ['#F97316', '#10B981', '#7C3AED'],\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _form.handleSubmit(\n        (values) =>\n            setState(() => _enviado = '${values['marca']}'),\n      ),\n    ),\n    if (_enviado.isNotEmpty) Text(_enviado),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgColorPicker(\n      id: 'cor-formulario',\n      name: 'marca',\n      control: _form,\n      presets: const ['#F97316', '#10B981', '#7C3AED'],\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _form.handleSubmit(\n        (values) => setState(() => _enviado = '${values['marca']}'),\n      ),\n    ),\n    if (_enviado.isNotEmpty) Text(_enviado),\n  ],\n)"
           },
           {
             "id": "sg-color-picker-predefinidas",

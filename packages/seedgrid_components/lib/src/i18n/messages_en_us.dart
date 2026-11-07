@@ -9,24 +9,31 @@ const Map<String, String> componentsMessagesEnUs = <String, String>{
   'components.password.show': 'Show password',
   'components.password.hide': 'Hide password',
   'components.password.generate': 'Generate password',
-  'components.password.common': 'Password is too common. Choose a stronger one.',
+  'components.password.common':
+      'Password is too common. Choose a stronger one.',
   'components.password.minSize': 'Minimum {min} characters.',
   'components.password.upper': 'At least 1 uppercase letter.',
   'components.password.lower': 'At least 1 lowercase letter.',
   'components.password.number': 'At least 1 number.',
   'components.password.special': 'At least 1 special character.',
   'components.password.noRepeat': 'Do not repeat characters in sequence.',
-  'components.password.noSeqAsc': 'Do not use ascending sequences (e.g., 1234, abcd).',
-  'components.password.noSeqDesc': 'Do not use descending sequences (e.g., 4321, dcba).',
+  'components.password.noSeqAsc':
+      'Do not use ascending sequences (e.g., 1234, abcd).',
+  'components.password.noSeqDesc':
+      'Do not use descending sequences (e.g., 4321, dcba).',
   'components.inputs.required': 'Required field.',
   'components.inputs.maxLength': 'Field must have at most {max} letter(s).',
   'components.inputs.minLength': 'Field must have at least {min} letter(s).',
   'components.inputs.minWords': 'Field must have at least {min} word(s).',
   'components.inputs.textarea.required': 'This field is required.',
-  'components.inputs.textarea.maxLength': 'Text must have at most {max} letter(s).',
-  'components.inputs.textarea.minLength': 'Text must have at least {min} letter(s).',
-  'components.inputs.textarea.minWords': 'Text must have at least {min} word(s).',
-  'components.inputs.textarea.minLines': 'Text must have at least {min} line(s).',
+  'components.inputs.textarea.maxLength':
+      'Text must have at most {max} letter(s).',
+  'components.inputs.textarea.minLength':
+      'Text must have at least {min} letter(s).',
+  'components.inputs.textarea.minWords':
+      'Text must have at least {min} word(s).',
+  'components.inputs.textarea.minLines':
+      'Text must have at least {min} line(s).',
   'components.inputs.cpf.length': 'CPF must have 11 digits.',
   'components.inputs.cpf.invalid': 'Invalid CPF.',
   'components.inputs.cnpj.length': 'CNPJ must have 14 digits.',
@@ -41,7 +48,8 @@ const Map<String, String> componentsMessagesEnUs = <String, String>{
   'components.inputs.postalCode.ES.invalid': 'Invalid postal code.',
   'components.inputs.postalCode.UY.length': 'Postal code must have 5 digits.',
   'components.inputs.postalCode.UY.invalid': 'Invalid postal code.',
-  'components.inputs.postalCode.AR.length': 'Postal code must have 4 or 8 characters.',
+  'components.inputs.postalCode.AR.length':
+      'Postal code must have 4 or 8 characters.',
   'components.inputs.postalCode.AR.invalid': 'Invalid postal code.',
   'components.inputs.postalCode.PY.length': 'Postal code must have 6 digits.',
   'components.inputs.postalCode.PY.invalid': 'Invalid postal code.',
@@ -56,24 +64,31 @@ const Map<String, String> componentsMessagesEnUs = <String, String>{
   'components.inputs.date.min': 'Date must be on or after {min}.',
   'components.inputs.date.max': 'Date must be on or before {max}.',
   'components.inputs.datetime.invalid': 'Invalid date and time.',
-  'components.inputs.datetime.range': 'Date and time must be between {min} and {max}.',
+  'components.inputs.datetime.range':
+      'Date and time must be between {min} and {max}.',
   'components.inputs.datetime.min': 'Date and time must be on or after {min}.',
   'components.inputs.datetime.max': 'Date and time must be on or before {max}.',
   'components.inputs.imageupload.drop': 'Drag an image here or click to choose',
   'components.inputs.imageupload.change': 'Change',
   'components.inputs.imageupload.remove': 'Remove image',
   'components.inputs.imageupload.loading': 'Reading image...',
-  'components.inputs.imageupload.type': 'File type not accepted. Use: {accept}.',
+  'components.inputs.imageupload.type':
+      'File type not accepted. Use: {accept}.',
   'components.inputs.imageupload.size': 'The image must be at most {max}.',
-  'components.inputs.imageupload.dimension': 'The image must be at least {minWidth} × {minHeight} px.',
-  'components.inputs.imageupload.aspect': 'The image aspect ratio must be {aspect}.',
+  'components.inputs.imageupload.dimension':
+      'The image must be at least {minWidth} × {minHeight} px.',
+  'components.inputs.imageupload.aspect':
+      'The image aspect ratio must be {aspect}.',
   'components.inputs.fileupload.drop': 'Drag a file here or click to choose',
-  'components.inputs.fileupload.dropMany': 'Drag files here or click to choose (up to {max})',
+  'components.inputs.fileupload.dropMany':
+      'Drag files here or click to choose (up to {max})',
   'components.inputs.fileupload.remove': 'Remove file',
   'components.inputs.fileupload.loading': 'Reading file...',
-  'components.inputs.fileupload.type': 'File type not accepted. Accepted: {types}.',
+  'components.inputs.fileupload.type':
+      'File type not accepted. Accepted: {types}.',
   'components.inputs.fileupload.size': 'The file must be at most {max}.',
-  'components.inputs.fileupload.total': 'The files together must be at most {max}.',
+  'components.inputs.fileupload.total':
+      'The files together must be at most {max}.',
   'components.inputs.fileupload.count': 'At most {max} files are allowed.',
   'components.inputs.fileupload.file': '{name}: {message}',
   'components.notifications.bell.label': 'Notifications',
@@ -84,7 +99,8 @@ const Map<String, String> componentsMessagesEnUs = <String, String>{
   'components.notifications.bell.clear': 'Clear all',
   'components.notifications.bell.footer': '{shown} of {total} notifications',
   'components.notifications.bell.empty': 'No notifications',
-  'components.notifications.bell.emptyHint': 'When something happens, you will be told here.',
+  'components.notifications.bell.emptyHint':
+      'When something happens, you will be told here.',
   'components.notifications.bell.loading': 'Loading notifications...',
   'components.notifications.bell.error': 'Could not load the notifications.',
   'components.notifications.bell.retry': 'Try again',
@@ -94,15 +110,18 @@ const Map<String, String> componentsMessagesEnUs = <String, String>{
   'components.notifications.bell.hours': '{n} h ago',
   'components.notifications.bell.days': '{n} d ago',
   'components.notifications.bell.announce': 'New notification: {title}',
-  'components.notifications.bell.actionFailed': 'Could not complete the action. Try again.',
-  'components.inputs.imageupload.dropMany': 'Drag images here or click to choose (up to {max})',
+  'components.notifications.bell.actionFailed':
+      'Could not complete the action. Try again.',
+  'components.inputs.imageupload.dropMany':
+      'Drag images here or click to choose (up to {max})',
   'components.notifications.bell.unreadOnly': 'Unread only',
   'components.notifications.bell.caughtUp': 'All caught up',
   'components.notifications.bell.seeAll': 'See all',
   'components.inputs.camera.capture': 'Take photo',
   'components.inputs.camera.switch': 'Switch camera',
   'components.inputs.camera.starting': 'Starting camera...',
-  'components.inputs.camera.permission': 'Camera permission denied. Allow access in the browser or system settings.',
+  'components.inputs.camera.permission':
+      'Camera permission denied. Allow access in the browser or system settings.',
   'components.inputs.camera.noCamera': 'No camera found on this device.',
   'components.inputs.camera.failed': 'Could not open the camera.',
   'components.inputs.camera.retry': 'Try again',
@@ -113,13 +132,18 @@ const Map<String, String> componentsMessagesEnUs = <String, String>{
   'components.validators.password.lower': 'must include a lowercase letter',
   'components.validators.password.number': 'must include a number',
   'components.validators.password.special': 'must include a special character',
-  'components.validators.password.sequence': 'cannot contain sequences (e.g., abc, 123)',
-  'components.validators.password.repeated': 'cannot contain repeated characters in sequence (e.g., aaa, 1111)',
+  'components.validators.password.sequence':
+      'cannot contain sequences (e.g., abc, 123)',
+  'components.validators.password.repeated':
+      'cannot contain repeated characters in sequence (e.g., aaa, 1111)',
   'components.validators.password.invalid': 'Invalid password: {reasons}',
-  'components.validators.birthdate.configMissing': 'Invalid configuration: provide minAge and/or maxAge.',
-  'components.validators.birthdate.configRange': 'Invalid configuration: minAge must be <= maxAge.',
+  'components.validators.birthdate.configMissing':
+      'Invalid configuration: provide minAge and/or maxAge.',
+  'components.validators.birthdate.configRange':
+      'Invalid configuration: minAge must be <= maxAge.',
   'components.validators.birthdate.invalidDate': 'Invalid date.',
-  'components.validators.birthdate.ageBetween': 'Age must be between {min} and {max} years.',
+  'components.validators.birthdate.ageBetween':
+      'Age must be between {min} and {max} years.',
   'components.validators.birthdate.ageMin': 'Age must be at least {min} years.',
   'components.validators.birthdate.ageMax': 'Age must be at most {max} years.',
   'components.autocomplete.empty': 'No records found.',
@@ -131,7 +155,8 @@ const Map<String, String> componentsMessagesEnUs = <String, String>{
   'components.fab.yes': 'Yes',
   'components.fab.no': 'No',
   'components.dock.resetPosition': 'Reset position',
-  'components.dock.resetConfirm': 'Are you sure you want to reset the dock position to default?',
+  'components.dock.resetConfirm':
+      'Are you sure you want to reset the dock position to default?',
   'components.dock.dropHere': 'Drop here',
   'components.actions.cancel': 'Cancel',
   'components.actions.confirm': 'Confirm',
@@ -250,7 +275,8 @@ const Map<String, String> componentsMessagesEnUs = <String, String>{
   'components.textEditor.toolbar.clear': 'Clear',
   'components.textEditor.prompt.url': 'URL',
   'components.textEditor.prompt.imageUrl': 'Image URL',
-  'components.textEditor.help.cssEmbedded': 'CSS is embedded inside the saved HTML document.',
+  'components.textEditor.help.cssEmbedded':
+      'CSS is embedded inside the saved HTML document.',
   'components.gadgets.clock.theme': 'Theme',
   'components.gadgets.clock.selectTheme': 'Select a theme...',
   'components.gadgets.clock.searchTheme': 'Search theme',

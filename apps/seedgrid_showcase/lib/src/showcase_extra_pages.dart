@@ -50,7 +50,8 @@ final texto = sg.vars['--sg-primary-600']; // '22 128 61'
 final fundo = sg.theme.btnPrimaryBg;
 final tom = sg.theme.primary600;''';
 
-  static const String _persist = '''final prefs = await SharedPreferences.getInstance();
+  static const String _persist =
+      '''final prefs = await SharedPreferences.getInstance();
 final seed = prefs.getString('sg:theme:seed') ?? '#16803D';
 
 SeedThemeProvider(
@@ -113,24 +114,24 @@ SeedThemeProvider(
               children: [
                 const Card(child: ShowcaseThemePanel()),
                 const SizedBox(height: 16),
-              Wrap(
-                key: const ValueKey('tema-amostra'),
-                spacing: 8,
-                runSpacing: 8,
-                children: [
-                  SgButton(label: 'Primary', onClick: () {}),
-                  SgButton(
-                    label: 'Secondary',
-                    severity: SgSeverity.secondary,
-                    onClick: () {},
-                  ),
-                  SgButton(
-                    label: 'Success',
-                    severity: SgSeverity.success,
-                    onClick: () {},
-                  ),
-                ],
-              ),
+                Wrap(
+                  key: const ValueKey('tema-amostra'),
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: [
+                    SgButton(label: 'Primary', onClick: () {}),
+                    SgButton(
+                      label: 'Secondary',
+                      severity: SgSeverity.secondary,
+                      onClick: () {},
+                    ),
+                    SgButton(
+                      label: 'Success',
+                      severity: SgSeverity.success,
+                      onClick: () {},
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
@@ -209,10 +210,7 @@ SeedThemeProvider(
                           decoration: BoxDecoration(
                             color: themeTokenColor(current, token),
                             borderRadius: BorderRadius.circular(8),
-                            border: Border.all(
-                              color: scheme.outline,
-                              width: 2,
-                            ),
+                            border: Border.all(color: scheme.outline, width: 2),
                           ),
                         ),
                         const SizedBox(width: 12),

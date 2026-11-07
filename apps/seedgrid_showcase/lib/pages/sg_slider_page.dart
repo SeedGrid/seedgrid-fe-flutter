@@ -112,7 +112,7 @@ class _SgSliderPageState extends State<SgSliderPage> {
       ),
       ShowcaseExample(
         title: 'Dentro de um formulário',
-        description: 'name + control; rules.min valida o valor no envio.',
+        description: 'name + control: o formulário guarda o valor escolhido.',
         preview:
             // #region sg-slider-formulario
             Column(
@@ -125,9 +125,6 @@ class _SgSliderPageState extends State<SgSliderPage> {
                   minValue: 0,
                   maxValue: 100,
                   step: 10,
-                  rules: const SgRules(
-                    min: SgRuleValue(20, 'Brilho mínimo: 20'),
-                  ),
                 ),
                 const SizedBox(height: 12),
                 SgButton(

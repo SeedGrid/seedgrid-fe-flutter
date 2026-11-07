@@ -9,7 +9,7 @@ import 'package:flutter/services.dart';
 import 'package:seedgrid_theme/seedgrid_theme.dart';
 
 import '../../form/sg_form.dart';
-import '../../form/sg_rules.dart';
+import '../../form/sg_field_error.dart';
 import '../../generated/enums.g.dart';
 import '../../generated/sg_autocomplete.g.dart';
 import '../../i18n/i18n.dart';
@@ -80,7 +80,6 @@ class SgAutocomplete<T> extends StatefulWidget implements SgAutocompleteProps {
     this.readOnly,
     this.required,
     this.requiredMessage,
-    this.rules,
     this.showCharCounter,
     this.suffixText,
     this.textInputType,
@@ -226,8 +225,6 @@ class SgAutocomplete<T> extends StatefulWidget implements SgAutocompleteProps {
   @override
   final String? requiredMessage;
   @override
-  final SgRules? rules;
-  @override
   final bool? showCharCounter;
   @override
   final String? suffixText;
@@ -309,8 +306,7 @@ class _SgAutocompleteState<T> extends State<SgAutocomplete<T>> {
       final i18n = useComponentsI18n(context);
       _outer!.registerField(
         widget.name!,
-        rules: mergeRequiredRule(
-          widget.rules,
+        required: requiredMessageFor(
           widget.required,
           widget.requiredMessage ?? t(i18n, 'components.inputs.required'),
         ),

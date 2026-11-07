@@ -873,10 +873,8 @@ void main() {
                   emptyValue: SgInputNumberEmptyValue.nullValue,
                   required: true,
                   requiredMessage: 'Informe a quantidade',
-                  rules: SgRules(
-                    validate: (v) =>
-                        (num.tryParse('$v') ?? 0) >= 10 ? true : 'minimo 10',
-                  ),
+                  validation: (v) =>
+                      (num.tryParse(v) ?? 0) >= 10 ? null : 'minimo 10',
                 ),
                 const SgInputNumber(id: 'z'),
               ],

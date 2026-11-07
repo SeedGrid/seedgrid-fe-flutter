@@ -329,32 +329,33 @@ void main() {
       expect(find.byType(SgSlider), findsNWidgets(3));
     });
 
-    testWidgets('tocar na area muda saturacao e brilho; na barra muda o matiz', (
-      t,
-    ) async {
-      final got = <String>[];
-      await t.pumpWidget(
-        host(
-          SgColorPicker(id: 'a', defaultValue: '#FF0000', onChange: got.add),
-        ),
-      );
-      final r = t.getRect(sv('a'));
-      // canto superior esquerdo = branco; inferior = preto
-      await t.tapAt(Offset(r.left, r.top));
-      await t.pump();
-      expect(got.last, '#FFFFFF');
-      await t.tapAt(Offset(r.right - 0.01, r.top));
-      await t.pump();
-      expect(got.last, '#FF0000');
-      await t.tapAt(Offset(r.left + r.width / 2, r.bottom - 1));
-      await t.pump();
-      expect(got.last, matches(RegExp(r'^#0[0-9A-F]0[0-9A-F]0[0-9A-F]$')));
-      expect(hexText(t, 'a'), got.last);
-      final h = t.getRect(hue('a'));
-      await t.tapAt(Offset(h.left + h.width / 3, h.center.dy));
-      await t.pump();
-      expect(got.last, matches(RegExp(r'^#[0-9A-F]{6}$')));
-    });
+    testWidgets(
+      'tocar na area muda saturacao e brilho; na barra muda o matiz',
+      (t) async {
+        final got = <String>[];
+        await t.pumpWidget(
+          host(
+            SgColorPicker(id: 'a', defaultValue: '#FF0000', onChange: got.add),
+          ),
+        );
+        final r = t.getRect(sv('a'));
+        // canto superior esquerdo = branco; inferior = preto
+        await t.tapAt(Offset(r.left, r.top));
+        await t.pump();
+        expect(got.last, '#FFFFFF');
+        await t.tapAt(Offset(r.right - 0.01, r.top));
+        await t.pump();
+        expect(got.last, '#FF0000');
+        await t.tapAt(Offset(r.left + r.width / 2, r.bottom - 1));
+        await t.pump();
+        expect(got.last, matches(RegExp(r'^#0[0-9A-F]0[0-9A-F]0[0-9A-F]$')));
+        expect(hexText(t, 'a'), got.last);
+        final h = t.getRect(hue('a'));
+        await t.tapAt(Offset(h.left + h.width / 3, h.center.dy));
+        await t.pump();
+        expect(got.last, matches(RegExp(r'^#[0-9A-F]{6}$')));
+      },
+    );
 
     testWidgets('arrastar a barra de matiz e usar setas do teclado', (t) async {
       final got = <String>[];
@@ -367,7 +368,12 @@ void main() {
       await t.dragFrom(Offset(h.left + 2, h.center.dy), Offset(h.width / 3, 0));
       await t.pump();
       // matiz ~120 (verde) com saturacao e brilho em 100%
-      expect(got.last, matches(RegExp(r'^#00[Ff0-9A-F]{2}0[0-9A-F]$|^#[0-9A-F]{2}FF[0-9A-F]{2}$')));
+      expect(
+        got.last,
+        matches(
+          RegExp(r'^#00[Ff0-9A-F]{2}0[0-9A-F]$|^#[0-9A-F]{2}FF[0-9A-F]{2}$'),
+        ),
+      );
       final before = got.length;
       await t.tap(sv('a'));
       await t.pump();
@@ -404,35 +410,36 @@ void main() {
       expect(hexText(t, 'a'), '#336699');
     });
 
-    testWidgets('showSgColorPicker abre o classico por padrao e as barras com mode', (
-      t,
-    ) async {
-      await t.pumpWidget(opener((_) {}));
-      await t.tap(find.text('abrir'));
-      await t.pumpAndSettle();
-      expect(sv('dlg'), findsOneWidget);
-      expect(find.byType(SgSlider), findsNothing);
-      await t.tap(find.byKey(const ValueKey('dlg-cancel')));
-      await t.pumpAndSettle();
-      await t.pumpWidget(
-        host(
-          Builder(
-            builder: (context) => SgButton(
-              label: 'abrir',
-              onClick: () => showSgColorPicker(
-                context,
-                id: 'dlg',
-                mode: SgColorPickerMode.sliders,
+    testWidgets(
+      'showSgColorPicker abre o classico por padrao e as barras com mode',
+      (t) async {
+        await t.pumpWidget(opener((_) {}));
+        await t.tap(find.text('abrir'));
+        await t.pumpAndSettle();
+        expect(sv('dlg'), findsOneWidget);
+        expect(find.byType(SgSlider), findsNothing);
+        await t.tap(find.byKey(const ValueKey('dlg-cancel')));
+        await t.pumpAndSettle();
+        await t.pumpWidget(
+          host(
+            Builder(
+              builder: (context) => SgButton(
+                label: 'abrir',
+                onClick: () => showSgColorPicker(
+                  context,
+                  id: 'dlg',
+                  mode: SgColorPickerMode.sliders,
+                ),
               ),
             ),
           ),
-        ),
-      );
-      await t.tap(find.text('abrir'));
-      await t.pumpAndSettle();
-      expect(sv('dlg'), findsNothing);
-      expect(find.byType(SgSlider), findsNWidgets(3));
-    });
+        );
+        await t.tap(find.text('abrir'));
+        await t.pumpAndSettle();
+        expect(sv('dlg'), findsNothing);
+        expect(find.byType(SgSlider), findsNWidgets(3));
+      },
+    );
   });
 
   group('showSgColorPicker', () {
@@ -457,19 +464,20 @@ void main() {
       expect(find.byKey(const ValueKey('dlg-dialog')), findsNothing);
     });
 
-    testWidgets('OK sem mexer devolve a cor inicial; hex invalido nao muda o resultado', (
-      t,
-    ) async {
-      String? result = 'nao-fechou';
-      await t.pumpWidget(opener((r) => result = r, initial: '#336699'));
-      await t.tap(find.text('abrir'));
-      await t.pumpAndSettle();
-      await t.enterText(hexField('dlg'), '#12');
-      await t.pump();
-      await t.tap(find.byKey(const ValueKey('dlg-ok')));
-      await t.pumpAndSettle();
-      expect(result, '#336699');
-    });
+    testWidgets(
+      'OK sem mexer devolve a cor inicial; hex invalido nao muda o resultado',
+      (t) async {
+        String? result = 'nao-fechou';
+        await t.pumpWidget(opener((r) => result = r, initial: '#336699'));
+        await t.tap(find.text('abrir'));
+        await t.pumpAndSettle();
+        await t.enterText(hexField('dlg'), '#12');
+        await t.pump();
+        await t.tap(find.byKey(const ValueKey('dlg-ok')));
+        await t.pumpAndSettle();
+        expect(result, '#336699');
+      },
+    );
 
     testWidgets('Cancelar devolve null', (t) async {
       String? result = 'nao-fechou';
@@ -556,7 +564,9 @@ void main() {
     expect(byName['mode']!.defaultValue, 'gradient');
     // nenhum componente somente-Flutter pode colidir com o registro do React
     expect(
-      sgPropSpecs.keys.toSet().intersection(sgFlutterOnlyPropSpecs.keys.toSet()),
+      sgPropSpecs.keys.toSet().intersection(
+        sgFlutterOnlyPropSpecs.keys.toSet(),
+      ),
       isEmpty,
     );
   });

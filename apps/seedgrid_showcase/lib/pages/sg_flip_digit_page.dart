@@ -159,7 +159,7 @@ class _SgFlipDigitPageState extends State<SgFlipDigitPage> {
         code: SgFlipDigitPageSnippets.sgFlipDigitSequencia,
       ),
       ShowcaseExample(
-        title: 'Auto increment',
+        title: 'Incremento automático',
         description: 'Troca automática a cada 1,3 s.',
         preview:
             // #region sg-flip-digit-auto

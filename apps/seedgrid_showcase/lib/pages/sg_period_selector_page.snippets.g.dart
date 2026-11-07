@@ -31,7 +31,6 @@ Column(
       name: 'periodo',
       control: _form,
       label: context.tx('Período do relatório'),
-      rules: const SgRules(required: 'Escolha um período'),
     ),
     const SizedBox(height: 12),
     SgButton(

@@ -12,7 +12,7 @@ import 'package:seedgrid_theme/seedgrid_theme.dart';
 
 import '../../form/sg_form.dart';
 import '../../form/sg_validation_scope.dart';
-import '../../form/sg_rules.dart';
+import '../../form/sg_field_error.dart';
 import '../../i18n/i18n.dart';
 import '../../theme_access.dart';
 import 'number_state.dart';
@@ -46,7 +46,6 @@ class NumericFieldConfig {
     this.borderRadius,
     this.required,
     this.requiredMessage,
-    this.rules,
     this.name,
     this.control,
     this.error,
@@ -92,7 +91,6 @@ class NumericFieldConfig {
   final Object? borderRadius;
   final bool? required;
   final String? requiredMessage;
-  final SgRules? rules;
   final String? name;
   final SgFormController? control;
   final String? error;
@@ -221,8 +219,7 @@ class NumericFieldState extends State<NumericField>
     _form!.registerField(
       c.name!,
       validator: _formValidate,
-      rules: mergeRequiredRule(
-        c.rules,
+      required: requiredMessageFor(
         c.required,
         c.requiredMessage ?? t(i18n, 'components.inputs.required'),
       ),

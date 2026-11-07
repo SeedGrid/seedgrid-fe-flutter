@@ -92,11 +92,6 @@ Column(
         SgPickListItem(label: context.tx('Carla'), value: 'carla'),
       ],
       target: const [],
-      rules: SgRules(
-        validate: (v) => v is SgPickListValue && v.target.isNotEmpty
-            ? true
-            : 'Escolha ao menos uma pessoa',
-      ),
     ),
     const SizedBox(height: 12),
     SgButton(

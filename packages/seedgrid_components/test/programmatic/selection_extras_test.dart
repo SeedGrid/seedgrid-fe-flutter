@@ -84,7 +84,8 @@ void main() {
             source: _items,
             name: 'f',
             control: form,
-            rules: const SgRules(required: 'Obrigatorio'),
+            required: true,
+            requiredMessage: 'Obrigatorio',
           ),
         ),
       );

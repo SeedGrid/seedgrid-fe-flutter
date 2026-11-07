@@ -80,9 +80,6 @@ Column(
       minValue: 0,
       maxValue: 9,
       width: 160,
-      rules: SgRules(
-        validate: (v) => (v as num) >= 2 ? true : 'Mínimo 2',
-      ),
     ),
     const SizedBox(height: 12),
     SgButton(

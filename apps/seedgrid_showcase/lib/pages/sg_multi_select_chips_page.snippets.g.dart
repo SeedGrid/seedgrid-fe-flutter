@@ -110,7 +110,7 @@ Column(
       control: _form,
       labelText: 'Áreas',
       required: true,
-      rules: const SgRules(required: 'Escolha ao menos uma área'),
+
       options: [
         SgMultiSelectOption(
           label: context.tx('Vendas'),

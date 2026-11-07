@@ -22,7 +22,7 @@ import 'package:seedgrid_theme/seedgrid_theme.dart';
 
 import '../../buttons/sg_button.dart';
 import '../../form/sg_form.dart';
-import '../../form/sg_rules.dart';
+import '../../form/sg_field_error.dart';
 import '../../generated/enums.g.dart';
 import '../../generated/sg_text_editor.g.dart';
 import '../../i18n/i18n.dart';
@@ -92,7 +92,6 @@ class SgTextEditor extends StatefulWidget implements SgTextEditorProps {
     this.onLoad,
     this.onSave,
     this.placeholder,
-    this.rules,
     this.showCssEditor = false,
     this.valueHtml,
     this.htmlFilePicker,
@@ -134,8 +133,6 @@ class SgTextEditor extends StatefulWidget implements SgTextEditorProps {
   final void Function(SgTextEditorFile file, SgTextEditorSaveMeta meta)? onSave;
   @override
   final String? placeholder;
-  @override
-  final SgRules? rules;
   @override
   final bool? showCssEditor;
   @override
@@ -193,7 +190,7 @@ class _SgTextEditorState extends State<SgTextEditor> {
 
   void _register() {
     if (!_bound) return;
-    _form!.registerField(widget.name!, rules: widget.rules);
+    _form!.registerField(widget.name!);
     _syncFromForm();
   }
 

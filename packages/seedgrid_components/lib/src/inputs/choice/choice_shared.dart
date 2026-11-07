@@ -6,7 +6,6 @@ import 'package:seedgrid_theme/seedgrid_theme.dart';
 import '../../theme_access.dart';
 
 import '../../form/sg_form.dart';
-import '../../form/sg_rules.dart';
 
 /// Liga um campo ao SgFormController, como o `<Controller>` do React: valor e erro vem do
 /// formulario, e mudancas voltam para ele. Cada State cria um e chama [bind] em
@@ -26,8 +25,8 @@ class ChoiceFieldBinding {
     BuildContext context, {
     required SgFormController? control,
     required String? name,
-    required SgRules? rules,
     Object? initialValue,
+    String? required,
     SgFieldValidator? validator,
   }) {
     final f = control ?? SgForm.maybeOf(context);
@@ -47,7 +46,7 @@ class ChoiceFieldBinding {
     if (bound) {
       form!.registerField(
         name!,
-        rules: rules,
+        required: required,
         initialValue: initialValue,
         validator: validator,
       );

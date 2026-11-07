@@ -365,53 +365,6 @@ void main() {
         expect(shown(t), '4');
       },
     );
-
-    testWidgets(
-      'rules: validate do formulario mostra a mensagem; SgForm mais proximo sem control',
-      (t) async {
-        Map<String, SgFieldError>? invalid;
-        await t.pumpWidget(
-          host(
-            SgForm(
-              defaultValues: const {'qtd': 1},
-              child: Column(
-                children: [
-                  SgStepperInput(
-                    id: 's',
-                    name: 'qtd',
-                    minValue: 0,
-                    maxValue: 9,
-                    rules: SgRules(
-                      validate: (v) => (v as num) >= 3 ? true : 'minimo 3',
-                    ),
-                  ),
-                  Builder(
-                    builder: (context) => TextButton(
-                      onPressed: () => SgForm.of(
-                        context,
-                      ).handleSubmit((_) {}, (e) => invalid = e),
-                      child: const Text('Enviar'),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        );
-        await t.tap(find.text('Enviar'));
-        await t.pumpAndSettle();
-        expect(invalid!['qtd']!.message, 'minimo 3');
-        expect(find.text('minimo 3'), findsOneWidget);
-        await t.tap(up());
-        await t.tap(up());
-        await t.pumpAndSettle();
-        expect(
-          find.text('minimo 3'),
-          findsNothing,
-          reason: 'revalida a cada mudanca depois do envio',
-        );
-      },
-    );
   });
 
   group('aparencia', () {

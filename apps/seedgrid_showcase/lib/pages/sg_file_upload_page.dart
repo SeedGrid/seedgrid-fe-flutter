@@ -88,11 +88,7 @@ class _SgFileUploadPageState extends State<SgFileUploadPage> {
             const SgFileUpload(
               id: 'planilha',
               labelText: 'Planilha ou PDF',
-              mediaType: [
-                SgMediaType.pdf,
-                SgMediaType.xls,
-                SgMediaType.xlsx,
-              ],
+              mediaType: [SgMediaType.pdf, SgMediaType.xls, SgMediaType.xlsx],
               maxFiles: 2,
             ),
         // #endregion
@@ -161,7 +157,8 @@ class _SgFileUploadPageState extends State<SgFileUploadPage> {
                   control: _form,
                   labelText: 'Comprovantes',
                   maxFiles: 3,
-                  rules: const SgRules(required: 'Anexe ao menos um arquivo'),
+                  required: true,
+                  requiredMessage: 'Anexe ao menos um arquivo',
                 ),
                 const SizedBox(height: 12),
                 SgButton(

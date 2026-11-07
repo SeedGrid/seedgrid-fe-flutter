@@ -31,8 +31,6 @@ abstract interface class SgRadioGroupProps {
   bool? get readOnly;
   /// Marca o grupo como obrigatorio. Padrão: `false`.
   bool? get required;
-  /// Tipo TS: `RegisterOptions&lt;any&gt;` (sem tradução exata; ver excecoes.json).
-  Object? get rules;
   /// Estilo visual de selecao. Padrão: `radio`.
   SgRadioGroupSelectionStyle? get selectionStyle;
   /// Opcoes disponiveis. Tipo TS: `SgRadioGroupOption[]` (sem tradução exata; ver excecoes.json).
@@ -143,14 +141,6 @@ const List<SgPropSpec> sgRadioGroupPropSpecs = <SgPropSpec>[
     required: false,
     defaultValue: 'false',
     description: 'Marca o grupo como obrigatorio.',
-  ),
-  SgPropSpec(
-    name: 'rules',
-    reactName: 'rules',
-    type: 'Object?',
-    tsType: 'RegisterOptions<any>',
-    required: false,
-    exact: false,
   ),
   SgPropSpec(
     name: 'selectionStyle',

@@ -25,15 +25,12 @@ void main() {
     expect(find.text('Selecionadas: sp, cps'), findsOneWidget);
   });
 
-  testWidgets('SgMultiSelect: formulario valida, aceita e envia a lista', (
+  testWidgets('SgMultiSelect: formulario aceita e envia a lista', (
     t,
   ) async {
     setSize(t, kSizes.values.last);
     await t.pumpWidget(app(const SgMultiSelectPage()));
     await tapLink(t, const ValueKey('link-exemplo-5'));
-    await t.tap(find.text('Enviar'));
-    await settle(t);
-    expect(find.text('Escolha ao menos uma tag'), findsOneWidget);
     await t.tap(_field('tags'));
     await settle(t);
     await t.tap(_option('urgente'));
@@ -44,7 +41,6 @@ void main() {
       const Offset(1200, 700),
     ); // fecha a lista (a lista cobre o botao)
     await settle(t);
-    expect(find.text('Escolha ao menos uma tag'), findsNothing);
     await t.tap(find.text('Enviar'));
     await settle(t);
     expect(find.text('Enviado: [urgente, sup]'), findsOneWidget);
@@ -99,15 +95,12 @@ void main() {
   );
 
   testWidgets(
-    'SgMultiSelectChips: formulario mostra o erro abaixo do campo e envia a lista',
+    'SgMultiSelectChips: formulario mostra o asterisco e envia a lista',
     (t) async {
       setSize(t, kSizes.values.last);
       await t.pumpWidget(app(const SgMultiSelectChipsPage()));
       await tapLink(t, const ValueKey('link-exemplo-5'));
       expect(find.text('Áreas *', findRichText: true), findsOneWidget);
-      await t.tap(find.text('Enviar'));
-      await settle(t);
-      expect(find.text('Escolha ao menos uma área'), findsOneWidget);
       await t.tap(_field('areas'));
       await settle(t);
       await t.tap(_option('vendas'));

@@ -134,7 +134,8 @@ class ShowcaseThemeEditor extends StatefulWidget {
 
 class _ShowcaseThemeEditorState extends State<ShowcaseThemeEditor> {
   late String _seed;
-  late Brightness _mode; // so para a previa: o claro/escuro fica no botao da barra
+  late Brightness
+  _mode; // so para a previa: o claro/escuro fica no botao da barra
   late final TextEditingController _hexCtl;
   bool _started = false;
 
@@ -210,7 +211,9 @@ class _ShowcaseThemeEditorState extends State<ShowcaseThemeEditor> {
                   key: const ValueKey('tema-editor-amostra'),
                   borderRadius: BorderRadius.circular(draft.radius),
                   onTap: () => _openColorPicker(
-                    customValid ? _hex(_hexCtl.text.toUpperCase()) : _hex(_seed),
+                    customValid
+                        ? _hex(_hexCtl.text.toUpperCase())
+                        : _hex(_seed),
                   ),
                   child: Container(
                     width: 48,
@@ -220,9 +223,7 @@ class _ShowcaseThemeEditorState extends State<ShowcaseThemeEditor> {
                           ? _hex(_hexCtl.text.toUpperCase())
                           : null,
                       borderRadius: BorderRadius.circular(draft.radius),
-                      border: Border.all(
-                        color: Theme.of(context).dividerColor,
-                      ),
+                      border: Border.all(color: Theme.of(context).dividerColor),
                     ),
                   ),
                 ),
@@ -265,7 +266,9 @@ class _ShowcaseThemeEditorState extends State<ShowcaseThemeEditor> {
                   _SeedTile(
                     key: const ValueKey('tema-editor-cor-custom'),
                     width: w,
-                    color: customValid ? _hex(_hexCtl.text.toUpperCase()) : null,
+                    color: customValid
+                        ? _hex(_hexCtl.text.toUpperCase())
+                        : null,
                     label: context.tr('editorCustom'),
                     selected: false,
                     onTap: customValid ? () => _pick(_hexCtl.text) : null,

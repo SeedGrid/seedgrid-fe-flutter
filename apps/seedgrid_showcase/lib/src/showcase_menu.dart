@@ -180,7 +180,9 @@ class _ShowcaseMenuState extends State<ShowcaseMenu> {
                   ),
                   label: item.name,
                   enabled: item.hasPage,
-                  badge: (item.status == 'portado' || item.status == 'somente-flutter')
+                  badge:
+                      (item.status == 'portado' ||
+                          item.status == 'somente-flutter')
                       ? null
                       : context.tr('status.${item.status}'),
                   onClick: item.hasPage

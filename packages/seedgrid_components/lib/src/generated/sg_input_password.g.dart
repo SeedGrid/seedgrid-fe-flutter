@@ -83,8 +83,6 @@ abstract interface class SgInputPasswordProps {
   /// Marca o campo como obrigatorio. Padrão: `false`.
   bool? get required;
   String? get requiredMessage;
-  /// Tipo TS: `RegisterOptions&lt;any&gt;` (sem tradução exata; ver excecoes.json).
-  Object? get rules;
   bool? get showCharCounter;
   /// Exibe barra de forca da senha. Padrão: `true`.
   bool? get showStrengthBar;
@@ -461,14 +459,6 @@ const List<SgPropSpec> sgInputPasswordPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-  ),
-  SgPropSpec(
-    name: 'rules',
-    reactName: 'rules',
-    type: 'Object?',
-    tsType: 'RegisterOptions<any>',
-    required: false,
-    exact: false,
   ),
   SgPropSpec(
     name: 'showCharCounter',

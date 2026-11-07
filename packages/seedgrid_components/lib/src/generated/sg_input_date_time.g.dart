@@ -69,8 +69,6 @@ abstract interface class SgInputDateTimeProps {
   /// Marca o campo como obrigatorio. Padrão: `false`.
   bool? get required;
   String? get requiredMessage;
-  /// Tipo TS: `RegisterOptions&lt;any&gt;` (sem tradução exata; ver excecoes.json).
-  Object? get rules;
   bool? get showCharCounter;
   /// Mostra e aceita segundos. Padrão: `false`.
   bool? get showSeconds;
@@ -390,14 +388,6 @@ const List<SgPropSpec> sgInputDateTimePropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-  ),
-  SgPropSpec(
-    name: 'rules',
-    reactName: 'rules',
-    type: 'Object?',
-    tsType: 'RegisterOptions<any>',
-    required: false,
-    exact: false,
   ),
   SgPropSpec(
     name: 'showCharCounter',

@@ -66,7 +66,6 @@ void main() {
       List<SgPickListItem> target = const [],
       String? name,
       SgFormController? control,
-      SgRules? rules,
       bool disabled = false,
       bool readOnly = false,
       ValueChanged<SgPickListChangeEvent>? onChange,
@@ -76,7 +75,6 @@ void main() {
       value: value,
       name: name,
       control: control,
-      rules: rules,
       enabled: !(disabled),
       readOnly: readOnly,
       onChange: onChange,
@@ -219,7 +217,7 @@ void main() {
       expect(find.byKey(const ValueKey('pl-source-item-1')), findsNWidgets(2));
     });
 
-    testWidgets('f: required via rules aparece no submit e some ao mover', (
+    testWidgets('f: erro do formulario aparece no campo e some ao limpar', (
       t,
     ) async {
       final form = SgFormController(
@@ -227,61 +225,11 @@ void main() {
           'f': const SgPickListValue(source: [_a], target: []),
         },
       );
-      await _mount(
-        t,
-        pick(
-          name: 'f',
-          control: form,
-          source: const [_a],
-          rules: SgRules(
-            validate: (v) => (v is SgPickListValue && v.target.isNotEmpty)
-                ? true
-                : 'Escolha',
-          ),
-        ),
-      );
-      await form.handleSubmit((_) {});
+      await _mount(t, pick(name: 'f', control: form, source: const [_a]));
+      form.setError('f', 'Escolha');
       await t.pump();
       expect(find.text('Escolha'), findsOneWidget);
-      await _tap(t, 'pl-allToTarget');
-      expect(find.text('Escolha'), findsNothing);
-      form.reset();
-      await t.pump();
-      expect(find.text('Escolha'), findsNothing);
-    });
-
-    testWidgets('f: setValue com shouldValidate mostra e limpa o erro', (
-      t,
-    ) async {
-      final form = SgFormController(
-        defaultValues: {
-          'f': const SgPickListValue(source: [_a], target: []),
-        },
-      );
-      await _mount(
-        t,
-        pick(
-          name: 'f',
-          control: form,
-          rules: SgRules(
-            validate: (v) => (v is SgPickListValue && v.target.isNotEmpty)
-                ? true
-                : 'Escolha',
-          ),
-        ),
-      );
-      await form.setValue(
-        'f',
-        const SgPickListValue(source: [_a], target: []),
-        shouldValidate: true,
-      );
-      await t.pump();
-      expect(find.text('Escolha'), findsOneWidget);
-      await form.setValue(
-        'f',
-        const SgPickListValue(source: [], target: [_a]),
-        shouldValidate: true,
-      );
+      form.clearErrors(['f']);
       await t.pump();
       expect(find.text('Escolha'), findsNothing);
     });
@@ -342,7 +290,6 @@ void main() {
       List<SgOrderListItem> source = const [a, b, c],
       String? name,
       SgFormController? control,
-      SgRules? rules,
       bool disabled = false,
       bool readOnly = false,
       ValueChanged<List<SgOrderListItem>>? onChange,
@@ -351,7 +298,6 @@ void main() {
       value: value,
       name: name,
       control: control,
-      rules: rules,
       enabled: !(disabled),
       readOnly: readOnly,
       onChange: onChange,
@@ -443,31 +389,20 @@ void main() {
       expect(_ol(t), [3, 1]);
     });
 
-    testWidgets(
-      'f: required via rules (lista vazia) aparece no submit e some com setValue',
-      (t) async {
-        final form = SgFormController(
-          defaultValues: {'f': const <SgOrderListItem>[]},
-        );
-        await _mount(
-          t,
-          order(
-            name: 'f',
-            control: form,
-            rules: SgRules(
-              validate: (v) => (v is List && v.isNotEmpty) ? true : 'Vazia',
-            ),
-          ),
-        );
-        await form.handleSubmit((_) {});
-        await t.pump();
-        expect(find.text('Vazia'), findsOneWidget);
-        await form.setValue('f', const [a], shouldValidate: true);
-        await t.pump();
-        expect(find.text('Vazia'), findsNothing);
-        expect(_ol(t), [1]);
-      },
-    );
+    testWidgets('f: erro do formulario aparece no campo e some ao limpar', (
+      t,
+    ) async {
+      final form = SgFormController(
+        defaultValues: {'f': const <SgOrderListItem>[]},
+      );
+      await _mount(t, order(name: 'f', control: form));
+      form.setError('f', 'Vazia');
+      await t.pump();
+      expect(find.text('Vazia'), findsOneWidget);
+      form.clearErrors(['f']);
+      await t.pump();
+      expect(find.text('Vazia'), findsNothing);
+    });
 
     testWidgets(
       'g: setValue com item selecionado descarta a selecao que sumiu e continua movendo',

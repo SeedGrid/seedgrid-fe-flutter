@@ -30,7 +30,6 @@ Widget build(
   width: o.width,
   labelPosition: enumOf(SgInputBirthDateLabelPosition.values, o.labelPosition),
   initialValue: o.initialValue,
-  rules: o.rules,
   minAge: minAge,
   maxAge: maxAge,
   minDate: minDate,

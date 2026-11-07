@@ -36,8 +36,6 @@ abstract interface class SgToggleSwitchProps {
   bool? get readOnly;
   bool? get required;
   String? get requiredMessage;
-  /// Tipo TS: `RegisterOptions&lt;any&gt;` (sem tradução exata; ver excecoes.json).
-  Object? get rules;
   String? get switchClassName;
   String? get thumbClassName;
   String? get trackClassName;
@@ -178,14 +176,6 @@ const List<SgPropSpec> sgToggleSwitchPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-  ),
-  SgPropSpec(
-    name: 'rules',
-    reactName: 'rules',
-    type: 'Object?',
-    tsType: 'RegisterOptions<any>',
-    required: false,
-    exact: false,
   ),
   SgPropSpec(
     name: 'switchClassName',

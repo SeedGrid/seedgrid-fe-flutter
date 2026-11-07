@@ -6,7 +6,7 @@
 import 'package:flutter/material.dart';
 
 import '../../form/sg_form.dart';
-import '../../form/sg_rules.dart';
+import '../../form/sg_field_error.dart';
 import '../../generated/enums.g.dart';
 import '../../generated/sg_input_date.g.dart';
 import '../../i18n/i18n.dart';
@@ -114,7 +114,6 @@ class SgInputDate extends StatefulWidget implements SgInputDateProps {
     this.readOnly,
     this.required,
     this.requiredMessage,
-    this.rules,
     this.showCharCounter,
     this.suffixText,
     this.textInputType,
@@ -246,9 +245,6 @@ class SgInputDate extends StatefulWidget implements SgInputDateProps {
   final String? requiredMessage;
 
   @override
-  final SgRules? rules;
-
-  @override
   final bool? showCharCounter;
 
   @override
@@ -375,7 +371,6 @@ class _SgInputDateState extends State<SgInputDate> {
       _registeredName = widget.name;
       _form!.registerField(
         widget.name!,
-        rules: widget.rules,
         initialValue: _seen.isEmpty ? null : _seen,
         validator: _formValidate,
       );

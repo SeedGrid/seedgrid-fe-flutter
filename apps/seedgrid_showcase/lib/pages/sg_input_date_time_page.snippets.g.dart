@@ -49,7 +49,8 @@ Column(
       control: _form,
       labelText: 'Consulta',
       timeZone: '-03:00',
-      rules: const SgRules(required: 'Informe a data e a hora'),
+      required: true,
+      requiredMessage: 'Informe a data e a hora',
     ),
     const SizedBox(height: 12),
     SgButton(

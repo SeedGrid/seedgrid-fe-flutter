@@ -47,7 +47,6 @@ Widget build(
   autofocus: o.autofocus,
   focusNode: o.focusNode,
   onSubmitted: o.onSubmitted,
-  rules: o.rules,
   country: country,
   lengthMessage: lengthMessage,
   invalidMessage: invalidMessage,

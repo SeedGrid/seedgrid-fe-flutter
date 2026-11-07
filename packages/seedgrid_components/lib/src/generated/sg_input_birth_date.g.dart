@@ -69,8 +69,6 @@ abstract interface class SgInputBirthDateProps {
   /// Marca o campo como obrigatorio. Padrão: `false`.
   bool? get required;
   String? get requiredMessage;
-  /// Tipo TS: `RegisterOptions&lt;any&gt;` (sem tradução exata; ver excecoes.json).
-  Object? get rules;
   bool? get showCharCounter;
   String? get suffixText;
   SgInputBirthDateTextInputType? get textInputType;
@@ -383,14 +381,6 @@ const List<SgPropSpec> sgInputBirthDatePropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-  ),
-  SgPropSpec(
-    name: 'rules',
-    reactName: 'rules',
-    type: 'Object?',
-    tsType: 'RegisterOptions<any>',
-    required: false,
-    exact: false,
   ),
   SgPropSpec(
     name: 'showCharCounter',

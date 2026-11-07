@@ -14,6 +14,8 @@ import '../props/sg_prop_spec.dart';
 abstract interface class SgWizardProps {
   /// Paginas do wizard renderizadas em ordem. No React e `children`.
   Widget get child;
+  /// Quando false, o wizard inteiro fica desabilitado: Anterior, Proximo, Concluir e os passos do stepper deixam de responder; a etapa atual segue visivel. Diferente de nextDisabled, que so bloqueia o avanco. Padrão: `true`.
+  bool? get enabled;
   /// Indice inicial da etapa ativa. Padrão: `0`.
   num? get initialStep;
   /// Tipo TS: `Partial&lt;SgWizardLabels&gt;` (sem tradução exata; ver excecoes.json).
@@ -45,6 +47,15 @@ const List<SgPropSpec> sgWizardPropSpecs = <SgPropSpec>[
     tsType: 'React.ReactNode',
     required: true,
     description: 'Paginas do wizard renderizadas em ordem.',
+  ),
+  SgPropSpec(
+    name: 'enabled',
+    reactName: 'enabled',
+    type: 'bool?',
+    tsType: 'boolean',
+    required: false,
+    defaultValue: 'true',
+    description: 'Quando false, o wizard inteiro fica desabilitado: Anterior, Proximo, Concluir e os passos do stepper deixam de responder; a etapa atual segue visivel. Diferente de nextDisabled, que so bloqueia o avanco.',
   ),
   SgPropSpec(
     name: 'initialStep',

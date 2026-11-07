@@ -1,0 +1,362 @@
+{
+ "_aviso": "Divergencias conhecidas de hoje; so pode encolher (P148.F1.T1). Gerado por verify.mjs --atualizar-base.",
+ "componentes": {
+  "SgClock": [
+   "react-nao-lido"
+  ],
+  "SgClockThemePicker": [
+   "falta-no-flutter",
+   "quantidade",
+   "so-no-flutter"
+  ],
+  "SgClockThemePreview": [
+   "falta-no-flutter",
+   "quantidade",
+   "so-no-flutter"
+  ],
+  "SgLinearGauge": [
+   "falta-no-flutter",
+   "quantidade",
+   "so-no-flutter"
+  ],
+  "SgQrCode": [
+   "falta-no-flutter",
+   "quantidade",
+   "so-no-flutter"
+  ],
+  "SgRadialGauge": [
+   "falta-no-flutter",
+   "quantidade",
+   "so-no-flutter"
+  ],
+  "SgStringAnimator": [
+   "falta-no-flutter",
+   "quantidade",
+   "so-no-flutter"
+  ],
+  "UseComponentsI18n": [
+   "sem-pagina-flutter"
+  ],
+  "UseSgEnvironment": [
+   "sem-pagina-flutter"
+  ],
+  "UseSgPersistence": [
+   "sem-pagina-flutter"
+  ],
+  "UseSgPersistentState": [
+   "sem-pagina-flutter"
+  ],
+  "UseSgRealtimeEvent": [
+   "sem-pagina-flutter"
+  ],
+  "UseSgRealtimeStatus": [
+   "sem-pagina-flutter"
+  ],
+  "UseSgTime": [
+   "sem-pagina-flutter"
+  ],
+  "SgClockThemeProvider": [
+   "falta-no-flutter",
+   "so-no-flutter"
+  ],
+  "SgComponentsI18nProvider": [
+   "sem-pagina-flutter"
+  ],
+  "SgEnvironmentProvider": [
+   "falta-no-flutter",
+   "quantidade",
+   "so-no-flutter"
+  ],
+  "SgRealtimeProvider": [
+   "falta-no-flutter",
+   "quantidade",
+   "so-no-flutter"
+  ],
+  "SgTimeProvider": [
+   "falta-no-flutter",
+   "quantidade",
+   "so-no-flutter"
+  ],
+  "SgAccordion": [
+   "falta-no-flutter",
+   "so-no-flutter"
+  ],
+  "SgAutocomplete": [
+   "falta-no-flutter",
+   "so-no-flutter"
+  ],
+  "SgAvatar": [
+   "quantidade",
+   "so-no-flutter"
+  ],
+  "SgBadge": [
+   "quantidade",
+   "so-no-flutter"
+  ],
+  "SgBadgeOverlay": [
+   "falta-no-flutter",
+   "quantidade",
+   "so-no-flutter"
+  ],
+  "SgBreadcrumb": [
+   "falta-no-flutter",
+   "quantidade",
+   "so-no-flutter"
+  ],
+  "SgCard": [
+   "falta-no-flutter",
+   "quantidade",
+   "so-no-flutter"
+  ],
+  "SgCarousel": [
+   "falta-no-flutter",
+   "so-no-flutter"
+  ],
+  "SgCombobox": [
+   "falta-no-flutter",
+   "quantidade",
+   "so-no-flutter"
+  ],
+  "SgConfirmationDialog": [
+   "falta-no-flutter",
+   "quantidade",
+   "so-no-flutter"
+  ],
+  "SgDatatable": [
+   "falta-no-flutter",
+   "quantidade",
+   "so-no-flutter"
+  ],
+  "SgDialog": [
+   "falta-no-flutter",
+   "so-no-flutter"
+  ],
+  "SgDockLayout": [
+   "falta-no-flutter",
+   "quantidade",
+   "so-no-flutter"
+  ],
+  "SgDockMenu": [
+   "falta-no-flutter",
+   "quantidade",
+   "so-no-flutter"
+  ],
+  "SgDockScreen": [
+   "falta-no-flutter",
+   "quantidade",
+   "so-no-flutter"
+  ],
+  "SgExpandablePanel": [
+   "falta-no-flutter",
+   "quantidade",
+   "so-no-flutter"
+  ],
+  "SgFileUpload": [
+   "quantidade",
+   "so-no-flutter"
+  ],
+  "SgGrid": [
+   "falta-no-flutter",
+   "quantidade",
+   "so-no-flutter"
+  ],
+  "SgGroupBox": [
+   "falta-no-flutter",
+   "quantidade",
+   "so-no-flutter"
+  ],
+  "SgImageUpload": [
+   "quantidade",
+   "so-no-flutter"
+  ],
+  "SgInputBirthDate": [
+   "falta-no-flutter",
+   "so-no-flutter"
+  ],
+  "SgInputCnpj": [
+   "falta-no-flutter",
+   "so-no-flutter"
+  ],
+  "SgInputCpf": [
+   "falta-no-flutter",
+   "so-no-flutter"
+  ],
+  "SgInputCpfCnpj": [
+   "falta-no-flutter",
+   "so-no-flutter"
+  ],
+  "SgInputCurrency": [
+   "falta-no-flutter",
+   "so-no-flutter"
+  ],
+  "SgInputDate": [
+   "falta-no-flutter",
+   "so-no-flutter"
+  ],
+  "SgInputDateTime": [
+   "falta-no-flutter",
+   "so-no-flutter"
+  ],
+  "SgInputEmail": [
+   "falta-no-flutter",
+   "so-no-flutter"
+  ],
+  "SgInputNumber": [
+   "falta-no-flutter",
+   "so-no-flutter"
+  ],
+  "SgInputOtp": [
+   "falta-no-flutter",
+   "quantidade",
+   "so-no-flutter"
+  ],
+  "SgInputPassword": [
+   "quantidade",
+   "so-no-flutter"
+  ],
+  "SgInputPhone": [
+   "falta-no-flutter",
+   "so-no-flutter"
+  ],
+  "SgInputPostalCode": [
+   "falta-no-flutter",
+   "quantidade",
+   "so-no-flutter"
+  ],
+  "SgInputText": [
+   "falta-no-flutter",
+   "so-no-flutter"
+  ],
+  "SgInputTextArea": [
+   "falta-no-flutter",
+   "quantidade",
+   "so-no-flutter"
+  ],
+  "SgInputTextSearch": [
+   "falta-no-flutter",
+   "quantidade",
+   "so-no-flutter"
+  ],
+  "SgMenu": [
+   "falta-no-flutter",
+   "so-no-flutter"
+  ],
+  "SgMultiSelect": [
+   "falta-no-flutter",
+   "so-no-flutter"
+  ],
+  "SgMultiSelectChips": [
+   "falta-no-flutter",
+   "so-no-flutter"
+  ],
+  "SgOrderList": [
+   "falta-no-flutter",
+   "so-no-flutter"
+  ],
+  "SgPageControl": [
+   "falta-no-flutter",
+   "quantidade",
+   "so-no-flutter"
+  ],
+  "SgPanel": [
+   "falta-no-flutter",
+   "quantidade",
+   "so-no-flutter"
+  ],
+  "SgPeriodSelector": [
+   "falta-no-flutter",
+   "so-no-flutter"
+  ],
+  "SgPickList": [
+   "falta-no-flutter",
+   "quantidade",
+   "so-no-flutter"
+  ],
+  "SgPopup": [
+   "falta-no-flutter",
+   "quantidade",
+   "so-no-flutter"
+  ],
+  "SgRadioGroup": [
+   "falta-no-flutter",
+   "so-no-flutter"
+  ],
+  "SgRating": [
+   "falta-no-flutter",
+   "so-no-flutter"
+  ],
+  "SgScreen": [
+   "falta-no-flutter",
+   "quantidade",
+   "so-no-flutter"
+  ],
+  "SgSkeleton": [
+   "falta-no-flutter",
+   "quantidade",
+   "so-no-flutter"
+  ],
+  "SgSlider": [
+   "falta-no-flutter",
+   "quantidade",
+   "so-no-flutter"
+  ],
+  "SgStack": [
+   "falta-no-flutter",
+   "quantidade",
+   "so-no-flutter"
+  ],
+  "SgStepperInput": [
+   "falta-no-flutter",
+   "quantidade",
+   "so-no-flutter"
+  ],
+  "SgTextEditor": [
+   "falta-no-flutter",
+   "quantidade",
+   "so-no-flutter"
+  ],
+  "SgToastHost": [
+   "falta-no-flutter",
+   "quantidade",
+   "so-no-flutter"
+  ],
+  "SgToaster": [
+   "falta-no-flutter",
+   "quantidade",
+   "so-no-flutter"
+  ],
+  "SgToggleSwitch": [
+   "falta-no-flutter",
+   "quantidade",
+   "so-no-flutter"
+  ],
+  "SgToolbar": [
+   "falta-no-flutter",
+   "so-no-flutter"
+  ],
+  "SgTreeView": [
+   "falta-no-flutter",
+   "quantidade",
+   "so-no-flutter"
+  ],
+  "SgWhistleHost": [
+   "falta-no-flutter",
+   "quantidade",
+   "so-no-flutter"
+  ],
+  "SgWhistler": [
+   "falta-no-flutter",
+   "quantidade",
+   "so-no-flutter"
+  ],
+  "SgWizard": [
+   "falta-no-flutter",
+   "quantidade",
+   "so-no-flutter"
+  ],
+  "SgYearPartSelector": [
+   "falta-no-flutter",
+   "so-no-flutter"
+  ]
+ }
+}

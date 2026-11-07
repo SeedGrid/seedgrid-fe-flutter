@@ -10,7 +10,6 @@ import 'package:flutter/services.dart';
 import 'package:seedgrid_theme/seedgrid_theme.dart';
 
 import '../../form/sg_form.dart';
-import '../../form/sg_rules.dart';
 import '../../generated/enums.g.dart';
 import '../../generated/sg_input_password.g.dart';
 import '../../i18n/i18n.dart';
@@ -88,7 +87,6 @@ class SgInputPassword extends StatefulWidget implements SgInputPasswordProps {
     this.readOnly,
     this.required,
     this.requiredMessage,
-    this.rules,
     this.showCharCounter,
     this.showStrengthBar = true,
     this.specialCharacterRequired = true,
@@ -221,8 +219,6 @@ class SgInputPassword extends StatefulWidget implements SgInputPasswordProps {
   final bool? required;
   @override
   final String? requiredMessage;
-  @override
-  final SgRules? rules;
   @override
   final bool? showCharCounter;
 
@@ -601,7 +597,6 @@ class _SgInputPasswordState extends State<SgInputPassword> {
       readOnly: w.readOnly,
       required: w.required,
       requiredMessage: w.requiredMessage,
-      rules: w.rules,
       showCharCounter: w.showCharCounter,
       suffixText: w.suffixText,
       textInputType: SgInputTextTextInputType.fromValue(w.textInputType?.value),

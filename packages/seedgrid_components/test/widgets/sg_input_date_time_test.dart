@@ -118,7 +118,11 @@ void main() {
         'fr': '05/11/2026 14:30',
       };
       esperado.forEach((locale, out) {
-        expect(sgFormatWallClock('2026-11-05T14:30', locale), out, reason: locale);
+        expect(
+          sgFormatWallClock('2026-11-05T14:30', locale),
+          out,
+          reason: locale,
+        );
       });
       expect(
         sgFormatWallClock('2026-11-05T14:30:09', 'es', showSeconds: true),
@@ -126,7 +130,10 @@ void main() {
       );
     });
     test('formatWallClock com idioma desconhecido nao falha', () {
-      expect(sgFormatWallClock('2026-11-05T14:30', 'xx-YY'), '05/11/2026 14:30');
+      expect(
+        sgFormatWallClock('2026-11-05T14:30', 'xx-YY'),
+        '05/11/2026 14:30',
+      );
     });
   });
 

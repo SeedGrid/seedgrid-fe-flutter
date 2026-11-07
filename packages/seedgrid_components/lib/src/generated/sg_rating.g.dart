@@ -46,8 +46,6 @@ abstract interface class SgRatingProps {
   bool? get required;
   /// Required message
   String? get requiredMessage;
-  /// Tipo TS: `RegisterOptions&lt;any&gt;` (sem tradução exata; ver excecoes.json).
-  Object? get rules;
   /// Show tooltips with value Padrão: `false`.
   bool? get showTooltip;
   /// Tamanho visual do controle. Padrão: `md`.
@@ -210,14 +208,6 @@ const List<SgPropSpec> sgRatingPropSpecs = <SgPropSpec>[
     tsType: 'string',
     required: false,
     description: 'Required message',
-  ),
-  SgPropSpec(
-    name: 'rules',
-    reactName: 'rules',
-    type: 'Object?',
-    tsType: 'RegisterOptions<any>',
-    required: false,
-    exact: false,
   ),
   SgPropSpec(
     name: 'showTooltip',

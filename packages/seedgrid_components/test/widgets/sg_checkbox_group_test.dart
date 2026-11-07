@@ -469,25 +469,6 @@ void main() {
       },
     );
 
-    testWidgets('rules proprias: minLength de 2 itens', (t) async {
-      final form = SgFormController();
-      await t.pumpWidget(
-        host(
-          SgCheckboxGroup(
-            id: 'g',
-            name: 'frutas',
-            control: form,
-            source: fruits,
-            rules: const SgRules(minLength: SgRuleValue(2, 'Escolha 2')),
-          ),
-        ),
-      );
-      await t.tap(find.text('Apple'));
-      await form.handleSubmit((_) {});
-      await t.pump();
-      expect(find.text('Escolha 2'), findsOneWidget);
-    });
-
     testWidgets('usa o SgForm mais proximo e chama onChange tambem', (t) async {
       final changes = <List<Object>>[];
       Map<String, Object?>? sent;

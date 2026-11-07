@@ -46,8 +46,6 @@ abstract interface class SgInputOTPProps {
   /// Marca o campo como obrigatorio. Padrão: `false`.
   bool? get required;
   String? get requiredMessage;
-  /// Tipo TS: `RegisterOptions&lt;any&gt;` (sem tradução exata; ver excecoes.json).
-  Object? get rules;
   String? get separatorClassName;
   String? get slotClassName;
   /// Executa validacao no blur. Padrão: `true`.
@@ -228,14 +226,6 @@ const List<SgPropSpec> sgInputOTPPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-  ),
-  SgPropSpec(
-    name: 'rules',
-    reactName: 'rules',
-    type: 'Object?',
-    tsType: 'RegisterOptions<any>',
-    required: false,
-    exact: false,
   ),
   SgPropSpec(
     name: 'separatorClassName',

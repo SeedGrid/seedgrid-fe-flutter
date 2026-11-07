@@ -9,7 +9,7 @@ import 'package:flutter/services.dart';
 import 'package:seedgrid_theme/seedgrid_theme.dart';
 
 import '../../form/sg_form.dart';
-import '../../form/sg_rules.dart';
+import '../../form/sg_field_error.dart';
 import '../../generated/enums.g.dart';
 import '../../generated/sg_combobox.g.dart';
 import '../../i18n/i18n.dart';
@@ -69,7 +69,6 @@ class SgCombobox<T> extends StatefulWidget implements SgComboboxProps {
     this.prefixText,
     this.required,
     this.requiredMessage,
-    this.rules,
     this.showCharCounter,
     this.suffixText,
     this.textInputType,
@@ -184,8 +183,6 @@ class SgCombobox<T> extends StatefulWidget implements SgComboboxProps {
   @override
   final String? requiredMessage;
   @override
-  final SgRules? rules;
-  @override
   final bool? showCharCounter;
   @override
   final String? suffixText;
@@ -277,7 +274,11 @@ class _SgComboboxState<T> extends State<SgCombobox<T>> {
     if (_bound) {
       _outer!.registerField(
         widget.name!,
-        rules: widget.rules,
+        required: requiredMessageFor(
+          widget.required,
+          widget.requiredMessage ??
+              t(useComponentsI18n(context), 'components.inputs.required'),
+        ),
         initialValue: widget.value,
       );
     }

@@ -600,7 +600,8 @@ void main() {
               name: 'fruta',
               control: form,
               source: frutas,
-              rules: const SgRules(required: 'Escolha uma fruta'),
+              required: true,
+              requiredMessage: 'Escolha uma fruta',
             ),
           ),
         );

@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 
 import '../../form/sg_form.dart';
-import '../../form/sg_rules.dart';
+import '../../form/sg_field_error.dart';
 import '../../generated/enums.g.dart';
 import '../../generated/sg_radio_group.g.dart';
 import '../../i18n/i18n.dart';
@@ -42,7 +42,6 @@ class SgRadioGroup extends StatefulWidget implements SgRadioGroupProps {
     this.onChange,
     this.name,
     this.control,
-    this.rules,
     this.error,
     this.optionClassName,
     this.groupBoxProps,
@@ -78,8 +77,6 @@ class SgRadioGroup extends StatefulWidget implements SgRadioGroupProps {
   final String? name;
   @override
   final SgFormController? control;
-  @override
-  final SgRules? rules;
   @override
   final String? error;
 
@@ -137,8 +134,7 @@ class _SgRadioGroupState extends State<SgRadioGroup> {
       context,
       control: widget.control,
       name: widget.name,
-      rules: mergeRequiredRule(
-        widget.rules,
+      required: requiredMessageFor(
         widget.required,
         t(i18n, 'components.inputs.required'),
       ),

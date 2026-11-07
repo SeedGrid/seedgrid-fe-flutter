@@ -5,7 +5,6 @@ import 'package:flutter/services.dart';
 
 import '../../buttons/sg_button.dart';
 import '../../form/sg_form.dart';
-import '../../form/sg_rules.dart';
 import '../../generated/enums.g.dart';
 import 'package:seedgrid_theme/seedgrid_theme.dart';
 
@@ -29,7 +28,6 @@ class ListFieldBinding {
     BuildContext context, {
     required SgFormController? control,
     required String? name,
-    required SgRules? rules,
   }) {
     final f = control ?? SgForm.maybeOf(context);
     if (f != form) {
@@ -38,7 +36,7 @@ class ListFieldBinding {
       form?.addListener(_notify);
     }
     this.name = name;
-    if (bound) form!.registerField(name!, rules: rules);
+    if (bound) form!.registerField(name!);
   }
 
   /// Grava no formulario; depois de um envio (ou com erro) revalida a cada mudanca, como o RHF.

@@ -14,7 +14,6 @@ typedef _Build =
       String name,
       bool disabled,
       bool required,
-      SgRules? rules,
     });
 
 class _Case {
@@ -30,127 +29,111 @@ String _id(String name) => name;
 final _cases = <_Case>[
   _Case(
     'SgInputCPF',
-    (form, {name = 'f', disabled = false, required = false, rules}) =>
-        SgInputCPF(
-          id: _id(name),
-          name: name,
-          control: form,
-          enabled: !(disabled),
-          required: required,
-          rules: rules,
-        ),
+    (form, {name = 'f', disabled = false, required = false}) => SgInputCPF(
+      id: _id(name),
+      name: name,
+      control: form,
+      enabled: !(disabled),
+      required: required,
+    ),
     '111.111.111-11',
     '529.982.247-25',
   ),
   _Case(
     'SgInputCNPJ',
-    (form, {name = 'f', disabled = false, required = false, rules}) =>
-        SgInputCNPJ(
-          id: _id(name),
-          name: name,
-          control: form,
-          enabled: !(disabled),
-          required: required,
-          rules: rules,
-        ),
+    (form, {name = 'f', disabled = false, required = false}) => SgInputCNPJ(
+      id: _id(name),
+      name: name,
+      control: form,
+      enabled: !(disabled),
+      required: required,
+    ),
     '11.111.111/1111-11',
     '11.222.333/0001-81',
   ),
   _Case(
     'SgInputCPFCNPJ (CPF)',
-    (form, {name = 'f', disabled = false, required = false, rules}) =>
-        SgInputCPFCNPJ(
-          id: _id(name),
-          name: name,
-          control: form,
-          enabled: !(disabled),
-          required: required,
-          rules: rules,
-        ),
+    (form, {name = 'f', disabled = false, required = false}) => SgInputCPFCNPJ(
+      id: _id(name),
+      name: name,
+      control: form,
+      enabled: !(disabled),
+      required: required,
+    ),
     '111.111.111-11',
     '529.982.247-25',
   ),
   _Case(
     'SgInputCPFCNPJ (CNPJ)',
-    (form, {name = 'f', disabled = false, required = false, rules}) =>
-        SgInputCPFCNPJ(
-          id: _id(name),
-          name: name,
-          control: form,
-          enabled: !(disabled),
-          required: required,
-          rules: rules,
-        ),
+    (form, {name = 'f', disabled = false, required = false}) => SgInputCPFCNPJ(
+      id: _id(name),
+      name: name,
+      control: form,
+      enabled: !(disabled),
+      required: required,
+    ),
     '11.111.111/1111-11',
     '11.222.333/0001-81',
   ),
   _Case(
     'SgInputEmail',
-    (form, {name = 'f', disabled = false, required = false, rules}) =>
-        SgInputEmail(
-          id: _id(name),
-          name: name,
-          control: form,
-          enabled: !(disabled),
-          required: required,
-          rules: rules,
-        ),
+    (form, {name = 'f', disabled = false, required = false}) => SgInputEmail(
+      id: _id(name),
+      name: name,
+      control: form,
+      enabled: !(disabled),
+      required: required,
+    ),
     'sem-arroba',
     'maria@empresa.com.br',
   ),
   _Case(
     'SgInputPhone',
-    (form, {name = 'f', disabled = false, required = false, rules}) =>
-        SgInputPhone(
-          id: _id(name),
-          name: name,
-          control: form,
-          enabled: !(disabled),
-          required: required,
-          rules: rules,
-        ),
+    (form, {name = 'f', disabled = false, required = false}) => SgInputPhone(
+      id: _id(name),
+      name: name,
+      control: form,
+      enabled: !(disabled),
+      required: required,
+    ),
     '(11) 9876',
     '(11) 98765-4321',
   ),
   _Case(
     'SgInputPostalCode',
-    (form, {name = 'f', disabled = false, required = false, rules}) =>
+    (form, {name = 'f', disabled = false, required = false}) =>
         SgInputPostalCode(
           id: _id(name),
           name: name,
           control: form,
           enabled: !(disabled),
           required: required,
-          rules: rules,
         ),
     '0131',
     '01310-100',
   ),
   _Case(
     'SgInputDate',
-    (form, {name = 'f', disabled = false, required = false, rules}) =>
-        SgInputDate(
-          id: _id(name),
-          name: name,
-          control: form,
-          enabled: !(disabled),
-          required: required,
-          rules: rules,
-          minDate: '2000-01-01',
-        ),
+    (form, {name = 'f', disabled = false, required = false}) => SgInputDate(
+      id: _id(name),
+      name: name,
+      control: form,
+      enabled: !(disabled),
+      required: required,
+      minDate: '2000-01-01',
+    ),
     '1999-12-31',
     '2020-01-31',
   ),
   _Case(
     'SgInputBirthDate (minAge)',
-    (form, {name = 'f', disabled = false, required = false, rules}) =>
+    (form, {name = 'f', disabled = false, required = false}) =>
         SgInputBirthDate(
           id: _id(name),
           name: name,
           control: form,
           enabled: !(disabled),
           required: required,
-          rules: rules,
           minAge: 18,
         ),
     '2020-01-01',
@@ -158,31 +141,27 @@ final _cases = <_Case>[
   ),
   _Case(
     'SgInputNumber (minValue)',
-    (form, {name = 'f', disabled = false, required = false, rules}) =>
-        SgInputNumber(
-          id: _id(name),
-          name: name,
-          control: form,
-          enabled: !(disabled),
-          required: required,
-          rules: rules,
-          minValue: 10,
-        ),
+    (form, {name = 'f', disabled = false, required = false}) => SgInputNumber(
+      id: _id(name),
+      name: name,
+      control: form,
+      enabled: !(disabled),
+      required: required,
+      minValue: 10,
+    ),
     '5',
     '15',
   ),
   _Case(
     'SgInputText (minLength)',
-    (form, {name = 'f', disabled = false, required = false, rules}) =>
-        SgInputText(
-          id: _id(name),
-          name: name,
-          control: form,
-          enabled: !(disabled),
-          required: required,
-          rules: rules,
-          minLength: 5,
-        ),
+    (form, {name = 'f', disabled = false, required = false}) => SgInputText(
+      id: _id(name),
+      name: name,
+      control: form,
+      enabled: !(disabled),
+      required: required,
+      minLength: 5,
+    ),
     'abc',
     'abcdef',
   ),
@@ -293,32 +272,18 @@ void main() {
         expect(form.errorOf('f'), isNull);
         expect(await form.trigger(), isTrue, reason: 'vazio e opcional');
       });
-
-      testWidgets('rules vencem o validador do componente (ordem do RHF)', (
-        t,
-      ) async {
-        final form = SgFormController();
-        await _mount(
-          t,
-          c.build(form, rules: SgRules(validate: (_) => 'regra propria')),
-        );
-        await form.setValue('f', c.invalid);
-        await form.trigger(['f']);
-        expect(form.errorOf('f')!.message, 'regra propria');
-        expect(form.errorOf('f')!.type, 'validate');
-      });
     });
   }
 
   group('contrato do formulario', () {
     test(
-      'registerField: validador roda depois das rules, so se elas passam',
+      'registerField: validador roda depois do required, so se ele passa',
       () async {
         final form = SgFormController(defaultValues: {'a': 'x'});
         var calls = 0;
         form.registerField(
           'a',
-          rules: const SgRules(required: 'obrigatorio'),
+          required: 'obrigatorio',
           validator: (v) {
             calls++;
             return v == 'x' ? 'invalido' : null;

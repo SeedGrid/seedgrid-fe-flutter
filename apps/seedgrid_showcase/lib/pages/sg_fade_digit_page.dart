@@ -1,4 +1,6 @@
 // Showcase do SgFadeDigit. O codigo exibido e a regiao `// #region` deste arquivo.
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
@@ -6,12 +8,285 @@ import '../src/sg_showcase_page.dart';
 import '../src/showcase_i18n.dart';
 import 'sg_fade_digit_page.snippets.g.dart';
 
-class SgFadeDigitPage extends StatelessWidget {
+class SgFadeDigitPage extends StatefulWidget {
   const SgFadeDigitPage({super.key});
 
   @override
+  State<SgFadeDigitPage> createState() => _SgFadeDigitPageState();
+}
+
+class _SgFadeDigitPageState extends State<SgFadeDigitPage> {
+  int _digito = 0;
+  int _letra = 0; // 0 = A
+  bool _rodando = false;
+  int _contador = 0;
+  bool _relogioRodando = false;
+  int _segundos = 0;
+  Timer? _timerContador;
+  Timer? _timerRelogio;
+
+  @override
+  void dispose() {
+    _timerContador?.cancel();
+    _timerRelogio?.cancel();
+    super.dispose();
+  }
+
+  void _alternarContador() {
+    setState(() => _rodando = !_rodando);
+    _timerContador?.cancel();
+    if (_rodando) {
+      _timerContador = Timer.periodic(const Duration(milliseconds: 800), (_) {
+        if (mounted) setState(() => _contador = (_contador + 1) % 10);
+      });
+    }
+  }
+
+  void _alternarRelogio() {
+    setState(() => _relogioRodando = !_relogioRodando);
+    _timerRelogio?.cancel();
+    if (_relogioRodando) {
+      _timerRelogio = Timer.periodic(const Duration(seconds: 1), (_) {
+        if (mounted) setState(() => _segundos = (_segundos + 1) % 86400);
+      });
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
+    String dois(int n) => n.toString().padLeft(2, '0');
+    final horas = dois(_segundos ~/ 3600);
+    final minutos = dois(_segundos % 3600 ~/ 60);
+    final segundos = dois(_segundos % 60);
     final examples = <ShowcaseExample>[
+      ShowcaseExample(
+        title: 'Básico (0-9)',
+        description: 'Troca manual entre dígitos numéricos.',
+        preview:
+            // #region sg-fade-digit-basico
+            Wrap(
+              spacing: 16,
+              runSpacing: 12,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                SgFadeDigit(value: '$_digito'),
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: [
+                    SgButton(
+                      label: Text(context.tx('Próximo (+1)')),
+                      onClick: () =>
+                          setState(() => _digito = (_digito + 1) % 10),
+                    ),
+                    SgButton(
+                      label: Text(context.tx('Anterior (-1)')),
+                      onClick: () =>
+                          setState(() => _digito = (_digito + 9) % 10),
+                    ),
+                    SgButton(
+                      label: Text(context.tx('Aleatório')),
+                      onClick: () => setState(
+                        () => _digito = DateTime.now().microsecond % 10,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgFadeDigitPageSnippets.sgFadeDigitBasico,
+      ),
+      ShowcaseExample(
+        title: 'Letras (A-Z)',
+        description: 'Aceita qualquer caractere - letras, símbolos, espaços.',
+        preview:
+            // #region sg-fade-digit-letras
+            Wrap(
+              spacing: 16,
+              runSpacing: 12,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                SgFadeDigit(value: String.fromCharCode(65 + _letra)),
+                SgButton(
+                  label: Text(context.tx('Próxima letra')),
+                  onClick: () => setState(() => _letra = (_letra + 1) % 26),
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgFadeDigitPageSnippets.sgFadeDigitLetras,
+      ),
+      ShowcaseExample(
+        title: 'Cores personalizadas',
+        description:
+            'color e backgroundColor são totalmente livres - qualquer paleta funciona.',
+        preview:
+            // #region sg-fade-digit-personalizadas
+            Wrap(
+              spacing: 16,
+              runSpacing: 12,
+              crossAxisAlignment: WrapCrossAlignment.end,
+              children: [
+                Column(
+                  children: [
+                    Text(context.tx('Padrão')),
+                    const SgFadeDigit(
+                      value: '7',
+                      color: '#edebeb',
+                      backgroundColor: '#333232',
+                    ),
+                  ],
+                ),
+                Column(
+                  children: [
+                    Text(context.tx('Verde')),
+                    const SgFadeDigit(
+                      value: '7',
+                      color: '#4ade80',
+                      backgroundColor: '#052e16',
+                    ),
+                  ],
+                ),
+                Column(
+                  children: [
+                    Text(context.tx('Azul')),
+                    const SgFadeDigit(
+                      value: '7',
+                      color: '#60a5fa',
+                      backgroundColor: '#0f172a',
+                    ),
+                  ],
+                ),
+                Column(
+                  children: [
+                    Text(context.tx('Rosa')),
+                    const SgFadeDigit(
+                      value: '7',
+                      color: '#f472b6',
+                      backgroundColor: '#2d0a1e',
+                    ),
+                  ],
+                ),
+                Column(
+                  children: [
+                    Text(context.tx('Âmbar')),
+                    const SgFadeDigit(
+                      value: '7',
+                      color: '#fbbf24',
+                      backgroundColor: '#1c1007',
+                    ),
+                  ],
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgFadeDigitPageSnippets.sgFadeDigitPersonalizadas,
+      ),
+      ShowcaseExample(
+        title: 'Incremento automático',
+        description:
+            'Incremento automático para validar transições contínuas e rápidas.',
+        preview:
+            // #region sg-fade-digit-auto
+            Wrap(
+              spacing: 16,
+              runSpacing: 12,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                SgFadeDigit(value: '$_contador'),
+                SgButton(
+                  label: Text(context.tx(_rodando ? 'Parar' : 'Iniciar')),
+                  onClick: _alternarContador,
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgFadeDigitPageSnippets.sgFadeDigitAuto,
+      ),
+      ShowcaseExample(
+        title: 'Sequência estilo relógio',
+        description:
+            'Composição de vários SgFadeDigit em linha - cada dígito atualiza de forma independente.',
+        preview:
+            // #region sg-fade-digit-relogio
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  children: [
+                    SgFadeDigit(value: horas[0]),
+                    SgFadeDigit(value: horas[1]),
+                    const Text(
+                      ':',
+                      style: TextStyle(
+                        fontSize: 36,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SgFadeDigit(value: minutos[0]),
+                    SgFadeDigit(value: minutos[1]),
+                    const Text(
+                      ':',
+                      style: TextStyle(
+                        fontSize: 36,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SgFadeDigit(value: segundos[0]),
+                    SgFadeDigit(value: segundos[1]),
+                  ],
+                ),
+                const SizedBox(height: 12),
+                SgButton(
+                  label: Text(
+                    context.tx(_relogioRodando ? 'Parar' : 'Iniciar'),
+                  ),
+                  size: SgSize.sm,
+                  onClick: _alternarRelogio,
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgFadeDigitPageSnippets.sgFadeDigitRelogio,
+      ),
+      ShowcaseExample(
+        title: 'Tamanhos',
+        description:
+            'Ajuste de escala via fontSize - largura e altura do cartão são proporcionais.',
+        preview:
+            // #region sg-fade-digit-tamanhos
+            Wrap(
+              spacing: 24,
+              runSpacing: 12,
+              crossAxisAlignment: WrapCrossAlignment.end,
+              children: [
+                Column(
+                  children: [
+                    Text(context.tx('Pequeno (40px)')),
+                    const SgFadeDigit(value: '5', fontSize: 40),
+                  ],
+                ),
+                Column(
+                  children: [
+                    Text(context.tx('Médio (70px)')),
+                    const SgFadeDigit(value: '5', fontSize: 70),
+                  ],
+                ),
+                Column(
+                  children: [
+                    Text(context.tx('Grande (110px)')),
+                    const SgFadeDigit(value: '5', fontSize: 110),
+                  ],
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgFadeDigitPageSnippets.sgFadeDigitTamanhos,
+      ),
       ShowcaseExample(
         title: 'Cartão com fade',
         description:
@@ -76,9 +351,9 @@ class SgFadeDigitPage extends StatelessWidget {
                     children: [
                       SgFadeDigit(value: '$value'),
                       const SizedBox(width: 24),
-                      FilledButton(
-                        onPressed: () => set(() => value = (value + 1) % 10),
-                        child: Text(context.tx('Próximo')),
+                      SgButton(
+                        label: Text(context.tx('Próximo')),
+                        onClick: () => set(() => value = (value + 1) % 10),
                       ),
                     ],
                   ),

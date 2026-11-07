@@ -130,13 +130,11 @@ class _SgWizardDemoPageState extends State<SgWizardDemoPage> {
                     name: 'email',
                     control: _form,
                     labelText: 'E-mail',
-                    rules: SgRules(
-                      required: 'Informe o e-mail',
-                      pattern: SgRuleValue(
-                        RegExp(r'.+@.+\..+'),
-                        'E-mail inválido',
-                      ),
-                    ),
+                    required: true,
+                    requiredMessage: 'Informe o e-mail',
+                    validation: (v) => RegExp(r'.+@.+\..+').hasMatch(v)
+                        ? null
+                        : 'E-mail inválido',
                   ),
                 ),
               ],
@@ -191,6 +189,35 @@ class _SgWizardDemoPageState extends State<SgWizardDemoPage> {
             ),
         // #endregion
         code: SgWizardDemoPageSnippets.sgWizardGuardas,
+      ),
+      ShowcaseExample(
+        title: 'Desabilitado (enabled)',
+        description:
+            'Com enabled: false o wizard inteiro fica desabilitado: Anterior, Próximo, Concluir e os passos do stepper não respondem; a etapa atual continua visível.',
+        preview:
+            // #region sg-wizard-enabled
+            SgWizard(
+              enabled: false,
+              initialStep: 1,
+              stepper: SgWizardStepper.numbered,
+              onFinish: () {},
+              children: [
+                SgWizardPage(
+                  title: context.tx('Dados'),
+                  child: Text(context.tx('Primeira etapa')),
+                ),
+                SgWizardPage(
+                  title: context.tx('Revisão'),
+                  child: Text(context.tx('Segunda etapa')),
+                ),
+                SgWizardPage(
+                  title: context.tx('Confirmação'),
+                  child: Text(context.tx('Terceira etapa')),
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgWizardDemoPageSnippets.sgWizardEnabled,
       ),
     ];
 

@@ -1,15 +1,15 @@
 // Contrato de formulario proprio (ADR 49): equivale ao `useForm()` do react-hook-form.
 //   React:  const { control, handleSubmit, watch, reset, setValue, formState } = useForm();
-//           <SgInputText name="email" control={control} rules={{ required: true }} />
+//           <SgInputText name="email" control={control} required />
 //   Dart:   final form = SgFormController(defaultValues: {...});
-//           SgInputText(id: 'email', name: 'email', control: form, rules: SgRules(required: true))
+//           SgInputText(id: 'email', name: 'email', control: form, required: 'Informe o e-mail')
 // `register` do RHF nao existe: todo campo Flutter e controlado.
 import 'dart:async';
 
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
-import 'sg_rules.dart';
+import 'sg_field_error.dart';
 
 typedef SgSubmitValid = FutureOr<void> Function(Map<String, Object?> values);
 typedef SgSubmitInvalid =
@@ -18,7 +18,7 @@ typedef SgSubmitInvalid =
 /// Validador proprio do componente (o que o campo valida no blur: CPF, CNPJ, e-mail, telefone, CEP, datas,
 /// limite de idade...). Recebe o valor do formulario e devolve a mensagem de erro, ou `null` se valido.
 /// Decisao do dono (2026-10-25), diverge do React: `trigger`/`handleSubmit` tambem executam estes validadores
-/// (no RHF so rodam as `rules`). Roda DEPOIS das `rules` (ordem de erros do RHF) e so se elas passaram.
+/// (no RHF so rodam as `rules`). Roda DEPOIS da checagem de `required` (ordem de erros do RHF) e so se ela passou.
 typedef SgFieldValidator = FutureOr<String?> Function(Object? value);
 
 /// Controlador do formulario (o `control` do RHF). Notifica quando valor, erro ou estado muda.
@@ -29,10 +29,10 @@ class SgFormController extends ChangeNotifier {
 
   Map<String, Object?> _defaults;
   final Map<String, Object?> _values;
-  final Map<String, SgRules> _rules = {};
+  final Map<String, String> _required = {};
   final Map<String, SgFieldValidator> _validators = {};
 
-  /// Campos cujo erro atual veio do validador do componente (nao das `rules`): mudar o valor por fora
+  /// Campos cujo erro atual veio do validador do componente (nao do `required`): mudar o valor por fora
   /// (`setValue`) revalida so o validador, como o campo faz com o erro proprio (o erro velho some).
   final Set<String> _componentErrors = {};
   final Map<String, SgFieldError> _errors = {};
@@ -69,18 +69,18 @@ class SgFormController extends ChangeNotifier {
   /// Declara o campo e suas regras (chamado pelo componente; idempotente). Valor inicial vem de
   /// `defaultValues`; sem ele o campo existe com `null`.
   ///
-  /// [validator] e o validador proprio do componente (ver [SgFieldValidator]); fica ao lado das [rules] e
+  /// [validator] e o validador proprio do componente (ver [SgFieldValidator]); fica ao lado do `required` e
   /// roda em `trigger`/`handleSubmit`. Quem o registra deve chamar [unregisterValidator] ao sair da arvore.
   void registerField(
     String name, {
-    SgRules? rules,
+    String? required,
     Object? initialValue,
     SgFieldValidator? validator,
   }) {
-    if (rules != null) {
-      _rules[name] = rules;
+    if (required != null) {
+      _required[name] = required;
     } else {
-      _rules.remove(name);
+      _required.remove(name);
     }
     if (validator != null) {
       _validators[name] = validator;
@@ -144,13 +144,15 @@ class SgFormController extends ChangeNotifier {
 
   /// `trigger` do RHF: valida os campos (todos, se `names` for nulo). Devolve `true` se todos validos.
   Future<bool> trigger([List<String>? names]) async {
-    final targets = names ?? {..._rules.keys, ..._validators.keys}.toList();
+    final targets = names ?? {..._required.keys, ..._validators.keys}.toList();
     var ok = true;
     for (final n in targets) {
-      final rules = _rules[n];
-      var err = rules == null ? null : await validateRules(rules, _values[n]);
+      final requiredMessage = _required[n];
+      SgFieldError? err = requiredMessage != null && sgIsEmptyValue(_values[n])
+          ? SgFieldError('required', requiredMessage)
+          : null;
       var fromComponent = false;
-      // Ordem do RHF: o erro das `rules` (required, min, ..., validate) vence; o validador do componente so
+      // Ordem do RHF: o erro de `required` vence; o validador do componente so
       // roda quando elas passam.
       if (err == null) {
         final validator = _validators[n];

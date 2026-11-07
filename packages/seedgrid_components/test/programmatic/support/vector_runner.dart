@@ -59,14 +59,9 @@ class ScenarioState {
   String get sourceKind => (scenario['sourceKind'] as String?) ?? 'list';
   int get delay => (scenario['delay'] as num?)?.toInt() ?? 0;
 
-  /// Regra do formulario (`required: true` -> mensagem 'Obrigatorio', igual ao harness do React).
-  SgRules? get rules {
-    final r = (scenario['form'] as Map?)?['rules'] as Map?;
-    if (r == null) return null;
-    return SgRules(
-      required: r['required'] == true ? 'Obrigatorio' : r['required'],
-    );
-  }
+  /// O cenario usa `rules` do react-hook-form (required/validate no formulario). O Flutter nao tem `rules`
+  /// (a validacao usa as props diretas), entao estes cenarios nao se aplicam.
+  bool get usesFormRules => (scenario['form'] as Map?)?['rules'] != null;
 
   /// Valor da prop do cenario (`{$unset: true}` vira nulo: o Dart nao distingue nulo de ausente).
   Object? prop(String key) {
@@ -147,6 +142,7 @@ void runVectors(
     setUp(resetComponentsI18n);
     for (final sc in scenarios) {
       final id = sc['id'] as String;
+      final usesRules = (sc['form'] as Map?)?['rules'] != null;
       testWidgets(id, (t) async {
         if (sc['error'] != null) {
           fail('o React falhou ao gerar o vetor: ${sc['error']}');
@@ -227,7 +223,7 @@ void runVectors(
           }
         }
         expect(problems, isEmpty, reason: '$id\n${problems.join('\n')}');
-      }, skip: skip.containsKey(id));
+      }, skip: skip.containsKey(id) || usesRules);
     }
   });
 }

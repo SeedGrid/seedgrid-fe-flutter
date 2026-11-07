@@ -10,7 +10,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
 import '../../form/sg_form.dart';
-import '../../form/sg_rules.dart';
+import '../../form/sg_field_error.dart';
 import '../../generated/sg_file_upload.g.dart';
 import '../../i18n/i18n.dart';
 import 'sg_file_logic.dart';
@@ -167,7 +167,6 @@ class SgFileUpload extends StatefulWidget implements SgFileUploadProps {
     this.readOnly,
     this.required,
     this.requiredMessage,
-    this.rules,
     this.value,
     this.picker,
     this.extraCheck,
@@ -252,9 +251,6 @@ class SgFileUpload extends StatefulWidget implements SgFileUploadProps {
   @override
   final String? requiredMessage;
 
-  @override
-  final SgRules? rules;
-
   /// Arquivos controlados (sempre lista).
   @override
   final List<SgFile>? value;
@@ -328,17 +324,16 @@ class SgFileUploadState extends State<SgFileUpload> {
     if (_bound) {
       _form!.registerField(
         widget.name!,
-        rules: widget.rules ?? _requiredRules(),
+        required: requiredMessageFor(
+          widget.required,
+          widget.requiredMessage ?? '',
+        ),
         initialValue: (widget.defaultValue?.isEmpty ?? true)
             ? null
             : widget.defaultValue,
       );
     }
   }
-
-  SgRules? _requiredRules() => (widget.required ?? false)
-      ? SgRules(required: widget.requiredMessage ?? true)
-      : null;
 
   void _onForm() {
     if (mounted) setState(() {});

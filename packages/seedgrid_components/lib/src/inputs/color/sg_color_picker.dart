@@ -11,7 +11,7 @@ import 'package:seedgrid_theme/seedgrid_theme.dart';
 
 import '../../buttons/sg_button.dart';
 import '../../form/sg_form.dart';
-import '../../form/sg_rules.dart' show resolveFieldError;
+import '../../form/sg_field_error.dart' show resolveFieldError;
 import '../../generated/enums.g.dart' show SgAppearance;
 import '../../i18n/i18n.dart';
 import '../../theme_access.dart';
@@ -220,7 +220,6 @@ class _SgColorPickerState extends State<SgColorPicker> {
     context,
     control: widget.control,
     name: widget.name,
-    rules: null,
     initialValue:
         sgNormalizeHex(widget.defaultValue) ??
         sgNormalizeHex(widget.value) ??
@@ -294,7 +293,13 @@ class _SgColorPickerState extends State<SgColorPicker> {
         if (sgNormalizeHex(p) != null) sgNormalizeHex(p)!,
     ];
 
-    Widget slider(String key, String label, double v, double max, void Function(double) apply) {
+    Widget slider(
+      String key,
+      String label,
+      double v,
+      double max,
+      void Function(double) apply,
+    ) {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -368,8 +373,10 @@ class _SgColorPickerState extends State<SgColorPicker> {
             key: ValueKey('${w.id}-sv'),
             hsv: _hsv,
             enabled: w.enabled,
-            label: '${_msg(context, 'saturation')} / ${_msg(context, 'brightness')}',
-            onChanged: (sat, val) => _commit(_hsv.withSaturation(sat).withValue(val)),
+            label:
+                '${_msg(context, 'saturation')} / ${_msg(context, 'brightness')}',
+            onChanged: (sat, val) =>
+                _commit(_hsv.withSaturation(sat).withValue(val)),
           ),
           const SizedBox(height: 12),
           _HueBar(
@@ -606,7 +613,8 @@ class _SvArea extends StatelessWidget {
 
         return Semantics(
           label: label,
-          value: '${(hsv.saturation * 100).round()}% / ${(hsv.value * 100).round()}%',
+          value:
+              '${(hsv.saturation * 100).round()}% / ${(hsv.value * 100).round()}%',
           child: Focus(
             canRequestFocus: enabled,
             onKeyEvent: key,
@@ -625,7 +633,9 @@ class _SvArea extends StatelessWidget {
                       child: DecoratedBox(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          gradient: LinearGradient(colors: [Colors.white, pure]),
+                          gradient: LinearGradient(
+                            colors: [Colors.white, pure],
+                          ),
                         ),
                         child: const DecoratedBox(
                           decoration: BoxDecoration(
@@ -649,7 +659,9 @@ class _SvArea extends StatelessWidget {
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             border: Border.all(color: Colors.white, width: 2),
-                            boxShadow: const [BoxShadow(blurRadius: 2, color: Colors.black54)],
+                            boxShadow: const [
+                              BoxShadow(blurRadius: 2, color: Colors.black54),
+                            ],
                           ),
                         ),
                       ),
@@ -691,9 +703,11 @@ class _HueBar extends StatelessWidget {
           if (!enabled || e is KeyUpEvent) return KeyEventResult.ignored;
           final step = HardwareKeyboard.instance.isShiftPressed ? 10.0 : 1.0;
           final k = e.logicalKey;
-          if (k == LogicalKeyboardKey.arrowLeft || k == LogicalKeyboardKey.arrowDown) {
+          if (k == LogicalKeyboardKey.arrowLeft ||
+              k == LogicalKeyboardKey.arrowDown) {
             onChanged((hsv.hue - step).clamp(0.0, 360.0));
-          } else if (k == LogicalKeyboardKey.arrowRight || k == LogicalKeyboardKey.arrowUp) {
+          } else if (k == LogicalKeyboardKey.arrowRight ||
+              k == LogicalKeyboardKey.arrowUp) {
             onChanged((hsv.hue + step).clamp(0.0, 360.0));
           } else {
             return KeyEventResult.ignored;
@@ -710,8 +724,12 @@ class _HueBar extends StatelessWidget {
             child: GestureDetector(
               behavior: HitTestBehavior.opaque,
               onTapDown: enabled ? (d) => at(d.localPosition) : null,
-              onHorizontalDragStart: enabled ? (d) => at(d.localPosition) : null,
-              onHorizontalDragUpdate: enabled ? (d) => at(d.localPosition) : null,
+              onHorizontalDragStart: enabled
+                  ? (d) => at(d.localPosition)
+                  : null,
+              onHorizontalDragUpdate: enabled
+                  ? (d) => at(d.localPosition)
+                  : null,
               child: SizedBox(
                 width: w,
                 height: h,
@@ -740,9 +758,16 @@ class _HueBar extends StatelessWidget {
                           height: h,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: HSVColor.fromAHSV(1, hsv.hue, 1, 1).toColor(),
+                            color: HSVColor.fromAHSV(
+                              1,
+                              hsv.hue,
+                              1,
+                              1,
+                            ).toColor(),
                             border: Border.all(color: Colors.white, width: 3),
-                            boxShadow: const [BoxShadow(blurRadius: 2, color: Colors.black54)],
+                            boxShadow: const [
+                              BoxShadow(blurRadius: 2, color: Colors.black54),
+                            ],
                           ),
                         ),
                       ),

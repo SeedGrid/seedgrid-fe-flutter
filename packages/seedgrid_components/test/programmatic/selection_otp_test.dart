@@ -32,7 +32,6 @@ class OtpAdapter extends VectorAdapter {
       onClear: () => s.events.add('x'),
       name: s.form == null ? null : 'f',
       control: s.form,
-      rules: s.rules,
     );
   }
 

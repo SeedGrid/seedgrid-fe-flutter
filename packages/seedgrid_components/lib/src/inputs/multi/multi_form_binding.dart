@@ -1,17 +1,18 @@
 // Ligacao dos multiselects ao formulario (ADR 49), igual ao `Controller` do React: com `name` +
 // `control` (ou o SgForm mais proximo) o valor e a lista de valores do campo; o erro do formulario
-// entra no `error`. Detalhe fiel ao React: `required` do componente NAO vira regra do formulario
-// (so `rules` vai ao `Controller`).
+// entra no `error`. `required` do componente e so visual (asterisco), como no React: nao
+// entra como regra de obrigatorio do formulario.
 import 'package:flutter/widgets.dart';
 
 import '../../form/sg_form.dart';
-import '../../form/sg_rules.dart';
 import 'multi_select_core.dart';
 
 mixin SgMultiFormBinding<T extends StatefulWidget> on State<T> {
   String? get bindingName;
   SgFormController? get bindingControl;
-  SgRules? get bindingRules;
+
+  /// Mensagem de obrigatorio a registrar no formulario (nulo = campo opcional).
+  String? get bindingRequired;
 
   SgFormController? _boundForm;
 
@@ -51,7 +52,7 @@ mixin SgMultiFormBinding<T extends StatefulWidget> on State<T> {
     if (!isBound) return;
     _boundForm!.registerField(
       bindingName!,
-      rules: bindingRules,
+      required: bindingRequired,
       initialValue: const <Object>[],
     );
   }

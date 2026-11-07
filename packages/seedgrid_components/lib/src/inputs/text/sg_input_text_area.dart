@@ -10,7 +10,7 @@ import 'package:flutter/services.dart';
 
 import '../../form/sg_form.dart';
 import '../../form/sg_validation_scope.dart';
-import '../../form/sg_rules.dart';
+import '../../form/sg_field_error.dart';
 import '../../generated/enums.g.dart';
 import '../../generated/sg_input_text_area.g.dart';
 import '../../i18n/i18n.dart';
@@ -58,7 +58,6 @@ class SgInputTextArea extends StatefulWidget implements SgInputTextAreaProps {
     this.prefixIcon,
     this.required,
     this.requiredMessage,
-    this.rules,
     this.showCharCounter,
     this.textareaProps,
     this.validateOnBlur,
@@ -157,8 +156,6 @@ class SgInputTextArea extends StatefulWidget implements SgInputTextAreaProps {
   final bool? required;
   @override
   final String? requiredMessage;
-  @override
-  final SgRules? rules;
   @override
   final bool? showCharCounter;
 
@@ -285,8 +282,7 @@ class _SgInputTextAreaState extends State<SgInputTextArea>
     _form!.registerField(
       widget.name!,
       validator: _formValidate,
-      rules: mergeRequiredRule(
-        widget.rules,
+      required: requiredMessageFor(
         widget.required,
         widget.requiredMessage ??
             t(i18n, 'components.inputs.textarea.required'),

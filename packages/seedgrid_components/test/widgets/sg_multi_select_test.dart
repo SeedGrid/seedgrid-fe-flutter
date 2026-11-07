@@ -1025,36 +1025,8 @@ void main() {
       },
     );
 
-    testWidgets('rules: handleSubmit mostra o erro e corrige ao marcar', (
-      t,
-    ) async {
-      size(t, 1280);
-      final form = SgFormController();
-      Map<String, SgFieldError>? invalid;
-      await t.pumpWidget(
-        host(
-          SgMultiSelect(
-            id: 'm',
-            options: _opts,
-            name: 'tags',
-            control: form,
-            rules: const SgRules(required: 'Informe ao menos uma'),
-          ),
-        ),
-      );
-      await form.handleSubmit((_) {}, (e) => invalid = e);
-      await t.pump();
-      expect(invalid!['tags']!.message, 'Informe ao menos uma');
-      expect(find.text('Informe ao menos uma'), findsOneWidget);
-      await openList(t, 'm');
-      await t.tap(option('a'));
-      await t.pumpAndSettle();
-      expect(find.text('Informe ao menos uma'), findsNothing);
-      expect(form.errorOf('tags'), isNull);
-    });
-
     testWidgets(
-      'a prop required NAO vira regra do formulario (defeito do React reproduzido)',
+      'a prop required NAO valida o formulario (so o asterisco, como no React)',
       (t) async {
         size(t, 1280);
         final form = SgFormController();
@@ -1071,7 +1043,7 @@ void main() {
           ),
         );
         await form.handleSubmit((_) => valid++);
-        expect(valid, 1, reason: 'o envio passa mesmo sem selecao');
+        expect(valid, 1);
       },
     );
 
@@ -1088,7 +1060,8 @@ void main() {
             name: 'tags',
             control: form,
             error: 'Erro do servidor',
-            rules: const SgRules(required: 'Do formulario'),
+            required: true,
+            requiredMessage: 'Do formulario',
           ),
         ),
       );

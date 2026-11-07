@@ -25,7 +25,7 @@ Mesmos nomes de widget, mesmas props, mesmos valores: quem já usa o SeedGrid em
 - **Completo.** **89 de 89** componentes portados: botões, campos com máscara (CPF, CNPJ, telefone, CEP, moeda), tabela com filtro, ordenação e paginação, formulários, menus, docks, diálogos, avisos, gadgets e mais.
 - **Tema de verdade.** Escala de cores a partir de uma cor semente, claro/escuro e raio de borda, tudo em tempo de execução (`SeedThemeProvider`).
 - **Cinco idiomas.** pt-BR, pt-PT, en-US, es e fr nos textos dos componentes, com validações traduzidas.
-- **Formulário próprio.** `SgForm` + `SgFormController` + `SgRules`: sem dependência externa, campo ligado por `name` e `control`.
+- **Formulário próprio.** `SgForm` + `SgFormController` (a validação usa as props diretas de cada campo: `required`, `requiredMessage`, `minLength`, `validation`...): sem dependência externa, campo ligado por `name` e `control`.
 - **Estado que persiste.** `SgEnvironmentProvider` guarda, por exemplo, a ordem e a visibilidade das colunas do `SgDatatable`.
 - **Documentado por exemplo.** Cada componente tem uma página no showcase com exemplos numerados (o código mostrado é o que está renderizado), playground de props e tabela de referência.
 

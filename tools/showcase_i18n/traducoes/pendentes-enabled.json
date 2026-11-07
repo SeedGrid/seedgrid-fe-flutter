@@ -1,0 +1,140 @@
+{
+ "Desabilitado (enabled)": [
+  "Disabled (enabled)",
+  "Desativado (enabled)",
+  "Deshabilitado (enabled)",
+  "Désactivé (enabled)"
+ ],
+ "Dados": [
+  "Data",
+  "Dados",
+  "Datos",
+  "Données"
+ ],
+ "Revisão": [
+  "Review",
+  "Revisão",
+  "Revisión",
+  "Révision"
+ ],
+ "Confirmação": [
+  "Confirmation",
+  "Confirmação",
+  "Confirmación",
+  "Confirmation"
+ ],
+ "Primeira etapa": [
+  "First step",
+  "Primeiro passo",
+  "Primer paso",
+  "Première étape"
+ ],
+ "Segunda etapa": [
+  "Second step",
+  "Segundo passo",
+  "Segundo paso",
+  "Deuxième étape"
+ ],
+ "Terceira etapa": [
+  "Third step",
+  "Terceiro passo",
+  "Tercer paso",
+  "Troisième étape"
+ ],
+ "Pessoas": [
+  "People",
+  "Pessoas",
+  "Personas",
+  "Personnes"
+ ],
+ "Com enabled: false o wizard inteiro fica desabilitado: Anterior, Próximo, Concluir e os passos do stepper não respondem; a etapa atual continua visível.": [
+  "With enabled: false the whole wizard is disabled: Previous, Next, Finish and the stepper steps do not respond; the current step stays visible.",
+  "Com enabled: false o wizard inteiro fica desativado: Anterior, Seguinte, Concluir e os passos do stepper não respondem; o passo atual continua visível.",
+  "Con enabled: false todo el asistente queda deshabilitado: Anterior, Siguiente, Finalizar y los pasos del stepper no responden; el paso actual sigue visible.",
+  "Avec enabled: false l'assistant entier est désactivé : Précédent, Suivant, Terminer et les étapes du stepper ne répondent pas ; l'étape actuelle reste visible."
+ ],
+ "Com enabled: false os dias e os botões de mês e de hoje ficam desabilitados; a data e o mês atuais continuam legíveis.": [
+  "With enabled: false the days and the month and today buttons are disabled; the current date and month stay readable.",
+  "Com enabled: false os dias e os botões de mês e de hoje ficam desativados; a data e o mês atuais continuam legíveis.",
+  "Con enabled: false los días y los botones de mes y de hoy quedan deshabilitados; la fecha y el mes actuales siguen legibles.",
+  "Avec enabled: false les jours et les boutons de mois et d'aujourd'hui sont désactivés ; la date et le mois actuels restent lisibles."
+ ],
+ "Com enabled: false ordenação, seleção de linhas, filtros e gerenciador de colunas ficam bloqueados; paginação e rolagem continuam funcionando.": [
+  "With enabled: false sorting, row selection, filters and the column manager are blocked; pagination and scrolling keep working.",
+  "Com enabled: false a ordenação, a seleção de linhas, os filtros e o gestor de colunas ficam bloqueados; a paginação e o deslocamento continuam a funcionar.",
+  "Con enabled: false la ordenación, la selección de filas, los filtros y el gestor de columnas quedan bloqueados; la paginación y el desplazamiento siguen funcionando.",
+  "Avec enabled: false le tri, la sélection des lignes, les filtres et le gestionnaire de colonnes sont bloqués ; la pagination et le défilement continuent de fonctionner."
+ ],
+ "Quando false, os dias, os botoes de mes anterior/proximo e o atalho hoje ficam desabilitados (nao focaveis); a data e o mes atuais continuam legiveis.": [
+  "When false, the days, the previous/next month buttons and the today shortcut are disabled (not focusable); the current date and month stay readable.",
+  "Quando false, os dias, os botões de mês anterior/seguinte e o atalho hoje ficam desativados (não focáveis); a data e o mês atuais continuam legíveis.",
+  "Cuando es false, los días, los botones de mes anterior/siguiente y el atajo de hoy quedan deshabilitados (no enfocables); la fecha y el mes actuales siguen legibles.",
+  "Quand false, les jours, les boutons de mois précédent/suivant et le raccourci aujourd'hui sont désactivés (non focalisables) ; la date et le mois actuels restent lisibles."
+ ],
+ "Quando false, bloqueia as acoes que mudam estado: ordenacao, selecao de linhas, filtros (global e por coluna), limpar filtros e gerenciador de colunas. Paginacao, rolagem e carga de mais linhas continuam funcionando. Aparencia de desabilitado e aria-disabled.": [
+  "When false, blocks the actions that change state: sorting, row selection, filters (global and per column), clear filters and the column manager. Pagination, scrolling and loading more rows keep working. Disabled appearance and aria-disabled.",
+  "Quando false, bloqueia as ações que mudam o estado: ordenação, seleção de linhas, filtros (global e por coluna), limpar filtros e gestor de colunas. A paginação, o deslocamento e o carregamento de mais linhas continuam a funcionar. Aspeto de desativado e aria-disabled.",
+  "Cuando es false, bloquea las acciones que cambian el estado: ordenación, selección de filas, filtros (global y por columna), limpiar filtros y gestor de columnas. La paginación, el desplazamiento y la carga de más filas siguen funcionando. Apariencia de deshabilitado y aria-disabled.",
+  "Quand false, bloque les actions qui modifient l'état : tri, sélection des lignes, filtres (global et par colonne), effacer les filtres et gestionnaire de colonnes. La pagination, le défilement et le chargement de lignes supplémentaires continuent de fonctionner. Apparence désactivée et aria-disabled."
+ ],
+ "Quando false, o wizard inteiro fica desabilitado: Anterior, Proximo, Concluir e os passos do stepper deixam de responder; a etapa atual segue visivel. Diferente de nextDisabled, que so bloqueia o avanco.": [
+  "When false, the whole wizard is disabled: Previous, Next, Finish and the stepper steps stop responding; the current step stays visible. Unlike nextDisabled, which only blocks advancing.",
+  "Quando false, o wizard inteiro fica desativado: Anterior, Seguinte, Concluir e os passos do stepper deixam de responder; o passo atual continua visível. Ao contrário de nextDisabled, que só bloqueia o avanço.",
+  "Cuando es false, todo el asistente queda deshabilitado: Anterior, Siguiente, Finalizar y los pasos del stepper dejan de responder; el paso actual sigue visible. A diferencia de nextDisabled, que solo bloquea el avance.",
+  "Quand false, l'assistant entier est désactivé : Précédent, Suivant, Terminer et les étapes du stepper ne répondent plus ; l'étape actuelle reste visible. Contrairement à nextDisabled, qui ne bloque que l'avancement."
+ ],
+ "name + control + required: a mensagem aparece no envio e some ao escolher.": [
+  "name + control + required: the message appears on submit and goes away when you choose.",
+  "name + control + required: a mensagem aparece ao submeter e desaparece ao escolher.",
+  "name + control + required: el mensaje aparece al enviar y desaparece al elegir.",
+  "name + control + required : le message apparaît à l'envoi et disparaît au choix."
+ ],
+ "required só acrescenta o asterisco ao rótulo; com name + control o campo guarda a lista de valores marcados.": [
+  "required only adds the asterisk to the label; with name + control the field stores the list of checked values.",
+  "required só acrescenta o asterisco ao rótulo; com name + control o campo guarda a lista de valores marcados.",
+  "required solo añade el asterisco a la etiqueta; con name + control el campo guarda la lista de valores marcados.",
+  "required ajoute seulement l'astérisque au libellé ; avec name + control le champ stocke la liste des valeurs cochées."
+ ],
+ "name + control: o valor do campo no formulário é a lista de valores marcados.": [
+  "name + control: the field value in the form is the list of checked values.",
+  "name + control: o valor do campo no formulário é a lista de valores marcados.",
+  "name + control: el valor del campo en el formulario es la lista de valores marcados.",
+  "name + control : la valeur du champ dans le formulaire est la liste des valeurs cochées."
+ ],
+ "name + control: o valor do formulário é a lista na ordem atual.": [
+  "name + control: the form value is the list in its current order.",
+  "name + control: o valor do formulário é a lista na ordem atual.",
+  "name + control: el valor del formulario es la lista en el orden actual.",
+  "name + control : la valeur du formulaire est la liste dans l'ordre actuel."
+ ],
+ "name + control: o formulário guarda o texto do preset (por exemplo THIS_MONTH).": [
+  "name + control: the form stores the preset text (for example THIS_MONTH).",
+  "name + control: o formulário guarda o texto da predefinição (por exemplo THIS_MONTH).",
+  "name + control: el formulario guarda el texto del preset (por ejemplo THIS_MONTH).",
+  "name + control : le formulaire stocke le texte du préréglage (par exemple THIS_MONTH)."
+ ],
+ "name + control: o valor do formulário são as duas listas.": [
+  "name + control: the form value is both lists.",
+  "name + control: o valor do formulário são as duas listas.",
+  "name + control: el valor del formulario son las dos listas.",
+  "name + control : la valeur du formulaire correspond aux deux listes."
+ ],
+ "name + control: o formulário guarda o valor escolhido.": [
+  "name + control: the form stores the chosen value.",
+  "name + control: o formulário guarda o valor escolhido.",
+  "name + control: el formulario guarda el valor elegido.",
+  "name + control : le formulaire stocke la valeur choisie."
+ ],
+ "name + control: o formulário guarda um número.": [
+  "name + control: the form stores a number.",
+  "name + control: o formulário guarda um número.",
+  "name + control: el formulario guarda un número.",
+  "name + control : le formulaire stocke un nombre."
+ ],
+ "name + control: o valor do campo é o HTML do corpo.": [
+  "name + control: the field value is the body HTML.",
+  "name + control: o valor do campo é o HTML do corpo.",
+  "name + control: el valor del campo es el HTML del cuerpo.",
+  "name + control : la valeur du champ est le HTML du corps."
+ ]
+}

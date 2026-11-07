@@ -36,8 +36,6 @@ abstract interface class SgOrderListProps {
   Function? get onSelectionChange;
   /// Padrão: `false`.
   bool? get readOnly;
-  /// Tipo TS: `RegisterOptions&lt;any&gt;` (sem tradução exata; ver excecoes.json).
-  Object? get rules;
   /// Tipo TS: `(string | number)[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get selectedValues;
   /// Modo de selecao. Padrão: `single`.
@@ -174,14 +172,6 @@ const List<SgPropSpec> sgOrderListPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-  ),
-  SgPropSpec(
-    name: 'rules',
-    reactName: 'rules',
-    type: 'Object?',
-    tsType: 'RegisterOptions<any>',
-    required: false,
-    exact: false,
   ),
   SgPropSpec(
     name: 'selectedValues',

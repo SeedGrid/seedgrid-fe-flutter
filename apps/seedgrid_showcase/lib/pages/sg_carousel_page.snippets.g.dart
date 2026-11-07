@@ -42,7 +42,9 @@ Column(
     Container(
       width: double.infinity,
       padding: const EdgeInsets.all(12),
-      color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.05),
+      color: Theme.of(
+        context,
+      ).colorScheme.onSurface.withValues(alpha: 0.05),
       child: Text('${context.tx('Índice Ativo')}: $_activeIndex'),
     ),
     const SizedBox(height: 16),
@@ -63,7 +65,9 @@ Column(
     const SizedBox(height: 16),
     ShowcaseLogBox(
       entries: _eventLog,
-      hint: context.tx('Navegue pelo carrossel para ver os eventos...'),
+      hint: context.tx(
+        'Navegue pelo carrossel para ver os eventos...',
+      ),
       height: 128,
     ),
   ],

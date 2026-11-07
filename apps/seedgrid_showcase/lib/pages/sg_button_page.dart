@@ -207,8 +207,7 @@ class _SgButtonPageState extends State<SgButtonPage> {
       ),
       ShowcaseExample(
         title: 'Elevated Buttons',
-        description:
-            'appearance: solid + elevation: sm.',
+        description: 'appearance: solid + elevation: sm.',
         preview:
             // #region sg-button-elevated
             Wrap(
@@ -239,8 +238,7 @@ class _SgButtonPageState extends State<SgButtonPage> {
       ),
       ShowcaseExample(
         title: 'Rounded Buttons',
-        description:
-            'shape: rounded para formato pill.',
+        description: 'shape: rounded para formato pill.',
         preview:
             // #region sg-button-rounded
             Wrap(
@@ -270,8 +268,7 @@ class _SgButtonPageState extends State<SgButtonPage> {
       ),
       ShowcaseExample(
         title: 'Ghost Buttons (Flat)',
-        description:
-            'appearance: ghost - sem fundo, apenas texto colorido.',
+        description: 'appearance: ghost - sem fundo, apenas texto colorido.',
         preview:
             // #region sg-button-ghost
             Wrap(
@@ -301,8 +298,7 @@ class _SgButtonPageState extends State<SgButtonPage> {
       ),
       ShowcaseExample(
         title: 'Outlined + Elevation',
-        description:
-            'appearance: outline + elevation: sm.',
+        description: 'appearance: outline + elevation: sm.',
         preview:
             // #region sg-button-outlined-elevation
             Wrap(
@@ -333,8 +329,7 @@ class _SgButtonPageState extends State<SgButtonPage> {
       ),
       ShowcaseExample(
         title: 'Outlined Buttons',
-        description:
-            'appearance: outline - apenas bordas coloridas.',
+        description: 'appearance: outline - apenas bordas coloridas.',
         preview:
             // #region sg-button-outlined
             Wrap(
@@ -364,8 +359,7 @@ class _SgButtonPageState extends State<SgButtonPage> {
       ),
       ShowcaseExample(
         title: 'Rounded Icon Buttons',
-        description:
-            'shape: rounded + só ícone - botões circulares.',
+        description: 'shape: rounded + só ícone - botões circulares.',
         preview:
             // #region sg-button-rounded-icon
             Wrap(
@@ -395,8 +389,7 @@ class _SgButtonPageState extends State<SgButtonPage> {
       ),
       ShowcaseExample(
         title: 'Rounded Text Icon Buttons',
-        description:
-            'shape: rounded + só ícone + appearance: ghost.',
+        description: 'shape: rounded + só ícone + appearance: ghost.',
         preview:
             // #region sg-button-rounded-text-icon
             Wrap(
@@ -427,8 +420,7 @@ class _SgButtonPageState extends State<SgButtonPage> {
       ),
       ShowcaseExample(
         title: 'Rounded and Outlined Icon Buttons',
-        description:
-            'shape: rounded + só ícone + appearance: outline.',
+        description: 'shape: rounded + só ícone + appearance: outline.',
         preview:
             // #region sg-button-rounded-outlined-icon
             Wrap(
@@ -459,8 +451,7 @@ class _SgButtonPageState extends State<SgButtonPage> {
       ),
       ShowcaseExample(
         title: 'Sizes',
-        description:
-            'size: sm, md ou lg.',
+        description: 'size: sm, md ou lg.',
         preview:
             // #region sg-button-sizes
             Column(
@@ -521,8 +512,7 @@ class _SgButtonPageState extends State<SgButtonPage> {
       ),
       ShowcaseExample(
         title: 'Loading',
-        description:
-            'loading: true exibe spinner e desabilita o botão.',
+        description: 'loading: true exibe spinner e desabilita o botão.',
         preview:
             // #region sg-button-loading
             Wrap(
@@ -530,7 +520,10 @@ class _SgButtonPageState extends State<SgButtonPage> {
               runSpacing: 12,
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
-                SgButton(label: Text(context.tx('Processing...')), loading: true),
+                SgButton(
+                  label: Text(context.tx('Processing...')),
+                  loading: true,
+                ),
                 SgButton(
                   label: Text(context.tx('Saving...')),
                   severity: SgSeverity.success,

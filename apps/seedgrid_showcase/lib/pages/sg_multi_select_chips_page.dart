@@ -149,8 +149,8 @@ class _SgMultiSelectChipsPageState extends State<SgMultiSelectChipsPage> {
       ShowcaseExample(
         title: 'Erro e formulário',
         description:
-            'required só acrescenta o asterisco ao rótulo; a validação vem de '
-            'rules (name + control), e a mensagem aparece abaixo do campo.',
+            'required só acrescenta o asterisco ao rótulo; com name + control o '
+            'campo guarda a lista de valores marcados.',
         preview:
             // #region sg-multi-select-chips-formulario
             Column(
@@ -162,7 +162,7 @@ class _SgMultiSelectChipsPageState extends State<SgMultiSelectChipsPage> {
                   control: _form,
                   labelText: 'Áreas',
                   required: true,
-                  rules: const SgRules(required: 'Escolha ao menos uma área'),
+
                   options: [
                     SgMultiSelectOption(
                       label: context.tx('Vendas'),

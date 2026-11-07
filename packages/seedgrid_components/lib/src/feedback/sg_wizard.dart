@@ -104,6 +104,7 @@ class SgWizard extends StatefulWidget implements SgWizardProps {
     this.onBeforeFinish,
     this.validateStep,
     this.nextDisabled = false,
+    this.enabled = true,
     this.initialStep,
     this.labels,
     this.stepper = SgWizardStepper.none,
@@ -132,6 +133,12 @@ class SgWizard extends StatefulWidget implements SgWizardProps {
   /// de oferecer as etapas seguintes. Nao afeta o botao de conclusao (para esse existe `onBeforeFinish`).
   @override
   final bool nextDisabled;
+
+  /// Habilita o wizard como um todo (padrao `true`). Com `false`, "Anterior", "Proximo", "Concluir"
+  /// e os passos do stepper nao respondem; a etapa atual segue visivel. O conteudo da etapa e do
+  /// consumidor (use `enabled` nos campos). Diferente de [nextDisabled], que so bloqueia o avanco.
+  @override
+  final bool enabled;
   @override
   final int? initialStep;
   @override
@@ -193,6 +200,7 @@ class _SgWizardState extends State<SgWizard> {
   }
 
   Future<void> _goNext() async {
+    if (!widget.enabled) return;
     if (_isLast) return;
     // Guarda aqui e nao so no botao: o avanco pelo stepper cai neste mesmo caminho.
     if (widget.nextDisabled) return;
@@ -213,6 +221,7 @@ class _SgWizardState extends State<SgWizard> {
   }
 
   bool _canNavigateStep(int target) {
+    if (!widget.enabled) return false;
     // Com o avanco bloqueado o stepper nao oferece as etapas seguintes.
     if (widget.nextDisabled && target > _step) return false;
     return canNavigateToWizardStep(
@@ -224,6 +233,7 @@ class _SgWizardState extends State<SgWizard> {
   }
 
   void _goPrevious() {
+    if (!widget.enabled) return;
     if (_isFirst) return;
     _setStep((_step - 1).clamp(0, widget.children.length - 1));
   }
@@ -238,6 +248,7 @@ class _SgWizardState extends State<SgWizard> {
   }
 
   Future<void> _finish() async {
+    if (!widget.enabled) return;
     if (_finishing || _validating) return;
     setState(() => _validating = true);
     try {
@@ -271,7 +282,7 @@ class _SgWizardState extends State<SgWizard> {
     );
     final pages = widget.children;
 
-    return Column(
+    final body = Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -303,6 +314,7 @@ class _SgWizardState extends State<SgWizard> {
                     appearance: SgAppearance.outline,
                     severity: SgSeverity.secondary,
                     shape: SgButtonShape.rounded,
+                    enabled: widget.enabled,
                     onClick: _goPrevious,
                   ),
             if (!_isLast)
@@ -310,7 +322,8 @@ class _SgWizardState extends State<SgWizard> {
                 key: const ValueKey('wizard-next'),
                 label: Text(labels.next),
                 shape: SgButtonShape.rounded,
-                enabled: !(_validating || widget.nextDisabled),
+                enabled:
+                    widget.enabled && !(_validating || widget.nextDisabled),
                 onClick: _goNext,
               )
             else
@@ -318,13 +331,16 @@ class _SgWizardState extends State<SgWizard> {
                 key: const ValueKey('wizard-finish'),
                 label: Text(labels.finish),
                 shape: SgButtonShape.rounded,
-                enabled: !(_finishing || _validating),
+                enabled: widget.enabled && !(_finishing || _validating),
                 onClick: _finish,
               ),
           ],
         ),
       ],
     );
+    if (widget.enabled) return body;
+    // Sem Opacity extra: os botoes ja ficam com a aparencia de desabilitado e o stepper perde o toque.
+    return Semantics(enabled: false, container: true, child: body);
   }
 }
 

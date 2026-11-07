@@ -7,7 +7,6 @@ import 'package:flutter/services.dart';
 import 'package:seedgrid_commons/seedgrid_commons.dart';
 
 import '../../form/sg_form.dart';
-import '../../form/sg_rules.dart';
 import '../../generated/enums.g.dart';
 import '../../generated/sg_input_email.g.dart';
 import '../../i18n/i18n.dart';
@@ -53,7 +52,6 @@ class SgInputEmail extends StatefulWidget implements SgInputEmailProps {
     this.readOnly,
     this.required,
     this.requiredMessage,
-    this.rules,
     this.showCharCounter,
     this.suffixText,
     this.textInputType,
@@ -157,8 +155,6 @@ class SgInputEmail extends StatefulWidget implements SgInputEmailProps {
   final bool? required;
   @override
   final String? requiredMessage;
-  @override
-  final SgRules? rules;
   @override
   final bool? showCharCounter;
   @override
@@ -317,7 +313,6 @@ class _SgInputEmailState extends State<SgInputEmail> {
       readOnly: w.readOnly,
       required: w.required,
       requiredMessage: w.requiredMessage,
-      rules: w.rules,
       showCharCounter: w.showCharCounter,
       suffixText: w.suffixText,
       textInputType:

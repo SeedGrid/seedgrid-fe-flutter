@@ -169,8 +169,8 @@ class _SgMultiSelectPageState extends State<SgMultiSelectPage> {
       ShowcaseExample(
         title: 'Dentro de um formulário',
         description:
-            'name + control + rules, como no react-hook-form. O valor do campo '
-            'no formulário é a lista de valores marcados.',
+            'name + control: o valor do campo no formulário é a lista de valores '
+            'marcados.',
         preview:
             // #region sg-multi-select-formulario
             Column(
@@ -181,7 +181,7 @@ class _SgMultiSelectPageState extends State<SgMultiSelectPage> {
                   name: 'tags',
                   control: _form,
                   labelText: 'Tags',
-                  rules: const SgRules(required: 'Escolha ao menos uma tag'),
+
                   options: [
                     SgMultiSelectOption(
                       label: context.tx('Urgente'),

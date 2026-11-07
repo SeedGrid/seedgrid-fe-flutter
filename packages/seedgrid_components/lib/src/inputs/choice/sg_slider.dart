@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:seedgrid_theme/seedgrid_theme.dart';
 
 import '../../form/sg_form.dart';
-import '../../form/sg_rules.dart';
+import '../../form/sg_field_error.dart';
 import '../../generated/sg_slider.g.dart';
 import '../../theme_access.dart';
 import 'choice_shared.dart';
@@ -24,7 +24,6 @@ class SgSlider extends StatefulWidget implements SgSliderProps {
     this.inputProps,
     this.name,
     this.onChange,
-    this.rules,
     this.step = 1,
     this.value,
     this.width,
@@ -58,8 +57,6 @@ class SgSlider extends StatefulWidget implements SgSliderProps {
   /// Recebe o valor a cada mudanca (arrastar ou teclado).
   @override
   final ValueChanged<num>? onChange;
-  @override
-  final SgRules? rules;
   @override
   final num step;
 
@@ -115,7 +112,6 @@ class _SgSliderState extends State<SgSlider> {
     context,
     control: widget.control,
     name: widget.name,
-    rules: widget.rules,
     initialValue: widget.minValue,
   );
 

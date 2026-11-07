@@ -22,6 +22,7 @@ const OMIT = new Map([
   ["inputClassName", "estilo: React-only (ADR 50)"],
   ["style", "estilo: React-only (ADR 50)"],
   ["register", "nao aplicavel: todo campo Flutter e controlado (ADR 49)"],
+  ["rules", "nao aplicavel: a validacao do Flutter usa as props diretas (required, requiredMessage, minLength, validation...); o React repassa `rules` do react-hook-form"],
   ["ref", "React-only: vira controller/GlobalKey por componente"],
   ["key", "React-only: Key do widget"],
 ]);

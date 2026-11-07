@@ -63,9 +63,6 @@ Column(
       minValue: 0,
       maxValue: 100,
       step: 10,
-      rules: const SgRules(
-        min: SgRuleValue(20, 'Brilho mínimo: 20'),
-      ),
     ),
     const SizedBox(height: 12),
     SgButton(

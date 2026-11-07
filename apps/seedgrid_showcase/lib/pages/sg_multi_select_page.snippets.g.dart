@@ -97,7 +97,7 @@ Column(
       name: 'tags',
       control: _form,
       labelText: 'Tags',
-      rules: const SgRules(required: 'Escolha ao menos uma tag'),
+
       options: [
         SgMultiSelectOption(
           label: context.tx('Urgente'),

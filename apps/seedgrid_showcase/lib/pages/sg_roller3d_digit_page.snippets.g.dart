@@ -88,4 +88,45 @@ Wrap(
   ],
 )
 ''';
+
+  /// Region `sg-roller3d-digit-nomes`.
+  static const String sgRoller3dDigitNomes = r'''
+Wrap(
+  spacing: 8,
+  runSpacing: 12,
+  crossAxisAlignment: WrapCrossAlignment.center,
+  children: [
+    for (final letra in _letrasDoNome())
+      SgRoller3DDigit(
+        value: letra,
+        items: _alfabeto,
+        fontSize: 28,
+        transitionMs: 110,
+      ),
+    SgButton(
+      label: Text(context.tx('Animar nome')),
+      size: SgSize.sm,
+      onClick: _animarNome,
+    ),
+  ],
+)
+''';
+
+  /// Region `sg-roller3d-digit-tamanhos`.
+  static const String sgRoller3dDigitTamanhos = r'''
+Wrap(
+  spacing: 16,
+  runSpacing: 12,
+  crossAxisAlignment: WrapCrossAlignment.end,
+  children: [
+    for (final tamanho in const [16, 32, 56])
+      Column(
+        children: [
+          Text('${tamanho}px'),
+          SgRoller3DDigit(value: '5', fontSize: tamanho.toDouble()),
+        ],
+      ),
+  ],
+)
+''';
 }

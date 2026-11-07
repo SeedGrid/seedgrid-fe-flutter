@@ -209,7 +209,8 @@ class _SgCarouselPageState extends State<SgCarouselPage> {
       ),
       ShowcaseExample(
         title: 'Sem navegadores',
-        description: 'Carrossel sem os botões de navegação (apenas indicadores)',
+        description:
+            'Carrossel sem os botões de navegação (apenas indicadores)',
         preview:
             // #region sg-carousel-sem-navegadores
             SizedBox(
@@ -229,7 +230,8 @@ class _SgCarouselPageState extends State<SgCarouselPage> {
       ),
       ShowcaseExample(
         title: 'Gap customizado',
-        description: 'Carrossel com espaçamento personalizado entre itens (gap: 32px)',
+        description:
+            'Carrossel com espaçamento personalizado entre itens (gap: 32px)',
         preview:
             // #region sg-carousel-gap
             SizedBox(
@@ -257,7 +259,9 @@ class _SgCarouselPageState extends State<SgCarouselPage> {
                 Container(
                   width: double.infinity,
                   padding: const EdgeInsets.all(12),
-                  color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.05),
+                  color: Theme.of(
+                    context,
+                  ).colorScheme.onSurface.withValues(alpha: 0.05),
                   child: Text('${context.tx('Índice Ativo')}: $_activeIndex'),
                 ),
                 const SizedBox(height: 16),
@@ -278,7 +282,9 @@ class _SgCarouselPageState extends State<SgCarouselPage> {
                 const SizedBox(height: 16),
                 ShowcaseLogBox(
                   entries: _eventLog,
-                  hint: context.tx('Navegue pelo carrossel para ver os eventos...'),
+                  hint: context.tx(
+                    'Navegue pelo carrossel para ver os eventos...',
+                  ),
                   height: 128,
                 ),
               ],
@@ -288,7 +294,8 @@ class _SgCarouselPageState extends State<SgCarouselPage> {
       ),
       ShowcaseExample(
         title: 'Exemplo responsivo',
-        description: 'Carrossel que se adapta ao tamanho da tela mostrando diferentes quantidades de itens',
+        description:
+            'Carrossel que se adapta ao tamanho da tela mostrando diferentes quantidades de itens',
         preview:
             // #region sg-carousel-responsivo
             Builder(

@@ -494,10 +494,9 @@ void main() {
               control: form,
               required: true,
               requiredMessage: 'Informe o preco',
-              rules: SgRules(
-                validate: (v) =>
-                    (num.tryParse('$v') ?? 0) > 0 ? true : 'maior que zero',
-              ),
+              validation: (v) => (num.tryParse(v.replaceAll(',', '.')) ?? 0) > 0
+                  ? null
+                  : 'maior que zero',
             ),
           ),
         );
@@ -514,8 +513,8 @@ void main() {
         await form.handleSubmit((v) => sent = v, (e) => invalid = e);
         await t.pump();
         expect(sent, isNull);
-        expect(invalid!['preco']!.message, 'maior que zero');
-        expect(find.text('maior que zero'), findsOneWidget);
+        expect(invalid!['preco']!.message, 'Informe o preco');
+        expect(find.text('Informe o preco'), findsOneWidget);
       },
     );
   });

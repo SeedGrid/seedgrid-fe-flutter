@@ -249,24 +249,6 @@ void main() {
       expect(find.text('Required field.'), findsNothing);
     });
 
-    testWidgets('rules.validate com mensagem propria', (t) async {
-      final form = SgFormController(defaultValues: {'tam': 's'});
-      await t.pumpWidget(
-        host(
-          SgRadioGroup(
-            id: 'g',
-            name: 'tam',
-            control: form,
-            source: sizes,
-            rules: SgRules(validate: (v) => v == 'm' ? true : 'So Medium'),
-          ),
-        ),
-      );
-      await form.handleSubmit((_) {});
-      await t.pump();
-      expect(find.text('So Medium'), findsOneWidget);
-    });
-
     testWidgets('SgForm mais proximo', (t) async {
       Map<String, Object?>? sent;
       await t.pumpWidget(

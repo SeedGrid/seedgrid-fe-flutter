@@ -4,7 +4,7 @@ import '../list_narrow.dart';
 import 'package:flutter/material.dart';
 
 import '../../form/sg_form.dart';
-import '../../form/sg_rules.dart';
+import '../../form/sg_field_error.dart';
 import '../../generated/enums.g.dart';
 import '../../generated/sg_checkbox_group.g.dart';
 import '../../i18n/i18n.dart';
@@ -58,7 +58,6 @@ class SgCheckboxGroup extends StatefulWidget implements SgCheckboxGroupProps {
     this.checkAllIcon,
     this.name,
     this.control,
-    this.rules,
     this.error,
     this.optionClassName,
     this.groupBoxProps,
@@ -99,8 +98,6 @@ class SgCheckboxGroup extends StatefulWidget implements SgCheckboxGroupProps {
   final String? name;
   @override
   final SgFormController? control;
-  @override
-  final SgRules? rules;
   @override
   final String? error;
 
@@ -159,8 +156,7 @@ class _SgCheckboxGroupState extends State<SgCheckboxGroup> {
       context,
       control: widget.control,
       name: widget.name,
-      rules: mergeRequiredRule(
-        widget.rules,
+      required: requiredMessageFor(
         widget.required,
         t(i18n, 'components.inputs.required'),
       ),

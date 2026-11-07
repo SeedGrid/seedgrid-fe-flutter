@@ -47,7 +47,6 @@ class MultiAdapter extends VectorAdapter {
         required: s.props['required'] == true ? true : null,
         name: s.form == null ? null : 'f',
         control: s.form,
-        rules: s.rules,
       );
     }
     return SgMultiSelect(
@@ -62,7 +61,6 @@ class MultiAdapter extends VectorAdapter {
       required: s.props['required'] == true ? true : null,
       name: s.form == null ? null : 'f',
       control: s.form,
-      rules: s.rules,
     );
   }
 

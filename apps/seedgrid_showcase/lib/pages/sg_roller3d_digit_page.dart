@@ -1,4 +1,6 @@
 // Showcase do SgRoller3DDigit. O codigo exibido em cada exemplo e a regiao `// #region` deste arquivo.
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
@@ -18,12 +20,55 @@ class _SgRoller3DDigitPageState extends State<SgRoller3DDigitPage> {
   int _minute = 42;
   int _letter = 12;
   bool _slow = false;
+  int _nome = 0;
+  int _passo = 7;
+  Timer? _timer;
+  static const _nomes = ['LUCIANO', 'MARTA'];
+  static final _alfabeto = [
+    ' ',
+    ...List.generate(26, (i) => String.fromCharCode(65 + i)),
+  ];
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
+  List<String> _letrasDoNome() {
+    final atual = _nomes[_nome];
+    final anterior = _nomes[(_nome - 1 + _nomes.length) % _nomes.length];
+    final tamanho = atual.length > anterior.length
+        ? atual.length
+        : anterior.length;
+    final a = anterior.padRight(tamanho);
+    final b = atual.padRight(tamanho);
+    return [for (var i = 0; i < tamanho; i++) i <= _passo ? b[i] : a[i]];
+  }
+
+  void _animarNome() {
+    _timer?.cancel();
+    final atual = _nomes[_nome];
+    final proximo = _nomes[(_nome + 1) % _nomes.length];
+    final maximo = atual.length > proximo.length
+        ? atual.length
+        : proximo.length;
+    setState(() {
+      _nome = (_nome + 1) % _nomes.length;
+      _passo = 0;
+    });
+    _timer = Timer.periodic(const Duration(milliseconds: 120), (t) {
+      if (!mounted) return;
+      setState(() => _passo++);
+      if (_passo >= maximo) t.cancel();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     final examples = <ShowcaseExample>[
       ShowcaseExample(
-        title: 'Dígitos de 0 a 9',
+        title: 'Básico (0-9)',
         description:
             'O tambor desliza até a posição de value em 500 ms com cubic-bezier(0.22, 1, 0.36, 1).',
         preview:
@@ -49,7 +94,7 @@ class _SgRoller3DDigitPageState extends State<SgRoller3DDigitPage> {
         code: SgRoller3dDigitPageSnippets.sgRoller3dDigitDigitos,
       ),
       ShowcaseExample(
-        title: 'Minutos (00 a 59)',
+        title: 'Valor com 2 dígitos',
         description:
             'items define os valores; a largura cresce com o maior deles.',
         preview:
@@ -74,7 +119,7 @@ class _SgRoller3DDigitPageState extends State<SgRoller3DDigitPage> {
         code: SgRoller3dDigitPageSnippets.sgRoller3dDigitMinutos,
       ),
       ShowcaseExample(
-        title: 'Letras (A a Z)',
+        title: 'Letras (A-Z)',
         preview:
             // #region sg-roller3d-digit-letras
             Wrap(
@@ -95,6 +140,56 @@ class _SgRoller3DDigitPageState extends State<SgRoller3DDigitPage> {
             ),
         // #endregion
         code: SgRoller3dDigitPageSnippets.sgRoller3dDigitLetras,
+      ),
+      ShowcaseExample(
+        title: 'Animação de nomes',
+        description:
+            'Composição de vários SgRoller3DDigit para animar texto - exemplo: "LUCIANO" -> "MARTA".',
+        preview:
+            // #region sg-roller3d-digit-nomes
+            Wrap(
+              spacing: 8,
+              runSpacing: 12,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                for (final letra in _letrasDoNome())
+                  SgRoller3DDigit(
+                    value: letra,
+                    items: _alfabeto,
+                    fontSize: 28,
+                    transitionMs: 110,
+                  ),
+                SgButton(
+                  label: Text(context.tx('Animar nome')),
+                  size: SgSize.sm,
+                  onClick: _animarNome,
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgRoller3dDigitPageSnippets.sgRoller3dDigitNomes,
+      ),
+      ShowcaseExample(
+        title: 'Variações de tamanho',
+        description: 'Ajuste de escala via prop fontSize.',
+        preview:
+            // #region sg-roller3d-digit-tamanhos
+            Wrap(
+              spacing: 16,
+              runSpacing: 12,
+              crossAxisAlignment: WrapCrossAlignment.end,
+              children: [
+                for (final tamanho in const [16, 32, 56])
+                  Column(
+                    children: [
+                      Text('${tamanho}px'),
+                      SgRoller3DDigit(value: '5', fontSize: tamanho.toDouble()),
+                    ],
+                  ),
+              ],
+            ),
+        // #endregion
+        code: SgRoller3dDigitPageSnippets.sgRoller3dDigitTamanhos,
       ),
       ShowcaseExample(
         title: 'Duração da transição',

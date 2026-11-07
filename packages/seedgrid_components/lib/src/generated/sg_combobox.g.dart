@@ -76,8 +76,6 @@ abstract interface class SgComboboxProps {
   Function? get renderValue;
   bool? get required;
   String? get requiredMessage;
-  /// Tipo TS: `RegisterOptions&lt;any&gt;` (sem tradução exata; ver excecoes.json).
-  Object? get rules;
   bool? get showCharCounter;
   /// Fonte de itens. Tipo TS: `SgComboboxSource&lt;T&gt;` (sem tradução exata; ver excecoes.json).
   Object get source;
@@ -423,14 +421,6 @@ const List<SgPropSpec> sgComboboxPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-  ),
-  SgPropSpec(
-    name: 'rules',
-    reactName: 'rules',
-    type: 'Object?',
-    tsType: 'RegisterOptions<any>',
-    required: false,
-    exact: false,
   ),
   SgPropSpec(
     name: 'showCharCounter',

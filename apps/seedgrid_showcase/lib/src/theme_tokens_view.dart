@@ -15,7 +15,18 @@ const List<String> kPaletteFamilies = [
 ];
 
 /// Tons de cada familia.
-const List<int> kPaletteStops = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
+const List<int> kPaletteStops = [
+  50,
+  100,
+  200,
+  300,
+  400,
+  500,
+  600,
+  700,
+  800,
+  900,
+];
 
 /// Tokens semanticos mostrados na previa do editor (os mesmos do React).
 const List<String> kSemanticTokens = [
@@ -74,18 +85,10 @@ const List<(String, List<String>)> kComponentTokenGroups = [
     'Button Success',
     ['btn-success-bg', 'btn-success-fg', 'btn-success-hover-bg'],
   ),
-  (
-    'Button Danger',
-    ['btn-danger-bg', 'btn-danger-fg', 'btn-danger-hover-bg'],
-  ),
+  ('Button Danger', ['btn-danger-bg', 'btn-danger-fg', 'btn-danger-hover-bg']),
   (
     'Button Plain',
-    [
-      'btn-plain-bg',
-      'btn-plain-fg',
-      'btn-plain-border',
-      'btn-plain-hover-bg',
-    ],
+    ['btn-plain-bg', 'btn-plain-fg', 'btn-plain-border', 'btn-plain-hover-bg'],
   ),
   (
     'Input',
@@ -240,8 +243,7 @@ class ThemePaletteRow extends StatelessWidget {
                       ),
                     ),
                   ),
-                  if (showStops)
-                    Text('$stop', style: text.labelSmall),
+                  if (showStops) Text('$stop', style: text.labelSmall),
                 ],
               ),
             ),

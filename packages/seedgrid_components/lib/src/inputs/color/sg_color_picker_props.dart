@@ -10,7 +10,8 @@ const List<SgPropSpec> sgColorPickerPropSpecs = <SgPropSpec>[
     type: 'String',
     tsType: '-',
     required: true,
-    description: 'Identificador único (base das chaves dos sliders, do campo hex e das cores predefinidas).',
+    description:
+        'Identificador único (base das chaves dos sliders, do campo hex e das cores predefinidas).',
   ),
   SgPropSpec(
     name: 'ariaLabel',
@@ -34,7 +35,8 @@ const List<SgPropSpec> sgColorPickerPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: '-',
     required: false,
-    description: 'Cor inicial no formato #RRGGBB quando o componente não é controlado.',
+    description:
+        'Cor inicial no formato #RRGGBB quando o componente não é controlado.',
   ),
   SgPropSpec(
     name: 'enabled',
@@ -43,7 +45,8 @@ const List<SgPropSpec> sgColorPickerPropSpecs = <SgPropSpec>[
     tsType: '-',
     required: false,
     defaultValue: 'true',
-    description: 'Com false, bloqueia os sliders, o campo hex e as cores predefinidas.',
+    description:
+        'Com false, bloqueia os sliders, o campo hex e as cores predefinidas.',
   ),
   SgPropSpec(
     name: 'error',
@@ -69,7 +72,8 @@ const List<SgPropSpec> sgColorPickerPropSpecs = <SgPropSpec>[
     required: false,
     defaultValue: 'gradient',
     values: <String>['gradient', 'sliders'],
-    description: 'Forma de escolher a cor: gradient (clássico: área de saturação e brilho mais barra de matiz em gradiente) ou sliders (três barras: matiz, saturação e brilho).',
+    description:
+        'Forma de escolher a cor: gradient (clássico: área de saturação e brilho mais barra de matiz em gradiente) ou sliders (três barras: matiz, saturação e brilho).',
   ),
   SgPropSpec(
     name: 'name',
@@ -77,7 +81,8 @@ const List<SgPropSpec> sgColorPickerPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: '-',
     required: false,
-    description: 'Nome do campo no formulário (usado junto com control ou dentro de SgForm).',
+    description:
+        'Nome do campo no formulário (usado junto com control ou dentro de SgForm).',
   ),
   SgPropSpec(
     name: 'onChange',
@@ -86,7 +91,8 @@ const List<SgPropSpec> sgColorPickerPropSpecs = <SgPropSpec>[
     tsType: '-',
     required: false,
     exact: false,
-    description: 'Recebe a cor #RRGGBB (maiúscula) a cada mudança válida; hex inválido não emite.',
+    description:
+        'Recebe a cor #RRGGBB (maiúscula) a cada mudança válida; hex inválido não emite.',
   ),
   SgPropSpec(
     name: 'presets',
@@ -95,7 +101,8 @@ const List<SgPropSpec> sgColorPickerPropSpecs = <SgPropSpec>[
     tsType: '-',
     required: false,
     exact: false,
-    description: 'Cores predefinidas (#RRGGBB); tocar numa delas escolhe a cor. Entradas inválidas são ignoradas.',
+    description:
+        'Cores predefinidas (#RRGGBB); tocar numa delas escolhe a cor. Entradas inválidas são ignoradas.',
   ),
   SgPropSpec(
     name: 'showHex',
@@ -112,7 +119,8 @@ const List<SgPropSpec> sgColorPickerPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: '-',
     required: false,
-    description: 'Cor controlada no formato #RRGGBB; quando informada, o componente não guarda estado próprio.',
+    description:
+        'Cor controlada no formato #RRGGBB; quando informada, o componente não guarda estado próprio.',
   ),
   SgPropSpec(
     name: 'width',
@@ -121,6 +129,7 @@ const List<SgPropSpec> sgColorPickerPropSpecs = <SgPropSpec>[
     tsType: '-',
     required: false,
     exact: false,
-    description: 'Largura em px (número) ou texto "N%". Sem valor, ocupa até 360 px.',
+    description:
+        'Largura em px (número) ou texto "N%". Sem valor, ocupa até 360 px.',
   ),
 ];

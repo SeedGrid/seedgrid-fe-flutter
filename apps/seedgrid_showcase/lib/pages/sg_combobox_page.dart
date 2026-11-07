@@ -136,7 +136,8 @@ class _SgComboboxPageState extends State<SgComboboxPage> {
       ),
       ShowcaseExample(
         title: 'Dentro de um formulário',
-        description: 'name + control + rules, como no react-hook-form.',
+        description:
+            'name + control + required: a mensagem aparece no envio e some ao escolher.',
         preview:
             // #region sg-combobox-formulario
             Column(
@@ -147,7 +148,8 @@ class _SgComboboxPageState extends State<SgComboboxPage> {
                   name: 'pagamento',
                   control: _form,
                   labelText: 'Forma de pagamento',
-                  rules: const SgRules(required: 'Escolha uma forma'),
+                  required: true,
+                  requiredMessage: 'Escolha uma forma',
                   source: const ['Boleto', 'Cartão', 'Pix'],
                 ),
                 const SizedBox(height: 12),

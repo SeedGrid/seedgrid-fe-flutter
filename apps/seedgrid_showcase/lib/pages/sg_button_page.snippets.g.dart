@@ -251,7 +251,10 @@ Wrap(
   runSpacing: 12,
   crossAxisAlignment: WrapCrossAlignment.center,
   children: [
-    SgButton(label: Text(context.tx('Processing...')), loading: true),
+    SgButton(
+      label: Text(context.tx('Processing...')),
+      loading: true,
+    ),
     SgButton(
       label: Text(context.tx('Saving...')),
       severity: SgSeverity.success,

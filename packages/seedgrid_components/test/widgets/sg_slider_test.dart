@@ -287,23 +287,7 @@ void main() {
       expect(form.getValue('vol'), 5);
     });
 
-    testWidgets('rules.min com mensagem e SgForm mais proximo', (t) async {
-      final form = SgFormController(defaultValues: {'vol': 10});
-      await t.pumpWidget(
-        host(
-          SgSlider(
-            id: 'a',
-            name: 'vol',
-            control: form,
-            minValue: 0,
-            maxValue: 100,
-            rules: const SgRules(min: SgRuleValue(20, 'Minimo 20')),
-          ),
-        ),
-      );
-      await form.handleSubmit((_) {});
-      await t.pump();
-      expect(find.text('Minimo 20'), findsOneWidget);
+    testWidgets('usa o SgForm mais proximo', (t) async {
       Map<String, Object?>? sent;
       await t.pumpWidget(
         host(

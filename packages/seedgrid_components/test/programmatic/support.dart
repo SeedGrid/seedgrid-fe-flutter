@@ -262,29 +262,6 @@ class Bench {
 
 // ----------------------------------------------------------------------------- construcao do widget
 
-/// `rules` do cenario (JSON) -> SgRules. `validate` usa os validadores nomeados do generate.mjs.
-SgRules? buildRules(Object? spec) {
-  if (spec == null) return null;
-  final m = spec as Map<String, dynamic>;
-  Object? validate;
-  return SgRules(
-    required: m['required'],
-    validate: m['validate'] == null
-        ? null
-        : (v) {
-            switch (m['validate']) {
-              case 'noA':
-                return (v is String && v.contains('A')) ? 'sem A' : true;
-              case 'evenLen':
-                return ('${v ?? ''}'.length % 2 == 0) ? true : 'tamanho impar';
-              case 'positive':
-                return ((num.tryParse('$v') ?? 0) > 0) ? true : 'so positivo';
-            }
-            return validate;
-          },
-  );
-}
-
 T? _enum<T>(T? Function(String?) from, Object? v) =>
     v == null ? null : from(v as String);
 
@@ -305,7 +282,6 @@ Widget buildComponent(Bench b) {
   void onVal(String? m) => b.validations.add(m);
   void onChange(String v) => b.emitted.add(v);
   final required = p['required'] as bool?;
-  final rules = buildRules(b.s['rules']);
   final maxLength = p['maxLength'] as num?;
   final minLength = p['minLength'] as num?;
   final prefixText = p['prefixText'] as String?;
@@ -317,7 +293,6 @@ Widget buildComponent(Bench b) {
         id: 'x',
         name: name,
         control: form,
-        rules: rules,
         enabled: !(disabled ?? false),
         required: required,
         maxLength: maxLength,
@@ -334,7 +309,6 @@ Widget buildComponent(Bench b) {
         id: 'x',
         name: name,
         control: form,
-        rules: rules,
         enabled: !(disabled ?? false),
         required: required,
         initialValue: sv(vDefault),
@@ -347,7 +321,6 @@ Widget buildComponent(Bench b) {
         id: 'x',
         name: name,
         control: form,
-        rules: rules,
         enabled: !(disabled ?? false),
         required: required,
         hidePassword: false,
@@ -361,7 +334,6 @@ Widget buildComponent(Bench b) {
         id: 'x',
         name: name,
         control: form,
-        rules: rules,
         enabled: !(disabled ?? false),
         required: required,
         maxLength: maxLength,
@@ -376,7 +348,6 @@ Widget buildComponent(Bench b) {
         id: 'x',
         name: name,
         control: form,
-        rules: rules,
         enabled: !(disabled ?? false),
         required: required,
         onChange: onChange,
@@ -388,7 +359,6 @@ Widget buildComponent(Bench b) {
         id: 'x',
         name: name,
         control: form,
-        rules: rules,
         enabled: !(disabled ?? false),
         required: required,
         initialValue: sv(vDefault),
@@ -401,7 +371,6 @@ Widget buildComponent(Bench b) {
         id: 'x',
         name: name,
         control: form,
-        rules: rules,
         enabled: !(disabled ?? false),
         required: required,
         initialValue: sv(vDefault),
@@ -414,7 +383,6 @@ Widget buildComponent(Bench b) {
         id: 'x',
         name: name,
         control: form,
-        rules: rules,
         enabled: !(disabled ?? false),
         required: required,
         initialValue: sv(vDefault),
@@ -427,7 +395,6 @@ Widget buildComponent(Bench b) {
         id: 'x',
         name: name,
         control: form,
-        rules: rules,
         enabled: !(disabled ?? false),
         required: required,
         initialValue: sv(vDefault),
@@ -440,7 +407,6 @@ Widget buildComponent(Bench b) {
         id: 'x',
         name: name,
         control: form,
-        rules: rules,
         enabled: !(disabled ?? false),
         required: required,
         country: _enum(SgInputPostalCodeCountry.fromValue, p['country']),
@@ -454,7 +420,6 @@ Widget buildComponent(Bench b) {
         id: 'x',
         name: name,
         control: form,
-        rules: rules,
         enabled: !(disabled ?? false),
         required: required,
         minDate: p['minDate'],
@@ -469,7 +434,6 @@ Widget buildComponent(Bench b) {
         id: 'x',
         name: name,
         control: form,
-        rules: rules,
         enabled: !(disabled ?? false),
         required: required,
         minAge: p['minAge'] as num?,
@@ -484,7 +448,6 @@ Widget buildComponent(Bench b) {
         id: 'x',
         name: name,
         control: form,
-        rules: rules,
         enabled: !(disabled ?? false),
         required: required,
         decimals: p['decimals'] as num?,
@@ -502,7 +465,6 @@ Widget buildComponent(Bench b) {
         id: 'x',
         name: name,
         control: form,
-        rules: rules,
         enabled: !(disabled ?? false),
         required: required,
         currency: p['currency'] as String?,
@@ -522,7 +484,6 @@ Widget buildComponent(Bench b) {
         id: 'x',
         name: name,
         control: form,
-        rules: rules,
         enabled: !(disabled ?? false),
         minValue: p['minValue'] as num,
         maxValue: p['maxValue'] as num,
@@ -565,6 +526,9 @@ Future<List<String>> runAndCompare(
   final react = (s['steps'] as List).cast<Map<String, dynamic>>();
   // O React nao conseguiu rodar (ex.: limpar um campo vazio, onde nao ha X): sem referencia, nada a comparar.
   if (react.isEmpty) return <String>[];
+  // O cenario usa `rules` do react-hook-form (required/validate no campo). O Flutter nao tem `rules`
+  // (a validacao usa as props diretas), entao nao ha o que comparar.
+  if (s['rules'] != null) return <String>[];
   final actions = (s['actions'] as List).cast<Map<String, dynamic>>();
   String where(int i) =>
       '${s['id']} passo $i ${i == 0 ? '(inicial)' : jsonEncode(actions[i - 1])}';

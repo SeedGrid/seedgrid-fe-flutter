@@ -9,7 +9,7 @@ import 'package:flutter/services.dart';
 import 'package:seedgrid_theme/seedgrid_theme.dart';
 
 import '../../form/sg_form.dart';
-import '../../form/sg_rules.dart';
+import '../../form/sg_field_error.dart';
 import '../../generated/sg_stepper_input.g.dart';
 import '../../i18n/i18n.dart';
 import '../../theme_access.dart';
@@ -38,7 +38,6 @@ class SgStepperInput extends StatefulWidget implements SgStepperInputProps {
     this.name,
     this.onChange,
     this.readOnly,
-    this.rules,
     this.step,
     this.value,
     this.width,
@@ -80,8 +79,6 @@ class SgStepperInput extends StatefulWidget implements SgStepperInputProps {
   /// Padrao `false`.
   @override
   final bool? readOnly;
-  @override
-  final SgRules? rules;
 
   /// Padrao `1` (valor invalido ou menor que 1 volta para 1, como no React).
   @override
@@ -153,7 +150,7 @@ class _SgStepperInputState extends State<SgStepperInput> {
       _form = f;
       _form?.addListener(_onForm);
     }
-    if (_bound) _form!.registerField(widget.name!, rules: widget.rules);
+    if (_bound) _form!.registerField(widget.name!);
     _syncText();
   }
 
@@ -161,7 +158,7 @@ class _SgStepperInputState extends State<SgStepperInput> {
   void didUpdateWidget(SgStepperInput oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (!_controlled) _internal = _clamp(_internal);
-    if (_bound) _form!.registerField(widget.name!, rules: widget.rules);
+    if (_bound) _form!.registerField(widget.name!);
     _syncText();
   }
 

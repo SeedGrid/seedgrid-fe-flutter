@@ -18,7 +18,8 @@ Column(
       name: 'campo',
       control: _form,
       labelText: 'Campo',
-      rules: const SgRules(required: 'Preencha o campo'),
+      required: true,
+      requiredMessage: 'Preencha o campo',
     ),
     const SizedBox(height: 12),
     SgButton(

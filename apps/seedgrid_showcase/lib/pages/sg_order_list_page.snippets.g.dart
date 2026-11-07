@@ -74,14 +74,6 @@ Column(
           value: 'bronze',
         ),
       ],
-      rules: SgRules(
-        validate: (v) =>
-            v is List<SgOrderListItem> &&
-                v.isNotEmpty &&
-                v.first.value == 'ouro'
-            ? true
-            : 'O ouro deve ficar em primeiro',
-      ),
     ),
     const SizedBox(height: 12),
     SgButton(

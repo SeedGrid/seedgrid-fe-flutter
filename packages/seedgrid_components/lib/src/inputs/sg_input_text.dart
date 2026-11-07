@@ -10,7 +10,7 @@ import 'package:seedgrid_theme/seedgrid_theme.dart';
 
 import '../form/sg_form.dart';
 import '../form/sg_validation_scope.dart';
-import '../form/sg_rules.dart';
+import '../form/sg_field_error.dart';
 import '../generated/enums.g.dart';
 import '../generated/sg_input_text.g.dart';
 import '../i18n/i18n.dart';
@@ -56,7 +56,6 @@ class SgInputText extends StatefulWidget implements SgInputTextProps {
     this.readOnly,
     this.required,
     this.requiredMessage,
-    this.rules,
     this.showCharCounter,
     this.suffixText,
     this.textInputType,
@@ -158,8 +157,6 @@ class SgInputText extends StatefulWidget implements SgInputTextProps {
   final bool? required;
   @override
   final String? requiredMessage;
-  @override
-  final SgRules? rules;
   @override
   final bool? showCharCounter;
   @override
@@ -415,8 +412,7 @@ class _SgInputTextState extends State<SgInputText> implements SgSelfValidating {
     _form!.registerField(
       widget.name!,
       validator: _formValidate,
-      rules: mergeRequiredRule(
-        widget.rules,
+      required: requiredMessageFor(
         widget.required,
         widget.requiredMessage ?? t(i18n, 'components.inputs.required'),
       ),
@@ -590,9 +586,7 @@ class _SgInputTextState extends State<SgInputText> implements SgSelfValidating {
           FilteringTextInputFormatter.deny(RegExp(r'\n')),
         ...?w.inputFormatters,
       ],
-      style: TextStyle(
-        color: (w._disabled) ? t.inputDisabledFg : t.inputFg,
-      ),
+      style: TextStyle(color: (w._disabled) ? t.inputDisabledFg : t.inputFg),
       decoration: InputDecoration(
         labelText: position == SgInputTextLabelPosition.float ? labelStr : null,
         hintText: w.placeholder,

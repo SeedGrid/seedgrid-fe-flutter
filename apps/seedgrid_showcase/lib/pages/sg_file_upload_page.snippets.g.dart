@@ -42,7 +42,8 @@ Column(
       control: _form,
       labelText: 'Comprovantes',
       maxFiles: 3,
-      rules: const SgRules(required: 'Anexe ao menos um arquivo'),
+      required: true,
+      requiredMessage: 'Anexe ao menos um arquivo',
     ),
     const SizedBox(height: 12),
     SgButton(
@@ -87,11 +88,7 @@ const SgFileUpload(
 const SgFileUpload(
   id: 'planilha',
   labelText: 'Planilha ou PDF',
-  mediaType: [
-    SgMediaType.pdf,
-    SgMediaType.xls,
-    SgMediaType.xlsx,
-  ],
+  mediaType: [SgMediaType.pdf, SgMediaType.xls, SgMediaType.xlsx],
   maxFiles: 2,
 )
 ''';

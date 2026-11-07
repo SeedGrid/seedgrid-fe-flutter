@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:seedgrid_components/src/form/sg_field_error.dart';
 // Importa so os arquivos de que depende: o barril raiz exporta grupos que outros trabalhos podem estar editando.
 import 'package:seedgrid_components/src/buttons/sg_button.dart';
 import 'package:seedgrid_components/src/form/sg_form.dart';
-import 'package:seedgrid_components/src/form/sg_rules.dart';
 import 'package:seedgrid_components/src/i18n/i18n.dart';
 import 'package:seedgrid_components/src/inputs/otp/sg_input_otp.dart';
 import 'package:seedgrid_components/src/inputs/sg_input_text.dart';
@@ -906,9 +906,8 @@ void main() {
               control: form,
               required: true,
               requiredMessage: 'Informe o codigo',
-              rules: SgRules(
-                minLength: const SgRuleValue(3, 'codigo incompleto'),
-              ),
+              validation: (raw, masked) =>
+                  raw.length >= 3 ? null : 'codigo incompleto',
             ),
           ),
         );

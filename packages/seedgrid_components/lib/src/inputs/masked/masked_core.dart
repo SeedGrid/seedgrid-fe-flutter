@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../form/sg_form.dart';
-import '../../form/sg_rules.dart';
+import '../../form/sg_field_error.dart';
 import '../../generated/enums.g.dart';
 import '../../i18n/i18n.dart';
 import '../sg_input_text.dart';
@@ -126,7 +126,6 @@ class SgInputCommon {
     this.readOnly,
     this.required,
     this.requiredMessage,
-    this.rules,
     this.showCharCounter,
     this.suffixText,
     this.textInputType,
@@ -177,7 +176,6 @@ class SgInputCommon {
   final bool? readOnly;
   final bool? required;
   final String? requiredMessage;
-  final SgRules? rules;
   final bool? showCharCounter;
   final String? suffixText;
   final Object? textInputType;
@@ -374,7 +372,6 @@ class _SgMaskedInputState extends State<SgMaskedInput> {
       readOnly: c.readOnly,
       required: widget.forwardRequired ? c.required : null,
       requiredMessage: widget.forwardRequired ? c.requiredMessage : null,
-      rules: c.rules,
       showCharCounter: c.showCharCounter,
       suffixText: c.suffixText,
       textInputType: c.textInputTypeText ?? widget.defaultTextInputType,

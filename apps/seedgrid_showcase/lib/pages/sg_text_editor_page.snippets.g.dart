@@ -103,7 +103,6 @@ Column(
       name: 'descricao',
       control: _form,
       height: 180,
-      rules: const SgRules(required: 'Descreva o produto'),
     ),
     const SizedBox(height: 12),
     SgButton(

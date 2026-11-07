@@ -19,6 +19,8 @@ abstract interface class SgDatatableProps {
   String? get dataKey;
   /// Mensagem exibida quando nao ha registros. Vence o dicionario (components.datatable.empty). Padrão: `(dicionario)`.
   String? get emptyMessage;
+  /// Quando false, bloqueia as acoes que mudam estado: ordenacao, selecao de linhas, filtros (global e por coluna), limpar filtros e gerenciador de colunas. Paginacao, rolagem e carga de mais linhas continuam funcionando. Aparencia de desabilitado e aria-disabled. Padrão: `true`.
+  bool? get enabled;
   /// Tipo TS: `Record&lt;string, string&gt;` (sem tradução exata; ver excecoes.json).
   Object? get filters;
   num? get first;
@@ -132,6 +134,15 @@ const List<SgPropSpec> sgDatatablePropSpecs = <SgPropSpec>[
     required: false,
     defaultValue: '(dicionario)',
     description: 'Mensagem exibida quando nao ha registros. Vence o dicionario (components.datatable.empty).',
+  ),
+  SgPropSpec(
+    name: 'enabled',
+    reactName: 'enabled',
+    type: 'bool?',
+    tsType: 'boolean',
+    required: false,
+    defaultValue: 'true',
+    description: 'Quando false, bloqueia as acoes que mudam estado: ordenacao, selecao de linhas, filtros (global e por coluna), limpar filtros e gerenciador de colunas. Paginacao, rolagem e carga de mais linhas continuam funcionando. Aparencia de desabilitado e aria-disabled.',
   ),
   SgPropSpec(
     name: 'filters',

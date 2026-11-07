@@ -137,37 +137,6 @@ void main() {
       },
     );
 
-    testWidgets(
-      'f: required: erro no envio, some ao setValue validando e volta no setValue vazio',
-      (t) async {
-        final form = SgFormController();
-        await _mount(
-          t,
-          SgPeriodSelector(
-            name: 'f',
-            control: form,
-            rules: const SgRules(required: 'Escolha'),
-          ),
-        );
-        await form.handleSubmit((_) {});
-        await frames(t);
-        expect(find.text('Escolha'), findsOneWidget);
-        await form.setValue(
-          'f',
-          PeriodPreset.today.value,
-          shouldValidate: true,
-        );
-        await frames(t);
-        expect(find.text('Escolha'), findsNothing);
-        await form.setValue('f', null, shouldValidate: true);
-        await frames(t);
-        expect(find.text('Escolha'), findsOneWidget);
-        form.reset();
-        await frames(t);
-        expect(find.text('Escolha'), findsNothing);
-      },
-    );
-
     testWidgets('g: setValue com o painel aberto e continua escolhendo', (
       t,
     ) async {

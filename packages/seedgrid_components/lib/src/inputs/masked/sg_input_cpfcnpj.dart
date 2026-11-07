@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:seedgrid_commons/seedgrid_commons.dart';
 
 import '../../form/sg_form.dart';
-import '../../form/sg_rules.dart';
 import '../../generated/enums.g.dart';
 import '../../generated/sg_input_cpfcnpj.g.dart';
 import '../../i18n/i18n.dart';
@@ -52,7 +51,6 @@ class SgInputCPFCNPJ extends StatelessWidget implements SgInputCPFCNPJProps {
     this.readOnly,
     this.required,
     this.requiredMessage,
-    this.rules,
     this.showCharCounter,
     this.suffixText,
     this.textInputType,
@@ -186,9 +184,6 @@ class SgInputCPFCNPJ extends StatelessWidget implements SgInputCPFCNPJProps {
   final String? requiredMessage;
 
   @override
-  final SgRules? rules;
-
-  @override
   final bool? showCharCounter;
 
   @override
@@ -294,7 +289,6 @@ class SgInputCPFCNPJ extends StatelessWidget implements SgInputCPFCNPJProps {
         readOnly: readOnly,
         required: required,
         requiredMessage: requiredMessage,
-        rules: rules,
         showCharCounter: showCharCounter,
         suffixText: suffixText,
         textInputType: textInputType,
