@@ -5,38 +5,79 @@
 abstract final class SgToggleSwitchPageSnippets {
   /// Region `sg-toggle-switch-basico`.
   static const String sgToggleSwitchBasico = r'''
-Column(
-  crossAxisAlignment: CrossAxisAlignment.start,
-  children: [
-    SgToggleSwitch(
-      id: 'notificar',
-      label: context.tx('Receber notificações'),
-      description: context.tx('Avisos por e-mail'),
-      onChange: (v) => setState(() => _ligado = v),
-    ),
-    Text('Estado: ${_ligado ? 'ligado' : 'desligado'}'),
-  ],
+ValueListenableBuilder<bool>(
+  valueListenable: _basico,
+  builder: (context, v, _) => SgStack(
+    gap: 12,
+    align: SgStackAlign.start,
+    children: [
+      SgToggleSwitch(
+        id: 'demo-basic',
+        label: context.tx('Ativar notificações'),
+        checked: v,
+        onChange: (next) => _basico.value = next,
+      ),
+      Text('${context.tx('Valor atual')}: $v'),
+    ],
+  ),
 )
 ''';
 
   /// Region `sg-toggle-switch-controlado`.
   static const String sgToggleSwitchControlado = r'''
-Column(
-  crossAxisAlignment: CrossAxisAlignment.start,
-  children: [
-    SgToggleSwitch(
-      id: 'controlado',
-      label: context.tx('Modo escuro'),
-      checked: _controlado,
-      onChange: (v) => setState(() => _controlado = v),
-    ),
-    const SizedBox(height: 8),
-    SgButton(
-      label: Text(context.tx('Inverter por código')),
-      onClick: () => setState(() => _controlado = !_controlado),
-    ),
-    Text('Valor: $_controlado'),
-  ],
+ListenableBuilder(
+  listenable: Listenable.merge([_externo, _capturado]),
+  builder: (context, _) => SgStack(
+    gap: 12,
+    align: SgStackAlign.start,
+    children: [
+      SgToggleSwitch(
+        id: 'demo-external',
+        label: context.tx('Permitir sincronização'),
+        checked: _externo.value,
+        onChange: (next) {
+          _externo.value = next;
+          _capturado.value = 'onChange -> $next';
+        },
+        onIcon: const Icon(Icons.check, size: 12),
+        offIcon: const Icon(Icons.close, size: 12),
+      ),
+      SgStack(
+        direction: SgStackDirection.row,
+        wrap: true,
+        gap: 8,
+        children: [
+          SgButton(
+            label: Text(context.tx('Setar true')),
+            size: SgSize.sm,
+            appearance: SgAppearance.outline,
+            onClick: () => _externo.value = true,
+          ),
+          SgButton(
+            label: Text(context.tx('Setar false')),
+            size: SgSize.sm,
+            appearance: SgAppearance.outline,
+            onClick: () => _externo.value = false,
+          ),
+          SgButton(
+            label: Text(context.tx('Toggle externo')),
+            size: SgSize.sm,
+            appearance: SgAppearance.outline,
+            onClick: () => _externo.value = !_externo.value,
+          ),
+          SgButton(
+            label: Text(context.tx('Capturar agora')),
+            size: SgSize.sm,
+            appearance: SgAppearance.outline,
+            onClick: () => _capturado.value =
+                'captura manual -> ${_externo.value}',
+          ),
+        ],
+      ),
+      Text('value externo: ${_externo.value}'),
+      Text('${context.tx('capturado')}: ${_capturado.value}'),
+    ],
+  ),
 )
 ''';
 
@@ -45,35 +86,33 @@ Column(
 SgToggleSwitch(
   id: 'erro',
   label: context.tx('Aceito os termos'),
-  error: 'Aceite os termos para continuar',
+  error: context.tx('Aceite os termos para continuar'),
   width: 280,
 )
 ''';
 
   /// Region `sg-toggle-switch-estados`.
   static const String sgToggleSwitchEstados = r'''
-Column(
-  crossAxisAlignment: CrossAxisAlignment.start,
+SgStack(
+  direction: SgStackDirection.row,
+  wrap: true,
+  gap: 24,
   children: [
     SgToggleSwitch(
-      id: 'icones',
-      label: context.tx('Com ícones'),
-      defaultChecked: true,
-      onIcon: Icon(Icons.check, size: 12),
-      offIcon: Icon(Icons.close, size: 12),
-    ),
-    SizedBox(height: 12),
-    SgToggleSwitch(
-      id: 'leitura',
-      label: context.tx('readOnly'),
-      readOnly: true,
-      defaultChecked: true,
-    ),
-    SizedBox(height: 12),
-    SgToggleSwitch(
-      id: 'off',
-      label: context.tx('disabled'),
+      id: 'demo-disabled',
+      label: context.tx('Desabilitado'),
+      checked: true,
       enabled: false,
+      onIcon: const Icon(Icons.check, size: 12),
+      offIcon: const Icon(Icons.close, size: 12),
+    ),
+    SgToggleSwitch(
+      id: 'demo-readonly',
+      label: context.tx('Somente leitura'),
+      checked: false,
+      readOnly: true,
+      onIcon: const Icon(Icons.check, size: 12),
+      offIcon: const Icon(Icons.close, size: 12),
     ),
   ],
 )
@@ -81,75 +120,132 @@ Column(
 
   /// Region `sg-toggle-switch-formulario`.
   static const String sgToggleSwitchFormulario = r'''
-Column(
-  crossAxisAlignment: CrossAxisAlignment.start,
+SgStack(
+  gap: 12,
+  align: SgStackAlign.start,
   children: [
     SgToggleSwitch(
-      id: 'newsletter',
-      name: 'newsletter',
+      id: 'demo-rhf-notifications',
+      name: 'notifications',
       control: _form,
-      label: context.tx('Assinar a newsletter'),
-      required: true,
-      requiredMessage: 'Marque para assinar',
+      label: context.tx('Receber notificações por e-mail'),
     ),
-    const SizedBox(height: 12),
+    SgToggleSwitch(
+      id: 'demo-rhf-control',
+      name: 'active',
+      control: _form,
+      label: context.tx('Conta ativa'),
+      onIcon: const Icon(Icons.check, size: 12),
+      offIcon: const Icon(Icons.close, size: 12),
+    ),
     SgButton(
       label: Text(context.tx('Enviar')),
       onClick: () => _form.handleSubmit(
-        (values) =>
-            setState(() => _enviado = '${values['newsletter']}'),
+        (values) => _enviado.value = jsonEncode(values),
       ),
     ),
-    if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),
+    ListenableBuilder(
+      listenable: Listenable.merge([_form, _enviado]),
+      builder: (context, _) => SgStack(
+        gap: 4,
+        align: SgStackAlign.start,
+        children: [
+          Text(
+            'watch.notifications: ${_form.getValue('notifications')}',
+          ),
+          Text('watch.active: ${_form.getValue('active')}'),
+          Text(
+            '${context.tx('Último envio')}: ${_enviado.value}',
+          ),
+        ],
+      ),
+    ),
   ],
+)
+''';
+
+  /// Region `sg-toggle-switch-icones`.
+  static const String sgToggleSwitchIcones = r'''
+ValueListenableBuilder<bool>(
+  valueListenable: _icone,
+  builder: (context, v, _) => SgStack(
+    gap: 12,
+    align: SgStackAlign.start,
+    children: [
+      SgToggleSwitch(
+        id: 'demo-icons',
+        label: context.tx('Status da conta'),
+        checked: v,
+        onChange: (next) => _icone.value = next,
+        onIcon: const Icon(Icons.check, size: 12),
+        offIcon: const Icon(Icons.close, size: 12),
+      ),
+      Text('${context.tx('Valor atual')}: $v'),
+    ],
+  ),
 )
 ''';
 
   /// Region `sg-toggle-switch-remoto`.
   static const String sgToggleSwitchRemoto = r'''
-Column(
-  crossAxisAlignment: CrossAxisAlignment.start,
-  children: [
-    SgToggleSwitch(
-      id: 'remoto',
-      label: context.tx('Sincronizar'),
-      checked: _remoto,
-      enabled: !_salvando,
-      onChange: (v) async {
-        setState(() => _salvando = true);
-        await Future<void>.delayed(
-          const Duration(milliseconds: 800),
-        );
-        if (!mounted) return;
-        setState(() {
-          _remoto = v;
-          _salvando = false;
-        });
-      },
-    ),
-    Text(_salvando ? 'Salvando...' : 'Salvo: $_remoto'),
-  ],
+ListenableBuilder(
+  listenable: Listenable.merge([_remoto, _carregando, _log]),
+  builder: (context, _) => SgStack(
+    gap: 12,
+    align: SgStackAlign.start,
+    children: [
+      SgToggleSwitch(
+        id: 'demo-remote',
+        label: _carregando.value
+            ? context.tx('Salvando...')
+            : context.tx('Publicar automaticamente'),
+        checked: _remoto.value,
+        enabled: !_carregando.value,
+        onIcon: const Icon(Icons.check, size: 12),
+        offIcon: const Icon(Icons.close, size: 12),
+        onChange: (next) {
+          _remoto.value = next;
+          _carregando.value = true;
+          Future<void>.delayed(
+            const Duration(milliseconds: 450),
+            () {
+              if (!mounted) return;
+              _log.value = ['value=$next', ..._log.value]
+                  .take(8)
+                  .toList();
+              _carregando.value = false;
+            },
+          );
+        },
+      ),
+      if (_log.value.isEmpty)
+        Text(context.tx('Altere a chave para registrar eventos.'))
+      else
+        for (final entrada in _log.value) Text(entrada),
+    ],
+  ),
 )
 ''';
 
   /// Region `sg-toggle-switch-validacao`.
   static const String sgToggleSwitchValidacao = r'''
-Column(
-  crossAxisAlignment: CrossAxisAlignment.start,
+SgStack(
+  gap: 12,
+  align: SgStackAlign.start,
   children: [
     SgToggleSwitch(
       id: 'termos',
       label: context.tx('Aceito os termos'),
       required: true,
-      requiredMessage: 'Aceite os termos para continuar',
+      requiredMessage: context.tx('Aceite os termos para continuar'),
     ),
-    const SizedBox(height: 12),
     SgToggleSwitch(
       id: 'regra',
       label: context.tx('Não pode ligar'),
       validateOnBlur: false,
-      validation: (ligado) =>
-          ligado ? 'Esta chave deve ficar desligada' : null,
+      validation: (ligado) => ligado
+          ? context.tx('Esta chave deve ficar desligada')
+          : null,
     ),
   ],
 )

@@ -14,42 +14,74 @@ class SgStackPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final examples = <ShowcaseExample>[
       ShowcaseExample(
-        title: 'Coluna com gap',
-        description: 'O padrão é direction: column, align: stretch e gap 0.',
+        title: 'Coluna + Linha',
+        description: 'Exemplos de layout comuns com stack.',
         preview:
-            // #region sg-stack-coluna
+            // #region sg-stack-coluna-linha
             SgStack(
-              gap: 8,
+              gap: 16,
               children: [
-                SgBadge(value: Text(context.tx('Primeiro'))),
-                SgBadge(value: Text(context.tx('Segundo'))),
-                SgBadge(value: Text(context.tx('Terceiro'))),
-              ],
-            ),
-        // #endregion
-        code: SgStackPageSnippets.sgStackColuna,
-      ),
-      ShowcaseExample(
-        title: 'Linha com justify',
-        description:
-            'justify distribui no eixo principal; align posiciona no eixo transversal.',
-        preview:
-            // #region sg-stack-linha
-            SgStack(
-              direction: SgStackDirection.row,
-              justify: SgStackJustify.between,
-              align: SgStackAlign.center,
-              children: [
-                SgButton(
-                  label: Text(context.tx('Cancelar')),
-                  appearance: SgAppearance.outline,
-                  onClick: () {},
+                SgPanel(
+                  padding: 12,
+                  children: [
+                    SgStack(
+                      gap: 8,
+                      children: [
+                        Text(context.tx('Stack em coluna')),
+                        SgButton(
+                          label: Text(context.tx('Salvar')),
+                          onClick: () {},
+                        ),
+                        SgButton(
+                          label: Text(context.tx('Cancelar')),
+                          appearance: SgAppearance.outline,
+                          onClick: () {},
+                        ),
+                        SgButton(
+                          label: Text(context.tx('Ajuda')),
+                          appearance: SgAppearance.ghost,
+                          onClick: () {},
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-                SgButton(label: Text(context.tx('Salvar')), onClick: () {}),
+                SgPanel(
+                  padding: 12,
+                  children: [
+                    SgStack(
+                      direction: SgStackDirection.row,
+                      wrap: true,
+                      justify: SgStackJustify.between,
+                      align: SgStackAlign.center,
+                      gap: 8,
+                      children: [
+                        Text(context.tx('Título')),
+                        SgStack(
+                          direction: SgStackDirection.row,
+                          gap: 8,
+                          children: [
+                            SgButton(
+                              label: Text(context.tx('Voltar')),
+                              size: SgSize.sm,
+                              appearance: SgAppearance.outline,
+                              onClick: () {},
+                            ),
+                            SgButton(
+                              label: Text(context.tx('Confirmar')),
+                              size: SgSize.sm,
+                              onClick: () {},
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ],
             ),
         // #endregion
-        code: SgStackPageSnippets.sgStackLinha,
+        code: SgStackPageSnippets.sgStackColunaLinha,
       ),
       ShowcaseExample(
         title: 'Quebra de linha',

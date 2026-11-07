@@ -3,14 +3,68 @@
 // Cada constante e o trecho entre `// #region` e `// #endregion` de sg_stack_page.dart: o mesmo codigo que a pagina renderiza.
 
 abstract final class SgStackPageSnippets {
-  /// Region `sg-stack-coluna`.
-  static const String sgStackColuna = r'''
+  /// Region `sg-stack-coluna-linha`.
+  static const String sgStackColunaLinha = r'''
 SgStack(
-  gap: 8,
+  gap: 16,
   children: [
-    SgBadge(value: Text(context.tx('Primeiro'))),
-    SgBadge(value: Text(context.tx('Segundo'))),
-    SgBadge(value: Text(context.tx('Terceiro'))),
+    SgPanel(
+      padding: 12,
+      children: [
+        SgStack(
+          gap: 8,
+          children: [
+            Text(context.tx('Stack em coluna')),
+            SgButton(
+              label: Text(context.tx('Salvar')),
+              onClick: () {},
+            ),
+            SgButton(
+              label: Text(context.tx('Cancelar')),
+              appearance: SgAppearance.outline,
+              onClick: () {},
+            ),
+            SgButton(
+              label: Text(context.tx('Ajuda')),
+              appearance: SgAppearance.ghost,
+              onClick: () {},
+            ),
+          ],
+        ),
+      ],
+    ),
+    SgPanel(
+      padding: 12,
+      children: [
+        SgStack(
+          direction: SgStackDirection.row,
+          wrap: true,
+          justify: SgStackJustify.between,
+          align: SgStackAlign.center,
+          gap: 8,
+          children: [
+            Text(context.tx('Título')),
+            SgStack(
+              direction: SgStackDirection.row,
+              gap: 8,
+              children: [
+                SgButton(
+                  label: Text(context.tx('Voltar')),
+                  size: SgSize.sm,
+                  appearance: SgAppearance.outline,
+                  onClick: () {},
+                ),
+                SgButton(
+                  label: Text(context.tx('Confirmar')),
+                  size: SgSize.sm,
+                  onClick: () {},
+                ),
+              ],
+            ),
+          ],
+        ),
+      ],
+    ),
   ],
 )
 ''';
@@ -30,23 +84,6 @@ Row(
       ],
     ),
     SgButton(label: Text(context.tx('OK')), onClick: () {}),
-  ],
-)
-''';
-
-  /// Region `sg-stack-linha`.
-  static const String sgStackLinha = r'''
-SgStack(
-  direction: SgStackDirection.row,
-  justify: SgStackJustify.between,
-  align: SgStackAlign.center,
-  children: [
-    SgButton(
-      label: Text(context.tx('Cancelar')),
-      appearance: SgAppearance.outline,
-      onClick: () {},
-    ),
-    SgButton(label: Text(context.tx('Salvar')), onClick: () {}),
   ],
 )
 ''';
