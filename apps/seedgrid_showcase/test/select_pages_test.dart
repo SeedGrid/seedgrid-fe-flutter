@@ -30,7 +30,7 @@ void main() {
     (t) async {
       setSize(t, kSizes.values.last);
       await t.pumpWidget(app(const SgAutocompletePage()));
-      await tapLink(t, const ValueKey('link-exemplo-6'));
+      await tapLink(t, const ValueKey('link-exemplo-11'));
       await t.tap(find.text('Enviar'));
       await settle(t);
       expect(find.text('Escolha uma fruta'), findsWidgets);
@@ -51,7 +51,7 @@ void main() {
     (t) async {
       setSize(t, kSizes.values.last);
       await t.pumpWidget(app(const SgComboboxPage()));
-      await tapLink(t, const ValueKey('link-exemplo-2'));
+      await tapLink(t, const ValueKey('link-exemplo-1'));
       await t.tap(find.byKey(const ValueKey('input-cargo')));
       await settle(t);
       await t.tap(find.byKey(const ValueKey('sg-opt-3')), warnIfMissed: false);
@@ -72,7 +72,7 @@ void main() {
     (t) async {
       setSize(t, kSizes.values.last);
       await t.pumpWidget(app(const SgComboboxPage()));
-      await tapLink(t, const ValueKey('link-exemplo-5'));
+      await tapLink(t, const ValueKey('link-exemplo-6'));
       await t.tap(find.text('Enviar'));
       await settle(t);
       expect(find.text('Escolha uma forma'), findsOneWidget);
@@ -91,6 +91,7 @@ void main() {
     (t) async {
       setSize(t, kSizes.values.first);
       await t.pumpWidget(app(const SgComboboxPage()));
+      await tapLink(t, const ValueKey('link-exemplo-5'));
       await t.tap(find.byKey(const ValueKey('input-fruta')));
       await settle(t);
       expect(find.byKey(const ValueKey('sg-select-sheet')), findsOneWidget);

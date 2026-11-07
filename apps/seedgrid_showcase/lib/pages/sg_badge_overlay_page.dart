@@ -13,58 +13,55 @@ class SgBadgeOverlayPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final examples = <ShowcaseExample>[
       ShowcaseExample(
-        title: 'Contador no canto do avatar',
-        description: 'Padrão: top-right.',
+        title: 'Básico',
+        description: 'Exemplos simples com número e ponto.',
         preview:
-            // #region sg-badge-overlay-avatar
-            SgBadgeOverlay(
-              badge: SgBadge(
-                count: 3,
-                size: SgBadgeSize.sm,
-                severity: SgBadgeSeverity.danger,
-              ),
-              child: SgAvatar(label: Text(context.tx('Ana Lima'))),
+            // #region sg-badge-overlay-basico
+            Wrap(
+              spacing: 16,
+              runSpacing: 16,
+              children: [
+                SgBadgeOverlay(
+                  badge: const SgBadge(
+                    count: 7,
+                    size: SgBadgeSize.xs,
+                    severity: SgBadgeSeverity.danger,
+                  ),
+                  child: Container(
+                    width: 40,
+                    height: 40,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: const Color(0x66808080)),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: const Text('Bell'),
+                  ),
+                ),
+                SgBadgeOverlay(
+                  badge: const SgBadge(
+                    dot: true,
+                    severity: SgBadgeSeverity.success,
+                  ),
+                  child: Container(
+                    width: 40,
+                    height: 40,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: const Color(0x66808080)),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: const Text('Check'),
+                  ),
+                ),
+              ],
             ),
         // #endregion
-        code: SgBadgeOverlayPageSnippets.sgBadgeOverlayAvatar,
+        code: SgBadgeOverlayPageSnippets.sgBadgeOverlayBasico,
       ),
       ShowcaseExample(
-        title: 'Ponto de status',
-        preview:
-            // #region sg-badge-overlay-status
-            SgBadgeOverlay(
-              placement: SgBadgeOverlayPlacement.bottomRight,
-              badge: SgBadge(dot: true, severity: SgBadgeSeverity.success),
-              child: SgAvatar(
-                label: Text(context.tx('Bia Souza')),
-                severity: SgAvatarSeverity.info,
-              ),
-            ),
-        // #endregion
-        code: SgBadgeOverlayPageSnippets.sgBadgeOverlayStatus,
-      ),
-      ShowcaseExample(
-        title: 'Em um botão',
-        preview:
-            // #region sg-badge-overlay-botao
-            SgBadgeOverlay(
-              badge: const SgBadge(
-                count: 12,
-                max: 9,
-                size: SgBadgeSize.xs,
-                severity: SgBadgeSeverity.danger,
-              ),
-              child: SgButton(
-                label: Text(context.tx('Mensagens')),
-                appearance: SgAppearance.outline,
-                onClick: () {},
-              ),
-            ),
-        // #endregion
-        code: SgBadgeOverlayPageSnippets.sgBadgeOverlayBotao,
-      ),
-      ShowcaseExample(
-        title: 'Todas as posições',
+        title: 'Posicionamento',
+        description: 'Exemplos com diferentes posições.',
         preview:
             // #region sg-badge-overlay-posicoes
             Wrap(
@@ -85,6 +82,59 @@ class SgBadgeOverlayPage extends StatelessWidget {
             ),
         // #endregion
         code: SgBadgeOverlayPageSnippets.sgBadgeOverlayPosicoes,
+      ),
+      ShowcaseExample(
+        title: 'Contador no canto do avatar',
+        description: 'Contador sobre o canto do avatar; o padrão é top-right.',
+        preview:
+            // #region sg-badge-overlay-avatar
+            SgBadgeOverlay(
+              badge: SgBadge(
+                count: 3,
+                size: SgBadgeSize.sm,
+                severity: SgBadgeSeverity.danger,
+              ),
+              child: SgAvatar(label: Text(context.tx('Ana Lima'))),
+            ),
+        // #endregion
+        code: SgBadgeOverlayPageSnippets.sgBadgeOverlayAvatar,
+      ),
+      ShowcaseExample(
+        title: 'Ponto de status',
+        description: 'Ponto de status no canto inferior direito.',
+        preview:
+            // #region sg-badge-overlay-status
+            SgBadgeOverlay(
+              placement: SgBadgeOverlayPlacement.bottomRight,
+              badge: SgBadge(dot: true, severity: SgBadgeSeverity.success),
+              child: SgAvatar(
+                label: Text(context.tx('Bia Souza')),
+                severity: SgAvatarSeverity.info,
+              ),
+            ),
+        // #endregion
+        code: SgBadgeOverlayPageSnippets.sgBadgeOverlayStatus,
+      ),
+      ShowcaseExample(
+        title: 'Em um botão',
+        description: 'Contador com limite máximo sobre um botão.',
+        preview:
+            // #region sg-badge-overlay-botao
+            SgBadgeOverlay(
+              badge: const SgBadge(
+                count: 12,
+                max: 9,
+                size: SgBadgeSize.xs,
+                severity: SgBadgeSeverity.danger,
+              ),
+              child: SgButton(
+                label: Text(context.tx('Mensagens')),
+                appearance: SgAppearance.outline,
+                onClick: () {},
+              ),
+            ),
+        // #endregion
+        code: SgBadgeOverlayPageSnippets.sgBadgeOverlayBotao,
       ),
     ];
 

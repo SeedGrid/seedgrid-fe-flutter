@@ -14,7 +14,7 @@ Wrap(
       value: Text(context.tx('Remover auto')),
       removable: true,
       autoRemove: true,
-      onRemove: () => setState(() => _ultimo = 'removida (auto)'),
+      onRemove: () => setState(() => _ultimo = context.tx('removida (auto)')),
     ),
     if (_manualVisivel)
       SgBadge(
@@ -23,10 +23,14 @@ Wrap(
         autoRemove: false,
         onRemove: () => setState(() {
           _manualVisivel = false;
-          _ultimo = 'removida (manual)';
+          _ultimo = context.tx('removida (manual)');
         }),
       ),
-    Text('Último evento: $_ultimo'),
+    Text(
+      context.txf('Último evento: {evento}', {
+        'evento': _ultimo ?? context.tx('nada ainda'),
+      }),
+    ),
   ],
 )
 ''';
@@ -114,7 +118,7 @@ Wrap(
     SgBadge(
       value: Text(context.tx('Clique')),
       badgeStyle: SgBadgeBadgeStyle.outline,
-      onClick: () => setState(() => _ultimo = 'clique'),
+      onClick: () => setState(() => _ultimo = context.tx('clique')),
     ),
     SgBadge(
       value: Text(context.tx('Desabilitado')),
@@ -130,10 +134,14 @@ Wrap(
         autoRemove: true,
         onRemove: () => setState(() {
           _tagVisivel = false;
-          _ultimo = 'removida';
+          _ultimo = context.tx('removida');
         }),
       ),
-    Text('Último evento: $_ultimo'),
+    Text(
+      context.txf('Último evento: {evento}', {
+        'evento': _ultimo ?? context.tx('nada ainda'),
+      }),
+    ),
   ],
 )
 ''';

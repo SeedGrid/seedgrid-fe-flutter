@@ -44,9 +44,9 @@ class _SgAccordionPageState extends State<SgAccordionPage> {
   Widget build(BuildContext context) {
     final examples = <ShowcaseExample>[
       ShowcaseExample(
-        title: 'Básico',
+        title: 'Básico vertical (único)',
         description:
-            'Um aberto por vez; o primeiro abre sozinho (defaultOpenFirst). Os próximos exemplos usam esta mesma lista de itens (aqui escrita por extenso).',
+            'Comportamento padrão em coluna, abrindo um painel por vez.',
         preview:
             // #region sg-accordion-basico
             SgAccordion(
@@ -78,7 +78,9 @@ class _SgAccordionPageState extends State<SgAccordionPage> {
         code: SgAccordionPageSnippets.sgAccordionBasico,
       ),
       ShowcaseExample(
-        title: 'Vários abertos',
+        title: 'Vários abertos + recolhível',
+        description:
+            'Abra vários painéis ao mesmo tempo e controle o estado ativo externamente.',
         preview:
             // #region sg-accordion-multiplo
             const SgAccordion(
@@ -90,7 +92,86 @@ class _SgAccordionPageState extends State<SgAccordionPage> {
         code: SgAccordionPageSnippets.sgAccordionMultiplo,
       ),
       ShowcaseExample(
-        title: 'Cor do cabeçalho e animação',
+        title: 'Horizontal',
+        description:
+            'Cabeçalhos em trilho lateral e conteúdo expandindo horizontalmente.',
+        preview:
+            // #region sg-accordion-horizontal
+            const SgAccordion(
+              items: _itens,
+              orientation: SgAccordionOrientation.horizontal,
+              horizontalMinHeight: 200,
+            ),
+        // #endregion
+        code: SgAccordionPageSnippets.sgAccordionHorizontal,
+      ),
+      ShowcaseExample(
+        title: 'Controlado por estado',
+        description: context.txf(
+          'O estado vive na página: ativos = {ativos}, último toque = {ultimo}.',
+          {'ativos': _ativos, 'ultimo': _ultimo},
+        ),
+        preview:
+            // #region sg-accordion-controlado
+            SgAccordion(
+              items: _itens,
+              multiple: true,
+              activeIndex: _ativos,
+              onActiveIndexChange: (v) => setState(() => _ativos = v),
+              onItemToggle: (i, aberto) =>
+                  setState(() => _ultimo = '$i ${aberto ? 'abriu' : 'fechou'}'),
+            ),
+        // #endregion
+        code: SgAccordionPageSnippets.sgAccordionControlado,
+      ),
+      ShowcaseExample(
+        title: 'Itens personalizados + fundo do cabeçalho',
+        description:
+            'O fundo do título usa primary-50 por padrão e pode ser customizado globalmente ou por item.',
+        preview:
+            // #region sg-accordion-personalizados
+            Builder(
+              builder: (context) {
+                final escuro = Theme.of(context).brightness == Brightness.dark;
+                return SgAccordion(
+                  defaultActiveIndex: const [0],
+                  headerBackgroundColor: escuro ? '#1E3A5F' : '#EFF6FF',
+                  items: [
+                    SgAccordionItem(
+                      title: Text(context.tx('E-mail')),
+                      content: Text(
+                        context.tx(
+                          'Configurações de SMTP, remetente padrão e modelos.',
+                        ),
+                      ),
+                      icon: const Icon(Icons.mail_outline, size: 18),
+                      end: Text(context.tx('novo')),
+                      headerBackgroundColor: escuro ? '#164E63' : '#E0F2FE',
+                    ),
+                    SgAccordionItem(
+                      title: Text(context.tx('Permissões')),
+                      content: Text(
+                        context.tx(
+                          'Controle de perfis, papéis e trilhas de auditoria.',
+                        ),
+                      ),
+                      icon: const Icon(Icons.verified_user_outlined, size: 18),
+                    ),
+                    SgAccordionItem(
+                      title: Text(context.tx('Módulo indisponível')),
+                      content: Text(context.tx('Conteúdo bloqueado.')),
+                      icon: const Icon(Icons.warning_amber_outlined, size: 18),
+                      enabled: false,
+                    ),
+                  ],
+                );
+              },
+            ),
+        // #endregion
+        code: SgAccordionPageSnippets.sgAccordionPersonalizados,
+      ),
+      ShowcaseExample(
+        title: 'Exemplo de personalização de cores',
         description:
             'headerBackgroundColor pinta os cabeçalhos; animationDuration (ms) ajusta a velocidade de abrir e fechar.',
         preview:
@@ -119,45 +200,14 @@ class _SgAccordionPageState extends State<SgAccordionPage> {
         code: SgAccordionPageSnippets.sgAccordionCores,
       ),
       ShowcaseExample(
-        title: 'Controlado',
-        description: context.txf(
-          'O estado vive na página: ativos = {ativos}, último toque = {ultimo}.',
-          {'ativos': _ativos, 'ultimo': _ultimo},
-        ),
-        preview:
-            // #region sg-accordion-controlado
-            SgAccordion(
-              items: _itens,
-              multiple: true,
-              activeIndex: _ativos,
-              onActiveIndexChange: (v) => setState(() => _ativos = v),
-              onItemToggle: (i, aberto) =>
-                  setState(() => _ultimo = '$i ${aberto ? 'abriu' : 'fechou'}'),
-            ),
-        // #endregion
-        code: SgAccordionPageSnippets.sgAccordionControlado,
-      ),
-      ShowcaseExample(
         title: 'Sempre um aberto (collapsible: false)',
+        description:
+            'Com collapsible: false, o painel aberto não pode ser recolhido; sempre resta um aberto.',
         preview:
             // #region sg-accordion-sem-fechar
             const SgAccordion(items: _itens, collapsible: false),
         // #endregion
         code: SgAccordionPageSnippets.sgAccordionSemFechar,
-      ),
-      ShowcaseExample(
-        title: 'Horizontal',
-        description:
-            'O painel aberto toma o espaço; os fechados ficam só com o cabeçalho.',
-        preview:
-            // #region sg-accordion-horizontal
-            const SgAccordion(
-              items: _itens,
-              orientation: SgAccordionOrientation.horizontal,
-              horizontalMinHeight: 200,
-            ),
-        // #endregion
-        code: SgAccordionPageSnippets.sgAccordionHorizontal,
       ),
     ];
 

@@ -1,51 +1,6 @@
 {
  "_aviso": "Divergencias conhecidas de hoje; so pode encolher (P148.F1.T1). Gerado por verify.mjs --atualizar-base.",
  "componentes": {
-  "SgAccordion": [
-   "falta-no-flutter",
-   "so-no-flutter"
-  ],
-  "SgAutocomplete": [
-   "falta-no-flutter",
-   "so-no-flutter"
-  ],
-  "SgAvatar": [
-   "quantidade",
-   "so-no-flutter"
-  ],
-  "SgBadge": [
-   "quantidade",
-   "so-no-flutter"
-  ],
-  "SgBadgeOverlay": [
-   "falta-no-flutter",
-   "quantidade",
-   "so-no-flutter"
-  ],
-  "SgBreadcrumb": [
-   "falta-no-flutter",
-   "quantidade",
-   "so-no-flutter"
-  ],
-  "SgCard": [
-   "falta-no-flutter",
-   "quantidade",
-   "so-no-flutter"
-  ],
-  "SgCarousel": [
-   "falta-no-flutter",
-   "so-no-flutter"
-  ],
-  "SgCombobox": [
-   "falta-no-flutter",
-   "quantidade",
-   "so-no-flutter"
-  ],
-  "SgConfirmationDialog": [
-   "falta-no-flutter",
-   "quantidade",
-   "so-no-flutter"
-  ],
   "SgDatatable": [
    "falta-no-flutter",
    "quantidade",

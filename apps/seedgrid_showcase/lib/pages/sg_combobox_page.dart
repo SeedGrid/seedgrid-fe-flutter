@@ -18,6 +18,8 @@ class _SgComboboxPageState extends State<SgComboboxPage> {
   final SgFormController _form = SgFormController();
   String _enviado = '';
   Object? _escolhido;
+  Object? _valorControlado;
+  String? _ultimoSelect;
 
   @override
   void dispose() {
@@ -29,23 +31,9 @@ class _SgComboboxPageState extends State<SgComboboxPage> {
   Widget build(BuildContext context) {
     final examples = <ShowcaseExample>[
       ShowcaseExample(
-        title: 'Lista simples',
+        title: 'Básico com lista de objetos',
         description:
-            'Toque no campo para abrir. Com o campo focado, digitar uma letra salta para o item que começa com ela (type-ahead).',
-        preview:
-            // #region sg-combobox-simples
-            const SgCombobox<String>(
-              id: 'fruta',
-              labelText: 'Fruta',
-              source: ['Abacate', 'Abacaxi', 'Banana', 'Laranja', 'Uva'],
-            ),
-        // #endregion
-        code: SgComboboxPageSnippets.sgComboboxSimples,
-      ),
-      ShowcaseExample(
-        title: 'Itens com id, grupo e item desabilitado',
-        description:
-            'O valor é o id do item; onValueChange recebe o id e onSelect recebe o item original.',
+            'Sem input livre: com foco no campo, digite letras e ele "pula" para o item correspondente.',
         preview:
             // #region sg-combobox-itens
             Column(
@@ -87,52 +75,167 @@ class _SgComboboxPageState extends State<SgComboboxPage> {
         code: SgComboboxPageSnippets.sgComboboxItens,
       ),
       ShowcaseExample(
-        title: 'Fonte assíncrona',
+        title: 'Controlado por value',
         description:
-            'A fonte é chamada ao abrir; enquanto espera aparece o texto de carregamento.',
+            'Use value/onValueChange para definir programaticamente um valor válido.',
+        preview:
+            // #region sg-combobox-controlado
+            Builder(
+              builder: (context) {
+                const paises = [
+                  SgAutocompleteItem(id: 1, label: 'Brazil', group: 'Americas'),
+                  SgAutocompleteItem(
+                    id: 2,
+                    label: 'Argentina',
+                    group: 'Americas',
+                  ),
+                  SgAutocompleteItem(id: 5, label: 'Germany', group: 'Europe'),
+                  SgAutocompleteItem(id: 9, label: 'Japan', group: 'Asia'),
+                ];
+                final resolvido = paises
+                    .where((p) => p.id == _valorControlado)
+                    .map((p) => p.label)
+                    .firstOrNull;
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SgCombobox<SgAutocompleteItem>(
+                      id: 'pais-controlado',
+                      labelText: 'Country (controlled)',
+                      value: _valorControlado,
+                      openOnFocus: true,
+                      source: paises,
+                      onValueChange: (id) =>
+                          setState(() => _valorControlado = id),
+                      onSelect: (item) =>
+                          setState(() => _ultimoSelect = item.label),
+                    ),
+                    const SizedBox(height: 8),
+                    Wrap(
+                      spacing: 8,
+                      runSpacing: 8,
+                      children: [
+                        SgButton(
+                          size: SgSize.sm,
+                          appearance: SgAppearance.outline,
+                          label: Text(context.tx('Definir Alemanha (id 5)')),
+                          onClick: () => setState(() => _valorControlado = 5),
+                        ),
+                        SgButton(
+                          size: SgSize.sm,
+                          appearance: SgAppearance.outline,
+                          label: Text(context.tx('Definir Japão (id 9)')),
+                          onClick: () => setState(() => _valorControlado = 9),
+                        ),
+                        SgButton(
+                          size: SgSize.sm,
+                          appearance: SgAppearance.outline,
+                          label: Text(context.tx('Limpar valor')),
+                          onClick: () =>
+                              setState(() => _valorControlado = null),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      '${context.tx('valor')}: ${_valorControlado ?? context.tx('(vazio)')}',
+                    ),
+                    Text(
+                      '${context.tx('resolvido por value')}: ${resolvido ?? context.tx('(nenhum)')}',
+                    ),
+                    Text(
+                      '${context.tx('último onSelect')}: ${_ultimoSelect ?? context.tx('(nenhum)')}',
+                    ),
+                  ],
+                );
+              },
+            ),
+        // #endregion
+        code: SgComboboxPageSnippets.sgComboboxControlado,
+      ),
+      ShowcaseExample(
+        title: 'Fonte assíncrona + render personalizado',
+        description:
+            'Suporte a loadingText, renderItem, renderGroupHeader, renderFooter e itemTooltip.',
         preview:
             // #region sg-combobox-assincrono
-            SgCombobox<String>(
-              id: 'estado',
-              labelText: 'Estado',
-              loadingText: 'Carregando estados...',
-              source: (q) async {
-                await Future<void>.delayed(const Duration(milliseconds: 600));
-                return const ['Paraná', 'Santa Catarina', 'Rio Grande do Sul'];
+            Builder(
+              builder: (context) {
+                final concluido = context.tx('Concluído');
+                final pendente = context.tx('Pendente');
+                return SgCombobox<SgAutocompleteItem>(
+                  id: 'status',
+                  labelText: 'Status',
+                  loadingText: context.tx('Carregando status...'),
+                  openOnFocus: true,
+                  showCharCounter: false,
+                  source: (q) async {
+                    await Future<void>.delayed(
+                      const Duration(milliseconds: 600),
+                    );
+                    return [
+                      SgAutocompleteItem(id: 1, label: concluido),
+                      SgAutocompleteItem(id: 2, label: pendente),
+                    ];
+                  },
+                  renderItem: (item, active) => Row(
+                    children: [
+                      Icon(
+                        item.id == 1 ? Icons.check_circle : Icons.pending,
+                        size: 16,
+                        color: item.id == 1 ? Colors.green : Colors.orange,
+                      ),
+                      const SizedBox(width: 8),
+                      Text(item.label),
+                    ],
+                  ),
+                  renderValue: (item) => Text('● ${item?.label}'),
+                  renderFooter: (q, has) =>
+                      Text(context.tx('Escolha o status atual')),
+                );
               },
             ),
         // #endregion
         code: SgComboboxPageSnippets.sgComboboxAssincrono,
       ),
       ShowcaseExample(
-        title: 'Item, valor e rodapé próprios',
+        title: 'Raio da borda',
+        description: 'Aplica o raio no input e no dropdown.',
         preview:
-            // #region sg-combobox-visual
+            // #region sg-combobox-raio
             SgCombobox<SgAutocompleteItem>(
-              id: 'status',
-              labelText: 'Status',
-              showCharCounter: false,
-              renderItem: (item, active) => Row(
-                children: [
-                  Icon(
-                    item.id == 1 ? Icons.check_circle : Icons.pending,
-                    size: 16,
-                    color: item.id == 1 ? Colors.green : Colors.orange,
-                  ),
-                  const SizedBox(width: 8),
-                  Text(item.label),
-                ],
-              ),
-              renderValue: (item) => Text('● ${item?.label}'),
-              renderFooter: (q, has) =>
-                  Text(context.tx('Escolha o status atual')),
-              source: [
-                SgAutocompleteItem(id: 1, label: context.tx('Concluído')),
-                SgAutocompleteItem(id: 2, label: context.tx('Pendente')),
+              id: 'pais-raio',
+              labelText: 'Country with custom radius',
+              openOnFocus: true,
+              grouped: true,
+              borderRadius: 14,
+              source: const [
+                SgAutocompleteItem(id: 1, label: 'Brazil', group: 'Americas'),
+                SgAutocompleteItem(
+                  id: 2,
+                  label: 'Argentina',
+                  group: 'Americas',
+                ),
+                SgAutocompleteItem(id: 5, label: 'Germany', group: 'Europe'),
+                SgAutocompleteItem(id: 9, label: 'Japan', group: 'Asia'),
               ],
             ),
         // #endregion
-        code: SgComboboxPageSnippets.sgComboboxVisual,
+        code: SgComboboxPageSnippets.sgComboboxRaio,
+      ),
+      ShowcaseExample(
+        title: 'Lista simples',
+        description:
+            'Toque no campo para abrir. Com o campo focado, digitar uma letra salta para o item que começa com ela (type-ahead).',
+        preview:
+            // #region sg-combobox-simples
+            const SgCombobox<String>(
+              id: 'fruta',
+              labelText: 'Fruta',
+              source: ['Abacate', 'Abacaxi', 'Banana', 'Laranja', 'Uva'],
+            ),
+        // #endregion
+        code: SgComboboxPageSnippets.sgComboboxSimples,
       ),
       ShowcaseExample(
         title: 'Dentro de um formulário',

@@ -144,6 +144,7 @@ Wrap(
     SgAvatar(
       src: 'https://endereco.invalido.exemplo/foto.png',
       label: Text(context.tx('Carlos Dias')),
+      onImageError: (_) => debugPrint('Imagem indisponível'),
     ),
   ],
 )
@@ -166,7 +167,7 @@ Wrap(
       enabled: false,
       onClick: () {},
     ),
-    Text('Cliques: $_cliques'),
+    Text(context.txf('Cliques: {n}', {'n': _cliques})),
   ],
 )
 ''';

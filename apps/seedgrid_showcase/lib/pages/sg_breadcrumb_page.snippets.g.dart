@@ -24,13 +24,90 @@ SgBreadcrumb(
 )
 ''';
 
+  /// Region `sg-breadcrumb-externo`.
+  static const String sgBreadcrumbExterno = r'''
+Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    Wrap(
+      spacing: 8,
+      runSpacing: 8,
+      children: [
+        SgButton(
+          size: SgSize.sm,
+          appearance: SgAppearance.outline,
+          label: const Text('Go to Registration'),
+          onClick: () => setState(() => _rota = 'registration'),
+        ),
+        SgButton(
+          size: SgSize.sm,
+          appearance: SgAppearance.outline,
+          label: const Text('Go to Fiscal'),
+          onClick: () => setState(() => _rota = 'fiscal'),
+        ),
+        SgButton(
+          size: SgSize.sm,
+          appearance: SgAppearance.outline,
+          label: const Text('Go to Integration'),
+          onClick: () => setState(() => _rota = 'integration'),
+        ),
+      ],
+    ),
+    const SizedBox(height: 12),
+    SgBreadcrumb(
+      items: [
+        SgBreadcrumbItem(
+          id: 'erp',
+          label: const Text('ERP'),
+          href: '/erp',
+        ),
+        SgBreadcrumbItem(
+          id: _rota,
+          label: Text(_rota),
+          href: '/erp/$_rota',
+        ),
+        SgBreadcrumbItem(
+          id: 'atual',
+          label: const Text('Customers'),
+        ),
+      ],
+      separator: SgBreadcrumbSeparator.arrow,
+      variant: SgBreadcrumbVariant.subtle,
+      onNavigate: (item, index) =>
+          setState(() => _ultimoRota = item.id),
+    ),
+    const SizedBox(height: 8),
+    Text(
+      '${context.tx('rota ativa')}: $_rota | ${context.tx('último clique')}: $_ultimoRota',
+    ),
+  ],
+)
+''';
+
   /// Region `sg-breadcrumb-maxitems`.
   static const String sgBreadcrumbMaxitems = r'''
-SgBreadcrumb(
-  items: _caminho,
-  maxItems: 4,
-  onNavigate: (item, index) =>
-      setState(() => _ultimo = '${item.id} (índice $index)'),
+Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    Text(context.tx('Collapse com dropdown')),
+    const SizedBox(height: 8),
+    SgBreadcrumb(
+      items: _caminho,
+      maxItems: 4,
+      separator: SgBreadcrumbSeparator.slash,
+    ),
+    const SizedBox(height: 16),
+    Text(context.tx('Scroll horizontal')),
+    const SizedBox(height: 8),
+    SizedBox(
+      width: 360,
+      child: SgBreadcrumb(
+        items: _caminho,
+        overflowBehavior: SgBreadcrumbOverflowBehavior.scroll,
+        separator: SgBreadcrumbSeparator.dot,
+      ),
+    ),
+  ],
 )
 ''';
 
@@ -66,8 +143,7 @@ Column(
   crossAxisAlignment: CrossAxisAlignment.start,
   children: [
     SgBreadcrumb(
-      items: _caminho,
-      overflowBehavior: SgBreadcrumbOverflowBehavior.scroll,
+      items: _caminho.take(3).toList(),
       size: SgBreadcrumbSize.sm,
     ),
     const SizedBox(height: 8),

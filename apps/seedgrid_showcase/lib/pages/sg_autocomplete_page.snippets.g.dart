@@ -6,35 +6,24 @@ abstract final class SgAutocompletePageSnippets {
   /// Region `sg-autocomplete-agrupado`.
   static const String sgAutocompleteAgrupado = r'''
 SgAutocomplete<SgAutocompleteItem>(
-  id: 'produto',
-  labelText: 'Produto',
+  id: 'pais-agrupado',
+  labelText: context.tx('País'),
   grouped: true,
-  renderItem: (item, active) => Row(
-    children: [
-      const Icon(Icons.label_outline, size: 16),
-      const SizedBox(width: 8),
-      Text(item.label),
-    ],
-  ),
-  renderFooter: (q, has) =>
-      Text(has ? 'Resultados para "$q"' : 'Nada para "$q"'),
   source: (q) =>
-      [
+      const [
             SgAutocompleteItem(
               id: 1,
-              label: context.tx('Maçã'),
-              group: 'Frutas',
+              label: 'Argentina',
+              group: 'A',
             ),
             SgAutocompleteItem(
               id: 2,
-              label: context.tx('Manga'),
-              group: 'Frutas',
+              label: 'Austrália',
+              group: 'A',
             ),
-            SgAutocompleteItem(
-              id: 3,
-              label: context.tx('Milho'),
-              group: 'Grãos',
-            ),
+            SgAutocompleteItem(id: 3, label: 'Brasil', group: 'B'),
+            SgAutocompleteItem(id: 4, label: 'Bolívia', group: 'B'),
+            SgAutocompleteItem(id: 5, label: 'Chile', group: 'C'),
           ]
           .where(
             (i) => i.label.toLowerCase().contains(q.toLowerCase()),
@@ -47,9 +36,9 @@ SgAutocomplete<SgAutocompleteItem>(
   static const String sgAutocompleteAssincrono = r'''
 SgAutocomplete<String>(
   id: 'cidade',
-  labelText: 'Cidade',
+  labelText: context.tx('Cidade'),
   delay: 200,
-  loadingText: 'Buscando cidades...',
+  loadingText: context.tx('Buscando cidades...'),
   source: (q) async {
     await Future<void>.delayed(const Duration(milliseconds: 600));
     return const ['Curitiba', 'Cuiabá', 'Campinas', 'Cascavel']
@@ -63,7 +52,7 @@ SgAutocomplete<String>(
   static const String sgAutocompleteBasico = r'''
 SgAutocomplete<String>(
   id: 'pais',
-  labelText: 'País',
+  labelText: context.tx('País'),
   placeholder: context.tx('Digite 2 letras'),
   source: (q) =>
       const [
@@ -83,7 +72,7 @@ SgAutocomplete<String>(
   static const String sgAutocompleteBotao = r'''
 SgAutocomplete<String>(
   id: 'cor',
-  labelText: 'Cor',
+  labelText: context.tx('Cor'),
   showDropDownButton: true,
   openOnFocus: true,
   minLengthForSearch: 0,
@@ -103,9 +92,9 @@ Column(
       id: 'fruta',
       name: 'fruta',
       control: _form,
-      labelText: 'Fruta',
+      labelText: context.tx('Fruta'),
       required: true,
-      requiredMessage: 'Escolha uma fruta',
+      requiredMessage: context.tx('Escolha uma fruta'),
       source: (q) => const ['Banana', 'Laranja', 'Uva']
           .where((c) => c.toLowerCase().contains(q.toLowerCase()))
           .toList(),
@@ -117,7 +106,8 @@ Column(
         (values) => setState(() => _enviado = '${values['fruta']}'),
       ),
     ),
-    if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),
+    if (_enviado.isNotEmpty)
+      Text(context.txf('Enviado: {valor}', {'valor': _enviado})),
   ],
 )
 ''';
@@ -126,9 +116,8 @@ Column(
   static const String sgAutocompleteLimite = r'''
 SgAutocomplete<String>(
   id: 'limite',
-  labelText: 'Máximo de 2 resultados',
+  labelText: context.tx('Máximo de 2 resultados'),
   maxResult: 2,
-  borderRadius: 20,
   source: (q) =>
       const ['Rio Branco', 'Rio Claro', 'Rio Grande', 'Rio Verde']
           .where((p) => p.toLowerCase().contains(q.toLowerCase()))
@@ -142,7 +131,7 @@ Column(
   children: [
     SgAutocomplete<String>(
       id: 'livre',
-      labelText: 'Aceita texto livre',
+      labelText: context.tx('Aceita texto livre'),
       allowCustomValue: true,
       source: (q) => const ['Alpha', 'Beta', 'Gamma']
           .where((c) => c.toLowerCase().contains(q.toLowerCase()))
@@ -151,13 +140,99 @@ Column(
     const SizedBox(height: 12),
     SgAutocomplete<String>(
       id: 'adicionar',
-      labelText: 'Limpa ao escolher',
+      labelText: context.tx('Limpa ao escolher'),
       clearOnSelect: true,
       source: (q) => const ['Item A', 'Item B', 'Item C']
           .where((c) => c.toLowerCase().contains(q.toLowerCase()))
           .toList(),
     ),
   ],
+)
+''';
+
+  /// Region `sg-autocomplete-minimo`.
+  static const String sgAutocompleteMinimo = r'''
+SgAutocomplete<String>(
+  id: 'pais-minimo',
+  labelText: context.tx('País'),
+  minLengthForSearch: 3,
+  source: (q) =>
+      const ['Argentina', 'Bolívia', 'Brasil', 'Chile', 'Uruguai']
+          .where((p) => p.toLowerCase().contains(q.toLowerCase()))
+          .toList(),
+)
+''';
+
+  /// Region `sg-autocomplete-personalizado`.
+  static const String sgAutocompletePersonalizado = r'''
+SgAutocomplete<SgAutocompleteItem>(
+  id: 'pais-codigo',
+  labelText: context.tx('País'),
+  renderItem: (item, active) => Row(
+    children: [
+      Text(
+        '${item.data}',
+        style: const TextStyle(fontWeight: FontWeight.w600),
+      ),
+      const SizedBox(width: 8),
+      Text(item.label),
+    ],
+  ),
+  source: (q) =>
+      const [
+            SgAutocompleteItem(
+              id: 1,
+              label: 'Argentina',
+              data: 'AR',
+            ),
+            SgAutocompleteItem(id: 2, label: 'Brasil', data: 'BR'),
+            SgAutocompleteItem(id: 3, label: 'Chile', data: 'CL'),
+            SgAutocompleteItem(
+              id: 4,
+              label: 'Colômbia',
+              data: 'CO',
+            ),
+          ]
+          .where(
+            (i) => i.label.toLowerCase().contains(q.toLowerCase()),
+          )
+          .toList(),
+)
+''';
+
+  /// Region `sg-autocomplete-raio`.
+  static const String sgAutocompleteRaio = r'''
+SgAutocomplete<String>(
+  id: 'pais-raio',
+  labelText: context.tx('País'),
+  minLengthForSearch: 1,
+  showDropDownButton: true,
+  openOnFocus: true,
+  borderRadius: 14,
+  source: (q) =>
+      const ['Argentina', 'Bolívia', 'Brasil', 'Chile', 'Uruguai']
+          .where((p) => p.toLowerCase().contains(q.toLowerCase()))
+          .toList(),
+)
+''';
+
+  /// Region `sg-autocomplete-rodape`.
+  static const String sgAutocompleteRodape = r'''
+SgAutocomplete<String>(
+  id: 'pais-rodape',
+  labelText: context.tx('País'),
+  renderFooter: (q, has) => SgButton(
+    label: Text(
+      has
+          ? context.txf('Adicionar "{consulta}"', {'consulta': q})
+          : context.tx('Adicionar novo'),
+    ),
+    onClick: () {},
+  ),
+  source: (q) =>
+      const ['Argentina', 'Bolívia', 'Brasil', 'Chile', 'Uruguai']
+          .where((p) => p.toLowerCase().contains(q.toLowerCase()))
+          .toList(),
 )
 ''';
 }

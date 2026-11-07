@@ -64,7 +64,7 @@ class _SgCardPageState extends State<SgCardPage> {
         code: SgCardPageSnippets.sgCardBasico,
       ),
       ShowcaseExample(
-        title: 'Leading, trailing e ações',
+        title: 'Leading e trailing',
         description:
             'leading e trailing ladeiam o título; actions fica à direita do cabeçalho.',
         preview:
@@ -187,7 +187,7 @@ class _SgCardPageState extends State<SgCardPage> {
         code: SgCardPageSnippets.sgCardRecolhivel,
       ),
       ShowcaseExample(
-        title: 'Variantes',
+        title: 'Variantes e tamanhos',
         description: 'default, elevated, outlined e flat, em tamanhos sm e lg.',
         preview:
             // #region sg-card-variantes
@@ -349,6 +349,7 @@ class _SgCardPageState extends State<SgCardPage> {
       ),
       ShowcaseExample(
         title: 'Tamanhos e clique',
+        description: 'Cada tamanho como cartão clicável; o clique é contado.',
         preview:
             // #region sg-card-tamanhos
             Column(

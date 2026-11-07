@@ -58,6 +58,33 @@ Column(
 )
 ''';
 
+  /// Region `sg-confirmation-dialog-esquerda`.
+  static const String sgConfirmationDialogEsquerda = r'''
+Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    SgButton(
+      label: Text(context.tx('Abrir aviso')),
+      appearance: SgAppearance.outline,
+      onClick: () => setState(() => _esquerda = true),
+    ),
+    SgConfirmationDialog(
+      open: _esquerda,
+      onOpenChange: (open) => setState(() => _esquerda = open),
+      severity: SgDialogSeverity.warning,
+      iconPlacement: SgConfirmationDialogIconPlacement.left,
+      icon: const Icon(Icons.warning_amber_rounded, size: 20),
+      title: Text(context.tx('Alterações não salvas')),
+      message: Text(
+        context.tx(
+          'Você tem atualizações pendentes. Deseja continuar sem salvar?',
+        ),
+      ),
+    ),
+  ],
+)
+''';
+
   /// Region `sg-confirmation-dialog-icone`.
   static const String sgConfirmationDialogIcone = r'''
 Column(
@@ -113,6 +140,30 @@ Column(
       message: Text(
         context.tx('Veja o ícone, o fundo e o botão de confirmar.'),
       ),
+    ),
+  ],
+)
+''';
+
+  /// Region `sg-confirmation-dialog-superficie`.
+  static const String sgConfirmationDialogSuperficie = r'''
+Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    SgButton(
+      label: Text(context.tx('Abrir superfície customizada')),
+      appearance: SgAppearance.outline,
+      onClick: () => setState(() => _superficie = true),
+    ),
+    SgConfirmationDialog(
+      open: _superficie,
+      onOpenChange: (open) => setState(() => _superficie = open),
+      severity: SgDialogSeverity.danger,
+      customColor: '#fff7ed',
+      elevation:
+          '0 0 0 1px rgba(234, 88, 12, 0.22), 0 24px 56px rgba(234, 88, 12, 0.28)',
+      title: Text(context.tx('Excluir registro?')),
+      message: Text(context.tx('Esta ação não pode ser desfeita.')),
     ),
   ],
 )

@@ -86,6 +86,47 @@ const SgAccordion(
 )
 ''';
 
+  /// Region `sg-accordion-personalizados`.
+  static const String sgAccordionPersonalizados = r'''
+Builder(
+  builder: (context) {
+    final escuro = Theme.of(context).brightness == Brightness.dark;
+    return SgAccordion(
+      defaultActiveIndex: const [0],
+      headerBackgroundColor: escuro ? '#1E3A5F' : '#EFF6FF',
+      items: [
+        SgAccordionItem(
+          title: Text(context.tx('E-mail')),
+          content: Text(
+            context.tx(
+              'Configurações de SMTP, remetente padrão e modelos.',
+            ),
+          ),
+          icon: const Icon(Icons.mail_outline, size: 18),
+          end: Text(context.tx('novo')),
+          headerBackgroundColor: escuro ? '#164E63' : '#E0F2FE',
+        ),
+        SgAccordionItem(
+          title: Text(context.tx('Permissões')),
+          content: Text(
+            context.tx(
+              'Controle de perfis, papéis e trilhas de auditoria.',
+            ),
+          ),
+          icon: const Icon(Icons.verified_user_outlined, size: 18),
+        ),
+        SgAccordionItem(
+          title: Text(context.tx('Módulo indisponível')),
+          content: Text(context.tx('Conteúdo bloqueado.')),
+          icon: const Icon(Icons.warning_amber_outlined, size: 18),
+          enabled: false,
+        ),
+      ],
+    );
+  },
+)
+''';
+
   /// Region `sg-accordion-sem-fechar`.
   static const String sgAccordionSemFechar = r'''
 const SgAccordion(items: _itens, collapsible: false)

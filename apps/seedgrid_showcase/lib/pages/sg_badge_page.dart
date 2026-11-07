@@ -15,7 +15,7 @@ class SgBadgePage extends StatefulWidget {
 }
 
 class _SgBadgePageState extends State<SgBadgePage> {
-  String _ultimo = 'nada ainda';
+  String? _ultimo;
   bool _tagVisivel = true;
   bool _manualVisivel = true;
 
@@ -24,7 +24,7 @@ class _SgBadgePageState extends State<SgBadgePage> {
     final examples = <ShowcaseExample>[
       ShowcaseExample(
         title: 'Básico',
-        description: 'Uso básico: value, severity e badgeStyle.',
+        description: 'Exemplos simples de uso.',
         preview:
             // #region sg-badge-basico
             Wrap(
@@ -138,7 +138,7 @@ class _SgBadgePageState extends State<SgBadgePage> {
                   value: Text(context.tx('Remover auto')),
                   removable: true,
                   autoRemove: true,
-                  onRemove: () => setState(() => _ultimo = 'removida (auto)'),
+                  onRemove: () => setState(() => _ultimo = context.tx('removida (auto)')),
                 ),
                 if (_manualVisivel)
                   SgBadge(
@@ -147,16 +147,19 @@ class _SgBadgePageState extends State<SgBadgePage> {
                     autoRemove: false,
                     onRemove: () => setState(() {
                       _manualVisivel = false;
-                      _ultimo = 'removida (manual)';
+                      _ultimo = context.tx('removida (manual)');
                     }),
                   ),
-                Text('Último evento: $_ultimo'),
+                Text(
+                  context.txf('Último evento: {evento}', {
+                    'evento': _ultimo ?? context.tx('nada ainda'),
+                  }),
+                ),
               ],
             ),
         // #endregion
         code: SgBadgePageSnippets.sgBadgeAcoes,
       ),
-      // Exemplos só do Flutter (depois dos que espelham o React).
       ShowcaseExample(
         title: 'Severidades',
         description:
@@ -218,7 +221,7 @@ class _SgBadgePageState extends State<SgBadgePage> {
                 SgBadge(
                   value: Text(context.tx('Clique')),
                   badgeStyle: SgBadgeBadgeStyle.outline,
-                  onClick: () => setState(() => _ultimo = 'clique'),
+                  onClick: () => setState(() => _ultimo = context.tx('clique')),
                 ),
                 SgBadge(
                   value: Text(context.tx('Desabilitado')),
@@ -234,10 +237,14 @@ class _SgBadgePageState extends State<SgBadgePage> {
                     autoRemove: true,
                     onRemove: () => setState(() {
                       _tagVisivel = false;
-                      _ultimo = 'removida';
+                      _ultimo = context.tx('removida');
                     }),
                   ),
-                Text('Último evento: $_ultimo'),
+                Text(
+                  context.txf('Último evento: {evento}', {
+                    'evento': _ultimo ?? context.tx('nada ainda'),
+                  }),
+                ),
               ],
             ),
         // #endregion
@@ -245,6 +252,7 @@ class _SgBadgePageState extends State<SgBadgePage> {
       ),
       ShowcaseExample(
         title: 'Cores personalizadas',
+        description: 'customColors define fundo, texto e borda do selo.',
         preview:
             // #region sg-badge-cores
             SgBadge(

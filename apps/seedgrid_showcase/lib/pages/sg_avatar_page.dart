@@ -172,7 +172,6 @@ class _SgAvatarPageState extends State<SgAvatarPage> {
         // #endregion
         code: SgAvatarPageSnippets.sgAvatarGrupo,
       ),
-      // Exemplos só do Flutter (depois dos que espelham o React).
       ShowcaseExample(
         title: 'Iniciais, ícone e fallback',
         description: 'Do nome saem até 2 iniciais; sem nada, aparece "?".',
@@ -211,6 +210,7 @@ class _SgAvatarPageState extends State<SgAvatarPage> {
                 SgAvatar(
                   src: 'https://endereco.invalido.exemplo/foto.png',
                   label: Text(context.tx('Carlos Dias')),
+                  onImageError: (_) => debugPrint('Imagem indisponível'),
                 ),
               ],
             ),
@@ -219,6 +219,8 @@ class _SgAvatarPageState extends State<SgAvatarPage> {
       ),
       ShowcaseExample(
         title: 'Clicável e desabilitado',
+        description:
+            'Com onClick o avatar fica interativo; com enabled: false ele deixa de responder aos cliques.',
         preview:
             // #region sg-avatar-interativo
             Wrap(
@@ -236,7 +238,7 @@ class _SgAvatarPageState extends State<SgAvatarPage> {
                   enabled: false,
                   onClick: () {},
                 ),
-                Text('Cliques: $_cliques'),
+                Text(context.txf('Cliques: {n}', {'n': _cliques})),
               ],
             ),
         // #endregion

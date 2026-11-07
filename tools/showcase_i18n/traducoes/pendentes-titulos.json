@@ -1066,5 +1066,719 @@
   "Padrão recomendado: inicializar o SgTimeProvider no layout raiz com um timestamp do servidor.",
   "Patrón recomendado: inicializar SgTimeProvider en el layout raíz con un timestamp del servidor.",
   "Modèle recommandé : initialisez SgTimeProvider dans la disposition racine avec un timestamp côté serveur."
+ ],
+ "Básico vertical (único)": [
+  "Basic vertical (single)",
+  "Básico vertical (único)",
+  "Vertical básico (único)",
+  "Vertical basique (simple)"
+ ],
+ "Vários abertos + recolhível": [
+  "Multiple + collapsible",
+  "Vários abertos + recolhível",
+  "Varios abiertos + plegable",
+  "Multiple + repliable"
+ ],
+ "Controlado por estado": [
+  "Controlled state",
+  "Controlado por estado",
+  "Controlado por estado",
+  "Etat controle"
+ ],
+ "Itens personalizados + fundo do cabeçalho": [
+  "Custom items + header background",
+  "Itens personalizados + fundo do cabeçalho",
+  "Items personalizados + fondo del titulo",
+  "Items personnalises + fond d'en-tete"
+ ],
+ "Exemplo de personalização de cores": [
+  "Color customization example",
+  "Exemplo de personalização de cores",
+  "Ejemplo de personalizacion de color",
+  "Exemple de personnalisation de couleur"
+ ],
+ "Vários painéis abertos ao mesmo tempo (multiple); cada um pode ser recolhido.": [
+  "Several panels open at the same time (multiple); each one can be collapsed.",
+  "Vários painéis abertos ao mesmo tempo (multiple); cada um pode ser recolhido.",
+  "Varios paneles abiertos al mismo tiempo (multiple); cada uno se puede contraer.",
+  "Plusieurs panneaux ouverts en même temps (multiple) ; chacun peut être réduit."
+ ],
+ "Cada item aceita ícone, conteúdo no fim, cor de cabeçalho própria e enabled; headerBackgroundColor pinta todos os cabeçalhos.": [
+  "Each item accepts an icon, trailing content, its own header color and enabled; headerBackgroundColor paints all headers.",
+  "Cada item aceita ícone, conteúdo no fim, cor de cabeçalho própria e enabled; headerBackgroundColor pinta todos os cabeçalhos.",
+  "Cada ítem acepta icono, contenido al final, color de encabezado propio y enabled; headerBackgroundColor pinta todos los encabezados.",
+  "Chaque élément accepte une icône, un contenu en fin de ligne, sa propre couleur d'en-tête et enabled ; headerBackgroundColor colore tous les en-têtes."
+ ],
+ "Configurações de SMTP, remetente padrão e modelos.": [
+  "SMTP settings, default sender and templates.",
+  "Configurações de SMTP, remetente predefinido e modelos.",
+  "Configuración de SMTP, remitente predeterminado y plantillas.",
+  "Paramètres SMTP, expéditeur par défaut et modèles."
+ ],
+ "novo": [
+  "new",
+  "novo",
+  "nuevo",
+  "nouveau"
+ ],
+ "Controle de perfis, papéis e trilhas de auditoria.": [
+  "Control of profiles, roles and audit trails.",
+  "Controlo de perfis, papéis e registos de auditoria.",
+  "Control de perfiles, roles y rastros de auditoría.",
+  "Contrôle des profils, des rôles et des pistes d'audit."
+ ],
+ "Módulo indisponível": [
+  "Unavailable module",
+  "Módulo indisponível",
+  "Módulo no disponible",
+  "Module indisponible"
+ ],
+ "Conteúdo bloqueado.": [
+  "Locked content.",
+  "Conteúdo bloqueado.",
+  "Contenido bloqueado.",
+  "Contenu verrouillé."
+ ],
+ "Com collapsible: false, o painel aberto não pode ser recolhido; sempre resta um aberto.": [
+  "With collapsible: false, the open panel cannot be collapsed; one always stays open.",
+  "Com collapsible: false, o painel aberto não pode ser recolhido; fica sempre um aberto.",
+  "Con collapsible: false, el panel abierto no se puede contraer; siempre queda uno abierto.",
+  "Avec collapsible: false, le panneau ouvert ne peut pas être réduit ; il en reste toujours un ouvert."
+ ],
+ "Básico": [
+  "Basic",
+  "Básico",
+  "Básico",
+  "Basique"
+ ],
+ "Conteúdo personalizado": [
+  "Custom Content",
+  "Conteúdo personalizado",
+  "Contenido personalizado",
+  "Contenu personnalisé"
+ ],
+ "Agrupado": [
+  "Grouped",
+  "Agrupado",
+  "Agrupado",
+  "Groupé"
+ ],
+ "Botão dropdown": [
+  "DropDown Button",
+  "Botão dropdown",
+  "Botón dropdown",
+  "Bouton déroulant"
+ ],
+ "Rodapé": [
+  "Footer",
+  "Rodapé",
+  "Pie",
+  "Pied de liste"
+ ],
+ "Comprimento mínimo": [
+  "Min Length",
+  "Comprimento mínimo",
+  "Longitud mínima",
+  "Longueur minimale"
+ ],
+ "Raio da borda": [
+  "Border radius",
+  "Raio da borda",
+  "Radio del borde",
+  "Rayon de bordure"
+ ],
+ "Fonte assíncrona": [
+  "Async source",
+  "Fonte assíncrona",
+  "Fuente asíncrona",
+  "Source asynchrone"
+ ],
+ "A fonte é assíncrona; enquanto espera aparece o texto de carregamento (loadingText). Respostas antigas são descartadas.": [
+  "The source is asynchronous; while it waits the loading text (loadingText) is shown. Stale responses are discarded.",
+  "A fonte é assíncrona; enquanto espera aparece o texto de carregamento (loadingText). Respostas antigas são descartadas.",
+  "La fuente es asíncrona; mientras espera aparece el texto de carga (loadingText). Las respuestas antiguas se descartan.",
+  "La source est asynchrone ; pendant l'attente, le texte de chargement (loadingText) s'affiche. Les réponses obsolètes sont ignorées."
+ ],
+ "Valor livre e limpar ao escolher": [
+  "Free value and clear on select",
+  "Valor livre e limpar ao escolher",
+  "Valor libre y limpiar al elegir",
+  "Valeur libre et effacement à la sélection"
+ ],
+ "allowCustomValue guarda o que foi digitado; clearOnSelect esvazia o campo depois de escolher (útil para adicionar itens).": [
+  "allowCustomValue keeps what was typed; clearOnSelect empties the field after choosing (useful for adding items).",
+  "allowCustomValue guarda o que foi digitado; clearOnSelect esvazia o campo depois de escolher (útil para adicionar itens).",
+  "allowCustomValue conserva lo escrito; clearOnSelect vacía el campo después de elegir (útil para agregar ítems).",
+  "allowCustomValue conserve ce qui a été saisi ; clearOnSelect vide le champ après le choix (utile pour ajouter des éléments)."
+ ],
+ "Limite de resultados": [
+  "Result limit",
+  "Limite de resultados",
+  "Límite de resultados",
+  "Limite de résultats"
+ ],
+ "maxResult limita quantos itens a lista mostra.": [
+  "maxResult limits how many items the list shows.",
+  "maxResult limita quantos itens a lista mostra.",
+  "maxResult limita cuántos ítems muestra la lista.",
+  "maxResult limite le nombre d'éléments affichés dans la liste."
+ ],
+ "Dentro de um formulário": [
+  "Inside a form",
+  "Dentro de um formulário",
+  "Dentro de un formulario",
+  "Dans un formulaire"
+ ],
+ "name + control + required, como no react-hook-form.": [
+  "name + control + required, as in react-hook-form.",
+  "name + control + required, como no react-hook-form.",
+  "name + control + required, como en react-hook-form.",
+  "name + control + required, comme dans react-hook-form."
+ ],
+ "Renderiza o item com o código do país.": [
+  "Renders the item with the country code.",
+  "Renderiza o item com o código do país.",
+  "Renderiza el ítem con el código del país.",
+  "Affiche l'élément avec le code du pays."
+ ],
+ "Botão para abrir/fechar a lista. Com um item selecionado, reabrir mostra a lista completa com o item destacado.": [
+  "Button to open/close the list. With an item selected, reopening shows the full list with the selected item highlighted.",
+  "Botão para abrir/fechar a lista. Com um item selecionado, reabrir mostra a lista completa com o item destacado.",
+  "Botón para abrir/cerrar la lista. Con un ítem seleccionado, al reabrir se muestra la lista completa con el ítem resaltado.",
+  "Bouton pour ouvrir/fermer la liste. Avec un élément sélectionné, la rouvrir affiche la liste complète avec l'élément mis en évidence."
+ ],
+ "Rodapé personalizado com ação.": [
+  "Custom footer with an action.",
+  "Rodapé personalizado com ação.",
+  "Pie personalizado con una acción.",
+  "Pied de liste personnalisé avec une action."
+ ],
+ "Agrupa pela primeira letra.": [
+  "Groups by first letter.",
+  "Agrupa pela primeira letra.",
+  "Agrupa por la primera letra.",
+  "Regroupe par première lettre."
+ ],
+ "Só busca a partir de 3 caracteres.": [
+  "Only searches from 3 characters.",
+  "Só busca a partir de 3 caracteres.",
+  "Solo busca a partir de 3 caracteres.",
+  "Ne recherche qu'à partir de 3 caractères."
+ ],
+ "Aplica raio de borda ao campo e à lista de sugestões.": [
+  "Applies a border radius to the field and the suggestion list.",
+  "Aplica raio de borda ao campo e à lista de sugestões.",
+  "Aplica radio de borde al campo y a la lista de sugerencias.",
+  "Applique un rayon de bordure au champ et à la liste de suggestions."
+ ],
+ "Digite e veja resultados conforme a busca.": [
+  "Type and see results as you search.",
+  "Digite e veja resultados conforme a busca.",
+  "Escribe y ve resultados segun la busqueda.",
+  "Tapez et voyez les resultats au fur et a mesure de la recherche."
+ ],
+ "País": [
+  "Country",
+  "País",
+  "País",
+  "Pays"
+ ],
+ "Cidade": [
+  "City",
+  "Cidade",
+  "Ciudad",
+  "Ville"
+ ],
+ "Buscando cidades...": [
+  "Searching cities...",
+  "A pesquisar cidades...",
+  "Buscando ciudades...",
+  "Recherche de villes..."
+ ],
+ "Aceita texto livre": [
+  "Accepts free text",
+  "Aceita texto livre",
+  "Acepta texto libre",
+  "Accepte le texte libre"
+ ],
+ "Limpa ao escolher": [
+  "Clears on select",
+  "Limpa ao escolher",
+  "Limpia al elegir",
+  "Efface à la sélection"
+ ],
+ "Máximo de 2 resultados": [
+  "Up to 2 results",
+  "Máximo de 2 resultados",
+  "Máximo de 2 resultados",
+  "2 résultats maximum"
+ ],
+ "Fruta": [
+  "Fruit",
+  "Fruta",
+  "Fruta",
+  "Fruit"
+ ],
+ "Escolha uma fruta": [
+  "Choose a fruit",
+  "Escolha uma fruta",
+  "Elija una fruta",
+  "Choisissez un fruit"
+ ],
+ "Enviar": [
+  "Submit",
+  "Enviar",
+  "Enviar",
+  "Envoyer"
+ ],
+ "Enviado: {valor}": [
+  "Submitted: {valor}",
+  "Enviado: {valor}",
+  "Enviado: {valor}",
+  "Envoyé : {valor}"
+ ],
+ "Adicionar novo": [
+  "Add new",
+  "Adicionar novo",
+  "Agregar nuevo",
+  "Ajouter"
+ ],
+ "Adicionar \"{consulta}\"": [
+  "Add \"{consulta}\"",
+  "Adicionar \"{consulta}\"",
+  "Agregar \"{consulta}\"",
+  "Ajouter \"{consulta}\""
+ ],
+ "Cor": [
+  "Color",
+  "Cor",
+  "Color",
+  "Couleur"
+ ],
+ "Cliques: {n}": [
+  "Clicks: {n}",
+  "Cliques: {n}",
+  "Clics: {n}",
+  "Clics : {n}"
+ ],
+ "Abrir perfil": [
+  "Open profile",
+  "Abrir perfil",
+  "Abrir perfil",
+  "Ouvrir le profil"
+ ],
+ "Com onClick o avatar fica interativo; com enabled: false ele deixa de responder aos cliques.": [
+  "With onClick the avatar becomes interactive; with enabled: false it stops responding to clicks.",
+  "Com onClick o avatar fica interativo; com enabled: false ele deixa de responder aos cliques.",
+  "Con onClick el avatar se vuelve interactivo; con enabled: false deja de responder a los clics.",
+  "Avec onClick l'avatar devient interactif ; avec enabled: false il ne répond plus aux clics."
+ ],
+ "customColors define fundo, texto e borda do selo.": [
+  "customColors sets the badge background, text and border.",
+  "customColors define o fundo, o texto e a borda do selo.",
+  "customColors define el fondo, el texto y el borde de la insignia.",
+  "customColors définit le fond, le texte et la bordure du badge."
+ ],
+ "tag": [
+  "tag",
+  "tag",
+  "etiqueta",
+  "tag"
+ ],
+ "Exemplos simples de uso.": [
+  "Simple usage examples.",
+  "Exemplos simples de uso.",
+  "Ejemplos simples de uso.",
+  "Exemples d'utilisation simple."
+ ],
+ "Badge numérico, max e indicador.": [
+  "Numeric badge, max, and indicator.",
+  "Badge numérico, max e indicador.",
+  "Badge numérico, max e indicador.",
+  "Badge numérique, max et indicateur."
+ ],
+ "Removível e clicável.": [
+  "Removable and clickable.",
+  "Removível e clicável.",
+  "Removible y clicable.",
+  "Amovible et cliquable."
+ ],
+ "Último evento: {evento}": [
+  "Last event: {evento}",
+  "Último evento: {evento}",
+  "Último evento: {evento}",
+  "Dernier événement : {evento}"
+ ],
+ "nada ainda": [
+  "nothing yet",
+  "nada ainda",
+  "nada todavía",
+  "rien pour le moment"
+ ],
+ "removida (auto)": [
+  "removed (auto)",
+  "removida (auto)",
+  "eliminada (auto)",
+  "supprimé (auto)"
+ ],
+ "removida (manual)": [
+  "removed (manual)",
+  "removida (manual)",
+  "eliminada (manual)",
+  "supprimé (manuel)"
+ ],
+ "removida": [
+  "removed",
+  "removida",
+  "eliminada",
+  "supprimé"
+ ],
+ "clique": [
+  "click",
+  "clique",
+  "clic",
+  "clic"
+ ],
+ "Comportamento padrão em coluna, abrindo um painel por vez.": [
+  "Default column behavior, opening one panel at a time.",
+  "Comportamento padrão em coluna, abrindo um painel por vez.",
+  "Comportamiento por defecto en columna, abriendo un panel por vez.",
+  "Comportement en colonne par defaut, ouvrant un panneau a la fois."
+ ],
+ "Abra vários painéis ao mesmo tempo e controle o estado ativo externamente.": [
+  "Open multiple panels at once and control active state externally.",
+  "Abra vários painéis ao mesmo tempo e controle o estado ativo externamente.",
+  "Abra varios paneles al mismo tiempo y controle el estado activo externamente.",
+  "Ouvrez plusieurs panneaux a la fois et controlez l'etat actif en externe."
+ ],
+ "Cabeçalhos em trilho lateral e conteúdo expandindo horizontalmente.": [
+  "Headers in a side rail with horizontally expanding content.",
+  "Cabeçalhos em trilho lateral e conteúdo expandindo horizontalmente.",
+  "Headers en riel lateral y contenido expandiendo horizontalmente.",
+  "En-tetes dans un rail lateral avec contenu s'etendant horizontalement."
+ ],
+ "O fundo do título usa primary-50 por padrão e pode ser customizado globalmente ou por item.": [
+  "Header background uses primary-50 by default and can be customized globally or per item.",
+  "O fundo do título usa primary-50 por padrão e pode ser customizado globalmente ou por item.",
+  "El fondo del titulo usa primary-50 por defecto y puede personalizarse globalmente o por item.",
+  "Le fond d'en-tete utilise primary-50 par defaut et peut etre personnalise globalement ou par item."
+ ],
+ "Personalize a cor global do cabeçalho e veja o override por item no último painel.": [
+  "Customize global header color and see per-item override on the last panel.",
+  "Personalize a cor global do cabeçalho e veja o override por item no último painel.",
+  "Personalice el color global del titulo y vea el override por item en el ultimo panel.",
+  "Personnalisez la couleur globale des en-tetes et voyez la surcharge par item sur le dernier panneau."
+ ],
+ "Contador sobre o canto do avatar; o padrão é top-right.": [
+  "Counter over the avatar corner; the default is top-right.",
+  "Contador sobre o canto do avatar; a predefinição é top-right.",
+  "Contador sobre la esquina del avatar; el valor por defecto es top-right.",
+  "Compteur sur le coin de l'avatar ; la valeur par défaut est top-right."
+ ],
+ "Ponto de status no canto inferior direito.": [
+  "Status dot at the bottom-right corner.",
+  "Ponto de estado no canto inferior direito.",
+  "Punto de estado en la esquina inferior derecha.",
+  "Pastille de statut dans le coin inférieur droit."
+ ],
+ "Contador com limite máximo sobre um botão.": [
+  "Counter with a maximum limit over a button.",
+  "Contador com limite máximo sobre um botão.",
+  "Contador con límite máximo sobre un botón.",
+  "Compteur avec limite maximale sur un bouton."
+ ],
+ "Exemplos simples com número e ponto.": [
+  "Simple examples with a number and a dot.",
+  "Exemplos simples com número e ponto.",
+  "Ejemplos simples con número y punto.",
+  "Exemples simples avec nombre et point."
+ ],
+ "Exemplos com diferentes posições.": [
+  "Examples with different placements.",
+  "Exemplos com diferentes posições.",
+  "Ejemplos con diferentes posiciones.",
+  "Exemples avec différentes positions."
+ ],
+ "Ajuste a posição e o valor do selo sobreposto.": [
+  "Adjust the position and the value of the overlaid badge.",
+  "Ajuste a posição e o valor do selo sobreposto.",
+  "Ajuste la posición y el valor de la insignia superpuesta.",
+  "Ajustez la position et la valeur du badge superposé."
+ ],
+ "Tamanhos e variantes": [
+  "Sizes and variants",
+  "Tamanhos e variantes",
+  "Tamaños y variantes",
+  "Tailles et variantes"
+ ],
+ "Ícone de início automático e os quatro separadores.": [
+  "Automatic home icon and the four separators.",
+  "Ícone de início automático e os quatro separadores.",
+  "Icono de inicio automático y los cuatro separadores.",
+  "Icône d'accueil automatique et les quatre séparateurs."
+ ],
+ "Tamanhos sm e lg e as variantes subtle e primary.": [
+  "Sizes sm and lg and the subtle and primary variants.",
+  "Tamanhos sm e lg e as variantes subtle e primary.",
+  "Tamaños sm y lg y las variantes subtle y primary.",
+  "Tailles sm et lg et variantes subtle et primary."
+ ],
+ "Collapse com dropdown": [
+  "Collapse with dropdown",
+  "Collapse com dropdown",
+  "Collapse con dropdown",
+  "Collapse avec dropdown"
+ ],
+ "Scroll horizontal": [
+  "Horizontal scroll",
+  "Scroll horizontal",
+  "Scroll horizontal",
+  "Défilement horizontal"
+ ],
+ "Rota ativa": [
+  "Active route",
+  "Rota ativa",
+  "Ruta activa",
+  "Route active"
+ ],
+ "Último clique": [
+  "Last click",
+  "Último clique",
+  "Último clic",
+  "Dernier clic"
+ ],
+ "rota ativa": [
+  "active route",
+  "rota ativa",
+  "ruta activa",
+  "route active"
+ ],
+ "último clique": [
+  "last click",
+  "último clique",
+  "último clic",
+  "dernier clic"
+ ],
+ "Cada tamanho como cartão clicável; o clique é contado.": [
+  "Each size as a clickable card; clicks are counted.",
+  "Cada tamanho como cartão clicável; o clique é contado.",
+  "Cada tamaño como tarjeta clicable; se cuenta el clic.",
+  "Chaque taille comme carte cliquable ; le clic est compté."
+ ],
+ "Ajuste as principais props do SgCard.": [
+  "Adjust the main SgCard props.",
+  "Ajuste as principais props do SgCard.",
+  "Ajuste las principales props de SgCard.",
+  "Ajustez les principales props de SgCard."
+ ],
+ "Leading e trailing": [
+  "Leading and trailing",
+  "Leading e trailing",
+  "Leading y trailing",
+  "Leading et trailing"
+ ],
+ "Variantes e tamanhos": [
+  "Variants and sizes",
+  "Variantes e tamanhos",
+  "Variantes y tamaños",
+  "Variantes et tailles"
+ ],
+ "Playground (SgPlayground)": [
+  "Playground (SgPlayground)",
+  "Playground (SgPlayground)",
+  "Playground (SgPlayground)",
+  "Playground (SgPlayground)"
+ ],
+ "São Paulo": [
+  "São Paulo",
+  "São Paulo",
+  "São Paulo",
+  "São Paulo"
+ ],
+ "Use value/onValueChange para definir programaticamente um valor válido.": [
+  "Use value/onValueChange to set a valid value programmatically.",
+  "Use value/onValueChange para definir programaticamente um valor válido.",
+  "Usa value/onValueChange para establecer un valor válido de forma programática.",
+  "Utilisez value/onValueChange pour définir une valeur valide par programmation."
+ ],
+ "Simule cenários com source local/async, grouped, openOnFocus e eventos.": [
+  "Simulate scenarios with local/async source, grouped, openOnFocus, and events.",
+  "Simule cenários com source local/async, grouped, openOnFocus e eventos.",
+  "Simula escenarios con source local/async, grouped, openOnFocus y eventos.",
+  "Simulez des scénarios avec source locale/asynchrone, groupée, openOnFocus et événements."
+ ],
+ "Definir Alemanha (id 5)": [
+  "Set Germany (id 5)",
+  "Definir Alemanha (id 5)",
+  "Establecer Alemania (id 5)",
+  "Définir Allemagne (id 5)"
+ ],
+ "Definir Japão (id 9)": [
+  "Set Japan (id 9)",
+  "Definir Japão (id 9)",
+  "Establecer Japón (id 9)",
+  "Définir Japon (id 9)"
+ ],
+ "Limpar valor": [
+  "Clear value",
+  "Limpar valor",
+  "Limpiar valor",
+  "Effacer la valeur"
+ ],
+ "valor": [
+  "value",
+  "valor",
+  "valor",
+  "valeur"
+ ],
+ "(vazio)": [
+  "(empty)",
+  "(vazio)",
+  "(vacío)",
+  "(vide)"
+ ],
+ "resolvido por value": [
+  "resolved by value",
+  "resolvido por value",
+  "resuelto por value",
+  "résolu par value"
+ ],
+ "(nenhum)": [
+  "(none)",
+  "(nenhum)",
+  "(ninguno)",
+  "(aucun)"
+ ],
+ "último onSelect": [
+  "last onSelect",
+  "último onSelect",
+  "último onSelect",
+  "dernier onSelect"
+ ],
+ "Sem input livre: com foco no campo, digite letras e ele \"pula\" para o item correspondente.": [
+  "No free input: focus the field, type letters, and it \"jumps\" to the matching item.",
+  "Sem input livre: com foco no campo, digite letras e ele \"pula\" para o item correspondente.",
+  "Sin input libre: con foco en el campo, escribe letras y \"salta\" al item correspondiente.",
+  "Sans saisie libre : placez le focus sur le champ, tapez des lettres et il \"saute\" vers l'item correspondant."
+ ],
+ "Suporte a loadingText, renderItem, renderGroupHeader, renderFooter e itemTooltip.": [
+  "Supports loadingText, renderItem, renderGroupHeader, renderFooter, and itemTooltip.",
+  "Suporte a loadingText, renderItem, renderGroupHeader, renderFooter e itemTooltip.",
+  "Soporta loadingText, renderItem, renderGroupHeader, renderFooter e itemTooltip.",
+  "Prend en charge loadingText, renderItem, renderGroupHeader, renderFooter et itemTooltip."
+ ],
+ "Aplica o raio no input e no dropdown.": [
+  "Applies border radius to input and dropdown.",
+  "Aplica o raio no input e no dropdown.",
+  "Aplica el radio en el input y en el dropdown.",
+  "Applique un rayon de bordure a l'input et au menu deroulant."
+ ],
+ "Carregando status...": [
+  "Loading statuses...",
+  "A carregar estados...",
+  "Cargando estados...",
+  "Chargement des statuts..."
+ ],
+ "Ícone à esquerda": [
+  "Icon on the left",
+  "Ícone à esquerda",
+  "Icono a la izquierda",
+  "Icône à gauche"
+ ],
+ "Botões customizados": [
+  "Custom buttons",
+  "Botões customizados",
+  "Botones personalizados",
+  "Boutons personnalisés"
+ ],
+ "Superfície customizada (customColor + elevation)": [
+  "Custom surface (customColor + elevation)",
+  "Superfície customizada (customColor + elevation)",
+  "Superficie personalizada (customColor + elevation)",
+  "Surface personnalisée (customColor + elevation)"
+ ],
+ "icon próprio e iconPlacement left (padrão): o ícone fica ao lado do texto.": [
+  "Custom icon and iconPlacement left (default): the icon sits beside the text.",
+  "icon próprio e iconPlacement left (predefinição): o ícone fica ao lado do texto.",
+  "icon propio e iconPlacement left (por defecto): el ícono queda junto al texto.",
+  "icon personnalisé et iconPlacement left (par défaut) : l'icône est à côté du texte."
+ ],
+ "customColor muda o fundo do diálogo e elevation define a sombra.": [
+  "customColor changes the dialog background and elevation sets the shadow.",
+  "customColor muda o fundo do diálogo e elevation define a sombra.",
+  "customColor cambia el fondo del diálogo y elevation define la sombra.",
+  "customColor change le fond du dialogue et elevation définit l'ombre."
+ ],
+ "Playground interativo": [
+  "Interactive playground",
+  "Playground interativo",
+  "Playground interactivo",
+  "Playground interactif"
+ ],
+ "Alterações não salvas": [
+  "Unsaved changes",
+  "Alterações não guardadas",
+  "Cambios sin guardar",
+  "Modifications non enregistrées"
+ ],
+ "Você tem atualizações pendentes. Deseja continuar sem salvar?": [
+  "You have pending updates. Do you want to continue without saving?",
+  "Tem atualizações pendentes. Deseja continuar sem guardar?",
+  "Tienes actualizaciones pendientes. ¿Quieres continuar sin guardar?",
+  "Vous avez des mises à jour en attente. Voulez-vous continuer sans enregistrer ?"
+ ],
+ "Abrir aviso": [
+  "Open warning",
+  "Abrir aviso",
+  "Abrir aviso",
+  "Ouvrir l'avertissement"
+ ],
+ "Abrir superfície customizada": [
+  "Open custom surface",
+  "Abrir superfície customizada",
+  "Abrir superficie personalizada",
+  "Ouvrir la surface personnalisée"
+ ],
+ "Caminho externo": [
+  "External Path",
+  "Caminho externo",
+  "Ruta Externa",
+  "Chemin externe"
+ ],
+ "Troca do caminho renderizado por estado externo.": [
+  "Switch rendered route using external state.",
+  "Troca do caminho renderizado por estado externo.",
+  "Cambia la ruta renderizada por estado externo.",
+  "Changez la route affichee via un etat externe."
+ ],
+ "Excedente": [
+  "Overflow",
+  "Excedente",
+  "Desbordamiento",
+  "Depassement"
+ ],
+ "Colapso com dropdown ou scroll horizontal em telas pequenas.": [
+  "Collapse with dropdown or horizontal scroll on small screens.",
+  "Colapso com dropdown ou scroll horizontal em telas pequenas.",
+  "Colapso con dropdown o scroll horizontal en pantallas pequenas.",
+  "Repliez avec un menu deroulant ou un defilement horizontal sur petits ecrans."
+ ],
+ "Básico com lista de objetos": [
+  "Basic with object list",
+  "Básico com lista de objetos",
+  "Básico con lista de objetos",
+  "Basique avec liste d'objets"
+ ],
+ "Controlado por value": [
+  "Controlled by value",
+  "Controlado por value",
+  "Controlado por value",
+  "Controle par value"
+ ],
+ "Fonte assíncrona + render personalizado": [
+  "Async source + custom render",
+  "Fonte assíncrona + render personalizado",
+  "Fuente asíncrona + render personalizado",
+  "Source asynchrone + rendu personnalise"
  ]
 }

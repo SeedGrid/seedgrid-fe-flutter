@@ -153,21 +153,21 @@
         "examples": [
           {
             "id": "sg-accordion-basico",
-            "title": "Básico",
+            "title": "Básico vertical (único)",
             "file": "apps/seedgrid_showcase/lib/pages/sg_accordion_page.dart",
             "kind": "dart",
             "code": "SgAccordion(\n  items: [\n    SgAccordionItem(\n      title: Text(context.tx('Entrega')),\n      content: Text(\n        context.tx('Prazo de 2 a 5 dias úteis, conforme o CEP.'),\n      ),\n    ),\n    SgAccordionItem(\n      title: Text(context.tx('Pagamento')),\n      content: Text(context.tx('Cartão, boleto ou Pix.')),\n      end: Text(context.tx('3 formas')),\n    ),\n    SgAccordionItem(\n      title: Text(context.tx('Trocas')),\n      content: Text(context.tx('Até 30 dias após o recebimento.')),\n      icon: Icon(Icons.swap_horiz, size: 18),\n    ),\n    SgAccordionItem(\n      title: Text(context.tx('Indisponível')),\n      content: Text(context.tx('Este item está desabilitado.')),\n      enabled: false,\n    ),\n  ],\n)"
           },
           {
             "id": "sg-accordion-controlado",
-            "title": "Controlado",
+            "title": "Controlado por estado",
             "file": "apps/seedgrid_showcase/lib/pages/sg_accordion_page.dart",
             "kind": "dart",
             "code": "SgAccordion(\n  items: _itens,\n  multiple: true,\n  activeIndex: _ativos,\n  onActiveIndexChange: (v) => setState(() => _ativos = v),\n  onItemToggle: (i, aberto) =>\n      setState(() => _ultimo = '$i ${aberto ? 'abriu' : 'fechou'}'),\n)"
           },
           {
             "id": "sg-accordion-cores",
-            "title": "Cor do cabeçalho e animação",
+            "title": "Exemplo de personalização de cores",
             "file": "apps/seedgrid_showcase/lib/pages/sg_accordion_page.dart",
             "kind": "dart",
             "code": "Builder(\n  builder: (context) {\n    final escuro = Theme.of(context).brightness == Brightness.dark;\n    return SgAccordion(\n      headerBackgroundColor: escuro ? '#164E63' : '#E0F2FE',\n      animationDuration: 600,\n      items: [\n        SgAccordionItem(\n          title: Text(context.tx('Primeiro')),\n          content: Text(context.tx('Abre devagar (600 ms).')),\n        ),\n        SgAccordionItem(\n          title: Text(context.tx('Segundo')),\n          content: Text(context.tx('Cabeçalho com outra cor.')),\n          headerBackgroundColor: escuro ? '#713F12' : '#FEF3C7',\n        ),\n      ],\n    );\n  },\n)"
@@ -181,10 +181,17 @@
           },
           {
             "id": "sg-accordion-multiplo",
-            "title": "Vários abertos",
+            "title": "Vários abertos + recolhível",
             "file": "apps/seedgrid_showcase/lib/pages/sg_accordion_page.dart",
             "kind": "dart",
             "code": "const SgAccordion(\n  items: _itens,\n  multiple: true,\n  defaultActiveIndex: [0, 2],\n)"
+          },
+          {
+            "id": "sg-accordion-personalizados",
+            "title": "Itens personalizados + fundo do cabeçalho",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_accordion_page.dart",
+            "kind": "dart",
+            "code": "Builder(\n  builder: (context) {\n    final escuro = Theme.of(context).brightness == Brightness.dark;\n    return SgAccordion(\n      defaultActiveIndex: const [0],\n      headerBackgroundColor: escuro ? '#1E3A5F' : '#EFF6FF',\n      items: [\n        SgAccordionItem(\n          title: Text(context.tx('E-mail')),\n          content: Text(\n            context.tx(\n              'Configurações de SMTP, remetente padrão e modelos.',\n            ),\n          ),\n          icon: const Icon(Icons.mail_outline, size: 18),\n          end: Text(context.tx('novo')),\n          headerBackgroundColor: escuro ? '#164E63' : '#E0F2FE',\n        ),\n        SgAccordionItem(\n          title: Text(context.tx('Permissões')),\n          content: Text(\n            context.tx(\n              'Controle de perfis, papéis e trilhas de auditoria.',\n            ),\n          ),\n          icon: const Icon(Icons.verified_user_outlined, size: 18),\n        ),\n        SgAccordionItem(\n          title: Text(context.tx('Módulo indisponível')),\n          content: Text(context.tx('Conteúdo bloqueado.')),\n          icon: const Icon(Icons.warning_amber_outlined, size: 18),\n          enabled: false,\n        ),\n      ],\n    );\n  },\n)"
           },
           {
             "id": "sg-accordion-sem-fechar",
@@ -630,52 +637,80 @@
         "examples": [
           {
             "id": "sg-autocomplete-agrupado",
-            "title": "Agrupado, com item e rodapé próprios",
+            "title": "Agrupado",
             "file": "apps/seedgrid_showcase/lib/pages/sg_autocomplete_page.dart",
             "kind": "dart",
-            "code": "SgAutocomplete<SgAutocompleteItem>(\n  id: 'produto',\n  labelText: 'Produto',\n  grouped: true,\n  renderItem: (item, active) => Row(\n    children: [\n      const Icon(Icons.label_outline, size: 16),\n      const SizedBox(width: 8),\n      Text(item.label),\n    ],\n  ),\n  renderFooter: (q, has) =>\n      Text(has ? 'Resultados para \"$q\"' : 'Nada para \"$q\"'),\n  source: (q) =>\n      [\n            SgAutocompleteItem(\n              id: 1,\n              label: context.tx('Maçã'),\n              group: 'Frutas',\n            ),\n            SgAutocompleteItem(\n              id: 2,\n              label: context.tx('Manga'),\n              group: 'Frutas',\n            ),\n            SgAutocompleteItem(\n              id: 3,\n              label: context.tx('Milho'),\n              group: 'Grãos',\n            ),\n          ]\n          .where(\n            (i) => i.label.toLowerCase().contains(q.toLowerCase()),\n          )\n          .toList(),\n)"
+            "code": "SgAutocomplete<SgAutocompleteItem>(\n  id: 'pais-agrupado',\n  labelText: context.tx('País'),\n  grouped: true,\n  source: (q) =>\n      const [\n            SgAutocompleteItem(\n              id: 1,\n              label: 'Argentina',\n              group: 'A',\n            ),\n            SgAutocompleteItem(\n              id: 2,\n              label: 'Austrália',\n              group: 'A',\n            ),\n            SgAutocompleteItem(id: 3, label: 'Brasil', group: 'B'),\n            SgAutocompleteItem(id: 4, label: 'Bolívia', group: 'B'),\n            SgAutocompleteItem(id: 5, label: 'Chile', group: 'C'),\n          ]\n          .where(\n            (i) => i.label.toLowerCase().contains(q.toLowerCase()),\n          )\n          .toList(),\n)"
           },
           {
             "id": "sg-autocomplete-assincrono",
             "title": "Fonte assíncrona",
             "file": "apps/seedgrid_showcase/lib/pages/sg_autocomplete_page.dart",
             "kind": "dart",
-            "code": "SgAutocomplete<String>(\n  id: 'cidade',\n  labelText: 'Cidade',\n  delay: 200,\n  loadingText: 'Buscando cidades...',\n  source: (q) async {\n    await Future<void>.delayed(const Duration(milliseconds: 600));\n    return const ['Curitiba', 'Cuiabá', 'Campinas', 'Cascavel']\n        .where((c) => c.toLowerCase().contains(q.toLowerCase()))\n        .toList();\n  },\n)"
+            "code": "SgAutocomplete<String>(\n  id: 'cidade',\n  labelText: context.tx('Cidade'),\n  delay: 200,\n  loadingText: context.tx('Buscando cidades...'),\n  source: (q) async {\n    await Future<void>.delayed(const Duration(milliseconds: 600));\n    return const ['Curitiba', 'Cuiabá', 'Campinas', 'Cascavel']\n        .where((c) => c.toLowerCase().contains(q.toLowerCase()))\n        .toList();\n  },\n)"
           },
           {
             "id": "sg-autocomplete-basico",
             "title": "Básico",
             "file": "apps/seedgrid_showcase/lib/pages/sg_autocomplete_page.dart",
             "kind": "dart",
-            "code": "SgAutocomplete<String>(\n  id: 'pais',\n  labelText: 'País',\n  placeholder: context.tx('Digite 2 letras'),\n  source: (q) =>\n      const [\n            'Argentina',\n            'Bolívia',\n            'Brasil',\n            'Chile',\n            'Colômbia',\n            'Uruguai',\n          ]\n          .where((p) => p.toLowerCase().contains(q.toLowerCase()))\n          .toList(),\n)"
+            "code": "SgAutocomplete<String>(\n  id: 'pais',\n  labelText: context.tx('País'),\n  placeholder: context.tx('Digite 2 letras'),\n  source: (q) =>\n      const [\n            'Argentina',\n            'Bolívia',\n            'Brasil',\n            'Chile',\n            'Colômbia',\n            'Uruguai',\n          ]\n          .where((p) => p.toLowerCase().contains(q.toLowerCase()))\n          .toList(),\n)"
           },
           {
             "id": "sg-autocomplete-botao",
-            "title": "Botão de lista e abrir ao focar",
+            "title": "Botão dropdown",
             "file": "apps/seedgrid_showcase/lib/pages/sg_autocomplete_page.dart",
             "kind": "dart",
-            "code": "SgAutocomplete<String>(\n  id: 'cor',\n  labelText: 'Cor',\n  showDropDownButton: true,\n  openOnFocus: true,\n  minLengthForSearch: 0,\n  source: (q) =>\n      const ['Azul', 'Amarelo', 'Verde', 'Vermelho', 'Roxo']\n          .where((c) => c.toLowerCase().contains(q.toLowerCase()))\n          .toList(),\n)"
+            "code": "SgAutocomplete<String>(\n  id: 'cor',\n  labelText: context.tx('Cor'),\n  showDropDownButton: true,\n  openOnFocus: true,\n  minLengthForSearch: 0,\n  source: (q) =>\n      const ['Azul', 'Amarelo', 'Verde', 'Vermelho', 'Roxo']\n          .where((c) => c.toLowerCase().contains(q.toLowerCase()))\n          .toList(),\n)"
           },
           {
             "id": "sg-autocomplete-formulario",
             "title": "Dentro de um formulário",
             "file": "apps/seedgrid_showcase/lib/pages/sg_autocomplete_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgAutocomplete<String>(\n      id: 'fruta',\n      name: 'fruta',\n      control: _form,\n      labelText: 'Fruta',\n      required: true,\n      requiredMessage: 'Escolha uma fruta',\n      source: (q) => const ['Banana', 'Laranja', 'Uva']\n          .where((c) => c.toLowerCase().contains(q.toLowerCase()))\n          .toList(),\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _form.handleSubmit(\n        (values) => setState(() => _enviado = '${values['fruta']}'),\n      ),\n    ),\n    if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgAutocomplete<String>(\n      id: 'fruta',\n      name: 'fruta',\n      control: _form,\n      labelText: context.tx('Fruta'),\n      required: true,\n      requiredMessage: context.tx('Escolha uma fruta'),\n      source: (q) => const ['Banana', 'Laranja', 'Uva']\n          .where((c) => c.toLowerCase().contains(q.toLowerCase()))\n          .toList(),\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _form.handleSubmit(\n        (values) => setState(() => _enviado = '${values['fruta']}'),\n      ),\n    ),\n    if (_enviado.isNotEmpty)\n      Text(context.txf('Enviado: {valor}', {'valor': _enviado})),\n  ],\n)"
           },
           {
             "id": "sg-autocomplete-limite",
-            "title": "Limite de resultados e raio da borda",
+            "title": "Limite de resultados",
             "file": "apps/seedgrid_showcase/lib/pages/sg_autocomplete_page.dart",
             "kind": "dart",
-            "code": "SgAutocomplete<String>(\n  id: 'limite',\n  labelText: 'Máximo de 2 resultados',\n  maxResult: 2,\n  borderRadius: 20,\n  source: (q) =>\n      const ['Rio Branco', 'Rio Claro', 'Rio Grande', 'Rio Verde']\n          .where((p) => p.toLowerCase().contains(q.toLowerCase()))\n          .toList(),\n)"
+            "code": "SgAutocomplete<String>(\n  id: 'limite',\n  labelText: context.tx('Máximo de 2 resultados'),\n  maxResult: 2,\n  source: (q) =>\n      const ['Rio Branco', 'Rio Claro', 'Rio Grande', 'Rio Verde']\n          .where((p) => p.toLowerCase().contains(q.toLowerCase()))\n          .toList(),\n)"
           },
           {
             "id": "sg-autocomplete-livre",
             "title": "Valor livre e limpar ao escolher",
             "file": "apps/seedgrid_showcase/lib/pages/sg_autocomplete_page.dart",
             "kind": "dart",
-            "code": "Column(\n  children: [\n    SgAutocomplete<String>(\n      id: 'livre',\n      labelText: 'Aceita texto livre',\n      allowCustomValue: true,\n      source: (q) => const ['Alpha', 'Beta', 'Gamma']\n          .where((c) => c.toLowerCase().contains(q.toLowerCase()))\n          .toList(),\n    ),\n    const SizedBox(height: 12),\n    SgAutocomplete<String>(\n      id: 'adicionar',\n      labelText: 'Limpa ao escolher',\n      clearOnSelect: true,\n      source: (q) => const ['Item A', 'Item B', 'Item C']\n          .where((c) => c.toLowerCase().contains(q.toLowerCase()))\n          .toList(),\n    ),\n  ],\n)"
+            "code": "Column(\n  children: [\n    SgAutocomplete<String>(\n      id: 'livre',\n      labelText: context.tx('Aceita texto livre'),\n      allowCustomValue: true,\n      source: (q) => const ['Alpha', 'Beta', 'Gamma']\n          .where((c) => c.toLowerCase().contains(q.toLowerCase()))\n          .toList(),\n    ),\n    const SizedBox(height: 12),\n    SgAutocomplete<String>(\n      id: 'adicionar',\n      labelText: context.tx('Limpa ao escolher'),\n      clearOnSelect: true,\n      source: (q) => const ['Item A', 'Item B', 'Item C']\n          .where((c) => c.toLowerCase().contains(q.toLowerCase()))\n          .toList(),\n    ),\n  ],\n)"
+          },
+          {
+            "id": "sg-autocomplete-minimo",
+            "title": "Comprimento mínimo",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_autocomplete_page.dart",
+            "kind": "dart",
+            "code": "SgAutocomplete<String>(\n  id: 'pais-minimo',\n  labelText: context.tx('País'),\n  minLengthForSearch: 3,\n  source: (q) =>\n      const ['Argentina', 'Bolívia', 'Brasil', 'Chile', 'Uruguai']\n          .where((p) => p.toLowerCase().contains(q.toLowerCase()))\n          .toList(),\n)"
+          },
+          {
+            "id": "sg-autocomplete-personalizado",
+            "title": "Conteúdo personalizado",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_autocomplete_page.dart",
+            "kind": "dart",
+            "code": "SgAutocomplete<SgAutocompleteItem>(\n  id: 'pais-codigo',\n  labelText: context.tx('País'),\n  renderItem: (item, active) => Row(\n    children: [\n      Text(\n        '${item.data}',\n        style: const TextStyle(fontWeight: FontWeight.w600),\n      ),\n      const SizedBox(width: 8),\n      Text(item.label),\n    ],\n  ),\n  source: (q) =>\n      const [\n            SgAutocompleteItem(\n              id: 1,\n              label: 'Argentina',\n              data: 'AR',\n            ),\n            SgAutocompleteItem(id: 2, label: 'Brasil', data: 'BR'),\n            SgAutocompleteItem(id: 3, label: 'Chile', data: 'CL'),\n            SgAutocompleteItem(\n              id: 4,\n              label: 'Colômbia',\n              data: 'CO',\n            ),\n          ]\n          .where(\n            (i) => i.label.toLowerCase().contains(q.toLowerCase()),\n          )\n          .toList(),\n)"
+          },
+          {
+            "id": "sg-autocomplete-raio",
+            "title": "Raio da borda",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_autocomplete_page.dart",
+            "kind": "dart",
+            "code": "SgAutocomplete<String>(\n  id: 'pais-raio',\n  labelText: context.tx('País'),\n  minLengthForSearch: 1,\n  showDropDownButton: true,\n  openOnFocus: true,\n  borderRadius: 14,\n  source: (q) =>\n      const ['Argentina', 'Bolívia', 'Brasil', 'Chile', 'Uruguai']\n          .where((p) => p.toLowerCase().contains(q.toLowerCase()))\n          .toList(),\n)"
+          },
+          {
+            "id": "sg-autocomplete-rodape",
+            "title": "Rodapé",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_autocomplete_page.dart",
+            "kind": "dart",
+            "code": "SgAutocomplete<String>(\n  id: 'pais-rodape',\n  labelText: context.tx('País'),\n  renderFooter: (q, has) => SgButton(\n    label: Text(\n      has\n          ? context.txf('Adicionar \"{consulta}\"', {'consulta': q})\n          : context.tx('Adicionar novo'),\n    ),\n    onClick: () {},\n  ),\n  source: (q) =>\n      const ['Argentina', 'Bolívia', 'Brasil', 'Chile', 'Uruguai']\n          .where((p) => p.toLowerCase().contains(q.toLowerCase()))\n          .toList(),\n)"
           }
         ],
         "parity": {
@@ -857,14 +892,14 @@
             "title": "Imagem com fallback",
             "file": "apps/seedgrid_showcase/lib/pages/sg_avatar_page.dart",
             "kind": "dart",
-            "code": "Wrap(\n  spacing: 12,\n  runSpacing: 12,\n  children: [\n    SgAvatar(\n      src: 'https://endereco.invalido.exemplo/foto.png',\n      label: Text(context.tx('Carlos Dias')),\n    ),\n  ],\n)"
+            "code": "Wrap(\n  spacing: 12,\n  runSpacing: 12,\n  children: [\n    SgAvatar(\n      src: 'https://endereco.invalido.exemplo/foto.png',\n      label: Text(context.tx('Carlos Dias')),\n      onImageError: (_) => debugPrint('Imagem indisponível'),\n    ),\n  ],\n)"
           },
           {
             "id": "sg-avatar-interativo",
             "title": "Clicável e desabilitado",
             "file": "apps/seedgrid_showcase/lib/pages/sg_avatar_page.dart",
             "kind": "dart",
-            "code": "Wrap(\n  spacing: 12,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgAvatar(\n      label: Text(context.tx('Ana Lima')),\n      title: context.tx('Abrir perfil'),\n      onClick: () => setState(() => _cliques++),\n    ),\n    SgAvatar(\n      label: Text(context.tx('Bia Souza')),\n      enabled: false,\n      onClick: () {},\n    ),\n    Text('Cliques: $_cliques'),\n  ],\n)"
+            "code": "Wrap(\n  spacing: 12,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgAvatar(\n      label: Text(context.tx('Ana Lima')),\n      title: context.tx('Abrir perfil'),\n      onClick: () => setState(() => _cliques++),\n    ),\n    SgAvatar(\n      label: Text(context.tx('Bia Souza')),\n      enabled: false,\n      onClick: () {},\n    ),\n    Text(context.txf('Cliques: {n}', {'n': _cliques})),\n  ],\n)"
           },
           {
             "id": "sg-avatar-tamanhos",
@@ -1194,7 +1229,7 @@
             "title": "Ações",
             "file": "apps/seedgrid_showcase/lib/pages/sg_badge_page.dart",
             "kind": "dart",
-            "code": "Wrap(\n  spacing: 8,\n  runSpacing: 8,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgBadge(\n      value: Text(context.tx('Remover auto')),\n      removable: true,\n      autoRemove: true,\n      onRemove: () => setState(() => _ultimo = 'removida (auto)'),\n    ),\n    if (_manualVisivel)\n      SgBadge(\n        value: Text(context.tx('Remover manual')),\n        removable: true,\n        autoRemove: false,\n        onRemove: () => setState(() {\n          _manualVisivel = false;\n          _ultimo = 'removida (manual)';\n        }),\n      ),\n    Text('Último evento: $_ultimo'),\n  ],\n)"
+            "code": "Wrap(\n  spacing: 8,\n  runSpacing: 8,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgBadge(\n      value: Text(context.tx('Remover auto')),\n      removable: true,\n      autoRemove: true,\n      onRemove: () => setState(() => _ultimo = context.tx('removida (auto)')),\n    ),\n    if (_manualVisivel)\n      SgBadge(\n        value: Text(context.tx('Remover manual')),\n        removable: true,\n        autoRemove: false,\n        onRemove: () => setState(() {\n          _manualVisivel = false;\n          _ultimo = context.tx('removida (manual)');\n        }),\n      ),\n    Text(\n      context.txf('Último evento: {evento}', {\n        'evento': _ultimo ?? context.tx('nada ainda'),\n      }),\n    ),\n  ],\n)"
           },
           {
             "id": "sg-badge-basico",
@@ -1229,7 +1264,7 @@
             "title": "Clicável e removível",
             "file": "apps/seedgrid_showcase/lib/pages/sg_badge_page.dart",
             "kind": "dart",
-            "code": "Wrap(\n  spacing: 8,\n  runSpacing: 8,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgBadge(\n      value: Text(context.tx('Clique')),\n      badgeStyle: SgBadgeBadgeStyle.outline,\n      onClick: () => setState(() => _ultimo = 'clique'),\n    ),\n    SgBadge(\n      value: Text(context.tx('Desabilitado')),\n      badgeStyle: SgBadgeBadgeStyle.outline,\n      enabled: false,\n      onClick: () {},\n    ),\n    if (_tagVisivel)\n      SgBadge(\n        value: Text(context.tx('tag')),\n        badgeStyle: SgBadgeBadgeStyle.soft,\n        removable: true,\n        autoRemove: true,\n        onRemove: () => setState(() {\n          _tagVisivel = false;\n          _ultimo = 'removida';\n        }),\n      ),\n    Text('Último evento: $_ultimo'),\n  ],\n)"
+            "code": "Wrap(\n  spacing: 8,\n  runSpacing: 8,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgBadge(\n      value: Text(context.tx('Clique')),\n      badgeStyle: SgBadgeBadgeStyle.outline,\n      onClick: () => setState(() => _ultimo = context.tx('clique')),\n    ),\n    SgBadge(\n      value: Text(context.tx('Desabilitado')),\n      badgeStyle: SgBadgeBadgeStyle.outline,\n      enabled: false,\n      onClick: () {},\n    ),\n    if (_tagVisivel)\n      SgBadge(\n        value: Text(context.tx('tag')),\n        badgeStyle: SgBadgeBadgeStyle.soft,\n        removable: true,\n        autoRemove: true,\n        onRemove: () => setState(() {\n          _tagVisivel = false;\n          _ultimo = context.tx('removida');\n        }),\n      ),\n    Text(\n      context.txf('Último evento: {evento}', {\n        'evento': _ultimo ?? context.tx('nada ainda'),\n      }),\n    ),\n  ],\n)"
           },
           {
             "id": "sg-badge-severidades",
@@ -1323,6 +1358,13 @@
             "code": "SgBadgeOverlay(\n  badge: SgBadge(\n    count: 3,\n    size: SgBadgeSize.sm,\n    severity: SgBadgeSeverity.danger,\n  ),\n  child: SgAvatar(label: Text(context.tx('Ana Lima'))),\n)"
           },
           {
+            "id": "sg-badge-overlay-basico",
+            "title": "Básico",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_badge_overlay_page.dart",
+            "kind": "dart",
+            "code": "Wrap(\n  spacing: 16,\n  runSpacing: 16,\n  children: [\n    SgBadgeOverlay(\n      badge: const SgBadge(\n        count: 7,\n        size: SgBadgeSize.xs,\n        severity: SgBadgeSeverity.danger,\n      ),\n      child: Container(\n        width: 40,\n        height: 40,\n        alignment: Alignment.center,\n        decoration: BoxDecoration(\n          border: Border.all(color: const Color(0x66808080)),\n          borderRadius: BorderRadius.circular(8),\n        ),\n        child: const Text('Bell'),\n      ),\n    ),\n    SgBadgeOverlay(\n      badge: const SgBadge(\n        dot: true,\n        severity: SgBadgeSeverity.success,\n      ),\n      child: Container(\n        width: 40,\n        height: 40,\n        alignment: Alignment.center,\n        decoration: BoxDecoration(\n          border: Border.all(color: const Color(0x66808080)),\n          borderRadius: BorderRadius.circular(8),\n        ),\n        child: const Text('Check'),\n      ),\n    ),\n  ],\n)"
+          },
+          {
             "id": "sg-badge-overlay-botao",
             "title": "Em um botão",
             "file": "apps/seedgrid_showcase/lib/pages/sg_badge_overlay_page.dart",
@@ -1331,7 +1373,7 @@
           },
           {
             "id": "sg-badge-overlay-posicoes",
-            "title": "Todas as posições",
+            "title": "Posicionamento",
             "file": "apps/seedgrid_showcase/lib/pages/sg_badge_overlay_page.dart",
             "kind": "dart",
             "code": "Wrap(\n  spacing: 28,\n  runSpacing: 28,\n  children: [\n    for (final p in SgBadgeOverlayPlacement.values)\n      SgBadgeOverlay(\n        placement: p,\n        badge: SgBadge(value: Text(p.value), size: SgBadgeSize.xs),\n        child: Container(\n          width: 64,\n          height: 40,\n          color: const Color(0x1A808080),\n        ),\n      ),\n  ],\n)"
@@ -1481,11 +1523,18 @@
             "code": "SgBreadcrumb(\n  items: [\n    SgBreadcrumbItem(\n      id: 'a',\n      label: Text(context.tx('Início')),\n      href: '/',\n    ),\n    SgBreadcrumbItem(\n      id: 'b',\n      label: Text(context.tx('Relatórios')),\n      href: '/relatorios',\n    ),\n    SgBreadcrumbItem(id: 'c', label: Text(context.tx('Vendas'))),\n  ],\n  onNavigate: (item, index) =>\n      setState(() => _ultimo = '${item.id} (índice $index)'),\n)"
           },
           {
-            "id": "sg-breadcrumb-maxitems",
-            "title": "Muitos níveis: maxItems",
+            "id": "sg-breadcrumb-externo",
+            "title": "Caminho externo",
             "file": "apps/seedgrid_showcase/lib/pages/sg_breadcrumb_page.dart",
             "kind": "dart",
-            "code": "SgBreadcrumb(\n  items: _caminho,\n  maxItems: 4,\n  onNavigate: (item, index) =>\n      setState(() => _ultimo = '${item.id} (índice $index)'),\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    Wrap(\n      spacing: 8,\n      runSpacing: 8,\n      children: [\n        SgButton(\n          size: SgSize.sm,\n          appearance: SgAppearance.outline,\n          label: const Text('Go to Registration'),\n          onClick: () => setState(() => _rota = 'registration'),\n        ),\n        SgButton(\n          size: SgSize.sm,\n          appearance: SgAppearance.outline,\n          label: const Text('Go to Fiscal'),\n          onClick: () => setState(() => _rota = 'fiscal'),\n        ),\n        SgButton(\n          size: SgSize.sm,\n          appearance: SgAppearance.outline,\n          label: const Text('Go to Integration'),\n          onClick: () => setState(() => _rota = 'integration'),\n        ),\n      ],\n    ),\n    const SizedBox(height: 12),\n    SgBreadcrumb(\n      items: [\n        SgBreadcrumbItem(\n          id: 'erp',\n          label: const Text('ERP'),\n          href: '/erp',\n        ),\n        SgBreadcrumbItem(\n          id: _rota,\n          label: Text(_rota),\n          href: '/erp/$_rota',\n        ),\n        SgBreadcrumbItem(\n          id: 'atual',\n          label: const Text('Customers'),\n        ),\n      ],\n      separator: SgBreadcrumbSeparator.arrow,\n      variant: SgBreadcrumbVariant.subtle,\n      onNavigate: (item, index) =>\n          setState(() => _ultimoRota = item.id),\n    ),\n    const SizedBox(height: 8),\n    Text(\n      '${context.tx('rota ativa')}: $_rota | ${context.tx('último clique')}: $_ultimoRota',\n    ),\n  ],\n)"
+          },
+          {
+            "id": "sg-breadcrumb-maxitems",
+            "title": "Excedente",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_breadcrumb_page.dart",
+            "kind": "dart",
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    Text(context.tx('Collapse com dropdown')),\n    const SizedBox(height: 8),\n    SgBreadcrumb(\n      items: _caminho,\n      maxItems: 4,\n      separator: SgBreadcrumbSeparator.slash,\n    ),\n    const SizedBox(height: 16),\n    Text(context.tx('Scroll horizontal')),\n    const SizedBox(height: 8),\n    SizedBox(\n      width: 360,\n      child: SgBreadcrumb(\n        items: _caminho,\n        overflowBehavior: SgBreadcrumbOverflowBehavior.scroll,\n        separator: SgBreadcrumbSeparator.dot,\n      ),\n    ),\n  ],\n)"
           },
           {
             "id": "sg-breadcrumb-separadores",
@@ -1496,10 +1545,10 @@
           },
           {
             "id": "sg-breadcrumb-variantes",
-            "title": "Rolagem, tamanhos e variantes",
+            "title": "Tamanhos e variantes",
             "file": "apps/seedgrid_showcase/lib/pages/sg_breadcrumb_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgBreadcrumb(\n      items: _caminho,\n      overflowBehavior: SgBreadcrumbOverflowBehavior.scroll,\n      size: SgBreadcrumbSize.sm,\n    ),\n    const SizedBox(height: 8),\n    SgBreadcrumb(\n      items: _caminho.take(3).toList(),\n      variant: SgBreadcrumbVariant.subtle,\n    ),\n    const SizedBox(height: 8),\n    SgBreadcrumb(\n      items: _caminho.take(3).toList(),\n      variant: SgBreadcrumbVariant.primary,\n      size: SgBreadcrumbSize.lg,\n    ),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgBreadcrumb(\n      items: _caminho.take(3).toList(),\n      size: SgBreadcrumbSize.sm,\n    ),\n    const SizedBox(height: 8),\n    SgBreadcrumb(\n      items: _caminho.take(3).toList(),\n      variant: SgBreadcrumbVariant.subtle,\n    ),\n    const SizedBox(height: 8),\n    SgBreadcrumb(\n      items: _caminho.take(3).toList(),\n      variant: SgBreadcrumbVariant.primary,\n      size: SgBreadcrumbSize.lg,\n    ),\n  ],\n)"
           }
         ],
         "parity": {
@@ -2360,7 +2409,7 @@
           },
           {
             "id": "sg-card-leading",
-            "title": "Leading, trailing e ações",
+            "title": "Leading e trailing",
             "file": "apps/seedgrid_showcase/lib/pages/sg_card_page.dart",
             "kind": "dart",
             "code": "SgCard(\n  leading: SgAvatar(label: Text(context.tx('Seed Grid'))),\n  trailing: SgBadge(value: Text(context.tx('ativo'))),\n  title: Text(context.tx('Conta enterprise')),\n  description: Text(context.tx('Resumo de performance e uso')),\n  actions: SgButton(\n    label: Text(context.tx('Ação')),\n    appearance: SgAppearance.ghost,\n    size: SgSize.sm,\n    onClick: () {},\n  ),\n  footer: Wrap(\n    alignment: WrapAlignment.spaceBetween,\n    spacing: 12,\n    children: [Text(context.tx('Expira em 12 dias')), Text('+12%')],\n  ),\n  child: Column(\n    spacing: 8,\n    children: [\n      Row(\n        mainAxisAlignment: MainAxisAlignment.spaceBetween,\n        children: [\n          Text(context.tx('Receita')),\n          Text(\n            'R\\$ 128.400',\n            style: TextStyle(fontWeight: FontWeight.w600),\n          ),\n        ],\n      ),\n      Row(\n        mainAxisAlignment: MainAxisAlignment.spaceBetween,\n        children: [\n          Text(context.tx('Crescimento')),\n          Text(\n            '+12%',\n            style: TextStyle(fontWeight: FontWeight.w600),\n          ),\n        ],\n      ),\n    ],\n  ),\n)"
@@ -2381,7 +2430,7 @@
           },
           {
             "id": "sg-card-variantes",
-            "title": "Variantes",
+            "title": "Variantes e tamanhos",
             "file": "apps/seedgrid_showcase/lib/pages/sg_card_page.dart",
             "kind": "dart",
             "code": "SgGrid(\n  columns: 2,\n  gap: 12,\n  children: [\n    SgCard(\n      cardStyle: SgCardCardStyle.defaultValue,\n      title: Text(context.tx('Default')),\n      size: SgCardSize.sm,\n      child: Text(context.tx('size sm')),\n    ),\n    SgCard(\n      cardStyle: SgCardCardStyle.elevated,\n      title: Text(context.tx('Elevated')),\n      size: SgCardSize.sm,\n      child: Text(context.tx('size sm')),\n    ),\n    SgCard(\n      cardStyle: SgCardCardStyle.outlined,\n      title: Text(context.tx('Outlined')),\n      size: SgCardSize.lg,\n      child: Text(context.tx('size lg')),\n    ),\n    SgCard(\n      cardStyle: SgCardCardStyle.flat,\n      title: Text(context.tx('Flat')),\n      size: SgCardSize.lg,\n      child: Text(context.tx('size lg')),\n    ),\n  ],\n)"
@@ -3753,10 +3802,17 @@
         "examples": [
           {
             "id": "sg-combobox-assincrono",
-            "title": "Fonte assíncrona",
+            "title": "Fonte assíncrona + render personalizado",
             "file": "apps/seedgrid_showcase/lib/pages/sg_combobox_page.dart",
             "kind": "dart",
-            "code": "SgCombobox<String>(\n  id: 'estado',\n  labelText: 'Estado',\n  loadingText: 'Carregando estados...',\n  source: (q) async {\n    await Future<void>.delayed(const Duration(milliseconds: 600));\n    return const ['Paraná', 'Santa Catarina', 'Rio Grande do Sul'];\n  },\n)"
+            "code": "Builder(\n  builder: (context) {\n    final concluido = context.tx('Concluído');\n    final pendente = context.tx('Pendente');\n    return SgCombobox<SgAutocompleteItem>(\n      id: 'status',\n      labelText: 'Status',\n      loadingText: context.tx('Carregando status...'),\n      openOnFocus: true,\n      showCharCounter: false,\n      source: (q) async {\n        await Future<void>.delayed(\n          const Duration(milliseconds: 600),\n        );\n        return [\n          SgAutocompleteItem(id: 1, label: concluido),\n          SgAutocompleteItem(id: 2, label: pendente),\n        ];\n      },\n      renderItem: (item, active) => Row(\n        children: [\n          Icon(\n            item.id == 1 ? Icons.check_circle : Icons.pending,\n            size: 16,\n            color: item.id == 1 ? Colors.green : Colors.orange,\n          ),\n          const SizedBox(width: 8),\n          Text(item.label),\n        ],\n      ),\n      renderValue: (item) => Text('● ${item?.label}'),\n      renderFooter: (q, has) =>\n          Text(context.tx('Escolha o status atual')),\n    );\n  },\n)"
+          },
+          {
+            "id": "sg-combobox-controlado",
+            "title": "Controlado por value",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_combobox_page.dart",
+            "kind": "dart",
+            "code": "Builder(\n  builder: (context) {\n    const paises = [\n      SgAutocompleteItem(id: 1, label: 'Brazil', group: 'Americas'),\n      SgAutocompleteItem(\n        id: 2,\n        label: 'Argentina',\n        group: 'Americas',\n      ),\n      SgAutocompleteItem(id: 5, label: 'Germany', group: 'Europe'),\n      SgAutocompleteItem(id: 9, label: 'Japan', group: 'Asia'),\n    ];\n    final resolvido = paises\n        .where((p) => p.id == _valorControlado)\n        .map((p) => p.label)\n        .firstOrNull;\n    return Column(\n      crossAxisAlignment: CrossAxisAlignment.start,\n      children: [\n        SgCombobox<SgAutocompleteItem>(\n          id: 'pais-controlado',\n          labelText: 'Country (controlled)',\n          value: _valorControlado,\n          openOnFocus: true,\n          source: paises,\n          onValueChange: (id) =>\n              setState(() => _valorControlado = id),\n          onSelect: (item) =>\n              setState(() => _ultimoSelect = item.label),\n        ),\n        const SizedBox(height: 8),\n        Wrap(\n          spacing: 8,\n          runSpacing: 8,\n          children: [\n            SgButton(\n              size: SgSize.sm,\n              appearance: SgAppearance.outline,\n              label: Text(context.tx('Definir Alemanha (id 5)')),\n              onClick: () => setState(() => _valorControlado = 5),\n            ),\n            SgButton(\n              size: SgSize.sm,\n              appearance: SgAppearance.outline,\n              label: Text(context.tx('Definir Japão (id 9)')),\n              onClick: () => setState(() => _valorControlado = 9),\n            ),\n            SgButton(\n              size: SgSize.sm,\n              appearance: SgAppearance.outline,\n              label: Text(context.tx('Limpar valor')),\n              onClick: () =>\n                  setState(() => _valorControlado = null),\n            ),\n          ],\n        ),\n        const SizedBox(height: 8),\n        Text(\n          '${context.tx('valor')}: ${_valorControlado ?? context.tx('(vazio)')}',\n        ),\n        Text(\n          '${context.tx('resolvido por value')}: ${resolvido ?? context.tx('(nenhum)')}',\n        ),\n        Text(\n          '${context.tx('último onSelect')}: ${_ultimoSelect ?? context.tx('(nenhum)')}',\n        ),\n      ],\n    );\n  },\n)"
           },
           {
             "id": "sg-combobox-formulario",
@@ -3767,10 +3823,17 @@
           },
           {
             "id": "sg-combobox-itens",
-            "title": "Itens com id, grupo e item desabilitado",
+            "title": "Básico com lista de objetos",
             "file": "apps/seedgrid_showcase/lib/pages/sg_combobox_page.dart",
             "kind": "dart",
             "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgCombobox<SgAutocompleteItem>(\n      id: 'cargo',\n      labelText: 'Cargo',\n      grouped: true,\n      onValueChange: (id) => setState(() => _escolhido = id),\n      source: [\n        SgAutocompleteItem(\n          id: 1,\n          label: context.tx('Analista'),\n          group: 'TI',\n        ),\n        SgAutocompleteItem(\n          id: 2,\n          label: context.tx('Gerente'),\n          group: 'TI',\n        ),\n        SgAutocompleteItem(\n          id: 3,\n          label: context.tx('Diretor'),\n          group: 'Gestão',\n          enabled: false,\n        ),\n        SgAutocompleteItem(\n          id: 4,\n          label: context.tx('Coordenador'),\n          group: 'Gestão',\n        ),\n      ],\n    ),\n    Text('id escolhido: ${_escolhido ?? '-'}'),\n  ],\n)"
+          },
+          {
+            "id": "sg-combobox-raio",
+            "title": "Raio da borda",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_combobox_page.dart",
+            "kind": "dart",
+            "code": "SgCombobox<SgAutocompleteItem>(\n  id: 'pais-raio',\n  labelText: 'Country with custom radius',\n  openOnFocus: true,\n  grouped: true,\n  borderRadius: 14,\n  source: const [\n    SgAutocompleteItem(id: 1, label: 'Brazil', group: 'Americas'),\n    SgAutocompleteItem(\n      id: 2,\n      label: 'Argentina',\n      group: 'Americas',\n    ),\n    SgAutocompleteItem(id: 5, label: 'Germany', group: 'Europe'),\n    SgAutocompleteItem(id: 9, label: 'Japan', group: 'Asia'),\n  ],\n)"
           },
           {
             "id": "sg-combobox-simples",
@@ -3778,13 +3841,6 @@
             "file": "apps/seedgrid_showcase/lib/pages/sg_combobox_page.dart",
             "kind": "dart",
             "code": "const SgCombobox<String>(\n  id: 'fruta',\n  labelText: 'Fruta',\n  source: ['Abacate', 'Abacaxi', 'Banana', 'Laranja', 'Uva'],\n)"
-          },
-          {
-            "id": "sg-combobox-visual",
-            "title": "Item, valor e rodapé próprios",
-            "file": "apps/seedgrid_showcase/lib/pages/sg_combobox_page.dart",
-            "kind": "dart",
-            "code": "SgCombobox<SgAutocompleteItem>(\n  id: 'status',\n  labelText: 'Status',\n  showCharCounter: false,\n  renderItem: (item, active) => Row(\n    children: [\n      Icon(\n        item.id == 1 ? Icons.check_circle : Icons.pending,\n        size: 16,\n        color: item.id == 1 ? Colors.green : Colors.orange,\n      ),\n      const SizedBox(width: 8),\n      Text(item.label),\n    ],\n  ),\n  renderValue: (item) => Text('● ${item?.label}'),\n  renderFooter: (q, has) =>\n      Text(context.tx('Escolha o status atual')),\n  source: [\n    SgAutocompleteItem(id: 1, label: context.tx('Concluído')),\n    SgAutocompleteItem(id: 2, label: context.tx('Pendente')),\n  ],\n)"
           }
         ],
         "parity": {
@@ -4118,10 +4174,17 @@
           },
           {
             "id": "sg-confirmation-dialog-botoes",
-            "title": "Botões personalizados",
+            "title": "Botões customizados",
             "file": "apps/seedgrid_showcase/lib/pages/sg_confirmation_dialog_page.dart",
             "kind": "dart",
             "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgButton(\n      label: Text(context.tx('Sair sem salvar')),\n      appearance: SgAppearance.outline,\n      onClick: () => setState(() => _botoes = true),\n    ),\n    SgConfirmationDialog(\n      open: _botoes,\n      onOpenChange: (open) => setState(() => _botoes = open),\n      severity: SgDialogSeverity.danger,\n      title: Text(context.tx('Descartar alterações?')),\n      message: Text(\n        context.tx('As alterações não salvas serão perdidas.'),\n      ),\n      cancelButton: SgConfirmationDialogButtonConfig(\n        label: Text(context.tx('Continuar editando')),\n        icon: Icon(Icons.edit),\n      ),\n      confirmButton: SgConfirmationDialogButtonConfig(\n        label: Text(context.tx('Descartar')),\n        icon: Icon(Icons.delete),\n        appearance: SgAppearance.outline,\n      ),\n    ),\n  ],\n)"
+          },
+          {
+            "id": "sg-confirmation-dialog-esquerda",
+            "title": "Ícone à esquerda",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_confirmation_dialog_page.dart",
+            "kind": "dart",
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgButton(\n      label: Text(context.tx('Abrir aviso')),\n      appearance: SgAppearance.outline,\n      onClick: () => setState(() => _esquerda = true),\n    ),\n    SgConfirmationDialog(\n      open: _esquerda,\n      onOpenChange: (open) => setState(() => _esquerda = open),\n      severity: SgDialogSeverity.warning,\n      iconPlacement: SgConfirmationDialogIconPlacement.left,\n      icon: const Icon(Icons.warning_amber_rounded, size: 20),\n      title: Text(context.tx('Alterações não salvas')),\n      message: Text(\n        context.tx(\n          'Você tem atualizações pendentes. Deseja continuar sem salvar?',\n        ),\n      ),\n    ),\n  ],\n)"
           },
           {
             "id": "sg-confirmation-dialog-icone",
@@ -4136,6 +4199,13 @@
             "file": "apps/seedgrid_showcase/lib/pages/sg_confirmation_dialog_page.dart",
             "kind": "dart",
             "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    Wrap(\n      spacing: 8,\n      runSpacing: 8,\n      children: [\n        for (final s in SgSeverity.values)\n          SgButton(\n            label: Text(s.value),\n            severity: s,\n            onClick: () => setState(() {\n              _sev = SgDialogSeverity.fromValue(s.value)!;\n              _severidade = true;\n            }),\n          ),\n      ],\n    ),\n    SgConfirmationDialog(\n      open: _severidade,\n      onOpenChange: (open) => setState(() => _severidade = open),\n      severity: _sev,\n      showSeverityAccent: true,\n      title: Text('Severidade ${_sev.value}'),\n      message: Text(\n        context.tx('Veja o ícone, o fundo e o botão de confirmar.'),\n      ),\n    ),\n  ],\n)"
+          },
+          {
+            "id": "sg-confirmation-dialog-superficie",
+            "title": "Superfície customizada (customColor + elevation)",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_confirmation_dialog_page.dart",
+            "kind": "dart",
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgButton(\n      label: Text(context.tx('Abrir superfície customizada')),\n      appearance: SgAppearance.outline,\n      onClick: () => setState(() => _superficie = true),\n    ),\n    SgConfirmationDialog(\n      open: _superficie,\n      onOpenChange: (open) => setState(() => _superficie = open),\n      severity: SgDialogSeverity.danger,\n      customColor: '#fff7ed',\n      elevation:\n          '0 0 0 1px rgba(234, 88, 12, 0.22), 0 24px 56px rgba(234, 88, 12, 0.28)',\n      title: Text(context.tx('Excluir registro?')),\n      message: Text(context.tx('Esta ação não pode ser desfeita.')),\n    ),\n  ],\n)"
           }
         ],
         "parity": {

@@ -15,6 +15,49 @@ SgBadgeOverlay(
 )
 ''';
 
+  /// Region `sg-badge-overlay-basico`.
+  static const String sgBadgeOverlayBasico = r'''
+Wrap(
+  spacing: 16,
+  runSpacing: 16,
+  children: [
+    SgBadgeOverlay(
+      badge: const SgBadge(
+        count: 7,
+        size: SgBadgeSize.xs,
+        severity: SgBadgeSeverity.danger,
+      ),
+      child: Container(
+        width: 40,
+        height: 40,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          border: Border.all(color: const Color(0x66808080)),
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: const Text('Bell'),
+      ),
+    ),
+    SgBadgeOverlay(
+      badge: const SgBadge(
+        dot: true,
+        severity: SgBadgeSeverity.success,
+      ),
+      child: Container(
+        width: 40,
+        height: 40,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          border: Border.all(color: const Color(0x66808080)),
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: const Text('Check'),
+      ),
+    ),
+  ],
+)
+''';
+
   /// Region `sg-badge-overlay-botao`.
   static const String sgBadgeOverlayBotao = r'''
 SgBadgeOverlay(
