@@ -1780,5 +1780,1559 @@
   "Fonte assíncrona + render personalizado",
   "Fuente asíncrona + render personalizado",
   "Source asynchrone + rendu personnalise"
+ ],
+ "Coluna + Linha": [
+  "Column + Row",
+  "Coluna + Linha",
+  "Columna + Fila",
+  "Colonne + Ligne"
+ ],
+ "Exemplos de layout comuns com stack.": [
+  "Common layout examples with stack.",
+  "Exemplos de layout comuns com stack.",
+  "Ejemplos de layout comunes con stack.",
+  "Exemples de mise en page courants avec stack."
+ ],
+ "Stack em coluna": [
+  "Stack in a column",
+  "Stack em coluna",
+  "Stack en columna",
+  "Stack en colonne"
+ ],
+ "Ajuda": [
+  "Help",
+  "Ajuda",
+  "Ayuda",
+  "Aide"
+ ],
+ "Título": [
+  "Title",
+  "Título",
+  "Título",
+  "Titre"
+ ],
+ "Voltar": [
+  "Back",
+  "Voltar",
+  "Volver",
+  "Retour"
+ ],
+ "O valor é controlado pela prop value; os botões alteram o número de fora do campo.": [
+  "The value is controlled by the value prop; the buttons change the number from outside the field.",
+  "O valor é controlado pela prop value; os botões alteram o número a partir de fora do campo.",
+  "El valor lo controla la prop value; los botones cambian el número desde fuera del campo.",
+  "La valeur est pilotée par la prop value ; les boutons modifient le nombre depuis l'extérieur du champ."
+ ],
+ "readOnly bloqueia a edição, enabled: false desabilita o campo e error mostra a mensagem de erro.": [
+  "readOnly blocks editing, enabled: false disables the field and error shows the error message.",
+  "readOnly bloqueia a edição, enabled: false desativa o campo e error mostra a mensagem de erro.",
+  "readOnly bloquea la edición, enabled: false deshabilita el campo y error muestra el mensaje de error.",
+  "readOnly bloque l'édition, enabled: false désactive le champ et error affiche le message d'erreur."
+ ],
+ "Ajuste por setas com minValue, maxValue e step.": [
+  "Adjust with arrows using minValue, maxValue and step.",
+  "Ajuste por setas com minValue, maxValue e step.",
+  "Ajuste con flechas con minValue, maxValue y step.",
+  "Réglage par flèches avec minValue, maxValue et step."
+ ],
+ "Valor atual": [
+  "Current value",
+  "Valor atual",
+  "Valor actual",
+  "Valeur actuelle"
+ ],
+ "Valor controlado": [
+  "Controlled value",
+  "Valor controlado",
+  "Valor controlado",
+  "Valeur contrôlée"
+ ],
+ "Escolha ao menos 1": [
+  "Choose at least 1",
+  "Escolha pelo menos 1",
+  "Elige al menos 1",
+  "Choisissez au moins 1"
+ ],
+ "Enviado": [
+  "Submitted",
+  "Enviado",
+  "Enviado",
+  "Envoyé"
+ ],
+ "Controle externo": [
+  "External Control",
+  "Controlo Externo",
+  "Control Externo",
+  "Controle externe"
+ ],
+ "Somente leitura e desabilitado": [
+  "Read-Only and Disabled",
+  "Só de leitura e desativado",
+  "Solo Lectura y Deshabilitado",
+  "Lecture seule et desactive"
+ ],
+ "Modo sem CSS": [
+  "No CSS mode",
+  "Modo sem CSS",
+  "Modo sin CSS",
+  "Mode sans CSS"
+ ],
+ "Exemplo com o editor de CSS oculto.": [
+  "Example with CSS editor hidden.",
+  "Exemplo com o editor de CSS oculto.",
+  "Ejemplo con el editor de CSS oculto.",
+  "Exemple avec l'editeur CSS masque."
+ ],
+ "Desabilitado": [
+  "Disabled",
+  "Desabilitado",
+  "Deshabilitado",
+  "Desactive"
+ ],
+ "Renderização somente leitura do conteúdo.": [
+  "Read-only rendering of the content.",
+  "Renderização só de leitura do conteúdo.",
+  "Renderización de solo lectura del contenido.",
+  "Rendu en lecture seule du contenu."
+ ],
+ "Aplica raio de borda ao editor e à área de CSS.": [
+  "Applies border radius to editor and CSS area.",
+  "Aplica raio de borda ao editor e à área de CSS.",
+  "Aplica radio de borde al editor y al área de CSS.",
+  "Applique le rayon de bordure a l'editeur et a la zone CSS."
+ ],
+ "Exemplo com CSS embutido e download do HTML.": [
+  "Example with embedded CSS and HTML download.",
+  "Exemplo com CSS embutido e download do HTML.",
+  "Ejemplo con CSS embebido y descarga de HTML.",
+  "Exemple avec CSS integre et telechargement HTML."
+ ],
+ "Conteúdo obrigatório": [
+  "Required content",
+  "Conteúdo obrigatório",
+  "Contenido obligatorio",
+  "Contenu obligatoire"
+ ],
+ "Exemplo simples controlado por estado; clique no rótulo ou na chave (Tab foca e Espaço alterna).": [
+  "Simple example controlled by state; click the label or the switch (Tab focuses and Space toggles).",
+  "Exemplo simples controlado por estado; clique no rótulo ou no interruptor (Tab foca e Espaço alterna).",
+  "Ejemplo simple controlado por estado; haz clic en la etiqueta o en el interruptor (Tab enfoca y Espacio alterna).",
+  "Exemple simple contrôlé par l'état ; cliquez sur le libellé ou l'interrupteur (Tab met le focus et Espace bascule)."
+ ],
+ "Com ícones (on/off)": [
+  "With icons (on/off)",
+  "Com ícones (on/off)",
+  "Con iconos (on/off)",
+  "Avec icônes (on/off)"
+ ],
+ "Variação visual com ícones dentro do thumb para indicar ligado e desligado.": [
+  "Visual variation with icons inside the thumb to indicate on and off.",
+  "Variação visual com ícones dentro do thumb para indicar ligado e desligado.",
+  "Variación visual con iconos dentro del thumb para indicar encendido y apagado.",
+  "Variation visuelle avec des icônes dans le pouce pour indiquer activé et désactivé."
+ ],
+ "Atualização remota": [
+  "Remote update",
+  "Atualização remota",
+  "Actualización remota",
+  "Mise à jour distante"
+ ],
+ "Ao alterar a chave, simulamos uma atualização remota para representar um fluxo comum de persistência.": [
+  "When toggled, simulates a remote update to represent a common persistence flow.",
+  "Ao alterar o interruptor, simulamos uma atualização remota para representar um fluxo comum de persistência.",
+  "Al cambiar el interruptor, simulamos una actualización remota para representar un flujo común de persistencia.",
+  "Lors de la bascule, simule une mise à jour distante pour représenter un flux de persistance courant."
+ ],
+ "Controlado externamente + captura do valor": [
+  "Externally controlled + captured value",
+  "Controlado externamente + captura do valor",
+  "Controlado externamente + captura de valor",
+  "Contrôlé en externe + valeur capturée"
+ ],
+ "Valor controlado por estado externo e captura via onChange.": [
+  "Value controlled by external state and captured via onChange.",
+  "Valor controlado por estado externo e captura via onChange.",
+  "Valor controlado por estado externo y captura mediante onChange.",
+  "Valeur contrôlée par un état externe et capturée via onChange."
+ ],
+ "Ligado ao formulário por name + control; o valor sai no envio.": [
+  "Connected to the form through name + control; the value comes out on submit.",
+  "Ligado ao formulário por name + control; o valor sai no envio.",
+  "Conectado al formulario con name + control; el valor sale al enviar.",
+  "Relié au formulaire par name + control ; la valeur sort à l'envoi."
+ ],
+ "Desabilitado e somente leitura": [
+  "Disabled and read-only",
+  "Desabilitado e somente leitura",
+  "Deshabilitado y solo lectura",
+  "Désactivé et lecture seule"
+ ],
+ "Demonstra os estados enabled: false e readOnly.": [
+  "Shows the enabled: false and readOnly states.",
+  "Demonstra os estados enabled: false e readOnly.",
+  "Muestra los estados enabled: false y readOnly.",
+  "Montre les états enabled: false et readOnly."
+ ],
+ "Validação": [
+  "Validation",
+  "Validação",
+  "Validación",
+  "Validation"
+ ],
+ "required valida ao sair do campo (validateOnBlur) ou a cada mudança (validateOnBlur: false).": [
+  "required validates on blur (validateOnBlur) or on every change (validateOnBlur: false).",
+  "required valida ao sair do campo (validateOnBlur) ou a cada alteração (validateOnBlur: false).",
+  "required valida al salir del campo (validateOnBlur) o en cada cambio (validateOnBlur: false).",
+  "required valide à la sortie du champ (validateOnBlur) ou à chaque changement (validateOnBlur: false)."
+ ],
+ "Erro externo e largura": [
+  "External error and width",
+  "Erro externo e largura",
+  "Error externo y ancho",
+  "Erreur externe et largeur"
+ ],
+ "error mostra uma mensagem vinda de fora; width limita a largura do componente.": [
+  "error shows a message that comes from outside; width limits the component width.",
+  "error mostra uma mensagem vinda de fora; width limita a largura do componente.",
+  "error muestra un mensaje que viene de fuera; width limita el ancho del componente.",
+  "error affiche un message venu de l'extérieur ; width limite la largeur du composant."
+ ],
+ "Configuração básica": [
+  "Base setup",
+  "Configuração básica",
+  "Configuración básica",
+  "Configuration de base"
+ ],
+ "Monte um SgWhistler onde o layout deve revelar mensagens contextuais. Depois dispare whistles de qualquer lugar da página.": [
+  "Mount one SgWhistler where the layout should reveal contextual messages. Then dispatch whistles from anywhere in the page.",
+  "Monte um SgWhistler onde o layout deve revelar mensagens contextuais. Depois dispare whistles de qualquer lugar da página.",
+  "Monte un SgWhistler donde el layout debe revelar mensajes contextuales. Luego envíe whistles desde cualquier parte de la página.",
+  "Montez un SgWhistler là où la mise en page doit révéler des messages contextuels. Puis envoyez des whistles depuis n'importe où dans la page."
+ ],
+ "Cantos arredondados": [
+  "Rounded corners",
+  "Cantos arredondados",
+  "Esquinas redondeadas",
+  "Coins arrondis"
+ ],
+ "rounded é true por padrão (rounded-lg). Defina rounded como false para cantos retos. Dispare um whistle para comparar os dois stacks.": [
+  "rounded defaults to true (rounded-lg). Set rounded to false for square corners. Dispatch a whistle to compare both stacks.",
+  "rounded é true por padrão (rounded-lg). Defina rounded como false para cantos retos. Dispare um whistle para comparar os dois stacks.",
+  "rounded es true por defecto (rounded-lg). Establezca rounded en false para esquinas rectas. Envíe un whistle para comparar ambos stacks.",
+  "rounded vaut true par défaut (rounded-lg). Mettez rounded à false pour des coins droits. Envoyez un whistle pour comparer les deux stacks."
+ ],
+ "Severidades e comportamento do stack": [
+  "Severities and stack behavior",
+  "Severidades e comportamento do stack",
+  "Severidades y comportamiento del stack",
+  "Sévérités et comportement du stack"
+ ],
+ "O serviço expõe métodos de conveniência por severidade, enquanto props do host como max, newestOnTop e gap controlam o stack.": [
+  "The service exposes convenience methods by severity, while host props such as max, newestOnTop and gap control the stack.",
+  "O serviço expõe métodos de conveniência por severidade, enquanto props do host como max, newestOnTop e gap controlam o stack.",
+  "El servicio expone métodos de conveniencia por severidad, mientras props del host como max, newestOnTop y gap controlan el stack.",
+  "Le service expose des méthodes pratiques par sévérité, tandis que les props du host comme max, newestOnTop et gap contrôlent le stack."
+ ],
+ "Ações, estilos de borda e opacidade": [
+  "Actions, border styles and opacity",
+  "Ações, estilos de borda e opacidade",
+  "Acciones, estilos de borde y opacidad",
+  "Actions, styles de bordure et opacité"
+ ],
+ "Whistles podem expor CTAs rápidas e ênfase visual leve sem precisar de posicionamento em overlay.": [
+  "Whistles can expose quick CTAs and lightweight visual emphasis without needing overlay positioning.",
+  "Whistles podem expor CTAs rápidas e ênfase visual leve sem precisar de posicionamento em overlay.",
+  "Los whistles pueden exponer CTAs rápidas y énfasis visual ligero sin necesitar posicionamiento en overlay.",
+  "Les whistles peuvent exposer des CTA rapides et une emphase visuelle légère sans avoir besoin de positionnement en superposition."
+ ],
+ "Atualizar por id": [
+  "Update by id",
+  "Atualizar por id",
+  "Actualizar por id",
+  "Mise à jour par id"
+ ],
+ "Fluxos de loading geralmente são criados uma vez e depois atualizados no lugar conforme a tarefa conclui ou falha.": [
+  "Loading flows are usually created once and then updated in place as the task resolves or fails.",
+  "Fluxos de loading geralmente são criados uma vez e depois atualizados no lugar conforme a tarefa conclui ou falha.",
+  "Los flujos de carga suelen crearse una vez y luego actualizarse en el lugar según la tarea se resuelve o falla.",
+  "Les flux de chargement sont généralement créés une fois puis mis à jour sur place selon que la tâche réussit ou échoue."
+ ],
+ "sgWhistle.promise": [
+  "sgWhistle.promise",
+  "sgWhistle.promise",
+  "sgWhistle.promise",
+  "sgWhistle.promise"
+ ],
+ "O helper centraliza as transições de estado de loading, sucesso e erro para fluxos assíncronos.": [
+  "The helper centralizes loading, success and error state transitions for async flows.",
+  "O helper centraliza as transições de estado de loading, sucesso e erro para fluxos assíncronos.",
+  "El helper centraliza las transiciones de estado de carga, éxito y error para flujos asíncronos.",
+  "L'assistant centralise les transitions d'état de chargement, succès et erreur pour les flux asynchrones."
+ ],
+ "Renderizador personalizado e cores do host": [
+  "Custom renderer and host colors",
+  "Renderizador personalizado e cores do host",
+  "Renderizador personalizado y colores del host",
+  "Rendu personnalisé et couleurs du host"
+ ],
+ "Use sgWhistle.custom para JSX arbitrário e customColors no host para alinhar o stack com o contexto ao redor.": [
+  "Use sgWhistle.custom for arbitrary JSX and customColors on the host to align the stack with the surrounding context.",
+  "Use sgWhistle.custom para JSX arbitrário e customColors no host para alinhar o stack com o contexto ao redor.",
+  "Use sgWhistle.custom para JSX arbitrario y customColors en el host para alinear el stack con el contexto circundante.",
+  "Utilisez sgWhistle.custom pour du JSX arbitraire et customColors sur le host pour aligner le stack avec le contexte environnant."
+ ],
+ "Fechar por código (dismissSgWhistle)": [
+  "Dismissing from code (dismissSgWhistle)",
+  "Fechar por código (dismissSgWhistle)",
+  "Cerrar por código (dismissSgWhistle)",
+  "Fermer par le code (dismissSgWhistle)"
+ ],
+ "sgWhistle.dismiss é açúcar para dismissSgWhistle, que também é exportado direto. Com id fecha aquele aviso; sem id, limpa o host.": [
+  "sgWhistle.dismiss is sugar over dismissSgWhistle, which is exported on its own too. With an id it closes that whistle; with none, it clears the host.",
+  "sgWhistle.dismiss é açúcar para dismissSgWhistle, que também é exportado direto. Com id fecha aquele aviso; sem id, limpa o host.",
+  "sgWhistle.dismiss es azúcar sobre dismissSgWhistle, que también se exporta por separado. Con id cierra ese aviso; sin id, limpia el host.",
+  "sgWhistle.dismiss est du sucre au-dessus de dismissSgWhistle, également exporté tel quel. Avec un id, ferme cet avis ; sans id, vide le host."
+ ],
+ "Observar o host (subscribeSgWhistles)": [
+  "Watching the host (subscribeSgWhistles)",
+  "Observar o host (subscribeSgWhistles)",
+  "Observar el host (subscribeSgWhistles)",
+  "Observer le host (subscribeSgWhistles)"
+ ],
+ "Recebe a lista de whistles do host a cada mudança e devolve a função que cancela a inscrição. Ele já chama o listener uma vez com a lista atual, então não é preciso ler o estado inicial em outro lugar.": [
+  "Gets the host's whistles on every change and returns the function that cancels the subscription. It calls the listener once with the current list, so there is no separate initial read.",
+  "Recebe a lista de whistles do host a cada alteração e devolve a função que cancela a inscrição. Já chama o listener uma vez com a lista atual, por isso não é preciso ler o estado inicial noutro sítio.",
+  "Recibe los whistles del host en cada cambio y devuelve la función que cancela la suscripción. Llama al listener una vez con la lista actual, así que no hace falta leer el estado inicial aparte.",
+  "Reçoit les whistles du host à chaque changement et renvoie la fonction qui annule l'inscription. Elle appelle le listener une fois avec la liste courante : pas de lecture initiale séparée."
+ ],
+ "Atenção": [
+  "Heads up",
+  "Atenção",
+  "Atencion",
+  "Attention"
+ ],
+ "Esta seção pode mostrar progresso ou dicas contextuais.": [
+  "This section can show contextual progress or hints.",
+  "Esta seção pode mostrar progresso ou dicas contextuais.",
+  "Esta seccion puede mostrar progreso o pistas contextuales.",
+  "Cette section peut afficher une progression ou des indices contextuels."
+ ],
+ "Revisão pendente": [
+  "Pending review",
+  "Revisão pendente",
+  "Revision pendiente",
+  "Revision en attente"
+ ],
+ "A ação precisa de confirmação antes de continuar.": [
+  "The action needs confirmation before continuing.",
+  "A ação precisa de confirmação antes de continuar.",
+  "La accion necesita confirmacion antes de continuar.",
+  "L'action necessite une confirmation avant de continuer."
+ ],
+ "Ação falhou": [
+  "Action failed",
+  "Ação falhou",
+  "Accion fallida",
+  "Action echouee"
+ ],
+ "A requisição retornou um erro e precisa de atenção.": [
+  "The request returned an error and needs attention.",
+  "A requisição retornou um erro e precisa de atenção.",
+  "La solicitud retorno un error y necesita atencion.",
+  "La requete a retourne une erreur et necessite votre attention."
+ ],
+ "Processando sem bloquear o layout da página.": [
+  "Processing without blocking the page layout.",
+  "Processando sem bloquear o layout da página.",
+  "Procesando sin bloquear el layout de la pagina.",
+  "Traitement sans bloquer la mise en page."
+ ],
+ "O mesmo id de whistle será atualizado quando a requisição terminar.": [
+  "The same whistle id will be updated when the request finishes.",
+  "O mesmo id de whistle será atualizado quando a requisição terminar.",
+  "El mismo id de whistle se actualizara cuando la solicitud termine.",
+  "Le meme id de whistle sera mis a jour quand la requete se termine."
+ ],
+ "Inicie um whistle de loading antes de tentar atualizá-lo.": [
+  "Start a loading whistle before trying to update it.",
+  "Inicie um whistle de loading antes de tentar atualizá-lo.",
+  "Inicie un whistle de carga antes de intentar actualizarlo.",
+  "Demarrez un whistle de chargement avant d'essayer de le mettre a jour."
+ ],
+ "Sincronização concluída": [
+  "Sync complete",
+  "Sincronização concluída",
+  "Sincronizacion completada",
+  "Synchronisation terminee"
+ ],
+ "Sincronização falhou": [
+  "Sync failed",
+  "Sincronização falhou",
+  "Sincronizacion fallida",
+  "Synchronisation echouee"
+ ],
+ "Enviando relatório": [
+  "Submitting report",
+  "Enviando relatório",
+  "Enviando informe",
+  "Envoi du rapport"
+ ],
+ "Relatório enviado": [
+  "Report sent",
+  "Relatório enviado",
+  "Informe enviado",
+  "Rapport envoye"
+ ],
+ "Seção arquivada": [
+  "Archived section",
+  "Seção arquivada",
+  "Seccion archivada",
+  "Section archivee"
+ ],
+ "A ação é reversível por alguns segundos.": [
+  "The action is reversible for a few seconds.",
+  "A ação é reversível por alguns segundos.",
+  "La accion es reversible por unos segundos.",
+  "L'action est reversible pendant quelques secondes."
+ ],
+ "A seção arquivada voltou para a lista ativa.": [
+  "The archived section returned to the active list.",
+  "A seção arquivada voltou para a lista ativa.",
+  "La seccion archivada volvio a la lista activa.",
+  "La section archivee est revenue dans la liste active."
+ ],
+ "Use borderStyle e opacity para ênfase contextual sem sair do fluxo do layout.": [
+  "Use borderStyle and opacity for contextual emphasis without leaving the layout flow.",
+  "Use borderStyle e opacity para ênfase contextual sem sair do fluxo do layout.",
+  "Use borderStyle y opacity para enfasis contextual sin salir del flujo del layout.",
+  "Utilisez borderStyle et opacity pour une emphase contextuelle sans quitter le flux de la mise en page."
+ ],
+ "Este whistle renderiza JSX arbitrário e ainda usa o mesmo ciclo de vida imperativo.": [
+  "This whistle renders arbitrary JSX and still uses the same imperative lifecycle.",
+  "Este whistle renderiza JSX arbitrário e ainda usa o mesmo ciclo de vida imperativo.",
+  "Este whistle renderiza JSX arbitrario y aun usa el mismo ciclo de vida imperativo.",
+  "Ce whistle affiche du JSX arbitraire et utilise toujours le meme cycle de vie imperatif."
+ ],
+ "O whistle personalizado disparou uma ação de acompanhamento.": [
+  "The custom whistle triggered a follow-up action.",
+  "O whistle personalizado disparou uma ação de acompanhamento.",
+  "El whistle personalizado disparo una accion de seguimiento.",
+  "Le whistle personnalise a declenche une action de suivi."
+ ],
+ "Um whistle padrão apareceu no host acima.": [
+  "A default whistle appeared in the host above.",
+  "Um whistle padrão apareceu no host acima.",
+  "Un whistle por defecto aparecio en el host de arriba.",
+  "Un whistle par defaut est apparu dans le host ci-dessus."
+ ],
+ "Ação + desfazer": [
+  "Action + undo",
+  "Ação + desfazer",
+  "Accion + deshacer",
+  "Action + annuler"
+ ],
+ "Todos os exemplos abaixo disparam neste host, então o feedback fica contextual e empurra o conteúdo em vez de sobrepor.": [
+  "All examples below dispatch into this host, so the feedback stays contextual and pushes content instead of overlaying it.",
+  "Todos os exemplos abaixo disparam neste host, então o feedback fica contextual e empurra o conteúdo em vez de sobrepor.",
+  "Todos los ejemplos de abajo se envian a este host, por lo que el feedback es contextual y empuja el contenido en lugar de superponerse.",
+  "Tous les exemples ci-dessous s'envoient dans ce host, donc le retour reste contextuel et pousse le contenu au lieu de le recouvrir."
+ ],
+ "Nota de contexto": [
+  "Context note",
+  "Nota de contexto",
+  "Nota de contexto",
+  "Note de contexte"
+ ],
+ "Feedback inline renderizado dentro do fluxo do layout.": [
+  "Inline feedback rendered inside the layout flow.",
+  "Feedback inline renderizado dentro do fluxo do layout.",
+  "Feedback en linea renderizado dentro del flujo del layout.",
+  "Retour en ligne rendu dans le flux de la mise en page."
+ ],
+ "Salvo": [
+  "Saved",
+  "Salvo",
+  "Guardado",
+  "Enregistre"
+ ],
+ "O registro foi persistido com sucesso.": [
+  "The record was persisted successfully.",
+  "O registro foi persistido com sucesso.",
+  "El registro se persistio con exito.",
+  "L'enregistrement a ete persiste avec succes."
+ ],
+ "Processando...": [
+  "Working...",
+  "Processando...",
+  "Procesando...",
+  "Traitement..."
+ ],
+ "Sincronizando": [
+  "Synchronizing",
+  "Sincronizando",
+  "Sincronizando",
+  "Synchronisation"
+ ],
+ "Nenhum loading ativo": [
+  "No active loading",
+  "Nenhum loading ativo",
+  "Ningun loading activo",
+  "Aucun chargement actif"
+ ],
+ "O whistle de loading foi atualizado no lugar.": [
+  "The loading whistle was updated in place.",
+  "O whistle de loading foi atualizado no lugar.",
+  "El whistle de carga se actualizo en el lugar.",
+  "Le whistle de chargement a ete mis a jour sur place."
+ ],
+ "O mesmo id de whistle agora renderiza o estado de erro.": [
+  "The same whistle id now renders the error state.",
+  "O mesmo id de whistle agora renderiza o estado de erro.",
+  "El mismo id de whistle ahora renderiza el estado de error.",
+  "Le meme id de whistle affiche maintenant l'etat d'erreur."
+ ],
+ "Aguardando o servidor...": [
+  "Waiting for the server...",
+  "Aguardando o servidor...",
+  "Esperando al servidor...",
+  "En attente du serveur..."
+ ],
+ "Protocolo {protocol} gerado com sucesso.": [
+  "Protocol {protocol} generated successfully.",
+  "Protocolo {protocol} gerado com sucesso.",
+  "Protocolo {protocol} generado con exito.",
+  "Protocole {protocol} genere avec succes."
+ ],
+ "Envio falhou": [
+  "Submission failed",
+  "Envio falhou",
+  "Envio fallido",
+  "Echec de l'envoi"
+ ],
+ "Erro desconhecido": [
+  "Unknown error",
+  "Erro desconhecido",
+  "Error desconocido",
+  "Erreur inconnue"
+ ],
+ "Desfazer aplicado": [
+  "Undo applied",
+  "Desfazer aplicado",
+  "Deshacer aplicado",
+  "Annulation appliquee"
+ ],
+ "Estilo de borda: {style}": [
+  "Border style: {style}",
+  "Estilo de borda: {style}",
+  "Estilo de borde: {style}",
+  "Style de bordure : {style}"
+ ],
+ "Renderizador personalizado": [
+  "Custom renderer",
+  "Renderizador personalizado",
+  "Renderizador personalizado",
+  "Rendu personnalise"
+ ],
+ "Escalado": [
+  "Escalated",
+  "Escalado",
+  "Escalado",
+  "Escalade"
+ ],
+ "Exemplo base": [
+  "Base example",
+  "Exemplo base",
+  "Ejemplo base",
+  "Exemple de base"
+ ],
+ "Esta mensagem permaneceu no fluxo do documento.": [
+  "This message stayed in the document flow.",
+  "Esta mensagem permaneceu no fluxo do documento.",
+  "Este mensaje permanecio en el flujo del documento.",
+  "Ce message est reste dans le flux du document."
+ ],
+ "Demo de arredondamento": [
+  "Rounded demo",
+  "Demo de arredondamento",
+  "Demo de redondeo",
+  "Demo d'arrondi"
+ ],
+ "Compare os cantos nos dois stacks abaixo.": [
+  "Compare the corners in both stacks below.",
+  "Compare os cantos nos dois stacks abaixo.",
+  "Compare las esquinas en ambos stacks de abajo.",
+  "Comparez les coins dans les deux stacks ci-dessous."
+ ],
+ "Desfazer": [
+  "Undo",
+  "Desfazer",
+  "Deshacer",
+  "Annuler"
+ ],
+ "Fechar": [
+  "Close",
+  "Fechar",
+  "Cerrar",
+  "Fermer"
+ ],
+ "Escalar": [
+  "Escalate",
+  "Escalar",
+  "Escalar",
+  "Escalader"
+ ],
+ "Iniciar carregamento": [
+  "Start loading",
+  "Iniciar carregamento",
+  "Iniciar carga",
+  "Demarrer le chargement"
+ ],
+ "Concluir com sucesso": [
+  "Finish success",
+  "Concluir com sucesso",
+  "Finalizar con exito",
+  "Terminer avec succes"
+ ],
+ "Concluir com erro": [
+  "Finish error",
+  "Concluir com erro",
+  "Finalizar con error",
+  "Terminer avec erreur"
+ ],
+ "Descartar ativo": [
+  "Dismiss active",
+  "Descartar ativo",
+  "Descartar activo",
+  "Fermer l'actif"
+ ],
+ "Rodar demo de promise": [
+  "Run promise demo",
+  "Rodar demo de promise",
+  "Ejecutar demo de promise",
+  "Lancer la demo promise"
+ ],
+ "Whistle personalizado": [
+  "Custom whistle",
+  "Whistle personalizado",
+  "Whistle personalizado",
+  "Whistle personnalise"
+ ],
+ "Alternar paleta do host": [
+  "Toggle host palette",
+  "Alternar paleta do host",
+  "Alternar paleta del host",
+  "Basculer la palette du host"
+ ],
+ "Limpar": [
+  "Clear",
+  "Limpar",
+  "Limpiar",
+  "Effacer"
+ ],
+ "Neste showcase, o SgToaster já está montado no layout. Em um app real, monte-o uma vez na raiz.": [
+  "In this showcase, SgToaster is already mounted in layout. In a real app, mount it once at root.",
+  "Neste showcase, o SgToaster já está montado no layout. Em um app real, monte-o uma vez na raiz.",
+  "En este showcase, SgToaster ya esta montado en el layout. En una app real, montelo una vez en la raiz.",
+  "Dans cette vitrine, SgToaster est deja monte dans la mise en page. Dans une vraie application, montez-le une fois a la racine."
+ ],
+ "Tipos de toast": [
+  "Toast types",
+  "Tipos de toast",
+  "Tipos de toast",
+  "Types de toast"
+ ],
+ "Use métodos específicos por severidade.": [
+  "Use type-specific methods by severity.",
+  "Use métodos específicos por severidade.",
+  "Use metodos especificos por severidad.",
+  "Utilisez des methodes specifiques par severite."
+ ],
+ "Loading por id (atualiza o mesmo toast)": [
+  "Loading by id (update same toast)",
+  "Loading por id (atualiza o mesmo toast)",
+  "Loading por id (actualiza el mismo toast)",
+  "Loading par id (met à jour le même toast)"
+ ],
+ "Guarde o id retornado e reutilize-o para trocar de estado sem criar outro toast.": [
+  "Store returned id and reuse it to switch state without creating another toast.",
+  "Guarde o id retornado e reutilize-o para trocar de estado sem criar outro toast.",
+  "Guarde el id retornado y reutilicelo para cambiar de estado sin crear otro toast.",
+  "Stockez l'id retourne et reutilisez-le pour changer d'etat sans creer un autre toast."
+ ],
+ "toast.promise": [
+  "toast.promise",
+  "toast.promise",
+  "toast.promise",
+  "toast.promise"
+ ],
+ "Helper de conveniência para o ciclo de loading/sucesso/erro em promises.": [
+  "Convenience helper for loading/success/error lifecycle in promises.",
+  "Helper de conveniência para o ciclo de loading/sucesso/erro em promises.",
+  "Helper de conveniencia para el ciclo de carga/exito/error en promises.",
+  "Assistant pratique pour le cycle chargement/succes/erreur dans les promises."
+ ],
+ "Ações e toast personalizado": [
+  "Actions and custom toast",
+  "Ações e toast personalizado",
+  "Acciones y toast personalizado",
+  "Actions et toast personnalisé"
+ ],
+ "Use action para CTA rápida e custom para renderização livre.": [
+  "Use action for quick CTA and custom for free-form render.",
+  "Use action para CTA rápida e custom para renderização livre.",
+  "Use action para CTA rapida y custom para renderizacion libre.",
+  "Utilisez action pour un CTA rapide et custom pour un rendu libre."
+ ],
+ "Transparência": [
+  "Transparency",
+  "Transparência",
+  "Transparencia",
+  "Transparence"
+ ],
+ "Exemplo focado apenas em transparência (80%).": [
+  "Example focused only on transparency (80%).",
+  "Exemplo focado apenas em transparência (80%).",
+  "Ejemplo enfocado solo en transparencia (80%).",
+  "Exemple centre uniquement sur la transparence (80%)."
+ ],
+ "Exemplo focado apenas em cores personalizadas por tipo.": [
+  "Example focused only on custom colors per type.",
+  "Exemplo focado apenas em cores personalizadas por tipo.",
+  "Ejemplo enfocado solo en colores personalizados por tipo.",
+  "Exemple centre uniquement sur les couleurs personnalisees par type."
+ ],
+ "rounded é true por padrão (rounded-md). Defina rounded como false para cantos retos - aplica ao toaster inteiro. Alterne ao vivo no Playground acima.": [
+  "rounded defaults to true (rounded-md). Set rounded to false for square corners - it applies to the whole toaster. Toggle it live in the Playground above.",
+  "rounded é true por padrão (rounded-md). Defina rounded como false para cantos retos - aplica ao toaster inteiro. Alterne ao vivo no Playground acima.",
+  "rounded es true por defecto (rounded-md). Establezca rounded en false para esquinas rectas - se aplica a todo el toaster. Alternelo en vivo en el Playground de arriba.",
+  "rounded vaut true par defaut (rounded-md). Mettez rounded a false pour des coins droits - cela s'applique a tout le toaster. Basculez-le en direct dans le Playground ci-dessus."
+ ],
+ "Fechar por código (dismissSgToast)": [
+  "Dismissing from code (dismissSgToast)",
+  "Fechar por código (dismissSgToast)",
+  "Cerrar por código (dismissSgToast)",
+  "Fermer par le code (dismissSgToast)"
+ ],
+ "toast.dismiss é açúcar para dismissSgToast, que também é exportado direto. Com id fecha aquele toast; sem id, todos.": [
+  "toast.dismiss is sugar over dismissSgToast, which is exported on its own too. With an id it closes that toast; with none, all of them.",
+  "toast.dismiss é açúcar para dismissSgToast, que também é exportado direto. Com id fecha aquele toast; sem id, todos.",
+  "toast.dismiss es azucar sobre dismissSgToast, que tambien se exporta por separado. Con id cierra ese toast; sin id, todos.",
+  "toast.dismiss est du sucre au-dessus de dismissSgToast, egalement exporte tel quel. Avec un id, ferme ce toast ; sans id, tous."
+ ],
+ "Observar a fila (subscribeSgToasts)": [
+  "Watching the queue (subscribeSgToasts)",
+  "Observar a fila (subscribeSgToasts)",
+  "Observar la cola (subscribeSgToasts)",
+  "Observer la file (subscribeSgToasts)"
+ ],
+ "Recebe a lista de toasts abertos a cada mudança e devolve a função que cancela a inscrição. Ele já chama o listener uma vez com a lista atual, então não é preciso ler o estado inicial em outro lugar.": [
+  "Gets the list of open toasts on every change and returns the function that cancels the subscription. It calls the listener once with the current list, so there is no separate initial read.",
+  "Recebe a lista de toasts abertos a cada mudança e devolve a função que cancela a inscrição. Ele já chama o listener uma vez com a lista atual, então não é preciso ler o estado inicial em outro lugar.",
+  "Recibe la lista de toasts abiertos en cada cambio y devuelve la funcion que cancela la suscripcion. Llama al listener una vez con la lista actual, asi que no hace falta leer el estado inicial aparte.",
+  "Recoit la liste des toasts ouverts a chaque changement et renvoie la fonction qui annule l'inscription. Elle appelle le listener une fois avec la liste courante : pas de lecture initiale separee."
+ ],
+ "Opções por toast": [
+  "Options per toast",
+  "Opções por toast",
+  "Opciones por toast",
+  "Options par toast"
+ ],
+ "O que é o SgToastHost": [
+  "What is SgToastHost",
+  "O que é o SgToastHost",
+  "Qué es SgToastHost",
+  "Qu'est-ce que SgToastHost"
+ ],
+ "Prioridade: layout vs página": [
+  "Priority: layout vs page",
+  "Prioridade: layout vs página",
+  "Prioridad: layout vs página",
+  "Priorité : layout vs page"
+ ],
+ "Posicionamento": [
+  "Positioning",
+  "Posicionamento",
+  "Posicionamiento",
+  "Positionnement"
+ ],
+ "Neste showcase, o SgToastHost já está montado na página. Em um app real, monte-o uma vez na raiz.": [
+  "In this showcase, SgToastHost is already mounted in the page. In a real app, mount it once at root.",
+  "Neste showcase, o SgToastHost já está montado na página. Em um app real, monte-o uma vez na raiz.",
+  "En este showcase, SgToastHost ya esta montado en la pagina. En una app real, montelo una vez en la raiz.",
+  "Dans cette vitrine, SgToastHost est deja monte dans la page. Dans une vraie application, montez-le une fois a la racine."
+ ],
+ "Iniciar loading": [
+  "Start loading",
+  "Iniciar loading",
+  "Iniciar loading",
+  "Demarrer le loading"
+ ],
+ "Limpar todos": [
+  "Clear all",
+  "Limpar todos",
+  "Limpiar todos",
+  "Tout effacer"
+ ],
+ "Toast com ação": [
+  "Toast with action",
+  "Toast com ação",
+  "Toast con accion",
+  "Toast avec action"
+ ],
+ "Toast personalizado": [
+  "Custom toast",
+  "Toast personalizado",
+  "Toast personalizado",
+  "Toast personnalise"
+ ],
+ "Disparar toast com opções": [
+  "Trigger toast with options",
+  "Disparar toast com opções",
+  "Disparar toast con opciones",
+  "Declencher un toast avec options"
+ ],
+ "descartar todos": [
+  "dismiss all",
+  "descartar todos",
+  "descartar todos",
+  "tout fermer"
+ ],
+ "Mensagem básica": [
+  "Basic message",
+  "Mensagem básica",
+  "Mensaje basico",
+  "Message basique"
+ ],
+ "Mensagem neutra": [
+  "Neutral message",
+  "Mensagem neutra",
+  "Mensaje neutral",
+  "Message neutre"
+ ],
+ "Operação concluída": [
+  "Operation completed",
+  "Operação concluída",
+  "Operacion completada",
+  "Operation terminee"
+ ],
+ "Informação importante": [
+  "Important info",
+  "Informação importante",
+  "Informacion importante",
+  "Information importante"
+ ],
+ "Atenção no fluxo": [
+  "Attention in flow",
+  "Atenção no fluxo",
+  "Atencion en el flujo",
+  "Attention dans le flux"
+ ],
+ "Falha ao salvar": [
+  "Failed to save",
+  "Falha ao salvar",
+  "Fallo al guardar",
+  "Echec de l'enregistrement"
+ ],
+ "Processando lote...": [
+  "Processing batch...",
+  "Processando lote...",
+  "Procesando lote...",
+  "Traitement du lot..."
+ ],
+ "Este toast fica aberto até você atualizá-lo ou fechá-lo.": [
+  "This toast stays open until you update or close it.",
+  "Este toast fica aberto até você atualizá-lo ou fechá-lo.",
+  "Este toast permanece abierto hasta que lo actualice o cierre.",
+  "Ce toast reste ouvert jusqu'a ce que vous le mettiez a jour ou le fermiez."
+ ],
+ "Processamento concluído": [
+  "Processing complete",
+  "Processamento concluído",
+  "Procesamiento completado",
+  "Traitement termine"
+ ],
+ "Atualizado usando o mesmo id.": [
+  "Update using the same id.",
+  "Atualizado usando o mesmo id.",
+  "Actualizado usando el mismo id.",
+  "Mis a jour en utilisant le meme id."
+ ],
+ "Processamento falhou": [
+  "Processing failed",
+  "Processamento falhou",
+  "El procesamiento fallo",
+  "Le traitement a echoue"
+ ],
+ "Loading atualizado para erro.": [
+  "Loading updated to error.",
+  "Loading atualizado para erro.",
+  "Loading actualizado a error.",
+  "Loading mis a jour en erreur."
+ ],
+ "Salvando pedido...": [
+  "Saving order...",
+  "Salvando pedido...",
+  "Guardando pedido...",
+  "Enregistrement de la commande..."
+ ],
+ "Item arquivado": [
+  "Item archived",
+  "Item arquivado",
+  "Elemento archivado",
+  "Element archive"
+ ],
+ "Clique em desfazer para restaurar.": [
+  "Click undo to restore.",
+  "Clique em desfazer para restaurar.",
+  "Haga clic en deshacer para restaurar.",
+  "Cliquez sur annuler pour restaurer."
+ ],
+ "Ação desfeita": [
+  "Action undone",
+  "Ação desfeita",
+  "Accion deshecha",
+  "Action annulee"
+ ],
+ "O item voltou para a lista.": [
+  "The item returned to the list.",
+  "O item voltou para a lista.",
+  "El elemento volvio a la lista.",
+  "L'element est revenu dans la liste."
+ ],
+ "Conteúdo renderizado via toast.custom(...)": [
+  "Content rendered via toast.custom(...)",
+  "Conteúdo renderizado via toast.custom(...)",
+  "Contenido renderizado via toast.custom(...)",
+  "Contenu rendu via toast.custom(...)"
+ ],
+ "Toast com opções personalizadas": [
+  "Toast with custom options",
+  "Toast com opções personalizadas",
+  "Toast con opciones personalizadas",
+  "Toast avec options personnalisees"
+ ],
+ "Com transparência (80%)": [
+  "With transparency (80%)",
+  "Com transparência (80%)",
+  "Con transparencia (80%)",
+  "Avec transparence (80%)"
+ ],
+ "Sem transparência": [
+  "No transparency",
+  "Sem transparência",
+  "Sin transparencia",
+  "Sans transparence"
+ ],
+ "Cores padrão": [
+  "Default colors",
+  "Cores predefinidas",
+  "Colores predeterminados",
+  "Couleurs par défaut"
+ ],
+ "Pedido salvo": [
+  "Order saved",
+  "Pedido guardado",
+  "Pedido guardado",
+  "Commande enregistrée"
+ ],
+ "Falha": [
+  "Failure",
+  "Falha",
+  "Fallo",
+  "Échec"
+ ],
+ "Duração de 10s, sem closeButton.": [
+  "Duration of 10s, no closeButton.",
+  "Duração de 10s, sem closeButton.",
+  "Duración de 10s, sin closeButton.",
+  "Durée de 10 s, sans closeButton."
+ ],
+ "Cada toast aceita duration, closeButton, description e action.": [
+  "Each toast accepts duration, closeButton, description and action.",
+  "Cada toast aceita duration, closeButton, description e action.",
+  "Cada toast acepta duration, closeButton, description y action.",
+  "Chaque toast accepte duration, closeButton, description et action."
+ ],
+ "Toasts abertos": [
+  "Open toasts",
+  "Toasts abertos",
+  "Toasts abiertos",
+  "Toasts ouverts"
+ ],
+ "Abrir toast": [
+  "Open toast",
+  "Abrir toast",
+  "Abrir toast",
+  "Ouvrir le toast"
+ ],
+ "Fixo (duration: 0)": [
+  "Fixed (duration: 0)",
+  "Fixo (duration: 0)",
+  "Fijo (duration: 0)",
+  "Fixe (duration: 0)"
+ ],
+ "Ativar notificações": [
+  "Enable notifications",
+  "Ativar notificações",
+  "Activar notificaciones",
+  "Activer les notifications"
+ ],
+ "Status da conta": [
+  "Account status",
+  "Estado da conta",
+  "Estado de la cuenta",
+  "Statut du compte"
+ ],
+ "Publicar automaticamente": [
+  "Publish automatically",
+  "Publicar automaticamente",
+  "Publicar automáticamente",
+  "Publier automatiquement"
+ ],
+ "Altere a chave para registrar eventos.": [
+  "Toggle the switch to record events.",
+  "Altere o interruptor para registar eventos.",
+  "Cambia el interruptor para registrar eventos.",
+  "Basculez l'interrupteur pour enregistrer des événements."
+ ],
+ "Permitir sincronização": [
+  "Allow synchronization",
+  "Permitir sincronização",
+  "Permitir sincronización",
+  "Autoriser la synchronisation"
+ ],
+ "Setar true": [
+  "Set true",
+  "Definir true",
+  "Poner true",
+  "Mettre true"
+ ],
+ "Setar false": [
+  "Set false",
+  "Definir false",
+  "Poner false",
+  "Mettre false"
+ ],
+ "Toggle externo": [
+  "External toggle",
+  "Alternar externo",
+  "Alternar externo",
+  "Basculer en externe"
+ ],
+ "Capturar agora": [
+  "Capture now",
+  "Capturar agora",
+  "Capturar ahora",
+  "Capturer maintenant"
+ ],
+ "capturado": [
+  "captured",
+  "capturado",
+  "capturado",
+  "capturé"
+ ],
+ "Receber notificações por e-mail": [
+  "Receive notifications by email",
+  "Receber notificações por e-mail",
+  "Recibir notificaciones por correo",
+  "Recevoir les notifications par e-mail"
+ ],
+ "Conta ativa": [
+  "Active account",
+  "Conta ativa",
+  "Cuenta activa",
+  "Compte actif"
+ ],
+ "Aceite os termos para continuar": [
+  "Accept the terms to continue",
+  "Aceite os termos para continuar",
+  "Acepta los términos para continuar",
+  "Acceptez les conditions pour continuer"
+ ],
+ "Esta chave deve ficar desligada": [
+  "This switch must stay off",
+  "Este interruptor deve ficar desligado",
+  "Este interruptor debe quedar apagado",
+  "Cet interrupteur doit rester désactivé"
+ ],
+ "Monte um SgWhistleHost onde o layout deve revelar mensagens contextuais. Depois dispare whistles de qualquer lugar da página.": [
+  "Mount one SgWhistleHost where the layout should reveal contextual messages. Then dispatch whistles from anywhere in the page.",
+  "Monte um SgWhistleHost onde o layout deve revelar mensagens contextuais. Depois dispare whistles de qualquer lugar da página.",
+  "Monte un SgWhistleHost donde el layout debe revelar mensajes contextuales. Luego envíe whistles desde cualquier parte de la página.",
+  "Montez un SgWhistleHost là où la mise en page doit révéler des messages contextuels. Puis envoyez des whistles depuis n'importe où dans la page."
+ ],
+ "Um whistle padrão apareceu no rodapé da página.": [
+  "A default whistle appeared in the page footer.",
+  "Um whistle padrão apareceu no rodapé da página.",
+  "Un whistle predeterminado apareció en el pie de la página.",
+  "Un whistle par défaut est apparu en bas de la page."
+ ],
+ "Confira os dados": [
+  "Check the data",
+  "Confira os dados",
+  "Revise los datos",
+  "Vérifiez les données"
+ ],
+ "Este aviso não expira sozinho.": [
+  "This notice does not expire on its own.",
+  "Este aviso não expira sozinho.",
+  "Este aviso no caduca solo.",
+  "Cet avis n'expire pas tout seul."
+ ],
+ "Empilhar aviso": [
+  "Stack notice",
+  "Empilhar aviso",
+  "Apilar aviso",
+  "Empiler un avis"
+ ],
+ "Mais um aviso": [
+  "Another notice",
+  "Mais um aviso",
+  "Otro aviso",
+  "Un autre avis"
+ ],
+ "Sem id, limpa o host inteiro. Como o whistle fica no fluxo do layout, limpar ao sair da tela evita que o aviso de um contexto apareça no seguinte.": [
+  "Without an id, it clears the whole host. Since the whistle stays in the layout flow, clearing when leaving the screen prevents one context's notice from showing up in the next.",
+  "Sem id, limpa o host inteiro. Como o whistle fica no fluxo do layout, limpar ao sair do ecrã evita que o aviso de um contexto apareça no seguinte.",
+  "Sin id, limpia todo el host. Como el whistle queda en el flujo del layout, limpiar al salir de la pantalla evita que el aviso de un contexto aparezca en el siguiente.",
+  "Sans id, vide tout le host. Comme le whistle reste dans le flux de la mise en page, le vider en quittant l'écran évite qu'un avis d'un contexte apparaisse dans le suivant."
+ ],
+ "Cancelar inscrição": [
+  "Cancel subscription",
+  "Cancelar inscrição",
+  "Cancelar suscripción",
+  "Annuler l'inscription"
+ ],
+ "aviso(s) no host": [
+  "notice(s) in the host",
+  "aviso(s) no host",
+  "aviso(s) en el host",
+  "avis dans le host"
+ ],
+ "sem inscrição ativa": [
+  "no active subscription",
+  "sem inscrição ativa",
+  "sin suscripción activa",
+  "aucune inscription active"
+ ],
+ "Arrastar livremente": [
+  "Free drag",
+  "Arrastar livremente",
+  "Arrastrar libremente",
+  "Glisser librement"
+ ],
+ "Com freeDrag e draggable, arraste pelo cabeçalho; a posição fica limitada à área e é guardada.": [
+  "With freeDrag and draggable, drag by the header; the position is limited to the area and saved.",
+  "Com freeDrag e draggable, arraste pelo cabeçalho; a posição fica limitada à área e é guardada.",
+  "Con freeDrag y draggable, arrastra por el encabezado; la posición queda limitada al área y se guarda.",
+  "Avec freeDrag et draggable, faites glisser par l'en-tête ; la position est limitée à la zone et enregistrée."
+ ],
+ "Navegação": [
+  "Navigation",
+  "Navegação",
+  "Navegacion",
+  "Navigation"
+ ],
+ "Ações rápidas": [
+  "Quick actions",
+  "Ações rápidas",
+  "Acciones rapidas",
+  "Actions rapides"
+ ],
+ "Usuários": [
+  "Users",
+  "Utilizadores",
+  "Usuarios",
+  "Utilisateurs"
+ ],
+ "Configurações": [
+  "Settings",
+  "Configurações",
+  "Configuraciones",
+  "Parametres"
+ ],
+ "Excluir": [
+  "Delete",
+  "Excluir",
+  "Eliminar",
+  "Supprimer"
+ ],
+ "Atualizar": [
+  "Refresh",
+  "Atualizar",
+  "Actualizar",
+  "Actualiser"
+ ],
+ "Título destacado": [
+  "Highlighted title",
+  "Título destacado",
+  "Highlighted title",
+  "Titre mis en avant"
+ ],
+ "Editar": [
+  "Edit",
+  "Editar",
+  "Editar",
+  "Modifier"
+ ],
+ "Criar": [
+  "Create",
+  "Criar",
+  "Crear",
+  "Creer"
+ ],
+ "Filtro": [
+  "Filter",
+  "Filtro",
+  "Filtro",
+  "Filtrer"
+ ],
+ "Cor no corpo": [
+  "Body color",
+  "Cor no corpo",
+  "Color del cuerpo",
+  "Couleur du corps"
+ ],
+ "Home": [
+  "Home",
+  "Home",
+  "Home",
+  "Accueil"
+ ],
+ "Ir para o início": [
+  "Go to Home",
+  "Ir para o início",
+  "Ir a Home",
+  "Aller a l'accueil"
+ ],
+ "Abrir lista de usuários": [
+  "Open users list",
+  "Abrir lista de utilizadores",
+  "Abrir lista de usuarios",
+  "Ouvrir la liste des utilisateurs"
+ ],
+ "Abrir configurações": [
+  "Open settings",
+  "Abrir configurações",
+  "Abrir configuraciones",
+  "Ouvrir les parametres"
+ ],
+ "Criar novo registro": [
+  "Create new record",
+  "Criar novo registo",
+  "Crear nuevo registro",
+  "Creer un nouvel enregistrement"
+ ],
+ "Editar registro selecionado": [
+  "Edit selected record",
+  "Editar registo selecionado",
+  "Editar registro seleccionado",
+  "Modifier l'enregistrement selectionne"
+ ],
+ "Excluir registro selecionado": [
+  "Delete selected record",
+  "Eliminar registo selecionado",
+  "Eliminar registro seleccionado",
+  "Supprimer l'enregistrement selectionne"
+ ],
+ "Filtrar resultados": [
+  "Filter results",
+  "Filtrar resultados",
+  "Filtrar resultados",
+  "Filtrer les resultats"
+ ],
+ "Atualizar dados da tela": [
+  "Refresh screen data",
+  "Atualizar dados do ecrã",
+  "Actualizar datos de la pantalla",
+  "Actualiser les donnees de l'ecran"
+ ],
+ "Ação Criar concluída": [
+  "Create action completed",
+  "Ação Criar concluída",
+  "Accion Crear completada",
+  "Action de creation terminee"
+ ],
+ "Ação Editar concluída": [
+  "Edit action completed",
+  "Ação Editar concluída",
+  "Accion Editar completada",
+  "Action de modification terminee"
+ ],
+ "Ação Excluir concluída": [
+  "Delete action completed",
+  "Ação Excluir concluída",
+  "Accion Eliminar completada",
+  "Action de suppression terminee"
+ ],
+ "onClick assíncrono com toast": [
+  "Async onClick with toast",
+  "onClick assíncrono com toast",
+  "onClick asincrono con toast",
+  "onClick asynchrone avec toast"
+ ],
+ "Orientação e quebra": [
+  "Orientation and wrapping",
+  "Orientação e quebra",
+  "Orientacion y ajuste",
+  "Orientation et retour a la ligne"
+ ],
+ "Cores de fundo": [
+  "Background colors",
+  "Cores de fundo",
+  "Colores de fondo",
+  "Couleurs de fond"
+ ],
+ "Exemplo vertical simples com botões de navegação.": [
+  "Simple vertical example with navigation buttons.",
+  "Exemplo vertical simples com botões de navegação.",
+  "Ejemplo vertical simple con botones de navegacion.",
+  "Exemple vertical simple avec des boutons de navigation."
+ ],
+ "Quando onClick retorna Promise, o botão mostra loading até concluir.": [
+  "When onClick returns Promise, the button shows loading until complete.",
+  "Quando onClick retorna Promise, o botão mostra loading até concluir.",
+  "Cuando onClick devuelve Promise, el boton muestra loading hasta completar.",
+  "Quand onClick retourne une Promise, le bouton affiche le chargement jusqu'a la fin."
+ ],
+ "Comparação entre horizontal-left e vertical-down com buttonsPerDirection.": [
+  "Comparison between horizontal-left and vertical-down with buttonsPerDirection.",
+  "Comparação entre horizontal-left e vertical-down com buttonsPerDirection.",
+  "Comparacion entre horizontal-left y vertical-down con buttonsPerDirection.",
+  "Comparaison entre horizontal-left et vertical-down avec buttonsPerDirection."
+ ],
+ "Uso de bgColor e bgColorTitle para destacar a toolbar.": [
+  "Use bgColor and bgColorTitle to style toolbar areas.",
+  "Uso de bgColor e bgColorTitle para destacar a toolbar.",
+  "Uso de bgColor y bgColorTitle para destacar la toolbar.",
+  "Utilisez bgColor et bgColorTitle pour styliser les zones de la barre."
+ ],
+ "Árvore pesquisável com check e clique apenas em leaf.": [
+  "Searchable tree with checkable nodes and leaf click.",
+  "Árvore pesquisável com check e clique apenas em leaf.",
+  "Árbol con búsqueda, check y clic solo en leaf.",
+  "Arbre recherchable avec noeuds cochables et clic sur les feuilles."
+ ],
+ "Modo confirmação": [
+  "Confirm mode",
+  "Modo confirmação",
+  "Modo confirmación",
+  "Mode confirmation"
+ ],
+ "Confirme os itens selecionados no rodapé.": [
+  "Confirm selected nodes using the footer.",
+  "Confirme os itens selecionados no rodapé.",
+  "Confirma los elementos seleccionados en el pie.",
+  "Confirmez les noeuds selectionnes via le pied."
+ ],
+ "Expandido por padrão": [
+  "Default expanded",
+  "Expandido por padrão",
+  "Expandido por defecto",
+  "Deploye par defaut"
+ ],
+ "Use defaultExpandedIds para iniciar aberto.": [
+  "Use defaultExpandedIds to start opened.",
+  "Use defaultExpandedIds para iniciar aberto.",
+  "Usa defaultExpandedIds para iniciar abierto.",
+  "Utilisez defaultExpandedIds pour demarrer ouvert."
+ ],
+ "JSON com checked": [
+  "JSON with checked",
+  "JSON com checked",
+  "JSON con checked",
+  "JSON avec coches"
+ ],
+ "Carregue itens marcados a partir do JSON (ex.: permissões do usuário).": [
+  "Load checked nodes from JSON (e.g. user permissions).",
+  "Carregue itens marcados a partir do JSON (ex.: permissões do utilizador).",
+  "Carga elementos marcados desde el JSON (p. ej.: permisos del usuario).",
+  "Charge les noeuds coches depuis un JSON (par ex. les permissions de l'utilisateur)."
+ ],
+ "Tamanho e densidade": [
+  "Size and density",
+  "Tamanho e densidade",
+  "Tamano y densidad",
+  "Taille et densite"
+ ],
+ "Compacto, normal e confortável.": [
+  "Compact, normal, and comfortable.",
+  "Compacto, normal e confortável.",
+  "Compacto, normal y cómodo.",
+  "Compact, normal et confortable."
+ ],
+ "Tom dos ícones": [
+  "Icon tone",
+  "Tom dos ícones",
+  "Tono de los iconos",
+  "Ton des icônes"
+ ],
+ "Altere a cor dos ícones para primary.": [
+  "Change the icon color to primary.",
+  "Altere a cor dos ícones para primary.",
+  "Cambia el color de los iconos a primary.",
+  "Changez la couleur des icônes en primary."
+ ],
+ "Trilhas (colunas extras por linha)": [
+  "Tracks (extra columns per row)",
+  "Trilhas (colunas extras por linha)",
+  "Pistas (columnas extra por fila)",
+  "Pistes (colonnes supplémentaires par ligne)"
+ ],
+ "Uma coluna por trilha, cada uma com seu cabeçalho (label) e largura (width). As trilhas boolean e enum têm cascata pai→filhos própria e independente; a trilha custom não tem estado: a árvore só cede a célula e a tela desenha o que quiser. O adornment põe conteúdo livre ao lado do controle (aqui, uma estrela em 'List users').": [
+  "One column per track, each with its header (label) and width. The boolean and enum tracks have their own independent parent→children cascade; the custom track has no state: the tree only hands over the cell and the screen draws whatever it wants. The adornment puts free content next to the control (here, a star on 'List users').",
+  "Uma coluna por trilha, cada uma com o seu cabeçalho (label) e largura (width). As trilhas boolean e enum têm cascata pai→filhos própria e independente; a trilha custom não tem estado: a árvore só cede a célula e o ecrã desenha o que quiser. O adornment põe conteúdo livre ao lado do controlo (aqui, uma estrela em 'List users').",
+  "Una columna por pista, cada una con su encabezado (label) y ancho (width). Las pistas boolean y enum tienen cascada padre→hijos propia e independiente; la pista custom no tiene estado: el árbol solo cede la celda y la pantalla dibuja lo que quiera. El adornment pone contenido libre junto al control (aquí, una estrella en 'List users').",
+  "Une colonne par piste, chacune avec son en-tête (label) et sa largeur (width). Les pistes boolean et enum ont leur propre cascade parent→enfants, indépendante ; la piste custom n'a aucun état : l'arbre ne fait que céder la cellule et l'écran dessine ce qu'il veut. L'adornment place du contenu libre à côté du contrôle (ici, une étoile sur « List users »)."
+ ],
+ "Permissões": [
+  "Permissions",
+  "Permissões",
+  "Permisos",
+  "Permissions"
+ ],
+ "Confirmação": [
+  "Confirm",
+  "Confirmação",
+  "Confirmación",
+  "Confirmer"
+ ],
+ "Pesquisar...": [
+  "Search...",
+  "Pesquisar...",
+  "Buscar...",
+  "Rechercher..."
+ ],
+ "Ler todos os checkeds": [
+  "Read all checked",
+  "Ler todos os selecionados",
+  "Leer todos los seleccionados",
+  "Lire tous les coches"
+ ],
+ "Ler apenas leafs": [
+  "Read leaf checked",
+  "Ler apenas leafs",
+  "Leer solo leafs",
+  "Lire les feuilles cochees"
+ ],
+ "Confirmar": [
+  "Confirm",
+  "Confirmar",
+  "Confirmar",
+  "Confirmer"
+ ],
+ "Inicia expandido": [
+  "Starts expanded",
+  "Inicia expandido",
+  "Inicia expandido",
+  "Demarre deploye"
+ ],
+ "Checked via JSON": [
+  "Checked from JSON",
+  "Checked via JSON",
+  "Checked desde JSON",
+  "Coche depuis le JSON"
+ ],
+ "Administração": [
+  "Administration",
+  "Administração",
+  "Administración",
+  "Administration"
+ ],
+ "Listar usuários": [
+  "List users",
+  "Listar utilizadores",
+  "Listar usuarios",
+  "Lister les utilisateurs"
+ ],
+ "Criar usuário": [
+  "Create user",
+  "Criar utilizador",
+  "Crear usuario",
+  "Créer un utilisateur"
+ ],
+ "Relatório de vendas": [
+  "Sales report",
+  "Relatório de vendas",
+  "Informe de ventas",
+  "Rapport des ventes"
+ ],
+ "Relatório financeiro": [
+  "Financial report",
+  "Relatório financeiro",
+  "Informe financiero",
+  "Rapport financier"
+ ],
+ "Última folha clicada": [
+  "Last leaf clicked",
+  "Última folha clicada",
+  "Última hoja pulsada",
+  "Dernière feuille cliquée"
+ ],
+ "Ícones em primary": [
+  "Icons in primary",
+  "Ícones em primary",
+  "Iconos en primary",
+  "Icônes en primary"
+ ],
+ "Ativo + Prioridade + Tipo + coluna livre": [
+  "Active + Priority + Type + free column",
+  "Ativo + Prioridade + Tipo + coluna livre",
+  "Activo + Prioridad + Tipo + columna libre",
+  "Actif + Priorité + Type + colonne libre"
+ ],
+ "Prioridade": [
+  "Priority",
+  "Prioridade",
+  "Prioridad",
+  "Priorité"
+ ],
+ "Tipo de conta": [
+  "Account type",
+  "Tipo de conta",
+  "Tipo de cuenta",
+  "Type de compte"
+ ],
+ "— misto —": [
+  "— mixed —",
+  "— misto —",
+  "— mixto —",
+  "— mixte —"
+ ],
+ "Custo fixo": [
+  "Fixed cost",
+  "Custo fixo",
+  "Costo fijo",
+  "Coût fixe"
+ ],
+ "Custo variável": [
+  "Variable cost",
+  "Custo variável",
+  "Costo variable",
+  "Coût variable"
+ ],
+ "Despesa variável": [
+  "Variable expense",
+  "Despesa variável",
+  "Gasto variable",
+  "Dépense variable"
+ ],
+ "Investimento": [
+  "Investment",
+  "Investimento",
+  "Inversión",
+  "Investissement"
+ ],
+ "Coluna livre": [
+  "Free column",
+  "Coluna livre",
+  "Columna libre",
+  "Colonne libre"
+ ],
+ "marcar fixo": [
+  "mark as fixed",
+  "marcar fixo",
+  "marcar fijo",
+  "marquer fixe"
  ]
 }

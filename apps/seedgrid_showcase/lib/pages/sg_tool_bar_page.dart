@@ -8,50 +8,40 @@ import '../src/sg_showcase_page.dart';
 import '../src/showcase_i18n.dart';
 import 'sg_tool_bar_page.snippets.g.dart';
 
-class SgToolBarPage extends StatefulWidget {
+class SgToolBarPage extends StatelessWidget {
   const SgToolBarPage({super.key});
-
-  @override
-  State<SgToolBarPage> createState() => _SgToolBarPageState();
-}
-
-class _SgToolBarPageState extends State<SgToolBarPage> {
-  String _ultimo = 'nada ainda';
 
   @override
   Widget build(BuildContext context) {
     final examples = <ShowcaseExample>[
       ShowcaseExample(
         title: 'Básico',
-        description: context.txf(
-          'Barra com título e botões de ícone. O botão do cabeçalho recolhe o conteúdo. Último clique: {ultimo}.',
-          {'ultimo': _ultimo},
-        ),
+        description: 'Exemplo vertical simples com botões de navegação.',
         preview:
             // #region sg-tool-bar-basico
             Align(
               alignment: Alignment.centerLeft,
               child: SgToolBar(
-                id: 'tb-basico',
-                title: Text(context.tx('Ações')),
+                id: 'tb-basic',
+                title: Text(context.tx('Navegação')),
+                orientationDirection:
+                    SgToolBarOrientationDirection.verticalDown,
                 children: [
                   SgToolbarIconButton(
-                    icon: const Icon(Icons.add),
-                    label: context.tx('Novo'),
-                    hint: context.tx('Criar um registro'),
+                    icon: const Icon(Icons.home_outlined),
+                    label: context.tx('Home'),
+                    hint: context.tx('Ir para o início'),
                     severity: SgToolbarIconButtonSeverity.primary,
-                    onClick: () => setState(() => _ultimo = 'Novo'),
                   ),
                   SgToolbarIconButton(
-                    icon: const Icon(Icons.edit_outlined),
-                    label: context.tx('Editar'),
-                    onClick: () => setState(() => _ultimo = 'Editar'),
+                    icon: const Icon(Icons.people_outline),
+                    label: context.tx('Usuários'),
+                    hint: context.tx('Abrir lista de usuários'),
                   ),
                   SgToolbarIconButton(
-                    icon: const Icon(Icons.delete_outline),
-                    label: context.tx('Excluir'),
-                    severity: SgToolbarIconButtonSeverity.danger,
-                    onClick: () => setState(() => _ultimo = 'Excluir'),
+                    icon: const Icon(Icons.settings_outlined),
+                    label: context.tx('Configurações'),
+                    hint: context.tx('Abrir configurações'),
                   ),
                 ],
               ),
@@ -60,49 +50,147 @@ class _SgToolBarPageState extends State<SgToolBarPage> {
         code: SgToolBarPageSnippets.sgToolBarBasico,
       ),
       ShowcaseExample(
-        title: 'Orientações e botões por linha',
+        title: 'onClick assíncrono com toast',
         description:
-            'orientationDirection define a direção; buttonsPerDirection quebra os botões em linhas ou colunas.',
+            'Quando onClick retorna Promise, o botão mostra loading até concluir.',
         preview:
-            // #region sg-tool-bar-orientacao
-            Wrap(
-              spacing: 24,
-              runSpacing: 16,
-              children: [
-                SgToolBar(
-                  id: 'tb-vertical',
-                  title: Text(context.tx('Vertical')),
+            // #region sg-tool-bar-async
+            Align(
+              alignment: Alignment.centerLeft,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: SgToolBar(
+                  id: 'tb-async',
+                  title: Text(context.tx('Ações rápidas')),
                   orientationDirection:
-                      SgToolBarOrientationDirection.verticalDown,
+                      SgToolBarOrientationDirection.horizontalLeft,
+                  collapsible: true,
                   children: [
                     SgToolbarIconButton(
-                      icon: Icon(Icons.save_outlined),
-                      label: context.tx('Salvar'),
+                      icon: const Icon(Icons.add),
+                      label: context.tx('Criar'),
+                      hint: context.tx('Criar novo registro'),
+                      severity: SgToolbarIconButtonSeverity.success,
+                      onClick: () async {
+                        final mensagem = context.tx('Ação Criar concluída');
+                        await Future<void>.delayed(const Duration(seconds: 1));
+                        toast.success(mensagem);
+                      },
                     ),
                     SgToolbarIconButton(
-                      icon: Icon(Icons.print_outlined),
-                      label: context.tx('Imprimir'),
+                      icon: const Icon(Icons.edit_outlined),
+                      label: context.tx('Editar'),
+                      hint: context.tx('Editar registro selecionado'),
+                      severity: SgToolbarIconButtonSeverity.info,
+                      onClick: () async {
+                        final mensagem = context.tx('Ação Editar concluída');
+                        await Future<void>.delayed(const Duration(seconds: 1));
+                        toast.info(mensagem);
+                      },
+                    ),
+                    SgToolbarIconButton(
+                      icon: const Icon(Icons.delete_outline),
+                      label: context.tx('Excluir'),
+                      hint: context.tx('Excluir registro selecionado'),
+                      severity: SgToolbarIconButtonSeverity.danger,
+                      onClick: () async {
+                        final mensagem = context.tx('Ação Excluir concluída');
+                        await Future<void>.delayed(const Duration(seconds: 1));
+                        toast.warning(mensagem);
+                      },
                     ),
                   ],
                 ),
+              ),
+            ),
+        // #endregion
+        code: SgToolBarPageSnippets.sgToolBarAsync,
+      ),
+      ShowcaseExample(
+        title: 'Orientação e quebra',
+        description:
+            'Comparação entre horizontal-left e vertical-down com buttonsPerDirection.',
+        preview:
+            // #region sg-tool-bar-orientacao
+            SgStack(
+              direction: SgStackDirection.row,
+              wrap: true,
+              gap: 24,
+              children: [
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: SgToolBar(
+                    id: 'tb-horizontal',
+                    title: Text(context.tx('Ações rápidas')),
+                    orientationDirection:
+                        SgToolBarOrientationDirection.horizontalLeft,
+                    buttonsPerDirection: 3,
+                    collapsible: true,
+                    children: [
+                      SgToolbarIconButton(
+                        icon: const Icon(Icons.add),
+                        label: context.tx('Criar'),
+                        hint: context.tx('Criar novo registro'),
+                        severity: SgToolbarIconButtonSeverity.success,
+                      ),
+                      SgToolbarIconButton(
+                        icon: const Icon(Icons.edit_outlined),
+                        label: context.tx('Editar'),
+                        hint: context.tx('Editar registro selecionado'),
+                        severity: SgToolbarIconButtonSeverity.info,
+                      ),
+                      SgToolbarIconButton(
+                        icon: const Icon(Icons.delete_outline),
+                        label: context.tx('Excluir'),
+                        hint: context.tx('Excluir registro selecionado'),
+                        severity: SgToolbarIconButtonSeverity.danger,
+                      ),
+                      SgToolbarIconButton(
+                        icon: const Icon(Icons.filter_alt_outlined),
+                        label: context.tx('Filtro'),
+                        hint: context.tx('Filtrar resultados'),
+                      ),
+                      SgToolbarIconButton(
+                        icon: const Icon(Icons.refresh),
+                        label: context.tx('Atualizar'),
+                        hint: context.tx('Atualizar dados da tela'),
+                      ),
+                    ],
+                  ),
+                ),
                 SgToolBar(
-                  id: 'tb-grade',
-                  title: Text(context.tx('Grade 2x')),
+                  id: 'tb-vertical',
+                  title: Text(context.tx('Navegação')),
+                  orientationDirection:
+                      SgToolBarOrientationDirection.verticalDown,
                   buttonsPerDirection: 2,
-                  bgColor: 'var(--muted)',
-                  children: const [
+                  collapsible: true,
+                  children: [
                     SgToolbarIconButton(
-                      icon: Icon(Icons.copy),
-                      hideLabel: true,
-                    ),
-                    SgToolbarIconButton(icon: Icon(Icons.cut), hideLabel: true),
-                    SgToolbarIconButton(
-                      icon: Icon(Icons.paste),
-                      hideLabel: true,
+                      icon: const Icon(Icons.home_outlined),
+                      label: context.tx('Home'),
+                      hint: context.tx('Ir para o início'),
+                      severity: SgToolbarIconButtonSeverity.primary,
                     ),
                     SgToolbarIconButton(
-                      icon: Icon(Icons.undo),
-                      hideLabel: true,
+                      icon: const Icon(Icons.people_outline),
+                      label: context.tx('Usuários'),
+                      hint: context.tx('Abrir lista de usuários'),
+                    ),
+                    SgToolbarIconButton(
+                      icon: const Icon(Icons.settings_outlined),
+                      label: context.tx('Configurações'),
+                      hint: context.tx('Abrir configurações'),
+                    ),
+                    SgToolbarIconButton(
+                      icon: const Icon(Icons.filter_alt_outlined),
+                      label: context.tx('Filtro'),
+                      hint: context.tx('Filtrar resultados'),
+                    ),
+                    SgToolbarIconButton(
+                      icon: const Icon(Icons.refresh),
+                      label: context.tx('Atualizar'),
+                      hint: context.tx('Atualizar dados da tela'),
                     ),
                   ],
                 ),
@@ -110,6 +198,74 @@ class _SgToolBarPageState extends State<SgToolBarPage> {
             ),
         // #endregion
         code: SgToolBarPageSnippets.sgToolBarOrientacao,
+      ),
+      ShowcaseExample(
+        title: 'Cores de fundo',
+        description: 'Uso de bgColor e bgColorTitle para destacar a toolbar.',
+        preview:
+            // #region sg-tool-bar-cores
+            SgStack(
+              direction: SgStackDirection.row,
+              wrap: true,
+              gap: 24,
+              children: [
+                SgToolBar(
+                  id: 'tb-style-a',
+                  title: Text(context.tx('Cor no corpo')),
+                  orientationDirection:
+                      SgToolBarOrientationDirection.verticalDown,
+                  collapsible: true,
+                  bgColor: '#ECFEFF',
+                  children: [
+                    SgToolbarIconButton(
+                      icon: const Icon(Icons.home_outlined),
+                      label: context.tx('Home'),
+                      hint: context.tx('Ir para o início'),
+                      severity: SgToolbarIconButtonSeverity.primary,
+                    ),
+                    SgToolbarIconButton(
+                      icon: const Icon(Icons.people_outline),
+                      label: context.tx('Usuários'),
+                      hint: context.tx('Abrir lista de usuários'),
+                    ),
+                    SgToolbarIconButton(
+                      icon: const Icon(Icons.settings_outlined),
+                      label: context.tx('Configurações'),
+                      hint: context.tx('Abrir configurações'),
+                    ),
+                  ],
+                ),
+                SgToolBar(
+                  id: 'tb-style-b',
+                  title: Text(context.tx('Título destacado')),
+                  orientationDirection:
+                      SgToolBarOrientationDirection.verticalDown,
+                  collapsible: true,
+                  bgColor: '#DAD7D2',
+                  bgColorTitle: '#C9712D',
+                  children: [
+                    SgToolbarIconButton(
+                      icon: const Icon(Icons.filter_alt_outlined),
+                      label: context.tx('Filtro'),
+                      hint: context.tx('Filtrar resultados'),
+                    ),
+                    SgToolbarIconButton(
+                      icon: const Icon(Icons.refresh),
+                      label: context.tx('Atualizar'),
+                      hint: context.tx('Atualizar dados da tela'),
+                    ),
+                    SgToolbarIconButton(
+                      icon: const Icon(Icons.edit_outlined),
+                      label: context.tx('Editar'),
+                      hint: context.tx('Editar registro selecionado'),
+                      severity: SgToolbarIconButtonSeverity.info,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgToolBarPageSnippets.sgToolBarCores,
       ),
       ShowcaseExample(
         title: 'Arrastar livremente',
@@ -123,18 +279,18 @@ class _SgToolBarPageState extends State<SgToolBarPage> {
               child: Stack(
                 children: [
                   SgToolBar(
-                    id: 'tb-arrastar',
+                    id: 'tb-drag',
                     title: Text(context.tx('Arraste-me')),
                     freeDrag: true,
                     draggable: true,
                     defaultPosition: const Offset(24, 24),
                     children: [
                       SgToolbarIconButton(
-                        icon: Icon(Icons.star_outline),
+                        icon: const Icon(Icons.star_outline),
                         label: context.tx('Favorito'),
                       ),
                       SgToolbarIconButton(
-                        icon: Icon(Icons.share_outlined),
+                        icon: const Icon(Icons.share_outlined),
                         label: context.tx('Compartilhar'),
                       ),
                     ],

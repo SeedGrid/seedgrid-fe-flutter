@@ -28,13 +28,12 @@ void main() {
       setSize(t, kSizes.values.last);
       await t.pumpWidget(app(const SgToasterPage()));
       await tapLink(t, const ValueKey('link-exemplo-1'));
-      await t.tap(find.text('Sucesso'));
+      await t.tap(find.text('toast.success'));
       await settle(t);
-      expect(find.text('Salvo!'), findsOneWidget);
-      expect(find.text('As alterações foram gravadas.'), findsOneWidget);
+      expect(find.text('Operação concluída'), findsOneWidget);
       await t.tap(find.text('x'));
       await settle(t);
-      expect(find.text('Salvo!'), findsNothing);
+      expect(find.text('Operação concluída'), findsNothing);
       await encerra(t);
     },
   );
@@ -42,7 +41,7 @@ void main() {
   testWidgets('SgToaster: o toast some sozinho depois do tempo', (t) async {
     setSize(t, kSizes.values.last);
     await t.pumpWidget(app(const SgToasterPage()));
-    await tapLink(t, const ValueKey('link-exemplo-3'));
+    await tapLink(t, const ValueKey('link-exemplo-6'));
     await t.tap(find.text('1 segundo'));
     await settle(t);
     expect(find.text('Rápido'), findsOneWidget);
@@ -57,7 +56,7 @@ void main() {
       setSize(t, kSizes.values.last);
       await t.pumpWidget(app(const SgToastHostPage()));
       await settle(t);
-      await tapLink(t, const ValueKey('link-exemplo-2'));
+      await tapLink(t, const ValueKey('link-exemplo-3'));
       await t.tap(find.text('Disparar').first);
       await settle(t);
       expect(find.text('Só aparece no host'), findsOneWidget);
@@ -70,14 +69,15 @@ void main() {
     (t) async {
       setSize(t, kSizes.values.last);
       await t.pumpWidget(app(const SgWhistlerPage()));
-      await tapLink(t, const ValueKey('link-exemplo-3'));
-      await t.tap(find.text('Com ação'));
+      await tapLink(t, const ValueKey('link-exemplo-4'));
+      await t.tap(find.text('Ação + desfazer'));
       await settle(t);
-      expect(find.text('Você tem alterações não salvas.'), findsOneWidget);
-      await t.tap(find.text('Salvar'));
+      // o whistler da pagina e os do exemplo de cantos mostram o mesmo aviso
+      expect(find.text('A ação é reversível por alguns segundos.'), findsWidgets);
+      await t.tap(find.text('Desfazer').last);
       await settle(t);
-      expect(find.text('Você tem alterações não salvas.'), findsNothing);
-      expect(find.text('Rascunho salvo'), findsOneWidget);
+      expect(find.text('A ação é reversível por alguns segundos.'), findsNothing);
+      expect(find.text('Desfazer aplicado'), findsWidgets);
       await encerra(t);
     },
   );
@@ -86,7 +86,7 @@ void main() {
     setSize(t, kSizes.values.last);
     await t.pumpWidget(app(const SgWhistleHostPage()));
     await settle(t);
-    await tapLink(t, const ValueKey('link-exemplo-2'));
+    await tapLink(t, const ValueKey('link-exemplo-7'));
     await t.tap(find.text('Disparar').first);
     await settle(t);
     expect(find.text('Só aparece no host'), findsOneWidget);

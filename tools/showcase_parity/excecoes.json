@@ -63,6 +63,12 @@
   "SgTimeProvider": {
    "semPaginaFlutter": true,
    "motivo": "Hook ou provider do React: nao existe equivalente no Flutter e permanece so no React (decisao do dono, P153)."
+  },
+  "SgToolbar": {
+   "ignorarFlutter": [
+    "Overflow: itens que não cabem vão para o menu \"…\""
+   ],
+   "motivo": "A prop overflow (botoes que nao cabem vao para o menu '...' / painel inferior em telas estreitas) e' um recurso de plataforma mobile que so existe no SgToolBar do Flutter; o React nao tem a prop, e criar a API no React exigiria mudanca de componente (fora do escopo desta tarefa)."
   }
  }
 }

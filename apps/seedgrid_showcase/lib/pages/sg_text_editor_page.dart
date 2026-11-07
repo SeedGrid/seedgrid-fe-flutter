@@ -17,15 +17,28 @@ class SgTextEditorPage extends StatefulWidget {
 
 class _SgTextEditorPageState extends State<SgTextEditorPage> {
   final SgFormController _form = SgFormController();
-  String _html = '<p>Texto <strong>inicial</strong></p>';
-  String _valor = '<p>Valor controlado pelo estado da página</p>';
-  String _css = 'p { line-height: 1.5; }';
-  String _arquivo = '';
-  String _enviado = '';
+  final ValueNotifier<String> _html = ValueNotifier<String>(
+    '<p><strong>SeedGrid</strong> editor</p>',
+  );
+  final ValueNotifier<String> _css = ValueNotifier<String>(
+    'body { font-family: Arial; }',
+  );
+  final ValueNotifier<String> _baixado = ValueNotifier<String>('');
+  final ValueNotifier<String> _valor = ValueNotifier<String>(
+    '<p>Valor controlado pelo estado da página</p>',
+  );
+  final ValueNotifier<String> _cssArquivo = ValueNotifier<String>(
+    'p { line-height: 1.5; }',
+  );
+  final ValueNotifier<String> _arquivo = ValueNotifier<String>('');
+  final ValueNotifier<String> _enviado = ValueNotifier<String>('');
 
   @override
   void dispose() {
     _form.dispose();
+    for (final n in [_html, _css, _baixado, _valor, _cssArquivo, _arquivo, _enviado]) {
+      n.dispose();
+    }
     super.dispose();
   }
 
@@ -34,26 +47,88 @@ class _SgTextEditorPageState extends State<SgTextEditorPage> {
     final examples = <ShowcaseExample>[
       ShowcaseExample(
         title: 'Básico',
-        description:
-            'Barra de ferramentas completa; onChangeHtml recebe o HTML do corpo a cada edição.',
+        description: 'Exemplo com CSS embutido e download do HTML.',
         preview:
             // #region sg-text-editor-basico
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            SgStack(
+              gap: 8,
+              align: SgStackAlign.start,
               children: [
-                SgTextEditor(
-                  id: 'editor-basico',
-                  height: 220,
-                  placeholder: context.tx('Escreva aqui'),
-                  defaultValueHtml: '<p>Texto <strong>inicial</strong></p>',
-                  onChangeHtml: (html) => setState(() => _html = html),
+                ListenableBuilder(
+                  listenable: Listenable.merge([_html, _css]),
+                  builder: (context, _) => SgTextEditor(
+                    id: 'sg-text-editor',
+                    height: 220,
+                    valueHtml: _html.value,
+                    onChangeHtml: (html) => _html.value = html,
+                    cssText: _css.value,
+                    onCssTextChange: (css) => _css.value = css,
+                    showCssEditor: true,
+                    onSave: (file, meta) =>
+                        _baixado.value = '${file.name}: ${file.bytes.length} bytes',
+                  ),
                 ),
-                const SizedBox(height: 8),
-                Text('HTML: $_html'),
+                ValueListenableBuilder<String>(
+                  valueListenable: _baixado,
+                  builder: (context, v, _) =>
+                      v.isEmpty ? const SizedBox.shrink() : Text(v),
+                ),
               ],
             ),
         // #endregion
         code: SgTextEditorPageSnippets.sgTextEditorBasico,
+      ),
+      ShowcaseExample(
+        title: 'Modo sem CSS',
+        description: 'Exemplo com o editor de CSS oculto.',
+        preview:
+            // #region sg-text-editor-sem-css
+            const SgTextEditor(
+              id: 'sg-text-editor-no-css',
+              defaultValueHtml: '<p>Editor sem CSS</p>',
+              showCssEditor: false,
+            ),
+        // #endregion
+        code: SgTextEditorPageSnippets.sgTextEditorSemCss,
+      ),
+      ShowcaseExample(
+        title: 'Desabilitado',
+        description: 'Renderização somente leitura do conteúdo.',
+        preview:
+            // #region sg-text-editor-desabilitado
+            SgStack(
+              gap: 16,
+              children: [
+                const SgTextEditor(
+                  id: 'sg-text-editor-disabled',
+                  height: 120,
+                  defaultValueHtml: '<p><strong>Conteúdo bloqueado</strong></p>',
+                  enabled: false,
+                  showCssEditor: false,
+                ),
+                SgTextEditor(
+                  id: 'sg-text-editor-error',
+                  height: 120,
+                  error: context.tx('Conteúdo obrigatório'),
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgTextEditorPageSnippets.sgTextEditorDesabilitado,
+      ),
+      ShowcaseExample(
+        title: 'Raio da borda',
+        description: 'Aplica raio de borda ao editor e à área de CSS.',
+        preview:
+            // #region sg-text-editor-raio
+            const SgTextEditor(
+              id: 'sg-text-editor-radius',
+              defaultValueHtml: '<p>Editor com raio de borda personalizado</p>',
+              showCssEditor: true,
+              borderRadius: 20,
+            ),
+        // #endregion
+        code: SgTextEditorPageSnippets.sgTextEditorRaio,
       ),
       ShowcaseExample(
         title: 'Valor controlado',
@@ -61,23 +136,24 @@ class _SgTextEditorPageState extends State<SgTextEditorPage> {
             'valueHtml troca o conteúdo; mudar o valor por fora não dispara onChangeHtml.',
         preview:
             // #region sg-text-editor-controlado
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            SgStack(
+              gap: 8,
+              align: SgStackAlign.start,
               children: [
-                SgTextEditor(
-                  id: 'editor-controlado',
-                  height: 180,
-                  valueHtml: _valor,
-                  onChangeHtml: (html) => setState(() => _valor = html),
+                ValueListenableBuilder<String>(
+                  valueListenable: _valor,
+                  builder: (context, v, _) => SgTextEditor(
+                    id: 'sg-text-editor-controlled',
+                    height: 180,
+                    valueHtml: v,
+                    onChangeHtml: (html) => _valor.value = html,
+                  ),
                 ),
-                const SizedBox(height: 8),
                 SgButton(
                   label: Text(context.tx('Trocar o conteúdo')),
-                  severity: SgSeverity.secondary,
-                  onClick: () => setState(
-                    () =>
-                        _valor = '<h2>Título</h2><ul><li><p>Item</p></li></ul>',
-                  ),
+                  appearance: SgAppearance.outline,
+                  onClick: () => _valor.value =
+                      '<h2>Título</h2><ul><li><p>Item</p></li></ul>',
                 ),
               ],
             ),
@@ -90,27 +166,31 @@ class _SgTextEditorPageState extends State<SgTextEditorPage> {
             'Salvar entrega um arquivo HTML completo (onSave); Carregar HTML lê o <style> do arquivo para o editor de CSS.',
         preview:
             // #region sg-text-editor-arquivo
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            SgStack(
+              gap: 8,
+              align: SgStackAlign.start,
               children: [
-                SgTextEditor(
-                  id: 'editor-arquivo',
-                  height: 200,
-                  fileName: 'nota.html',
-                  showCssEditor: true,
-                  cssEditorLabel: 'CSS do documento',
-                  cssText: _css,
-                  onCssTextChange: (css) => setState(() => _css = css),
-                  onSave: (file, meta) => setState(
-                    () => _arquivo =
+                ValueListenableBuilder<String>(
+                  valueListenable: _cssArquivo,
+                  builder: (context, css, _) => SgTextEditor(
+                    id: 'sg-text-editor-file',
+                    height: 200,
+                    fileName: 'nota.html',
+                    showCssEditor: true,
+                    cssEditorLabel: 'CSS do documento',
+                    cssText: css,
+                    onCssTextChange: (v) => _cssArquivo.value = v,
+                    onSave: (file, meta) => _arquivo.value =
                         '${file.name}: ${file.bytes.length} bytes, ${meta.cssText.length} caracteres de CSS',
-                  ),
-                  onLoad: (meta) => setState(
-                    () => _arquivo =
+                    onLoad: (meta) => _arquivo.value =
                         'Carregado: ${meta.contentHtml.length} caracteres',
                   ),
                 ),
-                if (_arquivo.isNotEmpty) Text(_arquivo),
+                ValueListenableBuilder<String>(
+                  valueListenable: _arquivo,
+                  builder: (context, v, _) =>
+                      v.isEmpty ? const SizedBox.shrink() : Text(v),
+                ),
               ],
             ),
         // #endregion
@@ -121,52 +201,32 @@ class _SgTextEditorPageState extends State<SgTextEditorPage> {
         description: 'name + control: o valor do campo é o HTML do corpo.',
         preview:
             // #region sg-text-editor-formulario
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            SgStack(
+              gap: 12,
+              align: SgStackAlign.start,
               children: [
                 SgTextEditor(
-                  id: 'editor-form',
+                  id: 'sg-text-editor-form',
                   name: 'descricao',
                   control: _form,
                   height: 180,
                 ),
-                const SizedBox(height: 12),
                 SgButton(
                   label: Text(context.tx('Enviar')),
                   onClick: () => _form.handleSubmit(
-                    (values) =>
-                        setState(() => _enviado = '${values['descricao']}'),
+                    (values) => _enviado.value = '${values['descricao']}',
                   ),
                 ),
-                if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),
+                ValueListenableBuilder<String>(
+                  valueListenable: _enviado,
+                  builder: (context, v, _) => v.isEmpty
+                      ? const SizedBox.shrink()
+                      : Text('${context.tx('Enviado')}: $v'),
+                ),
               ],
             ),
         // #endregion
         code: SgTextEditorPageSnippets.sgTextEditorFormulario,
-      ),
-      ShowcaseExample(
-        title: 'Desabilitado, erro e cantos',
-        preview:
-            // #region sg-text-editor-estados
-            const Column(
-              children: [
-                SgTextEditor(
-                  id: 'editor-desabilitado',
-                  height: 120,
-                  enabled: false,
-                  defaultValueHtml: '<p>Somente leitura</p>',
-                ),
-                SizedBox(height: 16),
-                SgTextEditor(
-                  id: 'editor-erro',
-                  height: 120,
-                  borderRadius: 20,
-                  error: 'Conteúdo obrigatório',
-                ),
-              ],
-            ),
-        // #endregion
-        code: SgTextEditorPageSnippets.sgTextEditorEstados,
       ),
     ];
 

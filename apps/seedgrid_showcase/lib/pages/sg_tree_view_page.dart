@@ -15,272 +15,526 @@ class SgTreeViewPage extends StatefulWidget {
 }
 
 class _SgTreeViewPageState extends State<SgTreeViewPage> {
-  String _clicado = '-';
-  List<String> _marcados = const [];
-  String _confirmado = '-';
-  List<String> _marcadosColuna = const [];
-  Map<String, String?> _tipos = const {'cc': 'corrente'};
+  final SgTreeViewController _arvore = SgTreeViewController();
+  final SgTreeViewController _confirmCtrl = SgTreeViewController();
+  final ValueNotifier<List<String>> _marcados = ValueNotifier<List<String>>(
+    const [],
+  );
+  final ValueNotifier<List<String>> _lerTodos = ValueNotifier<List<String>>(
+    const [],
+  );
+  final ValueNotifier<List<String>> _lerFolhas = ValueNotifier<List<String>>(
+    const [],
+  );
+  final ValueNotifier<String> _clicada = ValueNotifier<String>('-');
+  final ValueNotifier<List<String>> _confirmados = ValueNotifier<List<String>>(
+    const [],
+  );
+  final ValueNotifier<List<String>> _prioridade = ValueNotifier<List<String>>(
+    const [],
+  );
+  final ValueNotifier<Map<String, String?>> _tipoConta =
+      ValueNotifier<Map<String, String?>>(const {});
+
+  @override
+  void dispose() {
+    for (final n in [
+      _marcados,
+      _lerTodos,
+      _lerFolhas,
+      _clicada,
+      _confirmados,
+      _prioridade,
+      _tipoConta,
+    ]) {
+      n.dispose();
+    }
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     final examples = <ShowcaseExample>[
       ShowcaseExample(
         title: 'Básico',
-        description:
-            'Expandir e recolher por caret ou pelo rótulo do ramo; clicar numa folha avisa onLeafClick. A lista é virtualizada.',
+        description: 'Árvore pesquisável com check e clique apenas em leaf.',
         preview:
             // #region sg-tree-view-basico
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            SgStack(
+              gap: 12,
+              align: SgStackAlign.start,
               children: [
-                SgTreeView(
-                  defaultExpandedIds: const ['frutas'],
-                  onLeafClick: (id) => setState(() => _clicado = id),
-                  nodes: [
-                    SgTreeNode(
-                      id: 'frutas',
-                      label: context.tx('Frutas'),
-                      children: [
-                        SgTreeNode(id: 'maca', label: context.tx('Maçã')),
+                SgCard(
+                  title: context.tx('Permissões'),
+                  child: ValueListenableBuilder<List<String>>(
+                    valueListenable: _marcados,
+                    builder: (context, ids, _) => SgTreeView(
+                      controller: _arvore,
+                      searchable: true,
+                      searchPlaceholder: context.tx('Pesquisar...'),
+                      checkable: true,
+                      checkedIds: ids,
+                      onCheckedChange: (next) => _marcados.value = next,
+                      onLeafClick: (id) => _clicada.value = id,
+                      size: SgTreeViewSize.md,
+                      density: SgTreeViewDensity.normal,
+                      tone: SgTreeViewTone.defaultValue,
+                      nodes: [
                         SgTreeNode(
-                          id: 'citricos',
-                          label: context.tx('Cítricos'),
+                          id: 'root',
+                          label: context.tx('Administração'),
+                          icon: const Icon(Icons.shield_outlined, size: 16),
                           children: [
                             SgTreeNode(
-                              id: 'laranja',
-                              label: context.tx('Laranja'),
+                              id: 'users',
+                              label: context.tx('Usuários'),
+                              icon: const Icon(Icons.people_outline, size: 16),
+                              children: [
+                                SgTreeNode(
+                                  id: 'users.list',
+                                  label: context.tx('Listar usuários'),
+                                  icon: const Icon(
+                                    Icons.description_outlined,
+                                    size: 16,
+                                  ),
+                                ),
+                                SgTreeNode(
+                                  id: 'users.create',
+                                  label: context.tx('Criar usuário'),
+                                  icon: const Icon(
+                                    Icons.description_outlined,
+                                    size: 16,
+                                  ),
+                                ),
+                              ],
                             ),
-                            SgTreeNode(id: 'limao', label: context.tx('Limão')),
+                            SgTreeNode(
+                              id: 'reports',
+                              label: context.tx('Relatórios'),
+                              icon: const Icon(
+                                Icons.bar_chart_outlined,
+                                size: 16,
+                              ),
+                              children: [
+                                SgTreeNode(
+                                  id: 'reports.sales',
+                                  label: context.tx('Relatório de vendas'),
+                                  icon: const Icon(
+                                    Icons.description_outlined,
+                                    size: 16,
+                                  ),
+                                ),
+                                SgTreeNode(
+                                  id: 'reports.financial',
+                                  label: context.tx('Relatório financeiro'),
+                                  icon: const Icon(
+                                    Icons.description_outlined,
+                                    size: 16,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ],
                         ),
                       ],
                     ),
-                    SgTreeNode(id: 'graos', label: context.tx('Grãos')),
-                    SgTreeNode(
-                      id: 'bloqueado',
-                      label: context.tx('Bloqueado'),
-                      enabled: false,
+                  ),
+                ),
+                SgStack(
+                  direction: SgStackDirection.row,
+                  wrap: true,
+                  gap: 8,
+                  children: [
+                    SgButton(
+                      label: Text(context.tx('Ler todos os checkeds')),
+                      appearance: SgAppearance.outline,
+                      onClick: () => _lerTodos.value = _arvore.getCheckedIds(),
+                    ),
+                    SgButton(
+                      label: Text(context.tx('Ler apenas leafs')),
+                      appearance: SgAppearance.outline,
+                      onClick: () =>
+                          _lerFolhas.value = _arvore.getCheckedLeafIds(),
                     ),
                   ],
                 ),
-                const SizedBox(height: 8),
-                Text('Última folha clicada: $_clicado'),
+                ListenableBuilder(
+                  listenable: Listenable.merge([
+                    _lerTodos,
+                    _lerFolhas,
+                    _clicada,
+                  ]),
+                  builder: (context, _) => SgStack(
+                    gap: 4,
+                    align: SgStackAlign.start,
+                    children: [
+                      Text(
+                        'checkedIds: ${_lerTodos.value.isEmpty ? '-' : _lerTodos.value.join(', ')}',
+                      ),
+                      Text(
+                        'leafIds: ${_lerFolhas.value.isEmpty ? '-' : _lerFolhas.value.join(', ')}',
+                      ),
+                      Text(
+                        '${context.tx('Última folha clicada')}: ${_clicada.value}',
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
         // #endregion
         code: SgTreeViewPageSnippets.sgTreeViewBasico,
       ),
       ShowcaseExample(
-        title: 'Seleção com checkbox',
-        description:
-            'Marcar um ramo marca todos os descendentes; o pai fica indeterminado quando só parte dos filhos está marcada.',
+        title: 'Tom dos ícones',
+        description: 'Altere a cor dos ícones para primary.',
         preview:
-            // #region sg-tree-view-selecao
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SgTreeView(
-                  checkable: true,
-                  defaultExpandedIds: const ['a'],
-                  defaultCheckedIds: const ['a1'],
-                  onCheckedChange: (ids) => setState(() => _marcados = ids),
-                  nodes: [
-                    SgTreeNode(
-                      id: 'a',
-                      label: context.tx('Documentos'),
-                      children: [
-                        SgTreeNode(id: 'a1', label: context.tx('Contrato')),
-                        SgTreeNode(id: 'a2', label: context.tx('Proposta')),
-                      ],
-                    ),
-                    SgTreeNode(id: 'b', label: context.tx('Imagens')),
-                  ],
-                ),
-                const SizedBox(height: 8),
-                Text('Marcados: ${_marcados.join(', ')}'),
-              ],
+            // #region sg-tree-view-tom
+            SgCard(
+              title: context.tx('Ícones em primary'),
+              child: SgTreeView(
+                iconTone: SgTreeViewIconTone.primary,
+                searchable: true,
+                searchPlaceholder: context.tx('Pesquisar...'),
+                nodes: [
+                  SgTreeNode(
+                    id: 'root',
+                    label: context.tx('Administração'),
+                    icon: const Icon(Icons.shield_outlined, size: 16),
+                    children: [
+                      SgTreeNode(
+                        id: 'users',
+                        label: context.tx('Usuários'),
+                        icon: const Icon(Icons.people_outline, size: 16),
+                        children: [
+                          SgTreeNode(
+                            id: 'users.list',
+                            label: context.tx('Listar usuários'),
+                            icon: const Icon(
+                              Icons.description_outlined,
+                              size: 16,
+                            ),
+                          ),
+                          SgTreeNode(
+                            id: 'users.create',
+                            label: context.tx('Criar usuário'),
+                            icon: const Icon(
+                              Icons.description_outlined,
+                              size: 16,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SgTreeNode(
+                        id: 'reports',
+                        label: context.tx('Relatórios'),
+                        icon: const Icon(Icons.bar_chart_outlined, size: 16),
+                        children: [
+                          SgTreeNode(
+                            id: 'reports.sales',
+                            label: context.tx('Relatório de vendas'),
+                            icon: const Icon(
+                              Icons.description_outlined,
+                              size: 16,
+                            ),
+                          ),
+                          SgTreeNode(
+                            id: 'reports.financial',
+                            label: context.tx('Relatório financeiro'),
+                            icon: const Icon(
+                              Icons.description_outlined,
+                              size: 16,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
         // #endregion
-        code: SgTreeViewPageSnippets.sgTreeViewSelecao,
+        code: SgTreeViewPageSnippets.sgTreeViewTom,
       ),
       ShowcaseExample(
-        title: 'Busca',
-        description:
-            'O filtro mostra só os achados e seus ancestrais, e abre os ancestrais (expandMatchesOnSearch).',
-        preview:
-            // #region sg-tree-view-busca
-            SgTreeView(
-              searchable: true,
-              defaultSearchValue: 'couve',
-              nodes: [
-                SgTreeNode(
-                  id: 'verduras',
-                  label: context.tx('Verduras'),
-                  children: [
-                    SgTreeNode(id: 'alface', label: context.tx('Alface')),
-                    SgTreeNode(id: 'couve', label: context.tx('Couve')),
-                  ],
-                ),
-                SgTreeNode(
-                  id: 'legumes',
-                  label: context.tx('Legumes'),
-                  children: [
-                    SgTreeNode(id: 'cenoura', label: context.tx('Cenoura')),
-                  ],
-                ),
-              ],
-            ),
-        // #endregion
-        code: SgTreeViewPageSnippets.sgTreeViewBusca,
-      ),
-      ShowcaseExample(
-        title: 'Confirmação da seleção',
-        description:
-            'No modo confirm a marcação fica pendente até o botão Confirmar; a barra conta só as folhas.',
+        title: 'Modo confirmação',
+        description: 'Confirme os itens selecionados no rodapé.',
         preview:
             // #region sg-tree-view-confirmacao
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            SgStack(
+              gap: 12,
+              align: SgStackAlign.start,
               children: [
-                SgTreeView(
-                  checkable: true,
-                  checkMode: SgTreeViewCheckMode.confirm,
-                  defaultExpandedIds: const ['x'],
-                  confirmBar: SgTreeConfirmBar(
-                    showCancel: true,
-                    resetAfterConfirm: true,
-                    onConfirm: (ids) =>
-                        setState(() => _confirmado = ids.join(', ')),
-                  ),
-                  nodes: [
-                    SgTreeNode(
-                      id: 'x',
-                      label: context.tx('Permissões'),
-                      children: [
-                        SgTreeNode(id: 'ler', label: context.tx('Ler')),
-                        SgTreeNode(id: 'gravar', label: context.tx('Gravar')),
-                      ],
+                SgCard(
+                  title: context.tx('Confirmação'),
+                  child: SgTreeView(
+                    controller: _confirmCtrl,
+                    searchable: true,
+                    searchPlaceholder: context.tx('Pesquisar...'),
+                    checkable: true,
+                    checkMode: SgTreeViewCheckMode.confirm,
+                    confirmSelection: SgTreeViewConfirmSelection.leafOnly,
+                    confirmBar: SgTreeConfirmBar(
+                      label: context.tx('Confirmar'),
+                      showCancel: true,
+                      cancelLabel: context.tx('Limpar'),
+                      onConfirm: (ids) => _confirmados.value = ids,
+                      onCancel: _confirmCtrl.clearChecked,
                     ),
-                  ],
+                    nodes: [
+                      SgTreeNode(
+                        id: 'root',
+                        label: context.tx('Administração'),
+                        icon: const Icon(Icons.shield_outlined, size: 16),
+                        children: [
+                          SgTreeNode(
+                            id: 'users',
+                            label: context.tx('Usuários'),
+                            icon: const Icon(Icons.people_outline, size: 16),
+                            children: [
+                              SgTreeNode(
+                                id: 'users.list',
+                                label: context.tx('Listar usuários'),
+                                icon: const Icon(
+                                  Icons.description_outlined,
+                                  size: 16,
+                                ),
+                              ),
+                              SgTreeNode(
+                                id: 'users.create',
+                                label: context.tx('Criar usuário'),
+                                icon: const Icon(
+                                  Icons.description_outlined,
+                                  size: 16,
+                                ),
+                              ),
+                            ],
+                          ),
+                          SgTreeNode(
+                            id: 'reports',
+                            label: context.tx('Relatórios'),
+                            icon: const Icon(
+                              Icons.bar_chart_outlined,
+                              size: 16,
+                            ),
+                            children: [
+                              SgTreeNode(
+                                id: 'reports.sales',
+                                label: context.tx('Relatório de vendas'),
+                                icon: const Icon(
+                                  Icons.description_outlined,
+                                  size: 16,
+                                ),
+                              ),
+                              SgTreeNode(
+                                id: 'reports.financial',
+                                label: context.tx('Relatório financeiro'),
+                                icon: const Icon(
+                                  Icons.description_outlined,
+                                  size: 16,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-                const SizedBox(height: 8),
-                Text('Confirmado: $_confirmado'),
+                ValueListenableBuilder<List<String>>(
+                  valueListenable: _confirmados,
+                  builder: (context, ids, _) =>
+                      Text('confirmIds: ${ids.isEmpty ? '-' : ids.join(', ')}'),
+                ),
               ],
             ),
         // #endregion
         code: SgTreeViewPageSnippets.sgTreeViewConfirmacao,
       ),
       ShowcaseExample(
-        title: 'Tom e ícones',
-        description:
-            'iconTone destaca os ícones com a cor primária; tone: muted suaviza os rótulos; cada nó aceita um icon.',
-        preview:
-            // #region sg-tree-view-tom
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SgTreeView(
-                  defaultExpandedIds: ['docs'],
-                  iconTone: SgTreeViewIconTone.primary,
-                  nodes: [
-                    SgTreeNode(
-                      id: 'docs',
-                      label: context.tx('Documentos'),
-                      icon: Icon(Icons.folder_outlined, size: 16),
-                      children: [
-                        SgTreeNode(
-                          id: 'contrato',
-                          label: context.tx('Contrato'),
-                          icon: Icon(Icons.description_outlined, size: 16),
-                        ),
-                        SgTreeNode(
-                          id: 'nota',
-                          label: context.tx('Nota fiscal'),
-                          icon: Icon(Icons.receipt_long_outlined, size: 16),
-                        ),
-                      ],
-                    ),
-                    SgTreeNode(
-                      id: 'img',
-                      label: context.tx('Imagens'),
-                      icon: Icon(Icons.image_outlined, size: 16),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 12),
-                SgTreeView(
-                  defaultExpandedIds: ['docs'],
-                  tone: SgTreeViewTone.muted,
-                  nodes: [
-                    SgTreeNode(
-                      id: 'docs',
-                      label: context.tx('Documentos'),
-                      icon: Icon(Icons.folder_outlined, size: 16),
-                      children: [
-                        SgTreeNode(
-                          id: 'contrato',
-                          label: context.tx('Contrato'),
-                          icon: Icon(Icons.description_outlined, size: 16),
-                        ),
-                        SgTreeNode(
-                          id: 'nota',
-                          label: context.tx('Nota fiscal'),
-                          icon: Icon(Icons.receipt_long_outlined, size: 16),
-                        ),
-                      ],
-                    ),
-                    SgTreeNode(
-                      id: 'img',
-                      label: context.tx('Imagens'),
-                      icon: Icon(Icons.image_outlined, size: 16),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-        // #endregion
-        code: SgTreeViewPageSnippets.sgTreeViewTom,
-      ),
-      ShowcaseExample(
         title: 'Tamanho e densidade',
-        description:
-            'size (sm, md, lg) muda a fonte e a altura da linha; density (compact, normal, comfortable) muda o espaçamento.',
+        description: 'Compacto, normal e confortável.',
         preview:
             // #region sg-tree-view-tamanho
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            SgStack(
+              gap: 16,
+              align: SgStackAlign.start,
               children: [
                 SgTreeView(
                   size: SgTreeViewSize.sm,
                   density: SgTreeViewDensity.compact,
-                  defaultExpandedIds: ['a'],
                   nodes: [
                     SgTreeNode(
-                      id: 'a',
-                      label: context.tx('Ramo A'),
+                      id: 'root',
+                      label: context.tx('Administração'),
+                      icon: const Icon(Icons.shield_outlined, size: 16),
                       children: [
-                        SgTreeNode(id: 'a1', label: context.tx('Folha A1')),
-                        SgTreeNode(id: 'a2', label: context.tx('Folha A2')),
+                        SgTreeNode(
+                          id: 'users',
+                          label: context.tx('Usuários'),
+                          icon: const Icon(Icons.people_outline, size: 16),
+                          children: [
+                            SgTreeNode(
+                              id: 'users.list',
+                              label: context.tx('Listar usuários'),
+                              icon: const Icon(
+                                Icons.description_outlined,
+                                size: 16,
+                              ),
+                            ),
+                            SgTreeNode(
+                              id: 'users.create',
+                              label: context.tx('Criar usuário'),
+                              icon: const Icon(
+                                Icons.description_outlined,
+                                size: 16,
+                              ),
+                            ),
+                          ],
+                        ),
+                        SgTreeNode(
+                          id: 'reports',
+                          label: context.tx('Relatórios'),
+                          icon: const Icon(Icons.bar_chart_outlined, size: 16),
+                          children: [
+                            SgTreeNode(
+                              id: 'reports.sales',
+                              label: context.tx('Relatório de vendas'),
+                              icon: const Icon(
+                                Icons.description_outlined,
+                                size: 16,
+                              ),
+                            ),
+                            SgTreeNode(
+                              id: 'reports.financial',
+                              label: context.tx('Relatório financeiro'),
+                              icon: const Icon(
+                                Icons.description_outlined,
+                                size: 16,
+                              ),
+                            ),
+                          ],
+                        ),
                       ],
                     ),
-                    SgTreeNode(id: 'b', label: context.tx('Folha B')),
                   ],
                 ),
-                SizedBox(height: 12),
+                SgTreeView(
+                  size: SgTreeViewSize.md,
+                  density: SgTreeViewDensity.normal,
+                  nodes: [
+                    SgTreeNode(
+                      id: 'root',
+                      label: context.tx('Administração'),
+                      icon: const Icon(Icons.shield_outlined, size: 16),
+                      children: [
+                        SgTreeNode(
+                          id: 'users',
+                          label: context.tx('Usuários'),
+                          icon: const Icon(Icons.people_outline, size: 16),
+                          children: [
+                            SgTreeNode(
+                              id: 'users.list',
+                              label: context.tx('Listar usuários'),
+                              icon: const Icon(
+                                Icons.description_outlined,
+                                size: 16,
+                              ),
+                            ),
+                            SgTreeNode(
+                              id: 'users.create',
+                              label: context.tx('Criar usuário'),
+                              icon: const Icon(
+                                Icons.description_outlined,
+                                size: 16,
+                              ),
+                            ),
+                          ],
+                        ),
+                        SgTreeNode(
+                          id: 'reports',
+                          label: context.tx('Relatórios'),
+                          icon: const Icon(Icons.bar_chart_outlined, size: 16),
+                          children: [
+                            SgTreeNode(
+                              id: 'reports.sales',
+                              label: context.tx('Relatório de vendas'),
+                              icon: const Icon(
+                                Icons.description_outlined,
+                                size: 16,
+                              ),
+                            ),
+                            SgTreeNode(
+                              id: 'reports.financial',
+                              label: context.tx('Relatório financeiro'),
+                              icon: const Icon(
+                                Icons.description_outlined,
+                                size: 16,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
                 SgTreeView(
                   size: SgTreeViewSize.lg,
                   density: SgTreeViewDensity.comfortable,
-                  defaultExpandedIds: ['a'],
                   nodes: [
                     SgTreeNode(
-                      id: 'a',
-                      label: context.tx('Ramo A'),
+                      id: 'root',
+                      label: context.tx('Administração'),
+                      icon: const Icon(Icons.shield_outlined, size: 16),
                       children: [
-                        SgTreeNode(id: 'a1', label: context.tx('Folha A1')),
-                        SgTreeNode(id: 'a2', label: context.tx('Folha A2')),
+                        SgTreeNode(
+                          id: 'users',
+                          label: context.tx('Usuários'),
+                          icon: const Icon(Icons.people_outline, size: 16),
+                          children: [
+                            SgTreeNode(
+                              id: 'users.list',
+                              label: context.tx('Listar usuários'),
+                              icon: const Icon(
+                                Icons.description_outlined,
+                                size: 16,
+                              ),
+                            ),
+                            SgTreeNode(
+                              id: 'users.create',
+                              label: context.tx('Criar usuário'),
+                              icon: const Icon(
+                                Icons.description_outlined,
+                                size: 16,
+                              ),
+                            ),
+                          ],
+                        ),
+                        SgTreeNode(
+                          id: 'reports',
+                          label: context.tx('Relatórios'),
+                          icon: const Icon(Icons.bar_chart_outlined, size: 16),
+                          children: [
+                            SgTreeNode(
+                              id: 'reports.sales',
+                              label: context.tx('Relatório de vendas'),
+                              icon: const Icon(
+                                Icons.description_outlined,
+                                size: 16,
+                              ),
+                            ),
+                            SgTreeNode(
+                              id: 'reports.financial',
+                              label: context.tx('Relatório financeiro'),
+                              icon: const Icon(
+                                Icons.description_outlined,
+                                size: 16,
+                              ),
+                            ),
+                          ],
+                        ),
                       ],
                     ),
-                    SgTreeNode(id: 'b', label: context.tx('Folha B')),
                   ],
                 ),
               ],
@@ -290,116 +544,300 @@ class _SgTreeViewPageState extends State<SgTreeViewPage> {
       ),
       ShowcaseExample(
         title: 'Expandido por padrão',
-        description:
-            'defaultExpandedIds abre os ramos listados na primeira exibição; o usuário continua podendo recolher.',
+        description: 'Use defaultExpandedIds para iniciar aberto.',
         preview:
             // #region sg-tree-view-expandido
-            SgTreeView(
-              defaultExpandedIds: ['docs'],
-              nodes: [
-                SgTreeNode(
-                  id: 'docs',
-                  label: context.tx('Documentos'),
-                  icon: Icon(Icons.folder_outlined, size: 16),
-                  children: [
-                    SgTreeNode(
-                      id: 'contrato',
-                      label: context.tx('Contrato'),
-                      icon: Icon(Icons.description_outlined, size: 16),
-                    ),
-                    SgTreeNode(
-                      id: 'nota',
-                      label: context.tx('Nota fiscal'),
-                      icon: Icon(Icons.receipt_long_outlined, size: 16),
-                    ),
-                  ],
-                ),
-                SgTreeNode(
-                  id: 'img',
-                  label: context.tx('Imagens'),
-                  icon: Icon(Icons.image_outlined, size: 16),
-                ),
-              ],
+            SgCard(
+              title: context.tx('Inicia expandido'),
+              child: SgTreeView(
+                searchable: true,
+                searchPlaceholder: context.tx('Pesquisar...'),
+                defaultExpandedIds: const ['root', 'users'],
+                nodes: [
+                  SgTreeNode(
+                    id: 'root',
+                    label: context.tx('Administração'),
+                    icon: const Icon(Icons.shield_outlined, size: 16),
+                    children: [
+                      SgTreeNode(
+                        id: 'users',
+                        label: context.tx('Usuários'),
+                        icon: const Icon(Icons.people_outline, size: 16),
+                        children: [
+                          SgTreeNode(
+                            id: 'users.list',
+                            label: context.tx('Listar usuários'),
+                            icon: const Icon(
+                              Icons.description_outlined,
+                              size: 16,
+                            ),
+                          ),
+                          SgTreeNode(
+                            id: 'users.create',
+                            label: context.tx('Criar usuário'),
+                            icon: const Icon(
+                              Icons.description_outlined,
+                              size: 16,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SgTreeNode(
+                        id: 'reports',
+                        label: context.tx('Relatórios'),
+                        icon: const Icon(Icons.bar_chart_outlined, size: 16),
+                        children: [
+                          SgTreeNode(
+                            id: 'reports.sales',
+                            label: context.tx('Relatório de vendas'),
+                            icon: const Icon(
+                              Icons.description_outlined,
+                              size: 16,
+                            ),
+                          ),
+                          SgTreeNode(
+                            id: 'reports.financial',
+                            label: context.tx('Relatório financeiro'),
+                            icon: const Icon(
+                              Icons.description_outlined,
+                              size: 16,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
         // #endregion
         code: SgTreeViewPageSnippets.sgTreeViewExpandido,
       ),
       ShowcaseExample(
-        title: 'Marcados iniciais',
+        title: 'JSON com checked',
         description:
-            'defaultCheckedIds já nasce com nós marcados; o ramo fica indeterminado quando só parte dos filhos está marcada.',
+            'Carregue itens marcados a partir do JSON (ex.: permissões do usuário).',
         preview:
-            // #region sg-tree-view-marcados-iniciais
-            SgTreeView(
-              checkable: true,
-              defaultExpandedIds: ['a'],
-              defaultCheckedIds: ['a1'],
-              nodes: [
-                SgTreeNode(
-                  id: 'a',
-                  label: context.tx('Ramo A'),
-                  children: [
-                    SgTreeNode(id: 'a1', label: context.tx('Folha A1')),
-                    SgTreeNode(id: 'a2', label: context.tx('Folha A2')),
-                  ],
-                ),
-                SgTreeNode(id: 'b', label: context.tx('Folha B')),
-              ],
+            // #region sg-tree-view-json-checked
+            SgCard(
+              title: context.tx('Checked via JSON'),
+              child: Builder(
+                builder: (context) {
+                  final carregado = sgTreeFromJsonWithChecked(const [
+                    SgTreeNodeJson(
+                      id: 'root',
+                      label: 'Administração',
+                      children: [
+                        SgTreeNodeJson(
+                          id: 'users',
+                          label: 'Usuários',
+                          children: [
+                            SgTreeNodeJson(
+                              id: 'users.list',
+                              label: 'Listar usuários',
+                              checked: true,
+                            ),
+                            SgTreeNodeJson(
+                              id: 'users.create',
+                              label: 'Criar usuário',
+                            ),
+                          ],
+                        ),
+                        SgTreeNodeJson(
+                          id: 'reports',
+                          label: 'Relatórios',
+                          children: [
+                            SgTreeNodeJson(
+                              id: 'reports.sales',
+                              label: 'Relatório de vendas',
+                              checked: true,
+                            ),
+                            SgTreeNodeJson(
+                              id: 'reports.financial',
+                              label: 'Relatório financeiro',
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ]);
+                  return SgTreeView(
+                    nodes: carregado.nodes,
+                    checkable: true,
+                    defaultCheckedIds: carregado.checkedIds,
+                    defaultExpandedIds: const ['root', 'users'],
+                  );
+                },
+              ),
             ),
         // #endregion
-        code: SgTreeViewPageSnippets.sgTreeViewMarcadosIniciais,
+        code: SgTreeViewPageSnippets.sgTreeViewJsonChecked,
       ),
       ShowcaseExample(
-        title: 'Trilhas (colunas extras)',
+        title: 'Trilhas (colunas extras por linha)',
         description:
-            'Uma coluna por linha: caixa de seleção com cascata própria, lista de opções e célula livre.',
+            'Uma coluna por trilha, cada uma com seu cabeçalho (label) e largura (width). As trilhas boolean e enum têm cascata pai→filhos própria e independente; a trilha custom não tem estado: a árvore só cede a célula e a tela desenha o que quiser. O adornment põe conteúdo livre ao lado do controle (aqui, uma estrela em \'List users\').',
         preview:
             // #region sg-tree-view-trilhas
-            SgTreeView(
-              checkable: true,
-              checkableLabel: 'Incluir',
-              defaultExpandedIds: const ['contas'],
-              nodes: [
-                SgTreeNode(
-                  id: 'contas',
-                  label: context.tx('Contas'),
-                  children: [
-                    SgTreeNode(id: 'cc', label: context.tx('Conta corrente')),
-                    SgTreeNode(id: 'poup', label: context.tx('Poupança')),
-                  ],
-                ),
-              ],
-              tracks: [
-                SgTreeTrackBoolean(
-                  id: 'ler',
-                  label: context.tx('Ler'),
-                  width: '70px',
-                  checkedIds: _marcadosColuna,
-                  onCheckedChange: (ids) =>
-                      setState(() => _marcadosColuna = ids),
-                ),
-                SgTreeTrackEnum(
-                  id: 'tipo',
-                  label: context.tx('Tipo'),
-                  width: '140px',
-                  options: [
-                    SgTreeTrackOption(
-                      value: 'corrente',
-                      label: context.tx('Corrente'),
+            SgStack(
+              gap: 12,
+              align: SgStackAlign.start,
+              children: [
+                SgCard(
+                  title: context.tx('Ativo + Prioridade + Tipo + coluna livre'),
+                  child: ListenableBuilder(
+                    listenable: Listenable.merge([
+                      _marcados,
+                      _prioridade,
+                      _tipoConta,
+                    ]),
+                    builder: (context, _) => SgTreeView(
+                      checkable: true,
+                      checkableLabel: context.tx('Ativo'),
+                      checkedIds: _marcados.value,
+                      onCheckedChange: (next) => _marcados.value = next,
+                      defaultExpandedIds: const ['root', 'users', 'reports'],
+                      tracks: [
+                        SgTreeTrackBoolean(
+                          id: 'priority',
+                          label: context.tx('Prioridade'),
+                          ariaLabel: context.tx('Prioridade'),
+                          checkedIds: _prioridade.value,
+                          onCheckedChange: (next) => _prioridade.value = next,
+                          adornment: (node) => node.id == 'users.list'
+                              ? const Icon(
+                                  Icons.star,
+                                  size: 14,
+                                  color: Colors.amber,
+                                )
+                              : null,
+                        ),
+                        SgTreeTrackEnum(
+                          id: 'accountType',
+                          label: context.tx('Tipo de conta'),
+                          width: '150px',
+                          placeholder: '—',
+                          mixedLabel: context.tx('— misto —'),
+                          options: [
+                            SgTreeTrackOption(
+                              value: 'fixo',
+                              label: context.tx('Custo fixo'),
+                            ),
+                            SgTreeTrackOption(
+                              value: 'variavel',
+                              label: context.tx('Custo variável'),
+                            ),
+                            SgTreeTrackOption(
+                              value: 'despesa',
+                              label: context.tx('Despesa variável'),
+                            ),
+                            SgTreeTrackOption(
+                              value: 'investimento',
+                              label: context.tx('Investimento'),
+                            ),
+                          ],
+                          valueByNodeId: _tipoConta.value,
+                          onChange: (next) => _tipoConta.value = next,
+                        ),
+                        SgTreeTrackCustom(
+                          id: 'acao',
+                          label: context.tx('Coluna livre'),
+                          width: '130px',
+                          render: (node) => node.children?.isNotEmpty == true
+                              ? const SizedBox.shrink()
+                              : SgButton(
+                                  label: Text(context.tx('marcar fixo')),
+                                  appearance: SgAppearance.ghost,
+                                  size: SgSize.sm,
+                                  onClick: () => _tipoConta.value = {
+                                    ..._tipoConta.value,
+                                    node.id: 'fixo',
+                                  },
+                                ),
+                        ),
+                      ],
+                      nodes: [
+                        SgTreeNode(
+                          id: 'root',
+                          label: context.tx('Administração'),
+                          icon: const Icon(Icons.shield_outlined, size: 16),
+                          children: [
+                            SgTreeNode(
+                              id: 'users',
+                              label: context.tx('Usuários'),
+                              icon: const Icon(Icons.people_outline, size: 16),
+                              children: [
+                                SgTreeNode(
+                                  id: 'users.list',
+                                  label: context.tx('Listar usuários'),
+                                  icon: const Icon(
+                                    Icons.description_outlined,
+                                    size: 16,
+                                  ),
+                                ),
+                                SgTreeNode(
+                                  id: 'users.create',
+                                  label: context.tx('Criar usuário'),
+                                  icon: const Icon(
+                                    Icons.description_outlined,
+                                    size: 16,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SgTreeNode(
+                              id: 'reports',
+                              label: context.tx('Relatórios'),
+                              icon: const Icon(
+                                Icons.bar_chart_outlined,
+                                size: 16,
+                              ),
+                              children: [
+                                SgTreeNode(
+                                  id: 'reports.sales',
+                                  label: context.tx('Relatório de vendas'),
+                                  icon: const Icon(
+                                    Icons.description_outlined,
+                                    size: 16,
+                                  ),
+                                ),
+                                SgTreeNode(
+                                  id: 'reports.financial',
+                                  label: context.tx('Relatório financeiro'),
+                                  icon: const Icon(
+                                    Icons.description_outlined,
+                                    size: 16,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
-                    SgTreeTrackOption(
-                      value: 'poupanca',
-                      label: context.tx('Poupança'),
-                    ),
-                  ],
-                  valueByNodeId: _tipos,
-                  onChange: (next) => setState(() => _tipos = next),
+                  ),
                 ),
-                SgTreeTrackCustom(
-                  id: 'codigo',
-                  label: context.tx('Código'),
-                  width: '80px',
-                  render: (node) => Text('#${node.id}'),
+                ListenableBuilder(
+                  listenable: Listenable.merge([
+                    _marcados,
+                    _prioridade,
+                    _tipoConta,
+                  ]),
+                  builder: (context, _) => SgStack(
+                    gap: 4,
+                    align: SgStackAlign.start,
+                    children: [
+                      Text(
+                        'checkedIds (principal): ${_marcados.value.isEmpty ? '-' : _marcados.value.join(', ')}',
+                      ),
+                      Text(
+                        'priorityIds (trilha boolean): ${_prioridade.value.isEmpty ? '-' : _prioridade.value.join(', ')}',
+                      ),
+                      Text(
+                        'accountTypeByNode (trilha enum): ${_tipoConta.value.isEmpty ? '-' : _tipoConta.value.entries.map((e) => '${e.key}=${e.value}').join(', ')}',
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
