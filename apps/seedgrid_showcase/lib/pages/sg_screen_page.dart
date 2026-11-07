@@ -15,6 +15,63 @@ class SgScreenPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final examples = <ShowcaseExample>[
       ShowcaseExample(
+        title: 'Exemplo completo',
+        description:
+            'Uso com fullscreen=false em área controlada, incluindo layout top/left/right/bottom/client.',
+        preview:
+            // #region sg-screen-completo
+            SgScreen(
+              fullscreen: false,
+              height: 420,
+              padding: 10,
+              children: [
+                SgPanel(
+                  align: SgPanelAlign.top,
+                  height: 12,
+                  borderStyle: SgPanelBorderStyle.solid,
+                  children: [Text(context.tx('Cabeçalho'))],
+                ),
+                SgPanel(
+                  align: SgPanelAlign.left,
+                  width: 20,
+                  borderStyle: SgPanelBorderStyle.solid,
+                  children: [
+                    Text(context.tx('Menu')),
+                    Text(context.tx('Painel')),
+                    Text(context.tx('Relatórios')),
+                    Text(context.tx('Clientes')),
+                  ],
+                ),
+                SgPanel(
+                  align: SgPanelAlign.right,
+                  width: 18,
+                  borderStyle: SgPanelBorderStyle.solid,
+                  children: [
+                    Text(context.tx('Ações')),
+                    Text(context.tx('Filtrar')),
+                    Text(context.tx('Exportar')),
+                  ],
+                ),
+                SgPanel(
+                  align: SgPanelAlign.bottom,
+                  height: 10,
+                  borderStyle: SgPanelBorderStyle.solid,
+                  children: [Text(context.tx('Rodapé'))],
+                ),
+                SgPanel(
+                  align: SgPanelAlign.client,
+                  borderStyle: SgPanelBorderStyle.solid,
+                  children: [
+                    Text(context.tx('Área principal')),
+                    Text(context.tx('Esta área ocupa todo o espaço restante.')),
+                  ],
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgScreenPageSnippets.sgScreenCompleto,
+      ),
+      ShowcaseExample(
         title: 'Tela com docking',
         description:
             'Os filhos SgPanel com align formam cabeçalho, menu lateral e área principal.',

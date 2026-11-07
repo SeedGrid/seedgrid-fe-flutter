@@ -16,19 +16,33 @@ class SgPeriodSelectorPage extends StatefulWidget {
 
 class _SgPeriodSelectorPageState extends State<SgPeriodSelectorPage> {
   final SgFormController _form = SgFormController();
-  String _basico = 'Nenhum período escolhido';
-  String _personalizado = 'Nenhum período escolhido';
-  String _ingles = 'No period chosen';
-  String _enviado = '';
-  bool _passados = true;
-  bool _atuais = true;
-  bool _futuros = false;
-  bool _todos = true;
-  bool _periodo = true;
+  final ValueNotifier<String> _basico = ValueNotifier<String>(
+    'Nenhum período escolhido',
+  );
+  final ValueNotifier<String> _personalizado = ValueNotifier<String>(
+    'Nenhum período escolhido',
+  );
+  final ValueNotifier<String> _limitado = ValueNotifier<String>(
+    'Nenhum período escolhido',
+  );
+  final ValueNotifier<String> _ingles = ValueNotifier<String>(
+    'No period chosen',
+  );
+  final ValueNotifier<String> _enviado = ValueNotifier<String>('');
+  // permitPast, permitCurrent, permitFuture
+  final ValueNotifier<List<bool>> _grupos = ValueNotifier<List<bool>>(
+    const [true, true, false],
+  );
 
   @override
   void dispose() {
     _form.dispose();
+    _basico.dispose();
+    _personalizado.dispose();
+    _limitado.dispose();
+    _ingles.dispose();
+    _enviado.dispose();
+    _grupos.dispose();
     super.dispose();
   }
 
@@ -38,107 +52,169 @@ class _SgPeriodSelectorPageState extends State<SgPeriodSelectorPage> {
       ShowcaseExample(
         title: 'Básico',
         description:
-            'Escolha um período para receber o intervalo de datas já resolvido (início às 00:00:00 e fim às 23:59:59.999). Não dispara nada ao abrir a página.',
+            'Flags padrão: grupos atuais e passados, mais período customizado.',
         preview:
             // #region sg-period-selector-basico
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SgPeriodSelector(
+                  id: 'ps-basic',
                   label: context.tx('Período'),
-                  onChange: (p) => setState(
-                    () => _basico =
-                        '${p.label}: ${p.startDate?.toIso8601String().substring(0, 10) ?? '-'} a ${p.endDate?.toIso8601String().substring(0, 10) ?? '-'}',
-                  ),
+                  onChange: (p) =>
+                      _basico.value =
+                          '${p.label}: ${p.startDate?.toIso8601String().substring(0, 10) ?? '-'} a ${p.endDate?.toIso8601String().substring(0, 10) ?? '-'}',
                 ),
                 const SizedBox(height: 8),
-                Text(_basico),
+                ValueListenableBuilder<String>(
+                  valueListenable: _basico,
+                  builder: (context, resumo, _) => Text(resumo),
+                ),
               ],
             ),
         // #endregion
         code: SgPeriodSelectorPageSnippets.sgPeriodSelectorBasico,
       ),
       ShowcaseExample(
-        title: 'Grupos de opções',
+        title: 'Todos os grupos',
         description:
-            'Cada grupo liga e desliga com permitPast, permitCurrent, permitFuture, permitAll e allowCustomPeriod. Marque as caixas para ver a lista mudar.',
+            'Ligue e desligue permitPast, permitCurrent e permitFuture para ver cada grupo entrar e sair da lista (permitAll fica desligado).',
         preview:
             // #region sg-period-selector-grupos
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Wrap(
-                  spacing: 8,
-                  runSpacing: 8,
-                  children: [
-                    FilterChip(
-                      label: Text(context.tx('Passados')),
-                      selected: _passados,
-                      onSelected: (v) => setState(() => _passados = v),
-                    ),
-                    FilterChip(
-                      label: Text(context.tx('Atuais')),
-                      selected: _atuais,
-                      onSelected: (v) => setState(() => _atuais = v),
-                    ),
-                    FilterChip(
-                      label: Text(context.tx('Futuros')),
-                      selected: _futuros,
-                      onSelected: (v) => setState(() => _futuros = v),
-                    ),
-                    FilterChip(
-                      label: Text(context.tx('Todos')),
-                      selected: _todos,
-                      onSelected: (v) => setState(() => _todos = v),
-                    ),
-                    FilterChip(
-                      label: Text(context.tx('Período')),
-                      selected: _periodo,
-                      onSelected: (v) => setState(() => _periodo = v),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 12),
-                SgPeriodSelector(
-                  id: 'grupos',
-                  label: context.tx('Período'),
-                  permitPast: _passados,
-                  permitCurrent: _atuais,
-                  permitFuture: _futuros,
-                  permitAll: _todos,
-                  allowCustomPeriod: _periodo,
-                ),
-              ],
+            ValueListenableBuilder<List<bool>>(
+              valueListenable: _grupos,
+              builder: (context, grupos, _) => Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Wrap(
+                    spacing: 16,
+                    runSpacing: 8,
+                    children: [
+                      SgToggleSwitch(
+                        id: 'ps-flag-past',
+                        label: 'permitPast',
+                        checked: grupos[0],
+                        onChange: (v) =>
+                            _grupos.value = [v, grupos[1], grupos[2]],
+                      ),
+                      SgToggleSwitch(
+                        id: 'ps-flag-current',
+                        label: 'permitCurrent',
+                        checked: grupos[1],
+                        onChange: (v) =>
+                            _grupos.value = [grupos[0], v, grupos[2]],
+                      ),
+                      SgToggleSwitch(
+                        id: 'ps-flag-future',
+                        label: 'permitFuture',
+                        checked: grupos[2],
+                        onChange: (v) =>
+                            _grupos.value = [grupos[0], grupos[1], v],
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 12),
+                  SgPeriodSelector(
+                    id: 'ps-flags',
+                    label: context.tx('Período'),
+                    permitPast: grupos[0],
+                    permitCurrent: grupos[1],
+                    permitFuture: grupos[2],
+                    permitAll: false,
+                  ),
+                ],
+              ),
             ),
         // #endregion
         code: SgPeriodSelectorPageSnippets.sgPeriodSelectorGrupos,
       ),
       ShowcaseExample(
-        title: 'Período personalizado com limites',
+        title: 'Período customizado',
         description:
-            'Escolha "Periodo" para informar duas datas. minDate e maxDate limitam o calendário e fazem clamp nos períodos prontos. Enquanto o ano está incompleto, a data sai vazia.',
+            'Escolha Período para informar um intervalo de data inicial e final.',
         preview:
             // #region sg-period-selector-personalizado
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SgPeriodSelector(
-                  id: 'personalizado',
+                  id: 'ps-custom',
                   label: context.tx('Período'),
-                  minDate: DateTime(2024, 1, 1),
-                  maxDate: DateTime(2024, 12, 31),
-                  referenceDate: DateTime(2024, 6, 15),
-                  onChange: (p) => setState(
-                    () => _personalizado =
-                        '${p.label}: ${p.startDate?.toIso8601String().substring(0, 10) ?? '-'} a ${p.endDate?.toIso8601String().substring(0, 10) ?? '-'}',
-                  ),
+                  allowCustomPeriod: true,
+                  permitCurrent: false,
+                  permitPast: false,
+                  onChange: (p) =>
+                      _personalizado.value =
+                          '${p.label}: ${p.startDate?.toIso8601String().substring(0, 10) ?? '-'} a ${p.endDate?.toIso8601String().substring(0, 10) ?? '-'}',
                 ),
                 const SizedBox(height: 8),
-                Text(_personalizado),
+                ValueListenableBuilder<String>(
+                  valueListenable: _personalizado,
+                  builder: (context, resumo, _) => Text(resumo),
+                ),
               ],
             ),
         // #endregion
         code: SgPeriodSelectorPageSnippets.sgPeriodSelectorPersonalizado,
+      ),
+      ShowcaseExample(
+        title: 'Estados',
+        description: 'Estados desabilitado e obrigatório.',
+        preview:
+            // #region sg-period-selector-estados
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SgPeriodSelector(
+                  id: 'ps-disabled',
+                  label: context.tx('Período'),
+                  enabled: false,
+                ),
+                const SizedBox(height: 12),
+                SgPeriodSelector(
+                  id: 'ps-required',
+                  label: context.tx('Período'),
+                  required: true,
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgPeriodSelectorPageSnippets.sgPeriodSelectorEstados,
+      ),
+      ShowcaseExample(
+        title: 'Clamp com minDate / maxDate',
+        description:
+            'O intervalo resolvido é limitado pelos limites min/max (aqui restrito ao mês atual).',
+        preview:
+            // #region sg-period-selector-clamp
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SgPeriodSelector(
+                  id: 'ps-clamped',
+                  label: context.tx('Período'),
+                  permitPast: true,
+                  permitCurrent: true,
+                  permitFuture: true,
+                  minDate: DateTime(DateTime.now().year, DateTime.now().month, 1),
+                  maxDate: DateTime(
+                    DateTime.now().year,
+                    DateTime.now().month + 1,
+                    0,
+                  ),
+                  onChange: (p) =>
+                      _limitado.value =
+                          '${p.label}: ${p.startDate?.toIso8601String().substring(0, 10) ?? '-'} a ${p.endDate?.toIso8601String().substring(0, 10) ?? '-'}',
+                ),
+                const SizedBox(height: 8),
+                ValueListenableBuilder<String>(
+                  valueListenable: _limitado,
+                  builder: (context, resumo, _) => Text(resumo),
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgPeriodSelectorPageSnippets.sgPeriodSelectorClamp,
       ),
       ShowcaseExample(
         title: 'Idioma e data de referência',
@@ -150,17 +226,19 @@ class _SgPeriodSelectorPageState extends State<SgPeriodSelectorPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SgPeriodSelector(
-                  id: 'ingles',
-                  label: context.tx('Period'),
+                  id: 'ps-english',
+                  label: 'Period',
                   locale: 'en-US',
                   referenceDate: DateTime(2024, 2, 29),
-                  onChange: (p) => setState(
-                    () => _ingles =
-                        '${p.label}: ${p.startDate?.toIso8601String().substring(0, 10) ?? '-'} to ${p.endDate?.toIso8601String().substring(0, 10) ?? '-'}',
-                  ),
+                  onChange: (p) =>
+                      _ingles.value =
+                          '${p.label}: ${p.startDate?.toIso8601String().substring(0, 10) ?? '-'} to ${p.endDate?.toIso8601String().substring(0, 10) ?? '-'}',
                 ),
                 const SizedBox(height: 8),
-                Text(_ingles),
+                ValueListenableBuilder<String>(
+                  valueListenable: _ingles,
+                  builder: (context, resumo, _) => Text(resumo),
+                ),
               ],
             ),
         // #endregion
@@ -185,11 +263,14 @@ class _SgPeriodSelectorPageState extends State<SgPeriodSelectorPage> {
                 SgButton(
                   label: Text(context.tx('Enviar')),
                   onClick: () => _form.handleSubmit(
-                    (values) =>
-                        setState(() => _enviado = '${values['periodo']}'),
+                    (values) => _enviado.value = '${values['periodo']}',
                   ),
                 ),
-                if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),
+                ValueListenableBuilder<String>(
+                  valueListenable: _enviado,
+                  builder: (context, enviado, _) =>
+                      enviado.isEmpty ? const SizedBox() : Text('Enviado: $enviado'),
+                ),
               ],
             ),
         // #endregion

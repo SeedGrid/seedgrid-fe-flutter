@@ -14,27 +14,195 @@ class SgPanelPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final examples = <ShowcaseExample>[
       ShowcaseExample(
-        title: 'Estilos de borda',
+        title: 'Dock básico em SgPanel',
         description:
-            'O padrão é tracejada (dashed). padding é a margem externa e contentPadding o espaço interno.',
+            '`align` faz dock em relação ao pai e `width`/`height` em número viram porcentagem.',
         preview:
-            // #region sg-panel-borda
-            SgStack(
-              gap: 8,
+            // #region sg-panel-dock-basico
+            SizedBox(
+              height: 430,
+              child: SgPanel(
+                borderStyle: SgPanelBorderStyle.solid,
+                contentPadding: 12,
+                contentGap: 8,
+                children: [
+                  SgPanel(
+                    align: SgPanelAlign.top,
+                    height: 12,
+                    contentPadding: 10,
+                    children: [Text(context.tx('Cabeçalho'))],
+                  ),
+                  SgPanel(
+                    align: SgPanelAlign.left,
+                    width: 25,
+                    contentPadding: 10,
+                    children: [
+                      Text(context.tx('Menu')),
+                      Text(context.tx('Painel')),
+                      Text(context.tx('Clientes')),
+                    ],
+                  ),
+                  SgPanel(
+                    align: SgPanelAlign.right,
+                    width: '25%',
+                    contentPadding: 10,
+                    children: [
+                      Text(context.tx('Ações')),
+                      Text(context.tx('Filtrar')),
+                      Text(context.tx('Exportar')),
+                    ],
+                  ),
+                  SgPanel(
+                    align: SgPanelAlign.bottom,
+                    height: 10,
+                    contentPadding: 10,
+                    children: [Text(context.tx('Rodapé'))],
+                  ),
+                  SgPanel(
+                    align: SgPanelAlign.client,
+                    contentPadding: 10,
+                    children: [
+                      Text(context.tx('Área principal')),
+                      Text(
+                        context.tx('Esta área ocupa todo o espaço restante.'),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+        // #endregion
+        code: SgPanelPageSnippets.sgPanelDockBasico,
+      ),
+      ShowcaseExample(
+        title: 'Composição dentro de SgScreen',
+        description:
+            'Este bloco reproduz o exemplo do `teste/page.tsx`, agora dentro do showcase oficial do componente.',
+        preview:
+            // #region sg-panel-composicao
+            SgScreen(
+              fullscreen: false,
+              height: 520,
               children: [
                 SgPanel(
+                  align: SgPanelAlign.top,
+                  height: 5,
                   contentPadding: 8,
-                  children: [Text(context.tx('dashed (padrão)'))],
+                  minHeightPx: 100,
+                  contentDirection: SgPanelContentDirection.row,
+                  contentJustify: SgPanelContentJustify.end,
+                  contentAlign: SgPanelContentAlign.center,
+                  contentWrap: true,
+                  children: [
+                    SgButton(label: Text(context.tx('Salvar'))),
+                    SgButton(label: Text(context.tx('Editar'))),
+                    SgButton(label: Text(context.tx('Excluir'))),
+                  ],
+                ),
+                SgPanel(
+                  align: SgPanelAlign.left,
+                  width: 30,
+                  contentPadding: 8,
+                  children: [
+                    SgButton(label: Text(context.tx('Salvar'))),
+                    SgButton(label: Text(context.tx('Editar'))),
+                    SgButton(label: Text(context.tx('Excluir'))),
+                  ],
+                ),
+                SgPanel(
+                  align: SgPanelAlign.client,
+                  contentPadding: 12,
+                  children: [Text(context.tx('Conteúdo'))],
+                ),
+                SgPanel(
+                  align: SgPanelAlign.bottom,
+                  height: 5,
+                  contentPadding: 8,
+                  minHeightPx: 100,
+                  contentDirection: SgPanelContentDirection.row,
+                  contentAlign: SgPanelContentAlign.center,
+                  contentWrap: true,
+                  children: [
+                    SgButton(label: Text(context.tx('Salvar'))),
+                    SgButton(label: Text(context.tx('Editar'))),
+                    SgButton(label: Text(context.tx('Excluir'))),
+                  ],
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgPanelPageSnippets.sgPanelComposicao,
+      ),
+      ShowcaseExample(
+        title: 'span + rowSpan',
+        description:
+            '`span` e `rowSpan` continuam valendo apenas dentro do `SgGrid`.',
+        preview:
+            // #region sg-panel-span
+            SgGrid(
+              columns: 4,
+              gap: 8,
+              rowHeight: 90,
+              dense: true,
+              children: [
+                SgPanel(
+                  contentPadding: 10,
+                  children: const [Text('Item 1')],
+                ),
+                SgPanel(
+                  span: 2,
+                  contentPadding: 10,
+                  children: const [Text('span=2')],
+                ),
+                SgPanel(
+                  rowSpan: 2,
+                  contentPadding: 10,
+                  children: const [Text('rowSpan=2')],
+                ),
+                SgPanel(
+                  contentPadding: 10,
+                  children: const [Text('Item 4')],
+                ),
+                SgPanel(
+                  contentPadding: 10,
+                  children: const [Text('Item 5')],
+                ),
+                SgPanel(
+                  span: 2,
+                  rowSpan: 2,
+                  contentPadding: 10,
+                  children: const [Text('span=2 + rowSpan=2')],
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgPanelPageSnippets.sgPanelSpan,
+      ),
+      ShowcaseExample(
+        title: 'borderStyle + padding + contentPadding',
+        description:
+            'Diferença entre espaçamento externo do panel e espaçamento interno do conteúdo.',
+        preview:
+            // #region sg-panel-borda
+            SgGrid(
+              columns: 3,
+              gap: 4,
+              children: [
+                SgPanel(
+                  borderStyle: SgPanelBorderStyle.none,
+                  contentPadding: 12,
+                  children: const [Text('contentPadding + borderStyle="none"')],
                 ),
                 SgPanel(
                   borderStyle: SgPanelBorderStyle.solid,
-                  contentPadding: 8,
-                  children: [Text(context.tx('solid'))],
+                  contentPadding: 12,
+                  children: const [Text('contentPadding + borderStyle="solid"')],
                 ),
                 SgPanel(
-                  borderStyle: SgPanelBorderStyle.none,
-                  contentPadding: 8,
-                  children: [Text(context.tx('none'))],
+                  borderStyle: SgPanelBorderStyle.dashed,
+                  padding: 12,
+                  contentPadding: 12,
+                  children: const [Text('padding + contentPadding + dashed')],
                 ),
               ],
             ),
@@ -42,44 +210,148 @@ class SgPanelPage extends StatelessWidget {
         code: SgPanelPageSnippets.sgPanelBorda,
       ),
       ShowcaseExample(
-        title: 'Docking',
-        description:
-            'Filhos SgPanel com align (top, left, client, right, bottom) ocupam as bordas e o miolo; width e height são porcentagens.',
+        title: 'scrollable + scrollbarGutter',
+        description: 'Scroll explícito apenas quando necessário.',
         preview:
-            // #region sg-panel-docking
-            SizedBox(
-              height: 260,
-              child: SgPanel(
-                borderStyle: SgPanelBorderStyle.solid,
-                children: [
-                  SgPanel(
-                    align: SgPanelAlign.top,
-                    height: 15,
-                    borderStyle: SgPanelBorderStyle.solid,
-                    children: [Text(context.tx('top'))],
+            // #region sg-panel-rolagem
+            SgGrid(
+              columns: 2,
+              gap: 4,
+              children: [
+                SizedBox(
+                  height: 192,
+                  child: SgPanel(
+                    scrollable: true,
+                    contentPadding: 10,
+                    children: [
+                      for (var i = 1; i <= 10; i++)
+                        SgPanel(
+                          borderStyle: SgPanelBorderStyle.solid,
+                          contentPadding: 8,
+                          children: [Text('scrollable=true - linha $i')],
+                        ),
+                    ],
                   ),
-                  SgPanel(
-                    align: SgPanelAlign.left,
-                    width: 25,
-                    borderStyle: SgPanelBorderStyle.solid,
-                    children: [Text(context.tx('left'))],
+                ),
+                SizedBox(
+                  height: 192,
+                  child: SgPanel(
+                    scrollable: 'auto',
+                    contentPadding: 10,
+                    children: [
+                      for (var i = 1; i <= 10; i++)
+                        SgPanel(
+                          borderStyle: SgPanelBorderStyle.solid,
+                          contentPadding: 8,
+                          children: [Text('scrollable="auto" - linha $i')],
+                        ),
+                    ],
                   ),
-                  SgPanel(
-                    align: SgPanelAlign.client,
-                    borderStyle: SgPanelBorderStyle.solid,
-                    children: [Text(context.tx('client'))],
+                ),
+                SizedBox(
+                  height: 192,
+                  child: SgPanel(
+                    scrollable: 'y',
+                    contentPadding: 10,
+                    children: [
+                      for (var i = 1; i <= 15; i++)
+                        SgPanel(
+                          borderStyle: SgPanelBorderStyle.solid,
+                          contentPadding: 8,
+                          children: [Text('Item vertical $i')],
+                        ),
+                    ],
                   ),
-                  SgPanel(
-                    align: SgPanelAlign.bottom,
-                    height: 15,
-                    borderStyle: SgPanelBorderStyle.solid,
-                    children: [Text(context.tx('bottom'))],
+                ),
+                SizedBox(
+                  height: 192,
+                  child: SgPanel(
+                    scrollable: 'x',
+                    scrollbarGutter: true,
+                    contentPadding: 10,
+                    contentDirection: SgPanelContentDirection.row,
+                    contentGap: 8,
+                    children: [
+                      for (var i = 1; i <= 12; i++)
+                        SizedBox(
+                          width: 96,
+                          height: 96,
+                          child: SgPanel(
+                            borderStyle: SgPanelBorderStyle.solid,
+                            contentAlign: SgPanelContentAlign.center,
+                            children: [Text('Box $i')],
+                          ),
+                        ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
         // #endregion
-        code: SgPanelPageSnippets.sgPanelDocking,
+        code: SgPanelPageSnippets.sgPanelRolagem,
+      ),
+      ShowcaseExample(
+        title: 'Exemplo combinado',
+        description: 'Exemplo único misturando dock, mínimos em pixel e grid.',
+        preview:
+            // #region sg-panel-combinado
+            SgStack(
+              gap: 10,
+              children: [
+                SizedBox(
+                  height: 260,
+                  child: SgPanel(
+                    contentPadding: 8,
+                    contentGap: 8,
+                    children: [
+                      SgPanel(
+                        align: SgPanelAlign.top,
+                        height: 10,
+                        minHeightPx: 56,
+                        borderStyle: SgPanelBorderStyle.solid,
+                        contentPadding: 12,
+                        children: [Text(context.tx('Cabeçalho'))],
+                      ),
+                      SgPanel(
+                        align: SgPanelAlign.left,
+                        width: 18,
+                        minWidthPx: 120,
+                        borderStyle: SgPanelBorderStyle.dashed,
+                        contentPadding: 8,
+                        scrollable: 'y',
+                        children: [Text(context.tx('Menu'))],
+                      ),
+                      SgPanel(
+                        align: SgPanelAlign.client,
+                        borderStyle: SgPanelBorderStyle.none,
+                        contentPadding: 10,
+                        scrollable: 'auto',
+                        scrollbarGutter: true,
+                        children: [Text(context.tx('Conteúdo'))],
+                      ),
+                    ],
+                  ),
+                ),
+                SgGrid(
+                  columns: 3,
+                  gap: 8,
+                  children: [
+                    SgPanel(
+                      span: 2,
+                      contentPadding: 12,
+                      children: const [Text('span=2')],
+                    ),
+                    SgPanel(
+                      rowSpan: 2,
+                      contentPadding: 12,
+                      children: const [Text('rowSpan=2')],
+                    ),
+                  ],
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgPanelPageSnippets.sgPanelCombinado,
       ),
       ShowcaseExample(
         title: 'Conteúdo em linha',
@@ -105,24 +377,6 @@ class SgPanelPage extends StatelessWidget {
             ),
         // #endregion
         code: SgPanelPageSnippets.sgPanelConteudo,
-      ),
-      ShowcaseExample(
-        title: 'Rolagem',
-        description:
-            'scrollable: true (ou "y") rola o conteúdo na vertical quando ele passa da altura do painel.',
-        preview:
-            // #region sg-panel-rolagem
-            SizedBox(
-              height: 120,
-              child: SgPanel(
-                borderStyle: SgPanelBorderStyle.solid,
-                scrollable: true,
-                contentPadding: 8,
-                children: [for (var i = 1; i <= 12; i++) Text('Linha $i')],
-              ),
-            ),
-        // #endregion
-        code: SgPanelPageSnippets.sgPanelRolagem,
       ),
     ];
 

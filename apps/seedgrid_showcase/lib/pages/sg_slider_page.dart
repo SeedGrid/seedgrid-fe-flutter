@@ -15,16 +15,21 @@ class SgSliderPage extends StatefulWidget {
 }
 
 class _SgSliderPageState extends State<SgSliderPage> {
-  num _volume = 30;
-  num _passo = 50;
+  final ValueNotifier<num> _basico = ValueNotifier<num>(50);
+  final ValueNotifier<num> _controlado = ValueNotifier<num>(35);
+  final ValueNotifier<num> _passo = ValueNotifier<num>(25);
   final SgFormController _form = SgFormController(
     defaultValues: {'brilho': 40},
   );
-  String _enviado = '';
+  final ValueNotifier<String> _enviado = ValueNotifier<String>('');
 
   @override
   void dispose() {
     _form.dispose();
+    _basico.dispose();
+    _controlado.dispose();
+    _passo.dispose();
+    _enviado.dispose();
     super.dispose();
   }
 
@@ -34,81 +39,167 @@ class _SgSliderPageState extends State<SgSliderPage> {
       ShowcaseExample(
         title: 'Básico',
         description:
-            'minValue, maxValue e defaultValue; onChange entrega o número a cada mudança.',
+            'Define minValue e maxValue com um valor inicial via defaultValue.',
         preview:
             // #region sg-slider-basico
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SgSlider(
-                  id: 'volume',
-                  minValue: 0,
-                  maxValue: 100,
-                  defaultValue: 30,
-                  ariaLabel: 'Volume',
-                  onChange: (v) => setState(() => _volume = v),
-                ),
-                Text('Volume: $_volume'),
-              ],
+            ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 384),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SgSlider(
+                    id: 'slider-basic',
+                    minValue: 0,
+                    maxValue: 100,
+                    defaultValue: 50,
+                    onChange: (v) => _basico.value = v,
+                  ),
+                  ValueListenableBuilder<num>(
+                    valueListenable: _basico,
+                    builder: (context, valor, _) =>
+                        Text('${context.tx('Valor atual')}: $valor'),
+                  ),
+                ],
+              ),
             ),
         // #endregion
         code: SgSliderPageSnippets.sgSliderBasico,
       ),
       ShowcaseExample(
-        title: 'Passo (step)',
-        description:
-            'O valor só assume múltiplos do passo, a partir de minValue.',
+        title: 'Controle externo',
+        description: 'O valor pode ser definido externamente pela prop value.',
         preview:
-            // #region sg-slider-passo
+            // #region sg-slider-controle-externo
+            ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 384),
+              child: ValueListenableBuilder<num>(
+                valueListenable: _controlado,
+                builder: (context, valor, _) => Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SgSlider(
+                      id: 'slider-controlled',
+                      minValue: 0,
+                      maxValue: 100,
+                      value: valor,
+                      onChange: (v) => _controlado.value = v,
+                    ),
+                    const SizedBox(height: 12),
+                    Wrap(
+                      spacing: 8,
+                      runSpacing: 8,
+                      children: [
+                        SgButton(
+                          size: SgSize.sm,
+                          appearance: SgAppearance.outline,
+                          label: Text(context.tx('Mín')),
+                          onClick: () => _controlado.value = 0,
+                        ),
+                        SgButton(
+                          size: SgSize.sm,
+                          appearance: SgAppearance.outline,
+                          label: Text(context.tx('Meio')),
+                          onClick: () => _controlado.value = 50,
+                        ),
+                        SgButton(
+                          size: SgSize.sm,
+                          appearance: SgAppearance.outline,
+                          label: Text(context.tx('Máx')),
+                          onClick: () => _controlado.value = 100,
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 8),
+                    Text('${context.tx('Valor controlado')}: $valor'),
+                  ],
+                ),
+              ),
+            ),
+        // #endregion
+        code: SgSliderPageSnippets.sgSliderControleExterno,
+      ),
+      ShowcaseExample(
+        title: 'Passo e largura',
+        description: 'Mostra step com width numérica e width em string CSS.',
+        preview:
+            // #region sg-slider-passo-largura
+            ValueListenableBuilder<num>(
+              valueListenable: _passo,
+              builder: (context, valor, _) => Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SgSlider(
+                    id: 'slider-step-width-number',
+                    minValue: 0,
+                    maxValue: 60,
+                    step: 5,
+                    width: 320,
+                    value: valor,
+                    onChange: (v) => _passo.value = v,
+                  ),
+                  const SgSlider(
+                    id: 'slider-step-width-string',
+                    minValue: -20,
+                    maxValue: 20,
+                    step: 2,
+                    width: '18rem',
+                    defaultValue: 4,
+                  ),
+                  Text('${context.tx('Valor com step 5')}: $valor'),
+                ],
+              ),
+            ),
+        // #endregion
+        code: SgSliderPageSnippets.sgSliderPassoLargura,
+      ),
+      ShowcaseExample(
+        title: 'ariaLabel e desabilitado',
+        description: 'Mostra acessibilidade (ariaLabel) e estado desabilitado.',
+        preview:
+            // #region sg-slider-aria-desabilitado
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SgSlider(
-                  id: 'passo',
+                  id: 'slider-aria',
                   minValue: 0,
                   maxValue: 100,
-                  step: 25,
-                  defaultValue: 50,
-                  onChange: (v) => setState(() => _passo = v),
+                  defaultValue: 40,
+                  width: '20rem',
+                  ariaLabel: context.tx('Nível de prioridade'),
                 ),
-                Text('Valor: $_passo'),
+                SgSlider(
+                  id: 'slider-disabled',
+                  minValue: 0,
+                  maxValue: 100,
+                  defaultValue: 65,
+                  enabled: false,
+                  width: '20rem',
+                  ariaLabel: context.tx('Slider desabilitado'),
+                ),
               ],
             ),
         // #endregion
-        code: SgSliderPageSnippets.sgSliderPasso,
+        code: SgSliderPageSnippets.sgSliderAriaDesabilitado,
       ),
       ShowcaseExample(
-        title: 'Largura, desabilitado e erro',
+        title: 'Mensagem de erro',
+        description:
+            'O texto de error aparece abaixo do slider e marca o campo como inválido.',
         preview:
-            // #region sg-slider-estados
-            const Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SgSlider(
-                  id: 'largura',
-                  minValue: 0,
-                  maxValue: 10,
-                  defaultValue: 4,
-                  width: '50%',
-                ),
-                SgSlider(
-                  id: 'off',
-                  minValue: 0,
-                  maxValue: 10,
-                  defaultValue: 7,
-                  enabled: false,
-                ),
-                SgSlider(
-                  id: 'erro',
-                  minValue: 0,
-                  maxValue: 10,
-                  defaultValue: 9,
-                  error: 'Valor alto demais',
-                ),
-              ],
+            // #region sg-slider-erro
+            ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 384),
+              child: SgSlider(
+                id: 'slider-error',
+                minValue: 0,
+                maxValue: 10,
+                defaultValue: 9,
+                error: context.tx('Valor alto demais'),
+              ),
             ),
         // #endregion
-        code: SgSliderPageSnippets.sgSliderEstados,
+        code: SgSliderPageSnippets.sgSliderErro,
       ),
       ShowcaseExample(
         title: 'Dentro de um formulário',
@@ -130,11 +221,15 @@ class _SgSliderPageState extends State<SgSliderPage> {
                 SgButton(
                   label: Text(context.tx('Enviar')),
                   onClick: () => _form.handleSubmit(
-                    (values) =>
-                        setState(() => _enviado = '${values['brilho']}'),
+                    (values) => _enviado.value = '${values['brilho']}',
                   ),
                 ),
-                if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),
+                ValueListenableBuilder<String>(
+                  valueListenable: _enviado,
+                  builder: (context, enviado, _) => enviado.isEmpty
+                      ? const SizedBox()
+                      : Text('Enviado: $enviado'),
+                ),
               ],
             ),
         // #endregion
