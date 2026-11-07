@@ -15,9 +15,9 @@ class SgDockLayoutPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final examples = <ShowcaseExample>[
       ShowcaseExample(
-        title: 'Zonas ao redor da área de trabalho',
+        title: 'Básico',
         description:
-            'O SgDockLayout só guarda o estado das toolbars; quem posiciona as zonas é o seu layout (no React, classes CSS).',
+            'Quatro zonas (top/bottom/left/right) com toolbars arrastáveis.',
         preview:
             // #region sg-dock-layout-basico
             SizedBox(
@@ -54,8 +54,8 @@ class SgDockLayoutPage extends StatelessWidget {
                       Positioned(
                         left: 0,
                         top: 60,
-                        bottom: 0,
-                        width: 150,
+                        bottom: 60,
+                        width: 100,
                         child: SgDockZone(
                           zone: SgDockZoneId.left,
                           children: [
@@ -72,7 +72,52 @@ class SgDockLayoutPage extends StatelessWidget {
                           ],
                         ),
                       ),
-                      Positioned.fill(
+                      Positioned(
+                        right: 0,
+                        top: 60,
+                        bottom: 60,
+                        width: 100,
+                        child: SgDockZone(
+                          zone: SgDockZoneId.right,
+                          children: [
+                            SgButton(
+                              label: Text(context.tx('Usuários')),
+                              size: SgSize.sm,
+                              appearance: SgAppearance.ghost,
+                            ),
+                            SgButton(
+                              label: Text(context.tx('Ajustes')),
+                              size: SgSize.sm,
+                              appearance: SgAppearance.ghost,
+                            ),
+                          ],
+                        ),
+                      ),
+                      Positioned(
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        child: SgDockZone(
+                          zone: SgDockZoneId.bottom,
+                          children: [
+                            SgButton(
+                              label: Text(context.tx('Painel')),
+                              size: SgSize.sm,
+                              appearance: SgAppearance.outline,
+                            ),
+                            SgButton(
+                              label: Text(context.tx('Relatório')),
+                              size: SgSize.sm,
+                              appearance: SgAppearance.outline,
+                            ),
+                          ],
+                        ),
+                      ),
+                      Positioned(
+                        left: 100,
+                        right: 100,
+                        top: 60,
+                        bottom: 60,
                         child: SgDockZone(
                           zone: SgDockZoneId.free,
                           child: Text(context.tx('Área central livre')),
@@ -89,7 +134,7 @@ class SgDockLayoutPage extends StatelessWidget {
       ShowcaseExample(
         title: 'Estado das toolbars (defaultState)',
         description:
-            'Cada toolbar tem zona, ordem e recolhimento. O controlador oferece as mesmas operações do React.',
+            'Cada toolbar tem zona, ordem e recolhimento; o defaultState define o estado inicial.',
         preview:
             // #region sg-dock-layout-estado
             SgDockLayout(

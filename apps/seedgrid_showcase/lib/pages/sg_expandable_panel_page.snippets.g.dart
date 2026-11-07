@@ -9,82 +9,162 @@ Column(
   crossAxisAlignment: CrossAxisAlignment.start,
   children: [
     SgButton(
-      label: Text(context.tx('Abrir painel acessível')),
-      onClick: () => setState(() => _acessivel = true),
+      label: Text(context.tx('Abrir painel com fade')),
+      onClick: () => _acessivel.value = true,
     ),
-    SgExpandablePanel(
-      mode: SgExpandablePanelMode.overlay,
-      expandTo: SgExpandablePanelExpandTo.right,
-      open: _acessivel,
-      onOpenChange: (v) => setState(() => _acessivel = v),
-      ariaLabel: 'Filtros avançados',
-      trapFocus: true,
-      closeOnEsc: false,
-      animation: const SgExpandablePanelAnimation(
-        type: SgExpandablePanelAnimationType.fade,
-        durationMs: 300,
-      ),
-      header: Text(context.tx('Filtros')),
-      footer: SgButton(
-        label: Text(context.tx('Fechar')),
-        onClick: () => setState(() => _acessivel = false),
-      ),
-      child: Text(context.tx('Esc não fecha; use o botão.')),
-    ),
-  ],
-)
-''';
-
-  /// Region `sg-expandable-inferior`.
-  static const String sgExpandableInferior = r'''
-Column(
-  crossAxisAlignment: CrossAxisAlignment.start,
-  children: [
-    SgButton(
-      label: Text(_inferior ? 'Recolher' : 'Expandir'),
-      onClick: () => setState(() => _inferior = !_inferior),
-    ),
-    const SizedBox(height: 8),
-    SgExpandablePanel(
-      expandTo: SgExpandablePanelExpandTo.bottom,
-      open: _inferior,
-      size: const SgExpandablePanelSize(defaultSize: 150),
-      header: Text(context.tx('Detalhes')),
-      footer: Text(context.tx('Rodapé')),
-      rounded: SgExpandablePanelRounded.xl,
-      child: Text(
-        context.tx('Mais informações aparecem aqui embaixo.'),
+    ValueListenableBuilder<bool>(
+      valueListenable: _acessivel,
+      builder: (context, open, _) => SgExpandablePanel(
+        mode: SgExpandablePanelMode.overlay,
+        expandTo: SgExpandablePanelExpandTo.top,
+        placement: SgExpandablePanelPlacement.center,
+        open: open,
+        onOpenChange: (v) => _acessivel.value = v,
+        role: SgExpandablePanelRole.dialog,
+        ariaLabel: 'Painel de notificações',
+        animation: const SgExpandablePanelAnimation(
+          type: SgExpandablePanelAnimationType.fade,
+          durationMs: 260,
+        ),
+        closeOnOutsideClick: false,
+        trapFocus: true,
+        size: const SgExpandablePanelSize(
+          defaultSize: 280,
+          min: 180,
+          max: 420,
+        ),
+        header: Text(context.tx('Notificações')),
+        footer: SgButton(
+          size: SgSize.sm,
+          label: Text(context.tx('Fechar')),
+          onClick: () => _acessivel.value = false,
+        ),
+        child: Text(
+          context.tx(
+            'Props: role, ariaLabel, animation fade e closeOnOutsideClick=false.',
+          ),
+        ),
       ),
     ),
   ],
 )
 ''';
 
-  /// Region `sg-expandable-lateral`.
-  static const String sgExpandableLateral = r'''
+  /// Region `sg-expandable-estilo`.
+  static const String sgExpandableEstilo = r'''
+ListenableBuilder(
+  listenable: _estiloChave,
+  builder: (context, _) => Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Wrap(
+        spacing: 8,
+        crossAxisAlignment: WrapCrossAlignment.center,
+        children: [
+          SgButton(
+            size: SgSize.sm,
+            appearance: SgAppearance.outline,
+            label: Text(context.tx('Remontar defaultOpen')),
+            onClick: () {
+              _estiloAberto.value = true;
+              _estiloChave.value++;
+            },
+          ),
+          ValueListenableBuilder<bool>(
+            valueListenable: _estiloAberto,
+            builder: (context, open, _) => Text(
+              '${context.tx('Estado reportado')}: ${open ? context.tx('aberto') : context.tx('fechado')}',
+            ),
+          ),
+        ],
+      ),
+      SgExpandablePanel(
+        key: ValueKey(_estiloChave.value),
+        mode: SgExpandablePanelMode.inline,
+        expandTo: SgExpandablePanelExpandTo.bottom,
+        defaultOpen: true,
+        onOpenChange: (v) => _estiloAberto.value = v,
+        size: const SgExpandablePanelSize(
+          defaultSize: 160,
+          min: 100,
+          max: 240,
+        ),
+        animation: const SgExpandablePanelAnimation(
+          type: SgExpandablePanelAnimationType.slide,
+          durationMs: 220,
+        ),
+        elevation: SgExpandablePanelElevation.lg,
+        border: false,
+        rounded: SgExpandablePanelRounded.xl,
+        header: Text(context.tx('Painel estilizado')),
+        footer: Text(context.tx('Rodapé do painel estilizado.')),
+        child: Text(
+          context.tx(
+            'Props visuais: elevation, border e rounded. Prop de estado: defaultOpen.',
+          ),
+        ),
+      ),
+    ],
+  ),
+)
+''';
+
+  /// Region `sg-expandable-inline`.
+  static const String sgExpandableInline = r'''
 SizedBox(
-  height: 200,
+  height: 300,
   child: Row(
     crossAxisAlignment: CrossAxisAlignment.stretch,
     children: [
-      SgExpandablePanel(
-        expandTo: SgExpandablePanelExpandTo.right,
-        open: _lateral,
-        onOpenChange: (v) => setState(() => _lateral = v),
-        size: const SgExpandablePanelSize(defaultSize: 180),
-        header: Text(context.tx('Filtros')),
-        child: Text(context.tx('Conteúdo do painel')),
-      ),
-      const SizedBox(width: 12),
       Expanded(
-        child: Align(
-          alignment: Alignment.topLeft,
-          child: SgButton(
-            label: Text(
-              _lateral ? 'Fechar painel' : 'Abrir painel',
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(context.tx('Área principal')),
+            const SizedBox(height: 8),
+            Text(
+              context.tx('Exemplo inline controlado com resize.'),
             ),
-            onClick: () => setState(() => _lateral = !_lateral),
+            const SizedBox(height: 8),
+            ValueListenableBuilder<bool>(
+              valueListenable: _inline,
+              builder: (context, open, _) => SgButton(
+                size: SgSize.sm,
+                label: Text(
+                  open
+                      ? context.tx('Fechar inspector')
+                      : context.tx('Abrir inspector'),
+                ),
+                onClick: () => _inline.value = !open,
+              ),
+            ),
+            const SizedBox(height: 8),
+            ValueListenableBuilder<num>(
+              valueListenable: _largura,
+              builder: (context, w, _) => Text(
+                '${context.tx('Largura atual')}: ${w.round()}px',
+              ),
+            ),
+          ],
+        ),
+      ),
+      ValueListenableBuilder<bool>(
+        valueListenable: _inline,
+        builder: (context, open, _) => SgExpandablePanel(
+          mode: SgExpandablePanelMode.inline,
+          expandTo: SgExpandablePanelExpandTo.left,
+          open: open,
+          onOpenChange: (v) => _inline.value = v,
+          size: const SgExpandablePanelSize(
+            defaultSize: 160,
+            min: 120,
+            max: 300,
           ),
+          resizable: true,
+          onSizeChange: (v) => _largura.value = v,
+          header: Text(context.tx('Inspector')),
+          footer: Text(context.tx('Rodapé inline')),
+          child: Text(context.tx('Conteúdo do inspector.')),
         ),
       ),
     ],
@@ -98,70 +178,65 @@ Column(
   crossAxisAlignment: CrossAxisAlignment.start,
   children: [
     SgButton(
-      label: Text(context.tx('Abrir gaveta')),
-      onClick: () => setState(() => _overlay = true),
+      label: Text(context.tx('Abrir drawer')),
+      onClick: () => _gaveta.value = true,
     ),
-    SgExpandablePanel(
-      mode: SgExpandablePanelMode.overlay,
-      expandTo: SgExpandablePanelExpandTo.right,
-      open: _overlay,
-      onOpenChange: (v) => setState(() => _overlay = v),
-      header: Text(context.tx('Menu')),
-      footer: SgButton(
-        label: Text(context.tx('Fechar')),
-        onClick: () => setState(() => _overlay = false),
+    ValueListenableBuilder<bool>(
+      valueListenable: _gaveta,
+      builder: (context, open, _) => SgExpandablePanel(
+        mode: SgExpandablePanelMode.overlay,
+        expandTo: SgExpandablePanelExpandTo.left,
+        placement: SgExpandablePanelPlacement.center,
+        open: open,
+        onOpenChange: (v) => _gaveta.value = v,
+        size: const SgExpandablePanelSize(
+          defaultSize: 360,
+          min: 260,
+          max: 640,
+        ),
+        resizable: true,
+        closeOnEsc: true,
+        closeOnOutsideClick: true,
+        trapFocus: true,
+        showBackdrop: true,
+        handle: const SizedBox(
+          width: 48,
+          height: 6,
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              color: Colors.grey,
+              borderRadius: BorderRadius.all(Radius.circular(3)),
+            ),
+          ),
+        ),
+        header: Text(context.tx('Drawer com foco preso')),
+        footer: SgButton(
+          size: SgSize.sm,
+          label: Text(context.tx('Fechar')),
+          onClick: () => _gaveta.value = false,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              context.tx(
+                'Props: placement, closeOnEsc, closeOnOutsideClick, trapFocus e showBackdrop.',
+              ),
+            ),
+            SgCheckboxGroup(
+              id: 'somente-ativos',
+              source: [
+                SgCheckboxGroupOption(
+                  label: context.tx('Somente ativos'),
+                  value: 'ativos',
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
-      child: Text(context.tx('Itens do menu lateral.')),
     ),
   ],
-)
-''';
-
-  /// Region `sg-expandable-redimensionavel`.
-  static const String sgExpandableRedimensionavel = r'''
-SizedBox(
-  height: 140,
-  child: Row(
-    crossAxisAlignment: CrossAxisAlignment.stretch,
-    children: [
-      SgExpandablePanel(
-        expandTo: SgExpandablePanelExpandTo.right,
-        open: _redimensionavel,
-        resizable: true,
-        size: const SgExpandablePanelSize(
-          defaultSize: 260,
-          min: 160,
-          max: 360,
-        ),
-        onSizeChange: (v) => setState(() => _tamanho = v),
-        child: Text(context.tx('Arraste a borda')),
-      ),
-    ],
-  ),
-)
-''';
-
-  /// Region `sg-expandable-redimensionavel-altura`.
-  static const String sgExpandableRedimensionavelAltura = r'''
-SizedBox(
-  height: 300,
-  child: Column(
-    crossAxisAlignment: CrossAxisAlignment.stretch,
-    children: [
-      SgExpandablePanel(
-        expandTo: SgExpandablePanelExpandTo.bottom,
-        defaultOpen: true,
-        resizable: true,
-        size: const SgExpandablePanelSize(
-          defaultSize: 200,
-          min: 60,
-          max: 260,
-        ),
-        onSizeChange: (v) => setState(() => _altura = v),
-        child: Text(context.tx('Arraste a borda de baixo')),
-      ),
-    ],
-  ),
 )
 ''';
 
@@ -171,25 +246,41 @@ Column(
   crossAxisAlignment: CrossAxisAlignment.start,
   children: [
     SgButton(
-      label: Text(context.tx('Abrir painel')),
-      onClick: () => setState(() => _semFundo = true),
+      appearance: SgAppearance.outline,
+      label: Text(context.tx('Abrir sem backdrop')),
+      onClick: () => _semFundo.value = true,
     ),
-    SgExpandablePanel(
-      mode: SgExpandablePanelMode.overlay,
-      expandTo: SgExpandablePanelExpandTo.left,
-      open: _semFundo,
-      onOpenChange: (v) => setState(() => _semFundo = v),
-      showBackdrop: false,
-      closeOnOutsideClick: false,
-      animation: const SgExpandablePanelAnimation(
-        type: SgExpandablePanelAnimationType.none,
+    ValueListenableBuilder<bool>(
+      valueListenable: _semFundo,
+      builder: (context, open, _) => SgExpandablePanel(
+        mode: SgExpandablePanelMode.overlay,
+        expandTo: SgExpandablePanelExpandTo.bottom,
+        open: open,
+        onOpenChange: (v) => _semFundo.value = v,
+        showBackdrop: false,
+        closeOnOutsideClick: false,
+        closeOnEsc: true,
+        animation: const SgExpandablePanelAnimation(
+          type: SgExpandablePanelAnimationType.none,
+          durationMs: 0,
+        ),
+        size: const SgExpandablePanelSize(
+          defaultSize: 220,
+          min: 160,
+          max: 360,
+        ),
+        header: Text(context.tx('Sem backdrop')),
+        footer: SgButton(
+          size: SgSize.sm,
+          label: Text(context.tx('Fechar')),
+          onClick: () => _semFundo.value = false,
+        ),
+        child: Text(
+          context.tx(
+            'Props: showBackdrop=false e animation type none.',
+          ),
+        ),
       ),
-      header: Text(context.tx('Sem fundo')),
-      footer: SgButton(
-        label: Text(context.tx('Fechar')),
-        onClick: () => setState(() => _semFundo = false),
-      ),
-      child: Text(context.tx('Só o botão fecha este painel.')),
     ),
   ],
 )

@@ -6,14 +6,37 @@ abstract final class SgGridPageSnippets {
   /// Region `sg-grid-auto`.
   static const String sgGridAuto = r'''
 SgGrid(
-  minItemWidth: 140,
-  gap: 8,
+  minItemWidth: 256,
+  gap: 12,
+  rowHeight: 120,
+  dense: true,
   children: [
-    for (var i = 1; i <= 5; i++)
-      SgPanel(
-        borderStyle: SgPanelBorderStyle.solid,
-        children: [Text('Cartão $i')],
-      ),
+    SgPanel(
+      borderStyle: SgPanelBorderStyle.solid,
+      children: const [Text('Card A')],
+    ),
+    SgPanel(
+      rowSpan: 2,
+      borderStyle: SgPanelBorderStyle.solid,
+      children: const [Text('Card B (rowSpan 2)')],
+    ),
+    SgPanel(
+      borderStyle: SgPanelBorderStyle.solid,
+      children: const [Text('Card C')],
+    ),
+    SgPanel(
+      span: 2,
+      borderStyle: SgPanelBorderStyle.solid,
+      children: const [Text('Card D (span 2)')],
+    ),
+    SgPanel(
+      borderStyle: SgPanelBorderStyle.solid,
+      children: const [Text('Card E')],
+    ),
+    SgPanel(
+      borderStyle: SgPanelBorderStyle.solid,
+      children: const [Text('Card F')],
+    ),
   ],
 )
 ''';
@@ -22,13 +45,33 @@ SgGrid(
   static const String sgGridBreakpoints = r'''
 SgGrid(
   columns: const {'base': 1, 'sm': 2, 'md': 3, 'lg': 4},
-  gap: 8,
+  gap: 12,
   children: [
-    for (var i = 1; i <= 8; i++)
-      SgPanel(
-        borderStyle: SgPanelBorderStyle.solid,
-        children: [Text('Item $i')],
-      ),
+    SgPanel(
+      borderStyle: SgPanelBorderStyle.solid,
+      children: const [Text('Card 1')],
+    ),
+    SgPanel(
+      borderStyle: SgPanelBorderStyle.solid,
+      children: const [Text('Card 2')],
+    ),
+    SgPanel(
+      span: 2,
+      borderStyle: SgPanelBorderStyle.solid,
+      children: const [Text('Card 3 (span 2)')],
+    ),
+    SgPanel(
+      borderStyle: SgPanelBorderStyle.solid,
+      children: const [Text('Card 4')],
+    ),
+    SgPanel(
+      borderStyle: SgPanelBorderStyle.solid,
+      children: const [Text('Card 5')],
+    ),
+    SgPanel(
+      borderStyle: SgPanelBorderStyle.solid,
+      children: const [Text('Card 6')],
+    ),
   ],
 )
 ''';
@@ -68,34 +111,6 @@ SgGrid(
       children: [Text(context.tx('largo'))],
     ),
     Text(context.tx('preenche o buraco')),
-  ],
-)
-''';
-
-  /// Region `sg-grid-span`.
-  static const String sgGridSpan = r'''
-SgGrid(
-  columns: 3,
-  gap: 8,
-  children: [
-    SgPanel(
-      span: 2,
-      borderStyle: SgPanelBorderStyle.solid,
-      children: [Text(context.tx('span: 2'))],
-    ),
-    SgPanel(
-      rowSpan: 2,
-      borderStyle: SgPanelBorderStyle.solid,
-      children: [Text(context.tx('rowSpan: 2'))],
-    ),
-    SgPanel(
-      borderStyle: SgPanelBorderStyle.solid,
-      children: const [Text('A')],
-    ),
-    SgPanel(
-      borderStyle: SgPanelBorderStyle.solid,
-      children: const [Text('B')],
-    ),
   ],
 )
 ''';

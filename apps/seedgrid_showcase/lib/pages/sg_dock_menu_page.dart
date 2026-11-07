@@ -8,173 +8,961 @@ import '../src/sg_showcase_page.dart';
 import '../src/showcase_i18n.dart';
 import 'sg_dock_menu_page.snippets.g.dart';
 
-class SgDockMenuPage extends StatelessWidget {
+class SgDockMenuPage extends StatefulWidget {
   const SgDockMenuPage({super.key});
+
+  @override
+  State<SgDockMenuPage> createState() => _SgDockMenuPageState();
+}
+
+class _SgDockMenuPageState extends State<SgDockMenuPage> {
+  final ValueNotifier<int> _mail = ValueNotifier(5);
+  final ValueNotifier<int> _notificacoes = ValueNotifier(12);
+  final ValueNotifier<List<String>> _log = ValueNotifier(const []);
+
+  @override
+  void dispose() {
+    _mail.dispose();
+    _notificacoes.dispose();
+    _log.dispose();
+    super.dispose();
+  }
+
+  void _registrar(String label) {
+    final now = TimeOfDay.now().format(context);
+    _log.value = ['[$now] $label clicked', ..._log.value].take(10).toList();
+  }
 
   @override
   Widget build(BuildContext context) {
     final examples = <ShowcaseExample>[
       ShowcaseExample(
-        title: 'Dock básico',
-        description:
-            'Ancorado embaixo ao centro. Passe o mouse (desktop/web) para ampliar o item e ver o rótulo; em toque não há zoom.',
+        title: 'Básico',
+        description: 'Dock padrão na base central com itens clicáveis.',
         preview:
             // #region sg-dock-menu-basico
             SizedBox(
-              height: 220,
-              child: Stack(
-                children: [
-                  SgDockMenu(
-                    items: [
-                      SgDockMenuItem(
-                        id: 'home',
-                        icon: const Icon(Icons.home),
-                        label: context.tx('Início'),
-                        onClick: () {},
-                      ),
-                      SgDockMenuItem(
-                        id: 'search',
-                        icon: const Icon(Icons.search),
-                        label: context.tx('Buscar'),
-                        onClick: () {},
-                      ),
-                      SgDockMenuItem(
-                        id: 'settings',
-                        icon: const Icon(Icons.settings),
-                        label: context.tx('Ajustes'),
-                        onClick: () {},
-                      ),
-                    ],
-                  ),
-                ],
+              height: 240,
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.black26),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Stack(
+                  children: [
+                    SgDockMenu(
+                      position: SgDockMenuPosition.centerBottom,
+                      items: [
+                        SgDockMenuItem(
+                          id: 'home',
+                          icon: const Icon(Icons.home),
+                          label: 'Home',
+                          onClick: () => toast.info('Home clicked'),
+                        ),
+                        SgDockMenuItem(
+                          id: 'mail',
+                          icon: const Icon(Icons.mail),
+                          label: 'Mail',
+                          badge: 5,
+                          onClick: () => toast.info('Mail clicked'),
+                        ),
+                        SgDockMenuItem(
+                          id: 'notifications',
+                          icon: const Icon(Icons.notifications),
+                          label: 'Notifications',
+                          badge: 12,
+                          onClick: () => toast.info('Notifications clicked'),
+                        ),
+                        SgDockMenuItem(
+                          id: 'settings',
+                          icon: const Icon(Icons.settings),
+                          label: 'Settings',
+                          onClick: () => toast.info('Settings clicked'),
+                        ),
+                        SgDockMenuItem(
+                          id: 'profile',
+                          icon: const Icon(Icons.person),
+                          label: 'Profile',
+                          onClick: () => toast.info('Profile clicked'),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
         // #endregion
         code: SgDockMenuPageSnippets.sgDockMenuBasico,
       ),
       ShowcaseExample(
-        title: 'Posição vertical e badges',
+        title: 'Badge externo',
         description:
-            'left-center e right-center empilham os itens; o badge aceita texto ou número.',
+            'Atualize o badge por estado externo e reflita no dock em tempo real.',
         preview:
-            // #region sg-dock-menu-vertical
-            SizedBox(
-              height: 320,
-              child: Stack(
-                children: [
-                  SgDockMenu(
-                    position: SgDockMenuPosition.leftCenter,
-                    items: [
-                      SgDockMenuItem(
-                        id: 'mail',
-                        icon: const Icon(Icons.mail),
-                        label: context.tx('Mensagens'),
-                        badge: 3,
-                        onClick: () {},
+            // #region sg-dock-menu-badge
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ListenableBuilder(
+                  listenable: Listenable.merge([_mail, _notificacoes]),
+                  builder: (context, _) => Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SgGrid(
+                        columns: const {'base': 2, 'sm': 4},
+                        gap: 8,
+                        children: [
+                          SgButton(
+                            size: SgSize.sm,
+                            appearance: SgAppearance.outline,
+                            label: const Text('+1 Mail'),
+                            onClick: () => _mail.value++,
+                          ),
+                          SgButton(
+                            size: SgSize.sm,
+                            appearance: SgAppearance.outline,
+                            label: const Text('+1 Notifications'),
+                            onClick: () => _notificacoes.value++,
+                          ),
+                          SgButton(
+                            size: SgSize.sm,
+                            appearance: SgAppearance.outline,
+                            label: const Text('-1 Mail'),
+                            onClick: () => _mail.value = _mail.value > 0
+                                ? _mail.value - 1
+                                : 0,
+                          ),
+                          SgButton(
+                            size: SgSize.sm,
+                            appearance: SgAppearance.outline,
+                            label: const Text('Reset'),
+                            onClick: () {
+                              _mail.value = 0;
+                              _notificacoes.value = 0;
+                            },
+                          ),
+                        ],
                       ),
-                      SgDockMenuItem(
-                        id: 'bell',
-                        icon: const Icon(Icons.notifications),
-                        label: context.tx('Avisos'),
-                        badge: 'novo',
-                        onClick: () {},
-                      ),
-                      SgDockMenuItem(
-                        id: 'lock',
-                        icon: const Icon(Icons.lock),
-                        label: context.tx('Bloqueado'),
-                        enabled: false,
+                      const SizedBox(height: 12),
+                      SizedBox(
+                        height: 240,
+                        child: DecoratedBox(
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.black26),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Stack(
+                            children: [
+                              SgDockMenu(
+                                position: SgDockMenuPosition.centerBottom,
+                                items: [
+                                  SgDockMenuItem(
+                                    id: 'home',
+                                    icon: const Icon(Icons.home),
+                                    label: 'Home',
+                                    onClick: () => toast.info('Home clicked'),
+                                  ),
+                                  SgDockMenuItem(
+                                    id: 'mail',
+                                    icon: const Icon(Icons.mail),
+                                    label: 'Mail',
+                                    badge: _mail.value,
+                                    onClick: () => toast.info('Mail clicked'),
+                                  ),
+                                  SgDockMenuItem(
+                                    id: 'notifications',
+                                    icon: const Icon(Icons.notifications),
+                                    label: 'Notifications',
+                                    badge: _notificacoes.value,
+                                    onClick: () =>
+                                        toast.info('Notifications clicked'),
+                                  ),
+                                  SgDockMenuItem(
+                                    id: 'settings',
+                                    icon: const Icon(Icons.settings),
+                                    label: 'Settings',
+                                    onClick: () =>
+                                        toast.info('Settings clicked'),
+                                  ),
+                                  SgDockMenuItem(
+                                    id: 'profile',
+                                    icon: const Icon(Icons.person),
+                                    label: 'Profile',
+                                    onClick: () =>
+                                        toast.info('Profile clicked'),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
                     ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
         // #endregion
-        code: SgDockMenuPageSnippets.sgDockMenuVertical,
+        code: SgDockMenuPageSnippets.sgDockMenuBadge,
       ),
       ShowcaseExample(
-        title: 'Tamanho, zoom e aparência',
-        description:
-            'itemSize, gap, magnifyScale, borderRadius, elevation e backgroundColor.',
+        title: 'Todas as posições',
+        description: 'Exibe as 8 posições suportadas em uma grade.',
         preview:
-            // #region sg-dock-menu-aparencia
-            SizedBox(
-              height: 240,
-              child: Stack(
-                children: [
-                  SgDockMenu(
-                    position: SgDockMenuPosition.centerTop,
-                    itemSize: 40,
-                    gap: 10,
-                    magnifyScale: 2,
-                    borderRadius: 28,
-                    elevation: SgDockMenuElevation.sm,
-                    backgroundColor: '#e0f2fe',
-                    items: [
-                      SgDockMenuItem(
-                        id: 'a',
-                        icon: const Icon(Icons.folder),
-                        label: context.tx('Arquivos'),
-                      ),
-                      SgDockMenuItem(
-                        id: 'b',
-                        icon: const Icon(Icons.image),
-                        label: context.tx('Imagens'),
-                      ),
-                      SgDockMenuItem(
-                        id: 'c',
-                        icon: const Icon(Icons.music_note),
-                        label: context.tx('Música'),
-                      ),
-                      SgDockMenuItem(
-                        id: 'd',
-                        icon: const Icon(Icons.movie),
-                        label: context.tx('Vídeos'),
-                      ),
-                    ],
+            // #region sg-dock-menu-posicoes
+            SgGrid(
+              columns: 3,
+              gap: 16,
+              children: [
+                SizedBox(
+                  height: 160,
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black26),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Stack(
+                      children: [
+                        SgDockMenu(
+                          position: SgDockMenuPosition.leftTop,
+                          itemSize: 36,
+                          gap: 8,
+                          items: [
+                            SgDockMenuItem(
+                              id: 'home',
+                              icon: const Icon(Icons.home),
+                              label: 'Home',
+                              onClick: () => toast.info('Home clicked'),
+                            ),
+                            SgDockMenuItem(
+                              id: 'mail',
+                              icon: const Icon(Icons.mail),
+                              label: 'Mail',
+                              badge: 5,
+                              onClick: () => toast.info('Mail clicked'),
+                            ),
+                            SgDockMenuItem(
+                              id: 'notifications',
+                              icon: const Icon(Icons.notifications),
+                              label: 'Notifications',
+                              badge: 12,
+                              onClick: () =>
+                                  toast.info('Notifications clicked'),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                ],
-              ),
+                ),
+                SizedBox(
+                  height: 160,
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black26),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Stack(
+                      children: [
+                        SgDockMenu(
+                          position: SgDockMenuPosition.centerTop,
+                          itemSize: 36,
+                          gap: 8,
+                          items: [
+                            SgDockMenuItem(
+                              id: 'home',
+                              icon: const Icon(Icons.home),
+                              label: 'Home',
+                              onClick: () => toast.info('Home clicked'),
+                            ),
+                            SgDockMenuItem(
+                              id: 'mail',
+                              icon: const Icon(Icons.mail),
+                              label: 'Mail',
+                              badge: 5,
+                              onClick: () => toast.info('Mail clicked'),
+                            ),
+                            SgDockMenuItem(
+                              id: 'notifications',
+                              icon: const Icon(Icons.notifications),
+                              label: 'Notifications',
+                              badge: 12,
+                              onClick: () =>
+                                  toast.info('Notifications clicked'),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 160,
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black26),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Stack(
+                      children: [
+                        SgDockMenu(
+                          position: SgDockMenuPosition.rightTop,
+                          itemSize: 36,
+                          gap: 8,
+                          items: [
+                            SgDockMenuItem(
+                              id: 'home',
+                              icon: const Icon(Icons.home),
+                              label: 'Home',
+                              onClick: () => toast.info('Home clicked'),
+                            ),
+                            SgDockMenuItem(
+                              id: 'mail',
+                              icon: const Icon(Icons.mail),
+                              label: 'Mail',
+                              badge: 5,
+                              onClick: () => toast.info('Mail clicked'),
+                            ),
+                            SgDockMenuItem(
+                              id: 'notifications',
+                              icon: const Icon(Icons.notifications),
+                              label: 'Notifications',
+                              badge: 12,
+                              onClick: () =>
+                                  toast.info('Notifications clicked'),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 160,
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black26),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Stack(
+                      children: [
+                        SgDockMenu(
+                          position: SgDockMenuPosition.leftCenter,
+                          itemSize: 36,
+                          gap: 8,
+                          items: [
+                            SgDockMenuItem(
+                              id: 'home',
+                              icon: const Icon(Icons.home),
+                              label: 'Home',
+                              onClick: () => toast.info('Home clicked'),
+                            ),
+                            SgDockMenuItem(
+                              id: 'mail',
+                              icon: const Icon(Icons.mail),
+                              label: 'Mail',
+                              badge: 5,
+                              onClick: () => toast.info('Mail clicked'),
+                            ),
+                            SgDockMenuItem(
+                              id: 'notifications',
+                              icon: const Icon(Icons.notifications),
+                              label: 'Notifications',
+                              badge: 12,
+                              onClick: () =>
+                                  toast.info('Notifications clicked'),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 160),
+                SizedBox(
+                  height: 160,
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black26),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Stack(
+                      children: [
+                        SgDockMenu(
+                          position: SgDockMenuPosition.rightCenter,
+                          itemSize: 36,
+                          gap: 8,
+                          items: [
+                            SgDockMenuItem(
+                              id: 'home',
+                              icon: const Icon(Icons.home),
+                              label: 'Home',
+                              onClick: () => toast.info('Home clicked'),
+                            ),
+                            SgDockMenuItem(
+                              id: 'mail',
+                              icon: const Icon(Icons.mail),
+                              label: 'Mail',
+                              badge: 5,
+                              onClick: () => toast.info('Mail clicked'),
+                            ),
+                            SgDockMenuItem(
+                              id: 'notifications',
+                              icon: const Icon(Icons.notifications),
+                              label: 'Notifications',
+                              badge: 12,
+                              onClick: () =>
+                                  toast.info('Notifications clicked'),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 160,
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black26),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Stack(
+                      children: [
+                        SgDockMenu(
+                          position: SgDockMenuPosition.leftBottom,
+                          itemSize: 36,
+                          gap: 8,
+                          items: [
+                            SgDockMenuItem(
+                              id: 'home',
+                              icon: const Icon(Icons.home),
+                              label: 'Home',
+                              onClick: () => toast.info('Home clicked'),
+                            ),
+                            SgDockMenuItem(
+                              id: 'mail',
+                              icon: const Icon(Icons.mail),
+                              label: 'Mail',
+                              badge: 5,
+                              onClick: () => toast.info('Mail clicked'),
+                            ),
+                            SgDockMenuItem(
+                              id: 'notifications',
+                              icon: const Icon(Icons.notifications),
+                              label: 'Notifications',
+                              badge: 12,
+                              onClick: () =>
+                                  toast.info('Notifications clicked'),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 160,
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black26),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Stack(
+                      children: [
+                        SgDockMenu(
+                          position: SgDockMenuPosition.centerBottom,
+                          itemSize: 36,
+                          gap: 8,
+                          items: [
+                            SgDockMenuItem(
+                              id: 'home',
+                              icon: const Icon(Icons.home),
+                              label: 'Home',
+                              onClick: () => toast.info('Home clicked'),
+                            ),
+                            SgDockMenuItem(
+                              id: 'mail',
+                              icon: const Icon(Icons.mail),
+                              label: 'Mail',
+                              badge: 5,
+                              onClick: () => toast.info('Mail clicked'),
+                            ),
+                            SgDockMenuItem(
+                              id: 'notifications',
+                              icon: const Icon(Icons.notifications),
+                              label: 'Notifications',
+                              badge: 12,
+                              onClick: () =>
+                                  toast.info('Notifications clicked'),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 160,
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black26),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Stack(
+                      children: [
+                        SgDockMenu(
+                          position: SgDockMenuPosition.rightBottom,
+                          itemSize: 36,
+                          gap: 8,
+                          items: [
+                            SgDockMenuItem(
+                              id: 'home',
+                              icon: const Icon(Icons.home),
+                              label: 'Home',
+                              onClick: () => toast.info('Home clicked'),
+                            ),
+                            SgDockMenuItem(
+                              id: 'mail',
+                              icon: const Icon(Icons.mail),
+                              label: 'Mail',
+                              badge: 5,
+                              onClick: () => toast.info('Mail clicked'),
+                            ),
+                            SgDockMenuItem(
+                              id: 'notifications',
+                              icon: const Icon(Icons.notifications),
+                              label: 'Notifications',
+                              badge: 12,
+                              onClick: () =>
+                                  toast.info('Notifications clicked'),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
         // #endregion
-        code: SgDockMenuPageSnippets.sgDockMenuAparencia,
+        code: SgDockMenuPageSnippets.sgDockMenuPosicoes,
       ),
       ShowcaseExample(
-        title: 'Arrastar e lembrar a posição',
-        description:
-            'Com enableDragDrop arraste pela moldura (não pelos itens). Com dragId a posição é salva; clique com o botão direito (ou toque longo) para resetar.',
+        title: 'Arrastar e soltar',
+        description: 'Permite arrastar o dock e salvar a posição.',
         preview:
             // #region sg-dock-menu-arrastar
             SizedBox(
-              height: 260,
-              child: Stack(
-                children: [
-                  SgDockMenu(
-                    enableDragDrop: true,
-                    dragId: 'showcase-dock',
-                    position: SgDockMenuPosition.centerBottom,
-                    offset: const SgDockMenuOffset(y: -8),
-                    items: [
-                      SgDockMenuItem(
-                        id: 'play',
-                        icon: const Icon(Icons.play_arrow),
-                        label: context.tx('Tocar'),
-                        onClick: () {},
-                      ),
-                      SgDockMenuItem(
-                        id: 'pause',
-                        icon: const Icon(Icons.pause),
-                        label: context.tx('Pausar'),
-                        onClick: () {},
-                      ),
-                    ],
-                  ),
-                ],
+              height: 320,
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.black26),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Stack(
+                  children: [
+                    SgDockMenu(
+                      dragId: 'demo-dockmenu-draggable',
+                      position: SgDockMenuPosition.centerBottom,
+                      enableDragDrop: true,
+                      items: [
+                        SgDockMenuItem(
+                          id: 'home',
+                          icon: const Icon(Icons.home),
+                          label: 'Home',
+                          onClick: () => toast.info('Home clicked'),
+                        ),
+                        SgDockMenuItem(
+                          id: 'mail',
+                          icon: const Icon(Icons.mail),
+                          label: 'Mail',
+                          badge: 5,
+                          onClick: () => toast.info('Mail clicked'),
+                        ),
+                        SgDockMenuItem(
+                          id: 'notifications',
+                          icon: const Icon(Icons.notifications),
+                          label: 'Notifications',
+                          badge: 12,
+                          onClick: () => toast.info('Notifications clicked'),
+                        ),
+                        SgDockMenuItem(
+                          id: 'settings',
+                          icon: const Icon(Icons.settings),
+                          label: 'Settings',
+                          onClick: () => toast.info('Settings clicked'),
+                        ),
+                        SgDockMenuItem(
+                          id: 'profile',
+                          icon: const Icon(Icons.person),
+                          label: 'Profile',
+                          onClick: () => toast.info('Profile clicked'),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
         // #endregion
         code: SgDockMenuPageSnippets.sgDockMenuArrastar,
+      ),
+      ShowcaseExample(
+        title: 'Variantes visuais',
+        description: 'Sem magnify, sem labels e com estilo customizado.',
+        preview:
+            // #region sg-dock-menu-variantes
+            SgStack(
+              gap: 16,
+              children: [
+                SizedBox(
+                  height: 192,
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black26),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Stack(
+                      children: [
+                        SgDockMenu(
+                          position: SgDockMenuPosition.centerBottom,
+                          magnify: false,
+                          items: [
+                            SgDockMenuItem(
+                              id: 'home',
+                              icon: const Icon(Icons.home),
+                              label: 'Home',
+                              onClick: () => toast.info('Home clicked'),
+                            ),
+                            SgDockMenuItem(
+                              id: 'mail',
+                              icon: const Icon(Icons.mail),
+                              label: 'Mail',
+                              badge: 5,
+                              onClick: () => toast.info('Mail clicked'),
+                            ),
+                            SgDockMenuItem(
+                              id: 'notifications',
+                              icon: const Icon(Icons.notifications),
+                              label: 'Notifications',
+                              badge: 12,
+                              onClick: () =>
+                                  toast.info('Notifications clicked'),
+                            ),
+                            SgDockMenuItem(
+                              id: 'settings',
+                              icon: const Icon(Icons.settings),
+                              label: 'Settings',
+                              onClick: () => toast.info('Settings clicked'),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 192,
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black26),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Stack(
+                      children: [
+                        SgDockMenu(
+                          position: SgDockMenuPosition.centerBottom,
+                          showLabels: false,
+                          items: [
+                            SgDockMenuItem(
+                              id: 'home',
+                              icon: const Icon(Icons.home),
+                              label: 'Home',
+                              onClick: () => toast.info('Home clicked'),
+                            ),
+                            SgDockMenuItem(
+                              id: 'mail',
+                              icon: const Icon(Icons.mail),
+                              label: 'Mail',
+                              badge: 5,
+                              onClick: () => toast.info('Mail clicked'),
+                            ),
+                            SgDockMenuItem(
+                              id: 'notifications',
+                              icon: const Icon(Icons.notifications),
+                              label: 'Notifications',
+                              badge: 12,
+                              onClick: () =>
+                                  toast.info('Notifications clicked'),
+                            ),
+                            SgDockMenuItem(
+                              id: 'settings',
+                              icon: const Icon(Icons.settings),
+                              label: 'Settings',
+                              onClick: () => toast.info('Settings clicked'),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 192,
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black26),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Stack(
+                      children: [
+                        SgDockMenu(
+                          position: SgDockMenuPosition.centerBottom,
+                          itemSize: 58,
+                          gap: 10,
+                          borderRadius: 28,
+                          backgroundColor: 'rgba(59, 130, 246, 0.95)',
+                          items: [
+                            SgDockMenuItem(
+                              id: 'home',
+                              icon: const Icon(Icons.home),
+                              label: 'Home',
+                              onClick: () => toast.info('Home clicked'),
+                            ),
+                            SgDockMenuItem(
+                              id: 'mail',
+                              icon: const Icon(Icons.mail),
+                              label: 'Mail',
+                              badge: 5,
+                              onClick: () => toast.info('Mail clicked'),
+                            ),
+                            SgDockMenuItem(
+                              id: 'notifications',
+                              icon: const Icon(Icons.notifications),
+                              label: 'Notifications',
+                              badge: 12,
+                              onClick: () =>
+                                  toast.info('Notifications clicked'),
+                            ),
+                            SgDockMenuItem(
+                              id: 'settings',
+                              icon: const Icon(Icons.settings),
+                              label: 'Settings',
+                              onClick: () => toast.info('Settings clicked'),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgDockMenuPageSnippets.sgDockMenuVariantes,
+      ),
+      ShowcaseExample(
+        title: 'Muitos itens',
+        description: 'Exemplo com uma lista maior de itens.',
+        preview:
+            // #region sg-dock-menu-muitos
+            SizedBox(
+              height: 240,
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.black26),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Stack(
+                  children: [
+                    SgDockMenu(
+                      position: SgDockMenuPosition.centerBottom,
+                      itemSize: 44,
+                      gap: 10,
+                      items: [
+                        SgDockMenuItem(
+                          id: 'search',
+                          icon: const Icon(Icons.search),
+                          label: 'Search',
+                        ),
+                        SgDockMenuItem(
+                          id: 'favorites',
+                          icon: const Icon(Icons.favorite),
+                          label: 'Favorites',
+                          badge: 3,
+                        ),
+                        SgDockMenuItem(
+                          id: 'messages',
+                          icon: const Icon(Icons.message),
+                          label: 'Messages',
+                          badge: '99+',
+                        ),
+                        SgDockMenuItem(
+                          id: 'calendar',
+                          icon: const Icon(Icons.calendar_today),
+                          label: 'Calendar',
+                        ),
+                        SgDockMenuItem(
+                          id: 'starred',
+                          icon: const Icon(Icons.star),
+                          label: 'Starred',
+                        ),
+                        SgDockMenuItem(
+                          id: 'bookmarks',
+                          icon: const Icon(Icons.bookmark),
+                          label: 'Bookmarks',
+                        ),
+                        SgDockMenuItem(
+                          id: 'gallery',
+                          icon: const Icon(Icons.image),
+                          label: 'Gallery',
+                        ),
+                        SgDockMenuItem(
+                          id: 'documents',
+                          icon: const Icon(Icons.description),
+                          label: 'Documents',
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+        // #endregion
+        code: SgDockMenuPageSnippets.sgDockMenuMuitos,
+      ),
+      ShowcaseExample(
+        title: 'Callbacks e desabilitado',
+        description: 'Logs de clique e item desabilitado no mesmo exemplo.',
+        preview:
+            // #region sg-dock-menu-callbacks
+            SgStack(
+              gap: 16,
+              children: [
+                SizedBox(
+                  height: 240,
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black26),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Stack(
+                      children: [
+                        SgDockMenu(
+                          position: SgDockMenuPosition.centerBottom,
+                          items: [
+                            SgDockMenuItem(
+                              id: 'search',
+                              icon: const Icon(Icons.search),
+                              label: 'Search',
+                              onClick: () => _registrar('Search'),
+                            ),
+                            SgDockMenuItem(
+                              id: 'favorites',
+                              icon: const Icon(Icons.favorite),
+                              label: 'Favorites',
+                              badge: 3,
+                              onClick: () => _registrar('Favorites'),
+                            ),
+                            SgDockMenuItem(
+                              id: 'messages',
+                              icon: const Icon(Icons.message),
+                              label: 'Messages',
+                              badge: '99+',
+                              onClick: () => _registrar('Messages'),
+                            ),
+                            SgDockMenuItem(
+                              id: 'calendar',
+                              icon: const Icon(Icons.calendar_today),
+                              label: 'Calendar',
+                              onClick: () => _registrar('Calendar'),
+                            ),
+                            SgDockMenuItem(
+                              id: 'starred',
+                              icon: const Icon(Icons.star),
+                              label: 'Starred',
+                              onClick: () => _registrar('Starred'),
+                            ),
+                            SgDockMenuItem(
+                              id: 'bookmarks',
+                              icon: const Icon(Icons.bookmark),
+                              label: 'Bookmarks',
+                              onClick: () => _registrar('Bookmarks'),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                ValueListenableBuilder<List<String>>(
+                  valueListenable: _log,
+                  builder: (context, log, _) => SizedBox(
+                    height: 128,
+                    child: SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          if (log.isEmpty)
+                            Text(context.tx('Clique em um item para gerar logs...'))
+                          else
+                            for (final entry in log) Text(entry),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 240,
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black26),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Stack(
+                      children: [
+                        SgDockMenu(
+                          position: SgDockMenuPosition.centerBottom,
+                          items: [
+                            SgDockMenuItem(
+                              id: 'home',
+                              icon: const Icon(Icons.home),
+                              label: 'Home',
+                            ),
+                            SgDockMenuItem(
+                              id: 'mail',
+                              icon: const Icon(Icons.mail),
+                              label: 'Mail',
+                              badge: 5,
+                            ),
+                            SgDockMenuItem(
+                              id: 'notifications',
+                              icon: const Icon(Icons.notifications),
+                              label: 'Notifications',
+                              badge: 12,
+                              enabled: false,
+                            ),
+                            SgDockMenuItem(
+                              id: 'settings',
+                              icon: const Icon(Icons.settings),
+                              label: 'Settings',
+                            ),
+                            SgDockMenuItem(
+                              id: 'profile',
+                              icon: const Icon(Icons.person),
+                              label: 'Profile',
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgDockMenuPageSnippets.sgDockMenuCallbacks,
       ),
     ];
 

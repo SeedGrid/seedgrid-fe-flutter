@@ -92,12 +92,19 @@ class SgDatatablePage extends StatefulWidget {
 
 class _SgDatatablePageState extends State<SgDatatablePage> {
   String _evento = 'nenhum evento ainda';
+  final ValueNotifier<String> _pagina = ValueNotifier('nenhum evento ainda');
   Object? _selecionadas;
   SgDatatableMobileMode _modoCartoes = SgDatatableMobileMode.cards;
   bool _rolagemInfinita = true;
   final SgDatatableController _controller = SgDatatableController();
   int _first = 0;
   List<SgDatatableRow> _paginaLazy = _pessoas.take(5).toList();
+
+  @override
+  void dispose() {
+    _pagina.dispose();
+    super.dispose();
+  }
 
   void _carregar(SgDatatablePageEvent e) {
     setState(() {
@@ -110,75 +117,41 @@ class _SgDatatablePageState extends State<SgDatatablePage> {
   Widget build(BuildContext context) {
     final examples = <ShowcaseExample>[
       ShowcaseExample(
-        title: 'Básico',
+        title: 'Básico com paginação e sort',
         description:
-            'value (as linhas) e columns (field, header, align, width). Sem paginator, todas as linhas aparecem.',
+            'infiniteScroll={false} mantém o paginador também em tela estreita: abaixo de 600 px o padrão viraria cartões com rolagem infinita.',
         preview:
             // #region sg-datatable-basico
-            SgDatatable(
-              title: context.tx('Pessoas'),
-              value: _pessoas.take(6).toList(),
-              columns: _colunas,
-              stripedRows: true,
-              showGridlines: true,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SgDatatable(
+                  id: 'datatable-basic',
+                  title: context.tx('Pessoas'),
+                  value: _pessoas,
+                  columns: _colunas,
+                  dataKey: 'id',
+                  paginator: true,
+                  infiniteScroll: false,
+                  rows: 5,
+                  rowsPerPageOptions: const [5, 10],
+                  stripedRows: true,
+                  showGridlines: true,
+                  onPage: (e) => _pagina.value =
+                      'página ${e.page} de ${e.pageCount} (first ${e.first})',
+                ),
+                ValueListenableBuilder<String>(
+                  valueListenable: _pagina,
+                  builder: (context, evento, _) =>
+                      Text('${context.tx('Último onPage')}: $evento'),
+                ),
+              ],
             ),
         // #endregion
         code: SgDatatablePageSnippets.sgDatatableBasico,
       ),
       ShowcaseExample(
-        title: 'Paginação',
-        description:
-            'paginator, rows, rowsPerPageOptions e onPage (first, rows, page, pageCount, totalRecords). infiniteScroll: false mantém o paginador também em tela estreita: abaixo de 600 px o padrão viraria cartões com rolagem infinita.',
-        preview:
-            // #region sg-datatable-paginacao
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SgDatatable(
-                  value: _pessoas,
-                  columns: _colunas,
-                  paginator: true,
-                  infiniteScroll: false,
-                  rows: 5,
-                  rowsPerPageOptions: const [5, 10, 25],
-                  onPage: (e) => setState(
-                    () => _evento =
-                        'página ${e.page} de ${e.pageCount} (first ${e.first})',
-                  ),
-                ),
-                Text('Último onPage: $_evento'),
-              ],
-            ),
-        // #endregion
-        code: SgDatatablePageSnippets.sgDatatablePaginacao,
-      ),
-      ShowcaseExample(
-        title: 'Ordenação e seleção',
-        description:
-            'sortable nas colunas (crescente, decrescente, sem ordem); selectionMode multiple com dataKey e onSelectionChange.',
-        preview:
-            // #region sg-datatable-selecao
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SgDatatable(
-                  value: _pessoas.take(8).toList(),
-                  columns: _colunas,
-                  dataKey: 'id',
-                  selectionMode: SgDatatableSelectionMode.multiple,
-                  selection: _selecionadas,
-                  onSelectionChange: (s) => setState(() => _selecionadas = s),
-                ),
-                Text(
-                  'Selecionadas: ${((_selecionadas as List?) ?? const []).length}',
-                ),
-              ],
-            ),
-        // #endregion
-        code: SgDatatablePageSnippets.sgDatatableSelecao,
-      ),
-      ShowcaseExample(
-        title: 'Filtros',
+        title: 'Filtro global + filtros por coluna',
         description:
             'showGlobalFilter, showColumnFilters, filterMatchMode por coluna e showClearFiltersButton.',
         preview:
@@ -207,6 +180,7 @@ class _SgDatatablePageState extends State<SgDatatablePage> {
                     ),
                   ],
                   paginator: true,
+                  infiniteScroll: false,
                   rows: 5,
                   showGlobalFilter: true,
                   showColumnFilters: true,
@@ -218,9 +192,34 @@ class _SgDatatablePageState extends State<SgDatatablePage> {
         code: SgDatatablePageSnippets.sgDatatableFiltros,
       ),
       ShowcaseExample(
-        title: 'Colunas personalizadas e rodapé',
+        title: 'Seleção de linhas (single e multiple)',
         description:
-            'body desenha a célula, footer recebe as linhas processadas, hidden/hideable/reorderable e o gerenciador de colunas.',
+            'selectionMode single ou multiple, com dataKey e onSelectionChange; a seleção é entregue ao pai.',
+        preview:
+            // #region sg-datatable-selecao
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SgDatatable(
+                  value: _pessoas.take(8).toList(),
+                  columns: _colunas,
+                  dataKey: 'id',
+                  selectionMode: SgDatatableSelectionMode.multiple,
+                  selection: _selecionadas,
+                  onSelectionChange: (s) => setState(() => _selecionadas = s),
+                ),
+                Text(
+                  'Selecionadas: ${((_selecionadas as List?) ?? const []).length}',
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgDatatablePageSnippets.sgDatatableSelecao,
+      ),
+      ShowcaseExample(
+        title: 'Template customizado e footer',
+        description:
+            'body desenha a célula e footer recebe as linhas processadas.',
         preview:
             // #region sg-datatable-colunas
             SgDatatable(
@@ -230,7 +229,6 @@ class _SgDatatablePageState extends State<SgDatatablePage> {
                 SgDatatableColumn(
                   field: 'nome',
                   header: context.tx('Nome'),
-                  hideable: false,
                   footer: 'Total',
                 ),
                 SgDatatableColumn(
@@ -246,13 +244,65 @@ class _SgDatatablePageState extends State<SgDatatablePage> {
                 SgDatatableColumn(
                   field: 'cidade',
                   header: context.tx('Cidade'),
-                  hidden: true,
                 ),
               ],
-              columnManagerLabel: 'Colunas visíveis',
+              showColumnManager: false,
             ),
         // #endregion
         code: SgDatatablePageSnippets.sgDatatableColunas,
+      ),
+      ShowcaseExample(
+        title: 'Gerenciador de colunas, visibilidade e estilos',
+        description:
+            'Mostra o gerenciador de colunas embutido e as props de visibilidade, ordem e estilo por coluna.',
+        preview:
+            // #region sg-datatable-gerenciador
+            SgDatatable(
+              id: 'datatable-column-manager',
+              title: context.tx('Gerenciador de colunas e linhas estilizadas'),
+              value: _pessoas,
+              columns: [
+                SgDatatableColumn(
+                  field: 'nome',
+                  header: context.tx('Nome'),
+                  sortable: true,
+                  filter: true,
+                  hideable: false,
+                ),
+                SgDatatableColumn(
+                  field: 'cidade',
+                  header: context.tx('Cidade'),
+                  sortable: true,
+                  filter: true,
+                ),
+                SgDatatableColumn(
+                  field: 'idade',
+                  header: context.tx('Idade'),
+                  sortable: true,
+                  align: SgDatatableColumnAlign.right,
+                ),
+                SgDatatableColumn(
+                  field: 'salario',
+                  header: context.tx('Salário'),
+                  align: SgDatatableColumnAlign.right,
+                  hidden: true,
+                ),
+              ],
+              dataKey: 'id',
+              paginator: true,
+              infiniteScroll: false,
+              rows: 5,
+              rowsPerPageOptions: const [5, 10],
+              showGlobalFilter: true,
+              showColumnFilters: true,
+              showClearFiltersButton: true,
+              showColumnManager: true,
+              columnManagerLabel: context.tx('Gerenciar colunas'),
+              stripedRows: true,
+              removableSort: false,
+            ),
+        // #endregion
+        code: SgDatatablePageSnippets.sgDatatableGerenciador,
       ),
       ShowcaseExample(
         title: 'Coluna de ações com ícones',
@@ -311,45 +361,9 @@ class _SgDatatablePageState extends State<SgDatatablePage> {
         code: SgDatatablePageSnippets.sgDatatableAcoes,
       ),
       ShowcaseExample(
-        title: 'Aparência da tabela',
+        title: 'Controle externo de página e ordenação',
         description:
-            'stripedRows alterna o fundo das linhas, showGridlines desenha as divisões e hoverableRows (padrão) destaca a linha sob o cursor.',
-        preview:
-            // #region sg-datatable-aparencia
-            SgDatatable(
-              id: 'pessoas-aparencia',
-              value: _pessoas.take(5).toList(),
-              columns: _colunas,
-              stripedRows: true,
-              showGridlines: true,
-              showColumnManager: false,
-            ),
-        // #endregion
-        code: SgDatatablePageSnippets.sgDatatableAparencia,
-      ),
-      ShowcaseExample(
-        title: 'Carga sob demanda (lazy)',
-        description:
-            'lazy não filtra nem ordena: você entrega só a página atual em value e o total em totalRecords; onPage pede a próxima.',
-        preview:
-            // #region sg-datatable-lazy
-            SgDatatable(
-              value: _paginaLazy,
-              columns: _colunas,
-              lazy: true,
-              paginator: true,
-              rows: 5,
-              first: _first,
-              totalRecords: _pessoas.length,
-              onPage: _carregar,
-            ),
-        // #endregion
-        code: SgDatatablePageSnippets.sgDatatableLazy,
-      ),
-      ShowcaseExample(
-        title: 'Controle por código',
-        description:
-            'controller (o ref do React): goToPage, resetPage, resetSort, clearFilters, clearSelection, getProcessedRows e getPagedRows.',
+            'A página e a ordenação são controladas por fora do componente, sem depender só da interação do usuário.',
         preview:
             // #region sg-datatable-controller
             Column(
@@ -393,7 +407,26 @@ class _SgDatatablePageState extends State<SgDatatablePage> {
         code: SgDatatablePageSnippets.sgDatatableController,
       ),
       ShowcaseExample(
-        title: 'Carregando e vazio',
+        title: 'Server-side paginator (lazy)',
+        description:
+            'lazy não filtra nem ordena: você entrega só a página atual em value e o total em totalRecords; onPage pede a próxima.',
+        preview:
+            // #region sg-datatable-lazy
+            SgDatatable(
+              value: _paginaLazy,
+              columns: _colunas,
+              lazy: true,
+              paginator: true,
+              rows: 5,
+              first: _first,
+              totalRecords: _pessoas.length,
+              onPage: _carregar,
+            ),
+        // #endregion
+        code: SgDatatablePageSnippets.sgDatatableLazy,
+      ),
+      ShowcaseExample(
+        title: 'Loading e estado vazio',
         description:
             'loading mostra a mensagem de carga; sem linhas, emptyMessage (ou o texto padrão do idioma).',
         preview:
@@ -422,7 +455,7 @@ class _SgDatatablePageState extends State<SgDatatablePage> {
         code: SgDatatablePageSnippets.sgDatatableEstados,
       ),
       ShowcaseExample(
-        title: 'Modo cartões (celular)',
+        title: 'Modo cartões no celular (mobileMode)',
         description:
             'Por padrão (mobileMode omitido) a tabela vira cartões "coluna: valor" quando o container tem menos de 600 px; mobileMode: cards força os cartões e scroll força a tabela, em qualquer largura. cardTitle usa a coluna como título do cartão e cardHidden a deixa de fora. Ordenação vira um seletor, os filtros vão para um painel aberto por botão; seleção, ações, rodapé e paginação continuam.',
         preview:
