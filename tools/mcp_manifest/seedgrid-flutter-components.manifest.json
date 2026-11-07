@@ -15753,31 +15753,38 @@
         "examples": [
           {
             "id": "sg-page-control-basico",
-            "title": "Abas básicas",
+            "title": "Básico",
             "file": "apps/seedgrid_showcase/lib/pages/sg_page_control_demo_page.dart",
             "kind": "dart",
-            "code": "SgPageControl(\n  children: [\n    SgPageControlPage(\n      id: 'geral',\n      title: Text(context.tx('Geral')),\n      child: Text(context.tx('Dados gerais do cadastro.')),\n    ),\n    SgPageControlPage(\n      id: 'endereco',\n      title: Text(context.tx('Endereço')),\n      hint: context.tx('Endereço de entrega'),\n      icon: Icon(Icons.place_outlined),\n      child: Text(context.tx('Rua, número e CEP.')),\n    ),\n    SgPageControlPage(\n      id: 'bloqueada',\n      title: Text(context.tx('Bloqueada')),\n      enabled: false,\n      child: Text(context.tx('Nunca aparece.')),\n    ),\n  ],\n)"
+            "code": "SgPageControl(\n  defaultActivePageId: 'cadastro',\n  children: [\n    SgPageControlPage(\n      id: 'cadastro',\n      title: Text(context.tx('Cadastro')),\n      icon: Icon(Icons.person_outline),\n      child: Text(context.tx('Conteúdo: Cadastro')),\n    ),\n    SgPageControlPage(\n      id: 'fiscal',\n      title: Text(context.tx('Fiscal')),\n      icon: Icon(Icons.receipt_long_outlined),\n      child: Text(context.tx('Conteúdo: Fiscal')),\n    ),\n    SgPageControlPage(\n      id: 'acesso',\n      title: Text(context.tx('Acesso')),\n      icon: Icon(Icons.shield_outlined),\n      child: Text(context.tx('Conteúdo: Acesso')),\n    ),\n  ],\n)"
           },
           {
-            "id": "sg-page-control-celular",
-            "title": "No celular: lista de seleção",
+            "id": "sg-page-control-controle-externo",
+            "title": "Controle Externo",
             "file": "apps/seedgrid_showcase/lib/pages/sg_page_control_demo_page.dart",
             "kind": "dart",
-            "code": "SgPageControl(\n  mobilePageControl: SgPageControlMobilePageControl.select,\n  keepMounted: true,\n  children: [\n    SgPageControlPage(\n      title: Text(context.tx('Perfil')),\n      child: Text(context.tx('Perfil do usuário')),\n    ),\n    SgPageControlPage(\n      title: Text(context.tx('Segurança')),\n      child: Text(context.tx('Senha e acesso')),\n    ),\n    SgPageControlPage(\n      title: Text(context.tx('Notificações')),\n      child: Text(context.tx('Avisos por e-mail')),\n    ),\n  ],\n)"
+            "code": "ValueListenableBuilder<String>(\n  valueListenable: _ativa,\n  builder: (context, ativa, _) => Column(\n    crossAxisAlignment: CrossAxisAlignment.start,\n    children: [\n      Wrap(\n        spacing: 8,\n        runSpacing: 8,\n        children: [\n          SgButton(\n            label: Text(context.tx('Ir para Cadastro')),\n            size: SgSize.sm,\n            appearance: SgAppearance.outline,\n            onClick: () => _ativa.value = 'cadastro',\n          ),\n          SgButton(\n            label: Text(context.tx('Ir para Fiscal')),\n            size: SgSize.sm,\n            appearance: SgAppearance.outline,\n            onClick: () => _ativa.value = 'fiscal',\n          ),\n          SgButton(\n            label: Text(context.tx('Ir para Acesso')),\n            size: SgSize.sm,\n            appearance: SgAppearance.outline,\n            onClick: () => _ativa.value = 'acesso',\n          ),\n          SgButton(\n            label: Text(context.tx('Ir para Integrações')),\n            size: SgSize.sm,\n            appearance: SgAppearance.outline,\n            onClick: () => _ativa.value = 'integracoes',\n          ),\n        ],\n      ),\n      const SizedBox(height: 8),\n      SgPageControl(\n        activePageId: ativa,\n        onActivePageIdChange: (id, ctx) => _ativa.value = id,\n        pageControlStyle: SgPageControlPageControlStyle.pills,\n        children: [\n          SgPageControlPage(\n            id: 'cadastro',\n            title: Text(context.tx('Cadastro')),\n            icon: Icon(Icons.person_outline),\n            child: Text(context.tx('Conteúdo: Cadastro')),\n          ),\n          SgPageControlPage(\n            id: 'fiscal',\n            title: Text(context.tx('Fiscal')),\n            icon: Icon(Icons.receipt_long_outlined),\n            child: Text(context.tx('Conteúdo: Fiscal')),\n          ),\n          SgPageControlPage(\n            id: 'acesso',\n            title: Text(context.tx('Acesso')),\n            icon: Icon(Icons.shield_outlined),\n            child: Text(context.tx('Conteúdo: Acesso')),\n          ),\n          SgPageControlPage(\n            id: 'integracoes',\n            title: Text(context.tx('Integrações')),\n            icon: Icon(Icons.folder_outlined),\n            child: Text(context.tx('Conteúdo: Integrações')),\n          ),\n        ],\n      ),\n      const SizedBox(height: 8),\n      Text(context.txf('Página ativa: {ativa}', {'ativa': ativa})),\n    ],\n  ),\n)"
           },
           {
-            "id": "sg-page-control-controlado",
-            "title": "Controlado e páginas escondidas",
+            "id": "sg-page-control-hint",
+            "title": "Com Hint nas Abas",
             "file": "apps/seedgrid_showcase/lib/pages/sg_page_control_demo_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgButton(\n      label: Text(\n        _escondidas.contains('extra')\n            ? 'Mostrar \"Extra\"'\n            : 'Esconder \"Extra\"',\n      ),\n      size: SgSize.sm,\n      onClick: () => setState(() {\n        _escondidas.contains('extra')\n            ? _escondidas.remove('extra')\n            : _escondidas.add('extra');\n      }),\n    ),\n    const SizedBox(height: 8),\n    SgPageControl(\n      activePageId: _ativa,\n      hiddenPageIds: _escondidas.toList(),\n      onActivePageIdChange: (id, ctx) =>\n          setState(() => _ativa = id),\n      children: [\n        SgPageControlPage(\n          id: 'geral',\n          title: Text(context.tx('Geral')),\n          child: Text(context.tx('Aba geral')),\n        ),\n        SgPageControlPage(\n          id: 'extra',\n          title: Text(context.tx('Extra')),\n          child: Text(context.tx('Aba extra')),\n        ),\n        SgPageControlPage(\n          id: 'fim',\n          title: Text(context.tx('Fim')),\n          child: Text(context.tx('Aba final')),\n        ),\n      ],\n    ),\n  ],\n)"
+            "code": "SgPageControl(\n  defaultActivePageId: 'cadastro',\n  children: [\n    SgPageControlPage(\n      id: 'cadastro',\n      title: Text(context.tx('Cadastro')),\n      hint: context.tx('Criar e editar os dados de cadastro.'),\n      icon: Icon(Icons.person_outline),\n      child: Text(context.tx('Conteúdo: Cadastro')),\n    ),\n    SgPageControlPage(\n      id: 'fiscal',\n      title: Text(context.tx('Fiscal')),\n      hint: context.tx('Revisar as configurações fiscais.'),\n      icon: Icon(Icons.receipt_long_outlined),\n      child: Text(context.tx('Conteúdo: Fiscal')),\n    ),\n    SgPageControlPage(\n      id: 'acesso',\n      title: Text(context.tx('Acesso')),\n      hint: context.tx('Gerenciar usuários, papéis e permissões.'),\n      icon: Icon(Icons.shield_outlined),\n      child: Text(context.tx('Conteúdo: Acesso')),\n    ),\n  ],\n)"
           },
           {
-            "id": "sg-page-control-pilulas",
-            "title": "Pílulas, tamanhos e abas iguais",
+            "id": "sg-page-control-ocultar",
+            "title": "Ocultar Página Externamente",
             "file": "apps/seedgrid_showcase/lib/pages/sg_page_control_demo_page.dart",
             "kind": "dart",
-            "code": "SgPageControl(\n  pageControlStyle: SgPageControlPageControlStyle.pills,\n  size: SgPageControlSize.sm,\n  fullWidthTabs: true,\n  children: [\n    SgPageControlPage(\n      title: Text(context.tx('Dia')),\n      child: Text(context.tx('Visão do dia')),\n    ),\n    SgPageControlPage(\n      title: Text(context.tx('Semana')),\n      child: Text(context.tx('Visão da semana')),\n    ),\n    SgPageControlPage(\n      title: Text(context.tx('Mês')),\n      child: Text(context.tx('Visão do mês')),\n    ),\n  ],\n)"
+            "code": "ValueListenableBuilder<List<String>>(\n  valueListenable: _escondidas,\n  builder: (context, escondidas, _) => Column(\n    crossAxisAlignment: CrossAxisAlignment.start,\n    children: [\n      Wrap(\n        spacing: 12,\n        runSpacing: 8,\n        children: [\n          SgToggleSwitch(\n            id: 'ocultar-cadastro',\n            label: context.tx('Ocultar Cadastro'),\n            onChange: (v) => _escondidas.value = [\n              for (final id in _escondidas.value)\n                if (id != 'cadastro') id,\n              if (v) 'cadastro',\n            ],\n          ),\n          SgToggleSwitch(\n            id: 'ocultar-fiscal',\n            label: context.tx('Ocultar Fiscal'),\n            onChange: (v) => _escondidas.value = [\n              for (final id in _escondidas.value)\n                if (id != 'fiscal') id,\n              if (v) 'fiscal',\n            ],\n          ),\n          SgToggleSwitch(\n            id: 'ocultar-acesso',\n            label: context.tx('Ocultar Acesso'),\n            onChange: (v) => _escondidas.value = [\n              for (final id in _escondidas.value)\n                if (id != 'acesso') id,\n              if (v) 'acesso',\n            ],\n          ),\n          SgToggleSwitch(\n            id: 'ocultar-integracoes',\n            label: context.tx('Ocultar Integrações'),\n            onChange: (v) => _escondidas.value = [\n              for (final id in _escondidas.value)\n                if (id != 'integracoes') id,\n              if (v) 'integracoes',\n            ],\n          ),\n        ],\n      ),\n      const SizedBox(height: 8),\n      SgPageControl(\n        hiddenPageIds: escondidas,\n        keepMounted: true,\n        children: [\n          SgPageControlPage(\n            id: 'cadastro',\n            title: Text(context.tx('Cadastro')),\n            icon: Icon(Icons.person_outline),\n            child: Text(context.tx('Conteúdo: Cadastro')),\n          ),\n          SgPageControlPage(\n            id: 'fiscal',\n            title: Text(context.tx('Fiscal')),\n            icon: Icon(Icons.receipt_long_outlined),\n            child: Text(context.tx('Conteúdo: Fiscal')),\n          ),\n          SgPageControlPage(\n            id: 'acesso',\n            title: Text(context.tx('Acesso')),\n            icon: Icon(Icons.shield_outlined),\n            child: Text(context.tx('Conteúdo: Acesso')),\n          ),\n          SgPageControlPage(\n            id: 'integracoes',\n            title: Text(context.tx('Integrações')),\n            icon: Icon(Icons.folder_outlined),\n            child: Text(context.tx('Conteúdo: Integrações')),\n          ),\n        ],\n      ),\n    ],\n  ),\n)"
+          },
+          {
+            "id": "sg-page-control-responsividade",
+            "title": "Responsividade",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_page_control_demo_page.dart",
+            "kind": "dart",
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    Text(context.tx('Redimensione a janela para ver o comportamento mudar em 768px.')),\n    const SizedBox(height: 8),\n    Text(context.tx('fullWidthTabs — larguras iguais a partir do tablet')),\n    SgPageControl(\n      fullWidthTabs: true,\n      children: [\n        SgPageControlPage(\n          id: 'cadastro',\n          title: Text(context.tx('Cadastro')),\n          icon: Icon(Icons.person_outline),\n          child: Text(context.tx('Conteúdo: Cadastro')),\n        ),\n        SgPageControlPage(\n          id: 'fiscal',\n          title: Text(context.tx('Fiscal')),\n          icon: Icon(Icons.receipt_long_outlined),\n          child: Text(context.tx('Conteúdo: Fiscal')),\n        ),\n        SgPageControlPage(\n          id: 'acesso',\n          title: Text(context.tx('Acesso')),\n          icon: Icon(Icons.shield_outlined),\n          child: Text(context.tx('Conteúdo: Acesso')),\n        ),\n        SgPageControlPage(\n          id: 'produtos',\n          title: Text(context.tx('Produtos')),\n          icon: Icon(Icons.inventory_2_outlined),\n          child: Text(context.tx('Conteúdo: Produtos')),\n        ),\n        SgPageControlPage(\n          id: 'frete',\n          title: Text(context.tx('Frete')),\n          icon: Icon(Icons.local_shipping_outlined),\n          child: Text(context.tx('Conteúdo: Frete')),\n        ),\n        SgPageControlPage(\n          id: 'integracoes',\n          title: Text(context.tx('Integrações')),\n          icon: Icon(Icons.folder_outlined),\n          child: Text(context.tx('Conteúdo: Integrações')),\n        ),\n        SgPageControlPage(\n          id: 'preferencias',\n          title: Text(context.tx('Preferências')),\n          icon: Icon(Icons.build_outlined),\n          child: Text(context.tx('Conteúdo: Preferências')),\n        ),\n      ],\n    ),\n    const SizedBox(height: 16),\n    Text(context.tx('mobilePageControl=\"select\" — abas viram um select no celular')),\n    SgPageControl(\n      mobilePageControl: SgPageControlMobilePageControl.select,\n      children: [\n        SgPageControlPage(\n          id: 'cadastro',\n          title: Text(context.tx('Cadastro')),\n          icon: Icon(Icons.person_outline),\n          child: Text(context.tx('Conteúdo: Cadastro')),\n        ),\n        SgPageControlPage(\n          id: 'fiscal',\n          title: Text(context.tx('Fiscal')),\n          icon: Icon(Icons.receipt_long_outlined),\n          child: Text(context.tx('Conteúdo: Fiscal')),\n        ),\n        SgPageControlPage(\n          id: 'acesso',\n          title: Text(context.tx('Acesso')),\n          icon: Icon(Icons.shield_outlined),\n          child: Text(context.tx('Conteúdo: Acesso')),\n        ),\n        SgPageControlPage(\n          id: 'produtos',\n          title: Text(context.tx('Produtos')),\n          icon: Icon(Icons.inventory_2_outlined),\n          child: Text(context.tx('Conteúdo: Produtos')),\n        ),\n        SgPageControlPage(\n          id: 'frete',\n          title: Text(context.tx('Frete')),\n          icon: Icon(Icons.local_shipping_outlined),\n          child: Text(context.tx('Conteúdo: Frete')),\n        ),\n        SgPageControlPage(\n          id: 'integracoes',\n          title: Text(context.tx('Integrações')),\n          icon: Icon(Icons.folder_outlined),\n          child: Text(context.tx('Conteúdo: Integrações')),\n        ),\n        SgPageControlPage(\n          id: 'preferencias',\n          title: Text(context.tx('Preferências')),\n          icon: Icon(Icons.build_outlined),\n          child: Text(context.tx('Conteúdo: Preferências')),\n        ),\n      ],\n    ),\n  ],\n)"
           }
         ],
         "parity": {
@@ -16055,10 +16062,24 @@
         "examples": [
           {
             "id": "sg-panel-borda",
-            "title": "Estilos de borda",
+            "title": "borderStyle + padding + contentPadding",
             "file": "apps/seedgrid_showcase/lib/pages/sg_panel_page.dart",
             "kind": "dart",
-            "code": "SgStack(\n  gap: 8,\n  children: [\n    SgPanel(\n      contentPadding: 8,\n      children: [Text(context.tx('dashed (padrão)'))],\n    ),\n    SgPanel(\n      borderStyle: SgPanelBorderStyle.solid,\n      contentPadding: 8,\n      children: [Text(context.tx('solid'))],\n    ),\n    SgPanel(\n      borderStyle: SgPanelBorderStyle.none,\n      contentPadding: 8,\n      children: [Text(context.tx('none'))],\n    ),\n  ],\n)"
+            "code": "SgGrid(\n  columns: 3,\n  gap: 4,\n  children: [\n    SgPanel(\n      borderStyle: SgPanelBorderStyle.none,\n      contentPadding: 12,\n      children: const [Text('contentPadding + borderStyle=\"none\"')],\n    ),\n    SgPanel(\n      borderStyle: SgPanelBorderStyle.solid,\n      contentPadding: 12,\n      children: const [Text('contentPadding + borderStyle=\"solid\"')],\n    ),\n    SgPanel(\n      borderStyle: SgPanelBorderStyle.dashed,\n      padding: 12,\n      contentPadding: 12,\n      children: const [Text('padding + contentPadding + dashed')],\n    ),\n  ],\n)"
+          },
+          {
+            "id": "sg-panel-combinado",
+            "title": "Exemplo combinado",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_panel_page.dart",
+            "kind": "dart",
+            "code": "SgStack(\n  gap: 10,\n  children: [\n    SizedBox(\n      height: 260,\n      child: SgPanel(\n        contentPadding: 8,\n        contentGap: 8,\n        children: [\n          SgPanel(\n            align: SgPanelAlign.top,\n            height: 10,\n            minHeightPx: 56,\n            borderStyle: SgPanelBorderStyle.solid,\n            contentPadding: 12,\n            children: [Text(context.tx('Cabeçalho'))],\n          ),\n          SgPanel(\n            align: SgPanelAlign.left,\n            width: 18,\n            minWidthPx: 120,\n            borderStyle: SgPanelBorderStyle.dashed,\n            contentPadding: 8,\n            scrollable: 'y',\n            children: [Text(context.tx('Menu'))],\n          ),\n          SgPanel(\n            align: SgPanelAlign.client,\n            borderStyle: SgPanelBorderStyle.none,\n            contentPadding: 10,\n            scrollable: 'auto',\n            scrollbarGutter: true,\n            children: [Text(context.tx('Conteúdo'))],\n          ),\n        ],\n      ),\n    ),\n    SgGrid(\n      columns: 3,\n      gap: 8,\n      children: [\n        SgPanel(\n          span: 2,\n          contentPadding: 12,\n          children: const [Text('span=2')],\n        ),\n        SgPanel(\n          rowSpan: 2,\n          contentPadding: 12,\n          children: const [Text('rowSpan=2')],\n        ),\n      ],\n    ),\n  ],\n)"
+          },
+          {
+            "id": "sg-panel-composicao",
+            "title": "Composição dentro de SgScreen",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_panel_page.dart",
+            "kind": "dart",
+            "code": "SgScreen(\n  fullscreen: false,\n  height: 520,\n  children: [\n    SgPanel(\n      align: SgPanelAlign.top,\n      height: 5,\n      contentPadding: 8,\n      minHeightPx: 100,\n      contentDirection: SgPanelContentDirection.row,\n      contentJustify: SgPanelContentJustify.end,\n      contentAlign: SgPanelContentAlign.center,\n      contentWrap: true,\n      children: [\n        SgButton(label: Text(context.tx('Salvar'))),\n        SgButton(label: Text(context.tx('Editar'))),\n        SgButton(label: Text(context.tx('Excluir'))),\n      ],\n    ),\n    SgPanel(\n      align: SgPanelAlign.left,\n      width: 30,\n      contentPadding: 8,\n      children: [\n        SgButton(label: Text(context.tx('Salvar'))),\n        SgButton(label: Text(context.tx('Editar'))),\n        SgButton(label: Text(context.tx('Excluir'))),\n      ],\n    ),\n    SgPanel(\n      align: SgPanelAlign.client,\n      contentPadding: 12,\n      children: [Text(context.tx('Conteúdo'))],\n    ),\n    SgPanel(\n      align: SgPanelAlign.bottom,\n      height: 5,\n      contentPadding: 8,\n      minHeightPx: 100,\n      contentDirection: SgPanelContentDirection.row,\n      contentAlign: SgPanelContentAlign.center,\n      contentWrap: true,\n      children: [\n        SgButton(label: Text(context.tx('Salvar'))),\n        SgButton(label: Text(context.tx('Editar'))),\n        SgButton(label: Text(context.tx('Excluir'))),\n      ],\n    ),\n  ],\n)"
           },
           {
             "id": "sg-panel-conteudo",
@@ -16068,18 +16089,25 @@
             "code": "SgPanel(\n  borderStyle: SgPanelBorderStyle.solid,\n  contentPadding: 8,\n  contentDirection: SgPanelContentDirection.row,\n  contentJustify: SgPanelContentJustify.between,\n  contentAlign: SgPanelContentAlign.center,\n  children: [\n    Text(context.tx('Início')),\n    SgButton(\n      label: Text(context.tx('Ação')),\n      size: SgSize.sm,\n      onClick: () {},\n    ),\n    Text(context.tx('Fim')),\n  ],\n)"
           },
           {
-            "id": "sg-panel-docking",
-            "title": "Docking",
+            "id": "sg-panel-dock-basico",
+            "title": "Dock básico em SgPanel",
             "file": "apps/seedgrid_showcase/lib/pages/sg_panel_page.dart",
             "kind": "dart",
-            "code": "SizedBox(\n  height: 260,\n  child: SgPanel(\n    borderStyle: SgPanelBorderStyle.solid,\n    children: [\n      SgPanel(\n        align: SgPanelAlign.top,\n        height: 15,\n        borderStyle: SgPanelBorderStyle.solid,\n        children: [Text(context.tx('top'))],\n      ),\n      SgPanel(\n        align: SgPanelAlign.left,\n        width: 25,\n        borderStyle: SgPanelBorderStyle.solid,\n        children: [Text(context.tx('left'))],\n      ),\n      SgPanel(\n        align: SgPanelAlign.client,\n        borderStyle: SgPanelBorderStyle.solid,\n        children: [Text(context.tx('client'))],\n      ),\n      SgPanel(\n        align: SgPanelAlign.bottom,\n        height: 15,\n        borderStyle: SgPanelBorderStyle.solid,\n        children: [Text(context.tx('bottom'))],\n      ),\n    ],\n  ),\n)"
+            "code": "SizedBox(\n  height: 430,\n  child: SgPanel(\n    borderStyle: SgPanelBorderStyle.solid,\n    contentPadding: 12,\n    contentGap: 8,\n    children: [\n      SgPanel(\n        align: SgPanelAlign.top,\n        height: 12,\n        contentPadding: 10,\n        children: [Text(context.tx('Cabeçalho'))],\n      ),\n      SgPanel(\n        align: SgPanelAlign.left,\n        width: 25,\n        contentPadding: 10,\n        children: [\n          Text(context.tx('Menu')),\n          Text(context.tx('Painel')),\n          Text(context.tx('Clientes')),\n        ],\n      ),\n      SgPanel(\n        align: SgPanelAlign.right,\n        width: '25%',\n        contentPadding: 10,\n        children: [\n          Text(context.tx('Ações')),\n          Text(context.tx('Filtrar')),\n          Text(context.tx('Exportar')),\n        ],\n      ),\n      SgPanel(\n        align: SgPanelAlign.bottom,\n        height: 10,\n        contentPadding: 10,\n        children: [Text(context.tx('Rodapé'))],\n      ),\n      SgPanel(\n        align: SgPanelAlign.client,\n        contentPadding: 10,\n        children: [\n          Text(context.tx('Área principal')),\n          Text(\n            context.tx('Esta área ocupa todo o espaço restante.'),\n          ),\n        ],\n      ),\n    ],\n  ),\n)"
           },
           {
             "id": "sg-panel-rolagem",
-            "title": "Rolagem",
+            "title": "scrollable + scrollbarGutter",
             "file": "apps/seedgrid_showcase/lib/pages/sg_panel_page.dart",
             "kind": "dart",
-            "code": "SizedBox(\n  height: 120,\n  child: SgPanel(\n    borderStyle: SgPanelBorderStyle.solid,\n    scrollable: true,\n    contentPadding: 8,\n    children: [for (var i = 1; i <= 12; i++) Text('Linha $i')],\n  ),\n)"
+            "code": "SgGrid(\n  columns: 2,\n  gap: 4,\n  children: [\n    SizedBox(\n      height: 192,\n      child: SgPanel(\n        scrollable: true,\n        contentPadding: 10,\n        children: [\n          for (var i = 1; i <= 10; i++)\n            SgPanel(\n              borderStyle: SgPanelBorderStyle.solid,\n              contentPadding: 8,\n              children: [Text('scrollable=true - linha $i')],\n            ),\n        ],\n      ),\n    ),\n    SizedBox(\n      height: 192,\n      child: SgPanel(\n        scrollable: 'auto',\n        contentPadding: 10,\n        children: [\n          for (var i = 1; i <= 10; i++)\n            SgPanel(\n              borderStyle: SgPanelBorderStyle.solid,\n              contentPadding: 8,\n              children: [Text('scrollable=\"auto\" - linha $i')],\n            ),\n        ],\n      ),\n    ),\n    SizedBox(\n      height: 192,\n      child: SgPanel(\n        scrollable: 'y',\n        contentPadding: 10,\n        children: [\n          for (var i = 1; i <= 15; i++)\n            SgPanel(\n              borderStyle: SgPanelBorderStyle.solid,\n              contentPadding: 8,\n              children: [Text('Item vertical $i')],\n            ),\n        ],\n      ),\n    ),\n    SizedBox(\n      height: 192,\n      child: SgPanel(\n        scrollable: 'x',\n        scrollbarGutter: true,\n        contentPadding: 10,\n        contentDirection: SgPanelContentDirection.row,\n        contentGap: 8,\n        children: [\n          for (var i = 1; i <= 12; i++)\n            SizedBox(\n              width: 96,\n              height: 96,\n              child: SgPanel(\n                borderStyle: SgPanelBorderStyle.solid,\n                contentAlign: SgPanelContentAlign.center,\n                children: [Text('Box $i')],\n              ),\n            ),\n        ],\n      ),\n    ),\n  ],\n)"
+          },
+          {
+            "id": "sg-panel-span",
+            "title": "span + rowSpan",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_panel_page.dart",
+            "kind": "dart",
+            "code": "SgGrid(\n  columns: 4,\n  gap: 8,\n  rowHeight: 90,\n  dense: true,\n  children: [\n    SgPanel(\n      contentPadding: 10,\n      children: const [Text('Item 1')],\n    ),\n    SgPanel(\n      span: 2,\n      contentPadding: 10,\n      children: const [Text('span=2')],\n    ),\n    SgPanel(\n      rowSpan: 2,\n      contentPadding: 10,\n      children: const [Text('rowSpan=2')],\n    ),\n    SgPanel(\n      contentPadding: 10,\n      children: const [Text('Item 4')],\n    ),\n    SgPanel(\n      contentPadding: 10,\n      children: const [Text('Item 5')],\n    ),\n    SgPanel(\n      span: 2,\n      rowSpan: 2,\n      contentPadding: 10,\n      children: const [Text('span=2 + rowSpan=2')],\n    ),\n  ],\n)"
           }
         ],
         "parity": {
@@ -16253,35 +16281,49 @@
             "title": "Básico",
             "file": "apps/seedgrid_showcase/lib/pages/sg_period_selector_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgPeriodSelector(\n      label: context.tx('Período'),\n      onChange: (p) => setState(\n        () => _basico =\n            '${p.label}: ${p.startDate?.toIso8601String().substring(0, 10) ?? '-'} a ${p.endDate?.toIso8601String().substring(0, 10) ?? '-'}',\n      ),\n    ),\n    const SizedBox(height: 8),\n    Text(_basico),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgPeriodSelector(\n      id: 'ps-basic',\n      label: context.tx('Período'),\n      onChange: (p) =>\n          _basico.value =\n              '${p.label}: ${p.startDate?.toIso8601String().substring(0, 10) ?? '-'} a ${p.endDate?.toIso8601String().substring(0, 10) ?? '-'}',\n    ),\n    const SizedBox(height: 8),\n    ValueListenableBuilder<String>(\n      valueListenable: _basico,\n      builder: (context, resumo, _) => Text(resumo),\n    ),\n  ],\n)"
+          },
+          {
+            "id": "sg-period-selector-clamp",
+            "title": "Clamp com minDate / maxDate",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_period_selector_page.dart",
+            "kind": "dart",
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgPeriodSelector(\n      id: 'ps-clamped',\n      label: context.tx('Período'),\n      permitPast: true,\n      permitCurrent: true,\n      permitFuture: true,\n      minDate: DateTime(DateTime.now().year, DateTime.now().month, 1),\n      maxDate: DateTime(\n        DateTime.now().year,\n        DateTime.now().month + 1,\n        0,\n      ),\n      onChange: (p) =>\n          _limitado.value =\n              '${p.label}: ${p.startDate?.toIso8601String().substring(0, 10) ?? '-'} a ${p.endDate?.toIso8601String().substring(0, 10) ?? '-'}',\n    ),\n    const SizedBox(height: 8),\n    ValueListenableBuilder<String>(\n      valueListenable: _limitado,\n      builder: (context, resumo, _) => Text(resumo),\n    ),\n  ],\n)"
+          },
+          {
+            "id": "sg-period-selector-estados",
+            "title": "Estados",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_period_selector_page.dart",
+            "kind": "dart",
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgPeriodSelector(\n      id: 'ps-disabled',\n      label: context.tx('Período'),\n      enabled: false,\n    ),\n    const SizedBox(height: 12),\n    SgPeriodSelector(\n      id: 'ps-required',\n      label: context.tx('Período'),\n      required: true,\n    ),\n  ],\n)"
           },
           {
             "id": "sg-period-selector-formulario",
             "title": "Dentro de um formulário",
             "file": "apps/seedgrid_showcase/lib/pages/sg_period_selector_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgPeriodSelector(\n      id: 'periodo-form',\n      name: 'periodo',\n      control: _form,\n      label: context.tx('Período do relatório'),\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _form.handleSubmit(\n        (values) =>\n            setState(() => _enviado = '${values['periodo']}'),\n      ),\n    ),\n    if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgPeriodSelector(\n      id: 'periodo-form',\n      name: 'periodo',\n      control: _form,\n      label: context.tx('Período do relatório'),\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _form.handleSubmit(\n        (values) => _enviado.value = '${values['periodo']}',\n      ),\n    ),\n    ValueListenableBuilder<String>(\n      valueListenable: _enviado,\n      builder: (context, enviado, _) =>\n          enviado.isEmpty ? const SizedBox() : Text('Enviado: $enviado'),\n    ),\n  ],\n)"
           },
           {
             "id": "sg-period-selector-grupos",
-            "title": "Grupos de opções",
+            "title": "Todos os grupos",
             "file": "apps/seedgrid_showcase/lib/pages/sg_period_selector_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    Wrap(\n      spacing: 8,\n      runSpacing: 8,\n      children: [\n        FilterChip(\n          label: Text(context.tx('Passados')),\n          selected: _passados,\n          onSelected: (v) => setState(() => _passados = v),\n        ),\n        FilterChip(\n          label: Text(context.tx('Atuais')),\n          selected: _atuais,\n          onSelected: (v) => setState(() => _atuais = v),\n        ),\n        FilterChip(\n          label: Text(context.tx('Futuros')),\n          selected: _futuros,\n          onSelected: (v) => setState(() => _futuros = v),\n        ),\n        FilterChip(\n          label: Text(context.tx('Todos')),\n          selected: _todos,\n          onSelected: (v) => setState(() => _todos = v),\n        ),\n        FilterChip(\n          label: Text(context.tx('Período')),\n          selected: _periodo,\n          onSelected: (v) => setState(() => _periodo = v),\n        ),\n      ],\n    ),\n    const SizedBox(height: 12),\n    SgPeriodSelector(\n      id: 'grupos',\n      label: context.tx('Período'),\n      permitPast: _passados,\n      permitCurrent: _atuais,\n      permitFuture: _futuros,\n      permitAll: _todos,\n      allowCustomPeriod: _periodo,\n    ),\n  ],\n)"
+            "code": "ValueListenableBuilder<List<bool>>(\n  valueListenable: _grupos,\n  builder: (context, grupos, _) => Column(\n    crossAxisAlignment: CrossAxisAlignment.start,\n    children: [\n      Wrap(\n        spacing: 16,\n        runSpacing: 8,\n        children: [\n          SgToggleSwitch(\n            id: 'ps-flag-past',\n            label: 'permitPast',\n            checked: grupos[0],\n            onChange: (v) =>\n                _grupos.value = [v, grupos[1], grupos[2]],\n          ),\n          SgToggleSwitch(\n            id: 'ps-flag-current',\n            label: 'permitCurrent',\n            checked: grupos[1],\n            onChange: (v) =>\n                _grupos.value = [grupos[0], v, grupos[2]],\n          ),\n          SgToggleSwitch(\n            id: 'ps-flag-future',\n            label: 'permitFuture',\n            checked: grupos[2],\n            onChange: (v) =>\n                _grupos.value = [grupos[0], grupos[1], v],\n          ),\n        ],\n      ),\n      const SizedBox(height: 12),\n      SgPeriodSelector(\n        id: 'ps-flags',\n        label: context.tx('Período'),\n        permitPast: grupos[0],\n        permitCurrent: grupos[1],\n        permitFuture: grupos[2],\n        permitAll: false,\n      ),\n    ],\n  ),\n)"
           },
           {
             "id": "sg-period-selector-idioma",
             "title": "Idioma e data de referência",
             "file": "apps/seedgrid_showcase/lib/pages/sg_period_selector_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgPeriodSelector(\n      id: 'ingles',\n      label: context.tx('Period'),\n      locale: 'en-US',\n      referenceDate: DateTime(2024, 2, 29),\n      onChange: (p) => setState(\n        () => _ingles =\n            '${p.label}: ${p.startDate?.toIso8601String().substring(0, 10) ?? '-'} to ${p.endDate?.toIso8601String().substring(0, 10) ?? '-'}',\n      ),\n    ),\n    const SizedBox(height: 8),\n    Text(_ingles),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgPeriodSelector(\n      id: 'ps-english',\n      label: 'Period',\n      locale: 'en-US',\n      referenceDate: DateTime(2024, 2, 29),\n      onChange: (p) =>\n          _ingles.value =\n              '${p.label}: ${p.startDate?.toIso8601String().substring(0, 10) ?? '-'} to ${p.endDate?.toIso8601String().substring(0, 10) ?? '-'}',\n    ),\n    const SizedBox(height: 8),\n    ValueListenableBuilder<String>(\n      valueListenable: _ingles,\n      builder: (context, resumo, _) => Text(resumo),\n    ),\n  ],\n)"
           },
           {
             "id": "sg-period-selector-personalizado",
-            "title": "Período personalizado com limites",
+            "title": "Período customizado",
             "file": "apps/seedgrid_showcase/lib/pages/sg_period_selector_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgPeriodSelector(\n      id: 'personalizado',\n      label: context.tx('Período'),\n      minDate: DateTime(2024, 1, 1),\n      maxDate: DateTime(2024, 12, 31),\n      referenceDate: DateTime(2024, 6, 15),\n      onChange: (p) => setState(\n        () => _personalizado =\n            '${p.label}: ${p.startDate?.toIso8601String().substring(0, 10) ?? '-'} a ${p.endDate?.toIso8601String().substring(0, 10) ?? '-'}',\n      ),\n    ),\n    const SizedBox(height: 8),\n    Text(_personalizado),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgPeriodSelector(\n      id: 'ps-custom',\n      label: context.tx('Período'),\n      allowCustomPeriod: true,\n      permitCurrent: false,\n      permitPast: false,\n      onChange: (p) =>\n          _personalizado.value =\n              '${p.label}: ${p.startDate?.toIso8601String().substring(0, 10) ?? '-'} a ${p.endDate?.toIso8601String().substring(0, 10) ?? '-'}',\n    ),\n    const SizedBox(height: 8),\n    ValueListenableBuilder<String>(\n      valueListenable: _personalizado,\n      builder: (context, resumo, _) => Text(resumo),\n    ),\n  ],\n)"
           }
         ],
         "parity": {
@@ -16520,35 +16562,49 @@
             "title": "Básico",
             "file": "apps/seedgrid_showcase/lib/pages/sg_pick_list_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgPickList(\n      id: 'frutas',\n      title: context.tx('Frutas'),\n      source: _frutas,\n      target: const [],\n      onChange: (e) => setState(\n        () => _ultimo =\n            '${e.type.value}: origem ${e.source.length}, destino ${e.target.length}',\n      ),\n    ),\n    Text('Última mudança: $_ultimo'),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgPickList(\n      id: 'pick-basic',\n      title: context.tx('Frutas'),\n      source: _frutas,\n      target: const [],\n      onChange: (e) =>\n          _ultimo.value =\n              '${e.type.value}: origem ${e.source.length}, destino ${e.target.length}',\n    ),\n    ValueListenableBuilder<String>(\n      valueListenable: _ultimo,\n      builder: (context, ultimo, _) =>\n          Text('${context.tx('Estado atual')}: $ultimo'),\n    ),\n  ],\n)"
           },
           {
             "id": "sg-pick-list-controller",
-            "title": "Controle por código",
+            "title": "Controles externos por ref",
             "file": "apps/seedgrid_showcase/lib/pages/sg_pick_list_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgPickList(\n      title: context.tx('Controlada'),\n      source: _frutas,\n      target: const [],\n      controller: _controller,\n    ),\n    const SizedBox(height: 8),\n    Wrap(\n      spacing: 8,\n      runSpacing: 8,\n      children: [\n        SgButton(\n          label: Text(context.tx('Mover todos')),\n          onClick: () => _controller.moveAllToTarget(),\n        ),\n        SgButton(\n          label: Text(context.tx('Devolver todos')),\n          onClick: () => _controller.moveAllToSource(),\n        ),\n        SgButton(\n          label: Text(context.tx('Limpar seleção')),\n          onClick: () => _controller.clearSelection(),\n        ),\n      ],\n    ),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgPickList(\n      id: 'pick-ref',\n      title: context.tx('Canais'),\n      source: [\n        SgPickListItem(label: context.tx('E-mail'), value: 'email'),\n        SgPickListItem(label: context.tx('SMS'), value: 'sms'),\n        SgPickListItem(label: context.tx('Push'), value: 'push'),\n      ],\n      target: const [],\n      controller: _controller,\n      showTransferControls: false,\n      selectionMode: SgPickListSelectionMode.multiple,\n    ),\n    const SizedBox(height: 8),\n    SgGrid(\n      columns: 4,\n      gap: 8,\n      children: [\n        SgButton(\n          label: const Text('Mover >'),\n          onClick: () => _controller.moveToTarget(),\n        ),\n        SgButton(\n          label: const Text('Mover >>'),\n          onClick: () => _controller.moveAllToTarget(),\n        ),\n        SgButton(\n          label: const Text('Mover <'),\n          onClick: () => _controller.moveToSource(),\n        ),\n        SgButton(\n          label: const Text('Mover <<'),\n          onClick: () => _controller.moveAllToSource(),\n        ),\n      ],\n    ),\n  ],\n)"
           },
           {
             "id": "sg-pick-list-filtros",
-            "title": "Filtros, cabeçalhos e seleção única",
+            "title": "Com Filtros",
             "file": "apps/seedgrid_showcase/lib/pages/sg_pick_list_page.dart",
             "kind": "dart",
-            "code": "SgPickList(\n  title: context.tx('Escolha as frutas'),\n  source: _frutas,\n  target: [\n    SgPickListItem(label: context.tx('Abacate'), value: 'abacate'),\n  ],\n  sourceHeader: 'Disponíveis',\n  targetHeader: 'Escolhidas',\n  showSourceFilter: true,\n  showTargetFilter: true,\n  filterMatchMode: SgPickListFilterMatchMode.startsWith,\n  selectionMode: SgPickListSelectionMode.single,\n  showSourceControls: false,\n  showTargetControls: false,\n)"
+            "code": "SgPickList(\n  id: 'pick-filter',\n  title: context.tx('Escolha as frutas'),\n  source: _frutas,\n  target: const [],\n  showSourceFilter: true,\n  showTargetFilter: true,\n  sourceHeader: context.tx('Disponíveis'),\n  targetHeader: context.tx('Escolhidas'),\n)"
           },
           {
             "id": "sg-pick-list-formulario",
             "title": "Dentro de um formulário",
             "file": "apps/seedgrid_showcase/lib/pages/sg_pick_list_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgPickList(\n      id: 'equipe',\n      name: 'equipe',\n      control: _form,\n      title: context.tx('Equipe'),\n      source: [\n        SgPickListItem(label: context.tx('Ana'), value: 'ana'),\n        SgPickListItem(label: context.tx('Bruno'), value: 'bruno'),\n        SgPickListItem(label: context.tx('Carla'), value: 'carla'),\n      ],\n      target: const [],\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _form.handleSubmit((values) {\n        final v = values['equipe'] as SgPickListValue?;\n        setState(\n          () => _enviado =\n              v?.target.map((e) => e.label).join(', ') ?? '',\n        );\n      }),\n    ),\n    if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgPickList(\n      id: 'equipe',\n      name: 'equipe',\n      control: _form,\n      title: context.tx('Equipe'),\n      source: [\n        SgPickListItem(label: context.tx('Ana'), value: 'ana'),\n        SgPickListItem(label: context.tx('Bruno'), value: 'bruno'),\n        SgPickListItem(label: context.tx('Carla'), value: 'carla'),\n      ],\n      target: const [],\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _form.handleSubmit((values) {\n        final v = values['equipe'] as SgPickListValue?;\n        _enviado.value =\n            v?.target.map((e) => e.label).join(', ') ?? '';\n      }),\n    ),\n    ValueListenableBuilder<String>(\n      valueListenable: _enviado,\n      builder: (context, enviado, _) => enviado.isEmpty\n          ? const SizedBox()\n          : Text('Enviado: $enviado'),\n    ),\n  ],\n)"
+          },
+          {
+            "id": "sg-pick-list-reordenacao",
+            "title": "Reordenação com controles de lista",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_pick_list_page.dart",
+            "kind": "dart",
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    Text(\n      context.tx(\n        'Dica: arraste itens entre listas ou dentro da mesma lista para reordenar.',\n      ),\n    ),\n    SgPickList(\n      id: 'pick-reorder',\n      title: context.tx('Quadro da sprint'),\n      source: [\n        SgPickListItem(label: context.tx('Tarefa A'), value: 'a'),\n        SgPickListItem(label: context.tx('Tarefa B'), value: 'b'),\n        SgPickListItem(label: context.tx('Tarefa C'), value: 'c'),\n      ],\n      target: [\n        SgPickListItem(label: context.tx('Feito X'), value: 'x'),\n        SgPickListItem(label: context.tx('Feito Y'), value: 'y'),\n      ],\n      showSourceControls: true,\n      showTargetControls: true,\n      draggable: true,\n    ),\n  ],\n)"
           },
           {
             "id": "sg-pick-list-template",
-            "title": "Item personalizado e desabilitado",
+            "title": "Item template customizado",
             "file": "apps/seedgrid_showcase/lib/pages/sg_pick_list_page.dart",
             "kind": "dart",
-            "code": "SgPickList(\n  title: context.tx('Com ícones'),\n  source: [\n    SgPickListItem(\n      label: context.tx('Favoritos'),\n      value: 1,\n      icon: Icon(Icons.star, size: 16),\n    ),\n    SgPickListItem(\n      label: context.tx('Rápidos'),\n      value: 2,\n      icon: Icon(Icons.bolt, size: 16),\n    ),\n    SgPickListItem(\n      label: context.tx('Bloqueado'),\n      value: 3,\n      enabled: false,\n    ),\n  ],\n  target: const [],\n  itemTemplate: (item, state) => Row(\n    children: [\n      Icon(\n        state.list == SgPickListListName.source\n            ? Icons.inbox\n            : Icons.check_circle,\n        size: 16,\n      ),\n      const SizedBox(width: 8),\n      Expanded(\n        child: Text(\n          '${state.index + 1}. ${item.label}${state.selected ? ' (selecionado)' : ''}',\n        ),\n      ),\n    ],\n  ),\n)"
+            "code": "SgPickList(\n  id: 'pick-template',\n  title: context.tx('Capacidade da equipe'),\n  source: [\n    SgPickListItem(\n      label: context.tx('Frontend'),\n      value: 'frontend',\n      data: const {'responsavel': 'Ana', 'esforco': 'M'},\n    ),\n    SgPickListItem(\n      label: context.tx('Backend'),\n      value: 'backend',\n      data: const {'responsavel': 'Bruno', 'esforco': 'L'},\n    ),\n    SgPickListItem(\n      label: context.tx('QA'),\n      value: 'qa',\n      data: const {'responsavel': 'Carla', 'esforco': 'S'},\n      enabled: false,\n    ),\n  ],\n  target: const [],\n  itemTemplate: (item, state) {\n    final meta = item.data as Map<String, String>?;\n    return SgGrid(\n      columns: 2,\n      gap: 8,\n      children: [\n        Text(\n          item.label,\n          style: const TextStyle(fontWeight: FontWeight.w500),\n        ),\n        Text(\n          '${context.tx('Responsável')}: ${meta?['responsavel'] ?? '-'} | ${context.tx('Esforço')}: ${meta?['esforco'] ?? '-'}',\n          style: const TextStyle(fontSize: 12),\n        ),\n      ],\n    );\n  },\n)"
+          },
+          {
+            "id": "sg-pick-list-transferencia",
+            "title": "Somente transferência (sem ordenação)",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_pick_list_page.dart",
+            "kind": "dart",
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgPickList(\n      id: 'pick-transfer-only',\n      title: context.tx('Somente transferência'),\n      source: [\n        SgPickListItem(\n          label: context.tx('Pendente'),\n          value: 'backlog',\n          icon: Icon(Icons.inbox, size: 16),\n        ),\n        SgPickListItem(\n          label: context.tx('Em andamento'),\n          value: 'in-progress',\n          icon: Icon(Icons.refresh, size: 16),\n        ),\n        SgPickListItem(\n          label: context.tx('Em revisão'),\n          value: 'review',\n          icon: Icon(Icons.notifications_none, size: 16),\n        ),\n      ],\n      target: [\n        SgPickListItem(\n          label: context.tx('Concluído'),\n          value: 'done',\n          icon: Icon(Icons.star_border, size: 16),\n        ),\n      ],\n      showSourceControls: false,\n      showTargetControls: false,\n      draggable: false,\n    ),\n    Text(\n      context.tx(\n        'Exemplo para cenários em que você só precisa mover itens entre listas.',\n      ),\n    ),\n  ],\n)"
           }
         ],
         "parity": {
@@ -16734,28 +16790,42 @@
             "title": "Ações",
             "file": "apps/seedgrid_showcase/lib/pages/sg_popup_page.dart",
             "kind": "dart",
-            "code": "Row(\n  children: [\n    SgButton(\n      key: _acoesKey,\n      label: Text(context.tx('Ações')),\n      appearance: SgAppearance.outline,\n      onClick: () => setState(() => _acoes = !_acoes),\n    ),\n    const SizedBox(width: 12),\n    if (_ultima.isNotEmpty) Text('Última ação: $_ultima'),\n    SgPopup(\n      anchorRef: _acoesKey,\n      open: _acoes,\n      onOpenChange: (open) => setState(() => _acoes = open),\n      actions: [\n        SgPopupAction(\n          label: context.tx('Editar'),\n          icon: const Icon(Icons.edit),\n          hint: context.tx('Abre o editor'),\n          onClick: () => setState(() => _ultima = 'editar'),\n        ),\n        SgPopupAction(\n          label: context.tx('Duplicar (não fecha)'),\n          icon: const Icon(Icons.copy),\n          closeOnClick: false,\n          onClick: () => setState(() => _ultima = 'duplicar'),\n        ),\n        SgPopupAction(\n          label: context.tx('Indisponível'),\n          enabled: false,\n        ),\n        SgPopupAction(\n          label: context.tx('Excluir'),\n          icon: const Icon(Icons.delete),\n          severity: SgPopupSeverity.danger,\n          onClick: () => setState(() => _ultima = 'excluir'),\n        ),\n      ],\n    ),\n  ],\n)"
+            "code": "Wrap(\n  spacing: 12,\n  runSpacing: 8,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgButton(\n      key: _acoesKey,\n      label: Text(context.tx('Ações')),\n      appearance: SgAppearance.outline,\n      onClick: () => _acoes.value = !_acoes.value,\n    ),\n    const SizedBox(width: 12),\n    ValueListenableBuilder<String>(\n      valueListenable: _ultima,\n      builder: (context, ultima, _) => ultima.isEmpty\n          ? const SizedBox()\n          : Text('${context.tx('Última ação')}: $ultima'),\n    ),\n    ValueListenableBuilder<bool>(\n      valueListenable: _acoes,\n      builder: (context, aberto, _) => SgPopup(\n        anchorRef: _acoesKey,\n        open: aberto,\n        onOpenChange: (open) => _acoes.value = open,\n        actions: [\n          SgPopupAction(\n            label: context.tx('Editar'),\n            icon: const Icon(Icons.edit),\n            hint: context.tx('Abre o editor'),\n            onClick: () => _ultima.value = 'editar',\n          ),\n          SgPopupAction(\n            label: context.tx('Duplicar (não fecha)'),\n            icon: const Icon(Icons.copy),\n            closeOnClick: false,\n            onClick: () => _ultima.value = 'duplicar',\n          ),\n          SgPopupAction(\n            label: context.tx('Indisponível'),\n            enabled: false,\n          ),\n          SgPopupAction(\n            label: context.tx('Excluir'),\n            icon: const Icon(Icons.delete),\n            severity: SgPopupSeverity.danger,\n            onClick: () => _ultima.value = 'excluir',\n          ),\n        ],\n      ),\n    ),\n  ],\n)"
           },
           {
             "id": "sg-popup-basico",
             "title": "Básico",
             "file": "apps/seedgrid_showcase/lib/pages/sg_popup_page.dart",
             "kind": "dart",
-            "code": "Row(\n  children: [\n    SgButton(\n      key: _basicoKey,\n      label: Text(context.tx('Abrir popup')),\n      onClick: () => setState(() => _basico = !_basico),\n    ),\n    SgPopup(\n      anchorRef: _basicoKey,\n      open: _basico,\n      onOpenChange: (open) => setState(() => _basico = open),\n      title: context.tx('Perfil'),\n      subtitle: context.tx('Conta pessoal'),\n      child: Text(context.tx('Conteúdo livre do popup.')),\n    ),\n  ],\n)"
+            "code": "Wrap(\n  spacing: 12,\n  runSpacing: 8,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgButton(\n      key: _basicoKey,\n      label: Text(context.tx('Abrir popup')),\n      onClick: () => _basico.value = !_basico.value,\n    ),\n    ValueListenableBuilder<bool>(\n      valueListenable: _basico,\n      builder: (context, aberto, _) => SgPopup(\n        anchorRef: _basicoKey,\n        open: aberto,\n        onOpenChange: (open) => _basico.value = open,\n        title: context.tx('Confirma'),\n        subtitle: context.tx('Tem certeza que deseja continuar?'),\n        placement: SgPopupPlacement.auto,\n        preferPlacement: SgPopupPreferPlacement.right,\n        align: SgPopupAlign.start,\n        actions: [\n          SgPopupAction(label: context.tx('Sim')),\n          SgPopupAction(label: context.tx('Não')),\n        ],\n      ),\n    ),\n  ],\n)"
+          },
+          {
+            "id": "sg-popup-custom",
+            "title": "Conteúdo custom",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_popup_page.dart",
+            "kind": "dart",
+            "code": "Wrap(\n  spacing: 12,\n  runSpacing: 8,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgButton(\n      key: _customKey,\n      label: Text(context.tx('Abrir popup custom')),\n      onClick: () => _custom.value = !_custom.value,\n    ),\n    ValueListenableBuilder<bool>(\n      valueListenable: _custom,\n      builder: (context, aberto, _) => SgPopup(\n        anchorRef: _customKey,\n        open: aberto,\n        onOpenChange: (open) => _custom.value = open,\n        title: context.tx('Configuração'),\n        placement: SgPopupPlacement.auto,\n        child: SgInputText(\n          id: 'popup-modo',\n          label: context.tx('Modo'),\n        ),\n      ),\n    ),\n  ],\n)"
           },
           {
             "id": "sg-popup-fechamento",
             "title": "Fechamento",
             "file": "apps/seedgrid_showcase/lib/pages/sg_popup_page.dart",
             "kind": "dart",
-            "code": "Row(\n  children: [\n    SgButton(\n      key: _fechaKey,\n      label: Text(context.tx('Abrir fixo')),\n      onClick: () => setState(() => _fecha = !_fecha),\n    ),\n    SgPopup(\n      anchorRef: _fechaKey,\n      open: _fecha,\n      onOpenChange: (open) => setState(() => _fecha = open),\n      closeOnOutsideClick: false,\n      closeOnEscape: false,\n      title: context.tx('Fixo'),\n      actions: [SgPopupAction(label: context.tx('Fechar'))],\n    ),\n  ],\n)"
+            "code": "Wrap(\n  spacing: 12,\n  runSpacing: 8,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgButton(\n      key: _fechaKey,\n      label: Text(context.tx('Abrir fixo')),\n      onClick: () => _fecha.value = !_fecha.value,\n    ),\n    ValueListenableBuilder<bool>(\n      valueListenable: _fecha,\n      builder: (context, aberto, _) => SgPopup(\n        anchorRef: _fechaKey,\n        open: aberto,\n        onOpenChange: (open) => _fecha.value = open,\n        closeOnOutsideClick: false,\n        closeOnEscape: false,\n        title: context.tx('Fixo'),\n        actions: [SgPopupAction(label: context.tx('Fechar'))],\n      ),\n    ),\n  ],\n)"
+          },
+          {
+            "id": "sg-popup-icone-hint",
+            "title": "Ícone e hint",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_popup_page.dart",
+            "kind": "dart",
+            "code": "Wrap(\n  spacing: 12,\n  runSpacing: 8,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgButton(\n      key: _iconeKey,\n      label: Text(context.tx('Abrir popup com ícone')),\n      onClick: () => _icone.value = !_icone.value,\n    ),\n    ValueListenableBuilder<bool>(\n      valueListenable: _icone,\n      builder: (context, aberto, _) => SgPopup(\n        anchorRef: _iconeKey,\n        open: aberto,\n        onOpenChange: (open) => _icone.value = open,\n        title: context.tx('Confirma'),\n        placement: SgPopupPlacement.auto,\n        preferPlacement: SgPopupPreferPlacement.right,\n        align: SgPopupAlign.start,\n        actions: [\n          SgPopupAction(\n            label: context.tx('Aprovar'),\n            hint: context.tx('Confirmar aprovação'),\n            icon: const Icon(Icons.check, size: 16),\n          ),\n          SgPopupAction(\n            label: context.tx('Rejeitar'),\n            hint: context.tx('Negar a ação'),\n            icon: const Icon(Icons.close, size: 16),\n          ),\n        ],\n      ),\n    ),\n  ],\n)"
           },
           {
             "id": "sg-popup-posicionamento",
             "title": "Posicionamento",
             "file": "apps/seedgrid_showcase/lib/pages/sg_popup_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    Wrap(\n      spacing: 8,\n      runSpacing: 8,\n      children: [\n        for (final p in SgPopupPlacement.values)\n          ChoiceChip(\n            label: Text(p.value),\n            selected: _placement == p,\n            onSelected: (_) => setState(() => _placement = p),\n          ),\n        for (final a in SgPopupAlign.values)\n          ChoiceChip(\n            label: Text('align ${a.value}'),\n            selected: _align == a,\n            onSelected: (_) => setState(() => _align = a),\n          ),\n      ],\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      key: _posKey,\n      label: Text(context.tx('Abrir')),\n      onClick: () => setState(() => _pos = !_pos),\n    ),\n    SgPopup(\n      anchorRef: _posKey,\n      open: _pos,\n      onOpenChange: (open) => setState(() => _pos = open),\n      placement: _placement,\n      align: _align,\n      child: Text('${_placement.value} / ${_align.value}'),\n    ),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    ListenableBuilder(\n      listenable: Listenable.merge([_placement, _align]),\n      builder: (context, _) => Wrap(\n        spacing: 8,\n        runSpacing: 8,\n        children: [\n          for (final p in SgPopupPlacement.values)\n            ChoiceChip(\n              label: Text(p.value),\n              selected: _placement.value == p,\n              onSelected: (_) => _placement.value = p,\n            ),\n          for (final a in SgPopupAlign.values)\n            ChoiceChip(\n              label: Text('align ${a.value}'),\n              selected: _align.value == a,\n              onSelected: (_) => _align.value = a,\n            ),\n        ],\n      ),\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      key: _posKey,\n      label: Text(context.tx('Abrir')),\n      onClick: () => _pos.value = !_pos.value,\n    ),\n    ListenableBuilder(\n      listenable: Listenable.merge([_pos, _placement, _align]),\n      builder: (context, _) => SgPopup(\n        anchorRef: _posKey,\n        open: _pos.value,\n        onOpenChange: (open) => _pos.value = open,\n        placement: _placement.value,\n        align: _align.value,\n        child: Text('${_placement.value.value} / ${_align.value.value}'),\n      ),\n    ),\n  ],\n)"
           }
         ],
         "parity": {
@@ -17452,7 +17522,7 @@
           },
           {
             "id": "sg-radio-group-grupo-disabled",
-            "title": "Grupo Disabled",
+            "title": "Grupo Desabilitado",
             "file": "apps/seedgrid_showcase/lib/pages/sg_radio_group_page.dart",
             "kind": "dart",
             "code": "SgRadioGroup(\n  id: 'disabled-group',\n  title: context.tx('Opções desabilitadas'),\n  value: 'option2',\n  enabled: false,\n  source: [\n    SgRadioGroupOption(\n      label: context.tx('Opção 1'),\n      value: 'option1',\n    ),\n    SgRadioGroupOption(\n      label: context.tx('Opção 2'),\n      value: 'option2',\n    ),\n    SgRadioGroupOption(\n      label: context.tx('Opção 3'),\n      value: 'option3',\n    ),\n  ],\n)"
@@ -17473,14 +17543,14 @@
           },
           {
             "id": "sg-radio-group-orientation-horizontal",
-            "title": "Orientation Horizontal",
+            "title": "Orientação Horizontal",
             "file": "apps/seedgrid_showcase/lib/pages/sg_radio_group_page.dart",
             "kind": "dart",
             "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgRadioGroup(\n      id: 'horizontal',\n      title: context.tx('Selecione uma fruta'),\n      orientation: SgRadioGroupOrientation.horizontal,\n      value: _fruta,\n      onChange: (v) => setState(() => _fruta = v),\n      source: [\n        SgRadioGroupOption(\n          label: context.tx('Maçã'),\n          value: 'apple',\n        ),\n        SgRadioGroupOption(\n          label: context.tx('Banana'),\n          value: 'banana',\n        ),\n        SgRadioGroupOption(\n          label: context.tx('Laranja'),\n          value: 'orange',\n        ),\n        SgRadioGroupOption(\n          label: context.tx('Uva'),\n          value: 'grape',\n        ),\n      ],\n    ),\n  ],\n)"
           },
           {
             "id": "sg-radio-group-read-only",
-            "title": "Read-only",
+            "title": "Somente Leitura",
             "file": "apps/seedgrid_showcase/lib/pages/sg_radio_group_page.dart",
             "kind": "dart",
             "code": "SgRadioGroup(\n  id: 'readonly',\n  title: context.tx('Configuração atual (somente leitura)'),\n  value: 'banana',\n  readOnly: true,\n  source: [\n    SgRadioGroupOption(label: context.tx('Maçã'), value: 'apple'),\n    SgRadioGroupOption(\n      label: context.tx('Banana'),\n      value: 'banana',\n    ),\n    SgRadioGroupOption(\n      label: context.tx('Laranja'),\n      value: 'orange',\n    ),\n    SgRadioGroupOption(label: context.tx('Uva'), value: 'grape'),\n  ],\n)"
@@ -17494,7 +17564,7 @@
           },
           {
             "id": "sg-radio-group-selection-style-highlight",
-            "title": "Selection Style Highlight (Lista)",
+            "title": "Estilo de Seleção Destacado (Lista)",
             "file": "apps/seedgrid_showcase/lib/pages/sg_radio_group_page.dart",
             "kind": "dart",
             "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    ConstrainedBox(\n      constraints: const BoxConstraints(maxWidth: 320),\n      child: SgRadioGroup(\n        id: 'highlight-list',\n        title: context.tx('Opções'),\n        selectionStyle: SgRadioGroupSelectionStyle.highlight,\n        value: _highlight,\n        onChange: (v) => setState(() => _highlight = v),\n        source: [\n          SgRadioGroupOption(\n            label: context.tx('Reserva'),\n            value: 'reserve',\n            icon: Icon(\n              Icons.account_balance,\n              size: 16,\n              color: Colors.indigo,\n            ),\n          ),\n          SgRadioGroupOption(\n            label: context.tx('Alerta'),\n            value: 'alert',\n            icon: Icon(\n              Icons.notifications,\n              size: 16,\n              color: Colors.pink,\n            ),\n          ),\n          SgRadioGroupOption(\n            label: context.tx('Atualizar'),\n            value: 'refresh',\n            icon: Icon(\n              Icons.refresh,\n              size: 16,\n              color: Colors.green,\n            ),\n          ),\n        ],\n      ),\n    ),\n\n    const SizedBox(height: 8),\n    Text(\n      '${context.tx('Valor')}: ${_highlight ?? context.tx('Nenhum')}',\n    ),\n  ],\n)"
@@ -18037,6 +18107,13 @@
         ],
         "examples": [
           {
+            "id": "sg-screen-completo",
+            "title": "Exemplo completo",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_screen_page.dart",
+            "kind": "dart",
+            "code": "SgScreen(\n  fullscreen: false,\n  height: 420,\n  padding: 10,\n  children: [\n    SgPanel(\n      align: SgPanelAlign.top,\n      height: 12,\n      borderStyle: SgPanelBorderStyle.solid,\n      children: [Text(context.tx('Cabeçalho'))],\n    ),\n    SgPanel(\n      align: SgPanelAlign.left,\n      width: 20,\n      borderStyle: SgPanelBorderStyle.solid,\n      children: [\n        Text(context.tx('Menu')),\n        Text(context.tx('Painel')),\n        Text(context.tx('Relatórios')),\n        Text(context.tx('Clientes')),\n      ],\n    ),\n    SgPanel(\n      align: SgPanelAlign.right,\n      width: 18,\n      borderStyle: SgPanelBorderStyle.solid,\n      children: [\n        Text(context.tx('Ações')),\n        Text(context.tx('Filtrar')),\n        Text(context.tx('Exportar')),\n      ],\n    ),\n    SgPanel(\n      align: SgPanelAlign.bottom,\n      height: 10,\n      borderStyle: SgPanelBorderStyle.solid,\n      children: [Text(context.tx('Rodapé'))],\n    ),\n    SgPanel(\n      align: SgPanelAlign.client,\n      borderStyle: SgPanelBorderStyle.solid,\n      children: [\n        Text(context.tx('Área principal')),\n        Text(context.tx('Esta área ocupa todo o espaço restante.')),\n      ],\n    ),\n  ],\n)"
+          },
+          {
             "id": "sg-screen-docking",
             "title": "Tela com docking",
             "file": "apps/seedgrid_showcase/lib/pages/sg_screen_page.dart",
@@ -18415,32 +18492,46 @@
         ],
         "examples": [
           {
-            "id": "sg-skeleton-animacoes",
-            "title": "Animações",
+            "id": "sg-skeleton-animacao",
+            "title": "Animação",
             "file": "apps/seedgrid_showcase/lib/pages/sg_skeleton_page.dart",
             "kind": "dart",
-            "code": "const Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgSkeleton(width: 220),\n    SizedBox(height: 8),\n    SgSkeleton(width: 220, animation: SgSkeletonAnimation.pulse),\n    SizedBox(height: 8),\n    SgSkeleton(width: 220, animation: SgSkeletonAnimation.none),\n  ],\n)"
+            "code": "const SgGrid(\n  columns: {'base': 1, 'sm': 3},\n  gap: 16,\n  children: [\n    SgStack(\n      gap: 8,\n      children: [\n        Text('wave'),\n        SgSkeleton(animation: SgSkeletonAnimation.wave, height: 56),\n      ],\n    ),\n    SgStack(\n      gap: 8,\n      children: [\n        Text('pulse'),\n        SgSkeleton(\n          animation: SgSkeletonAnimation.pulse,\n          height: 56,\n        ),\n      ],\n    ),\n    SgStack(\n      gap: 8,\n      children: [\n        Text('none'),\n        SgSkeleton(animation: SgSkeletonAnimation.none, height: 56),\n      ],\n    ),\n  ],\n)"
           },
           {
-            "id": "sg-skeleton-cartao",
-            "title": "Cartão de carregamento",
+            "id": "sg-skeleton-card",
+            "title": "Placeholder de card",
             "file": "apps/seedgrid_showcase/lib/pages/sg_skeleton_page.dart",
             "kind": "dart",
-            "code": "const Row(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgSkeleton(shape: SgSkeletonShape.circle, size: 48),\n    SizedBox(width: 12),\n    Expanded(\n      child: Column(\n        crossAxisAlignment: CrossAxisAlignment.start,\n        children: [\n          SgSkeleton(width: '60%'),\n          SizedBox(height: 8),\n          SgSkeleton(),\n          SizedBox(height: 8),\n          SgSkeleton(width: '80%'),\n        ],\n      ),\n    ),\n  ],\n)"
+            "code": "ConstrainedBox(\n  constraints: BoxConstraints(maxWidth: 384),\n  child: SgPanel(\n    borderStyle: SgPanelBorderStyle.solid,\n    contentPadding: 16,\n    contentGap: 16,\n    children: [\n      SgSkeleton(shape: SgSkeletonShape.rounded, height: 160),\n      SgStack(\n        gap: 8,\n        children: [\n          SgSkeleton(shape: SgSkeletonShape.text, width: '60%'),\n          SgSkeleton(shape: SgSkeletonShape.text),\n          SgSkeleton(shape: SgSkeletonShape.text, width: '82%'),\n        ],\n      ),\n    ],\n  ),\n)"
           },
           {
             "id": "sg-skeleton-dimensoes",
             "title": "Dimensões em texto",
             "file": "apps/seedgrid_showcase/lib/pages/sg_skeleton_page.dart",
             "kind": "dart",
-            "code": "const Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgSkeleton(width: '50%', height: '2rem'),\n    SizedBox(height: 8),\n    SgSkeleton(size: '3rem', shape: SgSkeletonShape.circle),\n    SizedBox(height: 8),\n    SgSkeleton(width: 200, height: 24, borderRadius: 4),\n  ],\n)"
+            "code": "const SgStack(\n  gap: 8,\n  children: [\n    SgSkeleton(width: '50%', height: '2rem'),\n    SgSkeleton(size: '3rem', shape: SgSkeletonShape.circle),\n    SgSkeleton(width: 200, height: 24, borderRadius: 4),\n  ],\n)"
           },
           {
             "id": "sg-skeleton-formas",
-            "title": "Formas",
+            "title": "Formas básicas",
             "file": "apps/seedgrid_showcase/lib/pages/sg_skeleton_page.dart",
             "kind": "dart",
-            "code": "const Wrap(\n  spacing: 16,\n  runSpacing: 16,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgSkeleton(width: 160),\n    SgSkeleton(\n      shape: SgSkeletonShape.rectangle,\n      width: 120,\n      height: 48,\n    ),\n    SgSkeleton(\n      shape: SgSkeletonShape.rounded,\n      width: 120,\n      height: 48,\n    ),\n    SgSkeleton(shape: SgSkeletonShape.square),\n    SgSkeleton(shape: SgSkeletonShape.circle),\n  ],\n)"
+            "code": "const SgGrid(\n  columns: {'base': 2, 'lg': 5},\n  gap: 12,\n  children: [\n    SgSkeleton(shape: SgSkeletonShape.text),\n    SgSkeleton(shape: SgSkeletonShape.rectangle, height: 48),\n    SgSkeleton(shape: SgSkeletonShape.rounded, height: 48),\n    SgSkeleton(shape: SgSkeletonShape.square, size: 56),\n    SgSkeleton(shape: SgSkeletonShape.circle, size: 56),\n  ],\n)"
+          },
+          {
+            "id": "sg-skeleton-larguras",
+            "title": "Larguras de texto",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_skeleton_page.dart",
+            "kind": "dart",
+            "code": "ConstrainedBox(\n  constraints: BoxConstraints(maxWidth: 448),\n  child: SgStack(\n    gap: 8,\n    children: [\n      SgSkeleton(shape: SgSkeletonShape.text, width: '100%'),\n      SgSkeleton(shape: SgSkeletonShape.text, width: '86%'),\n      SgSkeleton(shape: SgSkeletonShape.text, width: '72%'),\n      SgSkeleton(shape: SgSkeletonShape.text, width: '52%'),\n    ],\n  ),\n)"
+          },
+          {
+            "id": "sg-skeleton-lista-tabela",
+            "title": "Lista e tabela",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_skeleton_page.dart",
+            "kind": "dart",
+            "code": "SgGrid(\n  columns: const {'base': 1, 'lg': 2},\n  gap: 24,\n  children: [\n    SgStack(\n      gap: 12,\n      children: [\n        for (var i = 0; i < 5; i++)\n          const Row(\n            children: [\n              SgSkeleton(shape: SgSkeletonShape.circle, size: 40),\n              SizedBox(width: 12),\n              Expanded(\n                child: SgStack(\n                  gap: 8,\n                  children: [\n                    SgSkeleton(\n                      shape: SgSkeletonShape.text,\n                      width: '55%',\n                    ),\n                    SgSkeleton(\n                      shape: SgSkeletonShape.text,\n                      width: '35%',\n                    ),\n                  ],\n                ),\n              ),\n            ],\n          ),\n      ],\n    ),\n    SgPanel(\n      borderStyle: SgPanelBorderStyle.solid,\n      contentPadding: 12,\n      contentGap: 12,\n      children: [\n        const Row(\n          children: [\n            Expanded(\n              child: SgSkeleton(\n                shape: SgSkeletonShape.text,\n                width: '80%',\n              ),\n            ),\n            SizedBox(width: 12),\n            SizedBox(\n              width: 120,\n              child: SgSkeleton(\n                shape: SgSkeletonShape.text,\n                width: '70%',\n              ),\n            ),\n            SizedBox(width: 12),\n            SizedBox(\n              width: 120,\n              child: SgSkeleton(\n                shape: SgSkeletonShape.text,\n                width: '70%',\n              ),\n            ),\n          ],\n        ),\n        for (var i = 0; i < 5; i++)\n          Row(\n            children: [\n              Expanded(\n                child: SgSkeleton(\n                  shape: SgSkeletonShape.text,\n                  width: '${60 + ((i % 3) * 10)}%',\n                ),\n              ),\n              const SizedBox(width: 12),\n              const SizedBox(\n                width: 120,\n                child: SgSkeleton(\n                  shape: SgSkeletonShape.text,\n                  width: '55%',\n                ),\n              ),\n              const SizedBox(width: 12),\n              const SizedBox(\n                width: 120,\n                child: SgSkeleton(\n                  shape: SgSkeletonShape.text,\n                  width: '45%',\n                ),\n              ),\n            ],\n          ),\n      ],\n    ),\n  ],\n)"
           }
         ],
         "parity": {
@@ -18552,32 +18643,46 @@
         ],
         "examples": [
           {
+            "id": "sg-slider-aria-desabilitado",
+            "title": "ariaLabel e desabilitado",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_slider_page.dart",
+            "kind": "dart",
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgSlider(\n      id: 'slider-aria',\n      minValue: 0,\n      maxValue: 100,\n      defaultValue: 40,\n      width: '20rem',\n      ariaLabel: context.tx('Nível de prioridade'),\n    ),\n    SgSlider(\n      id: 'slider-disabled',\n      minValue: 0,\n      maxValue: 100,\n      defaultValue: 65,\n      enabled: false,\n      width: '20rem',\n      ariaLabel: context.tx('Slider desabilitado'),\n    ),\n  ],\n)"
+          },
+          {
             "id": "sg-slider-basico",
             "title": "Básico",
             "file": "apps/seedgrid_showcase/lib/pages/sg_slider_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgSlider(\n      id: 'volume',\n      minValue: 0,\n      maxValue: 100,\n      defaultValue: 30,\n      ariaLabel: 'Volume',\n      onChange: (v) => setState(() => _volume = v),\n    ),\n    Text('Volume: $_volume'),\n  ],\n)"
+            "code": "ConstrainedBox(\n  constraints: const BoxConstraints(maxWidth: 384),\n  child: Column(\n    crossAxisAlignment: CrossAxisAlignment.start,\n    children: [\n      SgSlider(\n        id: 'slider-basic',\n        minValue: 0,\n        maxValue: 100,\n        defaultValue: 50,\n        onChange: (v) => _basico.value = v,\n      ),\n      ValueListenableBuilder<num>(\n        valueListenable: _basico,\n        builder: (context, valor, _) =>\n            Text('${context.tx('Valor atual')}: $valor'),\n      ),\n    ],\n  ),\n)"
           },
           {
-            "id": "sg-slider-estados",
-            "title": "Largura, desabilitado e erro",
+            "id": "sg-slider-controle-externo",
+            "title": "Controle externo",
             "file": "apps/seedgrid_showcase/lib/pages/sg_slider_page.dart",
             "kind": "dart",
-            "code": "const Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgSlider(\n      id: 'largura',\n      minValue: 0,\n      maxValue: 10,\n      defaultValue: 4,\n      width: '50%',\n    ),\n    SgSlider(\n      id: 'off',\n      minValue: 0,\n      maxValue: 10,\n      defaultValue: 7,\n      enabled: false,\n    ),\n    SgSlider(\n      id: 'erro',\n      minValue: 0,\n      maxValue: 10,\n      defaultValue: 9,\n      error: 'Valor alto demais',\n    ),\n  ],\n)"
+            "code": "ConstrainedBox(\n  constraints: const BoxConstraints(maxWidth: 384),\n  child: ValueListenableBuilder<num>(\n    valueListenable: _controlado,\n    builder: (context, valor, _) => Column(\n      crossAxisAlignment: CrossAxisAlignment.start,\n      children: [\n        SgSlider(\n          id: 'slider-controlled',\n          minValue: 0,\n          maxValue: 100,\n          value: valor,\n          onChange: (v) => _controlado.value = v,\n        ),\n        const SizedBox(height: 12),\n        Wrap(\n          spacing: 8,\n          runSpacing: 8,\n          children: [\n            SgButton(\n              size: SgSize.sm,\n              appearance: SgAppearance.outline,\n              label: Text(context.tx('Mín')),\n              onClick: () => _controlado.value = 0,\n            ),\n            SgButton(\n              size: SgSize.sm,\n              appearance: SgAppearance.outline,\n              label: Text(context.tx('Meio')),\n              onClick: () => _controlado.value = 50,\n            ),\n            SgButton(\n              size: SgSize.sm,\n              appearance: SgAppearance.outline,\n              label: Text(context.tx('Máx')),\n              onClick: () => _controlado.value = 100,\n            ),\n          ],\n        ),\n        const SizedBox(height: 8),\n        Text('${context.tx('Valor controlado')}: $valor'),\n      ],\n    ),\n  ),\n)"
+          },
+          {
+            "id": "sg-slider-erro",
+            "title": "Mensagem de erro",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_slider_page.dart",
+            "kind": "dart",
+            "code": "ConstrainedBox(\n  constraints: const BoxConstraints(maxWidth: 384),\n  child: SgSlider(\n    id: 'slider-error',\n    minValue: 0,\n    maxValue: 10,\n    defaultValue: 9,\n    error: context.tx('Valor alto demais'),\n  ),\n)"
           },
           {
             "id": "sg-slider-formulario",
             "title": "Dentro de um formulário",
             "file": "apps/seedgrid_showcase/lib/pages/sg_slider_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgSlider(\n      id: 'brilho',\n      name: 'brilho',\n      control: _form,\n      minValue: 0,\n      maxValue: 100,\n      step: 10,\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _form.handleSubmit(\n        (values) =>\n            setState(() => _enviado = '${values['brilho']}'),\n      ),\n    ),\n    if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgSlider(\n      id: 'brilho',\n      name: 'brilho',\n      control: _form,\n      minValue: 0,\n      maxValue: 100,\n      step: 10,\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _form.handleSubmit(\n        (values) => _enviado.value = '${values['brilho']}',\n      ),\n    ),\n    ValueListenableBuilder<String>(\n      valueListenable: _enviado,\n      builder: (context, enviado, _) => enviado.isEmpty\n          ? const SizedBox()\n          : Text('Enviado: $enviado'),\n    ),\n  ],\n)"
           },
           {
-            "id": "sg-slider-passo",
-            "title": "Passo (step)",
+            "id": "sg-slider-passo-largura",
+            "title": "Passo e largura",
             "file": "apps/seedgrid_showcase/lib/pages/sg_slider_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgSlider(\n      id: 'passo',\n      minValue: 0,\n      maxValue: 100,\n      step: 25,\n      defaultValue: 50,\n      onChange: (v) => setState(() => _passo = v),\n    ),\n    Text('Valor: $_passo'),\n  ],\n)"
+            "code": "ValueListenableBuilder<num>(\n  valueListenable: _passo,\n  builder: (context, valor, _) => Column(\n    crossAxisAlignment: CrossAxisAlignment.start,\n    children: [\n      SgSlider(\n        id: 'slider-step-width-number',\n        minValue: 0,\n        maxValue: 60,\n        step: 5,\n        width: 320,\n        value: valor,\n        onChange: (v) => _passo.value = v,\n      ),\n      const SgSlider(\n        id: 'slider-step-width-string',\n        minValue: -20,\n        maxValue: 20,\n        step: 2,\n        width: '18rem',\n        defaultValue: 4,\n      ),\n      Text('${context.tx('Valor com step 5')}: $valor'),\n    ],\n  ),\n)"
           }
         ],
         "parity": {

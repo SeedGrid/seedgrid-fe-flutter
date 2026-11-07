@@ -63,6 +63,47 @@
   "SgTimeProvider": {
    "semPaginaFlutter": true,
    "motivo": "Hook ou provider do React: nao existe equivalente no Flutter e permanece so no React (decisao do dono, P153)."
+  },
+  "SgPeriodSelector": {
+   "ignorarFlutter": [
+    "Dentro de um formulário"
+   ],
+   "motivo": "A integração com formulário usa react-hook-form (control/name) no React e SgFormController (name/control) no Flutter: diferença de biblioteca/linguagem (regra 2). O exemplo de formulário existe só no Flutter."
+  },
+  "SgPickList": {
+   "ignorarFlutter": [
+    "Dentro de um formulário"
+   ],
+   "motivo": "O SgPickList do React nao tem name/control (sem integracao com react-hook-form); o Flutter tem name + control (SgFormController). Lacuna de API do componente React, registrada para decisao do dono; o exemplo de formulario existe so no Flutter."
+  },
+  "SgRadioGroup": {
+   "ignorarReact": [
+    "React Hook Form - Register"
+   ],
+   "ignorarFlutter": [
+    "Formulário - Register"
+   ],
+   "motivo": "RHF (register/control) e especifico do React; no Flutter o par e o formulario (SgFormController): diferenca de linguagem (regra 2), como no SgCheckboxGroup."
+  },
+  "SgRating": {
+   "ignorarReact": [
+    "React Hook Form"
+   ],
+   "ignorarFlutter": [
+    "Formulário (SgFormController)"
+   ],
+   "motivo": "RHF (control/name) e especifico do React; no Flutter o par e o formulario (SgFormController): diferenca de linguagem (regra 2), como no SgCheckboxGroup."
+  },
+  "SgSlider": {
+   "ignorarReact": [
+    "className, ariaLabel e desabilitado",
+    "inputProps"
+   ],
+   "ignorarFlutter": [
+    "ariaLabel e desabilitado",
+    "Dentro de um formulário"
+   ],
+   "motivo": "className e inputProps sao atributos de CSS/<input> sem equivalente no Flutter (o proprio componente ignora inputProps); o Flutter mostra so ariaLabel e desabilitado. A ligacao a formulario existe no React via react-hook-form (control/name), sem exemplo no showcase React; no Flutter e name + control (SgFormController) (diferenca de linguagem, regra 2)."
   }
  }
 }

@@ -70,7 +70,7 @@ class _SgRadioGroupPageState extends State<SgRadioGroupPage> {
         code: SgRadioGroupPageSnippets.sgRadioGroupBasico,
       ),
       ShowcaseExample(
-        title: 'Orientation Horizontal',
+        title: 'Orientação Horizontal',
         preview:
             // #region sg-radio-group-orientation-horizontal
             Column(
@@ -284,7 +284,7 @@ class _SgRadioGroupPageState extends State<SgRadioGroupPage> {
         code: SgRadioGroupPageSnippets.sgRadioGroupComOpcaoDesabilitada,
       ),
       ShowcaseExample(
-        title: 'Grupo Disabled',
+        title: 'Grupo Desabilitado',
         preview:
             // #region sg-radio-group-grupo-disabled
             SgRadioGroup(
@@ -311,7 +311,7 @@ class _SgRadioGroupPageState extends State<SgRadioGroupPage> {
         code: SgRadioGroupPageSnippets.sgRadioGroupGrupoDisabled,
       ),
       ShowcaseExample(
-        title: 'Read-only',
+        title: 'Somente Leitura',
         preview:
             // #region sg-radio-group-read-only
             SgRadioGroup(
@@ -417,7 +417,7 @@ class _SgRadioGroupPageState extends State<SgRadioGroupPage> {
         code: SgRadioGroupPageSnippets.sgRadioGroupHorizontalComIconesColoridos,
       ),
       ShowcaseExample(
-        title: 'Selection Style Highlight (Lista)',
+        title: 'Estilo de Seleção Destacado (Lista)',
         preview:
             // #region sg-radio-group-selection-style-highlight
             Column(

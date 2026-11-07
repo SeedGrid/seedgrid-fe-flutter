@@ -1149,7 +1149,7 @@
   "Basic",
   "Básico",
   "Básico",
-  "Basique"
+  "Basic"
  ],
  "Conteúdo personalizado": [
   "Custom Content",
@@ -1781,6 +1781,594 @@
   "Fuente asíncrona + render personalizado",
   "Source asynchrone + rendu personnalise"
  ],
+ "Exemplo completo": [
+  "Full Example",
+  "Exemplo completo",
+  "Ejemplo Completo",
+  "Exemple complet"
+ ],
+ "Uso com fullscreen=false em área controlada, incluindo layout top/left/right/bottom/client.": [
+  "Usage with fullscreen=false in a constrained area including top/left/right/bottom/client layout.",
+  "Uso com fullscreen=false em área controlada, incluindo layout top/left/right/bottom/client.",
+  "Uso con fullscreen=false en área controlada, incluyendo layout top/left/right/bottom/client.",
+  "Usage avec fullscreen=false dans une zone contrainte incluant la disposition top/left/right/bottom/client."
+ ],
+ "Filtrar": [
+  "Filter",
+  "Filtrar",
+  "Filtrar",
+  "Filtrer"
+ ],
+ "Área principal": [
+  "Main area",
+  "Área principal",
+  "Área principal",
+  "Zone principale"
+ ],
+ "Esta área ocupa todo o espaço restante.": [
+  "This area takes up all the remaining space.",
+  "Esta área ocupa todo o espaço restante.",
+  "Esta área ocupa todo el espacio restante.",
+  "Cette zone occupe tout l'espace restant."
+ ],
+ "Dock básico em SgPanel": [
+  "Basic docking in SgPanel",
+  "Dock básico em SgPanel",
+  "Dock basico en SgPanel",
+  "Docking basique dans SgPanel"
+ ],
+ "`align` faz dock em relação ao pai e `width`/`height` em número viram porcentagem.": [
+  "`align` docks relative to the parent and numeric `width`/`height` values are treated as percentages.",
+  "`align` faz dock em relação ao pai e `width`/`height` em número viram porcentagem.",
+  "`align` hace dock respecto al padre y `width`/`height` numericos se tratan como porcentaje.",
+  "`align` ancre par rapport au parent et les valeurs numeriques `width`/`height` sont traitees en pourcentages."
+ ],
+ "Composição dentro de SgScreen": [
+  "Composition inside SgScreen",
+  "Composição dentro de SgScreen",
+  "Composicion dentro de SgScreen",
+  "Composition dans SgScreen"
+ ],
+ "Este bloco reproduz o exemplo do `teste/page.tsx`, agora dentro do showcase oficial do componente.": [
+  "This section reproduces the current `teste/page.tsx` example inside the official component showcase.",
+  "Este bloco reproduz o exemplo do `teste/page.tsx`, agora dentro do showcase oficial do componente.",
+  "Este bloque reproduce el ejemplo actual de `teste/page.tsx` dentro del showcase oficial del componente.",
+  "Cette section reproduit l'exemple actuel `teste/page.tsx` dans le showcase officiel du composant."
+ ],
+ "span + rowSpan": [
+  "span + rowSpan",
+  "span + rowSpan",
+  "span + rowSpan",
+  "span + rowSpan"
+ ],
+ "`span` e `rowSpan` continuam valendo apenas dentro do `SgGrid`.": [
+  "`span` and `rowSpan` still only apply inside `SgGrid`.",
+  "`span` e `rowSpan` continuam a valer apenas dentro do `SgGrid`.",
+  "`span` y `rowSpan` siguen aplicando solo dentro de `SgGrid`.",
+  "`span` et `rowSpan` ne s'appliquent toujours qu'a l'interieur de `SgGrid`."
+ ],
+ "borderStyle + padding + contentPadding": [
+  "borderStyle + padding + contentPadding",
+  "borderStyle + padding + contentPadding",
+  "borderStyle + padding + contentPadding",
+  "borderStyle + padding + contentPadding"
+ ],
+ "Diferença entre espaçamento externo do panel e espaçamento interno do conteúdo.": [
+  "Difference between panel external spacing and internal content spacing.",
+  "Diferença entre espaçamento externo do panel e espaçamento interno do conteúdo.",
+  "Diferencia entre espaciado externo del panel y espaciado interno del contenido.",
+  "Difference entre l'espacement externe du panneau et l'espacement interne du contenu."
+ ],
+ "scrollable + scrollbarGutter": [
+  "scrollable + scrollbarGutter",
+  "scrollable + scrollbarGutter",
+  "scrollable + scrollbarGutter",
+  "scrollable + scrollbarGutter"
+ ],
+ "Scroll explícito apenas quando necessário.": [
+  "Scrolling stays explicit instead of happening by default.",
+  "Scroll explícito apenas quando necessário.",
+  "El scroll queda explicito en vez de ocurrir por defecto.",
+  "Le defilement reste explicite au lieu de se produire par defaut."
+ ],
+ "Exemplo combinado": [
+  "Combined example",
+  "Exemplo combinado",
+  "Ejemplo combinado",
+  "Exemple combine"
+ ],
+ "Exemplo único misturando dock, mínimos em pixel e grid.": [
+  "Single example mixing docking, pixel minimums, and grid usage.",
+  "Exemplo único misturando dock, mínimos em pixel e grid.",
+  "Ejemplo unico mezclando dock, minimos en pixel y grid.",
+  "Exemple unique melant docking, minimums en pixels et usage de la grille."
+ ],
+ "Conteúdo em linha": [
+  "Inline content",
+  "Conteúdo em linha",
+  "Contenido en línea",
+  "Contenu en ligne"
+ ],
+ "contentDirection, contentGap, contentJustify, contentAlign e contentWrap organizam os filhos soltos.": [
+  "contentDirection, contentGap, contentJustify, contentAlign and contentWrap arrange the loose children.",
+  "contentDirection, contentGap, contentJustify, contentAlign e contentWrap organizam os filhos soltos.",
+  "contentDirection, contentGap, contentJustify, contentAlign y contentWrap organizan los hijos sueltos.",
+  "contentDirection, contentGap, contentJustify, contentAlign et contentWrap organisent les enfants libres."
+ ],
+ "Cada página define icon e title no SgPageControlPage.": [
+  "Each page defines icon and title in SgPageControlPage.",
+  "Cada página define icon e title no SgPageControlPage.",
+  "Cada página define icon y title en SgPageControlPage.",
+  "Chaque page definit icon et title dans SgPageControlPage."
+ ],
+ "Controle Externo": [
+  "External Control",
+  "Controlo Externo",
+  "Control Externo",
+  "Controle externe"
+ ],
+ "Use activePageId + onActivePageIdChange para setar a aba ativa.": [
+  "Use activePageId + onActivePageIdChange to set the active tab.",
+  "Use activePageId + onActivePageIdChange para definir o tab ativo.",
+  "Usa activePageId + onActivePageIdChange para definir la tab activa.",
+  "Utilisez activePageId + onActivePageIdChange pour definir l'onglet actif."
+ ],
+ "Ocultar Página Externamente": [
+  "Hide Page Externally",
+  "Ocultar Página Externamente",
+  "Ocultar Página Externamente",
+  "Masquer une page en externe"
+ ],
+ "hiddenPageIds permite esconder tabs sem apagar a declaração.": [
+  "hiddenPageIds hides tabs without removing declarations.",
+  "hiddenPageIds permite esconder tabs sem apagar a declaração.",
+  "hiddenPageIds oculta tabs sin remover declaraciones.",
+  "hiddenPageIds masque des onglets sans supprimer les declarations."
+ ],
+ "Com Hint nas Abas": [
+  "With Tab Hints",
+  "Com Hint nos Tabs",
+  "Con Hint en Tabs",
+  "Avec infobulles d'onglet"
+ ],
+ "Passe o mouse sobre a aba para ver o hint.": [
+  "Hover each tab to display its hint.",
+  "Passe o rato no tab para ver o hint.",
+  "Pasa el cursor por la tab para ver el hint.",
+  "Survolez chaque onglet pour afficher son infobulle."
+ ],
+ "Responsividade": [
+  "Responsiveness",
+  "Responsividade",
+  "Responsividad",
+  "Reactivite"
+ ],
+ "Desktop e tablet mantêm as abas na mesma linha; no celular a lista rola na horizontal e a aba ativa entra em cena sozinha. mobilePageControl=\"select\" troca as abas por um select nativo abaixo de 768px.": [
+  "Desktop and tablet keep the tabs on a single line; on mobile the list scrolls horizontally and the active tab scrolls itself into view. mobilePageControl=\"select\" swaps the tabs for a native select below 768px.",
+  "Desktop e tablet mantêm os separadores na mesma linha; no telemóvel a lista desliza na horizontal e o separador ativo entra em cena sozinho. mobilePageControl=\"select\" troca os separadores por um select nativo abaixo de 768px.",
+  "En escritorio y tablet las pestañas siguen en la misma línea; en móvil la lista se desplaza en horizontal y la pestaña activa se muestra sola. mobilePageControl=\"select\" cambia las pestañas por un select nativo por debajo de 768px.",
+  "Sur ordinateur et tablette les onglets restent sur une seule ligne ; sur mobile la liste defile horizontalement et l'onglet actif se met en vue tout seul. mobilePageControl=\"select\" remplace les onglets par un select natif en dessous de 768px."
+ ],
+ "Redimensione a janela para ver o comportamento mudar em 768px.": [
+  "Resize the window to watch the behaviour change at 768px.",
+  "Redimensione a janela para ver o comportamento mudar em 768px.",
+  "Redimensiona la ventana para ver el cambio de comportamiento en 768px.",
+  "Redimensionnez la fenetre pour voir le comportement changer a 768px."
+ ],
+ "fullWidthTabs — larguras iguais a partir do tablet": [
+  "fullWidthTabs — equal widths from tablet up",
+  "fullWidthTabs — larguras iguais a partir do tablet",
+  "fullWidthTabs — anchos iguales a partir de la tablet",
+  "fullWidthTabs — largeurs egales a partir de la tablette"
+ ],
+ "mobilePageControl=\"select\" — abas viram um select no celular": [
+  "mobilePageControl=\"select\" — tabs become a select on mobile",
+  "mobilePageControl=\"select\" — separadores viram um select no telemovel",
+  "mobilePageControl=\"select\" — las pestanas se vuelven un select en movil",
+  "mobilePageControl=\"select\" — les onglets deviennent un select sur mobile"
+ ],
+ "Cadastro": [
+  "Registration",
+  "Registo",
+  "Registro",
+  "Enregistrement"
+ ],
+ "Conteúdo: Cadastro": [
+  "Content: Registration",
+  "Conteúdo: Registo",
+  "Contenido: Registro",
+  "Contenu : Enregistrement"
+ ],
+ "Fiscal": [
+  "Fiscal",
+  "Fiscal",
+  "Fiscal",
+  "Fiscal"
+ ],
+ "Conteúdo: Fiscal": [
+  "Content: Fiscal",
+  "Conteúdo: Fiscal",
+  "Contenido: Fiscal",
+  "Contenu : Fiscal"
+ ],
+ "Acesso": [
+  "Access",
+  "Acesso",
+  "Acceso",
+  "Accès"
+ ],
+ "Conteúdo: Acesso": [
+  "Content: Access",
+  "Conteúdo: Acesso",
+  "Contenido: Acceso",
+  "Contenu : Accès"
+ ],
+ "Integrações": [
+  "Integrations",
+  "Integrações",
+  "Integraciones",
+  "Intégrations"
+ ],
+ "Conteúdo: Integrações": [
+  "Content: Integrations",
+  "Conteúdo: Integrações",
+  "Contenido: Integraciones",
+  "Contenu : Intégrations"
+ ],
+ "Conteúdo: Produtos": [
+  "Content: Products",
+  "Conteúdo: Produtos",
+  "Contenido: Productos",
+  "Contenu : Produits"
+ ],
+ "Frete": [
+  "Shipping",
+  "Portes",
+  "Envío",
+  "Livraison"
+ ],
+ "Conteúdo: Frete": [
+  "Content: Shipping",
+  "Conteúdo: Portes",
+  "Contenido: Envío",
+  "Contenu : Livraison"
+ ],
+ "Conteúdo: Preferências": [
+  "Content: Preferences",
+  "Conteúdo: Preferências",
+  "Contenido: Preferencias",
+  "Contenu : Préférences"
+ ],
+ "Ir para Cadastro": [
+  "Go to Registration",
+  "Ir para Registo",
+  "Ir a Registro",
+  "Aller à Enregistrement"
+ ],
+ "Ir para Fiscal": [
+  "Go to Fiscal",
+  "Ir para Fiscal",
+  "Ir a Fiscal",
+  "Aller à Fiscal"
+ ],
+ "Ir para Acesso": [
+  "Go to Access",
+  "Ir para Acesso",
+  "Ir a Acceso",
+  "Aller à Accès"
+ ],
+ "Ir para Integrações": [
+  "Go to Integrations",
+  "Ir para Integrações",
+  "Ir a Integraciones",
+  "Aller à Intégrations"
+ ],
+ "Ocultar Cadastro": [
+  "Hide Registration",
+  "Ocultar Registo",
+  "Ocultar Registro",
+  "Masquer Enregistrement"
+ ],
+ "Ocultar Fiscal": [
+  "Hide Fiscal",
+  "Ocultar Fiscal",
+  "Ocultar Fiscal",
+  "Masquer Fiscal"
+ ],
+ "Ocultar Acesso": [
+  "Hide Access",
+  "Ocultar Acesso",
+  "Ocultar Acceso",
+  "Masquer Accès"
+ ],
+ "Ocultar Integrações": [
+  "Hide Integrations",
+  "Ocultar Integrações",
+  "Ocultar Integraciones",
+  "Masquer Intégrations"
+ ],
+ "Criar e editar os dados de cadastro.": [
+  "Create and edit registration data.",
+  "Criar e editar os dados de registo.",
+  "Crear y editar los datos de registro.",
+  "Créer et modifier les données d'enregistrement."
+ ],
+ "Revisar as configurações fiscais.": [
+  "Review tax and fiscal settings.",
+  "Rever as configurações fiscais.",
+  "Revisar la configuración fiscal.",
+  "Vérifier les paramètres fiscaux."
+ ],
+ "Gerenciar usuários, papéis e permissões.": [
+  "Manage users, roles and permissions.",
+  "Gerir utilizadores, perfis e permissões.",
+  "Gestionar usuarios, roles y permisos.",
+  "Gérer les utilisateurs, rôles et permissions."
+ ],
+ "Flags padrão: grupos atuais e passados, mais período customizado.": [
+  "Default flags: current and past groups, plus custom period.",
+  "Flags padrão: grupos atuais e passados, mais período personalizado.",
+  "Flags por defecto: grupos actuales y pasados, mas periodo personalizado.",
+  "Options par defaut: groupes actuels et passes, plus periode personnalisee."
+ ],
+ "Todos os grupos": [
+  "All groups",
+  "Todos os grupos",
+  "Todos los grupos",
+  "Tous les groupes"
+ ],
+ "Ligue e desligue permitPast, permitCurrent e permitFuture para ver cada grupo entrar e sair da lista (permitAll fica desligado).": [
+  "Toggle permitPast, permitCurrent and permitFuture to turn each group on or off in the list (permitAll stays off).",
+  "Ligue e desligue permitPast, permitCurrent e permitFuture para ver cada grupo entrar e sair da lista (permitAll fica desligado).",
+  "Activa y desactiva permitPast, permitCurrent y permitFuture para ver cada grupo entrar y salir de la lista (permitAll queda desactivado).",
+  "Activez et désactivez permitPast, permitCurrent et permitFuture pour voir chaque groupe entrer et sortir de la liste (permitAll reste désactivé)."
+ ],
+ "Período customizado": [
+  "Custom period",
+  "Período personalizado",
+  "Periodo personalizado",
+  "Periode personnalisee"
+ ],
+ "Escolha Período para informar um intervalo de data inicial e final.": [
+  "Select Custom period to enter a start and end date range.",
+  "Escolha Período para indicar um intervalo de data inicial e final.",
+  "Elija Periodo para indicar un intervalo de fecha inicial y final.",
+  "Choisissez Periode pour saisir un intervalle de dates de debut et de fin."
+ ],
+ "Estados": [
+  "States",
+  "Estados",
+  "Estados",
+  "Etats"
+ ],
+ "Estados desabilitado e obrigatório.": [
+  "Disabled and required states.",
+  "Estados desativado e obrigatório.",
+  "Estados deshabilitado y obligatorio.",
+  "Etats desactive et obligatoire."
+ ],
+ "Clamp com minDate / maxDate": [
+  "minDate / maxDate clamp",
+  "Clamp com minDate / maxDate",
+  "Clamp con minDate / maxDate",
+  "Clamp avec minDate / maxDate"
+ ],
+ "O intervalo resolvido é limitado pelos limites min/max (aqui restrito ao mês atual).": [
+  "The resolved interval is clamped to the min/max bounds (here limited to the current month).",
+  "O intervalo resolvido é limitado pelos limites min/max (aqui restrito ao mês atual).",
+  "El intervalo resuelto se limita a los limites min/max (aqui restringido al mes actual).",
+  "L'intervalle resolu est limite aux bornes min/max (ici restreint au mois courant)."
+ ],
+ "Idioma e data de referência": [
+  "Language and reference date",
+  "Idioma e data de referência",
+  "Idioma y fecha de referencia",
+  "Langue et date de référence"
+ ],
+ "locale troca rótulos e grupos (pt-BR, en-US, es, pt-PT, fr). referenceDate fixa o \"hoje\" usado para resolver os presets.": [
+  "locale changes labels and groups (pt-BR, en-US, es, pt-PT, fr). referenceDate fixes the \"today\" used to resolve the presets.",
+  "locale troca rótulos e grupos (pt-BR, en-US, es, pt-PT, fr). referenceDate fixa o \"hoje\" usado para resolver os presets.",
+  "locale cambia etiquetas y grupos (pt-BR, en-US, es, pt-PT, fr). referenceDate fija el \"hoy\" usado para resolver los presets.",
+  "locale change les libellés et les groupes (pt-BR, en-US, es, pt-PT, fr). referenceDate fixe le « aujourd'hui » utilisé pour résoudre les presets."
+ ],
+ "Mova itens entre origem e destino; onChange entrega as duas listas e o tipo da mudança.": [
+  "Move items between source and target; onChange delivers both lists and the change type.",
+  "Mova itens entre origem e destino; onChange entrega as duas listas e o tipo de alteração.",
+  "Mueve items entre origen y destino; onChange entrega las dos listas y el tipo de cambio.",
+  "Déplacez des éléments entre la source et la cible ; onChange fournit les deux listes et le type de changement."
+ ],
+ "Com Filtros": [
+  "With Filters",
+  "Com Filtros",
+  "Con Filtros",
+  "Avec filtres"
+ ],
+ "showSourceFilter e showTargetFilter adicionam busca em cada lista; sourceHeader e targetHeader trocam os cabeçalhos.": [
+  "showSourceFilter and showTargetFilter add a search box to each list; sourceHeader and targetHeader change the headers.",
+  "showSourceFilter e showTargetFilter adicionam pesquisa em cada lista; sourceHeader e targetHeader trocam os cabeçalhos.",
+  "showSourceFilter y showTargetFilter añaden una búsqueda en cada lista; sourceHeader y targetHeader cambian los encabezados.",
+  "showSourceFilter et showTargetFilter ajoutent une recherche dans chaque liste ; sourceHeader et targetHeader changent les en-têtes."
+ ],
+ "Somente transferência (sem ordenação)": [
+  "Transfer only (no reordering)",
+  "Apenas transferência (sem reordenação)",
+  "Solo transferencia (sin reordenación)",
+  "Transfert uniquement (sans reordonnancement)"
+ ],
+ "Sem os botões de ordenar e sem arrastar: os itens só mudam de lista.": [
+  "No sort buttons and no dragging: items only move between lists.",
+  "Sem os botões de ordenar e sem arrastar: os itens apenas mudam de lista.",
+  "Sin botones de orden ni arrastre: los items solo cambian de lista.",
+  "Sans boutons de tri ni glisser-déposer : les éléments ne font que changer de liste."
+ ],
+ "Reordenação com controles de lista": [
+  "Reordering with list controls",
+  "Reordenação com controlos de lista",
+  "Reordenación con controles de lista",
+  "Reordonnancement avec controles de liste"
+ ],
+ "Arraste os itens ou use os controles de lista para reordenar dentro de cada lado.": [
+  "Drag items or use the list controls to reorder within each side.",
+  "Arraste os itens ou use os controlos de lista para reordenar dentro de cada lado.",
+  "Arrastra los items o usa los controles de lista para reordenar dentro de cada lado.",
+  "Faites glisser les éléments ou utilisez les contrôles de liste pour réordonner dans chaque côté."
+ ],
+ "Controles externos por ref": [
+  "External controls through ref",
+  "Controlos externos por ref",
+  "Controles externos por ref",
+  "Controles externes via ref"
+ ],
+ "Os botões de mover ficam fora do componente e chamam moveToTarget, moveAllToTarget, moveToSource e moveAllToSource.": [
+  "The move buttons live outside the component and call moveToTarget, moveAllToTarget, moveToSource and moveAllToSource.",
+  "Os botões de mover ficam fora do componente e chamam moveToTarget, moveAllToTarget, moveToSource e moveAllToSource.",
+  "Los botones de mover están fuera del componente y llaman a moveToTarget, moveAllToTarget, moveToSource y moveAllToSource.",
+  "Les boutons de déplacement sont en dehors du composant et appellent moveToTarget, moveAllToTarget, moveToSource et moveAllToSource."
+ ],
+ "Item template customizado": [
+  "Custom item template",
+  "Item template customizado",
+  "Item template personalizado",
+  "Modele d'item personnalise"
+ ],
+ "itemTemplate recebe o item e o estado e desenha cada linha como você quiser.": [
+  "itemTemplate receives the item and its state and draws each row however you like.",
+  "itemTemplate recebe o item e o estado e desenha cada linha como quiser.",
+  "itemTemplate recibe el item y su estado y dibuja cada fila como quieras.",
+  "itemTemplate reçoit l'élément et son état et dessine chaque ligne comme vous le souhaitez."
+ ],
+ "Exemplo para cenários em que você só precisa mover itens entre listas.": [
+  "Example for scenarios where you only need to move items between lists.",
+  "Exemplo para cenários em que só precisa de mover itens entre listas.",
+  "Ejemplo para escenarios donde solo necesitas mover items entre listas.",
+  "Exemple pour les scenarios ou vous devez seulement deplacer des items entre les listes."
+ ],
+ "Dica: arraste itens entre listas ou dentro da mesma lista para reordenar.": [
+  "Tip: drag items between lists or inside the same list to reorder.",
+  "Dica: arraste itens entre listas ou dentro da mesma lista para reordenar.",
+  "Tip: arrastra items entre listas o dentro de la misma lista para reordenar.",
+  "Astuce : glissez des items entre les listes ou dans la meme liste pour reordonner."
+ ],
+ "Estado atual": [
+  "Current state",
+  "Estado atual",
+  "Estado actual",
+  "Etat actuel"
+ ],
+ "Disponíveis": [
+  "Available",
+  "Disponíveis",
+  "Disponibles",
+  "Disponibles"
+ ],
+ "Escolhidas": [
+  "Selected",
+  "Escolhidas",
+  "Elegidas",
+  "Choisies"
+ ],
+ "Somente transferência": [
+  "Transfer only",
+  "Apenas transferência",
+  "Solo transferencia",
+  "Transfert uniquement"
+ ],
+ "Em andamento": [
+  "In progress",
+  "Em curso",
+  "En curso",
+  "En cours"
+ ],
+ "Em revisão": [
+  "In review",
+  "Em revisão",
+  "En revisión",
+  "En révision"
+ ],
+ "Quadro da sprint": [
+  "Sprint board",
+  "Quadro do sprint",
+  "Tablero del sprint",
+  "Tableau du sprint"
+ ],
+ "Tarefa A": [
+  "Task A",
+  "Tarefa A",
+  "Tarea A",
+  "Tâche A"
+ ],
+ "Tarefa B": [
+  "Task B",
+  "Tarefa B",
+  "Tarea B",
+  "Tâche B"
+ ],
+ "Tarefa C": [
+  "Task C",
+  "Tarefa C",
+  "Tarea C",
+  "Tâche C"
+ ],
+ "Feito X": [
+  "Done X",
+  "Feito X",
+  "Hecho X",
+  "Terminé X"
+ ],
+ "Feito Y": [
+  "Done Y",
+  "Feito Y",
+  "Hecho Y",
+  "Terminé Y"
+ ],
+ "Canais": [
+  "Channels",
+  "Canais",
+  "Canales",
+  "Canaux"
+ ],
+ "SMS": [
+  "SMS",
+  "SMS",
+  "SMS",
+  "SMS"
+ ],
+ "Push": [
+  "Push",
+  "Push",
+  "Push",
+  "Push"
+ ],
+ "Capacidade da equipe": [
+  "Team capacity",
+  "Capacidade da equipa",
+  "Capacidad del equipo",
+  "Capacité de l'équipe"
+ ],
+ "Frontend": [
+  "Frontend",
+  "Frontend",
+  "Frontend",
+  "Frontend"
+ ],
+ "Backend": [
+  "Backend",
+  "Backend",
+  "Backend",
+  "Backend"
+ ],
+ "QA": [
+  "QA",
+  "QA",
+  "QA",
+  "QA"
+ ],
+ "Responsável": [
+  "Owner",
+  "Responsável",
+  "Responsable",
+  "Responsable"
+ ],
  "Básico (minChars 3, debounce 350ms)": [
   "Basic (minChars 3, debounce 350ms)",
   "Básico (minChars 3, debounce 350ms)",
@@ -2135,6 +2723,78 @@
   "Esfuerzo",
   "Effort"
  ],
+ "Popup controlado com ações e conteúdo.": [
+  "Controlled popup with actions and content.",
+  "Popup controlado com ações e conteúdo.",
+  "Popup controlado con acciones y contenido.",
+  "Popup controle avec actions et contenu."
+ ],
+ "Ícone e hint": [
+  "Icon and hint",
+  "Ícone e hint",
+  "Icono y hint",
+  "Icone et indice"
+ ],
+ "Ações com ícone e hint (tooltip).": [
+  "Actions with icon and hint (tooltip).",
+  "Ações com ícone e hint (tooltip).",
+  "Acciones con icono y hint (tooltip).",
+  "Actions avec icone et indice (infobulle)."
+ ],
+ "Conteúdo custom": [
+  "Custom content",
+  "Conteúdo custom",
+  "Contenido personalizado",
+  "Contenu personnalise"
+ ],
+ "Use children para renderizar qualquer conteúdo.": [
+  "Use children to render any content.",
+  "Use children para renderizar qualquer conteúdo.",
+  "Use children para renderizar cualquier contenido.",
+  "Utilisez children pour afficher n'importe quel contenu."
+ ],
+ "Abrir popup": [
+  "Open popup",
+  "Abrir popup",
+  "Abrir popup",
+  "Ouvrir le popup"
+ ],
+ "Abrir popup com ícone": [
+  "Open popup with icon",
+  "Abrir popup com ícone",
+  "Abrir popup con icono",
+  "Ouvrir le popup avec icone"
+ ],
+ "Confirma": [
+  "Confirm",
+  "Confirma",
+  "Confirmar",
+  "Confirmer"
+ ],
+ "Tem certeza que deseja continuar?": [
+  "Are you sure you want to continue?",
+  "Tem certeza que deseja continuar?",
+  "Estas seguro de que deseas continuar?",
+  "Etes-vous sur de vouloir continuer ?"
+ ],
+ "Abrir popup custom": [
+  "Open custom popup",
+  "Abrir popup custom",
+  "Abrir popup personalizado",
+  "Ouvrir le popup personnalisé"
+ ],
+ "Configuração": [
+  "Settings",
+  "Configuração",
+  "Configuración",
+  "Configuration"
+ ],
+ "Modo": [
+  "Mode",
+  "Modo",
+  "Modo",
+  "Mode"
+ ],
  "Subir": [
   "Move up",
   "Subir",
@@ -2320,6 +2980,408 @@
   "Última ação",
   "Última acción",
   "Dernière action"
+ ],
+ "Sim": [
+  "Yes",
+  "Sim",
+  "Si",
+  "Oui"
+ ],
+ "Não": [
+  "No",
+  "Não",
+  "No",
+  "Non"
+ ],
+ "Aprovar": [
+  "Approve",
+  "Aprovar",
+  "Aprobar",
+  "Approuver"
+ ],
+ "Confirmar aprovação": [
+  "Confirm approval",
+  "Confirmar aprovação",
+  "Confirmar aprobacion",
+  "Confirmer l'approbation"
+ ],
+ "Rejeitar": [
+  "Reject",
+  "Rejeitar",
+  "Rechazar",
+  "Rejeter"
+ ],
+ "Negar a acao": [
+  "Deny the action",
+  "Negar a acao",
+  "Negar la accion",
+  "Refuser l'action"
+ ],
+ "Negar a ação": [
+  "Deny the action",
+  "Negar a ação",
+  "Negar la accion",
+  "Refuser l'action"
+ ],
+ "Orientação Horizontal": [
+  "Horizontal Orientation",
+  "Orientação Horizontal",
+  "Orientación Horizontal",
+  "Orientation horizontale"
+ ],
+ "Com Ícones": [
+  "With Icons",
+  "Com Ícones",
+  "Con Íconos",
+  "Avec icônes"
+ ],
+ "Apenas Ícones (Icon Only)": [
+  "Icon Only",
+  "Apenas Ícones (Icon Only)",
+  "Solo Íconos (Icon Only)",
+  "Icône seule"
+ ],
+ "Seleção Controlada": [
+  "Controlled Selection",
+  "Seleção Controlada",
+  "Selección Controlada",
+  "Sélection contrôlée"
+ ],
+ "Controle Externo (setValue/getValue)": [
+  "External Control (setValue/getValue)",
+  "Controlo Externo (setValue/getValue)",
+  "Control Externo (setValue/getValue)",
+  "Contrôle externe (setValue/getValue)"
+ ],
+ "Com Opção Desabilitada": [
+  "With Disabled Option",
+  "Com Opção Desativada",
+  "Con Opción Deshabilitada",
+  "Avec option désactivée"
+ ],
+ "Grupo Desabilitado": [
+  "Disabled Group",
+  "Grupo Desativado",
+  "Grupo Deshabilitado",
+  "Groupe désactivé"
+ ],
+ "Somente Leitura": [
+  "Read-Only",
+  "Apenas Leitura",
+  "Solo Lectura",
+  "Lecture seule"
+ ],
+ "Obrigatório com Validação": [
+  "Required with Validation",
+  "Obrigatório com Validação",
+  "Obligatorio con Validación",
+  "Obligatoire avec validation"
+ ],
+ "Horizontal com Ícones Coloridos": [
+  "Horizontal with Colored Icons",
+  "Horizontal com Ícones Coloridos",
+  "Horizontal con Íconos Coloreados",
+  "Horizontal avec icônes colorées"
+ ],
+ "Estilo de Seleção Destacado (Lista)": [
+  "Selection Style Highlight (List)",
+  "Estilo de Seleção Destacado (Lista)",
+  "Estilo de Selección Destacado (Lista)",
+  "Mise en avant du style de selection (liste)"
+ ],
+ "Com GroupBox Customizado": [
+  "With Custom GroupBox",
+  "Com GroupBox Customizado",
+  "Con GroupBox Personalizado",
+  "Avec GroupBox personnalisé"
+ ],
+ "React Hook Form - Register": [
+  "React Hook Form - Register",
+  "React Hook Form - Register",
+  "React Hook Form - Register",
+  "React Hook Form - Register"
+ ],
+ "Exemplo controlado com estado.": [
+  "Controlled example with state.",
+  "Exemplo controlado com estado.",
+  "Ejemplo controlado con estado.",
+  "Exemple contrôlé avec état."
+ ],
+ "Meia estrela + tooltip": [
+  "Half star + tooltip",
+  "Meia estrela + tooltip",
+  "Media estrella + tooltip",
+  "Demi-etoile + tooltip"
+ ],
+ "Permite clicar nas metades e exibir valor no hover.": [
+  "Allows half-click selection and hover value tooltip.",
+  "Permite clicar nas metades e exibir valor no hover.",
+  "Permite clicar mitades y mostrar valor en hover.",
+  "Permet la selection au demi-clic et un tooltip de valeur au survol."
+ ],
+ "Read-only e desabilitado": [
+  "Read-only and disabled",
+  "Read-only e desabilitado",
+  "Solo lectura y deshabilitado",
+  "Lecture seule et desactive"
+ ],
+ "Visualização sem interação e estado desabilitado.": [
+  "View-only and disabled state.",
+  "Visualização sem interação e estado desabilitado.",
+  "Visualización sin interacción y estado deshabilitado.",
+  "Etat en lecture seule et desactive."
+ ],
+ "Tamanhos e quantidade de estrelas": [
+  "Sizes and number of stars",
+  "Tamanhos e quantidade de estrelas",
+  "Tamanhos y cantidad de estrellas",
+  "Tailles et nombre d'etoiles"
+ ],
+ "Controle de size e stars.": [
+  "Control of size and stars.",
+  "Controle de size e stars.",
+  "Control de size y stars.",
+  "Controle de la taille et des etoiles."
+ ],
+ "Cores e ícones customizados": [
+  "Colors and custom icons",
+  "Cores e ícones customizados",
+  "Colores e íconos personalizados",
+  "Couleurs et icônes personnalisées"
+ ],
+ "Troca de cores e ícones de preenchido/vazio.": [
+  "Switch filled/empty colors and icons.",
+  "Troca de cores e ícones de preenchido/vazio.",
+  "Cambia los colores y los íconos de lleno/vacío.",
+  "Changez les couleurs et icones pleines/vides."
+ ],
+ "Callbacks": [
+  "Callbacks",
+  "Callbacks",
+  "Callbacks",
+  "Callbacks"
+ ],
+ "Exemplo com onChange e onHover + log de eventos.": [
+  "Example with onChange and onHover + event log.",
+  "Exemplo com onChange e onHover + log de eventos.",
+  "Ejemplo con onChange y onHover + log de eventos.",
+  "Exemple avec onChange et onHover + journal d'evenements."
+ ],
+ "Campo obrigatório": [
+  "Required field",
+  "Campo obrigatório",
+  "Campo obligatorio",
+  "Champ obligatoire"
+ ],
+ "Exemplo com required e requiredMessage.": [
+  "Example using required and requiredMessage.",
+  "Exemplo com required e requiredMessage.",
+  "Ejemplo con required y requiredMessage.",
+  "Exemple utilisant required et requiredMessage."
+ ],
+ "Formas básicas": [
+  "Basic shapes",
+  "Formas básicas",
+  "Formas básicas",
+  "Formes de base"
+ ],
+ "Variantes principais: \"text\", \"rectangle\", \"rounded\", \"square\" e \"circle\".": [
+  "Main variants: \"text\", \"rectangle\", \"rounded\", \"square\" and \"circle\".",
+  "Variantes principais: \"text\", \"rectangle\", \"rounded\", \"square\" e \"circle\".",
+  "Variantes principales: \"text\", \"rectangle\", \"rounded\", \"square\" y \"circle\".",
+  "Variantes principales: \"text\", \"rectangle\", \"rounded\", \"square\" et \"circle\"."
+ ],
+ "Larguras de texto": [
+  "Text widths",
+  "Larguras de texto",
+  "Anchos de texto",
+  "Largeurs de texte"
+ ],
+ "Use a forma text com larguras diferentes para simular linhas reais.": [
+  "Use text shape with different widths to simulate real lines.",
+  "Use a forma text com larguras diferentes para simular linhas reais.",
+  "Usa la forma text con diferentes anchos para simular líneas reales.",
+  "Utilisez la forme text avec differentes largeurs pour simuler des lignes reelles."
+ ],
+ "Animação": [
+  "Animation",
+  "Animação",
+  "Animacion",
+  "Animation"
+ ],
+ "Escolha entre \"wave\", \"pulse\" ou \"none\".": [
+  "Choose between \"wave\", \"pulse\" or \"none\".",
+  "Escolha entre \"wave\", \"pulse\" ou \"none\".",
+  "Elige entre \"wave\", \"pulse\" o \"none\".",
+  "Choisissez entre \"wave\", \"pulse\" ou \"none\"."
+ ],
+ "Placeholder de card": [
+  "Card placeholder",
+  "Placeholder de cartao",
+  "Placeholder de tarjeta",
+  "Espace reserve de carte"
+ ],
+ "Exemplo de carregamento para um card (imagem + título + texto).": [
+  "Loading example for a card (image + title + text).",
+  "Exemplo de carregamento para um card (imagem + título + texto).",
+  "Ejemplo de carga para una tarjeta (imagen + título + texto).",
+  "Exemple de chargement pour une carte (image + titre + texte)."
+ ],
+ "Lista e tabela": [
+  "List and table",
+  "Lista e tabela",
+  "Lista y tabla",
+  "Liste et tableau"
+ ],
+ "Composições comuns de placeholder para telas de dados.": [
+  "Common placeholder compositions for data screens.",
+  "Composições comuns de placeholder para ecrãs de dados.",
+  "Composiciones comunes de placeholder para pantallas de datos.",
+  "Compositions d'espaces reserves courantes pour les ecrans de donnees."
+ ],
+ "Dimensões em texto": [
+  "Dimensions as text",
+  "Dimensões em texto",
+  "Dimensiones en texto",
+  "Dimensions en texte"
+ ],
+ "Aceita número (px) ou \"50%\", \"2rem\", \"1.5em\"; size define largura e altura juntas.": [
+  "Accepts a number (px) or \"50%\", \"2rem\", \"1.5em\"; size sets width and height together.",
+  "Aceita número (px) ou \"50%\", \"2rem\", \"1.5em\"; size define largura e altura em conjunto.",
+  "Acepta número (px) o \"50%\", \"2rem\", \"1.5em\"; size define ancho y alto a la vez.",
+  "Accepte un nombre (px) ou « 50% », « 2rem », « 1.5em » ; size définit largeur et hauteur ensemble."
+ ],
+ "Mensagem de erro": [
+  "Error message",
+  "Mensagem de erro",
+  "Mensaje de error",
+  "Message d'erreur"
+ ],
+ "O texto de error aparece abaixo do slider e marca o campo como inválido.": [
+  "The error text appears below the slider and marks the field as invalid.",
+  "O texto de error aparece abaixo do slider e marca o campo como inválido.",
+  "El texto de error aparece debajo del slider y marca el campo como inválido.",
+  "Le texte d'error apparaît sous le slider et marque le champ comme invalide."
+ ],
+ "ariaLabel e desabilitado": [
+  "ariaLabel and disabled",
+  "ariaLabel e desativado",
+  "ariaLabel y deshabilitado",
+  "ariaLabel et désactivé"
+ ],
+ "Mostra acessibilidade (ariaLabel) e estado desabilitado.": [
+  "Shows accessibility (ariaLabel) and the disabled state.",
+  "Mostra acessibilidade (ariaLabel) e estado desativado.",
+  "Muestra accesibilidad (ariaLabel) y estado deshabilitado.",
+  "Montre l'accessibilité (ariaLabel) et l'état désactivé."
+ ],
+ "Valor atual": [
+  "Current value",
+  "Valor atual",
+  "Valor actual",
+  "Valeur actuelle"
+ ],
+ "Mín": [
+  "Min",
+  "Mín",
+  "Mín",
+  "Min"
+ ],
+ "Meio": [
+  "Middle",
+  "Meio",
+  "Medio",
+  "Milieu"
+ ],
+ "Máx": [
+  "Max",
+  "Máx",
+  "Máx",
+  "Max"
+ ],
+ "Valor controlado": [
+  "Controlled value",
+  "Valor controlado",
+  "Valor controlado",
+  "Valeur contrôlée"
+ ],
+ "Valor com step 5": [
+  "Value with step 5",
+  "Valor com step 5",
+  "Valor con step 5",
+  "Valeur avec step 5"
+ ],
+ "Nível de prioridade": [
+  "Priority level",
+  "Nível de prioridade",
+  "Nivel de prioridad",
+  "Niveau de priorité"
+ ],
+ "Slider desabilitado": [
+  "Disabled slider",
+  "Slider desativado",
+  "Slider deshabilitado",
+  "Curseur désactivé"
+ ],
+ "Valor alto demais": [
+  "Value too high",
+  "Valor demasiado alto",
+  "Valor demasiado alto",
+  "Valeur trop élevée"
+ ],
+ "Define minValue e maxValue com um valor inicial via defaultValue.": [
+  "Defines minValue and maxValue with an initial value via defaultValue.",
+  "Define minValue e maxValue com um valor inicial via defaultValue.",
+  "Define minValue y maxValue con un valor inicial via defaultValue.",
+  "Definit minValue et maxValue avec une valeur initiale via defaultValue."
+ ],
+ "Controle externo": [
+  "External Control",
+  "Controlo Externo",
+  "Control Externo",
+  "External Control"
+ ],
+ "O valor pode ser definido externamente pela prop value.": [
+  "The value can be set externally through the value prop.",
+  "O valor pode ser definido externamente pela prop value.",
+  "El valor puede definirse externamente mediante la prop value.",
+  "La valeur peut etre definie en externe via la prop value."
+ ],
+ "Passo e largura": [
+  "Step and Width",
+  "Passo e largura",
+  "Step y Width",
+  "Step and Width"
+ ],
+ "Mostra step com width numérica e width em string CSS.": [
+  "Shows step with numeric width and CSS-string width.",
+  "Mostra step com width numérica e width em string CSS.",
+  "Muestra step con width numérico y width como string CSS.",
+  "Montre step avec une width numerique et une width en chaine CSS."
+ ],
+ "className, ariaLabel e desabilitado": [
+  "className, ariaLabel and disabled",
+  "className, ariaLabel e desativado",
+  "className, ariaLabel y disabled",
+  "className, ariaLabel and disabled"
+ ],
+ "Mostra personalização visual, acessibilidade e estado disabled.": [
+  "Shows visual customization, accessibility and disabled state.",
+  "Mostra personalização visual, acessibilidade e estado disabled.",
+  "Muestra personalización visual, accesibilidad y estado disabled.",
+  "Montre la personnalisation visuelle, l'accessibilite et l'etat disabled."
+ ],
+ "inputProps": [
+  "inputProps",
+  "inputProps",
+  "inputProps",
+  "inputProps"
+ ],
+ "Passa atributos nativos de input e eventos extras via inputProps.": [
+  "Passes native input attributes and extra events through inputProps.",
+  "Passa atributos nativos de input e eventos extras via inputProps.",
+  "Pasa atributos nativos de input y eventos extra mediante inputProps.",
+  "Transmet des attributs input natifs et des evenements supplementaires via inputProps."
  ],
  "Filiais": [
   "Branches",

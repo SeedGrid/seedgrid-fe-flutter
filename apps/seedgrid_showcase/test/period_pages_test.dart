@@ -28,12 +28,12 @@ void main() {
     await settle(t);
     expect(
       find.text('Nenhum período escolhido'),
-      findsNWidgets(2),
-      reason: 'exemplos 1 e 3 antes de escolher',
+      findsNWidgets(3),
+      reason: 'exemplos 1, 3 e 5 antes de escolher',
     );
-    await escolher(t, 'sg-period-selector', 'ALL');
+    await escolher(t, 'ps-basic', 'ALL');
     expect(find.text('Todos: - a -'), findsOneWidget);
-    await escolher(t, 'sg-period-selector', 'THIS_YEAR');
+    await escolher(t, 'ps-basic', 'THIS_YEAR');
     final ano = DateTime.now().year;
     expect(find.text('Este ano: $ano-01-01 a $ano-12-31'), findsOneWidget);
   });
@@ -42,7 +42,7 @@ void main() {
     setSize(t, kSizes.values.last);
     await t.pumpWidget(app(const SgPeriodSelectorPage()));
     await tapLink(t, const ValueKey('link-exemplo-2'));
-    final botao = find.byKey(const ValueKey('sg-dropdown-button-grupos'));
+    final botao = find.byKey(const ValueKey('sg-dropdown-button-ps-flags'));
     await t.tap(botao);
     await settle(t);
     expect(find.byKey(const ValueKey('sg-opt-LAST_WEEK')), findsOneWidget);
@@ -53,7 +53,7 @@ void main() {
     );
     await t.tap(botao);
     await settle(t);
-    await t.tap(find.text('Futuros'));
+    await t.tap(find.text('permitFuture').first);
     await settle(t);
     await t.tap(botao);
     await settle(t);
@@ -65,7 +65,7 @@ void main() {
     (t) async {
       setSize(t, kSizes.values.last);
       await t.pumpWidget(app(const SgPeriodSelectorPage()));
-      await tapLink(t, const ValueKey('link-exemplo-5'));
+      await tapLink(t, const ValueKey('link-exemplo-7'));
       await escolher(t, 'periodo-form', 'THIS_MONTH');
       await t.tap(find.text('Enviar'));
       await settle(t);

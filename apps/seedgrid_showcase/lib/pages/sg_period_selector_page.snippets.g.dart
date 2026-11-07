@@ -9,14 +9,67 @@ Column(
   crossAxisAlignment: CrossAxisAlignment.start,
   children: [
     SgPeriodSelector(
+      id: 'ps-basic',
       label: context.tx('Período'),
-      onChange: (p) => setState(
-        () => _basico =
-            '${p.label}: ${p.startDate?.toIso8601String().substring(0, 10) ?? '-'} a ${p.endDate?.toIso8601String().substring(0, 10) ?? '-'}',
-      ),
+      onChange: (p) =>
+          _basico.value =
+              '${p.label}: ${p.startDate?.toIso8601String().substring(0, 10) ?? '-'} a ${p.endDate?.toIso8601String().substring(0, 10) ?? '-'}',
     ),
     const SizedBox(height: 8),
-    Text(_basico),
+    ValueListenableBuilder<String>(
+      valueListenable: _basico,
+      builder: (context, resumo, _) => Text(resumo),
+    ),
+  ],
+)
+''';
+
+  /// Region `sg-period-selector-clamp`.
+  static const String sgPeriodSelectorClamp = r'''
+Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    SgPeriodSelector(
+      id: 'ps-clamped',
+      label: context.tx('Período'),
+      permitPast: true,
+      permitCurrent: true,
+      permitFuture: true,
+      minDate: DateTime(DateTime.now().year, DateTime.now().month, 1),
+      maxDate: DateTime(
+        DateTime.now().year,
+        DateTime.now().month + 1,
+        0,
+      ),
+      onChange: (p) =>
+          _limitado.value =
+              '${p.label}: ${p.startDate?.toIso8601String().substring(0, 10) ?? '-'} a ${p.endDate?.toIso8601String().substring(0, 10) ?? '-'}',
+    ),
+    const SizedBox(height: 8),
+    ValueListenableBuilder<String>(
+      valueListenable: _limitado,
+      builder: (context, resumo, _) => Text(resumo),
+    ),
+  ],
+)
+''';
+
+  /// Region `sg-period-selector-estados`.
+  static const String sgPeriodSelectorEstados = r'''
+Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    SgPeriodSelector(
+      id: 'ps-disabled',
+      label: context.tx('Período'),
+      enabled: false,
+    ),
+    const SizedBox(height: 12),
+    SgPeriodSelector(
+      id: 'ps-required',
+      label: context.tx('Período'),
+      required: true,
+    ),
   ],
 )
 ''';
@@ -36,62 +89,63 @@ Column(
     SgButton(
       label: Text(context.tx('Enviar')),
       onClick: () => _form.handleSubmit(
-        (values) =>
-            setState(() => _enviado = '${values['periodo']}'),
+        (values) => _enviado.value = '${values['periodo']}',
       ),
     ),
-    if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),
+    ValueListenableBuilder<String>(
+      valueListenable: _enviado,
+      builder: (context, enviado, _) =>
+          enviado.isEmpty ? const SizedBox() : Text('Enviado: $enviado'),
+    ),
   ],
 )
 ''';
 
   /// Region `sg-period-selector-grupos`.
   static const String sgPeriodSelectorGrupos = r'''
-Column(
-  crossAxisAlignment: CrossAxisAlignment.start,
-  children: [
-    Wrap(
-      spacing: 8,
-      runSpacing: 8,
-      children: [
-        FilterChip(
-          label: Text(context.tx('Passados')),
-          selected: _passados,
-          onSelected: (v) => setState(() => _passados = v),
-        ),
-        FilterChip(
-          label: Text(context.tx('Atuais')),
-          selected: _atuais,
-          onSelected: (v) => setState(() => _atuais = v),
-        ),
-        FilterChip(
-          label: Text(context.tx('Futuros')),
-          selected: _futuros,
-          onSelected: (v) => setState(() => _futuros = v),
-        ),
-        FilterChip(
-          label: Text(context.tx('Todos')),
-          selected: _todos,
-          onSelected: (v) => setState(() => _todos = v),
-        ),
-        FilterChip(
-          label: Text(context.tx('Período')),
-          selected: _periodo,
-          onSelected: (v) => setState(() => _periodo = v),
-        ),
-      ],
-    ),
-    const SizedBox(height: 12),
-    SgPeriodSelector(
-      id: 'grupos',
-      label: context.tx('Período'),
-      permitPast: _passados,
-      permitCurrent: _atuais,
-      permitFuture: _futuros,
-      permitAll: _todos,
-      allowCustomPeriod: _periodo,
-    ),
-  ],
+ValueListenableBuilder<List<bool>>(
+  valueListenable: _grupos,
+  builder: (context, grupos, _) => Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Wrap(
+        spacing: 16,
+        runSpacing: 8,
+        children: [
+          SgToggleSwitch(
+            id: 'ps-flag-past',
+            label: 'permitPast',
+            checked: grupos[0],
+            onChange: (v) =>
+                _grupos.value = [v, grupos[1], grupos[2]],
+          ),
+          SgToggleSwitch(
+            id: 'ps-flag-current',
+            label: 'permitCurrent',
+            checked: grupos[1],
+            onChange: (v) =>
+                _grupos.value = [grupos[0], v, grupos[2]],
+          ),
+          SgToggleSwitch(
+            id: 'ps-flag-future',
+            label: 'permitFuture',
+            checked: grupos[2],
+            onChange: (v) =>
+                _grupos.value = [grupos[0], grupos[1], v],
+          ),
+        ],
+      ),
+      const SizedBox(height: 12),
+      SgPeriodSelector(
+        id: 'ps-flags',
+        label: context.tx('Período'),
+        permitPast: grupos[0],
+        permitCurrent: grupos[1],
+        permitFuture: grupos[2],
+        permitAll: false,
+      ),
+    ],
+  ),
 )
 ''';
 
@@ -101,17 +155,19 @@ Column(
   crossAxisAlignment: CrossAxisAlignment.start,
   children: [
     SgPeriodSelector(
-      id: 'ingles',
-      label: context.tx('Period'),
+      id: 'ps-english',
+      label: 'Period',
       locale: 'en-US',
       referenceDate: DateTime(2024, 2, 29),
-      onChange: (p) => setState(
-        () => _ingles =
-            '${p.label}: ${p.startDate?.toIso8601String().substring(0, 10) ?? '-'} to ${p.endDate?.toIso8601String().substring(0, 10) ?? '-'}',
-      ),
+      onChange: (p) =>
+          _ingles.value =
+              '${p.label}: ${p.startDate?.toIso8601String().substring(0, 10) ?? '-'} to ${p.endDate?.toIso8601String().substring(0, 10) ?? '-'}',
     ),
     const SizedBox(height: 8),
-    Text(_ingles),
+    ValueListenableBuilder<String>(
+      valueListenable: _ingles,
+      builder: (context, resumo, _) => Text(resumo),
+    ),
   ],
 )
 ''';
@@ -122,18 +178,20 @@ Column(
   crossAxisAlignment: CrossAxisAlignment.start,
   children: [
     SgPeriodSelector(
-      id: 'personalizado',
+      id: 'ps-custom',
       label: context.tx('Período'),
-      minDate: DateTime(2024, 1, 1),
-      maxDate: DateTime(2024, 12, 31),
-      referenceDate: DateTime(2024, 6, 15),
-      onChange: (p) => setState(
-        () => _personalizado =
-            '${p.label}: ${p.startDate?.toIso8601String().substring(0, 10) ?? '-'} a ${p.endDate?.toIso8601String().substring(0, 10) ?? '-'}',
-      ),
+      allowCustomPeriod: true,
+      permitCurrent: false,
+      permitPast: false,
+      onChange: (p) =>
+          _personalizado.value =
+              '${p.label}: ${p.startDate?.toIso8601String().substring(0, 10) ?? '-'} a ${p.endDate?.toIso8601String().substring(0, 10) ?? '-'}',
     ),
     const SizedBox(height: 8),
-    Text(_personalizado),
+    ValueListenableBuilder<String>(
+      valueListenable: _personalizado,
+      builder: (context, resumo, _) => Text(resumo),
+    ),
   ],
 )
 ''';
