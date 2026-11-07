@@ -127,7 +127,16 @@ const stripNum = (s) => s.replace(/^\s*\d+\)\s*/, "").trim();
 function reactExamples(dir) {
   const f = path.join(reactComponents, dir, "page.tsx");
   if (!fs.existsSync(f)) return null;
-  const text = fs.readFileSync(f, "utf8");
+  let text = fs.readFileSync(f, "utf8");
+  // pagina que so delega a um componente cliente (ex.: SgClock): le os arquivos irmaos com `<Section`
+  if (!/<Section\b/.test(text)) {
+    const dirAbs = path.join(reactComponents, dir);
+    for (const n of fs.readdirSync(dirAbs)) {
+      if (!n.endsWith(".tsx") || n === "page.tsx") continue;
+      const t2 = fs.readFileSync(path.join(dirAbs, n), "utf8");
+      if (/<Section\b/.test(t2)) text += "\n" + t2;
+    }
+  }
   const consts = stringConsts(text);
   const list = sectionTitleList(text, consts);
 
@@ -151,6 +160,13 @@ function reactExamples(dir) {
     if (attrs.trim() === "") continue; // `<Section>` citado em comentario
     const tm = /\btitle=(\{(?:[^{}]|\{[^{}]*\})*\}|"[^"]*")/.exec(attrs);
     if (!tm) { unresolved++; continue; }
+    // secao gerada por `ARRAY.map((item) => <Section title={item.title}>)`: expande os titulos do array
+    if (/^\{\s*\w+\.title\s*\}$/.test(tm[1])) {
+      const mm = /(\w+)\.map\(\s*\(?\s*\w+\s*\)?\s*=>\s*\(?\s*$/.exec(text.slice(0, m.index));
+      const decl = mm && new RegExp("const\\s+" + mm[1] + "\\b[^=]*=\\s*\\[([\\s\\S]*?)\\n\\];").exec(text);
+      const arr = decl ? [...decl[1].matchAll(/title:\s*"([^"]*)"/g)].map((x) => x[1]) : [];
+      if (arr.length) { titles.push(...arr); continue; }
+    }
     const t = resolveTitleExpr(tm[1], consts, list);
     if (t === null) { unresolved++; continue; }
     if (isPlayground(t) || isProps(t)) continue;

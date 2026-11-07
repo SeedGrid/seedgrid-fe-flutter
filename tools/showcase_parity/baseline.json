@@ -2,7 +2,9 @@
  "_aviso": "Divergencias conhecidas de hoje; so pode encolher (P148.F1.T1). Gerado por verify.mjs --atualizar-base.",
  "componentes": {
   "SgClock": [
-   "react-nao-lido"
+   "falta-no-flutter",
+   "quantidade",
+   "so-no-flutter"
   ],
   "SgClockThemePicker": [
    "falta-no-flutter",
@@ -34,33 +36,9 @@
    "quantidade",
    "so-no-flutter"
   ],
-  "UseComponentsI18n": [
-   "sem-pagina-flutter"
-  ],
-  "UseSgEnvironment": [
-   "sem-pagina-flutter"
-  ],
-  "UseSgPersistence": [
-   "sem-pagina-flutter"
-  ],
-  "UseSgPersistentState": [
-   "sem-pagina-flutter"
-  ],
-  "UseSgRealtimeEvent": [
-   "sem-pagina-flutter"
-  ],
-  "UseSgRealtimeStatus": [
-   "sem-pagina-flutter"
-  ],
-  "UseSgTime": [
-   "sem-pagina-flutter"
-  ],
   "SgClockThemeProvider": [
    "falta-no-flutter",
    "so-no-flutter"
-  ],
-  "SgComponentsI18nProvider": [
-   "sem-pagina-flutter"
   ],
   "SgEnvironmentProvider": [
    "falta-no-flutter",
