@@ -1781,6 +1781,156 @@
   "Fuente asíncrona + render personalizado",
   "Source asynchrone + rendu personnalise"
  ],
+ "Etapa 1 - Dados pessoais": [
+  "Step 1 - Personal data",
+  "Etapa 1 - Dados pessoais",
+  "Paso 1 - Datos personales",
+  "Étape 1 - Données personnelles"
+ ],
+ "Preencha nome e e-mail para avançar.": [
+  "Fill in name and email to continue.",
+  "Preencha o nome e o e-mail para avançar.",
+  "Completa nombre y correo para continuar.",
+  "Renseignez le nom et l'e-mail pour continuer."
+ ],
+ "Informe o nome.": [
+  "Enter the name.",
+  "Indique o nome.",
+  "Indica el nombre.",
+  "Indiquez le nom."
+ ],
+ "Informe o e-mail.": [
+  "Enter the email.",
+  "Indique o e-mail.",
+  "Indica el correo.",
+  "Indiquez l'e-mail."
+ ],
+ "E-mail inválido.": [
+  "Invalid email.",
+  "E-mail inválido.",
+  "Correo no válido.",
+  "E-mail invalide."
+ ],
+ "Etapa 2 - Contato": [
+  "Step 2 - Contact",
+  "Etapa 2 - Contacto",
+  "Paso 2 - Contacto",
+  "Étape 2 - Contact"
+ ],
+ "Etapa 3 - Confirmação": [
+  "Step 3 - Confirmation",
+  "Etapa 3 - Confirmação",
+  "Paso 3 - Confirmación",
+  "Étape 3 - Confirmation"
+ ],
+ "Revise os dados e finalize.": [
+  "Review the data and finish.",
+  "Reveja os dados e finalize.",
+  "Revisa los datos y finaliza.",
+  "Vérifiez les données et terminez."
+ ],
+ "Etapa atual": [
+  "Current step",
+  "Etapa atual",
+  "Paso actual",
+  "Étape actuelle"
+ ],
+ "Dados enviados": [
+  "Submitted data",
+  "Dados enviados",
+  "Datos enviados",
+  "Données envoyées"
+ ],
+ "Introdução": [
+  "Introduction",
+  "Introdução",
+  "Introducción",
+  "Introduction"
+ ],
+ "Somente etapas anteriores podem ser clicadas.": [
+  "Only previous steps can be clicked.",
+  "Só as etapas anteriores podem ser clicadas.",
+  "Solo se pueden pulsar los pasos anteriores.",
+  "Seules les étapes précédentes sont cliquables."
+ ],
+ "O usuário pode voltar clicando no stepper.": [
+  "The user can go back by clicking the stepper.",
+  "O utilizador pode voltar clicando no stepper.",
+  "El usuario puede volver pulsando en el stepper.",
+  "L'utilisateur peut revenir en cliquant sur le stepper."
+ ],
+ "A etapa atual não fica clicável.": [
+  "The current step is not clickable.",
+  "A etapa atual não fica clicável.",
+  "El paso actual no se puede pulsar.",
+  "L'étape actuelle n'est pas cliquable."
+ ],
+ "Passos futuros continuam bloqueados.": [
+  "Future steps remain blocked.",
+  "Os passos futuros continuam bloqueados.",
+  "Los pasos futuros siguen bloqueados.",
+  "Les étapes futures restent bloquées."
+ ],
+ "Posição": [
+  "Position",
+  "Posição",
+  "Posición",
+  "Position"
+ ],
+ "Selecione a posição desejada.": [
+  "Select the desired position.",
+  "Selecione a posição pretendida.",
+  "Selecciona la posición deseada.",
+  "Sélectionnez la position souhaitée."
+ ],
+ "Categoria": [
+  "Category",
+  "Categoria",
+  "Categoría",
+  "Catégorie"
+ ],
+ "Escolha a categoria.": [
+  "Choose the category.",
+  "Escolha a categoria.",
+  "Elige la categoría.",
+  "Choisissez la catégorie."
+ ],
+ "Revise e envie.": [
+  "Review and submit.",
+  "Reveja e envie.",
+  "Revisa y envía.",
+  "Vérifiez et envoyez."
+ ],
+ "Conteúdo introdutório.": [
+  "Introductory content.",
+  "Conteúdo introdutório.",
+  "Contenido introductorio.",
+  "Contenu introductif."
+ ],
+ "Preencha os detalhes.": [
+  "Fill in the details.",
+  "Preencha os detalhes.",
+  "Completa los detalles.",
+  "Renseignez les détails."
+ ],
+ "Revise as informações.": [
+  "Review the information.",
+  "Reveja as informações.",
+  "Revisa la información.",
+  "Vérifiez les informations."
+ ],
+ "Confirme e finalize.": [
+  "Confirm and finish.",
+  "Confirme e finalize.",
+  "Confirma y finaliza.",
+  "Confirmez et terminez."
+ ],
+ "Continuar": [
+  "Continue",
+  "Continuar",
+  "Continuar",
+  "Continuer"
+ ],
  "Coluna + Linha": [
   "Column + Row",
   "Coluna + Linha",
@@ -1816,6 +1966,246 @@
   "Voltar",
   "Volver",
   "Retour"
+ ],
+ "Concluir": [
+  "Finish",
+  "Concluir",
+  "Concluir",
+  "Terminer"
+ ],
+ "Dados: ajuste os labels como quiser.": [
+  "Data: adjust the labels as you like.",
+  "Dados: ajuste os rótulos como quiser.",
+  "Datos: ajusta las etiquetas como quieras.",
+  "Données : ajustez les libellés à votre guise."
+ ],
+ "Fim: clique em Concluir para finalizar.": [
+  "End: click Finish to complete.",
+  "Fim: clique em Concluir para finalizar.",
+  "Fin: haz clic en Concluir para finalizar.",
+  "Fin : cliquez sur Terminer pour finaliser."
+ ],
+ "Etapa 1: simula validação assíncrona (600ms).": [
+  "Step 1: simulates async validation (600ms).",
+  "Etapa 1: simula validação assíncrona (600ms).",
+  "Paso 1: simula validación asíncrona (600ms).",
+  "Étape 1 : simule une validation asynchrone (600ms)."
+ ],
+ "Etapa 2: pode finalizar.": [
+  "Step 2: you can finish.",
+  "Etapa 2: pode finalizar.",
+  "Paso 2: puede finalizar.",
+  "Étape 2 : vous pouvez terminer."
+ ],
+ "Etapa 1: valida via validateStep (nome e e-mail do primeiro exemplo).": [
+  "Step 1: validates via validateStep (name and email from the first example).",
+  "Etapa 1: valida via validateStep (nome e e-mail do primeiro exemplo).",
+  "Paso 1: valida mediante validateStep (nombre y correo del primer ejemplo).",
+  "Étape 1 : valide via validateStep (nom et e-mail du premier exemple)."
+ ],
+ "Convite": [
+  "Invitation",
+  "Convite",
+  "Invitación",
+  "Invitation"
+ ],
+ "Código do convite": [
+  "Invitation code",
+  "Código do convite",
+  "Código de la invitación",
+  "Code d'invitation"
+ ],
+ "Este código já foi utilizado.": [
+  "This code has already been used.",
+  "Este código já foi utilizado.",
+  "Este código ya fue utilizado.",
+  "Ce code a déjà été utilisé."
+ ],
+ "Verificando o código...": [
+  "Checking the code...",
+  "A verificar o código...",
+  "Verificando el código...",
+  "Vérification du code..."
+ ],
+ "Digite \"SG-123\" e saia do campo: o botão Próximo fica desabilitado.": [
+  "Type \"SG-123\" and leave the field: the Next button gets disabled.",
+  "Digite \"SG-123\" e saia do campo: o botão Seguinte fica desativado.",
+  "Escribe \"SG-123\" y sal del campo: el botón Siguiente queda deshabilitado.",
+  "Saisissez \"SG-123\" et quittez le champ : le bouton Suivant est désactivé."
+ ],
+ "Conclusão": [
+  "Conclusion",
+  "Conclusão",
+  "Conclusión",
+  "Conclusion"
+ ],
+ "Código aceito: só se chega aqui com um código que a checagem liberou.": [
+  "Code accepted: you only get here with a code the check has cleared.",
+  "Código aceite: só se chega aqui com um código que a verificação libertou.",
+  "Código aceptado: solo se llega aquí con un código que la comprobación liberó.",
+  "Code accepté : on n'arrive ici qu'avec un code validé par la vérification."
+ ],
+ "Validação automática": [
+  "Automatic validation",
+  "Validação automática",
+  "Validación automática",
+  "Validation automatique"
+ ],
+ "O wizard valida automaticamente os inputs da página antes de avançar. Por padrão, as etapas anteriores e o próximo passo imediato também podem ser clicados no stepper, com a mesma validação do botão Continuar.": [
+  "The wizard validates inputs before advancing. By default, previous steps and the immediate next step are also clickable in the stepper, reusing the same validation as the Continue button.",
+  "O wizard valida automaticamente os inputs da pagina antes de avancar. Por omissao, etapas anteriores e o proximo passo imediato tambem podem ser clicados no stepper usando a mesma validacao do botao Continuar.",
+  "El wizard valida los inputs antes de avanzar. Por defecto, los pasos anteriores y el siguiente paso inmediato tambien se pueden pulsar en el stepper reutilizando la misma validacion que el boton Continuar.",
+  "L'assistant valide les champs avant d'avancer. Par defaut, les etapes precedentes et l'etape suivante immediate sont aussi cliquables dans le stepper, en reutilisant la meme validation que le bouton Continuer."
+ ],
+ "stepNavigation": [
+  "stepNavigation",
+  "stepNavigation",
+  "stepNavigation",
+  "stepNavigation"
+ ],
+ "Use stepNavigation para limitar o clique nas etapas. O padrão é previous-and-next; neste exemplo apenas as etapas anteriores aceitam clique.": [
+  "Use stepNavigation to limit clickable steps. The default is previous-and-next; this example only allows clicking previous steps.",
+  "Use stepNavigation para limitar o clique nas etapas. O valor por omissao e previous-and-next; neste exemplo apenas as etapas anteriores aceitam clique.",
+  "Usa stepNavigation para limitar los pasos clicables. El valor por defecto es previous-and-next; en este ejemplo solo se pueden pulsar los pasos anteriores.",
+  "Utilisez stepNavigation pour limiter les etapes cliquables. Le defaut est precedent-et-suivant ; cet exemple n'autorise que le clic sur les etapes precedentes."
+ ],
+ "Stepper com ícones": [
+  "Stepper with icons",
+  "Stepper com ícones",
+  "Stepper con iconos",
+  "Stepper avec icônes"
+ ],
+ "stepper=\"icons\" + icon em cada SgWizardPage: exibe o ícone no círculo em vez do número.": [
+  "stepper=\"icons\" + icon on each SgWizardPage: shows the icon inside the circle instead of the number.",
+  "stepper=\"icons\" + icon em cada SgWizardPage: mostra o ícone no círculo em vez do número.",
+  "stepper=\"icons\" + icon en cada SgWizardPage: muestra el icono en el círculo en lugar del número.",
+  "stepper=\"icons\" + icon sur chaque SgWizardPage : affiche l'icône dans le cercle au lieu du numéro."
+ ],
+ "Stepper numerado": [
+  "Numbered stepper",
+  "Stepper numerado",
+  "Stepper numerado",
+  "Stepper numéroté"
+ ],
+ "stepper=\"numbered\": círculos numerados com o título de cada passo.": [
+  "stepper=\"numbered\": numbered circles with the title of each step.",
+  "stepper=\"numbered\": círculos numerados com o título de cada passo.",
+  "stepper=\"numbered\": círculos numerados con el título de cada paso.",
+  "stepper=\"numbered\" : cercles numérotés avec le titre de chaque étape."
+ ],
+ "Labels customizados": [
+  "Custom labels",
+  "Labels customizados",
+  "Labels personalizados",
+  "Libelles personnalises"
+ ],
+ "Personalize os textos dos botões.": [
+  "Customize button labels.",
+  "Personalize os textos dos botoes.",
+  "Personaliza los textos de los botones.",
+  "Personnalisez les libelles des boutons."
+ ],
+ "onBeforeNext async": [
+  "onBeforeNext async",
+  "onBeforeNext async",
+  "onBeforeNext async",
+  "onBeforeNext asynchrone"
+ ],
+ "Validação assíncrona antes de avançar (ex.: consultar uma API).": [
+  "Async validation before moving forward (e.g. API call).",
+  "Validacao assincrona antes de avancar (ex: consultar API).",
+  "Validacion asincrona antes de avanzar (por ejemplo, consultar API).",
+  "Validation asynchrone avant d'avancer (par ex. appel API)."
+ ],
+ "validateStep": [
+  "validateStep",
+  "validateStep",
+  "validateStep",
+  "validateStep"
+ ],
+ "Validação customizada por etapa, além da validação automática dos inputs.": [
+  "Custom validation per step, in addition to automatic input validation.",
+  "Validacao customizada por step, alem da validacao automatica dos inputs.",
+  "Validacion personalizada por step, ademas de la validacion automatica de inputs.",
+  "Validation personnalisee par etape, en plus de la validation automatique des champs."
+ ],
+ "Avanço bloqueado (nextDisabled)": [
+  "Blocked advance (nextDisabled)",
+  "Avanço bloqueado (nextDisabled)",
+  "Avance bloqueado (nextDisabled)",
+  "Avancement bloqué (nextDisabled)"
+ ],
+ "onBeforeNext só age no clique: o botão continua com aparência de habilitado e, quando ele recusa, nada acontece na tela. Quando o bloqueio já é conhecido (o resultado de uma checagem assíncrona que já terminou), nextDisabled deixa isso visível.": [
+  "onBeforeNext only acts on click: the button still looks enabled and, when it refuses, nothing happens on screen. When the block is already known (the result of an async check that has already finished), nextDisabled makes it visible.",
+  "onBeforeNext só age no clique: o botão continua com aparência de ativo e, quando ele recusa, nada acontece no ecrã. Quando o bloqueio já é conhecido (o resultado de uma verificação assíncrona que já terminou), nextDisabled torna isso visível.",
+  "onBeforeNext solo actúa al hacer clic: el botón sigue pareciendo habilitado y, cuando lo rechaza, no pasa nada en pantalla. Cuando el bloqueo ya se conoce (el resultado de una comprobación asíncrona que ya terminó), nextDisabled lo hace visible.",
+  "onBeforeNext n'agit qu'au clic : le bouton garde l'apparence d'un bouton actif et, quand il refuse, rien ne se passe à l'écran. Quand le blocage est déjà connu (le résultat d'une vérification asynchrone déjà terminée), nextDisabled le rend visible."
+ ],
+ "Nenhum recorte confirmado ainda": [
+  "No part confirmed yet",
+  "Nenhum recorte confirmado ainda",
+  "Ningun recorte confirmado todavia",
+  "Aucun decoupage confirme pour l'instant"
+ ],
+ "Semestre de apuração": [
+  "Reporting half-year",
+  "Semestre de apuramento",
+  "Semestre de cierre",
+  "Semestre de cloture"
+ ],
+ "Exercício": [
+  "Fiscal year",
+  "Exercicio",
+  "Ejercicio",
+  "Exercice"
+ ],
+ "Os três controles: ano, recorte e fatia. Não há onChange na montagem: o intervalo resolvido aparece quando você mexe em algum deles.": [
+  "The three controls: year, breakdown and part. There is no onChange on mount — the resolved interval shows up once you touch any of them.",
+  "Os tres controlos: ano, recorte e fatia. Nao ha' onChange na montagem — o intervalo resolvido aparece quando mexe em algum deles.",
+  "Los tres controles: ano, recorte y parte. No hay onChange al montar — el intervalo resuelto aparece cuando tocas alguno de ellos.",
+  "Les trois controles : annee, decoupage et partie. Pas de onChange au montage — l'intervalle resolu apparait des que vous touchez l'un d'eux."
+ ],
+ "Só semestre": [
+  "Half-year only",
+  "Só semestre",
+  "Solo semestre",
+  "Semestre uniquement"
+ ],
+ "Com allowedKinds de um item só, o combo de recorte some: sobram ano e fatia, que é o que um fechamento semestral realmente pergunta.": [
+  "With a single-item allowedKinds the breakdown combo disappears: year and part remain, which is what a half-year close actually asks for.",
+  "Com allowedKinds de um unico item o combo de recorte desaparece: ficam ano e fatia, que e' o que um fecho semestral realmente pergunta.",
+  "Con allowedKinds de un solo elemento el combo de recorte desaparece: quedan ano y parte, que es lo que pregunta un cierre semestral.",
+  "Avec un allowedKinds a un seul element le combo de decoupage disparait : restent annee et partie, ce que demande vraiment une cloture semestrielle."
+ ],
+ "Faixa de anos": [
+  "Year range",
+  "Intervalo de anos",
+  "Rango de anos",
+  "Plage d'annees"
+ ],
+ "minYear e maxYear estreitam a lista de anos. O padrão vai do ano corrente - 30 ao ano corrente + 10; ano sem movimento não deveria ser oferecido.": [
+  "minYear and maxYear narrow the year list. The default spans current year - 30 to current year + 10; a year with no data should not be offered.",
+  "minYear e maxYear estreitam a lista de anos. O padrao vai do ano corrente - 30 ao ano corrente + 10; ano sem movimento nao deveria ser oferecido.",
+  "minYear y maxYear estrechan la lista de anos. El valor por defecto va del ano actual - 30 al ano actual + 10; un ano sin movimiento no deberia ofrecerse.",
+  "minYear et maxYear resserrent la liste des annees. Par defaut elle va de l'annee courante - 30 a l'annee courante + 10 ; une annee sans mouvement ne devrait pas etre proposee."
+ ],
+ "Desabilitado e obrigatório valem para os três controles de uma vez.": [
+  "Disabled and required apply to all three controls at once.",
+  "Desativado e obrigatorio aplicam-se aos tres controlos de uma vez.",
+  "Deshabilitado y obligatorio se aplican a los tres controles a la vez.",
+  "Desactive et obligatoire s'appliquent aux trois controles a la fois."
+ ],
+ "Locale e as siglas": [
+  "Locale and abbreviations",
+  "Locale e as siglas",
+  "Locale y las siglas",
+  "Locale et abreviations"
+ ],
+ "A sigla entre parênteses acompanha o idioma e NÃO é a inicial do nome traduzido: Q1..Q4 em pt-BR e en-US, T1..T4 em es, fr e pt-PT; semestre é S no português e H (Half-year) no inglês; bimestre não tem sigla consagrada e sai sem parênteses.": [
+  "The abbreviation in parentheses follows the language and is NOT the initial of the translated name: Q1..Q4 in pt-BR and en-US, T1..T4 in es, fr and pt-PT; half-year is S in Portuguese and H in English; bimester has no established abbreviation and comes without parentheses.",
+  "A sigla entre parenteses acompanha o idioma e NAO e' a inicial do nome traduzido: Q1..Q4 em pt-BR e en-US, T1..T4 em es, fr e pt-PT; semestre e' S no portugues e H (Half-year) no ingles; bimestre nao tem sigla consagrada e sai sem parenteses.",
+  "La sigla entre parentesis sigue al idioma y NO es la inicial del nombre traducido: Q1..Q4 en pt-BR y en-US, T1..T4 en es, fr y pt-PT; semestre es S en portugues y H (Half-year) en ingles; bimestre no tiene sigla consagrada y sale sin parentesis.",
+  "L'abreviation entre parentheses suit la langue et n'est PAS l'initiale du nom traduit : Q1..Q4 en pt-BR et en-US, T1..T4 en es, fr et pt-PT ; le semestre est S en portugais et H (Half-year) en anglais ; le bimestre n'a pas d'abreviation consacree et sort sans parentheses."
  ],
  "O valor é controlado pela prop value; os botões alteram o número de fora do campo.": [
   "The value is controlled by the value prop; the buttons change the number from outside the field.",

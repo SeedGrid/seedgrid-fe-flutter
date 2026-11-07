@@ -15,15 +15,19 @@ class SgYearPartSelectorPage extends StatefulWidget {
 }
 
 class _SgYearPartSelectorPageState extends State<SgYearPartSelectorPage> {
-  String _basico = 'Nenhum recorte escolhido';
-  String _trimestres = 'Nenhum recorte escolhido';
-  String _ingles = 'No part chosen';
-  YearPartValue _controlado = const YearPartValue(
-    year: 2024,
-    kind: YearPartKind.quarter,
-    part: 1,
-  );
-  String _controladoTexto = '';
+  // Resultado de cada exemplo: o seletor escreve no notifier e so o Text interessado reconstroi
+  // (a pagina nao se reconstroi).
+  final _basico = ValueNotifier<ResolvedYearPart?>(null);
+  final _semestre = ValueNotifier<ResolvedYearPart?>(null);
+  final _faixa = ValueNotifier<ResolvedYearPart?>(null);
+
+  @override
+  void dispose() {
+    _basico.dispose();
+    _semestre.dispose();
+    _faixa.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,152 +35,148 @@ class _SgYearPartSelectorPageState extends State<SgYearPartSelectorPage> {
       ShowcaseExample(
         title: 'Básico',
         description:
-            'Escolha ano, recorte (semestre, trimestre ou bimestre) e fatia: o intervalo de datas sai resolvido. Abre no ano corrente, no primeiro recorte e na fatia em que hoje cai, sem disparar onChange.',
+            'Os três controles: ano, recorte e fatia. Não há onChange na montagem: o intervalo resolvido aparece quando você mexe em algum deles.',
         preview:
             // #region sg-year-part-selector-basico
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SgYearPartSelector(
+                  id: 'yps-basic',
                   label: context.tx('Recorte do ano'),
-                  onChange: (r) => setState(
-                    () => _basico =
-                        '${r.value.year} - ${r.label}: ${r.startDate.toIso8601String().substring(0, 10)} a ${r.endDate.toIso8601String().substring(0, 10)}',
-                  ),
+                  onChange: (r) => _basico.value = r,
                 ),
                 const SizedBox(height: 8),
-                Text(_basico),
+                ValueListenableBuilder<ResolvedYearPart?>(
+                  valueListenable: _basico,
+                  builder: (context, r, _) => Text(
+                    r == null
+                        ? context.tx('Nenhum recorte confirmado ainda')
+                        : '${r.label}: ${r.startDate.toIso8601String().substring(0, 10)} - ${r.endDate.toIso8601String().substring(0, 10)}',
+                  ),
+                ),
               ],
             ),
         // #endregion
         code: SgYearPartSelectorPageSnippets.sgYearPartSelectorBasico,
       ),
       ShowcaseExample(
-        title: 'Só trimestres',
+        title: 'Só semestre',
         description:
-            'allowedKinds restringe os recortes. Com um único recorte permitido, o combo de recorte some.',
+            'Com allowedKinds de um item só, o combo de recorte some: sobram ano e fatia, que é o que um fechamento semestral realmente pergunta.',
         preview:
-            // #region sg-year-part-selector-trimestres
+            // #region sg-year-part-selector-semestre
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SgYearPartSelector(
-                  id: 'trimestres',
-                  allowedKinds: const [YearPartKind.quarter],
-                  onChange: (r) => setState(
-                    () => _trimestres =
-                        '${r.label}: ${r.startDate.toIso8601String().substring(0, 10)} a ${r.endDate.toIso8601String().substring(0, 10)}',
-                  ),
+                  id: 'yps-semester',
+                  label: context.tx('Semestre de apuração'),
+                  allowedKinds: const [YearPartKind.semester],
+                  onChange: (r) => _semestre.value = r,
                 ),
                 const SizedBox(height: 8),
-                Text(_trimestres),
+                ValueListenableBuilder<ResolvedYearPart?>(
+                  valueListenable: _semestre,
+                  builder: (context, r, _) => Text(
+                    r == null
+                        ? context.tx('Nenhum recorte confirmado ainda')
+                        : r.label,
+                  ),
+                ),
               ],
             ),
         // #endregion
-        code: SgYearPartSelectorPageSnippets.sgYearPartSelectorTrimestres,
+        code: SgYearPartSelectorPageSnippets.sgYearPartSelectorSemestre,
       ),
       ShowcaseExample(
-        title: 'Faixa de anos e idioma',
+        title: 'Faixa de anos',
         description:
-            'minYear e maxYear limitam a lista de anos (do mais novo para o mais velho). locale troca rótulos e siglas: em en-US o trimestre é "Q", em es, fr e pt-PT é "T".',
+            'minYear e maxYear estreitam a lista de anos. O padrão vai do ano corrente - 30 ao ano corrente + 10; ano sem movimento não deveria ser oferecido.',
         preview:
             // #region sg-year-part-selector-faixa
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SgYearPartSelector(
-                  id: 'faixa',
-                  locale: 'en-US',
+                  id: 'yps-range',
+                  label: context.tx('Exercício'),
                   minYear: 2020,
                   maxYear: 2026,
-                  onChange: (r) => setState(
-                    () => _ingles =
-                        '${r.value.year} - ${r.label}: ${r.startDate.toIso8601String().substring(0, 10)} to ${r.endDate.toIso8601String().substring(0, 10)}',
-                  ),
+                  onChange: (r) => _faixa.value = r,
                 ),
                 const SizedBox(height: 8),
-                Text(_ingles),
+                ValueListenableBuilder<ResolvedYearPart?>(
+                  valueListenable: _faixa,
+                  builder: (context, r, _) => Text(
+                    r == null
+                        ? context.tx('Nenhum recorte confirmado ainda')
+                        : r.label,
+                  ),
+                ),
               ],
             ),
         // #endregion
         code: SgYearPartSelectorPageSnippets.sgYearPartSelectorFaixa,
       ),
       ShowcaseExample(
-        title: 'Valor controlado',
+        title: 'Estados',
         description:
-            'Com value, o pai manda: escolher emite onChange e o campo só muda quando o value muda. Fatia que não existe no recorte cai na primeira.',
-        preview:
-            // #region sg-year-part-selector-controlado
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SgYearPartSelector(
-                  id: 'controlado',
-                  value: _controlado,
-                  onChange: (r) => setState(() {
-                    _controlado = r.value;
-                    _controladoTexto = r.label;
-                  }),
-                ),
-                const SizedBox(height: 8),
-                Wrap(
-                  spacing: 8,
-                  runSpacing: 8,
-                  children: [
-                    SgButton(
-                      label: Text(context.tx('1º trimestre de 2024')),
-                      appearance: SgAppearance.outline,
-                      onClick: () => setState(
-                        () => _controlado = const YearPartValue(
-                          year: 2024,
-                          kind: YearPartKind.quarter,
-                          part: 1,
-                        ),
-                      ),
-                    ),
-                    SgButton(
-                      label: Text(context.tx('2º bimestre de 2023')),
-                      appearance: SgAppearance.outline,
-                      onClick: () => setState(
-                        () => _controlado = const YearPartValue(
-                          year: 2023,
-                          kind: YearPartKind.bimester,
-                          part: 2,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                Text(
-                  'Valor: $_controlado ${_controladoTexto.isEmpty ? '' : '($_controladoTexto)'}',
-                ),
-              ],
-            ),
-        // #endregion
-        code: SgYearPartSelectorPageSnippets.sgYearPartSelectorControlado,
-      ),
-      ShowcaseExample(
-        title: 'Rótulo, obrigatório e desabilitado',
+            'Desabilitado e obrigatório valem para os três controles de uma vez.',
         preview:
             // #region sg-year-part-selector-estados
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SgYearPartSelector(
-                  id: 'obrigatorio',
-                  label: context.tx('Período do relatório'),
-                  required: true,
-                ),
-                SizedBox(height: 16),
-                SgYearPartSelector(
-                  id: 'desabilitado',
-                  label: context.tx('Desabilitado'),
+                  id: 'yps-disabled',
+                  label: context.tx('Recorte do ano'),
                   enabled: false,
+                ),
+                const SizedBox(height: 16),
+                SgYearPartSelector(
+                  id: 'yps-required',
+                  label: context.tx('Recorte do ano'),
+                  required: true,
                 ),
               ],
             ),
         // #endregion
         code: SgYearPartSelectorPageSnippets.sgYearPartSelectorEstados,
+      ),
+      ShowcaseExample(
+        title: 'Locale e as siglas',
+        description:
+            'A sigla entre parênteses acompanha o idioma e NÃO é a inicial do nome traduzido: Q1..Q4 em pt-BR e en-US, T1..T4 em es, fr e pt-PT; semestre é S no português e H (Half-year) no inglês; bimestre não tem sigla consagrada e sai sem parênteses.',
+        preview:
+            // #region sg-year-part-selector-locale
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SgYearPartSelector(
+                  id: 'yps-ptbr',
+                  label: 'pt-BR',
+                  locale: 'pt-BR',
+                  allowedKinds: const [YearPartKind.quarter],
+                ),
+                const SizedBox(height: 16),
+                SgYearPartSelector(
+                  id: 'yps-enus',
+                  label: 'en-US',
+                  locale: 'en-US',
+                  allowedKinds: const [YearPartKind.semester],
+                ),
+                const SizedBox(height: 16),
+                SgYearPartSelector(
+                  id: 'yps-es',
+                  label: 'es',
+                  locale: 'es',
+                  allowedKinds: const [YearPartKind.quarter],
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgYearPartSelectorPageSnippets.sgYearPartSelectorLocale,
       ),
     ];
 

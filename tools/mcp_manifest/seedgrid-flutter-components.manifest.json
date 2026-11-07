@@ -21153,11 +21153,11 @@
         ],
         "examples": [
           {
-            "id": "sg-wizard-basico",
-            "title": "Básico",
+            "id": "sg-wizard-before-next",
+            "title": "onBeforeNext async",
             "file": "apps/seedgrid_showcase/lib/pages/sg_wizard_demo_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgWizard(\n      onFinish: () => setState(() => _resultado = 'finalizado'),\n      children: [\n        SgWizardPage(\n          child: Text(context.tx('Etapa 1: dados pessoais')),\n        ),\n        SgWizardPage(child: Text(context.tx('Etapa 2: endereço'))),\n        SgWizardPage(child: Text(context.tx('Etapa 3: revisão'))),\n      ],\n    ),\n    const SizedBox(height: 12),\n    Text('Resultado: $_resultado'),\n  ],\n)"
+            "code": "SgWizard(\n  onBeforeNext: (i) async {\n    await Future<void>.delayed(const Duration(milliseconds: 600));\n    return true;\n  },\n  onFinish: () async {\n    await Future<void>.delayed(const Duration(milliseconds: 400));\n  },\n  children: [\n    SgWizardPage(\n      child: Text(\n        context.tx('Etapa 1: simula validação assíncrona (600ms).'),\n      ),\n    ),\n    SgWizardPage(\n      child: Text(context.tx('Etapa 2: pode finalizar.')),\n    ),\n  ],\n)"
           },
           {
             "id": "sg-wizard-enabled",
@@ -21167,25 +21167,53 @@
             "code": "SgWizard(\n  enabled: false,\n  initialStep: 1,\n  stepper: SgWizardStepper.numbered,\n  onFinish: () {},\n  children: [\n    SgWizardPage(\n      title: context.tx('Dados'),\n      child: Text(context.tx('Primeira etapa')),\n    ),\n    SgWizardPage(\n      title: context.tx('Revisão'),\n      child: Text(context.tx('Segunda etapa')),\n    ),\n    SgWizardPage(\n      title: context.tx('Confirmação'),\n      child: Text(context.tx('Terceira etapa')),\n    ),\n  ],\n)"
           },
           {
-            "id": "sg-wizard-formulario",
-            "title": "Validação por etapa com SgForm",
+            "id": "sg-wizard-labels",
+            "title": "Labels customizados",
             "file": "apps/seedgrid_showcase/lib/pages/sg_wizard_demo_page.dart",
             "kind": "dart",
-            "code": "SgWizard(\n  control: _form,\n  stepper: SgWizardStepper.numbered,\n  onFinish: () {},\n  children: [\n    SgWizardPage(\n      title: context.tx('Nome'),\n      fields: const ['nome'],\n      child: SgInputText(\n        id: 'wz-nome',\n        name: 'nome',\n        control: _form,\n        labelText: 'Nome',\n        required: true,\n        requiredMessage: 'Informe o nome',\n      ),\n    ),\n    SgWizardPage(\n      title: context.tx('E-mail'),\n      fields: const ['email'],\n      child: SgInputText(\n        id: 'wz-email',\n        name: 'email',\n        control: _form,\n        labelText: 'E-mail',\n        required: true,\n        requiredMessage: 'Informe o e-mail',\n        validation: (v) => RegExp(r'.+@.+\\..+').hasMatch(v)\n            ? null\n            : 'E-mail inválido',\n      ),\n    ),\n  ],\n)"
+            "code": "SgWizard(\n  labels: SgWizardLabels(\n    next: context.tx('Continuar'),\n    previous: context.tx('Voltar'),\n    finish: context.tx('Concluir'),\n  ),\n  onFinish: () {},\n  children: [\n    SgWizardPage(\n      child: Text(\n        context.tx('Dados: ajuste os labels como quiser.'),\n      ),\n    ),\n    SgWizardPage(\n      child: Text(\n        context.tx('Fim: clique em Concluir para finalizar.'),\n      ),\n    ),\n  ],\n)"
           },
           {
-            "id": "sg-wizard-guardas",
-            "title": "Guardas e nextDisabled",
+            "id": "sg-wizard-next-disabled",
+            "title": "Avanço bloqueado (nextDisabled)",
             "file": "apps/seedgrid_showcase/lib/pages/sg_wizard_demo_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    FilterChip(\n      label: Text(context.tx('nextDisabled')),\n      selected: _bloqueado,\n      onSelected: (v) => setState(() => _bloqueado = v),\n    ),\n    const SizedBox(height: 12),\n    SgWizard(\n      nextDisabled: _bloqueado,\n      stepper: SgWizardStepper.numbered,\n      onStepChange: (i) => setState(() => _log = 'etapa ${i + 1}'),\n      onBeforeNext: (i) async {\n        await Future<void>.delayed(\n          const Duration(milliseconds: 400),\n        );\n        return true;\n      },\n      onFinish: () {},\n      children: [\n        SgWizardPage(\n          title: context.tx('Um'),\n          child: Text(context.tx('Primeira etapa')),\n        ),\n        SgWizardPage(\n          title: context.tx('Dois'),\n          child: Text(context.tx('Segunda etapa')),\n        ),\n        SgWizardPage(\n          title: context.tx('Três'),\n          child: Text(context.tx('Terceira etapa')),\n        ),\n      ],\n    ),\n    const SizedBox(height: 12),\n    Text('onStepChange: $_log'),\n  ],\n)"
+            "code": "ValueListenableBuilder<bool>(\n  valueListenable: _jaUsado,\n  builder: (context, jaUsado, _) => SgWizard(\n    nextDisabled: jaUsado,\n    onFinish: () {},\n    children: [\n      SgWizardPage(\n        title: context.tx('Convite'),\n        child: Column(\n          crossAxisAlignment: CrossAxisAlignment.start,\n          children: [\n            SgInputText(\n              id: 'wizard-codigo-convite',\n              labelText: context.tx('Código do convite'),\n              error: jaUsado\n                  ? context.tx('Este código já foi utilizado.')\n                  : null,\n              onChange: (v) {\n                _codigo = v;\n                _jaUsado.value = false;\n              },\n              onExit: () async {\n                if (_codigo.trim().isEmpty) return;\n                _checando.value = true;\n                await Future<void>.delayed(\n                  const Duration(milliseconds: 600),\n                );\n                if (!mounted) return;\n                _jaUsado.value =\n                    _codigo.trim().toUpperCase() == 'SG-123';\n                _checando.value = false;\n              },\n            ),\n            const SizedBox(height: 8),\n            ValueListenableBuilder<bool>(\n              valueListenable: _checando,\n              builder: (context, checando, _) => Text(\n                checando\n                    ? context.tx('Verificando o código...')\n                    : context.tx(\n                        'Digite \"SG-123\" e saia do campo: o botão Próximo fica desabilitado.',\n                      ),\n              ),\n            ),\n          ],\n        ),\n      ),\n      SgWizardPage(\n        title: context.tx('Conclusão'),\n        child: Text(\n          context.tx(\n            'Código aceito: só se chega aqui com um código que a checagem liberou.',\n          ),\n        ),\n      ),\n    ],\n  ),\n)"
           },
           {
-            "id": "sg-wizard-stepper",
-            "title": "Stepper numerado ou com ícones",
+            "id": "sg-wizard-step-navigation",
+            "title": "stepNavigation",
             "file": "apps/seedgrid_showcase/lib/pages/sg_wizard_demo_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    FilterChip(\n      label: Text(context.tx('Ícones')),\n      selected: _icones,\n      onSelected: (v) => setState(() => _icones = v),\n    ),\n    const SizedBox(height: 12),\n    SgWizard(\n      stepper: _icones\n          ? SgWizardStepper.icons\n          : SgWizardStepper.numbered,\n      onFinish: () {},\n      children: [\n        SgWizardPage(\n          title: context.tx('Conta'),\n          icon: Icon(Icons.person),\n          child: Text(context.tx('Dados da conta')),\n        ),\n        SgWizardPage(\n          title: context.tx('Endereço'),\n          icon: Icon(Icons.home),\n          child: Text(context.tx('Onde você mora')),\n        ),\n        SgWizardPage(\n          child: Text(context.tx('Sem título nem ícone')),\n        ),\n      ],\n    ),\n  ],\n)"
+            "code": "SgWizard(\n  stepper: SgWizardStepper.numbered,\n  initialStep: 2,\n  stepNavigation: SgWizardStepNavigation.previous,\n  onFinish: () {},\n  children: [\n    SgWizardPage(\n      title: context.tx('Introdução'),\n      child: Text(\n        context.tx('Somente etapas anteriores podem ser clicadas.'),\n      ),\n    ),\n    SgWizardPage(\n      title: context.tx('Detalhes'),\n      child: Text(\n        context.tx('O usuário pode voltar clicando no stepper.'),\n      ),\n    ),\n    SgWizardPage(\n      title: context.tx('Revisão'),\n      child: Text(context.tx('A etapa atual não fica clicável.')),\n    ),\n    SgWizardPage(\n      title: context.tx('Confirmação'),\n      child: Text(\n        context.tx('Passos futuros continuam bloqueados.'),\n      ),\n    ),\n  ],\n)"
+          },
+          {
+            "id": "sg-wizard-stepper-icones",
+            "title": "Stepper com ícones",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_wizard_demo_page.dart",
+            "kind": "dart",
+            "code": "SgWizard(\n  stepper: SgWizardStepper.icons,\n  onFinish: () {},\n  children: [\n    SgWizardPage(\n      title: context.tx('Posição'),\n      icon: const Icon(Icons.place_outlined),\n      child: Text(context.tx('Selecione a posição desejada.')),\n    ),\n    SgWizardPage(\n      title: context.tx('Categoria'),\n      icon: const Icon(Icons.sell_outlined),\n      child: Text(context.tx('Escolha a categoria.')),\n    ),\n    SgWizardPage(\n      title: context.tx('Enviar'),\n      icon: const Icon(Icons.send_outlined),\n      child: Text(context.tx('Revise e envie.')),\n    ),\n  ],\n)"
+          },
+          {
+            "id": "sg-wizard-stepper-numerado",
+            "title": "Stepper numerado",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_wizard_demo_page.dart",
+            "kind": "dart",
+            "code": "SgWizard(\n  stepper: SgWizardStepper.numbered,\n  onFinish: () {},\n  children: [\n    SgWizardPage(\n      title: context.tx('Introdução'),\n      child: Text(context.tx('Conteúdo introdutório.')),\n    ),\n    SgWizardPage(\n      title: context.tx('Detalhes'),\n      child: Text(context.tx('Preencha os detalhes.')),\n    ),\n    SgWizardPage(\n      title: context.tx('Revisão'),\n      child: Text(context.tx('Revise as informações.')),\n    ),\n    SgWizardPage(\n      title: context.tx('Confirmação'),\n      child: Text(context.tx('Confirme e finalize.')),\n    ),\n  ],\n)"
+          },
+          {
+            "id": "sg-wizard-validacao-automatica",
+            "title": "Validação automática",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_wizard_demo_page.dart",
+            "kind": "dart",
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgWizard(\n      control: _form,\n      stepper: SgWizardStepper.numbered,\n      initialStep: 0,\n      stepNavigation: SgWizardStepNavigation.previousAndNext,\n      onStepChange: (i) => _etapa.value = i,\n      onFinish: () async {\n        _enviado.value = null;\n        await Future<void>.delayed(\n          const Duration(milliseconds: 800),\n        );\n        _enviado.value = Map.of(_form.getValues());\n      },\n      children: [\n        SgWizardPage(\n          title: context.tx('Etapa 1 - Dados pessoais'),\n          fields: const ['nome', 'email'],\n          child: Column(\n            crossAxisAlignment: CrossAxisAlignment.start,\n            children: [\n              Text(\n                context.tx('Preencha nome e e-mail para avançar.'),\n              ),\n              const SizedBox(height: 12),\n              SgInputText(\n                id: 'wizard-name',\n                name: 'nome',\n                control: _form,\n                labelText: context.tx('Nome'),\n                required: true,\n                requiredMessage: context.tx('Informe o nome.'),\n              ),\n              const SizedBox(height: 12),\n              SgInputEmail(\n                id: 'wizard-email',\n                name: 'email',\n                control: _form,\n                labelText: context.tx('E-mail'),\n                required: true,\n                requiredMessage: context.tx('Informe o e-mail.'),\n                invalidMessage: context.tx('E-mail inválido.'),\n              ),\n            ],\n          ),\n        ),\n        SgWizardPage(\n          title: context.tx('Etapa 2 - Contato'),\n          fields: const ['telefone'],\n          child: Column(\n            crossAxisAlignment: CrossAxisAlignment.start,\n            children: [\n              Text(context.tx('Informe o telefone.')),\n              const SizedBox(height: 12),\n              SgInputPhone(\n                id: 'wizard-phone',\n                name: 'telefone',\n                control: _form,\n                labelText: context.tx('Telefone'),\n                required: true,\n                requiredMessage: context.tx(\n                  'Informe o telefone.',\n                ),\n                lengthMessage: context.tx('Telefone inválido.'),\n              ),\n            ],\n          ),\n        ),\n        SgWizardPage(\n          title: context.tx('Etapa 3 - Confirmação'),\n          child: ListenableBuilder(\n            listenable: _form,\n            builder: (context, _) => Column(\n              crossAxisAlignment: CrossAxisAlignment.start,\n              children: [\n                Text(\n                  context.tx('Revise os dados e finalize.'),\n                ),\n                const SizedBox(height: 12),\n                Text(\n                  '${context.tx('Nome')}: ${_form.getValue('nome') ?? '-'}',\n                ),\n                Text(\n                  '${context.tx('E-mail')}: ${_form.getValue('email') ?? '-'}',\n                ),\n                Text(\n                  '${context.tx('Telefone')}: ${_form.getValue('telefone') ?? '-'}',\n                ),\n              ],\n            ),\n          ),\n        ),\n      ],\n    ),\n    const SizedBox(height: 12),\n    ValueListenableBuilder<int>(\n      valueListenable: _etapa,\n      builder: (context, etapa, _) => Text(\n        '${context.tx('Etapa atual')}: ${etapa + 1}',\n      ),\n    ),\n    ValueListenableBuilder<Map<String, Object?>?>(\n      valueListenable: _enviado,\n      builder: (context, dados, _) => dados == null\n          ? const SizedBox.shrink()\n          : Text('${context.tx('Dados enviados')}: $dados'),\n    ),\n  ],\n)"
+          },
+          {
+            "id": "sg-wizard-validate-step",
+            "title": "validateStep",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_wizard_demo_page.dart",
+            "kind": "dart",
+            "code": "SgWizard(\n  validateStep: (i) {\n    if (i != 0) return true;\n    final nome = (_form.getValue('nome') as String?) ?? '';\n    final email = (_form.getValue('email') as String?) ?? '';\n    return nome.trim().isNotEmpty && email.trim().isNotEmpty;\n  },\n  onFinish: () {},\n  children: [\n    SgWizardPage(\n      child: Text(\n        context.tx(\n          'Etapa 1: valida via validateStep (nome e e-mail do primeiro exemplo).',\n        ),\n      ),\n    ),\n    SgWizardPage(\n      child: Text(context.tx('Etapa 2: pode finalizar.')),\n    ),\n  ],\n)"
           }
         ],
         "parity": {
@@ -21369,35 +21397,35 @@
             "title": "Básico",
             "file": "apps/seedgrid_showcase/lib/pages/sg_year_part_selector_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgYearPartSelector(\n      label: context.tx('Recorte do ano'),\n      onChange: (r) => setState(\n        () => _basico =\n            '${r.value.year} - ${r.label}: ${r.startDate.toIso8601String().substring(0, 10)} a ${r.endDate.toIso8601String().substring(0, 10)}',\n      ),\n    ),\n    const SizedBox(height: 8),\n    Text(_basico),\n  ],\n)"
-          },
-          {
-            "id": "sg-year-part-selector-controlado",
-            "title": "Valor controlado",
-            "file": "apps/seedgrid_showcase/lib/pages/sg_year_part_selector_page.dart",
-            "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgYearPartSelector(\n      id: 'controlado',\n      value: _controlado,\n      onChange: (r) => setState(() {\n        _controlado = r.value;\n        _controladoTexto = r.label;\n      }),\n    ),\n    const SizedBox(height: 8),\n    Wrap(\n      spacing: 8,\n      runSpacing: 8,\n      children: [\n        SgButton(\n          label: Text(context.tx('1º trimestre de 2024')),\n          appearance: SgAppearance.outline,\n          onClick: () => setState(\n            () => _controlado = const YearPartValue(\n              year: 2024,\n              kind: YearPartKind.quarter,\n              part: 1,\n            ),\n          ),\n        ),\n        SgButton(\n          label: Text(context.tx('2º bimestre de 2023')),\n          appearance: SgAppearance.outline,\n          onClick: () => setState(\n            () => _controlado = const YearPartValue(\n              year: 2023,\n              kind: YearPartKind.bimester,\n              part: 2,\n            ),\n          ),\n        ),\n      ],\n    ),\n    Text(\n      'Valor: $_controlado ${_controladoTexto.isEmpty ? '' : '($_controladoTexto)'}',\n    ),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgYearPartSelector(\n      id: 'yps-basic',\n      label: context.tx('Recorte do ano'),\n      onChange: (r) => _basico.value = r,\n    ),\n    const SizedBox(height: 8),\n    ValueListenableBuilder<ResolvedYearPart?>(\n      valueListenable: _basico,\n      builder: (context, r, _) => Text(\n        r == null\n            ? context.tx('Nenhum recorte confirmado ainda')\n            : '${r.label}: ${r.startDate.toIso8601String().substring(0, 10)} - ${r.endDate.toIso8601String().substring(0, 10)}',\n      ),\n    ),\n  ],\n)"
           },
           {
             "id": "sg-year-part-selector-estados",
-            "title": "Rótulo, obrigatório e desabilitado",
+            "title": "Estados",
             "file": "apps/seedgrid_showcase/lib/pages/sg_year_part_selector_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgYearPartSelector(\n      id: 'obrigatorio',\n      label: context.tx('Período do relatório'),\n      required: true,\n    ),\n    SizedBox(height: 16),\n    SgYearPartSelector(\n      id: 'desabilitado',\n      label: context.tx('Desabilitado'),\n      enabled: false,\n    ),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgYearPartSelector(\n      id: 'yps-disabled',\n      label: context.tx('Recorte do ano'),\n      enabled: false,\n    ),\n    const SizedBox(height: 16),\n    SgYearPartSelector(\n      id: 'yps-required',\n      label: context.tx('Recorte do ano'),\n      required: true,\n    ),\n  ],\n)"
           },
           {
             "id": "sg-year-part-selector-faixa",
-            "title": "Faixa de anos e idioma",
+            "title": "Faixa de anos",
             "file": "apps/seedgrid_showcase/lib/pages/sg_year_part_selector_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgYearPartSelector(\n      id: 'faixa',\n      locale: 'en-US',\n      minYear: 2020,\n      maxYear: 2026,\n      onChange: (r) => setState(\n        () => _ingles =\n            '${r.value.year} - ${r.label}: ${r.startDate.toIso8601String().substring(0, 10)} to ${r.endDate.toIso8601String().substring(0, 10)}',\n      ),\n    ),\n    const SizedBox(height: 8),\n    Text(_ingles),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgYearPartSelector(\n      id: 'yps-range',\n      label: context.tx('Exercício'),\n      minYear: 2020,\n      maxYear: 2026,\n      onChange: (r) => _faixa.value = r,\n    ),\n    const SizedBox(height: 8),\n    ValueListenableBuilder<ResolvedYearPart?>(\n      valueListenable: _faixa,\n      builder: (context, r, _) => Text(\n        r == null\n            ? context.tx('Nenhum recorte confirmado ainda')\n            : r.label,\n      ),\n    ),\n  ],\n)"
           },
           {
-            "id": "sg-year-part-selector-trimestres",
-            "title": "Só trimestres",
+            "id": "sg-year-part-selector-locale",
+            "title": "Locale e as siglas",
             "file": "apps/seedgrid_showcase/lib/pages/sg_year_part_selector_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgYearPartSelector(\n      id: 'trimestres',\n      allowedKinds: const [YearPartKind.quarter],\n      onChange: (r) => setState(\n        () => _trimestres =\n            '${r.label}: ${r.startDate.toIso8601String().substring(0, 10)} a ${r.endDate.toIso8601String().substring(0, 10)}',\n      ),\n    ),\n    const SizedBox(height: 8),\n    Text(_trimestres),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgYearPartSelector(\n      id: 'yps-ptbr',\n      label: 'pt-BR',\n      locale: 'pt-BR',\n      allowedKinds: const [YearPartKind.quarter],\n    ),\n    const SizedBox(height: 16),\n    SgYearPartSelector(\n      id: 'yps-enus',\n      label: 'en-US',\n      locale: 'en-US',\n      allowedKinds: const [YearPartKind.semester],\n    ),\n    const SizedBox(height: 16),\n    SgYearPartSelector(\n      id: 'yps-es',\n      label: 'es',\n      locale: 'es',\n      allowedKinds: const [YearPartKind.quarter],\n    ),\n  ],\n)"
+          },
+          {
+            "id": "sg-year-part-selector-semestre",
+            "title": "Só semestre",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_year_part_selector_page.dart",
+            "kind": "dart",
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgYearPartSelector(\n      id: 'yps-semester',\n      label: context.tx('Semestre de apuração'),\n      allowedKinds: const [YearPartKind.semester],\n      onChange: (r) => _semestre.value = r,\n    ),\n    const SizedBox(height: 8),\n    ValueListenableBuilder<ResolvedYearPart?>(\n      valueListenable: _semestre,\n      builder: (context, r, _) => Text(\n        r == null\n            ? context.tx('Nenhum recorte confirmado ainda')\n            : r.label,\n      ),\n    ),\n  ],\n)"
           }
         ],
         "parity": {

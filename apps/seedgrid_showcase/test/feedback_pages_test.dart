@@ -93,33 +93,37 @@ void main() {
     await encerra(t);
   });
 
-  testWidgets('SgWizard: validacao por etapa no exemplo de formulario', (
-    t,
-  ) async {
-    setSize(t, kSizes.values.last);
-    await t.pumpWidget(app(const SgWizardDemoPage()));
-    await tapLink(t, const ValueKey('link-exemplo-3'));
-    await t.tap(find.byKey(const ValueKey('wizard-next')).at(2));
-    await settle(t);
-    expect(find.text('Informe o nome'), findsOneWidget);
-    await t.enterText(find.byKey(const ValueKey('input-wz-nome')), 'Ana');
-    await t.tap(find.byKey(const ValueKey('wizard-next')).at(2));
-    await settle(t);
-    expect(find.text('Informe o nome'), findsNothing);
-    expect(find.byKey(const ValueKey('input-wz-email')), findsOneWidget);
-    await encerra(t);
-  });
+  testWidgets(
+    'SgWizard: validacao automatica barra o avanco e libera com campos validos',
+    (t) async {
+      setSize(t, kSizes.values.last);
+      await t.pumpWidget(app(const SgWizardDemoPage()));
+      await tapLink(t, const ValueKey('link-exemplo-1'));
+      await t.tap(find.byKey(const ValueKey('wizard-next')).first);
+      await settle(t);
+      expect(find.text('Informe o nome.'), findsOneWidget);
+      await t.enterText(find.byKey(const ValueKey('input-wizard-name')), 'Ana');
+      await t.enterText(
+        find.byKey(const ValueKey('input-wizard-email')),
+        'ana@exemplo.com',
+      );
+      await t.tap(find.byKey(const ValueKey('wizard-next')).first);
+      await settle(t);
+      expect(find.text('Informe o nome.'), findsNothing);
+      expect(find.byKey(const ValueKey('input-wizard-phone')), findsOneWidget);
+      await encerra(t);
+    },
+  );
 
-  testWidgets('SgWizard: exemplo basico finaliza', (t) async {
+  testWidgets('SgWizard: labels customizados e conclusao', (t) async {
     setSize(t, kSizes.values.last);
     await t.pumpWidget(app(const SgWizardDemoPage()));
-    await t.tap(find.byKey(const ValueKey('wizard-next')).first);
+    await tapLink(t, const ValueKey('link-exemplo-5'));
+    expect(find.text('Continuar'), findsOneWidget);
+    await t.tap(find.byKey(const ValueKey('wizard-next')).at(4));
     await settle(t);
-    await t.tap(find.byKey(const ValueKey('wizard-next')).first);
-    await settle(t);
-    await t.tap(find.byKey(const ValueKey('wizard-finish')).first);
-    await settle(t);
-    expect(find.text('Resultado: finalizado'), findsOneWidget);
+    expect(find.byKey(const ValueKey('wizard-finish')), findsOneWidget);
+    expect(find.text('Concluir'), findsOneWidget);
     await encerra(t);
   });
 }
