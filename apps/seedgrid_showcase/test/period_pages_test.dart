@@ -60,44 +60,27 @@ void main() {
     expect(find.byKey(const ValueKey('sg-opt-TOMORROW')), findsOneWidget);
   });
 
-  testWidgets(
-    'SgPeriodSelector: formulario envia o texto do preset',
-    (t) async {
-      setSize(t, kSizes.values.last);
-      await t.pumpWidget(app(const SgPeriodSelectorPage()));
-      await tapLink(t, const ValueKey('link-exemplo-5'));
-      await escolher(t, 'periodo-form', 'THIS_MONTH');
-      await t.tap(find.text('Enviar'));
-      await settle(t);
-      expect(find.text('Enviado: THIS_MONTH'), findsOneWidget);
-    },
-  );
+  testWidgets('SgPeriodSelector: formulario envia o texto do preset', (
+    t,
+  ) async {
+    setSize(t, kSizes.values.last);
+    await t.pumpWidget(app(const SgPeriodSelectorPage()));
+    await tapLink(t, const ValueKey('link-exemplo-5'));
+    await escolher(t, 'periodo-form', 'THIS_MONTH');
+    await t.tap(find.text('Enviar'));
+    await settle(t);
+    expect(find.text('Enviado: THIS_MONTH'), findsOneWidget);
+  });
 
   testWidgets(
-    'SgYearPartSelector: escolher a fatia mostra o intervalo; valor controlado segue o pai',
+    'SgYearPartSelector: escolher a fatia mostra o intervalo resolvido',
     (t) async {
       setSize(t, kSizes.values.last);
       await t.pumpWidget(app(const SgYearPartSelectorPage()));
       await settle(t);
-      await escolher(t, 'sg-year-part-selector-part', 1);
+      await escolher(t, 'yps-basic-part', 1);
       expect(find.textContaining('Semestre 1 (S1): '), findsOneWidget);
-      expect(find.textContaining('-01-01 a '), findsWidgets);
-      await tapLink(t, const ValueKey('link-exemplo-4'));
-      await t.tap(find.text('2º bimestre de 2023'));
-      await settle(t);
-      expect(
-        find.textContaining('YearPartValue(2023, BIMESTER, 2)'),
-        findsOneWidget,
-      );
-      expect(
-        t
-            .widget<TextField>(
-              find.byKey(const ValueKey('input-controlado-part')),
-            )
-            .controller!
-            .text,
-        'Bimestre 2',
-      );
+      expect(find.textContaining('-01-01 - '), findsWidgets);
     },
   );
 
@@ -107,9 +90,12 @@ void main() {
       setSize(t, kSizes.values.last);
       await t.pumpWidget(app(const SgYearPartSelectorPage()));
       await tapLink(t, const ValueKey('link-exemplo-2'));
-      expect(find.byKey(const ValueKey('input-trimestres-kind')), findsNothing);
       expect(
-        find.byKey(const ValueKey('input-trimestres-part')),
+        find.byKey(const ValueKey('input-yps-semester-kind')),
+        findsNothing,
+      );
+      expect(
+        find.byKey(const ValueKey('input-yps-semester-part')),
         findsOneWidget,
       );
     },

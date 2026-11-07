@@ -18,15 +18,21 @@ class SgWizardDemoPage extends StatefulWidget {
 }
 
 class _SgWizardDemoPageState extends State<SgWizardDemoPage> {
-  String _resultado = 'ainda não finalizado';
-  bool _icones = false;
-  bool _bloqueado = false;
-  String _log = 'nenhuma etapa';
+  // Estado dos exemplos em notifiers/controllers: a pagina nao se reconstroi, so quem escuta.
   final SgFormController _form = SgFormController();
+  final _etapa = ValueNotifier<int>(0);
+  final _enviado = ValueNotifier<Map<String, Object?>?>(null);
+  final _checando = ValueNotifier<bool>(false);
+  final _jaUsado = ValueNotifier<bool>(false);
+  String _codigo = '';
 
   @override
   void dispose() {
     _form.dispose();
+    _etapa.dispose();
+    _enviado.dispose();
+    _checando.dispose();
+    _jaUsado.dispose();
     super.dispose();
   }
 
@@ -34,161 +40,377 @@ class _SgWizardDemoPageState extends State<SgWizardDemoPage> {
   Widget build(BuildContext context) {
     final examples = <ShowcaseExample>[
       ShowcaseExample(
-        title: 'Básico',
-        description: 'Três etapas, Anterior/Próximo e Finalizar na última.',
+        title: 'Validação automática',
+        description:
+            'O wizard valida automaticamente os inputs da página antes de avançar. Por padrão, as etapas anteriores e o próximo passo imediato também podem ser clicados no stepper, com a mesma validação do botão Continuar.',
         preview:
-            // #region sg-wizard-basico
+            // #region sg-wizard-validacao-automatica
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SgWizard(
-                  onFinish: () => setState(() => _resultado = 'finalizado'),
+                  control: _form,
+                  stepper: SgWizardStepper.numbered,
+                  initialStep: 0,
+                  stepNavigation: SgWizardStepNavigation.previousAndNext,
+                  onStepChange: (i) => _etapa.value = i,
+                  onFinish: () async {
+                    _enviado.value = null;
+                    await Future<void>.delayed(
+                      const Duration(milliseconds: 800),
+                    );
+                    _enviado.value = Map.of(_form.getValues());
+                  },
                   children: [
                     SgWizardPage(
-                      child: Text(context.tx('Etapa 1: dados pessoais')),
+                      title: context.tx('Etapa 1 - Dados pessoais'),
+                      fields: const ['nome', 'email'],
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            context.tx('Preencha nome e e-mail para avançar.'),
+                          ),
+                          const SizedBox(height: 12),
+                          SgInputText(
+                            id: 'wizard-name',
+                            name: 'nome',
+                            control: _form,
+                            labelText: context.tx('Nome'),
+                            required: true,
+                            requiredMessage: context.tx('Informe o nome.'),
+                          ),
+                          const SizedBox(height: 12),
+                          SgInputEmail(
+                            id: 'wizard-email',
+                            name: 'email',
+                            control: _form,
+                            labelText: context.tx('E-mail'),
+                            required: true,
+                            requiredMessage: context.tx('Informe o e-mail.'),
+                            invalidMessage: context.tx('E-mail inválido.'),
+                          ),
+                        ],
+                      ),
                     ),
-                    SgWizardPage(child: Text(context.tx('Etapa 2: endereço'))),
-                    SgWizardPage(child: Text(context.tx('Etapa 3: revisão'))),
+                    SgWizardPage(
+                      title: context.tx('Etapa 2 - Contato'),
+                      fields: const ['telefone'],
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(context.tx('Informe o telefone.')),
+                          const SizedBox(height: 12),
+                          SgInputPhone(
+                            id: 'wizard-phone',
+                            name: 'telefone',
+                            control: _form,
+                            labelText: context.tx('Telefone'),
+                            required: true,
+                            requiredMessage: context.tx(
+                              'Informe o telefone.',
+                            ),
+                            lengthMessage: context.tx('Telefone inválido.'),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SgWizardPage(
+                      title: context.tx('Etapa 3 - Confirmação'),
+                      child: ListenableBuilder(
+                        listenable: _form,
+                        builder: (context, _) => Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              context.tx('Revise os dados e finalize.'),
+                            ),
+                            const SizedBox(height: 12),
+                            Text(
+                              '${context.tx('Nome')}: ${_form.getValue('nome') ?? '-'}',
+                            ),
+                            Text(
+                              '${context.tx('E-mail')}: ${_form.getValue('email') ?? '-'}',
+                            ),
+                            Text(
+                              '${context.tx('Telefone')}: ${_form.getValue('telefone') ?? '-'}',
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                   ],
                 ),
                 const SizedBox(height: 12),
-                Text('Resultado: $_resultado'),
-              ],
-            ),
-        // #endregion
-        code: SgWizardDemoPageSnippets.sgWizardBasico,
-      ),
-      ShowcaseExample(
-        title: 'Stepper numerado ou com ícones',
-        description:
-            'stepper: numbered ou icons; o título padrão da etapa é "Etapa N".',
-        preview:
-            // #region sg-wizard-stepper
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                FilterChip(
-                  label: Text(context.tx('Ícones')),
-                  selected: _icones,
-                  onSelected: (v) => setState(() => _icones = v),
+                ValueListenableBuilder<int>(
+                  valueListenable: _etapa,
+                  builder: (context, etapa, _) => Text(
+                    '${context.tx('Etapa atual')}: ${etapa + 1}',
+                  ),
                 ),
-                const SizedBox(height: 12),
-                SgWizard(
-                  stepper: _icones
-                      ? SgWizardStepper.icons
-                      : SgWizardStepper.numbered,
-                  onFinish: () {},
-                  children: [
-                    SgWizardPage(
-                      title: context.tx('Conta'),
-                      icon: Icon(Icons.person),
-                      child: Text(context.tx('Dados da conta')),
-                    ),
-                    SgWizardPage(
-                      title: context.tx('Endereço'),
-                      icon: Icon(Icons.home),
-                      child: Text(context.tx('Onde você mora')),
-                    ),
-                    SgWizardPage(
-                      child: Text(context.tx('Sem título nem ícone')),
-                    ),
-                  ],
+                ValueListenableBuilder<Map<String, Object?>?>(
+                  valueListenable: _enviado,
+                  builder: (context, dados, _) => dados == null
+                      ? const SizedBox.shrink()
+                      : Text('${context.tx('Dados enviados')}: $dados'),
                 ),
               ],
             ),
         // #endregion
-        code: SgWizardDemoPageSnippets.sgWizardStepper,
+        code: SgWizardDemoPageSnippets.sgWizardValidacaoAutomatica,
       ),
       ShowcaseExample(
-        title: 'Validação por etapa com SgForm',
+        title: 'stepNavigation',
         description:
-            'O Próximo valida os campos da etapa (fields) no formulário e só avança se estiverem válidos.',
+            'Use stepNavigation para limitar o clique nas etapas. O padrão é previous-and-next; neste exemplo apenas as etapas anteriores aceitam clique.',
         preview:
-            // #region sg-wizard-formulario
+            // #region sg-wizard-step-navigation
             SgWizard(
-              control: _form,
+              stepper: SgWizardStepper.numbered,
+              initialStep: 2,
+              stepNavigation: SgWizardStepNavigation.previous,
+              onFinish: () {},
+              children: [
+                SgWizardPage(
+                  title: context.tx('Introdução'),
+                  child: Text(
+                    context.tx('Somente etapas anteriores podem ser clicadas.'),
+                  ),
+                ),
+                SgWizardPage(
+                  title: context.tx('Detalhes'),
+                  child: Text(
+                    context.tx('O usuário pode voltar clicando no stepper.'),
+                  ),
+                ),
+                SgWizardPage(
+                  title: context.tx('Revisão'),
+                  child: Text(context.tx('A etapa atual não fica clicável.')),
+                ),
+                SgWizardPage(
+                  title: context.tx('Confirmação'),
+                  child: Text(
+                    context.tx('Passos futuros continuam bloqueados.'),
+                  ),
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgWizardDemoPageSnippets.sgWizardStepNavigation,
+      ),
+      ShowcaseExample(
+        title: 'Stepper com ícones',
+        description:
+            'stepper="icons" + icon em cada SgWizardPage: exibe o ícone no círculo em vez do número.',
+        preview:
+            // #region sg-wizard-stepper-icones
+            SgWizard(
+              stepper: SgWizardStepper.icons,
+              onFinish: () {},
+              children: [
+                SgWizardPage(
+                  title: context.tx('Posição'),
+                  icon: const Icon(Icons.place_outlined),
+                  child: Text(context.tx('Selecione a posição desejada.')),
+                ),
+                SgWizardPage(
+                  title: context.tx('Categoria'),
+                  icon: const Icon(Icons.sell_outlined),
+                  child: Text(context.tx('Escolha a categoria.')),
+                ),
+                SgWizardPage(
+                  title: context.tx('Enviar'),
+                  icon: const Icon(Icons.send_outlined),
+                  child: Text(context.tx('Revise e envie.')),
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgWizardDemoPageSnippets.sgWizardStepperIcones,
+      ),
+      ShowcaseExample(
+        title: 'Stepper numerado',
+        description:
+            'stepper="numbered": círculos numerados com o título de cada passo.',
+        preview:
+            // #region sg-wizard-stepper-numerado
+            SgWizard(
               stepper: SgWizardStepper.numbered,
               onFinish: () {},
               children: [
                 SgWizardPage(
-                  title: context.tx('Nome'),
-                  fields: const ['nome'],
-                  child: SgInputText(
-                    id: 'wz-nome',
-                    name: 'nome',
-                    control: _form,
-                    labelText: 'Nome',
-                    required: true,
-                    requiredMessage: 'Informe o nome',
+                  title: context.tx('Introdução'),
+                  child: Text(context.tx('Conteúdo introdutório.')),
+                ),
+                SgWizardPage(
+                  title: context.tx('Detalhes'),
+                  child: Text(context.tx('Preencha os detalhes.')),
+                ),
+                SgWizardPage(
+                  title: context.tx('Revisão'),
+                  child: Text(context.tx('Revise as informações.')),
+                ),
+                SgWizardPage(
+                  title: context.tx('Confirmação'),
+                  child: Text(context.tx('Confirme e finalize.')),
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgWizardDemoPageSnippets.sgWizardStepperNumerado,
+      ),
+      ShowcaseExample(
+        title: 'Labels customizados',
+        description: 'Personalize os textos dos botões.',
+        preview:
+            // #region sg-wizard-labels
+            SgWizard(
+              labels: SgWizardLabels(
+                next: context.tx('Continuar'),
+                previous: context.tx('Voltar'),
+                finish: context.tx('Concluir'),
+              ),
+              onFinish: () {},
+              children: [
+                SgWizardPage(
+                  child: Text(
+                    context.tx('Dados: ajuste os labels como quiser.'),
                   ),
                 ),
                 SgWizardPage(
-                  title: context.tx('E-mail'),
-                  fields: const ['email'],
-                  child: SgInputText(
-                    id: 'wz-email',
-                    name: 'email',
-                    control: _form,
-                    labelText: 'E-mail',
-                    required: true,
-                    requiredMessage: 'Informe o e-mail',
-                    validation: (v) => RegExp(r'.+@.+\..+').hasMatch(v)
-                        ? null
-                        : 'E-mail inválido',
+                  child: Text(
+                    context.tx('Fim: clique em Concluir para finalizar.'),
                   ),
                 ),
               ],
             ),
         // #endregion
-        code: SgWizardDemoPageSnippets.sgWizardFormulario,
+        code: SgWizardDemoPageSnippets.sgWizardLabels,
       ),
       ShowcaseExample(
-        title: 'Guardas e nextDisabled',
+        title: 'onBeforeNext async',
         description:
-            'onBeforeNext pode ser assíncrono; nextDisabled bloqueia o avanço de forma declarativa. onStepChange avisa a etapa.',
+            'Validação assíncrona antes de avançar (ex.: consultar uma API).',
         preview:
-            // #region sg-wizard-guardas
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            // #region sg-wizard-before-next
+            SgWizard(
+              onBeforeNext: (i) async {
+                await Future<void>.delayed(const Duration(milliseconds: 600));
+                return true;
+              },
+              onFinish: () async {
+                await Future<void>.delayed(const Duration(milliseconds: 400));
+              },
               children: [
-                FilterChip(
-                  label: Text(context.tx('nextDisabled')),
-                  selected: _bloqueado,
-                  onSelected: (v) => setState(() => _bloqueado = v),
+                SgWizardPage(
+                  child: Text(
+                    context.tx('Etapa 1: simula validação assíncrona (600ms).'),
+                  ),
                 ),
-                const SizedBox(height: 12),
-                SgWizard(
-                  nextDisabled: _bloqueado,
-                  stepper: SgWizardStepper.numbered,
-                  onStepChange: (i) => setState(() => _log = 'etapa ${i + 1}'),
-                  onBeforeNext: (i) async {
-                    await Future<void>.delayed(
-                      const Duration(milliseconds: 400),
-                    );
-                    return true;
-                  },
-                  onFinish: () {},
-                  children: [
-                    SgWizardPage(
-                      title: context.tx('Um'),
-                      child: Text(context.tx('Primeira etapa')),
-                    ),
-                    SgWizardPage(
-                      title: context.tx('Dois'),
-                      child: Text(context.tx('Segunda etapa')),
-                    ),
-                    SgWizardPage(
-                      title: context.tx('Três'),
-                      child: Text(context.tx('Terceira etapa')),
-                    ),
-                  ],
+                SgWizardPage(
+                  child: Text(context.tx('Etapa 2: pode finalizar.')),
                 ),
-                const SizedBox(height: 12),
-                Text('onStepChange: $_log'),
               ],
             ),
         // #endregion
-        code: SgWizardDemoPageSnippets.sgWizardGuardas,
+        code: SgWizardDemoPageSnippets.sgWizardBeforeNext,
+      ),
+      ShowcaseExample(
+        title: 'validateStep',
+        description:
+            'Validação customizada por etapa, além da validação automática dos inputs.',
+        preview:
+            // #region sg-wizard-validate-step
+            SgWizard(
+              validateStep: (i) {
+                if (i != 0) return true;
+                final nome = (_form.getValue('nome') as String?) ?? '';
+                final email = (_form.getValue('email') as String?) ?? '';
+                return nome.trim().isNotEmpty && email.trim().isNotEmpty;
+              },
+              onFinish: () {},
+              children: [
+                SgWizardPage(
+                  child: Text(
+                    context.tx(
+                      'Etapa 1: valida via validateStep (nome e e-mail do primeiro exemplo).',
+                    ),
+                  ),
+                ),
+                SgWizardPage(
+                  child: Text(context.tx('Etapa 2: pode finalizar.')),
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgWizardDemoPageSnippets.sgWizardValidateStep,
+      ),
+      ShowcaseExample(
+        title: 'Avanço bloqueado (nextDisabled)',
+        description:
+            'onBeforeNext só age no clique: o botão continua com aparência de habilitado e, quando ele recusa, nada acontece na tela. Quando o bloqueio já é conhecido (o resultado de uma checagem assíncrona que já terminou), nextDisabled deixa isso visível.',
+        preview:
+            // #region sg-wizard-next-disabled
+            ValueListenableBuilder<bool>(
+              valueListenable: _jaUsado,
+              builder: (context, jaUsado, _) => SgWizard(
+                nextDisabled: jaUsado,
+                onFinish: () {},
+                children: [
+                  SgWizardPage(
+                    title: context.tx('Convite'),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SgInputText(
+                          id: 'wizard-codigo-convite',
+                          labelText: context.tx('Código do convite'),
+                          error: jaUsado
+                              ? context.tx('Este código já foi utilizado.')
+                              : null,
+                          onChange: (v) {
+                            _codigo = v;
+                            _jaUsado.value = false;
+                          },
+                          onExit: () async {
+                            if (_codigo.trim().isEmpty) return;
+                            _checando.value = true;
+                            await Future<void>.delayed(
+                              const Duration(milliseconds: 600),
+                            );
+                            if (!mounted) return;
+                            _jaUsado.value =
+                                _codigo.trim().toUpperCase() == 'SG-123';
+                            _checando.value = false;
+                          },
+                        ),
+                        const SizedBox(height: 8),
+                        ValueListenableBuilder<bool>(
+                          valueListenable: _checando,
+                          builder: (context, checando, _) => Text(
+                            checando
+                                ? context.tx('Verificando o código...')
+                                : context.tx(
+                                    'Digite "SG-123" e saia do campo: o botão Próximo fica desabilitado.',
+                                  ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SgWizardPage(
+                    title: context.tx('Conclusão'),
+                    child: Text(
+                      context.tx(
+                        'Código aceito: só se chega aqui com um código que a checagem liberou.',
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+        // #endregion
+        code: SgWizardDemoPageSnippets.sgWizardNextDisabled,
       ),
       ShowcaseExample(
         title: 'Desabilitado (enabled)',

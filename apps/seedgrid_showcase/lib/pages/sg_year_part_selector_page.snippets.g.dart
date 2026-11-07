@@ -9,62 +9,18 @@ Column(
   crossAxisAlignment: CrossAxisAlignment.start,
   children: [
     SgYearPartSelector(
+      id: 'yps-basic',
       label: context.tx('Recorte do ano'),
-      onChange: (r) => setState(
-        () => _basico =
-            '${r.value.year} - ${r.label}: ${r.startDate.toIso8601String().substring(0, 10)} a ${r.endDate.toIso8601String().substring(0, 10)}',
+      onChange: (r) => _basico.value = r,
+    ),
+    const SizedBox(height: 8),
+    ValueListenableBuilder<ResolvedYearPart?>(
+      valueListenable: _basico,
+      builder: (context, r, _) => Text(
+        r == null
+            ? context.tx('Nenhum recorte confirmado ainda')
+            : '${r.label}: ${r.startDate.toIso8601String().substring(0, 10)} - ${r.endDate.toIso8601String().substring(0, 10)}',
       ),
-    ),
-    const SizedBox(height: 8),
-    Text(_basico),
-  ],
-)
-''';
-
-  /// Region `sg-year-part-selector-controlado`.
-  static const String sgYearPartSelectorControlado = r'''
-Column(
-  crossAxisAlignment: CrossAxisAlignment.start,
-  children: [
-    SgYearPartSelector(
-      id: 'controlado',
-      value: _controlado,
-      onChange: (r) => setState(() {
-        _controlado = r.value;
-        _controladoTexto = r.label;
-      }),
-    ),
-    const SizedBox(height: 8),
-    Wrap(
-      spacing: 8,
-      runSpacing: 8,
-      children: [
-        SgButton(
-          label: Text(context.tx('1º trimestre de 2024')),
-          appearance: SgAppearance.outline,
-          onClick: () => setState(
-            () => _controlado = const YearPartValue(
-              year: 2024,
-              kind: YearPartKind.quarter,
-              part: 1,
-            ),
-          ),
-        ),
-        SgButton(
-          label: Text(context.tx('2º bimestre de 2023')),
-          appearance: SgAppearance.outline,
-          onClick: () => setState(
-            () => _controlado = const YearPartValue(
-              year: 2023,
-              kind: YearPartKind.bimester,
-              part: 2,
-            ),
-          ),
-        ),
-      ],
-    ),
-    Text(
-      'Valor: $_controlado ${_controladoTexto.isEmpty ? '' : '($_controladoTexto)'}',
     ),
   ],
 )
@@ -76,15 +32,15 @@ Column(
   crossAxisAlignment: CrossAxisAlignment.start,
   children: [
     SgYearPartSelector(
-      id: 'obrigatorio',
-      label: context.tx('Período do relatório'),
-      required: true,
-    ),
-    SizedBox(height: 16),
-    SgYearPartSelector(
-      id: 'desabilitado',
-      label: context.tx('Desabilitado'),
+      id: 'yps-disabled',
+      label: context.tx('Recorte do ano'),
       enabled: false,
+    ),
+    const SizedBox(height: 16),
+    SgYearPartSelector(
+      id: 'yps-required',
+      label: context.tx('Recorte do ano'),
+      required: true,
     ),
   ],
 )
@@ -96,36 +52,74 @@ Column(
   crossAxisAlignment: CrossAxisAlignment.start,
   children: [
     SgYearPartSelector(
-      id: 'faixa',
-      locale: 'en-US',
+      id: 'yps-range',
+      label: context.tx('Exercício'),
       minYear: 2020,
       maxYear: 2026,
-      onChange: (r) => setState(
-        () => _ingles =
-            '${r.value.year} - ${r.label}: ${r.startDate.toIso8601String().substring(0, 10)} to ${r.endDate.toIso8601String().substring(0, 10)}',
-      ),
+      onChange: (r) => _faixa.value = r,
     ),
     const SizedBox(height: 8),
-    Text(_ingles),
+    ValueListenableBuilder<ResolvedYearPart?>(
+      valueListenable: _faixa,
+      builder: (context, r, _) => Text(
+        r == null
+            ? context.tx('Nenhum recorte confirmado ainda')
+            : r.label,
+      ),
+    ),
   ],
 )
 ''';
 
-  /// Region `sg-year-part-selector-trimestres`.
-  static const String sgYearPartSelectorTrimestres = r'''
+  /// Region `sg-year-part-selector-locale`.
+  static const String sgYearPartSelectorLocale = r'''
 Column(
   crossAxisAlignment: CrossAxisAlignment.start,
   children: [
     SgYearPartSelector(
-      id: 'trimestres',
+      id: 'yps-ptbr',
+      label: 'pt-BR',
+      locale: 'pt-BR',
       allowedKinds: const [YearPartKind.quarter],
-      onChange: (r) => setState(
-        () => _trimestres =
-            '${r.label}: ${r.startDate.toIso8601String().substring(0, 10)} a ${r.endDate.toIso8601String().substring(0, 10)}',
-      ),
+    ),
+    const SizedBox(height: 16),
+    SgYearPartSelector(
+      id: 'yps-enus',
+      label: 'en-US',
+      locale: 'en-US',
+      allowedKinds: const [YearPartKind.semester],
+    ),
+    const SizedBox(height: 16),
+    SgYearPartSelector(
+      id: 'yps-es',
+      label: 'es',
+      locale: 'es',
+      allowedKinds: const [YearPartKind.quarter],
+    ),
+  ],
+)
+''';
+
+  /// Region `sg-year-part-selector-semestre`.
+  static const String sgYearPartSelectorSemestre = r'''
+Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    SgYearPartSelector(
+      id: 'yps-semester',
+      label: context.tx('Semestre de apuração'),
+      allowedKinds: const [YearPartKind.semester],
+      onChange: (r) => _semestre.value = r,
     ),
     const SizedBox(height: 8),
-    Text(_trimestres),
+    ValueListenableBuilder<ResolvedYearPart?>(
+      valueListenable: _semestre,
+      builder: (context, r, _) => Text(
+        r == null
+            ? context.tx('Nenhum recorte confirmado ainda')
+            : r.label,
+      ),
+    ),
   ],
 )
 ''';
