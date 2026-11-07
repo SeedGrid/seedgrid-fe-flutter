@@ -15,35 +15,105 @@ class SgInputTextSearchPage extends StatefulWidget {
 }
 
 class _SgInputTextSearchPageState extends State<SgInputTextSearchPage> {
-  String _busca = '(nenhuma ainda)';
-  String _crua = '';
-  String _rapida = '(nenhuma ainda)';
-  int _disparos = 0;
+  final ValueNotifier<String> _imediato = ValueNotifier('');
+  final ValueNotifier<String> _busca = ValueNotifier('');
+  final ValueNotifier<String> _imediato2 = ValueNotifier('');
+  final ValueNotifier<String> _busca2 = ValueNotifier('');
+  final ValueNotifier<String> _crua = ValueNotifier('');
+  final ValueNotifier<int> _disparos = ValueNotifier(0);
+
+  @override
+  void dispose() {
+    _imediato.dispose();
+    _busca.dispose();
+    _imediato2.dispose();
+    _busca2.dispose();
+    _crua.dispose();
+    _disparos.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     final examples = <ShowcaseExample>[
       ShowcaseExample(
-        title: 'Básico',
+        title: 'Básico (minChars 3, debounce 350ms)',
         description:
-            'onSearchChange dispara 350 ms depois da última digitação, com o texto sem espaços nas pontas e só com 3 ou mais caracteres (ou vazio).',
+            'Digite e observe: o valor imediato muda a cada tecla, o termo de busca só atualiza após parar de digitar e com 3+ caracteres.',
         preview:
             // #region sg-input-text-search-basico
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SgInputTextSearch(
-                  id: 'busca',
-                  labelText: 'Buscar produto',
-                  prefixIcon: const Icon(Icons.search),
-                  onSearchChange: (valor) => setState(() => _busca = valor),
-                ),
-                const SizedBox(height: 8),
-                Text('Última busca: $_busca'),
-              ],
+            SizedBox(
+              width: 384,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SgInputTextSearch(
+                    id: 'search-basic',
+                    labelText: context.tx('Busca'),
+                    placeholder: context.tx('Digite para buscar'),
+                    onChange: (valor) => _imediato.value = valor,
+                    onSearchChange: (valor) => _busca.value = valor,
+                  ),
+                  const SizedBox(height: 8),
+                  ListenableBuilder(
+                    listenable: Listenable.merge([_imediato, _busca]),
+                    builder: (context, _) => Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          '${context.tx('Valor imediato (onChange)')}: ${_imediato.value.isEmpty ? context.tx('(vazio)') : _imediato.value}',
+                        ),
+                        Text(
+                          '${context.tx('Termo de busca (onSearchChange)')}: ${_busca.value.isEmpty ? context.tx('(vazio)') : _busca.value}',
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
         // #endregion
         code: SgInputTextSearchPageSnippets.sgInputTextSearchBasico,
+      ),
+      ShowcaseExample(
+        title: 'minChars 1 e debounce 800ms',
+        description: 'Dispara com 1 caractere, mas com um debounce mais longo.',
+        preview:
+            // #region sg-input-text-search-ajuste
+            SizedBox(
+              width: 384,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SgInputTextSearch(
+                    id: 'search-tuned',
+                    labelText: context.tx('Busca'),
+                    placeholder: context.tx('Digite para buscar'),
+                    minChars: 1,
+                    debounceMs: 800,
+                    onChange: (valor) => _imediato2.value = valor,
+                    onSearchChange: (valor) => _busca2.value = valor,
+                  ),
+                  const SizedBox(height: 8),
+                  ListenableBuilder(
+                    listenable: Listenable.merge([_imediato2, _busca2]),
+                    builder: (context, _) => Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          '${context.tx('Valor imediato (onChange)')}: ${_imediato2.value.isEmpty ? context.tx('(vazio)') : _imediato2.value}',
+                        ),
+                        Text(
+                          '${context.tx('Termo de busca (onSearchChange)')}: ${_busca2.value.isEmpty ? context.tx('(vazio)') : _busca2.value}',
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+        // #endregion
+        code: SgInputTextSearchPageSnippets.sgInputTextSearchAjuste,
       ),
       ShowcaseExample(
         title: 'onChange imediato x onSearchChange com debounce',
@@ -51,44 +121,35 @@ class _SgInputTextSearchPageState extends State<SgInputTextSearchPage> {
             'onChange recebe cada digitação com o valor cru; onSearchChange só o valor normalizado e sem repetição.',
         preview:
             // #region sg-input-text-search-eventos
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SgInputTextSearch(
-                  id: 'eventos',
-                  labelText: 'Digite e veja os eventos',
-                  onChange: (valor) => setState(() => _crua = valor),
-                  onSearchChange: (valor) => setState(() => _disparos++),
-                ),
-                const SizedBox(height: 8),
-                Text('onChange (cru): "$_crua"'),
-                Text('Buscas disparadas: $_disparos'),
-              ],
+            SizedBox(
+              width: 384,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SgInputTextSearch(
+                    id: 'search-events',
+                    labelText: context.tx('Digite e veja os eventos'),
+                    onChange: (valor) => _crua.value = valor,
+                    onSearchChange: (valor) => _disparos.value++,
+                  ),
+                  const SizedBox(height: 8),
+                  ListenableBuilder(
+                    listenable: Listenable.merge([_crua, _disparos]),
+                    builder: (context, _) => Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('${context.tx('onChange (cru)')}: "${_crua.value}"'),
+                        Text(
+                          '${context.tx('Buscas disparadas')}: ${_disparos.value}',
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
         // #endregion
         code: SgInputTextSearchPageSnippets.sgInputTextSearchEventos,
-      ),
-      ShowcaseExample(
-        title: 'minChars e debounceMs',
-        description: 'Dispara a partir de 1 caractere e com 100 ms de espera.',
-        preview:
-            // #region sg-input-text-search-ajuste
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SgInputTextSearch(
-                  id: 'ajuste',
-                  labelText: 'Resposta rápida',
-                  minChars: 1,
-                  debounceMs: 100,
-                  onSearchChange: (valor) => setState(() => _rapida = valor),
-                ),
-                const SizedBox(height: 8),
-                Text('Última busca: $_rapida'),
-              ],
-            ),
-        // #endregion
-        code: SgInputTextSearchPageSnippets.sgInputTextSearchAjuste,
       ),
       ShowcaseExample(
         title: 'Rótulo, largura e botão de limpar',
@@ -97,8 +158,8 @@ class _SgInputTextSearchPageState extends State<SgInputTextSearchPage> {
         preview:
             // #region sg-input-text-search-aparencia
             SgInputTextSearch(
-              id: 'aparencia',
-              labelText: 'Cliente',
+              id: 'search-appearance',
+              labelText: context.tx('Cliente'),
               labelPosition: SgInputTextSearchLabelPosition.top,
               placeholder: context.tx('Nome ou CPF'),
               width: 320,

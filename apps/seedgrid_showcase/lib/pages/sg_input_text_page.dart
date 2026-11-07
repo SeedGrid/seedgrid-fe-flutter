@@ -266,7 +266,7 @@ class _SgInputTextPageState extends State<SgInputTextPage> {
       ShowcaseExample(
         title: 'Prefixo e sufixo',
         description:
-            'prefixText e suffixText aparecem no campo e entram no valor entregue a onChange.',
+            'Prefixo/sufixo são apenas visuais. O valor retornado já vem concatenado.',
         preview:
             // #region sg-input-text-afixos
             Column(
@@ -313,7 +313,7 @@ class _SgInputTextPageState extends State<SgInputTextPage> {
       ShowcaseExample(
         title: 'Botões de ícone',
         description:
-            'iconButtons recebe uma lista de widgets; cada botão tem o onClick que você definir.',
+            'iconButtons recebe uma lista de botões; cada botão tem o onClick que você definir.',
         preview:
             // #region sg-input-text-botoes
             SizedBox(
@@ -432,8 +432,7 @@ class _SgInputTextPageState extends State<SgInputTextPage> {
       ),
       ShowcaseExample(
         title: 'Desabilitado e somente leitura',
-        description:
-            'disabled bloqueia o campo; readOnly deixa copiar, mas não editar.',
+        description: 'enabled=false desabilita, readOnly=true impede edição.',
         preview:
             // #region sg-input-text-estados
             Column(

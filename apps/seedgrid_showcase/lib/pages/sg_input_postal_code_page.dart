@@ -341,7 +341,8 @@ class _SgInputPostalCodePageState extends State<SgInputPostalCodePage> {
       ),
       ShowcaseExample(
         title: 'Botões de ícone',
-        description: 'iconButtons recebe uma lista de widgets.',
+        description:
+            'iconButtons recebe uma lista de botões; cada botão tem o onClick que você definir.',
         preview:
             // #region sg-input-postal-code-botoes
             SizedBox(

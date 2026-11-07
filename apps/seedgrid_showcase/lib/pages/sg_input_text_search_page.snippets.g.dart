@@ -5,27 +5,45 @@
 abstract final class SgInputTextSearchPageSnippets {
   /// Region `sg-input-text-search-ajuste`.
   static const String sgInputTextSearchAjuste = r'''
-Column(
-  crossAxisAlignment: CrossAxisAlignment.start,
-  children: [
-    SgInputTextSearch(
-      id: 'ajuste',
-      labelText: 'Resposta rápida',
-      minChars: 1,
-      debounceMs: 100,
-      onSearchChange: (valor) => setState(() => _rapida = valor),
-    ),
-    const SizedBox(height: 8),
-    Text('Última busca: $_rapida'),
-  ],
+SizedBox(
+  width: 384,
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      SgInputTextSearch(
+        id: 'search-tuned',
+        labelText: context.tx('Busca'),
+        placeholder: context.tx('Digite para buscar'),
+        minChars: 1,
+        debounceMs: 800,
+        onChange: (valor) => _imediato2.value = valor,
+        onSearchChange: (valor) => _busca2.value = valor,
+      ),
+      const SizedBox(height: 8),
+      ListenableBuilder(
+        listenable: Listenable.merge([_imediato2, _busca2]),
+        builder: (context, _) => Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              '${context.tx('Valor imediato (onChange)')}: ${_imediato2.value.isEmpty ? context.tx('(vazio)') : _imediato2.value}',
+            ),
+            Text(
+              '${context.tx('Termo de busca (onSearchChange)')}: ${_busca2.value.isEmpty ? context.tx('(vazio)') : _busca2.value}',
+            ),
+          ],
+        ),
+      ),
+    ],
+  ),
 )
 ''';
 
   /// Region `sg-input-text-search-aparencia`.
   static const String sgInputTextSearchAparencia = r'''
 SgInputTextSearch(
-  id: 'aparencia',
-  labelText: 'Cliente',
+  id: 'search-appearance',
+  labelText: context.tx('Cliente'),
   labelPosition: SgInputTextSearchLabelPosition.top,
   placeholder: context.tx('Nome ou CPF'),
   width: 320,
@@ -36,36 +54,66 @@ SgInputTextSearch(
 
   /// Region `sg-input-text-search-basico`.
   static const String sgInputTextSearchBasico = r'''
-Column(
-  crossAxisAlignment: CrossAxisAlignment.start,
-  children: [
-    SgInputTextSearch(
-      id: 'busca',
-      labelText: 'Buscar produto',
-      prefixIcon: const Icon(Icons.search),
-      onSearchChange: (valor) => setState(() => _busca = valor),
-    ),
-    const SizedBox(height: 8),
-    Text('Última busca: $_busca'),
-  ],
+SizedBox(
+  width: 384,
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      SgInputTextSearch(
+        id: 'search-basic',
+        labelText: context.tx('Busca'),
+        placeholder: context.tx('Digite para buscar'),
+        onChange: (valor) => _imediato.value = valor,
+        onSearchChange: (valor) => _busca.value = valor,
+      ),
+      const SizedBox(height: 8),
+      ListenableBuilder(
+        listenable: Listenable.merge([_imediato, _busca]),
+        builder: (context, _) => Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              '${context.tx('Valor imediato (onChange)')}: ${_imediato.value.isEmpty ? context.tx('(vazio)') : _imediato.value}',
+            ),
+            Text(
+              '${context.tx('Termo de busca (onSearchChange)')}: ${_busca.value.isEmpty ? context.tx('(vazio)') : _busca.value}',
+            ),
+          ],
+        ),
+      ),
+    ],
+  ),
 )
 ''';
 
   /// Region `sg-input-text-search-eventos`.
   static const String sgInputTextSearchEventos = r'''
-Column(
-  crossAxisAlignment: CrossAxisAlignment.start,
-  children: [
-    SgInputTextSearch(
-      id: 'eventos',
-      labelText: 'Digite e veja os eventos',
-      onChange: (valor) => setState(() => _crua = valor),
-      onSearchChange: (valor) => setState(() => _disparos++),
-    ),
-    const SizedBox(height: 8),
-    Text('onChange (cru): "$_crua"'),
-    Text('Buscas disparadas: $_disparos'),
-  ],
+SizedBox(
+  width: 384,
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      SgInputTextSearch(
+        id: 'search-events',
+        labelText: context.tx('Digite e veja os eventos'),
+        onChange: (valor) => _crua.value = valor,
+        onSearchChange: (valor) => _disparos.value++,
+      ),
+      const SizedBox(height: 8),
+      ListenableBuilder(
+        listenable: Listenable.merge([_crua, _disparos]),
+        builder: (context, _) => Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('${context.tx('onChange (cru)')}: "${_crua.value}"'),
+            Text(
+              '${context.tx('Buscas disparadas')}: ${_disparos.value}',
+            ),
+          ],
+        ),
+      ),
+    ],
+  ),
 )
 ''';
 }

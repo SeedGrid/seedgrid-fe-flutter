@@ -7,14 +7,6 @@ import '../src/sg_showcase_page.dart';
 import '../src/showcase_i18n.dart';
 import 'sg_order_list_page.snippets.g.dart';
 
-const List<SgOrderListItem> _tarefas = [
-  SgOrderListItem(label: 'Escrever o plano', value: 1),
-  SgOrderListItem(label: 'Revisar com o time', value: 2),
-  SgOrderListItem(label: 'Publicar', value: 3),
-  SgOrderListItem(label: 'Arquivado', value: 4, enabled: false),
-  SgOrderListItem(label: 'Comemorar', value: 5),
-];
-
 class SgOrderListPage extends StatefulWidget {
   const SgOrderListPage({super.key});
 
@@ -23,14 +15,20 @@ class SgOrderListPage extends StatefulWidget {
 }
 
 class _SgOrderListPageState extends State<SgOrderListPage> {
-  String _ordem = '';
-  final SgOrderListController _controller = SgOrderListController();
+  final ValueNotifier<List<SgOrderListItem>> _basico = ValueNotifier(const []);
+  final SgOrderListController _pipeline = SgOrderListController();
+  final ValueNotifier<List<SgOrderListItem>> _controlada = ValueNotifier(
+    const [],
+  );
   final SgFormController _form = SgFormController();
-  String _enviado = '';
+  final ValueNotifier<String> _enviado = ValueNotifier('');
 
   @override
   void dispose() {
+    _basico.dispose();
+    _controlada.dispose();
     _form.dispose();
+    _enviado.dispose();
     super.dispose();
   }
 
@@ -38,81 +36,85 @@ class _SgOrderListPageState extends State<SgOrderListPage> {
   Widget build(BuildContext context) {
     final examples = <ShowcaseExample>[
       ShowcaseExample(
-        title: 'Básico',
+        title: 'Básico (controles internos)',
         description:
-            'Selecione e use Topo, Subir, Descer e Base; segurar e arrastar também reordena. '
-            'O item solto entra antes do item sob o dedo; a faixa no fim manda para o fim.',
+            'Selecione itens e use os botões Topo, Subir, Descer e Base; arrastar também reordena.',
         preview:
             // #region sg-order-list-basico
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SgOrderList(
-                  id: 'tarefas',
-                  title: context.tx('Tarefas'),
-                  source: _tarefas,
-                  onChange: (items) => setState(
-                    () => _ordem = items.map((e) => e.label).join(' > '),
+            ListenableBuilder(
+              listenable: _basico,
+              builder: (context, _) {
+                final produtos = <SgOrderListItem>[
+                  SgOrderListItem(
+                    label: 'Notebook',
+                    value: 'notebook',
+                    icon: Icon(Icons.account_balance, size: 16),
                   ),
-                ),
-                Text('Ordem: ${_ordem.isEmpty ? '(original)' : _ordem}'),
-              ],
+                  SgOrderListItem(
+                    label: 'Mouse',
+                    value: 'mouse',
+                    icon: Icon(Icons.refresh, size: 16),
+                  ),
+                  SgOrderListItem(
+                    label: 'Teclado',
+                    value: 'keyboard',
+                    icon: Icon(Icons.notifications, size: 16),
+                  ),
+                  SgOrderListItem(
+                    label: 'Monitor',
+                    value: 'monitor',
+                    icon: Icon(Icons.star, size: 16),
+                  ),
+                  SgOrderListItem(
+                    label: 'Webcam',
+                    value: 'webcam',
+                    icon: Icon(Icons.favorite, size: 16),
+                  ),
+                ];
+                final atual = _basico.value.isEmpty ? produtos : _basico.value;
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SgOrderList(
+                      id: 'order-basic',
+                      title: context.tx('Produtos'),
+                      source: produtos,
+                      value: atual,
+                      onChange: (itens) => _basico.value = itens,
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      '${context.tx('Ordem atual')}: ${atual.map((e) => e.label).join(' > ')}',
+                    ),
+                  ],
+                );
+              },
             ),
         // #endregion
         code: SgOrderListPageSnippets.sgOrderListBasico,
       ),
       ShowcaseExample(
-        title: 'Seleção única e controles à direita',
+        title: 'Seleção múltipla + controles externos',
         description:
-            'selectionMode single e controlsPosition right; com Ctrl + setas, Home e End no teclado.',
-        preview:
-            // #region sg-order-list-single
-            SgOrderList(
-              title: context.tx('Prioridades'),
-              source: _tarefas,
-              selectionMode: SgOrderListSelectionMode.single,
-              controlsPosition: SgOrderListControlsPosition.right,
-            ),
-        // #endregion
-        code: SgOrderListPageSnippets.sgOrderListSingle,
-      ),
-      ShowcaseExample(
-        title: 'Item personalizado',
-        description:
-            'itemTemplate recebe o item e o estado (índice, selecionado, desabilitado).',
-        preview:
-            // #region sg-order-list-template
-            SgOrderList(
-              title: context.tx('Com numeração'),
-              source: [
-                SgOrderListItem(
-                  label: context.tx('Um'),
-                  value: 1,
-                  icon: Icon(Icons.looks_one, size: 16),
-                ),
-                SgOrderListItem(label: context.tx('Dois'), value: 2),
-                SgOrderListItem(label: context.tx('Três'), value: 3),
-              ],
-              itemTemplate: (item, state) => Text(
-                '#${state.index + 1} ${item.label}${state.selected ? ' *' : ''}',
-              ),
-            ),
-        // #endregion
-        code: SgOrderListPageSnippets.sgOrderListTemplate,
-      ),
-      ShowcaseExample(
-        title: 'Controle por código',
-        description:
-            'controller seleciona, move e troca a lista (substitui o ref do React).',
+            'Com selectionMode multiple e showControls false, botões externos movem os itens selecionados e limpam a seleção.',
         preview:
             // #region sg-order-list-controller
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SgOrderList(
-                  title: context.tx('Controlada'),
-                  source: _tarefas,
-                  controller: _controller,
+                  id: 'order-ref',
+                  title: context.tx('Etapas do pipeline'),
+                  source: [
+                    SgOrderListItem(label: 'Prospecção', value: 'lead'),
+                    SgOrderListItem(label: 'Qualificação', value: 'qualify'),
+                    SgOrderListItem(label: 'Proposta', value: 'proposal'),
+                    SgOrderListItem(label: 'Negociação', value: 'negotiation'),
+                    SgOrderListItem(label: 'Fechamento', value: 'close'),
+                  ],
+                  controller: _pipeline,
+                  selectionMode: SgOrderListSelectionMode.multiple,
+                  showControls: false,
                 ),
                 const SizedBox(height: 8),
                 Wrap(
@@ -120,18 +122,24 @@ class _SgOrderListPageState extends State<SgOrderListPage> {
                   runSpacing: 8,
                   children: [
                     SgButton(
-                      label: Text(context.tx('Selecionar a 3ª')),
-                      onClick: () => _controller.setSelection(const [3]),
-                    ),
-                    SgButton(
                       label: Text(context.tx('Mover para o topo')),
-                      onClick: () => _controller.moveTop(),
+                      onClick: () => _pipeline.moveTop(),
                     ),
                     SgButton(
-                      label: Text(context.tx('Inverter')),
-                      onClick: () => _controller.setItems(
-                        _controller.getItems().reversed.toList(),
-                      ),
+                      label: Text(context.tx('Subir')),
+                      onClick: () => _pipeline.moveUp(),
+                    ),
+                    SgButton(
+                      label: Text(context.tx('Descer')),
+                      onClick: () => _pipeline.moveDown(),
+                    ),
+                    SgButton(
+                      label: Text(context.tx('Mover para a base')),
+                      onClick: () => _pipeline.moveBottom(),
+                    ),
+                    SgButton(
+                      label: Text(context.tx('Limpar seleção')),
+                      onClick: () => _pipeline.clearSelection(),
                     ),
                   ],
                 ),
@@ -141,26 +149,208 @@ class _SgOrderListPageState extends State<SgOrderListPage> {
         code: SgOrderListPageSnippets.sgOrderListController,
       ),
       ShowcaseExample(
-        title: 'Dentro de um formulário',
+        title: 'Drag and drop sem botões',
         description:
-            'name + control: o valor do formulário é a lista na ordem atual.',
+            'Com showControls false e draggable, a ordem muda arrastando os itens, sem botões.',
+        preview:
+            // #region sg-order-list-drag
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SgOrderList(
+                  id: 'order-drag',
+                  title: context.tx('Time de atendimento'),
+                  source: [
+                    SgOrderListItem(label: 'Ana - Produto', value: 'ana'),
+                    SgOrderListItem(label: 'Bruno - Design', value: 'bruno'),
+                    SgOrderListItem(label: 'Carla - Frontend', value: 'carla'),
+                    SgOrderListItem(label: 'Diego - Backend', value: 'diego'),
+                    SgOrderListItem(label: 'Elaine - QA', value: 'elaine'),
+                  ],
+                  showControls: false,
+                  draggable: true,
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  context.tx(
+                    'Dica: arraste os itens para reordenar, sem usar os botões.',
+                  ),
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgOrderListPageSnippets.sgOrderListDrag,
+      ),
+      ShowcaseExample(
+        title: 'Item personalizado e item desabilitado',
+        description:
+            'itemTemplate personaliza o conteúdo de cada linha; um item com enabled false aparece desabilitado.',
+        preview:
+            // #region sg-order-list-template
+            SgOrderList(
+              id: 'order-template',
+              title: context.tx('Backlog da sprint'),
+              source: [
+                SgOrderListItem(
+                  label: 'Implementar filtros',
+                  value: 'filtros',
+                  data: {'effort': 'M', 'priority': 'Alta'},
+                ),
+                SgOrderListItem(
+                  label: 'Ajustar layout mobile',
+                  value: 'mobile',
+                  data: {'effort': 'S', 'priority': 'Média'},
+                ),
+                SgOrderListItem(
+                  label: 'Refatorar API de pedidos',
+                  value: 'api',
+                  data: {'effort': 'L', 'priority': 'Alta'},
+                ),
+                SgOrderListItem(
+                  label: 'Atualizar testes E2E',
+                  value: 'e2e',
+                  data: {'effort': 'M', 'priority': 'Baixa'},
+                  enabled: false,
+                ),
+              ],
+              controlsPosition: SgOrderListControlsPosition.right,
+              itemTemplate: (item, state) {
+                final meta = item.data as Map<String, String>?;
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      item.label,
+                      style: const TextStyle(fontWeight: FontWeight.w500),
+                    ),
+                    Text(
+                      '${context.tx('Prioridade')}: ${meta?['priority'] ?? '-'} | ${context.tx('Esforço')}: ${meta?['effort'] ?? '-'}',
+                      style: const TextStyle(fontSize: 12),
+                    ),
+                  ],
+                );
+              },
+            ),
+        // #endregion
+        code: SgOrderListPageSnippets.sgOrderListTemplate,
+      ),
+      ShowcaseExample(
+        title: 'Ordem controlada por estado externo',
+        description:
+            'O pai controla a ordem pelo estado: value e onChange permitem restaurar, inverter e ordenar por fora.',
+        preview:
+            // #region sg-order-list-controlada
+            ListenableBuilder(
+              listenable: _controlada,
+              builder: (context, _) {
+                final produtos = <SgOrderListItem>[
+                  SgOrderListItem(
+                    label: 'Notebook',
+                    value: 'notebook',
+                    icon: Icon(Icons.account_balance, size: 16),
+                  ),
+                  SgOrderListItem(
+                    label: 'Mouse',
+                    value: 'mouse',
+                    icon: Icon(Icons.refresh, size: 16),
+                  ),
+                  SgOrderListItem(
+                    label: 'Teclado',
+                    value: 'keyboard',
+                    icon: Icon(Icons.notifications, size: 16),
+                  ),
+                  SgOrderListItem(
+                    label: 'Monitor',
+                    value: 'monitor',
+                    icon: Icon(Icons.star, size: 16),
+                  ),
+                  SgOrderListItem(
+                    label: 'Webcam',
+                    value: 'webcam',
+                    icon: Icon(Icons.favorite, size: 16),
+                  ),
+                ];
+                final atual = _controlada.value.isEmpty
+                    ? produtos
+                    : _controlada.value;
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Wrap(
+                      spacing: 8,
+                      runSpacing: 8,
+                      children: [
+                        SgButton(
+                          label: Text(context.tx('Restaurar')),
+                          onClick: () => _controlada.value = produtos,
+                        ),
+                        SgButton(
+                          label: Text(context.tx('Inverter')),
+                          onClick: () =>
+                              _controlada.value = atual.reversed.toList(),
+                        ),
+                        SgButton(
+                          label: Text(context.tx('Ordenar A-Z')),
+                          onClick: () =>
+                              _controlada.value = [...atual]
+                                ..sort((a, b) => a.label.compareTo(b.label)),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 8),
+                    SgOrderList(
+                      id: 'order-controlled',
+                      title: context.tx('Produtos (controlado)'),
+                      source: produtos,
+                      value: atual,
+                      onChange: (itens) => _controlada.value = itens,
+                    ),
+                  ],
+                );
+              },
+            ),
+        // #endregion
+        code: SgOrderListPageSnippets.sgOrderListControlada,
+      ),
+      ShowcaseExample(
+        title: 'Seleção única e controles à direita',
+        description:
+            'selectionMode single permite um item por vez e controlsPosition right move os botões para a direita.',
+        preview:
+            // #region sg-order-list-single
+            SgOrderList(
+              id: 'order-single',
+              title: context.tx('Prioridades'),
+              source: [
+                SgOrderListItem(label: 'Escrever o plano', value: 1),
+                SgOrderListItem(label: 'Revisar com o time', value: 2),
+                SgOrderListItem(label: 'Publicar', value: 3),
+                SgOrderListItem(label: 'Arquivado', value: 4, enabled: false),
+                SgOrderListItem(label: 'Comemorar', value: 5),
+              ],
+              selectionMode: SgOrderListSelectionMode.single,
+              controlsPosition: SgOrderListControlsPosition.right,
+            ),
+        // #endregion
+        code: SgOrderListPageSnippets.sgOrderListSingle,
+      ),
+      ShowcaseExample(
+        title: 'Dentro de um formulário',
+        description: 'Ao enviar, o formulário recebe a lista na ordem atual.',
         preview:
             // #region sg-order-list-formulario
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SgOrderList(
-                  id: 'ranking',
+                  id: 'order-form',
                   name: 'ranking',
                   control: _form,
                   title: context.tx('Ranking'),
                   source: [
-                    SgOrderListItem(label: context.tx('Ouro'), value: 'ouro'),
-                    SgOrderListItem(label: context.tx('Prata'), value: 'prata'),
-                    SgOrderListItem(
-                      label: context.tx('Bronze'),
-                      value: 'bronze',
-                    ),
+                    SgOrderListItem(label: 'Ouro', value: 'ouro'),
+                    SgOrderListItem(label: 'Prata', value: 'prata'),
+                    SgOrderListItem(label: 'Bronze', value: 'bronze'),
                   ],
                 ),
                 const SizedBox(height: 12),
@@ -168,17 +358,29 @@ class _SgOrderListPageState extends State<SgOrderListPage> {
                   label: Text(context.tx('Enviar')),
                   onClick: () => _form.handleSubmit((values) {
                     final v = values['ranking'] as List<SgOrderListItem>?;
-                    setState(
-                      () => _enviado = v?.map((e) => e.label).join(' > ') ?? '',
-                    );
+                    _enviado.value = v?.map((e) => e.label).join(' > ') ?? '';
                   }),
                 ),
-                if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),
+                const SizedBox(height: 8),
+                ValueListenableBuilder<String>(
+                  valueListenable: _enviado,
+                  builder: (context, enviado, _) => enviado.isEmpty
+                      ? const SizedBox.shrink()
+                      : Text('${context.tx('Enviado')}: $enviado'),
+                ),
               ],
             ),
         // #endregion
         code: SgOrderListPageSnippets.sgOrderListFormulario,
       ),
+    ];
+
+    const playgroundItems = [
+      SgOrderListItem(label: 'Escrever o plano', value: 1),
+      SgOrderListItem(label: 'Revisar com o time', value: 2),
+      SgOrderListItem(label: 'Publicar', value: 3),
+      SgOrderListItem(label: 'Arquivado', value: 4, enabled: false),
+      SgOrderListItem(label: 'Comemorar', value: 5),
     ];
 
     return SgShowcasePage(
@@ -228,7 +430,7 @@ class _SgOrderListPageState extends State<SgOrderListPage> {
           draggable: !((v['draggable'] as bool?) == false),
           enabled: (v['enabled'] as bool?) ?? true,
           readOnly: (v['readOnly'] as bool?) ?? false,
-          source: _tarefas,
+          source: playgroundItems,
         ),
         codeBuilder: (v) {
           final args = <String>["title: '${v['title'] ?? 'Tarefas'}'"];

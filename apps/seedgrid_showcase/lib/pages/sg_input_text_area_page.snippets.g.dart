@@ -96,18 +96,41 @@ SizedBox(
 
   /// Region `sg-input-text-area-elevacao`.
   static const String sgInputTextAreaElevacao = r'''
-Column(
+Wrap(
+  spacing: 16,
+  runSpacing: 12,
   children: [
-    SgInputTextArea(
-      id: 'sm',
-      labelText: context.tx('Sombra pequena'),
-      elevation: SgInputTextAreaElevation.sm,
+    SizedBox(
+      width: 280,
+      child: SgInputTextArea(
+        id: 'sg-input-text-area-elevation-none',
+        labelText: context.tx('Elevação none'),
+        elevation: SgInputTextAreaElevation.none,
+      ),
     ),
-    const SizedBox(height: 12),
-    SgInputTextArea(
-      id: 'lg',
-      labelText: context.tx('Sombra grande'),
-      elevation: SgInputTextAreaElevation.lg,
+    SizedBox(
+      width: 280,
+      child: SgInputTextArea(
+        id: 'sg-input-text-area-elevation-sm',
+        labelText: context.tx('Elevação sm'),
+        elevation: SgInputTextAreaElevation.sm,
+      ),
+    ),
+    SizedBox(
+      width: 280,
+      child: SgInputTextArea(
+        id: 'sg-input-text-area-elevation-md',
+        labelText: context.tx('Elevação md'),
+        elevation: SgInputTextAreaElevation.md,
+      ),
+    ),
+    SizedBox(
+      width: 280,
+      child: SgInputTextArea(
+        id: 'sg-input-text-area-elevation-lg',
+        labelText: context.tx('Elevação lg'),
+        elevation: SgInputTextAreaElevation.lg,
+      ),
     ),
   ],
 )
