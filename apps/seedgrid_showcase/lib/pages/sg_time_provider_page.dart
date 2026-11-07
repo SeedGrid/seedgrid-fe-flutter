@@ -14,7 +14,7 @@ class SgTimeProviderPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final examples = <ShowcaseExample>[
       ShowcaseExample(
-        title: 'Uma hora para toda a árvore',
+        title: 'Uso básico',
         description:
             'Os relógios abaixo não têm initialServerTime: leem a hora do SgTimeProvider e andam juntos, alinhados à virada do segundo.',
         preview:
@@ -32,6 +32,42 @@ class SgTimeProviderPage extends StatelessWidget {
             ),
         // #endregion
         code: SgTimeProviderPageSnippets.sgTimeProviderBasico,
+      ),
+      ShowcaseExample(
+        title: 'Sem provedor (fallback)',
+        description:
+            'Fora de um SgTimeProvider, useSgTime devolve um relógio local (tick 0) e o SgClock cuida do próprio segundo.',
+        preview:
+            // #region sg-time-provider-sem
+            Builder(
+              builder: (context) {
+                final tempo = useSgTime(context);
+                return Text('Sem provider: tick ${tempo.tick}');
+              },
+            ),
+        // #endregion
+        code: SgTimeProviderPageSnippets.sgTimeProviderSem,
+      ),
+      ShowcaseExample(
+        title: 'Integração com Next.js',
+        description:
+            'Padrão recomendado: inicializar o SgTimeProvider no layout raiz com um timestamp do servidor.',
+        preview:
+            // #region sg-time-provider-raiz
+            SizedBox(
+              height: 140,
+              child: MaterialApp(
+                debugShowCheckedModeBanner: false,
+                theme: Theme.of(context),
+                builder: (context, child) => SgTimeProvider(
+                  initialServerTime: '2026-06-15T09:41:07Z',
+                  child: child!,
+                ),
+                home: const Center(child: SgClock(timezone: 'UTC')),
+              ),
+            ),
+        // #endregion
+        code: SgTimeProviderPageSnippets.sgTimeProviderRaiz,
       ),
       ShowcaseExample(
         title: 'Lendo o contexto de tempo',
@@ -72,21 +108,6 @@ class SgTimeProviderPage extends StatelessWidget {
             ),
         // #endregion
         code: SgTimeProviderPageSnippets.sgTimeProviderServidor,
-      ),
-      ShowcaseExample(
-        title: 'Sem provider',
-        description:
-            'Fora de um SgTimeProvider, useSgTime devolve um relógio local (tick 0) e o SgClock cuida do próprio segundo.',
-        preview:
-            // #region sg-time-provider-sem
-            Builder(
-              builder: (context) {
-                final tempo = useSgTime(context);
-                return Text('Sem provider: tick ${tempo.tick}');
-              },
-            ),
-        // #endregion
-        code: SgTimeProviderPageSnippets.sgTimeProviderSem,
       ),
     ];
 

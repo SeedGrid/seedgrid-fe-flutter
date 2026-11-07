@@ -1,6 +1,8 @@
 // Showcase do SgRealtimeProvider e dos hooks useSgRealtimeEvent / useSgRealtimeStatus. A conexao com
 // o Pulse e SIMULADA (SgSimulatedPulseConnection): os botoes fazem o papel do servidor. O codigo
 // exibido em cada exemplo e o trecho entre `// #region` e `// #endregion` deste arquivo.
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
@@ -18,6 +20,8 @@ class SgRealtimeProviderPage extends StatefulWidget {
 class _SgRealtimeProviderPageState extends State<SgRealtimeProviderPage> {
   final SgSimulatedPulseConnection _pulse = SgSimulatedPulseConnection();
   final SgSimulatedPulseConnection _pulse2 = SgSimulatedPulseConnection();
+  final SgSimulatedPulseConnection _pulse3 = SgSimulatedPulseConnection();
+  final List<String> _bffRequests = [];
   final List<String> _avisos = [];
   int _backups = 0;
   int _outros = 0;
@@ -30,10 +34,25 @@ class _SgRealtimeProviderPageState extends State<SgRealtimeProviderPage> {
         expiresAt: 1759700000,
       );
 
+  // A "BFF": responde ao pedido de token do provider (o servidor e simulado).
+  Future<SgFetchResponse> _bff(SgFetchRequest r) async {
+    await Future<void>.value();
+    if (mounted) setState(() => _bffRequests.add('${r.method} ${r.url}'));
+    return SgFetchResponse(
+      200,
+      jsonEncode({
+        'enabled': true,
+        'token': 'pct_demo',
+        'expiresAt': 1759700000,
+      }),
+    );
+  }
+
   @override
   void dispose() {
     _pulse.dispose();
     _pulse2.dispose();
+    _pulse3.dispose();
     super.dispose();
   }
 
@@ -104,6 +123,36 @@ class _SgRealtimeProviderPageState extends State<SgRealtimeProviderPage> {
             ),
         // #endregion
         code: SgRealtimeProviderPageSnippets.sgRealtimeProviderSimulador,
+      ),
+      ShowcaseExample(
+        title: 'No layout, com a BFF',
+        description:
+            'Monte uma vez onde já há usuário logado. O token vem de /api/realtime/connect (a BFF), que repassa ao backend: ele emite o token para o usuário da sessão.',
+        preview:
+            // #region sg-realtime-provider-layout
+            SgRealtimeProvider(
+              channels: const ['backup'],
+              tokenEndpoint: 'https://app.exemplo.com/api/realtime/connect',
+              tokenRequestInit: const SgTokenRequestInit(
+                headers: {'Authorization': 'Bearer sessao-123'},
+              ),
+              tokenFetcher: _bff,
+              connectionFactory: () => _pulse3,
+              child: Builder(
+                builder: (context) {
+                  final r = useSgRealtimeStatus(context);
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Estado: ${r.status.value}'),
+                      Text('Pedidos ao token: ${_bffRequests.join(' | ')}'),
+                    ],
+                  );
+                },
+              ),
+            ),
+        // #endregion
+        code: SgRealtimeProviderPageSnippets.sgRealtimeProviderLayout,
       ),
       ShowcaseExample(
         title: 'Polling de reserva',
@@ -208,7 +257,7 @@ class _SgRealtimeProviderPageState extends State<SgRealtimeProviderPage> {
       ShowcaseExample(
         title: 'Desligado',
         description:
-            'Com disabled (ex.: enquanto não há usuário logado) não pede token nem conecta.',
+            'Com enabled: false (ex.: enquanto não há usuário logado) não pede token nem conecta.',
         preview:
             // #region sg-realtime-provider-desligado
             SgRealtimeProvider(
@@ -254,13 +303,12 @@ class _SgRealtimeProviderPageState extends State<SgRealtimeProviderPage> {
       playground: SgPlayground(
         specs: const [
           SgPropSpec(
-            name: 'disabled',
+            name: 'enabled',
             reactName: 'enabled',
             type: 'bool?',
             tsType: 'boolean',
             required: false,
-            defaultValue: 'false',
-            description: 'No React a prop é enabled (invertida).',
+            defaultValue: 'true',
           ),
           SgPropSpec(
             name: 'backend',
@@ -296,7 +344,7 @@ class _SgRealtimeProviderPageState extends State<SgRealtimeProviderPage> {
         },
         codeBuilder: (v) {
           final args = <String>["channels: const ['demo']"];
-          if (v['disabled'] == true) args.add('enabled: false');
+          if (v['enabled'] == false) args.add('enabled: false');
           args.addAll([
             'fetchToken: seuBackend.pedirToken',
             'connectionFactory: () => PulseSdkConnection()',

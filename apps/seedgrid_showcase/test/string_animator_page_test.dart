@@ -11,6 +11,17 @@ List<String> roller(WidgetTester t) => t
     .map((d) => d.value)
     .toList();
 
+/// Os tambores do SgStringAnimator escolhido pelo [test] (o showcase tem varios na mesma pagina).
+String rollerOf(WidgetTester t, bool Function(SgStringAnimator) test) => t
+    .widgetList<SgRoller3DDigit>(
+      find.descendant(
+        of: find.byWidgetPredicate((w) => w is SgStringAnimator && test(w)),
+        matching: find.byType(SgRoller3DDigit),
+      ),
+    )
+    .map((d) => d.value)
+    .join();
+
 void main() {
   testWidgets(
     'exemplo manual: nada anima sozinho; Animar leva LUCIANO a MARTA',
@@ -31,21 +42,17 @@ void main() {
     },
   );
 
-  testWidgets('exemplo autoStart: trocar o alvo anima ate o novo nome', (
+  testWidgets('exemplo autoStart: Próximo nome anima ate o novo alvo', (
     t,
   ) async {
     setSize(t, kSizes.values.last);
     await t.pumpWidget(app(const SgStringAnimatorPage()));
-    await tapLink(t, const ValueKey('link-exemplo-2'));
-    String shown() => t
-        .widgetList<SgFlipDigit>(find.byType(SgFlipDigit))
-        .map((d) => d.value)
-        .join();
-    await t.tap(find.text('ANA'));
+    await tapLink(t, const ValueKey('link-exemplo-8'));
+    await t.tap(find.text('Próximo nome'));
     await t
         .pump(); // o rebuild com o alvo novo acontece no frame, antes de avancar o relogio
     await t.pump(const Duration(seconds: 5));
-    expect(shown().substring(0, 7), 'ANA    ');
+    expect(rollerOf(t, (a) => a.autoStart).substring(0, 5), 'MARTA');
   });
 
   testWidgets(
@@ -53,16 +60,12 @@ void main() {
     (t) async {
       setSize(t, kSizes.values.last);
       await t.pumpWidget(app(const SgStringAnimatorPage()));
-      await tapLink(t, const ValueKey('link-exemplo-3'));
-      await t.tap(find.text('Contar'));
+      await tapLink(t, const ValueKey('link-exemplo-2'));
+      await t.tap(find.text('Animar').at(1));
       await t.pump();
       await t.pump(const Duration(seconds: 5));
-      expect(find.byType(SgRoller3DDigit), findsWidgets);
-      final digits = t
-          .widgetList<SgRoller3DDigit>(find.byType(SgRoller3DDigit))
-          .map((d) => d.value)
-          .toList();
-      expect(digits.join().contains('2048'), isTrue);
+      final digits = roller(t);
+      expect(digits.join().contains('1337'), isTrue);
     },
   );
 }

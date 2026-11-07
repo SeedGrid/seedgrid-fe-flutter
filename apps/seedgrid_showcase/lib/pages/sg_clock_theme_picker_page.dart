@@ -22,9 +22,9 @@ class _SgClockThemePickerPageState extends State<SgClockThemePickerPage> {
   Widget build(BuildContext context) {
     final examples = <ShowcaseExample>[
       ShowcaseExample(
-        title: 'Escolhendo o tema de um relógio',
+        title: 'Uso básico',
         description:
-            'O seletor lê os temas do SgClockThemeProvider mais próximo; o relógio ao lado usa o tema escolhido.',
+            'Escolha de tema visual com preview imediato aplicado ao relógio.',
         preview:
             // #region sg-clock-theme-picker-basico
             SgClockThemeProvider(

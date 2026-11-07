@@ -14,6 +14,39 @@ class SgClockThemePreviewPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final examples = <ShowcaseExample>[
       ShowcaseExample(
+        title: 'Galeria de temas',
+        description:
+            'Previews compactos de temas embutidos para comparação visual.',
+        preview:
+            // #region sg-clock-theme-preview-galeria
+            Wrap(
+              spacing: 16,
+              runSpacing: 16,
+              children: [
+                for (final tema in sgClockThemesBuiltIn.take(8))
+                  SizedBox(
+                    width: 140,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Center(
+                          child: SgClockThemePreview(theme: tema, size: 72),
+                        ),
+                        const SizedBox(height: 8),
+                        Text(
+                          tema.label ?? tema.id,
+                          style: const TextStyle(fontWeight: FontWeight.w600),
+                        ),
+                        Text(tema.id, style: const TextStyle(fontSize: 12)),
+                      ],
+                    ),
+                  ),
+              ],
+            ),
+        // #endregion
+        code: SgClockThemePreviewPageSnippets.sgClockThemePreviewGaleria,
+      ),
+      ShowcaseExample(
         title: 'Um tema',
         description:
             'Miniatura com ponteiros fixos (hora 305°, minuto 60°, segundo 180°), na cor do texto.',
@@ -24,26 +57,9 @@ class SgClockThemePreviewPage extends StatelessWidget {
         code: SgClockThemePreviewPageSnippets.sgClockThemePreviewBasico,
       ),
       ShowcaseExample(
-        title: 'Os temas embutidos',
-        description: 'Os dez temas que vêm com a biblioteca, em 72 px.',
-        preview:
-            // #region sg-clock-theme-preview-todos
-            Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              children: [
-                for (final tema in sgClockThemesBuiltIn)
-                  Tooltip(
-                    message: tema.label ?? tema.id,
-                    child: SgClockThemePreview(theme: tema, size: 72),
-                  ),
-              ],
-            ),
-        // #endregion
-        code: SgClockThemePreviewPageSnippets.sgClockThemePreviewTodos,
-      ),
-      ShowcaseExample(
         title: 'Tamanhos',
+        description:
+            'size define o lado do quadrado da miniatura (padrão: 64).',
         preview:
             // #region sg-clock-theme-preview-tamanhos
             Wrap(

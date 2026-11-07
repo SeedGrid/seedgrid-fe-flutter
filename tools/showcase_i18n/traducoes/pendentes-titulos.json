@@ -412,5 +412,659 @@
   "Alterna o locale, o primeiro dia da semana e a quantidade de meses (numberOfMonths, monthsPerLine = 3).",
   "Alterna el locale, el primer día de la semana y la cantidad de meses (numberOfMonths, monthsPerLine = 3).",
   "Bascule la locale, le premier jour de la semaine et le nombre de mois (numberOfMonths, monthsPerLine = 3)."
+ ],
+ "Tema": [
+  "Theme",
+  "Tema",
+  "Tema",
+  "Thème"
+ ],
+ "Segundos: smooth": [
+  "Seconds: smooth",
+  "Segundos: smooth",
+  "Segundos: smooth",
+  "Secondes : smooth"
+ ],
+ "Segundos: step": [
+  "Seconds: step",
+  "Segundos: step",
+  "Segundos: step",
+  "Secondes : step"
+ ],
+ "Segundos: ON": [
+  "Seconds: ON",
+  "Segundos: ON",
+  "Segundos: ON",
+  "Secondes : ON"
+ ],
+ "Segundos: OFF": [
+  "Seconds: OFF",
+  "Segundos: OFF",
+  "Segundos: OFF",
+  "Secondes : OFF"
+ ],
+ "Analógico": [
+  "Analog",
+  "Analógico",
+  "Analógico",
+  "Analogique"
+ ],
+ "Seletor de tema com segundos step/smooth.": [
+  "Theme picker with step/smooth seconds.",
+  "Seletor de tema com segundos step/smooth.",
+  "Selector de tema con segundos step/smooth.",
+  "Sélecteur de thème avec secondes par pas/fluides."
+ ],
+ "Tema inline (sem provider)": [
+  "Inline theme (no provider)",
+  "Tema inline (sem provider)",
+  "Tema inline (sin provider)",
+  "Thème en ligne (sans provider)"
+ ],
+ "Passe um objeto de tema direto no SgClock.": [
+  "Pass a theme object directly to SgClock.",
+  "Passe um objeto de tema diretamente no SgClock.",
+  "Pasa un objeto de tema directo al SgClock.",
+  "Passez un objet thème directement à SgClock."
+ ],
+ "Presets de tamanho com locale/timezone.": [
+  "Size presets with locale/timezone.",
+  "Presets de tamanho com locale/timezone.",
+  "Presets de tamaño con locale/timezone.",
+  "Préréglages de taille avec locale/fuseau horaire."
+ ],
+ "Roller 3D": [
+  "Roller 3D",
+  "Roller 3D",
+  "Roller 3D",
+  "Roller 3D"
+ ],
+ "Rolos 3D com AM/PM opcional e segundos sob demanda.": [
+  "3D rollers with optional AM/PM and on-demand seconds.",
+  "Rolos 3D com AM/PM opcional e segundos a pedido.",
+  "Rodillos 3D con AM/PM opcional y segundos bajo demanda.",
+  "Rouleaux 3D avec AM/PM optionnel et secondes à la demande."
+ ],
+ "Flip": [
+  "Flip",
+  "Flip",
+  "Flip",
+  "Flip"
+ ],
+ "Flip clock em duas folhas, com segundos e 12/24h.": [
+  "Two-leaf flip clock, with seconds and 12/24h.",
+  "Flip clock em duas folhas, com segundos e 12/24h.",
+  "Flip clock de dos hojas, con segundos y 12/24h.",
+  "Flip clock à deux feuilles, avec secondes et 12/24h."
+ ],
+ "Segment": [
+  "Segment",
+  "Segment",
+  "Segment",
+  "Segment"
+ ],
+ "Estilo segmentado com leitura limpa.": [
+  "Segmented style with clean readability.",
+  "Estilo segmentado com leitura limpa.",
+  "Estilo segmentado con lectura limpia.",
+  "Style segmenté à la lecture nette."
+ ],
+ "Seven Segment": [
+  "Seven Segment",
+  "Seven Segment",
+  "Seven Segment",
+  "Seven Segment"
+ ],
+ "Dígitos de sete segmentos com visual retrô.": [
+  "Seven-segment digits with a retro look.",
+  "Dígitos de sete segmentos com visual retro.",
+  "Dígitos de siete segmentos con aspecto retro.",
+  "Chiffres à sept segments au look rétro."
+ ],
+ "Fade": [
+  "Fade",
+  "Fade",
+  "Fade",
+  "Fade"
+ ],
+ "Transição suave entre os dígitos.": [
+  "Smooth transition between digits.",
+  "Transição suave entre os dígitos.",
+  "Transición suave entre los dígitos.",
+  "Transition douce entre les chiffres."
+ ],
+ "Matrix": [
+  "Matrix",
+  "Matrix",
+  "Matrix",
+  "Matrix"
+ ],
+ "Estilo matriz de pontos para alta densidade visual.": [
+  "Dot-matrix style for high visual density.",
+  "Estilo matriz de pontos para alta densidade visual.",
+  "Estilo matriz de puntos para alta densidad visual.",
+  "Style matrice de points pour une haute densité visuelle."
+ ],
+ "Neon": [
+  "Neon",
+  "Neon",
+  "Neon",
+  "Neon"
+ ],
+ "Tema com brilho de painel neon.": [
+  "Theme with a neon-panel glow.",
+  "Tema com brilho de painel neon.",
+  "Tema con brillo de panel neón.",
+  "Thème avec l'éclat d'un panneau néon."
+ ],
+ "Discard": [
+  "Discard",
+  "Discard",
+  "Discard",
+  "Discard"
+ ],
+ "Cartões empilhados com virada de dígito.": [
+  "Stacked cards with digit flip.",
+  "Cartões empilhados com viragem de dígito.",
+  "Tarjetas apiladas con giro de dígito.",
+  "Cartes empilées avec retournement de chiffre."
+ ],
+ "Timezone": [
+  "Timezone",
+  "Timezone",
+  "Timezone",
+  "Fuseau horaire"
+ ],
+ "Troca rápida de timezone e formato 12h/24h.": [
+  "Quick timezone switch and 12h/24h format.",
+  "Troca rápida de timezone e formato 12h/24h.",
+  "Cambio rápido de timezone y formato 12h/24h.",
+  "Changement rapide de fuseau horaire et format 12h/24h."
+ ],
+ "Uso básico": [
+  "Basic usage",
+  "Uso básico",
+  "Uso básico",
+  "Utilisation de base"
+ ],
+ "Escolha de tema visual com preview imediato aplicado ao relógio.": [
+  "Pick a visual theme with an immediate preview applied to the clock.",
+  "Escolha de tema visual com pré-visualização imediata aplicada ao relógio.",
+  "Elección de tema visual con vista previa inmediata aplicada al reloj.",
+  "Choix d'un thème visuel avec un aperçu immédiat appliqué à l'horloge."
+ ],
+ "Galeria de temas": [
+  "Theme gallery",
+  "Galeria de temas",
+  "Galería de temas",
+  "Galerie de thèmes"
+ ],
+ "Previews compactos de temas embutidos para comparação visual.": [
+  "Compact previews of built-in themes for visual comparison.",
+  "Previews compactos de temas embutidos para comparação visual.",
+  "Vistas previas compactas de temas integrados para comparación visual.",
+  "Aperçus compacts des thèmes intégrés pour comparaison visuelle."
+ ],
+ "size define o lado do quadrado da miniatura (padrão: 64).": [
+  "size sets the side of the thumbnail's square (default: 64).",
+  "size define o lado do quadrado da miniatura (predefinição: 64).",
+  "size define el lado del cuadrado de la miniatura (predeterminado: 64).",
+  "size définit le côté du carré de la miniature (par défaut : 64)."
+ ],
+ "Anel global": [
+  "Global ring",
+  "Anel global",
+  "Anillo global",
+  "Anneau global"
+ ],
+ "Envolva SgClock e SgClockThemePicker com SgClockThemeProvider para compartilhar a resolução de temas.": [
+  "Wrap SgClock and SgClockThemePicker with SgClockThemeProvider to share theme resolution.",
+  "Envolva SgClock e SgClockThemePicker com SgClockThemeProvider para partilhar a resolução de temas.",
+  "Envuelve SgClock y SgClockThemePicker con SgClockThemeProvider para compartir la resolución de temas.",
+  "Encapsulez SgClock et SgClockThemePicker avec SgClockThemeProvider pour partager la résolution de thème."
+ ],
+ "Tema local customizado": [
+  "Custom local theme",
+  "Tema local personalizado",
+  "Tema local personalizado",
+  "Thème local personnalisé"
+ ],
+ "Passe um array themes para o provider para injetar temas locais sem registro global.": [
+  "Pass a themes array to the provider to inject local themes without global registration.",
+  "Passe um array themes para o provider para injetar temas locais sem registo global.",
+  "Pasa un array themes al provider para inyectar temas locales sin registro global.",
+  "Passez un tableau de thèmes au provider pour injecter des thèmes locaux sans enregistrement global."
+ ],
+ "Registro global": [
+  "Global registration",
+  "Registo global",
+  "Registro global",
+  "Enregistrement global"
+ ],
+ "Use registerTheme para registrar temas globalmente. Eles ficam disponíveis para todas as instâncias de SgClockThemeProvider.": [
+  "Use registerTheme to register themes globally. They are available to all SgClockThemeProvider instances.",
+  "Use registerTheme para registar temas globalmente. Ficam disponíveis para todas as instâncias de SgClockThemeProvider.",
+  "Usa registerTheme para registrar temas globalmente. Quedan disponibles para todas las instancias de SgClockThemeProvider.",
+  "Utilisez registerTheme pour enregistrer des thèmes globalement. Ils sont disponibles pour toutes les instances de SgClockThemeProvider."
+ ],
+ "Resolver temas na árvore (useSgClockThemeResolver)": [
+  "Resolving themes in the tree (useSgClockThemeResolver)",
+  "Resolver temas na árvore (useSgClockThemeResolver)",
+  "Resolver temas en el árbol (useSgClockThemeResolver)",
+  "Résoudre les thèmes dans l'arbre (useSgClockThemeResolver)"
+ ],
+ "O hook devolve o resolvedor do provider mais próximo — ou null, se não houver provider: não existe fallback implícito. Com ele você resolve um tema por id, lista os visíveis (globais + locais) e registra temas locais em tempo de execução.": [
+  "The hook returns the nearest provider's resolver — or null when there is no provider: there is no implicit fallback. Use it to resolve a theme by id, list the visible ones (global + local) and register local themes at runtime.",
+  "O hook devolve o resolvedor do provider mais próximo — ou null, se não houver provider: não existe fallback implícito. Com ele resolve um tema por id, lista os visíveis (globais + locais) e regista temas locais em tempo de execução.",
+  "El hook devuelve el resolvedor del provider más cercano — o null si no hay provider: no existe fallback implícito. Con él resuelves un tema por id, listas los visibles (globales + locales) y registras temas locales en tiempo de ejecución.",
+  "Le hook renvoie le résolveur du provider le plus proche — ou null s'il n'y a pas de provider : il n'existe pas de fallback implicite. Il permet de résoudre un thème par id, de lister ceux qui sont visibles (globaux + locaux) et d'enregistrer des thèmes locaux à l'exécution."
+ ],
+ "Padrão (Horizontal)": [
+  "Default (Horizontal)",
+  "Predefinido (Horizontal)",
+  "Predeterminado (Horizontal)",
+  "Par défaut (Horizontal)"
+ ],
+ "Faixas coloridas com um ponteiro primário controlável.": [
+  "Colored ranges with a controllable primary pointer.",
+  "Intervalos coloridos com um ponteiro primário controlável.",
+  "Rangos coloreados con un puntero primario controlable.",
+  "Plages colorées avec un pointeur primaire contrôlable."
+ ],
+ "Vertical + múltiplos ponteiros": [
+  "Vertical + Multi Pointers",
+  "Vertical + múltiplos ponteiros",
+  "Vertical + múltiples punteros",
+  "Vertical + pointeurs multiples"
+ ],
+ "Orientação vertical com dois ponteiros arrastáveis.": [
+  "Vertical orientation with two draggable pointers.",
+  "Orientação vertical com dois ponteiros arrastáveis.",
+  "Orientación vertical con dos punteros arrastrables.",
+  "Orientation verticale avec deux pointeurs déplaçables."
+ ],
+ "Ponteiro de agulha primário com faixas de alerta.": [
+  "Primary needle pointer with warning ranges.",
+  "Ponteiro de agulha primário com intervalos de alerta.",
+  "Puntero de aguja primario con rangos de advertencia.",
+  "Aiguille principale avec plages d'alerte."
+ ],
+ "Anel mais espesso (ringThickness)": [
+  "Thicker Ring (ringThickness)",
+  "Anel mais espesso (ringThickness)",
+  "Anillo Más Grueso (ringThickness)",
+  "Anneau Plus Épais (ringThickness)"
+ ],
+ "Eixo Invertido + Ângulos Customizados": [
+  "Axis Inversed + Custom Angles",
+  "Eixo Invertido + Ângulos Personalizados",
+  "Eje Invertido + Ángulos Personalizados",
+  "Axe Inversé + Angles Personnalisés"
+ ],
+ "Com isAxisInversed, ângulos customizados e animate={false}.": [
+  "With isAxisInversed, custom angles, and animate={false}.",
+  "Com isAxisInversed, ângulos personalizados e animate={false}.",
+  "Con isAxisInversed, ángulos personalizados y animate={false}.",
+  "Avec isAxisInversed, angles personnalisés et animate={false}."
+ ],
+ "Múltiplos ponteiros + anotação": [
+  "Multi Pointers + Annotation",
+  "Múltiplos ponteiros + anotação",
+  "Múltiples Punteros + Anotación",
+  "Aiguilles Multiples + Annotation"
+ ],
+ "Combina marcador, ponteiro de faixa e anotação baseada em valor.": [
+  "Combines marker, range pointer, and value-based annotation.",
+  "Combina marcador, ponteiro de intervalo e anotação baseada em valor.",
+  "Combina marcador, puntero de rango y anotación basada en valor.",
+  "Combine marqueur, aiguille de plage et annotation basée sur la valeur."
+ ],
+ "Outras props (tamanho, rótulos e acessibilidade)": [
+  "Other Props (size, labels and accessibility)",
+  "Outras props (tamanho, rótulos e acessibilidade)",
+  "Otras Props (tamaño, etiquetas y accesibilidad)",
+  "Autres Props (taille, étiquettes et accessibilité)"
+ ],
+ "meta": [
+  "goal",
+  "meta",
+  "meta",
+  "objectif"
+ ],
+ "Volume": [
+  "Volume",
+  "Volume",
+  "Volumen",
+  "Volume"
+ ],
+ "Velocidade": [
+  "Speed",
+  "Velocidade",
+  "Velocidad",
+  "Vitesse"
+ ],
+ "alvo": [
+  "target",
+  "alvo",
+  "objetivo",
+  "cible"
+ ],
+ "Temperatura atual": [
+  "Current temperature",
+  "Temperatura atual",
+  "Temperatura actual",
+  "Température actuelle"
+ ],
+ "Gauge de eficiência": [
+  "Efficiency gauge",
+  "Medidor de eficiência",
+  "Medidor de eficiencia",
+  "Jauge d'efficacité"
+ ],
+ "Exemplo com anel espesso e sem corte visual usando ringThickness: 36.": [
+  "Example with a thick ring and no visual clipping using ringThickness: 36.",
+  "Exemplo com anel espesso e sem corte visual usando ringThickness: 36.",
+  "Ejemplo con anillo grueso y sin recorte visual usando ringThickness: 36.",
+  "Exemple avec un anneau épais et sans coupure visuelle avec ringThickness : 36."
+ ],
+ "Com isAxisInversed, ângulos customizados e animate: false.": [
+  "With isAxisInversed, custom angles, and animate: false.",
+  "Com isAxisInversed, ângulos personalizados e animate: false.",
+  "Con isAxisInversed, ángulos personalizados y animate: false.",
+  "Avec isAxisInversed, angles personnalisés et animate : false."
+ ],
+ "Ponteiro de Faixa (Donut)": [
+  "Range Pointer (Donut)",
+  "Ponteiro de Intervalo (Donut)",
+  "Puntero de Rango (Donut)",
+  "Aiguille de Plage (Donut)"
+ ],
+ "Visual tipo donut usando ponteiro do tipo range.": [
+  "Donut-style visual using a range-type pointer.",
+  "Visual tipo donut usando ponteiro do tipo range.",
+  "Visual tipo donut usando puntero de tipo range.",
+  "Visuel de type donut avec une aiguille de type range."
+ ],
+ "Estilo velocímetro": [
+  "Speedometer Style",
+  "Estilo velocímetro",
+  "Estilo velocímetro",
+  "Style Compteur de Vitesse"
+ ],
+ "Alvo": [
+  "Target",
+  "Alvo",
+  "Objetivo",
+  "Cible"
+ ],
+ "Exemplo com width/height, axisWidth, animationDuration, primaryPointerLabel, labelFormatter e ariaLabel.": [
+  "Example with width/height, axisWidth, animationDuration, primaryPointerLabel, labelFormatter and ariaLabel.",
+  "Exemplo com width/height, axisWidth, animationDuration, primaryPointerLabel, labelFormatter e ariaLabel.",
+  "Ejemplo con width/height, axisWidth, animationDuration, primaryPointerLabel, labelFormatter y ariaLabel.",
+  "Exemple avec width/height, axisWidth, animationDuration, primaryPointerLabel, labelFormatter et ariaLabel."
+ ],
+ "Roller 3D - nomes (alinhado à esquerda)": [
+  "Roller 3D - names (left-aligned)",
+  "Roller 3D - nomes (alinhado à esquerda)",
+  "Roller 3D - nombres (left-aligned)",
+  "Roller 3D - noms (aligne a gauche)"
+ ],
+ "Anima \"LUCIANO\" até \"MARTA\". Posições extras preenchidas com espaço à direita (alignTo=\"left\").": [
+  "Animates \"LUCIANO\" into \"MARTA\". Extra positions are padded on the right (alignTo=\"left\").",
+  "Anima \"LUCIANO\" para \"MARTA\". Posicoes extra preenchidas com espaco a direita (alignTo=\"left\").",
+  "Anima \"LUCIANO\" hasta \"MARTA\". Las posiciones extra se completan a la derecha (alignTo=\"left\").",
+  "Anime \"LUCIANO\" vers \"MARTA\". Les positions supplementaires sont completees a droite (alignTo=\"left\")."
+ ],
+ "Roller 3D - números (alinhado à direita)": [
+  "Roller 3D - numbers (right-aligned)",
+  "Roller 3D - números (alinhado à direita)",
+  "Roller 3D - números (alineado a la derecha)",
+  "Roller 3D - nombres (aligne a droite)"
+ ],
+ "Anima \"42\" até \"1337\". Espaços são inseridos à esquerda (alignTo=\"right\") e os dígitos animam da direita para a esquerda.": [
+  "Animates \"42\" into \"1337\". Padding is applied on the left (alignTo=\"right\") and digits animate from right to left.",
+  "Anima \"42\" para \"1337\". Espacos sao inseridos a esquerda (alignTo=\"right\") e os digitos animam da direita para a esquerda.",
+  "Anima \"42\" hasta \"1337\". Los espacios se insertan a la izquierda (alignTo=\"right\") y los digitos animan de derecha a izquierda.",
+  "Anime \"42\" vers \"1337\". Le remplissage est applique a gauche (alignTo=\"right\") et les chiffres s'animent de droite a gauche."
+ ],
+ "Estilo Flip": [
+  "Flip style",
+  "Estilo Flip",
+  "Estilo Flip",
+  "Style Flip"
+ ],
+ "Animação de nomes usando SgFlipDigit (flip card).": [
+  "Name animation using SgFlipDigit (flip card).",
+  "Animacao de nomes usando SgFlipDigit (flip card).",
+  "Animacion de nombres usando SgFlipDigit (flip card).",
+  "Animation de nom avec SgFlipDigit (carte a bascule)."
+ ],
+ "Estilo Neon": [
+  "Neon style",
+  "Estilo Neon",
+  "Estilo Neon",
+  "Style Neon"
+ ],
+ "Cada caractere usa SgNeonDigit com efeito de brilho neon. Use color e backgroundColor para personalizar.": [
+  "Each character uses SgNeonDigit with a neon glow effect. Use color and backgroundColor for customization.",
+  "Cada caractere usa SgNeonDigit com efeito de brilho neon. Use color e backgroundColor para personalizar.",
+  "Cada caracter usa SgNeonDigit con efecto de brillo neon. Usa color y backgroundColor para personalizar.",
+  "Chaque caractere utilise SgNeonDigit avec un effet de lueur neon. Utilisez color et backgroundColor pour la personnalisation."
+ ],
+ "Estilo Fade": [
+  "Fade style",
+  "Estilo Fade",
+  "Estilo Fade",
+  "Style Fade"
+ ],
+ "Cada caractere usa SgFadeDigit: apaga o dígito atual e acende o novo (efeito bulbo/display).": [
+  "Each character uses SgFadeDigit: the current value fades out and the next one fades in.",
+  "Cada caractere usa SgFadeDigit: apaga o digito atual e acende o novo (efeito de display).",
+  "Cada caracter usa SgFadeDigit: apaga el valor actual y enciende el siguiente.",
+  "Chaque caractere utilise SgFadeDigit : la valeur courante disparait en fondu et la suivante apparait en fondu."
+ ],
+ "Estilo Discard": [
+  "Discard style",
+  "Estilo Discard",
+  "Estilo Discard",
+  "Style Discard"
+ ],
+ "Cada caractere usa SgDiscardDigit: a folha com o valor antigo é descartada voando para fora.": [
+  "Each character uses SgDiscardDigit: the previous value is discarded with an outgoing motion.",
+  "Cada caractere usa SgDiscardDigit: a folha com o valor antigo e descartada para fora.",
+  "Cada caracter usa SgDiscardDigit: la hoja con el valor anterior se descarta hacia fuera.",
+  "Chaque caractere utilise SgDiscardDigit : la valeur precedente est ecartee par un mouvement sortant."
+ ],
+ "Estilo Matrix": [
+  "Matrix style",
+  "Estilo Matrix",
+  "Estilo Matrix",
+  "Style Matrix"
+ ],
+ "Cada caractere usa SgMatrixDigit: renderizado em pontos de LED 5x7. Ideal para placares e painéis digitais.": [
+  "Each character uses SgMatrixDigit with a 5x7 LED matrix rendering. Great for dashboards and digital panels.",
+  "Cada caractere usa SgMatrixDigit: renderizado em pontos de LED 5x7. Ideal para placares e paineis digitais.",
+  "Cada caracter usa SgMatrixDigit: renderizado en puntos LED 5x7. Ideal para paneles digitales.",
+  "Chaque caractere utilise SgMatrixDigit avec un rendu en matrice de LED 5x7. Ideal pour les tableaux de bord et les panneaux numeriques."
+ ],
+ "autoStart - animação automática": [
+  "autoStart - automatic animation",
+  "autoStart - animação automática",
+  "autoStart - animacion automatica",
+  "autoStart - animation automatique"
+ ],
+ "Com autoStart=true, a animação é iniciada automaticamente sempre que targetString mudar. Funciona com todos os estilos.": [
+  "With autoStart=true, animation starts automatically whenever targetString changes. Works with all styles.",
+  "Com autoStart=true, a animacao inicia automaticamente sempre que targetString muda. Funciona com todos os estilos.",
+  "Con autoStart=true, la animacion se inicia automaticamente cuando cambia targetString. Funciona con todos los estilos.",
+  "Avec autoStart=true, l'animation demarre automatiquement des que targetString change. Fonctionne avec tous les styles."
+ ],
+ "Velocidades": [
+  "Speed presets",
+  "Velocidades",
+  "Velocidades",
+  "Presets de vitesse"
+ ],
+ "Comparação de velocity=10, 50 e 90 na mesma animação.": [
+  "Comparison of velocity=10, 50, and 90 using the same animation.",
+  "Comparacao de velocity=10, 50 e 90 na mesma animacao.",
+  "Comparacion de velocity=10, 50 y 90 en la misma animacion.",
+  "Comparaison de velocity=10, 50 et 90 avec la meme animation."
+ ],
+ "Exemplo interativo": [
+  "Interactive example",
+  "Exemplo interativo",
+  "Ejemplo interactivo",
+  "Exemple interactif"
+ ],
+ "Altere o valor do QR Code, o logo central e o tamanho.": [
+  "Change QR value, centered logo, and size.",
+  "Change the QR Code value, center logo, and size.",
+  "Change the QR Code value, center logo, and size.",
+  "Changez la valeur du QR, le logo centre et la taille."
+ ],
+ "Valor do QR Code": [
+  "QR Code value",
+  "Valor do QR Code",
+  "Valor del QR Code",
+  "Valeur du QR Code"
+ ],
+ "Digite texto, URL ou payload PIX": [
+  "Type text, URL, or PIX payload",
+  "Digite texto, URL ou payload PIX",
+  "Escribe texto, URL o payload PIX",
+  "Saisissez du texte, une URL ou un payload PIX"
+ ],
+ "Exemplo PIX": [
+  "PIX sample",
+  "PIX example",
+  "Ejemplo PIX",
+  "Exemple PIX"
+ ],
+ "Sem logo": [
+  "No logo",
+  "Sem logo",
+  "Sin logo",
+  "Sans logo"
+ ],
+ "Informe um valor": [
+  "Provide a value",
+  "Enter a value",
+  "Ingresa un valor",
+  "Fournissez une valeur"
+ ],
+ "Com logo": [
+  "With logo",
+  "Com logótipo",
+  "Con logo",
+  "Avec logo"
+ ],
+ "O logo central tem tamanho, respiro e cantos configuráveis (logoSize, logoPadding e logoBorderRadius).": [
+  "The center logo has configurable size, padding and corner radius (logoSize, logoPadding and logoBorderRadius).",
+  "O logótipo central tem tamanho, espaçamento e cantos configuráveis (logoSize, logoPadding e logoBorderRadius).",
+  "El logo central tiene tamaño, espacio y esquinas configurables (logoSize, logoPadding y logoBorderRadius).",
+  "Le logo central a une taille, une marge et des coins configurables (logoSize, logoPadding et logoBorderRadius)."
+ ],
+ "Próximo nome": [
+  "Next name",
+  "Próximo nome",
+  "Siguiente nombre",
+  "Nom suivant"
+ ],
+ "Lento (velocity=10)": [
+  "Slow (velocity=10)",
+  "Lento (velocity=10)",
+  "Lento (velocity=10)",
+  "Lent (velocity=10)"
+ ],
+ "Médio (velocity=50)": [
+  "Medium (velocity=50)",
+  "Médio (velocity=50)",
+  "Medio (velocity=50)",
+  "Moyen (velocity=50)"
+ ],
+ "Rápido (velocity=90)": [
+  "Fast (velocity=90)",
+  "Rápido (velocity=90)",
+  "Rápido (velocity=90)",
+  "Rapide (velocity=90)"
+ ],
+ "Default (namespace vazio)": [
+  "Default (empty namespace)",
+  "Default (namespace vazio)",
+  "Default (namespace vacío)",
+  "Par défaut (espace de noms vide)"
+ ],
+ "Namespace customizado": [
+  "Custom namespace",
+  "Namespace customizado",
+  "Namespace personalizado",
+  "Espace de noms personnalisé"
+ ],
+ "Ler só o namespace (useSgNamespaceProvider)": [
+  "Reading just the namespace (useSgNamespaceProvider)",
+  "Ler só o namespace (useSgNamespaceProvider)",
+  "Leer solo el namespace (useSgNamespaceProvider)",
+  "Lire seulement le namespace (useSgNamespaceProvider)"
+ ],
+ "Atalho para o namespaceProvider do ambiente. Quando só o namespace importa — montar a chave de persistência de um usuário ou tenant — evita carregar o objeto de ambiente inteiro.": [
+  "A shortcut to the environment's namespaceProvider. When only the namespace matters — building a user's or tenant's persistence key — it avoids pulling in the whole environment object.",
+  "Atalho para o namespaceProvider do ambiente. Quando só o namespace importa — montar a chave de persistência de um utilizador ou tenant — evita carregar o objeto de ambiente inteiro.",
+  "Atajo al namespaceProvider del entorno. Cuando solo importa el namespace — armar la clave de persistencia de un usuario o tenant — evita cargar el objeto de entorno completo.",
+  "Raccourci vers le namespaceProvider de l'environnement. Quand seul le namespace compte — construire la clé de persistance d'un utilisateur ou d'un tenant — il évite de charger tout l'objet d'environnement."
+ ],
+ "REST (por usuário)": [
+  "REST (per user)",
+  "REST (por utilizador)",
+  "REST (por usuario)",
+  "REST (par utilisateur)"
+ ],
+ "Hybrid (local + REST)": [
+  "Hybrid (local + REST)",
+  "Hybrid (local + REST)",
+  "Hybrid (local + REST)",
+  "Hybride (local + REST)"
+ ],
+ "O mirror grava na API (primária) e no armazenamento local (secundária) e lê da primária; se ela estiver vazia, lê da local.": [
+  "The mirror writes to the API (primary) and to local storage (secondary) and reads from the primary; if it is empty, it reads from the local one.",
+  "O mirror grava na API (primária) e no armazenamento local (secundária) e lê da primária; se estiver vazia, lê da local.",
+  "El mirror escribe en la API (primaria) y en el almacenamiento local (secundaria) y lee de la primaria; si está vacía, lee de la local.",
+  "Le mirror écrit dans l'API (primaire) et dans le stockage local (secondaire) et lit depuis la primaire ; si elle est vide, il lit depuis la locale."
+ ],
+ "No layout, com a BFF": [
+  "In the layout, with the BFF",
+  "No layout, com a BFF",
+  "En el layout, con la BFF",
+  "Dans le layout, avec la BFF"
+ ],
+ "Monte uma vez onde já há usuário logado. O token vem de /api/realtime/connect (a BFF), que repassa ao backend: ele emite o token para o usuário da sessão.": [
+  "Mount it once where there is already a signed-in user. The token comes from /api/realtime/connect (the BFF), which forwards to the backend: it issues the token for the session user.",
+  "Monte uma vez onde já há utilizador autenticado. O token vem de /api/realtime/connect (a BFF), que o pede ao backend para o utilizador da sessão.",
+  "Móntelo una vez donde ya hay usuario autenticado. El token viene de /api/realtime/connect (la BFF), que lo pide al backend para el usuario de la sesión.",
+  "Montez-le une seule fois là où un utilisateur est connecté. Le jeton vient de /api/realtime/connect (la BFF), qui le demande au backend pour l'utilisateur de la session."
+ ],
+ "Com enabled: false (ex.: enquanto não há usuário logado) não pede token nem conecta.": [
+  "With enabled: false (e.g. while no user is logged in) it requests no token and does not connect.",
+  "Com enabled: false (ex.: enquanto não há utilizador autenticado) não pede token nem liga.",
+  "Con enabled: false (p. ej., mientras no hay usuario conectado) no pide token ni se conecta.",
+  "Avec enabled: false (p. ex. tant qu'aucun utilisateur n'est connecté), il ne demande pas de jeton et ne se connecte pas."
+ ],
+ "Sem provedor (fallback)": [
+  "Without provider (fallback)",
+  "Sem provedor (fallback)",
+  "Sin proveedor (fallback)",
+  "Sans provider (repli)"
+ ],
+ "Integração com Next.js": [
+  "Next.js integration",
+  "Integração com Next.js",
+  "Integración con Next.js",
+  "Intégration Next.js"
+ ],
+ "Padrão recomendado: inicializar o SgTimeProvider no layout raiz com um timestamp do servidor.": [
+  "Recommended pattern: initialize SgTimeProvider in the root layout with a server-side timestamp.",
+  "Padrão recomendado: inicializar o SgTimeProvider no layout raiz com um timestamp do servidor.",
+  "Patrón recomendado: inicializar SgTimeProvider en el layout raíz con un timestamp del servidor.",
+  "Modèle recommandé : initialisez SgTimeProvider dans la disposition racine avec un timestamp côté serveur."
  ]
 }

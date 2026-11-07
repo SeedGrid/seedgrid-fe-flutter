@@ -37,6 +37,22 @@ SgTimeProvider(
 )
 ''';
 
+  /// Region `sg-time-provider-raiz`.
+  static const String sgTimeProviderRaiz = r'''
+SizedBox(
+  height: 140,
+  child: MaterialApp(
+    debugShowCheckedModeBanner: false,
+    theme: Theme.of(context),
+    builder: (context, child) => SgTimeProvider(
+      initialServerTime: '2026-06-15T09:41:07Z',
+      child: child!,
+    ),
+    home: const Center(child: SgClock(timezone: 'UTC')),
+  ),
+)
+''';
+
   /// Region `sg-time-provider-sem`.
   static const String sgTimeProviderSem = r'''
 Builder(

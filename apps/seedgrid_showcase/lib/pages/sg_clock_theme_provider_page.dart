@@ -7,35 +7,57 @@ import '../src/sg_showcase_page.dart';
 import '../src/showcase_i18n.dart';
 import 'sg_clock_theme_provider_page.snippets.g.dart';
 
-class SgClockThemeProviderPage extends StatelessWidget {
+class SgClockThemeProviderPage extends StatefulWidget {
   const SgClockThemeProviderPage({super.key});
+
+  @override
+  State<SgClockThemeProviderPage> createState() =>
+      _SgClockThemeProviderPageState();
+}
+
+class _SgClockThemeProviderPageState extends State<SgClockThemeProviderPage> {
+  String _themeId = 'classic';
 
   @override
   Widget build(BuildContext context) {
     final examples = <ShowcaseExample>[
       ShowcaseExample(
-        title: 'Registrando os temas embutidos',
+        title: 'Uso básico',
         description:
-            'Os temas embutidos não vêm registrados: passe sgClockThemesBuiltIn no value. Todos os relógios abaixo do provider enxergam os temas.',
+            'Envolva SgClock e SgClockThemePicker com SgClockThemeProvider para compartilhar a resolução de temas.',
         preview:
             // #region sg-clock-theme-provider-basico
             SgClockThemeProvider(
               value: SgClockThemeProviderValue(themes: sgClockThemesBuiltIn),
-              child: const SgClock(
-                clockStyle: SgClockClockStyle.analog,
-                size: 160,
-                initialServerTime: '2026-06-15T10:08:30Z',
-                timezone: 'UTC',
-                themeId: 'music-notes',
+              child: Wrap(
+                spacing: 16,
+                runSpacing: 16,
+                crossAxisAlignment: WrapCrossAlignment.start,
+                children: [
+                  SgClock(
+                    clockStyle: SgClockClockStyle.analog,
+                    size: 160,
+                    initialServerTime: '2026-06-15T10:08:30Z',
+                    timezone: 'UTC',
+                    themeId: _themeId,
+                  ),
+                  SizedBox(
+                    width: 300,
+                    child: SgClockThemePicker(
+                      value: _themeId,
+                      onChange: (id) => setState(() => _themeId = id),
+                    ),
+                  ),
+                ],
               ),
             ),
         // #endregion
         code: SgClockThemeProviderPageSnippets.sgClockThemeProviderBasico,
       ),
       ShowcaseExample(
-        title: 'Um tema local',
+        title: 'Tema local customizado',
         description:
-            'themes aceita temas próprios, que valem só abaixo do provider e vencem os globais de mesmo id.',
+            'Passe um array themes para o provider para injetar temas locais sem registro global.',
         preview:
             // #region sg-clock-theme-provider-local
             SgClockThemeProvider(
@@ -79,6 +101,73 @@ class SgClockThemeProviderPage extends StatelessWidget {
         code: SgClockThemeProviderPageSnippets.sgClockThemeProviderLocal,
       ),
       ShowcaseExample(
+        title: 'Registro global',
+        description:
+            'Use registerTheme para registrar temas globalmente. Eles ficam disponíveis para todas as instâncias de SgClockThemeProvider.',
+        preview:
+            // #region sg-clock-theme-provider-global
+            Builder(
+              builder: (context) {
+                registerTheme(
+                  SgClockTheme(
+                    id: 'anel-global',
+                    label: context.tx('Anel global'),
+                    ops: [
+                      SgClockCircle(
+                        cx: 50,
+                        cy: 50,
+                        r: 48,
+                        fill: SgClockPaint(
+                          light: Color(0xFFECFDF5),
+                          dark: Color(0xFF052E16),
+                        ),
+                        stroke: SgClockPaint(
+                          light: Color(0xFF16A34A),
+                          dark: Color(0xFF4ADE80),
+                        ),
+                        strokeWidth: 3,
+                      ),
+                    ],
+                  ),
+                );
+                return const SgClockThemeProvider(
+                  child: SgClock(
+                    clockStyle: SgClockClockStyle.analog,
+                    size: 160,
+                    initialServerTime: '2026-06-15T10:08:30Z',
+                    timezone: 'UTC',
+                    themeId: 'anel-global',
+                  ),
+                );
+              },
+            ),
+        // #endregion
+        code: SgClockThemeProviderPageSnippets.sgClockThemeProviderGlobal,
+      ),
+      ShowcaseExample(
+        title: 'Resolver temas na árvore (useSgClockThemeResolver)',
+        description:
+            'O hook devolve o resolvedor do provider mais próximo — ou null, se não houver provider: não existe fallback implícito. Com ele você resolve um tema por id, lista os visíveis (globais + locais) e registra temas locais em tempo de execução.',
+        preview:
+            // #region sg-clock-theme-provider-resolvedor
+            SgClockThemeProvider(
+              value: SgClockThemeProviderValue(
+                mode: SgClockThemeResolveMode.strict,
+                themes: sgClockThemesBuiltIn,
+              ),
+              child: Builder(
+                builder: (context) {
+                  final resolvedor = useSgClockThemeResolver(context)!;
+                  return Text(
+                    '${resolvedor.list().length} temas; "dark": ${resolvedor.resolve('dark')?.label}; "x": ${resolvedor.resolve('x')}',
+                  );
+                },
+              ),
+            ),
+        // #endregion
+        code: SgClockThemeProviderPageSnippets.sgClockThemeProviderResolvedor,
+      ),
+      ShowcaseExample(
         title: 'Tema de recuo',
         description:
             'Com mode fallback (padrão), um id desconhecido cai em fallbackThemeId (padrão: classic).',
@@ -99,29 +188,6 @@ class SgClockThemeProviderPage extends StatelessWidget {
             ),
         // #endregion
         code: SgClockThemeProviderPageSnippets.sgClockThemeProviderRecuo,
-      ),
-      ShowcaseExample(
-        title: 'Lendo o resolvedor',
-        description:
-            'useSgClockThemeResolver(context) devolve o resolvedor do provider mais próximo (ou nulo): resolve e list.',
-        preview:
-            // #region sg-clock-theme-provider-resolvedor
-            SgClockThemeProvider(
-              value: SgClockThemeProviderValue(
-                mode: SgClockThemeResolveMode.strict,
-                themes: sgClockThemesBuiltIn,
-              ),
-              child: Builder(
-                builder: (context) {
-                  final resolvedor = useSgClockThemeResolver(context)!;
-                  return Text(
-                    '${resolvedor.list().length} temas; "dark": ${resolvedor.resolve('dark')?.label}; "x": ${resolvedor.resolve('x')}',
-                  );
-                },
-              ),
-            ),
-        // #endregion
-        code: SgClockThemeProviderPageSnippets.sgClockThemeProviderResolvedor,
       ),
     ];
 

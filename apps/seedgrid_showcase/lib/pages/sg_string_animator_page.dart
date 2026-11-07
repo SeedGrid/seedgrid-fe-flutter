@@ -13,28 +13,33 @@ class SgStringAnimatorPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final examples = <ShowcaseExample>[
       ShowcaseExample(
-        title: 'Animação manual (roller3d)',
+        title: 'Roller 3D - nomes (alinhado à esquerda)',
         description:
-            'A animação só começa quando você chama startAnimation(), pelo controller (o ref do React).',
+            'Anima "LUCIANO" até "MARTA". Posições extras preenchidas com espaço à direita (alignTo="left").',
         preview:
-            // #region sg-string-animator-manual
+            // #region sg-string-animator-roller-nomes
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Builder(
                 builder: (context) {
-                  final controller = SgStringAnimatorController();
+                  final animRef = SgStringAnimatorController();
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SgStringAnimator(
                         sourceString: 'LUCIANO',
                         targetString: 'MARTA',
-                        controller: controller,
+                        stringAnimatorStyle:
+                            SgStringAnimatorStringAnimatorStyle.roller3d,
+                        alignTo: SgStringAnimatorAlignTo.left,
+                        fontSize: 28,
+                        controller: animRef,
                       ),
                       const SizedBox(height: 16),
-                      FilledButton(
-                        onPressed: controller.startAnimation,
-                        child: Text(context.tx('Animar')),
+                      SgButton(
+                        size: SgSize.sm,
+                        label: Text(context.tx('Animar')),
+                        onClick: animRef.startAnimation,
                       ),
                     ],
                   );
@@ -42,43 +47,271 @@ class SgStringAnimatorPage extends StatelessWidget {
               ),
             ),
         // #endregion
-        code: SgStringAnimatorPageSnippets.sgStringAnimatorManual,
+        code: SgStringAnimatorPageSnippets.sgStringAnimatorRollerNomes,
       ),
       ShowcaseExample(
-        title: 'Troca de alvo com autoStart (flip)',
+        title: 'Roller 3D - números (alinhado à direita)',
         description:
-            'Com autoStart a animação roda na montagem e sempre que targetString muda.',
+            'Anima "42" até "1337". Espaços são inseridos à esquerda (alignTo="right") e os dígitos animam da direita para a esquerda.',
         preview:
-            // #region sg-string-animator-auto
+            // #region sg-string-animator-roller-numeros
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Builder(
                 builder: (context) {
-                  var target = 'LUCIANO';
+                  final animRef = SgStringAnimatorController();
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SgStringAnimator(
+                        sourceString: '42',
+                        targetString: '1337',
+                        stringAnimatorStyle:
+                            SgStringAnimatorStringAnimatorStyle.roller3d,
+                        alignTo: SgStringAnimatorAlignTo.right,
+                        fontSize: 28,
+                        controller: animRef,
+                      ),
+                      const SizedBox(height: 16),
+                      SgButton(
+                        size: SgSize.sm,
+                        label: Text(context.tx('Animar')),
+                        onClick: animRef.startAnimation,
+                      ),
+                    ],
+                  );
+                },
+              ),
+            ),
+        // #endregion
+        code: SgStringAnimatorPageSnippets.sgStringAnimatorRollerNumeros,
+      ),
+      ShowcaseExample(
+        title: 'Estilo Flip',
+        description: 'Animação de nomes usando SgFlipDigit (flip card).',
+        preview:
+            // #region sg-string-animator-flip
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Builder(
+                builder: (context) {
+                  final animRef = SgStringAnimatorController();
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SgStringAnimator(
+                        sourceString: 'LUCIANO',
+                        targetString: 'MARTA',
+                        stringAnimatorStyle:
+                            SgStringAnimatorStringAnimatorStyle.flip,
+                        alignTo: SgStringAnimatorAlignTo.left,
+                        fontSize: 28,
+                        controller: animRef,
+                      ),
+                      const SizedBox(height: 16),
+                      SgButton(
+                        size: SgSize.sm,
+                        label: Text(context.tx('Animar')),
+                        onClick: animRef.startAnimation,
+                      ),
+                    ],
+                  );
+                },
+              ),
+            ),
+        // #endregion
+        code: SgStringAnimatorPageSnippets.sgStringAnimatorFlip,
+      ),
+      ShowcaseExample(
+        title: 'Estilo Neon',
+        description:
+            'Cada caractere usa SgNeonDigit com efeito de brilho neon. Use color e backgroundColor para personalizar.',
+        preview:
+            // #region sg-string-animator-neon
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Builder(
+                builder: (context) {
+                  final animRef = SgStringAnimatorController();
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SgStringAnimator(
+                        sourceString: 'LUCIANO',
+                        targetString: 'MARTA',
+                        stringAnimatorStyle:
+                            SgStringAnimatorStringAnimatorStyle.neon,
+                        alignTo: SgStringAnimatorAlignTo.left,
+                        fontSize: 28,
+                        color: '#e4fbff',
+                        backgroundColor: '#090f22',
+                        controller: animRef,
+                      ),
+                      const SizedBox(height: 16),
+                      SgButton(
+                        size: SgSize.sm,
+                        label: Text(context.tx('Animar')),
+                        onClick: animRef.startAnimation,
+                      ),
+                    ],
+                  );
+                },
+              ),
+            ),
+        // #endregion
+        code: SgStringAnimatorPageSnippets.sgStringAnimatorNeon,
+      ),
+      ShowcaseExample(
+        title: 'Estilo Fade',
+        description:
+            'Cada caractere usa SgFadeDigit: apaga o dígito atual e acende o novo (efeito bulbo/display).',
+        preview:
+            // #region sg-string-animator-fade
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Builder(
+                builder: (context) {
+                  final animRef = SgStringAnimatorController();
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SgStringAnimator(
+                        sourceString: 'LUCIANO',
+                        targetString: 'MARTA',
+                        stringAnimatorStyle:
+                            SgStringAnimatorStringAnimatorStyle.fade,
+                        alignTo: SgStringAnimatorAlignTo.left,
+                        fontSize: 28,
+                        controller: animRef,
+                      ),
+                      const SizedBox(height: 16),
+                      SgButton(
+                        size: SgSize.sm,
+                        label: Text(context.tx('Animar')),
+                        onClick: animRef.startAnimation,
+                      ),
+                    ],
+                  );
+                },
+              ),
+            ),
+        // #endregion
+        code: SgStringAnimatorPageSnippets.sgStringAnimatorFade,
+      ),
+      ShowcaseExample(
+        title: 'Estilo Discard',
+        description:
+            'Cada caractere usa SgDiscardDigit: a folha com o valor antigo é descartada voando para fora.',
+        preview:
+            // #region sg-string-animator-discard
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Builder(
+                builder: (context) {
+                  final animRef = SgStringAnimatorController();
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SgStringAnimator(
+                        sourceString: 'LUCIANO',
+                        targetString: 'MARTA',
+                        stringAnimatorStyle:
+                            SgStringAnimatorStringAnimatorStyle.discard,
+                        alignTo: SgStringAnimatorAlignTo.left,
+                        fontSize: 28,
+                        controller: animRef,
+                      ),
+                      const SizedBox(height: 16),
+                      SgButton(
+                        size: SgSize.sm,
+                        label: Text(context.tx('Animar')),
+                        onClick: animRef.startAnimation,
+                      ),
+                    ],
+                  );
+                },
+              ),
+            ),
+        // #endregion
+        code: SgStringAnimatorPageSnippets.sgStringAnimatorDiscard,
+      ),
+      ShowcaseExample(
+        title: 'Estilo Matrix',
+        description:
+            'Cada caractere usa SgMatrixDigit: renderizado em pontos de LED 5x7. Ideal para placares e painéis digitais.',
+        preview:
+            // #region sg-string-animator-matrix
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Builder(
+                builder: (context) {
+                  final animRef = SgStringAnimatorController();
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SgStringAnimator(
+                        sourceString: 'LUCIANO',
+                        targetString: 'MARTA',
+                        stringAnimatorStyle:
+                            SgStringAnimatorStringAnimatorStyle.matrix,
+                        alignTo: SgStringAnimatorAlignTo.left,
+                        color: '#22d3ee',
+                        backgroundColor: '#0b1220',
+                        controller: animRef,
+                      ),
+                      const SizedBox(height: 16),
+                      SgButton(
+                        size: SgSize.sm,
+                        label: Text(context.tx('Animar')),
+                        onClick: animRef.startAnimation,
+                      ),
+                    ],
+                  );
+                },
+              ),
+            ),
+        // #endregion
+        code: SgStringAnimatorPageSnippets.sgStringAnimatorMatrix,
+      ),
+      ShowcaseExample(
+        title: 'autoStart - animação automática',
+        description:
+            'Com autoStart=true, a animação é iniciada automaticamente sempre que targetString mudar. Funciona com todos os estilos.',
+        preview:
+            // #region sg-string-animator-auto-start
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Builder(
+                builder: (context) {
+                  const names = [
+                    'LUCIANO',
+                    'MARTA',
+                    'PEDRO',
+                    'ANA',
+                    'SEEDGRID',
+                  ];
+                  var idx = 0;
                   return StatefulBuilder(
                     builder: (context, set) => Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SgStringAnimator(
-                          sourceString: 'LUCIANO',
-                          targetString: target,
+                          sourceString:
+                              names[(idx - 1 + names.length) % names.length],
+                          targetString: names[idx],
                           stringAnimatorStyle:
-                              SgStringAnimatorStringAnimatorStyle.flip,
-                          autoStart: true,
-                          velocity: 70,
+                              SgStringAnimatorStringAnimatorStyle.roller3d,
+                          alignTo: SgStringAnimatorAlignTo.left,
                           fontSize: 28,
+                          autoStart: true,
+                          velocity: 60,
                         ),
                         const SizedBox(height: 16),
-                        Wrap(
-                          spacing: 8,
-                          runSpacing: 8,
-                          children: [
-                            for (final nome in const ['MARTA', 'JOAO', 'ANA'])
-                              OutlinedButton(
-                                onPressed: () => set(() => target = nome),
-                                child: Text(nome),
-                              ),
-                          ],
+                        SgButton(
+                          size: SgSize.sm,
+                          label: Text(context.tx('Próximo nome')),
+                          onClick: () =>
+                              set(() => idx = (idx + 1) % names.length),
                         ),
                       ],
                     ),
@@ -87,148 +320,63 @@ class SgStringAnimatorPage extends StatelessWidget {
               ),
             ),
         // #endregion
-        code: SgStringAnimatorPageSnippets.sgStringAnimatorAuto,
+        code: SgStringAnimatorPageSnippets.sgStringAnimatorAutoStart,
       ),
       ShowcaseExample(
-        title: 'Números alinhados à direita',
-        description:
-            'alignTo: right preenche à esquerda com emptyChar e anima as unidades primeiro; charset limita o tambor.',
+        title: 'Velocidades',
+        description: 'Comparação de velocity=10, 50 e 90 na mesma animação.',
         preview:
-            // #region sg-string-animator-direita
+            // #region sg-string-animator-velocidades
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Builder(
                 builder: (context) {
-                  final controller = SgStringAnimatorController();
-                  return Row(
-                    mainAxisSize: MainAxisSize.min,
+                  final casos = [
+                    (context.tx('Lento (velocity=10)'), 10),
+                    (context.tx('Médio (velocity=50)'), 50),
+                    (context.tx('Rápido (velocity=90)'), 90),
+                  ];
+                  final refs = [
+                    for (final _ in casos) SgStringAnimatorController(),
+                  ];
+                  return SgGrid(
+                    columns: const {'base': 1, 'md': 3},
+                    gap: 24,
                     children: [
-                      SgStringAnimator(
-                        sourceString: '7',
-                        targetString: '2048',
-                        alignTo: SgStringAnimatorAlignTo.right,
-                        emptyChar: '0',
-                        charset: const [
-                          '0',
-                          '1',
-                          '2',
-                          '3',
-                          '4',
-                          '5',
-                          '6',
-                          '7',
-                          '8',
-                          '9',
-                        ],
-                        velocity: 90,
-                        controller: controller,
-                      ),
-                      const SizedBox(width: 24),
-                      FilledButton(
-                        onPressed: controller.startAnimation,
-                        child: Text(context.tx('Contar')),
-                      ),
-                    ],
-                  );
-                },
-              ),
-            ),
-        // #endregion
-        code: SgStringAnimatorPageSnippets.sgStringAnimatorDireita,
-      ),
-      ShowcaseExample(
-        title: 'Os outros estilos',
-        description:
-            'fade, matrix, neon e discard, com color e backgroundColor onde o estilo usa.',
-        preview:
-            // #region sg-string-animator-estilos
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Builder(
-                builder: (context) {
-                  final controller = SgStringAnimatorController();
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      for (final estilo in const [
-                        SgStringAnimatorStringAnimatorStyle.fade,
-                        SgStringAnimatorStringAnimatorStyle.matrix,
-                        SgStringAnimatorStringAnimatorStyle.neon,
-                        SgStringAnimatorStringAnimatorStyle.discard,
-                      ])
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 12),
-                          child: SgStringAnimator(
-                            sourceString: 'HELLO',
-                            targetString: 'WORLD',
-                            stringAnimatorStyle: estilo,
-                            fontSize: 24,
-                            controller: controller,
-                          ),
+                      for (var i = 0; i < casos.length; i++)
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              casos[i].$1,
+                              style: Theme.of(context).textTheme.bodySmall,
+                            ),
+                            const SizedBox(height: 8),
+                            SgStringAnimator(
+                              sourceString: 'ORIGEM',
+                              targetString: 'DESTINO',
+                              stringAnimatorStyle:
+                                  SgStringAnimatorStringAnimatorStyle.roller3d,
+                              alignTo: SgStringAnimatorAlignTo.left,
+                              fontSize: 22,
+                              velocity: casos[i].$2,
+                              controller: refs[i],
+                            ),
+                            const SizedBox(height: 8),
+                            SgButton(
+                              size: SgSize.sm,
+                              label: Text(context.tx('Animar')),
+                              onClick: refs[i].startAnimation,
+                            ),
+                          ],
                         ),
-                      FilledButton(
-                        onPressed: controller.startAnimation,
-                        child: Text(context.tx('Animar')),
-                      ),
                     ],
                   );
                 },
               ),
             ),
         // #endregion
-        code: SgStringAnimatorPageSnippets.sgStringAnimatorEstilos,
-      ),
-      ShowcaseExample(
-        title: 'Velocidade e preenchimento',
-        description:
-            'velocity vai de 1 a 100 (de 600 ms a 41 ms por caractere); emptyChar completa strings de tamanhos diferentes.',
-        preview:
-            // #region sg-string-animator-velocidade
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Builder(
-                builder: (context) {
-                  final lento = SgStringAnimatorController();
-                  final rapido = SgStringAnimatorController();
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SgStringAnimator(
-                        sourceString: 'ABCDEFG',
-                        targetString: 'XY',
-                        emptyChar: '.',
-                        velocity: 10,
-                        stringAnimatorStyle:
-                            SgStringAnimatorStringAnimatorStyle.flip,
-                        fontSize: 22,
-                        controller: lento,
-                      ),
-                      const SizedBox(height: 12),
-                      SgStringAnimator(
-                        sourceString: 'ABCDEFG',
-                        targetString: 'XY',
-                        emptyChar: '.',
-                        velocity: 100,
-                        stringAnimatorStyle:
-                            SgStringAnimatorStringAnimatorStyle.flip,
-                        fontSize: 22,
-                        controller: rapido,
-                      ),
-                      const SizedBox(height: 16),
-                      FilledButton(
-                        onPressed: () {
-                          lento.startAnimation();
-                          rapido.startAnimation();
-                        },
-                        child: Text(context.tx('Animar os dois')),
-                      ),
-                    ],
-                  );
-                },
-              ),
-            ),
-        // #endregion
-        code: SgStringAnimatorPageSnippets.sgStringAnimatorVelocidade,
+        code: SgStringAnimatorPageSnippets.sgStringAnimatorVelocidades,
       ),
     ];
 

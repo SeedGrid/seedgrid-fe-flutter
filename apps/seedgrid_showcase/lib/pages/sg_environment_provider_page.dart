@@ -18,13 +18,14 @@ class SgEnvironmentProviderPage extends StatefulWidget {
 }
 
 class _SgEnvironmentProviderPageState extends State<SgEnvironmentProviderPage> {
-  // Duas "bases" em memoria para o exemplo do modo mirror.
-  final Map<String, Object?> _primary = {};
-  final Map<String, Object?> _secondary = {};
+  // Base local em memoria para o exemplo hibrido (local + REST).
+  final Map<String, Object?> _local = {};
 
-  // Registro das chamadas HTTP do exemplo da API (o servidor e simulado).
+  // Servidores simulados (REST e hibrido) e o registro das chamadas HTTP de cada um.
   final List<String> _requests = [];
   final Map<String, Object?> _server = {};
+  final List<String> _hybridRequests = [];
+  final Map<String, Object?> _hybridServer = {};
 
   PersistenceStrategy _memory(Map<String, Object?> map) =>
       PersistenceStrategy.from(
@@ -33,38 +34,71 @@ class _SgEnvironmentProviderPageState extends State<SgEnvironmentProviderPage> {
         clear: (key) => map.remove(key),
       );
 
-  Future<SgFetchResponse> _fakeServer(SgFetchRequest r) async {
-    setState(
-      () => _requests.add(
-        '${r.method} ${Uri.parse(r.url).path}${Uri.parse(r.url).hasQuery ? '?key=…' : ''}',
-      ),
-    );
-    final key = Uri.parse(r.url).queryParameters['key'];
-    switch (r.method) {
-      case 'GET':
-        final found = _server.containsKey(key);
-        return SgFetchResponse(
-          200,
-          jsonEncode({
-            'found': found,
-            if (found) 'record': {'state': _server[key]},
-          }),
+  SgFetcher _fakeServer(Map<String, Object?> server, List<String> requests) =>
+      (SgFetchRequest r) async {
+        setState(
+          () => requests.add(
+            '${r.method} ${Uri.parse(r.url).path}${Uri.parse(r.url).hasQuery ? '?key=…' : ''}',
+          ),
         );
-      case 'POST':
-        final record = (jsonDecode(r.body!) as Map)['record'] as Map;
-        _server[record['key'] as String] = record['state'];
-        return const SgFetchResponse(200);
-      default:
-        _server.remove(key);
-        return const SgFetchResponse(200);
-    }
-  }
+        final key = Uri.parse(r.url).queryParameters['key'];
+        switch (r.method) {
+          case 'GET':
+            final found = server.containsKey(key);
+            return SgFetchResponse(
+              200,
+              jsonEncode({
+                'found': found,
+                if (found) 'record': {'state': server[key]},
+              }),
+            );
+          case 'POST':
+            final record = (jsonDecode(r.body!) as Map)['record'] as Map;
+            server[record['key'] as String] = record['state'];
+            return const SgFetchResponse(200);
+          default:
+            server.remove(key);
+            return const SgFetchResponse(200);
+        }
+      };
 
   @override
   Widget build(BuildContext context) {
     final examples = <ShowcaseExample>[
       ShowcaseExample(
-        title: 'Namespace e escopo',
+        title: 'Default (namespace vazio)',
+        description:
+            'Com o provider sem namespace (ou com namespace vazio) a chave não existe: o estado volta ao padrão.',
+        preview:
+            // #region sg-environment-provider-sem-namespace
+            SgEnvironmentProvider(
+              value: SgEnvironmentPartial(
+                namespaceProvider: NamespaceProvider(() => null),
+              ),
+              child: SgPersistentStateBuilder<String>(
+                baseKey: 'rascunho',
+                defaultValue: 'padrão',
+                builder: (context, state) => Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('valor: ${state.value}'),
+                    Text(
+                      'chave: ${useSgPersistence(context).fullKeyOf('rascunho')}',
+                    ),
+                    SgButton(
+                      label: Text(context.tx('Tentar salvar')),
+                      onClick: () => state.setValue('salvo?'),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+        // #endregion
+        code:
+            SgEnvironmentProviderPageSnippets.sgEnvironmentProviderSemNamespace,
+      ),
+      ShowcaseExample(
+        title: 'Namespace customizado',
         description:
             'A chave final é sg:<namespace>:<escopo>:<chave>. O valor fica salvo no armazenamento local do aparelho.',
         preview:
@@ -103,79 +137,38 @@ class _SgEnvironmentProviderPageState extends State<SgEnvironmentProviderPage> {
         code: SgEnvironmentProviderPageSnippets.sgEnvironmentProviderNamespace,
       ),
       ShowcaseExample(
-        title: 'Sem namespace nada é salvo',
+        title: 'Ler só o namespace (useSgNamespaceProvider)',
         description:
-            'Com o provider sem namespace (ou com namespace vazio) a chave não existe: o estado volta ao padrão.',
+            'Atalho para o namespaceProvider do ambiente. Quando só o namespace importa — montar a chave de persistência de um usuário ou tenant — evita carregar o objeto de ambiente inteiro.',
         preview:
-            // #region sg-environment-provider-sem-namespace
+            // #region sg-environment-provider-namespace-hook
             SgEnvironmentProvider(
               value: SgEnvironmentPartial(
-                namespaceProvider: NamespaceProvider(() => null),
+                namespaceProvider: NamespaceProvider(() => 'u:123'),
               ),
-              child: SgPersistentStateBuilder<String>(
-                baseKey: 'rascunho',
-                defaultValue: 'padrão',
-                builder: (context, state) => Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('valor: ${state.value}'),
-                    Text(
-                      'chave: ${useSgPersistence(context).fullKeyOf('rascunho')}',
-                    ),
-                    SgButton(
-                      label: Text(context.tx('Tentar salvar')),
-                      onClick: () => state.setValue('salvo?'),
-                    ),
-                  ],
-                ),
+              child: Builder(
+                builder: (context) {
+                  final namespace = useSgNamespaceProvider(
+                    context,
+                  ).getNamespace();
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('namespace: ${namespace ?? '(vazio)'}'),
+                      Text(
+                        'chave: ${buildSgPersistenceKey('fab:theme', namespace, 'app:crm')}',
+                      ),
+                    ],
+                  );
+                },
               ),
             ),
         // #endregion
-        code:
-            SgEnvironmentProviderPageSnippets.sgEnvironmentProviderSemNamespace,
+        code: SgEnvironmentProviderPageSnippets
+            .sgEnvironmentProviderNamespaceHook,
       ),
       ShowcaseExample(
-        title: 'Duas estratégias em modo mirror',
-        description:
-            'O mirror grava nas duas e lê da primária; se ela estiver vazia, lê da secundária.',
-        preview:
-            // #region sg-environment-provider-mirror
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SgEnvironmentProvider(
-                  value: SgEnvironmentPartial(
-                    namespaceProvider: NamespaceProvider(() => 'empresa-1'),
-                    persistenceStrategy: createCompositePersistenceStrategy(
-                      mode: SgPersistenceMode.mirror,
-                      primary: _memory(_primary),
-                      secondary: _memory(_secondary),
-                    ),
-                  ),
-                  child: SgPersistentStateBuilder<String>(
-                    baseKey: 'tema',
-                    defaultValue: 'claro',
-                    builder: (context, state) => SgButton(
-                      label: Text('Tema: ${state.value} (tocar para alternar)'),
-                      onClick: () async {
-                        await state.setValue(
-                          state.value == 'claro' ? 'escuro' : 'claro',
-                        );
-                        setState(() {});
-                      },
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Text('primária: $_primary'),
-                Text('secundária: $_secondary'),
-              ],
-            ),
-        // #endregion
-        code: SgEnvironmentProviderPageSnippets.sgEnvironmentProviderMirror,
-      ),
-      ShowcaseExample(
-        title: 'Persistência por API',
+        title: 'REST (por usuário)',
         description:
             'GET, POST e DELETE em /sg/persistence. Aqui o servidor é simulado e as chamadas aparecem abaixo.',
         preview:
@@ -190,7 +183,7 @@ class _SgEnvironmentProviderPageState extends State<SgEnvironmentProviderPage> {
                       baseUrl: 'https://api.exemplo.com',
                       scope: 'app:showcase',
                       stateVersion: 1,
-                      fetcher: _fakeServer,
+                      fetcher: _fakeServer(_server, _requests),
                     ),
                   ),
                   child: SgPersistentStateBuilder<int>(
@@ -218,6 +211,51 @@ class _SgEnvironmentProviderPageState extends State<SgEnvironmentProviderPage> {
             ),
         // #endregion
         code: SgEnvironmentProviderPageSnippets.sgEnvironmentProviderApi,
+      ),
+      ShowcaseExample(
+        title: 'Hybrid (local + REST)',
+        description:
+            'O mirror grava na API (primária) e no armazenamento local (secundária) e lê da primária; se ela estiver vazia, lê da local.',
+        preview:
+            // #region sg-environment-provider-mirror
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SgEnvironmentProvider(
+                  value: SgEnvironmentPartial(
+                    namespaceProvider: NamespaceProvider(() => 'empresa-1'),
+                    persistenceStrategy: createCompositePersistenceStrategy(
+                      mode: SgPersistenceMode.mirror,
+                      primary: createApiPersistenceStrategy(
+                        baseUrl: 'https://api.exemplo.com',
+                        scope: 'app:showcase',
+                        stateVersion: 1,
+                        fetcher: _fakeServer(_hybridServer, _hybridRequests),
+                      ),
+                      secondary: _memory(_local),
+                    ),
+                  ),
+                  child: SgPersistentStateBuilder<String>(
+                    baseKey: 'tema',
+                    defaultValue: 'claro',
+                    builder: (context, state) => SgButton(
+                      label: Text('Tema: ${state.value} (tocar para alternar)'),
+                      onClick: () async {
+                        await state.setValue(
+                          state.value == 'claro' ? 'escuro' : 'claro',
+                        );
+                        setState(() {});
+                      },
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text('local: $_local'),
+                Text('chamadas: ${_hybridRequests.join(' | ')}'),
+              ],
+            ),
+        // #endregion
+        code: SgEnvironmentProviderPageSnippets.sgEnvironmentProviderMirror,
       ),
     ];
 

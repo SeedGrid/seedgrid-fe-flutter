@@ -17,6 +17,31 @@ SgRealtimeProvider(
 )
 ''';
 
+  /// Region `sg-realtime-provider-layout`.
+  static const String sgRealtimeProviderLayout = r'''
+SgRealtimeProvider(
+  channels: const ['backup'],
+  tokenEndpoint: 'https://app.exemplo.com/api/realtime/connect',
+  tokenRequestInit: const SgTokenRequestInit(
+    headers: {'Authorization': 'Bearer sessao-123'},
+  ),
+  tokenFetcher: _bff,
+  connectionFactory: () => _pulse3,
+  child: Builder(
+    builder: (context) {
+      final r = useSgRealtimeStatus(context);
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('Estado: ${r.status.value}'),
+          Text('Pedidos ao token: ${_bffRequests.join(' | ')}'),
+        ],
+      );
+    },
+  ),
+)
+''';
+
   /// Region `sg-realtime-provider-padroes`.
   static const String sgRealtimeProviderPadroes = r'''
 Builder(

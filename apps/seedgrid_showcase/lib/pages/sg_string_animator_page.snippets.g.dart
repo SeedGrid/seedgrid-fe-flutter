@@ -3,37 +3,41 @@
 // Cada constante e o trecho entre `// #region` e `// #endregion` de sg_string_animator_page.dart: o mesmo codigo que a pagina renderiza.
 
 abstract final class SgStringAnimatorPageSnippets {
-  /// Region `sg-string-animator-auto`.
-  static const String sgStringAnimatorAuto = r'''
+  /// Region `sg-string-animator-auto-start`.
+  static const String sgStringAnimatorAutoStart = r'''
 SingleChildScrollView(
   scrollDirection: Axis.horizontal,
   child: Builder(
     builder: (context) {
-      var target = 'LUCIANO';
+      const names = [
+        'LUCIANO',
+        'MARTA',
+        'PEDRO',
+        'ANA',
+        'SEEDGRID',
+      ];
+      var idx = 0;
       return StatefulBuilder(
         builder: (context, set) => Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SgStringAnimator(
-              sourceString: 'LUCIANO',
-              targetString: target,
+              sourceString:
+                  names[(idx - 1 + names.length) % names.length],
+              targetString: names[idx],
               stringAnimatorStyle:
-                  SgStringAnimatorStringAnimatorStyle.flip,
-              autoStart: true,
-              velocity: 70,
+                  SgStringAnimatorStringAnimatorStyle.roller3d,
+              alignTo: SgStringAnimatorAlignTo.left,
               fontSize: 28,
+              autoStart: true,
+              velocity: 60,
             ),
             const SizedBox(height: 16),
-            Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              children: [
-                for (final nome in const ['MARTA', 'JOAO', 'ANA'])
-                  OutlinedButton(
-                    onPressed: () => set(() => target = nome),
-                    child: Text(nome),
-                  ),
-              ],
+            SgButton(
+              size: SgSize.sm,
+              label: Text(context.tx('Próximo nome')),
+              onClick: () =>
+                  set(() => idx = (idx + 1) % names.length),
             ),
           ],
         ),
@@ -43,104 +47,30 @@ SingleChildScrollView(
 )
 ''';
 
-  /// Region `sg-string-animator-direita`.
-  static const String sgStringAnimatorDireita = r'''
+  /// Region `sg-string-animator-discard`.
+  static const String sgStringAnimatorDiscard = r'''
 SingleChildScrollView(
   scrollDirection: Axis.horizontal,
   child: Builder(
     builder: (context) {
-      final controller = SgStringAnimatorController();
-      return Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          SgStringAnimator(
-            sourceString: '7',
-            targetString: '2048',
-            alignTo: SgStringAnimatorAlignTo.right,
-            emptyChar: '0',
-            charset: const [
-              '0',
-              '1',
-              '2',
-              '3',
-              '4',
-              '5',
-              '6',
-              '7',
-              '8',
-              '9',
-            ],
-            velocity: 90,
-            controller: controller,
-          ),
-          const SizedBox(width: 24),
-          FilledButton(
-            onPressed: controller.startAnimation,
-            child: Text(context.tx('Contar')),
-          ),
-        ],
-      );
-    },
-  ),
-)
-''';
-
-  /// Region `sg-string-animator-estilos`.
-  static const String sgStringAnimatorEstilos = r'''
-SingleChildScrollView(
-  scrollDirection: Axis.horizontal,
-  child: Builder(
-    builder: (context) {
-      final controller = SgStringAnimatorController();
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          for (final estilo in const [
-            SgStringAnimatorStringAnimatorStyle.fade,
-            SgStringAnimatorStringAnimatorStyle.matrix,
-            SgStringAnimatorStringAnimatorStyle.neon,
-            SgStringAnimatorStringAnimatorStyle.discard,
-          ])
-            Padding(
-              padding: const EdgeInsets.only(bottom: 12),
-              child: SgStringAnimator(
-                sourceString: 'HELLO',
-                targetString: 'WORLD',
-                stringAnimatorStyle: estilo,
-                fontSize: 24,
-                controller: controller,
-              ),
-            ),
-          FilledButton(
-            onPressed: controller.startAnimation,
-            child: Text(context.tx('Animar')),
-          ),
-        ],
-      );
-    },
-  ),
-)
-''';
-
-  /// Region `sg-string-animator-manual`.
-  static const String sgStringAnimatorManual = r'''
-SingleChildScrollView(
-  scrollDirection: Axis.horizontal,
-  child: Builder(
-    builder: (context) {
-      final controller = SgStringAnimatorController();
+      final animRef = SgStringAnimatorController();
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SgStringAnimator(
             sourceString: 'LUCIANO',
             targetString: 'MARTA',
-            controller: controller,
+            stringAnimatorStyle:
+                SgStringAnimatorStringAnimatorStyle.discard,
+            alignTo: SgStringAnimatorAlignTo.left,
+            fontSize: 28,
+            controller: animRef,
           ),
           const SizedBox(height: 16),
-          FilledButton(
-            onPressed: controller.startAnimation,
-            child: Text(context.tx('Animar')),
+          SgButton(
+            size: SgSize.sm,
+            label: Text(context.tx('Animar')),
+            onClick: animRef.startAnimation,
           ),
         ],
       );
@@ -149,46 +79,246 @@ SingleChildScrollView(
 )
 ''';
 
-  /// Region `sg-string-animator-velocidade`.
-  static const String sgStringAnimatorVelocidade = r'''
+  /// Region `sg-string-animator-fade`.
+  static const String sgStringAnimatorFade = r'''
 SingleChildScrollView(
   scrollDirection: Axis.horizontal,
   child: Builder(
     builder: (context) {
-      final lento = SgStringAnimatorController();
-      final rapido = SgStringAnimatorController();
+      final animRef = SgStringAnimatorController();
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SgStringAnimator(
-            sourceString: 'ABCDEFG',
-            targetString: 'XY',
-            emptyChar: '.',
-            velocity: 10,
+            sourceString: 'LUCIANO',
+            targetString: 'MARTA',
             stringAnimatorStyle:
-                SgStringAnimatorStringAnimatorStyle.flip,
-            fontSize: 22,
-            controller: lento,
-          ),
-          const SizedBox(height: 12),
-          SgStringAnimator(
-            sourceString: 'ABCDEFG',
-            targetString: 'XY',
-            emptyChar: '.',
-            velocity: 100,
-            stringAnimatorStyle:
-                SgStringAnimatorStringAnimatorStyle.flip,
-            fontSize: 22,
-            controller: rapido,
+                SgStringAnimatorStringAnimatorStyle.fade,
+            alignTo: SgStringAnimatorAlignTo.left,
+            fontSize: 28,
+            controller: animRef,
           ),
           const SizedBox(height: 16),
-          FilledButton(
-            onPressed: () {
-              lento.startAnimation();
-              rapido.startAnimation();
-            },
-            child: Text(context.tx('Animar os dois')),
+          SgButton(
+            size: SgSize.sm,
+            label: Text(context.tx('Animar')),
+            onClick: animRef.startAnimation,
           ),
+        ],
+      );
+    },
+  ),
+)
+''';
+
+  /// Region `sg-string-animator-flip`.
+  static const String sgStringAnimatorFlip = r'''
+SingleChildScrollView(
+  scrollDirection: Axis.horizontal,
+  child: Builder(
+    builder: (context) {
+      final animRef = SgStringAnimatorController();
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SgStringAnimator(
+            sourceString: 'LUCIANO',
+            targetString: 'MARTA',
+            stringAnimatorStyle:
+                SgStringAnimatorStringAnimatorStyle.flip,
+            alignTo: SgStringAnimatorAlignTo.left,
+            fontSize: 28,
+            controller: animRef,
+          ),
+          const SizedBox(height: 16),
+          SgButton(
+            size: SgSize.sm,
+            label: Text(context.tx('Animar')),
+            onClick: animRef.startAnimation,
+          ),
+        ],
+      );
+    },
+  ),
+)
+''';
+
+  /// Region `sg-string-animator-matrix`.
+  static const String sgStringAnimatorMatrix = r'''
+SingleChildScrollView(
+  scrollDirection: Axis.horizontal,
+  child: Builder(
+    builder: (context) {
+      final animRef = SgStringAnimatorController();
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SgStringAnimator(
+            sourceString: 'LUCIANO',
+            targetString: 'MARTA',
+            stringAnimatorStyle:
+                SgStringAnimatorStringAnimatorStyle.matrix,
+            alignTo: SgStringAnimatorAlignTo.left,
+            color: '#22d3ee',
+            backgroundColor: '#0b1220',
+            controller: animRef,
+          ),
+          const SizedBox(height: 16),
+          SgButton(
+            size: SgSize.sm,
+            label: Text(context.tx('Animar')),
+            onClick: animRef.startAnimation,
+          ),
+        ],
+      );
+    },
+  ),
+)
+''';
+
+  /// Region `sg-string-animator-neon`.
+  static const String sgStringAnimatorNeon = r'''
+SingleChildScrollView(
+  scrollDirection: Axis.horizontal,
+  child: Builder(
+    builder: (context) {
+      final animRef = SgStringAnimatorController();
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SgStringAnimator(
+            sourceString: 'LUCIANO',
+            targetString: 'MARTA',
+            stringAnimatorStyle:
+                SgStringAnimatorStringAnimatorStyle.neon,
+            alignTo: SgStringAnimatorAlignTo.left,
+            fontSize: 28,
+            color: '#e4fbff',
+            backgroundColor: '#090f22',
+            controller: animRef,
+          ),
+          const SizedBox(height: 16),
+          SgButton(
+            size: SgSize.sm,
+            label: Text(context.tx('Animar')),
+            onClick: animRef.startAnimation,
+          ),
+        ],
+      );
+    },
+  ),
+)
+''';
+
+  /// Region `sg-string-animator-roller-nomes`.
+  static const String sgStringAnimatorRollerNomes = r'''
+SingleChildScrollView(
+  scrollDirection: Axis.horizontal,
+  child: Builder(
+    builder: (context) {
+      final animRef = SgStringAnimatorController();
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SgStringAnimator(
+            sourceString: 'LUCIANO',
+            targetString: 'MARTA',
+            stringAnimatorStyle:
+                SgStringAnimatorStringAnimatorStyle.roller3d,
+            alignTo: SgStringAnimatorAlignTo.left,
+            fontSize: 28,
+            controller: animRef,
+          ),
+          const SizedBox(height: 16),
+          SgButton(
+            size: SgSize.sm,
+            label: Text(context.tx('Animar')),
+            onClick: animRef.startAnimation,
+          ),
+        ],
+      );
+    },
+  ),
+)
+''';
+
+  /// Region `sg-string-animator-roller-numeros`.
+  static const String sgStringAnimatorRollerNumeros = r'''
+SingleChildScrollView(
+  scrollDirection: Axis.horizontal,
+  child: Builder(
+    builder: (context) {
+      final animRef = SgStringAnimatorController();
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SgStringAnimator(
+            sourceString: '42',
+            targetString: '1337',
+            stringAnimatorStyle:
+                SgStringAnimatorStringAnimatorStyle.roller3d,
+            alignTo: SgStringAnimatorAlignTo.right,
+            fontSize: 28,
+            controller: animRef,
+          ),
+          const SizedBox(height: 16),
+          SgButton(
+            size: SgSize.sm,
+            label: Text(context.tx('Animar')),
+            onClick: animRef.startAnimation,
+          ),
+        ],
+      );
+    },
+  ),
+)
+''';
+
+  /// Region `sg-string-animator-velocidades`.
+  static const String sgStringAnimatorVelocidades = r'''
+SingleChildScrollView(
+  scrollDirection: Axis.horizontal,
+  child: Builder(
+    builder: (context) {
+      final casos = [
+        (context.tx('Lento (velocity=10)'), 10),
+        (context.tx('Médio (velocity=50)'), 50),
+        (context.tx('Rápido (velocity=90)'), 90),
+      ];
+      final refs = [
+        for (final _ in casos) SgStringAnimatorController(),
+      ];
+      return SgGrid(
+        columns: const {'base': 1, 'md': 3},
+        gap: 24,
+        children: [
+          for (var i = 0; i < casos.length; i++)
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  casos[i].$1,
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
+                const SizedBox(height: 8),
+                SgStringAnimator(
+                  sourceString: 'ORIGEM',
+                  targetString: 'DESTINO',
+                  stringAnimatorStyle:
+                      SgStringAnimatorStringAnimatorStyle.roller3d,
+                  alignTo: SgStringAnimatorAlignTo.left,
+                  fontSize: 22,
+                  velocity: casos[i].$2,
+                  controller: refs[i],
+                ),
+                const SizedBox(height: 8),
+                SgButton(
+                  size: SgSize.sm,
+                  label: Text(context.tx('Animar')),
+                  onClick: refs[i].startAnimation,
+                ),
+              ],
+            ),
         ],
       );
     },

@@ -3,51 +3,62 @@
 // Cada constante e o trecho entre `// #region` e `// #endregion` de sg_clock_page.dart: o mesmo codigo que a pagina renderiza.
 
 abstract final class SgClockPageSnippets {
-  /// Region `sg-clock-12h`.
-  static const String sgClock12h = r'''
-const Wrap(
-  spacing: 12,
-  runSpacing: 12,
-  children: [
-    SgClock(
-      initialServerTime: '2026-06-15T15:41:07Z',
-      timezone: 'UTC',
-      format: SgClockFormat.v12h,
-      locale: 'en-US',
-      showSeconds: false,
-    ),
-    SgClock(
-      initialServerTime: '2026-06-15T15:41:07Z',
-      timezone: 'Asia/Tokyo',
-      format: SgClockFormat.v12h,
-      locale: 'es',
-    ),
-  ],
-)
-''';
-
   /// Region `sg-clock-analogico`.
   static const String sgClockAnalogico = r'''
 SgClockThemeProvider(
   value: SgClockThemeProviderValue(themes: sgClockThemesBuiltIn),
-  child: const Wrap(
-    spacing: 12,
-    runSpacing: 12,
+  child: Wrap(
+    spacing: 16,
+    runSpacing: 16,
+    crossAxisAlignment: WrapCrossAlignment.start,
     children: [
-      SgClock(
-        clockStyle: SgClockClockStyle.analog,
-        size: 180,
-        initialServerTime: '2026-06-15T10:08:30Z',
-        timezone: 'UTC',
-        themeId: 'roman-ornate',
+      SizedBox(
+        width: 260,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SgClockThemePicker(
+              value: _themeId,
+              onChange: (id) => setState(() => _themeId = id),
+              label: context.tx('Tema'),
+            ),
+            const SizedBox(height: 12),
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: [
+                SgButton(
+                  label: Text(
+                    _smooth
+                        ? context.tx('Segundos: smooth')
+                        : context.tx('Segundos: step'),
+                  ),
+                  onClick: () => setState(() => _smooth = !_smooth),
+                ),
+                SgButton(
+                  label: Text(
+                    _showSeconds
+                        ? context.tx('Segundos: ON')
+                        : context.tx('Segundos: OFF'),
+                  ),
+                  onClick: () =>
+                      setState(() => _showSeconds = !_showSeconds),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
       SgClock(
         clockStyle: SgClockClockStyle.analog,
-        size: 180,
+        size: 220,
         initialServerTime: '2026-06-15T10:08:30Z',
         timezone: 'UTC',
-        themeId: 'dark',
-        secondHandMode: SgClockSecondHandMode.smooth,
+        themeId: _themeId,
+        showSeconds: _showSeconds,
+        secondHandMode: _smooth
+            ? SgClockSecondHandMode.smooth
+            : SgClockSecondHandMode.step,
       ),
     ],
   ),
@@ -86,43 +97,219 @@ SgClockThemeProvider(
 
   /// Region `sg-clock-digital`.
   static const String sgClockDigital = r'''
-const SgClock(
-  initialServerTime: '2026-06-15T09:41:07-03:00',
-  timezone: 'America/Sao_Paulo',
-)
-''';
-
-  /// Region `sg-clock-estilo`.
-  static const String sgClockEstilo = r'''
-const SgClock(
-  initialServerTime: '2026-06-15T09:41:07Z',
-  timezone: 'UTC',
-  digitalStyle: SgClockDigitalStyle.flip,
-  showSeconds: false,
-  size: 'lg',
-)
-''';
-
-  /// Region `sg-clock-tamanhos`.
-  static const String sgClockTamanhos = r'''
 const Wrap(
   spacing: 12,
   runSpacing: 12,
   children: [
     SgClock(
       size: 'sm',
-      initialServerTime: '2026-06-15T12:00:00Z',
-      timezone: 'UTC',
+      initialServerTime: '2026-06-15T09:41:07-03:00',
+      timezone: 'America/Sao_Paulo',
+    ),
+    SgClock(
+      initialServerTime: '2026-06-15T09:41:07-03:00',
+      timezone: 'America/Sao_Paulo',
     ),
     SgClock(
       size: 'lg',
-      initialServerTime: '2026-06-15T12:00:00Z',
-      timezone: 'UTC',
+      initialServerTime: '2026-06-15T09:41:07-03:00',
+      timezone: 'America/Sao_Paulo',
     ),
     SgClock(
       size: 28,
-      initialServerTime: '2026-06-15T12:00:00Z',
+      initialServerTime: '2026-06-15T09:41:07-03:00',
+      timezone: 'America/Sao_Paulo',
+    ),
+  ],
+)
+''';
+
+  /// Region `sg-clock-discard`.
+  static const String sgClockDiscard = r'''
+const FittedBox(
+  fit: BoxFit.scaleDown,
+  alignment: Alignment.centerLeft,
+  child: SgClock(
+    digitalStyle: SgClockDigitalStyle.discard,
+    size: 'lg',
+    initialServerTime: '2026-06-15T09:41:07-03:00',
+    timezone: 'America/Sao_Paulo',
+  ),
+)
+''';
+
+  /// Region `sg-clock-fade`.
+  static const String sgClockFade = r'''
+const FittedBox(
+  fit: BoxFit.scaleDown,
+  alignment: Alignment.centerLeft,
+  child: SgClock(
+    digitalStyle: SgClockDigitalStyle.fade,
+    initialServerTime: '2026-06-15T09:41:07-03:00',
+    timezone: 'America/Sao_Paulo',
+  ),
+)
+''';
+
+  /// Region `sg-clock-flip`.
+  static const String sgClockFlip = r'''
+const FittedBox(
+  fit: BoxFit.scaleDown,
+  alignment: Alignment.centerLeft,
+  child: SgClock(
+    digitalStyle: SgClockDigitalStyle.flip,
+    size: 'lg',
+    initialServerTime: '2026-06-15T09:41:07-03:00',
+    timezone: 'America/Sao_Paulo',
+  ),
+)
+''';
+
+  /// Region `sg-clock-matrix`.
+  static const String sgClockMatrix = r'''
+const FittedBox(
+  fit: BoxFit.scaleDown,
+  alignment: Alignment.centerLeft,
+  child: SgClock(
+    digitalStyle: SgClockDigitalStyle.matrix,
+    size: 'sm',
+    initialServerTime: '2026-06-15T09:41:07-03:00',
+    timezone: 'America/Sao_Paulo',
+  ),
+)
+''';
+
+  /// Region `sg-clock-neon`.
+  static const String sgClockNeon = r'''
+const FittedBox(
+  fit: BoxFit.scaleDown,
+  alignment: Alignment.centerLeft,
+  child: SgClock(
+    digitalStyle: SgClockDigitalStyle.neon,
+    initialServerTime: '2026-06-15T09:41:07-03:00',
+    timezone: 'America/Sao_Paulo',
+  ),
+)
+''';
+
+  /// Region `sg-clock-roller3d`.
+  static const String sgClockRoller3d = r'''
+const FittedBox(
+  fit: BoxFit.scaleDown,
+  alignment: Alignment.centerLeft,
+  child: SgClock(
+    digitalStyle: SgClockDigitalStyle.roller3d,
+    size: 'lg',
+    initialServerTime: '2026-06-15T15:41:07-03:00',
+    timezone: 'America/Sao_Paulo',
+    format: SgClockFormat.v12h,
+  ),
+)
+''';
+
+  /// Region `sg-clock-segment`.
+  static const String sgClockSegment = r'''
+const FittedBox(
+  fit: BoxFit.scaleDown,
+  alignment: Alignment.centerLeft,
+  child: SgClock(
+    digitalStyle: SgClockDigitalStyle.segment,
+    initialServerTime: '2026-06-15T09:41:07-03:00',
+    timezone: 'America/Sao_Paulo',
+  ),
+)
+''';
+
+  /// Region `sg-clock-seven-segment`.
+  static const String sgClockSevenSegment = r'''
+const FittedBox(
+  fit: BoxFit.scaleDown,
+  alignment: Alignment.centerLeft,
+  child: SgClock(
+    digitalStyle: SgClockDigitalStyle.sevenSegment,
+    size: 'sm',
+    initialServerTime: '2026-06-15T09:41:07-03:00',
+    timezone: 'America/Sao_Paulo',
+  ),
+)
+''';
+
+  /// Region `sg-clock-tema-inline`.
+  static const String sgClockTemaInline = r'''
+SgClock(
+  clockStyle: SgClockClockStyle.analog,
+  size: 220,
+  initialServerTime: '2026-06-15T10:08:30Z',
+  timezone: 'UTC',
+  secondHandMode: SgClockSecondHandMode.smooth,
+  theme: SgClockTheme(
+    id: 'inline-theme',
+    label: 'Inline Theme',
+    ops: [
+      SgClockCircle(
+        cx: 50,
+        cy: 50,
+        r: 48,
+        fill: SgClockPaint(
+          light: Color(0xFFFFFFFF),
+          dark: Color(0xFF0A0A0A),
+        ),
+        stroke: SgClockPaint(
+          light: Color(0xFFD4D4D4),
+          dark: Color(0xFF404040),
+        ),
+        strokeWidth: 1,
+      ),
+      SgClockCircle(
+        cx: 50,
+        cy: 50,
+        r: 38,
+        stroke: SgClockPaint(
+          light: Color(0xFFE5E5E5),
+          dark: Color(0xFF262626),
+        ),
+        strokeWidth: 1,
+      ),
+      SgClockText(
+        x: 50,
+        y: 56,
+        text: 'SeedGrid',
+        anchor: 'middle',
+        fontSize: 8,
+        fontWeight: 600,
+        fill: SgClockPaint(
+          light: Color(0xFFA3A3A3),
+          dark: Color(0xFFA3A3A3),
+        ),
+      ),
+    ],
+  ),
+)
+''';
+
+  /// Region `sg-clock-timezone`.
+  static const String sgClockTimezone = r'''
+const Wrap(
+  spacing: 12,
+  runSpacing: 12,
+  children: [
+    SgClock(
+      initialServerTime: '2026-06-15T15:41:07Z',
       timezone: 'UTC',
+      format: SgClockFormat.v12h,
+      locale: 'en-US',
+      showSeconds: false,
+    ),
+    SgClock(
+      initialServerTime: '2026-06-15T15:41:07Z',
+      timezone: 'Europe/Lisbon',
+      locale: 'pt-PT',
+    ),
+    SgClock(
+      initialServerTime: '2026-06-15T15:41:07Z',
+      timezone: 'Asia/Tokyo',
+      format: SgClockFormat.v12h,
+      locale: 'es',
     ),
   ],
 )

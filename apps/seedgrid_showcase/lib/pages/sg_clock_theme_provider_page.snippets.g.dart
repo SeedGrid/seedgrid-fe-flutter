@@ -7,13 +7,66 @@ abstract final class SgClockThemeProviderPageSnippets {
   static const String sgClockThemeProviderBasico = r'''
 SgClockThemeProvider(
   value: SgClockThemeProviderValue(themes: sgClockThemesBuiltIn),
-  child: const SgClock(
-    clockStyle: SgClockClockStyle.analog,
-    size: 160,
-    initialServerTime: '2026-06-15T10:08:30Z',
-    timezone: 'UTC',
-    themeId: 'music-notes',
+  child: Wrap(
+    spacing: 16,
+    runSpacing: 16,
+    crossAxisAlignment: WrapCrossAlignment.start,
+    children: [
+      SgClock(
+        clockStyle: SgClockClockStyle.analog,
+        size: 160,
+        initialServerTime: '2026-06-15T10:08:30Z',
+        timezone: 'UTC',
+        themeId: _themeId,
+      ),
+      SizedBox(
+        width: 300,
+        child: SgClockThemePicker(
+          value: _themeId,
+          onChange: (id) => setState(() => _themeId = id),
+        ),
+      ),
+    ],
   ),
+)
+''';
+
+  /// Region `sg-clock-theme-provider-global`.
+  static const String sgClockThemeProviderGlobal = r'''
+Builder(
+  builder: (context) {
+    registerTheme(
+      SgClockTheme(
+        id: 'anel-global',
+        label: context.tx('Anel global'),
+        ops: [
+          SgClockCircle(
+            cx: 50,
+            cy: 50,
+            r: 48,
+            fill: SgClockPaint(
+              light: Color(0xFFECFDF5),
+              dark: Color(0xFF052E16),
+            ),
+            stroke: SgClockPaint(
+              light: Color(0xFF16A34A),
+              dark: Color(0xFF4ADE80),
+            ),
+            strokeWidth: 3,
+          ),
+        ],
+      ),
+    );
+    return const SgClockThemeProvider(
+      child: SgClock(
+        clockStyle: SgClockClockStyle.analog,
+        size: 160,
+        initialServerTime: '2026-06-15T10:08:30Z',
+        timezone: 'UTC',
+        themeId: 'anel-global',
+      ),
+    );
+  },
 )
 ''';
 

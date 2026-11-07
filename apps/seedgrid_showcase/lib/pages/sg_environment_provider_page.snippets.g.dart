@@ -15,7 +15,7 @@ Column(
           baseUrl: 'https://api.exemplo.com',
           scope: 'app:showcase',
           stateVersion: 1,
-          fetcher: _fakeServer,
+          fetcher: _fakeServer(_server, _requests),
         ),
       ),
       child: SgPersistentStateBuilder<int>(
@@ -53,8 +53,13 @@ Column(
         namespaceProvider: NamespaceProvider(() => 'empresa-1'),
         persistenceStrategy: createCompositePersistenceStrategy(
           mode: SgPersistenceMode.mirror,
-          primary: _memory(_primary),
-          secondary: _memory(_secondary),
+          primary: createApiPersistenceStrategy(
+            baseUrl: 'https://api.exemplo.com',
+            scope: 'app:showcase',
+            stateVersion: 1,
+            fetcher: _fakeServer(_hybridServer, _hybridRequests),
+          ),
+          secondary: _memory(_local),
         ),
       ),
       child: SgPersistentStateBuilder<String>(
@@ -72,8 +77,8 @@ Column(
       ),
     ),
     const SizedBox(height: 8),
-    Text('primária: $_primary'),
-    Text('secundária: $_secondary'),
+    Text('local: $_local'),
+    Text('chamadas: ${_hybridRequests.join(' | ')}'),
   ],
 )
 ''';
@@ -108,6 +113,31 @@ SgEnvironmentProvider(
         ),
       ],
     ),
+  ),
+)
+''';
+
+  /// Region `sg-environment-provider-namespace-hook`.
+  static const String sgEnvironmentProviderNamespaceHook = r'''
+SgEnvironmentProvider(
+  value: SgEnvironmentPartial(
+    namespaceProvider: NamespaceProvider(() => 'u:123'),
+  ),
+  child: Builder(
+    builder: (context) {
+      final namespace = useSgNamespaceProvider(
+        context,
+      ).getNamespace();
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('namespace: ${namespace ?? '(vazio)'}'),
+          Text(
+            'chave: ${buildSgPersistenceKey('fab:theme', namespace, 'app:crm')}',
+          ),
+        ],
+      );
+    },
   ),
 )
 ''';

@@ -1,60 +1,6 @@
 {
  "_aviso": "Divergencias conhecidas de hoje; so pode encolher (P148.F1.T1). Gerado por verify.mjs --atualizar-base.",
  "componentes": {
-  "SgClock": [
-   "falta-no-flutter",
-   "quantidade",
-   "so-no-flutter"
-  ],
-  "SgClockThemePicker": [
-   "falta-no-flutter",
-   "quantidade",
-   "so-no-flutter"
-  ],
-  "SgClockThemePreview": [
-   "falta-no-flutter",
-   "quantidade",
-   "so-no-flutter"
-  ],
-  "SgLinearGauge": [
-   "falta-no-flutter",
-   "quantidade",
-   "so-no-flutter"
-  ],
-  "SgQrCode": [
-   "falta-no-flutter",
-   "quantidade",
-   "so-no-flutter"
-  ],
-  "SgRadialGauge": [
-   "falta-no-flutter",
-   "quantidade",
-   "so-no-flutter"
-  ],
-  "SgStringAnimator": [
-   "falta-no-flutter",
-   "quantidade",
-   "so-no-flutter"
-  ],
-  "SgClockThemeProvider": [
-   "falta-no-flutter",
-   "so-no-flutter"
-  ],
-  "SgEnvironmentProvider": [
-   "falta-no-flutter",
-   "quantidade",
-   "so-no-flutter"
-  ],
-  "SgRealtimeProvider": [
-   "falta-no-flutter",
-   "quantidade",
-   "so-no-flutter"
-  ],
-  "SgTimeProvider": [
-   "falta-no-flutter",
-   "quantidade",
-   "so-no-flutter"
-  ],
   "SgAccordion": [
    "falta-no-flutter",
    "so-no-flutter"

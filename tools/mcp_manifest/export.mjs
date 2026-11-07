@@ -213,6 +213,8 @@ function varre(valor, caminho) {
       if (k === "name" && /\.(props|omittedProps)\[\d+\]$/.test(caminho)) continue;
       // O codigo dos exemplos e dado de amostra (ex.: opcoes "React" e "TypeScript" numa lista de linguagens).
       if ((k === "code" || k === "file") && /\.examples\[\d+\]$/.test(caminho)) continue;
+      // O titulo do exemplo espelha o do React (paridade de titulos, P155): pode citar "Next.js" etc.
+      if (k === "title" && /\.examples\[\d+\]$/.test(caminho)) continue;
       varre(v, `${caminho}.${k}`);
     }
   }

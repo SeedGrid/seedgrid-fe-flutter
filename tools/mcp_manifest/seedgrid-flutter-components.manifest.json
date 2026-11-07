@@ -3041,18 +3041,11 @@
         ],
         "examples": [
           {
-            "id": "sg-clock-12h",
-            "title": "Fuso, idioma e 12 horas",
-            "file": "apps/seedgrid_showcase/lib/pages/sg_clock_page.dart",
-            "kind": "dart",
-            "code": "const Wrap(\n  spacing: 12,\n  runSpacing: 12,\n  children: [\n    SgClock(\n      initialServerTime: '2026-06-15T15:41:07Z',\n      timezone: 'UTC',\n      format: SgClockFormat.v12h,\n      locale: 'en-US',\n      showSeconds: false,\n    ),\n    SgClock(\n      initialServerTime: '2026-06-15T15:41:07Z',\n      timezone: 'Asia/Tokyo',\n      format: SgClockFormat.v12h,\n      locale: 'es',\n    ),\n  ],\n)"
-          },
-          {
             "id": "sg-clock-analogico",
-            "title": "Analógico com tema",
+            "title": "Analógico",
             "file": "apps/seedgrid_showcase/lib/pages/sg_clock_page.dart",
             "kind": "dart",
-            "code": "SgClockThemeProvider(\n  value: SgClockThemeProviderValue(themes: sgClockThemesBuiltIn),\n  child: const Wrap(\n    spacing: 12,\n    runSpacing: 12,\n    children: [\n      SgClock(\n        clockStyle: SgClockClockStyle.analog,\n        size: 180,\n        initialServerTime: '2026-06-15T10:08:30Z',\n        timezone: 'UTC',\n        themeId: 'roman-ornate',\n      ),\n      SgClock(\n        clockStyle: SgClockClockStyle.analog,\n        size: 180,\n        initialServerTime: '2026-06-15T10:08:30Z',\n        timezone: 'UTC',\n        themeId: 'dark',\n        secondHandMode: SgClockSecondHandMode.smooth,\n      ),\n    ],\n  ),\n)"
+            "code": "SgClockThemeProvider(\n  value: SgClockThemeProviderValue(themes: sgClockThemesBuiltIn),\n  child: Wrap(\n    spacing: 16,\n    runSpacing: 16,\n    crossAxisAlignment: WrapCrossAlignment.start,\n    children: [\n      SizedBox(\n        width: 260,\n        child: Column(\n          crossAxisAlignment: CrossAxisAlignment.start,\n          children: [\n            SgClockThemePicker(\n              value: _themeId,\n              onChange: (id) => setState(() => _themeId = id),\n              label: context.tx('Tema'),\n            ),\n            const SizedBox(height: 12),\n            Wrap(\n              spacing: 8,\n              runSpacing: 8,\n              children: [\n                SgButton(\n                  label: Text(\n                    _smooth\n                        ? context.tx('Segundos: smooth')\n                        : context.tx('Segundos: step'),\n                  ),\n                  onClick: () => setState(() => _smooth = !_smooth),\n                ),\n                SgButton(\n                  label: Text(\n                    _showSeconds\n                        ? context.tx('Segundos: ON')\n                        : context.tx('Segundos: OFF'),\n                  ),\n                  onClick: () =>\n                      setState(() => _showSeconds = !_showSeconds),\n                ),\n              ],\n            ),\n          ],\n        ),\n      ),\n      SgClock(\n        clockStyle: SgClockClockStyle.analog,\n        size: 220,\n        initialServerTime: '2026-06-15T10:08:30Z',\n        timezone: 'UTC',\n        themeId: _themeId,\n        showSeconds: _showSeconds,\n        secondHandMode: _smooth\n            ? SgClockSecondHandMode.smooth\n            : SgClockSecondHandMode.step,\n      ),\n    ],\n  ),\n)"
           },
           {
             "id": "sg-clock-cartao",
@@ -3073,21 +3066,77 @@
             "title": "Digital",
             "file": "apps/seedgrid_showcase/lib/pages/sg_clock_page.dart",
             "kind": "dart",
-            "code": "const SgClock(\n  initialServerTime: '2026-06-15T09:41:07-03:00',\n  timezone: 'America/Sao_Paulo',\n)"
+            "code": "const Wrap(\n  spacing: 12,\n  runSpacing: 12,\n  children: [\n    SgClock(\n      size: 'sm',\n      initialServerTime: '2026-06-15T09:41:07-03:00',\n      timezone: 'America/Sao_Paulo',\n    ),\n    SgClock(\n      initialServerTime: '2026-06-15T09:41:07-03:00',\n      timezone: 'America/Sao_Paulo',\n    ),\n    SgClock(\n      size: 'lg',\n      initialServerTime: '2026-06-15T09:41:07-03:00',\n      timezone: 'America/Sao_Paulo',\n    ),\n    SgClock(\n      size: 28,\n      initialServerTime: '2026-06-15T09:41:07-03:00',\n      timezone: 'America/Sao_Paulo',\n    ),\n  ],\n)"
           },
           {
-            "id": "sg-clock-estilo",
-            "title": "Estilo digital registrado",
+            "id": "sg-clock-discard",
+            "title": "Discard",
             "file": "apps/seedgrid_showcase/lib/pages/sg_clock_page.dart",
             "kind": "dart",
-            "code": "const SgClock(\n  initialServerTime: '2026-06-15T09:41:07Z',\n  timezone: 'UTC',\n  digitalStyle: SgClockDigitalStyle.flip,\n  showSeconds: false,\n  size: 'lg',\n)"
+            "code": "const FittedBox(\n  fit: BoxFit.scaleDown,\n  alignment: Alignment.centerLeft,\n  child: SgClock(\n    digitalStyle: SgClockDigitalStyle.discard,\n    size: 'lg',\n    initialServerTime: '2026-06-15T09:41:07-03:00',\n    timezone: 'America/Sao_Paulo',\n  ),\n)"
           },
           {
-            "id": "sg-clock-tamanhos",
-            "title": "Tamanhos",
+            "id": "sg-clock-fade",
+            "title": "Fade",
             "file": "apps/seedgrid_showcase/lib/pages/sg_clock_page.dart",
             "kind": "dart",
-            "code": "const Wrap(\n  spacing: 12,\n  runSpacing: 12,\n  children: [\n    SgClock(\n      size: 'sm',\n      initialServerTime: '2026-06-15T12:00:00Z',\n      timezone: 'UTC',\n    ),\n    SgClock(\n      size: 'lg',\n      initialServerTime: '2026-06-15T12:00:00Z',\n      timezone: 'UTC',\n    ),\n    SgClock(\n      size: 28,\n      initialServerTime: '2026-06-15T12:00:00Z',\n      timezone: 'UTC',\n    ),\n  ],\n)"
+            "code": "const FittedBox(\n  fit: BoxFit.scaleDown,\n  alignment: Alignment.centerLeft,\n  child: SgClock(\n    digitalStyle: SgClockDigitalStyle.fade,\n    initialServerTime: '2026-06-15T09:41:07-03:00',\n    timezone: 'America/Sao_Paulo',\n  ),\n)"
+          },
+          {
+            "id": "sg-clock-flip",
+            "title": "Flip",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_clock_page.dart",
+            "kind": "dart",
+            "code": "const FittedBox(\n  fit: BoxFit.scaleDown,\n  alignment: Alignment.centerLeft,\n  child: SgClock(\n    digitalStyle: SgClockDigitalStyle.flip,\n    size: 'lg',\n    initialServerTime: '2026-06-15T09:41:07-03:00',\n    timezone: 'America/Sao_Paulo',\n  ),\n)"
+          },
+          {
+            "id": "sg-clock-matrix",
+            "title": "Matrix",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_clock_page.dart",
+            "kind": "dart",
+            "code": "const FittedBox(\n  fit: BoxFit.scaleDown,\n  alignment: Alignment.centerLeft,\n  child: SgClock(\n    digitalStyle: SgClockDigitalStyle.matrix,\n    size: 'sm',\n    initialServerTime: '2026-06-15T09:41:07-03:00',\n    timezone: 'America/Sao_Paulo',\n  ),\n)"
+          },
+          {
+            "id": "sg-clock-neon",
+            "title": "Neon",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_clock_page.dart",
+            "kind": "dart",
+            "code": "const FittedBox(\n  fit: BoxFit.scaleDown,\n  alignment: Alignment.centerLeft,\n  child: SgClock(\n    digitalStyle: SgClockDigitalStyle.neon,\n    initialServerTime: '2026-06-15T09:41:07-03:00',\n    timezone: 'America/Sao_Paulo',\n  ),\n)"
+          },
+          {
+            "id": "sg-clock-roller3d",
+            "title": "Roller 3D",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_clock_page.dart",
+            "kind": "dart",
+            "code": "const FittedBox(\n  fit: BoxFit.scaleDown,\n  alignment: Alignment.centerLeft,\n  child: SgClock(\n    digitalStyle: SgClockDigitalStyle.roller3d,\n    size: 'lg',\n    initialServerTime: '2026-06-15T15:41:07-03:00',\n    timezone: 'America/Sao_Paulo',\n    format: SgClockFormat.v12h,\n  ),\n)"
+          },
+          {
+            "id": "sg-clock-segment",
+            "title": "Segment",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_clock_page.dart",
+            "kind": "dart",
+            "code": "const FittedBox(\n  fit: BoxFit.scaleDown,\n  alignment: Alignment.centerLeft,\n  child: SgClock(\n    digitalStyle: SgClockDigitalStyle.segment,\n    initialServerTime: '2026-06-15T09:41:07-03:00',\n    timezone: 'America/Sao_Paulo',\n  ),\n)"
+          },
+          {
+            "id": "sg-clock-seven-segment",
+            "title": "Seven Segment",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_clock_page.dart",
+            "kind": "dart",
+            "code": "const FittedBox(\n  fit: BoxFit.scaleDown,\n  alignment: Alignment.centerLeft,\n  child: SgClock(\n    digitalStyle: SgClockDigitalStyle.sevenSegment,\n    size: 'sm',\n    initialServerTime: '2026-06-15T09:41:07-03:00',\n    timezone: 'America/Sao_Paulo',\n  ),\n)"
+          },
+          {
+            "id": "sg-clock-tema-inline",
+            "title": "Tema inline (sem provider)",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_clock_page.dart",
+            "kind": "dart",
+            "code": "SgClock(\n  clockStyle: SgClockClockStyle.analog,\n  size: 220,\n  initialServerTime: '2026-06-15T10:08:30Z',\n  timezone: 'UTC',\n  secondHandMode: SgClockSecondHandMode.smooth,\n  theme: SgClockTheme(\n    id: 'inline-theme',\n    label: 'Inline Theme',\n    ops: [\n      SgClockCircle(\n        cx: 50,\n        cy: 50,\n        r: 48,\n        fill: SgClockPaint(\n          light: Color(0xFFFFFFFF),\n          dark: Color(0xFF0A0A0A),\n        ),\n        stroke: SgClockPaint(\n          light: Color(0xFFD4D4D4),\n          dark: Color(0xFF404040),\n        ),\n        strokeWidth: 1,\n      ),\n      SgClockCircle(\n        cx: 50,\n        cy: 50,\n        r: 38,\n        stroke: SgClockPaint(\n          light: Color(0xFFE5E5E5),\n          dark: Color(0xFF262626),\n        ),\n        strokeWidth: 1,\n      ),\n      SgClockText(\n        x: 50,\n        y: 56,\n        text: 'SeedGrid',\n        anchor: 'middle',\n        fontSize: 8,\n        fontWeight: 600,\n        fill: SgClockPaint(\n          light: Color(0xFFA3A3A3),\n          dark: Color(0xFFA3A3A3),\n        ),\n      ),\n    ],\n  ),\n)"
+          },
+          {
+            "id": "sg-clock-timezone",
+            "title": "Timezone",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_clock_page.dart",
+            "kind": "dart",
+            "code": "const Wrap(\n  spacing: 12,\n  runSpacing: 12,\n  children: [\n    SgClock(\n      initialServerTime: '2026-06-15T15:41:07Z',\n      timezone: 'UTC',\n      format: SgClockFormat.v12h,\n      locale: 'en-US',\n      showSeconds: false,\n    ),\n    SgClock(\n      initialServerTime: '2026-06-15T15:41:07Z',\n      timezone: 'Europe/Lisbon',\n      locale: 'pt-PT',\n    ),\n    SgClock(\n      initialServerTime: '2026-06-15T15:41:07Z',\n      timezone: 'Asia/Tokyo',\n      format: SgClockFormat.v12h,\n      locale: 'es',\n    ),\n  ],\n)"
           }
         ],
         "parity": {
@@ -3192,7 +3241,7 @@
           },
           {
             "id": "sg-clock-theme-picker-basico",
-            "title": "Escolhendo o tema de um relógio",
+            "title": "Uso básico",
             "file": "apps/seedgrid_showcase/lib/pages/sg_clock_theme_picker_page.dart",
             "kind": "dart",
             "code": "SgClockThemeProvider(\n  value: SgClockThemeProviderValue(themes: sgClockThemesBuiltIn),\n  child: Wrap(\n    spacing: 16,\n    runSpacing: 16,\n    crossAxisAlignment: WrapCrossAlignment.start,\n    children: [\n      SizedBox(\n        width: 300,\n        child: SgClockThemePicker(\n          value: _tema,\n          onChange: (id) => setState(() => _tema = id),\n        ),\n      ),\n      SgClock(\n        clockStyle: SgClockClockStyle.analog,\n        size: 160,\n        initialServerTime: '2026-06-15T10:08:30Z',\n        timezone: 'UTC',\n        themeId: _tema,\n      ),\n    ],\n  ),\n)"
@@ -3263,6 +3312,13 @@
             "code": "SgClockThemePreview(theme: sgClockThemesBuiltIn.first)"
           },
           {
+            "id": "sg-clock-theme-preview-galeria",
+            "title": "Galeria de temas",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_clock_theme_preview_page.dart",
+            "kind": "dart",
+            "code": "Wrap(\n  spacing: 16,\n  runSpacing: 16,\n  children: [\n    for (final tema in sgClockThemesBuiltIn.take(8))\n      SizedBox(\n        width: 140,\n        child: Column(\n          crossAxisAlignment: CrossAxisAlignment.start,\n          children: [\n            Center(\n              child: SgClockThemePreview(theme: tema, size: 72),\n            ),\n            const SizedBox(height: 8),\n            Text(\n              tema.label ?? tema.id,\n              style: const TextStyle(fontWeight: FontWeight.w600),\n            ),\n            Text(tema.id, style: const TextStyle(fontSize: 12)),\n          ],\n        ),\n      ),\n  ],\n)"
+          },
+          {
             "id": "sg-clock-theme-preview-proprio",
             "title": "Tema próprio",
             "file": "apps/seedgrid_showcase/lib/pages/sg_clock_theme_preview_page.dart",
@@ -3275,13 +3331,6 @@
             "file": "apps/seedgrid_showcase/lib/pages/sg_clock_theme_preview_page.dart",
             "kind": "dart",
             "code": "Wrap(\n  spacing: 12,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgClockThemePreview(theme: sgClockThemesBuiltIn[7], size: 32),\n    SgClockThemePreview(theme: sgClockThemesBuiltIn[7]),\n    SgClockThemePreview(theme: sgClockThemesBuiltIn[7], size: 128),\n  ],\n)"
-          },
-          {
-            "id": "sg-clock-theme-preview-todos",
-            "title": "Os temas embutidos",
-            "file": "apps/seedgrid_showcase/lib/pages/sg_clock_theme_preview_page.dart",
-            "kind": "dart",
-            "code": "Wrap(\n  spacing: 8,\n  runSpacing: 8,\n  children: [\n    for (final tema in sgClockThemesBuiltIn)\n      Tooltip(\n        message: tema.label ?? tema.id,\n        child: SgClockThemePreview(theme: tema, size: 72),\n      ),\n  ],\n)"
           }
         ],
         "parity": {
@@ -3327,14 +3376,21 @@
         "examples": [
           {
             "id": "sg-clock-theme-provider-basico",
-            "title": "Registrando os temas embutidos",
+            "title": "Uso básico",
             "file": "apps/seedgrid_showcase/lib/pages/sg_clock_theme_provider_page.dart",
             "kind": "dart",
-            "code": "SgClockThemeProvider(\n  value: SgClockThemeProviderValue(themes: sgClockThemesBuiltIn),\n  child: const SgClock(\n    clockStyle: SgClockClockStyle.analog,\n    size: 160,\n    initialServerTime: '2026-06-15T10:08:30Z',\n    timezone: 'UTC',\n    themeId: 'music-notes',\n  ),\n)"
+            "code": "SgClockThemeProvider(\n  value: SgClockThemeProviderValue(themes: sgClockThemesBuiltIn),\n  child: Wrap(\n    spacing: 16,\n    runSpacing: 16,\n    crossAxisAlignment: WrapCrossAlignment.start,\n    children: [\n      SgClock(\n        clockStyle: SgClockClockStyle.analog,\n        size: 160,\n        initialServerTime: '2026-06-15T10:08:30Z',\n        timezone: 'UTC',\n        themeId: _themeId,\n      ),\n      SizedBox(\n        width: 300,\n        child: SgClockThemePicker(\n          value: _themeId,\n          onChange: (id) => setState(() => _themeId = id),\n        ),\n      ),\n    ],\n  ),\n)"
+          },
+          {
+            "id": "sg-clock-theme-provider-global",
+            "title": "Registro global",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_clock_theme_provider_page.dart",
+            "kind": "dart",
+            "code": "Builder(\n  builder: (context) {\n    registerTheme(\n      SgClockTheme(\n        id: 'anel-global',\n        label: context.tx('Anel global'),\n        ops: [\n          SgClockCircle(\n            cx: 50,\n            cy: 50,\n            r: 48,\n            fill: SgClockPaint(\n              light: Color(0xFFECFDF5),\n              dark: Color(0xFF052E16),\n            ),\n            stroke: SgClockPaint(\n              light: Color(0xFF16A34A),\n              dark: Color(0xFF4ADE80),\n            ),\n            strokeWidth: 3,\n          ),\n        ],\n      ),\n    );\n    return const SgClockThemeProvider(\n      child: SgClock(\n        clockStyle: SgClockClockStyle.analog,\n        size: 160,\n        initialServerTime: '2026-06-15T10:08:30Z',\n        timezone: 'UTC',\n        themeId: 'anel-global',\n      ),\n    );\n  },\n)"
           },
           {
             "id": "sg-clock-theme-provider-local",
-            "title": "Um tema local",
+            "title": "Tema local customizado",
             "file": "apps/seedgrid_showcase/lib/pages/sg_clock_theme_provider_page.dart",
             "kind": "dart",
             "code": "SgClockThemeProvider(\n  value: SgClockThemeProviderValue(\n    themes: [\n      SgClockTheme(\n        id: 'ponto',\n        label: context.tx('Ponto'),\n        ops: [\n          SgClockCircle(\n            cx: 50,\n            cy: 50,\n            r: 48,\n            fill: SgClockPaint(\n              light: Color(0xFFFFF7ED),\n              dark: Color(0xFF1C1917),\n            ),\n          ),\n          SgClockCircle(\n            cx: 50,\n            cy: 12,\n            r: 3,\n            fill: SgClockPaint(\n              light: Color(0xFFF97316),\n              dark: Color(0xFFFB923C),\n            ),\n          ),\n        ],\n      ),\n    ],\n  ),\n  child: SgClock(\n    clockStyle: SgClockClockStyle.analog,\n    size: 160,\n    initialServerTime: '2026-06-15T10:08:30Z',\n    timezone: 'UTC',\n    themeId: 'ponto',\n  ),\n)"
@@ -3348,7 +3404,7 @@
           },
           {
             "id": "sg-clock-theme-provider-resolvedor",
-            "title": "Lendo o resolvedor",
+            "title": "Resolver temas na árvore (useSgClockThemeResolver)",
             "file": "apps/seedgrid_showcase/lib/pages/sg_clock_theme_provider_page.dart",
             "kind": "dart",
             "code": "SgClockThemeProvider(\n  value: SgClockThemeProviderValue(\n    mode: SgClockThemeResolveMode.strict,\n    themes: sgClockThemesBuiltIn,\n  ),\n  child: Builder(\n    builder: (context) {\n      final resolvedor = useSgClockThemeResolver(context)!;\n      return Text(\n        '${resolvedor.list().length} temas; \"dark\": ${resolvedor.resolve('dark')?.label}; \"x\": ${resolvedor.resolve('x')}',\n      );\n    },\n  ),\n)"
@@ -5440,28 +5496,35 @@
         "examples": [
           {
             "id": "sg-environment-provider-api",
-            "title": "Persistência por API",
+            "title": "REST (por usuário)",
             "file": "apps/seedgrid_showcase/lib/pages/sg_environment_provider_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgEnvironmentProvider(\n      value: SgEnvironmentPartial(\n        namespaceProvider: NamespaceProvider(() => 'empresa-1'),\n        persistenceStrategy: createApiPersistenceStrategy(\n          baseUrl: 'https://api.exemplo.com',\n          scope: 'app:showcase',\n          stateVersion: 1,\n          fetcher: _fakeServer,\n        ),\n      ),\n      child: SgPersistentStateBuilder<int>(\n        baseKey: 'pontos',\n        defaultValue: 0,\n        builder: (context, state) => Row(\n          children: [\n            SgButton(\n              label: Text('Pontos: ${state.value}'),\n              onClick: () => state.setValue(state.value + 10),\n            ),\n            const SizedBox(width: 12),\n            SgButton(\n              label: Text(context.tx('Apagar')),\n              appearance: SgAppearance.outline,\n              onClick: state.clear,\n            ),\n          ],\n        ),\n      ),\n    ),\n    const SizedBox(height: 8),\n    Text('chamadas: ${_requests.join(' | ')}'),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgEnvironmentProvider(\n      value: SgEnvironmentPartial(\n        namespaceProvider: NamespaceProvider(() => 'empresa-1'),\n        persistenceStrategy: createApiPersistenceStrategy(\n          baseUrl: 'https://api.exemplo.com',\n          scope: 'app:showcase',\n          stateVersion: 1,\n          fetcher: _fakeServer(_server, _requests),\n        ),\n      ),\n      child: SgPersistentStateBuilder<int>(\n        baseKey: 'pontos',\n        defaultValue: 0,\n        builder: (context, state) => Row(\n          children: [\n            SgButton(\n              label: Text('Pontos: ${state.value}'),\n              onClick: () => state.setValue(state.value + 10),\n            ),\n            const SizedBox(width: 12),\n            SgButton(\n              label: Text(context.tx('Apagar')),\n              appearance: SgAppearance.outline,\n              onClick: state.clear,\n            ),\n          ],\n        ),\n      ),\n    ),\n    const SizedBox(height: 8),\n    Text('chamadas: ${_requests.join(' | ')}'),\n  ],\n)"
           },
           {
             "id": "sg-environment-provider-mirror",
-            "title": "Duas estratégias em modo mirror",
+            "title": "Hybrid (local + REST)",
             "file": "apps/seedgrid_showcase/lib/pages/sg_environment_provider_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgEnvironmentProvider(\n      value: SgEnvironmentPartial(\n        namespaceProvider: NamespaceProvider(() => 'empresa-1'),\n        persistenceStrategy: createCompositePersistenceStrategy(\n          mode: SgPersistenceMode.mirror,\n          primary: _memory(_primary),\n          secondary: _memory(_secondary),\n        ),\n      ),\n      child: SgPersistentStateBuilder<String>(\n        baseKey: 'tema',\n        defaultValue: 'claro',\n        builder: (context, state) => SgButton(\n          label: Text('Tema: ${state.value} (tocar para alternar)'),\n          onClick: () async {\n            await state.setValue(\n              state.value == 'claro' ? 'escuro' : 'claro',\n            );\n            setState(() {});\n          },\n        ),\n      ),\n    ),\n    const SizedBox(height: 8),\n    Text('primária: $_primary'),\n    Text('secundária: $_secondary'),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgEnvironmentProvider(\n      value: SgEnvironmentPartial(\n        namespaceProvider: NamespaceProvider(() => 'empresa-1'),\n        persistenceStrategy: createCompositePersistenceStrategy(\n          mode: SgPersistenceMode.mirror,\n          primary: createApiPersistenceStrategy(\n            baseUrl: 'https://api.exemplo.com',\n            scope: 'app:showcase',\n            stateVersion: 1,\n            fetcher: _fakeServer(_hybridServer, _hybridRequests),\n          ),\n          secondary: _memory(_local),\n        ),\n      ),\n      child: SgPersistentStateBuilder<String>(\n        baseKey: 'tema',\n        defaultValue: 'claro',\n        builder: (context, state) => SgButton(\n          label: Text('Tema: ${state.value} (tocar para alternar)'),\n          onClick: () async {\n            await state.setValue(\n              state.value == 'claro' ? 'escuro' : 'claro',\n            );\n            setState(() {});\n          },\n        ),\n      ),\n    ),\n    const SizedBox(height: 8),\n    Text('local: $_local'),\n    Text('chamadas: ${_hybridRequests.join(' | ')}'),\n  ],\n)"
           },
           {
             "id": "sg-environment-provider-namespace",
-            "title": "Namespace e escopo",
+            "title": "Namespace customizado",
             "file": "apps/seedgrid_showcase/lib/pages/sg_environment_provider_page.dart",
             "kind": "dart",
             "code": "SgEnvironmentProvider(\n  value: SgEnvironmentPartial(\n    namespaceProvider: NamespaceProvider(() => 'empresa-1'),\n    persistence: const SgPersistencePartial(scope: 'app:showcase'),\n  ),\n  child: SgPersistentStateBuilder<int>(\n    baseKey: 'cliques',\n    defaultValue: 0,\n    builder: (context, state) => Row(\n      children: [\n        SgButton(\n          label: Text('Cliques: ${state.value}'),\n          onClick: () => state.setValue(state.value + 1),\n        ),\n        const SizedBox(width: 12),\n        SgButton(\n          label: Text(context.tx('Zerar')),\n          appearance: SgAppearance.outline,\n          onClick: state.clear,\n        ),\n        const SizedBox(width: 12),\n        Flexible(\n          child: Text(\n            'chave: ${useSgPersistence(context).fullKeyOf('cliques')}',\n          ),\n        ),\n      ],\n    ),\n  ),\n)"
           },
           {
+            "id": "sg-environment-provider-namespace-hook",
+            "title": "Ler só o namespace (useSgNamespaceProvider)",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_environment_provider_page.dart",
+            "kind": "dart",
+            "code": "SgEnvironmentProvider(\n  value: SgEnvironmentPartial(\n    namespaceProvider: NamespaceProvider(() => 'u:123'),\n  ),\n  child: Builder(\n    builder: (context) {\n      final namespace = useSgNamespaceProvider(\n        context,\n      ).getNamespace();\n      return Column(\n        crossAxisAlignment: CrossAxisAlignment.start,\n        children: [\n          Text('namespace: ${namespace ?? '(vazio)'}'),\n          Text(\n            'chave: ${buildSgPersistenceKey('fab:theme', namespace, 'app:crm')}',\n          ),\n        ],\n      );\n    },\n  ),\n)"
+          },
+          {
             "id": "sg-environment-provider-sem-namespace",
-            "title": "Sem namespace nada é salvo",
+            "title": "Default (namespace vazio)",
             "file": "apps/seedgrid_showcase/lib/pages/sg_environment_provider_page.dart",
             "kind": "dart",
             "code": "SgEnvironmentProvider(\n  value: SgEnvironmentPartial(\n    namespaceProvider: NamespaceProvider(() => null),\n  ),\n  child: SgPersistentStateBuilder<String>(\n    baseKey: 'rascunho',\n    defaultValue: 'padrão',\n    builder: (context, state) => Column(\n      crossAxisAlignment: CrossAxisAlignment.start,\n      children: [\n        Text('valor: ${state.value}'),\n        Text(\n          'chave: ${useSgPersistence(context).fullKeyOf('rascunho')}',\n        ),\n        SgButton(\n          label: Text(context.tx('Tentar salvar')),\n          onClick: () => state.setValue('salvo?'),\n        ),\n      ],\n    ),\n  ),\n)"
@@ -13640,7 +13703,7 @@
             "title": "Arrastar o ponteiro",
             "file": "apps/seedgrid_showcase/lib/pages/sg_linear_gauge_page.dart",
             "kind": "dart",
-            "code": "Column(\n  mainAxisSize: MainAxisSize.min,\n  children: [\n    SgLinearGauge(\n      value: _volume,\n      primaryPointerDraggable: true,\n      onValueChange: (v) => setState(() => _volume = v),\n      labelFormatter: (v) => '${v.round()}%',\n    ),\n    Text('Volume: ${_volume.round()}%'),\n  ],\n)"
+            "code": "Column(\n  mainAxisSize: MainAxisSize.min,\n  children: [\n    SgLinearGauge(\n      value: _volume,\n      primaryPointerDraggable: true,\n      onValueChange: (v) => setState(() => _volume = v),\n      labelFormatter: (v) => '${v.round()}%',\n    ),\n    Text('${context.tx('Volume')}: ${_volume.round()}%'),\n  ],\n)"
           },
           {
             "id": "sg-linear-gauge-basico",
@@ -13657,11 +13720,25 @@
             "code": "SgLinearGauge(\n  value: 35,\n  ranges: [\n    SgLinearGaugeRange(start: 0, end: 40, color: '#22c55e'),\n    SgLinearGaugeRange(start: 40, end: 100, color: '#ef4444'),\n  ],\n  pointers: [\n    SgLinearGaugePointer(\n      value: 80,\n      shape: SgLinearGaugePointerShape.diamond,\n      label: context.tx('meta'),\n    ),\n  ],\n  primaryPointerShape:\n      SgLinearGaugePrimaryPointerShape.invertedTriangle,\n)"
           },
           {
+            "id": "sg-linear-gauge-padrao",
+            "title": "Padrão (Horizontal)",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_linear_gauge_page.dart",
+            "kind": "dart",
+            "code": "Column(\n  mainAxisSize: MainAxisSize.min,\n  children: [\n    SgLinearGauge(\n      min: 0,\n      max: 100,\n      value: _valor,\n      onValueChange: (v) => setState(() => _valor = v),\n      ranges: [\n        SgLinearGaugeRange(start: 0, end: 30, color: '#22c55e'),\n        SgLinearGaugeRange(start: 30, end: 70, color: '#f59e0b'),\n        SgLinearGaugeRange(start: 70, end: 100, color: '#ef4444'),\n      ],\n      showTicks: true,\n      showLabels: true,\n      majorTickCount: 5,\n      barPointer: true,\n      primaryPointerDraggable: true,\n    ),\n    Text('${context.tx('Valor')}: ${_valor.round()}'),\n  ],\n)"
+          },
+          {
             "id": "sg-linear-gauge-vertical",
             "title": "Vertical",
             "file": "apps/seedgrid_showcase/lib/pages/sg_linear_gauge_page.dart",
             "kind": "dart",
             "code": "const Wrap(\n  spacing: 24,\n  runSpacing: 24,\n  children: [\n    SgLinearGauge(\n      value: 70,\n      orientation: SgLinearGaugeOrientation.vertical,\n    ),\n    SgLinearGauge(\n      value: 70,\n      orientation: SgLinearGaugeOrientation.vertical,\n      isAxisInversed: true,\n      barColor: '#8b5cf6',\n    ),\n  ],\n)"
+          },
+          {
+            "id": "sg-linear-gauge-vertical-multiplos",
+            "title": "Vertical + múltiplos ponteiros",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_linear_gauge_page.dart",
+            "kind": "dart",
+            "code": "Wrap(\n  spacing: 24,\n  runSpacing: 24,\n  crossAxisAlignment: WrapCrossAlignment.start,\n  children: [\n    SgLinearGauge(\n      min: -10,\n      max: 50,\n      value: _temperatura,\n      onValueChange: (v) => setState(() => _temperatura = v),\n      orientation: SgLinearGaugeOrientation.vertical,\n      width: 140,\n      height: 360,\n      primaryPointerColor: '#2563eb',\n      primaryPointerShape: SgLinearGaugePrimaryPointerShape.triangle,\n      primaryPointerSize: 12,\n      primaryPointerDraggable: true,\n      pointers: [\n        SgLinearGaugePointer(\n          id: 'alvo',\n          value: _alvo,\n          color: 'hsl(var(--secondary))',\n          shape: SgLinearGaugePointerShape.diamond,\n          size: 11,\n          draggable: true,\n        ),\n        SgLinearGaugePointer(\n          id: 'temp',\n          value: _temperatura,\n          color: 'hsl(var(--destructive))',\n          shape: SgLinearGaugePointerShape.circle,\n          size: 10,\n          draggable: true,\n        ),\n      ],\n      onPointerValueChange: (id, next, pointer) => setState(() {\n        if (id == 'alvo') _alvo = next;\n        if (id == 'temp') _temperatura = next;\n      }),\n      ranges: [\n        SgLinearGaugeRange(start: -10, end: 15, color: '#38bdf8'),\n        SgLinearGaugeRange(start: 15, end: 30, color: '#22c55e'),\n        SgLinearGaugeRange(start: 30, end: 50, color: '#ef4444'),\n      ],\n      majorTickCount: 6,\n      minorTicksPerInterval: 1,\n      labelFormatter: (v) => '${v.round()}°',\n    ),\n    Column(\n      mainAxisSize: MainAxisSize.min,\n      crossAxisAlignment: CrossAxisAlignment.start,\n      children: [\n        Text(\n          '${context.tx('Temperatura atual')}: ${_temperatura.round()}°C',\n        ),\n        Text('${context.tx('Alvo')}: ${_alvo.round()}°C'),\n      ],\n    ),\n  ],\n)"
           }
         ],
         "parity": {
@@ -16676,6 +16753,13 @@
             "code": "const SgQRCode(\n  value: 'seedgrid',\n  size: 160,\n  margin: 1,\n  fgColor: '#1d4ed8',\n  bgColor: '#e0f2fe',\n  errorCorrectionLevel: SgQRCodeErrorCorrectionLevel.m,\n)"
           },
           {
+            "id": "sg-qr-code-interativo",
+            "title": "Exemplo interativo",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_qr_code_page.dart",
+            "kind": "dart",
+            "code": "Builder(\n  builder: (context) {\n    var value = 'https://seedgrid.com.br';\n    var comLogo = true;\n    var size = 220.0;\n    return StatefulBuilder(\n      builder: (context, set) => Wrap(\n        spacing: 24,\n        runSpacing: 16,\n        crossAxisAlignment: WrapCrossAlignment.start,\n        children: [\n          SizedBox(\n            width: 320,\n            child: Column(\n              crossAxisAlignment: CrossAxisAlignment.start,\n              children: [\n                SgInputText(\n                  id: 'qr-valor',\n                  labelText: context.tx('Valor do QR Code'),\n                  placeholder: context.tx(\n                    'Digite texto, URL ou payload PIX',\n                  ),\n                  value: value,\n                  onChange: (v) => set(() => value = v),\n                ),\n                const SizedBox(height: 16),\n                Text('${context.tx('Tamanho')}: ${size.round()}px'),\n                SgSlider(\n                  id: 'qr-tamanho',\n                  minValue: 140,\n                  maxValue: 360,\n                  step: 4,\n                  value: size,\n                  ariaLabel: context.tx('Tamanho'),\n                  onChange: (v) => set(() => size = v.toDouble()),\n                ),\n                const SizedBox(height: 8),\n                Wrap(\n                  spacing: 8,\n                  runSpacing: 8,\n                  children: [\n                    SgButton(\n                      label: Text('URL'),\n                      onClick: () => set(\n                        () => value = 'https://seedgrid.com.br',\n                      ),\n                    ),\n                    SgButton(\n                      severity: SgSeverity.secondary,\n                      label: Text(context.tx('Exemplo PIX')),\n                      onClick: () => set(\n                        () => value =\n                            '00020126580014BR.GOV.BCB.PIX0136contato@seedgrid.com.br5204000053039865802BR5922SEEDGRID TECNOLOGIA6009SAO PAULO62140510SEEDGRID1236304ABCD',\n                      ),\n                    ),\n                    SgButton(\n                      severity: SgSeverity.warning,\n                      label: Text(context.tx('Sem logo')),\n                      onClick: () => set(() => comLogo = false),\n                    ),\n                    SgButton(\n                      severity: SgSeverity.success,\n                      label: Text(context.tx('Com logo')),\n                      onClick: () => set(() => comLogo = true),\n                    ),\n                  ],\n                ),\n              ],\n            ),\n          ),\n          SgQRCode(\n            value: value,\n            size: size,\n            logoImage: comLogo\n                ? const AssetImage('assets/logo-seedgrid.png')\n                : null,\n            emptyFallback: Text(context.tx('Informe um valor')),\n          ),\n        ],\n      ),\n    );\n  },\n)"
+          },
+          {
             "id": "sg-qr-code-logo",
             "title": "Logo no centro",
             "file": "apps/seedgrid_showcase/lib/pages/sg_qr_code_page.dart",
@@ -16951,11 +17035,18 @@
             "code": "SgRadialGauge(\n  value: 55,\n  primaryPointerType: SgRadialGaugePrimaryPointerType.range,\n  ringThickness: 16,\n  pointers: [\n    SgRadialGaugePointer(\n      id: 'meta',\n      type: SgRadialGaugePointerType.marker,\n      value: 80,\n      shape: SgRadialGaugeMarkerShape.diamond,\n      color: '#ef4444',\n      label: context.tx('meta'),\n    ),\n  ],\n)"
           },
           {
+            "id": "sg-radial-gauge-anel-espesso",
+            "title": "Anel mais espesso (ringThickness)",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_radial_gauge_page.dart",
+            "kind": "dart",
+            "code": "SgRadialGauge(\n  min: 0,\n  max: 120,\n  value: _espesso,\n  onValueChange: (v) => setState(() => _espesso = v),\n  startAngle: 150,\n  endAngle: 30,\n  ringThickness: 36,\n  radiusFactor: 1,\n  axisColor: '#e2e8f0',\n  showTicks: false,\n  showLabels: true,\n  majorTickCount: 6,\n  labelFormatter: (v) => '${v.round()}',\n  ranges: [\n    SgRadialGaugeRange(start: 0, end: 40, color: '#22c55e'),\n    SgRadialGaugeRange(start: 40, end: 85, color: '#f59e0b'),\n    SgRadialGaugeRange(start: 85, end: 120, color: '#ef4444'),\n  ],\n  primaryPointerType: SgRadialGaugePrimaryPointerType.marker,\n  primaryPointerShape: SgRadialGaugePrimaryPointerShape.circle,\n  primaryPointerSize: 14,\n  primaryPointerColor: '#0f172a',\n  primaryPointerDraggable: true,\n)"
+          },
+          {
             "id": "sg-radial-gauge-arrastar",
             "title": "Arrastar o ponteiro",
             "file": "apps/seedgrid_showcase/lib/pages/sg_radial_gauge_page.dart",
             "kind": "dart",
-            "code": "Column(\n  mainAxisSize: MainAxisSize.min,\n  children: [\n    SgRadialGauge(\n      value: _velocidade,\n      primaryPointerDraggable: true,\n      onValueChange: (v) => setState(() => _velocidade = v),\n      labelFormatter: (v) => '${v.round()}',\n    ),\n    Text('Velocidade: ${_velocidade.round()} km/h'),\n  ],\n)"
+            "code": "Column(\n  mainAxisSize: MainAxisSize.min,\n  children: [\n    SgRadialGauge(\n      value: _velocidade,\n      primaryPointerDraggable: true,\n      onValueChange: (v) => setState(() => _velocidade = v),\n      labelFormatter: (v) => '${v.round()}',\n    ),\n    Text('${context.tx('Velocidade')}: ${_velocidade.round()} km/h'),\n  ],\n)"
           },
           {
             "id": "sg-radial-gauge-basico",
@@ -16963,6 +17054,20 @@
             "file": "apps/seedgrid_showcase/lib/pages/sg_radial_gauge_page.dart",
             "kind": "dart",
             "code": "const SgRadialGauge(value: 62)"
+          },
+          {
+            "id": "sg-radial-gauge-donut",
+            "title": "Ponteiro de Faixa (Donut)",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_radial_gauge_page.dart",
+            "kind": "dart",
+            "code": "SgRadialGauge(\n  min: 0,\n  max: 100,\n  showPrimaryPointer: false,\n  pointers: [\n    SgRadialGaugePointer(\n      id: 'donut-progress',\n      type: SgRadialGaugePointerType.range,\n      value: 50,\n      color: '#8b5cf6',\n      width: 14,\n    ),\n  ],\n  startAngle: 135,\n  endAngle: 45,\n  axisColor: '#d4d4d8',\n  axisWidth: 14,\n  showTicks: false,\n  showLabels: false,\n  centerContent: Text(\n    '50 / 100',\n    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),\n  ),\n)"
+          },
+          {
+            "id": "sg-radial-gauge-eixo-invertido",
+            "title": "Eixo Invertido + Ângulos Customizados",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_radial_gauge_page.dart",
+            "kind": "dart",
+            "code": "SgRadialGauge(\n  min: 0,\n  max: 100,\n  value: _invertido,\n  onValueChange: (v) => setState(() => _invertido = v),\n  startAngle: 220,\n  endAngle: -40,\n  isAxisInversed: true,\n  ringThickness: 18,\n  showTicks: true,\n  showLabels: true,\n  majorTickCount: 8,\n  minorTicksPerInterval: 0,\n  animate: false,\n  primaryPointerType: SgRadialGaugePrimaryPointerType.marker,\n  primaryPointerShape: SgRadialGaugePrimaryPointerShape.triangle,\n  primaryPointerSize: 14,\n  primaryPointerColor: '#7c3aed',\n  ranges: [\n    SgRadialGaugeRange(\n      start: 0,\n      end: 35,\n      color: '#0ea5e9',\n      width: 14,\n    ),\n    SgRadialGaugeRange(\n      start: 35,\n      end: 70,\n      color: '#22c55e',\n      width: 14,\n    ),\n    SgRadialGaugeRange(\n      start: 70,\n      end: 100,\n      color: '#f97316',\n      width: 14,\n    ),\n  ],\n)"
           },
           {
             "id": "sg-radial-gauge-faixas",
@@ -16977,6 +17082,27 @@
             "file": "apps/seedgrid_showcase/lib/pages/sg_radial_gauge_page.dart",
             "kind": "dart",
             "code": "const SgRadialGauge(\n  value: 30,\n  startAngle: 180,\n  endAngle: 0,\n  isAxisInversed: true,\n  width: 300,\n  height: 180,\n  showLabels: false,\n  animate: false,\n)"
+          },
+          {
+            "id": "sg-radial-gauge-multiplos",
+            "title": "Múltiplos ponteiros + anotação",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_radial_gauge_page.dart",
+            "kind": "dart",
+            "code": "SgRadialGauge(\n  min: 0,\n  max: 120,\n  value: _rpm,\n  onValueChange: (v) => setState(() => _rpm = v),\n  startAngle: 135,\n  endAngle: 45,\n  radiusFactor: 0.95,\n  ranges: [\n    SgRadialGaugeRange(\n      start: 0,\n      end: 60,\n      color: '#60a5fa',\n      width: 12,\n      opacity: 0.45,\n    ),\n    SgRadialGaugeRange(\n      start: 60,\n      end: 90,\n      color: '#f59e0b',\n      width: 12,\n      opacity: 0.45,\n    ),\n    SgRadialGaugeRange(\n      start: 90,\n      end: 120,\n      color: '#ef4444',\n      width: 12,\n      opacity: 0.45,\n    ),\n  ],\n  pointers: [\n    SgRadialGaugePointer(\n      id: 'alvo',\n      type: SgRadialGaugePointerType.marker,\n      value: _alvo,\n      color: '#8b5cf6',\n      size: 13,\n      shape: SgRadialGaugeMarkerShape.diamond,\n      draggable: true,\n      label: _alvo.round().toString(),\n    ),\n    SgRadialGaugePointer(\n      id: 'consumo',\n      type: SgRadialGaugePointerType.range,\n      value: _consumo,\n      color: '#14b8a6',\n      width: 10,\n      draggable: true,\n    ),\n  ],\n  onPointerValueChange: (id, next, pointer) => setState(() {\n    if (id == 'alvo') _alvo = next;\n    if (id == 'consumo') _consumo = next;\n  }),\n  annotations: [\n    SgRadialGaugeAnnotation(\n      id: 'alvo-rotulo',\n      value: _alvo,\n      radiusFactor: 0.8,\n      content: Text(context.tx('alvo')),\n    ),\n  ],\n  primaryPointerDraggable: true,\n)"
+          },
+          {
+            "id": "sg-radial-gauge-outras-props",
+            "title": "Outras props (tamanho, rótulos e acessibilidade)",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_radial_gauge_page.dart",
+            "kind": "dart",
+            "code": "SgRadialGauge(\n  min: 0,\n  max: 100,\n  value: _eficiencia,\n  onValueChange: (v) => setState(() => _eficiencia = v),\n  width: 220,\n  height: 220,\n  axisWidth: 10,\n  ringThickness: 16,\n  animationDuration: 900,\n  primaryPointerType: SgRadialGaugePrimaryPointerType.needle,\n  primaryPointerLabel: Text('${_eficiencia.round()}%'),\n  labelFormatter: (v) => '${v.round()}%',\n  majorTickCount: 5,\n  minorTicksPerInterval: 0,\n  ariaLabel: context.tx('Gauge de eficiência'),\n  ranges: [\n    SgRadialGaugeRange(\n      start: 0,\n      end: 40,\n      color: '#22c55e',\n      width: 12,\n    ),\n    SgRadialGaugeRange(\n      start: 40,\n      end: 70,\n      color: '#f59e0b',\n      width: 12,\n    ),\n    SgRadialGaugeRange(\n      start: 70,\n      end: 100,\n      color: '#ef4444',\n      width: 12,\n    ),\n  ],\n)"
+          },
+          {
+            "id": "sg-radial-gauge-velocimetro",
+            "title": "Estilo velocímetro",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_radial_gauge_page.dart",
+            "kind": "dart",
+            "code": "SgRadialGauge(\n  min: 0,\n  max: 100,\n  value: _rpm,\n  onValueChange: (v) => setState(() => _rpm = v),\n  startAngle: 140,\n  endAngle: 40,\n  ranges: [\n    SgRadialGaugeRange(\n      start: 0,\n      end: 40,\n      color: '#22c55e',\n      width: 14,\n    ),\n    SgRadialGaugeRange(\n      start: 40,\n      end: 75,\n      color: '#f59e0b',\n      width: 14,\n    ),\n    SgRadialGaugeRange(\n      start: 75,\n      end: 100,\n      color: '#ef4444',\n      width: 14,\n    ),\n  ],\n  showTicks: true,\n  showLabels: true,\n  majorTickCount: 5,\n  minorTicksPerInterval: 2,\n  primaryPointerDraggable: true,\n  primaryPointerType: SgRadialGaugePrimaryPointerType.needle,\n  primaryPointerColor: '#2563eb',\n  centerContent: Column(\n    mainAxisSize: MainAxisSize.min,\n    children: [\n      const Text('RPM'),\n      Text(\n        '${_rpm.round()}',\n        style: const TextStyle(\n          fontSize: 20,\n          fontWeight: FontWeight.w600,\n        ),\n      ),\n    ],\n  ),\n)"
           }
         ],
         "parity": {
@@ -17568,6 +17694,13 @@
             "file": "apps/seedgrid_showcase/lib/pages/sg_realtime_provider_page.dart",
             "kind": "dart",
             "code": "SgRealtimeProvider(\n  channels: const ['backup'],\n  enabled: false,\n  fetchToken: _token,\n  child: Builder(\n    builder: (context) => Text(\n      'Estado: ${useSgRealtimeStatus(context).status.value}',\n    ),\n  ),\n)"
+          },
+          {
+            "id": "sg-realtime-provider-layout",
+            "title": "No layout, com a BFF",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_realtime_provider_page.dart",
+            "kind": "dart",
+            "code": "SgRealtimeProvider(\n  channels: const ['backup'],\n  tokenEndpoint: 'https://app.exemplo.com/api/realtime/connect',\n  tokenRequestInit: const SgTokenRequestInit(\n    headers: {'Authorization': 'Bearer sessao-123'},\n  ),\n  tokenFetcher: _bff,\n  connectionFactory: () => _pulse3,\n  child: Builder(\n    builder: (context) {\n      final r = useSgRealtimeStatus(context);\n      return Column(\n        crossAxisAlignment: CrossAxisAlignment.start,\n        children: [\n          Text('Estado: ${r.status.value}'),\n          Text('Pedidos ao token: ${_bffRequests.join(' | ')}'),\n        ],\n      );\n    },\n  ),\n)"
           },
           {
             "id": "sg-realtime-provider-padroes",
@@ -18922,39 +19055,67 @@
         ],
         "examples": [
           {
-            "id": "sg-string-animator-auto",
-            "title": "Troca de alvo com autoStart (flip)",
+            "id": "sg-string-animator-auto-start",
+            "title": "autoStart - animação automática",
             "file": "apps/seedgrid_showcase/lib/pages/sg_string_animator_page.dart",
             "kind": "dart",
-            "code": "SingleChildScrollView(\n  scrollDirection: Axis.horizontal,\n  child: Builder(\n    builder: (context) {\n      var target = 'LUCIANO';\n      return StatefulBuilder(\n        builder: (context, set) => Column(\n          crossAxisAlignment: CrossAxisAlignment.start,\n          children: [\n            SgStringAnimator(\n              sourceString: 'LUCIANO',\n              targetString: target,\n              stringAnimatorStyle:\n                  SgStringAnimatorStringAnimatorStyle.flip,\n              autoStart: true,\n              velocity: 70,\n              fontSize: 28,\n            ),\n            const SizedBox(height: 16),\n            Wrap(\n              spacing: 8,\n              runSpacing: 8,\n              children: [\n                for (final nome in const ['MARTA', 'JOAO', 'ANA'])\n                  OutlinedButton(\n                    onPressed: () => set(() => target = nome),\n                    child: Text(nome),\n                  ),\n              ],\n            ),\n          ],\n        ),\n      );\n    },\n  ),\n)"
+            "code": "SingleChildScrollView(\n  scrollDirection: Axis.horizontal,\n  child: Builder(\n    builder: (context) {\n      const names = [\n        'LUCIANO',\n        'MARTA',\n        'PEDRO',\n        'ANA',\n        'SEEDGRID',\n      ];\n      var idx = 0;\n      return StatefulBuilder(\n        builder: (context, set) => Column(\n          crossAxisAlignment: CrossAxisAlignment.start,\n          children: [\n            SgStringAnimator(\n              sourceString:\n                  names[(idx - 1 + names.length) % names.length],\n              targetString: names[idx],\n              stringAnimatorStyle:\n                  SgStringAnimatorStringAnimatorStyle.roller3d,\n              alignTo: SgStringAnimatorAlignTo.left,\n              fontSize: 28,\n              autoStart: true,\n              velocity: 60,\n            ),\n            const SizedBox(height: 16),\n            SgButton(\n              size: SgSize.sm,\n              label: Text(context.tx('Próximo nome')),\n              onClick: () =>\n                  set(() => idx = (idx + 1) % names.length),\n            ),\n          ],\n        ),\n      );\n    },\n  ),\n)"
           },
           {
-            "id": "sg-string-animator-direita",
-            "title": "Números alinhados à direita",
+            "id": "sg-string-animator-discard",
+            "title": "Estilo Discard",
             "file": "apps/seedgrid_showcase/lib/pages/sg_string_animator_page.dart",
             "kind": "dart",
-            "code": "SingleChildScrollView(\n  scrollDirection: Axis.horizontal,\n  child: Builder(\n    builder: (context) {\n      final controller = SgStringAnimatorController();\n      return Row(\n        mainAxisSize: MainAxisSize.min,\n        children: [\n          SgStringAnimator(\n            sourceString: '7',\n            targetString: '2048',\n            alignTo: SgStringAnimatorAlignTo.right,\n            emptyChar: '0',\n            charset: const [\n              '0',\n              '1',\n              '2',\n              '3',\n              '4',\n              '5',\n              '6',\n              '7',\n              '8',\n              '9',\n            ],\n            velocity: 90,\n            controller: controller,\n          ),\n          const SizedBox(width: 24),\n          FilledButton(\n            onPressed: controller.startAnimation,\n            child: Text(context.tx('Contar')),\n          ),\n        ],\n      );\n    },\n  ),\n)"
+            "code": "SingleChildScrollView(\n  scrollDirection: Axis.horizontal,\n  child: Builder(\n    builder: (context) {\n      final animRef = SgStringAnimatorController();\n      return Column(\n        crossAxisAlignment: CrossAxisAlignment.start,\n        children: [\n          SgStringAnimator(\n            sourceString: 'LUCIANO',\n            targetString: 'MARTA',\n            stringAnimatorStyle:\n                SgStringAnimatorStringAnimatorStyle.discard,\n            alignTo: SgStringAnimatorAlignTo.left,\n            fontSize: 28,\n            controller: animRef,\n          ),\n          const SizedBox(height: 16),\n          SgButton(\n            size: SgSize.sm,\n            label: Text(context.tx('Animar')),\n            onClick: animRef.startAnimation,\n          ),\n        ],\n      );\n    },\n  ),\n)"
           },
           {
-            "id": "sg-string-animator-estilos",
-            "title": "Os outros estilos",
+            "id": "sg-string-animator-fade",
+            "title": "Estilo Fade",
             "file": "apps/seedgrid_showcase/lib/pages/sg_string_animator_page.dart",
             "kind": "dart",
-            "code": "SingleChildScrollView(\n  scrollDirection: Axis.horizontal,\n  child: Builder(\n    builder: (context) {\n      final controller = SgStringAnimatorController();\n      return Column(\n        crossAxisAlignment: CrossAxisAlignment.start,\n        children: [\n          for (final estilo in const [\n            SgStringAnimatorStringAnimatorStyle.fade,\n            SgStringAnimatorStringAnimatorStyle.matrix,\n            SgStringAnimatorStringAnimatorStyle.neon,\n            SgStringAnimatorStringAnimatorStyle.discard,\n          ])\n            Padding(\n              padding: const EdgeInsets.only(bottom: 12),\n              child: SgStringAnimator(\n                sourceString: 'HELLO',\n                targetString: 'WORLD',\n                stringAnimatorStyle: estilo,\n                fontSize: 24,\n                controller: controller,\n              ),\n            ),\n          FilledButton(\n            onPressed: controller.startAnimation,\n            child: Text(context.tx('Animar')),\n          ),\n        ],\n      );\n    },\n  ),\n)"
+            "code": "SingleChildScrollView(\n  scrollDirection: Axis.horizontal,\n  child: Builder(\n    builder: (context) {\n      final animRef = SgStringAnimatorController();\n      return Column(\n        crossAxisAlignment: CrossAxisAlignment.start,\n        children: [\n          SgStringAnimator(\n            sourceString: 'LUCIANO',\n            targetString: 'MARTA',\n            stringAnimatorStyle:\n                SgStringAnimatorStringAnimatorStyle.fade,\n            alignTo: SgStringAnimatorAlignTo.left,\n            fontSize: 28,\n            controller: animRef,\n          ),\n          const SizedBox(height: 16),\n          SgButton(\n            size: SgSize.sm,\n            label: Text(context.tx('Animar')),\n            onClick: animRef.startAnimation,\n          ),\n        ],\n      );\n    },\n  ),\n)"
           },
           {
-            "id": "sg-string-animator-manual",
-            "title": "Animação manual (roller3d)",
+            "id": "sg-string-animator-flip",
+            "title": "Estilo Flip",
             "file": "apps/seedgrid_showcase/lib/pages/sg_string_animator_page.dart",
             "kind": "dart",
-            "code": "SingleChildScrollView(\n  scrollDirection: Axis.horizontal,\n  child: Builder(\n    builder: (context) {\n      final controller = SgStringAnimatorController();\n      return Column(\n        crossAxisAlignment: CrossAxisAlignment.start,\n        children: [\n          SgStringAnimator(\n            sourceString: 'LUCIANO',\n            targetString: 'MARTA',\n            controller: controller,\n          ),\n          const SizedBox(height: 16),\n          FilledButton(\n            onPressed: controller.startAnimation,\n            child: Text(context.tx('Animar')),\n          ),\n        ],\n      );\n    },\n  ),\n)"
+            "code": "SingleChildScrollView(\n  scrollDirection: Axis.horizontal,\n  child: Builder(\n    builder: (context) {\n      final animRef = SgStringAnimatorController();\n      return Column(\n        crossAxisAlignment: CrossAxisAlignment.start,\n        children: [\n          SgStringAnimator(\n            sourceString: 'LUCIANO',\n            targetString: 'MARTA',\n            stringAnimatorStyle:\n                SgStringAnimatorStringAnimatorStyle.flip,\n            alignTo: SgStringAnimatorAlignTo.left,\n            fontSize: 28,\n            controller: animRef,\n          ),\n          const SizedBox(height: 16),\n          SgButton(\n            size: SgSize.sm,\n            label: Text(context.tx('Animar')),\n            onClick: animRef.startAnimation,\n          ),\n        ],\n      );\n    },\n  ),\n)"
           },
           {
-            "id": "sg-string-animator-velocidade",
-            "title": "Velocidade e preenchimento",
+            "id": "sg-string-animator-matrix",
+            "title": "Estilo Matrix",
             "file": "apps/seedgrid_showcase/lib/pages/sg_string_animator_page.dart",
             "kind": "dart",
-            "code": "SingleChildScrollView(\n  scrollDirection: Axis.horizontal,\n  child: Builder(\n    builder: (context) {\n      final lento = SgStringAnimatorController();\n      final rapido = SgStringAnimatorController();\n      return Column(\n        crossAxisAlignment: CrossAxisAlignment.start,\n        children: [\n          SgStringAnimator(\n            sourceString: 'ABCDEFG',\n            targetString: 'XY',\n            emptyChar: '.',\n            velocity: 10,\n            stringAnimatorStyle:\n                SgStringAnimatorStringAnimatorStyle.flip,\n            fontSize: 22,\n            controller: lento,\n          ),\n          const SizedBox(height: 12),\n          SgStringAnimator(\n            sourceString: 'ABCDEFG',\n            targetString: 'XY',\n            emptyChar: '.',\n            velocity: 100,\n            stringAnimatorStyle:\n                SgStringAnimatorStringAnimatorStyle.flip,\n            fontSize: 22,\n            controller: rapido,\n          ),\n          const SizedBox(height: 16),\n          FilledButton(\n            onPressed: () {\n              lento.startAnimation();\n              rapido.startAnimation();\n            },\n            child: Text(context.tx('Animar os dois')),\n          ),\n        ],\n      );\n    },\n  ),\n)"
+            "code": "SingleChildScrollView(\n  scrollDirection: Axis.horizontal,\n  child: Builder(\n    builder: (context) {\n      final animRef = SgStringAnimatorController();\n      return Column(\n        crossAxisAlignment: CrossAxisAlignment.start,\n        children: [\n          SgStringAnimator(\n            sourceString: 'LUCIANO',\n            targetString: 'MARTA',\n            stringAnimatorStyle:\n                SgStringAnimatorStringAnimatorStyle.matrix,\n            alignTo: SgStringAnimatorAlignTo.left,\n            color: '#22d3ee',\n            backgroundColor: '#0b1220',\n            controller: animRef,\n          ),\n          const SizedBox(height: 16),\n          SgButton(\n            size: SgSize.sm,\n            label: Text(context.tx('Animar')),\n            onClick: animRef.startAnimation,\n          ),\n        ],\n      );\n    },\n  ),\n)"
+          },
+          {
+            "id": "sg-string-animator-neon",
+            "title": "Estilo Neon",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_string_animator_page.dart",
+            "kind": "dart",
+            "code": "SingleChildScrollView(\n  scrollDirection: Axis.horizontal,\n  child: Builder(\n    builder: (context) {\n      final animRef = SgStringAnimatorController();\n      return Column(\n        crossAxisAlignment: CrossAxisAlignment.start,\n        children: [\n          SgStringAnimator(\n            sourceString: 'LUCIANO',\n            targetString: 'MARTA',\n            stringAnimatorStyle:\n                SgStringAnimatorStringAnimatorStyle.neon,\n            alignTo: SgStringAnimatorAlignTo.left,\n            fontSize: 28,\n            color: '#e4fbff',\n            backgroundColor: '#090f22',\n            controller: animRef,\n          ),\n          const SizedBox(height: 16),\n          SgButton(\n            size: SgSize.sm,\n            label: Text(context.tx('Animar')),\n            onClick: animRef.startAnimation,\n          ),\n        ],\n      );\n    },\n  ),\n)"
+          },
+          {
+            "id": "sg-string-animator-roller-nomes",
+            "title": "Roller 3D - nomes (alinhado à esquerda)",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_string_animator_page.dart",
+            "kind": "dart",
+            "code": "SingleChildScrollView(\n  scrollDirection: Axis.horizontal,\n  child: Builder(\n    builder: (context) {\n      final animRef = SgStringAnimatorController();\n      return Column(\n        crossAxisAlignment: CrossAxisAlignment.start,\n        children: [\n          SgStringAnimator(\n            sourceString: 'LUCIANO',\n            targetString: 'MARTA',\n            stringAnimatorStyle:\n                SgStringAnimatorStringAnimatorStyle.roller3d,\n            alignTo: SgStringAnimatorAlignTo.left,\n            fontSize: 28,\n            controller: animRef,\n          ),\n          const SizedBox(height: 16),\n          SgButton(\n            size: SgSize.sm,\n            label: Text(context.tx('Animar')),\n            onClick: animRef.startAnimation,\n          ),\n        ],\n      );\n    },\n  ),\n)"
+          },
+          {
+            "id": "sg-string-animator-roller-numeros",
+            "title": "Roller 3D - números (alinhado à direita)",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_string_animator_page.dart",
+            "kind": "dart",
+            "code": "SingleChildScrollView(\n  scrollDirection: Axis.horizontal,\n  child: Builder(\n    builder: (context) {\n      final animRef = SgStringAnimatorController();\n      return Column(\n        crossAxisAlignment: CrossAxisAlignment.start,\n        children: [\n          SgStringAnimator(\n            sourceString: '42',\n            targetString: '1337',\n            stringAnimatorStyle:\n                SgStringAnimatorStringAnimatorStyle.roller3d,\n            alignTo: SgStringAnimatorAlignTo.right,\n            fontSize: 28,\n            controller: animRef,\n          ),\n          const SizedBox(height: 16),\n          SgButton(\n            size: SgSize.sm,\n            label: Text(context.tx('Animar')),\n            onClick: animRef.startAnimation,\n          ),\n        ],\n      );\n    },\n  ),\n)"
+          },
+          {
+            "id": "sg-string-animator-velocidades",
+            "title": "Velocidades",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_string_animator_page.dart",
+            "kind": "dart",
+            "code": "SingleChildScrollView(\n  scrollDirection: Axis.horizontal,\n  child: Builder(\n    builder: (context) {\n      final casos = [\n        (context.tx('Lento (velocity=10)'), 10),\n        (context.tx('Médio (velocity=50)'), 50),\n        (context.tx('Rápido (velocity=90)'), 90),\n      ];\n      final refs = [\n        for (final _ in casos) SgStringAnimatorController(),\n      ];\n      return SgGrid(\n        columns: const {'base': 1, 'md': 3},\n        gap: 24,\n        children: [\n          for (var i = 0; i < casos.length; i++)\n            Column(\n              crossAxisAlignment: CrossAxisAlignment.start,\n              children: [\n                Text(\n                  casos[i].$1,\n                  style: Theme.of(context).textTheme.bodySmall,\n                ),\n                const SizedBox(height: 8),\n                SgStringAnimator(\n                  sourceString: 'ORIGEM',\n                  targetString: 'DESTINO',\n                  stringAnimatorStyle:\n                      SgStringAnimatorStringAnimatorStyle.roller3d,\n                  alignTo: SgStringAnimatorAlignTo.left,\n                  fontSize: 22,\n                  velocity: casos[i].$2,\n                  controller: refs[i],\n                ),\n                const SizedBox(height: 8),\n                SgButton(\n                  size: SgSize.sm,\n                  label: Text(context.tx('Animar')),\n                  onClick: refs[i].startAnimation,\n                ),\n              ],\n            ),\n        ],\n      );\n    },\n  ),\n)"
           }
         ],
         "parity": {
@@ -19181,7 +19342,7 @@
         "examples": [
           {
             "id": "sg-time-provider-basico",
-            "title": "Uma hora para toda a árvore",
+            "title": "Uso básico",
             "file": "apps/seedgrid_showcase/lib/pages/sg_time_provider_page.dart",
             "kind": "dart",
             "code": "const SgTimeProvider(\n  initialServerTime: '2026-06-15T09:41:07Z',\n  child: Wrap(\n    spacing: 12,\n    runSpacing: 12,\n    children: [\n      SgClock(timezone: 'UTC'),\n      SgClock(timezone: 'Asia/Tokyo'),\n    ],\n  ),\n)"
@@ -19194,8 +19355,15 @@
             "code": "SgTimeProvider(\n  initialServerTime: '2026-06-15T09:41:07Z',\n  child: Builder(\n    builder: (context) {\n      final tempo = useSgTime(context);\n      final agora = DateTime.fromMillisecondsSinceEpoch(\n        tempo.nowMs().floor(),\n        isUtc: true,\n      );\n      return Text(\n        'tick ${tempo.tick}, agora (UTC) ${agora.toIso8601String()}',\n      );\n    },\n  ),\n)"
           },
           {
+            "id": "sg-time-provider-raiz",
+            "title": "Integração com Next.js",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_time_provider_page.dart",
+            "kind": "dart",
+            "code": "SizedBox(\n  height: 140,\n  child: MaterialApp(\n    debugShowCheckedModeBanner: false,\n    theme: Theme.of(context),\n    builder: (context, child) => SgTimeProvider(\n      initialServerTime: '2026-06-15T09:41:07Z',\n      child: child!,\n    ),\n    home: const Center(child: SgClock(timezone: 'UTC')),\n  ),\n)"
+          },
+          {
             "id": "sg-time-provider-sem",
-            "title": "Sem provider",
+            "title": "Sem provedor (fallback)",
             "file": "apps/seedgrid_showcase/lib/pages/sg_time_provider_page.dart",
             "kind": "dart",
             "code": "Builder(\n  builder: (context) {\n    final tempo = useSgTime(context);\n    return Text('Sem provider: tick ${tempo.tick}');\n  },\n)"
