@@ -374,7 +374,7 @@ class _SgInputTextAreaPageState extends State<SgInputTextAreaPage> {
       ShowcaseExample(
         title: 'Desabilitado e somente leitura',
         description:
-            'disabled bloqueia o campo; readOnly impede a edição, mas deixa copiar.',
+            'enabled=false desabilita o campo; readOnly impede a edição, mas deixa copiar.',
         preview:
             // #region sg-input-text-area-estados
             Column(
@@ -497,21 +497,44 @@ class _SgInputTextAreaPageState extends State<SgInputTextAreaPage> {
       ),
       ShowcaseExample(
         title: 'Elevação',
-        description: 'elevation aplica sombra ao campo: none, sm, md ou lg.',
+        description: 'Compare os níveis de sombra disponíveis no campo.',
         preview:
             // #region sg-input-text-area-elevacao
-            Column(
+            Wrap(
+              spacing: 16,
+              runSpacing: 12,
               children: [
-                SgInputTextArea(
-                  id: 'sm',
-                  labelText: context.tx('Sombra pequena'),
-                  elevation: SgInputTextAreaElevation.sm,
+                SizedBox(
+                  width: 280,
+                  child: SgInputTextArea(
+                    id: 'sg-input-text-area-elevation-none',
+                    labelText: context.tx('Elevação none'),
+                    elevation: SgInputTextAreaElevation.none,
+                  ),
                 ),
-                const SizedBox(height: 12),
-                SgInputTextArea(
-                  id: 'lg',
-                  labelText: context.tx('Sombra grande'),
-                  elevation: SgInputTextAreaElevation.lg,
+                SizedBox(
+                  width: 280,
+                  child: SgInputTextArea(
+                    id: 'sg-input-text-area-elevation-sm',
+                    labelText: context.tx('Elevação sm'),
+                    elevation: SgInputTextAreaElevation.sm,
+                  ),
+                ),
+                SizedBox(
+                  width: 280,
+                  child: SgInputTextArea(
+                    id: 'sg-input-text-area-elevation-md',
+                    labelText: context.tx('Elevação md'),
+                    elevation: SgInputTextAreaElevation.md,
+                  ),
+                ),
+                SizedBox(
+                  width: 280,
+                  child: SgInputTextArea(
+                    id: 'sg-input-text-area-elevation-lg',
+                    labelText: context.tx('Elevação lg'),
+                    elevation: SgInputTextAreaElevation.lg,
+                  ),
                 ),
               ],
             ),

@@ -15,13 +15,29 @@ class SgMultiSelectPage extends StatefulWidget {
 }
 
 class _SgMultiSelectPageState extends State<SgMultiSelectPage> {
-  List<Object> _escolhidas = const ['sp'];
+  final ValueNotifier<List<Object>> _vazio = ValueNotifier(const []);
+  final ValueNotifier<List<Object>> _preselecionadas = ValueNotifier(const [
+    'e1',
+    'e2',
+    'e4',
+  ]);
+  final ValueNotifier<List<Object>> _pesquisavel = ValueNotifier(const ['e1']);
+  final ValueNotifier<List<Object>> _limitadas = ValueNotifier(const []);
+  final ValueNotifier<List<Object>> _filiais = ValueNotifier(const [1, 3]);
+  final ValueNotifier<List<Object>> _controlado = ValueNotifier(const ['sp']);
   final SgFormController _form = SgFormController();
-  String _enviado = '';
+  final ValueNotifier<String> _enviado = ValueNotifier('');
 
   @override
   void dispose() {
+    _vazio.dispose();
+    _preselecionadas.dispose();
+    _pesquisavel.dispose();
+    _limitadas.dispose();
+    _filiais.dispose();
+    _controlado.dispose();
     _form.dispose();
+    _enviado.dispose();
     super.dispose();
   }
 
@@ -29,106 +45,285 @@ class _SgMultiSelectPageState extends State<SgMultiSelectPage> {
   Widget build(BuildContext context) {
     final examples = <ShowcaseExample>[
       ShowcaseExample(
-        title: 'Básico',
+        title: 'Básico (fechado / aberto, com e sem seleção)',
         description:
-            'Toque no campo para abrir a lista e marque quantas opções quiser. '
-            'Em tela estreita (menos de 600 px) a lista abre como bottom sheet.',
+            'Clique no campo para abrir. Marque várias opções; a lista continua aberta.',
         preview:
             // #region sg-multi-select-basico
-            SgMultiSelect(
-              id: 'estados',
-              labelText: 'Estados',
-              options: [
-                SgMultiSelectOption(
-                  label: context.tx('São Paulo'),
-                  value: 'sp',
+            Wrap(
+              spacing: 16,
+              runSpacing: 16,
+              children: [
+                SizedBox(
+                  width: 384,
+                  child: ListenableBuilder(
+                    listenable: _vazio,
+                    builder: (context, _) => Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SgMultiSelect(
+                          id: 'ms-empty',
+                          labelText: context.tx('Empresas'),
+                          placeholder: context.tx('Selecione as empresas'),
+                          options: [
+                            SgMultiSelectOption(
+                              label: 'Empresa 1',
+                              value: 'e1',
+                            ),
+                            SgMultiSelectOption(
+                              label: 'Empresa 2',
+                              value: 'e2',
+                            ),
+                            SgMultiSelectOption(
+                              label: 'Empresa 3',
+                              value: 'e3',
+                            ),
+                            SgMultiSelectOption(
+                              label: 'Empresa 4',
+                              value: 'e4',
+                            ),
+                            SgMultiSelectOption(
+                              label: 'Empresa 5',
+                              value: 'e5',
+                            ),
+                            SgMultiSelectOption(
+                              label: 'Empresa 6',
+                              value: 'e6',
+                            ),
+                          ],
+                          value: _vazio.value,
+                          onChange: (v) => _vazio.value = v,
+                        ),
+                        const SizedBox(height: 8),
+                        Text(
+                          '${context.tx('Selecionadas')}: ${_vazio.value.isEmpty ? context.tx('(nenhuma)') : _vazio.value.join(', ')}',
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-                SgMultiSelectOption(
-                  label: context.tx('Rio de Janeiro'),
-                  value: 'rj',
+                SizedBox(
+                  width: 384,
+                  child: ListenableBuilder(
+                    listenable: _preselecionadas,
+                    builder: (context, _) => Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SgMultiSelect(
+                          id: 'ms-preselected',
+                          labelText: context.tx('Empresas (com seleção)'),
+                          placeholder: context.tx('Selecione as empresas'),
+                          options: [
+                            SgMultiSelectOption(
+                              label: 'Empresa 1',
+                              value: 'e1',
+                            ),
+                            SgMultiSelectOption(
+                              label: 'Empresa 2',
+                              value: 'e2',
+                            ),
+                            SgMultiSelectOption(
+                              label: 'Empresa 3',
+                              value: 'e3',
+                            ),
+                            SgMultiSelectOption(
+                              label: 'Empresa 4',
+                              value: 'e4',
+                            ),
+                            SgMultiSelectOption(
+                              label: 'Empresa 5',
+                              value: 'e5',
+                            ),
+                            SgMultiSelectOption(
+                              label: 'Empresa 6',
+                              value: 'e6',
+                            ),
+                          ],
+                          value: _preselecionadas.value,
+                          onChange: (v) => _preselecionadas.value = v,
+                        ),
+                        const SizedBox(height: 8),
+                        Text(
+                          '${context.tx('Selecionadas')}: ${_preselecionadas.value.isEmpty ? context.tx('(nenhuma)') : _preselecionadas.value.join(', ')}',
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-                SgMultiSelectOption(
-                  label: context.tx('Minas Gerais'),
-                  value: 'mg',
-                ),
-                SgMultiSelectOption(label: context.tx('Bahia'), value: 'ba'),
               ],
             ),
         // #endregion
         code: SgMultiSelectPageSnippets.sgMultiSelectBasico,
       ),
       ShowcaseExample(
-        title: 'Busca, limpar e limite',
+        title: 'Com busca',
         description:
-            'searchable abre um campo de busca; clearable mostra o botão de limpar; '
-            'maxSelected impede marcar mais itens.',
+            'searchable habilita um campo de busca no topo do dropdown.',
         preview:
             // #region sg-multi-select-busca
-            SgMultiSelect(
-              id: 'cores',
-              labelText: 'Até 3 cores',
-              searchable: true,
-              clearable: true,
-              maxSelected: 3,
-              searchPlaceholder: 'Buscar cor...',
-              options: [
-                SgMultiSelectOption(label: context.tx('Azul'), value: 'azul'),
-                SgMultiSelectOption(label: context.tx('Verde'), value: 'verde'),
-                SgMultiSelectOption(
-                  label: context.tx('Vermelho'),
-                  value: 'vermelho',
+            SizedBox(
+              width: 384,
+              child: ListenableBuilder(
+                listenable: _pesquisavel,
+                builder: (context, _) => Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SgMultiSelect(
+                      id: 'ms-searchable',
+                      labelText: context.tx('Empresas'),
+                      placeholder: context.tx('Selecione as empresas'),
+                      searchable: true,
+                      options: [
+                        SgMultiSelectOption(label: 'Empresa 1', value: 'e1'),
+                        SgMultiSelectOption(label: 'Empresa 2', value: 'e2'),
+                        SgMultiSelectOption(label: 'Empresa 3', value: 'e3'),
+                        SgMultiSelectOption(label: 'Empresa 4', value: 'e4'),
+                        SgMultiSelectOption(label: 'Empresa 5', value: 'e5'),
+                        SgMultiSelectOption(label: 'Empresa 6', value: 'e6'),
+                      ],
+                      value: _pesquisavel.value,
+                      onChange: (v) => _pesquisavel.value = v,
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      '${context.tx('Selecionadas')}: ${_pesquisavel.value.isEmpty ? context.tx('(nenhuma)') : _pesquisavel.value.join(', ')}',
+                    ),
+                  ],
                 ),
-                SgMultiSelectOption(
-                  label: context.tx('Amarelo'),
-                  value: 'amarelo',
-                ),
-                SgMultiSelectOption(label: context.tx('Roxo'), value: 'roxo'),
-                SgMultiSelectOption(
-                  label: context.tx('Cinza (indisponível)'),
-                  value: 'cinza',
-                  enabled: false,
-                ),
-              ],
+              ),
             ),
         // #endregion
         code: SgMultiSelectPageSnippets.sgMultiSelectBusca,
       ),
       ShowcaseExample(
-        title: 'Resumo com chipLabel',
+        title: 'Limpável e com limite',
         description:
-            'chipLabel é o texto curto do item já selecionado. Até summaryThreshold '
-            'itens o campo lista os rótulos; acima disso mostra "N selecionadas".',
+            'clearable adiciona o botão de limpar; maxSelected restringe o número de itens.',
         preview:
-            // #region sg-multi-select-resumo
-            SgMultiSelect(
-              id: 'filiais',
-              labelText: 'Filiais',
-              summaryThreshold: 3,
-              options: [
-                SgMultiSelectOption(
-                  label: context.tx('1 - Matriz'),
-                  value: 1,
-                  chipLabel: '1',
+            // #region sg-multi-select-limite
+            SizedBox(
+              width: 384,
+              child: ListenableBuilder(
+                listenable: _limitadas,
+                builder: (context, _) => Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SgMultiSelect(
+                      id: 'ms-capped',
+                      labelText: context.tx('Empresas (máx. 2)'),
+                      placeholder: context.tx('Selecione até 2 empresas'),
+                      clearable: true,
+                      maxSelected: 2,
+                      options: [
+                        SgMultiSelectOption(label: 'Empresa 1', value: 'e1'),
+                        SgMultiSelectOption(label: 'Empresa 2', value: 'e2'),
+                        SgMultiSelectOption(label: 'Empresa 3', value: 'e3'),
+                        SgMultiSelectOption(label: 'Empresa 4', value: 'e4'),
+                        SgMultiSelectOption(label: 'Empresa 5', value: 'e5'),
+                        SgMultiSelectOption(label: 'Empresa 6', value: 'e6'),
+                      ],
+                      value: _limitadas.value,
+                      onChange: (v) => _limitadas.value = v,
+                    ),
+                    const SizedBox(height: 8),
+                    SgButton(
+                      size: SgSize.sm,
+                      appearance: SgAppearance.outline,
+                      label: Text(context.tx('Limpar')),
+                      onClick: () => _limitadas.value = const [],
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      '${context.tx('Selecionadas')}: ${_limitadas.value.isEmpty ? context.tx('(nenhuma)') : _limitadas.value.join(', ')}',
+                    ),
+                  ],
                 ),
-                SgMultiSelectOption(
-                  label: context.tx('2 - Filial Centro'),
-                  value: 2,
-                  chipLabel: '2',
-                ),
-                SgMultiSelectOption(
-                  label: context.tx('3 - Filial Norte'),
-                  value: 3,
-                  chipLabel: '3',
-                ),
-                SgMultiSelectOption(
-                  label: context.tx('4 - Filial Sul'),
-                  value: 4,
-                  chipLabel: '4',
-                ),
-              ],
+              ),
             ),
         // #endregion
-        code: SgMultiSelectPageSnippets.sgMultiSelectResumo,
+        code: SgMultiSelectPageSnippets.sgMultiSelectLimite,
+      ),
+      ShowcaseExample(
+        title: 'Desabilitado',
+        description: 'Com enabled=false o campo não abre nem altera a seleção.',
+        preview:
+            // #region sg-multi-select-desabilitado
+            SgMultiSelect(
+              id: 'ms-disabled',
+              labelText: context.tx('Empresas'),
+              placeholder: context.tx('Selecione as empresas'),
+              options: [
+                SgMultiSelectOption(label: 'Empresa 1', value: 'e1'),
+                SgMultiSelectOption(label: 'Empresa 2', value: 'e2'),
+                SgMultiSelectOption(label: 'Empresa 3', value: 'e3'),
+                SgMultiSelectOption(label: 'Empresa 4', value: 'e4'),
+                SgMultiSelectOption(label: 'Empresa 5', value: 'e5'),
+                SgMultiSelectOption(label: 'Empresa 6', value: 'e6'),
+              ],
+              value: const ['e1', 'e3'],
+              enabled: false,
+            ),
+        // #endregion
+        code: SgMultiSelectPageSnippets.sgMultiSelectDesabilitado,
+      ),
+      ShowcaseExample(
+        title: 'Rótulo curto (chipLabel)',
+        description:
+            'Cada opção pode ter chipLabel: o campo fechado resume a seleção com o texto curto (ex.: "1, 3") e a lista continua com o label completo.',
+        preview:
+            // #region sg-multi-select-chip-label
+            SizedBox(
+              width: 384,
+              child: ListenableBuilder(
+                listenable: _filiais,
+                builder: (context, _) => Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SgMultiSelect(
+                      id: 'ms-chip-label',
+                      labelText: context.tx('Filiais'),
+                      placeholder: context.tx('Selecione as empresas'),
+                      searchable: true,
+                      options: [
+                        SgMultiSelectOption(
+                          label: '1 - Matriz São Paulo',
+                          value: 1,
+                          chipLabel: '1',
+                        ),
+                        SgMultiSelectOption(
+                          label: '2 - Filial Campinas',
+                          value: 2,
+                          chipLabel: '2',
+                        ),
+                        SgMultiSelectOption(
+                          label: '3 - Filial Centro',
+                          value: 3,
+                          chipLabel: '3',
+                        ),
+                        SgMultiSelectOption(
+                          label: '4 - Filial Ribeirão Preto',
+                          value: 4,
+                          chipLabel: '4',
+                        ),
+                        SgMultiSelectOption(
+                          label: '5 - Depósito Jundiaí',
+                          value: 5,
+                          chipLabel: '5',
+                        ),
+                      ],
+                      value: _filiais.value,
+                      onChange: (v) => _filiais.value = v,
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      '${context.tx('Selecionadas')}: ${_filiais.value.isEmpty ? context.tx('(nenhuma)') : _filiais.value.join(', ')}',
+                    ),
+                  ],
+                ),
+              ),
+            ),
+        // #endregion
+        code: SgMultiSelectPageSnippets.sgMultiSelectChipLabel,
       ),
       ShowcaseExample(
         title: 'Valor controlado',
@@ -136,32 +331,51 @@ class _SgMultiSelectPageState extends State<SgMultiSelectPage> {
             'Com value, o pai manda: o campo só muda quando o value muda.',
         preview:
             // #region sg-multi-select-controlado
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SgMultiSelect(
-                  id: 'controlado',
-                  labelText: 'Cidades',
-                  value: _escolhidas,
-                  onChange: (v) => setState(() => _escolhidas = v),
-                  options: [
-                    SgMultiSelectOption(
-                      label: context.tx('São Paulo'),
-                      value: 'sp',
+            SizedBox(
+              width: 384,
+              child: ListenableBuilder(
+                listenable: _controlado,
+                builder: (context, _) => Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SgMultiSelect(
+                      id: 'ms-controlled',
+                      labelText: context.tx('Cidades'),
+                      options: [
+                        SgMultiSelectOption(label: 'São Paulo', value: 'sp'),
+                        SgMultiSelectOption(label: 'Campinas', value: 'cps'),
+                        SgMultiSelectOption(label: 'Santos', value: 'sts'),
+                      ],
+                      value: _controlado.value,
+                      onChange: (v) => _controlado.value = v,
                     ),
-                    SgMultiSelectOption(
-                      label: context.tx('Campinas'),
-                      value: 'cps',
+                    const SizedBox(height: 8),
+                    Wrap(
+                      spacing: 8,
+                      runSpacing: 8,
+                      children: [
+                        SgButton(
+                          size: SgSize.sm,
+                          appearance: SgAppearance.outline,
+                          label: Text(context.tx('Selecionar todas')),
+                          onClick: () =>
+                              _controlado.value = ['sp', 'cps', 'sts'],
+                        ),
+                        SgButton(
+                          size: SgSize.sm,
+                          appearance: SgAppearance.outline,
+                          label: Text(context.tx('Limpar')),
+                          onClick: () => _controlado.value = const [],
+                        ),
+                      ],
                     ),
-                    SgMultiSelectOption(
-                      label: context.tx('Santos'),
-                      value: 'sts',
+                    const SizedBox(height: 8),
+                    Text(
+                      '${context.tx('Selecionadas')}: ${_controlado.value.isEmpty ? context.tx('(nenhuma)') : _controlado.value.join(', ')}',
                     ),
                   ],
                 ),
-                const SizedBox(height: 8),
-                Text('Selecionadas: ${_escolhidas.join(', ')}'),
-              ],
+              ),
             ),
         // #endregion
         code: SgMultiSelectPageSnippets.sgMultiSelectControlado,
@@ -169,43 +383,42 @@ class _SgMultiSelectPageState extends State<SgMultiSelectPage> {
       ShowcaseExample(
         title: 'Dentro de um formulário',
         description:
-            'name + control: o valor do campo no formulário é a lista de valores '
-            'marcados.',
+            'name + control: o valor do campo no formulário é a lista de valores marcados.',
         preview:
             // #region sg-multi-select-formulario
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SgMultiSelect(
-                  id: 'tags',
-                  name: 'tags',
-                  control: _form,
-                  labelText: 'Tags',
-
-                  options: [
-                    SgMultiSelectOption(
-                      label: context.tx('Urgente'),
-                      value: 'urgente',
-                    ),
-                    SgMultiSelectOption(
-                      label: context.tx('Financeiro'),
-                      value: 'fin',
-                    ),
-                    SgMultiSelectOption(
-                      label: context.tx('Suporte'),
-                      value: 'sup',
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 12),
-                SgButton(
-                  label: Text(context.tx('Enviar')),
-                  onClick: () => _form.handleSubmit(
-                    (values) => setState(() => _enviado = '${values['tags']}'),
+            SizedBox(
+              width: 384,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SgMultiSelect(
+                    id: 'ms-form',
+                    name: 'tags',
+                    control: _form,
+                    labelText: context.tx('Tags'),
+                    options: [
+                      SgMultiSelectOption(label: 'Urgente', value: 'urgente'),
+                      SgMultiSelectOption(label: 'Financeiro', value: 'fin'),
+                      SgMultiSelectOption(label: 'Suporte', value: 'sup'),
+                    ],
                   ),
-                ),
-                if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),
-              ],
+                  const SizedBox(height: 12),
+                  SgButton(
+                    label: Text(context.tx('Enviar')),
+                    onClick: () => _form.handleSubmit(
+                      (values) => _enviado.value =
+                          ((values['tags'] as List?) ?? const []).join(', '),
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  ValueListenableBuilder<String>(
+                    valueListenable: _enviado,
+                    builder: (context, enviado, _) => enviado.isEmpty
+                        ? const SizedBox.shrink()
+                        : Text('${context.tx('Enviado')}: $enviado'),
+                  ),
+                ],
+              ),
             ),
         // #endregion
         code: SgMultiSelectPageSnippets.sgMultiSelectFormulario,

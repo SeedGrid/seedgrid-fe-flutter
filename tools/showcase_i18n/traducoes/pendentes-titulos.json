@@ -1781,6 +1781,576 @@
   "Fuente asíncrona + render personalizado",
   "Source asynchrone + rendu personnalise"
  ],
+ "Básico (minChars 3, debounce 350ms)": [
+  "Basic (minChars 3, debounce 350ms)",
+  "Básico (minChars 3, debounce 350ms)",
+  "Básico (minChars 3, debounce 350ms)",
+  "Basique (minChars 3, debounce 350ms)"
+ ],
+ "minChars 1 e debounce 800ms": [
+  "minChars 1, debounce 800ms",
+  "minChars 1 e debounce 800ms",
+  "minChars 1, debounce 800ms",
+  "minChars 1, debounce 800ms"
+ ],
+ "Digite e observe: o valor imediato muda a cada tecla, o termo de busca só atualiza após parar de digitar e com 3+ caracteres.": [
+  "Type and watch: the immediate value updates per keystroke, while the search term only updates after you stop typing and with 3+ chars.",
+  "Digite e observe: o valor imediato muda a cada tecla, o termo de busca só atualiza após parar de escrever e com 3+ caracteres.",
+  "Escribe y observa: el valor inmediato cambia con cada tecla, mientras el termino de busqueda solo se actualiza al dejar de escribir y con 3+ caracteres.",
+  "Tapez et observez : la valeur immediate se met a jour a chaque frappe, tandis que le terme de recherche ne se met a jour qu'apres l'arret de la saisie et avec 3 caracteres ou plus."
+ ],
+ "Dispara com 1 caractere, mas com um debounce mais longo.": [
+  "Fires with a single character, but with a longer debounce.",
+  "Dispara com 1 caractere, mas com um debounce mais longo.",
+  "Dispara con un solo caracter, pero con un debounce mas largo.",
+  "Se declenche des un seul caractere, mais avec un debounce plus long."
+ ],
+ "Valor imediato (onChange)": [
+  "Immediate value (onChange)",
+  "Valor imediato (onChange)",
+  "Valor inmediato (onChange)",
+  "Valeur immediate (onChange)"
+ ],
+ "Termo de busca (onSearchChange)": [
+  "Search term (onSearchChange)",
+  "Termo de pesquisa (onSearchChange)",
+  "Termino de busqueda (onSearchChange)",
+  "Terme de recherche (onSearchChange)"
+ ],
+ "Digite para buscar": [
+  "Type to search",
+  "Escreva para pesquisar",
+  "Escribe para buscar",
+  "Tapez pour rechercher"
+ ],
+ "Digite e veja os eventos": [
+  "Type and watch the events",
+  "Escreva e veja os eventos",
+  "Escribe y mira los eventos",
+  "Tapez et regardez les événements"
+ ],
+ "onChange (cru)": [
+  "onChange (raw)",
+  "onChange (cru)",
+  "onChange (crudo)",
+  "onChange (brut)"
+ ],
+ "Buscas disparadas": [
+  "Searches fired",
+  "Pesquisas disparadas",
+  "Búsquedas disparadas",
+  "Recherches déclenchées"
+ ],
+ "Cliente": [
+  "Customer",
+  "Cliente",
+  "Cliente",
+  "Client"
+ ],
+ "Selecionar todas": [
+  "Select all",
+  "Selecionar todas",
+  "Seleccionar todas",
+  "Tout sélectionner"
+ ],
+ "Enviado": [
+  "Submitted",
+  "Enviado",
+  "Enviado",
+  "Envoyé"
+ ],
+ "Cidades": [
+  "Cities",
+  "Cidades",
+  "Ciudades",
+  "Villes"
+ ],
+ "Tags": [
+  "Tags",
+  "Tags",
+  "Etiquetas",
+  "Étiquettes"
+ ],
+ "Básico (fechado / aberto, com e sem seleção)": [
+  "Basic (closed / open, with and without selection)",
+  "Básico (fechado / aberto, com e sem seleção)",
+  "Basico (cerrado / abierto, con y sin seleccion)",
+  "Basique (ferme / ouvert, avec et sans selection)"
+ ],
+ "Clique no campo para abrir. Marque várias opções; a lista continua aberta.": [
+  "Click the field to open. Toggle multiple options; the list stays open.",
+  "Clique no campo para abrir. Marque várias opções; a lista continua aberta.",
+  "Haz clic en el campo para abrir. Marca varias opciones; la lista sigue abierta.",
+  "Cliquez sur le champ pour ouvrir. Cochez plusieurs options ; la liste reste ouverte."
+ ],
+ "Com busca": [
+  "Searchable",
+  "Com busca",
+  "Con busqueda",
+  "Avec recherche"
+ ],
+ "searchable habilita um campo de busca no topo do dropdown.": [
+  "searchable enables a search field at the top of the dropdown.",
+  "searchable habilita um campo de busca no topo do dropdown.",
+  "searchable habilita un campo de busqueda en la parte superior del dropdown.",
+  "searchable active un champ de recherche en haut du dropdown."
+ ],
+ "Limpável e com limite": [
+  "Clearable and capped",
+  "Limpável e com limite",
+  "Limpiable y con limite",
+  "Effacable et plafonne"
+ ],
+ "clearable adiciona o botão de limpar; maxSelected restringe o número de itens.": [
+  "clearable adds the clear button; maxSelected caps the number of items.",
+  "clearable adiciona o botão de limpar; maxSelected restringe o número de itens.",
+  "clearable agrega el boton de limpiar; maxSelected limita la cantidad de items.",
+  "clearable ajoute le bouton d'effacement ; maxSelected limite le nombre d'elements."
+ ],
+ "Com enabled=false o campo não abre nem altera a seleção.": [
+  "With enabled={false} the field neither opens nor changes the selection.",
+  "Com enabled=false o campo não abre nem altera a seleção.",
+  "Con enabled={false} el campo no abre ni cambia la seleccion.",
+  "Avec enabled={false} le champ ne s'ouvre pas et ne change pas la selection."
+ ],
+ "Rótulo curto (chipLabel)": [
+  "Short label (chipLabel)",
+  "Rótulo curto (chipLabel)",
+  "Etiqueta corta (chipLabel)",
+  "Libelle court (chipLabel)"
+ ],
+ "Cada opção pode ter chipLabel: o campo fechado resume a seleção com o texto curto (ex.: \"1, 3\") e a lista continua com o label completo.": [
+  "Each option may have a `chipLabel`: the closed field summarizes the selection with the short text (e.g. \"1, 3\") while the list keeps the full `label`.",
+  "Cada opção pode ter chipLabel: o campo fechado resume a seleção com o texto curto (ex.: \"1, 3\") e a lista continua com o label completo.",
+  "Cada opcion puede tener `chipLabel`: el campo cerrado resume la seleccion con el texto corto (p. ej. \"1, 3\") y la lista mantiene el `label` completo.",
+  "Chaque option peut avoir un `chipLabel` : le champ ferme resume la selection avec le texte court (ex. \"1, 3\") et la liste garde le `label` complet."
+ ],
+ "Empresas": [
+  "Companies",
+  "Empresas",
+  "Empresas",
+  "Entreprises"
+ ],
+ "Empresas (com seleção)": [
+  "Companies (with selection)",
+  "Empresas (com seleção)",
+  "Empresas (con seleccion)",
+  "Entreprises (avec selection)"
+ ],
+ "Empresas (máx. 2)": [
+  "Companies (max 2)",
+  "Empresas (máx. 2)",
+  "Empresas (max 2)",
+  "Entreprises (max 2)"
+ ],
+ "Selecione até 2 empresas": [
+  "Select up to 2 companies",
+  "Selecione até 2 empresas",
+  "Selecciona hasta 2 empresas",
+  "Selectionnez jusqu'a 2 entreprises"
+ ],
+ "Selecione as empresas": [
+  "Select the companies",
+  "Selecione as empresas",
+  "Selecciona las empresas",
+  "Selectionnez les entreprises"
+ ],
+ "Selecionadas": [
+  "Selected",
+  "Selecionadas",
+  "Seleccionadas",
+  "Selectionnees"
+ ],
+ "(nenhuma)": [
+  "(none)",
+  "(nenhuma)",
+  "(ninguna)",
+  "(aucune)"
+ ],
+ "Frameworks": [
+  "Frameworks",
+  "Frameworks",
+  "Frameworks",
+  "Frameworks"
+ ],
+ "Áreas": [
+  "Areas",
+  "Áreas",
+  "Áreas",
+  "Domaines"
+ ],
+ "Básico (vazio / com chips)": [
+  "Basic (empty / with chips)",
+  "Básico (vazio / com chips)",
+  "Basico (vacio / con chips)",
+  "Basique (vide / avec chips)"
+ ],
+ "Clique no campo para abrir. Cada item selecionado vira um chip com botão de remover.": [
+  "Click the field to open. Each selected item becomes a chip with a remove button.",
+  "Clique no campo para abrir. Cada item selecionado vira um chip com botão de remover.",
+  "Haz clic en el campo para abrir. Cada item seleccionado se vuelve un chip con boton de quitar.",
+  "Cliquez sur le champ pour ouvrir. Chaque element selectionne devient un chip avec un bouton de suppression."
+ ],
+ "Com enabled=false o campo não abre, nem remove chips.": [
+  "With enabled={false} the field neither opens nor removes chips.",
+  "Com enabled=false o campo não abre, nem remove chips.",
+  "Con enabled={false} el campo no abre ni quita chips.",
+  "Avec enabled={false} le champ ne s'ouvre pas et ne supprime pas les chips."
+ ],
+ "Cada opção pode ter chipLabel: o chip mostra o texto curto (ex.: só o código) e a lista continua com o label completo. Passe o mouse no chip para ver o nome.": [
+  "Each option may have a `chipLabel`: the chip shows the short text (e.g. just the code) while the list keeps the full `label`. Hover the chip to see the name.",
+  "Cada opção pode ter chipLabel: o chip mostra o texto curto (ex.: só o código) e a lista continua com o label completo. Passe o mouse no chip para ver o nome.",
+  "Cada opcion puede tener `chipLabel`: el chip muestra el texto corto (p. ej. solo el codigo) y la lista mantiene el `label` completo. Pase el raton sobre el chip para ver el nombre.",
+  "Chaque option peut avoir un `chipLabel` : la puce affiche le texte court (ex. seulement le code) et la liste garde le `label` complet. Survolez la puce pour voir le nom."
+ ],
+ "Empresas (máx. 3)": [
+  "Companies (max 3)",
+  "Empresas (máx. 3)",
+  "Empresas (max 3)",
+  "Entreprises (max 3)"
+ ],
+ "Selecione até 3 empresas": [
+  "Select up to 3 companies",
+  "Selecione até 3 empresas",
+  "Selecciona hasta 3 empresas",
+  "Selectionnez jusqu'a 3 entreprises"
+ ],
+ "Básico (controles internos)": [
+  "Basic (built-in controls)",
+  "Básico (controlos internos)",
+  "Básico (controles internos)",
+  "Basique (commandes internes)"
+ ],
+ "Seleção múltipla + controles externos": [
+  "Multiple selection + external controls",
+  "Seleção múltipla + controlos externos",
+  "Selección múltiple + controles externos",
+  "Sélection multiple + commandes externes"
+ ],
+ "Drag and drop sem botões": [
+  "Drag and drop without buttons",
+  "Drag and drop sem botões",
+  "Drag and drop sin botones",
+  "Glisser-déposer sans boutons"
+ ],
+ "Item personalizado e item desabilitado": [
+  "Custom item and disabled item",
+  "Item personalizado e item desativado",
+  "Elemento personalizado y elemento deshabilitado",
+  "Élément personnalisé et élément désactivé"
+ ],
+ "Ordem controlada por estado externo": [
+  "Order controlled by external state",
+  "Ordem controlada por estado externo",
+  "Orden controlado por estado externo",
+  "Ordre contrôlé par un état externe"
+ ],
+ "Selecione itens e use os botões Topo, Subir, Descer e Base; arrastar também reordena.": [
+  "Select items and use the Top, Up, Down and Bottom buttons; dragging also reorders.",
+  "Selecione itens e use os botões Topo, Subir, Descer e Base; arrastar também reordena.",
+  "Selecciona elementos y usa los botones Inicio, Subir, Bajar y Final; arrastrar también reordena.",
+  "Sélectionnez des éléments et utilisez les boutons Haut, Monter, Descendre et Bas ; le glisser-déposer réordonne aussi."
+ ],
+ "Com selectionMode multiple e showControls false, botões externos movem os itens selecionados e limpam a seleção.": [
+  "With selectionMode multiple and showControls false, external buttons move the selected items and clear the selection.",
+  "Com selectionMode multiple e showControls false, botões externos movem os itens selecionados e limpam a seleção.",
+  "Con selectionMode multiple y showControls false, botones externos mueven los elementos seleccionados y limpian la selección.",
+  "Avec selectionMode multiple et showControls false, des boutons externes déplacent les éléments sélectionnés et effacent la sélection."
+ ],
+ "Com showControls false e draggable, a ordem muda arrastando os itens, sem botões.": [
+  "With showControls false and draggable, the order changes by dragging the items, with no buttons.",
+  "Com showControls false e draggable, a ordem muda arrastando os itens, sem botões.",
+  "Con showControls false y draggable, el orden cambia arrastrando los elementos, sin botones.",
+  "Avec showControls false et draggable, l'ordre change en faisant glisser les éléments, sans boutons."
+ ],
+ "itemTemplate personaliza o conteúdo de cada linha; um item com enabled false aparece desabilitado.": [
+  "itemTemplate customizes the content of each row; an item with enabled false appears disabled.",
+  "itemTemplate personaliza o conteúdo de cada linha; um item com enabled false aparece desativado.",
+  "itemTemplate personaliza el contenido de cada fila; un elemento con enabled false aparece deshabilitado.",
+  "itemTemplate personnalise le contenu de chaque ligne ; un élément avec enabled false apparaît désactivé."
+ ],
+ "O pai controla a ordem pelo estado: value e onChange permitem restaurar, inverter e ordenar por fora.": [
+  "The parent controls the order through state: value and onChange allow restoring, reversing and sorting from outside.",
+  "O pai controla a ordem pelo estado: value e onChange permitem restaurar, inverter e ordenar por fora.",
+  "El padre controla el orden mediante el estado: value y onChange permiten restaurar, invertir y ordenar desde fuera.",
+  "Le parent contrôle l'ordre via l'état : value et onChange permettent de restaurer, inverser et trier de l'extérieur."
+ ],
+ "selectionMode single permite um item por vez e controlsPosition right move os botões para a direita.": [
+  "selectionMode single allows one item at a time and controlsPosition right moves the buttons to the right.",
+  "selectionMode single permite um item de cada vez e controlsPosition right move os botões para a direita.",
+  "selectionMode single permite un elemento a la vez y controlsPosition right mueve los botones a la derecha.",
+  "selectionMode single autorise un élément à la fois et controlsPosition right déplace les boutons à droite."
+ ],
+ "Ao enviar, o formulário recebe a lista na ordem atual.": [
+  "On submit, the form receives the list in the current order.",
+  "Ao enviar, o formulário recebe a lista na ordem atual.",
+  "Al enviar, el formulario recibe la lista en el orden actual.",
+  "À l'envoi, le formulaire reçoit la liste dans l'ordre actuel."
+ ],
+ "Etapas do pipeline": [
+  "Pipeline stages",
+  "Etapas do pipeline",
+  "Etapas del pipeline",
+  "Étapes du pipeline"
+ ],
+ "Time de atendimento": [
+  "Support team",
+  "Equipa de atendimento",
+  "Equipo de atención",
+  "Équipe de support"
+ ],
+ "Backlog da sprint": [
+  "Sprint backlog",
+  "Backlog do sprint",
+  "Backlog del sprint",
+  "Backlog du sprint"
+ ],
+ "Produtos (controlado)": [
+  "Products (controlled)",
+  "Produtos (controlado)",
+  "Productos (controlado)",
+  "Produits (contrôlé)"
+ ],
+ "Ordem atual": [
+  "Current order",
+  "Ordem atual",
+  "Orden actual",
+  "Ordre actuel"
+ ],
+ "Dica: arraste os itens para reordenar, sem usar os botões.": [
+  "Tip: drag the items to reorder them, without using the buttons.",
+  "Dica: arraste os itens para reordenar, sem usar os botões.",
+  "Consejo: arrastra los elementos para reordenarlos, sin usar los botones.",
+  "Astuce : faites glisser les éléments pour les réordonner, sans utiliser les boutons."
+ ],
+ "Prioridade": [
+  "Priority",
+  "Prioridade",
+  "Prioridad",
+  "Priorité"
+ ],
+ "Esforço": [
+  "Effort",
+  "Esforço",
+  "Esfuerzo",
+  "Effort"
+ ],
+ "Subir": [
+  "Move up",
+  "Subir",
+  "Subir",
+  "Monter"
+ ],
+ "Descer": [
+  "Move down",
+  "Descer",
+  "Bajar",
+  "Descendre"
+ ],
+ "Mover para a base": [
+  "Move to bottom",
+  "Mover para a base",
+  "Mover al final",
+  "Déplacer en bas"
+ ],
+ "Restaurar": [
+  "Reset",
+  "Restaurar",
+  "Restablecer",
+  "Réinitialiser"
+ ],
+ "Ordenar A-Z": [
+  "Sort A-Z",
+  "Ordenar A-Z",
+  "Ordenar A-Z",
+  "Trier A-Z"
+ ],
+ "Sidebar fixa": [
+  "Fixed sidebar",
+  "Sidebar fixa",
+  "Sidebar fija",
+  "Sidebar fixe"
+ ],
+ "Drawer móvel": [
+  "Mobile drawer",
+  "Drawer móvel",
+  "Drawer móvil",
+  "Drawer mobile"
+ ],
+ "PanelMenu": [
+  "PanelMenu",
+  "PanelMenu",
+  "PanelMenu",
+  "PanelMenu"
+ ],
+ "Em níveis": [
+  "Tiered",
+  "Em níveis",
+  "En niveles",
+  "En niveaux"
+ ],
+ "MegaMenu horizontal": [
+  "Horizontal MegaMenu",
+  "MegaMenu horizontal",
+  "MegaMenu horizontal",
+  "MegaMenu horizontal"
+ ],
+ "MegaMenu vertical": [
+  "Vertical MegaMenu",
+  "MegaMenu vertical",
+  "MegaMenu vertical",
+  "MegaMenu vertical"
+ ],
+ "Sidebar acoplável": [
+  "Dockable sidebar",
+  "Sidebar acoplável",
+  "Sidebar acoplable",
+  "Sidebar ancrable"
+ ],
+ "Menu lateral com grupos colapsáveis e botão de colapso.": [
+  "Side menu with collapsible groups and a collapse button.",
+  "Menu lateral com grupos colapsáveis e botão de colapso.",
+  "Menú lateral con grupos colapsables y botón de colapso.",
+  "Menu latéral avec groupes repliables et bouton de repli."
+ ],
+ "Abre em overlay e pode ser fixado por pin.": [
+  "Opens as an overlay and can be pinned.",
+  "Abre em overlay e pode ser fixado por pin.",
+  "Se abre como overlay y puede fijarse con pin.",
+  "S'ouvre en overlay et peut être épinglé."
+ ],
+ "Exemplo isolado para visualizar apenas o estilo painel.": [
+  "Isolated example to preview only the panel style.",
+  "Exemplo isolado para visualizar apenas o estilo painel.",
+  "Ejemplo aislado para ver solo el estilo panel.",
+  "Exemple isolé pour visualiser uniquement le style panneau."
+ ],
+ "Exemplo isolado para visualizar apenas o estilo em níveis.": [
+  "Isolated example to preview only the tiered style.",
+  "Exemplo isolado para visualizar apenas o estilo em níveis.",
+  "Ejemplo aislado para ver solo el estilo en niveles.",
+  "Exemple isolé pour visualiser uniquement le style en niveaux."
+ ],
+ "Exemplo isolado para visualizar apenas o MegaMenu horizontal.": [
+  "Isolated example to preview only the horizontal mega menu.",
+  "Exemplo isolado para visualizar apenas o MegaMenu horizontal.",
+  "Ejemplo aislado para ver solo el MegaMenu horizontal.",
+  "Exemple isolé pour visualiser uniquement le MegaMenu horizontal."
+ ],
+ "Exemplo isolado para visualizar apenas o MegaMenu vertical.": [
+  "Isolated example to preview only the vertical mega menu.",
+  "Exemplo isolado para visualizar apenas o MegaMenu vertical.",
+  "Ejemplo aislado para ver solo el MegaMenu vertical.",
+  "Exemple isolé pour visualiser uniquement le MegaMenu vertical."
+ ],
+ "SgMenu dockable com menu completo, brand, userMenu, SgToolBar integrada e identidade visual do showcase.": [
+  "Dockable SgMenu with a full menu, brand, userMenu, an integrated SgToolBar and the showcase visual identity.",
+  "SgMenu dockable com menu completo, brand, userMenu, SgToolBar integrada e identidade visual do showcase.",
+  "SgMenu dockable con menú completo, brand, userMenu, SgToolBar integrada e identidad visual del showcase.",
+  "SgMenu dockable avec menu complet, brand, userMenu, SgToolBar intégrée et identité visuelle du showcase."
+ ],
+ "user mostra nome, subtítulo e avatar no rodapé do menu; clicar no bloco chama onClick, e userMenu abre as ações do usuário.": [
+  "user shows the name, subtitle and avatar at the bottom of the menu; clicking the block calls onClick, and userMenu opens the user actions.",
+  "user mostra nome, subtítulo e avatar no rodapé do menu; clicar no bloco chama onClick, e userMenu abre as ações do utilizador.",
+  "user muestra nombre, subtítulo y avatar al pie del menú; hacer clic en el bloque llama a onClick, y userMenu abre las acciones del usuario.",
+  "user affiche le nom, le sous-titre et l'avatar en bas du menu ; cliquer sur le bloc appelle onClick, et userMenu ouvre les actions de l'utilisateur."
+ ],
+ "Buscar módulo...": [
+  "Search module...",
+  "Pesquisar módulo...",
+  "Buscar módulo...",
+  "Rechercher un module..."
+ ],
+ "Conteúdo principal": [
+  "Main content",
+  "Conteúdo principal",
+  "Contenido principal",
+  "Contenu principal"
+ ],
+ "Item ativo": [
+  "Active item",
+  "Item ativo",
+  "Elemento activo",
+  "Élément actif"
+ ],
+ "Abrir menu mobile": [
+  "Open mobile menu",
+  "Abrir menu móvel",
+  "Abrir menú móvil",
+  "Ouvrir le menu mobile"
+ ],
+ "Fixar gaveta": [
+  "Pin drawer",
+  "Fixar gaveta",
+  "Fijar cajón",
+  "Épingler le tiroir"
+ ],
+ "Soltar gaveta": [
+  "Unpin drawer",
+  "Soltar gaveta",
+  "Soltar cajón",
+  "Détacher le tiroir"
+ ],
+ "Buscar...": [
+  "Search...",
+  "Pesquisar...",
+  "Buscar...",
+  "Rechercher..."
+ ],
+ "Estilo do menu": [
+  "Menu style",
+  "Estilo do menu",
+  "Estilo del menú",
+  "Style du menu"
+ ],
+ "Ferramentas": [
+  "Tools",
+  "Ferramentas",
+  "Herramientas",
+  "Outils"
+ ],
+ "Novo registro": [
+  "New record",
+  "Novo registo",
+  "Nuevo registro",
+  "Nouvel enregistrement"
+ ],
+ "Última ação": [
+  "Last action",
+  "Última ação",
+  "Última acción",
+  "Dernière action"
+ ],
+ "Filiais": [
+  "Branches",
+  "Filiais",
+  "Sucursales",
+  "Succursales"
+ ],
+ "iconButtons recebe uma lista de botões; cada botão tem o onClick que você definir.": [
+  "iconButtons takes a list of buttons; each button has the onClick you define.",
+  "iconButtons recebe uma lista de botões; cada botão tem o onClick que definir.",
+  "iconButtons recibe una lista de botones; cada botón tiene el onClick que definas.",
+  "iconButtons reçoit une liste de boutons ; chaque bouton a le onClick que vous définissez."
+ ],
+ "Prefixo/sufixo são apenas visuais. O valor retornado já vem concatenado.": [
+  "Prefix/suffix are visual only. The returned value is already concatenated.",
+  "Prefixo/sufixo são apenas visuais. O valor retornado já vem concatenado.",
+  "Prefijo/sufijo son solo visuales. El valor devuelto ya viene concatenado.",
+  "Le prefixe/suffixe est uniquement visuel. La valeur retournee est deja concatenee."
+ ],
+ "enabled=false desabilita, readOnly=true impede edição.": [
+  "enabled=false disables, readOnly=true prevents editing.",
+  "enabled=false desabilita, readOnly=true impede edição.",
+  "enabled=false deshabilita, readOnly=true impide editar.",
+  "enabled=false desactive, readOnly=true empeche l'edition."
+ ],
+ "enabled=false desabilita o campo; readOnly impede a edição, mas deixa copiar.": [
+  "enabled=false disables the field; readOnly prevents editing but still allows copying.",
+  "enabled=false desabilita o campo; readOnly impede a edição, mas deixa copiar.",
+  "enabled=false deshabilita el campo; readOnly impide la edición, pero permite copiar.",
+  "enabled=false désactive le champ ; readOnly empêche la modification, mais permet de copier."
+ ],
  "Data de nascimento": [
   "Birth date",
   "Data de nascimento",
