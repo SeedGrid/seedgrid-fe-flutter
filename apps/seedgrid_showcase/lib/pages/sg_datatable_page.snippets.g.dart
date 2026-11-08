@@ -28,9 +28,8 @@ Column(
                 size: SgSize.sm,
                 appearance: SgAppearance.outline,
                 leftIcon: const Icon(Icons.edit_outlined),
-                onClick: () => setState(
-                  () => _evento = 'editar ${row['nome']}',
-                ),
+                onClick: () =>
+                    _evento.value = 'editar ${row['nome']}',
               ),
               const SizedBox(width: 4),
               SgButton(
@@ -39,9 +38,8 @@ Column(
                 severity: SgSeverity.danger,
                 appearance: SgAppearance.outline,
                 leftIcon: const Icon(Icons.delete_outline),
-                onClick: () => setState(
-                  () => _evento = 'excluir ${row['nome']}',
-                ),
+                onClick: () =>
+                    _evento.value = 'excluir ${row['nome']}',
               ),
             ],
           ),
@@ -49,7 +47,10 @@ Column(
       ],
     ),
     const SizedBox(height: 8),
-    Text('Última ação: $_evento'),
+    ValueListenableBuilder<String>(
+      valueListenable: _evento,
+      builder: (context, evento, _) => Text('Última ação: $evento'),
+    ),
   ],
 )
 ''';
@@ -85,66 +86,67 @@ Column(
 
   /// Region `sg-datatable-cartoes`.
   static const String sgDatatableCartoes = r'''
-Column(
-  crossAxisAlignment: CrossAxisAlignment.start,
-  children: [
-    SgRadioGroup(
-      id: 'modo-cartoes',
-      title: 'mobileMode',
-      orientation: SgRadioGroupOrientation.horizontal,
-      source: const [
-        SgRadioGroupOption(label: 'cards', value: 'cards'),
-        SgRadioGroupOption(label: 'scroll', value: 'scroll'),
-      ],
-      value: _modoCartoes.name,
-      onChange: (v) => setState(
-        () => _modoCartoes = v == 'scroll'
+ValueListenableBuilder<SgDatatableMobileMode>(
+  valueListenable: _modoCartoes,
+  builder: (context, modoCartoes, _) => Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      SgRadioGroup(
+        id: 'modo-cartoes',
+        title: 'mobileMode',
+        orientation: SgRadioGroupOrientation.horizontal,
+        source: const [
+          SgRadioGroupOption(label: 'cards', value: 'cards'),
+          SgRadioGroupOption(label: 'scroll', value: 'scroll'),
+        ],
+        value: modoCartoes.name,
+        onChange: (v) => _modoCartoes.value = v == 'scroll'
             ? SgDatatableMobileMode.scroll
             : SgDatatableMobileMode.cards,
       ),
-    ),
-    SizedBox(
-      width: 420,
-      height: 360,
-      child: SingleChildScrollView(
-        child: SgDatatable(
-          title: context.tx('Pessoas (cartões)'),
-          value: _pessoas,
-          columns: const [
-            SgDatatableColumn(
-              field: 'id',
-              header: 'Id',
-              cardHidden: true,
-            ),
-            SgDatatableColumn(
-              field: 'nome',
-              header: 'Nome',
-              sortable: true,
-              filter: true,
-              cardTitle: true,
-            ),
-            SgDatatableColumn(
-              field: 'cidade',
-              header: 'Cidade',
-              sortable: true,
-              filter: true,
-            ),
-            SgDatatableColumn(
-              field: 'idade',
-              header: 'Idade',
-              sortable: true,
-            ),
-          ],
-          dataKey: 'id',
-          mobileMode: _modoCartoes,
-          selectionMode: SgDatatableSelectionMode.single,
-          showColumnFilters: true,
-          paginator: true,
-          rows: 4,
+      SizedBox(
+        width: 420,
+        height: 360,
+        child: SingleChildScrollView(
+          child: SgDatatable(
+            title: context.tx('Pessoas (cartões)'),
+            value: _pessoas,
+            columns: const [
+              SgDatatableColumn(
+                field: 'id',
+                header: 'Id',
+                cardHidden: true,
+              ),
+              SgDatatableColumn(
+                field: 'nome',
+                header: 'Nome',
+                sortable: true,
+                filter: true,
+                cardTitle: true,
+              ),
+              SgDatatableColumn(
+                field: 'cidade',
+                header: 'Cidade',
+                sortable: true,
+                filter: true,
+              ),
+              SgDatatableColumn(
+                field: 'idade',
+                header: 'Idade',
+                sortable: true,
+              ),
+            ],
+            dataKey: 'id',
+            mobileMode: modoCartoes,
+            selectionMode: SgDatatableSelectionMode.single,
+            showColumnFilters: true,
+            paginator: true,
+            rows: 4,
+          ),
         ),
       ),
-    ),
-  ],
+    ],
+  ),
 )
 ''';
 
@@ -385,85 +387,93 @@ const SgComponentsI18nProvider(
 
   /// Region `sg-datatable-lazy`.
   static const String sgDatatableLazy = r'''
-SgDatatable(
-  value: _paginaLazy,
-  columns: _colunas,
-  lazy: true,
-  paginator: true,
-  rows: 5,
-  first: _first,
-  totalRecords: _pessoas.length,
-  onPage: _carregar,
+ValueListenableBuilder<int>(
+  valueListenable: _first,
+  builder: (context, first, _) => SgDatatable(
+    value: _pessoas.skip(first).take(5).toList(),
+    columns: _colunas,
+    lazy: true,
+    paginator: true,
+    rows: 5,
+    first: first,
+    totalRecords: _pessoas.length,
+    onPage: (e) => _first.value = e.first,
+  ),
 )
 ''';
 
   /// Region `sg-datatable-rolagem-infinita`.
   static const String sgDatatableRolagemInfinita = r'''
-Column(
-  crossAxisAlignment: CrossAxisAlignment.start,
-  children: [
-    SgRadioGroup(
-      id: 'rolagem-infinita',
-      title: 'infiniteScroll',
-      orientation: SgRadioGroupOrientation.horizontal,
-      source: const [
-        SgRadioGroupOption(label: 'true', value: 'true'),
-        SgRadioGroupOption(label: 'false', value: 'false'),
-      ],
-      value: _rolagemInfinita.toString(),
-      onChange: (v) =>
-          setState(() => _rolagemInfinita = v != 'false'),
-    ),
-    SizedBox(
-      width: 420,
-      height: 360,
-      child: SingleChildScrollView(
-        child: SgDatatable(
-          title: context.tx('Pessoas (rolagem infinita)'),
-          value: _pessoas,
-          columns: const [
-            SgDatatableColumn(
-              field: 'id',
-              header: 'Id',
-              cardHidden: true,
-            ),
-            SgDatatableColumn(
-              field: 'nome',
-              header: 'Nome',
-              cardTitle: true,
-            ),
-            SgDatatableColumn(field: 'cidade', header: 'Cidade'),
-            SgDatatableColumn(field: 'idade', header: 'Idade'),
-          ],
-          dataKey: 'id',
-          mobileMode: SgDatatableMobileMode.cards,
-          infiniteScroll: _rolagemInfinita,
-          paginator: true,
-          rows: 4,
+ValueListenableBuilder<bool>(
+  valueListenable: _rolagemInfinita,
+  builder: (context, rolagemInfinita, _) => Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      SgRadioGroup(
+        id: 'rolagem-infinita',
+        title: 'infiniteScroll',
+        orientation: SgRadioGroupOrientation.horizontal,
+        source: const [
+          SgRadioGroupOption(label: 'true', value: 'true'),
+          SgRadioGroupOption(label: 'false', value: 'false'),
+        ],
+        value: rolagemInfinita.toString(),
+        onChange: (v) => _rolagemInfinita.value = v != 'false',
+      ),
+      SizedBox(
+        width: 420,
+        height: 360,
+        child: SingleChildScrollView(
+          child: SgDatatable(
+            title: context.tx('Pessoas (rolagem infinita)'),
+            value: _pessoas,
+            columns: const [
+              SgDatatableColumn(
+                field: 'id',
+                header: 'Id',
+                cardHidden: true,
+              ),
+              SgDatatableColumn(
+                field: 'nome',
+                header: 'Nome',
+                cardTitle: true,
+              ),
+              SgDatatableColumn(field: 'cidade', header: 'Cidade'),
+              SgDatatableColumn(field: 'idade', header: 'Idade'),
+            ],
+            dataKey: 'id',
+            mobileMode: SgDatatableMobileMode.cards,
+            infiniteScroll: rolagemInfinita,
+            paginator: true,
+            rows: 4,
+          ),
         ),
       ),
-    ),
-  ],
+    ],
+  ),
 )
 ''';
 
   /// Region `sg-datatable-selecao`.
   static const String sgDatatableSelecao = r'''
-Column(
-  crossAxisAlignment: CrossAxisAlignment.start,
-  children: [
-    SgDatatable(
-      value: _pessoas.take(8).toList(),
-      columns: _colunas,
-      dataKey: 'id',
-      selectionMode: SgDatatableSelectionMode.multiple,
-      selection: _selecionadas,
-      onSelectionChange: (s) => setState(() => _selecionadas = s),
-    ),
-    Text(
-      'Selecionadas: ${((_selecionadas as List?) ?? const []).length}',
-    ),
-  ],
+ValueListenableBuilder<Object?>(
+  valueListenable: _selecionadas,
+  builder: (context, selecionadas, _) => Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      SgDatatable(
+        value: _pessoas.take(8).toList(),
+        columns: _colunas,
+        dataKey: 'id',
+        selectionMode: SgDatatableSelectionMode.multiple,
+        selection: selecionadas,
+        onSelectionChange: (s) => _selecionadas.value = s,
+      ),
+      Text(
+        'Selecionadas: ${((selecionadas as List?) ?? const []).length}',
+      ),
+    ],
+  ),
 )
 ''';
 }

@@ -16,10 +16,19 @@ class SgCameraCapturePage extends StatefulWidget {
 }
 
 class _SgCameraCapturePageState extends State<SgCameraCapturePage> {
-  Uint8List? _captured;
-  Uint8List? _selfie;
-  Uint8List? _documento;
-  String? _cameraError;
+  final ValueNotifier<Uint8List?> _captured = ValueNotifier(null);
+  final ValueNotifier<Uint8List?> _selfie = ValueNotifier(null);
+  final ValueNotifier<Uint8List?> _documento = ValueNotifier(null);
+  final ValueNotifier<String?> _cameraError = ValueNotifier(null);
+
+  @override
+  void dispose() {
+    _captured.dispose();
+    _selfie.dispose();
+    _documento.dispose();
+    _cameraError.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,12 +48,20 @@ class _SgCameraCapturePageState extends State<SgCameraCapturePage> {
                     id: 'foto',
                     labelText: 'Foto',
                     previewHeight: 240,
-                    onCapture: (image) => setState(() => _captured = image),
+                    onCapture: (image) => _captured.value = image,
                   ),
                 ),
                 const SizedBox(height: 8),
-                Text('Valor atual: ${_captured?.length ?? '-'} bytes'),
-                if (_captured != null) Image.memory(_captured!, width: 160),
+                ValueListenableBuilder<Uint8List?>(
+                  valueListenable: _captured,
+                  builder: (context, captured, _) => Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Valor atual: ${captured?.length ?? '-'} bytes'),
+                      if (captured != null) Image.memory(captured, width: 160),
+                    ],
+                  ),
+                ),
               ],
             ),
         // #endregion
@@ -67,13 +84,18 @@ class _SgCameraCapturePageState extends State<SgCameraCapturePage> {
                     previewHeight: 280,
                     facing: SgCameraCaptureFacing.user,
                     guide: SgCameraCaptureGuide.oval,
-                    onCapture: (image) => setState(() => _selfie = image),
+                    onCapture: (image) => _selfie.value = image,
                   ),
                 ),
-                if (_selfie != null) ...[
-                  const SizedBox(height: 8),
-                  Image.memory(_selfie!, width: 160),
-                ],
+                ValueListenableBuilder<Uint8List?>(
+                  valueListenable: _selfie,
+                  builder: (context, selfie, _) => selfie == null
+                      ? const SizedBox()
+                      : Padding(
+                          padding: const EdgeInsets.only(top: 8),
+                          child: Image.memory(selfie, width: 160),
+                        ),
+                ),
               ],
             ),
         // #endregion
@@ -97,13 +119,18 @@ class _SgCameraCapturePageState extends State<SgCameraCapturePage> {
                     guide: SgCameraCaptureGuide.rect,
                     resolution: SgCameraCaptureResolution.high,
                     previewHeight: 240,
-                    onCapture: (image) => setState(() => _documento = image),
+                    onCapture: (image) => _documento.value = image,
                   ),
                 ),
-                if (_documento != null) ...[
-                  const SizedBox(height: 8),
-                  Image.memory(_documento!, width: 160),
-                ],
+                ValueListenableBuilder<Uint8List?>(
+                  valueListenable: _documento,
+                  builder: (context, documento, _) => documento == null
+                      ? const SizedBox()
+                      : Padding(
+                          padding: const EdgeInsets.only(top: 8),
+                          child: Image.memory(documento, width: 160),
+                        ),
+                ),
               ],
             ),
         // #endregion
@@ -125,11 +152,15 @@ class _SgCameraCapturePageState extends State<SgCameraCapturePage> {
                     labelText: 'Foto',
                     previewHeight: 240,
                     onError: (code, message) =>
-                        setState(() => _cameraError = '${code.name}: $message'),
+                        _cameraError.value = '${code.name}: $message',
                   ),
                 ),
                 const SizedBox(height: 8),
-                Text('Valor atual: ${_cameraError ?? '-'}'),
+                ValueListenableBuilder<String?>(
+                  valueListenable: _cameraError,
+                  builder: (context, cameraError, _) =>
+                      Text('Valor atual: ${cameraError ?? '-'}'),
+                ),
               ],
             ),
         // #endregion

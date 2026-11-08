@@ -15,10 +15,19 @@ class SgLinearGaugePage extends StatefulWidget {
 }
 
 class _SgLinearGaugePageState extends State<SgLinearGaugePage> {
-  double _volume = 35;
-  double _valor = 64;
-  double _temperatura = 28;
-  double _alvo = 72;
+  final ValueNotifier<double> _volume = ValueNotifier(35);
+  final ValueNotifier<double> _valor = ValueNotifier(64);
+  final ValueNotifier<double> _temperatura = ValueNotifier(28);
+  final ValueNotifier<double> _alvo = ValueNotifier(72);
+
+  @override
+  void dispose() {
+    _volume.dispose();
+    _valor.dispose();
+    _temperatura.dispose();
+    _alvo.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,27 +37,30 @@ class _SgLinearGaugePageState extends State<SgLinearGaugePage> {
         description: 'Faixas coloridas com um ponteiro primário controlável.',
         preview:
             // #region sg-linear-gauge-padrao
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                SgLinearGauge(
-                  min: 0,
-                  max: 100,
-                  value: _valor,
-                  onValueChange: (v) => setState(() => _valor = v),
-                  ranges: [
-                    SgLinearGaugeRange(start: 0, end: 30, color: '#22c55e'),
-                    SgLinearGaugeRange(start: 30, end: 70, color: '#f59e0b'),
-                    SgLinearGaugeRange(start: 70, end: 100, color: '#ef4444'),
-                  ],
-                  showTicks: true,
-                  showLabels: true,
-                  majorTickCount: 5,
-                  barPointer: true,
-                  primaryPointerDraggable: true,
-                ),
-                Text('${context.tx('Valor')}: ${_valor.round()}'),
-              ],
+            ValueListenableBuilder<double>(
+              valueListenable: _valor,
+              builder: (context, valor, _) => Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  SgLinearGauge(
+                    min: 0,
+                    max: 100,
+                    value: valor,
+                    onValueChange: (v) => _valor.value = v,
+                    ranges: [
+                      SgLinearGaugeRange(start: 0, end: 30, color: '#22c55e'),
+                      SgLinearGaugeRange(start: 30, end: 70, color: '#f59e0b'),
+                      SgLinearGaugeRange(start: 70, end: 100, color: '#ef4444'),
+                    ],
+                    showTicks: true,
+                    showLabels: true,
+                    majorTickCount: 5,
+                    barPointer: true,
+                    primaryPointerDraggable: true,
+                  ),
+                  Text('${context.tx('Valor')}: ${valor.round()}'),
+                ],
+              ),
             ),
         // #endregion
         code: SgLinearGaugePageSnippets.sgLinearGaugePadrao,
@@ -58,65 +70,69 @@ class _SgLinearGaugePageState extends State<SgLinearGaugePage> {
         description: 'Orientação vertical com dois ponteiros arrastáveis.',
         preview:
             // #region sg-linear-gauge-vertical-multiplos
-            Wrap(
-              spacing: 24,
-              runSpacing: 24,
-              crossAxisAlignment: WrapCrossAlignment.start,
-              children: [
-                SgLinearGauge(
-                  min: -10,
-                  max: 50,
-                  value: _temperatura,
-                  onValueChange: (v) => setState(() => _temperatura = v),
-                  orientation: SgLinearGaugeOrientation.vertical,
-                  width: 140,
-                  height: 360,
-                  primaryPointerColor: '#2563eb',
-                  primaryPointerShape: SgLinearGaugePrimaryPointerShape.triangle,
-                  primaryPointerSize: 12,
-                  primaryPointerDraggable: true,
-                  pointers: [
-                    SgLinearGaugePointer(
-                      id: 'alvo',
-                      value: _alvo,
-                      color: 'hsl(var(--secondary))',
-                      shape: SgLinearGaugePointerShape.diamond,
-                      size: 11,
-                      draggable: true,
-                    ),
-                    SgLinearGaugePointer(
-                      id: 'temp',
-                      value: _temperatura,
-                      color: 'hsl(var(--destructive))',
-                      shape: SgLinearGaugePointerShape.circle,
-                      size: 10,
-                      draggable: true,
-                    ),
-                  ],
-                  onPointerValueChange: (id, next, pointer) => setState(() {
-                    if (id == 'alvo') _alvo = next;
-                    if (id == 'temp') _temperatura = next;
-                  }),
-                  ranges: [
-                    SgLinearGaugeRange(start: -10, end: 15, color: '#38bdf8'),
-                    SgLinearGaugeRange(start: 15, end: 30, color: '#22c55e'),
-                    SgLinearGaugeRange(start: 30, end: 50, color: '#ef4444'),
-                  ],
-                  majorTickCount: 6,
-                  minorTicksPerInterval: 1,
-                  labelFormatter: (v) => '${v.round()}°',
-                ),
-                Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      '${context.tx('Temperatura atual')}: ${_temperatura.round()}°C',
-                    ),
-                    Text('${context.tx('Alvo')}: ${_alvo.round()}°C'),
-                  ],
-                ),
-              ],
+            ListenableBuilder(
+              listenable: Listenable.merge([_temperatura, _alvo]),
+              builder: (context, _) => Wrap(
+                spacing: 24,
+                runSpacing: 24,
+                crossAxisAlignment: WrapCrossAlignment.start,
+                children: [
+                  SgLinearGauge(
+                    min: -10,
+                    max: 50,
+                    value: _temperatura.value,
+                    onValueChange: (v) => _temperatura.value = v,
+                    orientation: SgLinearGaugeOrientation.vertical,
+                    width: 140,
+                    height: 360,
+                    primaryPointerColor: '#2563eb',
+                    primaryPointerShape:
+                        SgLinearGaugePrimaryPointerShape.triangle,
+                    primaryPointerSize: 12,
+                    primaryPointerDraggable: true,
+                    pointers: [
+                      SgLinearGaugePointer(
+                        id: 'alvo',
+                        value: _alvo.value,
+                        color: 'hsl(var(--secondary))',
+                        shape: SgLinearGaugePointerShape.diamond,
+                        size: 11,
+                        draggable: true,
+                      ),
+                      SgLinearGaugePointer(
+                        id: 'temp',
+                        value: _temperatura.value,
+                        color: 'hsl(var(--destructive))',
+                        shape: SgLinearGaugePointerShape.circle,
+                        size: 10,
+                        draggable: true,
+                      ),
+                    ],
+                    onPointerValueChange: (id, next, pointer) {
+                      if (id == 'alvo') _alvo.value = next;
+                      if (id == 'temp') _temperatura.value = next;
+                    },
+                    ranges: [
+                      SgLinearGaugeRange(start: -10, end: 15, color: '#38bdf8'),
+                      SgLinearGaugeRange(start: 15, end: 30, color: '#22c55e'),
+                      SgLinearGaugeRange(start: 30, end: 50, color: '#ef4444'),
+                    ],
+                    majorTickCount: 6,
+                    minorTicksPerInterval: 1,
+                    labelFormatter: (v) => '${v.round()}°',
+                  ),
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        '${context.tx('Temperatura atual')}: ${_temperatura.value.round()}°C',
+                      ),
+                      Text('${context.tx('Alvo')}: ${_alvo.value.round()}°C'),
+                    ],
+                  ),
+                ],
+              ),
             ),
         // #endregion
         code: SgLinearGaugePageSnippets.sgLinearGaugeVerticalMultiplos,
@@ -187,17 +203,20 @@ class _SgLinearGaugePageState extends State<SgLinearGaugePage> {
             'primaryPointerDraggable permite mudar o valor tocando e arrastando; onValueChange o devolve.',
         preview:
             // #region sg-linear-gauge-arrastar
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                SgLinearGauge(
-                  value: _volume,
-                  primaryPointerDraggable: true,
-                  onValueChange: (v) => setState(() => _volume = v),
-                  labelFormatter: (v) => '${v.round()}%',
-                ),
-                Text('${context.tx('Volume')}: ${_volume.round()}%'),
-              ],
+            ValueListenableBuilder<double>(
+              valueListenable: _volume,
+              builder: (context, volume, _) => Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  SgLinearGauge(
+                    value: volume,
+                    primaryPointerDraggable: true,
+                    onValueChange: (v) => _volume.value = v,
+                    labelFormatter: (v) => '${v.round()}%',
+                  ),
+                  Text('${context.tx('Volume')}: ${volume.round()}%'),
+                ],
+              ),
             ),
         // #endregion
         code: SgLinearGaugePageSnippets.sgLinearGaugeArrastar,

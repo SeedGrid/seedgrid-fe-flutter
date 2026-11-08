@@ -11,11 +11,14 @@ Column(
     SgFileUpload(
       id: 'anexo',
       labelText: 'Anexo',
-      onChange: (files) => setState(() => _um = files),
+      onChange: (files) => _um.value = files,
     ),
     const SizedBox(height: 8),
-    Text(
-      'Valor atual: ${_um.isEmpty ? '-' : _um.map((f) => f.name).join(', ')}',
+    ValueListenableBuilder<List<SgFile>>(
+      valueListenable: _um,
+      builder: (context, um, _) => Text(
+        'Valor atual: ${um.isEmpty ? '-' : um.map((f) => f.name).join(', ')}',
+      ),
     ),
   ],
 )
@@ -49,13 +52,16 @@ Column(
     SgButton(
       label: Text(context.tx('Enviar')),
       onClick: () => _form.handleSubmit(
-        (values) => setState(
-          () => _enviado =
-              '${(values['comprovantes'] as List).length} arquivo(s)',
-        ),
+        (values) => _enviado.value =
+            '${(values['comprovantes'] as List).length} arquivo(s)',
       ),
     ),
-    if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),
+    ValueListenableBuilder<String>(
+      valueListenable: _enviado,
+      builder: (context, enviado, _) => enviado.isEmpty
+          ? const SizedBox()
+          : Text('Enviado: $enviado'),
+    ),
   ],
 )
 ''';
@@ -103,13 +109,20 @@ Column(
       labelText: 'Anexos',
       maxFiles: 3,
       hintText: 'Até 3 arquivos.',
-      onChange: (files) => setState(() => _varios = files),
+      onChange: (files) => _varios.value = files,
       onError: (code, message, fileName) =>
-          setState(() => _erro = '$fileName: ${code.name}'),
+          _erro.value = '$fileName: ${code.name}',
     ),
     const SizedBox(height: 8),
-    Text('Arquivos: ${_varios.length}'),
-    Text('Última recusa: $_erro'),
+    ValueListenableBuilder<List<SgFile>>(
+      valueListenable: _varios,
+      builder: (context, varios, _) =>
+          Text('Arquivos: ${varios.length}'),
+    ),
+    ValueListenableBuilder<String>(
+      valueListenable: _erro,
+      builder: (context, erro, _) => Text('Última recusa: $erro'),
+    ),
   ],
 )
 ''';

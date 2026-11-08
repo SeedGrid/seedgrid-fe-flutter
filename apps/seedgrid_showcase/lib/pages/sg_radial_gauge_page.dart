@@ -15,13 +15,25 @@ class SgRadialGaugePage extends StatefulWidget {
 }
 
 class _SgRadialGaugePageState extends State<SgRadialGaugePage> {
-  double _velocidade = 40;
-  double _rpm = 62;
-  double _espesso = 72;
-  double _invertido = 24;
-  double _alvo = 70;
-  double _consumo = 44;
-  double _eficiencia = 35;
+  final ValueNotifier<double> _velocidade = ValueNotifier(40);
+  final ValueNotifier<double> _rpm = ValueNotifier(62);
+  final ValueNotifier<double> _espesso = ValueNotifier(72);
+  final ValueNotifier<double> _invertido = ValueNotifier(24);
+  final ValueNotifier<double> _alvo = ValueNotifier(70);
+  final ValueNotifier<double> _consumo = ValueNotifier(44);
+  final ValueNotifier<double> _eficiencia = ValueNotifier(35);
+
+  @override
+  void dispose() {
+    _velocidade.dispose();
+    _rpm.dispose();
+    _espesso.dispose();
+    _invertido.dispose();
+    _alvo.dispose();
+    _consumo.dispose();
+    _eficiencia.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,52 +43,55 @@ class _SgRadialGaugePageState extends State<SgRadialGaugePage> {
         description: 'Ponteiro de agulha primário com faixas de alerta.',
         preview:
             // #region sg-radial-gauge-velocimetro
-            SgRadialGauge(
-              min: 0,
-              max: 100,
-              value: _rpm,
-              onValueChange: (v) => setState(() => _rpm = v),
-              startAngle: 140,
-              endAngle: 40,
-              ranges: [
-                SgRadialGaugeRange(
-                  start: 0,
-                  end: 40,
-                  color: '#22c55e',
-                  width: 14,
-                ),
-                SgRadialGaugeRange(
-                  start: 40,
-                  end: 75,
-                  color: '#f59e0b',
-                  width: 14,
-                ),
-                SgRadialGaugeRange(
-                  start: 75,
-                  end: 100,
-                  color: '#ef4444',
-                  width: 14,
-                ),
-              ],
-              showTicks: true,
-              showLabels: true,
-              majorTickCount: 5,
-              minorTicksPerInterval: 2,
-              primaryPointerDraggable: true,
-              primaryPointerType: SgRadialGaugePrimaryPointerType.needle,
-              primaryPointerColor: '#2563eb',
-              centerContent: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Text('RPM'),
-                  Text(
-                    '${_rpm.round()}',
-                    style: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
-                    ),
+            ValueListenableBuilder<double>(
+              valueListenable: _rpm,
+              builder: (context, rpm, _) => SgRadialGauge(
+                min: 0,
+                max: 100,
+                value: rpm,
+                onValueChange: (v) => _rpm.value = v,
+                startAngle: 140,
+                endAngle: 40,
+                ranges: [
+                  SgRadialGaugeRange(
+                    start: 0,
+                    end: 40,
+                    color: '#22c55e',
+                    width: 14,
+                  ),
+                  SgRadialGaugeRange(
+                    start: 40,
+                    end: 75,
+                    color: '#f59e0b',
+                    width: 14,
+                  ),
+                  SgRadialGaugeRange(
+                    start: 75,
+                    end: 100,
+                    color: '#ef4444',
+                    width: 14,
                   ),
                 ],
+                showTicks: true,
+                showLabels: true,
+                majorTickCount: 5,
+                minorTicksPerInterval: 2,
+                primaryPointerDraggable: true,
+                primaryPointerType: SgRadialGaugePrimaryPointerType.needle,
+                primaryPointerColor: '#2563eb',
+                centerContent: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Text('RPM'),
+                    Text(
+                      '${rpm.round()}',
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
         // #endregion
@@ -88,30 +103,33 @@ class _SgRadialGaugePageState extends State<SgRadialGaugePage> {
             'Exemplo com anel espesso e sem corte visual usando ringThickness: 36.',
         preview:
             // #region sg-radial-gauge-anel-espesso
-            SgRadialGauge(
-              min: 0,
-              max: 120,
-              value: _espesso,
-              onValueChange: (v) => setState(() => _espesso = v),
-              startAngle: 150,
-              endAngle: 30,
-              ringThickness: 36,
-              radiusFactor: 1,
-              axisColor: '#e2e8f0',
-              showTicks: false,
-              showLabels: true,
-              majorTickCount: 6,
-              labelFormatter: (v) => '${v.round()}',
-              ranges: [
-                SgRadialGaugeRange(start: 0, end: 40, color: '#22c55e'),
-                SgRadialGaugeRange(start: 40, end: 85, color: '#f59e0b'),
-                SgRadialGaugeRange(start: 85, end: 120, color: '#ef4444'),
-              ],
-              primaryPointerType: SgRadialGaugePrimaryPointerType.marker,
-              primaryPointerShape: SgRadialGaugePrimaryPointerShape.circle,
-              primaryPointerSize: 14,
-              primaryPointerColor: '#0f172a',
-              primaryPointerDraggable: true,
+            ValueListenableBuilder<double>(
+              valueListenable: _espesso,
+              builder: (context, espesso, _) => SgRadialGauge(
+                min: 0,
+                max: 120,
+                value: espesso,
+                onValueChange: (v) => _espesso.value = v,
+                startAngle: 150,
+                endAngle: 30,
+                ringThickness: 36,
+                radiusFactor: 1,
+                axisColor: '#e2e8f0',
+                showTicks: false,
+                showLabels: true,
+                majorTickCount: 6,
+                labelFormatter: (v) => '${v.round()}',
+                ranges: [
+                  SgRadialGaugeRange(start: 0, end: 40, color: '#22c55e'),
+                  SgRadialGaugeRange(start: 40, end: 85, color: '#f59e0b'),
+                  SgRadialGaugeRange(start: 85, end: 120, color: '#ef4444'),
+                ],
+                primaryPointerType: SgRadialGaugePrimaryPointerType.marker,
+                primaryPointerShape: SgRadialGaugePrimaryPointerShape.circle,
+                primaryPointerSize: 14,
+                primaryPointerColor: '#0f172a',
+                primaryPointerDraggable: true,
+              ),
             ),
         // #endregion
         code: SgRadialGaugePageSnippets.sgRadialGaugeAnelEspesso,
@@ -122,44 +140,47 @@ class _SgRadialGaugePageState extends State<SgRadialGaugePage> {
             'Com isAxisInversed, ângulos customizados e animate: false.',
         preview:
             // #region sg-radial-gauge-eixo-invertido
-            SgRadialGauge(
-              min: 0,
-              max: 100,
-              value: _invertido,
-              onValueChange: (v) => setState(() => _invertido = v),
-              startAngle: 220,
-              endAngle: -40,
-              isAxisInversed: true,
-              ringThickness: 18,
-              showTicks: true,
-              showLabels: true,
-              majorTickCount: 8,
-              minorTicksPerInterval: 0,
-              animate: false,
-              primaryPointerType: SgRadialGaugePrimaryPointerType.marker,
-              primaryPointerShape: SgRadialGaugePrimaryPointerShape.triangle,
-              primaryPointerSize: 14,
-              primaryPointerColor: '#7c3aed',
-              ranges: [
-                SgRadialGaugeRange(
-                  start: 0,
-                  end: 35,
-                  color: '#0ea5e9',
-                  width: 14,
-                ),
-                SgRadialGaugeRange(
-                  start: 35,
-                  end: 70,
-                  color: '#22c55e',
-                  width: 14,
-                ),
-                SgRadialGaugeRange(
-                  start: 70,
-                  end: 100,
-                  color: '#f97316',
-                  width: 14,
-                ),
-              ],
+            ValueListenableBuilder<double>(
+              valueListenable: _invertido,
+              builder: (context, invertido, _) => SgRadialGauge(
+                min: 0,
+                max: 100,
+                value: invertido,
+                onValueChange: (v) => _invertido.value = v,
+                startAngle: 220,
+                endAngle: -40,
+                isAxisInversed: true,
+                ringThickness: 18,
+                showTicks: true,
+                showLabels: true,
+                majorTickCount: 8,
+                minorTicksPerInterval: 0,
+                animate: false,
+                primaryPointerType: SgRadialGaugePrimaryPointerType.marker,
+                primaryPointerShape: SgRadialGaugePrimaryPointerShape.triangle,
+                primaryPointerSize: 14,
+                primaryPointerColor: '#7c3aed',
+                ranges: [
+                  SgRadialGaugeRange(
+                    start: 0,
+                    end: 35,
+                    color: '#0ea5e9',
+                    width: 14,
+                  ),
+                  SgRadialGaugeRange(
+                    start: 35,
+                    end: 70,
+                    color: '#22c55e',
+                    width: 14,
+                  ),
+                  SgRadialGaugeRange(
+                    start: 70,
+                    end: 100,
+                    color: '#f97316',
+                    width: 14,
+                  ),
+                ],
+              ),
             ),
         // #endregion
         code: SgRadialGaugePageSnippets.sgRadialGaugeEixoInvertido,
@@ -170,70 +191,73 @@ class _SgRadialGaugePageState extends State<SgRadialGaugePage> {
             'Combina marcador, ponteiro de faixa e anotação baseada em valor.',
         preview:
             // #region sg-radial-gauge-multiplos
-            SgRadialGauge(
-              min: 0,
-              max: 120,
-              value: _rpm,
-              onValueChange: (v) => setState(() => _rpm = v),
-              startAngle: 135,
-              endAngle: 45,
-              radiusFactor: 0.95,
-              ranges: [
-                SgRadialGaugeRange(
-                  start: 0,
-                  end: 60,
-                  color: '#60a5fa',
-                  width: 12,
-                  opacity: 0.45,
-                ),
-                SgRadialGaugeRange(
-                  start: 60,
-                  end: 90,
-                  color: '#f59e0b',
-                  width: 12,
-                  opacity: 0.45,
-                ),
-                SgRadialGaugeRange(
-                  start: 90,
-                  end: 120,
-                  color: '#ef4444',
-                  width: 12,
-                  opacity: 0.45,
-                ),
-              ],
-              pointers: [
-                SgRadialGaugePointer(
-                  id: 'alvo',
-                  type: SgRadialGaugePointerType.marker,
-                  value: _alvo,
-                  color: '#8b5cf6',
-                  size: 13,
-                  shape: SgRadialGaugeMarkerShape.diamond,
-                  draggable: true,
-                  label: _alvo.round().toString(),
-                ),
-                SgRadialGaugePointer(
-                  id: 'consumo',
-                  type: SgRadialGaugePointerType.range,
-                  value: _consumo,
-                  color: '#14b8a6',
-                  width: 10,
-                  draggable: true,
-                ),
-              ],
-              onPointerValueChange: (id, next, pointer) => setState(() {
-                if (id == 'alvo') _alvo = next;
-                if (id == 'consumo') _consumo = next;
-              }),
-              annotations: [
-                SgRadialGaugeAnnotation(
-                  id: 'alvo-rotulo',
-                  value: _alvo,
-                  radiusFactor: 0.8,
-                  content: Text(context.tx('alvo')),
-                ),
-              ],
-              primaryPointerDraggable: true,
+            ListenableBuilder(
+              listenable: Listenable.merge([_rpm, _alvo, _consumo]),
+              builder: (context, _) => SgRadialGauge(
+                min: 0,
+                max: 120,
+                value: _rpm.value,
+                onValueChange: (v) => _rpm.value = v,
+                startAngle: 135,
+                endAngle: 45,
+                radiusFactor: 0.95,
+                ranges: [
+                  SgRadialGaugeRange(
+                    start: 0,
+                    end: 60,
+                    color: '#60a5fa',
+                    width: 12,
+                    opacity: 0.45,
+                  ),
+                  SgRadialGaugeRange(
+                    start: 60,
+                    end: 90,
+                    color: '#f59e0b',
+                    width: 12,
+                    opacity: 0.45,
+                  ),
+                  SgRadialGaugeRange(
+                    start: 90,
+                    end: 120,
+                    color: '#ef4444',
+                    width: 12,
+                    opacity: 0.45,
+                  ),
+                ],
+                pointers: [
+                  SgRadialGaugePointer(
+                    id: 'alvo',
+                    type: SgRadialGaugePointerType.marker,
+                    value: _alvo.value,
+                    color: '#8b5cf6',
+                    size: 13,
+                    shape: SgRadialGaugeMarkerShape.diamond,
+                    draggable: true,
+                    label: _alvo.value.round().toString(),
+                  ),
+                  SgRadialGaugePointer(
+                    id: 'consumo',
+                    type: SgRadialGaugePointerType.range,
+                    value: _consumo.value,
+                    color: '#14b8a6',
+                    width: 10,
+                    draggable: true,
+                  ),
+                ],
+                onPointerValueChange: (id, next, pointer) {
+                  if (id == 'alvo') _alvo.value = next;
+                  if (id == 'consumo') _consumo.value = next;
+                },
+                annotations: [
+                  SgRadialGaugeAnnotation(
+                    id: 'alvo-rotulo',
+                    value: _alvo.value,
+                    radiusFactor: 0.8,
+                    content: Text(context.tx('alvo')),
+                  ),
+                ],
+                primaryPointerDraggable: true,
+              ),
             ),
         // #endregion
         code: SgRadialGaugePageSnippets.sgRadialGaugeMultiplos,
@@ -276,42 +300,45 @@ class _SgRadialGaugePageState extends State<SgRadialGaugePage> {
             'Exemplo com width/height, axisWidth, animationDuration, primaryPointerLabel, labelFormatter e ariaLabel.',
         preview:
             // #region sg-radial-gauge-outras-props
-            SgRadialGauge(
-              min: 0,
-              max: 100,
-              value: _eficiencia,
-              onValueChange: (v) => setState(() => _eficiencia = v),
-              width: 220,
-              height: 220,
-              axisWidth: 10,
-              ringThickness: 16,
-              animationDuration: 900,
-              primaryPointerType: SgRadialGaugePrimaryPointerType.needle,
-              primaryPointerLabel: Text('${_eficiencia.round()}%'),
-              labelFormatter: (v) => '${v.round()}%',
-              majorTickCount: 5,
-              minorTicksPerInterval: 0,
-              ariaLabel: context.tx('Gauge de eficiência'),
-              ranges: [
-                SgRadialGaugeRange(
-                  start: 0,
-                  end: 40,
-                  color: '#22c55e',
-                  width: 12,
-                ),
-                SgRadialGaugeRange(
-                  start: 40,
-                  end: 70,
-                  color: '#f59e0b',
-                  width: 12,
-                ),
-                SgRadialGaugeRange(
-                  start: 70,
-                  end: 100,
-                  color: '#ef4444',
-                  width: 12,
-                ),
-              ],
+            ValueListenableBuilder<double>(
+              valueListenable: _eficiencia,
+              builder: (context, eficiencia, _) => SgRadialGauge(
+                min: 0,
+                max: 100,
+                value: eficiencia,
+                onValueChange: (v) => _eficiencia.value = v,
+                width: 220,
+                height: 220,
+                axisWidth: 10,
+                ringThickness: 16,
+                animationDuration: 900,
+                primaryPointerType: SgRadialGaugePrimaryPointerType.needle,
+                primaryPointerLabel: Text('${eficiencia.round()}%'),
+                labelFormatter: (v) => '${v.round()}%',
+                majorTickCount: 5,
+                minorTicksPerInterval: 0,
+                ariaLabel: context.tx('Gauge de eficiência'),
+                ranges: [
+                  SgRadialGaugeRange(
+                    start: 0,
+                    end: 40,
+                    color: '#22c55e',
+                    width: 12,
+                  ),
+                  SgRadialGaugeRange(
+                    start: 40,
+                    end: 70,
+                    color: '#f59e0b',
+                    width: 12,
+                  ),
+                  SgRadialGaugeRange(
+                    start: 70,
+                    end: 100,
+                    color: '#ef4444',
+                    width: 12,
+                  ),
+                ],
+              ),
             ),
         // #endregion
         code: SgRadialGaugePageSnippets.sgRadialGaugeOutrasProps,
@@ -386,17 +413,22 @@ class _SgRadialGaugePageState extends State<SgRadialGaugePage> {
             'Com primaryPointerDraggable o ponteiro segue o dedo; onValueChange devolve o valor.',
         preview:
             // #region sg-radial-gauge-arrastar
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                SgRadialGauge(
-                  value: _velocidade,
-                  primaryPointerDraggable: true,
-                  onValueChange: (v) => setState(() => _velocidade = v),
-                  labelFormatter: (v) => '${v.round()}',
-                ),
-                Text('${context.tx('Velocidade')}: ${_velocidade.round()} km/h'),
-              ],
+            ValueListenableBuilder<double>(
+              valueListenable: _velocidade,
+              builder: (context, velocidade, _) => Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  SgRadialGauge(
+                    value: velocidade,
+                    primaryPointerDraggable: true,
+                    onValueChange: (v) => _velocidade.value = v,
+                    labelFormatter: (v) => '${v.round()}',
+                  ),
+                  Text(
+                    '${context.tx('Velocidade')}: ${velocidade.round()} km/h',
+                  ),
+                ],
+              ),
             ),
         // #endregion
         code: SgRadialGaugePageSnippets.sgRadialGaugeArrastar,

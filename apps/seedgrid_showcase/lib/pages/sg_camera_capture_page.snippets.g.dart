@@ -14,12 +14,20 @@ Column(
         id: 'foto',
         labelText: 'Foto',
         previewHeight: 240,
-        onCapture: (image) => setState(() => _captured = image),
+        onCapture: (image) => _captured.value = image,
       ),
     ),
     const SizedBox(height: 8),
-    Text('Valor atual: ${_captured?.length ?? '-'} bytes'),
-    if (_captured != null) Image.memory(_captured!, width: 160),
+    ValueListenableBuilder<Uint8List?>(
+      valueListenable: _captured,
+      builder: (context, captured, _) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('Valor atual: ${captured?.length ?? '-'} bytes'),
+          if (captured != null) Image.memory(captured, width: 160),
+        ],
+      ),
+    ),
   ],
 )
 ''';
@@ -36,11 +44,15 @@ Column(
         labelText: 'Foto',
         previewHeight: 240,
         onError: (code, message) =>
-            setState(() => _cameraError = '${code.name}: $message'),
+            _cameraError.value = '${code.name}: $message',
       ),
     ),
     const SizedBox(height: 8),
-    Text('Valor atual: ${_cameraError ?? '-'}'),
+    ValueListenableBuilder<String?>(
+      valueListenable: _cameraError,
+      builder: (context, cameraError, _) =>
+          Text('Valor atual: ${cameraError ?? '-'}'),
+    ),
   ],
 )
 ''';
@@ -69,13 +81,18 @@ Column(
         previewHeight: 280,
         facing: SgCameraCaptureFacing.user,
         guide: SgCameraCaptureGuide.oval,
-        onCapture: (image) => setState(() => _selfie = image),
+        onCapture: (image) => _selfie.value = image,
       ),
     ),
-    if (_selfie != null) ...[
-      const SizedBox(height: 8),
-      Image.memory(_selfie!, width: 160),
-    ],
+    ValueListenableBuilder<Uint8List?>(
+      valueListenable: _selfie,
+      builder: (context, selfie, _) => selfie == null
+          ? const SizedBox()
+          : Padding(
+              padding: const EdgeInsets.only(top: 8),
+              child: Image.memory(selfie, width: 160),
+            ),
+    ),
   ],
 )
 ''';
@@ -94,13 +111,18 @@ Column(
         guide: SgCameraCaptureGuide.rect,
         resolution: SgCameraCaptureResolution.high,
         previewHeight: 240,
-        onCapture: (image) => setState(() => _documento = image),
+        onCapture: (image) => _documento.value = image,
       ),
     ),
-    if (_documento != null) ...[
-      const SizedBox(height: 8),
-      Image.memory(_documento!, width: 160),
-    ],
+    ValueListenableBuilder<Uint8List?>(
+      valueListenable: _documento,
+      builder: (context, documento, _) => documento == null
+          ? const SizedBox()
+          : Padding(
+              padding: const EdgeInsets.only(top: 8),
+              child: Image.memory(documento, width: 160),
+            ),
+    ),
   ],
 )
 ''';
