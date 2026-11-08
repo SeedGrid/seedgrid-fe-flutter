@@ -86,12 +86,15 @@ SizedBox(
         appearance: SgAppearance.outline,
         label: Text(context.tx('Enviar')),
         onClick: () => _form.handleSubmit(
-          (values) =>
-              setState(() => _enviado = '${values['valor']}'),
+          (values) => _enviado.value = '${values['valor']}',
         ),
       ),
       const SizedBox(height: 8),
-      Text('${context.tx('Valor')}: $_enviado'),
+      ValueListenableBuilder<String>(
+        valueListenable: _enviado,
+        builder: (context, enviado, _) =>
+            Text('${context.tx('Valor')}: $enviado'),
+      ),
     ],
   ),
 )
@@ -113,29 +116,31 @@ SizedBox(
             size: SgSize.sm,
             appearance: SgAppearance.outline,
             leftIcon: const Icon(Icons.copy),
-            onClick: () => setState(
-              () => _iconLog.insert(0, context.tx('Copiado')),
-            ),
+            onClick: () => _iconLog.value = [
+              context.tx('Copiado'),
+              ..._iconLog.value,
+            ],
           ),
           SgButton(
             iconOnly: true,
             size: SgSize.sm,
             appearance: SgAppearance.outline,
             leftIcon: const Icon(Icons.notifications_outlined),
-            onClick: () => setState(
-              () => _iconLog.insert(
-                0,
-                context.tx('Alerta disparado!'),
-              ),
-            ),
+            onClick: () => _iconLog.value = [
+              context.tx('Alerta disparado!'),
+              ..._iconLog.value,
+            ],
           ),
         ],
       ),
       const SizedBox(height: 12),
-      ShowcaseLogBox(
-        entries: _iconLog,
-        hint: context.tx('Digite algo e clique nos ícones...'),
-        height: 96,
+      ValueListenableBuilder<List<String>>(
+        valueListenable: _iconLog,
+        builder: (context, entries, _) => ShowcaseLogBox(
+          entries: entries,
+          hint: context.tx('Digite algo e clique nos ícones...'),
+          height: 96,
+        ),
       ),
     ],
   ),
@@ -214,10 +219,13 @@ SizedBox(
             _log('onValidation: ${msg ?? context.tx('válido')}'),
       ),
       const SizedBox(height: 12),
-      ShowcaseLogBox(
-        entries: _eventLog,
-        hint: context.tx('Interaja com o input...'),
-        height: 160,
+      ValueListenableBuilder<List<String>>(
+        valueListenable: _eventLog,
+        builder: (context, entries, _) => ShowcaseLogBox(
+          entries: entries,
+          hint: context.tx('Interaja com o input...'),
+          height: 160,
+        ),
       ),
     ],
   ),
@@ -395,17 +403,18 @@ SizedBox(
         size: SgSize.sm,
         appearance: SgAppearance.outline,
         label: Text(context.tx('Salvar')),
-        onClick: () => setState(
-          () => _standaloneResult = jsonEncode({
-            'a': _standalone['a'] ?? '',
-            'b': _standalone['b'] ?? '',
-            'c': _standalone['c'] ?? '',
-          }),
-        ),
+        onClick: () => _standaloneResult.value = jsonEncode({
+          'a': _standalone['a'] ?? '',
+          'b': _standalone['b'] ?? '',
+          'c': _standalone['c'] ?? '',
+        }),
       ),
       const SizedBox(height: 8),
-      Text(
-        '${context.tx('Resultado')}: ${_standaloneResult.isEmpty ? '-' : _standaloneResult}',
+      ValueListenableBuilder<String>(
+        valueListenable: _standaloneResult,
+        builder: (context, resultado, _) => Text(
+          '${context.tx('Resultado')}: ${resultado.isEmpty ? '-' : resultado}',
+        ),
       ),
     ],
   ),
@@ -429,11 +438,14 @@ SizedBox(
               ? null
               : context.tx('Use um número par.');
         },
-        onValidation: (msg) => setState(() => _validationMsg = msg),
+        onValidation: (msg) => _validationMsg.value = msg,
       ),
       const SizedBox(height: 8),
-      Text(
-        'onValidation: ${_validationMsg == null ? context.tx('válido') : '"$_validationMsg"'}',
+      ValueListenableBuilder<String?>(
+        valueListenable: _validationMsg,
+        builder: (context, msg, _) => Text(
+          'onValidation: ${msg == null ? context.tx('válido') : '"$msg"'}',
+        ),
       ),
     ],
   ),

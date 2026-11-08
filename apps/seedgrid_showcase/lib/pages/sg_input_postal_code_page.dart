@@ -21,18 +21,23 @@ class _SgInputPostalCodePageState extends State<SgInputPostalCodePage> {
   final SgFormController _form = SgFormController(
     defaultValues: {'cep': '', 'controlled': ''},
   );
-  String? _validationMsg;
-  SgViaCepResult? _viaCepResult;
-  final List<String> _eventLog = [];
-  final List<String> _iconLog = [];
+  final ValueNotifier<String?> _validationMsg = ValueNotifier(null);
+  final ValueNotifier<SgViaCepResult?> _viaCepResult = ValueNotifier(null);
+  final ValueNotifier<List<String>> _eventLog = ValueNotifier(const []);
+  final ValueNotifier<List<String>> _iconLog = ValueNotifier(const []);
   final Map<String, String> _standalone = {};
-  String _standaloneResult = '';
+  final ValueNotifier<String> _standaloneResult = ValueNotifier('');
 
-  void _log(String entry) => setState(() => _eventLog.insert(0, entry));
+  void _log(String entry) => _eventLog.value = [entry, ..._eventLog.value];
 
   @override
   void dispose() {
     _form.dispose();
+    _validationMsg.dispose();
+    _viaCepResult.dispose();
+    _eventLog.dispose();
+    _iconLog.dispose();
+    _standaloneResult.dispose();
     super.dispose();
   }
 
@@ -233,11 +238,14 @@ class _SgInputPostalCodePageState extends State<SgInputPostalCodePage> {
                     validation: (v) => v.startsWith('00')
                         ? context.tx('CEP não pode iniciar com 00.')
                         : null,
-                    onValidation: (msg) => setState(() => _validationMsg = msg),
+                    onValidation: (msg) => _validationMsg.value = msg,
                   ),
                   const SizedBox(height: 8),
-                  Text(
-                    'onValidation: ${_validationMsg == null ? context.tx('válido') : '"$_validationMsg"'}',
+                  ValueListenableBuilder<String?>(
+                    valueListenable: _validationMsg,
+                    builder: (context, msg, _) => Text(
+                      'onValidation: ${msg == null ? context.tx('válido') : '"$msg"'}',
+                    ),
                   ),
                 ],
               ),
@@ -263,23 +271,30 @@ class _SgInputPostalCodePageState extends State<SgInputPostalCodePage> {
                     country: SgInputPostalCodeCountry.br,
                     validateWithViaCep: true,
                     viaCepErrorMessage: context.tx('CEP inválido.'),
-                    onViaCepResult: (data) =>
-                        setState(() => _viaCepResult = data),
+                    onViaCepResult: (data) => _viaCepResult.value = data,
                   ),
                 ),
-                if (_viaCepResult != null) ...[
-                  const SizedBox(height: 8),
-                  Text(context.tx('Resultado ViaCEP')),
-                  SelectableText(
-                    const JsonEncoder.withIndent('  ').convert({
-                      'cep': _viaCepResult!.cep,
-                      'logradouro': _viaCepResult!.logradouro,
-                      'bairro': _viaCepResult!.bairro,
-                      'localidade': _viaCepResult!.localidade,
-                      'uf': _viaCepResult!.uf,
-                    }),
-                  ),
-                ],
+                ValueListenableBuilder<SgViaCepResult?>(
+                  valueListenable: _viaCepResult,
+                  builder: (context, resultado, _) => resultado == null
+                      ? const SizedBox.shrink()
+                      : Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const SizedBox(height: 8),
+                            Text(context.tx('Resultado ViaCEP')),
+                            SelectableText(
+                              const JsonEncoder.withIndent('  ').convert({
+                                'cep': resultado.cep,
+                                'logradouro': resultado.logradouro,
+                                'bairro': resultado.bairro,
+                                'localidade': resultado.localidade,
+                                'uf': resultado.uf,
+                              }),
+                            ),
+                          ],
+                        ),
+                ),
                 const SizedBox(height: 8),
                 Text(
                   context.tx(
@@ -359,29 +374,31 @@ class _SgInputPostalCodePageState extends State<SgInputPostalCodePage> {
                         size: SgSize.sm,
                         appearance: SgAppearance.outline,
                         leftIcon: const Icon(Icons.copy),
-                        onClick: () => setState(
-                          () => _iconLog.insert(0, context.tx('Copiado')),
-                        ),
+                        onClick: () => _iconLog.value = [
+                          context.tx('Copiado'),
+                          ..._iconLog.value,
+                        ],
                       ),
                       SgButton(
                         iconOnly: true,
                         size: SgSize.sm,
                         appearance: SgAppearance.outline,
                         leftIcon: const Icon(Icons.notifications_outlined),
-                        onClick: () => setState(
-                          () => _iconLog.insert(
-                            0,
-                            context.tx('Alerta disparado!'),
-                          ),
-                        ),
+                        onClick: () => _iconLog.value = [
+                          context.tx('Alerta disparado!'),
+                          ..._iconLog.value,
+                        ],
                       ),
                     ],
                   ),
                   const SizedBox(height: 12),
-                  ShowcaseLogBox(
-                    entries: _iconLog,
-                    hint: context.tx('Clique nos ícones para testar...'),
-                    height: 96,
+                  ValueListenableBuilder<List<String>>(
+                    valueListenable: _iconLog,
+                    builder: (context, entries, _) => ShowcaseLogBox(
+                      entries: entries,
+                      hint: context.tx('Clique nos ícones para testar...'),
+                      height: 96,
+                    ),
                   ),
                 ],
               ),
@@ -512,17 +529,18 @@ class _SgInputPostalCodePageState extends State<SgInputPostalCodePage> {
                   const SizedBox(height: 12),
                   SgButton(
                     label: Text(context.tx('Salvar')),
-                    onClick: () => setState(
-                      () => _standaloneResult = jsonEncode({
-                        'entrega': _standalone['entrega'] ?? '',
-                        'cobranca': _standalone['cobranca'] ?? '',
-                        'comercial': _standalone['comercial'] ?? '',
-                      }),
-                    ),
+                    onClick: () => _standaloneResult.value = jsonEncode({
+                      'entrega': _standalone['entrega'] ?? '',
+                      'cobranca': _standalone['cobranca'] ?? '',
+                      'comercial': _standalone['comercial'] ?? '',
+                    }),
                   ),
                   const SizedBox(height: 8),
-                  Text(
-                    '${context.tx('Resultado')}: ${_standaloneResult.isEmpty ? '-' : _standaloneResult}',
+                  ValueListenableBuilder<String>(
+                    valueListenable: _standaloneResult,
+                    builder: (context, resultado, _) => Text(
+                      '${context.tx('Resultado')}: ${resultado.isEmpty ? '-' : resultado}',
+                    ),
                   ),
                 ],
               ),
@@ -553,10 +571,13 @@ class _SgInputPostalCodePageState extends State<SgInputPostalCodePage> {
                         _log('onValidation: ${msg ?? context.tx('válido')}'),
                   ),
                   const SizedBox(height: 12),
-                  ShowcaseLogBox(
-                    entries: _eventLog,
-                    hint: context.tx('Interaja com o input...'),
-                    height: 160,
+                  ValueListenableBuilder<List<String>>(
+                    valueListenable: _eventLog,
+                    builder: (context, entries, _) => ShowcaseLogBox(
+                      entries: entries,
+                      hint: context.tx('Interaja com o input...'),
+                      height: 160,
+                    ),
                   ),
                 ],
               ),
