@@ -16,12 +16,15 @@ class SgImageUploadPage extends StatefulWidget {
 
 class _SgImageUploadPageState extends State<SgImageUploadPage> {
   final SgFormController _form = SgFormController();
-  List<SgFile> _uma = const [];
-  List<SgFile> _galeria = const [];
-  String _enviado = '';
+  final ValueNotifier<List<SgFile>> _uma = ValueNotifier(const []);
+  final ValueNotifier<List<SgFile>> _galeria = ValueNotifier(const []);
+  final ValueNotifier<String> _enviado = ValueNotifier('');
 
   @override
   void dispose() {
+    _uma.dispose();
+    _galeria.dispose();
+    _enviado.dispose();
     _form.dispose();
     super.dispose();
   }
@@ -41,11 +44,14 @@ class _SgImageUploadPageState extends State<SgImageUploadPage> {
                 SgImageUpload(
                   id: 'foto',
                   labelText: 'Foto',
-                  onChange: (files) => setState(() => _uma = files),
+                  onChange: (files) => _uma.value = files,
                 ),
                 const SizedBox(height: 8),
-                Text(
-                  'Valor atual: ${_uma.isEmpty ? '-' : '${_uma.first.name} (${_uma.first.size} bytes)'}',
+                ValueListenableBuilder<List<SgFile>>(
+                  valueListenable: _uma,
+                  builder: (context, uma, _) => Text(
+                    'Valor atual: ${uma.isEmpty ? '-' : '${uma.first.name} (${uma.first.size} bytes)'}',
+                  ),
                 ),
               ],
             ),
@@ -68,10 +74,14 @@ class _SgImageUploadPageState extends State<SgImageUploadPage> {
                   maxSizePerFile: '2MB',
                   maxSizeTotal: '6MB',
                   hintText: 'Até 4 imagens, 2 MB cada e 6 MB no total.',
-                  onChange: (files) => setState(() => _galeria = files),
+                  onChange: (files) => _galeria.value = files,
                 ),
                 const SizedBox(height: 8),
-                Text('Imagens: ${_galeria.length}'),
+                ValueListenableBuilder<List<SgFile>>(
+                  valueListenable: _galeria,
+                  builder: (context, galeria, _) =>
+                      Text('Imagens: ${galeria.length}'),
+                ),
               ],
             ),
         // #endregion
@@ -167,15 +177,18 @@ class _SgImageUploadPageState extends State<SgImageUploadPage> {
                 SgButton(
                   label: Text(context.tx('Enviar')),
                   onClick: () => _form.handleSubmit(
-                    (values) => setState(
-                      () => _enviado = (values['documento'] as List)
-                          .cast<SgFile>()
-                          .first
-                          .name,
-                    ),
+                    (values) => _enviado.value = (values['documento'] as List)
+                        .cast<SgFile>()
+                        .first
+                        .name,
                   ),
                 ),
-                if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),
+                ValueListenableBuilder<String>(
+                  valueListenable: _enviado,
+                  builder: (context, enviado, _) => enviado.isEmpty
+                      ? const SizedBox()
+                      : Text('Enviado: $enviado'),
+                ),
               ],
             ),
         // #endregion

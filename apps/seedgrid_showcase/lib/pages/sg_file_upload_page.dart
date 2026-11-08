@@ -16,13 +16,17 @@ class SgFileUploadPage extends StatefulWidget {
 
 class _SgFileUploadPageState extends State<SgFileUploadPage> {
   final SgFormController _form = SgFormController();
-  List<SgFile> _um = const [];
-  List<SgFile> _varios = const [];
-  String _erro = '-';
-  String _enviado = '';
+  final ValueNotifier<List<SgFile>> _um = ValueNotifier(const []);
+  final ValueNotifier<List<SgFile>> _varios = ValueNotifier(const []);
+  final ValueNotifier<String> _erro = ValueNotifier('-');
+  final ValueNotifier<String> _enviado = ValueNotifier('');
 
   @override
   void dispose() {
+    _um.dispose();
+    _varios.dispose();
+    _erro.dispose();
+    _enviado.dispose();
     _form.dispose();
     super.dispose();
   }
@@ -42,11 +46,14 @@ class _SgFileUploadPageState extends State<SgFileUploadPage> {
                 SgFileUpload(
                   id: 'anexo',
                   labelText: 'Anexo',
-                  onChange: (files) => setState(() => _um = files),
+                  onChange: (files) => _um.value = files,
                 ),
                 const SizedBox(height: 8),
-                Text(
-                  'Valor atual: ${_um.isEmpty ? '-' : _um.map((f) => f.name).join(', ')}',
+                ValueListenableBuilder<List<SgFile>>(
+                  valueListenable: _um,
+                  builder: (context, um, _) => Text(
+                    'Valor atual: ${um.isEmpty ? '-' : um.map((f) => f.name).join(', ')}',
+                  ),
                 ),
               ],
             ),
@@ -67,13 +74,20 @@ class _SgFileUploadPageState extends State<SgFileUploadPage> {
                   labelText: 'Anexos',
                   maxFiles: 3,
                   hintText: 'Até 3 arquivos.',
-                  onChange: (files) => setState(() => _varios = files),
+                  onChange: (files) => _varios.value = files,
                   onError: (code, message, fileName) =>
-                      setState(() => _erro = '$fileName: ${code.name}'),
+                      _erro.value = '$fileName: ${code.name}',
                 ),
                 const SizedBox(height: 8),
-                Text('Arquivos: ${_varios.length}'),
-                Text('Última recusa: $_erro'),
+                ValueListenableBuilder<List<SgFile>>(
+                  valueListenable: _varios,
+                  builder: (context, varios, _) =>
+                      Text('Arquivos: ${varios.length}'),
+                ),
+                ValueListenableBuilder<String>(
+                  valueListenable: _erro,
+                  builder: (context, erro, _) => Text('Última recusa: $erro'),
+                ),
               ],
             ),
         // #endregion
@@ -163,13 +177,16 @@ class _SgFileUploadPageState extends State<SgFileUploadPage> {
                 SgButton(
                   label: Text(context.tx('Enviar')),
                   onClick: () => _form.handleSubmit(
-                    (values) => setState(
-                      () => _enviado =
-                          '${(values['comprovantes'] as List).length} arquivo(s)',
-                    ),
+                    (values) => _enviado.value =
+                        '${(values['comprovantes'] as List).length} arquivo(s)',
                   ),
                 ),
-                if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),
+                ValueListenableBuilder<String>(
+                  valueListenable: _enviado,
+                  builder: (context, enviado, _) => enviado.isEmpty
+                      ? const SizedBox()
+                      : Text('Enviado: $enviado'),
+                ),
               ],
             ),
         // #endregion
