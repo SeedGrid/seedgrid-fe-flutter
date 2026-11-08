@@ -15,9 +15,17 @@ class SgBadgePage extends StatefulWidget {
 }
 
 class _SgBadgePageState extends State<SgBadgePage> {
-  String? _ultimo;
-  bool _tagVisivel = true;
-  bool _manualVisivel = true;
+  final ValueNotifier<String?> _ultimo = ValueNotifier<String?>(null);
+  final ValueNotifier<bool> _tagVisivel = ValueNotifier<bool>(true);
+  final ValueNotifier<bool> _manualVisivel = ValueNotifier<bool>(true);
+
+  @override
+  void dispose() {
+    _ultimo.dispose();
+    _tagVisivel.dispose();
+    _manualVisivel.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -138,22 +146,29 @@ class _SgBadgePageState extends State<SgBadgePage> {
                   value: Text(context.tx('Remover auto')),
                   removable: true,
                   autoRemove: true,
-                  onRemove: () => setState(() => _ultimo = context.tx('removida (auto)')),
+                  onRemove: () => _ultimo.value = context.tx('removida (auto)'),
                 ),
-                if (_manualVisivel)
-                  SgBadge(
-                    value: Text(context.tx('Remover manual')),
-                    removable: true,
-                    autoRemove: false,
-                    onRemove: () => setState(() {
-                      _manualVisivel = false;
-                      _ultimo = context.tx('removida (manual)');
+                ValueListenableBuilder<bool>(
+                  valueListenable: _manualVisivel,
+                  builder: (context, visivel, _) => visivel
+                      ? SgBadge(
+                          value: Text(context.tx('Remover manual')),
+                          removable: true,
+                          autoRemove: false,
+                          onRemove: () {
+                            _manualVisivel.value = false;
+                            _ultimo.value = context.tx('removida (manual)');
+                          },
+                        )
+                      : const SizedBox.shrink(),
+                ),
+                ValueListenableBuilder<String?>(
+                  valueListenable: _ultimo,
+                  builder: (context, ultimo, _) => Text(
+                    context.txf('Último evento: {evento}', {
+                      'evento': ultimo ?? context.tx('nada ainda'),
                     }),
                   ),
-                Text(
-                  context.txf('Último evento: {evento}', {
-                    'evento': _ultimo ?? context.tx('nada ainda'),
-                  }),
                 ),
               ],
             ),
@@ -221,7 +236,7 @@ class _SgBadgePageState extends State<SgBadgePage> {
                 SgBadge(
                   value: Text(context.tx('Clique')),
                   badgeStyle: SgBadgeBadgeStyle.outline,
-                  onClick: () => setState(() => _ultimo = context.tx('clique')),
+                  onClick: () => _ultimo.value = context.tx('clique'),
                 ),
                 SgBadge(
                   value: Text(context.tx('Desabilitado')),
@@ -229,21 +244,28 @@ class _SgBadgePageState extends State<SgBadgePage> {
                   enabled: false,
                   onClick: () {},
                 ),
-                if (_tagVisivel)
-                  SgBadge(
-                    value: Text(context.tx('tag')),
-                    badgeStyle: SgBadgeBadgeStyle.soft,
-                    removable: true,
-                    autoRemove: true,
-                    onRemove: () => setState(() {
-                      _tagVisivel = false;
-                      _ultimo = context.tx('removida');
+                ValueListenableBuilder<bool>(
+                  valueListenable: _tagVisivel,
+                  builder: (context, visivel, _) => visivel
+                      ? SgBadge(
+                          value: Text(context.tx('tag')),
+                          badgeStyle: SgBadgeBadgeStyle.soft,
+                          removable: true,
+                          autoRemove: true,
+                          onRemove: () {
+                            _tagVisivel.value = false;
+                            _ultimo.value = context.tx('removida');
+                          },
+                        )
+                      : const SizedBox.shrink(),
+                ),
+                ValueListenableBuilder<String?>(
+                  valueListenable: _ultimo,
+                  builder: (context, ultimo, _) => Text(
+                    context.txf('Último evento: {evento}', {
+                      'evento': ultimo ?? context.tx('nada ainda'),
                     }),
                   ),
-                Text(
-                  context.txf('Último evento: {evento}', {
-                    'evento': _ultimo ?? context.tx('nada ainda'),
-                  }),
                 ),
               ],
             ),

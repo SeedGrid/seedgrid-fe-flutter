@@ -17,33 +17,50 @@ class SgRatingPage extends StatefulWidget {
 }
 
 class _SgRatingPageState extends State<SgRatingPage> {
-  num _basico = 0;
-  num _meia = 2.5;
-  num? _meiaHover;
-  num _heart = 4;
-  num _like = 3;
-  num _fire = 5;
-  num _sm = 3;
-  num _lg = 4;
-  num _many = 7;
-  num _cb = 3;
-  num? _cbHover;
-  final List<String> _cbLog = [];
-  num _req = 0;
+  final ValueNotifier<num> _basico = ValueNotifier<num>(0);
+  final ValueNotifier<num> _meia = ValueNotifier<num>(2.5);
+  final ValueNotifier<num?> _meiaHover = ValueNotifier<num?>(null);
+  final ValueNotifier<num> _heart = ValueNotifier<num>(4);
+  final ValueNotifier<num> _like = ValueNotifier<num>(3);
+  final ValueNotifier<num> _fire = ValueNotifier<num>(5);
+  final ValueNotifier<num> _sm = ValueNotifier<num>(3);
+  final ValueNotifier<num> _lg = ValueNotifier<num>(4);
+  final ValueNotifier<num> _many = ValueNotifier<num>(7);
+  final ValueNotifier<num> _cb = ValueNotifier<num>(3);
+  final ValueNotifier<num?> _cbHover = ValueNotifier<num?>(null);
+  final ValueNotifier<List<String>> _cbLog = ValueNotifier<List<String>>([]);
+  final ValueNotifier<num> _req = ValueNotifier<num>(0);
   final SgFormController _form = SgFormController(
     defaultValues: {'productRating': 4, 'movieRating': 2.5},
   );
-  String _enviado = '-';
+  final ValueNotifier<String> _enviado = ValueNotifier<String>('-');
 
   @override
   void dispose() {
-    _form.dispose();
+    for (final n in <ChangeNotifier>[
+      _basico,
+      _meia,
+      _meiaHover,
+      _heart,
+      _like,
+      _fire,
+      _sm,
+      _lg,
+      _many,
+      _cb,
+      _cbHover,
+      _cbLog,
+      _req,
+      _enviado,
+      _form,
+    ]) {
+      n.dispose();
+    }
     super.dispose();
   }
 
   void _pushLog(String msg) {
-    _cbLog.insert(0, msg);
-    if (_cbLog.length > 8) _cbLog.removeLast();
+    _cbLog.value = [msg, ..._cbLog.value].take(8).toList();
   }
 
   @override
@@ -63,13 +80,20 @@ class _SgRatingPageState extends State<SgRatingPage> {
                     border: Border.all(color: const Color(0x403B82F6)),
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  child: SgRating(
-                    value: _basico,
-                    onChange: (v) => setState(() => _basico = v),
+                  child: ValueListenableBuilder<num>(
+                    valueListenable: _basico,
+                    builder: (context, valor, _) => SgRating(
+                      value: valor,
+                      onChange: (v) => _basico.value = v,
+                    ),
                   ),
                 ),
                 const SizedBox(height: 8),
-                Text('${context.tx('Valor atual')}: $_basico'),
+                ValueListenableBuilder<num>(
+                  valueListenable: _basico,
+                  builder: (context, valor, _) =>
+                      Text('${context.tx('Valor atual')}: $valor'),
+                ),
               ],
             ),
         // #endregion
@@ -83,19 +107,25 @@ class _SgRatingPageState extends State<SgRatingPage> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SgRating(
-                  label: context.tx(
-                    'Passe o mouse e clique nas meias estrelas',
+                ValueListenableBuilder<num>(
+                  valueListenable: _meia,
+                  builder: (context, valor, _) => SgRating(
+                    label: context.tx(
+                      'Passe o mouse e clique nas meias estrelas',
+                    ),
+                    value: valor,
+                    allowHalf: true,
+                    showTooltip: true,
+                    onChange: (v) => _meia.value = v,
+                    onHover: (v) => _meiaHover.value = v,
                   ),
-                  value: _meia,
-                  allowHalf: true,
-                  showTooltip: true,
-                  onChange: (v) => setState(() => _meia = v),
-                  onHover: (v) => setState(() => _meiaHover = v),
                 ),
                 const SizedBox(height: 8),
-                Text(
-                  '${context.tx('Selecionado')}: $_meia | ${context.tx('Hover')}: ${_meiaHover ?? context.tx('nenhum')}',
+                ListenableBuilder(
+                  listenable: Listenable.merge([_meia, _meiaHover]),
+                  builder: (context, _) => Text(
+                    '${context.tx('Selecionado')}: ${_meia.value} | ${context.tx('Hover')}: ${_meiaHover.value ?? context.tx('nenhum')}',
+                  ),
                 ),
               ],
             ),
@@ -136,24 +166,36 @@ class _SgRatingPageState extends State<SgRatingPage> {
               columns: const {'base': 1, 'md': 2},
               gap: 16,
               children: [
-                SgRating(
-                  label: context.tx('sm / 5 estrelas'),
-                  size: SgRatingSize.sm,
-                  value: _sm,
-                  onChange: (v) => setState(() => _sm = v),
+                ValueListenableBuilder<num>(
+                  valueListenable: _sm,
+                  builder: (context, valor, _) => SgRating(
+                    label: context.tx('sm / 5 estrelas'),
+                    size: SgRatingSize.sm,
+                    value: valor,
+
+                    onChange: (v) => _sm.value = v,
+                  ),
                 ),
-                SgRating(
-                  label: context.tx('lg / 5 estrelas'),
-                  size: SgRatingSize.lg,
-                  value: _lg,
-                  onChange: (v) => setState(() => _lg = v),
+                ValueListenableBuilder<num>(
+                  valueListenable: _lg,
+                  builder: (context, valor, _) => SgRating(
+                    label: context.tx('lg / 5 estrelas'),
+                    size: SgRatingSize.lg,
+                    value: valor,
+
+                    onChange: (v) => _lg.value = v,
+                  ),
                 ),
-                SgRating(
-                  label: context.tx('10 estrelas'),
-                  stars: 10,
-                  size: SgRatingSize.sm,
-                  value: _many,
-                  onChange: (v) => setState(() => _many = v),
+                ValueListenableBuilder<num>(
+                  valueListenable: _many,
+                  builder: (context, valor, _) => SgRating(
+                    label: context.tx('10 estrelas'),
+                    stars: 10,
+                    size: SgRatingSize.sm,
+                    value: valor,
+
+                    onChange: (v) => _many.value = v,
+                  ),
                 ),
               ],
             ),
@@ -169,35 +211,47 @@ class _SgRatingPageState extends State<SgRatingPage> {
               columns: const {'base': 1, 'md': 2},
               gap: 16,
               children: [
-                SgRating(
-                  label: context.tx('Coração'),
-                  value: _heart,
-                  color: '#ec4899',
-                  emptyColor: '#f9a8d4',
-                  onIcon: const Icon(Icons.favorite, size: 24),
-                  offIcon: const Icon(Icons.favorite_border, size: 24),
-                  onChange: (v) => setState(() => _heart = v),
-                ),
-                SgRating(
-                  label: context.tx('Curtidas'),
-                  value: _like,
-                  color: '#2563eb',
-                  emptyColor: '#93c5fd',
-                  onIcon: const Icon(Icons.thumb_up, size: 24),
-                  offIcon: const Icon(Icons.thumb_up_outlined, size: 24),
-                  onChange: (v) => setState(() => _like = v),
-                ),
-                SgRating(
-                  label: context.tx('Fogo'),
-                  value: _fire,
-                  color: '#f97316',
-                  emptyColor: '#fdba74',
-                  onIcon: const Icon(Icons.local_fire_department, size: 24),
-                  offIcon: const Icon(
-                    Icons.local_fire_department_outlined,
-                    size: 24,
+                ValueListenableBuilder<num>(
+                  valueListenable: _heart,
+                  builder: (context, valor, _) => SgRating(
+                    label: context.tx('Coração'),
+                    value: valor,
+                    color: '#ec4899',
+                    emptyColor: '#f9a8d4',
+                    onIcon: const Icon(Icons.favorite, size: 24),
+                    offIcon: const Icon(Icons.favorite_border, size: 24),
+
+                    onChange: (v) => _heart.value = v,
                   ),
-                  onChange: (v) => setState(() => _fire = v),
+                ),
+                ValueListenableBuilder<num>(
+                  valueListenable: _like,
+                  builder: (context, valor, _) => SgRating(
+                    label: context.tx('Curtidas'),
+                    value: valor,
+                    color: '#2563eb',
+                    emptyColor: '#93c5fd',
+                    onIcon: const Icon(Icons.thumb_up, size: 24),
+                    offIcon: const Icon(Icons.thumb_up_outlined, size: 24),
+
+                    onChange: (v) => _like.value = v,
+                  ),
+                ),
+                ValueListenableBuilder<num>(
+                  valueListenable: _fire,
+                  builder: (context, valor, _) => SgRating(
+                    label: context.tx('Fogo'),
+                    value: valor,
+                    color: '#f97316',
+                    emptyColor: '#fdba74',
+                    onIcon: const Icon(Icons.local_fire_department, size: 24),
+                    offIcon: const Icon(
+                      Icons.local_fire_department_outlined,
+                      size: 24,
+                    ),
+
+                    onChange: (v) => _fire.value = v,
+                  ),
                 ),
               ],
             ),
@@ -212,15 +266,18 @@ class _SgRatingPageState extends State<SgRatingPage> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SgRating(
-                  label: context.tx('Callbacks'),
-                  value: _cb,
-                  allowHalf: true,
-                  onChange: (v) => setState(() {
-                    _cb = v;
-                    _pushLog('onChange -> $v');
-                  }),
-                  onHover: (v) => setState(() => _cbHover = v),
+                ValueListenableBuilder<num>(
+                  valueListenable: _cb,
+                  builder: (context, valor, _) => SgRating(
+                    label: context.tx('Callbacks'),
+                    value: valor,
+                    allowHalf: true,
+                    onChange: (v) {
+                      _cb.value = v;
+                      _pushLog('onChange -> $v');
+                    },
+                    onHover: (v) => _cbHover.value = v,
+                  ),
                 ),
                 const SizedBox(height: 12),
                 SgGrid(
@@ -231,31 +288,37 @@ class _SgRatingPageState extends State<SgRatingPage> {
                       size: SgSize.sm,
                       appearance: SgAppearance.outline,
                       label: Text(context.tx('Zerar')),
-                      onClick: () => setState(() => _cb = 0),
+                      onClick: () => _cb.value = 0,
                     ),
                     SgButton(
                       size: SgSize.sm,
                       appearance: SgAppearance.outline,
                       label: Text(context.tx('Máximo')),
-                      onClick: () => setState(() => _cb = 5),
+                      onClick: () => _cb.value = 5,
                     ),
                     SgButton(
                       size: SgSize.sm,
                       appearance: SgAppearance.outline,
                       label: Text(context.tx('Limpar log')),
-                      onClick: () => setState(_cbLog.clear),
+                      onClick: () => _cbLog.value = [],
                     ),
                   ],
                 ),
                 const SizedBox(height: 12),
-                Text(
-                  '${context.tx('Selecionado')}: $_cb | ${context.tx('Hover')}: ${_cbHover ?? context.tx('nenhum')}',
+                ListenableBuilder(
+                  listenable: Listenable.merge([_cb, _cbHover]),
+                  builder: (context, _) => Text(
+                    '${context.tx('Selecionado')}: ${_cb.value} | ${context.tx('Hover')}: ${_cbHover.value ?? context.tx('nenhum')}',
+                  ),
                 ),
                 const SizedBox(height: 12),
-                ShowcaseLogBox(
-                  entries: _cbLog,
-                  hint: context.tx('Sem eventos'),
-                  height: 112,
+                ValueListenableBuilder<List<String>>(
+                  valueListenable: _cbLog,
+                  builder: (context, log, _) => ShowcaseLogBox(
+                    entries: log,
+                    hint: context.tx('Sem eventos'),
+                    height: 112,
+                  ),
                 ),
               ],
             ),
@@ -287,7 +350,7 @@ class _SgRatingPageState extends State<SgRatingPage> {
                   size: SgSize.sm,
                   label: Text(context.tx('Enviar avaliação')),
                   onClick: () => _form.handleSubmit(
-                    (values) => setState(() => _enviado = '$values'),
+                    (values) => _enviado.value = '$values',
                   ),
                 ),
                 const SizedBox(height: 16),
@@ -298,7 +361,11 @@ class _SgRatingPageState extends State<SgRatingPage> {
                   ),
                 ),
                 const SizedBox(height: 4),
-                Text('${context.tx('Último envio')}: $_enviado'),
+                ValueListenableBuilder<String>(
+                  valueListenable: _enviado,
+                  builder: (context, enviado, _) =>
+                      Text('${context.tx('Último envio')}: $enviado'),
+                ),
               ],
             ),
         // #endregion
@@ -312,14 +379,17 @@ class _SgRatingPageState extends State<SgRatingPage> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SgRating(
-                  label: context.tx('Avaliação obrigatória'),
-                  value: _req,
-                  required: true,
-                  requiredMessage: context.tx(
-                    'Informe uma avaliação antes de continuar',
+                ValueListenableBuilder<num>(
+                  valueListenable: _req,
+                  builder: (context, valor, _) => SgRating(
+                    label: context.tx('Avaliação obrigatória'),
+                    value: valor,
+                    required: true,
+                    requiredMessage: context.tx(
+                      'Informe uma avaliação antes de continuar',
+                    ),
+                    onChange: (v) => _req.value = v,
                   ),
-                  onChange: (v) => setState(() => _req = v),
                 ),
                 const SizedBox(height: 12),
                 SgGrid(
@@ -330,24 +400,28 @@ class _SgRatingPageState extends State<SgRatingPage> {
                       size: SgSize.sm,
                       appearance: SgAppearance.outline,
                       label: Text(context.tx('Limpar')),
-                      onClick: () => setState(() => _req = 0),
+                      onClick: () => _req.value = 0,
                     ),
                     SgButton(
                       size: SgSize.sm,
                       appearance: SgAppearance.outline,
                       label: Text(context.tx('Nota 1')),
-                      onClick: () => setState(() => _req = 1),
+                      onClick: () => _req.value = 1,
                     ),
                     SgButton(
                       size: SgSize.sm,
                       appearance: SgAppearance.outline,
                       label: Text(context.tx('Nota 5')),
-                      onClick: () => setState(() => _req = 5),
+                      onClick: () => _req.value = 5,
                     ),
                   ],
                 ),
                 const SizedBox(height: 12),
-                Text('${context.tx('Valor atual')}: $_req'),
+                ValueListenableBuilder<num>(
+                  valueListenable: _req,
+                  builder: (context, valor, _) =>
+                      Text('${context.tx('Valor atual')}: $valor'),
+                ),
               ],
             ),
         // #endregion

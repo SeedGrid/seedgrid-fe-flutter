@@ -15,18 +15,29 @@ class SgRadioGroupPage extends StatefulWidget {
 }
 
 class _SgRadioGroupPageState extends State<SgRadioGroupPage> {
-  Object? _basico = 'option1';
-  Object? _fruta;
-  Object? _controlada = 'option2';
-  Object? _externo = 'banana';
-  Object? _highlight = 'reserve';
-  String _enviadoObrigatorio = '';
-  String _enviadoRegister = '';
+  final ValueNotifier<Object?> _basico = ValueNotifier<Object?>('option1');
+  final ValueNotifier<Object?> _fruta = ValueNotifier<Object?>(null);
+  final ValueNotifier<Object?> _controlada = ValueNotifier<Object?>('option2');
+  final ValueNotifier<Object?> _externo = ValueNotifier<Object?>('banana');
+  final ValueNotifier<Object?> _highlight = ValueNotifier<Object?>('reserve');
+  final ValueNotifier<String> _enviadoObrigatorio = ValueNotifier<String>('');
+  final ValueNotifier<String> _enviadoRegister = ValueNotifier<String>('');
   final SgFormController _formObrigatorio = SgFormController();
   final SgFormController _formRegister = SgFormController();
 
   @override
   void dispose() {
+    for (final n in <ChangeNotifier>[
+      _basico,
+      _fruta,
+      _controlada,
+      _externo,
+      _highlight,
+      _enviadoObrigatorio,
+      _enviadoRegister,
+    ]) {
+      n.dispose();
+    }
     _formObrigatorio.dispose();
     _formRegister.dispose();
     super.dispose();
@@ -42,28 +53,36 @@ class _SgRadioGroupPageState extends State<SgRadioGroupPage> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SgRadioGroup(
-                  id: 'basic',
-                  title: context.tx('Escolha uma opção'),
-                  value: _basico,
-                  onChange: (v) => setState(() => _basico = v),
-                  source: [
-                    SgRadioGroupOption(
-                      label: context.tx('Opção 1'),
-                      value: 'option1',
-                    ),
-                    SgRadioGroupOption(
-                      label: context.tx('Opção 2'),
-                      value: 'option2',
-                    ),
-                    SgRadioGroupOption(
-                      label: context.tx('Opção 3'),
-                      value: 'option3',
-                    ),
-                  ],
+                ValueListenableBuilder<Object?>(
+                  valueListenable: _basico,
+                  builder: (context, valor, _) => SgRadioGroup(
+                    id: 'basic',
+                    title: context.tx('Escolha uma opção'),
+                    value: valor,
+                    onChange: (v) => _basico.value = v,
+                    source: [
+                      SgRadioGroupOption(
+                        label: context.tx('Opção 1'),
+                        value: 'option1',
+                      ),
+                      SgRadioGroupOption(
+                        label: context.tx('Opção 2'),
+                        value: 'option2',
+                      ),
+                      SgRadioGroupOption(
+                        label: context.tx('Opção 3'),
+                        value: 'option3',
+                      ),
+                    ],
+                  ),
                 ),
                 const SizedBox(height: 8),
-                Text('${context.tx('Valor selecionado')}: ${_basico ?? '-'}'),
+                ValueListenableBuilder<Object?>(
+                  valueListenable: _basico,
+                  builder: (context, valor, _) => Text(
+                    '${context.tx('Valor selecionado')}: ${valor ?? '-'}',
+                  ),
+                ),
               ],
             ),
         // #endregion
@@ -76,30 +95,33 @@ class _SgRadioGroupPageState extends State<SgRadioGroupPage> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SgRadioGroup(
-                  id: 'horizontal',
-                  title: context.tx('Selecione uma fruta'),
-                  orientation: SgRadioGroupOrientation.horizontal,
-                  value: _fruta,
-                  onChange: (v) => setState(() => _fruta = v),
-                  source: [
-                    SgRadioGroupOption(
-                      label: context.tx('Maçã'),
-                      value: 'apple',
-                    ),
-                    SgRadioGroupOption(
-                      label: context.tx('Banana'),
-                      value: 'banana',
-                    ),
-                    SgRadioGroupOption(
-                      label: context.tx('Laranja'),
-                      value: 'orange',
-                    ),
-                    SgRadioGroupOption(
-                      label: context.tx('Uva'),
-                      value: 'grape',
-                    ),
-                  ],
+                ValueListenableBuilder<Object?>(
+                  valueListenable: _fruta,
+                  builder: (context, valor, _) => SgRadioGroup(
+                    id: 'horizontal',
+                    title: context.tx('Selecione uma fruta'),
+                    orientation: SgRadioGroupOrientation.horizontal,
+                    value: valor,
+                    onChange: (v) => _fruta.value = v,
+                    source: [
+                      SgRadioGroupOption(
+                        label: context.tx('Maçã'),
+                        value: 'apple',
+                      ),
+                      SgRadioGroupOption(
+                        label: context.tx('Banana'),
+                        value: 'banana',
+                      ),
+                      SgRadioGroupOption(
+                        label: context.tx('Laranja'),
+                        value: 'orange',
+                      ),
+                      SgRadioGroupOption(
+                        label: context.tx('Uva'),
+                        value: 'grape',
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -170,29 +192,35 @@ class _SgRadioGroupPageState extends State<SgRadioGroupPage> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SgRadioGroup(
-                  id: 'controlled-selection',
-                  title: context.tx('Seleção controlada'),
-                  value: _controlada,
-                  onChange: (v) => setState(() => _controlada = v),
-                  source: [
-                    SgRadioGroupOption(
-                      label: context.tx('Opção 1'),
-                      value: 'option1',
-                    ),
-                    SgRadioGroupOption(
-                      label: context.tx('Opção 2'),
-                      value: 'option2',
-                    ),
-                    SgRadioGroupOption(
-                      label: context.tx('Opção 3'),
-                      value: 'option3',
-                    ),
-                  ],
+                ValueListenableBuilder<Object?>(
+                  valueListenable: _controlada,
+                  builder: (context, valor, _) => SgRadioGroup(
+                    id: 'controlled-selection',
+                    title: context.tx('Seleção controlada'),
+                    value: valor,
+                    onChange: (v) => _controlada.value = v,
+                    source: [
+                      SgRadioGroupOption(
+                        label: context.tx('Opção 1'),
+                        value: 'option1',
+                      ),
+                      SgRadioGroupOption(
+                        label: context.tx('Opção 2'),
+                        value: 'option2',
+                      ),
+                      SgRadioGroupOption(
+                        label: context.tx('Opção 3'),
+                        value: 'option3',
+                      ),
+                    ],
+                  ),
                 ),
                 const SizedBox(height: 8),
-                Text(
-                  '${context.tx('Valor')}: ${_controlada ?? context.tx('Nenhum')}',
+                ValueListenableBuilder<Object?>(
+                  valueListenable: _controlada,
+                  builder: (context, valor, _) => Text(
+                    '${context.tx('Valor')}: ${valor ?? context.tx('Nenhum')}',
+                  ),
                 ),
               ],
             ),
@@ -206,29 +234,32 @@ class _SgRadioGroupPageState extends State<SgRadioGroupPage> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SgRadioGroup(
-                  id: 'external-control',
-                  title: context.tx('Fruta favorita'),
-                  value: _externo,
-                  onChange: (v) => setState(() => _externo = v),
-                  source: [
-                    SgRadioGroupOption(
-                      label: context.tx('Maçã'),
-                      value: 'apple',
-                    ),
-                    SgRadioGroupOption(
-                      label: context.tx('Banana'),
-                      value: 'banana',
-                    ),
-                    SgRadioGroupOption(
-                      label: context.tx('Laranja'),
-                      value: 'orange',
-                    ),
-                    SgRadioGroupOption(
-                      label: context.tx('Uva'),
-                      value: 'grape',
-                    ),
-                  ],
+                ValueListenableBuilder<Object?>(
+                  valueListenable: _externo,
+                  builder: (context, valor, _) => SgRadioGroup(
+                    id: 'external-control',
+                    title: context.tx('Fruta favorita'),
+                    value: valor,
+                    onChange: (v) => _externo.value = v,
+                    source: [
+                      SgRadioGroupOption(
+                        label: context.tx('Maçã'),
+                        value: 'apple',
+                      ),
+                      SgRadioGroupOption(
+                        label: context.tx('Banana'),
+                        value: 'banana',
+                      ),
+                      SgRadioGroupOption(
+                        label: context.tx('Laranja'),
+                        value: 'orange',
+                      ),
+                      SgRadioGroupOption(
+                        label: context.tx('Uva'),
+                        value: 'grape',
+                      ),
+                    ],
+                  ),
                 ),
                 const SizedBox(height: 16),
                 SgGrid(
@@ -237,25 +268,28 @@ class _SgRadioGroupPageState extends State<SgRadioGroupPage> {
                   children: [
                     SgButton(
                       label: Text(context.tx('Definir Maçã')),
-                      onClick: () => setState(() => _externo = 'apple'),
+                      onClick: () => _externo.value = 'apple',
                     ),
                     SgButton(
                       label: Text(context.tx('Definir Banana')),
-                      onClick: () => setState(() => _externo = 'banana'),
+                      onClick: () => _externo.value = 'banana',
                     ),
                     SgButton(
                       label: Text(context.tx('Definir Laranja')),
-                      onClick: () => setState(() => _externo = 'orange'),
+                      onClick: () => _externo.value = 'orange',
                     ),
                     SgButton(
                       label: Text(context.tx('Limpar')),
-                      onClick: () => setState(() => _externo = null),
+                      onClick: () => _externo.value = null,
                     ),
                   ],
                 ),
                 const SizedBox(height: 16),
-                Text(
-                  '${context.tx('Valor atual')}: ${_externo ?? context.tx('Nenhum')}',
+                ValueListenableBuilder<Object?>(
+                  valueListenable: _externo,
+                  builder: (context, valor, _) => Text(
+                    '${context.tx('Valor atual')}: ${valor ?? context.tx('Nenhum')}',
+                  ),
                 ),
               ],
             ),
@@ -369,15 +403,16 @@ class _SgRadioGroupPageState extends State<SgRadioGroupPage> {
                 SgButton(
                   label: Text(context.tx('Enviar')),
                   onClick: () => _formObrigatorio.handleSubmit(
-                    (values) => setState(
-                      () => _enviadoObrigatorio = '${values['preference']}',
-                    ),
+                    (values) =>
+                        _enviadoObrigatorio.value = '${values['preference']}',
                   ),
                 ),
-                if (_enviadoObrigatorio.isNotEmpty)
-                  Text(
-                    '${context.tx('Dados do formulário')}: $_enviadoObrigatorio',
-                  ),
+                ValueListenableBuilder<String>(
+                  valueListenable: _enviadoObrigatorio,
+                  builder: (context, valor, _) => valor.isEmpty
+                      ? const SizedBox.shrink()
+                      : Text('${context.tx('Dados do formulário')}: $valor'),
+                ),
               ],
             ),
         // #endregion
@@ -425,47 +460,53 @@ class _SgRadioGroupPageState extends State<SgRadioGroupPage> {
               children: [
                 ConstrainedBox(
                   constraints: const BoxConstraints(maxWidth: 320),
-                  child: SgRadioGroup(
-                    id: 'highlight-list',
-                    title: context.tx('Opções'),
-                    selectionStyle: SgRadioGroupSelectionStyle.highlight,
-                    value: _highlight,
-                    onChange: (v) => setState(() => _highlight = v),
-                    source: [
-                      SgRadioGroupOption(
-                        label: context.tx('Reserva'),
-                        value: 'reserve',
-                        icon: Icon(
-                          Icons.account_balance,
-                          size: 16,
-                          color: Colors.indigo,
+                  child: ValueListenableBuilder<Object?>(
+                    valueListenable: _highlight,
+                    builder: (context, valor, _) => SgRadioGroup(
+                      id: 'highlight-list',
+                      title: context.tx('Opções'),
+                      selectionStyle: SgRadioGroupSelectionStyle.highlight,
+                      value: valor,
+                      onChange: (v) => _highlight.value = v,
+                      source: [
+                        SgRadioGroupOption(
+                          label: context.tx('Reserva'),
+                          value: 'reserve',
+                          icon: Icon(
+                            Icons.account_balance,
+                            size: 16,
+                            color: Colors.indigo,
+                          ),
                         ),
-                      ),
-                      SgRadioGroupOption(
-                        label: context.tx('Alerta'),
-                        value: 'alert',
-                        icon: Icon(
-                          Icons.notifications,
-                          size: 16,
-                          color: Colors.pink,
+                        SgRadioGroupOption(
+                          label: context.tx('Alerta'),
+                          value: 'alert',
+                          icon: Icon(
+                            Icons.notifications,
+                            size: 16,
+                            color: Colors.pink,
+                          ),
                         ),
-                      ),
-                      SgRadioGroupOption(
-                        label: context.tx('Atualizar'),
-                        value: 'refresh',
-                        icon: Icon(
-                          Icons.refresh,
-                          size: 16,
-                          color: Colors.green,
+                        SgRadioGroupOption(
+                          label: context.tx('Atualizar'),
+                          value: 'refresh',
+                          icon: Icon(
+                            Icons.refresh,
+                            size: 16,
+                            color: Colors.green,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
 
                 const SizedBox(height: 8),
-                Text(
-                  '${context.tx('Valor')}: ${_highlight ?? context.tx('Nenhum')}',
+                ValueListenableBuilder<Object?>(
+                  valueListenable: _highlight,
+                  builder: (context, valor, _) => Text(
+                    '${context.tx('Valor')}: ${valor ?? context.tx('Nenhum')}',
+                  ),
                 ),
               ],
             ),
@@ -537,14 +578,15 @@ class _SgRadioGroupPageState extends State<SgRadioGroupPage> {
                 SgButton(
                   label: Text(context.tx('Enviar')),
                   onClick: () => _formRegister.handleSubmit(
-                    (values) =>
-                        setState(() => _enviadoRegister = '${values['fruit']}'),
+                    (values) => _enviadoRegister.value = '${values['fruit']}',
                   ),
                 ),
-                if (_enviadoRegister.isNotEmpty)
-                  Text(
-                    '${context.tx('Dados do formulário')}: $_enviadoRegister',
-                  ),
+                ValueListenableBuilder<String>(
+                  valueListenable: _enviadoRegister,
+                  builder: (context, valor, _) => valor.isEmpty
+                      ? const SizedBox.shrink()
+                      : Text('${context.tx('Dados do formulário')}: $valor'),
+                ),
               ],
             ),
         // #endregion

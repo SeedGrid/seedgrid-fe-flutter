@@ -15,20 +15,42 @@ class SgCheckboxGroupPage extends StatefulWidget {
 }
 
 class _SgCheckboxGroupPageState extends State<SgCheckboxGroupPage> {
-  List<Object> _basico = const ['option1'];
-  List<Object> _horizontal = const [];
-  List<Object> _controlada = const ['option2'];
-  List<Object> _externo = const ['banana'];
-  List<Object> _highlight = const ['reserve'];
-  String _saida = '';
-  String _enviadoObrigatorio = '';
-  String _enviadoRegister = '';
+  final ValueNotifier<List<Object>> _basico = ValueNotifier<List<Object>>(
+    const ['option1'],
+  );
+  final ValueNotifier<List<Object>> _horizontal = ValueNotifier<List<Object>>(
+    const [],
+  );
+  final ValueNotifier<List<Object>> _controlada = ValueNotifier<List<Object>>(
+    const ['option2'],
+  );
+  final ValueNotifier<List<Object>> _externo = ValueNotifier<List<Object>>(
+    const ['banana'],
+  );
+  final ValueNotifier<List<Object>> _highlight = ValueNotifier<List<Object>>(
+    const ['reserve'],
+  );
+  final ValueNotifier<String> _saida = ValueNotifier<String>('');
+  final ValueNotifier<String> _enviadoObrigatorio = ValueNotifier<String>('');
+  final ValueNotifier<String> _enviadoRegister = ValueNotifier<String>('');
   final SgCheckboxGroupController _controller = SgCheckboxGroupController();
   final SgFormController _formObrigatorio = SgFormController();
   final SgFormController _formRegister = SgFormController();
 
   @override
   void dispose() {
+    for (final n in <ChangeNotifier>[
+      _basico,
+      _horizontal,
+      _controlada,
+      _externo,
+      _highlight,
+      _saida,
+      _enviadoObrigatorio,
+      _enviadoRegister,
+    ]) {
+      n.dispose();
+    }
     _formObrigatorio.dispose();
     _formRegister.dispose();
     super.dispose();
@@ -44,29 +66,35 @@ class _SgCheckboxGroupPageState extends State<SgCheckboxGroupPage> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SgCheckboxGroup(
-                  id: 'basic',
-                  title: context.tx('Escolha as opções'),
-                  value: _basico,
-                  onChange: (v) => setState(() => _basico = v),
-                  source: [
-                    SgCheckboxGroupOption(
-                      label: context.tx('Opção 1'),
-                      value: 'option1',
-                    ),
-                    SgCheckboxGroupOption(
-                      label: context.tx('Opção 2'),
-                      value: 'option2',
-                    ),
-                    SgCheckboxGroupOption(
-                      label: context.tx('Opção 3'),
-                      value: 'option3',
-                    ),
-                  ],
+                ValueListenableBuilder<List<Object>>(
+                  valueListenable: _basico,
+                  builder: (context, valor, _) => SgCheckboxGroup(
+                    id: 'basic',
+                    title: context.tx('Escolha as opções'),
+                    value: valor,
+                    onChange: (v) => _basico.value = v,
+                    source: [
+                      SgCheckboxGroupOption(
+                        label: context.tx('Opção 1'),
+                        value: 'option1',
+                      ),
+                      SgCheckboxGroupOption(
+                        label: context.tx('Opção 2'),
+                        value: 'option2',
+                      ),
+                      SgCheckboxGroupOption(
+                        label: context.tx('Opção 3'),
+                        value: 'option3',
+                      ),
+                    ],
+                  ),
                 ),
                 const SizedBox(height: 8),
-                Text(
-                  '${context.tx('Valores selecionados')}: [${_basico.join(', ')}]',
+                ValueListenableBuilder<List<Object>>(
+                  valueListenable: _basico,
+                  builder: (context, valor, _) => Text(
+                    '${context.tx('Valores selecionados')}: [${valor.join(', ')}]',
+                  ),
                 ),
               ],
             ),
@@ -80,34 +108,40 @@ class _SgCheckboxGroupPageState extends State<SgCheckboxGroupPage> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SgCheckboxGroup(
-                  id: 'horizontal',
-                  title: context.tx('Selecione frutas'),
-                  orientation: SgCheckboxGroupOrientation.horizontal,
-                  value: _horizontal,
-                  onChange: (v) => setState(() => _horizontal = v),
-                  source: [
-                    SgCheckboxGroupOption(
-                      label: context.tx('Maçã'),
-                      value: 'apple',
-                    ),
-                    SgCheckboxGroupOption(
-                      label: context.tx('Banana'),
-                      value: 'banana',
-                    ),
-                    SgCheckboxGroupOption(
-                      label: context.tx('Laranja'),
-                      value: 'orange',
-                    ),
-                    SgCheckboxGroupOption(
-                      label: context.tx('Uva'),
-                      value: 'grape',
-                    ),
-                  ],
+                ValueListenableBuilder<List<Object>>(
+                  valueListenable: _horizontal,
+                  builder: (context, valor, _) => SgCheckboxGroup(
+                    id: 'horizontal',
+                    title: context.tx('Selecione frutas'),
+                    orientation: SgCheckboxGroupOrientation.horizontal,
+                    value: valor,
+                    onChange: (v) => _horizontal.value = v,
+                    source: [
+                      SgCheckboxGroupOption(
+                        label: context.tx('Maçã'),
+                        value: 'apple',
+                      ),
+                      SgCheckboxGroupOption(
+                        label: context.tx('Banana'),
+                        value: 'banana',
+                      ),
+                      SgCheckboxGroupOption(
+                        label: context.tx('Laranja'),
+                        value: 'orange',
+                      ),
+                      SgCheckboxGroupOption(
+                        label: context.tx('Uva'),
+                        value: 'grape',
+                      ),
+                    ],
+                  ),
                 ),
                 const SizedBox(height: 8),
-                Text(
-                  '${context.tx('Valores selecionados')}: [${_horizontal.join(', ')}]',
+                ValueListenableBuilder<List<Object>>(
+                  valueListenable: _horizontal,
+                  builder: (context, valor, _) => Text(
+                    '${context.tx('Valores selecionados')}: [${valor.join(', ')}]',
+                  ),
                 ),
               ],
             ),
@@ -178,28 +212,35 @@ class _SgCheckboxGroupPageState extends State<SgCheckboxGroupPage> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SgCheckboxGroup(
-                  id: 'controlled-selection',
-                  title: context.tx('Seleção controlada'),
-                  value: _controlada,
-                  onChange: (v) => setState(() => _controlada = v),
-                  source: [
-                    SgCheckboxGroupOption(
-                      label: context.tx('Opção 1'),
-                      value: 'option1',
-                    ),
-                    SgCheckboxGroupOption(
-                      label: context.tx('Opção 2'),
-                      value: 'option2',
-                    ),
-                    SgCheckboxGroupOption(
-                      label: context.tx('Opção 3'),
-                      value: 'option3',
-                    ),
-                  ],
+                ValueListenableBuilder<List<Object>>(
+                  valueListenable: _controlada,
+                  builder: (context, valor, _) => SgCheckboxGroup(
+                    id: 'controlled-selection',
+                    title: context.tx('Seleção controlada'),
+                    value: valor,
+                    onChange: (v) => _controlada.value = v,
+                    source: [
+                      SgCheckboxGroupOption(
+                        label: context.tx('Opção 1'),
+                        value: 'option1',
+                      ),
+                      SgCheckboxGroupOption(
+                        label: context.tx('Opção 2'),
+                        value: 'option2',
+                      ),
+                      SgCheckboxGroupOption(
+                        label: context.tx('Opção 3'),
+                        value: 'option3',
+                      ),
+                    ],
+                  ),
                 ),
                 const SizedBox(height: 8),
-                Text('${context.tx('Valor')}: [${_controlada.join(', ')}]'),
+                ValueListenableBuilder<List<Object>>(
+                  valueListenable: _controlada,
+                  builder: (context, valor, _) =>
+                      Text('${context.tx('Valor')}: [${valor.join(', ')}]'),
+                ),
               ],
             ),
         // #endregion
@@ -212,29 +253,32 @@ class _SgCheckboxGroupPageState extends State<SgCheckboxGroupPage> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SgCheckboxGroup(
-                  id: 'external-control',
-                  title: context.tx('Frutas favoritas'),
-                  value: _externo,
-                  onChange: (v) => setState(() => _externo = v),
-                  source: [
-                    SgCheckboxGroupOption(
-                      label: context.tx('Maçã'),
-                      value: 'apple',
-                    ),
-                    SgCheckboxGroupOption(
-                      label: context.tx('Banana'),
-                      value: 'banana',
-                    ),
-                    SgCheckboxGroupOption(
-                      label: context.tx('Laranja'),
-                      value: 'orange',
-                    ),
-                    SgCheckboxGroupOption(
-                      label: context.tx('Uva'),
-                      value: 'grape',
-                    ),
-                  ],
+                ValueListenableBuilder<List<Object>>(
+                  valueListenable: _externo,
+                  builder: (context, valor, _) => SgCheckboxGroup(
+                    id: 'external-control',
+                    title: context.tx('Frutas favoritas'),
+                    value: valor,
+                    onChange: (v) => _externo.value = v,
+                    source: [
+                      SgCheckboxGroupOption(
+                        label: context.tx('Maçã'),
+                        value: 'apple',
+                      ),
+                      SgCheckboxGroupOption(
+                        label: context.tx('Banana'),
+                        value: 'banana',
+                      ),
+                      SgCheckboxGroupOption(
+                        label: context.tx('Laranja'),
+                        value: 'orange',
+                      ),
+                      SgCheckboxGroupOption(
+                        label: context.tx('Uva'),
+                        value: 'grape',
+                      ),
+                    ],
+                  ),
                 ),
                 const SizedBox(height: 16),
                 SgGrid(
@@ -243,27 +287,34 @@ class _SgCheckboxGroupPageState extends State<SgCheckboxGroupPage> {
                   children: [
                     SgButton(
                       label: Text(context.tx('Definir Maçã')),
-                      onClick: () => setState(() => _externo = ['apple']),
+                      onClick: () => _externo.value = ['apple'],
                     ),
                     SgButton(
                       label: Text(context.tx('Banana + Uva')),
-                      onClick: () =>
-                          setState(() => _externo = ['banana', 'grape']),
+                      onClick: () => _externo.value = ['banana', 'grape'],
                     ),
                     SgButton(
                       label: Text(context.tx('Selecionar Todos')),
-                      onClick: () => setState(
-                        () => _externo = ['apple', 'banana', 'orange', 'grape'],
-                      ),
+                      onClick: () => _externo.value = [
+                        'apple',
+                        'banana',
+                        'orange',
+                        'grape',
+                      ],
                     ),
                     SgButton(
                       label: Text(context.tx('Limpar')),
-                      onClick: () => setState(() => _externo = []),
+                      onClick: () => _externo.value = [],
                     ),
                   ],
                 ),
                 const SizedBox(height: 16),
-                Text('${context.tx('Valor atual')}: [${_externo.join(', ')}]'),
+                ValueListenableBuilder<List<Object>>(
+                  valueListenable: _externo,
+                  builder: (context, valor, _) => Text(
+                    '${context.tx('Valor atual')}: [${valor.join(', ')}]',
+                  ),
+                ),
               ],
             ),
         // #endregion
@@ -385,15 +436,16 @@ class _SgCheckboxGroupPageState extends State<SgCheckboxGroupPage> {
                 SgButton(
                   label: Text(context.tx('Enviar')),
                   onClick: () => _formObrigatorio.handleSubmit(
-                    (values) => setState(
-                      () => _enviadoObrigatorio = '${values['preference']}',
-                    ),
+                    (values) =>
+                        _enviadoObrigatorio.value = '${values['preference']}',
                   ),
                 ),
-                if (_enviadoObrigatorio.isNotEmpty)
-                  Text(
-                    '${context.tx('Dados do formulário')}: $_enviadoObrigatorio',
-                  ),
+                ValueListenableBuilder<String>(
+                  valueListenable: _enviadoObrigatorio,
+                  builder: (context, valor, _) => valor.isEmpty
+                      ? const SizedBox.shrink()
+                      : Text('${context.tx('Dados do formulário')}: $valor'),
+                ),
               ],
             ),
         // #endregion
@@ -443,46 +495,53 @@ class _SgCheckboxGroupPageState extends State<SgCheckboxGroupPage> {
               children: [
                 ConstrainedBox(
                   constraints: const BoxConstraints(maxWidth: 320),
-                  child: SgCheckboxGroup(
-                    id: 'highlight-list',
-                    title: context.tx('Opções'),
-                    selectionStyle: SgCheckboxGroupSelectionStyle.highlight,
-                    value: _highlight,
-                    onChange: (v) => setState(() => _highlight = v),
-                    source: [
-                      SgCheckboxGroupOption(
-                        label: context.tx('Reserva'),
-                        value: 'reserve',
-                        icon: Icon(
-                          Icons.account_balance,
-                          size: 16,
-                          color: Colors.indigo,
+                  child: ValueListenableBuilder<List<Object>>(
+                    valueListenable: _highlight,
+                    builder: (context, valor, _) => SgCheckboxGroup(
+                      id: 'highlight-list',
+                      title: context.tx('Opções'),
+                      selectionStyle: SgCheckboxGroupSelectionStyle.highlight,
+                      value: valor,
+                      onChange: (v) => _highlight.value = v,
+                      source: [
+                        SgCheckboxGroupOption(
+                          label: context.tx('Reserva'),
+                          value: 'reserve',
+                          icon: Icon(
+                            Icons.account_balance,
+                            size: 16,
+                            color: Colors.indigo,
+                          ),
                         ),
-                      ),
-                      SgCheckboxGroupOption(
-                        label: context.tx('Alerta'),
-                        value: 'alert',
-                        icon: Icon(
-                          Icons.notifications,
-                          size: 16,
-                          color: Colors.pink,
+                        SgCheckboxGroupOption(
+                          label: context.tx('Alerta'),
+                          value: 'alert',
+                          icon: Icon(
+                            Icons.notifications,
+                            size: 16,
+                            color: Colors.pink,
+                          ),
                         ),
-                      ),
-                      SgCheckboxGroupOption(
-                        label: context.tx('Atualizar'),
-                        value: 'refresh',
-                        icon: Icon(
-                          Icons.refresh,
-                          size: 16,
-                          color: Colors.green,
+                        SgCheckboxGroupOption(
+                          label: context.tx('Atualizar'),
+                          value: 'refresh',
+                          icon: Icon(
+                            Icons.refresh,
+                            size: 16,
+                            color: Colors.green,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
 
                 const SizedBox(height: 8),
-                Text('${context.tx('Valor')}: [${_highlight.join(', ')}]'),
+                ValueListenableBuilder<List<Object>>(
+                  valueListenable: _highlight,
+                  builder: (context, valor, _) =>
+                      Text('${context.tx('Valor')}: [${valor.join(', ')}]'),
+                ),
               ],
             ),
         // #endregion
@@ -554,15 +613,15 @@ class _SgCheckboxGroupPageState extends State<SgCheckboxGroupPage> {
                 SgButton(
                   label: Text(context.tx('Enviar')),
                   onClick: () => _formRegister.handleSubmit(
-                    (values) => setState(
-                      () => _enviadoRegister = '${values['fruits']}',
-                    ),
+                    (values) => _enviadoRegister.value = '${values['fruits']}',
                   ),
                 ),
-                if (_enviadoRegister.isNotEmpty)
-                  Text(
-                    '${context.tx('Dados do formulário')}: $_enviadoRegister',
-                  ),
+                ValueListenableBuilder<String>(
+                  valueListenable: _enviadoRegister,
+                  builder: (context, valor, _) => valor.isEmpty
+                      ? const SizedBox.shrink()
+                      : Text('${context.tx('Dados do formulário')}: $valor'),
+                ),
               ],
             ),
         // #endregion
@@ -696,34 +755,39 @@ class _SgCheckboxGroupPageState extends State<SgCheckboxGroupPage> {
                   children: [
                     SgButton(
                       label: Text('getChecked()'),
-                      onClick: () => setState(() {
-                        _saida = _controller.getChecked().toString();
-                      }),
+                      onClick: () {
+                        _saida.value = _controller.getChecked().toString();
+                      },
                     ),
                     SgButton(
                       label: Text('checkAll()'),
-                      onClick: () => setState(() {
+                      onClick: () {
                         _controller.checkAll();
-                        _saida = 'checkAll()';
-                      }),
+                        _saida.value = 'checkAll()';
+                      },
                     ),
                     SgButton(
                       label: Text('clearAll()'),
-                      onClick: () => setState(() {
+                      onClick: () {
                         _controller.clearAll();
-                        _saida = 'clearAll()';
-                      }),
+                        _saida.value = 'clearAll()';
+                      },
                     ),
                     SgButton(
                       label: Text('setChecked'),
-                      onClick: () => setState(() {
+                      onClick: () {
                         _controller.setChecked(['option2']);
-                        _saida = "setChecked(['option2'])";
-                      }),
+                        _saida.value = "setChecked(['option2'])";
+                      },
                     ),
                   ],
                 ),
-                if (_saida.isNotEmpty) Text('${context.tx('Saída')}: $_saida'),
+                ValueListenableBuilder<String>(
+                  valueListenable: _saida,
+                  builder: (context, valor, _) => valor.isEmpty
+                      ? const SizedBox.shrink()
+                      : Text('${context.tx('Saída')}: $valor'),
+                ),
               ],
             ),
         // #endregion
