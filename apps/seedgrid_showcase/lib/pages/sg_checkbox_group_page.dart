@@ -661,9 +661,9 @@ class _SgCheckboxGroupPageState extends State<SgCheckboxGroupPage> {
         code: SgCheckboxGroupPageSnippets.sgCheckboxGroupCheckedInicial,
       ),
       ShowcaseExample(
-        title: 'Controller imperativo (getChecked / checkAll / clearAll)',
+        title: 'Controle por código',
         description:
-            'Acesso imperativo via SgCheckboxGroupController: getChecked, checkAll, clearAll, setChecked',
+            'Acesso imperativo por código: getChecked, checkAll, clearAll, setChecked',
         preview:
             // #region sg-checkbox-group-controller-imperativo
             Column(

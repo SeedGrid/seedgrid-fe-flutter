@@ -126,111 +126,438 @@ const Wrap(
 
   /// Region `sg-clock-discard`.
   static const String sgClockDiscard = r'''
-const FittedBox(
-  fit: BoxFit.scaleDown,
-  alignment: Alignment.centerLeft,
-  child: SgClock(
-    digitalStyle: SgClockDigitalStyle.discard,
-    size: 'lg',
-    initialServerTime: '2026-06-15T09:41:07-03:00',
-    timezone: 'America/Sao_Paulo',
-  ),
+Builder(
+  builder: (context) {
+    var showSeconds = true;
+    var format = SgClockFormat.v24h;
+    return StatefulBuilder(
+      builder: (context, set) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              SgButton(
+                label: Text(
+                  showSeconds
+                      ? context.tx('Segundos: ON')
+                      : context.tx('Segundos: OFF'),
+                ),
+                onClick: () =>
+                    set(() => showSeconds = !showSeconds),
+              ),
+              SgButton(
+                label: Text(
+                  format == SgClockFormat.v24h ? '24h' : '12h',
+                ),
+                onClick: () => set(
+                  () => format = format == SgClockFormat.v24h
+                      ? SgClockFormat.v12h
+                      : SgClockFormat.v24h,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            alignment: Alignment.centerLeft,
+            child: SgClock(
+              digitalStyle: SgClockDigitalStyle.discard,
+              size: 'lg',
+              initialServerTime: '2026-06-15T09:41:07-03:00',
+              timezone: 'America/Sao_Paulo',
+              format: format,
+              showSeconds: showSeconds,
+            ),
+          ),
+        ],
+      ),
+    );
+  },
 )
 ''';
 
   /// Region `sg-clock-fade`.
   static const String sgClockFade = r'''
-const FittedBox(
-  fit: BoxFit.scaleDown,
-  alignment: Alignment.centerLeft,
-  child: SgClock(
-    digitalStyle: SgClockDigitalStyle.fade,
-    initialServerTime: '2026-06-15T09:41:07-03:00',
-    timezone: 'America/Sao_Paulo',
-  ),
+Builder(
+  builder: (context) {
+    var showSeconds = true;
+    var format = SgClockFormat.v24h;
+    return StatefulBuilder(
+      builder: (context, set) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              SgButton(
+                label: Text(
+                  showSeconds
+                      ? context.tx('Segundos: ON')
+                      : context.tx('Segundos: OFF'),
+                ),
+                onClick: () =>
+                    set(() => showSeconds = !showSeconds),
+              ),
+              SgButton(
+                label: Text(
+                  format == SgClockFormat.v24h ? '24h' : '12h',
+                ),
+                onClick: () => set(
+                  () => format = format == SgClockFormat.v24h
+                      ? SgClockFormat.v12h
+                      : SgClockFormat.v24h,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            alignment: Alignment.centerLeft,
+            child: SgClock(
+              digitalStyle: SgClockDigitalStyle.fade,
+              initialServerTime: '2026-06-15T09:41:07-03:00',
+              timezone: 'America/Sao_Paulo',
+              format: format,
+              showSeconds: showSeconds,
+            ),
+          ),
+        ],
+      ),
+    );
+  },
 )
 ''';
 
   /// Region `sg-clock-flip`.
   static const String sgClockFlip = r'''
-const FittedBox(
-  fit: BoxFit.scaleDown,
-  alignment: Alignment.centerLeft,
-  child: SgClock(
-    digitalStyle: SgClockDigitalStyle.flip,
-    size: 'lg',
-    initialServerTime: '2026-06-15T09:41:07-03:00',
-    timezone: 'America/Sao_Paulo',
-  ),
+Builder(
+  builder: (context) {
+    var showSeconds = true;
+    var format = SgClockFormat.v24h;
+    return StatefulBuilder(
+      builder: (context, set) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              SgButton(
+                label: Text(
+                  showSeconds
+                      ? context.tx('Segundos: ON')
+                      : context.tx('Segundos: OFF'),
+                ),
+                onClick: () =>
+                    set(() => showSeconds = !showSeconds),
+              ),
+              SgButton(
+                label: Text(
+                  format == SgClockFormat.v24h ? '24h' : '12h',
+                ),
+                onClick: () => set(
+                  () => format = format == SgClockFormat.v24h
+                      ? SgClockFormat.v12h
+                      : SgClockFormat.v24h,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            alignment: Alignment.centerLeft,
+            child: SgClock(
+              digitalStyle: SgClockDigitalStyle.flip,
+              size: 'lg',
+              initialServerTime: '2026-06-15T09:41:07-03:00',
+              timezone: 'America/Sao_Paulo',
+              format: format,
+              showSeconds: showSeconds,
+            ),
+          ),
+        ],
+      ),
+    );
+  },
 )
 ''';
 
   /// Region `sg-clock-matrix`.
   static const String sgClockMatrix = r'''
-const FittedBox(
-  fit: BoxFit.scaleDown,
-  alignment: Alignment.centerLeft,
-  child: SgClock(
-    digitalStyle: SgClockDigitalStyle.matrix,
-    size: 'sm',
-    initialServerTime: '2026-06-15T09:41:07-03:00',
-    timezone: 'America/Sao_Paulo',
-  ),
+Builder(
+  builder: (context) {
+    var showSeconds = true;
+    var format = SgClockFormat.v24h;
+    return StatefulBuilder(
+      builder: (context, set) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              SgButton(
+                label: Text(
+                  showSeconds
+                      ? context.tx('Segundos: ON')
+                      : context.tx('Segundos: OFF'),
+                ),
+                onClick: () =>
+                    set(() => showSeconds = !showSeconds),
+              ),
+              SgButton(
+                label: Text(
+                  format == SgClockFormat.v24h ? '24h' : '12h',
+                ),
+                onClick: () => set(
+                  () => format = format == SgClockFormat.v24h
+                      ? SgClockFormat.v12h
+                      : SgClockFormat.v24h,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            alignment: Alignment.centerLeft,
+            child: SgClock(
+              digitalStyle: SgClockDigitalStyle.matrix,
+              size: 'sm',
+              initialServerTime: '2026-06-15T09:41:07-03:00',
+              timezone: 'America/Sao_Paulo',
+              format: format,
+              showSeconds: showSeconds,
+            ),
+          ),
+        ],
+      ),
+    );
+  },
 )
 ''';
 
   /// Region `sg-clock-neon`.
   static const String sgClockNeon = r'''
-const FittedBox(
-  fit: BoxFit.scaleDown,
-  alignment: Alignment.centerLeft,
-  child: SgClock(
-    digitalStyle: SgClockDigitalStyle.neon,
-    initialServerTime: '2026-06-15T09:41:07-03:00',
-    timezone: 'America/Sao_Paulo',
-  ),
+Builder(
+  builder: (context) {
+    var showSeconds = true;
+    var format = SgClockFormat.v24h;
+    return StatefulBuilder(
+      builder: (context, set) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              SgButton(
+                label: Text(
+                  showSeconds
+                      ? context.tx('Segundos: ON')
+                      : context.tx('Segundos: OFF'),
+                ),
+                onClick: () =>
+                    set(() => showSeconds = !showSeconds),
+              ),
+              SgButton(
+                label: Text(
+                  format == SgClockFormat.v24h ? '24h' : '12h',
+                ),
+                onClick: () => set(
+                  () => format = format == SgClockFormat.v24h
+                      ? SgClockFormat.v12h
+                      : SgClockFormat.v24h,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            alignment: Alignment.centerLeft,
+            child: SgClock(
+              digitalStyle: SgClockDigitalStyle.neon,
+              initialServerTime: '2026-06-15T09:41:07-03:00',
+              timezone: 'America/Sao_Paulo',
+              format: format,
+              showSeconds: showSeconds,
+            ),
+          ),
+        ],
+      ),
+    );
+  },
 )
 ''';
 
   /// Region `sg-clock-roller3d`.
   static const String sgClockRoller3d = r'''
-const FittedBox(
-  fit: BoxFit.scaleDown,
-  alignment: Alignment.centerLeft,
-  child: SgClock(
-    digitalStyle: SgClockDigitalStyle.roller3d,
-    size: 'lg',
-    initialServerTime: '2026-06-15T15:41:07-03:00',
-    timezone: 'America/Sao_Paulo',
-    format: SgClockFormat.v12h,
-  ),
+Builder(
+  builder: (context) {
+    var showSeconds = true;
+    var format = SgClockFormat.v12h;
+    return StatefulBuilder(
+      builder: (context, set) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              SgButton(
+                label: Text(
+                  showSeconds
+                      ? context.tx('Segundos: ON')
+                      : context.tx('Segundos: OFF'),
+                ),
+                onClick: () =>
+                    set(() => showSeconds = !showSeconds),
+              ),
+              SgButton(
+                label: Text(
+                  format == SgClockFormat.v24h ? '24h' : '12h',
+                ),
+                onClick: () => set(
+                  () => format = format == SgClockFormat.v24h
+                      ? SgClockFormat.v12h
+                      : SgClockFormat.v24h,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            alignment: Alignment.centerLeft,
+            child: SgClock(
+              digitalStyle: SgClockDigitalStyle.roller3d,
+              size: 'lg',
+              initialServerTime: '2026-06-15T15:41:07-03:00',
+              timezone: 'America/Sao_Paulo',
+              format: format,
+              showSeconds: showSeconds,
+            ),
+          ),
+        ],
+      ),
+    );
+  },
 )
 ''';
 
   /// Region `sg-clock-segment`.
   static const String sgClockSegment = r'''
-const FittedBox(
-  fit: BoxFit.scaleDown,
-  alignment: Alignment.centerLeft,
-  child: SgClock(
-    digitalStyle: SgClockDigitalStyle.segment,
-    initialServerTime: '2026-06-15T09:41:07-03:00',
-    timezone: 'America/Sao_Paulo',
-  ),
+Builder(
+  builder: (context) {
+    var showSeconds = true;
+    var format = SgClockFormat.v24h;
+    return StatefulBuilder(
+      builder: (context, set) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              SgButton(
+                label: Text(
+                  showSeconds
+                      ? context.tx('Segundos: ON')
+                      : context.tx('Segundos: OFF'),
+                ),
+                onClick: () =>
+                    set(() => showSeconds = !showSeconds),
+              ),
+              SgButton(
+                label: Text(
+                  format == SgClockFormat.v24h ? '24h' : '12h',
+                ),
+                onClick: () => set(
+                  () => format = format == SgClockFormat.v24h
+                      ? SgClockFormat.v12h
+                      : SgClockFormat.v24h,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            alignment: Alignment.centerLeft,
+            child: SgClock(
+              digitalStyle: SgClockDigitalStyle.segment,
+              initialServerTime: '2026-06-15T09:41:07-03:00',
+              timezone: 'America/Sao_Paulo',
+              format: format,
+              showSeconds: showSeconds,
+            ),
+          ),
+        ],
+      ),
+    );
+  },
 )
 ''';
 
   /// Region `sg-clock-seven-segment`.
   static const String sgClockSevenSegment = r'''
-const FittedBox(
-  fit: BoxFit.scaleDown,
-  alignment: Alignment.centerLeft,
-  child: SgClock(
-    digitalStyle: SgClockDigitalStyle.sevenSegment,
-    size: 'sm',
-    initialServerTime: '2026-06-15T09:41:07-03:00',
-    timezone: 'America/Sao_Paulo',
-  ),
+Builder(
+  builder: (context) {
+    var showSeconds = true;
+    var format = SgClockFormat.v24h;
+    return StatefulBuilder(
+      builder: (context, set) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              SgButton(
+                label: Text(
+                  showSeconds
+                      ? context.tx('Segundos: ON')
+                      : context.tx('Segundos: OFF'),
+                ),
+                onClick: () =>
+                    set(() => showSeconds = !showSeconds),
+              ),
+              SgButton(
+                label: Text(
+                  format == SgClockFormat.v24h ? '24h' : '12h',
+                ),
+                onClick: () => set(
+                  () => format = format == SgClockFormat.v24h
+                      ? SgClockFormat.v12h
+                      : SgClockFormat.v24h,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            alignment: Alignment.centerLeft,
+            child: SgClock(
+              digitalStyle: SgClockDigitalStyle.sevenSegment,
+              size: 'sm',
+              initialServerTime: '2026-06-15T09:41:07-03:00',
+              timezone: 'America/Sao_Paulo',
+              format: format,
+              showSeconds: showSeconds,
+            ),
+          ),
+        ],
+      ),
+    );
+  },
 )
 ''';
 

@@ -22,6 +22,7 @@ class _SgExpandablePanelPageState extends State<SgExpandablePanelPage> {
   final ValueNotifier<bool> _estiloAberto = ValueNotifier(true);
   final ValueNotifier<bool> _acessivel = ValueNotifier(false);
   final ValueNotifier<bool> _semFundo = ValueNotifier(false);
+  final ValueNotifier<num> _altura = ValueNotifier(200);
 
   @override
   void dispose() {
@@ -32,6 +33,7 @@ class _SgExpandablePanelPageState extends State<SgExpandablePanelPage> {
     _estiloAberto.dispose();
     _acessivel.dispose();
     _semFundo.dispose();
+    _altura.dispose();
     super.dispose();
   }
 
@@ -345,6 +347,41 @@ class _SgExpandablePanelPageState extends State<SgExpandablePanelPage> {
             ),
         // #endregion
         code: SgExpandablePanelPageSnippets.sgExpandableSemfundo,
+      ),
+      ShowcaseExample(
+        title: 'Redimensionável na altura',
+        description:
+            'Com expandTo bottom a borda de baixo muda a altura (min 60, max 260). Arraste a borda e acompanhe o valor.',
+        preview:
+            // #region sg-expandable-redimensionavel-altura
+            SizedBox(
+              height: 300,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  ValueListenableBuilder<num>(
+                    valueListenable: _altura,
+                    builder: (context, h, _) => Text(
+                      '${context.tx('Altura atual')}: ${h.round()}px',
+                    ),
+                  ),
+                  SgExpandablePanel(
+                    expandTo: SgExpandablePanelExpandTo.bottom,
+                    defaultOpen: true,
+                    resizable: true,
+                    size: const SgExpandablePanelSize(
+                      defaultSize: 200,
+                      min: 60,
+                      max: 260,
+                    ),
+                    onSizeChange: (v) => _altura.value = v,
+                    child: Text(context.tx('Arraste a borda de baixo')),
+                  ),
+                ],
+              ),
+            ),
+        // #endregion
+        code: SgExpandablePanelPageSnippets.sgExpandableRedimensionavelAltura,
       ),
     ];
 

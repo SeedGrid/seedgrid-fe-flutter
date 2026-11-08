@@ -17,6 +17,7 @@ class SgOrderListPage extends StatefulWidget {
 class _SgOrderListPageState extends State<SgOrderListPage> {
   final ValueNotifier<List<SgOrderListItem>> _basico = ValueNotifier(const []);
   final SgOrderListController _pipeline = SgOrderListController();
+  final SgOrderListController _porCodigo = SgOrderListController();
   final ValueNotifier<List<SgOrderListItem>> _controlada = ValueNotifier(
     const [],
   );
@@ -372,6 +373,53 @@ class _SgOrderListPageState extends State<SgOrderListPage> {
             ),
         // #endregion
         code: SgOrderListPageSnippets.sgOrderListFormulario,
+      ),
+      ShowcaseExample(
+        title: 'Seleção e lista por código',
+        description:
+            'Seleciona a 3ª etapa por valor (setSelection), move a seleção para o topo (moveTop) e inverte a lista (setItems), sem usar os botões do componente.',
+        preview:
+            // #region sg-order-list-por-codigo
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SgOrderList(
+                  id: 'order-code',
+                  title: context.tx('Controlada'),
+                  source: [
+                    SgOrderListItem(label: 'Prospecção', value: 'lead'),
+                    SgOrderListItem(label: 'Qualificação', value: 'qualify'),
+                    SgOrderListItem(label: 'Proposta', value: 'proposal'),
+                    SgOrderListItem(label: 'Negociação', value: 'negotiation'),
+                    SgOrderListItem(label: 'Fechamento', value: 'close'),
+                  ],
+                  controller: _porCodigo,
+                ),
+                const SizedBox(height: 8),
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: [
+                    SgButton(
+                      label: Text(context.tx('Selecionar a 3ª')),
+                      onClick: () => _porCodigo.setSelection(const ['proposal']),
+                    ),
+                    SgButton(
+                      label: Text(context.tx('Mover para o topo')),
+                      onClick: () => _porCodigo.moveTop(),
+                    ),
+                    SgButton(
+                      label: Text(context.tx('Inverter')),
+                      onClick: () => _porCodigo.setItems(
+                        _porCodigo.getItems().reversed.toList(),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgOrderListPageSnippets.sgOrderListPorCodigo,
       ),
     ];
 

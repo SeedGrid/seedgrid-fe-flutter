@@ -5,17 +5,6 @@
       "semPaginaFlutter": true,
       "motivo": "Playground e uma pagina utilitaria do showcase React; o Flutter tem SgPlayground embutido em cada pagina."
     },
-    "SgCheckboxGroup": {
-      "ignorarReact": [
-        "React Hook Form - Register",
-        "Ref imperativo (getChecked / checkAll / clearAll)"
-      ],
-      "ignorarFlutter": [
-        "Formulário - Register",
-        "Controller imperativo (getChecked / checkAll / clearAll)"
-      ],
-      "motivo": "RHF e ref sao especificos do React; no Flutter o par e o formulario e o controller (diferenca de linguagem, regra 2)."
-    },
     "UseComponentsI18n": {
       "semPaginaFlutter": true,
       "motivo": "Hook ou provider do React: nao existe equivalente no Flutter e permanece so no React (decisao do dono, P153)."
@@ -44,43 +33,9 @@
       "semPaginaFlutter": true,
       "motivo": "Hook ou provider do React: nao existe equivalente no Flutter e permanece so no React (decisao do dono, P153)."
     },
-    "SgClockThemeProvider": {
-      "semPaginaFlutter": true,
-      "motivo": "Hook ou provider do React: nao existe equivalente no Flutter e permanece so no React (decisao do dono, P153)."
-    },
     "SgComponentsI18nProvider": {
       "semPaginaFlutter": true,
       "motivo": "Hook ou provider do React: nao existe equivalente no Flutter e permanece so no React (decisao do dono, P153)."
-    },
-    "SgEnvironmentProvider": {
-      "semPaginaFlutter": true,
-      "motivo": "Hook ou provider do React: nao existe equivalente no Flutter e permanece so no React (decisao do dono, P153)."
-    },
-    "SgRealtimeProvider": {
-      "semPaginaFlutter": true,
-      "motivo": "Hook ou provider do React: nao existe equivalente no Flutter e permanece so no React (decisao do dono, P153)."
-    },
-    "SgTimeProvider": {
-      "semPaginaFlutter": true,
-      "motivo": "Hook ou provider do React: nao existe equivalente no Flutter e permanece so no React (decisao do dono, P153)."
-    },
-    "SgGroupBox": {
-      "ignorarReact": [
-        "Classe customizada"
-      ],
-      "motivo": "className e CSS do React: o Flutter nao tem classe CSS; a aparencia do SgGroupBox no Flutter vem so de title, width e height (diferenca de linguagem, regra 2)."
-    },
-    "SgDockScreen": {
-      "ignorarFlutter": [
-        "Conteúdo no centro"
-      ],
-      "motivo": "No React o SgDockScreen nao tem a regra de levar um filho que nao e SgDockZone para a celula central (cada SgDockZone traz a propria posicao na grade CSS); no Flutter a grade posiciona o filho avulso no centro. Comportamento especifico do widget Flutter, sem equivalente publico no React."
-    },
-    "SgDockMenu": {
-      "ignorarReact": [
-        "Como prender dentro da área"
-      ],
-      "motivo": "O exemplo ensina o truque de CSS do React (container relative + style position absolute no dock). No Flutter nao ha CSS: o dock ja vive dentro de um Stack limitado em todos os exemplos (diferenca de linguagem, regra 2)."
     },
     "SgToolbar": {
       "ignorarFlutter": [
@@ -88,46 +43,11 @@
       ],
       "motivo": "A prop overflow (botoes que nao cabem vao para o menu '...' / painel inferior em telas estreitas) e' um recurso de plataforma mobile que so existe no SgToolBar do Flutter; o React nao tem a prop, e criar a API no React exigiria mudanca de componente (fora do escopo desta tarefa)."
     },
-    "SgPeriodSelector": {
-      "ignorarFlutter": [
-        "Dentro de um formulário"
-      ],
-      "motivo": "A integração com formulário usa react-hook-form (control/name) no React e SgFormController (name/control) no Flutter: diferença de biblioteca/linguagem (regra 2). O exemplo de formulário existe só no Flutter."
-    },
-    "SgPickList": {
-      "ignorarFlutter": [
-        "Dentro de um formulário"
-      ],
-      "motivo": "O SgPickList do React nao tem name/control (sem integracao com react-hook-form); o Flutter tem name + control (SgFormController). Lacuna de API do componente React, registrada para decisao do dono; o exemplo de formulario existe so no Flutter."
-    },
-    "SgRadioGroup": {
-      "ignorarReact": [
-        "React Hook Form - Register"
-      ],
-      "ignorarFlutter": [
-        "Formulário - Register"
-      ],
-      "motivo": "RHF (register/control) e especifico do React; no Flutter o par e o formulario (SgFormController): diferenca de linguagem (regra 2), como no SgCheckboxGroup."
-    },
-    "SgRating": {
-      "ignorarReact": [
-        "React Hook Form"
-      ],
-      "ignorarFlutter": [
-        "Formulário (SgFormController)"
-      ],
-      "motivo": "RHF (control/name) e especifico do React; no Flutter o par e o formulario (SgFormController): diferenca de linguagem (regra 2), como no SgCheckboxGroup."
-    },
     "SgSlider": {
       "ignorarReact": [
-        "className, ariaLabel e desabilitado",
-        "inputProps"
+        "className e inputProps"
       ],
-      "ignorarFlutter": [
-        "ariaLabel e desabilitado",
-        "Dentro de um formulário"
-      ],
-      "motivo": "className e inputProps sao atributos de CSS/<input> sem equivalente no Flutter (o proprio componente ignora inputProps); o Flutter mostra so ariaLabel e desabilitado. A ligacao a formulario existe no React via react-hook-form (control/name), sem exemplo no showcase React; no Flutter e name + control (SgFormController) (diferenca de linguagem, regra 2)."
+      "motivo": "className (classe CSS) e inputProps (atributos e eventos do <input> do DOM) sao recursos de CSS/DOM do React, sem equivalente no Flutter, que nao tem classe CSS nem <input> nativo (o proprio componente Flutter ignora inputProps). O restante da pagina (ariaLabel e desabilitado, formulario com name + control) tem os mesmos exemplos nos dois lados (diferenca de linguagem, regra 2)."
     }
   }
 }

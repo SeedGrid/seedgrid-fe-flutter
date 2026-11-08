@@ -18,6 +18,23 @@ SgGroupBox(
 )
 ''';
 
+  /// Region `sg-group-box-classe`.
+  static const String sgGroupBoxClasse = r'''
+Container(
+  padding: const EdgeInsets.all(8),
+  decoration: BoxDecoration(
+    color: Theme.of(
+      context,
+    ).colorScheme.onSurface.withValues(alpha: 0.05),
+    borderRadius: BorderRadius.circular(12),
+  ),
+  child: SgGroupBox(
+    title: context.tx('Classe customizada'),
+    child: Text(context.tx('Conteúdo')),
+  ),
+)
+''';
+
   /// Region `sg-group-box-formulario`.
   static const String sgGroupBoxFormulario = r'''
 Column(

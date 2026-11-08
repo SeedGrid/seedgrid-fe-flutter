@@ -37,6 +37,50 @@ class _SgDockMenuPageState extends State<SgDockMenuPage> {
   Widget build(BuildContext context) {
     final examples = <ShowcaseExample>[
       ShowcaseExample(
+        title: 'Como prender dentro da área',
+        description:
+            'Para ficar dentro do preview, coloque o dock em um Stack dentro de uma área com altura definida.',
+        preview:
+            // #region sg-dock-menu-prender
+            SizedBox(
+              height: 224,
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.black26),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Stack(
+                  children: [
+                    SgDockMenu(
+                      position: SgDockMenuPosition.centerBottom,
+                      items: [
+                        SgDockMenuItem(
+                          id: 'home',
+                          icon: const Icon(Icons.home),
+                          label: 'Home',
+                        ),
+                        SgDockMenuItem(
+                          id: 'mail',
+                          icon: const Icon(Icons.mail),
+                          label: 'Mail',
+                          badge: 5,
+                        ),
+                        SgDockMenuItem(
+                          id: 'notifications',
+                          icon: const Icon(Icons.notifications),
+                          label: 'Notifications',
+                          badge: 12,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+        // #endregion
+        code: SgDockMenuPageSnippets.sgDockMenuPrender,
+      ),
+      ShowcaseExample(
         title: 'Básico',
         description: 'Dock padrão na base central com itens clicáveis.',
         preview:
@@ -963,6 +1007,53 @@ class _SgDockMenuPageState extends State<SgDockMenuPage> {
             ),
         // #endregion
         code: SgDockMenuPageSnippets.sgDockMenuCallbacks,
+      ),
+      ShowcaseExample(
+        title: 'Zoom, elevação e deslocamento',
+        description:
+            'magnifyScale amplia mais o item sob o mouse, elevation ajusta a sombra e offset afasta o dock da borda.',
+        preview:
+            // #region sg-dock-menu-zoom
+            SizedBox(
+              height: 240,
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.black26),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Stack(
+                  children: [
+                    SgDockMenu(
+                      position: SgDockMenuPosition.centerBottom,
+                      magnifyScale: 2,
+                      elevation: SgDockMenuElevation.sm,
+                      offset: const SgDockMenuOffset(y: -8),
+                      items: [
+                        SgDockMenuItem(
+                          id: 'home',
+                          icon: const Icon(Icons.home),
+                          label: 'Home',
+                        ),
+                        SgDockMenuItem(
+                          id: 'mail',
+                          icon: const Icon(Icons.mail),
+                          label: 'Mail',
+                          badge: 5,
+                        ),
+                        SgDockMenuItem(
+                          id: 'notifications',
+                          icon: const Icon(Icons.notifications),
+                          label: 'Notifications',
+                          badge: 12,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+        // #endregion
+        code: SgDockMenuPageSnippets.sgDockMenuZoom,
       ),
     ];
 

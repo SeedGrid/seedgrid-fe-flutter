@@ -385,6 +385,37 @@ class _SgPageControlDemoPageState extends State<SgPageControlDemoPage> {
         // #endregion
         code: SgPageControlDemoPageSnippets.sgPageControlResponsividade,
       ),
+      ShowcaseExample(
+        title: 'Tamanho e aba desabilitada',
+        description:
+            'size controla a densidade das abas; enabled: false bloqueia uma página, que continua visível mas não pode ser aberta.',
+        preview:
+            // #region sg-page-control-tamanho-desabilitada
+            SgPageControl(
+              size: SgPageControlSize.sm,
+              defaultActivePageId: 'cadastro',
+              children: [
+                SgPageControlPage(
+                  id: 'cadastro',
+                  title: Text(context.tx('Cadastro')),
+                  child: Text(context.tx('Conteúdo: Cadastro')),
+                ),
+                SgPageControlPage(
+                  id: 'fiscal',
+                  title: Text(context.tx('Fiscal')),
+                  child: Text(context.tx('Conteúdo: Fiscal')),
+                ),
+                SgPageControlPage(
+                  id: 'acesso',
+                  title: Text(context.tx('Acesso')),
+                  enabled: false,
+                  child: Text(context.tx('Conteúdo: Acesso')),
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgPageControlDemoPageSnippets.sgPageControlTamanhoDesabilitada,
+      ),
     ];
 
     return SgShowcasePage(

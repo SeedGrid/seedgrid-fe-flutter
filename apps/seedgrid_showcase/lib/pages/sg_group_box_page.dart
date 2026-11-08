@@ -132,6 +132,28 @@ class _SgGroupBoxPageState extends State<SgGroupBoxPage> {
         code: SgGroupBoxPageSnippets.sgGroupBoxTamanho,
       ),
       ShowcaseExample(
+        title: 'Classe customizada',
+        description:
+            'Envolva o SgGroupBox em um contêiner estilizado (fundo, espaçamento e cantos) para ajustar o layout externo.',
+        preview:
+            // #region sg-group-box-classe
+            Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Theme.of(
+                  context,
+                ).colorScheme.onSurface.withValues(alpha: 0.05),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: SgGroupBox(
+                title: context.tx('Classe customizada'),
+                child: Text(context.tx('Conteúdo')),
+              ),
+            ),
+        // #endregion
+        code: SgGroupBoxPageSnippets.sgGroupBoxClasse,
+      ),
+      ShowcaseExample(
         title: 'Várias caixas lado a lado',
         description: 'Use o SgGrid para dispor várias caixas lado a lado.',
         preview:

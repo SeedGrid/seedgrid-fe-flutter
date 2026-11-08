@@ -1174,6 +1174,70 @@ class _SgMenuPageState extends State<SgMenuPage> {
         // #endregion
         code: SgMenuPageSnippets.sgMenuUsuario,
       ),
+      ShowcaseExample(
+        title: 'Submenu ao passar o mouse',
+        description:
+            'Na variante tiered, openSubmenuOnHover abre os submenus ao passar o mouse; ariaLabel nomeia a navegação para leitores de tela.',
+        preview:
+            // #region sg-menu-submenu-hover
+            SizedBox(
+              height: 320,
+              child: SgMenu(
+                id: 'menu-hover',
+                ariaLabel: context.tx('Navegação principal'),
+                menuStyle: SgMenuMenuStyle.inline,
+                menuVariantStyle: SgMenuMenuVariantStyle.tiered,
+                openSubmenuOnHover: true,
+                menu: [
+                  SgMenuNode(
+                    id: 'arquivo',
+                    label: context.tx('Arquivo'),
+                    children: [
+                      SgMenuNode(id: 'novo', label: context.tx('Novo')),
+                      SgMenuNode(
+                        id: 'exportar',
+                        label: context.tx('Exportar'),
+                        children: [
+                          SgMenuNode(id: 'pdf', label: 'PDF'),
+                          SgMenuNode(id: 'csv', label: 'CSV'),
+                        ],
+                      ),
+                    ],
+                  ),
+                  SgMenuNode(id: 'editar', label: context.tx('Editar')),
+                ],
+              ),
+            ),
+        // #endregion
+        code: SgMenuPageSnippets.sgMenuSubmenuHover,
+      ),
+      ShowcaseExample(
+        title: 'Rodapé e avatar do usuário',
+        description:
+            'footer coloca um conteúdo fixo no fim do menu; o avatar do SgMenuUser personaliza a imagem do usuário.',
+        preview:
+            // #region sg-menu-rodape-avatar
+            SizedBox(
+              height: 320,
+              child: SgMenu(
+                id: 'menu-rodape',
+                menuStyle: SgMenuMenuStyle.sidebar,
+                brand: const SgMenuBrand(title: 'SeedGrid ERP'),
+                user: SgMenuUser(
+                  name: 'Lúcia Souza',
+                  subtitle: context.tx('Financeiro'),
+                  avatar: SgAvatar(size: SgAvatarSize.sm, label: const Text('LS')),
+                ),
+                footer: const Text('v1.0'),
+                menu: [
+                  SgMenuNode(id: 'painel', label: context.tx('Painel')),
+                  SgMenuNode(id: 'financeiro', label: context.tx('Financeiro')),
+                ],
+              ),
+            ),
+        // #endregion
+        code: SgMenuPageSnippets.sgMenuRodapeAvatar,
+      ),
     ];
 
     return SgShowcasePage(

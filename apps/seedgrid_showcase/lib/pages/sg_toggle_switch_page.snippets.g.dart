@@ -91,6 +91,15 @@ SgToggleSwitch(
 )
 ''';
 
+  /// Region `sg-toggle-switch-estado-inicial`.
+  static const String sgToggleSwitchEstadoInicial = r'''
+SgToggleSwitch(
+  id: 'demo-default',
+  label: context.tx('Receber novidades'),
+  defaultChecked: true,
+)
+''';
+
   /// Region `sg-toggle-switch-estados`.
   static const String sgToggleSwitchEstados = r'''
 SgStack(

@@ -242,6 +242,48 @@ Column(
 )
 ''';
 
+  /// Region `sg-order-list-por-codigo`.
+  static const String sgOrderListPorCodigo = r'''
+Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    SgOrderList(
+      id: 'order-code',
+      title: context.tx('Controlada'),
+      source: [
+        SgOrderListItem(label: 'Prospecção', value: 'lead'),
+        SgOrderListItem(label: 'Qualificação', value: 'qualify'),
+        SgOrderListItem(label: 'Proposta', value: 'proposal'),
+        SgOrderListItem(label: 'Negociação', value: 'negotiation'),
+        SgOrderListItem(label: 'Fechamento', value: 'close'),
+      ],
+      controller: _porCodigo,
+    ),
+    const SizedBox(height: 8),
+    Wrap(
+      spacing: 8,
+      runSpacing: 8,
+      children: [
+        SgButton(
+          label: Text(context.tx('Selecionar a 3ª')),
+          onClick: () => _porCodigo.setSelection(const ['proposal']),
+        ),
+        SgButton(
+          label: Text(context.tx('Mover para o topo')),
+          onClick: () => _porCodigo.moveTop(),
+        ),
+        SgButton(
+          label: Text(context.tx('Inverter')),
+          onClick: () => _porCodigo.setItems(
+            _porCodigo.getItems().reversed.toList(),
+          ),
+        ),
+      ],
+    ),
+  ],
+)
+''';
+
   /// Region `sg-order-list-single`.
   static const String sgOrderListSingle = r'''
 SgOrderList(

@@ -263,7 +263,7 @@ class _SgRatingPageState extends State<SgRatingPage> {
         code: SgRatingPageSnippets.sgRatingCallbacks,
       ),
       ShowcaseExample(
-        title: 'Formulário (SgFormController)',
+        title: 'Dentro de um formulário',
         description: 'Uso com control/name e envio.',
         preview:
             // #region sg-rating-formulario

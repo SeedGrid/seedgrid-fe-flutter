@@ -752,6 +752,45 @@ SgGrid(
 )
 ''';
 
+  /// Region `sg-dock-menu-prender`.
+  static const String sgDockMenuPrender = r'''
+SizedBox(
+  height: 224,
+  child: DecoratedBox(
+    decoration: BoxDecoration(
+      border: Border.all(color: Colors.black26),
+      borderRadius: BorderRadius.circular(8),
+    ),
+    child: Stack(
+      children: [
+        SgDockMenu(
+          position: SgDockMenuPosition.centerBottom,
+          items: [
+            SgDockMenuItem(
+              id: 'home',
+              icon: const Icon(Icons.home),
+              label: 'Home',
+            ),
+            SgDockMenuItem(
+              id: 'mail',
+              icon: const Icon(Icons.mail),
+              label: 'Mail',
+              badge: 5,
+            ),
+            SgDockMenuItem(
+              id: 'notifications',
+              icon: const Icon(Icons.notifications),
+              label: 'Notifications',
+              badge: 12,
+            ),
+          ],
+        ),
+      ],
+    ),
+  ),
+)
+''';
+
   /// Region `sg-dock-menu-variantes`.
   static const String sgDockMenuVariantes = r'''
 SgStack(
@@ -899,6 +938,48 @@ SgStack(
       ),
     ),
   ],
+)
+''';
+
+  /// Region `sg-dock-menu-zoom`.
+  static const String sgDockMenuZoom = r'''
+SizedBox(
+  height: 240,
+  child: DecoratedBox(
+    decoration: BoxDecoration(
+      border: Border.all(color: Colors.black26),
+      borderRadius: BorderRadius.circular(8),
+    ),
+    child: Stack(
+      children: [
+        SgDockMenu(
+          position: SgDockMenuPosition.centerBottom,
+          magnifyScale: 2,
+          elevation: SgDockMenuElevation.sm,
+          offset: const SgDockMenuOffset(y: -8),
+          items: [
+            SgDockMenuItem(
+              id: 'home',
+              icon: const Icon(Icons.home),
+              label: 'Home',
+            ),
+            SgDockMenuItem(
+              id: 'mail',
+              icon: const Icon(Icons.mail),
+              label: 'Mail',
+              badge: 5,
+            ),
+            SgDockMenuItem(
+              id: 'notifications',
+              icon: const Icon(Icons.notifications),
+              label: 'Notifications',
+              badge: 12,
+            ),
+          ],
+        ),
+      ],
+    ),
+  ),
 )
 ''';
 }

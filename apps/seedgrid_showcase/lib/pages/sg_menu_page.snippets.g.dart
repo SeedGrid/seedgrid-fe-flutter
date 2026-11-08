@@ -878,6 +878,28 @@ Container(
 )
 ''';
 
+  /// Region `sg-menu-rodape-avatar`.
+  static const String sgMenuRodapeAvatar = r'''
+SizedBox(
+  height: 320,
+  child: SgMenu(
+    id: 'menu-rodape',
+    menuStyle: SgMenuMenuStyle.sidebar,
+    brand: const SgMenuBrand(title: 'SeedGrid ERP'),
+    user: SgMenuUser(
+      name: 'Lúcia Souza',
+      subtitle: context.tx('Financeiro'),
+      avatar: SgAvatar(size: SgAvatarSize.sm, label: const Text('LS')),
+    ),
+    footer: const Text('v1.0'),
+    menu: [
+      SgMenuNode(id: 'painel', label: context.tx('Painel')),
+      SgMenuNode(id: 'financeiro', label: context.tx('Financeiro')),
+    ],
+  ),
+)
+''';
+
   /// Region `sg-menu-sidebar`.
   static const String sgMenuSidebar = r'''
 Container(
@@ -1034,6 +1056,38 @@ Container(
         ),
       ],
     ),
+  ),
+)
+''';
+
+  /// Region `sg-menu-submenu-hover`.
+  static const String sgMenuSubmenuHover = r'''
+SizedBox(
+  height: 320,
+  child: SgMenu(
+    id: 'menu-hover',
+    ariaLabel: context.tx('Navegação principal'),
+    menuStyle: SgMenuMenuStyle.inline,
+    menuVariantStyle: SgMenuMenuVariantStyle.tiered,
+    openSubmenuOnHover: true,
+    menu: [
+      SgMenuNode(
+        id: 'arquivo',
+        label: context.tx('Arquivo'),
+        children: [
+          SgMenuNode(id: 'novo', label: context.tx('Novo')),
+          SgMenuNode(
+            id: 'exportar',
+            label: context.tx('Exportar'),
+            children: [
+              SgMenuNode(id: 'pdf', label: 'PDF'),
+              SgMenuNode(id: 'csv', label: 'CSV'),
+            ],
+          ),
+        ],
+      ),
+      SgMenuNode(id: 'editar', label: context.tx('Editar')),
+    ],
   ),
 )
 ''';

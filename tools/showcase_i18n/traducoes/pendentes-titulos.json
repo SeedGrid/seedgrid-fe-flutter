@@ -2611,9 +2611,9 @@
  ],
  "Cadastro": [
   "Registration",
-  "Cadastro",
+  "Registo",
   "Registro",
-  "Inscription"
+  "Enregistrement"
  ],
  "CEP": [
   "ZIP",
@@ -6220,5 +6220,281 @@
   "Confirmado: {valor}",
   "Confirmado: {valor}",
   "Confirmé : {valor}"
+ ],
+ "Como prender dentro da área": [
+  "How to keep it inside the area",
+  "Como prender dentro da área",
+  "Como fijarlo dentro del area",
+  "Comment le garder dans la zone"
+ ],
+ "Classe customizada": [
+  "Custom class",
+  "Classe customizada",
+  "Clase personalizada",
+  "Classe personnalisee"
+ ],
+ "Zoom, elevação e deslocamento": [
+  "Zoom, elevation and offset",
+  "Zoom, elevação e deslocamento",
+  "Zoom, elevación y desplazamiento",
+  "Zoom, élévation et décalage"
+ ],
+ "magnifyScale amplia mais o item sob o mouse, elevation ajusta a sombra e offset afasta o dock da borda.": [
+  "magnifyScale enlarges the item under the mouse more, elevation adjusts the shadow and offset moves the dock away from the edge.",
+  "magnifyScale amplia mais o item sob o rato, elevation ajusta a sombra e offset afasta a dock da margem.",
+  "magnifyScale amplía más el elemento bajo el ratón, elevation ajusta la sombra y offset aleja el dock del borde.",
+  "magnifyScale agrandit davantage l'élément sous la souris, elevation ajuste l'ombre et offset éloigne le dock du bord."
+ ],
+ "Para ficar dentro do preview, coloque o dock em um Stack dentro de uma área com altura definida.": [
+  "To stay inside the preview, put the dock in a Stack inside an area with a defined height.",
+  "Para ficar dentro da pré-visualização, coloque a dock num Stack dentro de uma área com altura definida.",
+  "Para quedarse dentro de la vista previa, coloca el dock en un Stack dentro de un área con altura definida.",
+  "Pour rester dans l'aperçu, placez le dock dans un Stack à l'intérieur d'une zone de hauteur définie."
+ ],
+ "Envolva o SgGroupBox em um contêiner estilizado (fundo, espaçamento e cantos) para ajustar o layout externo.": [
+  "Wrap the SgGroupBox in a styled container (background, spacing and corners) to adjust the outer layout.",
+  "Envolva o SgGroupBox num contentor estilizado (fundo, espaçamento e cantos) para ajustar o layout externo.",
+  "Envuelve el SgGroupBox en un contenedor con estilo (fondo, espaciado y esquinas) para ajustar el diseño externo.",
+  "Enveloppez le SgGroupBox dans un conteneur stylisé (fond, espacement et coins) pour ajuster la mise en page externe."
+ ],
+ "O conteúdo fica na célula central, entre as zonas laterais.": [
+  "The content sits in the central cell, between the side zones.",
+  "O conteúdo fica na célula central, entre as zonas laterais.",
+  "El contenido queda en la celda central, entre las zonas laterales.",
+  "Le contenu se place dans la cellule centrale, entre les zones latérales."
+ ],
+ "Charset e caractere de preenchimento": [
+  "Charset and padding character",
+  "Charset e caráter de preenchimento",
+  "Charset y carácter de relleno",
+  "Charset et caractère de remplissage"
+ ],
+ "charset limita o tambor aos caracteres informados; emptyChar completa strings de tamanhos diferentes (aqui, \"0\" à esquerda dos números e \".\" à direita das letras).": [
+  "charset limits the drum to the given characters; emptyChar pads strings of different lengths (here, \"0\" on the left of the numbers and \".\" on the right of the letters).",
+  "charset limita o tambor aos carateres indicados; emptyChar completa strings de tamanhos diferentes (aqui, \"0\" à esquerda dos números e \".\" à direita das letras).",
+  "charset limita el tambor a los caracteres indicados; emptyChar completa cadenas de distinto tamaño (aquí, \"0\" a la izquierda de los números y \".\" a la derecha de las letras).",
+  "charset limite le tambour aux caractères indiqués ; emptyChar complète les chaînes de longueurs différentes (ici, « 0 » à gauche des nombres et « . » à droite des lettres)."
+ ],
+ "Controle por código": [
+  "Control by code",
+  "Controlo por código",
+  "Control por código",
+  "Contrôle par code"
+ ],
+ "Acesso imperativo por código: getChecked, checkAll, clearAll, setChecked": [
+  "Imperative access by code: getChecked, checkAll, clearAll, setChecked",
+  "Acesso imperativo por código: getChecked, checkAll, clearAll, setChecked",
+  "Acceso imperativo por código: getChecked, checkAll, clearAll, setChecked",
+  "Accès impératif par code : getChecked, checkAll, clearAll, setChecked"
+ ],
+ "Altura atual": [
+  "Current height",
+  "Altura atual",
+  "Altura actual",
+  "Hauteur actuelle"
+ ],
+ "Com expandTo bottom a borda de baixo muda a altura (min 60, max 260). Arraste a borda e acompanhe o valor.": [
+  "With expandTo bottom, the bottom edge changes the height (min 60, max 260). Drag the edge and follow the value.",
+  "Com expandTo bottom, a borda de baixo altera a altura (min 60, max 260). Arraste a borda e acompanhe o valor.",
+  "Con expandTo bottom, el borde inferior cambia la altura (mín. 60, máx. 260). Arrastre el borde y siga el valor.",
+  "Avec expandTo bottom, le bord inférieur modifie la hauteur (min 60, max 260). Faites glisser le bord et suivez la valeur."
+ ],
+ "Busca com valor inicial": [
+  "Search with initial value",
+  "Pesquisa com valor inicial",
+  "Búsqueda con valor inicial",
+  "Recherche avec valeur initiale"
+ ],
+ "defaultSearchValue abre a árvore já filtrada: só os achados e seus ancestrais aparecem, e expandMatchesOnSearch (padrão true) abre os ancestrais.": [
+  "defaultSearchValue opens the tree already filtered: only the matches and their ancestors appear, and expandMatchesOnSearch (default true) opens the ancestors.",
+  "defaultSearchValue abre a árvore já filtrada: só os resultados e os seus ancestrais aparecem, e expandMatchesOnSearch (predefinição true) abre os ancestrais.",
+  "defaultSearchValue abre el árbol ya filtrado: solo aparecen las coincidencias y sus ancestros, y expandMatchesOnSearch (valor predeterminado true) abre los ancestros.",
+  "defaultSearchValue ouvre l'arbre déjà filtré : seuls les résultats et leurs ancêtres apparaissent, et expandMatchesOnSearch (true par défaut) déploie les ancêtres."
+ ],
+ "Tom dos rótulos (muted)": [
+  "Label tone (muted)",
+  "Tom dos rótulos (muted)",
+  "Tono de las etiquetas (muted)",
+  "Ton des libellés (muted)"
+ ],
+ "tone: muted suaviza a cor dos rótulos; o padrão é default. Compare as duas árvores.": [
+  "tone: muted softens the label color; the default is default. Compare the two trees.",
+  "tone: muted suaviza a cor dos rótulos; o padrão é default. Compare as duas árvores.",
+  "tone: muted suaviza el color de las etiquetas; el valor predeterminado es default. Compare los dos árboles.",
+  "tone: muted adoucit la couleur des libellés ; la valeur par défaut est default. Comparez les deux arbres."
+ ],
+ "Nó desabilitado": [
+  "Disabled node",
+  "Nó desativado",
+  "Nodo deshabilitado",
+  "Nœud désactivé"
+ ],
+ "enabled: false deixa o nó visível, mas sem resposta a clique, expansão ou marcação.": [
+  "enabled: false leaves the node visible but unresponsive to click, expansion, or checking.",
+  "enabled: false deixa o nó visível, mas sem resposta a clique, expansão ou seleção.",
+  "enabled: false deja el nodo visible, pero sin respuesta a clic, expansión ni marcado.",
+  "enabled: false laisse le nœud visible, mais sans réaction au clic, à l'expansion ni à la sélection."
+ ],
+ "Aviso com ícone": [
+  "Notice with icon",
+  "Aviso com ícone",
+  "Aviso con icono",
+  "Avis avec icône"
+ ],
+ "onClose chamado": [
+  "onClose called",
+  "onClose chamado",
+  "onClose llamado",
+  "onClose appelé"
+ ],
+ "Ícone e onClose": [
+  "Icon and onClose",
+  "Ícone e onClose",
+  "Icono y onClose",
+  "Icône et onClose"
+ ],
+ "icon troca o ícone do aviso; onClose roda quando ele sai da pilha por qualquer motivo.": [
+  "icon replaces the notice icon; onClose runs when it leaves the stack for any reason.",
+  "icon troca o ícone do aviso; onClose corre quando ele sai da pilha por qualquer motivo.",
+  "icon cambia el icono del aviso; onClose se ejecuta cuando sale de la pila por cualquier motivo.",
+  "icon remplace l'icône de l'avis ; onClose s'exécute quand il quitte la pile, quelle qu'en soit la raison."
+ ],
+ "Espaçamento entre avisos (gap)": [
+  "Spacing between notices (gap)",
+  "Espaçamento entre avisos (gap)",
+  "Espaciado entre avisos (gap)",
+  "Espacement entre les avis (gap)"
+ ],
+ "gap define o espaço, em pixels, entre os avisos empilhados. Dispare dois avisos para comparar os dois stacks.": [
+  "gap sets the space, in pixels, between stacked notices. Fire two notices to compare the two stacks.",
+  "gap define o espaço, em pixéis, entre os avisos empilhados. Dispare dois avisos para comparar as duas pilhas.",
+  "gap define el espacio, en píxeles, entre los avisos apilados. Dispare dos avisos para comparar las dos pilas.",
+  "gap définit l'espace, en pixels, entre les avis empilés. Déclenchez deux avis pour comparer les deux piles."
+ ],
+ "Placeholder": [
+  "Placeholder",
+  "Placeholder",
+  "Placeholder",
+  "Placeholder"
+ ],
+ "placeholder mostra uma dica enquanto o editor está vazio.": [
+  "placeholder shows a hint while the editor is empty.",
+  "placeholder mostra uma dica enquanto o editor está vazio.",
+  "placeholder muestra una pista mientras el editor está vacío.",
+  "placeholder affiche une indication tant que l'éditeur est vide."
+ ],
+ "Limite do resumo (summaryThreshold)": [
+  "Summary limit (summaryThreshold)",
+  "Limite do resumo (summaryThreshold)",
+  "Límite del resumen (summaryThreshold)",
+  "Limite du résumé (summaryThreshold)"
+ ],
+ "Por padrão o campo lista até 2 rótulos e depois mostra só a quantidade; summaryThreshold aumenta esse limite.": [
+  "By default the field lists up to 2 labels and then shows only the count; summaryThreshold raises that limit.",
+  "Por predefinição o campo lista até 2 rótulos e depois mostra só a quantidade; summaryThreshold aumenta esse limite.",
+  "Por defecto el campo lista hasta 2 etiquetas y después muestra solo la cantidad; summaryThreshold aumenta ese límite.",
+  "Par défaut le champ liste jusqu'à 2 libellés puis n'affiche que le nombre ; summaryThreshold relève cette limite."
+ ],
+ "Opção desabilitada e texto da busca": [
+  "Disabled option and search text",
+  "Opção desabilitada e texto da pesquisa",
+  "Opción deshabilitada y texto de búsqueda",
+  "Option désactivée et texte de recherche"
+ ],
+ "Uma opção com enabled false aparece desabilitada e não pode ser marcada; searchPlaceholder troca o texto do campo de busca.": [
+  "An option with enabled false appears disabled and cannot be checked; searchPlaceholder changes the text of the search field.",
+  "Uma opção com enabled false aparece desabilitada e não pode ser marcada; searchPlaceholder troca o texto do campo de pesquisa.",
+  "Una opción con enabled false aparece deshabilitada y no se puede marcar; searchPlaceholder cambia el texto del campo de búsqueda.",
+  "Une option avec enabled false apparaît désactivée et ne peut pas être cochée ; searchPlaceholder change le texte du champ de recherche."
+ ],
+ "Buscar empresa...": [
+  "Search company...",
+  "Pesquisar empresa...",
+  "Buscar empresa...",
+  "Rechercher une entreprise..."
+ ],
+ "Tamanho e aba desabilitada": [
+  "Size and disabled tab",
+  "Tamanho e separador desativado",
+  "Tamaño y pestaña deshabilitada",
+  "Taille et onglet désactivé"
+ ],
+ "size controla a densidade das abas; enabled: false bloqueia uma página, que continua visível mas não pode ser aberta.": [
+  "size controls tab density; enabled: false locks a page, which stays visible but cannot be opened.",
+  "size controla a densidade dos separadores; enabled: false bloqueia uma página, que continua visível mas não pode ser aberta.",
+  "size controla la densidad de las pestañas; enabled: false bloquea una página, que sigue visible pero no se puede abrir.",
+  "size contrôle la densité des onglets ; enabled: false verrouille une page, qui reste visible mais ne peut pas être ouverte."
+ ],
+ "Submenu ao passar o mouse": [
+  "Submenu on hover",
+  "Submenu ao passar o rato",
+  "Submenú al pasar el mouse",
+  "Sous-menu au survol"
+ ],
+ "Na variante tiered, openSubmenuOnHover abre os submenus ao passar o mouse; ariaLabel nomeia a navegação para leitores de tela.": [
+  "In the tiered variant, openSubmenuOnHover opens submenus on hover; ariaLabel names the navigation for screen readers.",
+  "Na variante tiered, openSubmenuOnHover abre os submenus ao passar o rato; ariaLabel nomeia a navegação para leitores de ecrã.",
+  "En la variante tiered, openSubmenuOnHover abre los submenús al pasar el mouse; ariaLabel nombra la navegación para lectores de pantalla.",
+  "Dans la variante tiered, openSubmenuOnHover ouvre les sous-menus au survol ; ariaLabel nomme la navigation pour les lecteurs d'écran."
+ ],
+ "Rodapé e avatar do usuário": [
+  "Footer and user avatar",
+  "Rodapé e avatar do utilizador",
+  "Pie de página y avatar del usuario",
+  "Pied de page et avatar de l'utilisateur"
+ ],
+ "Estado inicial (defaultChecked)": [
+  "Initial state (defaultChecked)",
+  "Estado inicial (defaultChecked)",
+  "Estado inicial (defaultChecked)",
+  "État initial (defaultChecked)"
+ ],
+ "defaultChecked define o estado inicial; depois disso a chave controla a si mesma (modo não controlado).": [
+  "defaultChecked sets the initial state; after that the switch manages itself (uncontrolled mode).",
+  "defaultChecked define o estado inicial; depois disso o interruptor controla-se a si mesmo (modo não controlado).",
+  "defaultChecked define el estado inicial; después el interruptor se controla a sí mismo (modo no controlado).",
+  "defaultChecked définit l'état initial ; ensuite l'interrupteur se gère lui-même (mode non contrôlé)."
+ ],
+ "Seleção e lista por código": [
+  "Selection and list by code",
+  "Seleção e lista por código",
+  "Selección y lista por código",
+  "Sélection et liste par code"
+ ],
+ "Seleciona a 3ª etapa por valor (setSelection), move a seleção para o topo (moveTop) e inverte a lista (setItems), sem usar os botões do componente.": [
+  "Selects the 3rd step by value (setSelection), moves the selection to the top (moveTop) and reverses the list (setItems), without using the component buttons.",
+  "Seleciona a 3.ª etapa por valor (setSelection), move a seleção para o topo (moveTop) e inverte a lista (setItems), sem usar os botões do componente.",
+  "Selecciona la 3.ª etapa por valor (setSelection), mueve la selección arriba del todo (moveTop) e invierte la lista (setItems), sin usar los botones del componente.",
+  "Sélectionne la 3e étape par valeur (setSelection), déplace la sélection en haut (moveTop) et inverse la liste (setItems), sans utiliser les boutons du composant."
+ ],
+ "Filtro por início e seleção única": [
+  "Starts-with filter and single selection",
+  "Filtro por início e seleção única",
+  "Filtro por inicio y selección única",
+  "Filtre par début et sélection unique"
+ ],
+ "filterMatchMode startsWith filtra pelo começo do texto e selectionMode single permite marcar um item por vez.": [
+  "filterMatchMode startsWith filters by the beginning of the text and selectionMode single lets you pick one item at a time.",
+  "filterMatchMode startsWith filtra pelo início do texto e selectionMode single permite marcar um item de cada vez.",
+  "filterMatchMode startsWith filtra por el comienzo del texto y selectionMode single permite marcar un elemento a la vez.",
+  "filterMatchMode startsWith filtre sur le début du texte et selectionMode single permet de cocher un élément à la fois."
+ ],
+ "footer coloca um conteúdo fixo no fim do menu; o avatar do SgMenuUser personaliza a imagem do usuário.": [
+  "footer places fixed content at the end of the menu; the SgMenuUser avatar customizes the user image.",
+  "footer coloca um conteúdo fixo no fim do menu; o avatar do SgMenuUser personaliza a imagem do utilizador.",
+  "footer coloca un contenido fijo al final del menú; el avatar de SgMenuUser personaliza la imagen del usuario.",
+  "footer place un contenu fixe en bas du menu ; l'avatar de SgMenuUser personnalise l'image de l'utilisateur."
+ ],
+ "Navegação principal": [
+  "Main navigation",
+  "Navegação principal",
+  "Navegación principal",
+  "Navigation principale"
+ ],
+ "Receber novidades": [
+  "Receive news",
+  "Receber novidades",
+  "Recibir novedades",
+  "Recevoir les nouveautés"
  ]
 }

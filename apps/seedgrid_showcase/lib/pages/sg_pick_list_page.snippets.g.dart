@@ -121,6 +121,26 @@ Column(
 )
 ''';
 
+  /// Region `sg-pick-list-inicio-unica`.
+  static const String sgPickListInicioUnica = r'''
+SgPickList(
+  id: 'pick-starts-with',
+  title: context.tx('Cidades'),
+  source: const [
+    SgPickListItem(label: 'Berlin', value: 'berlin'),
+    SgPickListItem(label: 'Boston', value: 'boston'),
+    SgPickListItem(label: 'Lisbon', value: 'lisbon'),
+    SgPickListItem(label: 'Madrid', value: 'madrid'),
+    SgPickListItem(label: 'Sao Paulo', value: 'sao-paulo'),
+  ],
+  target: const [],
+  showSourceFilter: true,
+  showTargetFilter: true,
+  filterMatchMode: SgPickListFilterMatchMode.startsWith,
+  selectionMode: SgPickListSelectionMode.single,
+)
+''';
+
   /// Region `sg-pick-list-reordenacao`.
   static const String sgPickListReordenacao = r'''
 Column(

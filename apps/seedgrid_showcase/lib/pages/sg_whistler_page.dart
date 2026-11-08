@@ -58,6 +58,7 @@ class _SgWhistlerPageState extends State<SgWhistlerPage> {
   final ValueNotifier<bool> _warm = ValueNotifier<bool>(false);
   final ValueNotifier<int> _total = ValueNotifier<int>(0);
   final ValueNotifier<bool> _ouvindo = ValueNotifier<bool>(false);
+  final ValueNotifier<int> _fechados = ValueNotifier<int>(0);
   VoidCallback? _parar;
 
   @override
@@ -70,6 +71,7 @@ class _SgWhistlerPageState extends State<SgWhistlerPage> {
     _warm.dispose();
     _total.dispose();
     _ouvindo.dispose();
+    _fechados.dispose();
     super.dispose();
   }
 
@@ -631,6 +633,91 @@ class _SgWhistlerPageState extends State<SgWhistlerPage> {
             ),
         // #endregion
         code: SgWhistlerPageSnippets.sgWhistlerObservar,
+      ),
+      ShowcaseExample(
+        title: 'Ícone e onClose',
+        description:
+            'icon troca o ícone do aviso; onClose roda quando ele sai da pilha por qualquer motivo.',
+        preview:
+            // #region sg-whistler-icone-onclose
+            SgStack(
+              gap: 12,
+              children: [
+                SgStack(
+                  direction: SgStackDirection.row,
+                  wrap: true,
+                  align: SgStackAlign.center,
+                  gap: 8,
+                  children: [
+                    SgButton(
+                      label: Text(context.tx('Aviso com ícone')),
+                      onClick: () => sgWhistle.warning(
+                        SgWhistleOptions(
+                          title: context.tx('Rascunho'),
+                          message: context.tx('Você tem alterações não salvas.'),
+                          icon: const Icon(Icons.edit),
+                          duration: 0,
+                          onClose: () => _fechados.value++,
+                        ),
+                      ),
+                    ),
+                    ValueListenableBuilder<int>(
+                      valueListenable: _fechados,
+                      builder: (context, total, _) =>
+                          Text('${context.tx('onClose chamado')}: $total'),
+                    ),
+                  ],
+                ),
+                const SgWhistler(max: 3),
+              ],
+            ),
+        // #endregion
+        code: SgWhistlerPageSnippets.sgWhistlerIconeOnclose,
+      ),
+      ShowcaseExample(
+        title: 'Espaçamento entre avisos (gap)',
+        description:
+            'gap define o espaço, em pixels, entre os avisos empilhados. Dispare dois avisos para comparar os dois stacks.',
+        preview:
+            // #region sg-whistler-gap
+            SgStack(
+              gap: 16,
+              children: [
+                SgButton(
+                  label: Text(context.tx('Disparar 2 avisos')),
+                  onClick: () {
+                    sgWhistle.info(
+                      SgWhistleOptions(
+                        message: context.tx('Primeiro'),
+                        duration: 4000,
+                      ),
+                    );
+                    sgWhistle.success(
+                      SgWhistleOptions(
+                        message: context.tx('Segundo'),
+                        duration: 4000,
+                      ),
+                    );
+                  },
+                ),
+                SgStack(
+                  gap: 4,
+                  children: [
+                    const Text('gap: 0'),
+                    const SgWhistler(max: 3, gap: 0),
+                  ],
+                ),
+                SgStack(
+                  gap: 4,
+                  children: [
+                    const Text('gap: 24'),
+                    const SgWhistler(max: 3, gap: 24),
+                  ],
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgWhistlerPageSnippets.sgWhistlerGap,
       ),
     ];
 

@@ -228,6 +228,21 @@ class _SgTextEditorPageState extends State<SgTextEditorPage> {
         // #endregion
         code: SgTextEditorPageSnippets.sgTextEditorFormulario,
       ),
+      ShowcaseExample(
+        title: 'Placeholder',
+        description:
+            'placeholder mostra uma dica enquanto o editor está vazio.',
+        preview:
+            // #region sg-text-editor-placeholder
+            SgTextEditor(
+              id: 'sg-text-editor-placeholder',
+              height: 160,
+              placeholder: context.tx('Escreva aqui'),
+              showCssEditor: false,
+            ),
+        // #endregion
+        code: SgTextEditorPageSnippets.sgTextEditorPlaceholder,
+      ),
     ];
 
     return SgShowcasePage(

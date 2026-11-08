@@ -328,4 +328,30 @@ Column(
   ],
 )
 ''';
+
+  /// Region `sg-page-control-tamanho-desabilitada`.
+  static const String sgPageControlTamanhoDesabilitada = r'''
+SgPageControl(
+  size: SgPageControlSize.sm,
+  defaultActivePageId: 'cadastro',
+  children: [
+    SgPageControlPage(
+      id: 'cadastro',
+      title: Text(context.tx('Cadastro')),
+      child: Text(context.tx('Conteúdo: Cadastro')),
+    ),
+    SgPageControlPage(
+      id: 'fiscal',
+      title: Text(context.tx('Fiscal')),
+      child: Text(context.tx('Conteúdo: Fiscal')),
+    ),
+    SgPageControlPage(
+      id: 'acesso',
+      title: Text(context.tx('Acesso')),
+      enabled: false,
+      child: Text(context.tx('Conteúdo: Acesso')),
+    ),
+  ],
+)
+''';
 }

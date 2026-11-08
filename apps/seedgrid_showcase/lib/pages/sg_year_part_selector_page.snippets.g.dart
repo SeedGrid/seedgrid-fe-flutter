@@ -26,6 +26,53 @@ Column(
 )
 ''';
 
+  /// Region `sg-year-part-selector-controlado`.
+  static const String sgYearPartSelectorControlado = r'''
+ValueListenableBuilder<YearPartValue>(
+  valueListenable: _controlado,
+  builder: (context, valor, _) => Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      SgYearPartSelector(
+        id: 'yps-controlled',
+        label: context.tx('Recorte do ano'),
+        value: valor,
+        onChange: (r) => _controlado.value = r.value,
+      ),
+      const SizedBox(height: 8),
+      Wrap(
+        spacing: 8,
+        runSpacing: 8,
+        children: [
+          SgButton(
+            label: Text(context.tx('1º trimestre de 2024')),
+            appearance: SgAppearance.outline,
+            onClick: () => _controlado.value = const YearPartValue(
+              year: 2024,
+              kind: YearPartKind.quarter,
+              part: 1,
+            ),
+          ),
+          SgButton(
+            label: Text(context.tx('2º bimestre de 2023')),
+            appearance: SgAppearance.outline,
+            onClick: () => _controlado.value = const YearPartValue(
+              year: 2023,
+              kind: YearPartKind.bimester,
+              part: 2,
+            ),
+          ),
+        ],
+      ),
+      const SizedBox(height: 8),
+      Text(
+        '${context.tx('Valor')}: ${valor.year} - ${valor.kind.name} ${valor.part}',
+      ),
+    ],
+  ),
+)
+''';
+
   /// Region `sg-year-part-selector-estados`.
   static const String sgYearPartSelectorEstados = r'''
 Column(

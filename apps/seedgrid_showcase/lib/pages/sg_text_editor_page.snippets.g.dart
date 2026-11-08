@@ -137,6 +137,16 @@ SgStack(
 )
 ''';
 
+  /// Region `sg-text-editor-placeholder`.
+  static const String sgTextEditorPlaceholder = r'''
+SgTextEditor(
+  id: 'sg-text-editor-placeholder',
+  height: 160,
+  placeholder: context.tx('Escreva aqui'),
+  showCssEditor: false,
+)
+''';
+
   /// Region `sg-text-editor-raio`.
   static const String sgTextEditorRaio = r'''
 const SgTextEditor(

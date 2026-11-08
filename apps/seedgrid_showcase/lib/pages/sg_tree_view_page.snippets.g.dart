@@ -129,6 +129,33 @@ SgStack(
 )
 ''';
 
+  /// Region `sg-tree-view-busca`.
+  static const String sgTreeViewBusca = r'''
+SgTreeView(
+  searchable: true,
+  searchPlaceholder: context.tx('Pesquisar...'),
+  defaultSearchValue: context.tx('Couve'),
+  expandMatchesOnSearch: true,
+  nodes: [
+    SgTreeNode(
+      id: 'verduras',
+      label: context.tx('Verduras'),
+      children: [
+        SgTreeNode(id: 'alface', label: context.tx('Alface')),
+        SgTreeNode(id: 'couve', label: context.tx('Couve')),
+      ],
+    ),
+    SgTreeNode(
+      id: 'legumes',
+      label: context.tx('Legumes'),
+      children: [
+        SgTreeNode(id: 'cenoura', label: context.tx('Cenoura')),
+      ],
+    ),
+  ],
+)
+''';
+
   /// Region `sg-tree-view-confirmacao`.
   static const String sgTreeViewConfirmacao = r'''
 SgStack(
@@ -215,6 +242,28 @@ SgStack(
       valueListenable: _confirmados,
       builder: (context, ids, _) =>
           Text('confirmIds: ${ids.isEmpty ? '-' : ids.join(', ')}'),
+    ),
+  ],
+)
+''';
+
+  /// Region `sg-tree-view-desabilitado`.
+  static const String sgTreeViewDesabilitado = r'''
+SgTreeView(
+  checkable: true,
+  defaultExpandedIds: const ['docs'],
+  nodes: [
+    SgTreeNode(
+      id: 'docs',
+      label: context.tx('Documentos'),
+      children: [
+        SgTreeNode(id: 'contrato', label: context.tx('Contrato')),
+        SgTreeNode(
+          id: 'bloqueado',
+          label: context.tx('Bloqueado'),
+          enabled: false,
+        ),
+      ],
     ),
   ],
 )
@@ -593,6 +642,44 @@ SgCard(
       ),
     ],
   ),
+)
+''';
+
+  /// Region `sg-tree-view-tom-muted`.
+  static const String sgTreeViewTomMuted = r'''
+SgGrid(
+  columns: 2,
+  gap: 16,
+  children: [
+    SgTreeView(
+      tone: SgTreeViewTone.defaultValue,
+      defaultExpandedIds: const ['docs'],
+      nodes: [
+        SgTreeNode(
+          id: 'docs',
+          label: context.tx('Documentos'),
+          children: [
+            SgTreeNode(id: 'contrato', label: context.tx('Contrato')),
+            SgTreeNode(id: 'nota', label: context.tx('Nota fiscal')),
+          ],
+        ),
+      ],
+    ),
+    SgTreeView(
+      tone: SgTreeViewTone.muted,
+      defaultExpandedIds: const ['docs'],
+      nodes: [
+        SgTreeNode(
+          id: 'docs',
+          label: context.tx('Documentos'),
+          children: [
+            SgTreeNode(id: 'contrato', label: context.tx('Contrato')),
+            SgTreeNode(id: 'nota', label: context.tx('Nota fiscal')),
+          ],
+        ),
+      ],
+    ),
+  ],
 )
 ''';
 

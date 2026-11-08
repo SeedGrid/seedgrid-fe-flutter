@@ -20,9 +20,13 @@ class _SgYearPartSelectorPageState extends State<SgYearPartSelectorPage> {
   final _basico = ValueNotifier<ResolvedYearPart?>(null);
   final _semestre = ValueNotifier<ResolvedYearPart?>(null);
   final _faixa = ValueNotifier<ResolvedYearPart?>(null);
+  final _controlado = ValueNotifier<YearPartValue>(
+    const YearPartValue(year: 2024, kind: YearPartKind.quarter, part: 1),
+  );
 
   @override
   void dispose() {
+    _controlado.dispose();
     _basico.dispose();
     _semestre.dispose();
     _faixa.dispose();
@@ -177,6 +181,58 @@ class _SgYearPartSelectorPageState extends State<SgYearPartSelectorPage> {
             ),
         // #endregion
         code: SgYearPartSelectorPageSnippets.sgYearPartSelectorLocale,
+      ),
+      ShowcaseExample(
+        title: 'Valor controlado',
+        description:
+            'Com value, o pai manda: escolher emite onChange e o campo só muda quando o value muda. Fatia que não existe no recorte cai na primeira.',
+        preview:
+            // #region sg-year-part-selector-controlado
+            ValueListenableBuilder<YearPartValue>(
+              valueListenable: _controlado,
+              builder: (context, valor, _) => Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SgYearPartSelector(
+                    id: 'yps-controlled',
+                    label: context.tx('Recorte do ano'),
+                    value: valor,
+                    onChange: (r) => _controlado.value = r.value,
+                  ),
+                  const SizedBox(height: 8),
+                  Wrap(
+                    spacing: 8,
+                    runSpacing: 8,
+                    children: [
+                      SgButton(
+                        label: Text(context.tx('1º trimestre de 2024')),
+                        appearance: SgAppearance.outline,
+                        onClick: () => _controlado.value = const YearPartValue(
+                          year: 2024,
+                          kind: YearPartKind.quarter,
+                          part: 1,
+                        ),
+                      ),
+                      SgButton(
+                        label: Text(context.tx('2º bimestre de 2023')),
+                        appearance: SgAppearance.outline,
+                        onClick: () => _controlado.value = const YearPartValue(
+                          year: 2023,
+                          kind: YearPartKind.bimester,
+                          part: 2,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    '${context.tx('Valor')}: ${valor.year} - ${valor.kind.name} ${valor.part}',
+                  ),
+                ],
+              ),
+            ),
+        // #endregion
+        code: SgYearPartSelectorPageSnippets.sgYearPartSelectorControlado,
       ),
     ];
 

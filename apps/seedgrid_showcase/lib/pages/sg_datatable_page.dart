@@ -156,37 +156,32 @@ class _SgDatatablePageState extends State<SgDatatablePage> {
             'showGlobalFilter, showColumnFilters, filterMatchMode por coluna e showClearFiltersButton.',
         preview:
             // #region sg-datatable-filtros
-            SizedBox(
-              height: 420,
-              child: SingleChildScrollView(
-                child: SgDatatable(
-                  value: _pessoas,
-                  columns: [
-                    SgDatatableColumn(
-                      field: 'nome',
-                      header: context.tx('Nome'),
-                      filter: true,
-                    ),
-                    SgDatatableColumn(
-                      field: 'cidade',
-                      header: context.tx('Cidade'),
-                      filter: true,
-                      filterMatchMode: SgDatatableFilterMatchMode.startsWith,
-                    ),
-                    SgDatatableColumn(
-                      field: 'salario',
-                      header: context.tx('Salário'),
-                      excludeGlobalFilter: true,
-                    ),
-                  ],
-                  paginator: true,
-                  infiniteScroll: false,
-                  rows: 5,
-                  showGlobalFilter: true,
-                  showColumnFilters: true,
-                  showClearFiltersButton: true,
+            SgDatatable(
+              value: _pessoas,
+              columns: [
+                SgDatatableColumn(
+                  field: 'nome',
+                  header: context.tx('Nome'),
+                  filter: true,
                 ),
-              ),
+                SgDatatableColumn(
+                  field: 'cidade',
+                  header: context.tx('Cidade'),
+                  filter: true,
+                  filterMatchMode: SgDatatableFilterMatchMode.startsWith,
+                ),
+                SgDatatableColumn(
+                  field: 'salario',
+                  header: context.tx('Salário'),
+                  excludeGlobalFilter: true,
+                ),
+              ],
+              paginator: true,
+              infiniteScroll: false,
+              rows: 5,
+              showGlobalFilter: true,
+              showColumnFilters: true,
+              showClearFiltersButton: true,
             ),
         // #endregion
         code: SgDatatablePageSnippets.sgDatatableFiltros,

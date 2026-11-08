@@ -272,37 +272,32 @@ Column(
 
   /// Region `sg-datatable-filtros`.
   static const String sgDatatableFiltros = r'''
-SizedBox(
-  height: 420,
-  child: SingleChildScrollView(
-    child: SgDatatable(
-      value: _pessoas,
-      columns: [
-        SgDatatableColumn(
-          field: 'nome',
-          header: context.tx('Nome'),
-          filter: true,
-        ),
-        SgDatatableColumn(
-          field: 'cidade',
-          header: context.tx('Cidade'),
-          filter: true,
-          filterMatchMode: SgDatatableFilterMatchMode.startsWith,
-        ),
-        SgDatatableColumn(
-          field: 'salario',
-          header: context.tx('Salário'),
-          excludeGlobalFilter: true,
-        ),
-      ],
-      paginator: true,
-      infiniteScroll: false,
-      rows: 5,
-      showGlobalFilter: true,
-      showColumnFilters: true,
-      showClearFiltersButton: true,
+SgDatatable(
+  value: _pessoas,
+  columns: [
+    SgDatatableColumn(
+      field: 'nome',
+      header: context.tx('Nome'),
+      filter: true,
     ),
-  ),
+    SgDatatableColumn(
+      field: 'cidade',
+      header: context.tx('Cidade'),
+      filter: true,
+      filterMatchMode: SgDatatableFilterMatchMode.startsWith,
+    ),
+    SgDatatableColumn(
+      field: 'salario',
+      header: context.tx('Salário'),
+      excludeGlobalFilter: true,
+    ),
+  ],
+  paginator: true,
+  infiniteScroll: false,
+  rows: 5,
+  showGlobalFilter: true,
+  showColumnFilters: true,
+  showClearFiltersButton: true,
 )
 ''';
 

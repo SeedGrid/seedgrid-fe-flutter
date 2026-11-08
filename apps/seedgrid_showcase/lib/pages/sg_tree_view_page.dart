@@ -844,6 +844,108 @@ class _SgTreeViewPageState extends State<SgTreeViewPage> {
         // #endregion
         code: SgTreeViewPageSnippets.sgTreeViewTrilhas,
       ),
+      ShowcaseExample(
+        title: 'Busca com valor inicial',
+        description:
+            'defaultSearchValue abre a árvore já filtrada: só os achados e seus ancestrais aparecem, e expandMatchesOnSearch (padrão true) abre os ancestrais.',
+        preview:
+            // #region sg-tree-view-busca
+            SgTreeView(
+              searchable: true,
+              searchPlaceholder: context.tx('Pesquisar...'),
+              defaultSearchValue: context.tx('Couve'),
+              expandMatchesOnSearch: true,
+              nodes: [
+                SgTreeNode(
+                  id: 'verduras',
+                  label: context.tx('Verduras'),
+                  children: [
+                    SgTreeNode(id: 'alface', label: context.tx('Alface')),
+                    SgTreeNode(id: 'couve', label: context.tx('Couve')),
+                  ],
+                ),
+                SgTreeNode(
+                  id: 'legumes',
+                  label: context.tx('Legumes'),
+                  children: [
+                    SgTreeNode(id: 'cenoura', label: context.tx('Cenoura')),
+                  ],
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgTreeViewPageSnippets.sgTreeViewBusca,
+      ),
+      ShowcaseExample(
+        title: 'Tom dos rótulos (muted)',
+        description:
+            'tone: muted suaviza a cor dos rótulos; o padrão é default. Compare as duas árvores.',
+        preview:
+            // #region sg-tree-view-tom-muted
+            SgGrid(
+              columns: 2,
+              gap: 16,
+              children: [
+                SgTreeView(
+                  tone: SgTreeViewTone.defaultValue,
+                  defaultExpandedIds: const ['docs'],
+                  nodes: [
+                    SgTreeNode(
+                      id: 'docs',
+                      label: context.tx('Documentos'),
+                      children: [
+                        SgTreeNode(id: 'contrato', label: context.tx('Contrato')),
+                        SgTreeNode(id: 'nota', label: context.tx('Nota fiscal')),
+                      ],
+                    ),
+                  ],
+                ),
+                SgTreeView(
+                  tone: SgTreeViewTone.muted,
+                  defaultExpandedIds: const ['docs'],
+                  nodes: [
+                    SgTreeNode(
+                      id: 'docs',
+                      label: context.tx('Documentos'),
+                      children: [
+                        SgTreeNode(id: 'contrato', label: context.tx('Contrato')),
+                        SgTreeNode(id: 'nota', label: context.tx('Nota fiscal')),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgTreeViewPageSnippets.sgTreeViewTomMuted,
+      ),
+      ShowcaseExample(
+        title: 'Nó desabilitado',
+        description:
+            'enabled: false deixa o nó visível, mas sem resposta a clique, expansão ou marcação.',
+        preview:
+            // #region sg-tree-view-desabilitado
+            SgTreeView(
+              checkable: true,
+              defaultExpandedIds: const ['docs'],
+              nodes: [
+                SgTreeNode(
+                  id: 'docs',
+                  label: context.tx('Documentos'),
+                  children: [
+                    SgTreeNode(id: 'contrato', label: context.tx('Contrato')),
+                    SgTreeNode(
+                      id: 'bloqueado',
+                      label: context.tx('Bloqueado'),
+                      enabled: false,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgTreeViewPageSnippets.sgTreeViewDesabilitado,
+      ),
     ];
 
     final specs = sgPropSpecs['SgTreeView']!;

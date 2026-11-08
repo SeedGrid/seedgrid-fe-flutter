@@ -347,4 +347,65 @@ SizedBox(
   ),
 )
 ''';
+
+  /// Region `sg-multi-select-opcao-desabilitada`.
+  static const String sgMultiSelectOpcaoDesabilitada = r'''
+SizedBox(
+  width: 384,
+  child: SgMultiSelect(
+    id: 'ms-disabled-option',
+    labelText: context.tx('Empresas'),
+    placeholder: context.tx('Selecione as empresas'),
+    searchable: true,
+    searchPlaceholder: context.tx('Buscar empresa...'),
+    options: [
+      SgMultiSelectOption(label: 'Empresa 1', value: 'e1'),
+      SgMultiSelectOption(label: 'Empresa 2', value: 'e2'),
+      SgMultiSelectOption(label: 'Empresa 3', value: 'e3'),
+      SgMultiSelectOption(label: 'Empresa 4', value: 'e4'),
+      SgMultiSelectOption(label: 'Empresa 5', value: 'e5'),
+      SgMultiSelectOption(
+        label: 'Empresa 6',
+        value: 'e6',
+        enabled: false,
+      ),
+    ],
+  ),
+)
+''';
+
+  /// Region `sg-multi-select-resumo`.
+  static const String sgMultiSelectResumo = r'''
+SizedBox(
+  width: 384,
+  child: ListenableBuilder(
+    listenable: _resumo,
+    builder: (context, _) => Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SgMultiSelect(
+          id: 'ms-summary',
+          labelText: context.tx('Empresas'),
+          placeholder: context.tx('Selecione as empresas'),
+          summaryThreshold: 4,
+          options: [
+            SgMultiSelectOption(label: 'Empresa 1', value: 'e1'),
+            SgMultiSelectOption(label: 'Empresa 2', value: 'e2'),
+            SgMultiSelectOption(label: 'Empresa 3', value: 'e3'),
+            SgMultiSelectOption(label: 'Empresa 4', value: 'e4'),
+            SgMultiSelectOption(label: 'Empresa 5', value: 'e5'),
+            SgMultiSelectOption(label: 'Empresa 6', value: 'e6'),
+          ],
+          value: _resumo.value,
+          onChange: (v) => _resumo.value = v,
+        ),
+        const SizedBox(height: 8),
+        Text(
+          '${context.tx('Selecionadas')}: ${_resumo.value.isEmpty ? context.tx('(nenhuma)') : _resumo.value.join(', ')}',
+        ),
+      ],
+    ),
+  ),
+)
+''';
 }

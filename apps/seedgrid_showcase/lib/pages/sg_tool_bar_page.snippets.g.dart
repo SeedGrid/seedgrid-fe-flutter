@@ -40,7 +40,7 @@ Align(
     scrollDirection: Axis.horizontal,
     child: SgToolBar(
       id: 'tb-async',
-      title: Text(context.tx('Ações rápidas')),
+      title: Text(context.tx('Ações')),
       orientationDirection:
           SgToolBarOrientationDirection.horizontalLeft,
       collapsible: true,
@@ -117,65 +117,72 @@ Align(
 
   /// Region `sg-tool-bar-cores`.
   static const String sgToolBarCores = r'''
-SgStack(
-  direction: SgStackDirection.row,
-  wrap: true,
-  gap: 24,
-  children: [
-    SgToolBar(
-      id: 'tb-style-a',
-      title: Text(context.tx('Cor no corpo')),
-      orientationDirection:
-          SgToolBarOrientationDirection.verticalDown,
-      collapsible: true,
-      bgColor: '#ECFEFF',
+Builder(
+  builder: (context) {
+    final tema = Theme.of(context).colorScheme;
+    String cor(Color c) =>
+        '#${(c.toARGB32() & 0xFFFFFF).toRadixString(16).padLeft(6, "0")}';
+    return SgStack(
+      direction: SgStackDirection.row,
+      wrap: true,
+      gap: 24,
       children: [
-        SgToolbarIconButton(
-          icon: const Icon(Icons.home_outlined),
-          label: context.tx('Home'),
-          hint: context.tx('Ir para o início'),
-          severity: SgToolbarIconButtonSeverity.primary,
+        SgToolBar(
+          id: 'tb-style-a',
+          title: Text(context.tx('Cor no corpo')),
+          orientationDirection:
+              SgToolBarOrientationDirection.verticalDown,
+          collapsible: true,
+          bgColor: cor(tema.surfaceContainer),
+          children: [
+            SgToolbarIconButton(
+              icon: const Icon(Icons.home_outlined),
+              label: context.tx('Home'),
+              hint: context.tx('Ir para o início'),
+              severity: SgToolbarIconButtonSeverity.primary,
+            ),
+            SgToolbarIconButton(
+              icon: const Icon(Icons.people_outline),
+              label: context.tx('Usuários'),
+              hint: context.tx('Abrir lista de usuários'),
+            ),
+            SgToolbarIconButton(
+              icon: const Icon(Icons.settings_outlined),
+              label: context.tx('Configurações'),
+              hint: context.tx('Abrir configurações'),
+            ),
+          ],
         ),
-        SgToolbarIconButton(
-          icon: const Icon(Icons.people_outline),
-          label: context.tx('Usuários'),
-          hint: context.tx('Abrir lista de usuários'),
-        ),
-        SgToolbarIconButton(
-          icon: const Icon(Icons.settings_outlined),
-          label: context.tx('Configurações'),
-          hint: context.tx('Abrir configurações'),
+        SgToolBar(
+          id: 'tb-style-b',
+          title: Text(context.tx('Título destacado')),
+          orientationDirection:
+              SgToolBarOrientationDirection.verticalDown,
+          collapsible: true,
+          bgColor: cor(tema.surfaceContainerHigh),
+          bgColorTitle: cor(tema.outlineVariant),
+          children: [
+            SgToolbarIconButton(
+              icon: const Icon(Icons.filter_alt_outlined),
+              label: context.tx('Filtro'),
+              hint: context.tx('Filtrar resultados'),
+            ),
+            SgToolbarIconButton(
+              icon: const Icon(Icons.refresh),
+              label: context.tx('Atualizar'),
+              hint: context.tx('Atualizar dados da tela'),
+            ),
+            SgToolbarIconButton(
+              icon: const Icon(Icons.edit_outlined),
+              label: context.tx('Editar'),
+              hint: context.tx('Editar registro selecionado'),
+              severity: SgToolbarIconButtonSeverity.info,
+            ),
+          ],
         ),
       ],
-    ),
-    SgToolBar(
-      id: 'tb-style-b',
-      title: Text(context.tx('Título destacado')),
-      orientationDirection:
-          SgToolBarOrientationDirection.verticalDown,
-      collapsible: true,
-      bgColor: '#DAD7D2',
-      bgColorTitle: '#C9712D',
-      children: [
-        SgToolbarIconButton(
-          icon: const Icon(Icons.filter_alt_outlined),
-          label: context.tx('Filtro'),
-          hint: context.tx('Filtrar resultados'),
-        ),
-        SgToolbarIconButton(
-          icon: const Icon(Icons.refresh),
-          label: context.tx('Atualizar'),
-          hint: context.tx('Atualizar dados da tela'),
-        ),
-        SgToolbarIconButton(
-          icon: const Icon(Icons.edit_outlined),
-          label: context.tx('Editar'),
-          hint: context.tx('Editar registro selecionado'),
-          severity: SgToolbarIconButtonSeverity.info,
-        ),
-      ],
-    ),
-  ],
+    );
+  },
 )
 ''';
 
@@ -190,7 +197,7 @@ SgStack(
       scrollDirection: Axis.horizontal,
       child: SgToolBar(
         id: 'tb-horizontal',
-        title: Text(context.tx('Ações rápidas')),
+        title: Text(context.tx('Ações')),
         orientationDirection:
             SgToolBarOrientationDirection.horizontalLeft,
         buttonsPerDirection: 3,

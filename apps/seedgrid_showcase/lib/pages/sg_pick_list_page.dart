@@ -314,6 +314,31 @@ class _SgPickListPageState extends State<SgPickListPage> {
         // #endregion
         code: SgPickListPageSnippets.sgPickListFormulario,
       ),
+      ShowcaseExample(
+        title: 'Filtro por início e seleção única',
+        description:
+            'filterMatchMode startsWith filtra pelo começo do texto e selectionMode single permite marcar um item por vez.',
+        preview:
+            // #region sg-pick-list-inicio-unica
+            SgPickList(
+              id: 'pick-starts-with',
+              title: context.tx('Cidades'),
+              source: const [
+                SgPickListItem(label: 'Berlin', value: 'berlin'),
+                SgPickListItem(label: 'Boston', value: 'boston'),
+                SgPickListItem(label: 'Lisbon', value: 'lisbon'),
+                SgPickListItem(label: 'Madrid', value: 'madrid'),
+                SgPickListItem(label: 'Sao Paulo', value: 'sao-paulo'),
+              ],
+              target: const [],
+              showSourceFilter: true,
+              showTargetFilter: true,
+              filterMatchMode: SgPickListFilterMatchMode.startsWith,
+              selectionMode: SgPickListSelectionMode.single,
+            ),
+        // #endregion
+        code: SgPickListPageSnippets.sgPickListInicioUnica,
+      ),
     ];
 
     return SgShowcasePage(

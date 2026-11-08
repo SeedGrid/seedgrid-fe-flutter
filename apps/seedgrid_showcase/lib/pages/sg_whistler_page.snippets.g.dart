@@ -340,6 +340,81 @@ SgStack(
 )
 ''';
 
+  /// Region `sg-whistler-gap`.
+  static const String sgWhistlerGap = r'''
+SgStack(
+  gap: 16,
+  children: [
+    SgButton(
+      label: Text(context.tx('Disparar 2 avisos')),
+      onClick: () {
+        sgWhistle.info(
+          SgWhistleOptions(
+            message: context.tx('Primeiro'),
+            duration: 4000,
+          ),
+        );
+        sgWhistle.success(
+          SgWhistleOptions(
+            message: context.tx('Segundo'),
+            duration: 4000,
+          ),
+        );
+      },
+    ),
+    SgStack(
+      gap: 4,
+      children: [
+        const Text('gap: 0'),
+        const SgWhistler(max: 3, gap: 0),
+      ],
+    ),
+    SgStack(
+      gap: 4,
+      children: [
+        const Text('gap: 24'),
+        const SgWhistler(max: 3, gap: 24),
+      ],
+    ),
+  ],
+)
+''';
+
+  /// Region `sg-whistler-icone-onclose`.
+  static const String sgWhistlerIconeOnclose = r'''
+SgStack(
+  gap: 12,
+  children: [
+    SgStack(
+      direction: SgStackDirection.row,
+      wrap: true,
+      align: SgStackAlign.center,
+      gap: 8,
+      children: [
+        SgButton(
+          label: Text(context.tx('Aviso com ícone')),
+          onClick: () => sgWhistle.warning(
+            SgWhistleOptions(
+              title: context.tx('Rascunho'),
+              message: context.tx('Você tem alterações não salvas.'),
+              icon: const Icon(Icons.edit),
+              duration: 0,
+              onClose: () => _fechados.value++,
+            ),
+          ),
+        ),
+        ValueListenableBuilder<int>(
+          valueListenable: _fechados,
+          builder: (context, total, _) =>
+              Text('${context.tx('onClose chamado')}: $total'),
+        ),
+      ],
+    ),
+    const SgWhistler(max: 3),
+  ],
+)
+''';
+
   /// Region `sg-whistler-observar`.
   static const String sgWhistlerObservar = r'''
 SgStack(

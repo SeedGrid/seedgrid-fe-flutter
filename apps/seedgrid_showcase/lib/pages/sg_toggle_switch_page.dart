@@ -338,6 +338,20 @@ class _SgToggleSwitchPageState extends State<SgToggleSwitchPage> {
         // #endregion
         code: SgToggleSwitchPageSnippets.sgToggleSwitchErroExterno,
       ),
+      ShowcaseExample(
+        title: 'Estado inicial (defaultChecked)',
+        description:
+            'defaultChecked define o estado inicial; depois disso a chave controla a si mesma (modo não controlado).',
+        preview:
+            // #region sg-toggle-switch-estado-inicial
+            SgToggleSwitch(
+              id: 'demo-default',
+              label: context.tx('Receber novidades'),
+              defaultChecked: true,
+            ),
+        // #endregion
+        code: SgToggleSwitchPageSnippets.sgToggleSwitchEstadoInicial,
+      ),
     ];
 
     return SgShowcasePage(

@@ -135,7 +135,7 @@ class SgDockScreenPage extends StatelessWidget {
       ),
       ShowcaseExample(
         title: 'Conteúdo no centro',
-        description: 'Um filho que não é SgDockZone vai para a célula central.',
+        description: 'O conteúdo fica na célula central, entre as zonas laterais.',
         preview:
             // #region sg-dock-screen-conteudo
             Container(

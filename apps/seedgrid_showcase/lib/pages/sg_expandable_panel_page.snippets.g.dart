@@ -240,6 +240,36 @@ Column(
 )
 ''';
 
+  /// Region `sg-expandable-redimensionavel-altura`.
+  static const String sgExpandableRedimensionavelAltura = r'''
+SizedBox(
+  height: 300,
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.stretch,
+    children: [
+      ValueListenableBuilder<num>(
+        valueListenable: _altura,
+        builder: (context, h, _) => Text(
+          '${context.tx('Altura atual')}: ${h.round()}px',
+        ),
+      ),
+      SgExpandablePanel(
+        expandTo: SgExpandablePanelExpandTo.bottom,
+        defaultOpen: true,
+        resizable: true,
+        size: const SgExpandablePanelSize(
+          defaultSize: 200,
+          min: 60,
+          max: 260,
+        ),
+        onSizeChange: (v) => _altura.value = v,
+        child: Text(context.tx('Arraste a borda de baixo')),
+      ),
+    ],
+  ),
+)
+''';
+
   /// Region `sg-expandable-semfundo`.
   static const String sgExpandableSemfundo = r'''
 Column(

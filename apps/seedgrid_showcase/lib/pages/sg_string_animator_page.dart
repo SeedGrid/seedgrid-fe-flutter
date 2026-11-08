@@ -378,6 +378,73 @@ class SgStringAnimatorPage extends StatelessWidget {
         // #endregion
         code: SgStringAnimatorPageSnippets.sgStringAnimatorVelocidades,
       ),
+      ShowcaseExample(
+        title: 'Charset e caractere de preenchimento',
+        description:
+            'charset limita o tambor aos caracteres informados; emptyChar completa strings de tamanhos diferentes (aqui, "0" à esquerda dos números e "." à direita das letras).',
+        preview:
+            // #region sg-string-animator-charset
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Builder(
+                builder: (context) {
+                  final numeros = SgStringAnimatorController();
+                  final letras = SgStringAnimatorController();
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SgStringAnimator(
+                        sourceString: '7',
+                        targetString: '2048',
+                        stringAnimatorStyle:
+                            SgStringAnimatorStringAnimatorStyle.roller3d,
+                        alignTo: SgStringAnimatorAlignTo.right,
+                        emptyChar: '0',
+                        charset: const [
+                          '0',
+                          '1',
+                          '2',
+                          '3',
+                          '4',
+                          '5',
+                          '6',
+                          '7',
+                          '8',
+                          '9',
+                        ],
+                        fontSize: 28,
+                        velocity: 90,
+                        controller: numeros,
+                      ),
+                      const SizedBox(height: 16),
+                      SgStringAnimator(
+                        sourceString: 'ABCDEFG',
+                        targetString: 'XY',
+                        stringAnimatorStyle:
+                            SgStringAnimatorStringAnimatorStyle.flip,
+                        alignTo: SgStringAnimatorAlignTo.left,
+                        emptyChar: '.',
+                        fontSize: 22,
+                        velocity: 100,
+                        controller: letras,
+                      ),
+                      const SizedBox(height: 16),
+                      SgButton(
+                        size: SgSize.sm,
+                        label: Text(context.tx('Animar')),
+                        onClick: () {
+                          numeros.startAnimation();
+                          letras.startAnimation();
+                        },
+                      ),
+                    ],
+                  );
+                },
+              ),
+            ),
+        // #endregion
+        code: SgStringAnimatorPageSnippets.sgStringAnimatorCharset,
+      ),
     ];
 
     return SgShowcasePage(

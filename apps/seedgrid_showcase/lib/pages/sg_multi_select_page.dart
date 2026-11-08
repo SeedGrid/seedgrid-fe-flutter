@@ -25,6 +25,11 @@ class _SgMultiSelectPageState extends State<SgMultiSelectPage> {
   final ValueNotifier<List<Object>> _limitadas = ValueNotifier(const []);
   final ValueNotifier<List<Object>> _filiais = ValueNotifier(const [1, 3]);
   final ValueNotifier<List<Object>> _controlado = ValueNotifier(const ['sp']);
+  final ValueNotifier<List<Object>> _resumo = ValueNotifier(const [
+    'e1',
+    'e2',
+    'e4',
+  ]);
   final SgFormController _form = SgFormController();
   final ValueNotifier<String> _enviado = ValueNotifier('');
 
@@ -36,6 +41,7 @@ class _SgMultiSelectPageState extends State<SgMultiSelectPage> {
     _limitadas.dispose();
     _filiais.dispose();
     _controlado.dispose();
+    _resumo.dispose();
     _form.dispose();
     _enviado.dispose();
     super.dispose();
@@ -422,6 +428,77 @@ class _SgMultiSelectPageState extends State<SgMultiSelectPage> {
             ),
         // #endregion
         code: SgMultiSelectPageSnippets.sgMultiSelectFormulario,
+      ),
+      ShowcaseExample(
+        title: 'Limite do resumo (summaryThreshold)',
+        description:
+            'Por padrão o campo lista até 2 rótulos e depois mostra só a quantidade; summaryThreshold aumenta esse limite.',
+        preview:
+            // #region sg-multi-select-resumo
+            SizedBox(
+              width: 384,
+              child: ListenableBuilder(
+                listenable: _resumo,
+                builder: (context, _) => Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SgMultiSelect(
+                      id: 'ms-summary',
+                      labelText: context.tx('Empresas'),
+                      placeholder: context.tx('Selecione as empresas'),
+                      summaryThreshold: 4,
+                      options: [
+                        SgMultiSelectOption(label: 'Empresa 1', value: 'e1'),
+                        SgMultiSelectOption(label: 'Empresa 2', value: 'e2'),
+                        SgMultiSelectOption(label: 'Empresa 3', value: 'e3'),
+                        SgMultiSelectOption(label: 'Empresa 4', value: 'e4'),
+                        SgMultiSelectOption(label: 'Empresa 5', value: 'e5'),
+                        SgMultiSelectOption(label: 'Empresa 6', value: 'e6'),
+                      ],
+                      value: _resumo.value,
+                      onChange: (v) => _resumo.value = v,
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      '${context.tx('Selecionadas')}: ${_resumo.value.isEmpty ? context.tx('(nenhuma)') : _resumo.value.join(', ')}',
+                    ),
+                  ],
+                ),
+              ),
+            ),
+        // #endregion
+        code: SgMultiSelectPageSnippets.sgMultiSelectResumo,
+      ),
+      ShowcaseExample(
+        title: 'Opção desabilitada e texto da busca',
+        description:
+            'Uma opção com enabled false aparece desabilitada e não pode ser marcada; searchPlaceholder troca o texto do campo de busca.',
+        preview:
+            // #region sg-multi-select-opcao-desabilitada
+            SizedBox(
+              width: 384,
+              child: SgMultiSelect(
+                id: 'ms-disabled-option',
+                labelText: context.tx('Empresas'),
+                placeholder: context.tx('Selecione as empresas'),
+                searchable: true,
+                searchPlaceholder: context.tx('Buscar empresa...'),
+                options: [
+                  SgMultiSelectOption(label: 'Empresa 1', value: 'e1'),
+                  SgMultiSelectOption(label: 'Empresa 2', value: 'e2'),
+                  SgMultiSelectOption(label: 'Empresa 3', value: 'e3'),
+                  SgMultiSelectOption(label: 'Empresa 4', value: 'e4'),
+                  SgMultiSelectOption(label: 'Empresa 5', value: 'e5'),
+                  SgMultiSelectOption(
+                    label: 'Empresa 6',
+                    value: 'e6',
+                    enabled: false,
+                  ),
+                ],
+              ),
+            ),
+        // #endregion
+        code: SgMultiSelectPageSnippets.sgMultiSelectOpcaoDesabilitada,
       ),
     ];
 
