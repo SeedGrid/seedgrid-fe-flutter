@@ -16,29 +16,33 @@ class SgDiscardDigitPage extends StatefulWidget {
 }
 
 class _SgDiscardDigitPageState extends State<SgDiscardDigitPage> {
-  int _n = 1;
+  final ValueNotifier<int> _n = ValueNotifier(1);
   final SgDiscardDigitController _pages = SgDiscardDigitController();
-  int _page = 1;
-  int _pilha = 8;
-  int _folha = 0;
-  bool _rodando = false;
-  int _contador = 0;
+  final ValueNotifier<int> _page = ValueNotifier(1);
+  final ValueNotifier<int> _pilha = ValueNotifier(8);
+  final ValueNotifier<int> _folha = ValueNotifier(0);
+  final ValueNotifier<bool> _rodando = ValueNotifier(false);
+  final ValueNotifier<int> _contador = ValueNotifier(0);
   Timer? _timer;
   final SgDiscardDigitController _ref = SgDiscardDigitController();
-  int _paginaAtual = 1;
+  final ValueNotifier<int> _paginaAtual = ValueNotifier(1);
 
   @override
   void dispose() {
     _timer?.cancel();
+    for (final n in [_n, _page, _pilha, _folha, _contador, _paginaAtual]) {
+      n.dispose();
+    }
+    _rodando.dispose();
     super.dispose();
   }
 
   void _alternarAutomatico() {
-    setState(() => _rodando = !_rodando);
+    _rodando.value = !_rodando.value;
     _timer?.cancel();
-    if (_rodando) {
+    if (_rodando.value) {
       _timer = Timer.periodic(const Duration(milliseconds: 800), (_) {
-        if (mounted) setState(() => _contador = (_contador + 1) % 100);
+        if (mounted) _contador.value = (_contador.value + 1) % 100;
       });
     }
   }
@@ -61,28 +65,32 @@ class _SgDiscardDigitPageState extends State<SgDiscardDigitPage> {
               runSpacing: 12,
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
-                SgDiscardDigit(
-                  value: '7',
-                  color: '#0f172a',
-                  font: sans,
-                  backgroundColor: '#f8fafc',
-                  stackDepth: _pilha,
+                ValueListenableBuilder<int>(
+                  valueListenable: _pilha,
+                  builder: (context, pilha, _) => SgDiscardDigit(
+                    value: '7',
+                    color: '#0f172a',
+                    font: sans,
+                    backgroundColor: '#f8fafc',
+                    stackDepth: pilha,
+                  ),
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SgButton(
                       label: Text(context.tx('Próximo (+1 folha)')),
-                      onClick: () => setState(
-                        () => _pilha = _pilha < 30 ? _pilha + 1 : 30,
-                      ),
+                      onClick: () => _pilha.value = _pilha.value < 30
+                          ? _pilha.value + 1
+                          : 30,
                     ),
                     const SizedBox(height: 8),
                     SgButton(
                       label: Text(context.tx('Anterior (-1 folha)')),
                       appearance: SgAppearance.outline,
-                      onClick: () =>
-                          setState(() => _pilha = _pilha > 2 ? _pilha - 1 : 2),
+                      onClick: () => _pilha.value = _pilha.value > 2
+                          ? _pilha.value - 1
+                          : 2,
                     ),
                   ],
                 ),
@@ -99,19 +107,22 @@ class _SgDiscardDigitPageState extends State<SgDiscardDigitPage> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SgDiscardDigit(
-                  value: folhas[_folha],
-                  color: '#111827',
-                  font: sans,
-                  backgroundColor: '#fffef7',
-                  fontSize: 58,
+                ValueListenableBuilder<int>(
+                  valueListenable: _folha,
+                  builder: (context, folha, _) => SgDiscardDigit(
+                    value: folhas[folha],
+                    color: '#111827',
+                    font: sans,
+                    backgroundColor: '#fffef7',
+                    fontSize: 58,
+                  ),
                 ),
                 const SizedBox(height: 12),
                 SgButton(
                   label: Text(context.tx('Descartar folha')),
                   size: SgSize.sm,
                   onClick: () =>
-                      setState(() => _folha = (_folha + 1) % folhas.length),
+                      _folha.value = (_folha.value + 1) % folhas.length,
                 ),
               ],
             ),
@@ -218,20 +229,26 @@ class _SgDiscardDigitPageState extends State<SgDiscardDigitPage> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SgDiscardDigit(
-                  value: _contador.toString().padLeft(2, '0'),
-                  color: '#0f172a',
-                  font: sans,
-                  backgroundColor: '#f8fafc',
-                  fontSize: 62,
-                  transitionMs: 700,
-                  stackDepth: 15,
+                ValueListenableBuilder<int>(
+                  valueListenable: _contador,
+                  builder: (context, contador, _) => SgDiscardDigit(
+                    value: contador.toString().padLeft(2, '0'),
+                    color: '#0f172a',
+                    font: sans,
+                    backgroundColor: '#f8fafc',
+                    fontSize: 62,
+                    transitionMs: 700,
+                    stackDepth: 15,
+                  ),
                 ),
                 const SizedBox(height: 12),
-                SgButton(
-                  label: Text(context.tx(_rodando ? 'Parar' : 'Iniciar')),
-                  size: SgSize.sm,
-                  onClick: _alternarAutomatico,
+                ValueListenableBuilder<bool>(
+                  valueListenable: _rodando,
+                  builder: (context, rodando, _) => SgButton(
+                    label: Text(context.tx(rodando ? 'Parar' : 'Iniciar')),
+                    size: SgSize.sm,
+                    onClick: _alternarAutomatico,
+                  ),
                 ),
               ],
             ),
@@ -249,44 +266,50 @@ class _SgDiscardDigitPageState extends State<SgDiscardDigitPage> {
               runSpacing: 12,
               crossAxisAlignment: WrapCrossAlignment.end,
               children: [
-                SgDiscardDigit(
-                  value: '$_paginaAtual',
-                  controller: _ref,
-                  totalNumberPages: totalPaginas,
-                  fontSize: 64,
+                ValueListenableBuilder<int>(
+                  valueListenable: _paginaAtual,
+                  builder: (context, paginaAtual, _) => SgDiscardDigit(
+                    value: '$paginaAtual',
+                    controller: _ref,
+                    totalNumberPages: totalPaginas,
+                    fontSize: 64,
+                  ),
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      '${context.tx('Página')} $_paginaAtual ${context.tx('de')} $totalPaginas',
-                    ),
-                    const SizedBox(height: 12),
-                    Wrap(
-                      spacing: 8,
-                      runSpacing: 8,
-                      children: [
-                        SgButton(
-                          label: Text(context.tx('Anterior')),
-                          size: SgSize.sm,
-                          enabled: _paginaAtual > 1,
-                          onClick: () => setState(() {
-                            _ref.decreasePage();
-                            _paginaAtual = _ref.page();
-                          }),
-                        ),
-                        SgButton(
-                          label: Text(context.tx('Próxima')),
-                          size: SgSize.sm,
-                          enabled: _paginaAtual < totalPaginas,
-                          onClick: () => setState(() {
-                            _ref.increasePage();
-                            _paginaAtual = _ref.page();
-                          }),
-                        ),
-                      ],
-                    ),
-                  ],
+                ValueListenableBuilder<int>(
+                  valueListenable: _paginaAtual,
+                  builder: (context, paginaAtual, _) => Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        '${context.tx('Página')} $paginaAtual ${context.tx('de')} $totalPaginas',
+                      ),
+                      const SizedBox(height: 12),
+                      Wrap(
+                        spacing: 8,
+                        runSpacing: 8,
+                        children: [
+                          SgButton(
+                            label: Text(context.tx('Anterior')),
+                            size: SgSize.sm,
+                            enabled: paginaAtual > 1,
+                            onClick: () {
+                              _ref.decreasePage();
+                              _paginaAtual.value = _ref.page();
+                            },
+                          ),
+                          SgButton(
+                            label: Text(context.tx('Próxima')),
+                            size: SgSize.sm,
+                            enabled: paginaAtual < totalPaginas,
+                            onClick: () {
+                              _ref.increasePage();
+                              _paginaAtual.value = _ref.page();
+                            },
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -304,10 +327,13 @@ class _SgDiscardDigitPageState extends State<SgDiscardDigitPage> {
               runSpacing: 12,
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
-                SgDiscardDigit(value: '$_n'),
+                ValueListenableBuilder<int>(
+                  valueListenable: _n,
+                  builder: (context, n, _) => SgDiscardDigit(value: '$n'),
+                ),
                 SgButton(
                   label: Text(context.tx('Próximo')),
-                  onClick: () => setState(() => _n = _n % 9 + 1),
+                  onClick: () => _n.value = _n.value % 9 + 1,
                 ),
               ],
             ),
@@ -325,14 +351,17 @@ class _SgDiscardDigitPageState extends State<SgDiscardDigitPage> {
               runSpacing: 12,
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
-                SgDiscardDigit(
-                  value: '$_n',
-                  changeAnimationMode:
-                      SgDiscardDigitChangeAnimationMode.incoming,
+                ValueListenableBuilder<int>(
+                  valueListenable: _n,
+                  builder: (context, n, _) => SgDiscardDigit(
+                    value: '$n',
+                    changeAnimationMode:
+                        SgDiscardDigitChangeAnimationMode.incoming,
+                  ),
                 ),
                 SgButton(
                   label: Text(context.tx('Próximo')),
-                  onClick: () => setState(() => _n = _n % 9 + 1),
+                  onClick: () => _n.value = _n.value % 9 + 1,
                 ),
               ],
             ),
@@ -350,16 +379,22 @@ class _SgDiscardDigitPageState extends State<SgDiscardDigitPage> {
               runSpacing: 12,
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
-                SgDiscardDigit(
-                  value: '$_page',
-                  controller: _pages,
-                  totalNumberPages: 8,
-                  stackDepth: 8,
+                ValueListenableBuilder<int>(
+                  valueListenable: _page,
+                  builder: (context, page, _) => SgDiscardDigit(
+                    value: '$page',
+                    controller: _pages,
+                    totalNumberPages: 8,
+                    stackDepth: 8,
+                  ),
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Página $_page de 8'),
+                    ValueListenableBuilder<int>(
+                      valueListenable: _page,
+                      builder: (context, page, _) => Text('Página $page de 8'),
+                    ),
                     const SizedBox(height: 8),
                     Wrap(
                       spacing: 16,
@@ -369,17 +404,17 @@ class _SgDiscardDigitPageState extends State<SgDiscardDigitPage> {
                         SgButton(
                           label: Text(context.tx('Anterior')),
                           appearance: SgAppearance.outline,
-                          onClick: () => setState(() {
+                          onClick: () {
                             _pages.decreasePage();
-                            _page = _pages.page();
-                          }),
+                            _page.value = _pages.page();
+                          },
                         ),
                         SgButton(
                           label: Text(context.tx('Próxima')),
-                          onClick: () => setState(() {
+                          onClick: () {
                             _pages.increasePage();
-                            _page = _pages.page();
-                          }),
+                            _page.value = _pages.page();
+                          },
                         ),
                       ],
                     ),
@@ -400,10 +435,14 @@ class _SgDiscardDigitPageState extends State<SgDiscardDigitPage> {
               runSpacing: 12,
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
-                SgDiscardDigit(value: '$_n', animateOnChange: false),
+                ValueListenableBuilder<int>(
+                  valueListenable: _n,
+                  builder: (context, n, _) =>
+                      SgDiscardDigit(value: '$n', animateOnChange: false),
+                ),
                 SgButton(
                   label: Text(context.tx('Próximo')),
-                  onClick: () => setState(() => _n = _n % 9 + 1),
+                  onClick: () => _n.value = _n.value % 9 + 1,
                 ),
               ],
             ),
@@ -421,18 +460,21 @@ class _SgDiscardDigitPageState extends State<SgDiscardDigitPage> {
               runSpacing: 12,
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
-                SgDiscardDigit(
-                  value: '$_n',
-                  fontSize: 48,
-                  color: '#7c2d12',
-                  backgroundColor: '#ffedd5',
-                  fontWeight: 'bold',
-                  transitionMs: 900,
-                  stackDepth: 10,
+                ValueListenableBuilder<int>(
+                  valueListenable: _n,
+                  builder: (context, n, _) => SgDiscardDigit(
+                    value: '$n',
+                    fontSize: 48,
+                    color: '#7c2d12',
+                    backgroundColor: '#ffedd5',
+                    fontWeight: 'bold',
+                    transitionMs: 900,
+                    stackDepth: 10,
+                  ),
                 ),
                 SgButton(
                   label: Text(context.tx('Próximo')),
-                  onClick: () => setState(() => _n = _n % 9 + 1),
+                  onClick: () => _n.value = _n.value % 9 + 1,
                 ),
               ],
             ),

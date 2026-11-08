@@ -14,9 +14,16 @@ class SgMatrixDigitPage extends StatefulWidget {
 }
 
 class _SgMatrixDigitPageState extends State<SgMatrixDigitPage> {
-  int _digito = 0;
-  int _mensagem = 0;
+  final ValueNotifier<int> _digito = ValueNotifier(0);
+  final ValueNotifier<int> _mensagem = ValueNotifier(0);
   static const _mensagens = ['SEEDGRID', 'MATRIX 2026', 'ABC-123'];
+
+  @override
+  void dispose() {
+    _digito.dispose();
+    _mensagem.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +38,13 @@ class _SgMatrixDigitPageState extends State<SgMatrixDigitPage> {
               runSpacing: 12,
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
-                SgMatrixDigit(
-                  value: '$_digito',
-                  color: '#22d3ee',
-                  backgroundColor: '#0b1220',
+                ValueListenableBuilder<int>(
+                  valueListenable: _digito,
+                  builder: (context, digito, _) => SgMatrixDigit(
+                    value: '$digito',
+                    color: '#22d3ee',
+                    backgroundColor: '#0b1220',
+                  ),
                 ),
                 Wrap(
                   spacing: 8,
@@ -42,19 +52,16 @@ class _SgMatrixDigitPageState extends State<SgMatrixDigitPage> {
                   children: [
                     SgButton(
                       label: Text(context.tx('Próximo (+1)')),
-                      onClick: () =>
-                          setState(() => _digito = (_digito + 1) % 10),
+                      onClick: () => _digito.value = (_digito.value + 1) % 10,
                     ),
                     SgButton(
                       label: Text(context.tx('Anterior (-1)')),
-                      onClick: () =>
-                          setState(() => _digito = (_digito + 9) % 10),
+                      onClick: () => _digito.value = (_digito.value + 9) % 10,
                     ),
                     SgButton(
                       label: Text(context.tx('Aleatório')),
-                      onClick: () => setState(
-                        () => _digito = DateTime.now().microsecond % 10,
-                      ),
+                      onClick: () =>
+                          _digito.value = DateTime.now().microsecond % 10,
                     ),
                   ],
                 ),
@@ -73,19 +80,21 @@ class _SgMatrixDigitPageState extends State<SgMatrixDigitPage> {
               runSpacing: 12,
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
-                SgMatrixDigit(
-                  value: _mensagens[_mensagem],
-                  color: '#a3e635',
-                  backgroundColor: '#06090f',
-                  dotSize: 8,
-                  gap: 2,
-                  charGap: 6,
+                ValueListenableBuilder<int>(
+                  valueListenable: _mensagem,
+                  builder: (context, mensagem, _) => SgMatrixDigit(
+                    value: _mensagens[mensagem],
+                    color: '#a3e635',
+                    backgroundColor: '#06090f',
+                    dotSize: 8,
+                    gap: 2,
+                    charGap: 6,
+                  ),
                 ),
                 SgButton(
                   label: Text(context.tx('Trocar texto')),
-                  onClick: () => setState(
-                    () => _mensagem = (_mensagem + 1) % _mensagens.length,
-                  ),
+                  onClick: () => _mensagem.value =
+                      (_mensagem.value + 1) % _mensagens.length,
                 ),
               ],
             ),

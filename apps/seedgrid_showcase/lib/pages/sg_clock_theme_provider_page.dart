@@ -16,7 +16,13 @@ class SgClockThemeProviderPage extends StatefulWidget {
 }
 
 class _SgClockThemeProviderPageState extends State<SgClockThemeProviderPage> {
-  String _themeId = 'classic';
+  final ValueNotifier<String> _themeId = ValueNotifier('classic');
+
+  @override
+  void dispose() {
+    _themeId.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,26 +35,29 @@ class _SgClockThemeProviderPageState extends State<SgClockThemeProviderPage> {
             // #region sg-clock-theme-provider-basico
             SgClockThemeProvider(
               value: SgClockThemeProviderValue(themes: sgClockThemesBuiltIn),
-              child: Wrap(
-                spacing: 16,
-                runSpacing: 16,
-                crossAxisAlignment: WrapCrossAlignment.start,
-                children: [
-                  SgClock(
-                    clockStyle: SgClockClockStyle.analog,
-                    size: 160,
-                    initialServerTime: '2026-06-15T10:08:30Z',
-                    timezone: 'UTC',
-                    themeId: _themeId,
-                  ),
-                  SizedBox(
-                    width: 300,
-                    child: SgClockThemePicker(
-                      value: _themeId,
-                      onChange: (id) => setState(() => _themeId = id),
+              child: ValueListenableBuilder<String>(
+                valueListenable: _themeId,
+                builder: (context, themeId, _) => Wrap(
+                  spacing: 16,
+                  runSpacing: 16,
+                  crossAxisAlignment: WrapCrossAlignment.start,
+                  children: [
+                    SgClock(
+                      clockStyle: SgClockClockStyle.analog,
+                      size: 160,
+                      initialServerTime: '2026-06-15T10:08:30Z',
+                      timezone: 'UTC',
+                      themeId: themeId,
                     ),
-                  ),
-                ],
+                    SizedBox(
+                      width: 300,
+                      child: SgClockThemePicker(
+                        value: themeId,
+                        onChange: (id) => _themeId.value = id,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
         // #endregion

@@ -10,15 +10,19 @@ Wrap(
   runSpacing: 12,
   crossAxisAlignment: WrapCrossAlignment.center,
   children: [
-    SgRoller3DDigit(value: '$_digit', fontSize: 32),
+    ValueListenableBuilder<int>(
+      valueListenable: _digit,
+      builder: (context, digit, _) =>
+          SgRoller3DDigit(value: '$digit', fontSize: 32),
+    ),
     SgButton(
       label: Text(context.tx('Próximo')),
-      onClick: () => setState(() => _digit = (_digit + 1) % 10),
+      onClick: () => _digit.value = (_digit.value + 1) % 10,
     ),
     SgButton(
       label: Text(context.tx('Aleatório')),
       appearance: SgAppearance.outline,
-      onClick: () => setState(() => _digit = (_digit * 7 + 3) % 10),
+      onClick: () => _digit.value = (_digit.value * 7 + 3) % 10,
     ),
   ],
 )
@@ -26,26 +30,29 @@ Wrap(
 
   /// Region `sg-roller3d-digit-duracao`.
   static const String sgRoller3dDigitDuracao = r'''
-Wrap(
-  spacing: 16,
-  runSpacing: 12,
-  crossAxisAlignment: WrapCrossAlignment.center,
-  children: [
-    SgRoller3DDigit(
-      value: _slow ? '9' : '0',
-      transitionMs: 150,
-      fontSize: 28,
-    ),
-    SgRoller3DDigit(
-      value: _slow ? '9' : '0',
-      transitionMs: 1500,
-      fontSize: 28,
-    ),
-    SgButton(
-      label: Text(context.tx('Alternar 0 e 9')),
-      onClick: () => setState(() => _slow = !_slow),
-    ),
-  ],
+ValueListenableBuilder<bool>(
+  valueListenable: _slow,
+  builder: (context, slow, _) => Wrap(
+    spacing: 16,
+    runSpacing: 12,
+    crossAxisAlignment: WrapCrossAlignment.center,
+    children: [
+      SgRoller3DDigit(
+        value: slow ? '9' : '0',
+        transitionMs: 150,
+        fontSize: 28,
+      ),
+      SgRoller3DDigit(
+        value: slow ? '9' : '0',
+        transitionMs: 1500,
+        fontSize: 28,
+      ),
+      SgButton(
+        label: Text(context.tx('Alternar 0 e 9')),
+        onClick: () => _slow.value = !slow,
+      ),
+    ],
+  ),
 )
 ''';
 
@@ -56,14 +63,20 @@ Wrap(
   runSpacing: 12,
   crossAxisAlignment: WrapCrossAlignment.center,
   children: [
-    SgRoller3DDigit(
-      value: String.fromCharCode(65 + _letter),
-      items: List.generate(26, (i) => String.fromCharCode(65 + i)),
-      fontSize: 32,
+    ValueListenableBuilder<int>(
+      valueListenable: _letter,
+      builder: (context, letter, _) => SgRoller3DDigit(
+        value: String.fromCharCode(65 + letter),
+        items: List.generate(
+          26,
+          (i) => String.fromCharCode(65 + i),
+        ),
+        fontSize: 32,
+      ),
     ),
     SgButton(
       label: Text(context.tx('Próxima letra')),
-      onClick: () => setState(() => _letter = (_letter + 5) % 26),
+      onClick: () => _letter.value = (_letter.value + 5) % 26,
     ),
   ],
 )
@@ -76,14 +89,20 @@ Wrap(
   runSpacing: 12,
   crossAxisAlignment: WrapCrossAlignment.center,
   children: [
-    SgRoller3DDigit(
-      value: _minute.toString().padLeft(2, '0'),
-      items: List.generate(60, (i) => i.toString().padLeft(2, '0')),
-      fontSize: 22,
+    ValueListenableBuilder<int>(
+      valueListenable: _minute,
+      builder: (context, minute, _) => SgRoller3DDigit(
+        value: minute.toString().padLeft(2, '0'),
+        items: List.generate(
+          60,
+          (i) => i.toString().padLeft(2, '0'),
+        ),
+        fontSize: 22,
+      ),
     ),
     SgButton(
       label: Text(context.tx('+7 minutos')),
-      onClick: () => setState(() => _minute = (_minute + 7) % 60),
+      onClick: () => _minute.value = (_minute.value + 7) % 60,
     ),
   ],
 )
@@ -91,24 +110,27 @@ Wrap(
 
   /// Region `sg-roller3d-digit-nomes`.
   static const String sgRoller3dDigitNomes = r'''
-Wrap(
-  spacing: 8,
-  runSpacing: 12,
-  crossAxisAlignment: WrapCrossAlignment.center,
-  children: [
-    for (final letra in _letrasDoNome())
-      SgRoller3DDigit(
-        value: letra,
-        items: _alfabeto,
-        fontSize: 28,
-        transitionMs: 110,
+ListenableBuilder(
+  listenable: Listenable.merge([_nome, _passo]),
+  builder: (context, _) => Wrap(
+    spacing: 8,
+    runSpacing: 12,
+    crossAxisAlignment: WrapCrossAlignment.center,
+    children: [
+      for (final letra in _letrasDoNome())
+        SgRoller3DDigit(
+          value: letra,
+          items: _alfabeto,
+          fontSize: 28,
+          transitionMs: 110,
+        ),
+      SgButton(
+        label: Text(context.tx('Animar nome')),
+        size: SgSize.sm,
+        onClick: _animarNome,
       ),
-    SgButton(
-      label: Text(context.tx('Animar nome')),
-      size: SgSize.sm,
-      onClick: _animarNome,
-    ),
-  ],
+    ],
+  ),
 )
 ''';
 

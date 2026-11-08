@@ -15,9 +15,17 @@ class SgClockPage extends StatefulWidget {
 }
 
 class _SgClockPageState extends State<SgClockPage> {
-  String _themeId = 'seedgrid';
-  bool _smooth = false;
-  bool _showSeconds = true;
+  final ValueNotifier<String> _themeId = ValueNotifier('seedgrid');
+  final ValueNotifier<bool> _smooth = ValueNotifier(false);
+  final ValueNotifier<bool> _showSeconds = ValueNotifier(true);
+
+  @override
+  void dispose() {
+    _themeId.dispose();
+    _smooth.dispose();
+    _showSeconds.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,60 +37,63 @@ class _SgClockPageState extends State<SgClockPage> {
             // #region sg-clock-analogico
             SgClockThemeProvider(
               value: SgClockThemeProviderValue(themes: sgClockThemesBuiltIn),
-              child: Wrap(
-                spacing: 16,
-                runSpacing: 16,
-                crossAxisAlignment: WrapCrossAlignment.start,
-                children: [
-                  SizedBox(
-                    width: 260,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SgClockThemePicker(
-                          value: _themeId,
-                          onChange: (id) => setState(() => _themeId = id),
-                          label: context.tx('Tema'),
-                        ),
-                        const SizedBox(height: 12),
-                        Wrap(
-                          spacing: 8,
-                          runSpacing: 8,
-                          children: [
-                            SgButton(
-                              label: Text(
-                                _smooth
-                                    ? context.tx('Segundos: smooth')
-                                    : context.tx('Segundos: step'),
+              child: ListenableBuilder(
+                listenable: Listenable.merge([_themeId, _smooth, _showSeconds]),
+                builder: (context, _) => Wrap(
+                  spacing: 16,
+                  runSpacing: 16,
+                  crossAxisAlignment: WrapCrossAlignment.start,
+                  children: [
+                    SizedBox(
+                      width: 260,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SgClockThemePicker(
+                            value: _themeId.value,
+                            onChange: (id) => _themeId.value = id,
+                            label: context.tx('Tema'),
+                          ),
+                          const SizedBox(height: 12),
+                          Wrap(
+                            spacing: 8,
+                            runSpacing: 8,
+                            children: [
+                              SgButton(
+                                label: Text(
+                                  _smooth.value
+                                      ? context.tx('Segundos: smooth')
+                                      : context.tx('Segundos: step'),
+                                ),
+                                onClick: () => _smooth.value = !_smooth.value,
                               ),
-                              onClick: () => setState(() => _smooth = !_smooth),
-                            ),
-                            SgButton(
-                              label: Text(
-                                _showSeconds
-                                    ? context.tx('Segundos: ON')
-                                    : context.tx('Segundos: OFF'),
+                              SgButton(
+                                label: Text(
+                                  _showSeconds.value
+                                      ? context.tx('Segundos: ON')
+                                      : context.tx('Segundos: OFF'),
+                                ),
+                                onClick: () =>
+                                    _showSeconds.value = !_showSeconds.value,
                               ),
-                              onClick: () =>
-                                  setState(() => _showSeconds = !_showSeconds),
-                            ),
-                          ],
-                        ),
-                      ],
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  SgClock(
-                    clockStyle: SgClockClockStyle.analog,
-                    size: 220,
-                    initialServerTime: '2026-06-15T10:08:30Z',
-                    timezone: 'UTC',
-                    themeId: _themeId,
-                    showSeconds: _showSeconds,
-                    secondHandMode: _smooth
-                        ? SgClockSecondHandMode.smooth
-                        : SgClockSecondHandMode.step,
-                  ),
-                ],
+                    SgClock(
+                      clockStyle: SgClockClockStyle.analog,
+                      size: 220,
+                      initialServerTime: '2026-06-15T10:08:30Z',
+                      timezone: 'UTC',
+                      themeId: _themeId.value,
+                      showSeconds: _showSeconds.value,
+                      secondHandMode: _smooth.value
+                          ? SgClockSecondHandMode.smooth
+                          : SgClockSecondHandMode.step,
+                    ),
+                  ],
+                ),
               ),
             ),
         // #endregion

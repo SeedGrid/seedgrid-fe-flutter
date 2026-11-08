@@ -16,30 +16,33 @@ class SgFlipDigitPage extends StatefulWidget {
 }
 
 class _SgFlipDigitPageState extends State<SgFlipDigitPage> {
-  int _n = 0;
-  int _digito = 0;
-  int _letra = 0; // 0 = A
-  bool _rodando = false;
-  int _auto = 0;
+  final ValueNotifier<int> _n = ValueNotifier(0);
+  final ValueNotifier<int> _digito = ValueNotifier(0);
+  final ValueNotifier<int> _letra = ValueNotifier(0); // 0 = A
+  final ValueNotifier<bool> _rodando = ValueNotifier(false);
+  final ValueNotifier<int> _auto = ValueNotifier(0);
   Timer? _timer;
+  final ValueNotifier<int> _clock = ValueNotifier(1234);
 
   @override
   void dispose() {
     _timer?.cancel();
+    for (final n in [_n, _digito, _letra, _auto, _clock]) {
+      n.dispose();
+    }
+    _rodando.dispose();
     super.dispose();
   }
 
   void _alternar() {
-    setState(() => _rodando = !_rodando);
+    _rodando.value = !_rodando.value;
     _timer?.cancel();
-    if (_rodando) {
+    if (_rodando.value) {
       _timer = Timer.periodic(const Duration(milliseconds: 1300), (_) {
-        if (mounted) setState(() => _auto = (_auto + 1) % 10);
+        if (mounted) _auto.value = (_auto.value + 1) % 10;
       });
     }
   }
-
-  int _clock = 1234;
 
   @override
   Widget build(BuildContext context) {
@@ -54,26 +57,27 @@ class _SgFlipDigitPageState extends State<SgFlipDigitPage> {
               runSpacing: 12,
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
-                SgFlipDigit(value: '$_digito'),
+                ValueListenableBuilder<int>(
+                  valueListenable: _digito,
+                  builder: (context, digito, _) =>
+                      SgFlipDigit(value: '$digito'),
+                ),
                 Wrap(
                   spacing: 8,
                   runSpacing: 8,
                   children: [
                     SgButton(
                       label: Text(context.tx('Próximo (+1)')),
-                      onClick: () =>
-                          setState(() => _digito = (_digito + 1) % 10),
+                      onClick: () => _digito.value = (_digito.value + 1) % 10,
                     ),
                     SgButton(
                       label: Text(context.tx('Anterior (-1)')),
-                      onClick: () =>
-                          setState(() => _digito = (_digito + 9) % 10),
+                      onClick: () => _digito.value = (_digito.value + 9) % 10,
                     ),
                     SgButton(
                       label: Text(context.tx('Aleatório')),
-                      onClick: () => setState(
-                        () => _digito = DateTime.now().microsecond % 10,
-                      ),
+                      onClick: () =>
+                          _digito.value = DateTime.now().microsecond % 10,
                     ),
                   ],
                 ),
@@ -92,10 +96,14 @@ class _SgFlipDigitPageState extends State<SgFlipDigitPage> {
               runSpacing: 12,
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
-                SgFlipDigit(value: String.fromCharCode(65 + _letra)),
+                ValueListenableBuilder<int>(
+                  valueListenable: _letra,
+                  builder: (context, letra, _) =>
+                      SgFlipDigit(value: String.fromCharCode(65 + letra)),
+                ),
                 SgButton(
                   label: Text(context.tx('Próxima letra')),
-                  onClick: () => setState(() => _letra = (_letra + 1) % 26),
+                  onClick: () => _letra.value = (_letra.value + 1) % 26,
                 ),
               ],
             ),
@@ -168,10 +176,16 @@ class _SgFlipDigitPageState extends State<SgFlipDigitPage> {
               runSpacing: 12,
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
-                SgFlipDigit(value: '$_auto'),
-                SgButton(
-                  label: Text(context.tx(_rodando ? 'Parar' : 'Iniciar')),
-                  onClick: _alternar,
+                ValueListenableBuilder<int>(
+                  valueListenable: _auto,
+                  builder: (context, auto, _) => SgFlipDigit(value: '$auto'),
+                ),
+                ValueListenableBuilder<bool>(
+                  valueListenable: _rodando,
+                  builder: (context, rodando, _) => SgButton(
+                    label: Text(context.tx(rodando ? 'Parar' : 'Iniciar')),
+                    onClick: _alternar,
+                  ),
                 ),
               ],
             ),
@@ -190,15 +204,16 @@ class _SgFlipDigitPageState extends State<SgFlipDigitPage> {
               runSpacing: 12,
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
-                SgFlipDigit(value: '${_n % 10}', fontSize: 56),
-                SgButton(
-                  label: const Text('+1'),
-                  onClick: () => setState(() => _n++),
+                ValueListenableBuilder<int>(
+                  valueListenable: _n,
+                  builder: (context, n, _) =>
+                      SgFlipDigit(value: '${n % 10}', fontSize: 56),
                 ),
+                SgButton(label: const Text('+1'), onClick: () => _n.value++),
                 SgButton(
                   label: Text(context.tx('Zerar')),
                   appearance: SgAppearance.outline,
-                  onClick: () => setState(() => _n = 0),
+                  onClick: () => _n.value = 0,
                 ),
               ],
             ),
@@ -211,15 +226,18 @@ class _SgFlipDigitPageState extends State<SgFlipDigitPage> {
             'fontSize controla a escala do conjunto: as medidas vêm de múltiplos dele.',
         preview:
             // #region sg-flip-digit-tamanhos
-            Wrap(
-              spacing: 24,
-              runSpacing: 16,
-              crossAxisAlignment: WrapCrossAlignment.end,
-              children: [
-                SgFlipDigit(value: '${_n % 10}', fontSize: 28),
-                SgFlipDigit(value: '${_n % 10}', fontSize: 48),
-                SgFlipDigit(value: '${_n % 10}', fontSize: 72),
-              ],
+            ValueListenableBuilder<int>(
+              valueListenable: _n,
+              builder: (context, n, _) => Wrap(
+                spacing: 24,
+                runSpacing: 16,
+                crossAxisAlignment: WrapCrossAlignment.end,
+                children: [
+                  SgFlipDigit(value: '${n % 10}', fontSize: 28),
+                  SgFlipDigit(value: '${n % 10}', fontSize: 48),
+                  SgFlipDigit(value: '${n % 10}', fontSize: 72),
+                ],
+              ),
             ),
         // #endregion
         code: SgFlipDigitPageSnippets.sgFlipDigitTamanhos,
@@ -230,20 +248,22 @@ class _SgFlipDigitPageState extends State<SgFlipDigitPage> {
             'Um dígito por caractere, como num relógio de cartas. Só gira quem mudou.',
         preview:
             // #region sg-flip-digit-varios
-            Wrap(
-              spacing: 16,
-              runSpacing: 12,
-              crossAxisAlignment: WrapCrossAlignment.center,
-              children: [
-                for (final ch in _clock.toString().padLeft(4, '0').split(''))
-                  SgFlipDigit(value: ch, fontSize: 44),
-                SgButton(
-                  label: Text(context.tx('Somar 111')),
-                  size: SgSize.sm,
-                  onClick: () =>
-                      setState(() => _clock = (_clock + 111) % 10000),
-                ),
-              ],
+            ValueListenableBuilder<int>(
+              valueListenable: _clock,
+              builder: (context, clock, _) => Wrap(
+                spacing: 16,
+                runSpacing: 12,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                children: [
+                  for (final ch in clock.toString().padLeft(4, '0').split(''))
+                    SgFlipDigit(value: ch, fontSize: 44),
+                  SgButton(
+                    label: Text(context.tx('Somar 111')),
+                    size: SgSize.sm,
+                    onClick: () => _clock.value = (clock + 111) % 10000,
+                  ),
+                ],
+              ),
             ),
         // #endregion
         code: SgFlipDigitPageSnippets.sgFlipDigitVarios,

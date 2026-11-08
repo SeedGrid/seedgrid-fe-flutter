@@ -15,8 +15,15 @@ class SgClockThemePickerPage extends StatefulWidget {
 }
 
 class _SgClockThemePickerPageState extends State<SgClockThemePickerPage> {
-  String _tema = 'classic';
-  String _escolhido = 'roman-classic';
+  final ValueNotifier<String> _tema = ValueNotifier('classic');
+  final ValueNotifier<String> _escolhido = ValueNotifier('roman-classic');
+
+  @override
+  void dispose() {
+    _tema.dispose();
+    _escolhido.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,26 +36,29 @@ class _SgClockThemePickerPageState extends State<SgClockThemePickerPage> {
             // #region sg-clock-theme-picker-basico
             SgClockThemeProvider(
               value: SgClockThemeProviderValue(themes: sgClockThemesBuiltIn),
-              child: Wrap(
-                spacing: 16,
-                runSpacing: 16,
-                crossAxisAlignment: WrapCrossAlignment.start,
-                children: [
-                  SizedBox(
-                    width: 300,
-                    child: SgClockThemePicker(
-                      value: _tema,
-                      onChange: (id) => setState(() => _tema = id),
+              child: ValueListenableBuilder<String>(
+                valueListenable: _tema,
+                builder: (context, tema, _) => Wrap(
+                  spacing: 16,
+                  runSpacing: 16,
+                  crossAxisAlignment: WrapCrossAlignment.start,
+                  children: [
+                    SizedBox(
+                      width: 300,
+                      child: SgClockThemePicker(
+                        value: tema,
+                        onChange: (id) => _tema.value = id,
+                      ),
                     ),
-                  ),
-                  SgClock(
-                    clockStyle: SgClockClockStyle.analog,
-                    size: 160,
-                    initialServerTime: '2026-06-15T10:08:30Z',
-                    timezone: 'UTC',
-                    themeId: _tema,
-                  ),
-                ],
+                    SgClock(
+                      clockStyle: SgClockClockStyle.analog,
+                      size: 160,
+                      initialServerTime: '2026-06-15T10:08:30Z',
+                      timezone: 'UTC',
+                      themeId: tema,
+                    ),
+                  ],
+                ),
               ),
             ),
         // #endregion
@@ -64,12 +74,15 @@ class _SgClockThemePickerPageState extends State<SgClockThemePickerPage> {
               value: SgClockThemeProviderValue(themes: sgClockThemesBuiltIn),
               child: SizedBox(
                 width: 300,
-                child: SgClockThemePicker(
-                  value: _escolhido,
-                  onChange: (id) => setState(() => _escolhido = id),
-                  label: context.tx('Tema romano'),
-                  filter: (tema) =>
-                      tema.id.startsWith('roman') || tema.id == 'classic',
+                child: ValueListenableBuilder<String>(
+                  valueListenable: _escolhido,
+                  builder: (context, escolhido, _) => SgClockThemePicker(
+                    value: escolhido,
+                    onChange: (id) => _escolhido.value = id,
+                    label: context.tx('Tema romano'),
+                    filter: (tema) =>
+                        tema.id.startsWith('roman') || tema.id == 'classic',
+                  ),
                 ),
               ),
             ),

@@ -15,19 +15,25 @@ class SgSevenSegmentDigitPage extends StatefulWidget {
 }
 
 class _SgSevenSegmentDigitPageState extends State<SgSevenSegmentDigitPage> {
-  int _digito = 0;
-  SgSevenSegmentDigitPalette _paleta = SgSevenSegmentDigitPalette.red;
-  int _hexIndex = 10;
-  int _segundos = 0;
+  final ValueNotifier<int> _digito = ValueNotifier(0);
+  final ValueNotifier<SgSevenSegmentDigitPalette> _paleta = ValueNotifier(
+    SgSevenSegmentDigitPalette.red,
+  );
+  final ValueNotifier<int> _hexIndex = ValueNotifier(10);
+  final ValueNotifier<int> _segundos = ValueNotifier(0);
+
+  @override
+  void dispose() {
+    _digito.dispose();
+    _paleta.dispose();
+    _hexIndex.dispose();
+    _segundos.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     const hex = '0123456789ABCDEF';
-    String dois(int n) => n.toString().padLeft(2, '0');
-    final total = _segundos % 86400;
-    final hh = dois(total ~/ 3600);
-    final mm = dois(total % 3600 ~/ 60);
-    final ss = dois(total % 60);
     const doisPontos = Padding(
       padding: EdgeInsets.symmetric(horizontal: 4),
       child: Column(
@@ -45,56 +51,59 @@ class _SgSevenSegmentDigitPageState extends State<SgSevenSegmentDigitPage> {
         description: 'Troca manual de dígitos com controles.',
         preview:
             // #region sg-seven-segment-digit-basico
-            Wrap(
-              spacing: 16,
-              runSpacing: 12,
-              crossAxisAlignment: WrapCrossAlignment.center,
-              children: [
-                SgSevenSegmentDigit(value: '$_digito', palette: _paleta),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SgButton(
-                      label: Text(context.tx('Próximo (+1)')),
-                      size: SgSize.sm,
-                      onClick: () =>
-                          setState(() => _digito = (_digito + 1) % 10),
-                    ),
-                    const SizedBox(height: 8),
-                    SgButton(
-                      label: Text(context.tx('Anterior (-1)')),
-                      size: SgSize.sm,
-                      appearance: SgAppearance.outline,
-                      onClick: () =>
-                          setState(() => _digito = (_digito + 9) % 10),
-                    ),
-                    const SizedBox(height: 8),
-                    SgButton(
-                      label: Text(context.tx('Aleatório')),
-                      size: SgSize.sm,
-                      onClick: () => setState(
-                        () => _digito = DateTime.now().microsecond % 10,
+            ListenableBuilder(
+              listenable: Listenable.merge([_digito, _paleta]),
+              builder: (context, _) => Wrap(
+                spacing: 16,
+                runSpacing: 12,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                children: [
+                  SgSevenSegmentDigit(
+                    value: '${_digito.value}',
+                    palette: _paleta.value,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SgButton(
+                        label: Text(context.tx('Próximo (+1)')),
+                        size: SgSize.sm,
+                        onClick: () => _digito.value = (_digito.value + 1) % 10,
                       ),
-                    ),
-                    const SizedBox(height: 8),
-                    Wrap(
-                      spacing: 8,
-                      runSpacing: 8,
-                      children: [
-                        for (final item in SgSevenSegmentDigitPalette.values)
-                          SgButton(
-                            label: Text(item.name),
-                            size: SgSize.sm,
-                            appearance: _paleta == item
-                                ? SgAppearance.solid
-                                : SgAppearance.outline,
-                            onClick: () => setState(() => _paleta = item),
-                          ),
-                      ],
-                    ),
-                  ],
-                ),
-              ],
+                      const SizedBox(height: 8),
+                      SgButton(
+                        label: Text(context.tx('Anterior (-1)')),
+                        size: SgSize.sm,
+                        appearance: SgAppearance.outline,
+                        onClick: () => _digito.value = (_digito.value + 9) % 10,
+                      ),
+                      const SizedBox(height: 8),
+                      SgButton(
+                        label: Text(context.tx('Aleatório')),
+                        size: SgSize.sm,
+                        onClick: () =>
+                            _digito.value = DateTime.now().microsecond % 10,
+                      ),
+                      const SizedBox(height: 8),
+                      Wrap(
+                        spacing: 8,
+                        runSpacing: 8,
+                        children: [
+                          for (final item in SgSevenSegmentDigitPalette.values)
+                            SgButton(
+                              label: Text(item.name),
+                              size: SgSize.sm,
+                              appearance: _paleta.value == item
+                                  ? SgAppearance.solid
+                                  : SgAppearance.outline,
+                              onClick: () => _paleta.value = item,
+                            ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
         // #endregion
         code: SgSevenSegmentDigitPageSnippets.sgSevenSegmentDigitBasico,
@@ -109,17 +118,20 @@ class _SgSevenSegmentDigitPageState extends State<SgSevenSegmentDigitPage> {
               runSpacing: 12,
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
-                SgSevenSegmentDigit(
-                  value: hex[_hexIndex],
-                  color: '#f97316',
-                  backgroundColor: '#180b05',
-                  offColor: 'rgba(124,45,18,0.24)',
+                ValueListenableBuilder<int>(
+                  valueListenable: _hexIndex,
+                  builder: (context, hexIndex, _) => SgSevenSegmentDigit(
+                    value: hex[hexIndex],
+                    color: '#f97316',
+                    backgroundColor: '#180b05',
+                    offColor: 'rgba(124,45,18,0.24)',
+                  ),
                 ),
                 SgButton(
                   label: Text(context.tx('Próximo caractere')),
                   size: SgSize.sm,
                   onClick: () =>
-                      setState(() => _hexIndex = (_hexIndex + 1) % hex.length),
+                      _hexIndex.value = (_hexIndex.value + 1) % hex.length,
                 ),
               ],
             ),
@@ -206,26 +218,36 @@ class _SgSevenSegmentDigitPageState extends State<SgSevenSegmentDigitPage> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Wrap(
-                  spacing: 4,
-                  runSpacing: 8,
-                  crossAxisAlignment: WrapCrossAlignment.center,
-                  children: [
-                    for (final c in hh.split(''))
-                      SgSevenSegmentDigit(value: c, size: 86),
-                    doisPontos,
-                    for (final c in mm.split(''))
-                      SgSevenSegmentDigit(value: c, size: 86),
-                    doisPontos,
-                    for (final c in ss.split(''))
-                      SgSevenSegmentDigit(value: c, size: 86),
-                  ],
+                ValueListenableBuilder<int>(
+                  valueListenable: _segundos,
+                  builder: (context, segundos, _) {
+                    String dois(int n) => n.toString().padLeft(2, '0');
+                    final total = segundos % 86400;
+                    final hh = dois(total ~/ 3600);
+                    final mm = dois(total % 3600 ~/ 60);
+                    final ss = dois(total % 60);
+                    return Wrap(
+                      spacing: 4,
+                      runSpacing: 8,
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      children: [
+                        for (final c in hh.split(''))
+                          SgSevenSegmentDigit(value: c, size: 86),
+                        doisPontos,
+                        for (final c in mm.split(''))
+                          SgSevenSegmentDigit(value: c, size: 86),
+                        doisPontos,
+                        for (final c in ss.split(''))
+                          SgSevenSegmentDigit(value: c, size: 86),
+                      ],
+                    );
+                  },
                 ),
                 const SizedBox(height: 12),
                 SgButton(
                   label: Text(context.tx('+1 segundo')),
                   size: SgSize.sm,
-                  onClick: () => setState(() => _segundos++),
+                  onClick: () => _segundos.value++,
                 ),
               ],
             ),
