@@ -10,11 +10,14 @@ Wrap(
   runSpacing: 12,
   crossAxisAlignment: WrapCrossAlignment.center,
   children: [
-    SgNeonDigit(
-      value: '$_digito',
-      color: '#f8fafc',
-      backgroundColor: '#120f2b',
-      shadowColor: '#8b5cf6',
+    ValueListenableBuilder<int>(
+      valueListenable: _digito,
+      builder: (context, digito, _) => SgNeonDigit(
+        value: '$digito',
+        color: '#f8fafc',
+        backgroundColor: '#120f2b',
+        shadowColor: '#8b5cf6',
+      ),
     ),
     Wrap(
       spacing: 8,
@@ -22,13 +25,11 @@ Wrap(
       children: [
         SgButton(
           label: Text(context.tx('Próximo (+1)')),
-          onClick: () =>
-              setState(() => _digito = (_digito + 1) % 10),
+          onClick: () => _digito.value = (_digito.value + 1) % 10,
         ),
         SgButton(
           label: Text(context.tx('Anterior (-1)')),
-          onClick: () =>
-              setState(() => _digito = (_digito + 9) % 10),
+          onClick: () => _digito.value = (_digito.value + 9) % 10,
         ),
       ],
     ),
@@ -157,15 +158,18 @@ Wrap(
   runSpacing: 12,
   crossAxisAlignment: WrapCrossAlignment.center,
   children: [
-    SgNeonDigit(
-      value: const ['teste', 'seedgrid', 'your text'][_palavra],
-      color: '#e2f6ff',
-      backgroundColor: '#101934',
-      shadowColor: '#47d1ff',
+    ValueListenableBuilder<int>(
+      valueListenable: _palavra,
+      builder: (context, palavra, _) => SgNeonDigit(
+        value: const ['teste', 'seedgrid', 'your text'][palavra],
+        color: '#e2f6ff',
+        backgroundColor: '#101934',
+        shadowColor: '#47d1ff',
+      ),
     ),
     SgButton(
       label: Text(context.tx('Trocar texto')),
-      onClick: () => setState(() => _palavra = (_palavra + 1) % 3),
+      onClick: () => _palavra.value = (_palavra.value + 1) % 3,
     ),
   ],
 )

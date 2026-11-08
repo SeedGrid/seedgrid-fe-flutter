@@ -16,12 +16,12 @@ class SgRoller3DDigitPage extends StatefulWidget {
 }
 
 class _SgRoller3DDigitPageState extends State<SgRoller3DDigitPage> {
-  int _digit = 0;
-  int _minute = 42;
-  int _letter = 12;
-  bool _slow = false;
-  int _nome = 0;
-  int _passo = 7;
+  final ValueNotifier<int> _digit = ValueNotifier(0);
+  final ValueNotifier<int> _minute = ValueNotifier(42);
+  final ValueNotifier<int> _letter = ValueNotifier(12);
+  final ValueNotifier<bool> _slow = ValueNotifier(false);
+  final ValueNotifier<int> _nome = ValueNotifier(0);
+  final ValueNotifier<int> _passo = ValueNotifier(7);
   Timer? _timer;
   static const _nomes = ['LUCIANO', 'MARTA'];
   static final _alfabeto = [
@@ -32,35 +32,37 @@ class _SgRoller3DDigitPageState extends State<SgRoller3DDigitPage> {
   @override
   void dispose() {
     _timer?.cancel();
+    for (final n in [_digit, _minute, _letter, _nome, _passo]) {
+      n.dispose();
+    }
+    _slow.dispose();
     super.dispose();
   }
 
   List<String> _letrasDoNome() {
-    final atual = _nomes[_nome];
-    final anterior = _nomes[(_nome - 1 + _nomes.length) % _nomes.length];
+    final atual = _nomes[_nome.value];
+    final anterior = _nomes[(_nome.value - 1 + _nomes.length) % _nomes.length];
     final tamanho = atual.length > anterior.length
         ? atual.length
         : anterior.length;
     final a = anterior.padRight(tamanho);
     final b = atual.padRight(tamanho);
-    return [for (var i = 0; i < tamanho; i++) i <= _passo ? b[i] : a[i]];
+    return [for (var i = 0; i < tamanho; i++) i <= _passo.value ? b[i] : a[i]];
   }
 
   void _animarNome() {
     _timer?.cancel();
-    final atual = _nomes[_nome];
-    final proximo = _nomes[(_nome + 1) % _nomes.length];
+    final atual = _nomes[_nome.value];
+    final proximo = _nomes[(_nome.value + 1) % _nomes.length];
     final maximo = atual.length > proximo.length
         ? atual.length
         : proximo.length;
-    setState(() {
-      _nome = (_nome + 1) % _nomes.length;
-      _passo = 0;
-    });
+    _nome.value = (_nome.value + 1) % _nomes.length;
+    _passo.value = 0;
     _timer = Timer.periodic(const Duration(milliseconds: 120), (t) {
       if (!mounted) return;
-      setState(() => _passo++);
-      if (_passo >= maximo) t.cancel();
+      _passo.value++;
+      if (_passo.value >= maximo) t.cancel();
     });
   }
 
@@ -78,15 +80,19 @@ class _SgRoller3DDigitPageState extends State<SgRoller3DDigitPage> {
               runSpacing: 12,
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
-                SgRoller3DDigit(value: '$_digit', fontSize: 32),
+                ValueListenableBuilder<int>(
+                  valueListenable: _digit,
+                  builder: (context, digit, _) =>
+                      SgRoller3DDigit(value: '$digit', fontSize: 32),
+                ),
                 SgButton(
                   label: Text(context.tx('Próximo')),
-                  onClick: () => setState(() => _digit = (_digit + 1) % 10),
+                  onClick: () => _digit.value = (_digit.value + 1) % 10,
                 ),
                 SgButton(
                   label: Text(context.tx('Aleatório')),
                   appearance: SgAppearance.outline,
-                  onClick: () => setState(() => _digit = (_digit * 7 + 3) % 10),
+                  onClick: () => _digit.value = (_digit.value * 7 + 3) % 10,
                 ),
               ],
             ),
@@ -104,14 +110,20 @@ class _SgRoller3DDigitPageState extends State<SgRoller3DDigitPage> {
               runSpacing: 12,
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
-                SgRoller3DDigit(
-                  value: _minute.toString().padLeft(2, '0'),
-                  items: List.generate(60, (i) => i.toString().padLeft(2, '0')),
-                  fontSize: 22,
+                ValueListenableBuilder<int>(
+                  valueListenable: _minute,
+                  builder: (context, minute, _) => SgRoller3DDigit(
+                    value: minute.toString().padLeft(2, '0'),
+                    items: List.generate(
+                      60,
+                      (i) => i.toString().padLeft(2, '0'),
+                    ),
+                    fontSize: 22,
+                  ),
                 ),
                 SgButton(
                   label: Text(context.tx('+7 minutos')),
-                  onClick: () => setState(() => _minute = (_minute + 7) % 60),
+                  onClick: () => _minute.value = (_minute.value + 7) % 60,
                 ),
               ],
             ),
@@ -127,14 +139,20 @@ class _SgRoller3DDigitPageState extends State<SgRoller3DDigitPage> {
               runSpacing: 12,
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
-                SgRoller3DDigit(
-                  value: String.fromCharCode(65 + _letter),
-                  items: List.generate(26, (i) => String.fromCharCode(65 + i)),
-                  fontSize: 32,
+                ValueListenableBuilder<int>(
+                  valueListenable: _letter,
+                  builder: (context, letter, _) => SgRoller3DDigit(
+                    value: String.fromCharCode(65 + letter),
+                    items: List.generate(
+                      26,
+                      (i) => String.fromCharCode(65 + i),
+                    ),
+                    fontSize: 32,
+                  ),
                 ),
                 SgButton(
                   label: Text(context.tx('Próxima letra')),
-                  onClick: () => setState(() => _letter = (_letter + 5) % 26),
+                  onClick: () => _letter.value = (_letter.value + 5) % 26,
                 ),
               ],
             ),
@@ -147,24 +165,27 @@ class _SgRoller3DDigitPageState extends State<SgRoller3DDigitPage> {
             'Composição de vários SgRoller3DDigit para animar texto - exemplo: "LUCIANO" -> "MARTA".',
         preview:
             // #region sg-roller3d-digit-nomes
-            Wrap(
-              spacing: 8,
-              runSpacing: 12,
-              crossAxisAlignment: WrapCrossAlignment.center,
-              children: [
-                for (final letra in _letrasDoNome())
-                  SgRoller3DDigit(
-                    value: letra,
-                    items: _alfabeto,
-                    fontSize: 28,
-                    transitionMs: 110,
+            ListenableBuilder(
+              listenable: Listenable.merge([_nome, _passo]),
+              builder: (context, _) => Wrap(
+                spacing: 8,
+                runSpacing: 12,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                children: [
+                  for (final letra in _letrasDoNome())
+                    SgRoller3DDigit(
+                      value: letra,
+                      items: _alfabeto,
+                      fontSize: 28,
+                      transitionMs: 110,
+                    ),
+                  SgButton(
+                    label: Text(context.tx('Animar nome')),
+                    size: SgSize.sm,
+                    onClick: _animarNome,
                   ),
-                SgButton(
-                  label: Text(context.tx('Animar nome')),
-                  size: SgSize.sm,
-                  onClick: _animarNome,
-                ),
-              ],
+                ],
+              ),
             ),
         // #endregion
         code: SgRoller3dDigitPageSnippets.sgRoller3dDigitNomes,
@@ -196,26 +217,29 @@ class _SgRoller3DDigitPageState extends State<SgRoller3DDigitPage> {
         description: 'transitionMs: 150 ms contra 1500 ms, lado a lado.',
         preview:
             // #region sg-roller3d-digit-duracao
-            Wrap(
-              spacing: 16,
-              runSpacing: 12,
-              crossAxisAlignment: WrapCrossAlignment.center,
-              children: [
-                SgRoller3DDigit(
-                  value: _slow ? '9' : '0',
-                  transitionMs: 150,
-                  fontSize: 28,
-                ),
-                SgRoller3DDigit(
-                  value: _slow ? '9' : '0',
-                  transitionMs: 1500,
-                  fontSize: 28,
-                ),
-                SgButton(
-                  label: Text(context.tx('Alternar 0 e 9')),
-                  onClick: () => setState(() => _slow = !_slow),
-                ),
-              ],
+            ValueListenableBuilder<bool>(
+              valueListenable: _slow,
+              builder: (context, slow, _) => Wrap(
+                spacing: 16,
+                runSpacing: 12,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                children: [
+                  SgRoller3DDigit(
+                    value: slow ? '9' : '0',
+                    transitionMs: 150,
+                    fontSize: 28,
+                  ),
+                  SgRoller3DDigit(
+                    value: slow ? '9' : '0',
+                    transitionMs: 1500,
+                    fontSize: 28,
+                  ),
+                  SgButton(
+                    label: Text(context.tx('Alternar 0 e 9')),
+                    onClick: () => _slow.value = !slow,
+                  ),
+                ],
+              ),
             ),
         // #endregion
         code: SgRoller3dDigitPageSnippets.sgRoller3dDigitDuracao,

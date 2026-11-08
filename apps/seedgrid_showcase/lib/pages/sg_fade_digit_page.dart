@@ -16,12 +16,12 @@ class SgFadeDigitPage extends StatefulWidget {
 }
 
 class _SgFadeDigitPageState extends State<SgFadeDigitPage> {
-  int _digito = 0;
-  int _letra = 0; // 0 = A
-  bool _rodando = false;
-  int _contador = 0;
-  bool _relogioRodando = false;
-  int _segundos = 0;
+  final ValueNotifier<int> _digito = ValueNotifier(0);
+  final ValueNotifier<int> _letra = ValueNotifier(0); // 0 = A
+  final ValueNotifier<bool> _rodando = ValueNotifier(false);
+  final ValueNotifier<int> _contador = ValueNotifier(0);
+  final ValueNotifier<bool> _relogioRodando = ValueNotifier(false);
+  final ValueNotifier<int> _segundos = ValueNotifier(0);
   Timer? _timerContador;
   Timer? _timerRelogio;
 
@@ -29,35 +29,36 @@ class _SgFadeDigitPageState extends State<SgFadeDigitPage> {
   void dispose() {
     _timerContador?.cancel();
     _timerRelogio?.cancel();
+    for (final n in [_digito, _letra, _contador, _segundos]) {
+      n.dispose();
+    }
+    _rodando.dispose();
+    _relogioRodando.dispose();
     super.dispose();
   }
 
   void _alternarContador() {
-    setState(() => _rodando = !_rodando);
+    _rodando.value = !_rodando.value;
     _timerContador?.cancel();
-    if (_rodando) {
+    if (_rodando.value) {
       _timerContador = Timer.periodic(const Duration(milliseconds: 800), (_) {
-        if (mounted) setState(() => _contador = (_contador + 1) % 10);
+        if (mounted) _contador.value = (_contador.value + 1) % 10;
       });
     }
   }
 
   void _alternarRelogio() {
-    setState(() => _relogioRodando = !_relogioRodando);
+    _relogioRodando.value = !_relogioRodando.value;
     _timerRelogio?.cancel();
-    if (_relogioRodando) {
+    if (_relogioRodando.value) {
       _timerRelogio = Timer.periodic(const Duration(seconds: 1), (_) {
-        if (mounted) setState(() => _segundos = (_segundos + 1) % 86400);
+        if (mounted) _segundos.value = (_segundos.value + 1) % 86400;
       });
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    String dois(int n) => n.toString().padLeft(2, '0');
-    final horas = dois(_segundos ~/ 3600);
-    final minutos = dois(_segundos % 3600 ~/ 60);
-    final segundos = dois(_segundos % 60);
     final examples = <ShowcaseExample>[
       ShowcaseExample(
         title: 'Básico (0-9)',
@@ -69,26 +70,27 @@ class _SgFadeDigitPageState extends State<SgFadeDigitPage> {
               runSpacing: 12,
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
-                SgFadeDigit(value: '$_digito'),
+                ValueListenableBuilder<int>(
+                  valueListenable: _digito,
+                  builder: (context, digito, _) =>
+                      SgFadeDigit(value: '$digito'),
+                ),
                 Wrap(
                   spacing: 8,
                   runSpacing: 8,
                   children: [
                     SgButton(
                       label: Text(context.tx('Próximo (+1)')),
-                      onClick: () =>
-                          setState(() => _digito = (_digito + 1) % 10),
+                      onClick: () => _digito.value = (_digito.value + 1) % 10,
                     ),
                     SgButton(
                       label: Text(context.tx('Anterior (-1)')),
-                      onClick: () =>
-                          setState(() => _digito = (_digito + 9) % 10),
+                      onClick: () => _digito.value = (_digito.value + 9) % 10,
                     ),
                     SgButton(
                       label: Text(context.tx('Aleatório')),
-                      onClick: () => setState(
-                        () => _digito = DateTime.now().microsecond % 10,
-                      ),
+                      onClick: () =>
+                          _digito.value = DateTime.now().microsecond % 10,
                     ),
                   ],
                 ),
@@ -107,10 +109,14 @@ class _SgFadeDigitPageState extends State<SgFadeDigitPage> {
               runSpacing: 12,
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
-                SgFadeDigit(value: String.fromCharCode(65 + _letra)),
+                ValueListenableBuilder<int>(
+                  valueListenable: _letra,
+                  builder: (context, letra, _) =>
+                      SgFadeDigit(value: String.fromCharCode(65 + letra)),
+                ),
                 SgButton(
                   label: Text(context.tx('Próxima letra')),
-                  onClick: () => setState(() => _letra = (_letra + 1) % 26),
+                  onClick: () => _letra.value = (_letra.value + 1) % 26,
                 ),
               ],
             ),
@@ -194,10 +200,17 @@ class _SgFadeDigitPageState extends State<SgFadeDigitPage> {
               runSpacing: 12,
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
-                SgFadeDigit(value: '$_contador'),
-                SgButton(
-                  label: Text(context.tx(_rodando ? 'Parar' : 'Iniciar')),
-                  onClick: _alternarContador,
+                ValueListenableBuilder<int>(
+                  valueListenable: _contador,
+                  builder: (context, contador, _) =>
+                      SgFadeDigit(value: '$contador'),
+                ),
+                ValueListenableBuilder<bool>(
+                  valueListenable: _rodando,
+                  builder: (context, rodando, _) => SgButton(
+                    label: Text(context.tx(rodando ? 'Parar' : 'Iniciar')),
+                    onClick: _alternarContador,
+                  ),
                 ),
               ],
             ),
@@ -213,40 +226,50 @@ class _SgFadeDigitPageState extends State<SgFadeDigitPage> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Wrap(
-                  spacing: 8,
-                  runSpacing: 8,
-                  crossAxisAlignment: WrapCrossAlignment.center,
-                  children: [
-                    SgFadeDigit(value: horas[0]),
-                    SgFadeDigit(value: horas[1]),
-                    const Text(
-                      ':',
-                      style: TextStyle(
-                        fontSize: 36,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SgFadeDigit(value: minutos[0]),
-                    SgFadeDigit(value: minutos[1]),
-                    const Text(
-                      ':',
-                      style: TextStyle(
-                        fontSize: 36,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SgFadeDigit(value: segundos[0]),
-                    SgFadeDigit(value: segundos[1]),
-                  ],
+                ValueListenableBuilder<int>(
+                  valueListenable: _segundos,
+                  builder: (context, total, _) {
+                    String dois(int n) => n.toString().padLeft(2, '0');
+                    final horas = dois(total ~/ 3600);
+                    final minutos = dois(total % 3600 ~/ 60);
+                    final segundos = dois(total % 60);
+                    return Wrap(
+                      spacing: 8,
+                      runSpacing: 8,
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      children: [
+                        SgFadeDigit(value: horas[0]),
+                        SgFadeDigit(value: horas[1]),
+                        const Text(
+                          ':',
+                          style: TextStyle(
+                            fontSize: 36,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SgFadeDigit(value: minutos[0]),
+                        SgFadeDigit(value: minutos[1]),
+                        const Text(
+                          ':',
+                          style: TextStyle(
+                            fontSize: 36,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SgFadeDigit(value: segundos[0]),
+                        SgFadeDigit(value: segundos[1]),
+                      ],
+                    );
+                  },
                 ),
                 const SizedBox(height: 12),
-                SgButton(
-                  label: Text(
-                    context.tx(_relogioRodando ? 'Parar' : 'Iniciar'),
+                ValueListenableBuilder<bool>(
+                  valueListenable: _relogioRodando,
+                  builder: (context, rodando, _) => SgButton(
+                    label: Text(context.tx(rodando ? 'Parar' : 'Iniciar')),
+                    size: SgSize.sm,
+                    onClick: _alternarRelogio,
                   ),
-                  size: SgSize.sm,
-                  onClick: _alternarRelogio,
                 ),
               ],
             ),

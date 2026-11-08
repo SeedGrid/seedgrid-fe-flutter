@@ -22,26 +22,27 @@ Wrap(
   runSpacing: 12,
   crossAxisAlignment: WrapCrossAlignment.center,
   children: [
-    SgSegmentDigit(value: '$_digito', size: 64),
+    ValueListenableBuilder<int>(
+      valueListenable: _digito,
+      builder: (context, digito, _) =>
+          SgSegmentDigit(value: '$digito', size: 64),
+    ),
     Wrap(
       spacing: 8,
       runSpacing: 8,
       children: [
         SgButton(
           label: Text(context.tx('Próximo (+1)')),
-          onClick: () =>
-              setState(() => _digito = (_digito + 1) % 10),
+          onClick: () => _digito.value = (_digito.value + 1) % 10,
         ),
         SgButton(
           label: Text(context.tx('Anterior (-1)')),
-          onClick: () =>
-              setState(() => _digito = (_digito + 9) % 10),
+          onClick: () => _digito.value = (_digito.value + 9) % 10,
         ),
         SgButton(
           label: Text(context.tx('Aleatório')),
-          onClick: () => setState(
-            () => _digito = DateTime.now().microsecond % 10,
-          ),
+          onClick: () =>
+              _digito.value = DateTime.now().microsecond % 10,
         ),
       ],
     ),
@@ -110,31 +111,43 @@ Wrap(
 Column(
   crossAxisAlignment: CrossAxisAlignment.start,
   children: [
-    Row(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.end,
-      children: [
-        SgSegmentDigit(value: hh[0], size: 36),
-        const SizedBox(width: 4),
-        SgSegmentDigit(value: hh[1], size: 36),
-        const SizedBox(width: 4),
-        const SgSegmentDigit(value: ':', size: 36),
-        const SizedBox(width: 4),
-        SgSegmentDigit(value: mm[0], size: 36),
-        const SizedBox(width: 4),
-        SgSegmentDigit(value: mm[1], size: 36),
-        const SizedBox(width: 4),
-        const SgSegmentDigit(value: ':', size: 36),
-        const SizedBox(width: 4),
-        SgSegmentDigit(value: ss[0], size: 36),
-        const SizedBox(width: 4),
-        SgSegmentDigit(value: ss[1], size: 36),
-      ],
+    ValueListenableBuilder<int>(
+      valueListenable: _segundos,
+      builder: (context, segundos, _) {
+        final total = segundos % 86400;
+        final hh = (total ~/ 3600).toString().padLeft(2, '0');
+        final mm = ((total % 3600) ~/ 60).toString().padLeft(
+          2,
+          '0',
+        );
+        final ss = (total % 60).toString().padLeft(2, '0');
+        return Row(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            SgSegmentDigit(value: hh[0], size: 36),
+            const SizedBox(width: 4),
+            SgSegmentDigit(value: hh[1], size: 36),
+            const SizedBox(width: 4),
+            const SgSegmentDigit(value: ':', size: 36),
+            const SizedBox(width: 4),
+            SgSegmentDigit(value: mm[0], size: 36),
+            const SizedBox(width: 4),
+            SgSegmentDigit(value: mm[1], size: 36),
+            const SizedBox(width: 4),
+            const SgSegmentDigit(value: ':', size: 36),
+            const SizedBox(width: 4),
+            SgSegmentDigit(value: ss[0], size: 36),
+            const SizedBox(width: 4),
+            SgSegmentDigit(value: ss[1], size: 36),
+          ],
+        );
+      },
     ),
     const SizedBox(height: 12),
     SgButton(
       label: Text(context.tx('+1 segundo')),
-      onClick: () => setState(() => _segundos++),
+      onClick: () => _segundos.value++,
     ),
   ],
 )
