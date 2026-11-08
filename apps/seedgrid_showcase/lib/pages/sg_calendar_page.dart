@@ -15,18 +15,31 @@ class SgCalendarPage extends StatefulWidget {
 }
 
 class _SgCalendarPageState extends State<SgCalendarPage> {
-  DateTime _escolhida = DateTime(2026, 3, 18);
-  DateTime _mes = DateTime(2026, 3, 1);
-  DateTime _selecionado = DateTime(2026, 3, 10);
-  String _locale = 'pt-BR';
-  int _inicioSemana = 0;
-  int _meses = 6;
+  final ValueNotifier<DateTime> _escolhida = ValueNotifier(
+    DateTime(2026, 3, 18),
+  );
+  final ValueNotifier<DateTime> _mes = ValueNotifier(DateTime(2026, 3, 1));
+  final ValueNotifier<DateTime> _selecionado = ValueNotifier(
+    DateTime(2026, 3, 10),
+  );
+  final ValueNotifier<String> _locale = ValueNotifier('pt-BR');
+  final ValueNotifier<int> _inicioSemana = ValueNotifier(0);
+  final ValueNotifier<int> _meses = ValueNotifier(6);
+
+  @override
+  void dispose() {
+    _escolhida.dispose();
+    _mes.dispose();
+    _selecionado.dispose();
+    _locale.dispose();
+    _inicioSemana.dispose();
+    _meses.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     String dd(int n) => n.toString().padLeft(2, '0');
-    final selecionadoTexto =
-        '${dd(_selecionado.day)}/${dd(_selecionado.month)}/${_selecionado.year}';
     final examples = <ShowcaseExample>[
       ShowcaseExample(
         title: 'Básico (mês atual)',
@@ -56,23 +69,33 @@ class _SgCalendarPageState extends State<SgCalendarPage> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SgCalendar(
-                  value: _selecionado,
-                  onValueChange: (data) => setState(() => _selecionado = data),
-                  locale: 'pt-BR',
-                  minDate: DateTime(2026, 3, 5),
-                  maxDate: DateTime(2026, 3, 25),
-                  isDateDisabled: (data) =>
-                      data.weekday == DateTime.saturday ||
-                      data.weekday == DateTime.sunday,
-                  cardTitle: const Text('Agenda de visitas'),
-                  cardProps: const SgCalendarCardProps(
-                    id: 'showcase-calendar-range',
-                    dragPersistKey: 'showcase-calendar-range',
+                ValueListenableBuilder<DateTime>(
+                  valueListenable: _selecionado,
+                  builder: (context, selecionado, _) => Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SgCalendar(
+                        value: selecionado,
+                        onValueChange: (data) => _selecionado.value = data,
+                        locale: 'pt-BR',
+                        minDate: DateTime(2026, 3, 5),
+                        maxDate: DateTime(2026, 3, 25),
+                        isDateDisabled: (data) =>
+                            data.weekday == DateTime.saturday ||
+                            data.weekday == DateTime.sunday,
+                        cardTitle: const Text('Agenda de visitas'),
+                        cardProps: const SgCalendarCardProps(
+                          id: 'showcase-calendar-range',
+                          dragPersistKey: 'showcase-calendar-range',
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        '${context.tx('Selecionado')}: ${dd(selecionado.day)}/${dd(selecionado.month)}/${selecionado.year}',
+                      ),
+                    ],
                   ),
                 ),
-                const SizedBox(height: 8),
-                Text('${context.tx('Selecionado')}: $selecionadoTexto'),
               ],
             ),
         // #endregion
@@ -84,69 +107,72 @@ class _SgCalendarPageState extends State<SgCalendarPage> {
             'Alterna o locale, o primeiro dia da semana e a quantidade de meses (numberOfMonths, monthsPerLine = 3).',
         preview:
             // #region sg-calendar-locale-meses
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Wrap(
-                  spacing: 8,
-                  runSpacing: 8,
-                  children: [
-                    for (final l in const ['pt-BR', 'en-US', 'es'])
-                      SgButton(
-                        label: Text(l),
-                        appearance: _locale == l
-                            ? SgAppearance.solid
-                            : SgAppearance.outline,
-                        onClick: () => setState(() => _locale = l),
-                      ),
-                    SgButton(
-                      label: Text(context.tx('Domingo primeiro')),
-                      appearance: _inicioSemana == 0
-                          ? SgAppearance.solid
-                          : SgAppearance.outline,
-                      onClick: () => setState(() => _inicioSemana = 0),
-                    ),
-                    SgButton(
-                      label: Text(context.tx('Segunda primeiro')),
-                      appearance: _inicioSemana == 1
-                          ? SgAppearance.solid
-                          : SgAppearance.outline,
-                      onClick: () => setState(() => _inicioSemana = 1),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 8),
-                Wrap(
-                  spacing: 8,
-                  runSpacing: 8,
-                  children: [
-                    for (final n in const [1, 3, 6, 12])
-                      SgButton(
-                        label: Text(
-                          '$n ${context.tx(n == 1 ? 'mês' : 'meses')}',
+            ListenableBuilder(
+              listenable: Listenable.merge([_locale, _inicioSemana, _meses]),
+              builder: (context, _) => Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Wrap(
+                    spacing: 8,
+                    runSpacing: 8,
+                    children: [
+                      for (final l in const ['pt-BR', 'en-US', 'es'])
+                        SgButton(
+                          label: Text(l),
+                          appearance: _locale.value == l
+                              ? SgAppearance.solid
+                              : SgAppearance.outline,
+                          onClick: () => _locale.value = l,
                         ),
-                        appearance: _meses == n
+                      SgButton(
+                        label: Text(context.tx('Domingo primeiro')),
+                        appearance: _inicioSemana.value == 0
                             ? SgAppearance.solid
                             : SgAppearance.outline,
-                        onClick: () => setState(() => _meses = n),
+                        onClick: () => _inicioSemana.value = 0,
                       ),
-                  ],
-                ),
-                const SizedBox(height: 8),
-                SgCalendar(
-                  locale: _locale,
-                  weekStartsOn: _inicioSemana,
-                  numberOfMonths: _meses,
-                  monthsPerLine: 3,
-                  defaultValue: '2026-03-10',
-                  defaultViewDate: '2026-03-01',
-                  cardTitle: const Text('Calendário i18n + vários meses'),
-                  cardProps: const SgCalendarCardProps(
-                    id: 'showcase-calendar-i18n',
-                    dragPersistKey: 'showcase-calendar-i18n',
+                      SgButton(
+                        label: Text(context.tx('Segunda primeiro')),
+                        appearance: _inicioSemana.value == 1
+                            ? SgAppearance.solid
+                            : SgAppearance.outline,
+                        onClick: () => _inicioSemana.value = 1,
+                      ),
+                    ],
                   ),
-                ),
-              ],
+                  const SizedBox(height: 8),
+                  Wrap(
+                    spacing: 8,
+                    runSpacing: 8,
+                    children: [
+                      for (final n in const [1, 3, 6, 12])
+                        SgButton(
+                          label: Text(
+                            '$n ${context.tx(n == 1 ? 'mês' : 'meses')}',
+                          ),
+                          appearance: _meses.value == n
+                              ? SgAppearance.solid
+                              : SgAppearance.outline,
+                          onClick: () => _meses.value = n,
+                        ),
+                    ],
+                  ),
+                  const SizedBox(height: 8),
+                  SgCalendar(
+                    locale: _locale.value,
+                    weekStartsOn: _inicioSemana.value,
+                    numberOfMonths: _meses.value,
+                    monthsPerLine: 3,
+                    defaultValue: '2026-03-10',
+                    defaultViewDate: '2026-03-01',
+                    cardTitle: const Text('Calendário i18n + vários meses'),
+                    cardProps: const SgCalendarCardProps(
+                      id: 'showcase-calendar-i18n',
+                      dragPersistKey: 'showcase-calendar-i18n',
+                    ),
+                  ),
+                ],
+              ),
             ),
         // #endregion
         code: SgCalendarPageSnippets.sgCalendarLocaleMeses,
@@ -228,20 +254,23 @@ class _SgCalendarPageState extends State<SgCalendarPage> {
             'value e viewDate vêm do estado do pai; o calendário só avisa, e quem muda é você.',
         preview:
             // #region sg-calendar-controlado
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SgCalendar(
-                  value: _escolhida,
-                  viewDate: _mes,
-                  onValueChange: (data) => setState(() => _escolhida = data),
-                  onViewDateChange: (mes) => setState(() => _mes = mes),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  'Escolhida: ${_escolhida.day}/${_escolhida.month}/${_escolhida.year}',
-                ),
-              ],
+            ListenableBuilder(
+              listenable: Listenable.merge([_escolhida, _mes]),
+              builder: (context, _) => Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SgCalendar(
+                    value: _escolhida.value,
+                    viewDate: _mes.value,
+                    onValueChange: (data) => _escolhida.value = data,
+                    onViewDateChange: (mes) => _mes.value = mes,
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    'Escolhida: ${_escolhida.value.day}/${_escolhida.value.month}/${_escolhida.value.year}',
+                  ),
+                ],
+              ),
             ),
         // #endregion
         code: SgCalendarPageSnippets.sgCalendarControlado,

@@ -19,14 +19,17 @@ class _SgInputTextAreaPageState extends State<SgInputTextAreaPage> {
   final SgFormController _form = SgFormController(
     defaultValues: {'controlled': ''},
   );
-  String _basico = '';
-  String? _validationMsg;
-  final List<String> _eventLog = [];
+  final ValueNotifier<String> _basico = ValueNotifier('');
+  final ValueNotifier<String?> _validationMsg = ValueNotifier(null);
+  final ValueNotifier<List<String>> _eventLog = ValueNotifier(const []);
 
-  void _log(String entry) => setState(() => _eventLog.insert(0, entry));
+  void _log(String entry) => _eventLog.value = [entry, ..._eventLog.value];
 
   @override
   void dispose() {
+    _basico.dispose();
+    _validationMsg.dispose();
+    _eventLog.dispose();
     _form.dispose();
     super.dispose();
   }
@@ -47,10 +50,14 @@ class _SgInputTextAreaPageState extends State<SgInputTextAreaPage> {
                   SgInputTextArea(
                     id: 'demo-basic',
                     labelText: context.tx('Descrição'),
-                    onChange: (v) => setState(() => _basico = v),
+                    onChange: (v) => _basico.value = v,
                   ),
                   const SizedBox(height: 8),
-                  Text('${context.tx('Valor')}: $_basico'),
+                  ValueListenableBuilder<String>(
+                    valueListenable: _basico,
+                    builder: (context, valor, _) =>
+                        Text('${context.tx('Valor')}: $valor'),
+                  ),
                 ],
               ),
             ),
@@ -240,11 +247,14 @@ class _SgInputTextAreaPageState extends State<SgInputTextAreaPage> {
                     validation: (v) => RegExp(r'\d').hasMatch(v)
                         ? context.tx('Números não são permitidos.')
                         : null,
-                    onValidation: (msg) => setState(() => _validationMsg = msg),
+                    onValidation: (msg) => _validationMsg.value = msg,
                   ),
                   const SizedBox(height: 8),
-                  Text(
-                    'onValidation: ${_validationMsg == null ? context.tx('válido') : '"$_validationMsg"'}',
+                  ValueListenableBuilder<String?>(
+                    valueListenable: _validationMsg,
+                    builder: (context, msg, _) => Text(
+                      'onValidation: ${msg == null ? context.tx('válido') : '"$msg"'}',
+                    ),
                   ),
                 ],
               ),
@@ -443,10 +453,13 @@ class _SgInputTextAreaPageState extends State<SgInputTextAreaPage> {
                         _log('onValidation: ${msg ?? context.tx('válido')}'),
                   ),
                   const SizedBox(height: 12),
-                  ShowcaseLogBox(
-                    entries: _eventLog,
-                    hint: context.tx('Interaja com o textarea...'),
-                    height: 160,
+                  ValueListenableBuilder<List<String>>(
+                    valueListenable: _eventLog,
+                    builder: (context, entries, _) => ShowcaseLogBox(
+                      entries: entries,
+                      hint: context.tx('Interaja com o textarea...'),
+                      height: 160,
+                    ),
                   ),
                 ],
               ),

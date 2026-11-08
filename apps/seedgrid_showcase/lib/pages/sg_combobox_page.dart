@@ -16,13 +16,17 @@ class SgComboboxPage extends StatefulWidget {
 
 class _SgComboboxPageState extends State<SgComboboxPage> {
   final SgFormController _form = SgFormController();
-  String _enviado = '';
-  Object? _escolhido;
-  Object? _valorControlado;
-  String? _ultimoSelect;
+  final ValueNotifier<String> _enviado = ValueNotifier('');
+  final ValueNotifier<Object?> _escolhido = ValueNotifier(null);
+  final ValueNotifier<Object?> _valorControlado = ValueNotifier(null);
+  final ValueNotifier<String?> _ultimoSelect = ValueNotifier(null);
 
   @override
   void dispose() {
+    _enviado.dispose();
+    _escolhido.dispose();
+    _valorControlado.dispose();
+    _ultimoSelect.dispose();
     _form.dispose();
     super.dispose();
   }
@@ -43,7 +47,7 @@ class _SgComboboxPageState extends State<SgComboboxPage> {
                   id: 'cargo',
                   labelText: 'Cargo',
                   grouped: true,
-                  onValueChange: (id) => setState(() => _escolhido = id),
+                  onValueChange: (id) => _escolhido.value = id,
                   source: [
                     SgAutocompleteItem(
                       id: 1,
@@ -68,7 +72,11 @@ class _SgComboboxPageState extends State<SgComboboxPage> {
                     ),
                   ],
                 ),
-                Text('id escolhido: ${_escolhido ?? '-'}'),
+                ValueListenableBuilder<Object?>(
+                  valueListenable: _escolhido,
+                  builder: (context, escolhido, _) =>
+                      Text('id escolhido: ${escolhido ?? '-'}'),
+                ),
               ],
             ),
         // #endregion
@@ -92,61 +100,69 @@ class _SgComboboxPageState extends State<SgComboboxPage> {
                   SgAutocompleteItem(id: 5, label: 'Germany', group: 'Europe'),
                   SgAutocompleteItem(id: 9, label: 'Japan', group: 'Asia'),
                 ];
-                final resolvido = paises
-                    .where((p) => p.id == _valorControlado)
-                    .map((p) => p.label)
-                    .firstOrNull;
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SgCombobox<SgAutocompleteItem>(
-                      id: 'pais-controlado',
-                      labelText: 'Country (controlled)',
-                      value: _valorControlado,
-                      openOnFocus: true,
-                      source: paises,
-                      onValueChange: (id) =>
-                          setState(() => _valorControlado = id),
-                      onSelect: (item) =>
-                          setState(() => _ultimoSelect = item.label),
-                    ),
-                    const SizedBox(height: 8),
-                    Wrap(
-                      spacing: 8,
-                      runSpacing: 8,
+                return ListenableBuilder(
+                  listenable: Listenable.merge([
+                    _valorControlado,
+                    _ultimoSelect,
+                  ]),
+                  builder: (context, _) {
+                    final valor = _valorControlado.value;
+                    final resolvido = paises
+                        .where((p) => p.id == valor)
+                        .map((p) => p.label)
+                        .firstOrNull;
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SgButton(
-                          size: SgSize.sm,
-                          appearance: SgAppearance.outline,
-                          label: Text(context.tx('Definir Alemanha (id 5)')),
-                          onClick: () => setState(() => _valorControlado = 5),
+                        SgCombobox<SgAutocompleteItem>(
+                          id: 'pais-controlado',
+                          labelText: 'Country (controlled)',
+                          value: valor,
+                          openOnFocus: true,
+                          source: paises,
+                          onValueChange: (id) => _valorControlado.value = id,
+                          onSelect: (item) => _ultimoSelect.value = item.label,
                         ),
-                        SgButton(
-                          size: SgSize.sm,
-                          appearance: SgAppearance.outline,
-                          label: Text(context.tx('Definir Japão (id 9)')),
-                          onClick: () => setState(() => _valorControlado = 9),
+                        const SizedBox(height: 8),
+                        Wrap(
+                          spacing: 8,
+                          runSpacing: 8,
+                          children: [
+                            SgButton(
+                              size: SgSize.sm,
+                              appearance: SgAppearance.outline,
+                              label: Text(
+                                context.tx('Definir Alemanha (id 5)'),
+                              ),
+                              onClick: () => _valorControlado.value = 5,
+                            ),
+                            SgButton(
+                              size: SgSize.sm,
+                              appearance: SgAppearance.outline,
+                              label: Text(context.tx('Definir Japão (id 9)')),
+                              onClick: () => _valorControlado.value = 9,
+                            ),
+                            SgButton(
+                              size: SgSize.sm,
+                              appearance: SgAppearance.outline,
+                              label: Text(context.tx('Limpar valor')),
+                              onClick: () => _valorControlado.value = null,
+                            ),
+                          ],
                         ),
-                        SgButton(
-                          size: SgSize.sm,
-                          appearance: SgAppearance.outline,
-                          label: Text(context.tx('Limpar valor')),
-                          onClick: () =>
-                              setState(() => _valorControlado = null),
+                        const SizedBox(height: 8),
+                        Text(
+                          '${context.tx('valor')}: ${valor ?? context.tx('(vazio)')}',
+                        ),
+                        Text(
+                          '${context.tx('resolvido por value')}: ${resolvido ?? context.tx('(nenhum)')}',
+                        ),
+                        Text(
+                          '${context.tx('último onSelect')}: ${_ultimoSelect.value ?? context.tx('(nenhum)')}',
                         ),
                       ],
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      '${context.tx('valor')}: ${_valorControlado ?? context.tx('(vazio)')}',
-                    ),
-                    Text(
-                      '${context.tx('resolvido por value')}: ${resolvido ?? context.tx('(nenhum)')}',
-                    ),
-                    Text(
-                      '${context.tx('último onSelect')}: ${_ultimoSelect ?? context.tx('(nenhum)')}',
-                    ),
-                  ],
+                    );
+                  },
                 );
               },
             ),
@@ -259,11 +275,15 @@ class _SgComboboxPageState extends State<SgComboboxPage> {
                 SgButton(
                   label: Text(context.tx('Enviar')),
                   onClick: () => _form.handleSubmit(
-                    (values) =>
-                        setState(() => _enviado = '${values['pagamento']}'),
+                    (values) => _enviado.value = '${values['pagamento']}',
                   ),
                 ),
-                if (_enviado.isNotEmpty) Text('Enviado: $_enviado'),
+                ValueListenableBuilder<String>(
+                  valueListenable: _enviado,
+                  builder: (context, enviado, _) => enviado.isEmpty
+                      ? const SizedBox.shrink()
+                      : Text('Enviado: $enviado'),
+                ),
               ],
             ),
         // #endregion
