@@ -311,7 +311,7 @@ class SgToolBarPage extends StatelessWidget {
       ShowcaseExample(
         title: 'Overflow: itens que não cabem vão para o menu "…"',
         description:
-            'Extensão do Flutter: com overflow, os botões que não cabem na largura vão para um menu "…" (SgMenu); abaixo de 600 de largura ele abre como painel inferior.',
+            'Com overflow, os botões que não cabem na largura vão para um menu "…" (SgMenu); abaixo de 600 de largura ele abre como painel inferior.',
         preview:
             // #region sg-tool-bar-overflow
             SizedBox(
@@ -319,6 +319,8 @@ class SgToolBarPage extends StatelessWidget {
               child: SgToolBar(
                 id: 'tb-overflow',
                 title: Text(context.tx('Estreita')),
+                orientationDirection:
+                    SgToolBarOrientationDirection.horizontalLeft,
                 overflow: true,
                 size: const SgToolBarSize(w: 260),
                 children: [

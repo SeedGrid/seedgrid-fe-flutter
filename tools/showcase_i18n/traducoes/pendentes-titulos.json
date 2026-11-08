@@ -6496,5 +6496,11 @@
   "Receber novidades",
   "Recibir novedades",
   "Recevoir les nouveautés"
+ ],
+ "Move para um menu '...' os botoes que nao cabem na largura disponivel; abaixo de 600px abre como painel inferior.": [
+  "Moves the buttons that do not fit the available width into a '...' menu; below 600px it opens as a bottom panel.",
+  "Move para um menu '...' os botões que não cabem na largura disponível; abaixo de 600px abre como painel inferior.",
+  "Mueve a un menú '...' los botones que no caben en el ancho disponible; por debajo de 600px se abre como panel inferior.",
+  "Déplace dans un menu '...' les boutons qui ne tiennent pas dans la largeur disponible ; en dessous de 600px, il s'ouvre comme un panneau inférieur."
  ]
 }

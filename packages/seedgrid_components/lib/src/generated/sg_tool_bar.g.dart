@@ -37,6 +37,8 @@ abstract interface class SgToolBarProps {
   Function? get onCollapsedChange;
   /// Direcao e orientacao da toolbar.
   SgToolBarOrientationDirection? get orientationDirection;
+  /// Move para um menu '...' os botoes que nao cabem na largura disponivel; abaixo de 600px abre como painel inferior. Padrão: `false`.
+  bool? get overflow;
   /// Tipo TS: `SgToolBarSize` (sem tradução exata; ver excecoes.json).
   Object? get size;
   /// Titulo opcional exibido na barra.
@@ -158,6 +160,15 @@ const List<SgPropSpec> sgToolBarPropSpecs = <SgPropSpec>[
     required: false,
     description: 'Direcao e orientacao da toolbar.',
     values: <String>['horizontal-left', 'horizontal-right', 'vertical-up', 'vertical-down'],
+  ),
+  SgPropSpec(
+    name: 'overflow',
+    reactName: 'overflow',
+    type: 'bool?',
+    tsType: 'boolean',
+    required: false,
+    defaultValue: 'false',
+    description: 'Move para um menu \'...\' os botoes que nao cabem na largura disponivel; abaixo de 600px abre como painel inferior.',
   ),
   SgPropSpec(
     name: 'size',

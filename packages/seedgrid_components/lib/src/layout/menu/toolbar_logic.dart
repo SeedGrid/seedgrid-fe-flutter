@@ -1,6 +1,6 @@
 // Porte de src/layout/toolbar-logic.ts e das funcoes puras de drag-position.ts do React (SgToolBar).
 // Os casos de test/widgets/menu_vectors/vectors.json foram calculados pelo CODIGO DO REACT.
-// No fim, `resolveToolbarOverflow`: extensao do Flutter (o React nao tem overflow na SgToolBar).
+// No fim, `resolveToolbarOverflow` (overflow da SgToolBar; mesma regra de resolveToolbarOverflow no React).
 import 'dart:convert';
 import 'dart:ui' show Offset;
 

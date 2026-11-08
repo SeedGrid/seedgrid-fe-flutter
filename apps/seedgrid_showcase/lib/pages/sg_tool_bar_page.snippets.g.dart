@@ -281,6 +281,8 @@ SizedBox(
   child: SgToolBar(
     id: 'tb-overflow',
     title: Text(context.tx('Estreita')),
+    orientationDirection:
+        SgToolBarOrientationDirection.horizontalLeft,
     overflow: true,
     size: const SgToolBarSize(w: 260),
     children: [

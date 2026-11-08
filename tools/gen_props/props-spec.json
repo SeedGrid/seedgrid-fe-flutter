@@ -17110,6 +17110,15 @@
      "semanticRole": "behavior"
     },
     {
+     "name": "overflow",
+     "optional": true,
+     "ts": "boolean | undefined",
+     "alias": null,
+     "description": "Move para um menu '...' os botoes que nao cabem na largura disponivel; abaixo de 600px abre como painel inferior.",
+     "default": false,
+     "semanticRole": "behavior"
+    },
+    {
      "name": "size",
      "optional": true,
      "ts": "SgToolBarSize | undefined",

@@ -6,7 +6,7 @@
   },
   "SgToolBar": {
     "status": "portado",
-    "motivo": "className/style sem efeito; dock sem portal (o widget fica na SgDockZone; zonas horizontais mostram o conteudo em linha); freeDrag fora de um Stack vira translacao (sem position: fixed); size e SgToolBarSize, defaultPosition e Offset, cores em texto CSS; extras do Flutter: children (lista) ao lado de child e overflow (itens que nao cabem vao para o menu '...' feito com SgMenu, painel inferior abaixo de 600)"
+    "motivo": "className/style sem efeito; dock sem portal (o widget fica na SgDockZone; zonas horizontais mostram o conteudo em linha); freeDrag fora de um Stack vira translacao (sem position: fixed); size e SgToolBarSize, defaultPosition e Offset, cores em texto CSS; extra do Flutter: children (lista) ao lado de child; overflow existe nos dois lados (itens que nao cabem vao para o menu '...' feito com SgMenu; no Flutter o menu vira painel inferior abaixo de 600 e no React um SgPopup ancorado na base)"
   },
   "SgToolbarIconButton": {
     "status": "portado",

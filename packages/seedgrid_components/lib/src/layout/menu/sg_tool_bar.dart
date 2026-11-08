@@ -9,9 +9,9 @@
 //  - `freeDrag`: dentro de um `Stack` a toolbar usa `Positioned` (como o `position: absolute` do React); fora dele
 //    vira deslocamento a partir do lugar natural (o `position: fixed` do React nao tem equivalente sem portal).
 //  - `size` e `SgToolBarSize(w, h)`; `defaultPosition` e `Offset`; cores (`bgColor`, `bgColorTitle`) sao texto CSS.
-//  - EXTENSAO do Flutter (o React nao tem): `overflow` (padrao `false`): quando a toolbar nao cabe no espaco
-//    disponivel, os itens `SgToolbarIconButton` que nao cabem vao para um menu "..." (SgMenu, painel de baixo em
-//    tela estreita). Outros widgets que nao cabem ficam escondidos.
+//  - `overflow` (padrao `false`; existe tambem no React): quando a toolbar nao cabe no espaco disponivel, os itens
+//    `SgToolbarIconButton` que nao cabem vao para um menu "..." (SgMenu; painel de baixo em tela estreita, no React
+//    SgPopup ancorado na base). Outros widgets que nao cabem ficam escondidos.
 //  - `className`/`style` nao existem (ADR 50).
 import 'dart:math' as math;
 
@@ -117,7 +117,8 @@ class SgToolBar extends StatefulWidget implements SgToolBarProps {
   @override
   final Widget? title;
 
-  /// EXTENSAO do Flutter (o React nao tem): itens que nao cabem vao para o menu "...".
+  /// Itens que nao cabem vao para o menu "..." (mesmo comportamento da prop `overflow` do React).
+  @override
   final bool overflow;
 
   @override
