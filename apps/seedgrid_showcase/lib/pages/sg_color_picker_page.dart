@@ -15,17 +15,22 @@ class SgColorPickerPage extends StatefulWidget {
 }
 
 class _SgColorPickerPageState extends State<SgColorPickerPage> {
-  String _basico = '#16803D';
-  String _controlada = '#0EA5E9';
-  String _predefinida = '#EF4444';
-  String _dialogo = '#7C3AED';
+  final ValueNotifier<String> _basico = ValueNotifier('#16803D');
+  final ValueNotifier<String> _controlada = ValueNotifier('#0EA5E9');
+  final ValueNotifier<String> _predefinida = ValueNotifier('#EF4444');
+  final ValueNotifier<String> _dialogo = ValueNotifier('#7C3AED');
   final SgFormController _form = SgFormController(
     defaultValues: {'marca': '#F97316'},
   );
-  String _enviado = '';
+  final ValueNotifier<String> _enviado = ValueNotifier('');
 
   @override
   void dispose() {
+    _basico.dispose();
+    _controlada.dispose();
+    _predefinida.dispose();
+    _dialogo.dispose();
+    _enviado.dispose();
     _form.dispose();
     super.dispose();
   }
@@ -46,9 +51,12 @@ class _SgColorPickerPageState extends State<SgColorPickerPage> {
                   id: 'cor-basico',
                   defaultValue: '#16803D',
                   ariaLabel: 'Cor',
-                  onChange: (hex) => setState(() => _basico = hex),
+                  onChange: (hex) => _basico.value = hex,
                 ),
-                Text(_basico),
+                ValueListenableBuilder<String>(
+                  valueListenable: _basico,
+                  builder: (context, hex, _) => Text(hex),
+                ),
               ],
             ),
         // #endregion
@@ -63,16 +71,19 @@ class _SgColorPickerPageState extends State<SgColorPickerPage> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SgColorPicker(
-                  id: 'cor-controlada',
-                  labelText: context.tx('Cor da marca'),
-                  value: _controlada,
-                  onChange: (hex) => setState(() => _controlada = hex),
+                ValueListenableBuilder<String>(
+                  valueListenable: _controlada,
+                  builder: (context, hex, _) => SgColorPicker(
+                    id: 'cor-controlada',
+                    labelText: context.tx('Cor da marca'),
+                    value: hex,
+                    onChange: (novo) => _controlada.value = novo,
+                  ),
                 ),
                 const SizedBox(height: 12),
                 SgButton(
                   label: Text(context.tx('Voltar para azul')),
-                  onClick: () => setState(() => _controlada = '#0EA5E9'),
+                  onClick: () => _controlada.value = '#0EA5E9',
                 ),
               ],
             ),
@@ -99,9 +110,12 @@ class _SgColorPickerPageState extends State<SgColorPickerPage> {
                     '#7C3AED',
                     '#EC4899',
                   ],
-                  onChange: (hex) => setState(() => _predefinida = hex),
+                  onChange: (hex) => _predefinida.value = hex,
                 ),
-                Text(_predefinida),
+                ValueListenableBuilder<String>(
+                  valueListenable: _predefinida,
+                  builder: (context, hex, _) => Text(hex),
+                ),
               ],
             ),
         // #endregion
@@ -170,10 +184,14 @@ class _SgColorPickerPageState extends State<SgColorPickerPage> {
                 SgButton(
                   label: Text(context.tx('Enviar')),
                   onClick: () => _form.handleSubmit(
-                    (values) => setState(() => _enviado = '${values['marca']}'),
+                    (values) => _enviado.value = '${values['marca']}',
                   ),
                 ),
-                if (_enviado.isNotEmpty) Text(_enviado),
+                ValueListenableBuilder<String>(
+                  valueListenable: _enviado,
+                  builder: (context, enviado, _) =>
+                      enviado.isEmpty ? const SizedBox.shrink() : Text(enviado),
+                ),
               ],
             ),
         // #endregion
@@ -196,14 +214,27 @@ class _SgColorPickerPageState extends State<SgColorPickerPage> {
                     final hex = await showSgColorPicker(
                       context,
                       id: 'cor-dialogo',
-                      initialValue: _dialogo,
+                      initialValue: _dialogo.value,
                       presets: const ['#EF4444', '#10B981', '#7C3AED'],
                     );
-                    if (hex != null) setState(() => _dialogo = hex);
+                    if (hex != null) _dialogo.value = hex;
                   },
                 ),
-                Container(width: 32, height: 32, color: sgHexToColor(_dialogo)),
-                Text(_dialogo),
+                ValueListenableBuilder<String>(
+                  valueListenable: _dialogo,
+                  builder: (context, hex, _) => Row(
+                    mainAxisSize: MainAxisSize.min,
+                    spacing: 12,
+                    children: [
+                      Container(
+                        width: 32,
+                        height: 32,
+                        color: sgHexToColor(hex),
+                      ),
+                      Text(hex),
+                    ],
+                  ),
+                ),
               ],
             ),
         // #endregion

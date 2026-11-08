@@ -10,20 +10,23 @@ SgCalendar(onValueChange: (data) => debugPrint('Escolheu $data'))
 
   /// Region `sg-calendar-controlado`.
   static const String sgCalendarControlado = r'''
-Column(
-  crossAxisAlignment: CrossAxisAlignment.start,
-  children: [
-    SgCalendar(
-      value: _escolhida,
-      viewDate: _mes,
-      onValueChange: (data) => setState(() => _escolhida = data),
-      onViewDateChange: (mes) => setState(() => _mes = mes),
-    ),
-    const SizedBox(height: 8),
-    Text(
-      'Escolhida: ${_escolhida.day}/${_escolhida.month}/${_escolhida.year}',
-    ),
-  ],
+ListenableBuilder(
+  listenable: Listenable.merge([_escolhida, _mes]),
+  builder: (context, _) => Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      SgCalendar(
+        value: _escolhida.value,
+        viewDate: _mes.value,
+        onValueChange: (data) => _escolhida.value = data,
+        onViewDateChange: (mes) => _mes.value = mes,
+      ),
+      const SizedBox(height: 8),
+      Text(
+        'Escolhida: ${_escolhida.value.day}/${_escolhida.value.month}/${_escolhida.value.year}',
+      ),
+    ],
+  ),
 )
 ''';
 
@@ -60,69 +63,72 @@ SgCalendar(
 
   /// Region `sg-calendar-locale-meses`.
   static const String sgCalendarLocaleMeses = r'''
-Column(
-  crossAxisAlignment: CrossAxisAlignment.start,
-  children: [
-    Wrap(
-      spacing: 8,
-      runSpacing: 8,
-      children: [
-        for (final l in const ['pt-BR', 'en-US', 'es'])
-          SgButton(
-            label: Text(l),
-            appearance: _locale == l
-                ? SgAppearance.solid
-                : SgAppearance.outline,
-            onClick: () => setState(() => _locale = l),
-          ),
-        SgButton(
-          label: Text(context.tx('Domingo primeiro')),
-          appearance: _inicioSemana == 0
-              ? SgAppearance.solid
-              : SgAppearance.outline,
-          onClick: () => setState(() => _inicioSemana = 0),
-        ),
-        SgButton(
-          label: Text(context.tx('Segunda primeiro')),
-          appearance: _inicioSemana == 1
-              ? SgAppearance.solid
-              : SgAppearance.outline,
-          onClick: () => setState(() => _inicioSemana = 1),
-        ),
-      ],
-    ),
-    const SizedBox(height: 8),
-    Wrap(
-      spacing: 8,
-      runSpacing: 8,
-      children: [
-        for (final n in const [1, 3, 6, 12])
-          SgButton(
-            label: Text(
-              '$n ${context.tx(n == 1 ? 'mês' : 'meses')}',
+ListenableBuilder(
+  listenable: Listenable.merge([_locale, _inicioSemana, _meses]),
+  builder: (context, _) => Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Wrap(
+        spacing: 8,
+        runSpacing: 8,
+        children: [
+          for (final l in const ['pt-BR', 'en-US', 'es'])
+            SgButton(
+              label: Text(l),
+              appearance: _locale.value == l
+                  ? SgAppearance.solid
+                  : SgAppearance.outline,
+              onClick: () => _locale.value = l,
             ),
-            appearance: _meses == n
+          SgButton(
+            label: Text(context.tx('Domingo primeiro')),
+            appearance: _inicioSemana.value == 0
                 ? SgAppearance.solid
                 : SgAppearance.outline,
-            onClick: () => setState(() => _meses = n),
+            onClick: () => _inicioSemana.value = 0,
           ),
-      ],
-    ),
-    const SizedBox(height: 8),
-    SgCalendar(
-      locale: _locale,
-      weekStartsOn: _inicioSemana,
-      numberOfMonths: _meses,
-      monthsPerLine: 3,
-      defaultValue: '2026-03-10',
-      defaultViewDate: '2026-03-01',
-      cardTitle: const Text('Calendário i18n + vários meses'),
-      cardProps: const SgCalendarCardProps(
-        id: 'showcase-calendar-i18n',
-        dragPersistKey: 'showcase-calendar-i18n',
+          SgButton(
+            label: Text(context.tx('Segunda primeiro')),
+            appearance: _inicioSemana.value == 1
+                ? SgAppearance.solid
+                : SgAppearance.outline,
+            onClick: () => _inicioSemana.value = 1,
+          ),
+        ],
       ),
-    ),
-  ],
+      const SizedBox(height: 8),
+      Wrap(
+        spacing: 8,
+        runSpacing: 8,
+        children: [
+          for (final n in const [1, 3, 6, 12])
+            SgButton(
+              label: Text(
+                '$n ${context.tx(n == 1 ? 'mês' : 'meses')}',
+              ),
+              appearance: _meses.value == n
+                  ? SgAppearance.solid
+                  : SgAppearance.outline,
+              onClick: () => _meses.value = n,
+            ),
+        ],
+      ),
+      const SizedBox(height: 8),
+      SgCalendar(
+        locale: _locale.value,
+        weekStartsOn: _inicioSemana.value,
+        numberOfMonths: _meses.value,
+        monthsPerLine: 3,
+        defaultValue: '2026-03-10',
+        defaultViewDate: '2026-03-01',
+        cardTitle: const Text('Calendário i18n + vários meses'),
+        cardProps: const SgCalendarCardProps(
+          id: 'showcase-calendar-i18n',
+          dragPersistKey: 'showcase-calendar-i18n',
+        ),
+      ),
+    ],
+  ),
 )
 ''';
 
@@ -155,23 +161,33 @@ const SgCalendar(
 Column(
   crossAxisAlignment: CrossAxisAlignment.start,
   children: [
-    SgCalendar(
-      value: _selecionado,
-      onValueChange: (data) => setState(() => _selecionado = data),
-      locale: 'pt-BR',
-      minDate: DateTime(2026, 3, 5),
-      maxDate: DateTime(2026, 3, 25),
-      isDateDisabled: (data) =>
-          data.weekday == DateTime.saturday ||
-          data.weekday == DateTime.sunday,
-      cardTitle: const Text('Agenda de visitas'),
-      cardProps: const SgCalendarCardProps(
-        id: 'showcase-calendar-range',
-        dragPersistKey: 'showcase-calendar-range',
+    ValueListenableBuilder<DateTime>(
+      valueListenable: _selecionado,
+      builder: (context, selecionado, _) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SgCalendar(
+            value: selecionado,
+            onValueChange: (data) => _selecionado.value = data,
+            locale: 'pt-BR',
+            minDate: DateTime(2026, 3, 5),
+            maxDate: DateTime(2026, 3, 25),
+            isDateDisabled: (data) =>
+                data.weekday == DateTime.saturday ||
+                data.weekday == DateTime.sunday,
+            cardTitle: const Text('Agenda de visitas'),
+            cardProps: const SgCalendarCardProps(
+              id: 'showcase-calendar-range',
+              dragPersistKey: 'showcase-calendar-range',
+            ),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            '${context.tx('Selecionado')}: ${dd(selecionado.day)}/${dd(selecionado.month)}/${selecionado.year}',
+          ),
+        ],
       ),
     ),
-    const SizedBox(height: 8),
-    Text('${context.tx('Selecionado')}: $selecionadoTexto'),
   ],
 )
 ''';

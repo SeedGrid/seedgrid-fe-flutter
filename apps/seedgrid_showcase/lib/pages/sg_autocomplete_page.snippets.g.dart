@@ -103,11 +103,17 @@ Column(
     SgButton(
       label: Text(context.tx('Enviar')),
       onClick: () => _form.handleSubmit(
-        (values) => setState(() => _enviado = '${values['fruta']}'),
+        (values) => _enviado.value = '${values['fruta']}',
       ),
     ),
-    if (_enviado.isNotEmpty)
-      Text(context.txf('Enviado: {valor}', {'valor': _enviado})),
+    ValueListenableBuilder<String>(
+      valueListenable: _enviado,
+      builder: (context, enviado, _) => enviado.isEmpty
+          ? const SizedBox.shrink()
+          : Text(
+              context.txf('Enviado: {valor}', {'valor': enviado}),
+            ),
+    ),
   ],
 )
 ''';
