@@ -44,7 +44,13 @@ class _SgNotificationBellPageState extends State<SgNotificationBellPage> {
   final DemoNotificationsApi _interruptor = DemoNotificationsApi();
   final DemoNotificationsApi _semInterruptor = DemoNotificationsApi();
   final SgSimulatedPulseConnection _pulse = SgSimulatedPulseConnection();
-  String _evento = '-';
+  final ValueNotifier<String> _evento = ValueNotifier<String>('-');
+
+  @override
+  void dispose() {
+    _evento.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -109,21 +115,23 @@ class _SgNotificationBellPageState extends State<SgNotificationBellPage> {
                   types: {
                     'report.ready': SgNotificationTypeConfig(
                       icon: const Icon(Icons.description_outlined),
-                      onOpen: (n) => setState(
-                        () => _evento = 'baixar relatório ${n.publicId}',
-                      ),
+                      onOpen: (n) =>
+                          _evento.value = 'baixar relatório ${n.publicId}',
                     ),
                     'backup.finished': SgNotificationTypeConfig(
                       icon: const Icon(Icons.check_circle_outline),
-                      onOpen: (n) => setState(
-                        () => _evento = 'baixar backup ${n.publicId}',
-                      ),
+                      onOpen: (n) =>
+                          _evento.value = 'baixar backup ${n.publicId}',
                     ),
                   },
                   onNotificationDelete: (n) =>
-                      setState(() => _evento = 'excluiu: ${n.title}'),
+                      _evento.value = 'excluiu: ${n.title}',
                 ),
-                Text('Último evento: $_evento'),
+                ValueListenableBuilder<String>(
+                  valueListenable: _evento,
+                  builder: (context, evento, _) =>
+                      Text('Último evento: $evento'),
+                ),
               ],
             ),
         // #endregion

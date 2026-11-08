@@ -72,21 +72,23 @@ Wrap(
       types: {
         'report.ready': SgNotificationTypeConfig(
           icon: const Icon(Icons.description_outlined),
-          onOpen: (n) => setState(
-            () => _evento = 'baixar relatório ${n.publicId}',
-          ),
+          onOpen: (n) =>
+              _evento.value = 'baixar relatório ${n.publicId}',
         ),
         'backup.finished': SgNotificationTypeConfig(
           icon: const Icon(Icons.check_circle_outline),
-          onOpen: (n) => setState(
-            () => _evento = 'baixar backup ${n.publicId}',
-          ),
+          onOpen: (n) =>
+              _evento.value = 'baixar backup ${n.publicId}',
         ),
       },
       onNotificationDelete: (n) =>
-          setState(() => _evento = 'excluiu: ${n.title}'),
+          _evento.value = 'excluiu: ${n.title}',
     ),
-    Text('Último evento: $_evento'),
+    ValueListenableBuilder<String>(
+      valueListenable: _evento,
+      builder: (context, evento, _) =>
+          Text('Último evento: $evento'),
+    ),
   ],
 )
 ''';

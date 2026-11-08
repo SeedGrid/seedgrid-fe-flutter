@@ -16,15 +16,35 @@ class SgConfirmationDialogPage extends StatefulWidget {
 }
 
 class _SgConfirmationDialogPageState extends State<SgConfirmationDialogPage> {
-  bool _basico = false;
-  bool _severidade = false;
-  SgDialogSeverity _sev = SgDialogSeverity.warning;
-  bool _botoes = false;
-  bool _esquerda = false;
-  bool _superficie = false;
-  bool _icone = false;
-  bool _pg = false;
-  String _resultado = '';
+  final ValueNotifier<bool> _basico = ValueNotifier<bool>(false);
+  final ValueNotifier<bool> _severidade = ValueNotifier<bool>(false);
+  final ValueNotifier<SgDialogSeverity> _sev = ValueNotifier<SgDialogSeverity>(
+    SgDialogSeverity.warning,
+  );
+  final ValueNotifier<bool> _botoes = ValueNotifier<bool>(false);
+  final ValueNotifier<bool> _esquerda = ValueNotifier<bool>(false);
+  final ValueNotifier<bool> _superficie = ValueNotifier<bool>(false);
+  final ValueNotifier<bool> _icone = ValueNotifier<bool>(false);
+  final ValueNotifier<bool> _pg = ValueNotifier<bool>(false);
+  final ValueNotifier<String> _resultado = ValueNotifier<String>('');
+
+  @override
+  void dispose() {
+    for (final n in <ChangeNotifier>[
+      _basico,
+      _severidade,
+      _sev,
+      _botoes,
+      _esquerda,
+      _superficie,
+      _icone,
+      _pg,
+      _resultado,
+    ]) {
+      n.dispose();
+    }
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,16 +61,26 @@ class _SgConfirmationDialogPageState extends State<SgConfirmationDialogPage> {
                 SgButton(
                   label: Text(context.tx('Excluir registro')),
                   severity: SgSeverity.danger,
-                  onClick: () => setState(() => _basico = true),
+                  onClick: () => _basico.value = true,
                 ),
-                if (_resultado.isNotEmpty) Text(_resultado),
-                SgConfirmationDialog(
-                  open: _basico,
-                  onOpenChange: (open) => setState(() => _basico = open),
-                  title: Text(context.tx('Excluir registro?')),
-                  message: Text(context.tx('Esta ação não pode ser desfeita.')),
-                  onConfirm: () => setState(() => _resultado = 'Confirmado'),
-                  onCancel: () => setState(() => _resultado = 'Cancelado'),
+                ValueListenableBuilder<String>(
+                  valueListenable: _resultado,
+                  builder: (context, resultado, _) => resultado.isEmpty
+                      ? const SizedBox.shrink()
+                      : Text(resultado),
+                ),
+                ValueListenableBuilder<bool>(
+                  valueListenable: _basico,
+                  builder: (context, open, _) => SgConfirmationDialog(
+                    open: open,
+                    onOpenChange: (value) => _basico.value = value,
+                    title: Text(context.tx('Excluir registro?')),
+                    message: Text(
+                      context.tx('Esta ação não pode ser desfeita.'),
+                    ),
+                    onConfirm: () => _resultado.value = 'Confirmado',
+                    onCancel: () => _resultado.value = 'Cancelado',
+                  ),
                 ),
               ],
             ),
@@ -74,21 +104,26 @@ class _SgConfirmationDialogPageState extends State<SgConfirmationDialogPage> {
                       SgButton(
                         label: Text(s.value),
                         severity: s,
-                        onClick: () => setState(() {
-                          _sev = SgDialogSeverity.fromValue(s.value)!;
-                          _severidade = true;
-                        }),
+                        onClick: () {
+                          _sev.value = SgDialogSeverity.fromValue(s.value)!;
+                          _severidade.value = true;
+                        },
                       ),
                   ],
                 ),
-                SgConfirmationDialog(
-                  open: _severidade,
-                  onOpenChange: (open) => setState(() => _severidade = open),
-                  severity: _sev,
-                  showSeverityAccent: true,
-                  title: Text('Severidade ${_sev.value}'),
-                  message: Text(
-                    context.tx('Veja o ícone, o fundo e o botão de confirmar.'),
+                ListenableBuilder(
+                  listenable: Listenable.merge([_severidade, _sev]),
+                  builder: (context, _) => SgConfirmationDialog(
+                    open: _severidade.value,
+                    onOpenChange: (value) => _severidade.value = value,
+                    severity: _sev.value,
+                    showSeverityAccent: true,
+                    title: Text('Severidade ${_sev.value.value}'),
+                    message: Text(
+                      context.tx(
+                        'Veja o ícone, o fundo e o botão de confirmar.',
+                      ),
+                    ),
                   ),
                 ),
               ],
@@ -108,18 +143,21 @@ class _SgConfirmationDialogPageState extends State<SgConfirmationDialogPage> {
                 SgButton(
                   label: Text(context.tx('Abrir aviso')),
                   appearance: SgAppearance.outline,
-                  onClick: () => setState(() => _esquerda = true),
+                  onClick: () => _esquerda.value = true,
                 ),
-                SgConfirmationDialog(
-                  open: _esquerda,
-                  onOpenChange: (open) => setState(() => _esquerda = open),
-                  severity: SgDialogSeverity.warning,
-                  iconPlacement: SgConfirmationDialogIconPlacement.left,
-                  icon: const Icon(Icons.warning_amber_rounded, size: 20),
-                  title: Text(context.tx('Alterações não salvas')),
-                  message: Text(
-                    context.tx(
-                      'Você tem atualizações pendentes. Deseja continuar sem salvar?',
+                ValueListenableBuilder<bool>(
+                  valueListenable: _esquerda,
+                  builder: (context, open, _) => SgConfirmationDialog(
+                    open: open,
+                    onOpenChange: (value) => _esquerda.value = value,
+                    severity: SgDialogSeverity.warning,
+                    iconPlacement: SgConfirmationDialogIconPlacement.left,
+                    icon: const Icon(Icons.warning_amber_rounded, size: 20),
+                    title: Text(context.tx('Alterações não salvas')),
+                    message: Text(
+                      context.tx(
+                        'Você tem atualizações pendentes. Deseja continuar sem salvar?',
+                      ),
                     ),
                   ),
                 ),
@@ -139,18 +177,21 @@ class _SgConfirmationDialogPageState extends State<SgConfirmationDialogPage> {
                 SgButton(
                   label: Text(context.tx('Publicar')),
                   severity: SgSeverity.success,
-                  onClick: () => setState(() => _icone = true),
+                  onClick: () => _icone.value = true,
                 ),
-                SgConfirmationDialog(
-                  open: _icone,
-                  onOpenChange: (open) => setState(() => _icone = open),
-                  severity: SgDialogSeverity.success,
-                  iconPlacement: SgConfirmationDialogIconPlacement.top,
-                  icon: const Icon(Icons.rocket_launch, size: 28),
-                  closeable: true,
-                  title: Text(context.tx('Publicar agora?')),
-                  message: Text(
-                    context.tx('A versão ficará visível para todos.'),
+                ValueListenableBuilder<bool>(
+                  valueListenable: _icone,
+                  builder: (context, open, _) => SgConfirmationDialog(
+                    open: open,
+                    onOpenChange: (value) => _icone.value = value,
+                    severity: SgDialogSeverity.success,
+                    iconPlacement: SgConfirmationDialogIconPlacement.top,
+                    icon: const Icon(Icons.rocket_launch, size: 28),
+                    closeable: true,
+                    title: Text(context.tx('Publicar agora?')),
+                    message: Text(
+                      context.tx('A versão ficará visível para todos.'),
+                    ),
                   ),
                 ),
               ],
@@ -169,24 +210,27 @@ class _SgConfirmationDialogPageState extends State<SgConfirmationDialogPage> {
                 SgButton(
                   label: Text(context.tx('Sair sem salvar')),
                   appearance: SgAppearance.outline,
-                  onClick: () => setState(() => _botoes = true),
+                  onClick: () => _botoes.value = true,
                 ),
-                SgConfirmationDialog(
-                  open: _botoes,
-                  onOpenChange: (open) => setState(() => _botoes = open),
-                  severity: SgDialogSeverity.danger,
-                  title: Text(context.tx('Descartar alterações?')),
-                  message: Text(
-                    context.tx('As alterações não salvas serão perdidas.'),
-                  ),
-                  cancelButton: SgConfirmationDialogButtonConfig(
-                    label: Text(context.tx('Continuar editando')),
-                    icon: Icon(Icons.edit),
-                  ),
-                  confirmButton: SgConfirmationDialogButtonConfig(
-                    label: Text(context.tx('Descartar')),
-                    icon: Icon(Icons.delete),
-                    appearance: SgAppearance.outline,
+                ValueListenableBuilder<bool>(
+                  valueListenable: _botoes,
+                  builder: (context, open, _) => SgConfirmationDialog(
+                    open: open,
+                    onOpenChange: (value) => _botoes.value = value,
+                    severity: SgDialogSeverity.danger,
+                    title: Text(context.tx('Descartar alterações?')),
+                    message: Text(
+                      context.tx('As alterações não salvas serão perdidas.'),
+                    ),
+                    cancelButton: SgConfirmationDialogButtonConfig(
+                      label: Text(context.tx('Continuar editando')),
+                      icon: Icon(Icons.edit),
+                    ),
+                    confirmButton: SgConfirmationDialogButtonConfig(
+                      label: Text(context.tx('Descartar')),
+                      icon: Icon(Icons.delete),
+                      appearance: SgAppearance.outline,
+                    ),
                   ),
                 ),
               ],
@@ -206,17 +250,22 @@ class _SgConfirmationDialogPageState extends State<SgConfirmationDialogPage> {
                 SgButton(
                   label: Text(context.tx('Abrir superfície customizada')),
                   appearance: SgAppearance.outline,
-                  onClick: () => setState(() => _superficie = true),
+                  onClick: () => _superficie.value = true,
                 ),
-                SgConfirmationDialog(
-                  open: _superficie,
-                  onOpenChange: (open) => setState(() => _superficie = open),
-                  severity: SgDialogSeverity.danger,
-                  customColor: '#fff7ed',
-                  elevation:
-                      '0 0 0 1px rgba(234, 88, 12, 0.22), 0 24px 56px rgba(234, 88, 12, 0.28)',
-                  title: Text(context.tx('Excluir registro?')),
-                  message: Text(context.tx('Esta ação não pode ser desfeita.')),
+                ValueListenableBuilder<bool>(
+                  valueListenable: _superficie,
+                  builder: (context, open, _) => SgConfirmationDialog(
+                    open: open,
+                    onOpenChange: (value) => _superficie.value = value,
+                    severity: SgDialogSeverity.danger,
+                    customColor: '#fff7ed',
+                    elevation:
+                        '0 0 0 1px rgba(234, 88, 12, 0.22), 0 24px 56px rgba(234, 88, 12, 0.28)',
+                    title: Text(context.tx('Excluir registro?')),
+                    message: Text(
+                      context.tx('Esta ação não pode ser desfeita.'),
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -249,28 +298,31 @@ class _SgConfirmationDialogPageState extends State<SgConfirmationDialogPage> {
           children: [
             SgButton(
               label: const Text('Abrir'),
-              onClick: () => setState(() => _pg = true),
+              onClick: () => _pg.value = true,
             ),
-            SgConfirmationDialog(
-              open: _pg,
-              onOpenChange: (open) => setState(() => _pg = open),
-              title: const Text('Playground'),
-              message: const Text('Mude as props e abra de novo.'),
-              severity:
-                  SgDialogSeverity.fromValue(v['severity'] as String?) ??
-                  SgDialogSeverity.warning,
-              iconPlacement:
-                  SgConfirmationDialogIconPlacement.fromValue(
-                    v['iconPlacement'] as String?,
-                  ) ??
-                  SgConfirmationDialogIconPlacement.left,
-              size:
-                  SgDialogSize.fromValue(v['size'] as String?) ??
-                  SgDialogSize.sm,
-              showSeverityAccent: (v['showSeverityAccent'] as bool?) ?? false,
-              closeable: (v['closeable'] as bool?) ?? false,
-              closeOnCancel: (v['closeOnCancel'] as bool?) ?? true,
-              closeOnConfirm: (v['closeOnConfirm'] as bool?) ?? true,
+            ValueListenableBuilder<bool>(
+              valueListenable: _pg,
+              builder: (context, open, _) => SgConfirmationDialog(
+                open: open,
+                onOpenChange: (value) => _pg.value = value,
+                title: const Text('Playground'),
+                message: const Text('Mude as props e abra de novo.'),
+                severity:
+                    SgDialogSeverity.fromValue(v['severity'] as String?) ??
+                    SgDialogSeverity.warning,
+                iconPlacement:
+                    SgConfirmationDialogIconPlacement.fromValue(
+                      v['iconPlacement'] as String?,
+                    ) ??
+                    SgConfirmationDialogIconPlacement.left,
+                size:
+                    SgDialogSize.fromValue(v['size'] as String?) ??
+                    SgDialogSize.sm,
+                showSeverityAccent: (v['showSeverityAccent'] as bool?) ?? false,
+                closeable: (v['closeable'] as bool?) ?? false,
+                closeOnCancel: (v['closeOnCancel'] as bool?) ?? true,
+                closeOnConfirm: (v['closeOnConfirm'] as bool?) ?? true,
+              ),
             ),
           ],
         ),

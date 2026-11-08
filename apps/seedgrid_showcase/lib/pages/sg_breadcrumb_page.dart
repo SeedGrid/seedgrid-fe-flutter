@@ -15,9 +15,17 @@ class SgBreadcrumbPage extends StatefulWidget {
 }
 
 class _SgBreadcrumbPageState extends State<SgBreadcrumbPage> {
-  String _ultimo = 'nada ainda';
-  String _rota = 'registration';
-  String _ultimoRota = '-';
+  final ValueNotifier<String?> _ultimo = ValueNotifier<String?>(null);
+  final ValueNotifier<String> _rota = ValueNotifier<String>('registration');
+  final ValueNotifier<String> _ultimoRota = ValueNotifier<String>('-');
+
+  @override
+  void dispose() {
+    _ultimo.dispose();
+    _rota.dispose();
+    _ultimoRota.dispose();
+    super.dispose();
+  }
 
   static final _caminho = [
     for (final (i, nome) in [
@@ -36,28 +44,42 @@ class _SgBreadcrumbPageState extends State<SgBreadcrumbPage> {
     final examples = <ShowcaseExample>[
       ShowcaseExample(
         title: 'Básico',
-        description: context.txf(
-          'O último item é a página atual e não é clicável. Último clique: {ultimo}.',
-          {'ultimo': _ultimo},
-        ),
+        description: 'O último item é a página atual e não é clicável.',
         preview:
             // #region sg-breadcrumb-basico
-            SgBreadcrumb(
-              items: [
-                SgBreadcrumbItem(
-                  id: 'a',
-                  label: Text(context.tx('Início')),
-                  href: '/',
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SgBreadcrumb(
+                  items: [
+                    SgBreadcrumbItem(
+                      id: 'a',
+                      label: Text(context.tx('Início')),
+                      href: '/',
+                    ),
+                    SgBreadcrumbItem(
+                      id: 'b',
+                      label: Text(context.tx('Relatórios')),
+                      href: '/relatorios',
+                    ),
+                    SgBreadcrumbItem(
+                      id: 'c',
+                      label: Text(context.tx('Vendas')),
+                    ),
+                  ],
+                  onNavigate: (item, index) =>
+                      _ultimo.value = '${item.id} (índice $index)',
                 ),
-                SgBreadcrumbItem(
-                  id: 'b',
-                  label: Text(context.tx('Relatórios')),
-                  href: '/relatorios',
+                const SizedBox(height: 8),
+                ValueListenableBuilder<String?>(
+                  valueListenable: _ultimo,
+                  builder: (context, ultimo, _) => Text(
+                    context.txf('Último evento: {evento}', {
+                      'evento': ultimo ?? context.tx('nada ainda'),
+                    }),
+                  ),
                 ),
-                SgBreadcrumbItem(id: 'c', label: Text(context.tx('Vendas'))),
               ],
-              onNavigate: (item, index) =>
-                  setState(() => _ultimo = '${item.id} (índice $index)'),
             ),
         // #endregion
         code: SgBreadcrumbPageSnippets.sgBreadcrumbBasico,
@@ -78,48 +100,53 @@ class _SgBreadcrumbPageState extends State<SgBreadcrumbPage> {
                       size: SgSize.sm,
                       appearance: SgAppearance.outline,
                       label: const Text('Go to Registration'),
-                      onClick: () => setState(() => _rota = 'registration'),
+                      onClick: () => _rota.value = 'registration',
                     ),
                     SgButton(
                       size: SgSize.sm,
                       appearance: SgAppearance.outline,
                       label: const Text('Go to Fiscal'),
-                      onClick: () => setState(() => _rota = 'fiscal'),
+                      onClick: () => _rota.value = 'fiscal',
                     ),
                     SgButton(
                       size: SgSize.sm,
                       appearance: SgAppearance.outline,
                       label: const Text('Go to Integration'),
-                      onClick: () => setState(() => _rota = 'integration'),
+                      onClick: () => _rota.value = 'integration',
                     ),
                   ],
                 ),
                 const SizedBox(height: 12),
-                SgBreadcrumb(
-                  items: [
-                    SgBreadcrumbItem(
-                      id: 'erp',
-                      label: const Text('ERP'),
-                      href: '/erp',
-                    ),
-                    SgBreadcrumbItem(
-                      id: _rota,
-                      label: Text(_rota),
-                      href: '/erp/$_rota',
-                    ),
-                    SgBreadcrumbItem(
-                      id: 'atual',
-                      label: const Text('Customers'),
-                    ),
-                  ],
-                  separator: SgBreadcrumbSeparator.arrow,
-                  variant: SgBreadcrumbVariant.subtle,
-                  onNavigate: (item, index) =>
-                      setState(() => _ultimoRota = item.id),
+                ValueListenableBuilder<String>(
+                  valueListenable: _rota,
+                  builder: (context, rota, _) => SgBreadcrumb(
+                    items: [
+                      SgBreadcrumbItem(
+                        id: 'erp',
+                        label: const Text('ERP'),
+                        href: '/erp',
+                      ),
+                      SgBreadcrumbItem(
+                        id: rota,
+                        label: Text(rota),
+                        href: '/erp/$rota',
+                      ),
+                      SgBreadcrumbItem(
+                        id: 'atual',
+                        label: const Text('Customers'),
+                      ),
+                    ],
+                    separator: SgBreadcrumbSeparator.arrow,
+                    variant: SgBreadcrumbVariant.subtle,
+                    onNavigate: (item, index) => _ultimoRota.value = item.id,
+                  ),
                 ),
                 const SizedBox(height: 8),
-                Text(
-                  '${context.tx('rota ativa')}: $_rota | ${context.tx('último clique')}: $_ultimoRota',
+                ListenableBuilder(
+                  listenable: Listenable.merge([_rota, _ultimoRota]),
+                  builder: (context, _) => Text(
+                    '${context.tx('rota ativa')}: ${_rota.value} | ${context.tx('último clique')}: ${_ultimoRota.value}',
+                  ),
                 ),
               ],
             ),

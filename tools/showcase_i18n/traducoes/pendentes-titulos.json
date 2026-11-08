@@ -6502,5 +6502,11 @@
   "Move para um menu '...' os botões que não cabem na largura disponível; abaixo de 600px abre como painel inferior.",
   "Mueve a un menú '...' los botones que no caben en el ancho disponible; por debajo de 600px se abre como panel inferior.",
   "Déplace dans un menu '...' les boutons qui ne tiennent pas dans la largeur disponible ; en dessous de 600px, il s'ouvre comme un panneau inférieur."
+ ],
+ "O último item é a página atual e não é clicável.": [
+  "The last item is the current page and is not clickable.",
+  "O último item é a página atual e não é clicável.",
+  "El último elemento es la página actual y no es clicable.",
+  "Le dernier élément est la page actuelle et n'est pas cliquable."
  ]
 }
