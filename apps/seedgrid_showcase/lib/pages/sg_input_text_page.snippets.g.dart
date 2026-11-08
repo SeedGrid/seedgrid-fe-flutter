@@ -14,10 +14,14 @@ Column(
         id: 'demo-suffix',
         labelText: context.tx('Email'),
         suffixText: '@gmail.com',
-        onChange: (v) => setState(() => _sufixo = v),
+        onChange: (v) => _sufixo.value = v,
       ),
     ),
-    Text('${context.tx('Valor completo')}: $_sufixo'),
+    ValueListenableBuilder<String>(
+      valueListenable: _sufixo,
+      builder: (context, valor, _) =>
+          Text('${context.tx('Valor completo')}: $valor'),
+    ),
     const SizedBox(height: 12),
     SizedBox(
       width: 320,
@@ -25,10 +29,14 @@ Column(
         id: 'demo-prefix-text',
         labelText: context.tx('Website'),
         prefixText: 'www.',
-        onChange: (v) => setState(() => _prefixo = v),
+        onChange: (v) => _prefixo.value = v,
       ),
     ),
-    Text('${context.tx('Valor completo')}: $_prefixo'),
+    ValueListenableBuilder<String>(
+      valueListenable: _prefixo,
+      builder: (context, valor, _) =>
+          Text('${context.tx('Valor completo')}: $valor'),
+    ),
     const SizedBox(height: 12),
     SizedBox(
       width: 384,
@@ -37,10 +45,14 @@ Column(
         labelText: context.tx('Domínio'),
         prefixText: 'www.',
         suffixText: '.seedgrid.com.br',
-        onChange: (v) => setState(() => _ambos = v),
+        onChange: (v) => _ambos.value = v,
       ),
     ),
-    Text('${context.tx('Valor completo')}: $_ambos'),
+    ValueListenableBuilder<String>(
+      valueListenable: _ambos,
+      builder: (context, valor, _) =>
+          Text('${context.tx('Valor completo')}: $valor'),
+    ),
   ],
 )
 ''';
@@ -63,11 +75,15 @@ Column(
     SgButton(
       label: Text(context.tx('Enviar')),
       onClick: () => _form.handleSubmit(
-        (values) => setState(() => _enviado = '${values['nome']}'),
+        (values) => _enviado.value = '${values['nome']}',
       ),
     ),
     const SizedBox(height: 8),
-    Text('${context.tx('Valor')}: $_enviado'),
+    ValueListenableBuilder<String>(
+      valueListenable: _enviado,
+      builder: (context, enviado, _) =>
+          Text('${context.tx('Valor')}: $enviado'),
+    ),
   ],
 )
 ''';
@@ -87,29 +103,31 @@ SizedBox(
             size: SgSize.sm,
             appearance: SgAppearance.outline,
             leftIcon: const Icon(Icons.copy),
-            onClick: () => setState(
-              () => _iconLog.insert(0, context.tx('Copiado')),
-            ),
+            onClick: () => _iconLog.value = [
+              context.tx('Copiado'),
+              ..._iconLog.value,
+            ],
           ),
           SgButton(
             iconOnly: true,
             size: SgSize.sm,
             appearance: SgAppearance.outline,
             leftIcon: const Icon(Icons.notifications_outlined),
-            onClick: () => setState(
-              () => _iconLog.insert(
-                0,
-                context.tx('Alerta disparado!'),
-              ),
-            ),
+            onClick: () => _iconLog.value = [
+              context.tx('Alerta disparado!'),
+              ..._iconLog.value,
+            ],
           ),
         ],
       ),
       const SizedBox(height: 12),
-      ShowcaseLogBox(
-        entries: _iconLog,
-        hint: context.tx('Digite algo e clique nos ícones...'),
-        height: 96,
+      ValueListenableBuilder<List<String>>(
+        valueListenable: _iconLog,
+        builder: (context, entries, _) => ShowcaseLogBox(
+          entries: entries,
+          hint: context.tx('Digite algo e clique nos ícones...'),
+          height: 96,
+        ),
       ),
     ],
   ),
@@ -284,10 +302,13 @@ SizedBox(
             _log('onValidation: ${msg ?? context.tx('válido')}'),
       ),
       const SizedBox(height: 12),
-      ShowcaseLogBox(
-        entries: _eventLog,
-        hint: context.tx('Interaja com o input...'),
-        height: 160,
+      ValueListenableBuilder<List<String>>(
+        valueListenable: _eventLog,
+        builder: (context, entries, _) => ShowcaseLogBox(
+          entries: entries,
+          hint: context.tx('Interaja com o input...'),
+          height: 160,
+        ),
       ),
     ],
   ),
@@ -481,11 +502,14 @@ SizedBox(
             RegExp(r'[^\p{L}\s]', unicode: true).hasMatch(v)
             ? context.tx('Apenas letras são permitidas.')
             : null,
-        onValidation: (msg) => setState(() => _validationMsg = msg),
+        onValidation: (msg) => _validationMsg.value = msg,
       ),
       const SizedBox(height: 8),
-      Text(
-        'onValidation: ${_validationMsg == null ? context.tx('válido') : '"$_validationMsg"'}',
+      ValueListenableBuilder<String?>(
+        valueListenable: _validationMsg,
+        builder: (context, msg, _) => Text(
+          'onValidation: ${msg == null ? context.tx('válido') : '"$msg"'}',
+        ),
       ),
     ],
   ),

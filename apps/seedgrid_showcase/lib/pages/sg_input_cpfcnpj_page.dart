@@ -18,13 +18,23 @@ class SgInputCPFCNPJPage extends StatefulWidget {
 }
 
 class _SgInputCPFCNPJPageState extends State<SgInputCPFCNPJPage> {
-  String _basico = '';
-  String? _validationMsg;
-  final List<String> _eventLog = [];
-  Object? _publicaResultado;
-  String? _publicaErro;
+  final ValueNotifier<String> _basico = ValueNotifier('');
+  final ValueNotifier<String?> _validationMsg = ValueNotifier(null);
+  final ValueNotifier<List<String>> _eventLog = ValueNotifier(const []);
+  final ValueNotifier<Object?> _publicaResultado = ValueNotifier(null);
+  final ValueNotifier<String?> _publicaErro = ValueNotifier(null);
 
-  void _log(String entry) => setState(() => _eventLog.insert(0, entry));
+  void _log(String entry) => _eventLog.value = [entry, ..._eventLog.value];
+
+  @override
+  void dispose() {
+    _basico.dispose();
+    _validationMsg.dispose();
+    _eventLog.dispose();
+    _publicaResultado.dispose();
+    _publicaErro.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,10 +53,14 @@ class _SgInputCPFCNPJPageState extends State<SgInputCPFCNPJPage> {
                     id: 'demo-basic',
                     labelText: context.tx('Documento'),
                     hintText: context.tx('CPF ou CNPJ'),
-                    onChange: (v) => setState(() => _basico = v),
+                    onChange: (v) => _basico.value = v,
                   ),
                   const SizedBox(height: 8),
-                  Text('${context.tx('Valor')}: $_basico'),
+                  ValueListenableBuilder<String>(
+                    valueListenable: _basico,
+                    builder: (context, valor, _) =>
+                        Text('${context.tx('Valor')}: $valor'),
+                  ),
                 ],
               ),
             ),
@@ -119,11 +133,14 @@ class _SgInputCPFCNPJPageState extends State<SgInputCPFCNPJPage> {
                     validation: (v) => v.startsWith('00')
                         ? context.tx('Documento não pode iniciar com 00.')
                         : null,
-                    onValidation: (msg) => setState(() => _validationMsg = msg),
+                    onValidation: (msg) => _validationMsg.value = msg,
                   ),
                   const SizedBox(height: 8),
-                  Text(
-                    'onValidation: ${_validationMsg == null ? context.tx('válido') : '"$_validationMsg"'}',
+                  ValueListenableBuilder<String?>(
+                    valueListenable: _validationMsg,
+                    builder: (context, msg, _) => Text(
+                      'onValidation: ${msg == null ? context.tx('válido') : '"$msg"'}',
+                    ),
                   ),
                 ],
               ),
@@ -282,10 +299,13 @@ class _SgInputCPFCNPJPageState extends State<SgInputCPFCNPJPage> {
                         _log('onValidation: ${msg ?? context.tx('válido')}'),
                   ),
                   const SizedBox(height: 12),
-                  ShowcaseLogBox(
-                    entries: _eventLog,
-                    hint: context.tx('Interaja com o input...'),
-                    height: 160,
+                  ValueListenableBuilder<List<String>>(
+                    valueListenable: _eventLog,
+                    builder: (context, entries, _) => ShowcaseLogBox(
+                      entries: entries,
+                      hint: context.tx('Interaja com o input...'),
+                      height: 160,
+                    ),
                   ),
                 ],
               ),
@@ -351,32 +371,45 @@ class _SgInputCPFCNPJPageState extends State<SgInputCPFCNPJPage> {
                     hintText: context.tx('CPF ou CNPJ'),
                     validateWithPublicaCnpj: true,
                     publicaCnpjErrorMessage: context.tx('CNPJ não encontrado.'),
-                    onPublicaCnpjResult: (data) => setState(() {
-                      _publicaResultado = data;
-                      _publicaErro = null;
-                    }),
-                    onPublicaCnpjError: (_) => setState(
-                      () => _publicaErro = context.tx(
-                        'Falha ao consultar a API.',
-                      ),
+                    onPublicaCnpjResult: (data) {
+                      _publicaResultado.value = data;
+                      _publicaErro.value = null;
+                    },
+                    onPublicaCnpjError: (_) => _publicaErro.value = context.tx(
+                      'Falha ao consultar a API.',
                     ),
                   ),
                 ),
-                if (_publicaResultado != null) ...[
-                  const SizedBox(height: 8),
-                  Text(context.tx('Resultado da consulta')),
-                  ConstrainedBox(
-                    constraints: const BoxConstraints(maxHeight: 240),
-                    child: SingleChildScrollView(
-                      child: SelectableText(
-                        const JsonEncoder.withIndent(
-                          '  ',
-                        ).convert(_publicaResultado),
-                      ),
-                    ),
-                  ),
-                ],
-                if (_publicaErro != null) Text(_publicaErro!),
+                ListenableBuilder(
+                  listenable: Listenable.merge([
+                    _publicaResultado,
+                    _publicaErro,
+                  ]),
+                  builder: (context, _) {
+                    final resultado = _publicaResultado.value;
+                    final erro = _publicaErro.value;
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        if (resultado != null) ...[
+                          const SizedBox(height: 8),
+                          Text(context.tx('Resultado da consulta')),
+                          ConstrainedBox(
+                            constraints: const BoxConstraints(maxHeight: 240),
+                            child: SingleChildScrollView(
+                              child: SelectableText(
+                                const JsonEncoder.withIndent(
+                                  '  ',
+                                ).convert(resultado),
+                              ),
+                            ),
+                          ),
+                        ],
+                        if (erro != null) Text(erro),
+                      ],
+                    );
+                  },
+                ),
               ],
             ),
         // #endregion
