@@ -438,14 +438,9 @@ class _ClienteFormState extends State<ClienteForm> {
 }
 // #endregion
 
-class CrudClientesPage extends StatefulWidget {
+class CrudClientesPage extends StatelessWidget {
   const CrudClientesPage({super.key});
 
-  @override
-  State<CrudClientesPage> createState() => _CrudClientesPageState();
-}
-
-class _CrudClientesPageState extends State<CrudClientesPage> {
   @override
   Widget build(BuildContext context) {
     final examples = <ShowcaseExample>[

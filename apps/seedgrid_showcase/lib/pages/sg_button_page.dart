@@ -15,7 +15,13 @@ class SgButtonPage extends StatefulWidget {
 }
 
 class _SgButtonPageState extends State<SgButtonPage> {
-  bool _loading = false;
+  final ValueNotifier<bool> _loading = ValueNotifier(false);
+
+  @override
+  void dispose() {
+    _loading.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,15 +37,18 @@ class _SgButtonPageState extends State<SgButtonPage> {
               runSpacing: 12,
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
-                SgButton(
-                  label: Text(context.tx('Submit')),
-                  loading: _loading,
-                  onClick: () {
-                    setState(() => _loading = true);
-                    Future.delayed(const Duration(milliseconds: 1200), () {
-                      if (mounted) setState(() => _loading = false);
-                    });
-                  },
+                ValueListenableBuilder<bool>(
+                  valueListenable: _loading,
+                  builder: (context, loading, _) => SgButton(
+                    label: Text(context.tx('Submit')),
+                    loading: loading,
+                    onClick: () {
+                      _loading.value = true;
+                      Future.delayed(const Duration(milliseconds: 1200), () {
+                        if (mounted) _loading.value = false;
+                      });
+                    },
+                  ),
                 ),
                 SgButton(label: Text(context.tx('Disabled')), enabled: false),
               ],

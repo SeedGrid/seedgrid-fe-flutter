@@ -34,13 +34,28 @@ SgAccordion(
 
   /// Region `sg-accordion-controlado`.
   static const String sgAccordionControlado = r'''
-SgAccordion(
-  items: _itens,
-  multiple: true,
-  activeIndex: _ativos,
-  onActiveIndexChange: (v) => setState(() => _ativos = v),
-  onItemToggle: (i, aberto) =>
-      setState(() => _ultimo = '$i ${aberto ? 'abriu' : 'fechou'}'),
+ListenableBuilder(
+  listenable: Listenable.merge([_ativos, _ultimo]),
+  builder: (context, _) => Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      SgAccordion(
+        items: _itens,
+        multiple: true,
+        activeIndex: _ativos.value,
+        onActiveIndexChange: (v) => _ativos.value = v,
+        onItemToggle: (i, aberto) =>
+            _ultimo.value = '$i ${aberto ? 'abriu' : 'fechou'}',
+      ),
+      const SizedBox(height: 8),
+      Text(
+        context.txf(
+          'O estado vive na página: ativos = {ativos}, último toque = {ultimo}.',
+          {'ativos': _ativos.value, 'ultimo': _ultimo.value},
+        ),
+      ),
+    ],
+  ),
 )
 ''';
 

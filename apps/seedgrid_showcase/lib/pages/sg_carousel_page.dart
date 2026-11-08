@@ -17,13 +17,19 @@ class SgCarouselPage extends StatefulWidget {
 }
 
 class _SgCarouselPageState extends State<SgCarouselPage> {
-  int _activeIndex = 0;
-  final List<String> _eventLog = [];
+  final ValueNotifier<int> _activeIndex = ValueNotifier(0);
+  final ValueNotifier<List<String>> _eventLog = ValueNotifier(const []);
 
   void _log(String message) {
     final now = DateTime.now().toString().substring(11, 19);
-    _eventLog.insert(0, '[$now] $message');
-    if (_eventLog.length > 10) _eventLog.removeLast();
+    _eventLog.value = ['[$now] $message', ..._eventLog.value].take(10).toList();
+  }
+
+  @override
+  void dispose() {
+    _activeIndex.dispose();
+    _eventLog.dispose();
+    super.dispose();
   }
 
   // Equivale ao createCarouselItems do React (cartoes coloridos no lugar das fotos).
@@ -262,7 +268,11 @@ class _SgCarouselPageState extends State<SgCarouselPage> {
                   color: Theme.of(
                     context,
                   ).colorScheme.onSurface.withValues(alpha: 0.05),
-                  child: Text('${context.tx('Índice Ativo')}: $_activeIndex'),
+                  child: ValueListenableBuilder<int>(
+                    valueListenable: _activeIndex,
+                    builder: (context, index, _) =>
+                        Text('${context.tx('Índice Ativo')}: $index'),
+                  ),
                 ),
                 const SizedBox(height: 16),
                 SizedBox(
@@ -273,19 +283,22 @@ class _SgCarouselPageState extends State<SgCarouselPage> {
                     numScroll: 1,
                     orientation: SgCarouselOrientation.horizontal,
                     height: '100%',
-                    onIndexChange: (index) => setState(() {
-                      _activeIndex = index;
+                    onIndexChange: (index) {
+                      _activeIndex.value = index;
                       _log('${context.tx('Índice mudou para')}: $index');
-                    }),
+                    },
                   ),
                 ),
                 const SizedBox(height: 16),
-                ShowcaseLogBox(
-                  entries: _eventLog,
-                  hint: context.tx(
-                    'Navegue pelo carrossel para ver os eventos...',
+                ValueListenableBuilder<List<String>>(
+                  valueListenable: _eventLog,
+                  builder: (context, entries, _) => ShowcaseLogBox(
+                    entries: entries,
+                    hint: context.tx(
+                      'Navegue pelo carrossel para ver os eventos...',
+                    ),
+                    height: 128,
                   ),
-                  height: 128,
                 ),
               ],
             ),

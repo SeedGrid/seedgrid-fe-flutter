@@ -6503,6 +6503,18 @@
   "Mueve a un menú '...' los botones que no caben en el ancho disponible; por debajo de 600px se abre como panel inferior.",
   "Déplace dans un menu '...' les boutons qui ne tiennent pas dans la largeur disponible ; en dessous de 600px, il s'ouvre comme un panneau inférieur."
  ],
+ "O estado vive fora do componente: os painéis ativos e o último toque são exibidos abaixo.": [
+  "The state lives outside the component: the active panels and the last toggle are shown below.",
+  "O estado vive fora do componente: os painéis ativos e o último toque são apresentados abaixo.",
+  "El estado vive fuera del componente: los paneles activos y el último toque se muestran abajo.",
+  "L'état vit en dehors du composant : les panneaux actifs et la dernière bascule sont affichés ci-dessous."
+ ],
+ "Botão de ícone com rótulo e dica (hint).": [
+  "Icon button with a label and a hint.",
+  "Botão de ícone com rótulo e dica (hint).",
+  "Botón de icono con etiqueta y pista (hint).",
+  "Bouton d'icône avec libellé et astuce (hint)."
+ ],
  "O último item é a página atual e não é clicável.": [
   "The last item is the current page and is not clickable.",
   "O último item é a página atual e não é clicável.",
