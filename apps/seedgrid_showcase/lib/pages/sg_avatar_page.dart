@@ -14,7 +14,13 @@ class SgAvatarPage extends StatefulWidget {
 }
 
 class _SgAvatarPageState extends State<SgAvatarPage> {
-  int _cliques = 0;
+  final ValueNotifier<int> _cliques = ValueNotifier(0);
+
+  @override
+  void dispose() {
+    _cliques.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -231,14 +237,18 @@ class _SgAvatarPageState extends State<SgAvatarPage> {
                 SgAvatar(
                   label: Text(context.tx('Ana Lima')),
                   title: context.tx('Abrir perfil'),
-                  onClick: () => setState(() => _cliques++),
+                  onClick: () => _cliques.value++,
                 ),
                 SgAvatar(
                   label: Text(context.tx('Bia Souza')),
                   enabled: false,
                   onClick: () {},
                 ),
-                Text(context.txf('Cliques: {n}', {'n': _cliques})),
+                ValueListenableBuilder<int>(
+                  valueListenable: _cliques,
+                  builder: (context, n, _) =>
+                      Text(context.txf('Cliques: {n}', {'n': n})),
+                ),
               ],
             ),
         // #endregion

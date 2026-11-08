@@ -5,11 +5,23 @@
 abstract final class SgToolbarIconButtonPageSnippets {
   /// Region `sg-toolbar-icon-button-basico`.
   static const String sgToolbarIconButtonBasico = r'''
-SgToolbarIconButton(
-  icon: const Icon(Icons.add),
-  label: context.tx('Novo'),
-  hint: context.tx('Criar um registro'),
-  onClick: () => setState(() => _cliques++),
+Wrap(
+  spacing: 12,
+  runSpacing: 8,
+  crossAxisAlignment: WrapCrossAlignment.center,
+  children: [
+    SgToolbarIconButton(
+      icon: const Icon(Icons.add),
+      label: context.tx('Novo'),
+      hint: context.tx('Criar um registro'),
+      onClick: () => _cliques.value++,
+    ),
+    ValueListenableBuilder<int>(
+      valueListenable: _cliques,
+      builder: (context, n, _) =>
+          Text(context.txf('Cliques: {n}', {'n': n})),
+    ),
+  ],
 )
 ''';
 

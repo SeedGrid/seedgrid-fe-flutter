@@ -17,24 +17,39 @@ class SgToolbarIconButtonPage extends StatefulWidget {
 }
 
 class _SgToolbarIconButtonPageState extends State<SgToolbarIconButtonPage> {
-  int _cliques = 0;
+  final ValueNotifier<int> _cliques = ValueNotifier(0);
+
+  @override
+  void dispose() {
+    _cliques.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     final examples = <ShowcaseExample>[
       ShowcaseExample(
         title: 'Básico',
-        description: context.txf(
-          'Botão de ícone com rótulo e dica (hint). Cliques: {cliques}.',
-          {'cliques': _cliques},
-        ),
+        description: 'Botão de ícone com rótulo e dica (hint).',
         preview:
             // #region sg-toolbar-icon-button-basico
-            SgToolbarIconButton(
-              icon: const Icon(Icons.add),
-              label: context.tx('Novo'),
-              hint: context.tx('Criar um registro'),
-              onClick: () => setState(() => _cliques++),
+            Wrap(
+              spacing: 12,
+              runSpacing: 8,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                SgToolbarIconButton(
+                  icon: const Icon(Icons.add),
+                  label: context.tx('Novo'),
+                  hint: context.tx('Criar um registro'),
+                  onClick: () => _cliques.value++,
+                ),
+                ValueListenableBuilder<int>(
+                  valueListenable: _cliques,
+                  builder: (context, n, _) =>
+                      Text(context.txf('Cliques: {n}', {'n': n})),
+                ),
+              ],
             ),
         // #endregion
         code: SgToolbarIconButtonPageSnippets.sgToolbarIconButtonBasico,

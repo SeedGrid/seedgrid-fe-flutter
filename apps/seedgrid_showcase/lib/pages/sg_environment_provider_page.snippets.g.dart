@@ -38,7 +38,11 @@ Column(
       ),
     ),
     const SizedBox(height: 8),
-    Text('chamadas: ${_requests.join(' | ')}'),
+    ValueListenableBuilder<List<String>>(
+      valueListenable: _requests,
+      builder: (context, requests, _) =>
+          Text('chamadas: ${requests.join(' | ')}'),
+    ),
   ],
 )
 ''';
@@ -71,14 +75,24 @@ Column(
             await state.setValue(
               state.value == 'claro' ? 'escuro' : 'claro',
             );
-            setState(() {});
           },
         ),
       ),
     ),
     const SizedBox(height: 8),
-    Text('local: $_local'),
-    Text('chamadas: ${_hybridRequests.join(' | ')}'),
+    ListenableBuilder(
+      listenable: Listenable.merge([
+        _localChanged,
+        _hybridRequests,
+      ]),
+      builder: (context, _) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('local: $_local'),
+          Text('chamadas: ${_hybridRequests.value.join(' | ')}'),
+        ],
+      ),
+    ),
   ],
 )
 ''';

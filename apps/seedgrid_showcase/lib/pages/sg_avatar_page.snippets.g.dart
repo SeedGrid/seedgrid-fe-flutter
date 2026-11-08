@@ -160,14 +160,18 @@ Wrap(
     SgAvatar(
       label: Text(context.tx('Ana Lima')),
       title: context.tx('Abrir perfil'),
-      onClick: () => setState(() => _cliques++),
+      onClick: () => _cliques.value++,
     ),
     SgAvatar(
       label: Text(context.tx('Bia Souza')),
       enabled: false,
       onClick: () {},
     ),
-    Text(context.txf('Cliques: {n}', {'n': _cliques})),
+    ValueListenableBuilder<int>(
+      valueListenable: _cliques,
+      builder: (context, n, _) =>
+          Text(context.txf('Cliques: {n}', {'n': n})),
+    ),
   ],
 )
 ''';

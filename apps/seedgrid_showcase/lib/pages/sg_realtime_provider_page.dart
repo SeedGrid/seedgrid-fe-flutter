@@ -21,10 +21,10 @@ class _SgRealtimeProviderPageState extends State<SgRealtimeProviderPage> {
   final SgSimulatedPulseConnection _pulse = SgSimulatedPulseConnection();
   final SgSimulatedPulseConnection _pulse2 = SgSimulatedPulseConnection();
   final SgSimulatedPulseConnection _pulse3 = SgSimulatedPulseConnection();
-  final List<String> _bffRequests = [];
-  final List<String> _avisos = [];
-  int _backups = 0;
-  int _outros = 0;
+  final ValueNotifier<List<String>> _bffRequests = ValueNotifier(const []);
+  final ValueNotifier<List<String>> _avisos = ValueNotifier(const []);
+  final ValueNotifier<int> _backups = ValueNotifier(0);
+  final ValueNotifier<int> _outros = ValueNotifier(0);
 
   // O "backend" do token: sempre liga o realtime.
   Future<SgRealtimeConnectResponse> _token() async =>
@@ -37,7 +37,7 @@ class _SgRealtimeProviderPageState extends State<SgRealtimeProviderPage> {
   // A "BFF": responde ao pedido de token do provider (o servidor e simulado).
   Future<SgFetchResponse> _bff(SgFetchRequest r) async {
     await Future<void>.value();
-    if (mounted) setState(() => _bffRequests.add('${r.method} ${r.url}'));
+    _bffRequests.value = [..._bffRequests.value, '${r.method} ${r.url}'];
     return SgFetchResponse(
       200,
       jsonEncode({
@@ -53,6 +53,10 @@ class _SgRealtimeProviderPageState extends State<SgRealtimeProviderPage> {
     _pulse.dispose();
     _pulse2.dispose();
     _pulse3.dispose();
+    _bffRequests.dispose();
+    _avisos.dispose();
+    _backups.dispose();
+    _outros.dispose();
     super.dispose();
   }
 
@@ -72,8 +76,10 @@ class _SgRealtimeProviderPageState extends State<SgRealtimeProviderPage> {
               child: SgRealtimeEventListener(
                 channel: 'backup',
                 events: 'backup.finished.*',
-                handler: (e) =>
-                    setState(() => _avisos.add('${e.event} #${e.messageId}')),
+                handler: (e) => _avisos.value = [
+                  ..._avisos.value,
+                  '${e.event} #${e.messageId}',
+                ],
                 child: Builder(
                   builder: (context) {
                     final r = useSgRealtimeStatus(context);
@@ -95,7 +101,7 @@ class _SgRealtimeProviderPageState extends State<SgRealtimeProviderPage> {
                               onClick: () => _pulse.emitMessage(
                                 channel: 'backup',
                                 event: 'backup.finished.success',
-                                messageId: '${_avisos.length + 1}',
+                                messageId: '${_avisos.value.length + 1}',
                               ),
                             ),
                             SgButton(
@@ -112,8 +118,11 @@ class _SgRealtimeProviderPageState extends State<SgRealtimeProviderPage> {
                           ],
                         ),
                         const SizedBox(height: 8),
-                        Text(
-                          'Avisos: ${_avisos.isEmpty ? '(nenhum)' : _avisos.join(', ')}',
+                        ValueListenableBuilder<List<String>>(
+                          valueListenable: _avisos,
+                          builder: (context, avisos, _) => Text(
+                            'Avisos: ${avisos.isEmpty ? '(nenhum)' : avisos.join(', ')}',
+                          ),
                         ),
                       ],
                     );
@@ -145,7 +154,11 @@ class _SgRealtimeProviderPageState extends State<SgRealtimeProviderPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text('Estado: ${r.status.value}'),
-                      Text('Pedidos ao token: ${_bffRequests.join(' | ')}'),
+                      ValueListenableBuilder<List<String>>(
+                        valueListenable: _bffRequests,
+                        builder: (context, pedidos, _) =>
+                            Text('Pedidos ao token: ${pedidos.join(' | ')}'),
+                      ),
                     ],
                   );
                 },
@@ -210,11 +223,11 @@ class _SgRealtimeProviderPageState extends State<SgRealtimeProviderPage> {
                   child: SgRealtimeEventListener(
                     channel: 'backup',
                     events: const ['backup.started', 'backup.finished.*'],
-                    handler: (_) => setState(() => _backups++),
+                    handler: (_) => _backups.value++,
                     child: SgRealtimeEventListener(
                       channel: 'audit',
                       events: '*',
-                      handler: (_) => setState(() => _outros++),
+                      handler: (_) => _outros.value++,
                       child: Wrap(
                         spacing: 8,
                         runSpacing: 8,
@@ -243,7 +256,12 @@ class _SgRealtimeProviderPageState extends State<SgRealtimeProviderPage> {
                               event: 'audit.login',
                             ),
                           ),
-                          Text('backup: $_backups  |  audit: $_outros'),
+                          ListenableBuilder(
+                            listenable: Listenable.merge([_backups, _outros]),
+                            builder: (context, _) => Text(
+                              'backup: ${_backups.value}  |  audit: ${_outros.value}',
+                            ),
+                          ),
                         ],
                       ),
                     ),

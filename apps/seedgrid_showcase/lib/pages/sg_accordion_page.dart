@@ -15,8 +15,15 @@ class SgAccordionPage extends StatefulWidget {
 }
 
 class _SgAccordionPageState extends State<SgAccordionPage> {
-  List<int> _ativos = const [1];
-  String _ultimo = 'nenhum';
+  final ValueNotifier<List<int>> _ativos = ValueNotifier(const [1]);
+  final ValueNotifier<String> _ultimo = ValueNotifier('nenhum');
+
+  @override
+  void dispose() {
+    _ativos.dispose();
+    _ultimo.dispose();
+    super.dispose();
+  }
 
   static const _itens = [
     SgAccordionItem(
@@ -107,19 +114,32 @@ class _SgAccordionPageState extends State<SgAccordionPage> {
       ),
       ShowcaseExample(
         title: 'Controlado por estado',
-        description: context.txf(
-          'O estado vive na página: ativos = {ativos}, último toque = {ultimo}.',
-          {'ativos': _ativos, 'ultimo': _ultimo},
-        ),
+        description:
+            'O estado vive fora do componente: os painéis ativos e o último toque são exibidos abaixo.',
         preview:
             // #region sg-accordion-controlado
-            SgAccordion(
-              items: _itens,
-              multiple: true,
-              activeIndex: _ativos,
-              onActiveIndexChange: (v) => setState(() => _ativos = v),
-              onItemToggle: (i, aberto) =>
-                  setState(() => _ultimo = '$i ${aberto ? 'abriu' : 'fechou'}'),
+            ListenableBuilder(
+              listenable: Listenable.merge([_ativos, _ultimo]),
+              builder: (context, _) => Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SgAccordion(
+                    items: _itens,
+                    multiple: true,
+                    activeIndex: _ativos.value,
+                    onActiveIndexChange: (v) => _ativos.value = v,
+                    onItemToggle: (i, aberto) =>
+                        _ultimo.value = '$i ${aberto ? 'abriu' : 'fechou'}',
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    context.txf(
+                      'O estado vive na página: ativos = {ativos}, último toque = {ultimo}.',
+                      {'ativos': _ativos.value, 'ultimo': _ultimo.value},
+                    ),
+                  ),
+                ],
+              ),
             ),
         // #endregion
         code: SgAccordionPageSnippets.sgAccordionControlado,

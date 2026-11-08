@@ -10,15 +10,18 @@ Wrap(
   runSpacing: 12,
   crossAxisAlignment: WrapCrossAlignment.center,
   children: [
-    SgButton(
-      label: Text(context.tx('Submit')),
-      loading: _loading,
-      onClick: () {
-        setState(() => _loading = true);
-        Future.delayed(const Duration(milliseconds: 1200), () {
-          if (mounted) setState(() => _loading = false);
-        });
-      },
+    ValueListenableBuilder<bool>(
+      valueListenable: _loading,
+      builder: (context, loading, _) => SgButton(
+        label: Text(context.tx('Submit')),
+        loading: loading,
+        onClick: () {
+          _loading.value = true;
+          Future.delayed(const Duration(milliseconds: 1200), () {
+            if (mounted) _loading.value = false;
+          });
+        },
+      ),
     ),
     SgButton(label: Text(context.tx('Disabled')), enabled: false),
   ],

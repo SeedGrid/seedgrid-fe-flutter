@@ -22,45 +22,63 @@ class _SgEnvironmentProviderPageState extends State<SgEnvironmentProviderPage> {
   final Map<String, Object?> _local = {};
 
   // Servidores simulados (REST e hibrido) e o registro das chamadas HTTP de cada um.
-  final List<String> _requests = [];
+  final ValueNotifier<List<String>> _requests = ValueNotifier(const []);
   final Map<String, Object?> _server = {};
-  final List<String> _hybridRequests = [];
+  final ValueNotifier<List<String>> _hybridRequests = ValueNotifier(const []);
   final Map<String, Object?> _hybridServer = {};
+
+  // Avisa a tela sempre que a base local em memoria muda.
+  final ValueNotifier<int> _localChanged = ValueNotifier(0);
+
+  @override
+  void dispose() {
+    _requests.dispose();
+    _hybridRequests.dispose();
+    _localChanged.dispose();
+    super.dispose();
+  }
 
   PersistenceStrategy _memory(Map<String, Object?> map) =>
       PersistenceStrategy.from(
         load: (key) => map[key],
-        save: (key, state) => map[key] = state,
-        clear: (key) => map.remove(key),
+        save: (key, state) {
+          map[key] = state;
+          _localChanged.value++;
+        },
+        clear: (key) {
+          map.remove(key);
+          _localChanged.value++;
+        },
       );
 
-  SgFetcher _fakeServer(Map<String, Object?> server, List<String> requests) =>
-      (SgFetchRequest r) async {
-        setState(
-          () => requests.add(
-            '${r.method} ${Uri.parse(r.url).path}${Uri.parse(r.url).hasQuery ? '?key=…' : ''}',
-          ),
+  SgFetcher _fakeServer(
+    Map<String, Object?> server,
+    ValueNotifier<List<String>> requests,
+  ) => (SgFetchRequest r) async {
+    requests.value = [
+      ...requests.value,
+      '${r.method} ${Uri.parse(r.url).path}${Uri.parse(r.url).hasQuery ? '?key=…' : ''}',
+    ];
+    final key = Uri.parse(r.url).queryParameters['key'];
+    switch (r.method) {
+      case 'GET':
+        final found = server.containsKey(key);
+        return SgFetchResponse(
+          200,
+          jsonEncode({
+            'found': found,
+            if (found) 'record': {'state': server[key]},
+          }),
         );
-        final key = Uri.parse(r.url).queryParameters['key'];
-        switch (r.method) {
-          case 'GET':
-            final found = server.containsKey(key);
-            return SgFetchResponse(
-              200,
-              jsonEncode({
-                'found': found,
-                if (found) 'record': {'state': server[key]},
-              }),
-            );
-          case 'POST':
-            final record = (jsonDecode(r.body!) as Map)['record'] as Map;
-            server[record['key'] as String] = record['state'];
-            return const SgFetchResponse(200);
-          default:
-            server.remove(key);
-            return const SgFetchResponse(200);
-        }
-      };
+      case 'POST':
+        final record = (jsonDecode(r.body!) as Map)['record'] as Map;
+        server[record['key'] as String] = record['state'];
+        return const SgFetchResponse(200);
+      default:
+        server.remove(key);
+        return const SgFetchResponse(200);
+    }
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -206,7 +224,11 @@ class _SgEnvironmentProviderPageState extends State<SgEnvironmentProviderPage> {
                   ),
                 ),
                 const SizedBox(height: 8),
-                Text('chamadas: ${_requests.join(' | ')}'),
+                ValueListenableBuilder<List<String>>(
+                  valueListenable: _requests,
+                  builder: (context, requests, _) =>
+                      Text('chamadas: ${requests.join(' | ')}'),
+                ),
               ],
             ),
         // #endregion
@@ -244,14 +266,24 @@ class _SgEnvironmentProviderPageState extends State<SgEnvironmentProviderPage> {
                         await state.setValue(
                           state.value == 'claro' ? 'escuro' : 'claro',
                         );
-                        setState(() {});
                       },
                     ),
                   ),
                 ),
                 const SizedBox(height: 8),
-                Text('local: $_local'),
-                Text('chamadas: ${_hybridRequests.join(' | ')}'),
+                ListenableBuilder(
+                  listenable: Listenable.merge([
+                    _localChanged,
+                    _hybridRequests,
+                  ]),
+                  builder: (context, _) => Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('local: $_local'),
+                      Text('chamadas: ${_hybridRequests.value.join(' | ')}'),
+                    ],
+                  ),
+                ),
               ],
             ),
         // #endregion

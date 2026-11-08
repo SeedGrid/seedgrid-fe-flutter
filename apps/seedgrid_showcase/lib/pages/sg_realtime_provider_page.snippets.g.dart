@@ -34,7 +34,11 @@ SgRealtimeProvider(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text('Estado: ${r.status.value}'),
-          Text('Pedidos ao token: ${_bffRequests.join(' | ')}'),
+          ValueListenableBuilder<List<String>>(
+            valueListenable: _bffRequests,
+            builder: (context, pedidos, _) =>
+                Text('Pedidos ao token: ${pedidos.join(' | ')}'),
+          ),
         ],
       );
     },
@@ -54,11 +58,11 @@ Builder(
       child: SgRealtimeEventListener(
         channel: 'backup',
         events: const ['backup.started', 'backup.finished.*'],
-        handler: (_) => setState(() => _backups++),
+        handler: (_) => _backups.value++,
         child: SgRealtimeEventListener(
           channel: 'audit',
           events: '*',
-          handler: (_) => setState(() => _outros++),
+          handler: (_) => _outros.value++,
           child: Wrap(
             spacing: 8,
             runSpacing: 8,
@@ -87,7 +91,12 @@ Builder(
                   event: 'audit.login',
                 ),
               ),
-              Text('backup: $_backups  |  audit: $_outros'),
+              ListenableBuilder(
+                listenable: Listenable.merge([_backups, _outros]),
+                builder: (context, _) => Text(
+                  'backup: ${_backups.value}  |  audit: ${_outros.value}',
+                ),
+              ),
             ],
           ),
         ),
@@ -141,8 +150,10 @@ SgRealtimeProvider(
   child: SgRealtimeEventListener(
     channel: 'backup',
     events: 'backup.finished.*',
-    handler: (e) =>
-        setState(() => _avisos.add('${e.event} #${e.messageId}')),
+    handler: (e) => _avisos.value = [
+      ..._avisos.value,
+      '${e.event} #${e.messageId}',
+    ],
     child: Builder(
       builder: (context) {
         final r = useSgRealtimeStatus(context);
@@ -164,7 +175,7 @@ SgRealtimeProvider(
                   onClick: () => _pulse.emitMessage(
                     channel: 'backup',
                     event: 'backup.finished.success',
-                    messageId: '${_avisos.length + 1}',
+                    messageId: '${_avisos.value.length + 1}',
                   ),
                 ),
                 SgButton(
@@ -181,8 +192,11 @@ SgRealtimeProvider(
               ],
             ),
             const SizedBox(height: 8),
-            Text(
-              'Avisos: ${_avisos.isEmpty ? '(nenhum)' : _avisos.join(', ')}',
+            ValueListenableBuilder<List<String>>(
+              valueListenable: _avisos,
+              builder: (context, avisos, _) => Text(
+                'Avisos: ${avisos.isEmpty ? '(nenhum)' : avisos.join(', ')}',
+              ),
             ),
           ],
         );

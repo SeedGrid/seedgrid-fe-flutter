@@ -16,10 +16,12 @@ SizedBox(
         draggable: true,
         defaultPosition: const SgCardPosition(16, 16),
         dragPersistKey: 'sg-card-draggable-demo',
-        onPositionChange: (p) => setState(() => _posicao = p),
+        onPositionChange: (p) => _posicao.value = p,
         title: Text(context.tx('Arraste-me pelo cabeçalho')),
-        description: Text(
-          'x: ${_posicao.x.round()}  y: ${_posicao.y.round()}',
+        description: ValueListenableBuilder<SgCardPosition>(
+          valueListenable: _posicao,
+          builder: (context, p, _) =>
+              Text('x: ${p.x.round()}  y: ${p.y.round()}'),
         ),
         collapsible: true,
         collapseToggleAlign: SgCardCollapseToggleAlign.right,
@@ -274,12 +276,15 @@ Column(
     for (final s in SgCardSize.values)
       Padding(
         padding: const EdgeInsets.only(bottom: 8),
-        child: SgCard(
-          size: s,
-          clickable: true,
-          onClick: () => setState(() => _cliques++),
-          title: Text('Tamanho ${s.value} (cliques: $_cliques)'),
-          child: Text(context.tx('Cartão clicável')),
+        child: ValueListenableBuilder<int>(
+          valueListenable: _cliques,
+          builder: (context, cliques, _) => SgCard(
+            size: s,
+            clickable: true,
+            onClick: () => _cliques.value++,
+            title: Text('Tamanho ${s.value} (cliques: $cliques)'),
+            child: Text(context.tx('Cartão clicável')),
+          ),
         ),
       ),
   ],
