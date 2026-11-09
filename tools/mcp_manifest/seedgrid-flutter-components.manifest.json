@@ -1640,13 +1640,13 @@
             "type": "bool?",
             "required": false,
             "default": "false",
-            "description": "Exibe spinner e bloqueia interacao enquanto a acao esta em progresso. Tem prioridade: o loading efetivo e loading ou Promise pendente do onClick."
+            "description": "Exibe spinner e bloqueia o clique. Continua valendo e vence o loading automático do onClick: o loading efetivo é loading ou operação pendente (Promise/Future devolvida pelo onClick)."
           },
           {
             "name": "onClick",
             "type": "Function?",
             "required": false,
-            "description": "Callback disparado quando a acao e executada. Se devolver uma Promise, o botao entra em loading ate ela terminar ou falhar e ignora cliques nesse meio-tempo.",
+            "description": "Clique do botão; pode ser síncrono ou assíncrono. Síncrono (abrir modal, alternar): nada muda. Se DEVOLVER uma Promise/Future, como async () => { await salvar(); } ou () => salvar(), o botão entra em loading sozinho (spinner, desabilitado, aria-busy na web), ignora cliques até terminar (inclusive cliques seguidos antes de a tela atualizar) e volta ao normal ao terminar ou falhar. Protege contra duplo clique e reenvio e ajuda na idempotência da ação na tela (não substitui a chave de idempotência no servidor). Cuidado: a função precisa devolver a operação; com chaves e sem return (ou sem async), como () => { salvar(); } ou () { salvar(); }, não protege; já async () {...} sempre devolve. O erro não é engolido: o botão sai do loading e relança como rejeição não tratada; trate com try/catch dentro do onClick e avise o usuário (sgWhistle.error). Use async só quando a ação puder demorar ou falhar (salvar, enviar, pagar).",
             "typeExact": false
           },
           {
@@ -1744,6 +1744,13 @@
             "code": "Wrap(\n  spacing: 12,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgButton(\n      label: Text(context.tx('Submit')),\n      onClick: () async {\n        final saving = context.tx('Saving...');\n        final done = context.tx('Done');\n        _status.value = saving;\n        await Future.delayed(const Duration(milliseconds: 1500));\n        _status.value = done;\n      },\n    ),\n    ValueListenableBuilder<String?>(\n      valueListenable: _status,\n      builder: (context, status, _) =>\n          Text(status ?? context.tx('Idle')),\n    ),\n  ],\n)"
           },
           {
+            "id": "sg-button-onclick-sincrono-x-assincrono",
+            "title": "onClick síncrono x assíncrono",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_button_page.dart",
+            "kind": "dart",
+            "code": "Wrap(\n  spacing: 12,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgButton(\n      label: Text(context.tx('Toggle panel')),\n      appearance: SgAppearance.outline,\n      onClick: () {\n        _panel.value = !_panel.value;\n      },\n    ),\n    ValueListenableBuilder<bool>(\n      valueListenable: _panel,\n      builder: (context, open, _) =>\n          Text(open ? context.tx('Open') : context.tx('Closed')),\n    ),\n    SgButton(\n      label: Text(context.tx('Save')),\n      onClick: () async {\n        final saving = context.tx('Saving...');\n        final saved = context.tx('Saved');\n        _saved.value = saving;\n        await Future.delayed(const Duration(milliseconds: 1500));\n        _saved.value = saved;\n      },\n    ),\n    ValueListenableBuilder<String?>(\n      valueListenable: _saved,\n      builder: (context, status, _) =>\n          Text(status ?? context.tx('Idle')),\n    ),\n  ],\n)"
+          },
+          {
             "id": "sg-button-outlined",
             "title": "Outlined Buttons",
             "file": "apps/seedgrid_showcase/lib/pages/sg_button_page.dart",
@@ -1798,6 +1805,13 @@
             "file": "apps/seedgrid_showcase/lib/pages/sg_button_page.dart",
             "kind": "dart",
             "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    Wrap(\n      spacing: 12,\n      runSpacing: 12,\n      crossAxisAlignment: WrapCrossAlignment.center,\n      children: [\n        SgButton(\n          label: Text(context.tx('Small')),\n          size: SgSize.sm,\n          onClick: () {},\n        ),\n        SgButton(\n          label: Text(context.tx('Medium')),\n          size: SgSize.md,\n          onClick: () {},\n        ),\n        SgButton(\n          label: Text(context.tx('Large')),\n          size: SgSize.lg,\n          onClick: () {},\n        ),\n      ],\n    ),\n    const SizedBox(height: 12),\n    Wrap(\n      spacing: 12,\n      runSpacing: 12,\n      crossAxisAlignment: WrapCrossAlignment.center,\n      children: [\n        SgButton(\n          size: SgSize.sm,\n          shape: SgButtonShape.rounded,\n          leftIcon: const Icon(Icons.check),\n          onClick: () {},\n        ),\n        SgButton(\n          size: SgSize.md,\n          shape: SgButtonShape.rounded,\n          leftIcon: const Icon(Icons.check),\n          onClick: () {},\n        ),\n        SgButton(\n          size: SgSize.lg,\n          shape: SgButtonShape.rounded,\n          leftIcon: const Icon(Icons.check),\n          onClick: () {},\n        ),\n      ],\n    ),\n  ],\n)"
+          },
+          {
+            "id": "sg-button-tratando-erro-no-onclick-assincrono",
+            "title": "Tratando erro no onClick assíncrono",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_button_page.dart",
+            "kind": "dart",
+            "code": "SgStack(\n  gap: 12,\n  children: [\n    SgButton(\n      label: Text(context.tx('Save (fails)')),\n      severity: SgSeverity.danger,\n      onClick: () async {\n        final title = context.tx('Could not save');\n        final message = context.tx(\n          'Check your connection and try again.',\n        );\n        try {\n          await Future.delayed(const Duration(milliseconds: 1200));\n          throw Exception('Network error');\n        } catch (_) {\n          sgWhistle.error(\n            SgWhistleOptions(title: title, message: message),\n          );\n        }\n      },\n    ),\n    const SgWhistler(),\n  ],\n)"
           }
         ],
         "parity": {

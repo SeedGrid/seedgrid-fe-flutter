@@ -6629,12 +6629,6 @@
   "Loading automático con Future",
   "Chargement automatique avec Future"
  ],
- "Quando o onClick devolve uma operação assíncrona, o botão entra em loading sozinho e ignora cliques até ela terminar.": [
-  "When onClick returns an asynchronous operation, the button enters loading by itself and ignores clicks until it finishes.",
-  "Quando o onClick devolve uma operação assíncrona, o botão entra em loading sozinho e ignora cliques até ela terminar.",
-  "Cuando onClick devuelve una operación asíncrona, el botón entra en loading por sí solo e ignora los clics hasta que termine.",
-  "Quand onClick renvoie une opération asynchrone, le bouton passe en chargement tout seul et ignore les clics jusqu'à sa fin."
- ],
  "Idle": [
   "Idle",
   "Inativo",
@@ -6647,16 +6641,88 @@
   "Hecho",
   "Terminé"
  ],
- "Exibe spinner e bloqueia interacao enquanto a acao esta em progresso. Tem prioridade: o loading efetivo e loading ou Promise pendente do onClick.": [
-  "Shows a spinner and blocks interaction while the action is in progress. It takes priority: the effective loading is loading or a pending Promise from onClick.",
-  "Exibe spinner e bloqueia a interação enquanto a ação está em curso. Tem prioridade: o loading efetivo é loading ou uma Promise pendente do onClick.",
-  "Muestra un spinner y bloquea la interacción mientras la acción está en curso. Tiene prioridad: el loading efectivo es loading o una Promise pendiente de onClick.",
-  "Affiche un spinner et bloque l'interaction pendant que l'action est en cours. Il est prioritaire : le chargement effectif est loading ou une Promise en attente de onClick."
+ "onClick síncrono x assíncrono": [
+  "Synchronous x asynchronous onClick",
+  "onClick síncrono x assíncrono",
+  "onClick síncrono x asíncrono",
+  "onClick synchrone x asynchrone"
  ],
- "Callback disparado quando a acao e executada. Se devolver uma Promise, o botao entra em loading ate ela terminar ou falhar e ignora cliques nesse meio-tempo.": [
-  "Callback fired when the action is executed. If it returns a Promise, the button enters loading until it finishes or fails and ignores clicks in the meantime.",
-  "Callback disparado quando a ação é executada. Se devolver uma Promise, o botão entra em loading até ela terminar ou falhar e ignora cliques nesse meio-tempo.",
-  "Callback disparado cuando se ejecuta la acción. Si devuelve una Promise, el botón entra en loading hasta que termine o falle e ignora los clics mientras tanto.",
-  "Callback déclenché quand l'action est exécutée. S'il renvoie une Promise, le bouton passe en chargement jusqu'à sa fin ou son échec et ignore les clics entre-temps."
+ "Tratando erro no onClick assíncrono": [
+  "Handling errors in an asynchronous onClick",
+  "Tratar erros no onClick assíncrono",
+  "Tratamiento de errores en un onClick asíncrono",
+  "Gestion des erreurs dans un onClick asynchrone"
+ ],
+ "Se o onClick devolve uma operação assíncrona (Promise no React, Future no Flutter), o botão entra em loading sozinho: mostra o spinner, fica desabilitado e ignora cliques, inclusive cliques seguidos antes de a tela atualizar, até a operação terminar. Ao terminar ou falhar, volta ao normal. Isso evita duplo clique e reenvio e ajuda na idempotência da ação na tela, mas não substitui a chave de idempotência no servidor. A prop loading manual continua valendo e vence: o loading efetivo é loading ou operação pendente.": [
+  "If onClick returns an asynchronous operation (a Promise in React, a Future in Flutter), the button enters loading by itself: it shows the spinner, becomes disabled and ignores clicks, including rapid clicks before the screen updates, until the operation finishes. When it finishes or fails, it goes back to normal. This prevents double clicks and resubmission and helps make the on-screen action idempotent, but it does not replace an idempotency key on the server. The manual loading prop still applies and wins: the effective loading is loading or a pending operation.",
+  "Se o onClick devolve uma operação assíncrona (Promise no React, Future no Flutter), o botão entra em loading sozinho: mostra o spinner, fica desativado e ignora cliques, incluindo cliques seguidos antes de o ecrã atualizar, até a operação terminar. Ao terminar ou falhar, volta ao normal. Isto evita duplo clique e reenvio e ajuda na idempotência da ação no ecrã, mas não substitui a chave de idempotência no servidor. A prop loading manual continua a valer e prevalece: o loading efetivo é loading ou operação pendente.",
+  "Si onClick devuelve una operación asíncrona (una Promise en React, un Future en Flutter), el botón entra en loading por sí solo: muestra el spinner, se deshabilita e ignora los clics, incluidos los clics seguidos antes de que la pantalla se actualice, hasta que la operación termine. Al terminar o fallar, vuelve a la normalidad. Esto evita el doble clic y el reenvío y ayuda a la idempotencia de la acción en pantalla, pero no sustituye la clave de idempotencia en el servidor. La prop loading manual sigue valiendo y prevalece: el loading efectivo es loading u operación pendiente.",
+  "Si onClick renvoie une opération asynchrone (une Promise en React, un Future en Flutter), le bouton passe en chargement tout seul : il affiche le spinner, se désactive et ignore les clics, y compris les clics rapprochés avant la mise à jour de l'écran, jusqu'à la fin de l'opération. Une fois terminée ou en échec, il revient à la normale. Cela évite le double clic et le renvoi et aide à l'idempotence de l'action à l'écran, mais ne remplace pas une clé d'idempotence côté serveur. La prop loading manuelle reste valable et l'emporte : le chargement effectif est loading ou opération en attente."
+ ],
+ "O onClick pode ou não ser assíncrono. Função síncrona (abrir um modal, alternar um painel) funciona como sempre e nada muda. Para o botão proteger a ação, o onClick precisa DEVOLVER a operação assíncrona: no React, async () => { await salvar(); } ou () => salvar(); no Flutter, async () { ... } sempre devolve um Future. Chamar salvar() sem devolver o resultado (no React, chaves sem return; no Flutter, função que não é async) não protege. Use async só quando a ação puder demorar ou falhar (salvar, enviar, pagar); ações instantâneas ficam síncronas.": [
+  "onClick may or may not be asynchronous. A synchronous function (opening a modal, toggling a panel) works as always and nothing changes. For the button to protect the action, onClick must RETURN the asynchronous operation: in React, async () => { await save(); } or () => save(); in Flutter, async () { ... } always returns a Future. Calling save() without returning the result (in React, braces without return; in Flutter, a function that is not async) does not protect. Use async only when the action may take long or fail (save, send, pay); instant actions stay synchronous.",
+  "O onClick pode ou não ser assíncrono. Uma função síncrona (abrir um modal, alternar um painel) funciona como sempre e nada muda. Para o botão proteger a ação, o onClick tem de DEVOLVER a operação assíncrona: no React, async () => { await guardar(); } ou () => guardar(); no Flutter, async () { ... } devolve sempre um Future. Chamar guardar() sem devolver o resultado (no React, chavetas sem return; no Flutter, função que não é async) não protege. Use async apenas quando a ação puder demorar ou falhar (guardar, enviar, pagar); ações instantâneas ficam síncronas.",
+  "onClick puede ser asíncrono o no. Una función síncrona (abrir un modal, alternar un panel) funciona como siempre y nada cambia. Para que el botón proteja la acción, onClick debe DEVOLVER la operación asíncrona: en React, async () => { await guardar(); } o () => guardar(); en Flutter, async () { ... } siempre devuelve un Future. Llamar a guardar() sin devolver el resultado (en React, llaves sin return; en Flutter, una función que no es async) no protege. Usa async solo cuando la acción pueda tardar o fallar (guardar, enviar, pagar); las acciones instantáneas se quedan síncronas.",
+  "onClick peut être asynchrone ou non. Une fonction synchrone (ouvrir une modale, basculer un panneau) fonctionne comme toujours et rien ne change. Pour que le bouton protège l'action, onClick doit RENVOYER l'opération asynchrone : en React, async () => { await enregistrer(); } ou () => enregistrer() ; en Flutter, async () { ... } renvoie toujours un Future. Appeler enregistrer() sans renvoyer le résultat (en React, des accolades sans return ; en Flutter, une fonction qui n'est pas async) ne protège pas. N'utilisez async que lorsque l'action peut être longue ou échouer (enregistrer, envoyer, payer) ; les actions instantanées restent synchrones."
+ ],
+ "O botão não engole o erro: se a operação falhar, ele sai do loading e relança o erro como rejeição não tratada. Por isso, trate a falha com try/catch dentro do onClick e avise o usuário (por exemplo, com sgWhistle.error). Neste exemplo a operação sempre falha e o aviso aparece na caixa abaixo.": [
+  "The button does not swallow the error: if the operation fails, it leaves loading and rethrows the error as an unhandled rejection. So handle the failure with try/catch inside onClick and notify the user (for example, with sgWhistle.error). In this example the operation always fails and the notice appears in the box below.",
+  "O botão não engole o erro: se a operação falhar, sai do loading e relança o erro como rejeição não tratada. Por isso, trate a falha com try/catch dentro do onClick e avise o utilizador (por exemplo, com sgWhistle.error). Neste exemplo a operação falha sempre e o aviso aparece na caixa abaixo.",
+  "El botón no se traga el error: si la operación falla, sale del loading y relanza el error como rechazo no tratado. Por eso, trata el fallo con try/catch dentro de onClick y avisa al usuario (por ejemplo, con sgWhistle.error). En este ejemplo la operación siempre falla y el aviso aparece en la caja de abajo.",
+  "Le bouton n'avale pas l'erreur : si l'opération échoue, il quitte le chargement et relance l'erreur comme un rejet non traité. Traitez donc l'échec avec try/catch dans onClick et prévenez l'utilisateur (par exemple avec sgWhistle.error). Dans cet exemple l'opération échoue toujours et l'avis apparaît dans la zone ci-dessous."
+ ],
+ "Exibe spinner e bloqueia o clique. Continua valendo e vence o loading automático do onClick: o loading efetivo é loading ou operação pendente (Promise/Future devolvida pelo onClick).": [
+  "Shows a spinner and blocks the click. It still applies and wins over the automatic loading of onClick: the effective loading is loading or a pending operation (Promise/Future returned by onClick).",
+  "Exibe spinner e bloqueia o clique. Continua a valer e prevalece sobre o loading automático do onClick: o loading efetivo é loading ou operação pendente (Promise/Future devolvida pelo onClick).",
+  "Muestra un spinner y bloquea el clic. Sigue valiendo y prevalece sobre el loading automático de onClick: el loading efectivo es loading u operación pendiente (Promise/Future devuelta por onClick).",
+  "Affiche un spinner et bloque le clic. Il reste valable et l'emporte sur le chargement automatique de onClick : le chargement effectif est loading ou opération en attente (Promise/Future renvoyée par onClick)."
+ ],
+ "Toggle panel": [
+  "Toggle panel",
+  "Alternar painel",
+  "Alternar panel",
+  "Basculer le panneau"
+ ],
+ "Open": [
+  "Open",
+  "Aberto",
+  "Abierto",
+  "Ouvert"
+ ],
+ "Closed": [
+  "Closed",
+  "Fechado",
+  "Cerrado",
+  "Fermé"
+ ],
+ "Saved": [
+  "Saved",
+  "Guardado",
+  "Guardado",
+  "Enregistré"
+ ],
+ "Save (fails)": [
+  "Save (fails)",
+  "Guardar (falha)",
+  "Guardar (falla)",
+  "Enregistrer (échoue)"
+ ],
+ "Could not save": [
+  "Could not save",
+  "Não foi possível guardar",
+  "No se pudo guardar",
+  "Impossible d'enregistrer"
+ ],
+ "Check your connection and try again.": [
+  "Check your connection and try again.",
+  "Verifique a ligação e tente novamente.",
+  "Comprueba tu conexión e inténtalo de nuevo.",
+  "Vérifiez votre connexion et réessayez."
+ ],
+ "Clique do botão; pode ser síncrono ou assíncrono. Síncrono (abrir modal, alternar): nada muda. Se DEVOLVER uma Promise/Future, como async () => { await salvar(); } ou () => salvar(), o botão entra em loading sozinho (spinner, desabilitado, aria-busy na web), ignora cliques até terminar (inclusive cliques seguidos antes de a tela atualizar) e volta ao normal ao terminar ou falhar. Protege contra duplo clique e reenvio e ajuda na idempotência da ação na tela (não substitui a chave de idempotência no servidor). Cuidado: a função precisa devolver a operação; com chaves e sem return (ou sem async), como () => { salvar(); } ou () { salvar(); }, não protege; já async () {...} sempre devolve. O erro não é engolido: o botão sai do loading e relança como rejeição não tratada; trate com try/catch dentro do onClick e avise o usuário (sgWhistle.error). Use async só quando a ação puder demorar ou falhar (salvar, enviar, pagar).": [
+  "Button click; may be synchronous or asynchronous. Synchronous (open a modal, toggle): nothing changes. If it RETURNS a Promise/Future, such as async () => { await save(); } or () => save(), the button enters loading by itself (spinner, disabled, aria-busy on the web), ignores clicks until it finishes (including rapid clicks before the screen updates) and returns to normal when it finishes or fails. It protects against double click and resubmission and helps make the on-screen action idempotent (it does not replace an idempotency key on the server). Careful: the function must return the operation; with braces and no return (or without async), such as () => { save(); } or () { save(); }, it does not protect; async () {...} always returns. The error is not swallowed: the button leaves loading and rethrows it as an unhandled rejection; handle it with try/catch inside onClick and notify the user (sgWhistle.error). Use async only when the action may take long or fail (save, send, pay).",
+  "Clique do botão; pode ser síncrono ou assíncrono. Síncrono (abrir modal, alternar): nada muda. Se DEVOLVER uma Promise/Future, como async () => { await guardar(); } ou () => guardar(), o botão entra em loading sozinho (spinner, desativado, aria-busy na web), ignora cliques até terminar (incluindo cliques seguidos antes de o ecrã atualizar) e volta ao normal ao terminar ou falhar. Protege contra duplo clique e reenvio e ajuda na idempotência da ação no ecrã (não substitui a chave de idempotência no servidor). Cuidado: a função tem de devolver a operação; com chavetas e sem return (ou sem async), como () => { guardar(); } ou () { guardar(); }, não protege; já async () {...} devolve sempre. O erro não é engolido: o botão sai do loading e relança-o como rejeição não tratada; trate com try/catch dentro do onClick e avise o utilizador (sgWhistle.error). Use async apenas quando a ação puder demorar ou falhar (guardar, enviar, pagar).",
+  "Clic del botón; puede ser síncrono o asíncrono. Síncrono (abrir un modal, alternar): nada cambia. Si DEVUELVE una Promise/Future, como async () => { await guardar(); } o () => guardar(), el botón entra en loading por sí solo (spinner, deshabilitado, aria-busy en la web), ignora los clics hasta que termine (incluidos los clics seguidos antes de que la pantalla se actualice) y vuelve a la normalidad al terminar o fallar. Protege contra el doble clic y el reenvío y ayuda a la idempotencia de la acción en pantalla (no sustituye la clave de idempotencia en el servidor). Cuidado: la función debe devolver la operación; con llaves y sin return (o sin async), como () => { guardar(); } o () { guardar(); }, no protege; async () {...} siempre devuelve. El error no se traga: el botón sale del loading y lo relanza como rechazo no tratado; trátalo con try/catch dentro de onClick y avisa al usuario (sgWhistle.error). Usa async solo cuando la acción pueda tardar o fallar (guardar, enviar, pagar).",
+  "Clic du bouton ; peut être synchrone ou asynchrone. Synchrone (ouvrir une modale, basculer) : rien ne change. S'il RENVOIE une Promise/Future, comme async () => { await enregistrer(); } ou () => enregistrer(), le bouton passe en chargement tout seul (spinner, désactivé, aria-busy sur le web), ignore les clics jusqu'à la fin (y compris les clics rapprochés avant la mise à jour de l'écran) et revient à la normale à la fin ou en cas d'échec. Il protège contre le double clic et le renvoi et aide à l'idempotence de l'action à l'écran (il ne remplace pas une clé d'idempotence côté serveur). Attention : la fonction doit renvoyer l'opération ; avec des accolades et sans return (ou sans async), comme () => { enregistrer(); } ou () { enregistrer(); }, elle ne protège pas ; async () {...} renvoie toujours. L'erreur n'est pas avalée : le bouton quitte le chargement et la relance comme un rejet non traité ; traitez-la avec try/catch dans onClick et prévenez l'utilisateur (sgWhistle.error). N'utilisez async que lorsque l'action peut être longue ou échouer (enregistrer, envoyer, payer)."
  ]
 }

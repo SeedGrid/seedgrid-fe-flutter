@@ -25,9 +25,9 @@ abstract interface class SgButtonProps {
   Object? get label;
   /// Icone exibido antes do label.
   Widget? get leftIcon;
-  /// Exibe spinner e bloqueia interacao enquanto a acao esta em progresso. Tem prioridade: o loading efetivo e loading ou Promise pendente do onClick. Padrão: `false`.
+  /// Exibe spinner e bloqueia o clique. Continua valendo e vence o loading automático do onClick: o loading efetivo é loading ou operação pendente (Promise/Future devolvida pelo onClick). Padrão: `false`.
   bool? get loading;
-  /// Callback disparado quando a acao e executada. Se devolver uma Promise, o botao entra em loading ate ela terminar ou falhar e ignora cliques nesse meio-tempo. Tipo TS: `((event: MouseEvent&lt;HTMLButtonElement, MouseEvent&gt;) =&gt; unknown)` (sem tradução exata; ver excecoes.json).
+  /// Clique do botão; pode ser síncrono ou assíncrono. Síncrono (abrir modal, alternar): nada muda. Se DEVOLVER uma Promise/Future, como async () =&gt; { await salvar(); } ou () =&gt; salvar(), o botão entra em loading sozinho (spinner, desabilitado, aria-busy na web), ignora cliques até terminar (inclusive cliques seguidos antes de a tela atualizar) e volta ao normal ao terminar ou falhar. Protege contra duplo clique e reenvio e ajuda na idempotência da ação na tela (não substitui a chave de idempotência no servidor). Cuidado: a função precisa devolver a operação; com chaves e sem return (ou sem async), como () =&gt; { salvar(); } ou () { salvar(); }, não protege; já async () {...} sempre devolve. O erro não é engolido: o botão sai do loading e relança como rejeição não tratada; trate com try/catch dentro do onClick e avise o usuário (sgWhistle.error). Use async só quando a ação puder demorar ou falhar (salvar, enviar, pagar). Tipo TS: `((event: MouseEvent&lt;HTMLButtonElement, MouseEvent&gt;) =&gt; unknown)` (sem tradução exata; ver excecoes.json).
   Function? get onClick;
   /// Icone exibido depois do label.
   Widget? get rightIcon;
@@ -105,7 +105,7 @@ const List<SgPropSpec> sgButtonPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description: 'Exibe spinner e bloqueia interacao enquanto a acao esta em progresso. Tem prioridade: o loading efetivo e loading ou Promise pendente do onClick.',
+    description: 'Exibe spinner e bloqueia o clique. Continua valendo e vence o loading automático do onClick: o loading efetivo é loading ou operação pendente (Promise/Future devolvida pelo onClick).',
   ),
   SgPropSpec(
     name: 'onClick',
@@ -113,7 +113,7 @@ const List<SgPropSpec> sgButtonPropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '((event: MouseEvent<HTMLButtonElement, MouseEvent>) => unknown)',
     required: false,
-    description: 'Callback disparado quando a acao e executada. Se devolver uma Promise, o botao entra em loading ate ela terminar ou falhar e ignora cliques nesse meio-tempo.',
+    description: 'Clique do botão; pode ser síncrono ou assíncrono. Síncrono (abrir modal, alternar): nada muda. Se DEVOLVER uma Promise/Future, como async () => { await salvar(); } ou () => salvar(), o botão entra em loading sozinho (spinner, desabilitado, aria-busy na web), ignora cliques até terminar (inclusive cliques seguidos antes de a tela atualizar) e volta ao normal ao terminar ou falhar. Protege contra duplo clique e reenvio e ajuda na idempotência da ação na tela (não substitui a chave de idempotência no servidor). Cuidado: a função precisa devolver a operação; com chaves e sem return (ou sem async), como () => { salvar(); } ou () { salvar(); }, não protege; já async () {...} sempre devolve. O erro não é engolido: o botão sai do loading e relança como rejeição não tratada; trate com try/catch dentro do onClick e avise o usuário (sgWhistle.error). Use async só quando a ação puder demorar ou falhar (salvar, enviar, pagar).',
     exact: false,
   ),
   SgPropSpec(

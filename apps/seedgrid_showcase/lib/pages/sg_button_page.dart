@@ -17,11 +17,16 @@ class SgButtonPage extends StatefulWidget {
 class _SgButtonPageState extends State<SgButtonPage> {
   final ValueNotifier<bool> _loading = ValueNotifier(false);
   final ValueNotifier<String?> _status = ValueNotifier(null);
+  final ValueNotifier<bool> _panel = ValueNotifier(false);
+  final ValueNotifier<String?> _saved = ValueNotifier(null);
 
   @override
   void dispose() {
     _loading.dispose();
     _status.dispose();
+    _panel.dispose();
+    _saved.dispose();
+    dismissSgWhistle();
     super.dispose();
   }
 
@@ -607,7 +612,7 @@ class _SgButtonPageState extends State<SgButtonPage> {
       ShowcaseExample(
         title: 'Loading automático com Future',
         description:
-            'Quando o onClick devolve uma operação assíncrona, o botão entra em loading sozinho e ignora cliques até ela terminar.',
+            'Se o onClick devolve uma operação assíncrona (Promise no React, Future no Flutter), o botão entra em loading sozinho: mostra o spinner, fica desabilitado e ignora cliques, inclusive cliques seguidos antes de a tela atualizar, até a operação terminar. Ao terminar ou falhar, volta ao normal. Isso evita duplo clique e reenvio e ajuda na idempotência da ação na tela, mas não substitui a chave de idempotência no servidor. A prop loading manual continua valendo e vence: o loading efetivo é loading ou operação pendente.',
         preview:
             // #region sg-button-loading-automatico
             Wrap(
@@ -634,6 +639,82 @@ class _SgButtonPageState extends State<SgButtonPage> {
             ),
         // #endregion
         code: SgButtonPageSnippets.sgButtonLoadingAutomatico,
+      ),
+      ShowcaseExample(
+        title: 'onClick síncrono x assíncrono',
+        description:
+            'O onClick pode ou não ser assíncrono. Função síncrona (abrir um modal, alternar um painel) funciona como sempre e nada muda. Para o botão proteger a ação, o onClick precisa DEVOLVER a operação assíncrona: no React, async () => { await salvar(); } ou () => salvar(); no Flutter, async () { ... } sempre devolve um Future. Chamar salvar() sem devolver o resultado (no React, chaves sem return; no Flutter, função que não é async) não protege. Use async só quando a ação puder demorar ou falhar (salvar, enviar, pagar); ações instantâneas ficam síncronas.',
+        preview:
+            // #region sg-button-onclick-sincrono-x-assincrono
+            Wrap(
+              spacing: 12,
+              runSpacing: 12,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                SgButton(
+                  label: Text(context.tx('Toggle panel')),
+                  appearance: SgAppearance.outline,
+                  onClick: () {
+                    _panel.value = !_panel.value;
+                  },
+                ),
+                ValueListenableBuilder<bool>(
+                  valueListenable: _panel,
+                  builder: (context, open, _) =>
+                      Text(open ? context.tx('Open') : context.tx('Closed')),
+                ),
+                SgButton(
+                  label: Text(context.tx('Save')),
+                  onClick: () async {
+                    final saving = context.tx('Saving...');
+                    final saved = context.tx('Saved');
+                    _saved.value = saving;
+                    await Future.delayed(const Duration(milliseconds: 1500));
+                    _saved.value = saved;
+                  },
+                ),
+                ValueListenableBuilder<String?>(
+                  valueListenable: _saved,
+                  builder: (context, status, _) =>
+                      Text(status ?? context.tx('Idle')),
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgButtonPageSnippets.sgButtonOnclickSincronoXAssincrono,
+      ),
+      ShowcaseExample(
+        title: 'Tratando erro no onClick assíncrono',
+        description:
+            'O botão não engole o erro: se a operação falhar, ele sai do loading e relança o erro como rejeição não tratada. Por isso, trate a falha com try/catch dentro do onClick e avise o usuário (por exemplo, com sgWhistle.error). Neste exemplo a operação sempre falha e o aviso aparece na caixa abaixo.',
+        preview:
+            // #region sg-button-tratando-erro-no-onclick-assincrono
+            SgStack(
+              gap: 12,
+              children: [
+                SgButton(
+                  label: Text(context.tx('Save (fails)')),
+                  severity: SgSeverity.danger,
+                  onClick: () async {
+                    final title = context.tx('Could not save');
+                    final message = context.tx(
+                      'Check your connection and try again.',
+                    );
+                    try {
+                      await Future.delayed(const Duration(milliseconds: 1200));
+                      throw Exception('Network error');
+                    } catch (_) {
+                      sgWhistle.error(
+                        SgWhistleOptions(title: title, message: message),
+                      );
+                    }
+                  },
+                ),
+                const SgWhistler(),
+              ],
+            ),
+        // #endregion
+        code: SgButtonPageSnippets.sgButtonTratandoErroNoOnclickAssincrono,
       ),
     ];
 

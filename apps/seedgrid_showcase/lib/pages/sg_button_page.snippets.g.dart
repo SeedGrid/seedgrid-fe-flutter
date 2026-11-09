@@ -304,6 +304,44 @@ Wrap(
 )
 ''';
 
+  /// Region `sg-button-onclick-sincrono-x-assincrono`.
+  static const String sgButtonOnclickSincronoXAssincrono = r'''
+Wrap(
+  spacing: 12,
+  runSpacing: 12,
+  crossAxisAlignment: WrapCrossAlignment.center,
+  children: [
+    SgButton(
+      label: Text(context.tx('Toggle panel')),
+      appearance: SgAppearance.outline,
+      onClick: () {
+        _panel.value = !_panel.value;
+      },
+    ),
+    ValueListenableBuilder<bool>(
+      valueListenable: _panel,
+      builder: (context, open, _) =>
+          Text(open ? context.tx('Open') : context.tx('Closed')),
+    ),
+    SgButton(
+      label: Text(context.tx('Save')),
+      onClick: () async {
+        final saving = context.tx('Saving...');
+        final saved = context.tx('Saved');
+        _saved.value = saving;
+        await Future.delayed(const Duration(milliseconds: 1500));
+        _saved.value = saved;
+      },
+    ),
+    ValueListenableBuilder<String?>(
+      valueListenable: _saved,
+      builder: (context, status, _) =>
+          Text(status ?? context.tx('Idle')),
+    ),
+  ],
+)
+''';
+
   /// Region `sg-button-outlined`.
   static const String sgButtonOutlined = r'''
 Wrap(
@@ -541,6 +579,34 @@ Column(
         ),
       ],
     ),
+  ],
+)
+''';
+
+  /// Region `sg-button-tratando-erro-no-onclick-assincrono`.
+  static const String sgButtonTratandoErroNoOnclickAssincrono = r'''
+SgStack(
+  gap: 12,
+  children: [
+    SgButton(
+      label: Text(context.tx('Save (fails)')),
+      severity: SgSeverity.danger,
+      onClick: () async {
+        final title = context.tx('Could not save');
+        final message = context.tx(
+          'Check your connection and try again.',
+        );
+        try {
+          await Future.delayed(const Duration(milliseconds: 1200));
+          throw Exception('Network error');
+        } catch (_) {
+          sgWhistle.error(
+            SgWhistleOptions(title: title, message: message),
+          );
+        }
+      },
+    ),
+    const SgWhistler(),
   ],
 )
 ''';

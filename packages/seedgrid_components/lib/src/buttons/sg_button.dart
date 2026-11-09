@@ -206,9 +206,18 @@ class SgButton extends StatefulWidget implements SgButtonProps {
   @override
   final SgButtonCustomColors? customColors;
 
-  /// `onClick` do botao HTML. Pode devolver um `Future`: o botao fica carregando (spinner, desabilitado)
-  /// ate ele terminar ou falhar e ignora cliques nesse meio-tempo. Aceita tambem um `VoidCallback`
-  /// (`() {}` ou `() => x()`), que segue sem loading. O erro do `Future` nao e engolido.
+  /// Clique do botao; pode ser sincrono ou assincrono (`FutureOr<void> Function()`).
+  ///
+  /// - Sincrono (abrir modal, alternar painel): funciona como sempre, nada muda.
+  /// - Se DEVOLVER um `Future` (`async () { await salvar(); }` ou `() => salvar()`), o botao entra em loading
+  ///   sozinho (spinner, desabilitado), ignora cliques ate terminar (inclusive cliques seguidos antes do
+  ///   rebuild) e volta ao normal ao terminar ou falhar. Protege contra duplo clique e reenvio e ajuda na
+  ///   idempotencia da acao na tela (nao substitui a chave de idempotencia no servidor).
+  /// - Cuidado: precisa DEVOLVER o `Future`. `async () {...}` sempre devolve; `() { salvar(); }` NAO protege.
+  /// - Erro: o botao nao engole o erro (sai do loading e relanca como excecao nao tratada). Trate com
+  ///   try/catch dentro do onClick e avise o usuario (ex.: `sgWhistle.error(SgWhistleOptions(...))`).
+  /// - Use async so quando a acao puder demorar ou falhar (salvar, enviar, pagar); acoes instantaneas ficam sincronas.
+  /// - A prop `loading` manual continua valendo e vence (loading efetivo = `loading` || `Future` pendente).
   @override
   final FutureOr<void> Function()? onClick;
 
