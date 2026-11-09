@@ -342,10 +342,40 @@ if (soltos.length) {
   console.log("\nsetState na classe da pagina (ADR 63) em paginas fora da comparacao:");
   for (const [f, n] of soltos) console.log(`   - ${f}: ${n} uso(s)`);
 }
+// AGENTS.md: nenhum exemplo, i18n, titulo, descricao ou snippet dos showcases cita bibliotecas de terceiros.
+// Os termos sao montados em partes para este arquivo tambem nao conte-los por extenso.
+const termosProibidos = new RegExp(["prime" + "faces", "prime" + "react", "prime" + "ng"].join("|"), "i");
+const dirsProibidos = [
+  path.join(reactRoot, "apps", "showcase"),
+  path.join(reactRoot, "packages", "seedgrid-fe-components", "src"),
+  path.join(flutterRoot, "apps", "seedgrid_showcase", "lib"),
+  path.join(flutterRoot, "packages", "seedgrid_components", "lib"),
+  path.join(flutterRoot, "tools", "showcase_i18n"),
+  path.join(flutterRoot, "tools", "mcp_manifest"),
+  path.join(flutterRoot, "README.md"),
+];
+const extProibidos = /\.(tsx?|jsx?|mjs|json|md|dart|sample|playground)$/;
+const pulaDir = /^(node_modules|\.next|dist|build|\.dart_tool|\.git)$/;
+const comTermo = [];
+const varrer = (p) => {
+  if (!fs.existsSync(p)) return;
+  const st = fs.statSync(p);
+  if (st.isDirectory()) {
+    for (const f of fs.readdirSync(p)) if (!pulaDir.test(f)) varrer(path.join(p, f));
+  } else if (extProibidos.test(p) && termosProibidos.test(fs.readFileSync(p, "utf8"))) {
+    comTermo.push(path.relative(path.dirname(flutterRoot), p).replace(/\\/g, "/"));
+  }
+};
+dirsProibidos.forEach(varrer);
+if (comTermo.length) {
+  console.log("\nReferencia a biblioteca de terceiros (proibida pelo AGENTS.md) em:");
+  for (const f of comTermo) console.log(`   - ${f}`);
+}
 if (strict) {
-  falhou = ruim.length > 0 || soltos.length > 0;
+  falhou = ruim.length > 0 || soltos.length > 0 || comTermo.length > 0;
 } else {
   const erros = [];
+  if (comTermo.length) erros.push(`referencia a biblioteca de terceiros em ${comTermo.length} arquivo(s)`);
   const baseComp = baseline.componentes ?? {};
   for (const r of ruim) {
     const permitido = new Set(baseComp[r.componente] ?? []);

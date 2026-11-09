@@ -192,11 +192,12 @@ void definePageChecks(ShowcasePageEntry page) {
     });
 
     testWidgets(
-      'sem referencia a PrimeFaces/PrimeReact nos exemplos (regra do AGENTS.md)',
+      'sem referencia a bibliotecas de terceiros nos exemplos (regra do AGENTS.md)',
       (t) async {
         final source = File(page.file).readAsStringSync().toLowerCase();
-        expect(source.contains('primefaces'), isFalse);
-        expect(source.contains('primereact'), isFalse);
+        for (final termo in ['prime' 'faces', 'prime' 'react']) {
+          expect(source.contains(termo), isFalse, reason: termo);
+        }
       },
     );
   });

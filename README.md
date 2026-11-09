@@ -380,7 +380,7 @@ As ferramentas usam Node 22 e leem o repositório React, que **não é alterado*
 - Não editar arquivos `*.g.dart`, `props-spec.json`, `excecoes.json`, `snippets.g.dart`, `docs/PARIDADE.md`.
 - Exemplo do showcase: o código exibido é o trecho entre `// #region` e `// #endregion` da própria página.
 - Sem `className`/`style`; `enabled` continua `enabled` (nunca `disabled`: substitui a regra antiga do ADR 50); eventos mantêm o nome do React.
-- Sem referência a PrimeFaces/PrimeReact em exemplos.
+- Sem referência a bibliotecas de terceiros em exemplos.
 - Arquivos em UTF-8.
 
 **Como portar um componente**

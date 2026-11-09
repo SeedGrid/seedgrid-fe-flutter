@@ -504,7 +504,7 @@ void main() {
       expect(find.text('Pedidos'), findsNothing);
     });
 
-    testWidgets('nomes do PrimeReact (Tiered) valem', (t) async {
+    testWidgets('nomes legados (Tiered) valem', (t) async {
       await t.pumpWidget(
         host(
           SgMenu(
@@ -568,7 +568,7 @@ void main() {
       expect(nav, ['orders', 'home']);
     });
 
-    testWidgets('vertical (nomes do PrimeReact) e estreito empilha', (t) async {
+    testWidgets('vertical (nomes legados) e estreito empilha', (t) async {
       await t.pumpWidget(
         host(
           SgMenu(

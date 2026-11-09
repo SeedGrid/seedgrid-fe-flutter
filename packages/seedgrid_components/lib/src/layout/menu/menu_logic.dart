@@ -9,7 +9,7 @@ import 'sg_menu_types.dart';
 /// Raiz virtual da arvore (`ROOT_PARENT_ID` do React).
 const String kSgMenuRootParentId = '__sg_menu_root__';
 
-/// Variante efetiva do menu (`SgMenuStyle` normalizado: sem os nomes PrimeReact).
+/// Variante efetiva do menu (`SgMenuStyle` normalizado: sem os nomes legados).
 enum SgMenuStyleKind {
   panel('panel'),
   tiered('tiered'),
