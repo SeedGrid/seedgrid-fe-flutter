@@ -25,8 +25,10 @@ abstract interface class SgButtonProps {
   Object? get label;
   /// Icone exibido antes do label.
   Widget? get leftIcon;
-  /// Exibe spinner e bloqueia interacao enquanto a acao esta em progresso. Padrão: `false`.
+  /// Exibe spinner e bloqueia interacao enquanto a acao esta em progresso. Tem prioridade: o loading efetivo e loading ou Promise pendente do onClick. Padrão: `false`.
   bool? get loading;
+  /// Callback disparado quando a acao e executada. Se devolver uma Promise, o botao entra em loading ate ela terminar ou falhar e ignora cliques nesse meio-tempo. Tipo TS: `((event: MouseEvent&lt;HTMLButtonElement, MouseEvent&gt;) =&gt; unknown)` (sem tradução exata; ver excecoes.json).
+  Function? get onClick;
   /// Icone exibido depois do label.
   Widget? get rightIcon;
   /// Define o peso visual e semantico da acao. Padrão: `primary`.
@@ -103,7 +105,16 @@ const List<SgPropSpec> sgButtonPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description: 'Exibe spinner e bloqueia interacao enquanto a acao esta em progresso.',
+    description: 'Exibe spinner e bloqueia interacao enquanto a acao esta em progresso. Tem prioridade: o loading efetivo e loading ou Promise pendente do onClick.',
+  ),
+  SgPropSpec(
+    name: 'onClick',
+    reactName: 'onClick',
+    type: 'Function?',
+    tsType: '((event: MouseEvent<HTMLButtonElement, MouseEvent>) => unknown)',
+    required: false,
+    description: 'Callback disparado quando a acao e executada. Se devolver uma Promise, o botao entra em loading ate ela terminar ou falhar e ignora cliques nesse meio-tempo.',
+    exact: false,
   ),
   SgPropSpec(
     name: 'rightIcon',

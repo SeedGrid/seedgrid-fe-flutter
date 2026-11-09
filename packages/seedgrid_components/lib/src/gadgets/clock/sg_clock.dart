@@ -225,6 +225,7 @@ class SgClock extends StatefulWidget implements SgClockProps {
     this.format = SgClockFormat.v24h,
     this.showSeconds = true,
     this.digitalStyle = SgClockDigitalStyle.defaultValue,
+    this.digitBuilder,
     this.secondHandMode = SgClockSecondHandMode.step,
     this.themeId = 'classic',
     this.theme,
@@ -253,6 +254,11 @@ class SgClock extends StatefulWidget implements SgClockProps {
   final bool showSeconds;
   @override
   final SgClockDigitalStyle digitalStyle;
+
+  /// Desenha o relogio digital quando `digitalStyle` e `SgClockDigitalStyle.custom`, sem registro global. Sem ele,
+  /// o relogio cai no estilo `default`.
+  @override
+  final SgClockDigitalStyleBuilder? digitBuilder;
   @override
   final SgClockSecondHandMode secondHandMode;
   @override
@@ -529,6 +535,12 @@ class _SgClockState extends State<SgClock> {
       size: w.size,
     );
     final label = t(i18n, 'components.gadgets.clock.digitalAria');
+    final custom = w.digitalStyle == SgClockDigitalStyle.custom
+        ? w.digitBuilder
+        : null;
+    if (custom != null) {
+      return Semantics(label: label, child: custom(context, parts));
+    }
     if (w.digitalStyle != SgClockDigitalStyle.defaultValue) {
       ensureSgClockDigitalStyles(); // registra os 8 estilos que faltam (idempotente)
     }

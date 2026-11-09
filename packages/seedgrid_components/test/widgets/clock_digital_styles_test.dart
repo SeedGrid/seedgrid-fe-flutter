@@ -140,7 +140,9 @@ void main() {
   );
 
   for (final style in SgClockDigitalStyle.values.where(
-    (s) => s != SgClockDigitalStyle.defaultValue,
+    (s) =>
+        s != SgClockDigitalStyle.defaultValue &&
+        s != SgClockDigitalStyle.custom,
   )) {
     testWidgets('${style.value}: digitos e props iguais ao SgClock do React', (
       t,
@@ -247,7 +249,11 @@ void main() {
       expect(
         registeredSgClockDigitalStyles,
         SgClockDigitalStyle.values
-            .where((s) => s != SgClockDigitalStyle.defaultValue)
+            .where(
+              (s) =>
+                  s != SgClockDigitalStyle.defaultValue &&
+                  s != SgClockDigitalStyle.custom,
+            )
             .toSet(),
       );
       expect(digitsOf(t).whereType<SgFlipDigit>().length, 6);

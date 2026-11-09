@@ -85,9 +85,9 @@
    "status": "portado",
    "motivo": "",
    "onde": "packages/seedgrid_components/lib/src/buttons/sg_button.dart",
-   "props": 12,
+   "props": 13,
    "propsOmitidas": 0,
-   "propsGenericas": 1
+   "propsGenericas": 2
   },
   {
    "componente": "SgCalendar",
@@ -145,9 +145,9 @@
    "status": "portado",
    "motivo": "tema por URL/SVG livre fora por decisao do dono (ADR 51/D8: SgClockUrlThemeUnsupportedError); fuso padrao = o da maquina, e 464 nomes IANA numa tabela propria gerada do Intl (clock_tz_data.g.dart; regerar quando um pais mudar a regra de horario de verao ou antes de 2045); periodos do dia gerados para 33 locales; cardProps vira SgClockCardProps; os 8 estilos digitais usam os widgets de digitos; golden com a fonte de teste do Flutter",
    "onde": "packages/seedgrid_components/lib/src/gadgets/clock/sg_clock.dart",
-   "props": 16,
+   "props": 17,
    "propsOmitidas": 2,
-   "propsGenericas": 3
+   "propsGenericas": 4
   },
   {
    "componente": "SgClockThemePicker",

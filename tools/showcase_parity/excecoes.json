@@ -5,10 +5,6 @@
       "semPaginaFlutter": true,
       "motivo": "Playground e uma pagina utilitaria do showcase React; o Flutter tem SgPlayground embutido em cada pagina."
     },
-    "UseComponentsI18n": {
-      "semPaginaFlutter": true,
-      "motivo": "Hook ou provider do React: nao existe equivalente no Flutter e permanece so no React (decisao do dono, P153)."
-    },
     "UseSgEnvironment": {
       "semPaginaFlutter": true,
       "motivo": "Hook ou provider do React: nao existe equivalente no Flutter e permanece so no React (decisao do dono, P153)."
@@ -30,10 +26,6 @@
       "motivo": "Hook ou provider do React: nao existe equivalente no Flutter e permanece so no React (decisao do dono, P153)."
     },
     "UseSgTime": {
-      "semPaginaFlutter": true,
-      "motivo": "Hook ou provider do React: nao existe equivalente no Flutter e permanece so no React (decisao do dono, P153)."
-    },
-    "SgComponentsI18nProvider": {
       "semPaginaFlutter": true,
       "motivo": "Hook ou provider do React: nao existe equivalente no Flutter e permanece so no React (decisao do dono, P153)."
     },

@@ -23,6 +23,7 @@ import 'sg_clock_theme_preview_page.dart';
 import 'sg_clock_theme_provider_page.dart';
 import 'sg_color_picker_page.dart';
 import 'sg_combobox_page.dart';
+import 'sg_components_i18n_provider_page.dart';
 import 'sg_confirmation_dialog_page.dart';
 import 'sg_datatable_page.dart';
 import 'sg_dialog_page.dart';
@@ -98,6 +99,7 @@ import 'sg_wizard_demo_page.dart';
 import 'sg_wizard_page_page.dart';
 import 'sg_year_part_selector_page.dart';
 import 'crud_clientes_page.dart';
+import 'use_components_i18n_page.dart';
 
 /// Uma pagina do showcase. `examples` = numero de regioes `// #region` do arquivo (links esperados).
 typedef ShowcasePageEntry = ({String name, String file, int examples, String description, WidgetBuilder builder});
@@ -110,18 +112,19 @@ final List<ShowcasePageEntry> kShowcasePages = <ShowcasePageEntry>[
   (name: 'SgBadge', file: 'lib/pages/sg_badge_page.dart', examples: 9, description: 'Selo compacto para status, contagens e rótulos curtos, com estilos, tamanhos, ícones e remoção.', builder: (_) => const SgBadgePage()),
   (name: 'SgBadgeOverlay', file: 'lib/pages/sg_badge_overlay_page.dart', examples: 5, description: 'Posiciona um selo (SgBadge) sobre um canto ou borda de outro widget.', builder: (_) => const SgBadgeOverlayPage()),
   (name: 'SgBreadcrumb', file: 'lib/pages/sg_breadcrumb_page.dart', examples: 5, description: 'Trilha de navegação com separador, ícone de início, colapso dos itens do meio e variantes.', builder: (_) => const SgBreadcrumbPage()),
-  (name: 'SgButton', file: 'lib/pages/sg_button_page.dart', examples: 14, description: 'Botão de ação com severidade, aparência, forma, loading e ícones, para ações principais e secundárias.', builder: (_) => const SgButtonPage()),
+  (name: 'SgButton', file: 'lib/pages/sg_button_page.dart', examples: 15, description: 'Botão de ação com severidade, aparência, forma, loading e ícones, para ações principais e secundárias.', builder: (_) => const SgButtonPage()),
   (name: 'SgCalendar', file: 'lib/pages/sg_calendar_page.dart', examples: 9, description: 'Calendário mensal em formato de gadget, com locale, vários meses, limites, dias bloqueados e cartão configurável.', builder: (_) => const SgCalendarPage()),
   (name: 'SgCameraCapture', file: 'lib/pages/sg_camera_capture_page.dart', examples: 5, description: 'Pré-visualização da câmera com guia de enquadramento, troca de câmera e captura. Não envia nada: entrega a imagem ao pai.', builder: (_) => const SgCameraCapturePage()),
   (name: 'SgCard', file: 'lib/pages/sg_card_page.dart', examples: 7, description: 'Cartão com cabeçalho, corpo e rodapé; pode ser clicável, recolhível ou arrastável.', builder: (_) => const SgCardPage()),
   (name: 'SgCarousel', file: 'lib/pages/sg_carousel_page.dart', examples: 11, description: 'Carrossel de itens com setas, indicadores, reprodução automática, vários itens visíveis e orientação vertical.', builder: (_) => const SgCarouselPage()),
   (name: 'SgCheckboxGroup', file: 'lib/pages/sg_checkbox_group_page.dart', examples: 17, description: 'Grupo de caixas de seleção múltipla com título, orientação, estilo highlight, "selecionar todos" e ligação a formulário.', builder: (_) => const SgCheckboxGroupPage()),
-  (name: 'SgClock', file: 'lib/pages/sg_clock_page.dart', examples: 14, description: 'Relógio analógico ou digital, com fuso, 12/24 horas, temas embutidos e cartão recolhível.', builder: (_) => const SgClockPage()),
+  (name: 'SgClock', file: 'lib/pages/sg_clock_page.dart', examples: 15, description: 'Relógio analógico ou digital, com fuso, 12/24 horas, temas embutidos e cartão recolhível.', builder: (_) => const SgClockPage()),
   (name: 'SgClockThemePicker', file: 'lib/pages/sg_clock_theme_picker_page.dart', examples: 4, description: 'Seletor de tema de relógio: botão com a miniatura atual e um painel com busca e a lista de temas.', builder: (_) => const SgClockThemePickerPage()),
   (name: 'SgClockThemePreview', file: 'lib/pages/sg_clock_theme_preview_page.dart', examples: 4, description: 'Miniatura de um tema de relógio, usada no seletor de temas e para escolher entre os temas embutidos.', builder: (_) => const SgClockThemePreviewPage()),
   (name: 'SgClockThemeProvider', file: 'lib/pages/sg_clock_theme_provider_page.dart', examples: 5, description: 'Fornece um resolvedor de temas de relógio (modo, tema de recuo e temas locais) a toda a árvore.', builder: (_) => const SgClockThemeProviderPage()),
   (name: 'SgColorPicker', file: 'lib/pages/sg_color_picker_page.dart', examples: 8, description: 'Seletor de cor com área em gradiente (saturação e brilho) e barra de matiz, ou três barras, prévia, campo hex (#RRGGBB), cores predefinidas e diálogo showSgColorPicker.', builder: (_) => const SgColorPickerPage()),
   (name: 'SgCombobox', file: 'lib/pages/sg_combobox_page.dart', examples: 6, description: 'Seleção de um item de uma lista (local ou assíncrona), com escolha por id e busca por tecla digitada.', builder: (_) => const SgComboboxPage()),
+  (name: 'SgComponentsI18nProvider', file: 'lib/pages/sg_components_i18n_provider_page.dart', examples: 4, description: 'Configura o locale e as mensagens de todos os componentes SeedGrid na subárvore.', builder: (_) => const SgComponentsI18nProviderPage()),
   (name: 'SgConfirmationDialog', file: 'lib/pages/sg_confirmation_dialog_page.dart', examples: 6, description: 'Diálogo de confirmação com mensagem, ícone de severidade e botões cancelar e confirmar.', builder: (_) => const SgConfirmationDialogPage()),
   (name: 'SgDatatable', file: 'lib/pages/sg_datatable_page.dart', examples: 13, description: 'Tabela de dados com colunas configuráveis, paginação, ordenação, filtros, seleção, carga sob demanda, layout de colunas persistente e modo cartões para celular (mobileMode).', builder: (_) => const SgDatatablePage()),
   (name: 'SgDialog', file: 'lib/pages/sg_dialog_page.dart', examples: 6, description: 'Diálogo modal com título, corpo e rodapé, foco preso, fechamento por Esc e fundo, severidade, animação e fechamento automático.', builder: (_) => const SgDialogPage()),
@@ -197,4 +200,5 @@ final List<ShowcasePageEntry> kShowcasePages = <ShowcasePageEntry>[
   (name: 'SgWizardPage', file: 'lib/pages/sg_wizard_page_page.dart', examples: 3, description: 'Uma etapa do SgWizard: título e ícone do stepper e o conteúdo da etapa.', builder: (_) => const SgWizardPagePage()),
   (name: 'SgYearPartSelector', file: 'lib/pages/sg_year_part_selector_page.dart', examples: 6, description: 'Seletor de recorte de ano: o usuário escolhe ano, recorte (semestre, trimestre ou bimestre) e fatia, e recebe o intervalo de datas resolvido.', builder: (_) => const SgYearPartSelectorPage()),
   (name: 'CrudClientes', file: 'lib/pages/crud_clientes_page.dart', examples: 1, description: 'Exemplo de CRUD completo só com componentes SeedGrid: lista com busca e tabela, tela de novo/editar com formulário, exclusão com confirmação e dados lidos de um JSON local.', builder: (_) => const CrudClientesPage()),
+  (name: 'UseComponentsI18n', file: 'lib/pages/use_components_i18n_page.dart', examples: 2, description: 'Retorna o locale e as mensagens atuais configurados pelo SgComponentsI18nProvider.', builder: (_) => const UseComponentsI18nPage()),
 ];

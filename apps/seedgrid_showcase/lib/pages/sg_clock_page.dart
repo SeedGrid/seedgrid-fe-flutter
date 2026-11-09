@@ -730,6 +730,45 @@ class _SgClockPageState extends State<SgClockPage> {
         // #endregion
         code: SgClockPageSnippets.sgClockCartao,
       ),
+      ShowcaseExample(
+        title: 'Desenho do dígito próprio (digitBuilder)',
+        description:
+            'Com digitalStyle custom, o digitBuilder recebe as partes do relógio e devolve o desenho de cada dígito; sem ele, o relógio cai no estilo default.',
+        preview:
+            // #region sg-clock-digit-builder
+            SgClock(
+              digitalStyle: SgClockDigitalStyle.custom,
+              initialServerTime: '2026-06-15T09:41:07-03:00',
+              timezone: 'America/Sao_Paulo',
+              digitBuilder: (context, parts) {
+                final scheme = Theme.of(context).colorScheme;
+                return Wrap(
+                  spacing: 4,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  children: [
+                    for (final ch in parts.text.split(''))
+                      ch == ':'
+                          ? Text(ch)
+                          : Container(
+                              width: 32,
+                              height: 32,
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                color: scheme.primary,
+                                shape: BoxShape.circle,
+                              ),
+                              child: Text(
+                                ch,
+                                style: TextStyle(color: scheme.onPrimary),
+                              ),
+                            ),
+                  ],
+                );
+              },
+            ),
+        // #endregion
+        code: SgClockPageSnippets.sgClockDigitBuilder,
+      ),
     ];
 
     return SgShowcasePage(

@@ -1,6 +1,8 @@
 // Porte de SgButton (React: src/buttons/SgButton.tsx). Mesmos nomes de prop, valores e defaults.
 // Props herdadas do HTML no React (`onClick`, `type`, `children`) ficam fora do contrato
 // gerado; aqui entram como o conjunto fechado: onClick, type, child (ADR 50).
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:seedgrid_theme/seedgrid_theme.dart';
@@ -204,10 +206,14 @@ class SgButton extends StatefulWidget implements SgButtonProps {
   @override
   final SgButtonCustomColors? customColors;
 
-  /// `onClick` do botao HTML.
-  final VoidCallback? onClick;
+  /// `onClick` do botao HTML. Pode devolver um `Future`: o botao fica carregando (spinner, desabilitado)
+  /// ate ele terminar ou falhar e ignora cliques nesse meio-tempo. Aceita tambem um `VoidCallback`
+  /// (`() {}` ou `() => x()`), que segue sem loading. O erro do `Future` nao e engolido.
+  @override
+  final FutureOr<void> Function()? onClick;
 
   /// `enabled`: quando false, desabilita o botao (padrao true).
+  @override
   final bool? enabled;
 
   /// `type` do botao HTML.
@@ -225,6 +231,10 @@ class _SgButtonState extends State<SgButton> {
   bool _hover = false;
   bool _pressed = false;
   bool _focused = false;
+  bool _pending = false;
+
+  /// Loading efetivo: `loading` manual (vence) ou `Future` pendente do `onClick`.
+  bool get _loading => widget.loading || _pending;
 
   @override
   void initState() {
@@ -245,7 +255,8 @@ class _SgButtonState extends State<SgButton> {
     final t = sgThemeOf(context);
     final w = widget;
     final content = sgNode(w.child) ?? sgNode(w.label);
-    final isDisabled = !(w.enabled ?? true) || w.loading;
+    final loading = _loading;
+    final isDisabled = !(w.enabled ?? true) || loading;
     final iconOnly =
         w.iconOnly ??
         (content == null && (w.leftIcon != null || w.rightIcon != null));
@@ -319,7 +330,7 @@ class _SgButtonState extends State<SgButton> {
           );
 
     final children = <Widget>[
-      if (w.loading)
+      if (loading)
         SizedBox(
           width: s.icon,
           height: s.icon,
@@ -339,7 +350,7 @@ class _SgButtonState extends State<SgButton> {
             child: content,
           ),
         ),
-      if (!w.loading && w.rightIcon != null) icon(w.rightIcon),
+      if (!loading && w.rightIcon != null) icon(w.rightIcon),
     ];
 
     final body = Row(
@@ -421,7 +432,15 @@ class _SgButtonState extends State<SgButton> {
   }
 
   void _onTap() {
-    widget.onClick?.call();
+    if (!(widget.enabled ?? true) || _loading) return;
+    final result = widget.onClick?.call();
+    if (result is Future) {
+      setState(() => _pending = true);
+      // `whenComplete` repassa o erro (nao e engolido); so o estado interno volta ao normal.
+      result.whenComplete(() {
+        if (mounted) setState(() => _pending = false);
+      });
+    }
     if (widget.type == SgButtonType.submit) {
       final submit = SgForm.submitOf(context);
       if (submit == null) {

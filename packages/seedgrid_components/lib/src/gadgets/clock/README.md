@@ -76,6 +76,10 @@ Em código também dá para criar um tema com `SgClockTheme(id:, ops: [...])` ou
 | Estilos digitais animados (`segment`, `sevenSegment`, `roller3d`, `flip`, `fade`, `matrix`, `neon`, `discard`) | Dependem dos widgets de dígitos. O `SgClock` os desenha por um construtor registrado: `registerSgClockDigitalStyle(SgClockDigitalStyle.flip, (context, parts) => ...)`. Sem construtor, usa o estilo `default`. `parts` traz hora, minuto, segundo, período, `text`, `textWithPeriod` e `sizePx`, como o React os monta. |
 | Períodos do dia por idioma (12h) | Tabela gerada do Intl (`clock_locale_data.g.dart`) para `pt-BR`, `pt-PT`, `en-US`, `es`, `fr`, `de-DE`, `pt`, `en`. Outro idioma cai em `pt-PT` (se `pt-*`) ou `en-US`. Dígitos sempre ASCII. |
 
+## Desenho próprio do dígito
+
+Com `digitalStyle: SgClockDigitalStyle.custom`, a prop `digitBuilder` (`Widget Function(BuildContext, SgClockDigitalParts)`) desenha o relógio digital sem registro global; no React é `digitBuilder={(parts) => ReactNode}`. Sem `digitBuilder`, o relógio cai no estilo `default`.
+
 ## Tempo
 
 `SgClockEnvironment.now` e `SgClockEnvironment.elapsed` fazem o papel de `Date.now()` e `performance.now()` e são

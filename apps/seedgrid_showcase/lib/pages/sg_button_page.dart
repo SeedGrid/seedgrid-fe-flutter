@@ -16,10 +16,12 @@ class SgButtonPage extends StatefulWidget {
 
 class _SgButtonPageState extends State<SgButtonPage> {
   final ValueNotifier<bool> _loading = ValueNotifier(false);
+  final ValueNotifier<String?> _status = ValueNotifier(null);
 
   @override
   void dispose() {
     _loading.dispose();
+    _status.dispose();
     super.dispose();
   }
 
@@ -602,6 +604,37 @@ class _SgButtonPageState extends State<SgButtonPage> {
         // #endregion
         code: SgButtonPageSnippets.sgButtonCustomColors,
       ),
+      ShowcaseExample(
+        title: 'Loading automático com Future',
+        description:
+            'Quando o onClick devolve uma operação assíncrona, o botão entra em loading sozinho e ignora cliques até ela terminar.',
+        preview:
+            // #region sg-button-loading-automatico
+            Wrap(
+              spacing: 12,
+              runSpacing: 12,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                SgButton(
+                  label: Text(context.tx('Submit')),
+                  onClick: () async {
+                    final saving = context.tx('Saving...');
+                    final done = context.tx('Done');
+                    _status.value = saving;
+                    await Future.delayed(const Duration(milliseconds: 1500));
+                    _status.value = done;
+                  },
+                ),
+                ValueListenableBuilder<String?>(
+                  valueListenable: _status,
+                  builder: (context, status, _) =>
+                      Text(status ?? context.tx('Idle')),
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgButtonPageSnippets.sgButtonLoadingAutomatico,
+      ),
     ];
 
     return SgShowcasePage(
@@ -611,15 +644,6 @@ class _SgButtonPageState extends State<SgButtonPage> {
       examples: examples,
       propSpecs: [
         ...sgPropSpecs['SgButton']!,
-        const SgPropSpec(
-          name: 'onClick',
-          reactName: 'onClick',
-          type: 'VoidCallback?',
-          tsType: '() => void',
-          required: false,
-          description: 'Chamado ao clicar (herdado do botão HTML no React).',
-          exact: true,
-        ),
         const SgPropSpec(
           name: 'enabled',
           reactName: 'enabled',

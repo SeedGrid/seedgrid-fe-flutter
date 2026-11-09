@@ -6520,5 +6520,143 @@
   "O último item é a página atual e não é clicável.",
   "El último elemento es la página actual y no es clicable.",
   "Le dernier élément est la page actuelle et n'est pas cliquable."
+ ],
+ "Configura o locale e as mensagens de todos os componentes SeedGrid na subárvore.": [
+  "Configures the locale and messages for all SeedGrid components in the subtree.",
+  "Configura o locale e as mensagens de todos os componentes SeedGrid na subárvore.",
+  "Configura el locale y los mensajes de todos los componentes SeedGrid en el subárbol.",
+  "Configure la locale et les messages pour tous les composants SeedGrid du sous-arbre."
+ ],
+ "Envolva o app com SgComponentsI18nProvider passando o locale e as mensagens do idioma desejado.": [
+  "Wrap your application with SgComponentsI18nProvider and pass locale and messages.",
+  "Envolva o app com SgComponentsI18nProvider passando o locale e as mensagens do idioma desejado.",
+  "Envuelve el app con SgComponentsI18nProvider pasando el locale y los mensajes del idioma deseado.",
+  "Encapsulez votre application avec SgComponentsI18nProvider et passez locale et messages."
+ ],
+ "Troca dinâmica de locale": [
+  "Dynamic locale switching",
+  "Troca dinâmica de locale",
+  "Cambio dinámico de locale",
+  "Changement de locale dynamique"
+ ],
+ "Altere o locale em runtime. Os componentes re-renderizam automaticamente com as novas mensagens.": [
+  "Change locale at runtime. Components re-render automatically with the new messages.",
+  "Altere o locale em runtime. Os componentes re-renderizam automaticamente com as novas mensagens.",
+  "Cambia el locale en runtime. Los componentes se vuelven a renderizar automáticamente con los nuevos mensajes.",
+  "Change la locale à l'exécution. Les composants se ré-affichent automatiquement avec les nouveaux messages."
+ ],
+ "API imperativa (setComponentsI18n)": [
+  "Imperative API (setComponentsI18n)",
+  "API imperativa (setComponentsI18n)",
+  "API imperativa (setComponentsI18n)",
+  "API impérative (setComponentsI18n)"
+ ],
+ "Alternativa ao Provider. Útil para definir o idioma antes de montar a árvore de componentes.": [
+  "Alternative to the Provider. Useful to set the locale before the component tree is mounted.",
+  "Alternativa ao Provider. Útil para definir o idioma antes de montar a árvore de componentes.",
+  "Alternativa al Provider. Útil para definir el idioma antes de montar el árbol de componentes.",
+  "Alternative au Provider. Utile pour définir la locale avant le montage de l'arbre de composants."
+ ],
+ "Sobrescrita de mensagens": [
+  "Custom message overrides",
+  "Substituição de mensagens",
+  "Sobrescritura de mensajes",
+  "Remplacements de message personnalisés"
+ ],
+ "Sobrescreva apenas as chaves que deseja customizar. Mescle suas mensagens com o objeto built-in do locale.": [
+  "Override only the keys you need. Merge your overrides with a built-in messages object.",
+  "Substitua apenas as chaves que deseja personalizar. Mescle as suas mensagens com o objeto built-in do locale.",
+  "Sobrescribe solo las claves que deseas personalizar. Mezcla tus mensajes con el objeto built-in del locale.",
+  "Remplacez uniquement les clés dont vous avez besoin. Fusionnez vos remplacements avec un objet de messages intégré."
+ ],
+ "Retorna o locale e as mensagens atuais configurados pelo SgComponentsI18nProvider.": [
+  "Returns the current locale and messages configured by SgComponentsI18nProvider.",
+  "Retorna o locale e as mensagens atuais configurados pelo SgComponentsI18nProvider.",
+  "Retorna el locale y los mensajes actuales configurados por SgComponentsI18nProvider.",
+  "Retourne la locale et les messages actuels configurés par SgComponentsI18nProvider."
+ ],
+ "Use useComponentsI18n para ler o locale ativo e traduzir chaves com o helper t.": [
+  "Use useComponentsI18n to read the active locale and translate keys using the t helper.",
+  "Use useComponentsI18n para ler o locale ativo e traduzir chaves com o helper t.",
+  "Usa useComponentsI18n para leer el locale activo y traducir claves con el helper t.",
+  "Utilisez useComponentsI18n pour lire la locale active et traduire les clés avec l'assistant t."
+ ],
+ "Construindo componentes cientes de locale": [
+  "Building locale-aware components",
+  "Construir componentes cientes de locale",
+  "Construir componentes conscientes del locale",
+  "Construire des composants sensibles à la locale"
+ ],
+ "Combine useComponentsI18n com t para construir componentes que respeitam automaticamente o locale ativo.": [
+  "Combine useComponentsI18n with t to build components that automatically respect the active locale.",
+  "Combine useComponentsI18n com t para construir componentes que respeitam automaticamente o locale ativo.",
+  "Combina useComponentsI18n con t para construir componentes que respetan automáticamente el locale activo.",
+  "Combinez useComponentsI18n avec t pour construire des composants qui respectent automatiquement la locale active."
+ ],
+ "Locale atual dos componentes. Vem do SgComponentsI18nProvider mais próximo ou, sem provider, do estado global.": [
+  "Current locale of the components. Comes from the nearest SgComponentsI18nProvider or, without a provider, from the global state.",
+  "Locale atual dos componentes. Vem do SgComponentsI18nProvider mais próximo ou, sem provider, do estado global.",
+  "Locale actual de los componentes. Viene del SgComponentsI18nProvider más cercano o, sin provider, del estado global.",
+  "Locale actuelle des composants. Provient du SgComponentsI18nProvider le plus proche ou, sans provider, de l'état global."
+ ],
+ "Mapa de todas as chaves de tradução disponíveis para o locale atual, já mescladas com as sobrescritas.": [
+  "Map of all translation keys available for the current locale, already merged with the overrides.",
+  "Mapa de todas as chaves de tradução disponíveis para o locale atual, já mescladas com as substituições.",
+  "Mapa de todas las claves de traducción disponibles para el locale actual, ya mezcladas con las sobrescrituras.",
+  "Table de toutes les clés de traduction disponibles pour la locale actuelle, déjà fusionnées avec les remplacements."
+ ],
+ "Desenho do dígito próprio (digitBuilder)": [
+  "Custom digit drawing (digitBuilder)",
+  "Desenho do dígito próprio (digitBuilder)",
+  "Dibujo de dígito propio (digitBuilder)",
+  "Dessin de chiffre personnalisé (digitBuilder)"
+ ],
+ "Com digitalStyle custom, o digitBuilder recebe as partes do relógio e devolve o desenho de cada dígito; sem ele, o relógio cai no estilo default.": [
+  "With digitalStyle custom, digitBuilder receives the clock parts and returns the drawing of each digit; without it, the clock falls back to the default style.",
+  "Com digitalStyle custom, o digitBuilder recebe as partes do relógio e devolve o desenho de cada dígito; sem ele, o relógio recorre ao estilo default.",
+  "Con digitalStyle custom, digitBuilder recibe las partes del reloj y devuelve el dibujo de cada dígito; sin él, el reloj usa el estilo default.",
+  "Avec digitalStyle custom, digitBuilder reçoit les parties de l'horloge et renvoie le dessin de chaque chiffre ; sans lui, l'horloge revient au style default."
+ ],
+ "Desenha o relogio digital quando digitalStyle e custom; sem ele, usa o estilo default.": [
+  "Draws the digital clock when digitalStyle is custom; without it, the default style is used.",
+  "Desenha o relógio digital quando digitalStyle é custom; sem ele, usa o estilo default.",
+  "Dibuja el reloj digital cuando digitalStyle es custom; sin él, usa el estilo default.",
+  "Dessine l'horloge numérique quand digitalStyle vaut custom ; sans lui, le style default est utilisé."
+ ],
+ "Loading automático com Future": [
+  "Automatic loading with Future",
+  "Loading automático com Future",
+  "Loading automático con Future",
+  "Chargement automatique avec Future"
+ ],
+ "Quando o onClick devolve uma operação assíncrona, o botão entra em loading sozinho e ignora cliques até ela terminar.": [
+  "When onClick returns an asynchronous operation, the button enters loading by itself and ignores clicks until it finishes.",
+  "Quando o onClick devolve uma operação assíncrona, o botão entra em loading sozinho e ignora cliques até ela terminar.",
+  "Cuando onClick devuelve una operación asíncrona, el botón entra en loading por sí solo e ignora los clics hasta que termine.",
+  "Quand onClick renvoie une opération asynchrone, le bouton passe en chargement tout seul et ignore les clics jusqu'à sa fin."
+ ],
+ "Idle": [
+  "Idle",
+  "Inativo",
+  "Inactivo",
+  "Inactif"
+ ],
+ "Done": [
+  "Done",
+  "Concluído",
+  "Hecho",
+  "Terminé"
+ ],
+ "Exibe spinner e bloqueia interacao enquanto a acao esta em progresso. Tem prioridade: o loading efetivo e loading ou Promise pendente do onClick.": [
+  "Shows a spinner and blocks interaction while the action is in progress. It takes priority: the effective loading is loading or a pending Promise from onClick.",
+  "Exibe spinner e bloqueia a interação enquanto a ação está em curso. Tem prioridade: o loading efetivo é loading ou uma Promise pendente do onClick.",
+  "Muestra un spinner y bloquea la interacción mientras la acción está en curso. Tiene prioridad: el loading efectivo es loading o una Promise pendiente de onClick.",
+  "Affiche un spinner et bloque l'interaction pendant que l'action est en cours. Il est prioritaire : le chargement effectif est loading ou une Promise en attente de onClick."
+ ],
+ "Callback disparado quando a acao e executada. Se devolver uma Promise, o botao entra em loading ate ela terminar ou falhar e ignora cliques nesse meio-tempo.": [
+  "Callback fired when the action is executed. If it returns a Promise, the button enters loading until it finishes or fails and ignores clicks in the meantime.",
+  "Callback disparado quando a ação é executada. Se devolver uma Promise, o botão entra em loading até ela terminar ou falhar e ignora cliques nesse meio-tempo.",
+  "Callback disparado cuando se ejecuta la acción. Si devuelve una Promise, el botón entra en loading hasta que termine o falle e ignora los clics mientras tanto.",
+  "Callback déclenché quand l'action est exécutée. S'il renvoie une Promise, le bouton passe en chargement jusqu'à sa fin ou son échec et ignore les clics entre-temps."
  ]
 }

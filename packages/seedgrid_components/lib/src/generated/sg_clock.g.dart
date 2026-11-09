@@ -18,6 +18,8 @@ abstract interface class SgClockProps {
   Widget? get centerOverlay;
   /// Modo principal de exibicao do relogio. Padrão: `digital`.
   SgClockClockStyle? get clockStyle;
+  /// Desenha o relogio digital quando digitalStyle e custom; sem ele, usa o estilo default. Tipo TS: `SgClockDigitBuilder` (sem tradução exata; ver excecoes.json).
+  Function? get digitBuilder;
   /// Estilo visual do relogio digital. Padrão: `default`.
   SgClockDigitalStyle? get digitalStyle;
   /// Formato horario do relogio. Padrão: `24h`.
@@ -74,6 +76,15 @@ const List<SgPropSpec> sgClockPropSpecs = <SgPropSpec>[
     values: <String>['digital', 'analog'],
   ),
   SgPropSpec(
+    name: 'digitBuilder',
+    reactName: 'digitBuilder',
+    type: 'Function?',
+    tsType: 'SgClockDigitBuilder',
+    required: false,
+    description: 'Desenha o relogio digital quando digitalStyle e custom; sem ele, usa o estilo default.',
+    exact: false,
+  ),
+  SgPropSpec(
     name: 'digitalStyle',
     reactName: 'digitalStyle',
     type: 'SgClockDigitalStyle?',
@@ -81,7 +92,7 @@ const List<SgPropSpec> sgClockPropSpecs = <SgPropSpec>[
     required: false,
     defaultValue: 'default',
     description: 'Estilo visual do relogio digital.',
-    values: <String>['default', 'segment', 'sevenSegment', 'roller3d', 'flip', 'fade', 'matrix', 'neon', 'discard'],
+    values: <String>['default', 'segment', 'sevenSegment', 'roller3d', 'flip', 'fade', 'matrix', 'neon', 'discard', 'custom'],
   ),
   SgPropSpec(
     name: 'format',

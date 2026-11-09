@@ -1242,6 +1242,12 @@
    "ts": "SgButtonCustomColors"
   },
   {
+   "componente": "SgButton",
+   "prop": "onClick",
+   "motivo": "funcao",
+   "ts": "((event: MouseEvent<HTMLButtonElement, MouseEvent>) => unknown)"
+  },
+  {
    "componente": "SgCalendar",
    "prop": "cardProps",
    "motivo": "uniao",
@@ -1414,6 +1420,12 @@
    "prop": "cardProps",
    "motivo": "uniao",
    "ts": "Omit<SgCardProps, \"title\" | \"children\">"
+  },
+  {
+   "componente": "SgClock",
+   "prop": "digitBuilder",
+   "motivo": "funcao",
+   "ts": "SgClockDigitBuilder"
   },
   {
    "componente": "SgClock",
@@ -4550,7 +4562,7 @@
   "tipoGenerico": {
    "lista": 68,
    "uniao": 123,
-   "funcao": 252,
+   "funcao": 254,
    "tipo-nomeado-a-portar": 124
   }
  }

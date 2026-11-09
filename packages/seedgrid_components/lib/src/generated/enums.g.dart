@@ -579,7 +579,7 @@ enum SgClockClockStyle {
   }
 }
 
-/// Valores aceitos pelo React: `default`, `segment`, `sevenSegment`, `roller3d`, `flip`, `fade`, `matrix`, `neon`, `discard`.
+/// Valores aceitos pelo React: `default`, `segment`, `sevenSegment`, `roller3d`, `flip`, `fade`, `matrix`, `neon`, `discard`, `custom`.
 enum SgClockDigitalStyle {
   defaultValue('default'),
   segment('segment'),
@@ -589,7 +589,8 @@ enum SgClockDigitalStyle {
   fade('fade'),
   matrix('matrix'),
   neon('neon'),
-  discard('discard');
+  discard('discard'),
+  custom('custom');
 
   const SgClockDigitalStyle(this.value);
 

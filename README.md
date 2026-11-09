@@ -284,7 +284,7 @@ Cada nome abaixo leva à página do componente no showcase ao vivo. O estado de 
 | Componente | O que faz |
 |---|---|
 | [`SgClockThemeProvider`](https://components-flutter.seedgrid.com.br/sg-clock-theme-provider) | Fornece um resolvedor de temas de relógio (modo, tema de recuo e temas locais) a toda a árvore. |
-| `SgComponentsI18nProvider` |  |
+| [`SgComponentsI18nProvider`](https://components-flutter.seedgrid.com.br/sg-components-i18n-provider) | Configura o locale e as mensagens de todos os componentes SeedGrid na subárvore. |
 | [`SgEnvironmentProvider`](https://components-flutter.seedgrid.com.br/sg-environment-provider) | Ambiente com namespace, escopo e estratégia de persistência (local, API ou as duas) para os componentes SeedGrid e para o estado persistido. |
 | [`SgRealtimeProvider`](https://components-flutter.seedgrid.com.br/sg-realtime-provider) | Avisos em tempo real para o usuário logado pelo SeedGrid Pulse: pede o token ao backend, conecta, reconecta sozinho e informa o estado para a tela… |
 | [`SgTimeProvider`](https://components-flutter.seedgrid.com.br/sg-time-provider) | Fornece a hora do servidor a toda a árvore e avisa a cada segundo; useSgTime lê esse contexto. |
@@ -292,11 +292,12 @@ Cada nome abaixo leva à página do componente no showcase ao vivo. O estado de 
 </details>
 
 <details>
-<summary><b>📚 Exemplos completos</b> · 1 exemplo · <i>Telas inteiras montadas só com componentes SeedGrid</i></summary>
+<summary><b>📚 Exemplos completos</b> · 2 exemplos · <i>Telas inteiras montadas só com componentes SeedGrid</i></summary>
 
 | Componente | O que faz |
 |---|---|
 | [`CrudClientes`](https://components-flutter.seedgrid.com.br/crud-clientes) | Exemplo de CRUD completo só com componentes SeedGrid: lista com busca e tabela, tela de novo/editar com formulário, exclusão com confirmação e… |
+| [`UseComponentsI18n`](https://components-flutter.seedgrid.com.br/use-components-i18n) | Retorna o locale e as mensagens atuais configurados pelo SgComponentsI18nProvider. |
 
 </details>
 

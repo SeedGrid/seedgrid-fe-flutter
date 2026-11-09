@@ -278,6 +278,32 @@ Wrap(
 )
 ''';
 
+  /// Region `sg-button-loading-automatico`.
+  static const String sgButtonLoadingAutomatico = r'''
+Wrap(
+  spacing: 12,
+  runSpacing: 12,
+  crossAxisAlignment: WrapCrossAlignment.center,
+  children: [
+    SgButton(
+      label: Text(context.tx('Submit')),
+      onClick: () async {
+        final saving = context.tx('Saving...');
+        final done = context.tx('Done');
+        _status.value = saving;
+        await Future.delayed(const Duration(milliseconds: 1500));
+        _status.value = done;
+      },
+    ),
+    ValueListenableBuilder<String?>(
+      valueListenable: _status,
+      builder: (context, status, _) =>
+          Text(status ?? context.tx('Idle')),
+    ),
+  ],
+)
+''';
+
   /// Region `sg-button-outlined`.
   static const String sgButtonOutlined = r'''
 Wrap(

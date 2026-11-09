@@ -1393,9 +1393,18 @@
      "optional": true,
      "ts": "boolean | undefined",
      "alias": null,
-     "description": "Exibe spinner e bloqueia interacao enquanto a acao esta em progresso.",
+     "description": "Exibe spinner e bloqueia interacao enquanto a acao esta em progresso. Tem prioridade: o loading efetivo e loading ou Promise pendente do onClick.",
      "default": false,
      "semanticRole": "behavior"
+    },
+    {
+     "name": "onClick",
+     "optional": true,
+     "ts": "((event: MouseEvent<HTMLButtonElement, MouseEvent>) => unknown) | undefined",
+     "alias": null,
+     "fn": true,
+     "description": "Callback disparado quando a acao e executada. Se devolver uma Promise, o botao entra em loading ate ela terminar ou falhar e ignora cliques nesse meio-tempo.",
+     "semanticRole": "event"
     },
     {
      "name": "rightIcon",
@@ -2409,6 +2418,15 @@
      "semanticRole": "appearance"
     },
     {
+     "name": "digitBuilder",
+     "optional": true,
+     "ts": "SgClockDigitBuilder | undefined",
+     "alias": null,
+     "fn": true,
+     "description": "Desenha o relogio digital quando digitalStyle e custom; sem ele, usa o estilo default.",
+     "semanticRole": "appearance"
+    },
+    {
      "name": "digitalStyle",
      "optional": true,
      "ts": "SgClockDigitalStyle | undefined",
@@ -2422,7 +2440,8 @@
       "fade",
       "matrix",
       "neon",
-      "discard"
+      "discard",
+      "custom"
      ],
      "description": "Estilo visual do relogio digital.",
      "default": "default",

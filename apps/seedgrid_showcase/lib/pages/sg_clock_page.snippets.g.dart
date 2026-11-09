@@ -98,6 +98,40 @@ SgClockThemeProvider(
 )
 ''';
 
+  /// Region `sg-clock-digit-builder`.
+  static const String sgClockDigitBuilder = r'''
+SgClock(
+  digitalStyle: SgClockDigitalStyle.custom,
+  initialServerTime: '2026-06-15T09:41:07-03:00',
+  timezone: 'America/Sao_Paulo',
+  digitBuilder: (context, parts) {
+    final scheme = Theme.of(context).colorScheme;
+    return Wrap(
+      spacing: 4,
+      crossAxisAlignment: WrapCrossAlignment.center,
+      children: [
+        for (final ch in parts.text.split(''))
+          ch == ':'
+              ? Text(ch)
+              : Container(
+                  width: 32,
+                  height: 32,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: scheme.primary,
+                    shape: BoxShape.circle,
+                  ),
+                  child: Text(
+                    ch,
+                    style: TextStyle(color: scheme.onPrimary),
+                  ),
+                ),
+      ],
+    );
+  },
+)
+''';
+
   /// Region `sg-clock-digital`.
   static const String sgClockDigital = r'''
 const Wrap(
