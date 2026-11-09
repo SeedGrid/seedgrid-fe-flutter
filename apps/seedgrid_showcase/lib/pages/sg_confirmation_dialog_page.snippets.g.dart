@@ -28,8 +28,8 @@ Column(
         message: Text(
           context.tx('Esta ação não pode ser desfeita.'),
         ),
-        onConfirm: () => _resultado.value = 'Confirmado',
-        onCancel: () => _resultado.value = 'Cancelado',
+        onConfirm: () => _resultado.value = context.tx('Confirmado'),
+        onCancel: () => _resultado.value = context.tx('Cancelado'),
       ),
     ),
   ],
@@ -157,7 +157,9 @@ Column(
         onOpenChange: (value) => _severidade.value = value,
         severity: _sev.value,
         showSeverityAccent: true,
-        title: Text('Severidade ${_sev.value.value}'),
+        title: Text(
+          context.txf('Severidade {nivel}', {'nivel': _sev.value.value}),
+        ),
         message: Text(
           context.tx(
             'Veja o ícone, o fundo e o botão de confirmar.',

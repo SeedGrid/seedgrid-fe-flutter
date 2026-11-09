@@ -207,6 +207,30 @@ class _SgStepperInputPageState extends State<SgStepperInputPage> {
         // #endregion
         code: SgStepperInputPageSnippets.sgStepperInputFormulario,
       ),
+      ShowcaseExample(
+        title: 'Rótulo de acessibilidade (ariaLabel)',
+        description:
+            'ariaLabel dá um nome acessível ao campo quando não há rótulo visível; leitores de tela anunciam esse texto.',
+        preview:
+            // #region sg-stepper-input-aria-label
+            SgStack(
+              gap: 8,
+              align: SgStackAlign.start,
+              children: [
+                SgStepperInput(
+                  id: 'ingressos',
+                  ariaLabel: context.tx('Quantidade de ingressos'),
+                  minValue: 1,
+                  maxValue: 10,
+                  defaultValue: 2,
+                  width: 160,
+                ),
+                Text('ariaLabel: ${context.tx('Quantidade de ingressos')}'),
+              ],
+            ),
+        // #endregion
+        code: SgStepperInputPageSnippets.sgStepperInputAriaLabel,
+      ),
     ];
 
     return SgShowcasePage(

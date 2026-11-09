@@ -200,11 +200,13 @@ class _SgToggleSwitchPageState extends State<SgToggleSwitchPage> {
                         size: SgSize.sm,
                         appearance: SgAppearance.outline,
                         onClick: () => _capturado.value =
-                            'captura manual -> ${_externo.value}',
+                            context.txf('captura manual -> {valor}', {
+                              'valor': _externo.value,
+                            }),
                       ),
                     ],
                   ),
-                  Text('value externo: ${_externo.value}'),
+                  Text('${context.tx('value externo')}: ${_externo.value}'),
                   Text('${context.tx('capturado')}: ${_capturado.value}'),
                 ],
               ),

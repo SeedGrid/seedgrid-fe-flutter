@@ -140,7 +140,7 @@ Column(
       valueListenable: _enviado,
       builder: (context, enviado, _) => enviado.isEmpty
           ? const SizedBox()
-          : Text('Enviado: $enviado'),
+          : Text(context.txf('Enviado: {valor}', {'valor': enviado})),
     ),
   ],
 )

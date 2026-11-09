@@ -282,7 +282,12 @@ Column(
             size: s,
             clickable: true,
             onClick: () => _cliques.value++,
-            title: Text('Tamanho ${s.value} (cliques: $cliques)'),
+            title: Text(
+              context.txf('Tamanho {tamanho} (cliques: {cliques})', {
+                'tamanho': s.value,
+                'cliques': cliques,
+              }),
+            ),
             child: Text(context.tx('Cartão clicável')),
           ),
         ),

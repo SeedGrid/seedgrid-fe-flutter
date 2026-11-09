@@ -6724,5 +6724,89 @@
   "Clique do botão; pode ser síncrono ou assíncrono. Síncrono (abrir modal, alternar): nada muda. Se DEVOLVER uma Promise/Future, como async () => { await guardar(); } ou () => guardar(), o botão entra em loading sozinho (spinner, desativado, aria-busy na web), ignora cliques até terminar (incluindo cliques seguidos antes de o ecrã atualizar) e volta ao normal ao terminar ou falhar. Protege contra duplo clique e reenvio e ajuda na idempotência da ação no ecrã (não substitui a chave de idempotência no servidor). Cuidado: a função tem de devolver a operação; com chavetas e sem return (ou sem async), como () => { guardar(); } ou () { guardar(); }, não protege; já async () {...} devolve sempre. O erro não é engolido: o botão sai do loading e relança-o como rejeição não tratada; trate com try/catch dentro do onClick e avise o utilizador (sgWhistle.error). Use async apenas quando a ação puder demorar ou falhar (guardar, enviar, pagar).",
   "Clic del botón; puede ser síncrono o asíncrono. Síncrono (abrir un modal, alternar): nada cambia. Si DEVUELVE una Promise/Future, como async () => { await guardar(); } o () => guardar(), el botón entra en loading por sí solo (spinner, deshabilitado, aria-busy en la web), ignora los clics hasta que termine (incluidos los clics seguidos antes de que la pantalla se actualice) y vuelve a la normalidad al terminar o fallar. Protege contra el doble clic y el reenvío y ayuda a la idempotencia de la acción en pantalla (no sustituye la clave de idempotencia en el servidor). Cuidado: la función debe devolver la operación; con llaves y sin return (o sin async), como () => { guardar(); } o () { guardar(); }, no protege; async () {...} siempre devuelve. El error no se traga: el botón sale del loading y lo relanza como rechazo no tratado; trátalo con try/catch dentro de onClick y avisa al usuario (sgWhistle.error). Usa async solo cuando la acción pueda tardar o fallar (guardar, enviar, pagar).",
   "Clic du bouton ; peut être synchrone ou asynchrone. Synchrone (ouvrir une modale, basculer) : rien ne change. S'il RENVOIE une Promise/Future, comme async () => { await enregistrer(); } ou () => enregistrer(), le bouton passe en chargement tout seul (spinner, désactivé, aria-busy sur le web), ignore les clics jusqu'à la fin (y compris les clics rapprochés avant la mise à jour de l'écran) et revient à la normale à la fin ou en cas d'échec. Il protège contre le double clic et le renvoi et aide à l'idempotence de l'action à l'écran (il ne remplace pas une clé d'idempotence côté serveur). Attention : la fonction doit renvoyer l'opération ; avec des accolades et sans return (ou sans async), comme () => { enregistrer(); } ou () { enregistrer(); }, elle ne protège pas ; async () {...} renvoie toujours. L'erreur n'est pas avalée : le bouton quitte le chargement et la relance comme un rejet non traité ; traitez-la avec try/catch dans onClick et prévenez l'utilisateur (sgWhistle.error). N'utilisez async que lorsque l'action peut être longue ou échouer (enregistrer, envoyer, payer)."
+ ],
+ "Rótulo de acessibilidade (ariaLabel)": [
+  "Accessibility label (ariaLabel)",
+  "Rótulo de acessibilidade (ariaLabel)",
+  "Etiqueta de accesibilidad (ariaLabel)",
+  "Libellé d'accessibilité (ariaLabel)"
+ ],
+ "ariaLabel dá um nome acessível ao campo quando não há rótulo visível; leitores de tela anunciam esse texto.": [
+  "ariaLabel gives the field an accessible name when there is no visible label; screen readers announce this text.",
+  "ariaLabel dá um nome acessível ao campo quando não há rótulo visível; os leitores de ecrã anunciam este texto.",
+  "ariaLabel da un nombre accesible al campo cuando no hay etiqueta visible; los lectores de pantalla anuncian este texto.",
+  "ariaLabel donne un nom accessible au champ lorsqu'il n'y a pas de libellé visible ; les lecteurs d'écran annoncent ce texte."
+ ],
+ "Quantidade de ingressos": [
+  "Number of tickets",
+  "Quantidade de bilhetes",
+  "Cantidad de entradas",
+  "Nombre de billets"
+ ],
+ "CSS do documento": [
+  "Document CSS",
+  "CSS do documento",
+  "CSS del documento",
+  "CSS du document"
+ ],
+ "{nome}: {bytes} bytes, {css} caracteres de CSS": [
+  "{nome}: {bytes} bytes, {css} characters of CSS",
+  "{nome}: {bytes} bytes, {css} carateres de CSS",
+  "{nome}: {bytes} bytes, {css} caracteres de CSS",
+  "{nome} : {bytes} octets, {css} caractères de CSS"
+ ],
+ "Carregado: {chars} caracteres": [
+  "Loaded: {chars} characters",
+  "Carregado: {chars} carateres",
+  "Cargado: {chars} caracteres",
+  "Chargé : {chars} caractères"
+ ],
+ "captura manual -> {valor}": [
+  "manual capture -> {valor}",
+  "captura manual -> {valor}",
+  "captura manual -> {valor}",
+  "capture manuelle -> {valor}"
+ ],
+ "value externo": [
+  "external value",
+  "value externo",
+  "value externo",
+  "value externe"
+ ],
+ "Painel de notificações": [
+  "Notifications panel",
+  "Painel de notificações",
+  "Panel de notificaciones",
+  "Panneau de notifications"
+ ],
+ "Tamanho {tamanho} (cliques: {cliques})": [
+  "Size {tamanho} (clicks: {cliques})",
+  "Tamanho {tamanho} (cliques: {cliques})",
+  "Tamaño {tamanho} (clics: {cliques})",
+  "Taille {tamanho} (clics : {cliques})"
+ ],
+ "Severidade {nivel}": [
+  "Severity {nivel}",
+  "Severidade {nivel}",
+  "Severidad {nivel}",
+  "Sévérité {nivel}"
+ ],
+ "Confirmado": [
+  "Confirmed",
+  "Confirmado",
+  "Confirmado",
+  "Confirmé"
+ ],
+ "Cancelado": [
+  "Cancelled",
+  "Cancelado",
+  "Cancelado",
+  "Annulé"
+ ],
+ "{label}: {inicio} a {fim}": [
+  "{label}: {inicio} to {fim}",
+  "{label}: {inicio} a {fim}",
+  "{label}: {inicio} a {fim}",
+  "{label} : {inicio} au {fim}"
  ]
 }

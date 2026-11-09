@@ -63,7 +63,11 @@ class _SgPeriodSelectorPageState extends State<SgPeriodSelectorPage> {
                   label: context.tx('Período'),
                   onChange: (p) =>
                       _basico.value =
-                          '${p.label}: ${p.startDate?.toIso8601String().substring(0, 10) ?? '-'} a ${p.endDate?.toIso8601String().substring(0, 10) ?? '-'}',
+                          context.txf('{label}: {inicio} a {fim}', {
+                            'label': p.label,
+                            'inicio': p.startDate?.toIso8601String().substring(0, 10) ?? '-',
+                            'fim': p.endDate?.toIso8601String().substring(0, 10) ?? '-',
+                          }),
                 ),
                 const SizedBox(height: 8),
                 ValueListenableBuilder<String>(
@@ -145,7 +149,11 @@ class _SgPeriodSelectorPageState extends State<SgPeriodSelectorPage> {
                   permitPast: false,
                   onChange: (p) =>
                       _personalizado.value =
-                          '${p.label}: ${p.startDate?.toIso8601String().substring(0, 10) ?? '-'} a ${p.endDate?.toIso8601String().substring(0, 10) ?? '-'}',
+                          context.txf('{label}: {inicio} a {fim}', {
+                            'label': p.label,
+                            'inicio': p.startDate?.toIso8601String().substring(0, 10) ?? '-',
+                            'fim': p.endDate?.toIso8601String().substring(0, 10) ?? '-',
+                          }),
                 ),
                 const SizedBox(height: 8),
                 ValueListenableBuilder<String>(
@@ -204,7 +212,11 @@ class _SgPeriodSelectorPageState extends State<SgPeriodSelectorPage> {
                   ),
                   onChange: (p) =>
                       _limitado.value =
-                          '${p.label}: ${p.startDate?.toIso8601String().substring(0, 10) ?? '-'} a ${p.endDate?.toIso8601String().substring(0, 10) ?? '-'}',
+                          context.txf('{label}: {inicio} a {fim}', {
+                            'label': p.label,
+                            'inicio': p.startDate?.toIso8601String().substring(0, 10) ?? '-',
+                            'fim': p.endDate?.toIso8601String().substring(0, 10) ?? '-',
+                          }),
                 ),
                 const SizedBox(height: 8),
                 ValueListenableBuilder<String>(
@@ -269,7 +281,7 @@ class _SgPeriodSelectorPageState extends State<SgPeriodSelectorPage> {
                 ValueListenableBuilder<String>(
                   valueListenable: _enviado,
                   builder: (context, enviado, _) =>
-                      enviado.isEmpty ? const SizedBox() : Text('Enviado: $enviado'),
+                      enviado.isEmpty ? const SizedBox() : Text(context.txf('Enviado: {valor}', {'valor': enviado})),
                 ),
               ],
             ),

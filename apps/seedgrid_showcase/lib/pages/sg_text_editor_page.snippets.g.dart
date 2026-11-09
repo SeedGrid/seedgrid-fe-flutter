@@ -16,13 +16,22 @@ SgStack(
         height: 200,
         fileName: 'nota.html',
         showCssEditor: true,
-        cssEditorLabel: 'CSS do documento',
+        cssEditorLabel: context.tx('CSS do documento'),
         cssText: css,
         onCssTextChange: (v) => _cssArquivo.value = v,
         onSave: (file, meta) => _arquivo.value =
-            '${file.name}: ${file.bytes.length} bytes, ${meta.cssText.length} caracteres de CSS',
+            context.txf(
+              '{nome}: {bytes} bytes, {css} caracteres de CSS',
+              {
+                'nome': file.name,
+                'bytes': file.bytes.length,
+                'css': meta.cssText.length,
+              },
+            ),
         onLoad: (meta) => _arquivo.value =
-            'Carregado: ${meta.contentHtml.length} caracteres',
+            context.txf('Carregado: {chars} caracteres', {
+              'chars': meta.contentHtml.length,
+            }),
       ),
     ),
     ValueListenableBuilder<String>(

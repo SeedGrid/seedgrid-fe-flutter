@@ -21,7 +21,7 @@ Column(
         open: open,
         onOpenChange: (v) => _acessivel.value = v,
         role: SgExpandablePanelRole.dialog,
-        ariaLabel: 'Painel de notificações',
+        ariaLabel: context.tx('Painel de notificações'),
         animation: const SgExpandablePanelAnimation(
           type: SgExpandablePanelAnimationType.fade,
           durationMs: 260,

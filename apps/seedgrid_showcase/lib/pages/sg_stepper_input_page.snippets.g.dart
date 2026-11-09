@@ -3,6 +3,25 @@
 // Cada constante e o trecho entre `// #region` e `// #endregion` de sg_stepper_input_page.dart: o mesmo codigo que a pagina renderiza.
 
 abstract final class SgStepperInputPageSnippets {
+  /// Region `sg-stepper-input-aria-label`.
+  static const String sgStepperInputAriaLabel = r'''
+SgStack(
+  gap: 8,
+  align: SgStackAlign.start,
+  children: [
+    SgStepperInput(
+      id: 'ingressos',
+      ariaLabel: context.tx('Quantidade de ingressos'),
+      minValue: 1,
+      maxValue: 10,
+      defaultValue: 2,
+      width: 160,
+    ),
+    Text('ariaLabel: ${context.tx('Quantidade de ingressos')}'),
+  ],
+)
+''';
+
   /// Region `sg-stepper-input-basico`.
   static const String sgStepperInputBasico = r'''
 SgStack(
