@@ -187,6 +187,28 @@ function reactExamples(dir) {
 }
 
 // ---- Flutter: titulos dos ShowcaseExample(title: '...') e usos de `rules: <Classe>(`
+// ADR 63 (P155.F3.T2): exemplos do Flutter nao usam `setState` na CLASSE DA PAGINA (`...Page` / `..._PageState`).
+// `setState` dentro de um widget pequeno do proprio exemplo (outra classe) e aceito. Retorna a contagem de usos nas classes de pagina.
+function setStateNaPagina(text) {
+  const src = text.replace(/\/\*[\s\S]*?\*\//g, "").replace(/^\s*\/\/.*$/gm, "");
+  let total = 0;
+  const re = /\bclass\s+(\w+)\b[^{]*\{/g;
+  let m;
+  while ((m = re.exec(src))) {
+    if (!/Page(State)?$/.test(m[1])) continue;
+    let depth = 1;
+    let i = re.lastIndex;
+    while (i < src.length && depth > 0) {
+      const c = src[i++];
+      if (c === "{") depth++;
+      else if (c === "}") depth--;
+    }
+    total += (src.slice(re.lastIndex, i).match(/\bsetState\s*\(/g) ?? []).length;
+    re.lastIndex = i;
+  }
+  return total;
+}
+
 function flutterExamples(file) {
   const text = fs.readFileSync(file, "utf8");
   const titles = [];
@@ -197,7 +219,7 @@ function flutterExamples(file) {
     titles.push(t.trim());
   }
   const rules = (text.match(/rules:\s*(?:const\s+)?[A-Z]\w*\(/g) ?? []).length;
-  return { titles: titles.filter((t) => !/^playground$/i.test(t)), rules };
+  return { titles: titles.filter((t) => !/^playground$/i.test(t)), rules, setStatePagina: setStateNaPagina(text) };
 }
 
 // ---- pareamento por componente
@@ -244,6 +266,8 @@ for (const dir of reactDirs) {
   r.flutterCount = fl.titles.length;
   r.rules = fl.rules;
   if (fl.rules > 0) r.problemas.push({ tipo: "rules-sgrules", detalhe: `${fl.rules} uso(s) de \`rules: <Classe>(\` (regra 4: use as props diretas)` });
+
+  if (fl.setStatePagina > 0) r.problemas.push({ tipo: "setstate-pagina", detalhe: `${fl.setStatePagina} uso(s) de setState na classe da pagina (ADR 63: use ValueNotifier/ListenableBuilder ou um widget pequeno do exemplo)` });
 
   // exemplos que so existem de um lado e diferencas de linguagem aceitas (excecoes)
   const ignRN = new Set((exc.ignorarReact ?? []).map(norm));
@@ -308,8 +332,18 @@ if (flag("--json")) {
 
 // Modo normal: compara com a linha de base (so pode encolher).
 let falhou = false;
+// ADR 63: paginas so-Flutter (fora da comparacao por componente) tambem nao usam setState na classe da pagina.
+const jaAcusadas = new Set(results.filter((r) => r.problemas.some((p) => p.tipo === "setstate-pagina")).map((r) => key(r.componente)));
+const soltos = fs.readdirSync(flutterPages)
+  .filter((f) => /_page\.dart$/.test(f))
+  .map((f) => [f, setStateNaPagina(fs.readFileSync(path.join(flutterPages, f), "utf8"))])
+  .filter(([f, n]) => n > 0 && !jaAcusadas.has(key(pascalFromSnake(f.replace(/_page\.dart$/, "")))));
+if (soltos.length) {
+  console.log("\nsetState na classe da pagina (ADR 63) em paginas fora da comparacao:");
+  for (const [f, n] of soltos) console.log(`   - ${f}: ${n} uso(s)`);
+}
 if (strict) {
-  falhou = ruim.length > 0;
+  falhou = ruim.length > 0 || soltos.length > 0;
 } else {
   const erros = [];
   const baseComp = baseline.componentes ?? {};

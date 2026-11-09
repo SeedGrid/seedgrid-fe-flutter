@@ -1,5 +1,6 @@
 // P155.F2.T2 e F2.T3: guardas contra regressao nos exemplos do showcase Flutter.
 //  - nenhum exemplo usa `disabled:` (o nome da prop e `enabled`, P149) nem `rules: SgRules` (P153);
+//  - nenhuma classe de pagina usa `setState` (ADR 63, P155.F3.T2; verify.mjs --strict);
 //  - todo texto traduzivel do showcase tem os 5 idiomas (tools/showcase_i18n/extract.mjs --check).
 import 'dart:io';
 
@@ -37,6 +38,16 @@ void main() {
     final r = Process.runSync(
       'node',
       ['tools/showcase_i18n/extract.mjs', '--check'],
+      workingDirectory: _raiz().path,
+      runInShell: true,
+    );
+    expect(r.exitCode, 0, reason: '${r.stdout}\n${r.stderr}');
+  }, timeout: const Timeout(Duration(minutes: 2)));
+
+  test('nenhuma classe de pagina do showcase usa setState (ADR 63)', () {
+    final r = Process.runSync(
+      'node',
+      ['tools/showcase_parity/verify.mjs', '--strict'],
       workingDirectory: _raiz().path,
       runInShell: true,
     );
