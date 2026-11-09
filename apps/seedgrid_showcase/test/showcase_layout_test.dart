@@ -79,7 +79,7 @@ void main() {
           await _setSize(t, entry.value);
           await t.pumpWidget(_app());
           await _tapLink(t, const ValueKey('link-props-reference'));
-          final title = find.text('Referência de Props');
+          final title = find.text('Referência de Props').last;
           final top = t.getTopLeft(title).dy - _viewportTop(t);
           expect(top, greaterThanOrEqualTo(kAnchorGap - 0.5));
           // O conteudo acima do titulo, dentro do viewport, e so o respiro: nada do ultimo exemplo ali.

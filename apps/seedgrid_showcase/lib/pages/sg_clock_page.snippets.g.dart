@@ -106,9 +106,10 @@ SgClock(
   timezone: 'America/Sao_Paulo',
   digitBuilder: (context, parts) {
     final scheme = Theme.of(context).colorScheme;
-    return Wrap(
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
       spacing: 4,
-      crossAxisAlignment: WrapCrossAlignment.center,
       children: [
         for (final ch in parts.text.split(''))
           ch == ':'

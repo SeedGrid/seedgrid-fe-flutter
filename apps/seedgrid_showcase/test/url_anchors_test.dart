@@ -68,7 +68,7 @@ void main() {
     );
     await settle(t);
     expect(
-      t.getTopLeft(find.text('Referência de Props')).dy -
+      t.getTopLeft(find.text('Referência de Props').last).dy -
           t.getTopLeft(_scrollableFinder()).dy,
       inInclusiveRange(kAnchorGap - 0.5, kAnchorGap + 24),
     );

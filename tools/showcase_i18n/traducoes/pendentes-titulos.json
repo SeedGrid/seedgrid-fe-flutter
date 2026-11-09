@@ -6808,5 +6808,29 @@
   "{label}: {inicio} a {fim}",
   "{label}: {inicio} a {fim}",
   "{label} : {inicio} au {fim}"
+ ],
+ "Codigo do locale (ex: \"pt-BR\", \"pt-PT\", \"en-US\", \"es\", \"fr\"). Afeta os textos internos dos componentes SeedGrid.": [
+  "Locale code (e.g. \"pt-BR\", \"pt-PT\", \"en-US\", \"es\", \"fr\"). Affects the internal texts of SeedGrid components.",
+  "Código do locale (ex.: \"pt-BR\", \"pt-PT\", \"en-US\", \"es\", \"fr\"). Afeta os textos internos dos componentes SeedGrid.",
+  "Código de locale (ej.: \"pt-BR\", \"pt-PT\", \"en-US\", \"es\", \"fr\"). Afecta los textos internos de los componentes SeedGrid.",
+  "Code de la locale (ex. : \"pt-BR\", \"pt-PT\", \"en-US\", \"es\", \"fr\"). Affecte les textes internes des composants SeedGrid."
+ ],
+ "Mapa de chaves para textos. Pode ser o objeto completo de um locale ou apenas as chaves que deseja sobrescrever.": [
+  "Map of keys to texts. It can be the full object of a locale or only the keys you want to override.",
+  "Mapa de chaves para textos. Pode ser o objeto completo de um locale ou apenas as chaves que pretende substituir.",
+  "Mapa de claves a textos. Puede ser el objeto completo de un locale o solo las claves que desea sobrescribir.",
+  "Table de clés vers textes. Peut être l'objet complet d'une locale ou seulement les clés à remplacer."
+ ],
+ "Arvore que vai consumir o locale via useComponentsI18n.": [
+  "Tree that will consume the locale via useComponentsI18n.",
+  "Árvore que vai consumir o locale via useComponentsI18n.",
+  "Árbol que consumirá el locale mediante useComponentsI18n.",
+  "Arbre qui consommera la locale via useComponentsI18n."
+ ],
+ "built-in do locale": [
+  "locale built-in",
+  "built-in do locale",
+  "built-in del locale",
+  "intégré à la locale"
  ]
 }

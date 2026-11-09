@@ -117,7 +117,7 @@ void definePageChecks(ShowcasePageEntry page) {
           await t.pumpWidget(app(Builder(builder: page.builder)));
           await tapLink(t, const ValueKey('link-props-reference'));
           final top =
-              t.getTopLeft(find.text('Referência de Props')).dy -
+              t.getTopLeft(find.text('Referência de Props').last).dy -
               t.getTopLeft(scrollable()).dy;
           expect(top, inInclusiveRange(kAnchorGap - 0.5, kAnchorGap + 24));
         },

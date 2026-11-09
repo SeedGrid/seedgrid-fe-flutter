@@ -230,7 +230,41 @@ class _SgComponentsI18nProviderPageState
       description:
           'Configura o locale e as mensagens de todos os componentes SeedGrid na subárvore.',
       examples: examples,
-      propSpecs: sgPropSpecs['SgComponentsI18nProvider']!,
+      // Mesma tabela do React: locale, messages e children (child), na mesma ordem, com os mesmos textos.
+      propSpecs: const [
+        SgPropSpec(
+          name: 'locale',
+          reactName: 'locale',
+          type: 'Object?',
+          tsType: 'SgComponentsLocale',
+          required: false,
+          defaultValue: '"en-US"',
+          description:
+              'Codigo do locale (ex: "pt-BR", "pt-PT", "en-US", "es", "fr"). Afeta os textos internos dos componentes SeedGrid.',
+          exact: false,
+        ),
+        SgPropSpec(
+          name: 'messages',
+          reactName: 'messages',
+          type: 'Object?',
+          tsType: 'SgComponentsMessages | SgComponentsMessagesByNamespace',
+          required: false,
+          defaultValue: 'built-in do locale',
+          description:
+              'Mapa de chaves para textos. Pode ser o objeto completo de um locale ou apenas as chaves que deseja sobrescrever.',
+          exact: false,
+        ),
+        SgPropSpec(
+          name: 'child',
+          reactName: 'children',
+          type: 'Widget',
+          tsType: 'React.ReactNode',
+          required: true,
+          defaultValue: '-',
+          description:
+              'Arvore que vai consumir o locale via useComponentsI18n.',
+        ),
+      ],
       playground: SgPlayground(
         specs: const [
           SgPropSpec(
