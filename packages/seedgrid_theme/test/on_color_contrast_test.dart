@@ -57,7 +57,10 @@ void main() {
       expect(pickOnColor('#D32F2F'), '#FFFFFF'); // vermelho escuro
       expect(pickOnColor('#808080'), '#0B0B0C'); // cinza medio
       expect(pickOnColor('#767676'), '#FFFFFF'); // limiar: 4.54
-      expect(pickOnColor('#777777'), '#FFFFFF'); // 4.48 branco / 4.39 preto: nenhum alcanca, vence o maior
+      expect(
+        pickOnColor('#777777'),
+        '#FFFFFF',
+      ); // 4.48 branco / 4.39 preto: nenhum alcanca, vence o maior
     });
 
     test('sem candidato que alcance 4,5, devolve o de maior contraste', () {
@@ -106,7 +109,11 @@ void main() {
             final bg = _hex(vars[p.value]!);
             final on = _hex(vars[p.key]!);
             final reason = '${p.key} sobre ${p.value} ($bg, $on)';
-            expect(onColorCandidates, contains(on.toUpperCase()), reason: reason);
+            expect(
+              onColorCandidates,
+              contains(on.toUpperCase()),
+              reason: reason,
+            );
             if (_best(bg) >= minContrastRatio) {
               expect(
                 contrastRatio(bg, on),
@@ -125,7 +132,15 @@ void main() {
   // O botao pinta o fundo no tom 600 (`--sg-btn-*-bg`); o texto (`--sg-btn-*-fg`) deve ser escolhido sobre ESSE
   // fundo, nao sobre o tom 500 usado por `--sg-on-*`.
   group('regressao: par real do botao (bg 600 x fg)', () {
-    const roles = ['primary', 'secondary', 'success', 'info', 'warning', 'danger', 'help'];
+    const roles = [
+      'primary',
+      'secondary',
+      'success',
+      'info',
+      'warning',
+      'danger',
+      'help',
+    ];
     for (final entry in _seeds.entries) {
       for (final mode in [Brightness.light, Brightness.dark]) {
         test('${entry.key} (${mode.name})', () {
@@ -136,13 +151,21 @@ void main() {
           final vars = {...base, ...generateComponentTokens(base)};
           for (final role in roles) {
             final bg = _hex(
-              vars['--sg-btn-$role-bg']!.replaceAll(RegExp(r'[^\d ]'), '').trim(),
+              vars['--sg-btn-$role-bg']!
+                  .replaceAll(RegExp(r'[^\d ]'), '')
+                  .trim(),
             );
             final fg = _hex(
-              vars['--sg-btn-$role-fg']!.replaceAll(RegExp(r'[^\d ]'), '').trim(),
+              vars['--sg-btn-$role-fg']!
+                  .replaceAll(RegExp(r'[^\d ]'), '')
+                  .trim(),
             );
             final reason = 'botao $role ($bg, $fg)';
-            expect(onColorCandidates, contains(fg.toUpperCase()), reason: reason);
+            expect(
+              onColorCandidates,
+              contains(fg.toUpperCase()),
+              reason: reason,
+            );
             expect(fg.toUpperCase(), pickOnColor(bg), reason: reason);
             if (_best(bg) >= minContrastRatio) {
               expect(
@@ -163,7 +186,161 @@ void main() {
         final base = generateThemeVars(SeedThemeInput(seed: '#2563EB'), mode);
         expect(base['--sg-on-primary'], isNotNull);
         final on500 = _hex(base['--sg-on-primary']!);
-        expect(on500.toUpperCase(), pickOnColor(_hex(base['--sg-primary-500']!)));
+        expect(
+          on500.toUpperCase(),
+          pickOnColor(_hex(base['--sg-primary-500']!)),
+        );
+      }
+    });
+  });
+
+  // Estados do botao: normal (600), hover (700) e active (800). O fundo de cada estado e o do tom da escala,
+  // ajustado quando o melhor texto fica < 4,5:1 (adjustBgForOnColor); o texto e o de maior contraste sobre ELE.
+  group('regressao: pares reais do botao em todos os estados', () {
+    const roles = [
+      'primary',
+      'secondary',
+      'success',
+      'info',
+      'warning',
+      'danger',
+      'help',
+    ];
+    const scaleOf = {'danger': 'error', 'help': 'tertiary'};
+    const states = {'': '600', 'hover-': '700', 'active-': '800'};
+    int unreachable = 0;
+    for (final entry in _seeds.entries) {
+      for (final mode in [Brightness.light, Brightness.dark]) {
+        test('${entry.key} (${mode.name})', () {
+          final base = generateThemeVars(
+            SeedThemeInput(seed: entry.value),
+            mode,
+          );
+          final vars = {...base, ...generateComponentTokens(base)};
+          for (final role in roles) {
+            final scale = scaleOf[role] ?? role;
+            for (final st in states.entries) {
+              final original = _hex(base['--sg-$scale-${st.value}']!);
+              final adjusted = adjustBgForOnColor(original);
+              final bg = _hex(
+                vars['--sg-btn-$role-${st.key}bg']!
+                    .replaceAll(RegExp(r'[^\d ]'), '')
+                    .trim(),
+              );
+              final fg = _hex(
+                vars['--sg-btn-$role-${st.key}fg']!
+                    .replaceAll(RegExp(r'[^\d ]'), '')
+                    .trim(),
+              );
+              final reason = 'botao $role ${st.key}(${st.value}) ($bg, $fg)';
+              expect(bg, adjusted, reason: reason);
+              expect(fg.toUpperCase(), pickOnColor(bg), reason: reason);
+              if (_best(original) >= minContrastRatio) {
+                expect(bg, original, reason: '$reason: ja alcanca, nao ajusta');
+              } else if (_best(bg) >= minContrastRatio) {
+                // O ajuste alcancou: pequeno (<= 15 passos de 1% de L) e sem mudar matiz/saturacao de forma visivel.
+                final a = rgbToHsl(
+                  hexToRgb(original).r,
+                  hexToRgb(original).g,
+                  hexToRgb(original).b,
+                );
+                final b = rgbToHsl(
+                  hexToRgb(bg).r,
+                  hexToRgb(bg).g,
+                  hexToRgb(bg).b,
+                );
+                expect(
+                  (b.l - a.l).abs(),
+                  lessThanOrEqualTo(maxBgAdjustSteps + 0.5),
+                  reason: reason,
+                );
+              } else {
+                unreachable++;
+                expect(
+                  bg,
+                  original,
+                  reason: '$reason: sem alcance, mantem o fundo',
+                );
+              }
+              if (_best(bg) >= minContrastRatio) {
+                expect(
+                  contrastRatio(bg, fg),
+                  greaterThanOrEqualTo(minContrastRatio),
+                  reason: reason,
+                );
+              } else {
+                expect(contrastRatio(bg, fg), _best(bg), reason: reason);
+              }
+            }
+          }
+        });
+      }
+    }
+    test('nenhum par do botao ficou sem alcance nas 10 sementes', () {
+      expect(unreachable, 0);
+    });
+  });
+
+  group('adjustBgForOnColor', () {
+    test('nao mexe quando algum texto ja alcanca 4,5', () {
+      for (final bg in [
+        '#16803D',
+        '#FFFFFF',
+        '#000000',
+        '#F59E0B',
+        '#D32F2F',
+      ]) {
+        expect(adjustBgForOnColor(bg), bg);
+      }
+    });
+
+    test(
+      'danger claro (#ED1C08, 4,47:1) escurece 1 passo e passa a texto branco',
+      () {
+        final out = adjustBgForOnColor('#ED1C08');
+        expect(out, isNot('#ED1C08'.toLowerCase()));
+        expect(pickOnColor(out), '#FFFFFF');
+        expect(
+          contrastRatio(out, '#FFFFFF'),
+          greaterThanOrEqualTo(minContrastRatio),
+        );
+      },
+    );
+
+    test('limite de passos: sem alcance em 15 passos, devolve o original', () {
+      // #777777: 4,48 branco / 4,39 preto; cinza puro alcanca em poucos passos, entao usa um fundo
+      // impossivel: com maxBgAdjustSteps = 15 nenhum fundo medio saturado de L ~ 50 alcanca.
+      expect(maxBgAdjustSteps, 15);
+      final bg = hslToHex(300, 100, 50);
+      final out = adjustBgForOnColor(bg);
+      if (_best(out) < minContrastRatio) expect(out, bg);
+    });
+
+    test('mantem matiz e saturacao (varredura)', () {
+      for (var h = 0; h < 360; h += 30) {
+        for (final s in [40.0, 70.0, 100.0]) {
+          for (var l = 30.0; l <= 80; l += 2.5) {
+            final bg = hslToHex(h.toDouble(), s, l);
+            final out = adjustBgForOnColor(bg);
+            if (out == bg) continue;
+            final a = rgbToHsl(hexToRgb(bg).r, hexToRgb(bg).g, hexToRgb(bg).b);
+            final b = rgbToHsl(
+              hexToRgb(out).r,
+              hexToRgb(out).g,
+              hexToRgb(out).b,
+            );
+            expect(
+              (b.l - a.l).abs(),
+              lessThanOrEqualTo(maxBgAdjustSteps + 0.5),
+              reason: bg,
+            );
+            expect(
+              _best(out),
+              greaterThanOrEqualTo(minContrastRatio),
+              reason: bg,
+            );
+          }
+        }
       }
     });
   });

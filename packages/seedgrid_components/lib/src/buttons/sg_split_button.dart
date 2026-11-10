@@ -498,7 +498,7 @@ class _SegmentState extends State<_Segment> {
     final (Color bg, Color fg, Color border) = switch (w.appearance) {
       SgAppearance.solid => (
         pressed ? c.activeBg : (hovered ? c.hoverBg : c.bg),
-        hovered ? c.hoverFg : c.fg,
+        pressed ? c.activeFg : (hovered ? c.hoverFg : c.fg),
         hovered ? c.hoverBorder : c.border,
       ),
       SgAppearance.outline => (

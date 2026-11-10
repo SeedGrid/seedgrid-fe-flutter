@@ -138,6 +138,40 @@ String pickOnColor(String bgHex) {
   return best;
 }
 
+/// Maximo de passos de 1% de luminosidade HSL que [adjustBgForOnColor] aplica ao fundo.
+const int maxBgAdjustSteps = 15;
+
+/// Maior razao de contraste que algum candidato de texto alcanca sobre [bgHex].
+double bestOnContrast(String bgHex) {
+  var best = -1.0;
+  for (final candidate in onColorCandidates) {
+    best = math.max(best, contrastRatio(bgHex, candidate));
+  }
+  return best;
+}
+
+/// Ajusta o fundo quando o MELHOR texto possivel sobre ele fica abaixo de [minContrastRatio]: testa escurecer e
+/// clarear em passos de 1% de luminosidade HSL (no maximo [maxBgAdjustSteps]) e usa a direcao que alcanca o minimo
+/// com menos passos (empate: escurece). Matiz e saturacao ficam como estao. Sem alcancar em nenhuma direcao,
+/// devolve o fundo original (o texto continua sendo o de maior contraste).
+String adjustBgForOnColor(String bgHex) {
+  if (bestOnContrast(bgHex) >= minContrastRatio) return bgHex;
+  final c = hexToRgb(bgHex);
+  final hsl = rgbToHsl(c.r, c.g, c.b);
+  for (var step = 1; step <= maxBgAdjustSteps; step++) {
+    // Em cada passo, escurecer vem antes de clarear: o empate fica com o fundo mais escuro (texto branco).
+    for (final dir in const [-1, 1]) {
+      final candidate = hslToHex(
+        hsl.h,
+        hsl.s,
+        clamp(hsl.l + dir * step, 0, 100),
+      );
+      if (bestOnContrast(candidate) >= minContrastRatio) return candidate;
+    }
+  }
+  return bgHex;
+}
+
 /// `"r g b"`: o formato das variaveis `--sg-*` (no React, `rgb(var(--x) / alpha)`).
 String toRgbVarValue(String hex) {
   final c = hexToRgb(hex);

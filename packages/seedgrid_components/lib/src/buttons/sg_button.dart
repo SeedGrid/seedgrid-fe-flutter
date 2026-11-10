@@ -50,10 +50,19 @@ class SgButtonColors {
     required this.hoverFg,
     required this.hoverBorder,
     required this.activeBg,
+    Color? activeFg,
     required this.ring,
-  });
+  }) : activeFg = activeFg ?? hoverFg;
 
-  final Color bg, fg, border, hoverBg, hoverFg, hoverBorder, activeBg, ring;
+  final Color bg,
+      fg,
+      border,
+      hoverBg,
+      hoverFg,
+      hoverBorder,
+      activeBg,
+      activeFg,
+      ring;
 }
 
 SgButtonColors resolveButtonColors(
@@ -61,13 +70,24 @@ SgButtonColors resolveButtonColors(
   SgSeverity severity, [
   SgButtonCustomColors? custom,
 ]) {
-  final (bg, fg, border, hoverBg, activeBg, ring) = switch (severity) {
+  final (
+    bg,
+    fg,
+    border,
+    hoverBg,
+    hoverFg,
+    activeBg,
+    activeFg,
+    ring,
+  ) = switch (severity) {
     SgSeverity.primary => (
       t.btnPrimaryBg,
       t.btnPrimaryFg,
       t.btnPrimaryBorder,
       t.btnPrimaryHoverBg,
+      t.btnPrimaryHoverFg,
       t.btnPrimaryActiveBg,
+      t.btnPrimaryActiveFg,
       t.btnPrimaryRing,
     ),
     SgSeverity.secondary => (
@@ -75,7 +95,9 @@ SgButtonColors resolveButtonColors(
       t.btnSecondaryFg,
       t.btnSecondaryBorder,
       t.btnSecondaryHoverBg,
+      t.btnSecondaryHoverFg,
       t.btnSecondaryActiveBg,
+      t.btnSecondaryActiveFg,
       t.btnSecondaryRing,
     ),
     SgSeverity.success => (
@@ -83,7 +105,9 @@ SgButtonColors resolveButtonColors(
       t.btnSuccessFg,
       t.btnSuccessBorder,
       t.btnSuccessHoverBg,
+      t.btnSuccessHoverFg,
       t.btnSuccessActiveBg,
+      t.btnSuccessActiveFg,
       t.btnSuccessRing,
     ),
     SgSeverity.info => (
@@ -91,7 +115,9 @@ SgButtonColors resolveButtonColors(
       t.btnInfoFg,
       t.btnInfoBorder,
       t.btnInfoHoverBg,
+      t.btnInfoHoverFg,
       t.btnInfoActiveBg,
+      t.btnInfoActiveFg,
       t.btnInfoRing,
     ),
     SgSeverity.warning => (
@@ -99,7 +125,9 @@ SgButtonColors resolveButtonColors(
       t.btnWarningFg,
       t.btnWarningBorder,
       t.btnWarningHoverBg,
+      t.btnWarningHoverFg,
       t.btnWarningActiveBg,
+      t.btnWarningActiveFg,
       t.btnWarningRing,
     ),
     SgSeverity.help => (
@@ -107,7 +135,9 @@ SgButtonColors resolveButtonColors(
       t.btnHelpFg,
       t.btnHelpBorder,
       t.btnHelpHoverBg,
+      t.btnHelpHoverFg,
       t.btnHelpActiveBg,
+      t.btnHelpActiveFg,
       t.btnHelpRing,
     ),
     SgSeverity.danger => (
@@ -115,7 +145,9 @@ SgButtonColors resolveButtonColors(
       t.btnDangerFg,
       t.btnDangerBorder,
       t.btnDangerHoverBg,
+      t.btnDangerHoverFg,
       t.btnDangerActiveBg,
+      t.btnDangerActiveFg,
       t.btnDangerRing,
     ),
   };
@@ -124,9 +156,11 @@ SgButtonColors resolveButtonColors(
     fg: custom?.fg ?? fg,
     border: custom?.border ?? border,
     hoverBg: custom?.hoverBg ?? hoverBg,
-    hoverFg: custom?.hoverFg ?? custom?.fg ?? fg,
+    // Sem cor customizada, cada estado usa o texto escolhido por contraste sobre o proprio fundo.
+    hoverFg: custom?.hoverFg ?? custom?.fg ?? hoverFg,
     hoverBorder: custom?.hoverBorder ?? custom?.border ?? border,
     activeBg: custom?.activeBg ?? custom?.hoverBg ?? activeBg,
+    activeFg: custom?.hoverFg ?? custom?.fg ?? activeFg,
     ring: custom?.ring ?? ring,
   );
 }
@@ -288,7 +322,7 @@ class _SgButtonState extends State<SgButton> {
     final (Color bg, Color fg, Color border) = switch (w.appearance) {
       SgAppearance.solid => (
         pressed ? c.activeBg : (hovered ? c.hoverBg : c.bg),
-        hovered ? c.hoverFg : c.fg,
+        pressed ? c.activeFg : (hovered ? c.hoverFg : c.fg),
         hovered ? c.hoverBorder : c.border,
       ),
       SgAppearance.outline => (

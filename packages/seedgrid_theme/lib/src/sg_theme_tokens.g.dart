@@ -4,7 +4,7 @@ import 'dart:ui' show Color;
 
 import 'sg_theme.dart';
 
-/// Getters tipados dos tokens `--sg-*` (193).
+/// Getters tipados dos tokens `--sg-*` (207).
 extension SgThemeTokens on SgTheme {
   /// `--sg-bg`
   Color get bg => color('--sg-bg');
@@ -324,8 +324,14 @@ extension SgThemeTokens on SgTheme {
   /// `--sg-btn-primary-hover-bg`
   Color get btnPrimaryHoverBg => color('--sg-btn-primary-hover-bg');
 
+  /// `--sg-btn-primary-hover-fg`
+  Color get btnPrimaryHoverFg => color('--sg-btn-primary-hover-fg');
+
   /// `--sg-btn-primary-active-bg`
   Color get btnPrimaryActiveBg => color('--sg-btn-primary-active-bg');
+
+  /// `--sg-btn-primary-active-fg`
+  Color get btnPrimaryActiveFg => color('--sg-btn-primary-active-fg');
 
   /// `--sg-btn-primary-ring`
   Color get btnPrimaryRing => color('--sg-btn-primary-ring');
@@ -342,8 +348,14 @@ extension SgThemeTokens on SgTheme {
   /// `--sg-btn-secondary-hover-bg`
   Color get btnSecondaryHoverBg => color('--sg-btn-secondary-hover-bg');
 
+  /// `--sg-btn-secondary-hover-fg`
+  Color get btnSecondaryHoverFg => color('--sg-btn-secondary-hover-fg');
+
   /// `--sg-btn-secondary-active-bg`
   Color get btnSecondaryActiveBg => color('--sg-btn-secondary-active-bg');
+
+  /// `--sg-btn-secondary-active-fg`
+  Color get btnSecondaryActiveFg => color('--sg-btn-secondary-active-fg');
 
   /// `--sg-btn-secondary-ring`
   Color get btnSecondaryRing => color('--sg-btn-secondary-ring');
@@ -360,8 +372,14 @@ extension SgThemeTokens on SgTheme {
   /// `--sg-btn-success-hover-bg`
   Color get btnSuccessHoverBg => color('--sg-btn-success-hover-bg');
 
+  /// `--sg-btn-success-hover-fg`
+  Color get btnSuccessHoverFg => color('--sg-btn-success-hover-fg');
+
   /// `--sg-btn-success-active-bg`
   Color get btnSuccessActiveBg => color('--sg-btn-success-active-bg');
+
+  /// `--sg-btn-success-active-fg`
+  Color get btnSuccessActiveFg => color('--sg-btn-success-active-fg');
 
   /// `--sg-btn-success-ring`
   Color get btnSuccessRing => color('--sg-btn-success-ring');
@@ -378,8 +396,14 @@ extension SgThemeTokens on SgTheme {
   /// `--sg-btn-info-hover-bg`
   Color get btnInfoHoverBg => color('--sg-btn-info-hover-bg');
 
+  /// `--sg-btn-info-hover-fg`
+  Color get btnInfoHoverFg => color('--sg-btn-info-hover-fg');
+
   /// `--sg-btn-info-active-bg`
   Color get btnInfoActiveBg => color('--sg-btn-info-active-bg');
+
+  /// `--sg-btn-info-active-fg`
+  Color get btnInfoActiveFg => color('--sg-btn-info-active-fg');
 
   /// `--sg-btn-info-ring`
   Color get btnInfoRing => color('--sg-btn-info-ring');
@@ -396,8 +420,14 @@ extension SgThemeTokens on SgTheme {
   /// `--sg-btn-warning-hover-bg`
   Color get btnWarningHoverBg => color('--sg-btn-warning-hover-bg');
 
+  /// `--sg-btn-warning-hover-fg`
+  Color get btnWarningHoverFg => color('--sg-btn-warning-hover-fg');
+
   /// `--sg-btn-warning-active-bg`
   Color get btnWarningActiveBg => color('--sg-btn-warning-active-bg');
+
+  /// `--sg-btn-warning-active-fg`
+  Color get btnWarningActiveFg => color('--sg-btn-warning-active-fg');
 
   /// `--sg-btn-warning-ring`
   Color get btnWarningRing => color('--sg-btn-warning-ring');
@@ -414,8 +444,14 @@ extension SgThemeTokens on SgTheme {
   /// `--sg-btn-danger-hover-bg`
   Color get btnDangerHoverBg => color('--sg-btn-danger-hover-bg');
 
+  /// `--sg-btn-danger-hover-fg`
+  Color get btnDangerHoverFg => color('--sg-btn-danger-hover-fg');
+
   /// `--sg-btn-danger-active-bg`
   Color get btnDangerActiveBg => color('--sg-btn-danger-active-bg');
+
+  /// `--sg-btn-danger-active-fg`
+  Color get btnDangerActiveFg => color('--sg-btn-danger-active-fg');
 
   /// `--sg-btn-danger-ring`
   Color get btnDangerRing => color('--sg-btn-danger-ring');
@@ -432,8 +468,14 @@ extension SgThemeTokens on SgTheme {
   /// `--sg-btn-help-hover-bg`
   Color get btnHelpHoverBg => color('--sg-btn-help-hover-bg');
 
+  /// `--sg-btn-help-hover-fg`
+  Color get btnHelpHoverFg => color('--sg-btn-help-hover-fg');
+
   /// `--sg-btn-help-active-bg`
   Color get btnHelpActiveBg => color('--sg-btn-help-active-bg');
+
+  /// `--sg-btn-help-active-fg`
+  Color get btnHelpActiveFg => color('--sg-btn-help-active-fg');
 
   /// `--sg-btn-help-ring`
   Color get btnHelpRing => color('--sg-btn-help-ring');

@@ -85,23 +85,43 @@ void main() {
     }
   });
 
-  test('pickOnColor em varredura de matiz/saturacao/luminosidade e contraste minimo', () {
-    expect(minContrastRatio, (doc['minContrastRatio'] as num).toDouble());
-    final sweep = list('pickOnColorSweep');
-    expect(sweep.length, greaterThan(200));
+  test(
+    'pickOnColor em varredura de matiz/saturacao/luminosidade e contraste minimo',
+    () {
+      expect(minContrastRatio, (doc['minContrastRatio'] as num).toDouble());
+      final sweep = list('pickOnColorSweep');
+      expect(sweep.length, greaterThan(200));
+      for (final c in sweep) {
+        final bg = c['in'] as String;
+        final out = pickOnColor(bg);
+        expect(out, c['out'], reason: jsonEncode(c));
+        final best = onColorCandidates
+            .map((k) => contrastRatio(bg, k))
+            .reduce((a, b) => a > b ? a : b);
+        if (best >= minContrastRatio) {
+          expect(
+            contrastRatio(bg, out),
+            greaterThanOrEqualTo(minContrastRatio),
+          );
+        } else {
+          expect(contrastRatio(bg, out), best);
+        }
+      }
+    },
+  );
+
+  test('adjustBgForOnColor: mesmo fundo que o React e regra de contraste', () {
+    expect(maxBgAdjustSteps, (doc['maxBgAdjustSteps'] as num).toInt());
+    final sweep = list('adjustBgForOnColor');
+    expect(sweep.length, greaterThan(1000));
+    var adjusted = 0;
     for (final c in sweep) {
       final bg = c['in'] as String;
-      final out = pickOnColor(bg);
+      final out = adjustBgForOnColor(bg);
       expect(out, c['out'], reason: jsonEncode(c));
-      final best = onColorCandidates
-          .map((k) => contrastRatio(bg, k))
-          .reduce((a, b) => a > b ? a : b);
-      if (best >= minContrastRatio) {
-        expect(contrastRatio(bg, out), greaterThanOrEqualTo(minContrastRatio));
-      } else {
-        expect(contrastRatio(bg, out), best);
-      }
+      if (out != bg) adjusted++;
     }
+    expect(adjusted, greaterThan(0));
   });
 
   test('toRgbVarValue', () {

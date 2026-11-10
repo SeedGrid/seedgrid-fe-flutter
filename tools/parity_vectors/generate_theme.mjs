@@ -79,6 +79,12 @@ const doc = {
     return { in: bg, out: cu.pickOnColor(bg) };
   }))),
   minContrastRatio: cu.MIN_CONTRAST_RATIO,
+  // Ajuste do fundo quando o melhor texto fica < 4,5:1 (passos de 1% de luminosidade HSL): React e Flutter devem dar o MESMO fundo.
+  adjustBgForOnColor: Array.from({ length: 24 }, (_, i) => i * 15).flatMap((h) => [40, 70, 100].flatMap((s) => Array.from({ length: 40 }, (_, k) => 30 + k * 1.5).map((l) => {
+    const bg = cu.hslToHex(h, s, l);
+    return { in: bg, out: cu.adjustBgForOnColor(bg) };
+  }))),
+  maxBgAdjustSteps: cu.MAX_BG_ADJUST_STEPS,
   toRgbVarValue: ["#16803D", "#000000", "#FFFFFF"].map((i) => ({ in: i, out: cu.toRgbVarValue(i) })),
   shiftHue: sample.flatMap((s) => [
     { in: [s, 35, 72, 48], out: cu.shiftHue(s, 35, 72, 48) },

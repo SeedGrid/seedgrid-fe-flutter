@@ -14,27 +14,40 @@ ThemeVars generateComponentTokens(ThemeVars baseVars) {
     return (v != null && v.isNotEmpty) ? 'rgb($v)' : '';
   }
 
-  // Texto do botao: escolhido por contraste sobre o PROPRIO fundo do botao (tom 600), nao sobre o tom 500
-  // usado por --sg-on-*. Sem fundo valido, cai no --sg-on-* informado.
-  String onBg(String bgVarName, String fallbackOnVarName) {
-    final m = RegExp(r'^\s*(\d+)\s+(\d+)\s+(\d+)\s*$')
-        .firstMatch(baseVars[bgVarName] ?? '');
-    if (m == null) return rgb(fallbackOnVarName);
-    final on = pickOnColor(rgbToHex(
-      double.parse(m.group(1)!),
-      double.parse(m.group(2)!),
-      double.parse(m.group(3)!),
-    ));
-    return 'rgb(${toRgbVarValue(on)})';
+  // Botao de severidade: fundo (tom 600), hover (700) e active (800). Se o melhor texto sobre o fundo ficar < 4,5:1,
+  // o fundo e ajustado (adjustBgForOnColor) e o texto de cada estado e escolhido por contraste sobre o PROPRIO
+  // fundo daquele estado. Sem fundo valido, cai no --sg-on-* informado (normal) ou no texto do estado normal.
+  ({String bg, String fg})? stateColors(String varName) {
+    final m = RegExp(
+      r'^\s*(\d+)\s+(\d+)\s+(\d+)\s*$',
+    ).firstMatch(baseVars[varName] ?? '');
+    if (m == null) return null;
+    final bgHex = adjustBgForOnColor(
+      rgbToHex(
+        double.parse(m.group(1)!),
+        double.parse(m.group(2)!),
+        double.parse(m.group(3)!),
+      ),
+    );
+    return (
+      bg: 'rgb(${toRgbVarValue(bgHex)})',
+      fg: 'rgb(${toRgbVarValue(pickOnColor(bgHex))})',
+    );
   }
 
-  // Botoes de severidade: bg 600, hover 700, active 800, ring 400.
   void severity(String tokenName, String scale, String on) {
-    c['--sg-btn-$tokenName-bg'] = rgb('--sg-$scale-600');
-    c['--sg-btn-$tokenName-fg'] = onBg('--sg-$scale-600', on);
-    c['--sg-btn-$tokenName-border'] = rgb('--sg-$scale-600');
-    c['--sg-btn-$tokenName-hover-bg'] = rgb('--sg-$scale-700');
-    c['--sg-btn-$tokenName-active-bg'] = rgb('--sg-$scale-800');
+    final normal = stateColors('--sg-$scale-600');
+    final hover = stateColors('--sg-$scale-700');
+    final active = stateColors('--sg-$scale-800');
+    final normalBg = normal?.bg ?? rgb('--sg-$scale-600');
+    final normalFg = normal?.fg ?? rgb(on);
+    c['--sg-btn-$tokenName-bg'] = normalBg;
+    c['--sg-btn-$tokenName-fg'] = normalFg;
+    c['--sg-btn-$tokenName-border'] = normalBg;
+    c['--sg-btn-$tokenName-hover-bg'] = hover?.bg ?? rgb('--sg-$scale-700');
+    c['--sg-btn-$tokenName-hover-fg'] = hover?.fg ?? normalFg;
+    c['--sg-btn-$tokenName-active-bg'] = active?.bg ?? rgb('--sg-$scale-800');
+    c['--sg-btn-$tokenName-active-fg'] = active?.fg ?? normalFg;
     c['--sg-btn-$tokenName-ring'] = rgb('--sg-$scale-400');
   }
 
