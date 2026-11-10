@@ -278,7 +278,7 @@ class _SgDatePickerDialogState extends State<SgDatePickerDialog> {
                                     '$day',
                                     style: TextStyle(
                                       color: sel
-                                          ? t.onPrimary
+                                          ? t.btnPrimaryFg
                                           : (on
                                                 ? t.text
                                                 : t.muted.withValues(

@@ -95,7 +95,7 @@ String hslToHex(double h, double s, double l) {
   return rgbToHex(c.r, c.g, c.b);
 }
 
-/// Luminancia relativa (aprox.) para decidir texto preto ou branco.
+/// Luminancia relativa (WCAG), base do calculo de contraste.
 double relativeLuminance(String hex) {
   final c = hexToRgb(hex);
   final srgb = [c.r, c.g, c.b]
@@ -109,8 +109,34 @@ double relativeLuminance(String hex) {
   return 0.2126 * srgb[0] + 0.7152 * srgb[1] + 0.0722 * srgb[2];
 }
 
-String pickOnColor(String bgHex) =>
-    relativeLuminance(bgHex) > 0.5 ? '#0B0B0C' : '#FFFFFF';
+/// Contraste minimo (WCAG, texto normal) exigido entre o fundo e a cor do texto escolhida.
+const double minContrastRatio = 4.5;
+
+/// Candidatos a cor de texto sobre um fundo, em ordem de preferencia.
+const List<String> onColorCandidates = ['#FFFFFF', '#0B0B0C'];
+
+/// Razao de contraste WCAG entre duas cores hex (1 a 21).
+double contrastRatio(String aHex, String bHex) {
+  final la = relativeLuminance(aHex);
+  final lb = relativeLuminance(bHex);
+  return (math.max(la, lb) + 0.05) / (math.min(la, lb) + 0.05);
+}
+
+/// Escolhe o texto sobre [bgHex] por contraste: devolve o primeiro candidato (branco, depois quase
+/// preto) com razao >= [minContrastRatio]; se nenhum alcancar, devolve o de maior contraste.
+String pickOnColor(String bgHex) {
+  var best = onColorCandidates.first;
+  var bestRatio = -1.0;
+  for (final candidate in onColorCandidates) {
+    final ratio = contrastRatio(bgHex, candidate);
+    if (ratio >= minContrastRatio) return candidate;
+    if (ratio > bestRatio) {
+      best = candidate;
+      bestRatio = ratio;
+    }
+  }
+  return best;
+}
 
 /// `"r g b"`: o formato das variaveis `--sg-*` (no React, `rgb(var(--x) / alpha)`).
 String toRgbVarValue(String hex) {

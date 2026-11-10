@@ -23,8 +23,8 @@ class SeverityColors {
 }
 
 /// Mantem [preferred] se tiver contraste >= 3:1 sobre [bg]; senao troca por preto/branco (o que contrastar mais).
-/// O gerador de tema escolhe o texto pela luminancia (limiar 0,5) e deixa branco sobre o azul `info` do escuro
-/// (2,7:1); corrigir no gerador mudaria o texto de todos os botoes (paridade com o React): aqui e so a severidade.
+/// O gerador de tema escolhe o texto por contraste minimo 4,5:1 sobre o tom 500; os botoes usam o tom 600, entao
+/// esta rede de seguranca continua valendo: aqui e so a severidade (paridade com o React).
 Color legibleOn(Color bg, Color preferred) {
   double ratio(Color a, Color b) {
     final la = a.computeLuminance(), lb = b.computeLuminance();

@@ -77,6 +77,30 @@ void main() {
         closeTo(dbl(c['luminance'])!, 1e-12),
         reason: jsonEncode(c),
       );
+      expect(
+        contrastRatio(c['in'] as String, c['out'] as String),
+        closeTo(dbl(c['contrast'])!, 1e-9),
+        reason: jsonEncode(c),
+      );
+    }
+  });
+
+  test('pickOnColor em varredura de matiz/saturacao/luminosidade e contraste minimo', () {
+    expect(minContrastRatio, (doc['minContrastRatio'] as num).toDouble());
+    final sweep = list('pickOnColorSweep');
+    expect(sweep.length, greaterThan(200));
+    for (final c in sweep) {
+      final bg = c['in'] as String;
+      final out = pickOnColor(bg);
+      expect(out, c['out'], reason: jsonEncode(c));
+      final best = onColorCandidates
+          .map((k) => contrastRatio(bg, k))
+          .reduce((a, b) => a > b ? a : b);
+      if (best >= minContrastRatio) {
+        expect(contrastRatio(bg, out), greaterThanOrEqualTo(minContrastRatio));
+      } else {
+        expect(contrastRatio(bg, out), best);
+      }
     }
   });
 

@@ -69,8 +69,16 @@ const doc = {
     .map(([r, g, b]) => ({ in: [r, g, b], out: cu.rgbToHsl(r, g, b) })),
   hslToHex: [[0, 0, 0], [0, 100, 50], [120, 100, 50], [240, 100, 50], [359.9, 50, 50], [60, 100, 25], [180.5, 33.3, 66.6], [145, 80, 56], [5, 85, 48], [210, 80, 56], [45, 85, 48], [300, 100, 100], [30, 20, 10], [270, 55, 75]]
     .map(([h, s, l]) => ({ in: [h, s, l], out: cu.hslToHex(h, s, l) })),
-  pickOnColor: ["#000000", "#FFFFFF", "#808080", "#16803D", "#FFFF00", "#7F7F7F", "#FF0000", "#0000FF", "#00FF00", "#BCBCBC", "#8F8F8F"]
-    .map((i) => ({ in: i, out: cu.pickOnColor(i), luminance: cu.relativeLuminance(i) })),
+  // Escolha por contraste minimo 4,5:1 (branco primeiro, depois quase preto; sem candidato que alcance, o de maior contraste).
+  pickOnColor: ["#000000", "#FFFFFF", "#808080", "#16803D", "#FFFF00", "#7F7F7F", "#FF0000", "#0000FF", "#00FF00", "#BCBCBC", "#8F8F8F",
+    "#767676", "#777777", "#2563EB", "#F59E0B", "#EF4444", "#14B8A6", "#8B5CF6", "#6B7280", "#E0541E", "#1FA84F", "#F4B400", "#D32F2F"]
+    .map((i) => ({ in: i, out: cu.pickOnColor(i), luminance: cu.relativeLuminance(i), contrast: cu.contrastRatio(i, cu.pickOnColor(i)) })),
+  // Varredura de matiz x saturacao x luminosidade: React e Flutter devem dar o MESMO texto para os mesmos fundos.
+  pickOnColorSweep: Array.from({ length: 12 }, (_, i) => i * 30).flatMap((h) => [30, 70, 100].flatMap((s) => [20, 30, 40, 50, 60, 70, 80].map((l) => {
+    const bg = cu.hslToHex(h, s, l);
+    return { in: bg, out: cu.pickOnColor(bg) };
+  }))),
+  minContrastRatio: cu.MIN_CONTRAST_RATIO,
   toRgbVarValue: ["#16803D", "#000000", "#FFFFFF"].map((i) => ({ in: i, out: cu.toRgbVarValue(i) })),
   shiftHue: sample.flatMap((s) => [
     { in: [s, 35, 72, 48], out: cu.shiftHue(s, 35, 72, 48) },

@@ -134,7 +134,31 @@ void main() {
               final glyph = txt.runes.every((u) => u >= 0xE000);
               // "Info"/"info": branco sobre o azul do token info (2,7:1) sai do gerador de tema, o mesmo do
               // React (DIVERGENCIAS_DO_REACT.md); nao e defeito do modo escuro e fica igual ao React.
-              if (c < 3 && !glyph && txt.toLowerCase() != 'info') {
+              // Texto sobre um preenchimento opaco proprio (selo/botao com `DecoratedBox` de cor solida): se esse
+              // fundo declarado ja da >= 3:1, a amostra de pixel nao e o fundo real do texto (o selo do dock e o
+              // botao da toolbar recolhida aparecem recortados/fora do quadro capturado). Vale o declarado.
+              var declared = 0.0;
+              var hops = 0;
+              (r.debugCreator! as DebugCreator).element.visitAncestorElements((
+                e,
+              ) {
+                final w = e.widget;
+                if (w is DecoratedBox) {
+                  final d = w.decoration;
+                  final fill = d is BoxDecoration
+                      ? d.color
+                      : (d is ShapeDecoration ? d.color : null);
+                  if (fill != null && fill.a == 1) {
+                    declared = _contrast(color, fill);
+                    return false;
+                  }
+                }
+                return ++hops < 6;
+              });
+              if (c < 3 &&
+                  declared < 3 &&
+                  !glyph &&
+                  txt.toLowerCase() != 'info') {
                 bad.add('${c.toStringAsFixed(2)}  "$txt"');
               }
             }

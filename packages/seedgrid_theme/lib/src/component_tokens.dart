@@ -1,6 +1,7 @@
 // Porte de @seedgrid/fe-theme src/theme/componentTokens.ts.
 // A paridade com o TypeScript e conferida por test/parity.
 
+import 'color_utils.dart';
 import 'theme_config.dart';
 
 /// Equivale a `generateComponentTokens(baseVars)`: aliases por componente
@@ -13,10 +14,24 @@ ThemeVars generateComponentTokens(ThemeVars baseVars) {
     return (v != null && v.isNotEmpty) ? 'rgb($v)' : '';
   }
 
+  // Texto do botao: escolhido por contraste sobre o PROPRIO fundo do botao (tom 600), nao sobre o tom 500
+  // usado por --sg-on-*. Sem fundo valido, cai no --sg-on-* informado.
+  String onBg(String bgVarName, String fallbackOnVarName) {
+    final m = RegExp(r'^\s*(\d+)\s+(\d+)\s+(\d+)\s*$')
+        .firstMatch(baseVars[bgVarName] ?? '');
+    if (m == null) return rgb(fallbackOnVarName);
+    final on = pickOnColor(rgbToHex(
+      double.parse(m.group(1)!),
+      double.parse(m.group(2)!),
+      double.parse(m.group(3)!),
+    ));
+    return 'rgb(${toRgbVarValue(on)})';
+  }
+
   // Botoes de severidade: bg 600, hover 700, active 800, ring 400.
   void severity(String tokenName, String scale, String on) {
     c['--sg-btn-$tokenName-bg'] = rgb('--sg-$scale-600');
-    c['--sg-btn-$tokenName-fg'] = rgb(on);
+    c['--sg-btn-$tokenName-fg'] = onBg('--sg-$scale-600', on);
     c['--sg-btn-$tokenName-border'] = rgb('--sg-$scale-600');
     c['--sg-btn-$tokenName-hover-bg'] = rgb('--sg-$scale-700');
     c['--sg-btn-$tokenName-active-bg'] = rgb('--sg-$scale-800');
