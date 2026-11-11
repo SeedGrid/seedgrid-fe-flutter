@@ -502,4 +502,59 @@ void main() {
       expect(find.byKey(const ValueKey('sg-select-sheet')), findsOneWidget);
     });
   });
+
+  // P155.F3.T3: modo sem estado na pagina (value nulo) e controlado (value informado).
+  group('modo sem estado (value nulo) x controlado', () {
+    testWidgets(
+      'sem value o componente guarda o proprio estado (sem setState no pai)',
+      (t) async {
+        final got = <ResolvedYearPart>[];
+        await t.pumpWidget(
+          host(SgYearPartSelector(today: today, onChange: got.add)),
+        );
+        await choose(t, 'year', 2022);
+        expect(text(t, 'year'), '2022');
+        // o pai reconstroi com o mesmo widget: a escolha continua
+        await t.pumpWidget(
+          host(SgYearPartSelector(today: today, onChange: got.add)),
+        );
+        await frames(t);
+        expect(text(t, 'year'), '2022');
+        expect(got.single.value.year, 2022);
+      },
+    );
+
+    testWidgets(
+      'com value o pai manda: escolher emite onChange e o campo so muda quando o value muda',
+      (t) async {
+        final got = <ResolvedYearPart>[];
+        const inicial = YearPartValue(
+          year: 2024,
+          kind: YearPartKind.semester,
+          part: 1,
+        );
+        await t.pumpWidget(
+          host(
+            SgYearPartSelector(today: today, value: inicial, onChange: got.add),
+          ),
+        );
+        await frames(t);
+        expect(text(t, 'part'), 'Semestre 1 (S1)');
+        await choose(t, 'year', 2023);
+        expect(got.single.value.year, 2023);
+        expect(text(t, 'year'), '2024');
+        await t.pumpWidget(
+          host(
+            SgYearPartSelector(
+              today: today,
+              value: got.single.value,
+              onChange: got.add,
+            ),
+          ),
+        );
+        await frames(t);
+        expect(text(t, 'year'), '2023');
+      },
+    );
+  });
 }

@@ -64,9 +64,9 @@ class ClientesCrud extends StatefulWidget {
 }
 
 class _ClientesCrudState extends State<ClientesCrud> {
-  List<SgDatatableRow>? _clientes;
-  bool _editando = false;
-  String? _publicId;
+  final ValueNotifier<List<SgDatatableRow>?> _clientes = ValueNotifier(null);
+  final ValueNotifier<bool> _editando = ValueNotifier(false);
+  final ValueNotifier<String?> _publicId = ValueNotifier(null);
 
   bool _pedido = false;
 
@@ -78,35 +78,41 @@ class _ClientesCrudState extends State<ClientesCrud> {
     _carregar(DefaultAssetBundle.of(context));
   }
 
+  @override
+  void dispose() {
+    _clientes.dispose();
+    _editando.dispose();
+    _publicId.dispose();
+    super.dispose();
+  }
+
   Future<void> _carregar(AssetBundle bundle) async {
     final texto = await bundle.loadString('assets/data/clientes.json');
     if (!mounted) return;
-    setState(() {
-      _clientes = [
-        for (final c in jsonDecode(texto) as List)
-          Map<String, Object?>.from(c as Map),
-      ];
-    });
+    _clientes.value = [
+      for (final c in jsonDecode(texto) as List)
+        Map<String, Object?>.from(c as Map),
+    ];
   }
 
-  void _abrir([String? publicId]) => setState(() {
-    _publicId = publicId;
-    _editando = true;
-  });
+  void _abrir([String? publicId]) {
+    _publicId.value = publicId;
+    _editando.value = true;
+  }
 
   void _salvar(Map<String, Object?> dados) {
-    final i = _clientes!.indexWhere((c) => c['publicId'] == _publicId);
-    setState(() {
-      if (i >= 0) {
-        _clientes![i] = {..._clientes![i], ...dados};
-      } else {
-        _clientes!.add({
-          'publicId': 'cli-${DateTime.now().microsecondsSinceEpoch}',
-          ...dados,
-        });
-      }
-      _editando = false;
-    });
+    final lista = [..._clientes.value!];
+    final i = lista.indexWhere((c) => c['publicId'] == _publicId.value);
+    if (i >= 0) {
+      lista[i] = {...lista[i], ...dados};
+    } else {
+      lista.add({
+        'publicId': 'cli-${DateTime.now().microsecondsSinceEpoch}',
+        ...dados,
+      });
+    }
+    _clientes.value = lista;
+    _editando.value = false;
     toast.success(
       i >= 0
           ? context.tx('Cliente atualizado.')
@@ -115,32 +121,40 @@ class _ClientesCrudState extends State<ClientesCrud> {
   }
 
   void _excluir(String publicId) {
-    setState(() => _clientes!.removeWhere((c) => c['publicId'] == publicId));
+    _clientes.value = [
+      for (final c in _clientes.value!)
+        if (c['publicId'] != publicId) c,
+    ];
     toast.success(context.tx('Cliente excluído.'));
   }
 
   @override
   Widget build(BuildContext context) {
-    final clientes = _clientes;
-    if (clientes == null) {
-      return SgDatatable(value: const [], columns: const [], loading: true);
-    }
-    if (_editando) {
-      return ClienteForm(
-        key: ValueKey(_publicId),
-        cliente: clientes.cast<SgDatatableRow?>().firstWhere(
-          (c) => c!['publicId'] == _publicId,
-          orElse: () => null,
-        ),
-        onSalvar: _salvar,
-        onCancelar: () => setState(() => _editando = false),
-      );
-    }
-    return ClientesLista(
-      clientes: clientes,
-      onNovo: _abrir,
-      onEditar: _abrir,
-      onExcluir: _excluir,
+    return ListenableBuilder(
+      listenable: Listenable.merge([_clientes, _editando, _publicId]),
+      builder: (context, _) {
+        final clientes = _clientes.value;
+        if (clientes == null) {
+          return SgDatatable(value: const [], columns: const [], loading: true);
+        }
+        if (_editando.value) {
+          return ClienteForm(
+            key: ValueKey(_publicId.value),
+            cliente: clientes.cast<SgDatatableRow?>().firstWhere(
+              (c) => c!['publicId'] == _publicId.value,
+              orElse: () => null,
+            ),
+            onSalvar: _salvar,
+            onCancelar: () => _editando.value = false,
+          );
+        }
+        return ClientesLista(
+          clientes: clientes,
+          onNovo: _abrir,
+          onEditar: _abrir,
+          onExcluir: _excluir,
+        );
+      },
     );
   }
 }
@@ -170,12 +184,19 @@ class ClientesLista extends StatefulWidget {
 }
 
 class _ClientesListaState extends State<ClientesLista> {
-  String _busca = '';
-  bool _confirmando = false;
+  final ValueNotifier<String> _busca = ValueNotifier('');
+  final ValueNotifier<bool> _confirmando = ValueNotifier(false);
   String _alvo = '';
 
-  List<SgDatatableRow> get _filtradas {
-    final termo = _busca.toLowerCase();
+  @override
+  void dispose() {
+    _busca.dispose();
+    _confirmando.dispose();
+    super.dispose();
+  }
+
+  List<SgDatatableRow> _filtrar(String busca) {
+    final termo = busca.toLowerCase();
     return [
       for (final c in widget.clientes)
         if (termo.isEmpty ||
@@ -202,7 +223,7 @@ class _ClientesListaState extends State<ClientesLista> {
                   id: 'clientes-busca',
                   labelText: context.tx('Buscar por nome ou e-mail'),
                   prefixIcon: const Icon(Icons.search),
-                  onSearchChange: (valor) => setState(() => _busca = valor),
+                  onSearchChange: (valor) => _busca.value = valor,
                 ),
               ],
             ),
@@ -213,105 +234,111 @@ class _ClientesListaState extends State<ClientesLista> {
             ),
           ],
         ),
-        SgDatatable(
-          id: 'clientes-tabela',
-          value: _filtradas,
-          dataKey: 'publicId',
-          showColumnManager: true,
-          paginator: true,
-          rows: 5,
-          stripedRows: widget.stripedRows,
-          showGridlines: widget.showGridlines,
-          hoverableRows: widget.hoverableRows,
-          emptyMessage: context.tx('Nenhum cliente encontrado.'),
-          columns: [
-            SgDatatableColumn(
-              field: 'nome',
-              minWidth: 160,
-              header: context.tx('Nome'),
-              sortable: true,
-            ),
-            SgDatatableColumn(
-              field: 'email',
-              minWidth: 220,
-              header: context.tx('E-mail'),
-            ),
-            SgDatatableColumn(
-              field: 'cidade',
-              minWidth: 130,
-              header: context.tx('Cidade'),
-              sortable: true,
-            ),
-            SgDatatableColumn(
-              field: 'plano',
-              minWidth: 120,
-              header: context.tx('Plano'),
-              sortable: true,
-            ),
-            SgDatatableColumn(
-              field: 'limite',
-              minWidth: 120,
-              header: context.tx('Limite'),
-              sortable: true,
-              align: SgDatatableColumnAlign.right,
-              body: (row, meta) => Text(
-                'R\$ ${(row['limite'] as num).toStringAsFixed(2).replaceAll('.', ',')}',
+        ValueListenableBuilder<String>(
+          valueListenable: _busca,
+          builder: (context, busca, _) => SgDatatable(
+            id: 'clientes-tabela',
+            value: _filtrar(busca),
+            dataKey: 'publicId',
+            showColumnManager: true,
+            paginator: true,
+            rows: 5,
+            stripedRows: widget.stripedRows,
+            showGridlines: widget.showGridlines,
+            hoverableRows: widget.hoverableRows,
+            emptyMessage: context.tx('Nenhum cliente encontrado.'),
+            columns: [
+              SgDatatableColumn(
+                field: 'nome',
+                minWidth: 160,
+                header: context.tx('Nome'),
+                sortable: true,
               ),
-            ),
-            SgDatatableColumn(
-              field: 'ativo',
-              width: 150,
-              header: context.tx('Situação'),
-              body: (row, meta) => SgBadge(
-                value: Text(
-                  row['ativo'] == true
-                      ? context.tx('Ativo')
-                      : context.tx('Inativo'),
+              SgDatatableColumn(
+                field: 'email',
+                minWidth: 220,
+                header: context.tx('E-mail'),
+              ),
+              SgDatatableColumn(
+                field: 'cidade',
+                minWidth: 130,
+                header: context.tx('Cidade'),
+                sortable: true,
+              ),
+              SgDatatableColumn(
+                field: 'plano',
+                minWidth: 120,
+                header: context.tx('Plano'),
+                sortable: true,
+              ),
+              SgDatatableColumn(
+                field: 'limite',
+                minWidth: 120,
+                header: context.tx('Limite'),
+                sortable: true,
+                align: SgDatatableColumnAlign.right,
+                body: (row, meta) => Text(
+                  'R\$ ${(row['limite'] as num).toStringAsFixed(2).replaceAll('.', ',')}',
                 ),
-                severity: row['ativo'] == true
-                    ? SgBadgeSeverity.success
-                    : SgBadgeSeverity.danger,
               ),
-            ),
-            SgDatatableColumn(
-              header: context.tx('Ações'),
-              width: 120,
-              align: SgDatatableColumnAlign.right,
-              body: (row, meta) => SgStack(
-                direction: SgStackDirection.row,
-                justify: SgStackJustify.end,
-                gap: 4,
-                children: [
-                  SgButton(
-                    iconOnly: true,
-                    size: SgSize.sm,
-                    appearance: SgAppearance.ghost,
-                    leftIcon: const Icon(Icons.edit),
-                    onClick: () => widget.onEditar('${row['publicId']}'),
+              SgDatatableColumn(
+                field: 'ativo',
+                width: 150,
+                header: context.tx('Situação'),
+                body: (row, meta) => SgBadge(
+                  value: Text(
+                    row['ativo'] == true
+                        ? context.tx('Ativo')
+                        : context.tx('Inativo'),
                   ),
-                  SgButton(
-                    iconOnly: true,
-                    size: SgSize.sm,
-                    appearance: SgAppearance.ghost,
-                    severity: SgSeverity.danger,
-                    leftIcon: const Icon(Icons.delete),
-                    onClick: () => setState(() {
-                      _alvo = '${row['publicId']}';
-                      _confirmando = true;
-                    }),
-                  ),
-                ],
+                  severity: row['ativo'] == true
+                      ? SgBadgeSeverity.success
+                      : SgBadgeSeverity.danger,
+                ),
               ),
-            ),
-          ],
+              SgDatatableColumn(
+                header: context.tx('Ações'),
+                width: 120,
+                align: SgDatatableColumnAlign.right,
+                body: (row, meta) => SgStack(
+                  direction: SgStackDirection.row,
+                  justify: SgStackJustify.end,
+                  gap: 4,
+                  children: [
+                    SgButton(
+                      iconOnly: true,
+                      size: SgSize.sm,
+                      appearance: SgAppearance.ghost,
+                      leftIcon: const Icon(Icons.edit),
+                      onClick: () => widget.onEditar('${row['publicId']}'),
+                    ),
+                    SgButton(
+                      iconOnly: true,
+                      size: SgSize.sm,
+                      appearance: SgAppearance.ghost,
+                      severity: SgSeverity.danger,
+                      leftIcon: const Icon(Icons.delete),
+                      onClick: () {
+                        _alvo = '${row['publicId']}';
+                        _confirmando.value = true;
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
-        SgConfirmationDialog(
-          open: _confirmando,
-          onOpenChange: (aberto) => setState(() => _confirmando = aberto),
-          severity: SgDialogSeverity.danger,
-          title: Text(context.tx('Excluir cliente?')),
-          message: Text(context.tx('Esta ação não pode ser desfeita.')),
-          onConfirm: () => widget.onExcluir(_alvo),
+        ValueListenableBuilder<bool>(
+          valueListenable: _confirmando,
+          builder: (context, confirmando, _) => SgConfirmationDialog(
+            open: confirmando,
+            onOpenChange: (aberto) => _confirmando.value = aberto,
+            severity: SgDialogSeverity.danger,
+            title: Text(context.tx('Excluir cliente?')),
+            message: Text(context.tx('Esta ação não pode ser desfeita.')),
+            onConfirm: () => widget.onExcluir(_alvo),
+          ),
         ),
       ],
     );
