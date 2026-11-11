@@ -55,7 +55,7 @@ final List<SgDatatableRow> _pessoas = [
     },
 ];
 
-const List<SgDatatableColumn> _colunas = [
+List<SgDatatableColumn> _colunas(BuildContext context) => [
   SgDatatableColumn(
     field: 'id',
     header: 'Id',
@@ -65,19 +65,19 @@ const List<SgDatatableColumn> _colunas = [
   ),
   SgDatatableColumn(
     field: 'nome',
-    header: 'Nome',
+    header: context.tx('Nome'),
     sortable: true,
     filter: true,
   ),
   SgDatatableColumn(
     field: 'cidade',
-    header: 'Cidade',
+    header: context.tx('Cidade'),
     sortable: true,
     filter: true,
   ),
   SgDatatableColumn(
     field: 'idade',
-    header: 'Idade',
+    header: context.tx('Idade'),
     sortable: true,
     align: SgDatatableColumnAlign.right,
   ),
@@ -91,8 +91,8 @@ class SgDatatablePage extends StatefulWidget {
 }
 
 class _SgDatatablePageState extends State<SgDatatablePage> {
-  final ValueNotifier<String> _evento = ValueNotifier('nenhum evento ainda');
-  final ValueNotifier<String> _pagina = ValueNotifier('nenhum evento ainda');
+  final ValueNotifier<String> _evento = ValueNotifier('');
+  final ValueNotifier<String> _pagina = ValueNotifier('');
   final ValueNotifier<Object?> _selecionadas = ValueNotifier(null);
   final ValueNotifier<SgDatatableMobileMode> _modoCartoes = ValueNotifier(
     SgDatatableMobileMode.cards,
@@ -128,7 +128,7 @@ class _SgDatatablePageState extends State<SgDatatablePage> {
                   id: 'datatable-basic',
                   title: context.tx('Pessoas'),
                   value: _pessoas,
-                  columns: _colunas,
+                  columns: _colunas(context),
                   dataKey: 'id',
                   paginator: true,
                   infiniteScroll: false,
@@ -136,13 +136,16 @@ class _SgDatatablePageState extends State<SgDatatablePage> {
                   rowsPerPageOptions: const [5, 10],
                   stripedRows: true,
                   showGridlines: true,
-                  onPage: (e) => _pagina.value =
-                      'página ${e.page} de ${e.pageCount} (first ${e.first})',
+                  onPage: (e) => _pagina.value = context.txf(
+                    'página {page} de {count} (first {first})',
+                    {'page': e.page, 'count': e.pageCount, 'first': e.first},
+                  ),
                 ),
                 ValueListenableBuilder<String>(
                   valueListenable: _pagina,
-                  builder: (context, evento, _) =>
-                      Text('${context.tx('Último onPage')}: $evento'),
+                  builder: (context, evento, _) => Text(
+                    '${context.tx('Último onPage')}: ${evento.isEmpty ? context.tx('nenhum evento ainda') : evento}',
+                  ),
                 ),
               ],
             ),
@@ -198,14 +201,14 @@ class _SgDatatablePageState extends State<SgDatatablePage> {
                 children: [
                   SgDatatable(
                     value: _pessoas.take(8).toList(),
-                    columns: _colunas,
+                    columns: _colunas(context),
                     dataKey: 'id',
                     selectionMode: SgDatatableSelectionMode.multiple,
                     selection: selecionadas,
                     onSelectionChange: (s) => _selecionadas.value = s,
                   ),
                   Text(
-                    'Selecionadas: ${((selecionadas as List?) ?? const []).length}',
+                    '${context.tx('Selecionadas')}: ${((selecionadas as List?) ?? const []).length}',
                   ),
                 ],
               ),
@@ -226,7 +229,7 @@ class _SgDatatablePageState extends State<SgDatatablePage> {
                 SgDatatableColumn(
                   field: 'nome',
                   header: context.tx('Nome'),
-                  footer: 'Total',
+                  footer: context.tx('Total'),
                 ),
                 SgDatatableColumn(
                   field: 'salario',
@@ -330,8 +333,8 @@ class _SgDatatablePageState extends State<SgDatatablePage> {
                             size: SgSize.sm,
                             appearance: SgAppearance.outline,
                             leftIcon: const Icon(Icons.edit_outlined),
-                            onClick: () =>
-                                _evento.value = 'editar ${row['nome']}',
+                            onClick: () => _evento.value =
+                                '${context.tx('editar')} ${row['nome']}',
                           ),
                           const SizedBox(width: 4),
                           SgButton(
@@ -340,8 +343,8 @@ class _SgDatatablePageState extends State<SgDatatablePage> {
                             severity: SgSeverity.danger,
                             appearance: SgAppearance.outline,
                             leftIcon: const Icon(Icons.delete_outline),
-                            onClick: () =>
-                                _evento.value = 'excluir ${row['nome']}',
+                            onClick: () => _evento.value =
+                                '${context.tx('excluir')} ${row['nome']}',
                           ),
                         ],
                       ),
@@ -351,7 +354,9 @@ class _SgDatatablePageState extends State<SgDatatablePage> {
                 const SizedBox(height: 8),
                 ValueListenableBuilder<String>(
                   valueListenable: _evento,
-                  builder: (context, evento, _) => Text('Última ação: $evento'),
+                  builder: (context, evento, _) => Text(
+                    '${context.tx('Última ação')}: ${evento.isEmpty ? context.tx('nenhum evento ainda') : evento}',
+                  ),
                 ),
               ],
             ),
@@ -372,7 +377,7 @@ class _SgDatatablePageState extends State<SgDatatablePage> {
                   child: SingleChildScrollView(
                     child: SgDatatable(
                       value: _pessoas,
-                      columns: _colunas,
+                      columns: _colunas(context),
                       paginator: true,
                       rows: 5,
                       showGlobalFilter: true,
@@ -414,7 +419,7 @@ class _SgDatatablePageState extends State<SgDatatablePage> {
               valueListenable: _first,
               builder: (context, first, _) => SgDatatable(
                 value: _pessoas.skip(first).take(5).toList(),
-                columns: _colunas,
+                columns: _colunas(context),
                 lazy: true,
                 paginator: true,
                 rows: 5,
@@ -438,7 +443,7 @@ class _SgDatatablePageState extends State<SgDatatablePage> {
                 SgDatatable(
                   title: context.tx('Carregando'),
                   value: const [],
-                  columns: _colunas,
+                  columns: _colunas(context),
                   loading: true,
                   showColumnManager: false,
                 ),
@@ -446,8 +451,8 @@ class _SgDatatablePageState extends State<SgDatatablePage> {
                 SgDatatable(
                   title: context.tx('Vazio'),
                   value: const [],
-                  columns: _colunas,
-                  emptyMessage: 'Nenhuma pessoa cadastrada.',
+                  columns: _colunas(context),
+                  emptyMessage: context.tx('Nenhuma pessoa cadastrada.'),
                   showColumnManager: false,
                 ),
               ],
@@ -486,7 +491,7 @@ class _SgDatatablePageState extends State<SgDatatablePage> {
                       child: SgDatatable(
                         title: context.tx('Pessoas (cartões)'),
                         value: _pessoas,
-                        columns: const [
+                        columns: [
                           SgDatatableColumn(
                             field: 'id',
                             header: 'Id',
@@ -494,20 +499,20 @@ class _SgDatatablePageState extends State<SgDatatablePage> {
                           ),
                           SgDatatableColumn(
                             field: 'nome',
-                            header: 'Nome',
+                            header: context.tx('Nome'),
                             sortable: true,
                             filter: true,
                             cardTitle: true,
                           ),
                           SgDatatableColumn(
                             field: 'cidade',
-                            header: 'Cidade',
+                            header: context.tx('Cidade'),
                             sortable: true,
                             filter: true,
                           ),
                           SgDatatableColumn(
                             field: 'idade',
-                            header: 'Idade',
+                            header: context.tx('Idade'),
                             sortable: true,
                           ),
                         ],
@@ -555,7 +560,7 @@ class _SgDatatablePageState extends State<SgDatatablePage> {
                       child: SgDatatable(
                         title: context.tx('Pessoas (rolagem infinita)'),
                         value: _pessoas,
-                        columns: const [
+                        columns: [
                           SgDatatableColumn(
                             field: 'id',
                             header: 'Id',
@@ -563,11 +568,17 @@ class _SgDatatablePageState extends State<SgDatatablePage> {
                           ),
                           SgDatatableColumn(
                             field: 'nome',
-                            header: 'Nome',
+                            header: context.tx('Nome'),
                             cardTitle: true,
                           ),
-                          SgDatatableColumn(field: 'cidade', header: 'Cidade'),
-                          SgDatatableColumn(field: 'idade', header: 'Idade'),
+                          SgDatatableColumn(
+                            field: 'cidade',
+                            header: context.tx('Cidade'),
+                          ),
+                          SgDatatableColumn(
+                            field: 'idade',
+                            header: context.tx('Idade'),
+                          ),
                         ],
                         dataKey: 'id',
                         mobileMode: SgDatatableMobileMode.cards,
@@ -636,11 +647,11 @@ class _SgDatatablePageState extends State<SgDatatablePage> {
                 {'id': 2, 'name': 'Bruno'},
                 {'id': 3, 'name': 'Carla'},
               ],
-              columns: const [
+              columns: [
                 SgDatatableColumn(field: 'id', header: 'ID', sortable: true),
                 SgDatatableColumn(
                   field: 'name',
-                  header: 'Nome',
+                  header: context.tx('Nome'),
                   sortable: true,
                   filter: true,
                 ),
@@ -697,7 +708,7 @@ class _SgDatatablePageState extends State<SgDatatablePage> {
           title: v['title'] as String?,
           emptyMessage: v['emptyMessage'] as String?,
           value: _pessoas,
-          columns: _colunas,
+          columns: _colunas(context),
           dataKey: 'id',
           rows: 5,
           selectionMode: SgDatatableSelectionMode.fromValue(

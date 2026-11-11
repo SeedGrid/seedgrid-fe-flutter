@@ -1,9 +1,10 @@
 // Textos fixos do showcase (cabecalho, menu, pagina inicial, tema, playground, props) em pt-BR, pt-PT, en-US, es e fr (os mesmos idiomas dos componentes).
 // O idioma escolhido tambem vai para o SgComponentsI18nProvider, entao os textos internos dos
-// componentes acompanham. Padrao pt-BR; a escolha fica so na sessao.
+// componentes acompanham. Padrao pt-BR; a escolha fica salva no navegador (localStorage) e volta ao recarregar.
 import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart'
     show SgComponentsI18nProvider;
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'showcase_texts.g.dart';
 
@@ -525,12 +526,47 @@ class ShowcaseI18nScope extends StatefulWidget {
 }
 
 class _ShowcaseI18nScopeState extends State<ShowcaseI18nScope> {
+  // Mesma chave do showcase React (`localStorage`); no Web o Flutter grava com o prefixo `flutter.`.
+  static const _storageKey = 'seedgrid-showcase-locale';
   String _locale = 'pt-BR';
+
+  @override
+  void initState() {
+    super.initState();
+    _restore();
+  }
+
+  Future<void> _restore() async {
+    try {
+      final stored = (await SharedPreferences.getInstance()).getString(
+        _storageKey,
+      );
+      if (stored != null && kShowcaseLocales.contains(stored) && mounted) {
+        setState(() => _locale = stored);
+      }
+    } catch (_) {
+      // Sem armazenamento (modo privado, testes): segue no padrao.
+    }
+  }
+
+  Future<void> _persist(String locale) async {
+    try {
+      await (await SharedPreferences.getInstance()).setString(
+        _storageKey,
+        locale,
+      );
+    } catch (_) {
+      // Sem armazenamento: a escolha vale so para esta sessao.
+    }
+  }
 
   @override
   Widget build(BuildContext context) => ShowcaseI18n(
     locale: _locale,
-    setLocale: (l) => setState(() => _locale = l),
+    setLocale: (l) {
+      setState(() => _locale = l);
+      _persist(l);
+    },
     child: SgComponentsI18nProvider(locale: _locale, child: widget.child),
   );
 }

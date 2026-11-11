@@ -28,8 +28,8 @@ Column(
                 size: SgSize.sm,
                 appearance: SgAppearance.outline,
                 leftIcon: const Icon(Icons.edit_outlined),
-                onClick: () =>
-                    _evento.value = 'editar ${row['nome']}',
+                onClick: () => _evento.value =
+                    '${context.tx('editar')} ${row['nome']}',
               ),
               const SizedBox(width: 4),
               SgButton(
@@ -38,8 +38,8 @@ Column(
                 severity: SgSeverity.danger,
                 appearance: SgAppearance.outline,
                 leftIcon: const Icon(Icons.delete_outline),
-                onClick: () =>
-                    _evento.value = 'excluir ${row['nome']}',
+                onClick: () => _evento.value =
+                    '${context.tx('excluir')} ${row['nome']}',
               ),
             ],
           ),
@@ -49,7 +49,9 @@ Column(
     const SizedBox(height: 8),
     ValueListenableBuilder<String>(
       valueListenable: _evento,
-      builder: (context, evento, _) => Text('Última ação: $evento'),
+      builder: (context, evento, _) => Text(
+        '${context.tx('Última ação')}: ${evento.isEmpty ? context.tx('nenhum evento ainda') : evento}',
+      ),
     ),
   ],
 )
@@ -64,7 +66,7 @@ Column(
       id: 'datatable-basic',
       title: context.tx('Pessoas'),
       value: _pessoas,
-      columns: _colunas,
+      columns: _colunas(context),
       dataKey: 'id',
       paginator: true,
       infiniteScroll: false,
@@ -72,13 +74,16 @@ Column(
       rowsPerPageOptions: const [5, 10],
       stripedRows: true,
       showGridlines: true,
-      onPage: (e) => _pagina.value =
-          'página ${e.page} de ${e.pageCount} (first ${e.first})',
+      onPage: (e) => _pagina.value = context.txf(
+        'página {page} de {count} (first {first})',
+        {'page': e.page, 'count': e.pageCount, 'first': e.first},
+      ),
     ),
     ValueListenableBuilder<String>(
       valueListenable: _pagina,
-      builder: (context, evento, _) =>
-          Text('${context.tx('Último onPage')}: $evento'),
+      builder: (context, evento, _) => Text(
+        '${context.tx('Último onPage')}: ${evento.isEmpty ? context.tx('nenhum evento ainda') : evento}',
+      ),
     ),
   ],
 )
@@ -111,7 +116,7 @@ ValueListenableBuilder<SgDatatableMobileMode>(
           child: SgDatatable(
             title: context.tx('Pessoas (cartões)'),
             value: _pessoas,
-            columns: const [
+            columns: [
               SgDatatableColumn(
                 field: 'id',
                 header: 'Id',
@@ -119,20 +124,20 @@ ValueListenableBuilder<SgDatatableMobileMode>(
               ),
               SgDatatableColumn(
                 field: 'nome',
-                header: 'Nome',
+                header: context.tx('Nome'),
                 sortable: true,
                 filter: true,
                 cardTitle: true,
               ),
               SgDatatableColumn(
                 field: 'cidade',
-                header: 'Cidade',
+                header: context.tx('Cidade'),
                 sortable: true,
                 filter: true,
               ),
               SgDatatableColumn(
                 field: 'idade',
-                header: 'Idade',
+                header: context.tx('Idade'),
                 sortable: true,
               ),
             ],
@@ -159,7 +164,7 @@ SgDatatable(
     SgDatatableColumn(
       field: 'nome',
       header: context.tx('Nome'),
-      footer: 'Total',
+      footer: context.tx('Total'),
     ),
     SgDatatableColumn(
       field: 'salario',
@@ -190,7 +195,7 @@ Column(
       child: SingleChildScrollView(
         child: SgDatatable(
           value: _pessoas,
-          columns: _colunas,
+          columns: _colunas(context),
           paginator: true,
           rows: 5,
           showGlobalFilter: true,
@@ -231,11 +236,11 @@ SgDatatable(
     {'id': 2, 'name': 'Bruno'},
     {'id': 3, 'name': 'Carla'},
   ],
-  columns: const [
+  columns: [
     SgDatatableColumn(field: 'id', header: 'ID', sortable: true),
     SgDatatableColumn(
       field: 'name',
-      header: 'Nome',
+      header: context.tx('Nome'),
       sortable: true,
       filter: true,
     ),
@@ -256,7 +261,7 @@ Column(
     SgDatatable(
       title: context.tx('Carregando'),
       value: const [],
-      columns: _colunas,
+      columns: _colunas(context),
       loading: true,
       showColumnManager: false,
     ),
@@ -264,8 +269,8 @@ Column(
     SgDatatable(
       title: context.tx('Vazio'),
       value: const [],
-      columns: _colunas,
-      emptyMessage: 'Nenhuma pessoa cadastrada.',
+      columns: _colunas(context),
+      emptyMessage: context.tx('Nenhuma pessoa cadastrada.'),
       showColumnManager: false,
     ),
   ],
@@ -391,7 +396,7 @@ ValueListenableBuilder<int>(
   valueListenable: _first,
   builder: (context, first, _) => SgDatatable(
     value: _pessoas.skip(first).take(5).toList(),
-    columns: _colunas,
+    columns: _colunas(context),
     lazy: true,
     paginator: true,
     rows: 5,
@@ -427,7 +432,7 @@ ValueListenableBuilder<bool>(
           child: SgDatatable(
             title: context.tx('Pessoas (rolagem infinita)'),
             value: _pessoas,
-            columns: const [
+            columns: [
               SgDatatableColumn(
                 field: 'id',
                 header: 'Id',
@@ -435,11 +440,17 @@ ValueListenableBuilder<bool>(
               ),
               SgDatatableColumn(
                 field: 'nome',
-                header: 'Nome',
+                header: context.tx('Nome'),
                 cardTitle: true,
               ),
-              SgDatatableColumn(field: 'cidade', header: 'Cidade'),
-              SgDatatableColumn(field: 'idade', header: 'Idade'),
+              SgDatatableColumn(
+                field: 'cidade',
+                header: context.tx('Cidade'),
+              ),
+              SgDatatableColumn(
+                field: 'idade',
+                header: context.tx('Idade'),
+              ),
             ],
             dataKey: 'id',
             mobileMode: SgDatatableMobileMode.cards,
@@ -463,14 +474,14 @@ ValueListenableBuilder<Object?>(
     children: [
       SgDatatable(
         value: _pessoas.take(8).toList(),
-        columns: _colunas,
+        columns: _colunas(context),
         dataKey: 'id',
         selectionMode: SgDatatableSelectionMode.multiple,
         selection: selecionadas,
         onSelectionChange: (s) => _selecionadas.value = s,
       ),
       Text(
-        'Selecionadas: ${((selecionadas as List?) ?? const []).length}',
+        '${context.tx('Selecionadas')}: ${((selecionadas as List?) ?? const []).length}',
       ),
     ],
   ),

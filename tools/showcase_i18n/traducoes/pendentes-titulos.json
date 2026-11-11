@@ -6832,5 +6832,35 @@
   "built-in do locale",
   "built-in del locale",
   "intégré à la locale"
+ ],
+ "nenhum evento ainda": [
+  "no events yet",
+  "nenhum evento ainda",
+  "ningún evento todavía",
+  "aucun événement pour l'instant"
+ ],
+ "Total": [
+  "Total",
+  "Total",
+  "Total",
+  "Total"
+ ],
+ "editar": [
+  "edit",
+  "editar",
+  "editar",
+  "modifier"
+ ],
+ "excluir": [
+  "delete",
+  "eliminar",
+  "eliminar",
+  "supprimer"
+ ],
+ "Nenhuma pessoa cadastrada.": [
+  "No people registered.",
+  "Nenhuma pessoa registada.",
+  "Ninguna persona registrada.",
+  "Aucune personne enregistrée."
  ]
 }
