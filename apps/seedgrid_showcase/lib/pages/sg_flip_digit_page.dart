@@ -1,5 +1,6 @@
 // Showcase do SgFlipDigit. O codigo exibido em cada exemplo e a regiao `// #region` deste arquivo.
 import 'dart:async';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
@@ -76,8 +77,8 @@ class _SgFlipDigitPageState extends State<SgFlipDigitPage> {
                     ),
                     SgButton(
                       label: Text(context.tx('Aleatório')),
-                      onClick: () =>
-                          _digito.value = DateTime.now().microsecond % 10,
+                      onClick: () => _digito.value =
+                          (_digito.value + 1 + Random().nextInt(9)) % 10,
                     ),
                   ],
                 ),

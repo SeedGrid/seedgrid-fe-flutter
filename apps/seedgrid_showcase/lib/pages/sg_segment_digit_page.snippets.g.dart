@@ -41,8 +41,8 @@ Wrap(
         ),
         SgButton(
           label: Text(context.tx('Aleatório')),
-          onClick: () =>
-              _digito.value = DateTime.now().microsecond % 10,
+          onClick: () => _digito.value =
+              (_digito.value + 1 + Random().nextInt(9)) % 10,
         ),
       ],
     ),

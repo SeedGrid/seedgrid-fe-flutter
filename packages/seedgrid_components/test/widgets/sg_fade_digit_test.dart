@@ -175,6 +175,25 @@ void main() {
       expect(shown(t), '1');
     });
 
+    // Regressao: A -> B -> A dentro do fade-out deixava o digito invisivel (opacidade 0 sem timer).
+    testWidgets(
+      'A -> B -> A dentro do fade restaura a opacidade do digito atual',
+      (t) async {
+        await change(t);
+        expect(shown(t), '1');
+        expect(target(t), 0);
+        await t.pump(const Duration(milliseconds: 100));
+        await t.pumpWidget(
+          host(const SgFadeDigit(key: ValueKey('f'), value: '1')),
+        );
+        expect(shown(t), '1');
+        expect(target(t), 1);
+        await t.pump(const Duration(milliseconds: 400));
+        expect(shown(t), '1');
+        expect(target(t), 1);
+      },
+    );
+
     testWidgets(
       'troca no meio da saida reinicia a espera e vence o ultimo valor',
       (t) async {

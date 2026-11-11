@@ -57,7 +57,7 @@ class _SgDiscardDigitPageState extends State<SgDiscardDigitPage> {
       ShowcaseExample(
         title: 'Básico',
         description:
-            'Clique em Próximo para adicionar uma folha e em Anterior para remover uma.',
+            'Clique em Adicionar folha para acrescentar uma folha à pilha e em Remover folha para tirar uma.',
         preview:
             // #region sg-discard-digit-basico
             Wrap(
@@ -79,14 +79,14 @@ class _SgDiscardDigitPageState extends State<SgDiscardDigitPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SgButton(
-                      label: Text(context.tx('Próximo (+1 folha)')),
+                      label: Text(context.tx('Adicionar folha')),
                       onClick: () => _pilha.value = _pilha.value < 30
                           ? _pilha.value + 1
                           : 30,
                     ),
                     const SizedBox(height: 8),
                     SgButton(
-                      label: Text(context.tx('Anterior (-1 folha)')),
+                      label: Text(context.tx('Remover folha')),
                       appearance: SgAppearance.outline,
                       onClick: () => _pilha.value = _pilha.value > 2
                           ? _pilha.value - 1

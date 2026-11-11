@@ -215,17 +215,17 @@
   "Paginacion imperativa (ref)",
   "Pagination imperative (ref)"
  ],
- "Próximo (+1 folha)": [
-  "Next (+1 sheet)",
-  "Próximo (+1 folha)",
-  "Siguiente (+1 hoja)",
-  "Suivant (+1 feuille)"
+ "Adicionar folha": [
+  "Add sheet",
+  "Adicionar folha",
+  "Agregar hoja",
+  "Ajouter une feuille"
  ],
- "Anterior (-1 folha)": [
-  "Previous (-1 sheet)",
-  "Anterior (-1 folha)",
-  "Anterior (-1 hoja)",
-  "Précédent (-1 feuille)"
+ "Remover folha": [
+  "Remove sheet",
+  "Remover folha",
+  "Quitar hoja",
+  "Retirer une feuille"
  ],
  "Descartar folha": [
   "Discard sheet",
@@ -275,11 +275,11 @@
   "de",
   "sur"
  ],
- "Clique em Próximo para adicionar uma folha e em Anterior para remover uma.": [
-  "Click Next to add a sheet and Previous to remove one.",
-  "Clique em Próximo para adicionar uma folha e em Anterior para remover uma.",
-  "Haga clic en Siguiente para añadir una hoja y en Anterior para quitar una.",
-  "Cliquez sur Suivant pour ajouter une feuille et sur Précédent pour en retirer une."
+ "Clique em Adicionar folha para acrescentar uma folha à pilha e em Remover folha para tirar uma.": [
+  "Click Add sheet to stack one more sheet and Remove sheet to take one away.",
+  "Clique em Adicionar folha para acrescentar uma folha à pilha e em Remover folha para tirar uma.",
+  "Haz clic en Agregar hoja para apilar una hoja más y en Quitar hoja para quitar una.",
+  "Cliquez sur Ajouter une feuille pour empiler une feuille de plus et sur Retirer une feuille pour en enlever une."
  ],
  "Cada clique descarta uma folha e revela a seguinte.": [
   "Each click discards a sheet and reveals the next one.",

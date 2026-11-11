@@ -61,7 +61,11 @@ class _SgFadeDigitState extends State<SgFadeDigit> {
   void _sync() {
     _timer?.cancel();
     _timer = null;
-    if (widget.value == _displayValue) return;
+    if (widget.value == _displayValue) {
+      // o valor voltou ao exibido durante o fade-out: restaura a opacidade
+      _opacity = 1;
+      return;
+    }
     _opacity = 0; // fase 1: apaga
     _timer = Timer(const Duration(milliseconds: kFadeDigitMs), () {
       if (!mounted) return;
