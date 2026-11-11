@@ -114,7 +114,10 @@ class _SgMultiSelectChipsState extends State<SgMultiSelectChips>
   @override
   SgFormController? get bindingControl => widget.control;
   @override
-  String? get bindingRequired => null; // `required` e so visual, igual ao React
+  String? get bindingRequired => requiredMessageFor(
+    widget.required,
+    t(useComponentsI18n(context), 'components.inputs.required'),
+  );
 
   @override
   void initState() {

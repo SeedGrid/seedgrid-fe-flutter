@@ -199,7 +199,11 @@ class _SgMultiSelectState extends State<SgMultiSelect>
   @override
   SgFormController? get bindingControl => widget.control;
   @override
-  String? get bindingRequired => null; // `required` e so visual, igual ao React
+  String? get bindingRequired => requiredMessageFor(
+    widget.required,
+    widget.requiredMessage ??
+        t(useComponentsI18n(context), 'components.inputs.required'),
+  );
 
   @override
   void initState() {

@@ -326,7 +326,8 @@ class SgFileUploadState extends State<SgFileUpload> {
         widget.name!,
         required: requiredMessageFor(
           widget.required,
-          widget.requiredMessage ?? '',
+          widget.requiredMessage ??
+              t(useComponentsI18n(context), 'components.inputs.required'),
         ),
         initialValue: (widget.defaultValue?.isEmpty ?? true)
             ? null

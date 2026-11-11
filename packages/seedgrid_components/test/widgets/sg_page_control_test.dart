@@ -304,7 +304,7 @@ void main() {
     );
 
     testWidgets(
-      'keepMounted da pagina existe mas nao e lido (igual ao React); tabClassName ignorado',
+      'keepMounted da pagina mantem so aquela pagina montada (oculta); tabClassName ignorado',
       (t) async {
         size(t, 1000);
         await t.pumpWidget(
@@ -328,7 +328,35 @@ void main() {
             ),
           ),
         );
+        // a pagina com keepMounted fica montada, so que oculta
         expect(find.text('cb'), findsNothing);
+        expect(find.text('cb', skipOffstage: false), findsOneWidget);
+      },
+    );
+
+    testWidgets(
+      'keepMounted da pagina vale sobre o do SgPageControl (false na pagina descarta)',
+      (t) async {
+        size(t, 1000);
+        await t.pumpWidget(
+          host(
+            SgPageControl(
+              keepMounted: true,
+              children: const [
+                SgPageControlPage(id: 'a', title: Text('A'), child: Text('ca')),
+                SgPageControlPage(
+                  id: 'b',
+                  title: Text('B'),
+                  keepMounted: false,
+                  child: Text('cb'),
+                ),
+                SgPageControlPage(id: 'c', title: Text('C'), child: Text('cc')),
+              ],
+            ),
+          ),
+        );
+        expect(find.text('cb', skipOffstage: false), findsNothing);
+        expect(find.text('cc', skipOffstage: false), findsOneWidget);
       },
     );
   });

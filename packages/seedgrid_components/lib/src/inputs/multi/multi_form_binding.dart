@@ -1,7 +1,7 @@
 // Ligacao dos multiselects ao formulario (ADR 49), igual ao `Controller` do React: com `name` +
 // `control` (ou o SgForm mais proximo) o valor e a lista de valores do campo; o erro do formulario
-// entra no `error`. `required` do componente e so visual (asterisco), como no React: nao
-// entra como regra de obrigatorio do formulario.
+// entra no `error`. `required` do componente marca o asterisco e tambem entra como regra de
+// obrigatorio do formulario (lista vazia bloqueia o envio), como `mergeRequiredRule` no React.
 import 'package:flutter/widgets.dart';
 
 import '../../form/sg_form.dart';

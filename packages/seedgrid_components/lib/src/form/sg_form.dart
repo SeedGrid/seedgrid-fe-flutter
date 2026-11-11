@@ -2,7 +2,7 @@
 //   React:  const { control, handleSubmit, watch, reset, setValue, formState } = useForm();
 //           <SgInputText name="email" control={control} required />
 //   Dart:   final form = SgFormController(defaultValues: {...});
-//           SgInputText(id: 'email', name: 'email', control: form, required: 'Informe o e-mail')
+//           SgInputText(id: 'email', name: 'email', control: form, required: true, requiredMessage: 'Informe o e-mail')
 // `register` do RHF nao existe: todo campo Flutter e controlado.
 import 'dart:async';
 

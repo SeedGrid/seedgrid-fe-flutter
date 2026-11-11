@@ -4,8 +4,8 @@
 // `child` e um getter que devolve a coluna delas.
 // Semantica: o Flutter exige que filhos de SemanticsRole.tabBar tenham role tab; as abas aqui tem Tooltip/foco
 // proprios, entao usamos so selected/button/container (o role do ARIA nao e usado).
-// Detalhes herdados do React: `SgPageControlPage.keepMounted` existe na API mas nao e lido (so o
-// `keepMounted` do SgPageControl vale); setas so movem o foco, Enter/Espaco selecionam.
+// `SgPageControlPage.keepMounted` vale para a propria pagina (sem valor, vale o do SgPageControl); setas so
+// movem o foco, Enter/Espaco selecionam.
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -64,7 +64,7 @@ class SgPageControlPage extends StatelessWidget
   @override
   final String? id;
 
-  /// Sem efeito (igual ao React: so o `keepMounted` do SgPageControl e lido).
+  /// Mantem esta pagina montada (oculta) quando inativa. Sem valor, vale o `keepMounted` do SgPageControl.
   @override
   final bool? keepMounted;
 
@@ -537,16 +537,20 @@ class _SgPageControlState extends State<SgPageControl> {
               w.emptyMessage ?? Text(t(i18n, 'components.pageControl.empty')),
         ),
       );
-    } else if (w.keepMounted) {
+    } else if (visible.any((r) => r.page.keepMounted ?? w.keepMounted)) {
       panelBody = Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           for (final r in visible)
-            Offstage(
-              key: ValueKey('sg-page-panel-${r.id}'),
-              offstage: r.id != activeId,
-              child: TickerMode(enabled: r.id == activeId, child: panelFor(r)),
-            ),
+            if (r.id == activeId || (r.page.keepMounted ?? w.keepMounted))
+              Offstage(
+                key: ValueKey('sg-page-panel-${r.id}'),
+                offstage: r.id != activeId,
+                child: TickerMode(
+                  enabled: r.id == activeId,
+                  child: panelFor(r),
+                ),
+              ),
         ],
       );
     } else {

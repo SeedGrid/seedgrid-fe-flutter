@@ -1,7 +1,7 @@
 // Porte de SgTextEditor (React: src/inputs/SgTextEditor.tsx, TipTap). Motor nativo: flutter_quill (MIT).
 // Mesmas props, valores, padroes e eventos do React (`valueHtml`, `defaultValueHtml`, `onChangeHtml`,
-// `cssText`, `onCssTextChange`, `fileName`, `onSave`, `onLoad`, `height`, `placeholder`, `disabled`,
-// `borderRadius`, `showCssEditor`, `cssEditorLabel`, `error`, `name`+`control`+`rules`). O conteudo trafega
+// `cssText`, `onCssTextChange`, `fileName`, `onSave`, `onLoad`, `height`, `placeholder`, `enabled`,
+// `borderRadius`, `showCssEditor`, `cssEditorLabel`, `error`, `name`+`control`). O conteudo trafega
 // como HTML do corpo (o mesmo de `editor.getHTML()`); veja sg_text_editor_html.dart.
 // Pegadinhas herdadas do React:
 //  - o valor so chega ao formulario/`onChangeHtml` quando o usuario edita; carregar um arquivo HTML
