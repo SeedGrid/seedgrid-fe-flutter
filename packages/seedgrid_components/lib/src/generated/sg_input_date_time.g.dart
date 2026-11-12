@@ -76,10 +76,12 @@ abstract interface class SgInputDateTimeProps {
   SgInputDateTimeTextInputType? get textInputType;
   /// Fuso do campo: local, UTC, deslocamento (+03:00) ou nome IANA. Padrão: `local`.
   String? get timeZone;
+  /// Formato do valor que sai (onChange e formulario) e que o formulario aceita: local (2026-01-15T10:30), utc (2026-01-15T13:30:00Z) ou offset (2026-01-15T10:30:00-03:00). Padrão: `local`.
+  SgInputDateTimeValueMode? get valueMode;
   bool? get validateOnBlur;
   /// Tipo TS: `((value: string) =&gt; string)` (sem tradução exata; ver excecoes.json).
   Function? get validation;
-  /// Instante controlado (ISO 8601 ou Date). Tipo TS: `string | Date` (sem tradução exata; ver excecoes.json).
+  /// Valor controlado em qualquer formato (local sem fuso, ISO 8601 com Z ou deslocamento, ou Date). Tipo TS: `string | Date` (sem tradução exata; ver excecoes.json).
   Object? get value;
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get width;
@@ -430,6 +432,16 @@ const List<SgPropSpec> sgInputDateTimePropSpecs = <SgPropSpec>[
     description: 'Fuso do campo: local, UTC, deslocamento (+03:00) ou nome IANA.',
   ),
   SgPropSpec(
+    name: 'valueMode',
+    reactName: 'valueMode',
+    type: 'SgInputDateTimeValueMode?',
+    tsType: '"local" | "utc" | "offset"',
+    required: false,
+    defaultValue: 'local',
+    description: 'Formato do valor que sai (onChange e formulario) e que o formulario aceita: local (2026-01-15T10:30), utc (2026-01-15T13:30:00Z) ou offset (2026-01-15T10:30:00-03:00).',
+    values: <String>['local', 'utc', 'offset'],
+  ),
+  SgPropSpec(
     name: 'validateOnBlur',
     reactName: 'validateOnBlur',
     type: 'bool?',
@@ -450,7 +462,7 @@ const List<SgPropSpec> sgInputDateTimePropSpecs = <SgPropSpec>[
     type: 'Object?',
     tsType: 'string | Date',
     required: false,
-    description: 'Instante controlado (ISO 8601 ou Date).',
+    description: 'Valor controlado em qualquer formato (local sem fuso, ISO 8601 com Z ou deslocamento, ou Date).',
     exact: false,
   ),
   SgPropSpec(

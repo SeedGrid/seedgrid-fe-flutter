@@ -2421,7 +2421,7 @@
    "componente": "SgInputCurrency",
    "prop": "onChange",
    "motivo": "funcao",
-   "ts": "((value: string) => void)"
+   "ts": "((value: number) => void)"
   },
   {
    "componente": "SgInputCurrency",
@@ -2457,7 +2457,7 @@
    "componente": "SgInputCurrency",
    "prop": "validation",
    "motivo": "funcao",
-   "ts": "((value: string) => string)"
+   "ts": "((value: number) => string)"
   },
   {
    "componente": "SgInputCurrency",
@@ -2757,7 +2757,7 @@
    "componente": "SgInputNumber",
    "prop": "onChange",
    "motivo": "funcao",
-   "ts": "((value: string) => void)"
+   "ts": "((value: number) => void)"
   },
   {
    "componente": "SgInputNumber",
@@ -2793,7 +2793,7 @@
    "componente": "SgInputNumber",
    "prop": "validation",
    "motivo": "funcao",
-   "ts": "((value: string) => string)"
+   "ts": "((value: number) => string)"
   },
   {
    "componente": "SgInputNumber",

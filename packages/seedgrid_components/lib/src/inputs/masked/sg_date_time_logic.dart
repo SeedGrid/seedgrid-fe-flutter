@@ -2,12 +2,14 @@
 // parede" no fuso pedido, passo de minutos, validacao e texto de exibicao. Sem widget: testada pelos vetores
 // compartilhados (test/widgets/datetime_vectors), gerados a partir do codigo do React.
 //
-// Fusos: omitido/"local" (o do dispositivo), "UTC", deslocamento fixo ("+03:00", "-0300", "+5:30"). Diferenca
-// assumida: nome IANA ("America/Sao_Paulo") exige banco de fusos, que o pacote nao traz (sem dependencia nova);
-// aqui um nome IANA cai em "local". Ver DIVERGENCIAS_DO_REACT.md.
+// Fusos: omitido/"local" (o do dispositivo), "UTC", deslocamento fixo ("+03:00", "-0300", "+5:30") e nome IANA
+// ("America/Sao_Paulo"), este pela tabela propria do SgClock (gadgets/clock/clock_tz.dart: todas as zonas do Intl, com
+// horario de verao de 2019 a 2045, sem dependencia nova). Nome desconhecido cai em "local".
 
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
+
+import '../../gadgets/clock/clock_tz.dart';
 
 /// Codigo de erro da validacao (`null` = valido).
 enum SgDateTimeError { required, invalid, min, max, range }
@@ -39,7 +41,14 @@ int sgZoneOffsetMinutes(int instantMs, String? timeZone) {
     if (tz.toUpperCase() == 'UTC' || tz.toUpperCase() == 'Z') return 0;
     final fixed = sgParseFixedOffset(tz);
     if (fixed != null) return fixed;
-    // nome IANA ou texto invalido: cai em "local" (sem banco de fusos)
+    try {
+      return sgClockOffsetMinutes(
+        tz,
+        DateTime.fromMillisecondsSinceEpoch(instantMs, isUtc: true),
+      );
+    } on SgClockUnsupportedTimeZoneError {
+      // zona desconhecida: cai em "local"
+    }
   }
   return DateTime.fromMillisecondsSinceEpoch(
     instantMs,
@@ -98,6 +107,60 @@ String? sgWallClockToInstant(String local, {String? timeZone}) {
   ).toIso8601String();
   // toIso8601String omite os milissegundos quando zero? Nao: Dart escreve ".000Z".
   return iso;
+}
+
+/// Formato do valor que sai e que o formulario aceita (React: `valueMode`).
+enum SgDateTimeValueMode { local, utc, offset }
+
+String _formatOffset(int minutes) {
+  final sign = minutes < 0 ? '-' : '+';
+  final abs = minutes.abs();
+  return '$sign${_pad(abs ~/ 60)}:${_pad(abs % 60)}';
+}
+
+/// Relogio de parede do campo ("YYYY-MM-DDTHH:mm[:ss]") => valor no formato pedido; `null` se vazio/invalido.
+/// `local` devolve o proprio texto; `utc` e `offset` sempre com segundos.
+String? sgFormatDateTimeValue(
+  String local, {
+  SgDateTimeValueMode mode = SgDateTimeValueMode.local,
+  String? timeZone,
+}) {
+  final text = local.trim();
+  if (text.isEmpty) return null;
+  final instant = sgWallClockToInstant(text, timeZone: timeZone);
+  if (instant == null) return null;
+  if (mode == SgDateTimeValueMode.local) return text;
+  if (mode == SgDateTimeValueMode.utc) {
+    return instant.replaceFirst(RegExp(r'\.\d{3}Z$'), 'Z');
+  }
+  final m = _localRe.firstMatch(text)!;
+  final wall =
+      '${m.group(1)}-${m.group(2)}-${m.group(3)}T${m.group(4)}:${m.group(5)}:${m.group(6) ?? '00'}';
+  final ms = DateTime.parse(instant).millisecondsSinceEpoch;
+  return '$wall${_formatOffset(sgZoneOffsetMinutes(ms, timeZone))}';
+}
+
+/// Valor de qualquer formato (texto local sem fuso, ISO com "Z" ou deslocamento, `DateTime`) => relogio de parede no
+/// fuso do campo. Texto sem fuso ("2026-01-15T10:30") ja e o relogio do campo e nao e convertido.
+String sgParseDateTimeValue(
+  Object? value, {
+  String? timeZone,
+  bool showSeconds = false,
+}) {
+  if (value == null) return '';
+  if (value is String) {
+    final m = _localRe.firstMatch(value.trim());
+    if (m != null) {
+      final base =
+          '${m.group(1)}-${m.group(2)}-${m.group(3)}T${m.group(4)}:${m.group(5)}';
+      return showSeconds ? '$base:${m.group(6) ?? '00'}' : base;
+    }
+  }
+  return sgInstantToWallClock(
+    value,
+    timeZone: timeZone,
+    showSeconds: showSeconds,
+  );
 }
 
 /// Arredonda os minutos ao multiplo de [step] mais proximo (passo invalido ou <= 1 mantem o valor).

@@ -95,6 +95,32 @@ void main() {
         expect(code?.name, c['out'], reason: '$c');
       }
     });
+    test('formatDateTimeValue (modos local/utc/offset, inclui IANA)', () {
+      for (final c in list('formatValue')) {
+        expect(
+          sgFormatDateTimeValue(
+            c['local'] as String,
+            mode: SgDateTimeValueMode.values.byName(c['mode'] as String),
+            timeZone: c['zone'] as String,
+          ),
+          c['out'],
+          reason: '$c',
+        );
+      }
+    });
+    test('parseDateTimeValue (qualquer formato -> relogio do campo)', () {
+      for (final c in list('parseValue')) {
+        expect(
+          sgParseDateTimeValue(
+            c['value'] as String,
+            timeZone: c['zone'] as String,
+            showSeconds: c['seconds'] as bool,
+          ),
+          c['out'],
+          reason: '$c',
+        );
+      }
+    });
     test('formatWallClock', () {
       for (final c in list('format')) {
         expect(
@@ -143,27 +169,28 @@ void main() {
     );
     tearDown(resetComponentsI18n);
 
-    testWidgets('mostra o instante no fuso e emite ISO UTC ao digitar', (
-      t,
-    ) async {
-      final calls = <(String?, String)>[];
-      await t.pumpWidget(
-        host(
-          SgInputDateTime(
-            id: 'dt',
-            labelText: 'Quando',
-            timeZone: '-03:00',
-            defaultValue: '2026-11-03T17:30:00Z',
-            onChange: (v, l) => calls.add((v, l)),
+    testWidgets(
+      'mostra o instante no fuso e emite o valor local (padrao) ao digitar',
+      (t) async {
+        final calls = <(String?, String)>[];
+        await t.pumpWidget(
+          host(
+            SgInputDateTime(
+              id: 'dt',
+              labelText: 'Quando',
+              timeZone: '-03:00',
+              defaultValue: '2026-11-03T17:30:00Z',
+              onChange: (v, l) => calls.add((v, l)),
+            ),
           ),
-        ),
-      );
-      expect(text(t, 'dt'), '03/11/2026 14:30');
-      await t.enterText(field('dt'), '04112026 0815');
-      await t.pump();
-      expect(text(t, 'dt'), '04/11/2026 08:15');
-      expect(calls.last, ('2026-11-04T11:15:00.000Z', '2026-11-04T08:15'));
-    });
+        );
+        expect(text(t, 'dt'), '03/11/2026 14:30');
+        await t.enterText(field('dt'), '04112026 0815');
+        await t.pump();
+        expect(text(t, 'dt'), '04/11/2026 08:15');
+        expect(calls.last, ('2026-11-04T08:15', '2026-11-04T08:15'));
+      },
+    );
 
     testWidgets('texto incompleto emite null', (t) async {
       final calls = <String?>[];
@@ -284,7 +311,7 @@ void main() {
       expect(text(t, 'dt'), '03/11/2026 17:30:45');
       await t.enterText(field('dt'), '03112026 173050');
       await t.pump();
-      expect(last, '2026-11-03T17:30:50.000Z');
+      expect(last, '2026-11-03T17:30:50');
     });
 
     testWidgets('valida limite ao perder o foco', (t) async {
@@ -334,7 +361,7 @@ void main() {
       await t.tap(field('other'));
       await t.pump();
       expect(text(t, 'dt'), '03/11/2026 17:00');
-      expect(last, '2026-11-03T17:00:00.000Z');
+      expect(last, '2026-11-03T17:00');
     });
 
     testWidgets('obrigatorio vazio gera erro; en-US usa mes primeiro', (
@@ -366,7 +393,81 @@ void main() {
       expect(msgs.whereType<String>(), isNotEmpty);
     });
 
-    testWidgets('formulario recebe o instante ISO UTC', (t) async {
+    const modes = <(SgInputDateTimeValueMode, String, String, String, String)>[
+      // modo, valor inicial, digitado (relogio dd/MM), esperado ao digitar, esperado no form
+      (
+        SgInputDateTimeValueMode.local,
+        '2026-01-15T10:30',
+        '160120260800',
+        '2026-01-16T08:00',
+        '2026-01-16T08:00',
+      ),
+      (
+        SgInputDateTimeValueMode.utc,
+        '2026-01-15T13:30:00Z',
+        '160120260800',
+        '2026-01-16T11:00:00Z',
+        '2026-01-16T11:00:00Z',
+      ),
+      (
+        SgInputDateTimeValueMode.offset,
+        '2026-01-15T10:30:00-03:00',
+        '160120260800',
+        '2026-01-16T08:00:00-03:00',
+        '2026-01-16T08:00:00-03:00',
+      ),
+    ];
+    for (final (mode, initial, typed, out, formOut) in modes) {
+      testWidgets(
+        'valueMode ${mode.value}: value mostra o relogio e onChange devolve o formato (Sao_Paulo)',
+        (t) async {
+          final calls = <(String?, String)>[];
+          await t.pumpWidget(
+            host(
+              SgInputDateTime(
+                id: 'dt',
+                timeZone: 'America/Sao_Paulo',
+                valueMode: mode,
+                value: initial,
+                onChange: (v, l) => calls.add((v, l)),
+              ),
+            ),
+          );
+          expect(text(t, 'dt'), '15/01/2026 10:30');
+          await t.enterText(field('dt'), typed);
+          await t.pump();
+          expect(calls.last, (out, '2026-01-16T08:00'));
+        },
+      );
+
+      testWidgets(
+        'valueMode ${mode.value} com control: initialValue/setValue aceitam o formato e o form guarda o formato (Sao_Paulo)',
+        (t) async {
+          final form = SgFormController();
+          await t.pumpWidget(
+            host(
+              SgInputDateTime(
+                id: 'dt',
+                name: 'quando',
+                control: form,
+                timeZone: 'America/Sao_Paulo',
+                valueMode: mode,
+                defaultValue: initial,
+              ),
+            ),
+          );
+          expect(text(t, 'dt'), '15/01/2026 10:30');
+          form.setValue('quando', '2026-02-01T15:00:00Z');
+          await t.pump();
+          expect(text(t, 'dt'), '01/02/2026 12:00');
+          await t.enterText(field('dt'), typed);
+          await t.pump();
+          expect(form.getValue('quando'), formOut);
+        },
+      );
+    }
+
+    testWidgets('formulario recebe o valor local (padrao)', (t) async {
       final form = SgFormController();
       await t.pumpWidget(
         host(
@@ -380,7 +481,7 @@ void main() {
       );
       await t.enterText(field('dt'), '031120261730');
       await t.pump();
-      expect(form.getValue('quando'), '2026-11-03T14:30:00.000Z');
+      expect(form.getValue('quando'), '2026-11-03T17:30');
     });
   });
 }

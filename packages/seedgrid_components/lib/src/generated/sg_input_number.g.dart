@@ -21,6 +21,7 @@ abstract interface class SgInputNumberProps {
   /// Quantidade de casas decimais permitidas.
   num? get decimals;
   SgInputNumberElevation? get elevation;
+  /// Se true, campo vazio vale null; se false (padrao), vale 0. Padrão: `false`.
   bool? get emptyValueIsNull;
   bool? get enabled;
   String? get error;
@@ -45,7 +46,7 @@ abstract interface class SgInputNumberProps {
   String? get minValueMessage;
   /// Nome do campo para formularios.
   String? get name;
-  /// Callback com o valor numerico atual (number; null somente com emptyValueIsNull). Tipo TS: `((value: number | null) =&gt; void)` (sem tradução exata; ver excecoes.json).
+  /// Callback com o valor numerico atual (number; null somente com emptyValueIsNull). Tipo TS: `((value: number) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onChange;
   /// Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onClear;
@@ -68,7 +69,7 @@ abstract interface class SgInputNumberProps {
   /// Tipo TS: `React.HTMLInputTypeAttribute` (sem tradução exata; ver excecoes.json).
   Object? get type;
   bool? get validateOnBlur;
-  /// Tipo TS: `((value: string) =&gt; string)` (sem tradução exata; ver excecoes.json).
+  /// Tipo TS: `((value: number) =&gt; string)` (sem tradução exata; ver excecoes.json).
   Function? get validation;
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get width;
@@ -129,6 +130,7 @@ const List<SgPropSpec> sgInputNumberPropSpecs = <SgPropSpec>[
     type: 'bool?',
     tsType: 'boolean',
     required: false,
+    defaultValue: 'false',
     description: 'Se true, campo vazio vale null; se false (padrao), vale 0.',
   ),
   SgPropSpec(
@@ -262,7 +264,7 @@ const List<SgPropSpec> sgInputNumberPropSpecs = <SgPropSpec>[
     name: 'onChange',
     reactName: 'onChange',
     type: 'Function?',
-    tsType: '((value: number | null) => void)',
+    tsType: '((value: number) => void)',
     required: false,
     description: 'Callback com o valor numerico atual (number; null somente com emptyValueIsNull).',
     exact: false,
@@ -379,7 +381,7 @@ const List<SgPropSpec> sgInputNumberPropSpecs = <SgPropSpec>[
     name: 'validation',
     reactName: 'validation',
     type: 'Function?',
-    tsType: '((value: number | null) => string | null)',
+    tsType: '((value: number) => string)',
     required: false,
     exact: false,
   ),

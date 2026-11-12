@@ -483,9 +483,7 @@ void main() {
               control: form,
               required: true,
               requiredMessage: 'Informe o preco',
-              validation: (v) => (v ?? 0) > 0
-                  ? null
-                  : 'maior que zero',
+              validation: (v) => (v ?? 0) > 0 ? null : 'maior que zero',
             ),
           ),
         );

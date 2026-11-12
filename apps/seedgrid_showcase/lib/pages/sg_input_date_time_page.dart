@@ -18,9 +18,15 @@ class _SgInputDateTimePageState extends State<SgInputDateTimePage> {
   final SgFormController _form = SgFormController();
   final ValueNotifier<String?> _instante = ValueNotifier<String?>(null);
   final ValueNotifier<String> _fuso = ValueNotifier<String>(
-    '2026-11-03T17:30:00.000Z',
+    '2026-11-03T17:30:00Z',
   );
   final ValueNotifier<String> _evento = ValueNotifier<String>('-');
+  final ValueNotifier<String?> _modoLocal = ValueNotifier<String?>(null);
+  final ValueNotifier<String?> _modoUtc = ValueNotifier<String?>(null);
+  final ValueNotifier<String?> _modoOffset = ValueNotifier<String?>(null);
+  final ValueNotifier<String?> _fusoLocal = ValueNotifier<String?>(null);
+  final ValueNotifier<String?> _fusoUtc = ValueNotifier<String?>(null);
+  final ValueNotifier<String?> _fusoOffset = ValueNotifier<String?>(null);
   final ValueNotifier<String> _enviado = ValueNotifier<String>('');
 
   @override
@@ -29,6 +35,12 @@ class _SgInputDateTimePageState extends State<SgInputDateTimePage> {
     _instante.dispose();
     _fuso.dispose();
     _evento.dispose();
+    _modoLocal.dispose();
+    _modoUtc.dispose();
+    _modoOffset.dispose();
+    _fusoLocal.dispose();
+    _fusoUtc.dispose();
+    _fusoOffset.dispose();
     _enviado.dispose();
     super.dispose();
   }
@@ -39,7 +51,7 @@ class _SgInputDateTimePageState extends State<SgInputDateTimePage> {
       ShowcaseExample(
         title: 'Básico',
         description:
-            'O onChange entrega o instante em ISO 8601 UTC (ou null se o campo estiver incompleto).',
+            'O onChange entrega o valor local do campo, sem fuso (ou null se o campo estiver incompleto).',
         preview:
             // #region sg-input-date-time-basico
             Column(
@@ -77,6 +89,7 @@ class _SgInputDateTimePageState extends State<SgInputDateTimePage> {
                     id: 'demo-zone-utc',
                     labelText: 'UTC',
                     timeZone: 'UTC',
+                    valueMode: SgInputDateTimeValueMode.utc,
                     value: fuso,
                     // Campo incompleto (null) não mexe nos outros: só um instante válido atualiza.
                     onChange: (value, local) {
@@ -88,6 +101,7 @@ class _SgInputDateTimePageState extends State<SgInputDateTimePage> {
                     id: 'demo-zone-sp',
                     labelText: '-03:00',
                     timeZone: '-03:00',
+                    valueMode: SgInputDateTimeValueMode.utc,
                     value: fuso,
                     onChange: (value, local) {
                       if (value != null) _fuso.value = value;
@@ -98,6 +112,7 @@ class _SgInputDateTimePageState extends State<SgInputDateTimePage> {
                     id: 'demo-zone-in',
                     labelText: '+05:30',
                     timeZone: '+05:30',
+                    valueMode: SgInputDateTimeValueMode.utc,
                     value: fuso,
                     onChange: (value, local) {
                       if (value != null) _fuso.value = value;
@@ -175,7 +190,8 @@ class _SgInputDateTimePageState extends State<SgInputDateTimePage> {
       ),
       ShowcaseExample(
         title: 'Dentro de um formulário',
-        description: 'O formulário guarda o instante ISO 8601 UTC.',
+        description:
+            'O formulário guarda o valor no formato de valueMode (local, por padrão).',
         preview:
             // #region sg-input-date-time-formulario
             Column(
@@ -276,12 +292,148 @@ class _SgInputDateTimePageState extends State<SgInputDateTimePage> {
         // #endregion
         code: SgInputDateTimePageSnippets.sgInputDateTimeIdioma,
       ),
+      ShowcaseExample(
+        title: 'Valor local (padrão)',
+        description:
+            'valueMode="local": o valor é o relógio do campo, sem fuso (2026-01-15T10:30), no fuso America/Sao_Paulo.',
+        preview:
+            // #region sg-input-date-time-valor-local
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SgInputDateTime(
+                  id: 'demo-mode-local',
+                  labelText: context.tx('Quando'),
+                  timeZone: 'America/Sao_Paulo',
+                  valueMode: SgInputDateTimeValueMode.local,
+                  onChange: (value, local) => _modoLocal.value = value,
+                ),
+                const SizedBox(height: 8),
+                ValueListenableBuilder<String?>(
+                  valueListenable: _modoLocal,
+                  builder: (context, valor, _) => Text(
+                    context.txf('Valor: {valor}', {'valor': valor ?? '-'}),
+                  ),
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgInputDateTimePageSnippets.sgInputDateTimeValorLocal,
+      ),
+      ShowcaseExample(
+        title: 'Valor em UTC',
+        description:
+            'valueMode="utc": o valor é o instante em UTC (2026-01-15T13:30:00Z).',
+        preview:
+            // #region sg-input-date-time-valor-utc
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SgInputDateTime(
+                  id: 'demo-mode-utc',
+                  labelText: context.tx('Quando'),
+                  timeZone: 'America/Sao_Paulo',
+                  valueMode: SgInputDateTimeValueMode.utc,
+                  onChange: (value, local) => _modoUtc.value = value,
+                ),
+                const SizedBox(height: 8),
+                ValueListenableBuilder<String?>(
+                  valueListenable: _modoUtc,
+                  builder: (context, valor, _) => Text(
+                    context.txf('Valor: {valor}', {'valor': valor ?? '-'}),
+                  ),
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgInputDateTimePageSnippets.sgInputDateTimeValorUtc,
+      ),
+      ShowcaseExample(
+        title: 'Valor com deslocamento',
+        description:
+            'valueMode="offset": o valor é o relógio do campo com o deslocamento do fuso (2026-01-15T10:30:00-03:00).',
+        preview:
+            // #region sg-input-date-time-valor-offset
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SgInputDateTime(
+                  id: 'demo-mode-offset',
+                  labelText: context.tx('Quando'),
+                  timeZone: 'America/Sao_Paulo',
+                  valueMode: SgInputDateTimeValueMode.offset,
+                  onChange: (value, local) => _modoOffset.value = value,
+                ),
+                const SizedBox(height: 8),
+                ValueListenableBuilder<String?>(
+                  valueListenable: _modoOffset,
+                  builder: (context, valor, _) => Text(
+                    context.txf('Valor: {valor}', {'valor': valor ?? '-'}),
+                  ),
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgInputDateTimePageSnippets.sgInputDateTimeValorOffset,
+      ),
+      ShowcaseExample(
+        title: 'Outro fuso nos três modos',
+        description:
+            'O mesmo campo em Asia/Tokyo (+09:00): digite 10:30 e veja o valor nos modos local, utc e offset.',
+        preview:
+            // #region sg-input-date-time-outro-fuso
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SgInputDateTime(
+                  id: 'demo-tz-local',
+                  labelText: 'local',
+                  timeZone: 'Asia/Tokyo',
+                  valueMode: SgInputDateTimeValueMode.local,
+                  onChange: (value, local) => _fusoLocal.value = value,
+                ),
+                const SizedBox(height: 12),
+                SgInputDateTime(
+                  id: 'demo-tz-utc',
+                  labelText: 'utc',
+                  timeZone: 'Asia/Tokyo',
+                  valueMode: SgInputDateTimeValueMode.utc,
+                  onChange: (value, local) => _fusoUtc.value = value,
+                ),
+                const SizedBox(height: 12),
+                SgInputDateTime(
+                  id: 'demo-tz-offset',
+                  labelText: 'offset',
+                  timeZone: 'Asia/Tokyo',
+                  valueMode: SgInputDateTimeValueMode.offset,
+                  onChange: (value, local) => _fusoOffset.value = value,
+                ),
+                const SizedBox(height: 12),
+                ValueListenableBuilder<String?>(
+                  valueListenable: _fusoLocal,
+                  builder: (context, valor, _) =>
+                      Text('local: ${valor ?? '-'}'),
+                ),
+                ValueListenableBuilder<String?>(
+                  valueListenable: _fusoUtc,
+                  builder: (context, valor, _) => Text('utc: ${valor ?? '-'}'),
+                ),
+                ValueListenableBuilder<String?>(
+                  valueListenable: _fusoOffset,
+                  builder: (context, valor, _) =>
+                      Text('offset: ${valor ?? '-'}'),
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgInputDateTimePageSnippets.sgInputDateTimeOutroFuso,
+      ),
     ];
 
     return SgShowcasePage(
       name: 'SgInputDateTime',
       description:
-          'Campo de data e hora que entrega e recebe instantes ISO 8601 em UTC, exibindo a hora no fuso escolhido.',
+          'Campo de data e hora que entrega e recebe o valor em local, utc ou offset (valueMode), exibindo a hora no fuso escolhido.',
       examples: examples,
       propSpecs: [
         ...sgPropSpecs['SgInputDateTime']!,

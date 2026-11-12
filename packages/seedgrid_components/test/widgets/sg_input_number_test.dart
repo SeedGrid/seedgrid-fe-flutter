@@ -899,8 +899,7 @@ void main() {
                   emptyValueIsNull: true,
                   required: true,
                   requiredMessage: 'Informe a quantidade',
-                  validation: (v) =>
-                      (v ?? 0) >= 10 ? null : 'minimo 10',
+                  validation: (v) => (v ?? 0) >= 10 ? null : 'minimo 10',
                 ),
                 const SgInputNumber(id: 'z'),
               ],

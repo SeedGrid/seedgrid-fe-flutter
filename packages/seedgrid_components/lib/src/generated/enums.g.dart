@@ -1905,6 +1905,25 @@ enum SgInputDateTimeTextInputType {
   }
 }
 
+/// Valores aceitos pelo React: `local`, `utc`, `offset`.
+enum SgInputDateTimeValueMode {
+  local('local'),
+  utc('utc'),
+  offset('offset');
+
+  const SgInputDateTimeValueMode(this.value);
+
+  /// String equivalente no React.
+  final String value;
+
+  static SgInputDateTimeValueMode? fromValue(String? v) {
+    for (final e in values) {
+      if (e.value == v) return e;
+    }
+    return null;
+  }
+}
+
 /// Valores aceitos pelo React: `none`, `sm`, `md`, `lg`.
 enum SgInputEmailElevation {
   none('none'),

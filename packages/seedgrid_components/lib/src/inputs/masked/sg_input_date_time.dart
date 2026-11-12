@@ -1,10 +1,10 @@
 // Porte de SgInputDateTime (React: src/inputs/SgInputDateTime.tsx, um <input type="datetime-local">).
 // Diferencas assumidas: no React o campo e o <input type="datetime-local"> nativo; aqui e um SgInputText com
 // mascara no formato do idioma (dd/MM/yyyy HH:mm; MM/dd/yyyy HH:mm em en-US), o calendario proprio do pacote e o
-// seletor de hora do Material (sem dependencia nova). O VALOR segue o React: instante ISO 8601 UTC
-// (`2026-11-03T17:30:00.000Z`) em onChange e no formulario, ou null/'' enquanto o texto esta incompleto ou
-// invalido. A hora e mostrada e lida no `timeZone` (local, UTC ou deslocamento fixo); nome IANA cai em "local"
-// porque o pacote nao traz banco de fusos.
+// seletor de hora do Material (sem dependencia nova). O VALOR segue o React e `valueMode`: `local`
+// (`2026-11-03T14:30`, padrao), `utc` (`2026-11-03T17:30:00Z`) ou `offset` (`2026-11-03T14:30:00-03:00`) em onChange e no
+// formulario, ou null/'' enquanto o texto esta incompleto ou invalido. A hora e mostrada e lida no `timeZone` (local,
+// UTC, deslocamento fixo ou nome IANA da tabela do SgClock).
 import 'package:flutter/material.dart';
 
 import '../../form/sg_form.dart';
@@ -116,6 +116,7 @@ class SgInputDateTime extends StatefulWidget implements SgInputDateTimeProps {
     this.suffixText,
     this.textInputType,
     this.timeZone,
+    this.valueMode,
     this.validateOnBlur,
     this.validation,
     this.value,
@@ -214,7 +215,7 @@ class SgInputDateTime extends StatefulWidget implements SgInputDateTimeProps {
   @override
   final String? name;
 
-  /// Instante ISO 8601 UTC (ou `null` se incompleto/invalido) e o texto local `YYYY-MM-DDTHH:mm[:ss]`.
+  /// Valor no formato de `valueMode` (ou `null` se incompleto/invalido) e o texto local `YYYY-MM-DDTHH:mm[:ss]`.
   @override
   final void Function(String? value, String local)? onChange;
 
@@ -261,9 +262,13 @@ class SgInputDateTime extends StatefulWidget implements SgInputDateTimeProps {
   @override
   final SgInputDateTimeTextInputType? textInputType;
 
-  /// "local" (padrao), "UTC" ou deslocamento fixo ("+03:00"). Nome IANA cai em "local".
+  /// "local" (padrao, o do dispositivo), "UTC", deslocamento fixo ("+03:00") ou nome IANA ("America/Sao_Paulo").
   @override
   final String? timeZone;
+
+  /// Formato do valor que sai (`onChange` e formulario) e que o formulario aceita: `local` (padrao), `utc` ou `offset`.
+  @override
+  final SgInputDateTimeValueMode? valueMode;
 
   @override
   final bool? validateOnBlur;
@@ -309,7 +314,13 @@ class _SgInputDateTimeState extends State<SgInputDateTime> {
   bool get _bound => widget.name != null && _form != null;
 
   String _localOf(Object? v) =>
-      sgInstantToWallClock(v, timeZone: widget.timeZone, showSeconds: _seconds);
+      sgParseDateTimeValue(v, timeZone: widget.timeZone, showSeconds: _seconds);
+
+  SgDateTimeValueMode get _mode => switch (widget.valueMode) {
+    SgInputDateTimeValueMode.utc => SgDateTimeValueMode.utc,
+    SgInputDateTimeValueMode.offset => SgDateTimeValueMode.offset,
+    _ => SgDateTimeValueMode.local,
+  };
 
   @override
   void didChangeDependencies() {
@@ -483,7 +494,7 @@ class _SgInputDateTimeState extends State<SgInputDateTime> {
     final local = sgLocalFromDisplay(text, _locale, _seconds);
     final iso = local.isEmpty
         ? null
-        : sgWallClockToInstant(local, timeZone: widget.timeZone);
+        : sgFormatDateTimeValue(local, mode: _mode, timeZone: widget.timeZone);
     _seen = iso ?? '';
     if (_bound) _form!.setValue(widget.name!, iso ?? '');
     widget.onChange?.call(iso, local);

@@ -9053,6 +9053,7 @@
             "name": "emptyValueIsNull",
             "type": "bool?",
             "required": false,
+            "default": "false",
             "description": "Se true, campo vazio vale null; se false (padrao), vale 0."
           },
           {
@@ -10029,6 +10030,18 @@
             "description": "Fuso do campo: local, UTC, deslocamento (+03:00) ou nome IANA."
           },
           {
+            "name": "valueMode",
+            "type": "SgInputDateTimeValueMode?",
+            "required": false,
+            "default": "local",
+            "description": "Formato do valor que sai (onChange e formulario) e que o formulario aceita: local (2026-01-15T10:30), utc (2026-01-15T13:30:00Z) ou offset (2026-01-15T10:30:00-03:00).",
+            "values": [
+              "local",
+              "utc",
+              "offset"
+            ]
+          },
+          {
             "name": "validateOnBlur",
             "type": "bool?",
             "required": false
@@ -10043,7 +10056,7 @@
             "name": "value",
             "type": "Object?",
             "required": false,
-            "description": "Instante controlado (ISO 8601 ou Date).",
+            "description": "Valor controlado em qualquer formato (local sem fuso, ISO 8601 com Z ou deslocamento, ou Date).",
             "typeExact": false
           },
           {
@@ -10085,7 +10098,7 @@
             "title": "Fusos horários",
             "file": "apps/seedgrid_showcase/lib/pages/sg_input_date_time_page.dart",
             "kind": "dart",
-            "code": "ValueListenableBuilder<String>(\n  valueListenable: _fuso,\n  builder: (context, fuso, _) => Column(\n    crossAxisAlignment: CrossAxisAlignment.start,\n    children: [\n      SgInputDateTime(\n        id: 'demo-zone-utc',\n        labelText: 'UTC',\n        timeZone: 'UTC',\n        value: fuso,\n        // Campo incompleto (null) não mexe nos outros: só um instante válido atualiza.\n        onChange: (value, local) {\n          if (value != null) _fuso.value = value;\n        },\n      ),\n      const SizedBox(height: 12),\n      SgInputDateTime(\n        id: 'demo-zone-sp',\n        labelText: '-03:00',\n        timeZone: '-03:00',\n        value: fuso,\n        onChange: (value, local) {\n          if (value != null) _fuso.value = value;\n        },\n      ),\n      const SizedBox(height: 12),\n      SgInputDateTime(\n        id: 'demo-zone-in',\n        labelText: '+05:30',\n        timeZone: '+05:30',\n        value: fuso,\n        onChange: (value, local) {\n          if (value != null) _fuso.value = value;\n        },\n      ),\n      const SizedBox(height: 8),\n      Text(context.txf('Valor: {valor}', {'valor': fuso})),\n    ],\n  ),\n)"
+            "code": "ValueListenableBuilder<String>(\n  valueListenable: _fuso,\n  builder: (context, fuso, _) => Column(\n    crossAxisAlignment: CrossAxisAlignment.start,\n    children: [\n      SgInputDateTime(\n        id: 'demo-zone-utc',\n        labelText: 'UTC',\n        timeZone: 'UTC',\n        valueMode: SgInputDateTimeValueMode.utc,\n        value: fuso,\n        // Campo incompleto (null) não mexe nos outros: só um instante válido atualiza.\n        onChange: (value, local) {\n          if (value != null) _fuso.value = value;\n        },\n      ),\n      const SizedBox(height: 12),\n      SgInputDateTime(\n        id: 'demo-zone-sp',\n        labelText: '-03:00',\n        timeZone: '-03:00',\n        valueMode: SgInputDateTimeValueMode.utc,\n        value: fuso,\n        onChange: (value, local) {\n          if (value != null) _fuso.value = value;\n        },\n      ),\n      const SizedBox(height: 12),\n      SgInputDateTime(\n        id: 'demo-zone-in',\n        labelText: '+05:30',\n        timeZone: '+05:30',\n        valueMode: SgInputDateTimeValueMode.utc,\n        value: fuso,\n        onChange: (value, local) {\n          if (value != null) _fuso.value = value;\n        },\n      ),\n      const SizedBox(height: 8),\n      Text(context.txf('Valor: {valor}', {'valor': fuso})),\n    ],\n  ),\n)"
           },
           {
             "id": "sg-input-date-time-idioma",
@@ -10102,6 +10115,13 @@
             "code": "SgInputDateTime(\n  id: 'demo-limits',\n  labelText: context.tx('Agendamento'),\n  timeZone: 'UTC',\n  minDate: '2026-11-01T08:00:00Z',\n  maxDate: '2026-11-30T18:00:00Z',\n  minuteStep: 15,\n  required: true,\n)"
           },
           {
+            "id": "sg-input-date-time-outro-fuso",
+            "title": "Outro fuso nos três modos",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_input_date_time_page.dart",
+            "kind": "dart",
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgInputDateTime(\n      id: 'demo-tz-local',\n      labelText: 'local',\n      timeZone: 'Asia/Tokyo',\n      valueMode: SgInputDateTimeValueMode.local,\n      onChange: (value, local) => _fusoLocal.value = value,\n    ),\n    const SizedBox(height: 12),\n    SgInputDateTime(\n      id: 'demo-tz-utc',\n      labelText: 'utc',\n      timeZone: 'Asia/Tokyo',\n      valueMode: SgInputDateTimeValueMode.utc,\n      onChange: (value, local) => _fusoUtc.value = value,\n    ),\n    const SizedBox(height: 12),\n    SgInputDateTime(\n      id: 'demo-tz-offset',\n      labelText: 'offset',\n      timeZone: 'Asia/Tokyo',\n      valueMode: SgInputDateTimeValueMode.offset,\n      onChange: (value, local) => _fusoOffset.value = value,\n    ),\n    const SizedBox(height: 12),\n    ValueListenableBuilder<String?>(\n      valueListenable: _fusoLocal,\n      builder: (context, valor, _) =>\n          Text('local: ${valor ?? '-'}'),\n    ),\n    ValueListenableBuilder<String?>(\n      valueListenable: _fusoUtc,\n      builder: (context, valor, _) => Text('utc: ${valor ?? '-'}'),\n    ),\n    ValueListenableBuilder<String?>(\n      valueListenable: _fusoOffset,\n      builder: (context, valor, _) =>\n          Text('offset: ${valor ?? '-'}'),\n    ),\n  ],\n)"
+          },
+          {
             "id": "sg-input-date-time-rotulo",
             "title": "Posição do rótulo",
             "file": "apps/seedgrid_showcase/lib/pages/sg_input_date_time_page.dart",
@@ -10114,6 +10134,27 @@
             "file": "apps/seedgrid_showcase/lib/pages/sg_input_date_time_page.dart",
             "kind": "dart",
             "code": "SgInputDateTime(\n  id: 'demo-seconds',\n  labelText: context.tx('Evento'),\n  timeZone: 'UTC',\n  defaultValue: '2026-11-03T17:30:45Z',\n  showSeconds: true,\n)"
+          },
+          {
+            "id": "sg-input-date-time-valor-local",
+            "title": "Valor local (padrão)",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_input_date_time_page.dart",
+            "kind": "dart",
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgInputDateTime(\n      id: 'demo-mode-local',\n      labelText: context.tx('Quando'),\n      timeZone: 'America/Sao_Paulo',\n      valueMode: SgInputDateTimeValueMode.local,\n      onChange: (value, local) => _modoLocal.value = value,\n    ),\n    const SizedBox(height: 8),\n    ValueListenableBuilder<String?>(\n      valueListenable: _modoLocal,\n      builder: (context, valor, _) => Text(\n        context.txf('Valor: {valor}', {'valor': valor ?? '-'}),\n      ),\n    ),\n  ],\n)"
+          },
+          {
+            "id": "sg-input-date-time-valor-offset",
+            "title": "Valor com deslocamento",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_input_date_time_page.dart",
+            "kind": "dart",
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgInputDateTime(\n      id: 'demo-mode-offset',\n      labelText: context.tx('Quando'),\n      timeZone: 'America/Sao_Paulo',\n      valueMode: SgInputDateTimeValueMode.offset,\n      onChange: (value, local) => _modoOffset.value = value,\n    ),\n    const SizedBox(height: 8),\n    ValueListenableBuilder<String?>(\n      valueListenable: _modoOffset,\n      builder: (context, valor, _) => Text(\n        context.txf('Valor: {valor}', {'valor': valor ?? '-'}),\n      ),\n    ),\n  ],\n)"
+          },
+          {
+            "id": "sg-input-date-time-valor-utc",
+            "title": "Valor em UTC",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_input_date_time_page.dart",
+            "kind": "dart",
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgInputDateTime(\n      id: 'demo-mode-utc',\n      labelText: context.tx('Quando'),\n      timeZone: 'America/Sao_Paulo',\n      valueMode: SgInputDateTimeValueMode.utc,\n      onChange: (value, local) => _modoUtc.value = value,\n    ),\n    const SizedBox(height: 8),\n    ValueListenableBuilder<String?>(\n      valueListenable: _modoUtc,\n      builder: (context, valor, _) => Text(\n        context.txf('Valor: {valor}', {'valor': valor ?? '-'}),\n      ),\n    ),\n  ],\n)"
           }
         ],
         "parity": {
@@ -10603,6 +10644,7 @@
             "name": "emptyValueIsNull",
             "type": "bool?",
             "required": false,
+            "default": "false",
             "description": "Se true, campo vazio vale null; se false (padrao), vale 0."
           },
           {

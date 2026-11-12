@@ -545,6 +545,174 @@
       "zone": "+14:00",
       "seconds": true,
       "out": ""
+    },
+    {
+      "instant": "2026-11-03T17:30:00.000Z",
+      "zone": "America/Sao_Paulo",
+      "seconds": false,
+      "out": "2026-11-03T14:30"
+    },
+    {
+      "instant": "2026-11-03T17:30:00.000Z",
+      "zone": "America/Sao_Paulo",
+      "seconds": true,
+      "out": "2026-11-03T14:30:00"
+    },
+    {
+      "instant": "2026-01-01T00:00:00.000Z",
+      "zone": "America/Sao_Paulo",
+      "seconds": false,
+      "out": "2025-12-31T21:00"
+    },
+    {
+      "instant": "2026-01-01T00:00:00.000Z",
+      "zone": "America/Sao_Paulo",
+      "seconds": true,
+      "out": "2025-12-31T21:00:00"
+    },
+    {
+      "instant": "2026-12-31T23:59:59.000Z",
+      "zone": "America/Sao_Paulo",
+      "seconds": false,
+      "out": "2026-12-31T20:59"
+    },
+    {
+      "instant": "2026-12-31T23:59:59.000Z",
+      "zone": "America/Sao_Paulo",
+      "seconds": true,
+      "out": "2026-12-31T20:59:59"
+    },
+    {
+      "instant": "2024-02-29T12:00:00.000Z",
+      "zone": "America/Sao_Paulo",
+      "seconds": false,
+      "out": "2024-02-29T09:00"
+    },
+    {
+      "instant": "2024-02-29T12:00:00.000Z",
+      "zone": "America/Sao_Paulo",
+      "seconds": true,
+      "out": "2024-02-29T09:00:00"
+    },
+    {
+      "instant": "2026-03-08T02:30:00.000Z",
+      "zone": "America/Sao_Paulo",
+      "seconds": false,
+      "out": "2026-03-07T23:30"
+    },
+    {
+      "instant": "2026-03-08T02:30:00.000Z",
+      "zone": "America/Sao_Paulo",
+      "seconds": true,
+      "out": "2026-03-07T23:30:00"
+    },
+    {
+      "instant": "nao-e-data",
+      "zone": "America/Sao_Paulo",
+      "seconds": false,
+      "out": ""
+    },
+    {
+      "instant": "nao-e-data",
+      "zone": "America/Sao_Paulo",
+      "seconds": true,
+      "out": ""
+    },
+    {
+      "instant": "",
+      "zone": "America/Sao_Paulo",
+      "seconds": false,
+      "out": ""
+    },
+    {
+      "instant": "",
+      "zone": "America/Sao_Paulo",
+      "seconds": true,
+      "out": ""
+    },
+    {
+      "instant": "2026-11-03T17:30:00.000Z",
+      "zone": "Asia/Tokyo",
+      "seconds": false,
+      "out": "2026-11-04T02:30"
+    },
+    {
+      "instant": "2026-11-03T17:30:00.000Z",
+      "zone": "Asia/Tokyo",
+      "seconds": true,
+      "out": "2026-11-04T02:30:00"
+    },
+    {
+      "instant": "2026-01-01T00:00:00.000Z",
+      "zone": "Asia/Tokyo",
+      "seconds": false,
+      "out": "2026-01-01T09:00"
+    },
+    {
+      "instant": "2026-01-01T00:00:00.000Z",
+      "zone": "Asia/Tokyo",
+      "seconds": true,
+      "out": "2026-01-01T09:00:00"
+    },
+    {
+      "instant": "2026-12-31T23:59:59.000Z",
+      "zone": "Asia/Tokyo",
+      "seconds": false,
+      "out": "2027-01-01T08:59"
+    },
+    {
+      "instant": "2026-12-31T23:59:59.000Z",
+      "zone": "Asia/Tokyo",
+      "seconds": true,
+      "out": "2027-01-01T08:59:59"
+    },
+    {
+      "instant": "2024-02-29T12:00:00.000Z",
+      "zone": "Asia/Tokyo",
+      "seconds": false,
+      "out": "2024-02-29T21:00"
+    },
+    {
+      "instant": "2024-02-29T12:00:00.000Z",
+      "zone": "Asia/Tokyo",
+      "seconds": true,
+      "out": "2024-02-29T21:00:00"
+    },
+    {
+      "instant": "2026-03-08T02:30:00.000Z",
+      "zone": "Asia/Tokyo",
+      "seconds": false,
+      "out": "2026-03-08T11:30"
+    },
+    {
+      "instant": "2026-03-08T02:30:00.000Z",
+      "zone": "Asia/Tokyo",
+      "seconds": true,
+      "out": "2026-03-08T11:30:00"
+    },
+    {
+      "instant": "nao-e-data",
+      "zone": "Asia/Tokyo",
+      "seconds": false,
+      "out": ""
+    },
+    {
+      "instant": "nao-e-data",
+      "zone": "Asia/Tokyo",
+      "seconds": true,
+      "out": ""
+    },
+    {
+      "instant": "",
+      "zone": "Asia/Tokyo",
+      "seconds": false,
+      "out": ""
+    },
+    {
+      "instant": "",
+      "zone": "Asia/Tokyo",
+      "seconds": true,
+      "out": ""
     }
   ],
   "toInstant": [
@@ -846,6 +1014,106 @@
     {
       "local": "lixo",
       "zone": "+14:00",
+      "out": null
+    },
+    {
+      "local": "2026-11-03T14:30",
+      "zone": "America/Sao_Paulo",
+      "out": "2026-11-03T17:30:00.000Z"
+    },
+    {
+      "local": "2026-11-03T14:30:45",
+      "zone": "America/Sao_Paulo",
+      "out": "2026-11-03T17:30:45.000Z"
+    },
+    {
+      "local": "2026-02-30T10:00",
+      "zone": "America/Sao_Paulo",
+      "out": null
+    },
+    {
+      "local": "2026-13-01T10:00",
+      "zone": "America/Sao_Paulo",
+      "out": null
+    },
+    {
+      "local": "2026-11-03T24:00",
+      "zone": "America/Sao_Paulo",
+      "out": null
+    },
+    {
+      "local": "2026-11-03T10:60",
+      "zone": "America/Sao_Paulo",
+      "out": null
+    },
+    {
+      "local": "2024-02-29T23:59",
+      "zone": "America/Sao_Paulo",
+      "out": "2024-03-01T02:59:00.000Z"
+    },
+    {
+      "local": "2026-11-03",
+      "zone": "America/Sao_Paulo",
+      "out": null
+    },
+    {
+      "local": "",
+      "zone": "America/Sao_Paulo",
+      "out": null
+    },
+    {
+      "local": "lixo",
+      "zone": "America/Sao_Paulo",
+      "out": null
+    },
+    {
+      "local": "2026-11-03T14:30",
+      "zone": "Asia/Tokyo",
+      "out": "2026-11-03T05:30:00.000Z"
+    },
+    {
+      "local": "2026-11-03T14:30:45",
+      "zone": "Asia/Tokyo",
+      "out": "2026-11-03T05:30:45.000Z"
+    },
+    {
+      "local": "2026-02-30T10:00",
+      "zone": "Asia/Tokyo",
+      "out": null
+    },
+    {
+      "local": "2026-13-01T10:00",
+      "zone": "Asia/Tokyo",
+      "out": null
+    },
+    {
+      "local": "2026-11-03T24:00",
+      "zone": "Asia/Tokyo",
+      "out": null
+    },
+    {
+      "local": "2026-11-03T10:60",
+      "zone": "Asia/Tokyo",
+      "out": null
+    },
+    {
+      "local": "2024-02-29T23:59",
+      "zone": "Asia/Tokyo",
+      "out": "2024-02-29T14:59:00.000Z"
+    },
+    {
+      "local": "2026-11-03",
+      "zone": "Asia/Tokyo",
+      "out": null
+    },
+    {
+      "local": "",
+      "zone": "Asia/Tokyo",
+      "out": null
+    },
+    {
+      "local": "lixo",
+      "zone": "Asia/Tokyo",
       "out": null
     }
   ],
@@ -1488,6 +1756,934 @@
       "locale": "fr",
       "seconds": true,
       "out": "lixo"
+    }
+  ],
+  "formatValue": [
+    {
+      "local": "2026-01-15T10:30",
+      "mode": "local",
+      "zone": "UTC",
+      "out": "2026-01-15T10:30"
+    },
+    {
+      "local": "2026-01-15T10:30",
+      "mode": "utc",
+      "zone": "UTC",
+      "out": "2026-01-15T10:30:00Z"
+    },
+    {
+      "local": "2026-01-15T10:30",
+      "mode": "offset",
+      "zone": "UTC",
+      "out": "2026-01-15T10:30:00+00:00"
+    },
+    {
+      "local": "2026-01-15T10:30:15",
+      "mode": "local",
+      "zone": "UTC",
+      "out": "2026-01-15T10:30:15"
+    },
+    {
+      "local": "2026-01-15T10:30:15",
+      "mode": "utc",
+      "zone": "UTC",
+      "out": "2026-01-15T10:30:15Z"
+    },
+    {
+      "local": "2026-01-15T10:30:15",
+      "mode": "offset",
+      "zone": "UTC",
+      "out": "2026-01-15T10:30:15+00:00"
+    },
+    {
+      "local": "2026-07-01T00:00",
+      "mode": "local",
+      "zone": "UTC",
+      "out": "2026-07-01T00:00"
+    },
+    {
+      "local": "2026-07-01T00:00",
+      "mode": "utc",
+      "zone": "UTC",
+      "out": "2026-07-01T00:00:00Z"
+    },
+    {
+      "local": "2026-07-01T00:00",
+      "mode": "offset",
+      "zone": "UTC",
+      "out": "2026-07-01T00:00:00+00:00"
+    },
+    {
+      "local": "2026-02-30T10:00",
+      "mode": "local",
+      "zone": "UTC",
+      "out": null
+    },
+    {
+      "local": "2026-02-30T10:00",
+      "mode": "utc",
+      "zone": "UTC",
+      "out": null
+    },
+    {
+      "local": "2026-02-30T10:00",
+      "mode": "offset",
+      "zone": "UTC",
+      "out": null
+    },
+    {
+      "local": "lixo",
+      "mode": "local",
+      "zone": "UTC",
+      "out": null
+    },
+    {
+      "local": "lixo",
+      "mode": "utc",
+      "zone": "UTC",
+      "out": null
+    },
+    {
+      "local": "lixo",
+      "mode": "offset",
+      "zone": "UTC",
+      "out": null
+    },
+    {
+      "local": "",
+      "mode": "local",
+      "zone": "UTC",
+      "out": null
+    },
+    {
+      "local": "",
+      "mode": "utc",
+      "zone": "UTC",
+      "out": null
+    },
+    {
+      "local": "",
+      "mode": "offset",
+      "zone": "UTC",
+      "out": null
+    },
+    {
+      "local": "2026-01-15T10:30",
+      "mode": "local",
+      "zone": "-03:00",
+      "out": "2026-01-15T10:30"
+    },
+    {
+      "local": "2026-01-15T10:30",
+      "mode": "utc",
+      "zone": "-03:00",
+      "out": "2026-01-15T13:30:00Z"
+    },
+    {
+      "local": "2026-01-15T10:30",
+      "mode": "offset",
+      "zone": "-03:00",
+      "out": "2026-01-15T10:30:00-03:00"
+    },
+    {
+      "local": "2026-01-15T10:30:15",
+      "mode": "local",
+      "zone": "-03:00",
+      "out": "2026-01-15T10:30:15"
+    },
+    {
+      "local": "2026-01-15T10:30:15",
+      "mode": "utc",
+      "zone": "-03:00",
+      "out": "2026-01-15T13:30:15Z"
+    },
+    {
+      "local": "2026-01-15T10:30:15",
+      "mode": "offset",
+      "zone": "-03:00",
+      "out": "2026-01-15T10:30:15-03:00"
+    },
+    {
+      "local": "2026-07-01T00:00",
+      "mode": "local",
+      "zone": "-03:00",
+      "out": "2026-07-01T00:00"
+    },
+    {
+      "local": "2026-07-01T00:00",
+      "mode": "utc",
+      "zone": "-03:00",
+      "out": "2026-07-01T03:00:00Z"
+    },
+    {
+      "local": "2026-07-01T00:00",
+      "mode": "offset",
+      "zone": "-03:00",
+      "out": "2026-07-01T00:00:00-03:00"
+    },
+    {
+      "local": "2026-02-30T10:00",
+      "mode": "local",
+      "zone": "-03:00",
+      "out": null
+    },
+    {
+      "local": "2026-02-30T10:00",
+      "mode": "utc",
+      "zone": "-03:00",
+      "out": null
+    },
+    {
+      "local": "2026-02-30T10:00",
+      "mode": "offset",
+      "zone": "-03:00",
+      "out": null
+    },
+    {
+      "local": "lixo",
+      "mode": "local",
+      "zone": "-03:00",
+      "out": null
+    },
+    {
+      "local": "lixo",
+      "mode": "utc",
+      "zone": "-03:00",
+      "out": null
+    },
+    {
+      "local": "lixo",
+      "mode": "offset",
+      "zone": "-03:00",
+      "out": null
+    },
+    {
+      "local": "",
+      "mode": "local",
+      "zone": "-03:00",
+      "out": null
+    },
+    {
+      "local": "",
+      "mode": "utc",
+      "zone": "-03:00",
+      "out": null
+    },
+    {
+      "local": "",
+      "mode": "offset",
+      "zone": "-03:00",
+      "out": null
+    },
+    {
+      "local": "2026-01-15T10:30",
+      "mode": "local",
+      "zone": "+05:30",
+      "out": "2026-01-15T10:30"
+    },
+    {
+      "local": "2026-01-15T10:30",
+      "mode": "utc",
+      "zone": "+05:30",
+      "out": "2026-01-15T05:00:00Z"
+    },
+    {
+      "local": "2026-01-15T10:30",
+      "mode": "offset",
+      "zone": "+05:30",
+      "out": "2026-01-15T10:30:00+05:30"
+    },
+    {
+      "local": "2026-01-15T10:30:15",
+      "mode": "local",
+      "zone": "+05:30",
+      "out": "2026-01-15T10:30:15"
+    },
+    {
+      "local": "2026-01-15T10:30:15",
+      "mode": "utc",
+      "zone": "+05:30",
+      "out": "2026-01-15T05:00:15Z"
+    },
+    {
+      "local": "2026-01-15T10:30:15",
+      "mode": "offset",
+      "zone": "+05:30",
+      "out": "2026-01-15T10:30:15+05:30"
+    },
+    {
+      "local": "2026-07-01T00:00",
+      "mode": "local",
+      "zone": "+05:30",
+      "out": "2026-07-01T00:00"
+    },
+    {
+      "local": "2026-07-01T00:00",
+      "mode": "utc",
+      "zone": "+05:30",
+      "out": "2026-06-30T18:30:00Z"
+    },
+    {
+      "local": "2026-07-01T00:00",
+      "mode": "offset",
+      "zone": "+05:30",
+      "out": "2026-07-01T00:00:00+05:30"
+    },
+    {
+      "local": "2026-02-30T10:00",
+      "mode": "local",
+      "zone": "+05:30",
+      "out": null
+    },
+    {
+      "local": "2026-02-30T10:00",
+      "mode": "utc",
+      "zone": "+05:30",
+      "out": null
+    },
+    {
+      "local": "2026-02-30T10:00",
+      "mode": "offset",
+      "zone": "+05:30",
+      "out": null
+    },
+    {
+      "local": "lixo",
+      "mode": "local",
+      "zone": "+05:30",
+      "out": null
+    },
+    {
+      "local": "lixo",
+      "mode": "utc",
+      "zone": "+05:30",
+      "out": null
+    },
+    {
+      "local": "lixo",
+      "mode": "offset",
+      "zone": "+05:30",
+      "out": null
+    },
+    {
+      "local": "",
+      "mode": "local",
+      "zone": "+05:30",
+      "out": null
+    },
+    {
+      "local": "",
+      "mode": "utc",
+      "zone": "+05:30",
+      "out": null
+    },
+    {
+      "local": "",
+      "mode": "offset",
+      "zone": "+05:30",
+      "out": null
+    },
+    {
+      "local": "2026-01-15T10:30",
+      "mode": "local",
+      "zone": "America/Sao_Paulo",
+      "out": "2026-01-15T10:30"
+    },
+    {
+      "local": "2026-01-15T10:30",
+      "mode": "utc",
+      "zone": "America/Sao_Paulo",
+      "out": "2026-01-15T13:30:00Z"
+    },
+    {
+      "local": "2026-01-15T10:30",
+      "mode": "offset",
+      "zone": "America/Sao_Paulo",
+      "out": "2026-01-15T10:30:00-03:00"
+    },
+    {
+      "local": "2026-01-15T10:30:15",
+      "mode": "local",
+      "zone": "America/Sao_Paulo",
+      "out": "2026-01-15T10:30:15"
+    },
+    {
+      "local": "2026-01-15T10:30:15",
+      "mode": "utc",
+      "zone": "America/Sao_Paulo",
+      "out": "2026-01-15T13:30:15Z"
+    },
+    {
+      "local": "2026-01-15T10:30:15",
+      "mode": "offset",
+      "zone": "America/Sao_Paulo",
+      "out": "2026-01-15T10:30:15-03:00"
+    },
+    {
+      "local": "2026-07-01T00:00",
+      "mode": "local",
+      "zone": "America/Sao_Paulo",
+      "out": "2026-07-01T00:00"
+    },
+    {
+      "local": "2026-07-01T00:00",
+      "mode": "utc",
+      "zone": "America/Sao_Paulo",
+      "out": "2026-07-01T03:00:00Z"
+    },
+    {
+      "local": "2026-07-01T00:00",
+      "mode": "offset",
+      "zone": "America/Sao_Paulo",
+      "out": "2026-07-01T00:00:00-03:00"
+    },
+    {
+      "local": "2026-02-30T10:00",
+      "mode": "local",
+      "zone": "America/Sao_Paulo",
+      "out": null
+    },
+    {
+      "local": "2026-02-30T10:00",
+      "mode": "utc",
+      "zone": "America/Sao_Paulo",
+      "out": null
+    },
+    {
+      "local": "2026-02-30T10:00",
+      "mode": "offset",
+      "zone": "America/Sao_Paulo",
+      "out": null
+    },
+    {
+      "local": "lixo",
+      "mode": "local",
+      "zone": "America/Sao_Paulo",
+      "out": null
+    },
+    {
+      "local": "lixo",
+      "mode": "utc",
+      "zone": "America/Sao_Paulo",
+      "out": null
+    },
+    {
+      "local": "lixo",
+      "mode": "offset",
+      "zone": "America/Sao_Paulo",
+      "out": null
+    },
+    {
+      "local": "",
+      "mode": "local",
+      "zone": "America/Sao_Paulo",
+      "out": null
+    },
+    {
+      "local": "",
+      "mode": "utc",
+      "zone": "America/Sao_Paulo",
+      "out": null
+    },
+    {
+      "local": "",
+      "mode": "offset",
+      "zone": "America/Sao_Paulo",
+      "out": null
+    },
+    {
+      "local": "2026-01-15T10:30",
+      "mode": "local",
+      "zone": "Asia/Tokyo",
+      "out": "2026-01-15T10:30"
+    },
+    {
+      "local": "2026-01-15T10:30",
+      "mode": "utc",
+      "zone": "Asia/Tokyo",
+      "out": "2026-01-15T01:30:00Z"
+    },
+    {
+      "local": "2026-01-15T10:30",
+      "mode": "offset",
+      "zone": "Asia/Tokyo",
+      "out": "2026-01-15T10:30:00+09:00"
+    },
+    {
+      "local": "2026-01-15T10:30:15",
+      "mode": "local",
+      "zone": "Asia/Tokyo",
+      "out": "2026-01-15T10:30:15"
+    },
+    {
+      "local": "2026-01-15T10:30:15",
+      "mode": "utc",
+      "zone": "Asia/Tokyo",
+      "out": "2026-01-15T01:30:15Z"
+    },
+    {
+      "local": "2026-01-15T10:30:15",
+      "mode": "offset",
+      "zone": "Asia/Tokyo",
+      "out": "2026-01-15T10:30:15+09:00"
+    },
+    {
+      "local": "2026-07-01T00:00",
+      "mode": "local",
+      "zone": "Asia/Tokyo",
+      "out": "2026-07-01T00:00"
+    },
+    {
+      "local": "2026-07-01T00:00",
+      "mode": "utc",
+      "zone": "Asia/Tokyo",
+      "out": "2026-06-30T15:00:00Z"
+    },
+    {
+      "local": "2026-07-01T00:00",
+      "mode": "offset",
+      "zone": "Asia/Tokyo",
+      "out": "2026-07-01T00:00:00+09:00"
+    },
+    {
+      "local": "2026-02-30T10:00",
+      "mode": "local",
+      "zone": "Asia/Tokyo",
+      "out": null
+    },
+    {
+      "local": "2026-02-30T10:00",
+      "mode": "utc",
+      "zone": "Asia/Tokyo",
+      "out": null
+    },
+    {
+      "local": "2026-02-30T10:00",
+      "mode": "offset",
+      "zone": "Asia/Tokyo",
+      "out": null
+    },
+    {
+      "local": "lixo",
+      "mode": "local",
+      "zone": "Asia/Tokyo",
+      "out": null
+    },
+    {
+      "local": "lixo",
+      "mode": "utc",
+      "zone": "Asia/Tokyo",
+      "out": null
+    },
+    {
+      "local": "lixo",
+      "mode": "offset",
+      "zone": "Asia/Tokyo",
+      "out": null
+    },
+    {
+      "local": "",
+      "mode": "local",
+      "zone": "Asia/Tokyo",
+      "out": null
+    },
+    {
+      "local": "",
+      "mode": "utc",
+      "zone": "Asia/Tokyo",
+      "out": null
+    },
+    {
+      "local": "",
+      "mode": "offset",
+      "zone": "Asia/Tokyo",
+      "out": null
+    }
+  ],
+  "parseValue": [
+    {
+      "value": "2026-01-15T10:30",
+      "zone": "UTC",
+      "seconds": false,
+      "out": "2026-01-15T10:30"
+    },
+    {
+      "value": "2026-01-15T10:30",
+      "zone": "UTC",
+      "seconds": true,
+      "out": "2026-01-15T10:30:00"
+    },
+    {
+      "value": "2026-01-15T10:30:15",
+      "zone": "UTC",
+      "seconds": false,
+      "out": "2026-01-15T10:30"
+    },
+    {
+      "value": "2026-01-15T10:30:15",
+      "zone": "UTC",
+      "seconds": true,
+      "out": "2026-01-15T10:30:15"
+    },
+    {
+      "value": "2026-01-15T13:30:00Z",
+      "zone": "UTC",
+      "seconds": false,
+      "out": "2026-01-15T13:30"
+    },
+    {
+      "value": "2026-01-15T13:30:00Z",
+      "zone": "UTC",
+      "seconds": true,
+      "out": "2026-01-15T13:30:00"
+    },
+    {
+      "value": "2026-01-15T13:30:00.000Z",
+      "zone": "UTC",
+      "seconds": false,
+      "out": "2026-01-15T13:30"
+    },
+    {
+      "value": "2026-01-15T13:30:00.000Z",
+      "zone": "UTC",
+      "seconds": true,
+      "out": "2026-01-15T13:30:00"
+    },
+    {
+      "value": "2026-01-15T10:30:00-03:00",
+      "zone": "UTC",
+      "seconds": false,
+      "out": "2026-01-15T13:30"
+    },
+    {
+      "value": "2026-01-15T10:30:00-03:00",
+      "zone": "UTC",
+      "seconds": true,
+      "out": "2026-01-15T13:30:00"
+    },
+    {
+      "value": "2026-01-15T10:30:00+09:00",
+      "zone": "UTC",
+      "seconds": false,
+      "out": "2026-01-15T01:30"
+    },
+    {
+      "value": "2026-01-15T10:30:00+09:00",
+      "zone": "UTC",
+      "seconds": true,
+      "out": "2026-01-15T01:30:00"
+    },
+    {
+      "value": "lixo",
+      "zone": "UTC",
+      "seconds": false,
+      "out": ""
+    },
+    {
+      "value": "lixo",
+      "zone": "UTC",
+      "seconds": true,
+      "out": ""
+    },
+    {
+      "value": "",
+      "zone": "UTC",
+      "seconds": false,
+      "out": ""
+    },
+    {
+      "value": "",
+      "zone": "UTC",
+      "seconds": true,
+      "out": ""
+    },
+    {
+      "value": "2026-01-15T10:30",
+      "zone": "-03:00",
+      "seconds": false,
+      "out": "2026-01-15T10:30"
+    },
+    {
+      "value": "2026-01-15T10:30",
+      "zone": "-03:00",
+      "seconds": true,
+      "out": "2026-01-15T10:30:00"
+    },
+    {
+      "value": "2026-01-15T10:30:15",
+      "zone": "-03:00",
+      "seconds": false,
+      "out": "2026-01-15T10:30"
+    },
+    {
+      "value": "2026-01-15T10:30:15",
+      "zone": "-03:00",
+      "seconds": true,
+      "out": "2026-01-15T10:30:15"
+    },
+    {
+      "value": "2026-01-15T13:30:00Z",
+      "zone": "-03:00",
+      "seconds": false,
+      "out": "2026-01-15T10:30"
+    },
+    {
+      "value": "2026-01-15T13:30:00Z",
+      "zone": "-03:00",
+      "seconds": true,
+      "out": "2026-01-15T10:30:00"
+    },
+    {
+      "value": "2026-01-15T13:30:00.000Z",
+      "zone": "-03:00",
+      "seconds": false,
+      "out": "2026-01-15T10:30"
+    },
+    {
+      "value": "2026-01-15T13:30:00.000Z",
+      "zone": "-03:00",
+      "seconds": true,
+      "out": "2026-01-15T10:30:00"
+    },
+    {
+      "value": "2026-01-15T10:30:00-03:00",
+      "zone": "-03:00",
+      "seconds": false,
+      "out": "2026-01-15T10:30"
+    },
+    {
+      "value": "2026-01-15T10:30:00-03:00",
+      "zone": "-03:00",
+      "seconds": true,
+      "out": "2026-01-15T10:30:00"
+    },
+    {
+      "value": "2026-01-15T10:30:00+09:00",
+      "zone": "-03:00",
+      "seconds": false,
+      "out": "2026-01-14T22:30"
+    },
+    {
+      "value": "2026-01-15T10:30:00+09:00",
+      "zone": "-03:00",
+      "seconds": true,
+      "out": "2026-01-14T22:30:00"
+    },
+    {
+      "value": "lixo",
+      "zone": "-03:00",
+      "seconds": false,
+      "out": ""
+    },
+    {
+      "value": "lixo",
+      "zone": "-03:00",
+      "seconds": true,
+      "out": ""
+    },
+    {
+      "value": "",
+      "zone": "-03:00",
+      "seconds": false,
+      "out": ""
+    },
+    {
+      "value": "",
+      "zone": "-03:00",
+      "seconds": true,
+      "out": ""
+    },
+    {
+      "value": "2026-01-15T10:30",
+      "zone": "America/Sao_Paulo",
+      "seconds": false,
+      "out": "2026-01-15T10:30"
+    },
+    {
+      "value": "2026-01-15T10:30",
+      "zone": "America/Sao_Paulo",
+      "seconds": true,
+      "out": "2026-01-15T10:30:00"
+    },
+    {
+      "value": "2026-01-15T10:30:15",
+      "zone": "America/Sao_Paulo",
+      "seconds": false,
+      "out": "2026-01-15T10:30"
+    },
+    {
+      "value": "2026-01-15T10:30:15",
+      "zone": "America/Sao_Paulo",
+      "seconds": true,
+      "out": "2026-01-15T10:30:15"
+    },
+    {
+      "value": "2026-01-15T13:30:00Z",
+      "zone": "America/Sao_Paulo",
+      "seconds": false,
+      "out": "2026-01-15T10:30"
+    },
+    {
+      "value": "2026-01-15T13:30:00Z",
+      "zone": "America/Sao_Paulo",
+      "seconds": true,
+      "out": "2026-01-15T10:30:00"
+    },
+    {
+      "value": "2026-01-15T13:30:00.000Z",
+      "zone": "America/Sao_Paulo",
+      "seconds": false,
+      "out": "2026-01-15T10:30"
+    },
+    {
+      "value": "2026-01-15T13:30:00.000Z",
+      "zone": "America/Sao_Paulo",
+      "seconds": true,
+      "out": "2026-01-15T10:30:00"
+    },
+    {
+      "value": "2026-01-15T10:30:00-03:00",
+      "zone": "America/Sao_Paulo",
+      "seconds": false,
+      "out": "2026-01-15T10:30"
+    },
+    {
+      "value": "2026-01-15T10:30:00-03:00",
+      "zone": "America/Sao_Paulo",
+      "seconds": true,
+      "out": "2026-01-15T10:30:00"
+    },
+    {
+      "value": "2026-01-15T10:30:00+09:00",
+      "zone": "America/Sao_Paulo",
+      "seconds": false,
+      "out": "2026-01-14T22:30"
+    },
+    {
+      "value": "2026-01-15T10:30:00+09:00",
+      "zone": "America/Sao_Paulo",
+      "seconds": true,
+      "out": "2026-01-14T22:30:00"
+    },
+    {
+      "value": "lixo",
+      "zone": "America/Sao_Paulo",
+      "seconds": false,
+      "out": ""
+    },
+    {
+      "value": "lixo",
+      "zone": "America/Sao_Paulo",
+      "seconds": true,
+      "out": ""
+    },
+    {
+      "value": "",
+      "zone": "America/Sao_Paulo",
+      "seconds": false,
+      "out": ""
+    },
+    {
+      "value": "",
+      "zone": "America/Sao_Paulo",
+      "seconds": true,
+      "out": ""
+    },
+    {
+      "value": "2026-01-15T10:30",
+      "zone": "Asia/Tokyo",
+      "seconds": false,
+      "out": "2026-01-15T10:30"
+    },
+    {
+      "value": "2026-01-15T10:30",
+      "zone": "Asia/Tokyo",
+      "seconds": true,
+      "out": "2026-01-15T10:30:00"
+    },
+    {
+      "value": "2026-01-15T10:30:15",
+      "zone": "Asia/Tokyo",
+      "seconds": false,
+      "out": "2026-01-15T10:30"
+    },
+    {
+      "value": "2026-01-15T10:30:15",
+      "zone": "Asia/Tokyo",
+      "seconds": true,
+      "out": "2026-01-15T10:30:15"
+    },
+    {
+      "value": "2026-01-15T13:30:00Z",
+      "zone": "Asia/Tokyo",
+      "seconds": false,
+      "out": "2026-01-15T22:30"
+    },
+    {
+      "value": "2026-01-15T13:30:00Z",
+      "zone": "Asia/Tokyo",
+      "seconds": true,
+      "out": "2026-01-15T22:30:00"
+    },
+    {
+      "value": "2026-01-15T13:30:00.000Z",
+      "zone": "Asia/Tokyo",
+      "seconds": false,
+      "out": "2026-01-15T22:30"
+    },
+    {
+      "value": "2026-01-15T13:30:00.000Z",
+      "zone": "Asia/Tokyo",
+      "seconds": true,
+      "out": "2026-01-15T22:30:00"
+    },
+    {
+      "value": "2026-01-15T10:30:00-03:00",
+      "zone": "Asia/Tokyo",
+      "seconds": false,
+      "out": "2026-01-15T22:30"
+    },
+    {
+      "value": "2026-01-15T10:30:00-03:00",
+      "zone": "Asia/Tokyo",
+      "seconds": true,
+      "out": "2026-01-15T22:30:00"
+    },
+    {
+      "value": "2026-01-15T10:30:00+09:00",
+      "zone": "Asia/Tokyo",
+      "seconds": false,
+      "out": "2026-01-15T10:30"
+    },
+    {
+      "value": "2026-01-15T10:30:00+09:00",
+      "zone": "Asia/Tokyo",
+      "seconds": true,
+      "out": "2026-01-15T10:30:00"
+    },
+    {
+      "value": "lixo",
+      "zone": "Asia/Tokyo",
+      "seconds": false,
+      "out": ""
+    },
+    {
+      "value": "lixo",
+      "zone": "Asia/Tokyo",
+      "seconds": true,
+      "out": ""
+    },
+    {
+      "value": "",
+      "zone": "Asia/Tokyo",
+      "seconds": false,
+      "out": ""
+    },
+    {
+      "value": "",
+      "zone": "Asia/Tokyo",
+      "seconds": true,
+      "out": ""
     }
   ]
 }

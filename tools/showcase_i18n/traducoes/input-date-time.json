@@ -95,12 +95,6 @@
   "El formulario guarda el instante ISO 8601 UTC.",
   "Le formulaire conserve l'instant ISO 8601 UTC."
  ],
- "Campo de data e hora que entrega e recebe instantes ISO 8601 em UTC, exibindo a hora no fuso escolhido.": [
-  "Date and time field that reads and writes ISO 8601 UTC instants, showing the time in the chosen time zone.",
-  "Campo de data e hora que entrega e recebe instantes ISO 8601 em UTC, exibindo a hora no fuso escolhido.",
-  "Campo de fecha y hora que entrega y recibe instantes ISO 8601 en UTC, mostrando la hora en la zona elegida.",
-  "Champ date et heure qui lit et écrit des instants ISO 8601 en UTC, en affichant l'heure dans le fuseau choisi."
- ],
  "Eventos": [
   "Events",
   "Eventos",

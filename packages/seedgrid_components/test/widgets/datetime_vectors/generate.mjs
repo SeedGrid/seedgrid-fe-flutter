@@ -1,6 +1,7 @@
 // Vetores de paridade do SgInputDateTime (P132): a verdade e o CODIGO DO REACT (dateTimeLogic.ts),
 // transpilado com esbuild e executado de verdade. Cobre so fusos deterministicos: UTC e deslocamentos fixos
-// (fuso "local" e nomes IANA dependem da maquina/banco de fusos e ficam fora dos vetores).
+// (fuso "local" depende da maquina e fica fora; IANA entra so com zonas sem horario de verao em 2019-2045:
+// America/Sao_Paulo e Asia/Tokyo).
 // Uso (na raiz do repo seedgrid-fe-flutter):
 //   node packages/seedgrid_components/test/widgets/datetime_vectors/generate.mjs <pasta do pacote react>
 import fs from "node:fs";
@@ -34,7 +35,7 @@ const r = await esbuild.transform(fs.readFileSync(src, "utf8"), { loader: "ts", 
 fs.writeFileSync(path.join(tmp, "dateTimeLogic.mjs"), r.code);
 const L = await import(pathToFileURL(path.join(tmp, "dateTimeLogic.mjs")).href);
 
-const ZONES = ["UTC", "+03:00", "-03:00", "+05:30", "-0330", "+14:00"];
+const ZONES = ["UTC", "+03:00", "-03:00", "+05:30", "-0330", "+14:00", "America/Sao_Paulo", "Asia/Tokyo"];
 const INSTANTS = [
   "2026-11-03T17:30:00.000Z",
   "2026-01-01T00:00:00.000Z",
@@ -98,6 +99,18 @@ for (const l of ["2026-11-03T14:30", "2026-11-03T14:30:45", "2026-01-09T08:05", 
     for (const s of [false, true])
       format.push({ local: l, locale: loc, seconds: s, out: L.formatWallClock(l, loc, s) });
 
-fs.writeFileSync(out, JSON.stringify({ offsets, toWall, toInstant, snap, validate, format }, null, 2) + "\n");
+const formatValue = [];
+for (const z of ["UTC", "-03:00", "+05:30", "America/Sao_Paulo", "Asia/Tokyo"])
+  for (const l of ["2026-01-15T10:30", "2026-01-15T10:30:15", "2026-07-01T00:00", "2026-02-30T10:00", "lixo", ""])
+    for (const m of ["local", "utc", "offset"])
+      formatValue.push({ local: l, mode: m, zone: z, out: L.formatDateTimeValue(l, m, z) });
+
+const parseValue = [];
+for (const z of ["UTC", "-03:00", "America/Sao_Paulo", "Asia/Tokyo"])
+  for (const v of ["2026-01-15T10:30", "2026-01-15T10:30:15", "2026-01-15T13:30:00Z", "2026-01-15T13:30:00.000Z", "2026-01-15T10:30:00-03:00", "2026-01-15T10:30:00+09:00", "lixo", ""])
+    for (const s of [false, true])
+      parseValue.push({ value: v, zone: z, seconds: s, out: L.parseDateTimeValue(v, z, s) });
+
+fs.writeFileSync(out, JSON.stringify({ offsets, toWall, toInstant, snap, validate, format, formatValue, parseValue }, null, 2) + "\n");
 fs.rmSync(tmp, { recursive: true, force: true });
 console.log("ok " + out);

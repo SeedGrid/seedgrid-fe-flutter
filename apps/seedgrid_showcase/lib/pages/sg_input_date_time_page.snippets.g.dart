@@ -92,6 +92,7 @@ ValueListenableBuilder<String>(
         id: 'demo-zone-utc',
         labelText: 'UTC',
         timeZone: 'UTC',
+        valueMode: SgInputDateTimeValueMode.utc,
         value: fuso,
         // Campo incompleto (null) não mexe nos outros: só um instante válido atualiza.
         onChange: (value, local) {
@@ -103,6 +104,7 @@ ValueListenableBuilder<String>(
         id: 'demo-zone-sp',
         labelText: '-03:00',
         timeZone: '-03:00',
+        valueMode: SgInputDateTimeValueMode.utc,
         value: fuso,
         onChange: (value, local) {
           if (value != null) _fuso.value = value;
@@ -113,6 +115,7 @@ ValueListenableBuilder<String>(
         id: 'demo-zone-in',
         labelText: '+05:30',
         timeZone: '+05:30',
+        valueMode: SgInputDateTimeValueMode.utc,
         value: fuso,
         onChange: (value, local) {
           if (value != null) _fuso.value = value;
@@ -155,6 +158,53 @@ SgInputDateTime(
   maxDate: '2026-11-30T18:00:00Z',
   minuteStep: 15,
   required: true,
+)
+''';
+
+  /// Region `sg-input-date-time-outro-fuso`.
+  static const String sgInputDateTimeOutroFuso = r'''
+Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    SgInputDateTime(
+      id: 'demo-tz-local',
+      labelText: 'local',
+      timeZone: 'Asia/Tokyo',
+      valueMode: SgInputDateTimeValueMode.local,
+      onChange: (value, local) => _fusoLocal.value = value,
+    ),
+    const SizedBox(height: 12),
+    SgInputDateTime(
+      id: 'demo-tz-utc',
+      labelText: 'utc',
+      timeZone: 'Asia/Tokyo',
+      valueMode: SgInputDateTimeValueMode.utc,
+      onChange: (value, local) => _fusoUtc.value = value,
+    ),
+    const SizedBox(height: 12),
+    SgInputDateTime(
+      id: 'demo-tz-offset',
+      labelText: 'offset',
+      timeZone: 'Asia/Tokyo',
+      valueMode: SgInputDateTimeValueMode.offset,
+      onChange: (value, local) => _fusoOffset.value = value,
+    ),
+    const SizedBox(height: 12),
+    ValueListenableBuilder<String?>(
+      valueListenable: _fusoLocal,
+      builder: (context, valor, _) =>
+          Text('local: ${valor ?? '-'}'),
+    ),
+    ValueListenableBuilder<String?>(
+      valueListenable: _fusoUtc,
+      builder: (context, valor, _) => Text('utc: ${valor ?? '-'}'),
+    ),
+    ValueListenableBuilder<String?>(
+      valueListenable: _fusoOffset,
+      builder: (context, valor, _) =>
+          Text('offset: ${valor ?? '-'}'),
+    ),
+  ],
 )
 ''';
 
@@ -202,6 +252,75 @@ SgInputDateTime(
   timeZone: 'UTC',
   defaultValue: '2026-11-03T17:30:45Z',
   showSeconds: true,
+)
+''';
+
+  /// Region `sg-input-date-time-valor-local`.
+  static const String sgInputDateTimeValorLocal = r'''
+Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    SgInputDateTime(
+      id: 'demo-mode-local',
+      labelText: context.tx('Quando'),
+      timeZone: 'America/Sao_Paulo',
+      valueMode: SgInputDateTimeValueMode.local,
+      onChange: (value, local) => _modoLocal.value = value,
+    ),
+    const SizedBox(height: 8),
+    ValueListenableBuilder<String?>(
+      valueListenable: _modoLocal,
+      builder: (context, valor, _) => Text(
+        context.txf('Valor: {valor}', {'valor': valor ?? '-'}),
+      ),
+    ),
+  ],
+)
+''';
+
+  /// Region `sg-input-date-time-valor-offset`.
+  static const String sgInputDateTimeValorOffset = r'''
+Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    SgInputDateTime(
+      id: 'demo-mode-offset',
+      labelText: context.tx('Quando'),
+      timeZone: 'America/Sao_Paulo',
+      valueMode: SgInputDateTimeValueMode.offset,
+      onChange: (value, local) => _modoOffset.value = value,
+    ),
+    const SizedBox(height: 8),
+    ValueListenableBuilder<String?>(
+      valueListenable: _modoOffset,
+      builder: (context, valor, _) => Text(
+        context.txf('Valor: {valor}', {'valor': valor ?? '-'}),
+      ),
+    ),
+  ],
+)
+''';
+
+  /// Region `sg-input-date-time-valor-utc`.
+  static const String sgInputDateTimeValorUtc = r'''
+Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    SgInputDateTime(
+      id: 'demo-mode-utc',
+      labelText: context.tx('Quando'),
+      timeZone: 'America/Sao_Paulo',
+      valueMode: SgInputDateTimeValueMode.utc,
+      onChange: (value, local) => _modoUtc.value = value,
+    ),
+    const SizedBox(height: 8),
+    ValueListenableBuilder<String?>(
+      valueListenable: _modoUtc,
+      builder: (context, valor, _) => Text(
+        context.txf('Valor: {valor}', {'valor': valor ?? '-'}),
+      ),
+    ),
+  ],
 )
 ''';
 }
