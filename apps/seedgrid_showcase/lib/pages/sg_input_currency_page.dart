@@ -194,8 +194,7 @@ class _SgInputCurrencyPageState extends State<SgInputCurrencyPage> {
                     labelText: context.tx('Valor mínimo (>= 1000)'),
                     currency: 'BRL',
                     validation: (v) {
-                      final n = num.tryParse(v);
-                      return n != null && n >= 1000
+                      return v != null && v >= 1000
                           ? null
                           : context.tx('Valor deve ser ≥ 1000.');
                     },

@@ -169,7 +169,7 @@ class SgInputNumber extends StatelessWidget implements SgInputNumberProps {
   @override
   final bool? validateOnBlur;
   @override
-  final String? Function(String value)? validation;
+  final String? Function(num? value)? validation;
 
   /// Numero (px) ou texto ('50%'). Padrao: largura toda.
   @override

@@ -7706,7 +7706,7 @@
     {
      "name": "validation",
      "optional": true,
-     "ts": "((value: string) => string | null) | undefined",
+     "ts": "((value: number | null) => string | null) | undefined",
      "alias": null,
      "fn": true
     },
@@ -9140,7 +9140,7 @@
     {
      "name": "validation",
      "optional": true,
-     "ts": "((value: string) => string | null) | undefined",
+     "ts": "((value: number | null) => string | null) | undefined",
      "alias": null,
      "fn": true
     },

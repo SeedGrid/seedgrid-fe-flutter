@@ -98,7 +98,7 @@ class NumericFieldConfig {
   final num? maxValue;
   final String? minValueMessage;
   final String? maxValueMessage;
-  final String? Function(String value)? validation;
+  final String? Function(num? value)? validation;
   final bool? validateOnBlur;
   final ValueChanged<String?>? onValidation;
   final ValueChanged<num?>? onChange;
@@ -295,7 +295,7 @@ class NumericFieldState extends State<NumericField>
           t(i18n, 'components.inputs.number.max', {'max': _num(c.maxValue!)});
     }
     if (c.validation != null) {
-      return c.validation!(stateToValue(s, c.decimals));
+      return c.validation!(number);
     }
     return null;
   }

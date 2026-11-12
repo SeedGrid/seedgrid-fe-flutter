@@ -188,7 +188,7 @@ class SgInputCurrency extends StatelessWidget implements SgInputCurrencyProps {
   @override
   final bool? validateOnBlur;
   @override
-  final String? Function(String value)? validation;
+  final String? Function(num? value)? validation;
   @override
   final Object? width;
   @override

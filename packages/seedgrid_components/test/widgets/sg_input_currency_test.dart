@@ -419,7 +419,7 @@ void main() {
                 const SgInputCurrency(id: 'd', maxValue: 5),
                 SgInputCurrency(
                   id: 'e',
-                  validation: (v) => v == '1.00' ? null : 'so 1',
+                  validation: (v) => v == 1 ? null : 'so 1',
                   requiredMessage: 'x',
                 ),
                 const SgInputCurrency(id: 'z'),
@@ -483,7 +483,7 @@ void main() {
               control: form,
               required: true,
               requiredMessage: 'Informe o preco',
-              validation: (v) => (num.tryParse(v.replaceAll(',', '.')) ?? 0) > 0
+              validation: (v) => (v ?? 0) > 0
                   ? null
                   : 'maior que zero',
             ),

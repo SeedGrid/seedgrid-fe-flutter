@@ -379,7 +379,7 @@ const List<SgPropSpec> sgInputNumberPropSpecs = <SgPropSpec>[
     name: 'validation',
     reactName: 'validation',
     type: 'Function?',
-    tsType: '((value: string) => string)',
+    tsType: '((value: number | null) => string | null)',
     required: false,
     exact: false,
   ),

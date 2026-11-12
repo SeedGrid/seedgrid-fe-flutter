@@ -775,7 +775,7 @@ void main() {
       'validation propria recebe o valor canonico; onValidation(null) quando valido',
       (t) async {
         final msgs = <String?>[];
-        final seen = <String>[];
+        final seen = <num?>[];
         await t.pumpWidget(
           host(
             Column(
@@ -784,7 +784,7 @@ void main() {
                   id: 'n',
                   validation: (v) {
                     seen.add(v);
-                    return v == '5.00' ? null : 'so 5';
+                    return v == 5 ? null : 'so 5';
                   },
                   onValidation: msgs.add,
                 ),
@@ -797,7 +797,7 @@ void main() {
         await t.tap(field('z'));
         await t.pump();
         expect(find.text('so 5'), findsOneWidget);
-        expect(seen.last, '6.00');
+        expect(seen.last, 6);
         await t.tap(field());
         await backspace(t);
         await type(t, '5');
@@ -864,7 +864,7 @@ void main() {
                   required: true,
                   requiredMessage: 'Informe a quantidade',
                   validation: (v) =>
-                      (num.tryParse(v) ?? 0) >= 10 ? null : 'minimo 10',
+                      (v ?? 0) >= 10 ? null : 'minimo 10',
                 ),
                 const SgInputNumber(id: 'z'),
               ],

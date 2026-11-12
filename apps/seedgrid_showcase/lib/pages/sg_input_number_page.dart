@@ -194,8 +194,7 @@ class _SgInputNumberPageState extends State<SgInputNumberPage> {
                     labelText: context.tx('Apenas número par'),
                     decimals: 0,
                     validation: (v) {
-                      final n = num.tryParse(v);
-                      return n != null && n % 2 == 0
+                      return v != null && v % 2 == 0
                           ? null
                           : context.tx('Use um número par.');
                     },
