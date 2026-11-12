@@ -16,6 +16,9 @@ class SgInputPhonePage extends StatefulWidget {
 }
 
 class _SgInputPhonePageState extends State<SgInputPhonePage> {
+  final SgFormController _formControl = SgFormController(
+    defaultValues: {'telefone': '11987654321'},
+  );
   final ValueNotifier<String> _basico = ValueNotifier('');
   final ValueNotifier<String?> _validationMsg = ValueNotifier(null);
   final ValueNotifier<List<String>> _eventLog = ValueNotifier(const []);
@@ -24,6 +27,7 @@ class _SgInputPhonePageState extends State<SgInputPhonePage> {
 
   @override
   void dispose() {
+    _formControl.dispose();
     _basico.dispose();
     _validationMsg.dispose();
     _eventLog.dispose();
@@ -312,6 +316,96 @@ class _SgInputPhonePageState extends State<SgInputPhonePage> {
             ),
         // #endregion
         code: SgInputPhonePageSnippets.sgInputPhoneRotulo,
+      ),
+      ShowcaseExample(
+        title: 'Formulário com control',
+        description:
+            'Com `name` e `control`, o valor do formulário vem sempre mascarado. Para enviar só os dígitos, limpe com value.replaceAll(RegExp(r\'\\D\'), \'\').',
+        preview:
+            // #region sg-input-phone-formulario-control
+            SizedBox(
+              width: 320,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SgInputPhone(
+                    id: 'telefone-control',
+                    name: 'telefone',
+                    labelText: context.tx('Telefone'),
+                    control: _formControl,
+                  ),
+                  const SizedBox(height: 8),
+                  ListenableBuilder(
+                    listenable: _formControl,
+                    builder: (context, _) {
+                      final value =
+                          '${_formControl.getValue('telefone') ?? ''}';
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            '${context.tx('Valor no formulário')}: "$value"',
+                          ),
+                          Text(
+                            '${context.tx('Só os dígitos')}: "${value.replaceAll(RegExp(r'\D'), '')}"',
+                          ),
+                        ],
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ),
+        // #endregion
+        code: SgInputPhonePageSnippets.sgInputPhoneFormularioControl,
+      ),
+      ShowcaseExample(
+        title: 'Formulário com register',
+        description:
+            'Dentro de um SgForm, o campo com `name` se liga ao formulário (equivale ao register do React) e o valor também vem mascarado. Para enviar só os dígitos, limpe com value.replaceAll(RegExp(r\'\\D\'), \'\').',
+        preview:
+            // #region sg-input-phone-formulario-register
+            SgForm(
+              defaultValues: {'telefone': '11987654321'},
+              child: Builder(
+                builder: (context) {
+                  final form = SgForm.of(context);
+                  return SizedBox(
+                    width: 320,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SgInputPhone(
+                          id: 'telefone-register',
+                          name: 'telefone',
+                          labelText: context.tx('Telefone'),
+                        ),
+                        const SizedBox(height: 8),
+                        ListenableBuilder(
+                          listenable: form,
+                          builder: (context, _) {
+                            final value = '${form.getValue('telefone') ?? ''}';
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  '${context.tx('Valor no formulário')}: "$value"',
+                                ),
+                                Text(
+                                  '${context.tx('Só os dígitos')}: "${value.replaceAll(RegExp(r'\D'), '')}"',
+                                ),
+                              ],
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ),
+        // #endregion
+        code: SgInputPhonePageSnippets.sgInputPhoneFormularioRegister,
       ),
     ];
 

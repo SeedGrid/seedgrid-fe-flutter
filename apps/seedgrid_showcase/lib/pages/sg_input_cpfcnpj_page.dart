@@ -18,6 +18,9 @@ class SgInputCPFCNPJPage extends StatefulWidget {
 }
 
 class _SgInputCPFCNPJPageState extends State<SgInputCPFCNPJPage> {
+  final SgFormController _formControl = SgFormController(
+    defaultValues: {'documento': '52998224725'},
+  );
   final ValueNotifier<String> _basico = ValueNotifier('');
   final ValueNotifier<String?> _validationMsg = ValueNotifier(null);
   final ValueNotifier<List<String>> _eventLog = ValueNotifier(const []);
@@ -28,6 +31,7 @@ class _SgInputCPFCNPJPageState extends State<SgInputCPFCNPJPage> {
 
   @override
   void dispose() {
+    _formControl.dispose();
     _basico.dispose();
     _validationMsg.dispose();
     _eventLog.dispose();
@@ -414,6 +418,96 @@ class _SgInputCPFCNPJPageState extends State<SgInputCPFCNPJPage> {
             ),
         // #endregion
         code: SgInputCpfcnpjPageSnippets.sgInputCpfCnpjConsulta,
+      ),
+      ShowcaseExample(
+        title: 'Formulário com control',
+        description:
+            'Com `name` e `control`, o valor do formulário vem sempre mascarado. Para enviar só os dígitos, limpe com value.replaceAll(RegExp(r\'\\D\'), \'\').',
+        preview:
+            // #region sg-input-cpf-cnpj-formulario-control
+            SizedBox(
+              width: 320,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SgInputCPFCNPJ(
+                    id: 'documento-control',
+                    name: 'documento',
+                    labelText: context.tx('Documento'),
+                    control: _formControl,
+                  ),
+                  const SizedBox(height: 8),
+                  ListenableBuilder(
+                    listenable: _formControl,
+                    builder: (context, _) {
+                      final value =
+                          '${_formControl.getValue('documento') ?? ''}';
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            '${context.tx('Valor no formulário')}: "$value"',
+                          ),
+                          Text(
+                            '${context.tx('Só os dígitos')}: "${value.replaceAll(RegExp(r'\D'), '')}"',
+                          ),
+                        ],
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ),
+        // #endregion
+        code: SgInputCpfcnpjPageSnippets.sgInputCpfCnpjFormularioControl,
+      ),
+      ShowcaseExample(
+        title: 'Formulário com register',
+        description:
+            'Dentro de um SgForm, o campo com `name` se liga ao formulário (equivale ao register do React) e o valor também vem mascarado. Para enviar só os dígitos, limpe com value.replaceAll(RegExp(r\'\\D\'), \'\').',
+        preview:
+            // #region sg-input-cpf-cnpj-formulario-register
+            SgForm(
+              defaultValues: {'documento': '52998224725'},
+              child: Builder(
+                builder: (context) {
+                  final form = SgForm.of(context);
+                  return SizedBox(
+                    width: 320,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SgInputCPFCNPJ(
+                          id: 'documento-register',
+                          name: 'documento',
+                          labelText: context.tx('Documento'),
+                        ),
+                        const SizedBox(height: 8),
+                        ListenableBuilder(
+                          listenable: form,
+                          builder: (context, _) {
+                            final value = '${form.getValue('documento') ?? ''}';
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  '${context.tx('Valor no formulário')}: "$value"',
+                                ),
+                                Text(
+                                  '${context.tx('Só os dígitos')}: "${value.replaceAll(RegExp(r'\D'), '')}"',
+                                ),
+                              ],
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ),
+        // #endregion
+        code: SgInputCpfcnpjPageSnippets.sgInputCpfCnpjFormularioRegister,
       ),
     ];
 

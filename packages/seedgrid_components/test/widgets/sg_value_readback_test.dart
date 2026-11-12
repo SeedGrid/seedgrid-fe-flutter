@@ -5,6 +5,7 @@
 //
 // Achado documentado: campos com mascara (telefone, CEP, CPF, CNPJ, CPF/CNPJ) guardam SEMPRE o valor mascarado no
 // form, digitado ou posto por codigo (P155.F3.T13); os demais devolvem o valor posto por codigo como veio (ISO etc.).
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
@@ -45,6 +46,7 @@ const _maskedLabels = {
 };
 
 void main() {
+  maskedAmbientForm();
   setUp(() {
     resetComponentsI18n();
     setComponentsI18n(const SgComponentsI18nInput(locale: 'pt-BR'));
@@ -107,4 +109,30 @@ void main() {
       _typedInForm.keys.toSet(),
     );
   });
+}
+
+void maskedAmbientForm() {
+  testWidgets(
+    'SgForm (sem control): CPF com valor cru guarda o mascarado no form',
+    (t) async {
+      late SgFormController form;
+      await t.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: SgForm(
+              defaultValues: const {'cpf': '52998224725'},
+              child: Builder(
+                builder: (context) {
+                  form = SgForm.of(context);
+                  return const SgInputCPF(id: 'cpf', name: 'cpf');
+                },
+              ),
+            ),
+          ),
+        ),
+      );
+      await t.pump();
+      expect(form.getValue('cpf'), '529.982.247-25');
+    },
+  );
 }

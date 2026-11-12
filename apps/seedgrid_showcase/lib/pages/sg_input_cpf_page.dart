@@ -16,6 +16,9 @@ class SgInputCPFPage extends StatefulWidget {
 }
 
 class _SgInputCPFPageState extends State<SgInputCPFPage> {
+  final SgFormController _formControl = SgFormController(
+    defaultValues: {'cpf': '52998224725'},
+  );
   final ValueNotifier<String> _basico = ValueNotifier('');
   final ValueNotifier<String?> _validationMsg = ValueNotifier(null);
   final ValueNotifier<List<String>> _eventLog = ValueNotifier(const []);
@@ -24,6 +27,7 @@ class _SgInputCPFPageState extends State<SgInputCPFPage> {
 
   @override
   void dispose() {
+    _formControl.dispose();
     _basico.dispose();
     _validationMsg.dispose();
     _eventLog.dispose();
@@ -329,6 +333,95 @@ class _SgInputCPFPageState extends State<SgInputCPFPage> {
             ),
         // #endregion
         code: SgInputCpfPageSnippets.sgInputCpfRotulo,
+      ),
+      ShowcaseExample(
+        title: 'Formulário com control',
+        description:
+            'Com `name` e `control`, o valor do formulário vem sempre mascarado. Para enviar só os dígitos, limpe com value.replaceAll(RegExp(r\'\\D\'), \'\').',
+        preview:
+            // #region sg-input-cpf-formulario-control
+            SizedBox(
+              width: 320,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SgInputCPF(
+                    id: 'cpf-control',
+                    name: 'cpf',
+                    labelText: context.tx('CPF'),
+                    control: _formControl,
+                  ),
+                  const SizedBox(height: 8),
+                  ListenableBuilder(
+                    listenable: _formControl,
+                    builder: (context, _) {
+                      final value = '${_formControl.getValue('cpf') ?? ''}';
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            '${context.tx('Valor no formulário')}: "$value"',
+                          ),
+                          Text(
+                            '${context.tx('Só os dígitos')}: "${value.replaceAll(RegExp(r'\D'), '')}"',
+                          ),
+                        ],
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ),
+        // #endregion
+        code: SgInputCpfPageSnippets.sgInputCpfFormularioControl,
+      ),
+      ShowcaseExample(
+        title: 'Formulário com register',
+        description:
+            'Dentro de um SgForm, o campo com `name` se liga ao formulário (equivale ao register do React) e o valor também vem mascarado. Para enviar só os dígitos, limpe com value.replaceAll(RegExp(r\'\\D\'), \'\').',
+        preview:
+            // #region sg-input-cpf-formulario-register
+            SgForm(
+              defaultValues: {'cpf': '52998224725'},
+              child: Builder(
+                builder: (context) {
+                  final form = SgForm.of(context);
+                  return SizedBox(
+                    width: 320,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SgInputCPF(
+                          id: 'cpf-register',
+                          name: 'cpf',
+                          labelText: context.tx('CPF'),
+                        ),
+                        const SizedBox(height: 8),
+                        ListenableBuilder(
+                          listenable: form,
+                          builder: (context, _) {
+                            final value = '${form.getValue('cpf') ?? ''}';
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  '${context.tx('Valor no formulário')}: "$value"',
+                                ),
+                                Text(
+                                  '${context.tx('Só os dígitos')}: "${value.replaceAll(RegExp(r'\D'), '')}"',
+                                ),
+                              ],
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ),
+        // #endregion
+        code: SgInputCpfPageSnippets.sgInputCpfFormularioRegister,
       ),
     ];
 

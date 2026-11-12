@@ -8058,6 +8058,20 @@
             "code": "SizedBox(\n  width: 320,\n  child: Column(\n    crossAxisAlignment: CrossAxisAlignment.start,\n    children: [\n      SgInputCNPJ(\n        id: 'demo-events',\n        labelText: context.tx('Digite e observe o log'),\n        hintText: context.tx('CNPJ'),\n        required: true,\n        onChange: (v) => _log('onChange: \"$v\"'),\n        onEnter: () => _log(context.tx('onEnter (focus)')),\n        onExit: () => _log(context.tx('onExit (blur)')),\n        onClear: () => _log('onClear'),\n        onValidation: (msg) =>\n            _log('onValidation: ${msg ?? context.tx('válido')}'),\n      ),\n      const SizedBox(height: 12),\n      ValueListenableBuilder<List<String>>(\n        valueListenable: _eventLog,\n        builder: (context, entries, _) => ShowcaseLogBox(\n          entries: entries,\n          hint: context.tx('Interaja com o input...'),\n          height: 160,\n        ),\n      ),\n    ],\n  ),\n)"
           },
           {
+            "id": "sg-input-cnpj-formulario-control",
+            "title": "Formulário com control",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_input_cnpj_page.dart",
+            "kind": "dart",
+            "code": "SizedBox(\n  width: 320,\n  child: Column(\n    crossAxisAlignment: CrossAxisAlignment.start,\n    children: [\n      SgInputCNPJ(\n        id: 'cnpj-control',\n        name: 'cnpj',\n        labelText: context.tx('CNPJ'),\n        control: _formControl,\n      ),\n      const SizedBox(height: 8),\n      ListenableBuilder(\n        listenable: _formControl,\n        builder: (context, _) {\n          final value = '${_formControl.getValue('cnpj') ?? ''}';\n          return Column(\n            crossAxisAlignment: CrossAxisAlignment.start,\n            children: [\n              Text(\n                '${context.tx('Valor no formulário')}: \"$value\"',\n              ),\n              Text(\n                '${context.tx('Só os dígitos')}: \"${value.replaceAll(RegExp(r'\\D'), '')}\"',\n              ),\n            ],\n          );\n        },\n      ),\n    ],\n  ),\n)"
+          },
+          {
+            "id": "sg-input-cnpj-formulario-register",
+            "title": "Formulário com register",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_input_cnpj_page.dart",
+            "kind": "dart",
+            "code": "SgForm(\n  defaultValues: {'cnpj': '11222333000181'},\n  child: Builder(\n    builder: (context) {\n      final form = SgForm.of(context);\n      return SizedBox(\n        width: 320,\n        child: Column(\n          crossAxisAlignment: CrossAxisAlignment.start,\n          children: [\n            SgInputCNPJ(\n              id: 'cnpj-register',\n              name: 'cnpj',\n              labelText: context.tx('CNPJ'),\n            ),\n            const SizedBox(height: 8),\n            ListenableBuilder(\n              listenable: form,\n              builder: (context, _) {\n                final value = '${form.getValue('cnpj') ?? ''}';\n                return Column(\n                  crossAxisAlignment: CrossAxisAlignment.start,\n                  children: [\n                    Text(\n                      '${context.tx('Valor no formulário')}: \"$value\"',\n                    ),\n                    Text(\n                      '${context.tx('Só os dígitos')}: \"${value.replaceAll(RegExp(r'\\D'), '')}\"',\n                    ),\n                  ],\n                );\n              },\n            ),\n          ],\n        ),\n      );\n    },\n  ),\n)"
+          },
+          {
             "id": "sg-input-cnpj-invalida",
             "title": "Mensagem inválida",
             "file": "apps/seedgrid_showcase/lib/pages/sg_input_cnpj_page.dart",
@@ -8454,6 +8468,20 @@
             "file": "apps/seedgrid_showcase/lib/pages/sg_input_cpf_page.dart",
             "kind": "dart",
             "code": "SizedBox(\n  width: 320,\n  child: Column(\n    crossAxisAlignment: CrossAxisAlignment.start,\n    children: [\n      SgInputCPF(\n        id: 'demo-events',\n        labelText: context.tx('Digite e observe o log'),\n        hintText: context.tx('CPF'),\n        required: true,\n        onChange: (v) => _log('onChange: \"$v\"'),\n        onEnter: () => _log(context.tx('onEnter (focus)')),\n        onExit: () => _log(context.tx('onExit (blur)')),\n        onClear: () => _log('onClear'),\n        onValidation: (msg) =>\n            _log('onValidation: ${msg ?? context.tx('válido')}'),\n      ),\n      const SizedBox(height: 12),\n      ValueListenableBuilder<List<String>>(\n        valueListenable: _eventLog,\n        builder: (context, entries, _) => ShowcaseLogBox(\n          entries: entries,\n          hint: context.tx('Interaja com o input...'),\n          height: 160,\n        ),\n      ),\n    ],\n  ),\n)"
+          },
+          {
+            "id": "sg-input-cpf-formulario-control",
+            "title": "Formulário com control",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_input_cpf_page.dart",
+            "kind": "dart",
+            "code": "SizedBox(\n  width: 320,\n  child: Column(\n    crossAxisAlignment: CrossAxisAlignment.start,\n    children: [\n      SgInputCPF(\n        id: 'cpf-control',\n        name: 'cpf',\n        labelText: context.tx('CPF'),\n        control: _formControl,\n      ),\n      const SizedBox(height: 8),\n      ListenableBuilder(\n        listenable: _formControl,\n        builder: (context, _) {\n          final value = '${_formControl.getValue('cpf') ?? ''}';\n          return Column(\n            crossAxisAlignment: CrossAxisAlignment.start,\n            children: [\n              Text(\n                '${context.tx('Valor no formulário')}: \"$value\"',\n              ),\n              Text(\n                '${context.tx('Só os dígitos')}: \"${value.replaceAll(RegExp(r'\\D'), '')}\"',\n              ),\n            ],\n          );\n        },\n      ),\n    ],\n  ),\n)"
+          },
+          {
+            "id": "sg-input-cpf-formulario-register",
+            "title": "Formulário com register",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_input_cpf_page.dart",
+            "kind": "dart",
+            "code": "SgForm(\n  defaultValues: {'cpf': '52998224725'},\n  child: Builder(\n    builder: (context) {\n      final form = SgForm.of(context);\n      return SizedBox(\n        width: 320,\n        child: Column(\n          crossAxisAlignment: CrossAxisAlignment.start,\n          children: [\n            SgInputCPF(\n              id: 'cpf-register',\n              name: 'cpf',\n              labelText: context.tx('CPF'),\n            ),\n            const SizedBox(height: 8),\n            ListenableBuilder(\n              listenable: form,\n              builder: (context, _) {\n                final value = '${form.getValue('cpf') ?? ''}';\n                return Column(\n                  crossAxisAlignment: CrossAxisAlignment.start,\n                  children: [\n                    Text(\n                      '${context.tx('Valor no formulário')}: \"$value\"',\n                    ),\n                    Text(\n                      '${context.tx('Só os dígitos')}: \"${value.replaceAll(RegExp(r'\\D'), '')}\"',\n                    ),\n                  ],\n                );\n              },\n            ),\n          ],\n        ),\n      );\n    },\n  ),\n)"
           },
           {
             "id": "sg-input-cpf-invalida",
@@ -8893,6 +8921,20 @@
             "file": "apps/seedgrid_showcase/lib/pages/sg_input_cpfcnpj_page.dart",
             "kind": "dart",
             "code": "SizedBox(\n  width: 320,\n  child: Column(\n    crossAxisAlignment: CrossAxisAlignment.start,\n    children: [\n      SgInputCPFCNPJ(\n        id: 'demo-events',\n        labelText: context.tx('Digite e observe o log'),\n        hintText: context.tx('Documento'),\n        required: true,\n        onChange: (v) => _log('onChange: \"$v\"'),\n        onEnter: () => _log(context.tx('onEnter (focus)')),\n        onExit: () => _log(context.tx('onExit (blur)')),\n        onClear: () => _log('onClear'),\n        onValidation: (msg) =>\n            _log('onValidation: ${msg ?? context.tx('válido')}'),\n      ),\n      const SizedBox(height: 12),\n      ValueListenableBuilder<List<String>>(\n        valueListenable: _eventLog,\n        builder: (context, entries, _) => ShowcaseLogBox(\n          entries: entries,\n          hint: context.tx('Interaja com o input...'),\n          height: 160,\n        ),\n      ),\n    ],\n  ),\n)"
+          },
+          {
+            "id": "sg-input-cpf-cnpj-formulario-control",
+            "title": "Formulário com control",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_input_cpfcnpj_page.dart",
+            "kind": "dart",
+            "code": "SizedBox(\n  width: 320,\n  child: Column(\n    crossAxisAlignment: CrossAxisAlignment.start,\n    children: [\n      SgInputCPFCNPJ(\n        id: 'documento-control',\n        name: 'documento',\n        labelText: context.tx('Documento'),\n        control: _formControl,\n      ),\n      const SizedBox(height: 8),\n      ListenableBuilder(\n        listenable: _formControl,\n        builder: (context, _) {\n          final value =\n              '${_formControl.getValue('documento') ?? ''}';\n          return Column(\n            crossAxisAlignment: CrossAxisAlignment.start,\n            children: [\n              Text(\n                '${context.tx('Valor no formulário')}: \"$value\"',\n              ),\n              Text(\n                '${context.tx('Só os dígitos')}: \"${value.replaceAll(RegExp(r'\\D'), '')}\"',\n              ),\n            ],\n          );\n        },\n      ),\n    ],\n  ),\n)"
+          },
+          {
+            "id": "sg-input-cpf-cnpj-formulario-register",
+            "title": "Formulário com register",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_input_cpfcnpj_page.dart",
+            "kind": "dart",
+            "code": "SgForm(\n  defaultValues: {'documento': '52998224725'},\n  child: Builder(\n    builder: (context) {\n      final form = SgForm.of(context);\n      return SizedBox(\n        width: 320,\n        child: Column(\n          crossAxisAlignment: CrossAxisAlignment.start,\n          children: [\n            SgInputCPFCNPJ(\n              id: 'documento-register',\n              name: 'documento',\n              labelText: context.tx('Documento'),\n            ),\n            const SizedBox(height: 8),\n            ListenableBuilder(\n              listenable: form,\n              builder: (context, _) {\n                final value = '${form.getValue('documento') ?? ''}';\n                return Column(\n                  crossAxisAlignment: CrossAxisAlignment.start,\n                  children: [\n                    Text(\n                      '${context.tx('Valor no formulário')}: \"$value\"',\n                    ),\n                    Text(\n                      '${context.tx('Só os dígitos')}: \"${value.replaceAll(RegExp(r'\\D'), '')}\"',\n                    ),\n                  ],\n                );\n              },\n            ),\n          ],\n        ),\n      );\n    },\n  ),\n)"
           },
           {
             "id": "sg-input-cpf-cnpj-invalida",
@@ -11999,6 +12041,20 @@
             "file": "apps/seedgrid_showcase/lib/pages/sg_input_phone_page.dart",
             "kind": "dart",
             "code": "SizedBox(\n  width: 320,\n  child: Column(\n    crossAxisAlignment: CrossAxisAlignment.start,\n    children: [\n      SgInputPhone(\n        id: 'demo-events',\n        labelText: context.tx('Digite e observe o log'),\n        hintText: context.tx('Telefone'),\n        required: true,\n        onChange: (v) => _log('onChange: \"$v\"'),\n        onEnter: () => _log(context.tx('onEnter (focus)')),\n        onExit: () => _log(context.tx('onExit (blur)')),\n        onClear: () => _log('onClear'),\n        onValidation: (msg) =>\n            _log('onValidation: ${msg ?? context.tx('válido')}'),\n      ),\n      const SizedBox(height: 12),\n      ValueListenableBuilder<List<String>>(\n        valueListenable: _eventLog,\n        builder: (context, entries, _) => ShowcaseLogBox(\n          entries: entries,\n          hint: context.tx('Interaja com o input...'),\n          height: 160,\n        ),\n      ),\n    ],\n  ),\n)"
+          },
+          {
+            "id": "sg-input-phone-formulario-control",
+            "title": "Formulário com control",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_input_phone_page.dart",
+            "kind": "dart",
+            "code": "SizedBox(\n  width: 320,\n  child: Column(\n    crossAxisAlignment: CrossAxisAlignment.start,\n    children: [\n      SgInputPhone(\n        id: 'telefone-control',\n        name: 'telefone',\n        labelText: context.tx('Telefone'),\n        control: _formControl,\n      ),\n      const SizedBox(height: 8),\n      ListenableBuilder(\n        listenable: _formControl,\n        builder: (context, _) {\n          final value =\n              '${_formControl.getValue('telefone') ?? ''}';\n          return Column(\n            crossAxisAlignment: CrossAxisAlignment.start,\n            children: [\n              Text(\n                '${context.tx('Valor no formulário')}: \"$value\"',\n              ),\n              Text(\n                '${context.tx('Só os dígitos')}: \"${value.replaceAll(RegExp(r'\\D'), '')}\"',\n              ),\n            ],\n          );\n        },\n      ),\n    ],\n  ),\n)"
+          },
+          {
+            "id": "sg-input-phone-formulario-register",
+            "title": "Formulário com register",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_input_phone_page.dart",
+            "kind": "dart",
+            "code": "SgForm(\n  defaultValues: {'telefone': '11987654321'},\n  child: Builder(\n    builder: (context) {\n      final form = SgForm.of(context);\n      return SizedBox(\n        width: 320,\n        child: Column(\n          crossAxisAlignment: CrossAxisAlignment.start,\n          children: [\n            SgInputPhone(\n              id: 'telefone-register',\n              name: 'telefone',\n              labelText: context.tx('Telefone'),\n            ),\n            const SizedBox(height: 8),\n            ListenableBuilder(\n              listenable: form,\n              builder: (context, _) {\n                final value = '${form.getValue('telefone') ?? ''}';\n                return Column(\n                  crossAxisAlignment: CrossAxisAlignment.start,\n                  children: [\n                    Text(\n                      '${context.tx('Valor no formulário')}: \"$value\"',\n                    ),\n                    Text(\n                      '${context.tx('Só os dígitos')}: \"${value.replaceAll(RegExp(r'\\D'), '')}\"',\n                    ),\n                  ],\n                );\n              },\n            ),\n          ],\n        ),\n      );\n    },\n  ),\n)"
           },
           {
             "id": "sg-input-phone-invalida",

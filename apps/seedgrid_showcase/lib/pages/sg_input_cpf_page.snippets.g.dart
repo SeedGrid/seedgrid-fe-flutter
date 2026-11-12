@@ -74,6 +74,85 @@ SizedBox(
 )
 ''';
 
+  /// Region `sg-input-cpf-formulario-control`.
+  static const String sgInputCpfFormularioControl = r'''
+SizedBox(
+  width: 320,
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      SgInputCPF(
+        id: 'cpf-control',
+        name: 'cpf',
+        labelText: context.tx('CPF'),
+        control: _formControl,
+      ),
+      const SizedBox(height: 8),
+      ListenableBuilder(
+        listenable: _formControl,
+        builder: (context, _) {
+          final value = '${_formControl.getValue('cpf') ?? ''}';
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                '${context.tx('Valor no formulário')}: "$value"',
+              ),
+              Text(
+                '${context.tx('Só os dígitos')}: "${value.replaceAll(RegExp(r'\D'), '')}"',
+              ),
+            ],
+          );
+        },
+      ),
+    ],
+  ),
+)
+''';
+
+  /// Region `sg-input-cpf-formulario-register`.
+  static const String sgInputCpfFormularioRegister = r'''
+SgForm(
+  defaultValues: {'cpf': '52998224725'},
+  child: Builder(
+    builder: (context) {
+      final form = SgForm.of(context);
+      return SizedBox(
+        width: 320,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SgInputCPF(
+              id: 'cpf-register',
+              name: 'cpf',
+              labelText: context.tx('CPF'),
+            ),
+            const SizedBox(height: 8),
+            ListenableBuilder(
+              listenable: form,
+              builder: (context, _) {
+                final value = '${form.getValue('cpf') ?? ''}';
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '${context.tx('Valor no formulário')}: "$value"',
+                    ),
+                    Text(
+                      '${context.tx('Só os dígitos')}: "${value.replaceAll(RegExp(r'\D'), '')}"',
+                    ),
+                  ],
+                );
+              },
+            ),
+          ],
+        ),
+      );
+    },
+  ),
+)
+''';
+
   /// Region `sg-input-cpf-invalida`.
   static const String sgInputCpfInvalida = r'''
 SizedBox(

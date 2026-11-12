@@ -149,6 +149,85 @@ SizedBox(
 )
 ''';
 
+  /// Region `sg-input-cnpj-formulario-control`.
+  static const String sgInputCnpjFormularioControl = r'''
+SizedBox(
+  width: 320,
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      SgInputCNPJ(
+        id: 'cnpj-control',
+        name: 'cnpj',
+        labelText: context.tx('CNPJ'),
+        control: _formControl,
+      ),
+      const SizedBox(height: 8),
+      ListenableBuilder(
+        listenable: _formControl,
+        builder: (context, _) {
+          final value = '${_formControl.getValue('cnpj') ?? ''}';
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                '${context.tx('Valor no formulário')}: "$value"',
+              ),
+              Text(
+                '${context.tx('Só os dígitos')}: "${value.replaceAll(RegExp(r'\D'), '')}"',
+              ),
+            ],
+          );
+        },
+      ),
+    ],
+  ),
+)
+''';
+
+  /// Region `sg-input-cnpj-formulario-register`.
+  static const String sgInputCnpjFormularioRegister = r'''
+SgForm(
+  defaultValues: {'cnpj': '11222333000181'},
+  child: Builder(
+    builder: (context) {
+      final form = SgForm.of(context);
+      return SizedBox(
+        width: 320,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SgInputCNPJ(
+              id: 'cnpj-register',
+              name: 'cnpj',
+              labelText: context.tx('CNPJ'),
+            ),
+            const SizedBox(height: 8),
+            ListenableBuilder(
+              listenable: form,
+              builder: (context, _) {
+                final value = '${form.getValue('cnpj') ?? ''}';
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '${context.tx('Valor no formulário')}: "$value"',
+                    ),
+                    Text(
+                      '${context.tx('Só os dígitos')}: "${value.replaceAll(RegExp(r'\D'), '')}"',
+                    ),
+                  ],
+                );
+              },
+            ),
+          ],
+        ),
+      );
+    },
+  ),
+)
+''';
+
   /// Region `sg-input-cnpj-invalida`.
   static const String sgInputCnpjInvalida = r'''
 SizedBox(

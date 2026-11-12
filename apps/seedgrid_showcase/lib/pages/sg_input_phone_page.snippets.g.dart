@@ -74,6 +74,86 @@ SizedBox(
 )
 ''';
 
+  /// Region `sg-input-phone-formulario-control`.
+  static const String sgInputPhoneFormularioControl = r'''
+SizedBox(
+  width: 320,
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      SgInputPhone(
+        id: 'telefone-control',
+        name: 'telefone',
+        labelText: context.tx('Telefone'),
+        control: _formControl,
+      ),
+      const SizedBox(height: 8),
+      ListenableBuilder(
+        listenable: _formControl,
+        builder: (context, _) {
+          final value =
+              '${_formControl.getValue('telefone') ?? ''}';
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                '${context.tx('Valor no formulário')}: "$value"',
+              ),
+              Text(
+                '${context.tx('Só os dígitos')}: "${value.replaceAll(RegExp(r'\D'), '')}"',
+              ),
+            ],
+          );
+        },
+      ),
+    ],
+  ),
+)
+''';
+
+  /// Region `sg-input-phone-formulario-register`.
+  static const String sgInputPhoneFormularioRegister = r'''
+SgForm(
+  defaultValues: {'telefone': '11987654321'},
+  child: Builder(
+    builder: (context) {
+      final form = SgForm.of(context);
+      return SizedBox(
+        width: 320,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SgInputPhone(
+              id: 'telefone-register',
+              name: 'telefone',
+              labelText: context.tx('Telefone'),
+            ),
+            const SizedBox(height: 8),
+            ListenableBuilder(
+              listenable: form,
+              builder: (context, _) {
+                final value = '${form.getValue('telefone') ?? ''}';
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '${context.tx('Valor no formulário')}: "$value"',
+                    ),
+                    Text(
+                      '${context.tx('Só os dígitos')}: "${value.replaceAll(RegExp(r'\D'), '')}"',
+                    ),
+                  ],
+                );
+              },
+            ),
+          ],
+        ),
+      );
+    },
+  ),
+)
+''';
+
   /// Region `sg-input-phone-invalida`.
   static const String sgInputPhoneInvalida = r'''
 SizedBox(
