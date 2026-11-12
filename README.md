@@ -162,7 +162,7 @@ Cada nome abaixo leva à página do componente no showcase ao vivo. O estado de 
 | [`SgInputCPFCNPJ`](https://components-flutter.seedgrid.com.br/sg-input-cpfcnpj) | Campo único que aceita CPF ou CNPJ e decide pela quantidade de caracteres. |
 | [`SgInputCurrency`](https://components-flutter.seedgrid.com.br/sg-input-currency) | Campo de moeda com símbolo, posição e separadores do idioma (Intl), casas da moeda, limites e ligação a formulário. |
 | [`SgInputDate`](https://components-flutter.seedgrid.com.br/sg-input-date) | Campo de data com máscara do idioma e calendário próprio. |
-| [`SgInputDateTime`](https://components-flutter.seedgrid.com.br/sg-input-date-time) | Campo de data e hora que entrega e recebe instantes ISO 8601 em UTC, exibindo a hora no fuso escolhido. |
+| [`SgInputDateTime`](https://components-flutter.seedgrid.com.br/sg-input-date-time) | Campo de data e hora que entrega e recebe o valor em local, utc ou offset (valueMode), exibindo a hora no fuso escolhido. |
 | [`SgInputEmail`](https://components-flutter.seedgrid.com.br/sg-input-email) | Campo de e-mail com validação de formato, bloqueio de e-mails descartáveis e ligação a formulário. |
 | [`SgInputNumber`](https://components-flutter.seedgrid.com.br/sg-input-number) | Campo numérico com formatação por idioma, casas decimais, sinal, limites e ligação a formulário (SgForm). |
 | [`SgInputOTP`](https://components-flutter.seedgrid.com.br/sg-input-otp) | Campo de código de uso único com vários campos: máscara, colar o código inteiro,  |
