@@ -284,6 +284,10 @@ class NumericFieldState extends State<NumericField>
       if (c.required ?? false) {
         return c.requiredMessage ?? t(i18n, 'components.inputs.required');
       }
+      // Vazio chega como 0 (padrao) ou null (emptyValueIsNull) na validation.
+      if (c.validation != null) {
+        return c.validation!(c.emptyIsNull ? null : (number ?? 0));
+      }
       return null;
     }
     if (c.minValue != null && number < c.minValue!) {

@@ -808,6 +808,42 @@ void main() {
       },
     );
 
+    testWidgets(
+      'validation recebe vazio como 0 (padrao) ou null (emptyValueIsNull); negativo e decimal',
+      (t) async {
+        for (final isNull in [false, true]) {
+          final seen = <num?>[];
+          await t.pumpWidget(const SizedBox());
+          await t.pumpWidget(
+            host(
+              Column(
+                children: [
+                  SgInputNumber(
+                    id: 'n',
+                    emptyValueIsNull: isNull,
+                    validateOnBlur: false,
+                    validation: (v) {
+                      seen.add(v);
+                      return null;
+                    },
+                  ),
+                ],
+              ),
+            ),
+          );
+          await t.showKeyboard(field());
+          await type(t, '5');
+          expect(seen.last, 5);
+          await backspace(t);
+          expect(seen.last, isNull ? null : 0);
+          await type(t, '2,5');
+          expect(seen.last, 2.5);
+          await type(t, '-');
+          expect(seen.last, -2.5);
+        }
+      },
+    );
+
     testWidgets('validateOnBlur false valida a cada tecla', (t) async {
       await t.pumpWidget(
         host(const SgInputNumber(id: 'n', maxValue: 3, validateOnBlur: false)),
