@@ -9929,7 +9929,7 @@
             "name": "onChange",
             "type": "Function?",
             "required": false,
-            "description": "Instante ISO UTC (ou null) e texto local do campo.",
+            "description": "Valor no formato de valueMode (ou null) e texto local do campo.",
             "typeExact": false
           },
           {
@@ -10159,7 +10159,7 @@
         ],
         "parity": {
           "status": "portado",
-          "reason": "Campo com máscara por idioma, calendário próprio e seletor de hora do Material; o valor é o instante ISO 8601 UTC. Fuso: local, UTC ou deslocamento fixo; nome IANA (America/Sao_Paulo) cai em local porque o pacote não traz banco de fusos; alwaysFloat não tem efeito; data impossível mostra Data e hora inválidas; os validadores do componente rodam no envio do formulário."
+          "reason": "Campo com máscara por idioma, calendário próprio e seletor de hora do Material; o valor sai em local, utc ou offset (valueMode). Fuso: local, UTC, deslocamento fixo ou nome IANA (America/Sao_Paulo, tabela própria de 2019 a 2045); nome desconhecido cai em local; alwaysFloat não tem efeito; data impossível mostra Data e hora inválidas; os validadores do componente rodam no envio do formulário."
         },
         "omittedProps": [
           {

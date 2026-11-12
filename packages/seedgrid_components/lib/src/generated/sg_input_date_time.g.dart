@@ -52,7 +52,7 @@ abstract interface class SgInputDateTimeProps {
   num? get minuteStep;
   /// Nome do campo para formularios.
   String? get name;
-  /// Instante ISO UTC (ou null) e texto local do campo. Tipo TS: `((value: string, local: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
+  /// Valor no formato de valueMode (ou null) e texto local do campo. Tipo TS: `((value: string, local: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onChange;
   /// Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onClear;
@@ -310,7 +310,7 @@ const List<SgPropSpec> sgInputDateTimePropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '((value: string, local: string) => void)',
     required: false,
-    description: 'Instante ISO UTC (ou null) e texto local do campo.',
+    description: 'Valor no formato de valueMode (ou null) e texto local do campo.',
     exact: false,
   ),
   SgPropSpec(

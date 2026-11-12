@@ -51,7 +51,7 @@ class _SgInputDateTimePageState extends State<SgInputDateTimePage> {
       ShowcaseExample(
         title: 'Básico',
         description:
-            'O onChange entrega o valor local do campo, sem fuso (ou null se o campo estiver incompleto).',
+            'O onChange entrega o valor no formato de valueMode (local, por padrão: 2026-01-15T10:30) ou null se o campo estiver incompleto.',
         preview:
             // #region sg-input-date-time-basico
             Column(

@@ -62,7 +62,7 @@
   },
   "SgInputDateTime": {
     "status": "portado",
-    "motivo": "o React usa input type=datetime-local nativo; aqui campo com mascara por idioma, calendario proprio e seletor de hora do Material. O valor e o instante ISO 8601 UTC. Fuso: local, UTC ou deslocamento fixo; nome IANA (America/Sao_Paulo) cai em local porque o pacote nao traz banco de fusos (sem dependencia nova); alwaysFloat nao tem efeito; data impossivel (31/02) mostra Data e hora invalidas; validadores do componente rodam no submit (decisao do dono)"
+    "motivo": "o React usa input type=datetime-local nativo; aqui campo com mascara por idioma, calendario proprio e seletor de hora do Material. O valor sai em local, utc ou offset (valueMode). Fuso: local, UTC, deslocamento fixo ou nome IANA (America/Sao_Paulo, tabela propria de 2019 a 2045 sem dependencia nova); nome desconhecido cai em local; alwaysFloat nao tem efeito; data impossivel (31/02) mostra Data e hora invalidas; validadores do componente rodam no submit (decisao do dono)"
   },
   "SgImageUpload": {
     "status": "parcial",

@@ -8302,7 +8302,7 @@
      "alias": null,
      "fn": true,
      "doc": "Disparado a cada alteracao com o instante em ISO 8601 UTC (`2026-11-03T17:30:00.000Z`) ou `null` se o\ncampo ficou vazio/incompleto/invalido; `local` e o texto do campo (`2026-11-03T14:30`) no fuso do campo.",
-     "description": "Instante ISO UTC (ou null) e texto local do campo.",
+     "description": "Valor no formato de valueMode (ou null) e texto local do campo.",
      "semanticRole": "event"
     },
     {
