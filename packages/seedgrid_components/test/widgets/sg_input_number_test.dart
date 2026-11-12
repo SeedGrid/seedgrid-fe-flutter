@@ -228,23 +228,17 @@ void main() {
       );
     });
 
-    testWidgets(
-      'emptyValue nullValue comeca vazio; zero (padrao) comeca em 0,00',
-      (t) async {
-        await t.pumpWidget(
-          host(
-            const SgInputNumber(
-              id: 'n',
-              emptyValue: SgInputNumberEmptyValue.nullValue,
-            ),
-          ),
-        );
-        expect(shown(t), '');
-        await t.pumpWidget(const SizedBox()); // novo State
-        await t.pumpWidget(host(const SgInputNumber(id: 'n')));
-        expect(shown(t), '0,00');
-      },
-    );
+    testWidgets('emptyValueIsNull comeca vazio; zero (padrao) comeca em 0,00', (
+      t,
+    ) async {
+      await t.pumpWidget(
+        host(const SgInputNumber(id: 'n', emptyValueIsNull: true)),
+      );
+      expect(shown(t), '');
+      await t.pumpWidget(const SizedBox()); // novo State
+      await t.pumpWidget(host(const SgInputNumber(id: 'n')));
+      expect(shown(t), '0,00');
+    });
 
     testWidgets('allowNegative false ignora o sinal', (t) async {
       await t.pumpWidget(
@@ -257,27 +251,27 @@ void main() {
     testWidgets('digitar: onChange recebe o valor canonico com ponto', (
       t,
     ) async {
-      final out = <String>[];
+      final out = <num?>[];
       await t.pumpWidget(host(SgInputNumber(id: 'n', onChange: out.add)));
       await type(t, '1234,5');
       expect(shown(t), '1.234,50');
-      expect(out.last, '1234.50');
+      expect(out.last, 1234.5);
       await type(t, '-');
-      expect(out.last, '-1234.50');
+      expect(out.last, -1234.5);
       await backspace(t, 4);
       // 1o apaga o decimal, 2o tira a virgula (texto igual), 3o e 4o tiram digitos inteiros
       expect(shown(t), '-12,00');
-      expect(out.last, '-12.00');
+      expect(out.last, -12);
     });
 
     testWidgets('colar troca o numero todo', (t) async {
-      final out = <String>[];
+      final out = <num?>[];
       await t.pumpWidget(host(SgInputNumber(id: 'n', onChange: out.add)));
       await t.showKeyboard(field());
       await t.enterText(field(), '0,0012.345,67');
       expect(
         out.last,
-        '12345.67',
+        12345.67,
         reason:
             'texto que nao e uma tecla so: vale o texto inteiro normalizado',
       );
@@ -477,7 +471,7 @@ void main() {
           host(
             const SgInputNumber(
               id: 'n',
-              emptyValue: SgInputNumberEmptyValue.nullValue,
+              emptyValueIsNull: true,
               labelPosition: SgInputNumberLabelPosition.top,
               hintText: 'dica',
             ),
@@ -488,7 +482,7 @@ void main() {
           host(
             const SgInputNumber(
               id: 'n',
-              emptyValue: SgInputNumberEmptyValue.nullValue,
+              emptyValueIsNull: true,
               labelPosition: SgInputNumberLabelPosition.top,
               hintText: 'dica',
               placeholder: 'ph',
@@ -592,7 +586,7 @@ void main() {
     testWidgets(
       'botao limpar volta a zero (ou vazio com nullValue) e chama onClear/onChange',
       (t) async {
-        final out = <String>[];
+        final out = <num?>[];
         var cleared = 0;
         await t.pumpWidget(
           host(
@@ -603,22 +597,18 @@ void main() {
         await t.tap(find.byKey(const ValueKey('clear-n')));
         await t.pump();
         expect(shown(t), '0,00');
-        expect(out.last, '0.00');
+        expect(out.last, 0);
         expect(cleared, 1);
         await t.pumpWidget(
           host(
-            SgInputNumber(
-              id: 'n',
-              emptyValue: SgInputNumberEmptyValue.nullValue,
-              onChange: out.add,
-            ),
+            SgInputNumber(id: 'n', emptyValueIsNull: true, onChange: out.add),
           ),
         );
         await type(t, '7');
         await t.tap(find.byKey(const ValueKey('clear-n')));
         await t.pump();
         expect(shown(t), '');
-        expect(out.last, '');
+        expect(out.last, isNull);
       },
     );
 
@@ -632,7 +622,7 @@ void main() {
         await t.pumpWidget(host(const SgInputNumber(id: 'n', enabled: false)));
         expect(find.byKey(const ValueKey('clear-n')), findsNothing);
         expect(t.widget<TextField>(field()).enabled, isFalse);
-        final out = <String>[];
+        final out = <num?>[];
         await t.pumpWidget(
           host(SgInputNumber(id: 'n', readOnly: true, onChange: out.add)),
         );
@@ -712,7 +702,7 @@ void main() {
     );
 
     testWidgets(
-      'required com emptyValue nullValue: vazio falha, preenchido passa',
+      'required com emptyValueIsNull: vazio falha, preenchido passa',
       (t) async {
         final msgs = <String?>[];
         await t.pumpWidget(
@@ -722,7 +712,7 @@ void main() {
                 SgInputNumber(
                   id: 'n',
                   required: true,
-                  emptyValue: SgInputNumberEmptyValue.nullValue,
+                  emptyValueIsNull: true,
                   onValidation: msgs.add,
                 ),
                 const SgInputNumber(id: 'z'),
@@ -854,7 +844,7 @@ void main() {
         host(SgInputNumber(id: 'n', name: 'qtd', control: form)),
       );
       await type(t, '1234,5');
-      expect(form.getValue('qtd'), '1234.50');
+      expect(form.getValue('qtd'), 1234.5);
       expect(form.isDirty, isTrue);
     });
 
@@ -870,7 +860,7 @@ void main() {
                   id: 'n',
                   name: 'qtd',
                   control: form,
-                  emptyValue: SgInputNumberEmptyValue.nullValue,
+                  emptyValueIsNull: true,
                   required: true,
                   requiredMessage: 'Informe a quantidade',
                   validation: (v) =>
@@ -913,7 +903,7 @@ void main() {
       await type(t, '5');
       await t.tap(find.text('Enviar'));
       await t.pumpAndSettle();
-      expect(sent, {'qtd': '25.00'});
+      expect(sent, {'qtd': 25.0});
     });
   });
 
@@ -993,7 +983,7 @@ void main() {
                 id: 'g4',
                 labelText: 'Topo',
                 labelPosition: SgInputNumberLabelPosition.top,
-                emptyValue: SgInputNumberEmptyValue.nullValue,
+                emptyValueIsNull: true,
                 hintText: '0,00',
               ),
               SizedBox(height: 12),

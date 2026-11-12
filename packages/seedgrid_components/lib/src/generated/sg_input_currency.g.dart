@@ -24,7 +24,7 @@ abstract interface class SgInputCurrencyProps {
   String? get currencySymbolOverride;
   SgInputCurrencyCurrencySymbolPlacement? get currencySymbolPlacement;
   num? get decimals;
-  SgInputCurrencyEmptyValue? get emptyValue;
+  bool? get emptyValueIsNull;
   bool? get enabled;
   String? get error;
   bool? get filled;
@@ -45,7 +45,7 @@ abstract interface class SgInputCurrencyProps {
   String? get minValueMessage;
   /// Nome do campo para formularios.
   String? get name;
-  /// Callback com o valor monetario normalizado. Tipo TS: `((value: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
+  /// Callback com o valor monetario como number (null somente com emptyValueIsNull). Tipo TS: `((value: number | null) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onChange;
   /// Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onClear;
@@ -147,12 +147,12 @@ const List<SgPropSpec> sgInputCurrencyPropSpecs = <SgPropSpec>[
     required: false,
   ),
   SgPropSpec(
-    name: 'emptyValue',
-    reactName: 'emptyValue',
-    type: 'SgInputCurrencyEmptyValue?',
-    tsType: '"null" | "zero"',
+    name: 'emptyValueIsNull',
+    reactName: 'emptyValueIsNull',
+    type: 'bool?',
+    tsType: 'boolean',
     required: false,
-    values: <String>['null', 'zero'],
+    description: 'Se true, campo vazio vale null; se false (padrao), vale 0.',
   ),
   SgPropSpec(
     name: 'enabled',
@@ -268,9 +268,9 @@ const List<SgPropSpec> sgInputCurrencyPropSpecs = <SgPropSpec>[
     name: 'onChange',
     reactName: 'onChange',
     type: 'Function?',
-    tsType: '((value: string) => void)',
+    tsType: '((value: number | null) => void)',
     required: false,
-    description: 'Callback com o valor monetario normalizado.',
+    description: 'Callback com o valor monetario como number (null somente com emptyValueIsNull).',
     exact: false,
   ),
   SgPropSpec(

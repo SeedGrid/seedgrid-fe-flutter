@@ -382,21 +382,21 @@ SizedBox(
         id: 'standalone-a',
         labelText: context.tx('Entrada 1'),
         decimals: 2,
-        onChange: (v) => _standalone['a'] = v,
+        onChange: (v) => _standalone['a'] = '${v ?? ''}',
       ),
       const SizedBox(height: 12),
       SgInputNumber(
         id: 'standalone-b',
         labelText: context.tx('Entrada 2'),
         decimals: 2,
-        onChange: (v) => _standalone['b'] = v,
+        onChange: (v) => _standalone['b'] = '${v ?? ''}',
       ),
       const SizedBox(height: 12),
       SgInputNumber(
         id: 'standalone-c',
         labelText: context.tx('Entrada 3'),
         decimals: 2,
-        onChange: (v) => _standalone['c'] = v,
+        onChange: (v) => _standalone['c'] = '${v ?? ''}',
       ),
       const SizedBox(height: 12),
       SgButton(
@@ -486,7 +486,7 @@ SizedBox(
   child: SgInputNumber(
     id: 'demo-empty',
     labelText: context.tx('Pode ficar vazio'),
-    emptyValue: SgInputNumberEmptyValue.nullValue,
+    emptyValueIsNull: true,
     decimals: 2,
   ),
 )

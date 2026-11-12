@@ -101,7 +101,7 @@ class NumericFieldConfig {
   final String? Function(String value)? validation;
   final bool? validateOnBlur;
   final ValueChanged<String?>? onValidation;
-  final ValueChanged<String>? onChange;
+  final ValueChanged<num?>? onChange;
   final VoidCallback? onClear;
   final VoidCallback? onEnter;
   final VoidCallback? onExit;
@@ -203,7 +203,10 @@ class NumericFieldState extends State<NumericField>
   }
 
   void _applyExternal(Object? raw) {
-    if (_focus.hasFocus && _lastEmitted == (raw == null ? '' : '$raw')) return;
+    // React: o efeito so reroda quando o valor externo muda; o eco do que o proprio campo emitiu
+    // (mesmo depois do blur) nao reaplica, preservando os digitos digitados (ex.: numeros enormes).
+    if (_lastEmitted != null && _lastEmitted == (raw == null ? '' : '$raw'))
+      return;
     _state = _parse(raw);
     _syncText();
     if (mounted) setState(() {});
@@ -315,8 +318,8 @@ class NumericFieldState extends State<NumericField>
   void _commit(SgNumberState? next) {
     _state = next;
     _interacted = true;
-    final value = stateToValue(next, c.decimals);
-    _lastEmitted = value;
+    final value = stateToNumber(next, c.decimals);
+    _lastEmitted = value == null ? '' : '$value';
     if (_bound) {
       final revalidate =
           _form!.errorOf(c.name!) != null || _form!.submitCount > 0;

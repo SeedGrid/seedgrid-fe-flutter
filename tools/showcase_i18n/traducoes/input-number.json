@@ -22,7 +22,7 @@
 "Min/Max": ["Min/Max","Min/Max","Min/Max","Min/Max"],
 "Valida intervalo numérico.": ["Validates numeric range.","Valida intervalo numerico.","Valida el rango numerico.","Valide la plage numerique."],
 "Valor vazio": ["Empty value","Valor vazio","Valor vacio","Valeur vide"],
-"emptyValue=\"null\" permite limpar totalmente.": ["emptyValue=\"null\" allows fully clearing.","emptyValue=\"null\" permite limpar totalmente.","emptyValue=\"null\" permite limpiar completamente.","emptyValue=\"null\" permet d'effacer completement."],
+"emptyValueIsNull permite limpar totalmente (o valor passa a ser null em vez de 0).": ["emptyValueIsNull allows fully clearing (the value becomes null instead of 0).","emptyValueIsNull permite limpar totalmente (o valor passa a ser null em vez de 0).","emptyValueIsNull permite limpiar completamente (el valor pasa a ser null en lugar de 0).","emptyValueIsNull permet d'effacer completement (la valeur devient null au lieu de 0)."],
 "Exemplo 100% standalone com default no load e botão salvar.": ["100% standalone example with defaults on load and a save button.","Exemplo 100% standalone com default no load e botao guardar.","Ejemplo 100% standalone con valores por defecto al cargar y boton guardar.","Exemple 100% autonome avec valeurs par defaut au chargement et un bouton d'enregistrement."],
 "Exemplo sem formulário com onEnter, onExit, onChange, onClear, onValidation.": ["Example without a form using onEnter, onExit, onChange, onClear, onValidation.","Exemplo sem formulário com onEnter, onExit, onChange, onClear, onValidation.","Ejemplo sin formulario con onEnter, onExit, onChange, onClear, onValidation.","Exemple sans formulaire avec onEnter, onExit, onChange, onClear, onValidation."]
 }

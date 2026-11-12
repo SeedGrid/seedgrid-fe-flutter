@@ -21,7 +21,7 @@ abstract interface class SgInputNumberProps {
   /// Quantidade de casas decimais permitidas.
   num? get decimals;
   SgInputNumberElevation? get elevation;
-  SgInputNumberEmptyValue? get emptyValue;
+  bool? get emptyValueIsNull;
   bool? get enabled;
   String? get error;
   bool? get filled;
@@ -45,7 +45,7 @@ abstract interface class SgInputNumberProps {
   String? get minValueMessage;
   /// Nome do campo para formularios.
   String? get name;
-  /// Callback com o valor numerico atual. Tipo TS: `((value: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
+  /// Callback com o valor numerico atual (number; null somente com emptyValueIsNull). Tipo TS: `((value: number | null) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onChange;
   /// Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onClear;
@@ -124,12 +124,12 @@ const List<SgPropSpec> sgInputNumberPropSpecs = <SgPropSpec>[
     values: <String>['none', 'sm', 'md', 'lg'],
   ),
   SgPropSpec(
-    name: 'emptyValue',
-    reactName: 'emptyValue',
-    type: 'SgInputNumberEmptyValue?',
-    tsType: '"null" | "zero"',
+    name: 'emptyValueIsNull',
+    reactName: 'emptyValueIsNull',
+    type: 'bool?',
+    tsType: 'boolean',
     required: false,
-    values: <String>['null', 'zero'],
+    description: 'Se true, campo vazio vale null; se false (padrao), vale 0.',
   ),
   SgPropSpec(
     name: 'enabled',
@@ -262,9 +262,9 @@ const List<SgPropSpec> sgInputNumberPropSpecs = <SgPropSpec>[
     name: 'onChange',
     reactName: 'onChange',
     type: 'Function?',
-    tsType: '((value: string) => void)',
+    tsType: '((value: number | null) => void)',
     required: false,
-    description: 'Callback com o valor numerico atual.',
+    description: 'Callback com o valor numerico atual (number; null somente com emptyValueIsNull).',
     exact: false,
   ),
   SgPropSpec(

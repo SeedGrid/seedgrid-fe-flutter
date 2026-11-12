@@ -11,15 +11,15 @@ import 'package:seedgrid_components/seedgrid_components.dart';
 import 'sg_uncontrolled_inputs_test.dart' as base;
 
 /// O que `form.getValue` devolve depois de o usuario DIGITAR `TextCase.typed` em cada campo.
-const _typedInForm = <String, String>{
+const _typedInForm = <String, Object>{
   'SgInputText': 'Beatriz',
   'SgInputTextArea': 'Observação nova',
   'SgInputEmail': 'bia@seedgrid.dev',
   'SgInputPassword': 'Outra#Senha2',
   'SgInputPhone': '(21) 91234-5678',
   'SgInputPostalCode': '20040-020',
-  'SgInputNumber': '34.00',
-  'SgInputCurrency': '9876.00',
+  'SgInputNumber': 34.0,
+  'SgInputCurrency': 9876.0,
   'SgInputCPF': '111.444.777-35',
   'SgInputCNPJ': '11.444.777/0001-61',
   'SgInputCPFCNPJ': '11.444.777/0001-61',

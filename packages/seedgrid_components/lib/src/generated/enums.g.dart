@@ -1717,24 +1717,6 @@ enum SgInputCurrencyCurrencySymbolPlacement {
   }
 }
 
-/// Valores aceitos pelo React: `null`, `zero`.
-enum SgInputCurrencyEmptyValue {
-  nullValue('null'),
-  zero('zero');
-
-  const SgInputCurrencyEmptyValue(this.value);
-
-  /// String equivalente no React.
-  final String value;
-
-  static SgInputCurrencyEmptyValue? fromValue(String? v) {
-    for (final e in values) {
-      if (e.value == v) return e;
-    }
-    return null;
-  }
-}
-
 /// Valores aceitos pelo React: `none`, `email`, `search`, `tel`, `text`, `url`, `numeric`, `decimal`.
 enum SgInputCurrencyTextInputType {
   none('none'),
@@ -2018,24 +2000,6 @@ enum SgInputNumberElevation {
   final String value;
 
   static SgInputNumberElevation? fromValue(String? v) {
-    for (final e in values) {
-      if (e.value == v) return e;
-    }
-    return null;
-  }
-}
-
-/// Valores aceitos pelo React: `null`, `zero`.
-enum SgInputNumberEmptyValue {
-  nullValue('null'),
-  zero('zero');
-
-  const SgInputNumberEmptyValue(this.value);
-
-  /// String equivalente no React.
-  final String value;
-
-  static SgInputNumberEmptyValue? fromValue(String? v) {
     for (final e in values) {
       if (e.value == v) return e;
     }

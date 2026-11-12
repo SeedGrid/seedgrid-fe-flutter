@@ -21,7 +21,7 @@ Widget host(Widget child) => MaterialApp(
 SgInputCurrencyCurrencyDisplay? _display(Object? v) =>
     v == null ? null : SgInputCurrencyCurrencyDisplay.fromValue(v as String);
 
-Widget buildScenario(Map<String, dynamic> s, List<String> emitted) {
+Widget buildScenario(Map<String, dynamic> s, List<num?> emitted) {
   final p = (s['props'] as Map<String, dynamic>);
   final initial = (p['inputProps'] as Map<String, dynamic>?)?['value'];
   if (s['component'] == 'number') {
@@ -29,9 +29,7 @@ Widget buildScenario(Map<String, dynamic> s, List<String> emitted) {
       id: 'x',
       decimals: p['decimals'] as int?,
       allowNegative: p['allowNegative'] as bool?,
-      emptyValue: p['emptyValue'] == null
-          ? null
-          : SgInputNumberEmptyValue.fromValue(p['emptyValue'] as String),
+      emptyValueIsNull: p['emptyValueIsNull'] as bool?,
       value: initial,
       onChange: emitted.add,
     );
@@ -52,9 +50,7 @@ Widget buildScenario(Map<String, dynamic> s, List<String> emitted) {
     decimals: p['decimals'] as int?,
     prefixText: p['prefixText'] as String?,
     suffixText: p['suffixText'] as String?,
-    emptyValue: p['emptyValue'] == null
-        ? null
-        : SgInputCurrencyEmptyValue.fromValue(p['emptyValue'] as String),
+    emptyValueIsNull: p['emptyValueIsNull'] as bool?,
     allowNegative: p['allowNegative'] as bool?,
     value: initial,
     onChange: emitted.add,
@@ -93,7 +89,7 @@ void main() {
       var steps = 0;
       for (final s in scenarios) {
         setComponentsI18n(SgComponentsI18nInput(locale: s['locale'] as String));
-        final emitted = <String>[];
+        final emitted = <num?>[];
         await t.pumpWidget(
           const SizedBox(),
         ); // desmonta o cenario anterior: o State nao pode vazar

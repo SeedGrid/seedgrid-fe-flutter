@@ -337,21 +337,21 @@ SizedBox(
         id: 'standalone-a',
         currency: 'BRL',
         labelText: context.tx('Entrada 1'),
-        onChange: (v) => _standalone['a'] = v,
+        onChange: (v) => _standalone['a'] = '${v ?? ''}',
       ),
       const SizedBox(height: 12),
       SgInputCurrency(
         id: 'standalone-b',
         currency: 'BRL',
         labelText: context.tx('Entrada 2'),
-        onChange: (v) => _standalone['b'] = v,
+        onChange: (v) => _standalone['b'] = '${v ?? ''}',
       ),
       const SizedBox(height: 12),
       SgInputCurrency(
         id: 'standalone-c',
         currency: 'BRL',
         labelText: context.tx('Entrada 3'),
-        onChange: (v) => _standalone['c'] = v,
+        onChange: (v) => _standalone['c'] = '${v ?? ''}',
       ),
       const SizedBox(height: 12),
       SgButton(
@@ -442,7 +442,7 @@ SizedBox(
     id: 'demo-empty',
     currency: 'BRL',
     labelText: context.tx('Pode ficar vazio'),
-    emptyValue: SgInputCurrencyEmptyValue.nullValue,
+    emptyValueIsNull: true,
   ),
 )
 ''';

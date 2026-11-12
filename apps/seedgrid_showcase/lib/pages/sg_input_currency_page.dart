@@ -393,7 +393,8 @@ class _SgInputCurrencyPageState extends State<SgInputCurrencyPage> {
       ),
       ShowcaseExample(
         title: 'Valor vazio',
-        description: 'emptyValue="null" permite limpar totalmente.',
+        description:
+            'emptyValueIsNull permite limpar totalmente (o valor passa a ser null em vez de 0).',
         preview:
             // #region sg-input-currency-vazio
             SizedBox(
@@ -402,7 +403,7 @@ class _SgInputCurrencyPageState extends State<SgInputCurrencyPage> {
                 id: 'demo-empty',
                 currency: 'BRL',
                 labelText: context.tx('Pode ficar vazio'),
-                emptyValue: SgInputCurrencyEmptyValue.nullValue,
+                emptyValueIsNull: true,
               ),
             ),
         // #endregion
@@ -454,21 +455,21 @@ class _SgInputCurrencyPageState extends State<SgInputCurrencyPage> {
                     id: 'standalone-a',
                     currency: 'BRL',
                     labelText: context.tx('Entrada 1'),
-                    onChange: (v) => _standalone['a'] = v,
+                    onChange: (v) => _standalone['a'] = '${v ?? ''}',
                   ),
                   const SizedBox(height: 12),
                   SgInputCurrency(
                     id: 'standalone-b',
                     currency: 'BRL',
                     labelText: context.tx('Entrada 2'),
-                    onChange: (v) => _standalone['b'] = v,
+                    onChange: (v) => _standalone['b'] = '${v ?? ''}',
                   ),
                   const SizedBox(height: 12),
                   SgInputCurrency(
                     id: 'standalone-c',
                     currency: 'BRL',
                     labelText: context.tx('Entrada 3'),
-                    onChange: (v) => _standalone['c'] = v,
+                    onChange: (v) => _standalone['c'] = '${v ?? ''}',
                   ),
                   const SizedBox(height: 12),
                   SgButton(
@@ -564,7 +565,7 @@ class _SgInputCurrencyPageState extends State<SgInputCurrencyPage> {
     // currencyDisplay e currencySymbolPlacement ficam de fora: o dropdown do SgPlayground (arquivo
     // compartilhado, sem isExpanded) estoura 1,8 px com esses rotulos longos; os dois estao nos exemplos.
     const playgroundProps = {
-      'emptyValue',
+      'emptyValueIsNull',
       'allowNegative',
       'enabled',
       'readOnly',
@@ -609,7 +610,7 @@ class _SgInputCurrencyPageState extends State<SgInputCurrencyPage> {
             .toList(),
         builder: (context, v) => SgInputCurrency(
           key: ValueKey(
-            'pg-${v['emptyValue']}-${v['currency']}-${v['locale']}',
+            'pg-${v['emptyValueIsNull']}-${v['currency']}-${v['locale']}',
           ),
           id: 'pg',
           labelText: 'Valor',
@@ -622,9 +623,7 @@ class _SgInputCurrencyPageState extends State<SgInputCurrencyPage> {
               SgInputCurrencyCurrencySymbolPlacement.fromValue(
                 v['currencySymbolPlacement'] as String?,
               ),
-          emptyValue: SgInputCurrencyEmptyValue.fromValue(
-            v['emptyValue'] as String?,
-          ),
+          emptyValueIsNull: v['emptyValueIsNull'] as bool?,
           allowNegative: v['allowNegative'] as bool?,
           enabled: v['enabled'] as bool?,
           readOnly: v['readOnly'] as bool?,
@@ -644,8 +643,6 @@ class _SgInputCurrencyPageState extends State<SgInputCurrencyPage> {
                 'currencyDisplay: SgInputCurrencyCurrencyDisplay.${SgInputCurrencyCurrencyDisplay.fromValue(e.value as String)!.name}',
               'currencySymbolPlacement' =>
                 'currencySymbolPlacement: SgInputCurrencyCurrencySymbolPlacement.${SgInputCurrencyCurrencySymbolPlacement.fromValue(e.value as String)!.name}',
-              'emptyValue' =>
-                'emptyValue: SgInputCurrencyEmptyValue.${SgInputCurrencyEmptyValue.fromValue(e.value as String)!.name}',
               final k when e.value is String => "$k: '${e.value}'",
               _ => '${e.key}: ${e.value}',
             });

@@ -280,7 +280,7 @@ Widget buildComponent(Bench b) {
       : null;
   String? sv(Object? o) => o == null ? null : '$o';
   void onVal(String? m) => b.validations.add(m);
-  void onChange(String v) => b.emitted.add(v);
+  void onChange(Object? v) => b.emitted.add(v);
   final required = p['required'] as bool?;
   final maxLength = p['maxLength'] as num?;
   final minLength = p['minLength'] as num?;
@@ -452,7 +452,7 @@ Widget buildComponent(Bench b) {
         required: required,
         decimals: p['decimals'] as num?,
         allowNegative: p['allowNegative'] as bool?,
-        emptyValue: _enum(SgInputNumberEmptyValue.fromValue, p['emptyValue']),
+        emptyValueIsNull: p['emptyValueIsNull'] as bool?,
         minValue: p['minValue'] as num?,
         maxValue: p['maxValue'] as num?,
         initialValue: vDefault,
@@ -471,7 +471,7 @@ Widget buildComponent(Bench b) {
         locale: p['locale'] as String?,
         decimals: p['decimals'] as num?,
         allowNegative: p['allowNegative'] as bool?,
-        emptyValue: _enum(SgInputCurrencyEmptyValue.fromValue, p['emptyValue']),
+        emptyValueIsNull: p['emptyValueIsNull'] as bool?,
         minValue: p['minValue'] as num?,
         maxValue: p['maxValue'] as num?,
         initialValue: vDefault,

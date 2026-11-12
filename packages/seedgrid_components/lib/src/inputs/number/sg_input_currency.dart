@@ -1,5 +1,5 @@
 // Porte de SgInputCurrency (React: src/inputs/SgInputCurrency.tsx). Mesmos nomes de prop, valores e defaults.
-// O valor entregue a onChange e ao formulario e o canonico com ponto ("1234.56"). Simbolo, posicao e
+// O valor entregue a onChange e ao formulario e um numero (double; null so com emptyValueIsNull). Simbolo, posicao e
 // separadores vem de `currency_data.g.dart` (Intl do Node para pt-BR, pt-PT, en-US, es, fr e de-DE);
 // outros locales caem em en-US. Rotulo so no modo flutuante (o React nao tem labelPosition aqui).
 import 'package:flutter/widgets.dart';
@@ -34,7 +34,7 @@ class SgInputCurrency extends StatelessWidget implements SgInputCurrencyProps {
     this.currencySymbolOverride,
     this.currencySymbolPlacement,
     this.decimals,
-    this.emptyValue,
+    this.emptyValueIsNull,
     this.enabled,
     this.error,
     this.filled,
@@ -101,8 +101,10 @@ class SgInputCurrency extends StatelessWidget implements SgInputCurrencyProps {
   /// Padrao: as casas da moeda (BRL 2, JPY 0...).
   @override
   final num? decimals;
+
+  /// Se `true`, campo vazio vale `null`; se `false` (padrao), vale 0.
   @override
-  final SgInputCurrencyEmptyValue? emptyValue;
+  final bool? emptyValueIsNull;
 
   /// No React a prop e `enabled` (valor invertido).
   @override
@@ -140,9 +142,9 @@ class SgInputCurrency extends StatelessWidget implements SgInputCurrencyProps {
   @override
   final String? name;
 
-  /// Recebe o valor canonico ("1234.56").
+  /// Recebe o valor como numero (`null` somente com `emptyValueIsNull`).
   @override
-  final ValueChanged<String>? onChange;
+  final ValueChanged<num?>? onChange;
   @override
   final VoidCallback? onClear;
 
@@ -233,7 +235,7 @@ class SgInputCurrency extends StatelessWidget implements SgInputCurrencyProps {
         decimalSep: meta.decimalSep,
         groupSep: grouping ? meta.groupSep : '',
         allowNegative: allowNegative ?? true,
-        emptyIsNull: emptyValue == SgInputCurrencyEmptyValue.nullValue,
+        emptyIsNull: emptyValueIsNull ?? false,
         labelText: labelText ?? label,
         hintText: hintText,
         placeholder: placeholder,

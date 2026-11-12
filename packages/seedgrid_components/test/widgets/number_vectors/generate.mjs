@@ -134,14 +134,14 @@ for (const locale of LOCALES) {
     for (const allowNegative of [true, false]) {
       for (const emptyValue of ["zero", "null"]) {
         for (const [name, actions] of Object.entries(SEQS)) {
-          scenarios.push({ id: `num|${locale}|d${decimals}|neg${allowNegative}|${emptyValue}|${name}`, component: "number", locale, props: { decimals, allowNegative, emptyValue }, actions });
+          scenarios.push({ id: `num|${locale}|d${decimals}|neg${allowNegative}|${emptyValue}|${name}`, component: "number", locale, props: { decimals, allowNegative, emptyValueIsNull: emptyValue === "null" }, actions });
         }
       }
     }
   }
   for (const value of ["1234.5", "-0.5", "", "12,5", "1.234.567,891", "abc"]) {
     for (const emptyValue of ["zero", "null"]) {
-      scenarios.push({ id: `num|${locale}|inicial=${value}|${emptyValue}`, component: "number", locale, props: { emptyValue, inputProps: { value } }, actions: K("1") });
+      scenarios.push({ id: `num|${locale}|inicial=${value}|${emptyValue}`, component: "number", locale, props: { emptyValueIsNull: emptyValue === "null", inputProps: { value } }, actions: K("1") });
     }
   }
 }
@@ -166,7 +166,7 @@ for (const locale of LOCALES) {
     ["decimais0", { decimals: 0 }],
     ["decimais4", { decimals: 4 }],
     ["afixos", { prefixText: "Total", suffixText: "/mes" }],
-    ["nulo", { emptyValue: "null" }],
+    ["nulo", { emptyValueIsNull: true }],
     ["semNegativo", { allowNegative: false }],
     ["localeProp", { locale: "de-DE" }],
     ["moedaInvalida", { currency: "XXXX" }],

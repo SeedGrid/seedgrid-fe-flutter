@@ -1,5 +1,5 @@
 // Porte de SgInputNumber (React: src/inputs/SgInputNumber.tsx). Mesmos nomes de prop, valores e defaults.
-// O valor entregue a onChange e ao formulario e o canonico com ponto ("-1234.50"), igual ao React;
+// O valor entregue a onChange e ao formulario e um numero (double; null so com emptyValueIsNull), igual ao React;
 // o campo mostra o numero formatado pelo idioma do SgComponentsI18nProvider.
 // `register` nao existe (ADR 49): use `name` + `control` (SgFormController) ou um SgForm acima.
 import 'package:flutter/widgets.dart';
@@ -21,7 +21,7 @@ class SgInputNumber extends StatelessWidget implements SgInputNumberProps {
     this.control,
     this.decimals,
     this.elevation,
-    this.emptyValue,
+    this.emptyValueIsNull,
     this.enabled,
     this.error,
     this.filled,
@@ -85,9 +85,9 @@ class SgInputNumber extends StatelessWidget implements SgInputNumberProps {
   @override
   final SgInputNumberElevation? elevation;
 
-  /// `zero` (padrao: o campo mostra 0,00) ou `nullValue` ('null' no React: o campo comeca vazio).
+  /// Se `true`, campo vazio vale `null`; se `false` (padrao), vale 0 (o campo mostra 0,00).
   @override
-  final SgInputNumberEmptyValue? emptyValue;
+  final bool? emptyValueIsNull;
 
   /// No React a prop e `enabled` (valor invertido).
   @override
@@ -129,9 +129,9 @@ class SgInputNumber extends StatelessWidget implements SgInputNumberProps {
   @override
   final String? name;
 
-  /// Recebe o valor canonico ("1234.50").
+  /// Recebe o valor como numero (`null` somente com `emptyValueIsNull`).
   @override
-  final ValueChanged<String>? onChange;
+  final ValueChanged<num?>? onChange;
   @override
   final VoidCallback? onClear;
 
@@ -193,7 +193,7 @@ class SgInputNumber extends StatelessWidget implements SgInputNumberProps {
         decimalSep: seps.decimal,
         groupSep: seps.group,
         allowNegative: allowNegative ?? true,
-        emptyIsNull: emptyValue == SgInputNumberEmptyValue.nullValue,
+        emptyIsNull: emptyValueIsNull ?? false,
         labelText: labelText ?? label,
         hintText: hintText,
         placeholder: placeholder,

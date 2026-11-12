@@ -7458,14 +7458,13 @@
      "alias": null
     },
     {
-     "name": "emptyValue",
+     "name": "emptyValueIsNull",
      "optional": true,
-     "ts": "\"null\" | \"zero\" | undefined",
+     "ts": "boolean | undefined",
      "alias": null,
-     "enum": [
-      "null",
-      "zero"
-     ]
+     "description": "Se true, campo vazio vale null; se false (padrao), vale 0.",
+     "semanticRole": "behavior",
+     "default": false
     },
     {
      "name": "enabled",
@@ -7572,10 +7571,10 @@
     {
      "name": "onChange",
      "optional": true,
-     "ts": "((value: string) => void) | undefined",
+     "ts": "((value: number | null) => void) | undefined",
      "alias": null,
      "fn": true,
-     "description": "Callback com o valor monetario normalizado.",
+     "description": "Callback com o valor monetario como number (null somente com emptyValueIsNull).",
      "semanticRole": "event"
     },
     {
@@ -8880,14 +8879,13 @@
      ]
     },
     {
-     "name": "emptyValue",
+     "name": "emptyValueIsNull",
      "optional": true,
-     "ts": "\"null\" | \"zero\" | undefined",
+     "ts": "boolean | undefined",
      "alias": null,
-     "enum": [
-      "null",
-      "zero"
-     ]
+     "description": "Se true, campo vazio vale null; se false (padrao), vale 0.",
+     "semanticRole": "behavior",
+     "default": false
     },
     {
      "name": "enabled",
@@ -9016,10 +9014,10 @@
     {
      "name": "onChange",
      "optional": true,
-     "ts": "((value: string) => void) | undefined",
+     "ts": "((value: number | null) => void) | undefined",
      "alias": null,
      "fn": true,
-     "description": "Callback com o valor numerico atual.",
+     "description": "Callback com o valor numerico atual (number; null somente com emptyValueIsNull).",
      "semanticRole": "event"
     },
     {

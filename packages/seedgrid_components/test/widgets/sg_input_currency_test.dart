@@ -226,62 +226,51 @@ void main() {
   });
 
   group('valor e interacao', () {
-    testWidgets(
-      'onChange recebe o valor canonico com ponto; negativo e limpar',
-      (t) async {
-        final out = <String>[];
-        var cleared = 0;
-        await t.pumpWidget(
-          host(
-            SgInputCurrency(
-              id: 'c',
-              onChange: out.add,
-              onClear: () => cleared++,
-            ),
-          ),
-        );
-        await type(t, '1234,56');
-        expect(out.last, '1234.56');
-        await type(t, '-');
-        expect(out.last, '-1234.56');
-        await t.tap(find.byKey(const ValueKey('clear-c')));
-        await t.pump();
-        expect(shown(t), '0,00');
-        expect(out.last, '0.00');
-        expect(cleared, 1);
-      },
-    );
+    testWidgets('onChange recebe o valor como numero; negativo e limpar', (
+      t,
+    ) async {
+      final out = <num?>[];
+      var cleared = 0;
+      await t.pumpWidget(
+        host(
+          SgInputCurrency(id: 'c', onChange: out.add, onClear: () => cleared++),
+        ),
+      );
+      await type(t, '1234,56');
+      expect(out.last, 1234.56);
+      await type(t, '-');
+      expect(out.last, -1234.56);
+      await t.tap(find.byKey(const ValueKey('clear-c')));
+      await t.pump();
+      expect(shown(t), '0,00');
+      expect(out.last, 0);
+      expect(cleared, 1);
+    });
 
-    testWidgets(
-      'allowNegative false, emptyValue nullValue, value e initialValue',
-      (t) async {
-        await t.pumpWidget(
-          host(const SgInputCurrency(id: 'c', allowNegative: false)),
-        );
-        await type(t, '-3');
-        expect(shown(t), '3,00');
-        await t.pumpWidget(const SizedBox());
-        await t.pumpWidget(
-          host(
-            const SgInputCurrency(
-              id: 'c',
-              emptyValue: SgInputCurrencyEmptyValue.nullValue,
-            ),
-          ),
-        );
-        expect(shown(t), '');
-        await t.pumpWidget(const SizedBox());
-        await t.pumpWidget(host(const SgInputCurrency(id: 'c', value: '99.9')));
-        expect(shown(t), '99,90');
-        await t.pumpWidget(host(const SgInputCurrency(id: 'c', value: 5)));
-        expect(shown(t), '5,00');
-      },
-    );
+    testWidgets('allowNegative false, emptyValueIsNull, value e initialValue', (
+      t,
+    ) async {
+      await t.pumpWidget(
+        host(const SgInputCurrency(id: 'c', allowNegative: false)),
+      );
+      await type(t, '-3');
+      expect(shown(t), '3,00');
+      await t.pumpWidget(const SizedBox());
+      await t.pumpWidget(
+        host(const SgInputCurrency(id: 'c', emptyValueIsNull: true)),
+      );
+      expect(shown(t), '');
+      await t.pumpWidget(const SizedBox());
+      await t.pumpWidget(host(const SgInputCurrency(id: 'c', value: '99.9')));
+      expect(shown(t), '99,90');
+      await t.pumpWidget(host(const SgInputCurrency(id: 'c', value: 5)));
+      expect(shown(t), '5,00');
+    });
 
     testWidgets(
       'desabilitado / somente leitura nao editam e escondem o botao limpar',
       (t) async {
-        final out = <String>[];
+        final out = <num?>[];
         await t.pumpWidget(
           host(SgInputCurrency(id: 'c', enabled: false, onChange: out.add)),
         );
@@ -363,7 +352,7 @@ void main() {
           host(
             const SgInputCurrency(
               id: 'c',
-              emptyValue: SgInputCurrencyEmptyValue.nullValue,
+              emptyValueIsNull: true,
               hintText: 'dica',
               labelText: 'Preco',
             ),
@@ -504,7 +493,7 @@ void main() {
         await type(t, '3');
         expect(
           form.getValue('preco'),
-          '12.53',
+          12.53,
           reason: 'o 3 entra nos decimais: 12,5 -> 12,53',
         );
         await form.setValue('preco', '0');

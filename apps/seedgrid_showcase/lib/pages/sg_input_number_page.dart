@@ -402,7 +402,8 @@ class _SgInputNumberPageState extends State<SgInputNumberPage> {
       ),
       ShowcaseExample(
         title: 'Valor vazio',
-        description: 'emptyValue="null" permite limpar totalmente.',
+        description:
+            'emptyValueIsNull permite limpar totalmente (o valor passa a ser null em vez de 0).',
         preview:
             // #region sg-input-number-vazio
             SizedBox(
@@ -410,7 +411,7 @@ class _SgInputNumberPageState extends State<SgInputNumberPage> {
               child: SgInputNumber(
                 id: 'demo-empty',
                 labelText: context.tx('Pode ficar vazio'),
-                emptyValue: SgInputNumberEmptyValue.nullValue,
+                emptyValueIsNull: true,
                 decimals: 2,
               ),
             ),
@@ -463,21 +464,21 @@ class _SgInputNumberPageState extends State<SgInputNumberPage> {
                     id: 'standalone-a',
                     labelText: context.tx('Entrada 1'),
                     decimals: 2,
-                    onChange: (v) => _standalone['a'] = v,
+                    onChange: (v) => _standalone['a'] = '${v ?? ''}',
                   ),
                   const SizedBox(height: 12),
                   SgInputNumber(
                     id: 'standalone-b',
                     labelText: context.tx('Entrada 2'),
                     decimals: 2,
-                    onChange: (v) => _standalone['b'] = v,
+                    onChange: (v) => _standalone['b'] = '${v ?? ''}',
                   ),
                   const SizedBox(height: 12),
                   SgInputNumber(
                     id: 'standalone-c',
                     labelText: context.tx('Entrada 3'),
                     decimals: 2,
-                    onChange: (v) => _standalone['c'] = v,
+                    onChange: (v) => _standalone['c'] = '${v ?? ''}',
                   ),
                   const SizedBox(height: 12),
                   SgButton(
@@ -614,7 +615,7 @@ class _SgInputNumberPageState extends State<SgInputNumberPage> {
     const playgroundProps = {
       'labelPosition',
       'elevation',
-      'emptyValue',
+      'emptyValueIsNull',
       'allowNegative',
       'enabled',
       'readOnly',
@@ -658,7 +659,7 @@ class _SgInputNumberPageState extends State<SgInputNumberPage> {
             .where((s) => playgroundProps.contains(s.name))
             .toList(),
         builder: (context, v) => SgInputNumber(
-          key: ValueKey('pg-${v['emptyValue']}'),
+          key: ValueKey('pg-${v['emptyValueIsNull']}'),
           id: 'pg',
           labelText: 'Valor',
           labelPosition: SgInputNumberLabelPosition.fromValue(
@@ -667,9 +668,7 @@ class _SgInputNumberPageState extends State<SgInputNumberPage> {
           elevation: SgInputNumberElevation.fromValue(
             v['elevation'] as String?,
           ),
-          emptyValue: SgInputNumberEmptyValue.fromValue(
-            v['emptyValue'] as String?,
-          ),
+          emptyValueIsNull: v['emptyValueIsNull'] as bool?,
           allowNegative: v['allowNegative'] as bool?,
           enabled: v['enabled'] as bool?,
           readOnly: v['readOnly'] as bool?,
@@ -691,8 +690,6 @@ class _SgInputNumberPageState extends State<SgInputNumberPage> {
                 'labelPosition: SgInputNumberLabelPosition.${SgInputNumberLabelPosition.fromValue(e.value as String)!.name}',
               'elevation' =>
                 'elevation: SgInputNumberElevation.${SgInputNumberElevation.fromValue(e.value as String)!.name}',
-              'emptyValue' =>
-                'emptyValue: SgInputNumberEmptyValue.${SgInputNumberEmptyValue.fromValue(e.value as String)!.name}',
               final k when e.value is String => "$k: '${e.value}'",
               _ => '${e.key}: ${e.value}',
             });

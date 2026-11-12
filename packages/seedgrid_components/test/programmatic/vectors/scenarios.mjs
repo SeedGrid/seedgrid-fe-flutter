@@ -74,7 +74,7 @@ const SPECS = [
     values: ["1234.5", "1234,50", "1.234,56", "-12.5", "0", "", "abc", "12345678901234567890", "0.005", "1,234.56", 1234.5, -1, 0, 12],
     variants: [
       { name: "d0", props: { decimals: 0 }, values: ["12.7", 12.7, "1234", "-5", ""] },
-      { name: "nulo", props: { emptyValue: "null" }, values: ["", "0", "5", 0] },
+      { name: "nulo", props: { emptyValueIsNull: true }, values: ["", "0", "5", 0] },
       { name: "semneg", props: { allowNegative: false }, values: ["-5", -5, "5"] },
       { name: "enUS", locale: "en-US", props: {}, values: ["1234.5", "1,234.56", "1234,50", ""] },
       { name: "limites", props: { minValue: 10, maxValue: 100 }, values: ["5", "50", "500", ""] },
@@ -87,7 +87,7 @@ const SPECS = [
     variants: [
       { name: "USD", locale: "en-US", props: { currency: "USD", locale: "en-US" }, values: [1234.5, "1,234.56", "1234.5", -1, ""] },
       { name: "JPY", props: { currency: "JPY", locale: "ja-JP" }, values: [1234, "1234.5", 1234.5, ""] },
-      { name: "nulo", props: { currency: "BRL", locale: "pt-BR", emptyValue: "null" }, values: ["", 0, "0", 5] },
+      { name: "nulo", props: { currency: "BRL", locale: "pt-BR", emptyValueIsNull: true }, values: ["", 0, "0", 5] },
     ],
   },
   {
