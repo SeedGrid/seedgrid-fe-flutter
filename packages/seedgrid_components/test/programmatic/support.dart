@@ -79,6 +79,10 @@ abstract class Rules {
   /// O React nao entrega `onChange` do componente quando ele esta ligado a um formulario (so o
   /// `field.onChange`); o Dart entrega nos dois casos.
   bool ignoreEmitted(Map<String, dynamic> s) => false;
+
+  /// Valor esperado no formulario (default: o do React).
+  Object? form(Map<String, dynamic> s, Object? reactForm, Object? raw, bool typedAny) =>
+      reactForm;
 }
 
 class StrictRules extends Rules {
@@ -590,14 +594,13 @@ Future<List<String>> runAndCompare(
       }
       if (a.containsKey('rerender'))
         raw = decodeValue((a['rerender'] as Map)['value']);
-      expectedForm = decodeValue(r['form']);
     }
     if (reactEmitted.isNotEmpty) {
       typed = true;
       if (rules.formFollowsEmitted) expectedForm = reactEmitted.last;
     }
     if (!(rules.formFollowsEmitted && typedAny)) {
-      expectedForm = decodeValue(r['form']);
+      expectedForm = rules.form(s, decodeValue(r['form']), raw, typedAny);
     }
     if (reactVal.isNotEmpty) stale = false;
 

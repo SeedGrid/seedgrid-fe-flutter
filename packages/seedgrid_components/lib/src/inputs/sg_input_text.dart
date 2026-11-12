@@ -421,9 +421,34 @@ class _SgInputTextState extends State<SgInputText> implements SgSelfValidating {
     _syncFromForm();
   }
 
+  /// P155.F3.T13: com mascara, o valor do formulario e SEMPRE o mascarado (digitado ou setado por codigo
+  /// com texto cru). Se o formulario guarda outra forma do mesmo valor, regrava o mascarado sem marcar
+  /// o campo como alterado. Valor que a mascara cortaria (cru maior que o comportado) fica como esta.
+  void _writeBackMasked(Object? stored, String masked) {
+    final formatters = widget.inputFormatters;
+    if (formatters == null || formatters.isEmpty || stored == null) return;
+    final full = _full(masked);
+    if (masked.isEmpty || '$stored' == full) return;
+    String alnum(String x) => x.replaceAll(RegExp(r'[^0-9A-Za-z]'), '').toLowerCase();
+    final norm = widget.externalValueNormalizer;
+    final seen = _strip(stored);
+    if (alnum(norm != null && seen.isNotEmpty ? norm(seen) : seen) != alnum(masked)) {
+      return;
+    }
+    final name = widget.name!;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted || _form == null) return;
+      if ('${_form!.getValue(name)}' == full) return;
+      _form!.setValue(name, full, shouldDirty: false);
+    });
+    WidgetsBinding.instance.ensureVisualUpdate();
+  }
+
   void _syncFromForm() {
     if (!_bound) return;
-    final v = _display(_strip(_form!.getValue(widget.name!)));
+    final stored = _form!.getValue(widget.name!);
+    final v = _display(_strip(stored));
+    _writeBackMasked(stored, v);
     final reset = _form!.resetCount != _seenReset;
     _seenReset = _form!.resetCount;
     final changed = _text.text != v;

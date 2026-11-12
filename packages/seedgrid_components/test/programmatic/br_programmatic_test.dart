@@ -36,12 +36,28 @@ String Function(String) maskOf(Map<String, dynamic> s) {
   throw StateError('sem mascara para ${s['component']}');
 }
 
-/// O campo sempre mostra o valor mascarado (o React mostra o texto cru quando o valor vem de fora ou
-/// quando ha `control`), e o formulario guarda o que `onChange` entregou depois de digitar.
+/// O campo e o formulario guardam sempre o valor mascarado (P155.F3.T13), digitado ou vindo de fora.
 class MaskedRules extends Rules {
   const MaskedRules();
   @override
-  bool get formFollowsEmitted => true;
+  Object? form(
+    Map<String, dynamic> s,
+    Object? reactForm,
+    Object? raw,
+    bool typedAny,
+  ) {
+    if (deviates(s, raw)) return maskPhone(sgPhoneStripDdi(raw as String));
+    // Valor de fora maior que a mascara: o Dart nao corta em silencio (fica cru ate o usuario mexer de
+    // verdade); o React, ao receber um caractere digitado, grava o cortado.
+    if (typedAny && raw is String && _lossy(s, raw)) return raw;
+    return reactForm;
+  }
+
+  bool _lossy(Map<String, dynamic> s, String raw) {
+    String alnum(String x) => x.replaceAll(RegExp(r'[^0-9A-Za-z]'), '').toLowerCase();
+    return alnum(maskOf(s)(raw)) != alnum(raw);
+  }
+
   @override
   bool typedRejected(Map<String, dynamic> s, String before, String text) =>
       maskOf(s)(before + text) == before;

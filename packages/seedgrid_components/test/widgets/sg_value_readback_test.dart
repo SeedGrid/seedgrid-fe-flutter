@@ -3,8 +3,8 @@
 // sem setState no host. Reaproveita os casos de sg_uncontrolled_inputs_test.dart (que provam o que o campo MOSTRA);
 // aqui o foco e o que o FORM devolve.
 //
-// Achado documentado: o que o form guarda depende da origem. Valor posto por codigo volta cru (digitos, ISO);
-// valor digitado volta no formato do campo (mascarado em telefone, CEP, CPF, CNPJ; "34.00" em numero e moeda).
+// Achado documentado: campos com mascara (telefone, CEP, CPF, CNPJ, CPF/CNPJ) guardam SEMPRE o valor mascarado no
+// form, digitado ou posto por codigo (P155.F3.T13); os demais devolvem o valor posto por codigo como veio (ISO etc.).
 import 'package:flutter_test/flutter_test.dart';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
@@ -24,10 +24,13 @@ const _typedInForm = <String, Object>{
   'SgInputCNPJ': '11.444.777/0001-61',
   'SgInputCPFCNPJ': '11.444.777/0001-61',
   'SgInputDate': '2026-04-01',
-  'SgInputDateTime (defaultValue)': '2026-11-04T11:15:00.000Z',
+  'SgInputDateTime (defaultValue)': '2026-11-04T08:15',
   'SgInputBirthDate': '1985-01-02',
   'SgInputTextSearch': 'apartamento',
 };
+
+/// Campos que guardam o valor mascarado no form qualquer que seja a origem.
+const _maskedLabels = {'SgInputPhone', 'SgInputPostalCode', 'SgInputCPF', 'SgInputCNPJ', 'SgInputCPFCNPJ'};
 
 void main() {
   setUp(() {
@@ -45,14 +48,25 @@ void main() {
         await t.pumpWidget(
           base.host(c.build('f', name: 'campo', control: form)),
         );
-        expect(form.getValue('campo'), c.initial, reason: 'inicial lido');
+        await t.pump();
+        final masked = _maskedLabels.contains(c.label);
+        expect(
+          form.getValue('campo'),
+          masked ? c.initialShown : c.initial,
+          reason: 'inicial lido',
+        );
         expect(base.shownOf(t, c, 'f'), c.initialShown);
 
         await form.setValue('campo', c.programmatic);
         await t.pump();
         await t.pump(c.settle);
         expect(base.shownOf(t, c, 'f'), c.programmaticShown);
-        expect(form.getValue('campo'), c.programmatic, reason: 'setValue lido');
+        await t.pump();
+        expect(
+          form.getValue('campo'),
+          masked ? c.programmaticShown : c.programmatic,
+          reason: 'setValue lido',
+        );
 
         await t.enterText(base.fieldOf(c, 'f'), c.typed);
         await t.pump(c.settle);
@@ -66,7 +80,8 @@ void main() {
         await t.pump();
         await t.pump(c.settle);
         expect(base.shownOf(t, c, 'f'), c.initialShown, reason: 'reset');
-        expect(form.getValue('campo'), c.initial);
+        await t.pump();
+        expect(form.getValue('campo'), masked ? c.initialShown : c.initial);
       },
     );
   }
