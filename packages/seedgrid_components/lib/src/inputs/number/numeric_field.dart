@@ -170,6 +170,7 @@ class NumericFieldState extends State<NumericField>
       _started = true;
       final raw = _externalValue();
       _state = _parse(raw);
+      if (_bound) _writeBackNumber(raw);
     }
     _syncText();
   }
@@ -196,8 +197,25 @@ class NumericFieldState extends State<NumericField>
     return c.value ?? c.initialValue;
   }
 
+  /// Inteiro como o String(n) do JS (menor representacao que volta ao mesmo double, sem notacao cientifica ate 1e21).
+  static String _integralToString(double v) {
+    final text = v.abs().toString();
+    final sign = v < 0 ? '-' : '';
+    final e = text.indexOf('e');
+    if (e < 0) return '$sign${text.endsWith('.0') ? text.substring(0, text.length - 2) : text}';
+    final mantissa = text.substring(0, e).replaceAll('.', '');
+    final exp = int.parse(text.substring(e + 1));
+    final pad = exp + 1 - mantissa.length;
+    return '$sign$mantissa${'0' * (pad > 0 ? pad : 0)}';
+  }
+
   SgNumberState? _parse(Object? raw) {
-    final s = raw == null ? '' : '$raw';
+    // Como o String(n) do JS: 10.0 vira "10" (nao "10.0", que o campo leria como casas decimais).
+    final s = raw == null
+        ? ''
+        : (raw is double && raw.isFinite && raw == raw.truncateToDouble() && raw.abs() < 1e21
+              ? _integralToString(raw)
+              : '$raw');
     if (s.isEmpty && c.emptyIsNull) return null;
     return normalizeState(s, c.decimals, c.allowNegative);
   }
@@ -226,13 +244,38 @@ class NumericFieldState extends State<NumericField>
         c.required,
         c.requiredMessage ?? t(i18n, 'components.inputs.required'),
       ),
-      initialValue: c.initialValue == null ? null : '${c.initialValue}',
+      initialValue: _numberOrNull(c.initialValue),
     );
+  }
+
+  /// Valor externo como numero: texto vira o numero que o campo entregaria (P155: o formulario guarda sempre numero).
+  Object? _numberOrNull(Object? raw) {
+    if (raw == null) return null;
+    if (raw is num) return raw;
+    final s = '$raw';
+    if (s.isEmpty) return s;
+    return stateToNumber(_parse(s), c.decimals) ?? (c.emptyIsNull ? null : 0);
   }
 
   void _syncFromForm() {
     if (!_bound) return;
-    _applyExternal(_form!.getValue(c.name!));
+    final raw = _form!.getValue(c.name!);
+    _applyExternal(raw);
+    _writeBackNumber(raw);
+  }
+
+  void _writeBackNumber(Object? raw) {
+    if (!_bound) return;
+    if (raw is String && raw.isNotEmpty) {
+      final name = c.name!;
+      final number = _numberOrNull(raw);
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted || _form == null) return;
+        if (_form!.getValue(name) is! String) return;
+        _form!.setValue(name, number, shouldDirty: false);
+      });
+      WidgetsBinding.instance.ensureVisualUpdate();
+    }
   }
 
   void _syncText() {

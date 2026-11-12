@@ -213,7 +213,13 @@ void main() {
         Map<String, Object?>? sent;
         await form.handleSubmit((v) => sent = v, (_) => fail('nao deveria'));
         await t.pump();
-        expect(sent, {'f': c.valid});
+        final numeric =
+            c.label.contains('Number') || c.label.contains('Currency');
+        expect(sent, {
+          'f': numeric && c.valid is String
+              ? num.parse(c.valid as String)
+              : c.valid,
+        });
         expect(find.text(message), findsNothing);
       });
 

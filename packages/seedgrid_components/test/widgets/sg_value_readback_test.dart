@@ -30,7 +30,19 @@ const _typedInForm = <String, Object>{
 };
 
 /// Campos que guardam o valor mascarado no form qualquer que seja a origem.
-const _maskedLabels = {'SgInputPhone', 'SgInputPostalCode', 'SgInputCPF', 'SgInputCNPJ', 'SgInputCPFCNPJ'};
+/// Campos numericos: o form guarda sempre o numero, mesmo se o valor foi posto como texto.
+Object? _asNumber(String label, Object? v) =>
+    (label == 'SgInputNumber' || label == 'SgInputCurrency') && v is String
+    ? num.parse(v)
+    : v;
+
+const _maskedLabels = {
+  'SgInputPhone',
+  'SgInputPostalCode',
+  'SgInputCPF',
+  'SgInputCNPJ',
+  'SgInputCPFCNPJ',
+};
 
 void main() {
   setUp(() {
@@ -52,7 +64,7 @@ void main() {
         final masked = _maskedLabels.contains(c.label);
         expect(
           form.getValue('campo'),
-          masked ? c.initialShown : c.initial,
+          masked ? c.initialShown : _asNumber(c.label, c.initial),
           reason: 'inicial lido',
         );
         expect(base.shownOf(t, c, 'f'), c.initialShown);
@@ -64,7 +76,7 @@ void main() {
         await t.pump();
         expect(
           form.getValue('campo'),
-          masked ? c.programmaticShown : c.programmatic,
+          masked ? c.programmaticShown : _asNumber(c.label, c.programmatic),
           reason: 'setValue lido',
         );
 
@@ -81,7 +93,10 @@ void main() {
         await t.pump(c.settle);
         expect(base.shownOf(t, c, 'f'), c.initialShown, reason: 'reset');
         await t.pump();
-        expect(form.getValue('campo'), masked ? c.initialShown : c.initial);
+        expect(
+          form.getValue('campo'),
+          masked ? c.initialShown : _asNumber(c.label, c.initial),
+        );
       },
     );
   }
