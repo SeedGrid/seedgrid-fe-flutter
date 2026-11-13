@@ -1348,5 +1348,35 @@
   "Ícone ativo",
   "Icono activo",
   "Icône active"
+ ],
+ "Arraste do cartão": [
+  "Card dragging",
+  "Arrasto do cartão",
+  "Arrastre de la tarjeta",
+  "Déplacement de la carte"
+ ],
+ "cardProps.draggable tem três estados: sem informar (automático: arrasta a partir de 640 px de largura e fica fixo no celular), true (sempre arrasta) e false (nunca arrasta).": [
+  "cardProps.draggable has three states: omitted (automatic: drags from 640 px wide and stays fixed on phones), true (always drags) and false (never drags).",
+  "cardProps.draggable tem três estados: sem indicar (automático: arrasta a partir de 640 px de largura e fica fixo no telemóvel), true (arrasta sempre) e false (nunca arrasta).",
+  "cardProps.draggable tiene tres estados: sin indicar (automático: se arrastra desde 640 px de ancho y queda fijo en el móvil), true (siempre se arrastra) y false (nunca se arrastra).",
+  "cardProps.draggable a trois états : omis (automatique : déplaçable à partir de 640 px de large, fixe sur mobile), true (toujours déplaçable) et false (jamais déplaçable)."
+ ],
+ "Automático": [
+  "Automatic",
+  "Automático",
+  "Automático",
+  "Automatique"
+ ],
+ "Sempre arrasta": [
+  "Always drags",
+  "Arrasta sempre",
+  "Siempre se arrastra",
+  "Toujours déplaçable"
+ ],
+ "Nunca arrasta": [
+  "Never drags",
+  "Nunca arrasta",
+  "Nunca se arrastra",
+  "Jamais déplaçable"
  ]
 }

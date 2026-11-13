@@ -731,6 +731,46 @@ class _SgClockPageState extends State<SgClockPage> {
         code: SgClockPageSnippets.sgClockCartao,
       ),
       ShowcaseExample(
+        title: 'Arraste do cartão',
+        description:
+            'cardProps.draggable tem três estados: sem informar (automático: arrasta a partir de 640 px de largura e fica fixo no celular), true (sempre arrasta) e false (nunca arrasta).',
+        preview:
+            // #region sg-clock-arraste
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SgClock(
+                  initialServerTime: '2026-06-15T09:41:07Z',
+                  timezone: 'UTC',
+                  cardTitle: Text(context.tx('Automático')),
+                  cardProps: const SgClockCardProps(id: 'arraste-auto'),
+                ),
+                const SizedBox(height: 16),
+                SgClock(
+                  initialServerTime: '2026-06-15T09:41:07Z',
+                  timezone: 'UTC',
+                  cardTitle: Text(context.tx('Sempre arrasta')),
+                  cardProps: const SgClockCardProps(
+                    id: 'arraste-sempre',
+                    draggable: true,
+                  ),
+                ),
+                const SizedBox(height: 16),
+                SgClock(
+                  initialServerTime: '2026-06-15T09:41:07Z',
+                  timezone: 'UTC',
+                  cardTitle: Text(context.tx('Nunca arrasta')),
+                  cardProps: const SgClockCardProps(
+                    id: 'arraste-nunca',
+                    draggable: false,
+                  ),
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgClockPageSnippets.sgClockArraste,
+      ),
+      ShowcaseExample(
         title: 'Desenho do dígito próprio (digitBuilder)',
         description:
             'Com digitalStyle custom, o digitBuilder recebe as partes do relógio e devolve o desenho de cada dígito; sem ele, o relógio cai no estilo default.',

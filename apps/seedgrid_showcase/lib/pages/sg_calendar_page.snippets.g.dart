@@ -3,6 +3,35 @@
 // Cada constante e o trecho entre `// #region` e `// #endregion` de sg_calendar_page.dart: o mesmo codigo que a pagina renderiza.
 
 abstract final class SgCalendarPageSnippets {
+  /// Region `sg-calendar-arraste`.
+  static const String sgCalendarArraste = r'''
+Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    SgCalendar(
+      cardTitle: Text(context.tx('Automático')),
+      cardProps: const SgCalendarCardProps(id: 'arraste-auto'),
+    ),
+    const SizedBox(height: 16),
+    SgCalendar(
+      cardTitle: Text(context.tx('Sempre arrasta')),
+      cardProps: const SgCalendarCardProps(
+        id: 'arraste-sempre',
+        draggable: true,
+      ),
+    ),
+    const SizedBox(height: 16),
+    SgCalendar(
+      cardTitle: Text(context.tx('Nunca arrasta')),
+      cardProps: const SgCalendarCardProps(
+        id: 'arraste-nunca',
+        draggable: false,
+      ),
+    ),
+  ],
+)
+''';
+
   /// Region `sg-calendar-basico`.
   static const String sgCalendarBasico = r'''
 SgCalendar(onValueChange: (data) => debugPrint('Escolheu $data'))

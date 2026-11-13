@@ -68,6 +68,41 @@ SgClockThemeProvider(
 )
 ''';
 
+  /// Region `sg-clock-arraste`.
+  static const String sgClockArraste = r'''
+Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    SgClock(
+      initialServerTime: '2026-06-15T09:41:07Z',
+      timezone: 'UTC',
+      cardTitle: Text(context.tx('Automático')),
+      cardProps: const SgClockCardProps(id: 'arraste-auto'),
+    ),
+    const SizedBox(height: 16),
+    SgClock(
+      initialServerTime: '2026-06-15T09:41:07Z',
+      timezone: 'UTC',
+      cardTitle: Text(context.tx('Sempre arrasta')),
+      cardProps: const SgClockCardProps(
+        id: 'arraste-sempre',
+        draggable: true,
+      ),
+    ),
+    const SizedBox(height: 16),
+    SgClock(
+      initialServerTime: '2026-06-15T09:41:07Z',
+      timezone: 'UTC',
+      cardTitle: Text(context.tx('Nunca arrasta')),
+      cardProps: const SgClockCardProps(
+        id: 'arraste-nunca',
+        draggable: false,
+      ),
+    ),
+  ],
+)
+''';
+
   /// Region `sg-clock-cartao`.
   static const String sgClockCartao = r'''
 SgClock(
