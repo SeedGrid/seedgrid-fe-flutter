@@ -77,7 +77,7 @@ void main() {
         final card = t.widget<SgCard>(find.byType(SgCard));
         expect(card.draggable, isTrue);
         expect(card.collapsible, isTrue);
-        expect(card.dragPersistKey, 'sg-clock');
+        expect(card.dragPersistKey, startsWith('sg-clock:auto:'));
         expect(card.collapseToggleAlign, SgCardCollapseToggleAlign.right);
         expect(card.collapseIconSize, 20);
         expect(card.cardStyle, SgCardCardStyle.outlined);

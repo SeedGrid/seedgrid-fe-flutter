@@ -119,4 +119,30 @@ void main() {
     }
     expect(last, SgCardPosition(50, 20));
   });
+
+  testWidgets('SgClock sem id/dragPersistKey: cada relogio tem a propria chave', (
+    t,
+  ) async {
+    SharedPreferences.setMockInitialValues({});
+    SgCardPositionStore.clear();
+    t.view.physicalSize = const Size(800, 900);
+    t.view.devicePixelRatio = 1;
+    addTearDown(t.view.reset);
+    Widget c() => SgClock(
+      clockStyle: SgClockClockStyle.digital,
+      initialServerTime: '2026-06-15T15:41:07Z',
+      timezone: 'UTC',
+    );
+    await t.pumpWidget(
+      _host(SingleChildScrollView(child: Column(children: [c(), c(), c()]))),
+    );
+    await t.pump();
+    final keys = t
+        .widgetList<SgCard>(find.byType(SgCard))
+        .map((w) => w.dragPersistKey)
+        .toList();
+    expect(keys.length, 3);
+    expect(keys.toSet().length, 3);
+    expect(keys.every((k) => k != null && k.startsWith('sg-clock:auto:')), isTrue);
+  });
 }

@@ -839,23 +839,11 @@
   "Haz clic en el FAB para expandir botones de acción en diferentes direcciones.",
   "Cliquez sur le FAB pour déployer des boutons d'action dans différentes directions."
  ],
- "Circle Layout": [
-  "Circle Layout",
-  "Disposição em círculo",
-  "Disposición circular",
-  "Disposition en cercle"
- ],
  "Actions arranged in a full circle around the button": [
   "Actions arranged in a full circle around the button",
   "Ações dispostas num círculo completo à volta do botão",
   "Acciones dispuestas en un círculo completo alrededor del botón",
   "Actions disposées en cercle complet autour du bouton"
- ],
- "Semi-Circle Layout": [
-  "Semi-Circle Layout",
-  "Disposição em semicírculo",
-  "Disposición semicircular",
-  "Disposition en demi-cercle"
  ],
  "Actions arranged in a semi-circle (180°) in different directions": [
   "Actions arranged in a semi-circle (180°) in different directions",
@@ -863,23 +851,11 @@
   "Acciones dispuestas en un semicírculo (180°) en diferentes direcciones",
   "Actions disposées en demi-cercle (180°) dans différentes directions"
  ],
- "Quarter-Circle Layout": [
-  "Quarter-Circle Layout",
-  "Disposição em quarto de círculo",
-  "Disposición en cuarto de círculo",
-  "Disposition en quart de cercle"
- ],
  "Actions arranged in a quarter circle (90°) in different directions": [
   "Actions arranged in a quarter circle (90°) in different directions",
   "Ações dispostas num quarto de círculo (90°) em diferentes direções",
   "Acciones dispuestas en un cuarto de círculo (90°) en diferentes direcciones",
   "Actions disposées en quart de cercle (90°) dans différentes directions"
- ],
- "Active Icon": [
-  "Active Icon",
-  "Ícone ativo",
-  "Icono activo",
-  "Icône active"
  ],
  "Show a different icon when the menu is open": [
   "Show a different icon when the menu is open",
@@ -1348,5 +1324,29 @@
   "Os itens individuais do menu podem ser desativados (enabled: false).",
   "Los elementos individuales del menú se pueden deshabilitar (enabled: false).",
   "Les éléments individuels du menu peuvent être désactivés (enabled: false)."
+ ],
+ "Layout circular": [
+  "Circle Layout",
+  "Disposição em círculo",
+  "Disposición circular",
+  "Disposition en cercle"
+ ],
+ "Layout em semicírculo": [
+  "Semi-Circle Layout",
+  "Disposição em semicírculo",
+  "Disposición semicircular",
+  "Disposition en demi-cercle"
+ ],
+ "Layout em quarto de círculo": [
+  "Quarter-Circle Layout",
+  "Disposição em quarto de círculo",
+  "Disposición en cuarto de círculo",
+  "Disposition en quart de cercle"
+ ],
+ "Ícone ativo": [
+  "Active Icon",
+  "Ícone ativo",
+  "Icono activo",
+  "Icône active"
  ]
 }

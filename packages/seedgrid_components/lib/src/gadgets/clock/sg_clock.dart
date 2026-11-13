@@ -345,6 +345,24 @@ class _SgClockState extends State<SgClock> {
     }
   }
 
+  /// Identidade estavel da instancia na arvore (indices dos ancestrais): igual entre execucoes enquanto a
+  /// arvore for a mesma, diferente entre relogios irmaos.
+  String _instancePath(BuildContext context) {
+    final parts = <String>[];
+    void add(Element e) {
+      final slot = e.slot;
+      parts.add(slot is IndexedSlot ? '${slot.index}' : '0');
+    }
+
+    add(context as Element);
+    var depth = 0;
+    context.visitAncestorElements((e) {
+      add(e);
+      return ++depth < 16;
+    });
+    return parts.join('.');
+  }
+
   @override
   Widget build(BuildContext context) {
     final w = widget;
@@ -364,11 +382,13 @@ class _SgClockState extends State<SgClock> {
     final surface2 = theme.vars['--sg-surface-2'] ?? surface;
     final explicitKey = cp?.dragPersistKey?.trim();
     final cardId = cp?.id?.trim();
+    // Sem id/dragPersistKey cada instancia precisa da propria chave (React: useId): uma chave unica fazia os
+    // relogios gravarem a posicao uns por cima dos outros.
     final persistKey = explicitKey != null && explicitKey.isNotEmpty
         ? explicitKey
         : (cardId != null && cardId.isNotEmpty
               ? 'sg-clock:$cardId'
-              : 'sg-clock');
+              : 'sg-clock:auto:${_instancePath(context)}');
 
     final card = SgCard(
       id: cp?.id,

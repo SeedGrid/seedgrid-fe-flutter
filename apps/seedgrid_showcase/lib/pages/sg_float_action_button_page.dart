@@ -411,7 +411,7 @@ class SgFloatActionButtonPage extends StatelessWidget {
         code: SgFloatActionButtonPageSnippets.sgFabSpeedDial,
       ),
       ShowcaseExample(
-        title: 'Circle Layout',
+        title: 'Layout circular',
         description: 'Actions arranged in a full circle around the button',
         preview:
             // #region sg-fab-circle
@@ -484,7 +484,7 @@ class SgFloatActionButtonPage extends StatelessWidget {
         code: SgFloatActionButtonPageSnippets.sgFabCircle,
       ),
       ShowcaseExample(
-        title: 'Semi-Circle Layout',
+        title: 'Layout em semicírculo',
         description:
             'Actions arranged in a semi-circle (180°) in different directions',
         preview:
@@ -627,7 +627,7 @@ class SgFloatActionButtonPage extends StatelessWidget {
         code: SgFloatActionButtonPageSnippets.sgFabSemiCircle,
       ),
       ShowcaseExample(
-        title: 'Quarter-Circle Layout',
+        title: 'Layout em quarto de círculo',
         description:
             'Actions arranged in a quarter circle (90°) in different directions',
         preview:
@@ -758,7 +758,7 @@ class SgFloatActionButtonPage extends StatelessWidget {
         code: SgFloatActionButtonPageSnippets.sgFabQuarterCircle,
       ),
       ShowcaseExample(
-        title: 'Active Icon',
+        title: 'Ícone ativo',
         description: 'Show a different icon when the menu is open',
         preview:
             // #region sg-fab-active-icon
