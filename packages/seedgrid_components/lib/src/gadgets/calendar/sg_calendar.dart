@@ -494,7 +494,8 @@ class _SgCalendarState extends State<SgCalendar> {
       description: cp?.description,
       enabled: cp?.enabled ?? true,
       dragPersistKey: cp?.dragPersistKey,
-      draggable: cp?.draggable ?? true,
+      // cardProps.draggable: null = automatico (arrasta em largura >= 640px), true = sempre, false = nunca.
+      draggable: sgAutoDraggable(context, cp?.draggable),
       footer: cp?.footer,
       header: cp?.header,
       leading: cp?.leading,

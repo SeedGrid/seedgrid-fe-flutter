@@ -57,6 +57,14 @@ class SgCardPosition {
   String toString() => 'SgCardPosition($x, $y)';
 }
 
+/// Largura (px) a partir da qual o arraste automatico fica ligado. Igual ao React (`SG_AUTO_DRAG_MIN_WIDTH`).
+const double kSgAutoDragMinWidth = 640;
+
+/// Resolve `draggable` de componentes que arrastam por padrao (SgClock, SgCalendar): `true` = sempre arrasta;
+/// `false` = nunca; `null` = automatico (arrasta em largura >= 640px, desligado abaixo).
+bool sgAutoDraggable(BuildContext context, bool? draggable) =>
+    draggable ?? MediaQuery.sizeOf(context).width >= kSgAutoDragMinWidth;
+
 /// Posicoes salvas por chave (`dragPersistKey`, ou `sg-card-pos:<id>`). Memoria do processo: leitura
 /// imediata ao remontar o widget. O disco (SgEnvironmentProvider ou shared_preferences, como o React com
 /// localStorage) e lido logo depois da montagem e gravado ao soltar o card. Limpe com [clear] em testes.
@@ -258,6 +266,46 @@ class _SgCardState extends State<SgCard> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) widget.onPositionChange?.call(_pos);
     });
+    if (widget.draggable && _displaced) _scheduleOffscreenCheck();
+  }
+
+  /// Posicao salva de outra tela pode deixar o card todo fora da area visivel: nesse caso volta para a posicao
+  /// padrao (mesma regra do React). Mede depois que o card flutuou (alguns quadros).
+  void _scheduleOffscreenCheck([int frames = 3]) {
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      if (!mounted || !widget.draggable || _movedByUser) return;
+      final box = (_floating ? _floatKey : _inlineKey).currentContext
+          ?.findRenderObject();
+      if (box is! RenderBox || !box.hasSize || box.size.isEmpty) {
+        if (frames > 1) _scheduleOffscreenCheck(frames - 1);
+        return;
+      }
+      final screen = MediaQuery.sizeOf(context);
+      final rect = box.localToGlobal(Offset.zero) & box.size;
+      final off = rect.right <= 0 ||
+          rect.bottom <= 0 ||
+          rect.left >= screen.width ||
+          rect.top >= screen.height;
+      if (!off) {
+        if (frames > 1 && !_floating) _scheduleOffscreenCheck(frames - 1);
+        return;
+      }
+      final def = SgCardPosition(
+        widget.defaultPosition?.x ?? 0,
+        widget.defaultPosition?.y ?? 0,
+      );
+      if (_pos == def) return;
+      setState(() {
+        _pos = def;
+        if (_floating && !_displaced) _floating = false;
+      });
+      final key = _storageKey;
+      if (key != null) {
+        SgCardPositionStore.write(key, def);
+        unawaited(_writeStored(key, def));
+      }
+      widget.onPositionChange?.call(def);
+    });
   }
 
   bool get _isOpen => widget.collapsible ? (widget.open ?? _open) : true;
@@ -358,6 +406,7 @@ class _SgCardState extends State<SgCard> {
     setState(() => _pos = stored);
     SgCardPositionStore.write(key, stored);
     widget.onPositionChange?.call(stored);
+    _scheduleOffscreenCheck();
   }
 
   Future<void> _writeStored(String key, SgCardPosition pos) async {

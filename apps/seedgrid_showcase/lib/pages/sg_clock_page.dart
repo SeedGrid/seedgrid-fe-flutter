@@ -714,7 +714,7 @@ class _SgClockPageState extends State<SgClockPage> {
       ShowcaseExample(
         title: 'Cartão',
         description:
-            'O relógio vem num SgCard recolhível e arrastável. cardTitle troca o título; cardProps ajusta o cartão.',
+            'O relógio vem num SgCard recolhível. O arraste do cartão é automático: ligado a partir de 640 px de largura e desligado no celular (a posição salva é ignorada). cardProps.draggable força (true) ou desliga (false). cardTitle troca o título; cardProps ajusta o cartão.',
         preview:
             // #region sg-clock-cartao
             SgClock(
