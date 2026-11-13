@@ -272,10 +272,7 @@ class _SgInputTextState extends State<SgInputText> implements SgSelfValidating {
   }
 
   /// Texto como o campo o exibe para um valor vindo de FORA (valor inicial, `value`, setValue/reset): passa
-  /// pelos formatadores de entrada (mascaras), assim sai igual ao digitado. Se a mascara mudou o texto
-  /// (valor sem formatacao, ou maior/com lixo alem do que a mascara comporta), guarda o texto cru em
-  /// [_rawSet]: a validacao da perda de foco usa o cru (como o React, que valida o texto do <input>), e
-  /// um valor que nao cabe na mascara aparece como invalido em vez de ser cortado em silencio.
+  /// pelos formatadores de entrada (mascaras), assim sai igual ao digitado; excesso alem da mascara e cortado.
   String _display(String raw) {
     var s = _sanitize(raw);
     if (s.isNotEmpty && widget.externalValueNormalizer != null) {
@@ -293,7 +290,7 @@ class _SgInputTextState extends State<SgInputText> implements SgSelfValidating {
       }
       out = v.text;
     }
-    _rawSet = out == s ? null : s;
+    _rawSet = null;
     return out;
   }
 
@@ -423,18 +420,12 @@ class _SgInputTextState extends State<SgInputText> implements SgSelfValidating {
 
   /// P155.F3.T13: com mascara, o valor do formulario e SEMPRE o mascarado (digitado ou setado por codigo
   /// com texto cru). Se o formulario guarda outra forma do mesmo valor, regrava o mascarado sem marcar
-  /// o campo como alterado. Valor que a mascara cortaria (cru maior que o comportado) fica como esta.
+  /// o campo como alterado. Excesso alem da mascara e cortado (decisao do dono: igual a colar/digitar).
   void _writeBackMasked(Object? stored, String masked) {
     final formatters = widget.inputFormatters;
     if (formatters == null || formatters.isEmpty || stored == null) return;
     final full = _full(masked);
     if (masked.isEmpty || '$stored' == full) return;
-    String alnum(String x) => x.replaceAll(RegExp(r'[^0-9A-Za-z]'), '').toLowerCase();
-    final norm = widget.externalValueNormalizer;
-    final seen = _strip(stored);
-    if (alnum(norm != null && seen.isNotEmpty ? norm(seen) : seen) != alnum(masked)) {
-      return;
-    }
     final name = widget.name!;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted || _form == null) return;

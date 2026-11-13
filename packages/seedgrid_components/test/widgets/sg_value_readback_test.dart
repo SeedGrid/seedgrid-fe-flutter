@@ -135,4 +135,35 @@ void maskedAmbientForm() {
       expect(form.getValue('cpf'), '529.982.247-25');
     },
   );
+
+  testWidgets(
+    'SgForm: valor maior que a mascara e cortado no form (defaultValues e setValue)',
+    (t) async {
+      late SgFormController form;
+      await t.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: SgForm(
+              defaultValues: const {'cnpj': '112223330001819999'},
+              child: Builder(
+                builder: (context) {
+                  form = SgForm.of(context);
+                  return const SgInputCNPJ(id: 'cnpj', name: 'cnpj');
+                },
+              ),
+            ),
+          ),
+        ),
+      );
+      await t.pump();
+      await t.pump();
+      expect(form.getValue('cnpj'), '11.222.333/0001-81');
+      form.setValue('cnpj', '');
+      await t.pump();
+      form.setValue('cnpj', '112223330001819999');
+      await t.pump();
+      await t.pump();
+      expect(form.getValue('cnpj'), '11.222.333/0001-81');
+    },
+  );
 }

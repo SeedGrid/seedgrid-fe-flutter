@@ -61,7 +61,7 @@ void main() {
     });
 
     testWidgets(
-      'valor maior que a mascara aparece cortado e vira erro no blur',
+      'valor maior que a mascara e cortado na mascara (campo e validacao)',
       (t) async {
         final errors = <String?>[];
         await t.pumpWidget(
@@ -70,7 +70,7 @@ void main() {
               children: [
                 SgInputCPF(
                   id: 'x',
-                  value: '123456789012345',
+                  value: '529982247251234',
                   onValidation: errors.add,
                 ),
                 const SgInputText(id: 'z'),
@@ -78,11 +78,11 @@ void main() {
             ),
           ),
         );
-        expect(shown(t), '123.456.789-01');
+        expect(shown(t), '529.982.247-25');
         await t.showKeyboard(find.byKey(const ValueKey('input-x')));
         await t.showKeyboard(find.byKey(const ValueKey('input-z')));
         await t.pump();
-        expect(errors.last, isNotNull, reason: 'o texto cru nao cabe no CPF');
+        expect(errors.last, isNull, reason: 'valida o texto cortado');
       },
     );
   });
