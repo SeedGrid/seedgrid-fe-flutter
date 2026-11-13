@@ -282,10 +282,16 @@ class _SgCardState extends State<SgCard> {
       }
       final screen = MediaQuery.sizeOf(context);
       final rect = box.localToGlobal(Offset.zero) & box.size;
+      // Horizontal: contra a largura da tela. Vertical: so "acima do inicio do conteudo" (a rolagem pode
+      // esconder legitimamente um card abaixo da dobra; abaixo nunca e "fora"). Igual ao React.
+      final scrollable = Scrollable.maybeOf(context);
+      final scrolled =
+          scrollable != null && scrollable.axisDirection == AxisDirection.down
+          ? scrollable.position.pixels
+          : 0.0;
       final off = rect.right <= 0 ||
-          rect.bottom <= 0 ||
           rect.left >= screen.width ||
-          rect.top >= screen.height;
+          rect.bottom + scrolled <= 0;
       if (!off) {
         if (frames > 1 && !_floating) _scheduleOffscreenCheck(frames - 1);
         return;

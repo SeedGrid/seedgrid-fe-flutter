@@ -144,4 +144,38 @@ void main() {
     expect(keys.length, 3);
     expect(keys.every((k) => k == null), isTrue);
   });
+
+  testWidgets('SgCard abaixo da dobra (rolagem) mantem a posicao salva', (
+    t,
+  ) async {
+    SharedPreferences.setMockInitialValues({_key: '{"x":60,"y":40}'});
+    SgCardPositionStore.clear();
+    t.view.physicalSize = const Size(800, 600);
+    t.view.devicePixelRatio = 1;
+    addTearDown(t.view.reset);
+    SgCardPosition? last;
+    await t.pumpWidget(
+      _host(
+        SingleChildScrollView(
+          child: Column(
+            children: [
+              const SizedBox(height: 2000),
+              SgCard(
+                id: 'c',
+                dragPersistKey: _key,
+                draggable: true,
+                title: const Text('x'),
+                onPositionChange: (p) => last = p,
+                child: const SizedBox(height: 40, width: 100),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+    for (var i = 0; i < 6; i++) {
+      await t.pump(const Duration(milliseconds: 50));
+    }
+    expect(last, SgCardPosition(60, 40));
+  });
 }
