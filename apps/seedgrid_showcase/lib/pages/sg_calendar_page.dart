@@ -148,7 +148,7 @@ class _SgCalendarPageState extends State<SgCalendarPage> {
                       for (final n in const [1, 3, 6, 12])
                         SgButton(
                           label: Text(
-                            '$n ${context.tx(n == 1 ? 'mês' : 'meses')}',
+                            '$n ${(n == 1 ? context.tx('mês') : context.tx('meses'))}',
                           ),
                           appearance: _meses.value == n
                               ? SgAppearance.solid

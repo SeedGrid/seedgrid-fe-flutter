@@ -1710,14 +1710,14 @@
           },
           {
             "id": "sg-button-elevated",
-            "title": "Elevated Buttons",
+            "title": "Botões elevados",
             "file": "apps/seedgrid_showcase/lib/pages/sg_button_page.dart",
             "kind": "dart",
             "code": "Wrap(\n  spacing: 12,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    for (final (nome, severity) in const [\n      ('Primary', SgSeverity.primary),\n      ('Secondary', SgSeverity.secondary),\n      ('Success', SgSeverity.success),\n      ('Info', SgSeverity.info),\n      ('Warning', SgSeverity.warning),\n      ('Help', SgSeverity.help),\n      ('Danger', SgSeverity.danger),\n    ])\n      SgButton(\n        label: Text(context.tx(nome)),\n        severity: severity,\n        appearance: SgAppearance.solid,\n        elevation: SgElevation.sm,\n        onClick: () {},\n      ),\n  ],\n)"
           },
           {
             "id": "sg-button-ghost",
-            "title": "Ghost Buttons (Flat)",
+            "title": "Botões fantasma (planos)",
             "file": "apps/seedgrid_showcase/lib/pages/sg_button_page.dart",
             "kind": "dart",
             "code": "Wrap(\n  spacing: 12,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    for (final (nome, severity) in const [\n      ('Primary', SgSeverity.primary),\n      ('Secondary', SgSeverity.secondary),\n      ('Success', SgSeverity.success),\n      ('Info', SgSeverity.info),\n      ('Warning', SgSeverity.warning),\n      ('Help', SgSeverity.help),\n      ('Danger', SgSeverity.danger),\n    ])\n      SgButton(\n        label: Text(context.tx(nome)),\n        severity: severity,\n        appearance: SgAppearance.ghost,\n        onClick: () {},\n      ),\n  ],\n)"
@@ -1752,28 +1752,28 @@
           },
           {
             "id": "sg-button-outlined",
-            "title": "Outlined Buttons",
+            "title": "Botões contornados",
             "file": "apps/seedgrid_showcase/lib/pages/sg_button_page.dart",
             "kind": "dart",
             "code": "Wrap(\n  spacing: 12,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    for (final (nome, severity) in const [\n      ('Primary', SgSeverity.primary),\n      ('Secondary', SgSeverity.secondary),\n      ('Success', SgSeverity.success),\n      ('Info', SgSeverity.info),\n      ('Warning', SgSeverity.warning),\n      ('Help', SgSeverity.help),\n      ('Danger', SgSeverity.danger),\n    ])\n      SgButton(\n        label: Text(context.tx(nome)),\n        severity: severity,\n        appearance: SgAppearance.outline,\n        onClick: () {},\n      ),\n  ],\n)"
           },
           {
             "id": "sg-button-outlined-elevation",
-            "title": "Outlined + Elevation",
+            "title": "Contornado + elevação",
             "file": "apps/seedgrid_showcase/lib/pages/sg_button_page.dart",
             "kind": "dart",
             "code": "Wrap(\n  spacing: 12,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    for (final (nome, severity) in const [\n      ('Primary', SgSeverity.primary),\n      ('Secondary', SgSeverity.secondary),\n      ('Success', SgSeverity.success),\n      ('Info', SgSeverity.info),\n      ('Warning', SgSeverity.warning),\n      ('Help', SgSeverity.help),\n      ('Danger', SgSeverity.danger),\n    ])\n      SgButton(\n        label: Text(context.tx(nome)),\n        severity: severity,\n        appearance: SgAppearance.outline,\n        elevation: SgElevation.sm,\n        onClick: () {},\n      ),\n  ],\n)"
           },
           {
             "id": "sg-button-rounded",
-            "title": "Rounded Buttons",
+            "title": "Botões arredondados",
             "file": "apps/seedgrid_showcase/lib/pages/sg_button_page.dart",
             "kind": "dart",
             "code": "Wrap(\n  spacing: 12,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    for (final (nome, severity) in const [\n      ('Primary', SgSeverity.primary),\n      ('Secondary', SgSeverity.secondary),\n      ('Success', SgSeverity.success),\n      ('Info', SgSeverity.info),\n      ('Warning', SgSeverity.warning),\n      ('Help', SgSeverity.help),\n      ('Danger', SgSeverity.danger),\n    ])\n      SgButton(\n        label: Text(context.tx(nome)),\n        severity: severity,\n        shape: SgButtonShape.rounded,\n        onClick: () {},\n      ),\n  ],\n)"
           },
           {
             "id": "sg-button-rounded-icon",
-            "title": "Rounded Icon Buttons",
+            "title": "Botões de ícone arredondados",
             "file": "apps/seedgrid_showcase/lib/pages/sg_button_page.dart",
             "kind": "dart",
             "code": "Wrap(\n  spacing: 12,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    for (final (severity, icone) in const [\n      (SgSeverity.primary, Icons.bookmark),\n      (SgSeverity.secondary, Icons.search),\n      (SgSeverity.success, Icons.group),\n      (SgSeverity.info, Icons.notifications),\n      (SgSeverity.help, Icons.favorite),\n      (SgSeverity.danger, Icons.close),\n      (SgSeverity.warning, Icons.check),\n    ])\n      SgButton(\n        severity: severity,\n        shape: SgButtonShape.rounded,\n        leftIcon: Icon(icone),\n        onClick: () {},\n      ),\n  ],\n)"
@@ -1794,7 +1794,7 @@
           },
           {
             "id": "sg-button-severities",
-            "title": "Severities",
+            "title": "Severidades",
             "file": "apps/seedgrid_showcase/lib/pages/sg_button_page.dart",
             "kind": "dart",
             "code": "Wrap(\n  spacing: 12,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    for (final (nome, severity) in const [\n      ('Primary', SgSeverity.primary),\n      ('Secondary', SgSeverity.secondary),\n      ('Success', SgSeverity.success),\n      ('Info', SgSeverity.info),\n      ('Warning', SgSeverity.warning),\n      ('Help', SgSeverity.help),\n      ('Danger', SgSeverity.danger),\n    ])\n      SgButton(\n        label: Text(context.tx(nome)),\n        severity: severity,\n        onClick: () {},\n      ),\n  ],\n)"
@@ -2019,7 +2019,7 @@
             "title": "Locale + múltiplos meses",
             "file": "apps/seedgrid_showcase/lib/pages/sg_calendar_page.dart",
             "kind": "dart",
-            "code": "ListenableBuilder(\n  listenable: Listenable.merge([_locale, _inicioSemana, _meses]),\n  builder: (context, _) => Column(\n    crossAxisAlignment: CrossAxisAlignment.start,\n    children: [\n      Wrap(\n        spacing: 8,\n        runSpacing: 8,\n        children: [\n          for (final l in const ['pt-BR', 'en-US', 'es'])\n            SgButton(\n              label: Text(l),\n              appearance: _locale.value == l\n                  ? SgAppearance.solid\n                  : SgAppearance.outline,\n              onClick: () => _locale.value = l,\n            ),\n          SgButton(\n            label: Text(context.tx('Domingo primeiro')),\n            appearance: _inicioSemana.value == 0\n                ? SgAppearance.solid\n                : SgAppearance.outline,\n            onClick: () => _inicioSemana.value = 0,\n          ),\n          SgButton(\n            label: Text(context.tx('Segunda primeiro')),\n            appearance: _inicioSemana.value == 1\n                ? SgAppearance.solid\n                : SgAppearance.outline,\n            onClick: () => _inicioSemana.value = 1,\n          ),\n        ],\n      ),\n      const SizedBox(height: 8),\n      Wrap(\n        spacing: 8,\n        runSpacing: 8,\n        children: [\n          for (final n in const [1, 3, 6, 12])\n            SgButton(\n              label: Text(\n                '$n ${context.tx(n == 1 ? 'mês' : 'meses')}',\n              ),\n              appearance: _meses.value == n\n                  ? SgAppearance.solid\n                  : SgAppearance.outline,\n              onClick: () => _meses.value = n,\n            ),\n        ],\n      ),\n      const SizedBox(height: 8),\n      SgCalendar(\n        locale: _locale.value,\n        weekStartsOn: _inicioSemana.value,\n        numberOfMonths: _meses.value,\n        monthsPerLine: 3,\n        defaultValue: '2026-03-10',\n        defaultViewDate: '2026-03-01',\n        cardTitle: const Text('Calendário i18n + vários meses'),\n        cardProps: const SgCalendarCardProps(\n          id: 'showcase-calendar-i18n',\n          dragPersistKey: 'showcase-calendar-i18n',\n        ),\n      ),\n    ],\n  ),\n)"
+            "code": "ListenableBuilder(\n  listenable: Listenable.merge([_locale, _inicioSemana, _meses]),\n  builder: (context, _) => Column(\n    crossAxisAlignment: CrossAxisAlignment.start,\n    children: [\n      Wrap(\n        spacing: 8,\n        runSpacing: 8,\n        children: [\n          for (final l in const ['pt-BR', 'en-US', 'es'])\n            SgButton(\n              label: Text(l),\n              appearance: _locale.value == l\n                  ? SgAppearance.solid\n                  : SgAppearance.outline,\n              onClick: () => _locale.value = l,\n            ),\n          SgButton(\n            label: Text(context.tx('Domingo primeiro')),\n            appearance: _inicioSemana.value == 0\n                ? SgAppearance.solid\n                : SgAppearance.outline,\n            onClick: () => _inicioSemana.value = 0,\n          ),\n          SgButton(\n            label: Text(context.tx('Segunda primeiro')),\n            appearance: _inicioSemana.value == 1\n                ? SgAppearance.solid\n                : SgAppearance.outline,\n            onClick: () => _inicioSemana.value = 1,\n          ),\n        ],\n      ),\n      const SizedBox(height: 8),\n      Wrap(\n        spacing: 8,\n        runSpacing: 8,\n        children: [\n          for (final n in const [1, 3, 6, 12])\n            SgButton(\n              label: Text(\n                '$n ${(n == 1 ? context.tx('mês') : context.tx('meses'))}',\n              ),\n              appearance: _meses.value == n\n                  ? SgAppearance.solid\n                  : SgAppearance.outline,\n              onClick: () => _meses.value = n,\n            ),\n        ],\n      ),\n      const SizedBox(height: 8),\n      SgCalendar(\n        locale: _locale.value,\n        weekStartsOn: _inicioSemana.value,\n        numberOfMonths: _meses.value,\n        monthsPerLine: 3,\n        defaultValue: '2026-03-10',\n        defaultViewDate: '2026-03-01',\n        cardTitle: const Text('Calendário i18n + vários meses'),\n        cardProps: const SgCalendarCardProps(\n          id: 'showcase-calendar-i18n',\n          dragPersistKey: 'showcase-calendar-i18n',\n        ),\n      ),\n    ],\n  ),\n)"
           },
           {
             "id": "sg-calendar-mes-atual",
@@ -5094,7 +5094,7 @@
             "title": "Descarte automático",
             "file": "apps/seedgrid_showcase/lib/pages/sg_discard_digit_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    ValueListenableBuilder<int>(\n      valueListenable: _contador,\n      builder: (context, contador, _) => SgDiscardDigit(\n        value: contador.toString().padLeft(2, '0'),\n        color: '#0f172a',\n        font: sans,\n        backgroundColor: '#f8fafc',\n        fontSize: 62,\n        transitionMs: 700,\n        stackDepth: 15,\n      ),\n    ),\n    const SizedBox(height: 12),\n    ValueListenableBuilder<bool>(\n      valueListenable: _rodando,\n      builder: (context, rodando, _) => SgButton(\n        label: Text(context.tx(rodando ? 'Parar' : 'Iniciar')),\n        size: SgSize.sm,\n        onClick: _alternarAutomatico,\n      ),\n    ),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    ValueListenableBuilder<int>(\n      valueListenable: _contador,\n      builder: (context, contador, _) => SgDiscardDigit(\n        value: contador.toString().padLeft(2, '0'),\n        color: '#0f172a',\n        font: sans,\n        backgroundColor: '#f8fafc',\n        fontSize: 62,\n        transitionMs: 700,\n        stackDepth: 15,\n      ),\n    ),\n    const SizedBox(height: 12),\n    ValueListenableBuilder<bool>(\n      valueListenable: _rodando,\n      builder: (context, rodando, _) => SgButton(\n        label: Text(rodando ? context.tx('Parar') : context.tx('Iniciar')),\n        size: SgSize.sm,\n        onClick: _alternarAutomatico,\n      ),\n    ),\n  ],\n)"
           },
           {
             "id": "sg-discard-digit-basico",
@@ -6050,7 +6050,7 @@
             "title": "Incremento automático",
             "file": "apps/seedgrid_showcase/lib/pages/sg_fade_digit_page.dart",
             "kind": "dart",
-            "code": "Wrap(\n  spacing: 16,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    ValueListenableBuilder<int>(\n      valueListenable: _contador,\n      builder: (context, contador, _) =>\n          SgFadeDigit(value: '$contador'),\n    ),\n    ValueListenableBuilder<bool>(\n      valueListenable: _rodando,\n      builder: (context, rodando, _) => SgButton(\n        label: Text(context.tx(rodando ? 'Parar' : 'Iniciar')),\n        onClick: _alternarContador,\n      ),\n    ),\n  ],\n)"
+            "code": "Wrap(\n  spacing: 16,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    ValueListenableBuilder<int>(\n      valueListenable: _contador,\n      builder: (context, contador, _) =>\n          SgFadeDigit(value: '$contador'),\n    ),\n    ValueListenableBuilder<bool>(\n      valueListenable: _rodando,\n      builder: (context, rodando, _) => SgButton(\n        label: Text(rodando ? context.tx('Parar') : context.tx('Iniciar')),\n        onClick: _alternarContador,\n      ),\n    ),\n  ],\n)"
           },
           {
             "id": "sg-fade-digit-basico",
@@ -6092,7 +6092,7 @@
             "title": "Sequência estilo relógio",
             "file": "apps/seedgrid_showcase/lib/pages/sg_fade_digit_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    ValueListenableBuilder<int>(\n      valueListenable: _segundos,\n      builder: (context, total, _) {\n        String dois(int n) => n.toString().padLeft(2, '0');\n        final horas = dois(total ~/ 3600);\n        final minutos = dois(total % 3600 ~/ 60);\n        final segundos = dois(total % 60);\n        return Wrap(\n          spacing: 8,\n          runSpacing: 8,\n          crossAxisAlignment: WrapCrossAlignment.center,\n          children: [\n            SgFadeDigit(value: horas[0]),\n            SgFadeDigit(value: horas[1]),\n            const Text(\n              ':',\n              style: TextStyle(\n                fontSize: 36,\n                fontWeight: FontWeight.bold,\n              ),\n            ),\n            SgFadeDigit(value: minutos[0]),\n            SgFadeDigit(value: minutos[1]),\n            const Text(\n              ':',\n              style: TextStyle(\n                fontSize: 36,\n                fontWeight: FontWeight.bold,\n              ),\n            ),\n            SgFadeDigit(value: segundos[0]),\n            SgFadeDigit(value: segundos[1]),\n          ],\n        );\n      },\n    ),\n    const SizedBox(height: 12),\n    ValueListenableBuilder<bool>(\n      valueListenable: _relogioRodando,\n      builder: (context, rodando, _) => SgButton(\n        label: Text(context.tx(rodando ? 'Parar' : 'Iniciar')),\n        size: SgSize.sm,\n        onClick: _alternarRelogio,\n      ),\n    ),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    ValueListenableBuilder<int>(\n      valueListenable: _segundos,\n      builder: (context, total, _) {\n        String dois(int n) => n.toString().padLeft(2, '0');\n        final horas = dois(total ~/ 3600);\n        final minutos = dois(total % 3600 ~/ 60);\n        final segundos = dois(total % 60);\n        return Wrap(\n          spacing: 8,\n          runSpacing: 8,\n          crossAxisAlignment: WrapCrossAlignment.center,\n          children: [\n            SgFadeDigit(value: horas[0]),\n            SgFadeDigit(value: horas[1]),\n            const Text(\n              ':',\n              style: TextStyle(\n                fontSize: 36,\n                fontWeight: FontWeight.bold,\n              ),\n            ),\n            SgFadeDigit(value: minutos[0]),\n            SgFadeDigit(value: minutos[1]),\n            const Text(\n              ':',\n              style: TextStyle(\n                fontSize: 36,\n                fontWeight: FontWeight.bold,\n              ),\n            ),\n            SgFadeDigit(value: segundos[0]),\n            SgFadeDigit(value: segundos[1]),\n          ],\n        );\n      },\n    ),\n    const SizedBox(height: 12),\n    ValueListenableBuilder<bool>(\n      valueListenable: _relogioRodando,\n      builder: (context, rodando, _) => SgButton(\n        label: Text(rodando ? context.tx('Parar') : context.tx('Iniciar')),\n        size: SgSize.sm,\n        onClick: _alternarRelogio,\n      ),\n    ),\n  ],\n)"
           },
           {
             "id": "sg-fade-digit-tamanhos",
@@ -6441,7 +6441,7 @@
             "title": "Incremento automático",
             "file": "apps/seedgrid_showcase/lib/pages/sg_flip_digit_page.dart",
             "kind": "dart",
-            "code": "Wrap(\n  spacing: 16,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    ValueListenableBuilder<int>(\n      valueListenable: _auto,\n      builder: (context, auto, _) => SgFlipDigit(value: '$auto'),\n    ),\n    ValueListenableBuilder<bool>(\n      valueListenable: _rodando,\n      builder: (context, rodando, _) => SgButton(\n        label: Text(context.tx(rodando ? 'Parar' : 'Iniciar')),\n        onClick: _alternar,\n      ),\n    ),\n  ],\n)"
+            "code": "Wrap(\n  spacing: 16,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    ValueListenableBuilder<int>(\n      valueListenable: _auto,\n      builder: (context, auto, _) => SgFlipDigit(value: '$auto'),\n    ),\n    ValueListenableBuilder<bool>(\n      valueListenable: _rodando,\n      builder: (context, rodando, _) => SgButton(\n        label: Text(rodando ? context.tx('Parar') : context.tx('Iniciar')),\n        onClick: _alternar,\n      ),\n    ),\n  ],\n)"
           },
           {
             "id": "sg-flip-digit-basico",

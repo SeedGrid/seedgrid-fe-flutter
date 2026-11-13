@@ -192,7 +192,7 @@ class _SgButtonPageState extends State<SgButtonPage> {
         code: SgButtonPageSnippets.sgButtonIcones,
       ),
       ShowcaseExample(
-        title: 'Severities',
+        title: 'Severidades',
         description:
             'severity: primary, secondary, success, info, warning, help ou danger.',
         preview:
@@ -222,7 +222,7 @@ class _SgButtonPageState extends State<SgButtonPage> {
         code: SgButtonPageSnippets.sgButtonSeverities,
       ),
       ShowcaseExample(
-        title: 'Elevated Buttons',
+        title: 'Botões elevados',
         description: 'appearance: solid + elevation: sm.',
         preview:
             // #region sg-button-elevated
@@ -253,7 +253,7 @@ class _SgButtonPageState extends State<SgButtonPage> {
         code: SgButtonPageSnippets.sgButtonElevated,
       ),
       ShowcaseExample(
-        title: 'Rounded Buttons',
+        title: 'Botões arredondados',
         description: 'shape: rounded para formato pill.',
         preview:
             // #region sg-button-rounded
@@ -283,7 +283,7 @@ class _SgButtonPageState extends State<SgButtonPage> {
         code: SgButtonPageSnippets.sgButtonRounded,
       ),
       ShowcaseExample(
-        title: 'Ghost Buttons (Flat)',
+        title: 'Botões fantasma (planos)',
         description: 'appearance: ghost - sem fundo, apenas texto colorido.',
         preview:
             // #region sg-button-ghost
@@ -313,7 +313,7 @@ class _SgButtonPageState extends State<SgButtonPage> {
         code: SgButtonPageSnippets.sgButtonGhost,
       ),
       ShowcaseExample(
-        title: 'Outlined + Elevation',
+        title: 'Contornado + elevação',
         description: 'appearance: outline + elevation: sm.',
         preview:
             // #region sg-button-outlined-elevation
@@ -344,7 +344,7 @@ class _SgButtonPageState extends State<SgButtonPage> {
         code: SgButtonPageSnippets.sgButtonOutlinedElevation,
       ),
       ShowcaseExample(
-        title: 'Outlined Buttons',
+        title: 'Botões contornados',
         description: 'appearance: outline - apenas bordas coloridas.',
         preview:
             // #region sg-button-outlined
@@ -374,7 +374,7 @@ class _SgButtonPageState extends State<SgButtonPage> {
         code: SgButtonPageSnippets.sgButtonOutlined,
       ),
       ShowcaseExample(
-        title: 'Rounded Icon Buttons',
+        title: 'Botões de ícone arredondados',
         description: 'shape: rounded + só ícone - botões circulares.',
         preview:
             // #region sg-button-rounded-icon

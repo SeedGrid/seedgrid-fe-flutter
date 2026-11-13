@@ -245,7 +245,7 @@ class _SgDiscardDigitPageState extends State<SgDiscardDigitPage> {
                 ValueListenableBuilder<bool>(
                   valueListenable: _rodando,
                   builder: (context, rodando, _) => SgButton(
-                    label: Text(context.tx(rodando ? 'Parar' : 'Iniciar')),
+                    label: Text(rodando ? context.tx('Parar') : context.tx('Iniciar')),
                     size: SgSize.sm,
                     onClick: _alternarAutomatico,
                   ),
