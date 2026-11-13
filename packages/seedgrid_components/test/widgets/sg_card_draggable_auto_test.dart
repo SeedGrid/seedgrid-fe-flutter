@@ -120,7 +120,7 @@ void main() {
     expect(last, SgCardPosition(50, 20));
   });
 
-  testWidgets('SgClock sem id/dragPersistKey: cada relogio tem a propria chave', (
+  testWidgets('SgClock sem id/dragPersistKey nao persiste posicao', (
     t,
   ) async {
     SharedPreferences.setMockInitialValues({});
@@ -142,7 +142,6 @@ void main() {
         .map((w) => w.dragPersistKey)
         .toList();
     expect(keys.length, 3);
-    expect(keys.toSet().length, 3);
-    expect(keys.every((k) => k != null && k.startsWith('sg-clock:auto:')), isTrue);
+    expect(keys.every((k) => k == null), isTrue);
   });
 }
