@@ -1703,7 +1703,7 @@
           },
           {
             "id": "sg-button-custom-colors",
-            "title": "Custom Colors",
+            "title": "Cores personalizadas",
             "file": "apps/seedgrid_showcase/lib/pages/sg_button_page.dart",
             "kind": "dart",
             "code": "Wrap(\n  spacing: 12,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgButton(\n      label: Text(context.tx('Brand Dark')),\n      customColors: const SgButtonCustomColors(\n        bg: Color(0xFF0F172A),\n        fg: Color(0xFFFFFFFF),\n        hoverBg: Color(0xFF020617),\n        ring: Color(0x590F172A),\n      ),\n      onClick: () {},\n    ),\n    SgButton(\n      label: Text(context.tx('Pink')),\n      customColors: const SgButtonCustomColors(\n        bg: Color(0xFFEC4899),\n        fg: Color(0xFFFFFFFF),\n        border: Color(0xFFDB2777),\n        hoverBg: Color(0xFFDB2777),\n        ring: Color(0x59EC4899),\n      ),\n      onClick: () {},\n    ),\n    SgButton(\n      label: Text(context.tx('Violet Outline')),\n      appearance: SgAppearance.outline,\n      customColors: const SgButtonCustomColors(\n        bg: Color(0xFF8B5CF6),\n        fg: Color(0xFF8B5CF6),\n        border: Color(0xFF8B5CF6),\n        ring: Color(0x598B5CF6),\n      ),\n      onClick: () {},\n    ),\n  ],\n)"
@@ -1731,7 +1731,7 @@
           },
           {
             "id": "sg-button-loading",
-            "title": "Loading",
+            "title": "Carregando",
             "file": "apps/seedgrid_showcase/lib/pages/sg_button_page.dart",
             "kind": "dart",
             "code": "Wrap(\n  spacing: 12,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgButton(\n      label: Text(context.tx('Processing...')),\n      loading: true,\n    ),\n    SgButton(\n      label: Text(context.tx('Saving...')),\n      severity: SgSeverity.success,\n      loading: true,\n    ),\n    SgButton(\n      label: Text(context.tx('Deleting...')),\n      severity: SgSeverity.danger,\n      loading: true,\n      leftIcon: const Icon(Icons.close),\n    ),\n    SgButton(\n      shape: SgButtonShape.rounded,\n      loading: true,\n      leftIcon: const Icon(Icons.check),\n    ),\n  ],\n)"
@@ -1780,14 +1780,14 @@
           },
           {
             "id": "sg-button-rounded-outlined-icon",
-            "title": "Rounded and Outlined Icon Buttons",
+            "title": "Botões de ícone arredondados e contornados",
             "file": "apps/seedgrid_showcase/lib/pages/sg_button_page.dart",
             "kind": "dart",
             "code": "Wrap(\n  spacing: 12,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    for (final (severity, icone) in const [\n      (SgSeverity.primary, Icons.bookmark),\n      (SgSeverity.secondary, Icons.search),\n      (SgSeverity.success, Icons.group),\n      (SgSeverity.info, Icons.notifications),\n      (SgSeverity.help, Icons.favorite),\n      (SgSeverity.danger, Icons.close),\n      (SgSeverity.warning, Icons.check),\n    ])\n      SgButton(\n        severity: severity,\n        shape: SgButtonShape.rounded,\n        appearance: SgAppearance.outline,\n        leftIcon: Icon(icone),\n        onClick: () {},\n      ),\n  ],\n)"
           },
           {
             "id": "sg-button-rounded-text-icon",
-            "title": "Rounded Text Icon Buttons",
+            "title": "Botões de ícone e texto arredondados",
             "file": "apps/seedgrid_showcase/lib/pages/sg_button_page.dart",
             "kind": "dart",
             "code": "Wrap(\n  spacing: 12,\n  runSpacing: 12,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    for (final (severity, icone) in const [\n      (SgSeverity.primary, Icons.bookmark),\n      (SgSeverity.secondary, Icons.search),\n      (SgSeverity.success, Icons.group),\n      (SgSeverity.info, Icons.notifications),\n      (SgSeverity.help, Icons.favorite),\n      (SgSeverity.danger, Icons.close),\n      (SgSeverity.warning, Icons.check),\n    ])\n      SgButton(\n        severity: severity,\n        shape: SgButtonShape.rounded,\n        appearance: SgAppearance.ghost,\n        leftIcon: Icon(icone),\n        onClick: () {},\n      ),\n  ],\n)"
@@ -1801,7 +1801,7 @@
           },
           {
             "id": "sg-button-sizes",
-            "title": "Sizes",
+            "title": "Tamanhos",
             "file": "apps/seedgrid_showcase/lib/pages/sg_button_page.dart",
             "kind": "dart",
             "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    Wrap(\n      spacing: 12,\n      runSpacing: 12,\n      crossAxisAlignment: WrapCrossAlignment.center,\n      children: [\n        SgButton(\n          label: Text(context.tx('Small')),\n          size: SgSize.sm,\n          onClick: () {},\n        ),\n        SgButton(\n          label: Text(context.tx('Medium')),\n          size: SgSize.md,\n          onClick: () {},\n        ),\n        SgButton(\n          label: Text(context.tx('Large')),\n          size: SgSize.lg,\n          onClick: () {},\n        ),\n      ],\n    ),\n    const SizedBox(height: 12),\n    Wrap(\n      spacing: 12,\n      runSpacing: 12,\n      crossAxisAlignment: WrapCrossAlignment.center,\n      children: [\n        SgButton(\n          size: SgSize.sm,\n          shape: SgButtonShape.rounded,\n          leftIcon: const Icon(Icons.check),\n          onClick: () {},\n        ),\n        SgButton(\n          size: SgSize.md,\n          shape: SgButtonShape.rounded,\n          leftIcon: const Icon(Icons.check),\n          onClick: () {},\n        ),\n        SgButton(\n          size: SgSize.lg,\n          shape: SgButtonShape.rounded,\n          leftIcon: const Icon(Icons.check),\n          onClick: () {},\n        ),\n      ],\n    ),\n  ],\n)"
@@ -15797,7 +15797,7 @@
           },
           {
             "id": "sg-order-list-drag",
-            "title": "Drag and drop sem botões",
+            "title": "Arrastar e soltar sem botões",
             "file": "apps/seedgrid_showcase/lib/pages/sg_order_list_page.dart",
             "kind": "dart",
             "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgOrderList(\n      id: 'order-drag',\n      title: context.tx('Time de atendimento'),\n      source: [\n        SgOrderListItem(label: 'Ana - Produto', value: 'ana'),\n        SgOrderListItem(label: 'Bruno - Design', value: 'bruno'),\n        SgOrderListItem(label: 'Carla - Frontend', value: 'carla'),\n        SgOrderListItem(label: 'Diego - Backend', value: 'diego'),\n        SgOrderListItem(label: 'Elaine - QA', value: 'elaine'),\n      ],\n      showControls: false,\n      draggable: true,\n    ),\n    const SizedBox(height: 8),\n    Text(\n      context.tx(\n        'Dica: arraste os itens para reordenar, sem usar os botões.',\n      ),\n    ),\n  ],\n)"
@@ -19135,7 +19135,7 @@
           },
           {
             "id": "sg-split-button-loading",
-            "title": "Loading",
+            "title": "Carregando",
             "file": "apps/seedgrid_showcase/lib/pages/sg_split_button_page.dart",
             "kind": "dart",
             "code": "Builder(\n  builder: (context) {\n    final itens = [\n      SgSplitButtonItem(\n        label: context.tx('Update'),\n        icon: const Icon(Icons.refresh),\n        onClick: () {},\n      ),\n      SgSplitButtonItem(\n        label: context.tx('Delete'),\n        icon: const Icon(Icons.delete),\n        onClick: () {},\n      ),\n      SgSplitButtonItem(\n        label: context.tx('Home'),\n        icon: const Icon(Icons.home),\n        onClick: () {},\n      ),\n    ];\n    return Wrap(\n      spacing: 12,\n      runSpacing: 12,\n      children: [\n        SgSplitButton(\n          label: context.tx('Salvando...'),\n          leftIcon: const Icon(Icons.save),\n          loading: true,\n          onClick: () {},\n          items: itens,\n        ),\n        SgSplitButton(\n          label: context.tx('Processando...'),\n          severity: SgSeverity.success,\n          loading: true,\n          onClick: () {},\n          items: itens,\n        ),\n      ],\n    );\n  },\n)"

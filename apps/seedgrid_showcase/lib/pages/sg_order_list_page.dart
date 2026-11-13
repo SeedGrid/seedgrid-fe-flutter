@@ -150,7 +150,7 @@ class _SgOrderListPageState extends State<SgOrderListPage> {
         code: SgOrderListPageSnippets.sgOrderListController,
       ),
       ShowcaseExample(
-        title: 'Drag and drop sem botões',
+        title: 'Arrastar e soltar sem botões',
         description:
             'Com showControls false e draggable, a ordem muda arrastando os itens, sem botões.',
         preview:

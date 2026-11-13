@@ -404,7 +404,7 @@ class _SgButtonPageState extends State<SgButtonPage> {
         code: SgButtonPageSnippets.sgButtonRoundedIcon,
       ),
       ShowcaseExample(
-        title: 'Rounded Text Icon Buttons',
+        title: 'Botões de ícone e texto arredondados',
         description: 'shape: rounded + só ícone + appearance: ghost.',
         preview:
             // #region sg-button-rounded-text-icon
@@ -435,7 +435,7 @@ class _SgButtonPageState extends State<SgButtonPage> {
         code: SgButtonPageSnippets.sgButtonRoundedTextIcon,
       ),
       ShowcaseExample(
-        title: 'Rounded and Outlined Icon Buttons',
+        title: 'Botões de ícone arredondados e contornados',
         description: 'shape: rounded + só ícone + appearance: outline.',
         preview:
             // #region sg-button-rounded-outlined-icon
@@ -466,7 +466,7 @@ class _SgButtonPageState extends State<SgButtonPage> {
         code: SgButtonPageSnippets.sgButtonRoundedOutlinedIcon,
       ),
       ShowcaseExample(
-        title: 'Sizes',
+        title: 'Tamanhos',
         description: 'size: sm, md ou lg.',
         preview:
             // #region sg-button-sizes
@@ -527,7 +527,7 @@ class _SgButtonPageState extends State<SgButtonPage> {
         code: SgButtonPageSnippets.sgButtonSizes,
       ),
       ShowcaseExample(
-        title: 'Loading',
+        title: 'Carregando',
         description: 'loading: true exibe spinner e desabilita o botão.',
         preview:
             // #region sg-button-loading
@@ -562,7 +562,7 @@ class _SgButtonPageState extends State<SgButtonPage> {
         code: SgButtonPageSnippets.sgButtonLoading,
       ),
       ShowcaseExample(
-        title: 'Custom Colors',
+        title: 'Cores personalizadas',
         description:
             'customColors permite definir qualquer cor (bg, fg, border, hoverBg, ring).',
         preview:

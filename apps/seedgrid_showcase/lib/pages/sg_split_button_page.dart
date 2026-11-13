@@ -493,7 +493,7 @@ class SgSplitButtonPage extends StatelessWidget {
         code: SgSplitButtonPageSnippets.sgSplitButtonDisabled,
       ),
       ShowcaseExample(
-        title: 'Loading',
+        title: 'Carregando',
         description:
             'loading: true exibe spinner na ação principal e desabilita o menu.',
         preview:
