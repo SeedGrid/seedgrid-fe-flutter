@@ -9,7 +9,7 @@ import 'package:flutter/widgets.dart';
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgInputPostalCode` no React — Campo especializado para CEP e codigos postais com suporte a multiplos paises, mascaras e consulta opcional ao ViaCEP.
+/// Props públicas de `SgInputPostalCode` no React — Campo especializado para CEP e codigos postais com suporte a multiplos paises, mascaras e consulta opcional ao ViaCEP. Contrato de valor: o valor do formulario (onChange avulso, control e register) e SEMPRE mascarado, digitado ou setado por codigo (defaultValues, setValue, reset, value); a entrada aceita valor cru ou mascarado; valor maior que a mascara e cortado; para guardar so digitos use value.replace(/\D/g, "").
 /// O widget deve declarar `implements SgInputPostalCodeProps`.
 abstract interface class SgInputPostalCodeProps {
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).

@@ -7730,7 +7730,7 @@
         "displayName": "SgInputCNPJ",
         "category": "input",
         "subcategory": "",
-        "description": "Campo especializado para CNPJ com mascara, validacao de digitos e suporte opcional a consulta externa.",
+        "description": "Campo especializado para CNPJ com mascara, validacao de digitos e suporte opcional a consulta externa. Contrato de valor: o valor do formulario (onChange avulso, control e register) e SEMPRE mascarado, digitado ou setado por codigo (defaultValues, setValue, reset, value); a entrada aceita valor cru ou mascarado; valor maior que a mascara e cortado; para guardar so digitos use value.replace(/\\D/g, \"\").",
         "tags": [],
         "props": [
           {
@@ -8185,7 +8185,7 @@
         "displayName": "SgInputCPF",
         "category": "input",
         "subcategory": "",
-        "description": "Campo especializado para CPF com mascara, validacao de digitos e integracao com fluxos de cadastro de pessoa fisica.",
+        "description": "Campo especializado para CPF com mascara, validacao de digitos e integracao com fluxos de cadastro de pessoa fisica. Contrato de valor: o valor do formulario (onChange avulso, control e register) e SEMPRE mascarado, digitado ou setado por codigo (defaultValues, setValue, reset, value); a entrada aceita valor cru ou mascarado; valor maior que a mascara e cortado; para guardar so digitos use value.replace(/\\D/g, \"\").",
         "tags": [],
         "props": [
           {
@@ -8590,7 +8590,7 @@
         "displayName": "SgInputCPFCNPJ",
         "category": "input",
         "subcategory": "",
-        "description": "Campo hibrido para CPF ou CNPJ com mascara e validacao automatica conforme o documento informado.",
+        "description": "Campo hibrido para CPF ou CNPJ com mascara e validacao automatica conforme o documento informado. Contrato de valor: o valor do formulario (onChange avulso, control e register) e SEMPRE mascarado, digitado ou setado por codigo (defaultValues, setValue, reset, value); a entrada aceita valor cru ou mascarado; valor maior que a mascara e cortado; para guardar so digitos use value.replace(/\\D/g, \"\").",
         "tags": [],
         "props": [
           {
@@ -11758,7 +11758,7 @@
         "displayName": "SgInputPhone",
         "category": "input",
         "subcategory": "",
-        "description": "Campo especializado para telefone com mascara, validacao de comprimento e integracao com formularios.",
+        "description": "Campo especializado para telefone com mascara, validacao de comprimento e integracao com formularios. Contrato de valor: o valor do formulario (onChange avulso, control e register) e SEMPRE mascarado, digitado ou setado por codigo (defaultValues, setValue, reset, value); a entrada aceita valor cru ou mascarado; valor maior que a mascara e cortado; telefone com +55 perde o DDI; para guardar so digitos use value.replace(/\\D/g, \"\").",
         "tags": [],
         "props": [
           {
@@ -12156,7 +12156,7 @@
         "displayName": "SgInputPostalCode",
         "category": "input",
         "subcategory": "",
-        "description": "Campo especializado para CEP e codigos postais com suporte a multiplos paises, mascaras e consulta opcional ao ViaCEP.",
+        "description": "Campo especializado para CEP e codigos postais com suporte a multiplos paises, mascaras e consulta opcional ao ViaCEP. Contrato de valor: o valor do formulario (onChange avulso, control e register) e SEMPRE mascarado, digitado ou setado por codigo (defaultValues, setValue, reset, value); a entrada aceita valor cru ou mascarado; valor maior que a mascara e cortado; para guardar so digitos use value.replace(/\\D/g, \"\").",
         "tags": [],
         "props": [
           {

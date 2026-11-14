@@ -9,7 +9,7 @@ import 'package:flutter/widgets.dart';
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgInputPhone` no React — Campo especializado para telefone com mascara, validacao de comprimento e integracao com formularios.
+/// Props públicas de `SgInputPhone` no React — Campo especializado para telefone com mascara, validacao de comprimento e integracao com formularios. Contrato de valor: o valor do formulario (onChange avulso, control e register) e SEMPRE mascarado, digitado ou setado por codigo (defaultValues, setValue, reset, value); a entrada aceita valor cru ou mascarado; valor maior que a mascara e cortado; telefone com +55 perde o DDI; para guardar so digitos use value.replace(/\D/g, "").
 /// O widget deve declarar `implements SgInputPhoneProps`.
 abstract interface class SgInputPhoneProps {
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
