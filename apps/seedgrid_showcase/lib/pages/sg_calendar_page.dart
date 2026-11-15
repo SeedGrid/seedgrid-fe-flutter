@@ -278,7 +278,7 @@ class _SgCalendarPageState extends State<SgCalendarPage> {
       ShowcaseExample(
         title: 'Arraste do cartão',
         description:
-            'cardProps.draggable tem três estados: sem informar (automático: arrasta a partir de 640 px de largura e fica fixo no celular), true (sempre arrasta) e false (nunca arrasta).',
+            'draggable tem três estados: sem informar (automático: arrasta a partir de 640 px de largura e fica fixo no celular), true (sempre arrasta) e false (nunca arrasta).',
         preview:
             // #region sg-calendar-arraste
             Column(
@@ -291,18 +291,14 @@ class _SgCalendarPageState extends State<SgCalendarPage> {
                 const SizedBox(height: 16),
                 SgCalendar(
                   cardTitle: Text(context.tx('Sempre arrasta')),
-                  cardProps: const SgCalendarCardProps(
-                    id: 'arraste-sempre',
-                    draggable: true,
-                  ),
+                  draggable: true,
+                  cardProps: const SgCalendarCardProps(id: 'arraste-sempre'),
                 ),
                 const SizedBox(height: 16),
                 SgCalendar(
                   cardTitle: Text(context.tx('Nunca arrasta')),
-                  cardProps: const SgCalendarCardProps(
-                    id: 'arraste-nunca',
-                    draggable: false,
-                  ),
+                  draggable: false,
+                  cardProps: const SgCalendarCardProps(id: 'arraste-nunca'),
                 ),
               ],
             ),

@@ -87,6 +87,7 @@ class SgCalendar extends StatefulWidget implements SgCalendarProps {
     this.enabled = true,
     this.showTodayShortcut = true,
     this.cardTitle,
+    this.draggable,
     this.cardProps,
     this.today,
   });
@@ -143,6 +144,9 @@ class SgCalendar extends StatefulWidget implements SgCalendarProps {
   final bool showTodayShortcut;
   @override
   final Widget? cardTitle;
+  /// Arrasto do card: null = automatico (>= 640px), true = sempre, false = nunca. Tem prioridade sobre `cardProps.draggable`.
+  @override
+  final bool? draggable;
   @override
   final SgCalendarCardProps? cardProps;
 
@@ -495,7 +499,7 @@ class _SgCalendarState extends State<SgCalendar> {
       enabled: cp?.enabled ?? true,
       dragPersistKey: cp?.dragPersistKey,
       // cardProps.draggable: null = automatico (arrasta em largura >= 640px), true = sempre, false = nunca.
-      draggable: sgAutoDraggable(context, cp?.draggable),
+      draggable: sgAutoDraggable(context, widget.draggable ?? cp?.draggable),
       footer: cp?.footer,
       header: cp?.header,
       leading: cp?.leading,

@@ -15,18 +15,14 @@ Column(
     const SizedBox(height: 16),
     SgCalendar(
       cardTitle: Text(context.tx('Sempre arrasta')),
-      cardProps: const SgCalendarCardProps(
-        id: 'arraste-sempre',
-        draggable: true,
-      ),
+      draggable: true,
+      cardProps: const SgCalendarCardProps(id: 'arraste-sempre'),
     ),
     const SizedBox(height: 16),
     SgCalendar(
       cardTitle: Text(context.tx('Nunca arrasta')),
-      cardProps: const SgCalendarCardProps(
-        id: 'arraste-nunca',
-        draggable: false,
-      ),
+      draggable: false,
+      cardProps: const SgCalendarCardProps(id: 'arraste-nunca'),
     ),
   ],
 )

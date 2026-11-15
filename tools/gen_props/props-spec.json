@@ -1488,6 +1488,13 @@
      "alias": null
     },
     {
+     "name": "draggable",
+     "optional": true,
+     "ts": "boolean | undefined",
+     "alias": null,
+     "doc": "Arrasto do card: undefined = automatico (arrasta em largura >= 640px), true = sempre, false = nunca.\r\nTem prioridade sobre `cardProps.draggable`."
+    },
+    {
      "name": "enabled",
      "optional": true,
      "ts": "boolean | undefined",
@@ -2425,6 +2432,13 @@
      "fn": true,
      "description": "Desenha o relogio digital quando digitalStyle e custom; sem ele, usa o estilo default.",
      "semanticRole": "appearance"
+    },
+    {
+     "name": "draggable",
+     "optional": true,
+     "ts": "boolean | undefined",
+     "alias": null,
+     "doc": "Arrasto do card: undefined = automatico (arrasta em largura >= 640px), true = sempre, false = nunca.\r\nTem prioridade sobre `cardProps.draggable`."
     },
     {
      "name": "digitalStyle",

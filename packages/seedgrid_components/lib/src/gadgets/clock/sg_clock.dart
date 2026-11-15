@@ -231,6 +231,7 @@ class SgClock extends StatefulWidget implements SgClockProps {
     this.theme,
     this.centerOverlay,
     this.cardTitle,
+    this.draggable,
     this.cardProps,
   });
 
@@ -271,6 +272,9 @@ class SgClock extends StatefulWidget implements SgClockProps {
   final Widget? centerOverlay;
   @override
   final Widget? cardTitle;
+  /// Arrasto do card: null = automatico (>= 640px), true = sempre, false = nunca. Tem prioridade sobre `cardProps.draggable`.
+  @override
+  final bool? draggable;
   @override
   final SgClockCardProps? cardProps;
 
@@ -388,7 +392,7 @@ class _SgClockState extends State<SgClock> {
       enabled: (cp?.enabled ?? true),
       dragPersistKey: persistKey,
       // cardProps.draggable: null = automatico (arrasta em largura >= 640px), true = sempre, false = nunca.
-      draggable: sgAutoDraggable(context, cp?.draggable),
+      draggable: sgAutoDraggable(context, w.draggable ?? cp?.draggable),
       footer: cp?.footer,
       header: cp?.header,
       leading: cp?.leading,

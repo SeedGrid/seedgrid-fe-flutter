@@ -20,6 +20,8 @@ abstract interface class SgClockProps {
   SgClockClockStyle? get clockStyle;
   /// Desenha o relogio digital quando digitalStyle e custom; sem ele, usa o estilo default. Tipo TS: `SgClockDigitBuilder` (sem tradução exata; ver excecoes.json).
   Function? get digitBuilder;
+  /// Arrasto do card: undefined = automatico (arrasta em largura &gt;= 640px), true = sempre, false = nunca. Tem prioridade sobre `cardProps.draggable`.
+  bool? get draggable;
   /// Estilo visual do relogio digital. Padrão: `default`.
   SgClockDigitalStyle? get digitalStyle;
   /// Formato horario do relogio. Padrão: `24h`.
@@ -83,6 +85,14 @@ const List<SgPropSpec> sgClockPropSpecs = <SgPropSpec>[
     required: false,
     description: 'Desenha o relogio digital quando digitalStyle e custom; sem ele, usa o estilo default.',
     exact: false,
+  ),
+  SgPropSpec(
+    name: 'draggable',
+    reactName: 'draggable',
+    type: 'bool?',
+    tsType: 'boolean',
+    required: false,
+    description: 'Arrasto do card: undefined = automatico (arrasta em largura >= 640px), true = sempre, false = nunca. Tem prioridade sobre `cardProps.draggable`.',
   ),
   SgPropSpec(
     name: 'digitalStyle',

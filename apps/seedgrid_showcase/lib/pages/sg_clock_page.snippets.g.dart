@@ -84,20 +84,16 @@ Column(
       initialServerTime: '2026-06-15T09:41:07Z',
       timezone: 'UTC',
       cardTitle: Text(context.tx('Sempre arrasta')),
-      cardProps: const SgClockCardProps(
-        id: 'arraste-sempre',
-        draggable: true,
-      ),
+      draggable: true,
+      cardProps: const SgClockCardProps(id: 'arraste-sempre'),
     ),
     const SizedBox(height: 16),
     SgClock(
       initialServerTime: '2026-06-15T09:41:07Z',
       timezone: 'UTC',
       cardTitle: Text(context.tx('Nunca arrasta')),
-      cardProps: const SgClockCardProps(
-        id: 'arraste-nunca',
-        draggable: false,
-      ),
+      draggable: false,
+      cardProps: const SgClockCardProps(id: 'arraste-nunca'),
     ),
   ],
 )
@@ -109,9 +105,9 @@ SgClock(
   initialServerTime: '2026-06-15T09:41:07Z',
   timezone: 'UTC',
   cardTitle: Text(context.tx('Hora de Brasília')),
+  draggable: false,
   cardProps: SgClockCardProps(
     id: 'brasilia',
-    draggable: false,
     collapsible: false,
   ),
 )

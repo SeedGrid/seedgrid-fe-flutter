@@ -28,6 +28,26 @@ Widget _calendar(bool? draggable) => SgCalendar(
   cardProps: SgCalendarCardProps(dragPersistKey: _key, draggable: draggable),
 );
 
+// Prop de topo `draggable` (prioridade sobre cardProps.draggable, que aqui fica no estado oposto).
+Widget _clockTop(bool? draggable) => SgClock(
+  clockStyle: SgClockClockStyle.digital,
+  initialServerTime: '2026-06-15T15:41:07Z',
+  timezone: 'UTC',
+  draggable: draggable,
+  cardProps: SgClockCardProps(
+    dragPersistKey: _key,
+    draggable: draggable == null ? null : !draggable,
+  ),
+);
+
+Widget _calendarTop(bool? draggable) => SgCalendar(
+  draggable: draggable,
+  cardProps: SgCalendarCardProps(
+    dragPersistKey: _key,
+    draggable: draggable == null ? null : !draggable,
+  ),
+);
+
 Future<bool> _cardDraggable(
   WidgetTester t,
   Widget Function(bool?) build,
@@ -46,6 +66,32 @@ Future<bool> _cardDraggable(
 }
 
 void main() {
+  for (final (name, build) in <(String, Widget Function(bool?))>[
+    ('SgClock (prop de topo)', _clockTop),
+    ('SgCalendar (prop de topo)', _calendarTop),
+  ]) {
+    group(name, () {
+      testWidgets('draggable null arrasta em >= 640px e nao em < 640px', (
+        t,
+      ) async {
+        expect(await _cardDraggable(t, build, null, 800), isTrue);
+        expect(await _cardDraggable(t, build, null, 500), isFalse);
+      });
+      testWidgets(
+        'draggable true arrasta sempre e vence cardProps.draggable=false',
+        (t) async {
+          expect(await _cardDraggable(t, build, true, 500), isTrue);
+        },
+      );
+      testWidgets(
+        'draggable false nunca arrasta e vence cardProps.draggable=true',
+        (t) async {
+          expect(await _cardDraggable(t, build, false, 800), isFalse);
+        },
+      );
+    });
+  }
+
   for (final (name, build) in <(String, Widget Function(bool?))>[
     ('SgClock', _clock),
     ('SgCalendar', _calendar),
@@ -120,9 +166,7 @@ void main() {
     expect(last, SgCardPosition(50, 20));
   });
 
-  testWidgets('SgClock sem id/dragPersistKey nao persiste posicao', (
-    t,
-  ) async {
+  testWidgets('SgClock sem id/dragPersistKey nao persiste posicao', (t) async {
     SharedPreferences.setMockInitialValues({});
     SgCardPositionStore.clear();
     t.view.physicalSize = const Size(800, 900);

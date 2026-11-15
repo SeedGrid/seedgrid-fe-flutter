@@ -19,6 +19,8 @@ abstract interface class SgCalendarProps {
   Object? get defaultValue;
   /// Tipo TS: `string | Date` (sem tradução exata; ver excecoes.json).
   Object? get defaultViewDate;
+  /// Arrasto do card: undefined = automatico (arrasta em largura &gt;= 640px), true = sempre, false = nunca. Tem prioridade sobre `cardProps.draggable`.
+  bool? get draggable;
   /// Quando false, os dias, os botoes de mes anterior/proximo e o atalho hoje ficam desabilitados (nao focaveis); a data e o mes atuais continuam legiveis. Padrão: `true`.
   bool? get enabled;
   /// Tipo TS: `((date: Date) =&gt; boolean)` (sem tradução exata; ver excecoes.json).
@@ -85,6 +87,14 @@ const List<SgPropSpec> sgCalendarPropSpecs = <SgPropSpec>[
     tsType: 'string | Date',
     required: false,
     exact: false,
+  ),
+  SgPropSpec(
+    name: 'draggable',
+    reactName: 'draggable',
+    type: 'bool?',
+    tsType: 'boolean',
+    required: false,
+    description: 'Arrasto do card: undefined = automatico (arrasta em largura >= 640px), true = sempre, false = nunca. Tem prioridade sobre `cardProps.draggable`.',
   ),
   SgPropSpec(
     name: 'enabled',

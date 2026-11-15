@@ -1860,6 +1860,12 @@
             "typeExact": false
           },
           {
+            "name": "draggable",
+            "type": "bool?",
+            "required": false,
+            "description": "Arrasto do card: undefined = automatico (arrasta em largura >= 640px), true = sempre, false = nunca. Tem prioridade sobre `cardProps.draggable`."
+          },
+          {
             "name": "enabled",
             "type": "bool?",
             "required": false,
@@ -1977,7 +1983,7 @@
             "title": "Arraste do cartão",
             "file": "apps/seedgrid_showcase/lib/pages/sg_calendar_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgCalendar(\n      cardTitle: Text(context.tx('Automático')),\n      cardProps: const SgCalendarCardProps(id: 'arraste-auto'),\n    ),\n    const SizedBox(height: 16),\n    SgCalendar(\n      cardTitle: Text(context.tx('Sempre arrasta')),\n      cardProps: const SgCalendarCardProps(\n        id: 'arraste-sempre',\n        draggable: true,\n      ),\n    ),\n    const SizedBox(height: 16),\n    SgCalendar(\n      cardTitle: Text(context.tx('Nunca arrasta')),\n      cardProps: const SgCalendarCardProps(\n        id: 'arraste-nunca',\n        draggable: false,\n      ),\n    ),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgCalendar(\n      cardTitle: Text(context.tx('Automático')),\n      cardProps: const SgCalendarCardProps(id: 'arraste-auto'),\n    ),\n    const SizedBox(height: 16),\n    SgCalendar(\n      cardTitle: Text(context.tx('Sempre arrasta')),\n      draggable: true,\n      cardProps: const SgCalendarCardProps(id: 'arraste-sempre'),\n    ),\n    const SizedBox(height: 16),\n    SgCalendar(\n      cardTitle: Text(context.tx('Nunca arrasta')),\n      draggable: false,\n      cardProps: const SgCalendarCardProps(id: 'arraste-nunca'),\n    ),\n  ],\n)"
           },
           {
             "id": "sg-calendar-basico",
@@ -3046,6 +3052,12 @@
             "typeExact": false
           },
           {
+            "name": "draggable",
+            "type": "bool?",
+            "required": false,
+            "description": "Arrasto do card: undefined = automatico (arrasta em largura >= 640px), true = sempre, false = nunca. Tem prioridade sobre `cardProps.draggable`."
+          },
+          {
             "name": "digitalStyle",
             "type": "SgClockDigitalStyle?",
             "required": false,
@@ -3144,14 +3156,14 @@
             "title": "Arraste do cartão",
             "file": "apps/seedgrid_showcase/lib/pages/sg_clock_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgClock(\n      initialServerTime: '2026-06-15T09:41:07Z',\n      timezone: 'UTC',\n      cardTitle: Text(context.tx('Automático')),\n      cardProps: const SgClockCardProps(id: 'arraste-auto'),\n    ),\n    const SizedBox(height: 16),\n    SgClock(\n      initialServerTime: '2026-06-15T09:41:07Z',\n      timezone: 'UTC',\n      cardTitle: Text(context.tx('Sempre arrasta')),\n      cardProps: const SgClockCardProps(\n        id: 'arraste-sempre',\n        draggable: true,\n      ),\n    ),\n    const SizedBox(height: 16),\n    SgClock(\n      initialServerTime: '2026-06-15T09:41:07Z',\n      timezone: 'UTC',\n      cardTitle: Text(context.tx('Nunca arrasta')),\n      cardProps: const SgClockCardProps(\n        id: 'arraste-nunca',\n        draggable: false,\n      ),\n    ),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgClock(\n      initialServerTime: '2026-06-15T09:41:07Z',\n      timezone: 'UTC',\n      cardTitle: Text(context.tx('Automático')),\n      cardProps: const SgClockCardProps(id: 'arraste-auto'),\n    ),\n    const SizedBox(height: 16),\n    SgClock(\n      initialServerTime: '2026-06-15T09:41:07Z',\n      timezone: 'UTC',\n      cardTitle: Text(context.tx('Sempre arrasta')),\n      draggable: true,\n      cardProps: const SgClockCardProps(id: 'arraste-sempre'),\n    ),\n    const SizedBox(height: 16),\n    SgClock(\n      initialServerTime: '2026-06-15T09:41:07Z',\n      timezone: 'UTC',\n      cardTitle: Text(context.tx('Nunca arrasta')),\n      draggable: false,\n      cardProps: const SgClockCardProps(id: 'arraste-nunca'),\n    ),\n  ],\n)"
           },
           {
             "id": "sg-clock-cartao",
             "title": "Cartão",
             "file": "apps/seedgrid_showcase/lib/pages/sg_clock_page.dart",
             "kind": "dart",
-            "code": "SgClock(\n  initialServerTime: '2026-06-15T09:41:07Z',\n  timezone: 'UTC',\n  cardTitle: Text(context.tx('Hora de Brasília')),\n  cardProps: SgClockCardProps(\n    id: 'brasilia',\n    draggable: false,\n    collapsible: false,\n  ),\n)"
+            "code": "SgClock(\n  initialServerTime: '2026-06-15T09:41:07Z',\n  timezone: 'UTC',\n  cardTitle: Text(context.tx('Hora de Brasília')),\n  draggable: false,\n  cardProps: SgClockCardProps(\n    id: 'brasilia',\n    collapsible: false,\n  ),\n)"
           },
           {
             "id": "sg-clock-centro",

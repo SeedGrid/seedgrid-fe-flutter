@@ -714,16 +714,16 @@ class _SgClockPageState extends State<SgClockPage> {
       ShowcaseExample(
         title: 'Cartão',
         description:
-            'O relógio vem num SgCard recolhível. O arraste do cartão é automático: ligado a partir de 640 px de largura e desligado no celular (a posição salva é ignorada). cardProps.draggable força (true) ou desliga (false). cardTitle troca o título; cardProps ajusta o cartão.',
+            'O relógio vem num SgCard recolhível. O arraste do cartão é automático: ligado a partir de 640 px de largura e desligado no celular (a posição salva é ignorada). draggable força (true) ou desliga (false). cardTitle troca o título; cardProps ajusta o cartão.',
         preview:
             // #region sg-clock-cartao
             SgClock(
               initialServerTime: '2026-06-15T09:41:07Z',
               timezone: 'UTC',
               cardTitle: Text(context.tx('Hora de Brasília')),
+              draggable: false,
               cardProps: SgClockCardProps(
                 id: 'brasilia',
-                draggable: false,
                 collapsible: false,
               ),
             ),
@@ -733,7 +733,7 @@ class _SgClockPageState extends State<SgClockPage> {
       ShowcaseExample(
         title: 'Arraste do cartão',
         description:
-            'cardProps.draggable tem três estados: sem informar (automático: arrasta a partir de 640 px de largura e fica fixo no celular), true (sempre arrasta) e false (nunca arrasta).',
+            'draggable tem três estados: sem informar (automático: arrasta a partir de 640 px de largura e fica fixo no celular), true (sempre arrasta) e false (nunca arrasta).',
         preview:
             // #region sg-clock-arraste
             Column(
@@ -750,20 +750,16 @@ class _SgClockPageState extends State<SgClockPage> {
                   initialServerTime: '2026-06-15T09:41:07Z',
                   timezone: 'UTC',
                   cardTitle: Text(context.tx('Sempre arrasta')),
-                  cardProps: const SgClockCardProps(
-                    id: 'arraste-sempre',
-                    draggable: true,
-                  ),
+                  draggable: true,
+                  cardProps: const SgClockCardProps(id: 'arraste-sempre'),
                 ),
                 const SizedBox(height: 16),
                 SgClock(
                   initialServerTime: '2026-06-15T09:41:07Z',
                   timezone: 'UTC',
                   cardTitle: Text(context.tx('Nunca arrasta')),
-                  cardProps: const SgClockCardProps(
-                    id: 'arraste-nunca',
-                    draggable: false,
-                  ),
+                  draggable: false,
+                  cardProps: const SgClockCardProps(id: 'arraste-nunca'),
                 ),
               ],
             ),
