@@ -261,7 +261,11 @@ class _SgEnvironmentProviderPageState extends State<SgEnvironmentProviderPage> {
                     baseKey: 'tema',
                     defaultValue: 'claro',
                     builder: (context, state) => SgButton(
-                      label: Text('Tema: ${state.value} (tocar para alternar)'),
+                      label: Text(
+                        context.txf('Tema: {tema} (tocar para alternar)', {
+                          'tema': state.value,
+                        }),
+                      ),
                       onClick: () async {
                         await state.setValue(
                           state.value == 'claro' ? 'escuro' : 'claro',

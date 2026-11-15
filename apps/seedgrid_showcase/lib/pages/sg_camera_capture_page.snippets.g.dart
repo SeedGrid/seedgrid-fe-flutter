@@ -23,7 +23,11 @@ Column(
       builder: (context, captured, _) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Valor atual: ${captured?.length ?? '-'} bytes'),
+          Text(
+            context.txf('Valor atual: {valor} bytes', {
+              'valor': '${captured?.length ?? '-'}',
+            }),
+          ),
           if (captured != null) Image.memory(captured, width: 160),
         ],
       ),
@@ -50,8 +54,11 @@ Column(
     const SizedBox(height: 8),
     ValueListenableBuilder<String?>(
       valueListenable: _cameraError,
-      builder: (context, cameraError, _) =>
-          Text('Valor atual: ${cameraError ?? '-'}'),
+      builder: (context, cameraError, _) => Text(
+        context.txf('Valor atual: {valor}', {
+          'valor': cameraError ?? '-',
+        }),
+      ),
     ),
   ],
 )

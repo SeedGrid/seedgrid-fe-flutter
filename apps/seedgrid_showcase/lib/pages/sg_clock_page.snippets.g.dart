@@ -106,10 +106,7 @@ SgClock(
   timezone: 'UTC',
   cardTitle: Text(context.tx('Hora de Brasília')),
   draggable: false,
-  cardProps: SgClockCardProps(
-    id: 'brasilia',
-    collapsible: false,
-  ),
+  cardProps: SgClockCardProps(id: 'brasilia', collapsible: false),
 )
 ''';
 

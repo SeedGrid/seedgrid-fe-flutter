@@ -17,7 +17,11 @@ Column(
     ValueListenableBuilder<List<SgFile>>(
       valueListenable: _um,
       builder: (context, um, _) => Text(
-        'Valor atual: ${um.isEmpty ? '-' : um.map((f) => f.name).join(', ')}',
+        context.txf('Valor atual: {valor}', {
+          'valor': um.isEmpty
+              ? '-'
+              : um.map((f) => f.name).join(', '),
+        }),
       ),
     ),
   ],
@@ -60,7 +64,9 @@ Column(
       valueListenable: _enviado,
       builder: (context, enviado, _) => enviado.isEmpty
           ? const SizedBox()
-          : Text(context.txf('Enviado: {valor}', {'valor': enviado})),
+          : Text(
+              context.txf('Enviado: {valor}', {'valor': enviado}),
+            ),
     ),
   ],
 )
@@ -79,13 +85,15 @@ const SgComponentsI18nProvider(
 
   /// Region `sg-file-upload-limites`.
   static const String sgFileUploadLimites = r'''
-const SgFileUpload(
+SgFileUpload(
   id: 'limites',
   labelText: 'Documentos',
   maxFiles: 5,
   maxSizePerFile: '2MB',
   maxSizeTotal: '5MB',
-  hintText: 'Até 5 arquivos, 2 MB cada e 5 MB no total.',
+  hintText: context.tx(
+    'Até 5 arquivos, 2 MB cada e 5 MB no total.',
+  ),
 )
 ''';
 
@@ -108,7 +116,7 @@ Column(
       id: 'anexos',
       labelText: 'Anexos',
       maxFiles: 3,
-      hintText: 'Até 3 arquivos.',
+      hintText: context.tx('Até 3 arquivos.'),
       onChange: (files) => _varios.value = files,
       onError: (code, message, fileName) =>
           _erro.value = '$fileName: ${code.name}',

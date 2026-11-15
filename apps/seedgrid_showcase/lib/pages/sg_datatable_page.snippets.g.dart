@@ -358,7 +358,7 @@ SgDatatable(
 
   /// Region `sg-datatable-idioma`.
   static const String sgDatatableIdioma = r'''
-const SgComponentsI18nProvider(
+SgComponentsI18nProvider(
   locale: 'fr',
   messages: {
     'components.datatable.empty':
@@ -371,20 +371,20 @@ const SgComponentsI18nProvider(
     columns: [
       SgDatatableColumn(
         field: 'code',
-        header: 'Código',
+        header: context.tx('Código'),
         filter: true,
-        filterPlaceholder: 'Digite o código',
+        filterPlaceholder: context.tx('Digite o código'),
       ),
       SgDatatableColumn(
         field: 'name',
-        header: 'Nome',
+        header: context.tx('Nome'),
         filter: true,
       ),
     ],
     dataKey: 'code',
     showGlobalFilter: true,
     showColumnFilters: true,
-    globalFilterPlaceholder: 'Buscar produtos',
+    globalFilterPlaceholder: context.tx('Buscar produtos'),
     emptyMessage: 'Nenhum produto cadastrado.',
   ),
 )

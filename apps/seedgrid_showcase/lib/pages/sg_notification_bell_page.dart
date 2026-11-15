@@ -78,7 +78,7 @@ class _SgNotificationBellPageState extends State<SgNotificationBellPage> {
                     onPressed: () {
                       final id = _basico.notify(
                         'report.ready',
-                        'Novo relatório',
+                        context.tx('Novo relatório'),
                         'Acabou de ficar pronto.',
                       );
                       _pulse.emitMessage(
@@ -115,8 +115,10 @@ class _SgNotificationBellPageState extends State<SgNotificationBellPage> {
                   types: {
                     'report.ready': SgNotificationTypeConfig(
                       icon: const Icon(Icons.description_outlined),
-                      onOpen: (n) =>
-                          _evento.value = 'baixar relatório ${n.publicId}',
+                      onOpen: (n) => _evento.value = context.txf(
+                        'baixar relatório {id}',
+                        {'id': n.publicId},
+                      ),
                     ),
                     'backup.finished': SgNotificationTypeConfig(
                       icon: const Icon(Icons.check_circle_outline),

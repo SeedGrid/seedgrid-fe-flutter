@@ -1,5 +1,6 @@
 // Showcase do SgCameraCapture. O codigo exibido em cada exemplo e o trecho entre `// #region` e
 // `// #endregion` deste arquivo: exatamente o que esta renderizado.
+import '../src/showcase_i18n.dart';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
@@ -57,7 +58,11 @@ class _SgCameraCapturePageState extends State<SgCameraCapturePage> {
                   builder: (context, captured, _) => Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Valor atual: ${captured?.length ?? '-'} bytes'),
+                      Text(
+                        context.txf('Valor atual: {valor} bytes', {
+                          'valor': '${captured?.length ?? '-'}',
+                        }),
+                      ),
                       if (captured != null) Image.memory(captured, width: 160),
                     ],
                   ),
@@ -158,8 +163,11 @@ class _SgCameraCapturePageState extends State<SgCameraCapturePage> {
                 const SizedBox(height: 8),
                 ValueListenableBuilder<String?>(
                   valueListenable: _cameraError,
-                  builder: (context, cameraError, _) =>
-                      Text('Valor atual: ${cameraError ?? '-'}'),
+                  builder: (context, cameraError, _) => Text(
+                    context.txf('Valor atual: {valor}', {
+                      'valor': cameraError ?? '-',
+                    }),
+                  ),
                 ),
               ],
             ),

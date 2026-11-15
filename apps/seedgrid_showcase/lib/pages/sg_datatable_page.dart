@@ -600,7 +600,7 @@ class _SgDatatablePageState extends State<SgDatatablePage> {
             'Os textos internos vêm do dicionário components.datatable.*. Envolva o componente em SgComponentsI18nProvider (ou chame setComponentsI18n) para trocar o idioma e use messages para substituir uma chave. As props de texto (emptyMessage, columnManagerLabel, globalFilterPlaceholder e column.filterPlaceholder) vencem o dicionário; sem elas, vale components.datatable.*.',
         preview:
             // #region sg-datatable-idioma
-            const SgComponentsI18nProvider(
+            SgComponentsI18nProvider(
               locale: 'fr',
               messages: {
                 'components.datatable.empty':
@@ -613,20 +613,20 @@ class _SgDatatablePageState extends State<SgDatatablePage> {
                 columns: [
                   SgDatatableColumn(
                     field: 'code',
-                    header: 'Código',
+                    header: context.tx('Código'),
                     filter: true,
-                    filterPlaceholder: 'Digite o código',
+                    filterPlaceholder: context.tx('Digite o código'),
                   ),
                   SgDatatableColumn(
                     field: 'name',
-                    header: 'Nome',
+                    header: context.tx('Nome'),
                     filter: true,
                   ),
                 ],
                 dataKey: 'code',
                 showGlobalFilter: true,
                 showColumnFilters: true,
-                globalFilterPlaceholder: 'Buscar produtos',
+                globalFilterPlaceholder: context.tx('Buscar produtos'),
                 emptyMessage: 'Nenhum produto cadastrado.',
               ),
             ),

@@ -17,7 +17,11 @@ Column(
     ValueListenableBuilder<List<SgFile>>(
       valueListenable: _uma,
       builder: (context, uma, _) => Text(
-        'Valor atual: ${uma.isEmpty ? '-' : '${uma.first.name} (${uma.first.size} bytes)'}',
+        context.txf('Valor atual: {valor}', {
+          'valor': uma.isEmpty
+              ? '-'
+              : '${uma.first.name} (${uma.first.size} bytes)',
+        }),
       ),
     ),
   ],
@@ -79,7 +83,7 @@ const SgComponentsI18nProvider(
 
   /// Region `sg-image-upload-regras`.
   static const String sgImageUploadRegras = r'''
-const SgImageUpload(
+SgImageUpload(
   id: 'avatar',
   labelText: 'Avatar',
   accept: 'image/png,image/jpeg',
@@ -87,7 +91,9 @@ const SgImageUpload(
   minWidth: 200,
   minHeight: 200,
   aspect: 1,
-  hintText: 'PNG ou JPEG, até 2 MB, quadrada, mínimo 200 × 200 px.',
+  hintText: context.tx(
+    'PNG ou JPEG, até 2 MB, quadrada, mínimo 200 × 200 px.',
+  ),
 )
 ''';
 
@@ -118,7 +124,9 @@ Column(
       maxFiles: 4,
       maxSizePerFile: '2MB',
       maxSizeTotal: '6MB',
-      hintText: 'Até 4 imagens, 2 MB cada e 6 MB no total.',
+      hintText: context.tx(
+        'Até 4 imagens, 2 MB cada e 6 MB no total.',
+      ),
       onChange: (files) => _galeria.value = files,
     ),
     const SizedBox(height: 8),

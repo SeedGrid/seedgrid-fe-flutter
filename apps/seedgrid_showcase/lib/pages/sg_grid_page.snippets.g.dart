@@ -85,7 +85,9 @@ SgGrid(
     for (var i = 1; i <= 6; i++)
       SgPanel(
         borderStyle: SgPanelBorderStyle.solid,
-        children: [Text('Célula $i')],
+        children: [
+          Text(context.txf('Célula {i}', {'i': '$i'})),
+        ],
       ),
   ],
 )

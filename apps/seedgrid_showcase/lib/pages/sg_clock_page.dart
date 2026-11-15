@@ -722,10 +722,7 @@ class _SgClockPageState extends State<SgClockPage> {
               timezone: 'UTC',
               cardTitle: Text(context.tx('Hora de Brasília')),
               draggable: false,
-              cardProps: SgClockCardProps(
-                id: 'brasilia',
-                collapsible: false,
-              ),
+              cardProps: SgClockCardProps(id: 'brasilia', collapsible: false),
             ),
         // #endregion
         code: SgClockPageSnippets.sgClockCartao,

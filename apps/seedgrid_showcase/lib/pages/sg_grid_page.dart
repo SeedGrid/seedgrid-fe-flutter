@@ -107,7 +107,9 @@ class SgGridPage extends StatelessWidget {
                 for (var i = 1; i <= 6; i++)
                   SgPanel(
                     borderStyle: SgPanelBorderStyle.solid,
-                    children: [Text('Célula $i')],
+                    children: [
+                      Text(context.txf('Célula {i}', {'i': '$i'})),
+                    ],
                   ),
               ],
             ),
@@ -178,7 +180,9 @@ class SgGridPage extends StatelessWidget {
               SgPanel(
                 span: i == 1 ? 2 : null,
                 borderStyle: SgPanelBorderStyle.solid,
-                children: [Text('Célula $i')],
+                children: [
+                  Text(context.txf('Célula {i}', {'i': '$i'})),
+                ],
               ),
           ],
         ),

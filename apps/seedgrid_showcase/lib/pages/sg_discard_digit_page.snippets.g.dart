@@ -51,7 +51,9 @@ Column(
     ValueListenableBuilder<bool>(
       valueListenable: _rodando,
       builder: (context, rodando, _) => SgButton(
-        label: Text(rodando ? context.tx('Parar') : context.tx('Iniciar')),
+        label: Text(
+          rodando ? context.tx('Parar') : context.tx('Iniciar'),
+        ),
         size: SgSize.sm,
         onClick: _alternarAutomatico,
       ),
@@ -281,7 +283,11 @@ Wrap(
       children: [
         ValueListenableBuilder<int>(
           valueListenable: _page,
-          builder: (context, page, _) => Text('Página $page de 8'),
+          builder: (context, page, _) => Text(
+            context.txf('Página {pagina} de 8', {
+              'pagina': '$page',
+            }),
+          ),
         ),
         const SizedBox(height: 8),
         Wrap(

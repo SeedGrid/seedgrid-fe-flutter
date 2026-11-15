@@ -65,7 +65,7 @@ export function pageTexts(file) {
     }
   };
   // Textos dentro dos exemplos: context.tx('...') (o literal e a chave).
-  for (const m of t.matchAll(/context\.tx\(\s*/g)) {
+  for (const m of t.matchAll(/context\.txf?\(\s*/g)) {
     const lit = readLiterals(t, m.index + m[0].length);
     if (lit && !lit.dynamic && lit.value.trim()) out.push({ texto: lit.value, onde: path.basename(file) });
   }

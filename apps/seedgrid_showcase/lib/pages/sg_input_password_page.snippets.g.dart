@@ -59,9 +59,9 @@ SizedBox(
 
   /// Region `sg-input-password-gerar`.
   static const String sgInputPasswordGerar = r'''
-const SgInputPassword(
+SgInputPassword(
   id: 'gerada',
-  labelText: 'Senha',
+  labelText: context.tx('Senha'),
   createNewPasswordButton: true,
   newPasswordLength: 12,
   maxLength: 32,
@@ -84,9 +84,9 @@ SizedBox(
 
   /// Region `sg-input-password-politica`.
   static const String sgInputPasswordPolitica = r'''
-const SgInputPassword(
+SgInputPassword(
   id: 'politica',
-  labelText: 'PIN alfanumérico',
+  labelText: context.tx('PIN alfanumérico'),
   minSize: 6,
   upperRequired: false,
   specialCharacterRequired: false,

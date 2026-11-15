@@ -17,13 +17,17 @@ SgStack(
       onClick: () => toast.warning(
         context.tx('Item arquivado'),
         SgToastOptions(
-          description: context.tx('Clique em desfazer para restaurar.'),
+          description: context.tx(
+            'Clique em desfazer para restaurar.',
+          ),
           action: SgToastAction(
             label: context.tx('Desfazer'),
             onClick: () => toast.success(
               context.tx('Ação desfeita'),
               SgToastOptions(
-                description: context.tx('O item voltou para a lista.'),
+                description: context.tx(
+                  'O item voltou para a lista.',
+                ),
               ),
             ),
           ),
@@ -55,7 +59,9 @@ SgStack(
               ),
               const SizedBox(height: 4),
               Text(
-                context.tx('Conteúdo renderizado via toast.custom(...)'),
+                context.tx(
+                  'Conteúdo renderizado via toast.custom(...)',
+                ),
                 style: const TextStyle(color: Color(0xFF6B4B33)),
               ),
               const SizedBox(height: 8),
@@ -100,7 +106,8 @@ SgStack(
     ),
     SgButton(
       label: Text(context.tx('Disparar')),
-      onClick: () => toast.success(context.tx('Operação concluída')),
+      onClick: () =>
+          toast.success(context.tx('Operação concluída')),
     ),
   ],
 )
@@ -121,7 +128,8 @@ SgStack(
     SgButton(
       label: Text('toast.success'),
       severity: SgSeverity.success,
-      onClick: () => toast.success(context.tx('Operação concluída')),
+      onClick: () =>
+          toast.success(context.tx('Operação concluída')),
     ),
     SgButton(
       label: Text('toast.dismiss (all)'),
@@ -178,7 +186,10 @@ SgStack(
   children: [
     SgButton(
       label: Text(context.tx('Abrir toast')),
-      onClick: () => toast.loading(context.tx('Processando lote...'), const SgToastOptions(id: 'lote')),
+      onClick: () => toast.loading(
+        context.tx('Processando lote...'),
+        const SgToastOptions(id: 'lote'),
+      ),
     ),
     SgButton(
       label: Text("dismissSgToast('lote')"),
@@ -226,7 +237,9 @@ SgStack(
           context.tx('Processamento concluído'),
           SgToastOptions(
             id: id,
-            description: context.tx('Atualizado usando o mesmo id.'),
+            description: context.tx(
+              'Atualizado usando o mesmo id.',
+            ),
           ),
         );
         _loadingId.value = null;
@@ -245,7 +258,9 @@ SgStack(
           context.tx('Processamento falhou'),
           SgToastOptions(
             id: id,
-            description: context.tx('Loading atualizado para erro.'),
+            description: context.tx(
+              'Loading atualizado para erro.',
+            ),
           ),
         );
         _loadingId.value = null;
@@ -258,7 +273,8 @@ SgStack(
     ),
     ValueListenableBuilder<String?>(
       valueListenable: _loadingId,
-      builder: (context, id, _) => Text('loadingId: ${id ?? 'none'}'),
+      builder: (context, id, _) =>
+          Text('loadingId: ${id ?? 'none'}'),
     ),
   ],
 )
@@ -306,7 +322,9 @@ SgStack(
       onClick: () => toast.info(
         context.tx('Toast com opções personalizadas'),
         SgToastOptions(
-          description: context.tx('Duração de 10s, sem closeButton.'),
+          description: context.tx(
+            'Duração de 10s, sem closeButton.',
+          ),
           duration: 10000,
           closeButton: false,
         ),
@@ -315,13 +333,16 @@ SgStack(
     SgButton(
       label: Text(context.tx('1 segundo')),
       appearance: SgAppearance.outline,
-      onClick: () => toast('Rápido', const SgToastOptions(duration: 1000)),
+      onClick: () => toast(
+        context.tx('Rápido'),
+        const SgToastOptions(duration: 1000),
+      ),
     ),
     SgButton(
       label: Text(context.tx('Fixo (duration: 0)')),
       appearance: SgAppearance.outline,
       onClick: () => toast.info(
-        'Fica até fechar',
+        context.tx('Fica até fechar'),
         const SgToastOptions(duration: 0),
       ),
     ),
@@ -345,12 +366,15 @@ SgStack(
         final falha = context.tx('Falha');
         try {
           await toast.promise<String>(
-            Future<String>.delayed(const Duration(milliseconds: 1200), () {
-              if (Random().nextDouble() < 0.35) {
-                throw Exception('Random demo error');
-              }
-              return 'ORD-2026-001';
-            }),
+            Future<String>.delayed(
+              const Duration(milliseconds: 1200),
+              () {
+                if (Random().nextDouble() < 0.35) {
+                  throw Exception('Random demo error');
+                }
+                return 'ORD-2026-001';
+              },
+            ),
             SgToastPromiseMessages<String>(
               loading: salvando,
               success: (String id) => '$salvo: $id',
@@ -381,12 +405,14 @@ SgStack(
     SgButton(
       label: Text('success'),
       severity: SgSeverity.success,
-      onClick: () => toast.success(context.tx('Operação concluída')),
+      onClick: () =>
+          toast.success(context.tx('Operação concluída')),
     ),
     SgButton(
       label: Text('info'),
       severity: SgSeverity.info,
-      onClick: () => toast.info(context.tx('Informação importante')),
+      onClick: () =>
+          toast.info(context.tx('Informação importante')),
     ),
     SgButton(
       label: Text('warning'),

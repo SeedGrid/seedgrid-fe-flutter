@@ -230,9 +230,9 @@ class _SgInputPasswordPageState extends State<SgInputPasswordPage> {
             'O botão gera uma senha que cumpre a política; newPasswordLength define o tamanho.',
         preview:
             // #region sg-input-password-gerar
-            const SgInputPassword(
+            SgInputPassword(
               id: 'gerada',
-              labelText: 'Senha',
+              labelText: context.tx('Senha'),
               createNewPasswordButton: true,
               newPasswordLength: 12,
               maxLength: 32,
@@ -247,9 +247,9 @@ class _SgInputPasswordPageState extends State<SgInputPasswordPage> {
             'Cada critério liga e desliga; minSize muda o tamanho mínimo e showStrengthBar esconde a barra.',
         preview:
             // #region sg-input-password-politica
-            const SgInputPassword(
+            SgInputPassword(
               id: 'politica',
-              labelText: 'PIN alfanumérico',
+              labelText: context.tx('PIN alfanumérico'),
               minSize: 6,
               upperRequired: false,
               specialCharacterRequired: false,

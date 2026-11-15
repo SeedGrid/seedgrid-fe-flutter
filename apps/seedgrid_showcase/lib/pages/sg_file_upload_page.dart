@@ -52,7 +52,11 @@ class _SgFileUploadPageState extends State<SgFileUploadPage> {
                 ValueListenableBuilder<List<SgFile>>(
                   valueListenable: _um,
                   builder: (context, um, _) => Text(
-                    'Valor atual: ${um.isEmpty ? '-' : um.map((f) => f.name).join(', ')}',
+                    context.txf('Valor atual: {valor}', {
+                      'valor': um.isEmpty
+                          ? '-'
+                          : um.map((f) => f.name).join(', '),
+                    }),
                   ),
                 ),
               ],
@@ -73,7 +77,7 @@ class _SgFileUploadPageState extends State<SgFileUploadPage> {
                   id: 'anexos',
                   labelText: 'Anexos',
                   maxFiles: 3,
-                  hintText: 'Até 3 arquivos.',
+                  hintText: context.tx('Até 3 arquivos.'),
                   onChange: (files) => _varios.value = files,
                   onError: (code, message, fileName) =>
                       _erro.value = '$fileName: ${code.name}',
@@ -114,13 +118,15 @@ class _SgFileUploadPageState extends State<SgFileUploadPage> {
             'maxSizePerFile e maxSizeTotal aceitam bytes ou texto com unidade ("500KB", "1.5MB", "1GB").',
         preview:
             // #region sg-file-upload-limites
-            const SgFileUpload(
+            SgFileUpload(
               id: 'limites',
               labelText: 'Documentos',
               maxFiles: 5,
               maxSizePerFile: '2MB',
               maxSizeTotal: '5MB',
-              hintText: 'Até 5 arquivos, 2 MB cada e 5 MB no total.',
+              hintText: context.tx(
+                'Até 5 arquivos, 2 MB cada e 5 MB no total.',
+              ),
             ),
         // #endregion
         code: SgFileUploadPageSnippets.sgFileUploadLimites,
@@ -185,7 +191,9 @@ class _SgFileUploadPageState extends State<SgFileUploadPage> {
                   valueListenable: _enviado,
                   builder: (context, enviado, _) => enviado.isEmpty
                       ? const SizedBox()
-                      : Text(context.txf('Enviado: {valor}', {'valor': enviado})),
+                      : Text(
+                          context.txf('Enviado: {valor}', {'valor': enviado}),
+                        ),
                 ),
               ],
             ),

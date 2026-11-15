@@ -47,11 +47,11 @@ class _SgCalendarPageState extends State<SgCalendarPage> {
             'Configuração inicial com data selecionada e posição do cartão persistida.',
         preview:
             // #region sg-calendar-mes-atual
-            const SgCalendar(
+            SgCalendar(
               locale: 'pt-BR',
               defaultValue: '2026-03-10',
               defaultViewDate: '2026-03-01',
-              cardTitle: Text('Calendário base'),
+              cardTitle: Text(context.tx('Calendário base')),
               cardProps: SgCalendarCardProps(
                 id: 'showcase-calendar-basic',
                 dragPersistKey: 'showcase-calendar-basic',
@@ -165,7 +165,9 @@ class _SgCalendarPageState extends State<SgCalendarPage> {
                     monthsPerLine: 3,
                     defaultValue: '2026-03-10',
                     defaultViewDate: '2026-03-01',
-                    cardTitle: const Text('Calendário i18n + vários meses'),
+                    cardTitle: Text(
+                      context.tx('Calendário i18n + vários meses'),
+                    ),
                     cardProps: const SgCalendarCardProps(
                       id: 'showcase-calendar-i18n',
                       dragPersistKey: 'showcase-calendar-i18n',

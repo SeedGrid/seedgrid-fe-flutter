@@ -11,7 +11,9 @@ SgRealtimeProvider(
   fetchToken: _token,
   child: Builder(
     builder: (context) => Text(
-      'Estado: ${useSgRealtimeStatus(context).status.value}',
+      context.txf('Estado: {estado}', {
+        'estado': useSgRealtimeStatus(context).status.value,
+      }),
     ),
   ),
 )
@@ -33,7 +35,11 @@ SgRealtimeProvider(
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Estado: ${r.status.value}'),
+          Text(
+            context.txf('Estado: {estado}', {
+              'estado': r.status.value,
+            }),
+          ),
           ValueListenableBuilder<List<String>>(
             valueListenable: _bffRequests,
             builder: (context, pedidos, _) =>
@@ -161,7 +167,13 @@ SgRealtimeProvider(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Estado: ${r.status.value}  (conectado: ${r.connected})',
+              context.txf(
+                'Estado: {estado}  (conectado: {conectado})',
+                {
+                  'estado': r.status.value,
+                  'conectado': r.connected,
+                },
+              ),
             ),
             const SizedBox(height: 8),
             Wrap(

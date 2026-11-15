@@ -15,7 +15,7 @@ SgWizard(
         id: 'wp-cidade',
         name: 'cidade',
         control: _form,
-        labelText: 'Cidade',
+        labelText: context.tx('Cidade'),
         required: true,
         requiredMessage: 'Informe a cidade',
       ),

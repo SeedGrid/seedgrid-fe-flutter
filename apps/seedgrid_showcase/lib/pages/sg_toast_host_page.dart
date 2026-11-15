@@ -62,7 +62,14 @@ class _SgToastHostPageState extends State<SgToastHostPage> {
   @override
   void dispose() {
     dismissSgToast();
-    for (final n in [_cfg, _richColors, _transparency, _coresPersonalizadas, _loadingId, _extraHost]) {
+    for (final n in [
+      _cfg,
+      _richColors,
+      _transparency,
+      _coresPersonalizadas,
+      _loadingId,
+      _extraHost,
+    ]) {
       n.dispose();
     }
     super.dispose();
@@ -94,7 +101,8 @@ class _SgToastHostPageState extends State<SgToastHostPage> {
                 SgButton(
                   label: Text(context.tx('Sucesso')),
                   severity: SgSeverity.success,
-                  onClick: () => toast.success(context.tx('Operação concluída')),
+                  onClick: () =>
+                      toast.success(context.tx('Operação concluída')),
                 ),
                 SgButton(
                   label: Text(context.tx('Erro')),
@@ -130,7 +138,8 @@ class _SgToastHostPageState extends State<SgToastHostPage> {
                 SgButton(
                   label: Text('toast.success'),
                   severity: SgSeverity.success,
-                  onClick: () => toast.success(context.tx('Operação concluída')),
+                  onClick: () =>
+                      toast.success(context.tx('Operação concluída')),
                 ),
                 SgButton(
                   label: Text('toast.dismiss (all)'),
@@ -168,8 +177,7 @@ class _SgToastHostPageState extends State<SgToastHostPage> {
       ),
       ShowcaseExample(
         title: 'Tipos de toast',
-        description:
-            'Use métodos específicos por severidade.',
+        description: 'Use métodos específicos por severidade.',
         preview:
             // #region sg-toast-host-tipos
             SgStack(
@@ -185,12 +193,14 @@ class _SgToastHostPageState extends State<SgToastHostPage> {
                 SgButton(
                   label: Text('success'),
                   severity: SgSeverity.success,
-                  onClick: () => toast.success(context.tx('Operação concluída')),
+                  onClick: () =>
+                      toast.success(context.tx('Operação concluída')),
                 ),
                 SgButton(
                   label: Text('info'),
                   severity: SgSeverity.info,
-                  onClick: () => toast.info(context.tx('Informação importante')),
+                  onClick: () =>
+                      toast.info(context.tx('Informação importante')),
                 ),
                 SgButton(
                   label: Text('warning'),
@@ -253,7 +263,9 @@ class _SgToastHostPageState extends State<SgToastHostPage> {
                       context.tx('Processamento concluído'),
                       SgToastOptions(
                         id: id,
-                        description: context.tx('Atualizado usando o mesmo id.'),
+                        description: context.tx(
+                          'Atualizado usando o mesmo id.',
+                        ),
                       ),
                     );
                     _loadingId.value = null;
@@ -272,7 +284,9 @@ class _SgToastHostPageState extends State<SgToastHostPage> {
                       context.tx('Processamento falhou'),
                       SgToastOptions(
                         id: id,
-                        description: context.tx('Loading atualizado para erro.'),
+                        description: context.tx(
+                          'Loading atualizado para erro.',
+                        ),
                       ),
                     );
                     _loadingId.value = null;
@@ -285,7 +299,8 @@ class _SgToastHostPageState extends State<SgToastHostPage> {
                 ),
                 ValueListenableBuilder<String?>(
                   valueListenable: _loadingId,
-                  builder: (context, id, _) => Text('loadingId: ${id ?? 'none'}'),
+                  builder: (context, id, _) =>
+                      Text('loadingId: ${id ?? 'none'}'),
                 ),
               ],
             ),
@@ -312,12 +327,15 @@ class _SgToastHostPageState extends State<SgToastHostPage> {
                     final falha = context.tx('Falha');
                     try {
                       await toast.promise<String>(
-                        Future<String>.delayed(const Duration(milliseconds: 1200), () {
-                          if (Random().nextDouble() < 0.35) {
-                            throw Exception('Random demo error');
-                          }
-                          return 'ORD-2026-001';
-                        }),
+                        Future<String>.delayed(
+                          const Duration(milliseconds: 1200),
+                          () {
+                            if (Random().nextDouble() < 0.35) {
+                              throw Exception('Random demo error');
+                            }
+                            return 'ORD-2026-001';
+                          },
+                        ),
                         SgToastPromiseMessages<String>(
                           loading: salvando,
                           success: (String id) => '$salvo: $id',
@@ -352,13 +370,17 @@ class _SgToastHostPageState extends State<SgToastHostPage> {
                   onClick: () => toast.warning(
                     context.tx('Item arquivado'),
                     SgToastOptions(
-                      description: context.tx('Clique em desfazer para restaurar.'),
+                      description: context.tx(
+                        'Clique em desfazer para restaurar.',
+                      ),
                       action: SgToastAction(
                         label: context.tx('Desfazer'),
                         onClick: () => toast.success(
                           context.tx('Ação desfeita'),
                           SgToastOptions(
-                            description: context.tx('O item voltou para a lista.'),
+                            description: context.tx(
+                              'O item voltou para a lista.',
+                            ),
                           ),
                         ),
                       ),
@@ -390,7 +412,9 @@ class _SgToastHostPageState extends State<SgToastHostPage> {
                           ),
                           const SizedBox(height: 4),
                           Text(
-                            context.tx('Conteúdo renderizado via toast.custom(...)'),
+                            context.tx(
+                              'Conteúdo renderizado via toast.custom(...)',
+                            ),
                             style: const TextStyle(color: Color(0xFF6B4B33)),
                           ),
                           const SizedBox(height: 8),
@@ -427,7 +451,9 @@ class _SgToastHostPageState extends State<SgToastHostPage> {
                   onClick: () => toast.info(
                     context.tx('Toast com opções personalizadas'),
                     SgToastOptions(
-                      description: context.tx('Duração de 10s, sem closeButton.'),
+                      description: context.tx(
+                        'Duração de 10s, sem closeButton.',
+                      ),
                       duration: 10000,
                       closeButton: false,
                     ),
@@ -436,13 +462,16 @@ class _SgToastHostPageState extends State<SgToastHostPage> {
                 SgButton(
                   label: Text(context.tx('1 segundo')),
                   appearance: SgAppearance.outline,
-                  onClick: () => toast('Rápido', const SgToastOptions(duration: 1000)),
+                  onClick: () => toast(
+                    context.tx('Rápido'),
+                    const SgToastOptions(duration: 1000),
+                  ),
                 ),
                 SgButton(
                   label: Text(context.tx('Fixo (duration: 0)')),
                   appearance: SgAppearance.outline,
                   onClick: () => toast.info(
-                    'Fica até fechar',
+                    context.tx('Fica até fechar'),
                     const SgToastOptions(duration: 0),
                   ),
                 ),
@@ -453,8 +482,7 @@ class _SgToastHostPageState extends State<SgToastHostPage> {
       ),
       ShowcaseExample(
         title: 'Transparência',
-        description:
-            'Exemplo focado apenas em transparência (80%).',
+        description: 'Exemplo focado apenas em transparência (80%).',
         preview:
             // #region sg-toast-host-transparencia
             SgStack(
@@ -491,8 +519,7 @@ class _SgToastHostPageState extends State<SgToastHostPage> {
       ),
       ShowcaseExample(
         title: 'Cores personalizadas',
-        description:
-            'Exemplo focado apenas em cores personalizadas por tipo.',
+        description: 'Exemplo focado apenas em cores personalizadas por tipo.',
         preview:
             // #region sg-toast-host-cores-personalizadas
             SgStack(
@@ -552,7 +579,10 @@ class _SgToastHostPageState extends State<SgToastHostPage> {
                 ),
                 SgButton(
                   label: Text(context.tx('Disparar')),
-                  onClick: () => toast.info(context.tx('Quem está ativo?'), const SgToastOptions(duration: 3000)),
+                  onClick: () => toast.info(
+                    context.tx('Quem está ativo?'),
+                    const SgToastOptions(duration: 3000),
+                  ),
                 ),
               ],
             ),
@@ -593,10 +623,17 @@ class _SgToastHostPageState extends State<SgToastHostPage> {
           ),
         ),
         ListenableBuilder(
-          listenable: Listenable.merge([_cfg, _richColors, _transparency, _coresPersonalizadas]),
+          listenable: Listenable.merge([
+            _cfg,
+            _richColors,
+            _transparency,
+            _coresPersonalizadas,
+          ]),
           builder: (context, _) => SgToastHost(
             position:
-                SgToasterPosition.fromValue(_cfg.value['position'] as String?) ??
+                SgToasterPosition.fromValue(
+                  _cfg.value['position'] as String?,
+                ) ??
                 SgToasterPosition.topRight,
             richColors: _richColors.value,
             transparency: _transparency.value,
