@@ -4,7 +4,7 @@ import 'dart:ui' show Color;
 
 import 'sg_theme.dart';
 
-/// Getters tipados dos tokens `--sg-*` (207).
+/// Getters tipados dos tokens `--sg-*` (235).
 extension SgThemeTokens on SgTheme {
   /// `--sg-bg`
   Color get bg => color('--sg-bg');
@@ -282,6 +282,69 @@ extension SgThemeTokens on SgTheme {
   /// `--sg-success-900`
   Color get success900 => color('--sg-success-900');
 
+  /// `--sg-primary-fill`
+  Color get primaryFill => color('--sg-primary-fill');
+
+  /// `--sg-primary-fill-hover`
+  Color get primaryFillHover => color('--sg-primary-fill-hover');
+
+  /// `--sg-primary-fill-active`
+  Color get primaryFillActive => color('--sg-primary-fill-active');
+
+  /// `--sg-secondary-fill`
+  Color get secondaryFill => color('--sg-secondary-fill');
+
+  /// `--sg-secondary-fill-hover`
+  Color get secondaryFillHover => color('--sg-secondary-fill-hover');
+
+  /// `--sg-secondary-fill-active`
+  Color get secondaryFillActive => color('--sg-secondary-fill-active');
+
+  /// `--sg-tertiary-fill`
+  Color get tertiaryFill => color('--sg-tertiary-fill');
+
+  /// `--sg-tertiary-fill-hover`
+  Color get tertiaryFillHover => color('--sg-tertiary-fill-hover');
+
+  /// `--sg-tertiary-fill-active`
+  Color get tertiaryFillActive => color('--sg-tertiary-fill-active');
+
+  /// `--sg-warning-fill`
+  Color get warningFill => color('--sg-warning-fill');
+
+  /// `--sg-warning-fill-hover`
+  Color get warningFillHover => color('--sg-warning-fill-hover');
+
+  /// `--sg-warning-fill-active`
+  Color get warningFillActive => color('--sg-warning-fill-active');
+
+  /// `--sg-error-fill`
+  Color get errorFill => color('--sg-error-fill');
+
+  /// `--sg-error-fill-hover`
+  Color get errorFillHover => color('--sg-error-fill-hover');
+
+  /// `--sg-error-fill-active`
+  Color get errorFillActive => color('--sg-error-fill-active');
+
+  /// `--sg-info-fill`
+  Color get infoFill => color('--sg-info-fill');
+
+  /// `--sg-info-fill-hover`
+  Color get infoFillHover => color('--sg-info-fill-hover');
+
+  /// `--sg-info-fill-active`
+  Color get infoFillActive => color('--sg-info-fill-active');
+
+  /// `--sg-success-fill`
+  Color get successFill => color('--sg-success-fill');
+
+  /// `--sg-success-fill-hover`
+  Color get successFillHover => color('--sg-success-fill-hover');
+
+  /// `--sg-success-fill-active`
+  Color get successFillActive => color('--sg-success-fill-active');
+
   /// `--sg-primary-hover`
   Color get primaryHover => color('--sg-primary-hover');
 
@@ -312,6 +375,9 @@ extension SgThemeTokens on SgTheme {
   /// `--sg-success-hover`
   Color get successHover => color('--sg-success-hover');
 
+  /// `--sg-btn-primary-text`
+  Color get btnPrimaryText => color('--sg-btn-primary-text');
+
   /// `--sg-btn-primary-bg`
   Color get btnPrimaryBg => color('--sg-btn-primary-bg');
 
@@ -335,6 +401,9 @@ extension SgThemeTokens on SgTheme {
 
   /// `--sg-btn-primary-ring`
   Color get btnPrimaryRing => color('--sg-btn-primary-ring');
+
+  /// `--sg-btn-secondary-text`
+  Color get btnSecondaryText => color('--sg-btn-secondary-text');
 
   /// `--sg-btn-secondary-bg`
   Color get btnSecondaryBg => color('--sg-btn-secondary-bg');
@@ -360,6 +429,9 @@ extension SgThemeTokens on SgTheme {
   /// `--sg-btn-secondary-ring`
   Color get btnSecondaryRing => color('--sg-btn-secondary-ring');
 
+  /// `--sg-btn-success-text`
+  Color get btnSuccessText => color('--sg-btn-success-text');
+
   /// `--sg-btn-success-bg`
   Color get btnSuccessBg => color('--sg-btn-success-bg');
 
@@ -383,6 +455,9 @@ extension SgThemeTokens on SgTheme {
 
   /// `--sg-btn-success-ring`
   Color get btnSuccessRing => color('--sg-btn-success-ring');
+
+  /// `--sg-btn-info-text`
+  Color get btnInfoText => color('--sg-btn-info-text');
 
   /// `--sg-btn-info-bg`
   Color get btnInfoBg => color('--sg-btn-info-bg');
@@ -408,6 +483,9 @@ extension SgThemeTokens on SgTheme {
   /// `--sg-btn-info-ring`
   Color get btnInfoRing => color('--sg-btn-info-ring');
 
+  /// `--sg-btn-warning-text`
+  Color get btnWarningText => color('--sg-btn-warning-text');
+
   /// `--sg-btn-warning-bg`
   Color get btnWarningBg => color('--sg-btn-warning-bg');
 
@@ -432,6 +510,9 @@ extension SgThemeTokens on SgTheme {
   /// `--sg-btn-warning-ring`
   Color get btnWarningRing => color('--sg-btn-warning-ring');
 
+  /// `--sg-btn-danger-text`
+  Color get btnDangerText => color('--sg-btn-danger-text');
+
   /// `--sg-btn-danger-bg`
   Color get btnDangerBg => color('--sg-btn-danger-bg');
 
@@ -455,6 +536,9 @@ extension SgThemeTokens on SgTheme {
 
   /// `--sg-btn-danger-ring`
   Color get btnDangerRing => color('--sg-btn-danger-ring');
+
+  /// `--sg-btn-help-text`
+  Color get btnHelpText => color('--sg-btn-help-text');
 
   /// `--sg-btn-help-bg`
   Color get btnHelpBg => color('--sg-btn-help-bg');

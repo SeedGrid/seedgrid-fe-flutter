@@ -49,14 +49,6 @@ ThemeVars generateThemeVars(SeedThemeInput input, Brightness resolvedMode) {
   final successBase =
       input.success ?? _buildSemanticBaseFromHue(resolvedMode, 145);
 
-  final primary = buildScaleFromHex(primaryBase, resolvedMode, boostS: 4);
-  final secondary = buildScaleFromHex(secondaryBase, resolvedMode, boostS: 2);
-  final tertiary = buildScaleFromHex(tertiaryBase, resolvedMode, boostS: 0);
-  final warning = buildScaleFromHex(warningBase, resolvedMode, boostS: 4);
-  final error = buildScaleFromHex(errorBase, resolvedMode, boostS: 4);
-  final info = buildScaleFromHex(infoBase, resolvedMode, boostS: 2);
-  final success = buildScaleFromHex(successBase, resolvedMode, boostS: 2);
-
   final neutralBgHex = light
       ? shiftHue(seed, 0, 10, 98)
       : shiftHue(seed, 0, 10, 10);
@@ -66,6 +58,52 @@ ThemeVars generateThemeVars(SeedThemeInput input, Brightness resolvedMode) {
   final neutralMutedSurfaceHex = light
       ? shiftHue(seed, 0, 14, 90)
       : shiftHue(seed, 0, 14, 18);
+  // Fundos contra os quais o texto fino (degraus 400 a 900) precisa de >= 4,5:1
+  final against = <String>[neutralBgHex, neutralSurfaceHex];
+
+  final primary = buildScaleFromHex(
+    primaryBase,
+    resolvedMode,
+    boostS: 4,
+    against: against,
+  );
+  final secondary = buildScaleFromHex(
+    secondaryBase,
+    resolvedMode,
+    boostS: 2,
+    against: against,
+  );
+  final tertiary = buildScaleFromHex(
+    tertiaryBase,
+    resolvedMode,
+    boostS: 0,
+    against: against,
+  );
+  final warning = buildScaleFromHex(
+    warningBase,
+    resolvedMode,
+    boostS: 4,
+    against: against,
+  );
+  final error = buildScaleFromHex(
+    errorBase,
+    resolvedMode,
+    boostS: 4,
+    against: against,
+  );
+  final info = buildScaleFromHex(
+    infoBase,
+    resolvedMode,
+    boostS: 2,
+    against: against,
+  );
+  final success = buildScaleFromHex(
+    successBase,
+    resolvedMode,
+    boostS: 2,
+    against: against,
+  );
+
   final borderHex = light
       ? shiftHue(seed, 0, 18, 84)
       : shiftHue(seed, 0, 18, 26);
@@ -153,6 +191,30 @@ ThemeVars generateThemeVars(SeedThemeInput input, Brightness resolvedMode) {
     vars['--sg-error-$s'] = toRgbVarValue(error[s] ?? errorBase);
     vars['--sg-info-$s'] = toRgbVarValue(info[s] ?? infoBase);
     vars['--sg-success-$s'] = toRgbVarValue(success[s] ?? successBase);
+  }
+
+  // Preenchimento do botao cheio: no claro e a cor pura de cada base (hover/active escurecem); no escuro segue os
+  // degraus 600/700/800. O texto do botao e escolhido por contraste sobre cada um (component_tokens).
+  final fillSets = <(String, String, Map<int, String>)>[
+    ('primary', primaryBase, primary),
+    ('secondary', secondaryBase, secondary),
+    ('tertiary', tertiaryBase, tertiary),
+    ('warning', warningBase, warning),
+    ('error', errorBase, error),
+    ('info', infoBase, info),
+    ('success', successBase, success),
+  ];
+  for (final (fname, fbase, fscale) in fillSets) {
+    final shades = light
+        ? fillShades(fbase)
+        : (
+            normal: fscale[600] ?? fbase,
+            hover: fscale[700] ?? fbase,
+            active: fscale[800] ?? fbase,
+          );
+    vars['--sg-$fname-fill'] = toRgbVarValue(shades.normal);
+    vars['--sg-$fname-fill-hover'] = toRgbVarValue(shades.hover);
+    vars['--sg-$fname-fill-active'] = toRgbVarValue(shades.active);
   }
 
   vars['--sg-primary-hover'] =

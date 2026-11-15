@@ -173,6 +173,23 @@ String adjustBgForOnColor(String bgHex) {
 }
 
 /// `"r g b"`: o formato das variaveis `--sg-*` (no React, `rgb(var(--x) / alpha)`).
+/// Quanto o preenchimento do botao cheio escurece (pontos de luminosidade HSL) no hover e no active do tema claro.
+const double fillHoverStep = 6;
+const double fillActiveStep = 12;
+
+/// Preenchimento do botao cheio no tema CLARO: a cor PURA da semente (texto preto/branco por contraste; so escurece
+/// pelo [adjustBgForOnColor] se nenhum dos dois alcancar 4,5:1). Hover e active escurecem [fillHoverStep] e
+/// [fillActiveStep]. Porte de `fillShades` do React.
+({String normal, String hover, String active}) fillShades(String baseHex) {
+  final c = hexToRgb(baseHex);
+  final hsl = rgbToHsl(c.r, c.g, c.b);
+  return (
+    normal: baseHex.toUpperCase(),
+    hover: hslToHex(hsl.h, hsl.s, clamp(hsl.l - fillHoverStep, 0, 100)),
+    active: hslToHex(hsl.h, hsl.s, clamp(hsl.l - fillActiveStep, 0, 100)),
+  );
+}
+
 String toRgbVarValue(String hex) {
   final c = hexToRgb(hex);
   return '${c.r} ${c.g} ${c.b}';
@@ -213,13 +230,62 @@ const _lDark = {
   900: 88,
 };
 
+/// Contraste minimo do texto fino (WCAG AA) que os degraus 400, 500 e 600 da escala precisam ter sobre os fundos.
+const double scaleTextMinContrast = 4.5;
+
+/// Folga sobre o contraste minimo, para o arredondamento do hex nao derrubar o par.
+const double scaleContrastMargin = 0.02;
+
+double _minContrastAgainst(String hex, List<String> against) {
+  var min = double.infinity;
+  for (final bg in against) {
+    min = math.min(min, contrastRatio(hex, bg));
+  }
+  return min;
+}
+
+/// Luminosidade HSL (mesmo matiz e saturacao) mais proxima de [nominalL] que alcanca [minRatio] contra TODOS os
+/// fundos de [against]. Claro escurece, escuro clareia; se o nominal ja passa, devolve o nominal. Biseccao
+/// (24 iteracoes) conferida no hex arredondado. Porte de `fitLightnessForContrast` do React.
+double fitLightnessForContrast(
+  double h,
+  double s,
+  double nominalL,
+  List<String> against,
+  Brightness resolvedMode, [
+  double minRatio = scaleTextMinContrast,
+]) {
+  final target = minRatio + scaleContrastMargin;
+  bool passes(double l) =>
+      _minContrastAgainst(hslToHex(h, s, l), against) >= target;
+  if (passes(nominalL)) return nominalL;
+  final light = resolvedMode == Brightness.light;
+  final far = light ? 0.0 : 100.0;
+  if (!passes(far)) return far;
+  var ok = far;
+  var bad = nominalL;
+  for (var i = 0; i < 24; i++) {
+    final mid = (ok + bad) / 2;
+    if (passes(mid)) {
+      ok = mid;
+    } else {
+      bad = mid;
+    }
+  }
+  return light
+      ? (ok * 100).floorToDouble() / 100
+      : (ok * 100).ceilToDouble() / 100;
+}
+
 /// Escala 50..900 (harmoniza em HSL, com L variando por degrau). `resolvedMode` e a modo ja
-/// resolvido (nunca "auto"): [Brightness.light] ou [Brightness.dark].
+/// resolvido (nunca "auto"): [Brightness.light] ou [Brightness.dark]. Com [against] (fundos do tema), os degraus
+/// 400 a 900 sao ajustados por contraste (>= 4,5:1 contra todos os fundos) mantendo matiz e saturacao.
 Map<int, String> buildScaleFromHex(
   String baseHex,
   Brightness resolvedMode, {
   double? boostS,
   double? biasL,
+  List<String>? against,
 }) {
   final c = hexToRgb(baseHex);
   final hsl = rgbToHsl(c.r, c.g, c.b);
@@ -239,10 +305,29 @@ Map<int, String> buildScaleFromHex(
   };
   final bs = boostS ?? 0;
   final bl = biasL ?? 0;
+  final dir = resolvedMode == Brightness.light ? -1 : 1;
+  const minGap = 2.0;
   final out = <int, String>{};
+  double? prevL;
   for (final stop in _stops) {
-    final targetL = clamp((lMap[stop] ?? 50) + bl, 0, 100);
+    var targetL = clamp((lMap[stop] ?? 50) + bl, 0, 100);
     final targetS = clamp((sMap[stop] ?? s) + bs, 0, 100);
+    if (against != null && against.isNotEmpty && stop >= 400) {
+      targetL = fitLightnessForContrast(
+        h,
+        targetS,
+        targetL,
+        against,
+        resolvedMode,
+      );
+      if (prevL != null) {
+        final limit = prevL + dir * minGap;
+        if (dir < 0 ? targetL > limit : targetL < limit) {
+          targetL = clamp(limit, 0, 100);
+        }
+      }
+      prevL = targetL;
+    }
     out[stop] = hslToHex(h, targetS, targetL);
   }
   return out;

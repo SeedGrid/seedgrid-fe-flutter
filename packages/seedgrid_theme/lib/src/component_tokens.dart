@@ -36,9 +36,17 @@ ThemeVars generateComponentTokens(ThemeVars baseVars) {
   }
 
   void severity(String tokenName, String scale, String on) {
-    final normal = stateColors('--sg-$scale-600');
-    final hover = stateColors('--sg-$scale-700');
-    final active = stateColors('--sg-$scale-800');
+    // Fundo do botao cheio: --sg-*-fill (claro: cor pura da semente; escuro: tons 600/700/800).
+    final normal =
+        stateColors('--sg-$scale-fill') ?? stateColors('--sg-$scale-600');
+    final hover =
+        stateColors('--sg-$scale-fill-hover') ?? stateColors('--sg-$scale-700');
+    final active =
+        stateColors('--sg-$scale-fill-active') ??
+        stateColors('--sg-$scale-800');
+    // Texto/borda do botao com contorno e do fantasma: tom 600 da escala (ajustado por contraste >= 4,5:1 no claro).
+    final text = stateColors('--sg-$scale-600');
+    c['--sg-btn-$tokenName-text'] = text?.bg ?? rgb('--sg-$scale-600');
     final normalBg = normal?.bg ?? rgb('--sg-$scale-600');
     final normalFg = normal?.fg ?? rgb(on);
     c['--sg-btn-$tokenName-bg'] = normalBg;

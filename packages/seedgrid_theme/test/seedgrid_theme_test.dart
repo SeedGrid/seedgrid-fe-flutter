@@ -12,8 +12,9 @@ void main() {
         expect(t.primary600, t.color('--sg-primary-600'));
         expect(
           t.btnPrimaryBg,
-          t.primary600,
-          reason: 'btn-primary-bg = primary-600 (componentTokens)',
+          t.color('--sg-primary-fill'),
+          reason:
+              'btn-primary-bg = --sg-primary-fill (cor pura da semente no claro)',
         );
         expect(t.btnPlainBg, const Color(0x00000000), reason: 'transparent');
         expect(t.modalOverlay, const Color(0xFF000000));

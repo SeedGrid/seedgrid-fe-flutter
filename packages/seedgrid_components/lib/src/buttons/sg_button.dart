@@ -52,7 +52,9 @@ class SgButtonColors {
     required this.activeBg,
     Color? activeFg,
     required this.ring,
-  }) : activeFg = activeFg ?? hoverFg;
+    Color? text,
+  }) : activeFg = activeFg ?? hoverFg,
+       text = text ?? bg;
 
   final Color bg,
       fg,
@@ -63,6 +65,10 @@ class SgButtonColors {
       activeBg,
       activeFg,
       ring;
+
+  /// Texto (e borda) do botao com contorno e do fantasma: tom 600 da escala, com contraste >= 4,5:1 sobre o fundo
+  /// (`--sg-btn-*-text`). Com `customColors.bg` segue esse fundo. Equivale a `text` do React.
+  final Color text;
 }
 
 SgButtonColors resolveButtonColors(
@@ -151,7 +157,17 @@ SgButtonColors resolveButtonColors(
       t.btnDangerRing,
     ),
   };
+  final textColor = switch (severity) {
+    SgSeverity.primary => t.btnPrimaryText,
+    SgSeverity.secondary => t.btnSecondaryText,
+    SgSeverity.success => t.btnSuccessText,
+    SgSeverity.info => t.btnInfoText,
+    SgSeverity.warning => t.btnWarningText,
+    SgSeverity.help => t.btnHelpText,
+    SgSeverity.danger => t.btnDangerText,
+  };
   return SgButtonColors(
+    text: custom?.bg ?? textColor,
     bg: custom?.bg ?? bg,
     fg: custom?.fg ?? fg,
     border: custom?.border ?? border,
@@ -329,14 +345,14 @@ class _SgButtonState extends State<SgButton> {
         pressed
             ? tint.withValues(alpha: 0.18)
             : (hovered ? tint.withValues(alpha: 0.12) : Colors.transparent),
-        c.bg,
-        c.border,
+        c.text,
+        w.customColors?.border ?? c.text,
       ),
       SgAppearance.ghost => (
         pressed
             ? tint.withValues(alpha: 0.16)
             : (hovered ? tint.withValues(alpha: 0.10) : Colors.transparent),
-        c.bg,
+        c.text,
         Colors.transparent,
       ),
     };

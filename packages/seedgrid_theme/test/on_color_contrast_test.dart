@@ -220,7 +220,10 @@ void main() {
           for (final role in roles) {
             final scale = scaleOf[role] ?? role;
             for (final st in states.entries) {
-              final original = _hex(base['--sg-$scale-${st.value}']!);
+              // Fundo do botao cheio: --sg-*-fill (claro: cor pura da semente; escuro: tons 600/700/800).
+              final original = _hex(
+                base['--sg-$scale-fill${st.key.isEmpty ? '' : '-${st.key.substring(0, st.key.length - 1)}'}']!,
+              );
               final adjusted = adjustBgForOnColor(original);
               final bg = _hex(
                 vars['--sg-btn-$role-${st.key}bg']!
