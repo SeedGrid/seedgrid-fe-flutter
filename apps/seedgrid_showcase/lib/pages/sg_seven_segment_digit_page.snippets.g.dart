@@ -62,7 +62,7 @@ ListenableBuilder(
             children: [
               for (final item in SgSevenSegmentDigitPalette.values)
                 SgButton(
-                  label: Text(item.name),
+                  label: Text(_nomeCor(context, item)),
                   size: SgSize.sm,
                   appearance: _paleta.value == item
                       ? SgAppearance.solid
@@ -287,7 +287,7 @@ Wrap(
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(palette.name),
+          Text(_nomeCor(context, palette)),
           SgSevenSegmentDigit(value: '8', palette: palette),
         ],
       ),

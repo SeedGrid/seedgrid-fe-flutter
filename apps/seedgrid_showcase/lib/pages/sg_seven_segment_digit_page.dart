@@ -8,6 +8,14 @@ import '../src/sg_showcase_page.dart';
 import '../src/showcase_i18n.dart';
 import 'sg_seven_segment_digit_page.snippets.g.dart';
 
+String _nomeCor(BuildContext context, SgSevenSegmentDigitPalette p) => switch (p) {
+      SgSevenSegmentDigitPalette.red => context.tx('Vermelho'),
+      SgSevenSegmentDigitPalette.blue => context.tx('Azul'),
+      SgSevenSegmentDigitPalette.yellow => context.tx('Amarelo'),
+      SgSevenSegmentDigitPalette.green => context.tx('Verde'),
+      SgSevenSegmentDigitPalette.white => context.tx('Branco'),
+    };
+
 class SgSevenSegmentDigitPage extends StatefulWidget {
   const SgSevenSegmentDigitPage({super.key});
 
@@ -93,7 +101,7 @@ class _SgSevenSegmentDigitPageState extends State<SgSevenSegmentDigitPage> {
                         children: [
                           for (final item in SgSevenSegmentDigitPalette.values)
                             SgButton(
-                              label: Text(item.name),
+                              label: Text(_nomeCor(context, item)),
                               size: SgSize.sm,
                               appearance: _paleta.value == item
                                   ? SgAppearance.solid
@@ -154,7 +162,7 @@ class _SgSevenSegmentDigitPageState extends State<SgSevenSegmentDigitPage> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(palette.name),
+                      Text(_nomeCor(context, palette)),
                       SgSevenSegmentDigit(value: '8', palette: palette),
                     ],
                   ),

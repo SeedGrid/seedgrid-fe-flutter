@@ -3029,6 +3029,7 @@ const Map<String, List<String>> kShowcaseTexts = <String, List<String>>{
   'Verde': <String>['Green', 'Verde', 'Verde', 'Vert'],
   'Verduras': <String>['Greens', 'Verduras', 'Verduras', 'Légumes verts'],
   'Verificando o código...': <String>['Checking the code...', 'A verificar o código...', 'Verificando el código...', 'Vérification du code...'],
+  'Vermelho': <String>['Red', 'Vermelho', 'Rojo', 'Rouge'],
   'Versão do formato do estado.': <String>['Version of the state format.', 'Versão do formato do estado.', 'Versión del formato del estado.', 'Version du format de l\'état.'],
   'Vertical': <String>['Vertical', 'Vertical', 'Vertical', 'Vertical'],
   'Vertical - Múltiplos itens': <String>['Vertical - Multiple items', 'Vertical - Vários itens', 'Vertical - Varios elementos', 'Vertical - Plusieurs éléments'],
