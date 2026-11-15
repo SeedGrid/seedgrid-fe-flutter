@@ -1,25 +1,146 @@
 {
- "Calendário base": ["Base calendar", "Calendário base", "Calendario base", "Calendrier de base"],
- "Calendário i18n + vários meses": ["i18n calendar + multiple months", "Calendário i18n + vários meses", "Calendario i18n + varios meses", "Calendrier i18n + plusieurs mois"],
- "Valor atual: {valor} bytes": ["Current value: {valor} bytes", "Valor atual: {valor} bytes", "Valor actual: {valor} bytes", "Valeur actuelle : {valor} octets"],
- "Valor atual: {valor}": ["Current value: {valor}", "Valor atual: {valor}", "Valor actual: {valor}", "Valeur actuelle : {valor}"],
- "página {page} de {count} (first {first})": ["page {page} of {count} (first {first})", "página {page} de {count} (first {first})", "página {page} de {count} (first {first})", "page {page} sur {count} (first {first})"],
- "Digite o código": ["Enter the code", "Introduza o código", "Escriba el código", "Saisissez le code"],
- "Buscar produtos": ["Search products", "Pesquisar produtos", "Buscar productos", "Rechercher des produits"],
- "Página {pagina} de 8": ["Page {pagina} of 8", "Página {pagina} de 8", "Página {pagina} de 8", "Page {pagina} sur 8"],
- "Tema: {tema} (tocar para alternar)": ["Theme: {tema} (tap to toggle)", "Tema: {tema} (tocar para alternar)", "Tema: {tema} (tocar para alternar)", "Thème : {tema} (appuyer pour changer)"],
- "Até 3 arquivos.": ["Up to 3 files.", "Até 3 ficheiros.", "Hasta 3 archivos.", "Jusqu'à 3 fichiers."],
- "Até 5 arquivos, 2 MB cada e 5 MB no total.": ["Up to 5 files, 2 MB each and 5 MB in total.", "Até 5 ficheiros, 2 MB cada e 5 MB no total.", "Hasta 5 archivos, 2 MB cada uno y 5 MB en total.", "Jusqu'à 5 fichiers, 2 Mo chacun et 5 Mo au total."],
- "Célula {i}": ["Cell {i}", "Célula {i}", "Celda {i}", "Cellule {i}"],
- "Até 4 imagens, 2 MB cada e 6 MB no total.": ["Up to 4 images, 2 MB each and 6 MB in total.", "Até 4 imagens, 2 MB cada e 6 MB no total.", "Hasta 4 imágenes, 2 MB cada una y 6 MB en total.", "Jusqu'à 4 images, 2 Mo chacune et 6 Mo au total."],
- "PNG ou JPEG, até 2 MB, quadrada, mínimo 200 × 200 px.": ["PNG or JPEG, up to 2 MB, square, minimum 200 × 200 px.", "PNG ou JPEG, até 2 MB, quadrada, mínimo 200 × 200 px.", "PNG o JPEG, hasta 2 MB, cuadrada, mínimo 200 × 200 px.", "PNG ou JPEG, jusqu'à 2 Mo, carrée, minimum 200 × 200 px."],
- "Valor: {valor}": ["Value: {valor}", "Valor: {valor}", "Valor: {valor}", "Valeur : {valor}"],
- "PIN alfanumérico": ["Alphanumeric PIN", "PIN alfanumérico", "PIN alfanumérico", "PIN alphanumérique"],
- "Novo relatório": ["New report", "Novo relatório", "Nuevo informe", "Nouveau rapport"],
- "baixar relatório {id}": ["download report {id}", "transferir relatório {id}", "descargar informe {id}", "télécharger le rapport {id}"],
- "Página ativa: {ativa}": ["Active page: {ativa}", "Página ativa: {ativa}", "Página activa: {ativa}", "Page active : {ativa}"],
- "Estado: {estado}  (conectado: {conectado})": ["Status: {estado}  (connected: {conectado})", "Estado: {estado}  (ligado: {conectado})", "Estado: {estado}  (conectado: {conectado})", "État : {estado}  (connecté : {conectado})"],
- "Estado: {estado}": ["Status: {estado}", "Estado: {estado}", "Estado: {estado}", "État : {estado}"],
- "Rápido": ["Quick", "Rápido", "Rápido", "Rapide"],
- "Fica até fechar": ["Stays until closed", "Fica até fechar", "Permanece hasta cerrar", "Reste jusqu'à la fermeture"]
+ "Calendário base": [
+  "Base calendar",
+  "Calendário base",
+  "Calendario base",
+  "Calendrier de base"
+ ],
+ "Calendário i18n + vários meses": [
+  "i18n calendar + multiple months",
+  "Calendário i18n + vários meses",
+  "Calendario i18n + varios meses",
+  "Calendrier i18n + plusieurs mois"
+ ],
+ "Valor atual: {valor} bytes": [
+  "Current value: {valor} bytes",
+  "Valor atual: {valor} bytes",
+  "Valor actual: {valor} bytes",
+  "Valeur actuelle : {valor} octets"
+ ],
+ "Valor atual: {valor}": [
+  "Current value: {valor}",
+  "Valor atual: {valor}",
+  "Valor actual: {valor}",
+  "Valeur actuelle : {valor}"
+ ],
+ "página {page} de {count} (first {first})": [
+  "page {page} of {count} (first {first})",
+  "página {page} de {count} (first {first})",
+  "página {page} de {count} (first {first})",
+  "page {page} sur {count} (first {first})"
+ ],
+ "Digite o código": [
+  "Enter the code",
+  "Introduza o código",
+  "Escriba el código",
+  "Saisissez le code"
+ ],
+ "Buscar produtos": [
+  "Search products",
+  "Pesquisar produtos",
+  "Buscar productos",
+  "Rechercher des produits"
+ ],
+ "Página {pagina} de 8": [
+  "Page {pagina} of 8",
+  "Página {pagina} de 8",
+  "Página {pagina} de 8",
+  "Page {pagina} sur 8"
+ ],
+ "Tema: {tema} (tocar para alternar)": [
+  "Theme: {tema} (tap to toggle)",
+  "Tema: {tema} (tocar para alternar)",
+  "Tema: {tema} (tocar para alternar)",
+  "Thème : {tema} (appuyer pour changer)"
+ ],
+ "Até 3 arquivos.": [
+  "Up to 3 files.",
+  "Até 3 ficheiros.",
+  "Hasta 3 archivos.",
+  "Jusqu'à 3 fichiers."
+ ],
+ "Até 5 arquivos, 2 MB cada e 5 MB no total.": [
+  "Up to 5 files, 2 MB each and 5 MB in total.",
+  "Até 5 ficheiros, 2 MB cada e 5 MB no total.",
+  "Hasta 5 archivos, 2 MB cada uno y 5 MB en total.",
+  "Jusqu'à 5 fichiers, 2 Mo chacun et 5 Mo au total."
+ ],
+ "Célula {i}": [
+  "Cell {i}",
+  "Célula {i}",
+  "Celda {i}",
+  "Cellule {i}"
+ ],
+ "Até 4 imagens, 2 MB cada e 6 MB no total.": [
+  "Up to 4 images, 2 MB each and 6 MB in total.",
+  "Até 4 imagens, 2 MB cada e 6 MB no total.",
+  "Hasta 4 imágenes, 2 MB cada una y 6 MB en total.",
+  "Jusqu'à 4 images, 2 Mo chacune et 6 Mo au total."
+ ],
+ "PNG ou JPEG, até 2 MB, quadrada, mínimo 200 × 200 px.": [
+  "PNG or JPEG, up to 2 MB, square, minimum 200 × 200 px.",
+  "PNG ou JPEG, até 2 MB, quadrada, mínimo 200 × 200 px.",
+  "PNG o JPEG, hasta 2 MB, cuadrada, mínimo 200 × 200 px.",
+  "PNG ou JPEG, jusqu'à 2 Mo, carrée, minimum 200 × 200 px."
+ ],
+ "Valor: {valor}": [
+  "Value: {valor}",
+  "Valor: {valor}",
+  "Valor: {valor}",
+  "Valeur : {valor}"
+ ],
+ "PIN alfanumérico": [
+  "Alphanumeric PIN",
+  "PIN alfanumérico",
+  "PIN alfanumérico",
+  "PIN alphanumérique"
+ ],
+ "Novo relatório": [
+  "New report",
+  "Novo relatório",
+  "Nuevo informe",
+  "Nouveau rapport"
+ ],
+ "baixar relatório {id}": [
+  "download report {id}",
+  "transferir relatório {id}",
+  "descargar informe {id}",
+  "télécharger le rapport {id}"
+ ],
+ "Página ativa: {ativa}": [
+  "Active page: {ativa}",
+  "Página ativa: {ativa}",
+  "Página activa: {ativa}",
+  "Page active : {ativa}"
+ ],
+ "Estado: {estado}  (conectado: {conectado})": [
+  "Status: {estado}  (connected: {conectado})",
+  "Estado: {estado}  (ligado: {conectado})",
+  "Estado: {estado}  (conectado: {conectado})",
+  "État : {estado}  (connecté : {conectado})"
+ ],
+ "Estado: {estado}": [
+  "Status: {estado}",
+  "Estado: {estado}",
+  "Estado: {estado}",
+  "État : {estado}"
+ ],
+ "Rápido": [
+  "Quick",
+  "Rápido",
+  "Rápido",
+  "Rapide"
+ ],
+ "Fica até fechar": [
+  "Stays until closed",
+  "Fica até fechar",
+  "Permanece hasta cerrar",
+  "Reste jusqu'à la fermeture"
+ ],
+ "Agenda de visitas": [
+  "Visit schedule",
+  "Agenda de visitas",
+  "Agenda de visitas",
+  "Agenda des visites"
+ ]
 }

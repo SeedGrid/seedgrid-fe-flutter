@@ -202,7 +202,7 @@ Column(
             isDateDisabled: (data) =>
                 data.weekday == DateTime.saturday ||
                 data.weekday == DateTime.sunday,
-            cardTitle: const Text('Agenda de visitas'),
+            cardTitle: Text(context.tx('Agenda de visitas')),
             cardProps: const SgCalendarCardProps(
               id: 'showcase-calendar-range',
               dragPersistKey: 'showcase-calendar-range',

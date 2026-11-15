@@ -120,6 +120,7 @@ const Map<String, List<String>> kShowcaseTexts = <String, List<String>>{
   'Adicione o pacote ao projeto.': <String>['Add the package to your project.', 'Adicione o pacote ao projeto.', 'Añade el paquete al proyecto.', 'Ajoutez le paquet au projet.'],
   'Admin': <String>['Admin', 'Admin', 'Admin', 'Admin'],
   'Administração': <String>['Administration', 'Administração', 'Administración', 'Administration'],
+  'Agenda de visitas': <String>['Visit schedule', 'Agenda de visitas', 'Agenda de visitas', 'Agenda des visites'],
   'Agendamento': <String>['Appointment', 'Agendamento', 'Cita', 'Rendez-vous'],
   'Agrupa avatares sobrepostos, com limite de exibição e contador do excesso.': <String>['Groups overlapping avatars, with a display limit and an excess counter.', 'Agrupa avatares sobrepostos, com limite de exibição e contador do excesso.', 'Agrupa avatares superpuestos, con límite de visualización y contador del exceso.', 'Regroupe des avatars qui se chevauchent, avec une limite d\'affichage et un compteur d\'excédent.'],
   'Agrupa pela primeira letra.': <String>['Groups by first letter.', 'Agrupa pela primeira letra.', 'Agrupa por la primera letra.', 'Regroupe par première lettre.'],

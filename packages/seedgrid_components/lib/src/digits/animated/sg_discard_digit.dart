@@ -474,7 +474,7 @@ class _SgDiscardDigitState extends State<SgDiscardDigit>
       );
     }
 
-    Widget digit(String text) => Text(
+    Widget digitText(String text) => Text(
       text,
       softWrap: false,
       style: TextStyle(
@@ -492,6 +492,12 @@ class _SgDiscardDigitState extends State<SgDiscardDigit>
           ),
         ],
       ),
+    );
+
+    // O texto encolhe (escala) para caber na largura util da folha e nunca ser cortado (equivale ao `FitText` do React).
+    Widget digit(String text) => SizedBox(
+      width: math.max<double>(8, m.cardW - 12),
+      child: FittedBox(fit: BoxFit.scaleDown, child: digitText(text)),
     );
 
     // Folha de cima.

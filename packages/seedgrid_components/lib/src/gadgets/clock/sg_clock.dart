@@ -272,6 +272,7 @@ class SgClock extends StatefulWidget implements SgClockProps {
   final Widget? centerOverlay;
   @override
   final Widget? cardTitle;
+
   /// Arrasto do card: null = automatico (>= 640px), true = sempre, false = nunca. Tem prioridade sobre `cardProps.draggable`.
   @override
   final bool? draggable;
@@ -544,7 +545,7 @@ class _SgClockState extends State<SgClock> {
         ? w.digitBuilder
         : null;
     if (custom != null) {
-      return Semantics(label: label, child: custom(context, parts));
+      return Semantics(label: label, child: _fitWidth(custom(context, parts)));
     }
     if (w.digitalStyle != SgClockDigitalStyle.defaultValue) {
       ensureSgClockDigitalStyles(); // registra os 8 estilos que faltam (idempotente)
@@ -553,7 +554,7 @@ class _SgClockState extends State<SgClock> {
         ? null
         : _digitalStyles[w.digitalStyle];
     if (builder != null) {
-      return Semantics(label: label, child: builder(context, parts));
+      return Semantics(label: label, child: _fitWidth(builder(context, parts)));
     }
 
     final size = w.size;
@@ -569,36 +570,47 @@ class _SgClockState extends State<SgClock> {
         : sgThemeOf(context).color('--muted-foreground');
     return Semantics(
       label: label,
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start, // `align-top` do periodo
-        children: [
-          Text(
-            parts.text,
-            style: TextStyle(
-              fontFamily: 'monospace',
-              fontSize: fontSize,
-              height: lineHeight,
-              fontFeatures: const [FontFeature.tabularFigures()],
-              color: DefaultTextStyle.of(context).style.color,
-            ),
-          ),
-          if (parts.is12h &&
-              parts.dayPeriod != null &&
-              parts.dayPeriod!.isNotEmpty) ...[
-            const SizedBox(width: 8),
+      child: _fitWidth(
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment:
+              CrossAxisAlignment.start, // `align-top` do periodo
+          children: [
             Text(
-              parts.dayPeriod!,
+              parts.text,
               style: TextStyle(
-                fontSize: 12,
-                height: 16 / 12,
-                fontWeight: FontWeight.w600,
-                color: mutedColor,
+                fontFamily: 'monospace',
+                fontSize: fontSize,
+                height: lineHeight,
+                fontFeatures: const [FontFeature.tabularFigures()],
+                color: DefaultTextStyle.of(context).style.color,
               ),
             ),
+            if (parts.is12h &&
+                parts.dayPeriod != null &&
+                parts.dayPeriod!.isNotEmpty) ...[
+              const SizedBox(width: 8),
+              Text(
+                parts.dayPeriod!,
+                style: TextStyle(
+                  fontSize: 12,
+                  height: 16 / 12,
+                  fontWeight: FontWeight.w600,
+                  color: mutedColor,
+                ),
+              ),
+            ],
           ],
-        ],
+        ),
       ),
     );
   }
+
+  /// Encolhe o relogio (escala) quando e mais largo que o espaco disponivel e nao mexe quando cabe: digitos de
+  /// largura fixa nao cortam em tela estreita (equivale ao `SgFitWidth` do React).
+  Widget _fitWidth(Widget child) => FittedBox(
+    fit: BoxFit.scaleDown,
+    alignment: Alignment.centerLeft,
+    child: child,
+  );
 }
