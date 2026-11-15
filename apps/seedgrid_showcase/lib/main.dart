@@ -181,77 +181,108 @@ class _ShowcaseHomeState extends State<ShowcaseHome> {
       },
     );
     // Teclado: o primeiro Tab cai no menu (antes da barra e da faixa de idioma), que e a navegacao principal.
-    return FocusTraversalGroup(
-      policy: OrderedTraversalPolicy(),
-      child: Scaffold(
-        // Tema e claro/escuro ficam na linha do idioma (acima da barra), como no React.
-        appBar: AppBar(
-          title: Text(
-            _page == kThemePage
-                ? context.tr('themeSystem')
-                : _page == kCreditsPage
-                ? context.tr('creditsLicenses')
-                : entry?.name ?? context.tr('home'),
-          ),
-        ),
-        drawer: wide ? null : Drawer(child: SafeArea(child: menu)),
-        body: Stack(
-          fit: StackFit.expand,
-          children: [
-            SafeArea(
-              child: Column(
-                children: [
-                  ShowcaseLanguagePicker(
-                    trailing: [
-                      IconButton(
-                        key: const ValueKey('abrir-tema'),
-                        tooltip: context.tr('theme'),
-                        visualDensity: VisualDensity.compact,
-                        icon: const Icon(Icons.palette_outlined),
-                        onPressed: () => showModalBottomSheet<void>(
-                          context: context,
-                          isScrollControlled: true,
-                          showDragHandle: true,
-                          builder: (_) => const SafeArea(
-                            child: SingleChildScrollView(
-                              child: ShowcaseThemeEditor(),
-                            ),
-                          ),
-                        ),
-                      ),
-                      toggle,
-                    ],
-                  ),
-                  Expanded(
-                    child: wide
-                        ? Row(
-                            children: [
-                              AnimatedSize(
-                                duration: const Duration(milliseconds: 150),
-                                alignment: Alignment.centerLeft,
-                                child: SizedBox(
-                                  width: _menuCollapsed ? 56 : 280,
-                                  child: FocusTraversalOrder(
-                                    order: const NumericFocusOrder(0),
-                                    child: menu,
-                                  ),
-                                ),
-                              ),
-                              const VerticalDivider(width: 1),
-                              Expanded(child: content),
-                            ],
-                          )
-                        : content,
-                  ),
-                ],
+    // Celular deitado (paisagem com altura < 500 px): aviso para girar o aparelho cobrindo a tela. Tablet e
+    // desktop nao mudam. O navegador nao trava a orientacao em aba comum, por isso e aviso e nao bloqueio.
+    final mq = MediaQuery.of(context);
+    final rotateHint =
+        mq.orientation == Orientation.landscape && mq.size.height < 500;
+    return Stack(
+      fit: StackFit.expand,
+      children: [
+        FocusTraversalGroup(
+          policy: OrderedTraversalPolicy(),
+          child: Scaffold(
+            // Tema e claro/escuro ficam na linha do idioma (acima da barra), como no React.
+            appBar: AppBar(
+              title: Text(
+                _page == kThemePage
+                    ? context.tr('themeSystem')
+                    : _page == kCreditsPage
+                    ? context.tr('creditsLicenses')
+                    : entry?.name ?? context.tr('home'),
               ),
             ),
-            // Host global de toasts: qualquer pagina dispara `toast(...)` sem host local. O SgToaster
-            // tem a propria pagina com um toaster solto configuravel, entao ali o host global sai.
-            if (entry?.name != 'SgToaster') const SgToastHost(),
-          ],
+            drawer: wide ? null : Drawer(child: SafeArea(child: menu)),
+            body: Stack(
+              fit: StackFit.expand,
+              children: [
+                SafeArea(
+                  child: Column(
+                    children: [
+                      ShowcaseLanguagePicker(
+                        trailing: [
+                          IconButton(
+                            key: const ValueKey('abrir-tema'),
+                            tooltip: context.tr('theme'),
+                            visualDensity: VisualDensity.compact,
+                            icon: const Icon(Icons.palette_outlined),
+                            onPressed: () => showModalBottomSheet<void>(
+                              context: context,
+                              isScrollControlled: true,
+                              showDragHandle: true,
+                              builder: (_) => const SafeArea(
+                                child: SingleChildScrollView(
+                                  child: ShowcaseThemeEditor(),
+                                ),
+                              ),
+                            ),
+                          ),
+                          toggle,
+                        ],
+                      ),
+                      Expanded(
+                        child: wide
+                            ? Row(
+                                children: [
+                                  AnimatedSize(
+                                    duration: const Duration(milliseconds: 150),
+                                    alignment: Alignment.centerLeft,
+                                    child: SizedBox(
+                                      width: _menuCollapsed ? 56 : 280,
+                                      child: FocusTraversalOrder(
+                                        order: const NumericFocusOrder(0),
+                                        child: menu,
+                                      ),
+                                    ),
+                                  ),
+                                  const VerticalDivider(width: 1),
+                                  Expanded(child: content),
+                                ],
+                              )
+                            : content,
+                      ),
+                    ],
+                  ),
+                ),
+                // Host global de toasts: qualquer pagina dispara `toast(...)` sem host local. O SgToaster
+                // tem a propria pagina com um toaster solto configuravel, entao ali o host global sai.
+                if (entry?.name != 'SgToaster') const SgToastHost(),
+              ],
+            ),
+          ),
         ),
-      ),
+        if (rotateHint)
+          Positioned.fill(
+            child: Material(
+              key: const ValueKey('aviso-girar'),
+              color: Theme.of(context).colorScheme.surface,
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(Icons.screen_rotation, size: 40),
+                    const SizedBox(height: 12),
+                    Text(
+                      context.tr('rotateDevice'),
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+      ],
     );
   }
 }
