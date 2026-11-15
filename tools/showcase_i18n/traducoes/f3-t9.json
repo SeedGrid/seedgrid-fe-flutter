@@ -1,0 +1,14 @@
+{
+ "Crédito": ["Credit", "Crédito", "Crédito", "Crédit"],
+ "Agendado em": ["Scheduled at", "Agendado em", "Programado para", "Planifié le"],
+ "Recarregar da API": ["Reload from the API", "Recarregar da API", "Recargar desde la API", "Recharger depuis l'API"],
+ "Carregando...": ["Loading...", "A carregar...", "Cargando...", "Chargement..."],
+ "Valores: {valor}": ["Values: {valor}", "Valores: {valor}", "Valores: {valor}", "Valeurs : {valor}"],
+ "Carregar da API e editar": ["Load from the API and edit", "Carregar da API e editar", "Cargar desde la API y editar", "Charger depuis l'API et modifier"],
+ "Um registro vindo de uma API (simulada) preenche número, moeda, data e hora, CPF, telefone e CEP pelo formulário; o usuário edita e \"Recarregar\" aplica um novo registro com reset(), sem estado na página.": [
+  "A record coming from a (simulated) API fills number, currency, date and time, CPF, phone and postal code through the form; the user edits and \"Reload\" applies a new record with reset(), with no page state.",
+  "Um registo vindo de uma API (simulada) preenche número, moeda, data e hora, CPF, telefone e código postal pelo formulário; o utilizador edita e \"Recarregar\" aplica um novo registo com reset(), sem estado na página.",
+  "Un registro que llega de una API (simulada) rellena número, moneda, fecha y hora, CPF, teléfono y código postal mediante el formulario; el usuario edita y \"Recargar\" aplica un nuevo registro con reset(), sin estado en la página.",
+  "Un enregistrement venant d'une API (simulée) remplit nombre, devise, date et heure, CPF, téléphone et code postal via le formulaire ; l'utilisateur modifie et « Recharger » applique un nouvel enregistrement avec reset(), sans état dans la page."
+ ]
+}

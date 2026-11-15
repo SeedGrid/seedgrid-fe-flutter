@@ -1,5 +1,6 @@
 // Showcase do SgInputNumber. O codigo exibido em cada exemplo e o trecho entre `// #region` e
 // `// #endregion` deste arquivo: exatamente o que esta renderizado.
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -33,11 +34,41 @@ class _SgInputNumberPageState extends State<SgInputNumberPage> {
   final ValueNotifier<List<String>> _iconLog = ValueNotifier(const []);
   final Map<String, String> _standalone = {};
   final ValueNotifier<String> _standaloneResult = ValueNotifier('');
+  // Exemplo "Carregar da API e editar": o registro vem de uma API simulada (600 ms) e entra no formulario.
+  final SgFormController _apiForm = SgFormController();
+  final ValueNotifier<bool> _carregando = ValueNotifier(true);
+  Timer? _apiTimer;
+  static const Map<String, Object?> _clienteApi = {
+    'quantidade': 12,
+    'credito': 1500.5,
+    'agendadoEm': '2026-03-10T14:30',
+    'cpf': '12345678909',
+    'telefone': '11987654321',
+    'cep': '01310100',
+  };
+
+  void _carregarCliente() {
+    _carregando.value = true;
+    _apiTimer?.cancel();
+    _apiTimer = Timer(const Duration(milliseconds: 600), () {
+      _apiForm.reset(_clienteApi);
+      _carregando.value = false;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _carregarCliente();
+  }
 
   void _log(String entry) => _eventLog.value = [entry, ..._eventLog.value];
 
   @override
   void dispose() {
+    _apiTimer?.cancel();
+    _apiForm.dispose();
+    _carregando.dispose();
     _form.dispose();
     _enviado.dispose();
     _validationMsg.dispose();
@@ -608,6 +639,99 @@ class _SgInputNumberPageState extends State<SgInputNumberPage> {
             ),
         // #endregion
         code: SgInputNumberPageSnippets.sgInputNumberRotulo,
+      ),
+      ShowcaseExample(
+        title: 'Carregar da API e editar',
+        description:
+            'Um registro vindo de uma API (simulada) preenche número, moeda, data e hora, CPF, telefone e CEP pelo formulário; o usuário edita e "Recarregar" aplica um novo registro com reset(), sem estado na página.',
+        preview:
+            // #region sg-input-number-carregar-api
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Wrap(
+                  spacing: 16,
+                  runSpacing: 12,
+                  children: [
+                    SizedBox(
+                      width: 280,
+                      child: SgInputNumber(
+                        id: 'api-quantidade',
+                        labelText: context.tx('Quantidade'),
+                        name: 'quantidade',
+                        control: _apiForm,
+                        decimals: 0,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 280,
+                      child: SgInputCurrency(
+                        id: 'api-credito',
+                        labelText: context.tx('Crédito'),
+                        name: 'credito',
+                        control: _apiForm,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 280,
+                      child: SgInputDateTime(
+                        id: 'api-agendado',
+                        labelText: context.tx('Agendado em'),
+                        name: 'agendadoEm',
+                        control: _apiForm,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 280,
+                      child: SgInputCPF(
+                        id: 'api-cpf',
+                        labelText: context.tx('CPF'),
+                        name: 'cpf',
+                        control: _apiForm,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 280,
+                      child: SgInputPhone(
+                        id: 'api-telefone',
+                        labelText: context.tx('Telefone'),
+                        name: 'telefone',
+                        control: _apiForm,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 280,
+                      child: SgInputPostalCode(
+                        id: 'api-cep',
+                        labelText: context.tx('CEP'),
+                        name: 'cep',
+                        control: _apiForm,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 12),
+                SgButton(
+                  size: SgSize.sm,
+                  appearance: SgAppearance.outline,
+                  label: Text(context.tx('Recarregar da API')),
+                  onClick: _carregarCliente,
+                ),
+                const SizedBox(height: 8),
+                ListenableBuilder(
+                  listenable: Listenable.merge([_apiForm, _carregando]),
+                  builder: (context, _) => Text(
+                    _carregando.value
+                        ? context.tx('Carregando...')
+                        : context.txf('Valores: {valor}', {
+                            'valor': jsonEncode(_apiForm.getValues()),
+                          }),
+                  ),
+                ),
+              ],
+            ),
+        // #endregion
+        code: SgInputNumberPageSnippets.sgInputNumberCarregarApi,
       ),
     ];
 

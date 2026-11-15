@@ -147,6 +147,94 @@ SizedBox(
 )
 ''';
 
+  /// Region `sg-input-number-carregar-api`.
+  static const String sgInputNumberCarregarApi = r'''
+Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    Wrap(
+      spacing: 16,
+      runSpacing: 12,
+      children: [
+        SizedBox(
+          width: 280,
+          child: SgInputNumber(
+            id: 'api-quantidade',
+            labelText: context.tx('Quantidade'),
+            name: 'quantidade',
+            control: _apiForm,
+            decimals: 0,
+          ),
+        ),
+        SizedBox(
+          width: 280,
+          child: SgInputCurrency(
+            id: 'api-credito',
+            labelText: context.tx('Crédito'),
+            name: 'credito',
+            control: _apiForm,
+          ),
+        ),
+        SizedBox(
+          width: 280,
+          child: SgInputDateTime(
+            id: 'api-agendado',
+            labelText: context.tx('Agendado em'),
+            name: 'agendadoEm',
+            control: _apiForm,
+          ),
+        ),
+        SizedBox(
+          width: 280,
+          child: SgInputCPF(
+            id: 'api-cpf',
+            labelText: context.tx('CPF'),
+            name: 'cpf',
+            control: _apiForm,
+          ),
+        ),
+        SizedBox(
+          width: 280,
+          child: SgInputPhone(
+            id: 'api-telefone',
+            labelText: context.tx('Telefone'),
+            name: 'telefone',
+            control: _apiForm,
+          ),
+        ),
+        SizedBox(
+          width: 280,
+          child: SgInputPostalCode(
+            id: 'api-cep',
+            labelText: context.tx('CEP'),
+            name: 'cep',
+            control: _apiForm,
+          ),
+        ),
+      ],
+    ),
+    const SizedBox(height: 12),
+    SgButton(
+      size: SgSize.sm,
+      appearance: SgAppearance.outline,
+      label: Text(context.tx('Recarregar da API')),
+      onClick: _carregarCliente,
+    ),
+    const SizedBox(height: 8),
+    ListenableBuilder(
+      listenable: Listenable.merge([_apiForm, _carregando]),
+      builder: (context, _) => Text(
+        _carregando.value
+            ? context.tx('Carregando...')
+            : context.txf('Valores: {valor}', {
+                'valor': jsonEncode(_apiForm.getValues()),
+              }),
+      ),
+    ),
+  ],
+)
+''';
+
   /// Region `sg-input-number-controlado`.
   static const String sgInputNumberControlado = r'''
 SizedBox(
