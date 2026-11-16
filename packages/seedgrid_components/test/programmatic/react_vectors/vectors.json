@@ -6705,7 +6705,7 @@
    ]
   },
   {
-   "id": "f-required-prop-nao-vira-regra",
+   "id": "f-required-prop-vira-regra",
    "items": [
     {
      "value": 1,
@@ -6751,7 +6751,7 @@
      "events": [],
      "form": {
       "value": [],
-      "error": null
+      "error": "Required field."
      }
     }
    ]
@@ -9649,7 +9649,7 @@
    ]
   },
   {
-   "id": "f-required-prop-nao-vira-regra",
+   "id": "f-required-prop-vira-regra",
    "items": [
     {
      "value": 1,
@@ -9695,7 +9695,7 @@
      "events": [],
      "form": {
       "value": [],
-      "error": null
+      "error": "Required field."
      }
     }
    ]

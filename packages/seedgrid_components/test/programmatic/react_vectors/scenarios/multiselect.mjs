@@ -93,7 +93,7 @@ export default function scenarios(chips) {
         fsv([], true), snap("setValue vazio validando"), fsv([2], true), snap("setValue [2] validando"), freset(), snap("reset")],
     },
     { id: "f-required-valor-inexistente", items: MS, form: { defaults: { f: [99] }, rules: { required: true } }, props: {}, steps: [ftrigger, snap("trigger com valor inexistente")] },
-    { id: "f-required-prop-nao-vira-regra", items: MS, form: { defaults: { f: [] } }, props: { required: true }, steps: [ftrigger, snap("trigger")] },
+    { id: "f-required-prop-vira-regra", items: MS, form: { defaults: { f: [] } }, props: { required: true }, steps: [ftrigger, snap("trigger")] },
     {
       id: "f-usuario-marca-com-erro", items: MS, form: { defaults: { f: [] }, rules: { required: true } }, props: {},
       steps: [ftrigger, snap("com erro"), open, tog("Um"), snap("apos marcar")],

@@ -1026,7 +1026,7 @@ void main() {
     );
 
     testWidgets(
-      'a prop required NAO valida o formulario (so o asterisco, como no React)',
+      'a prop required valida o formulario e mostra a mensagem (padrao ou requiredMessage)',
       (t) async {
         size(t, 1280);
         final form = SgFormController();
@@ -1043,7 +1043,9 @@ void main() {
           ),
         );
         await form.handleSubmit((_) => valid++);
-        expect(valid, 1);
+        await t.pump();
+        expect(valid, 0);
+        expect(find.text('Required field.'), findsOneWidget);
       },
     );
 
