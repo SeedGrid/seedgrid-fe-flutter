@@ -282,9 +282,9 @@ class _SgToggleSwitchState extends State<SgToggleSwitch>
                 boxShadow: _focused
                     ? [
                         BoxShadow(
-                          color: (hasError ? destructive : primary).withValues(
-                            alpha: 0.25,
-                          ),
+                          color: hasError
+                              ? destructive.withValues(alpha: 0.25)
+                              : th.ring,
                           spreadRadius: 2,
                         ),
                       ]
