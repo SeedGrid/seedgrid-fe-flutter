@@ -368,7 +368,7 @@ class _SgCalendarPageState extends State<SgCalendarPage> {
             .where((s) => const {'weekdayFormat', 'locale'}.contains(s.name))
             .toList(),
         builder: (context, v) => SgCalendar(
-          locale: (v['locale'] as String?) ?? 'pt-BR',
+          locale: (v['locale'] as String?) ?? useComponentsI18n(context).locale,
           weekdayFormat:
               SgCalendarWeekdayFormat.fromValue(
                 v['weekdayFormat'] as String?,

@@ -6862,5 +6862,17 @@
   "Nenhuma pessoa registada.",
   "Ninguna persona registrada.",
   "Aucune personne enregistrée."
+ ],
+ "ano corrente + 10": [
+  "current year + 10",
+  "ano corrente + 10",
+  "año actual + 10",
+  "année courante + 10"
+ ],
+ "ano corrente - 30": [
+  "current year - 30",
+  "ano corrente - 30",
+  "año actual - 30",
+  "année courante - 30"
  ]
 }

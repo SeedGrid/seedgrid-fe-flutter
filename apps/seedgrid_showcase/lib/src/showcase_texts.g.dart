@@ -203,6 +203,8 @@ const Map<String, List<String>> kShowcaseTexts = <String, List<String>>{
   'Animar nome': <String>['Animate name', 'Animar nome', 'Animar nombre', 'Animer le nom'],
   'animateOnChange: false troca o valor na hora.': <String>['animateOnChange: false changes the value instantly.', 'animateOnChange: false troca o valor na hora.', 'animateOnChange: false cambia el valor al instante.', 'animateOnChange: false change la valeur immédiatement.'],
   'animation escolhe como o diálogo entra e sai (fade, zoom ou slideUp) e transitionMs define a duração.': <String>['animation chooses how the dialog enters and leaves (fade, zoom or slideUp) and transitionMs sets the duration.', 'animation escolhe como o diálogo entra e sai (fade, zoom ou slideUp) e transitionMs define a duração.', 'animation elige cómo entra y sale el diálogo (fade, zoom o slideUp) y transitionMs define la duración.', 'animation choisit comment la boîte de dialogue entre et sort (fade, zoom ou slideUp) et transitionMs définit la durée.'],
+  'ano corrente - 30': <String>['current year - 30', 'ano corrente - 30', 'año actual - 30', 'année courante - 30'],
+  'ano corrente + 10': <String>['current year + 10', 'ano corrente + 10', 'año actual + 10', 'année courante + 10'],
   'Anotacoes posicionadas por valor ou angulo.': <String>['Annotations positioned by value or angle.', 'Anotações posicionadas por valor ou ângulo.', 'Anotaciones posicionadas por valor o ángulo.', 'Annotations positionnées par valeur ou angle.'],
   'Anterior': <String>['Previous', 'Anterior', 'Anterior', 'Précédent'],
   'Anterior (-1)': <String>['Previous (-1)', 'Anterior (-1)', 'Anterior (-1)', 'Précédent (-1)'],

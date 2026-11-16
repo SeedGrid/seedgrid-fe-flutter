@@ -453,7 +453,7 @@ class SgPropsTable extends StatelessWidget {
                 DataCell(
                   Text(s.values != null ? s.values!.join(' | ') : s.type),
                 ),
-                DataCell(Text(s.defaultValue ?? '-')),
+                DataCell(Text(_padrao(context, s.defaultValue))),
                 DataCell(
                   ConstrainedBox(
                     constraints: const BoxConstraints(maxWidth: 420),
@@ -608,5 +608,17 @@ class _SgPlaygroundState extends State<SgPlayground> {
       decoration: InputDecoration(labelText: s.name, isDense: true),
       onChanged: (v) => setState(() => _values[s.name] = v.isEmpty ? null : v),
     );
+  }
+}
+
+/// Padroes escritos em texto livre (nao em codigo) seguem o idioma do showcase.
+String _padrao(BuildContext context, String? valor) {
+  switch (valor) {
+    case 'ano corrente + 10':
+      return context.tx('ano corrente + 10');
+    case 'ano corrente - 30':
+      return context.tx('ano corrente - 30');
+    default:
+      return valor ?? '-';
   }
 }
