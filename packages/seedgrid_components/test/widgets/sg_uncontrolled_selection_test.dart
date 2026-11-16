@@ -475,7 +475,7 @@ void main() {
       t,
     ) async {
       await mount(t, const SgPeriodSelector(value: PeriodPreset.lastMonth));
-      expect(fieldText(t, id), 'Mes passado');
+      expect(fieldText(t, id), 'Mês passado');
       await mount(t, const SgPeriodSelector(id: 'outro'));
       expect(fieldText(t, 'outro'), '');
     });

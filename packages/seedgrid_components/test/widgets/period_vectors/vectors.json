@@ -40,7 +40,7 @@
     "ref": "2024-02-29T13:30:15.250",
     "preset": "CUSTOM",
     "locale": "pt-BR",
-    "label": "Periodo",
+    "label": "Período",
     "start": null,
     "end": null
    },
@@ -64,7 +64,7 @@
     "ref": "2024-02-29T13:30:15.250",
     "preset": "TOMORROW",
     "locale": "pt-BR",
-    "label": "Amanha",
+    "label": "Amanhã",
     "start": "2024-03-01T00:00:00.000",
     "end": "2024-03-01T23:59:59.999"
    },
@@ -88,7 +88,7 @@
     "ref": "2024-02-29T13:30:15.250",
     "preset": "THIS_MONTH",
     "locale": "pt-BR",
-    "label": "Este mes",
+    "label": "Este mês",
     "start": "2024-02-01T00:00:00.000",
     "end": "2024-02-29T23:59:59.999"
    },
@@ -136,7 +136,7 @@
     "ref": "2024-02-29T13:30:15.250",
     "preset": "LAST_MONTH",
     "locale": "pt-BR",
-    "label": "Mes passado",
+    "label": "Mês passado",
     "start": "2024-01-01T00:00:00.000",
     "end": "2024-01-31T23:59:59.999"
    },
@@ -168,7 +168,7 @@
     "ref": "2024-02-29T13:30:15.250",
     "preset": "NEXT_WEEK",
     "locale": "pt-BR",
-    "label": "Proxima semana",
+    "label": "Próxima semana",
     "start": "2024-03-04T00:00:00.000",
     "end": "2024-03-10T23:59:59.999"
    },
@@ -176,7 +176,7 @@
     "ref": "2024-02-29T13:30:15.250",
     "preset": "NEXT_QUINZENA",
     "locale": "pt-BR",
-    "label": "Proxima quinzena",
+    "label": "Próxima quinzena",
     "start": "2024-03-01T00:00:00.000",
     "end": "2024-03-15T23:59:59.999"
    },
@@ -184,7 +184,7 @@
     "ref": "2024-02-29T13:30:15.250",
     "preset": "NEXT_MONTH",
     "locale": "pt-BR",
-    "label": "Proximo mes",
+    "label": "Próximo mês",
     "start": "2024-03-01T00:00:00.000",
     "end": "2024-03-31T23:59:59.999"
    },
@@ -192,7 +192,7 @@
     "ref": "2024-02-29T13:30:15.250",
     "preset": "NEXT_QUARTER",
     "locale": "pt-BR",
-    "label": "Proximo trimestre",
+    "label": "Próximo trimestre",
     "start": "2024-04-01T00:00:00.000",
     "end": "2024-06-30T23:59:59.999"
    },
@@ -200,7 +200,7 @@
     "ref": "2024-02-29T13:30:15.250",
     "preset": "NEXT_SEMESTER",
     "locale": "pt-BR",
-    "label": "Proximo semestre",
+    "label": "Próximo semestre",
     "start": "2024-07-01T00:00:00.000",
     "end": "2024-12-31T23:59:59.999"
    },
@@ -208,7 +208,7 @@
     "ref": "2024-02-29T13:30:15.250",
     "preset": "NEXT_YEAR",
     "locale": "pt-BR",
-    "label": "Proximo ano",
+    "label": "Próximo ano",
     "start": "2025-01-01T00:00:00.000",
     "end": "2025-12-31T23:59:59.999"
    },
@@ -224,7 +224,7 @@
     "ref": "2023-02-28T13:30:15.250",
     "preset": "CUSTOM",
     "locale": "pt-BR",
-    "label": "Periodo",
+    "label": "Período",
     "start": null,
     "end": null
    },
@@ -248,7 +248,7 @@
     "ref": "2023-02-28T13:30:15.250",
     "preset": "TOMORROW",
     "locale": "pt-BR",
-    "label": "Amanha",
+    "label": "Amanhã",
     "start": "2023-03-01T00:00:00.000",
     "end": "2023-03-01T23:59:59.999"
    },
@@ -272,7 +272,7 @@
     "ref": "2023-02-28T13:30:15.250",
     "preset": "THIS_MONTH",
     "locale": "pt-BR",
-    "label": "Este mes",
+    "label": "Este mês",
     "start": "2023-02-01T00:00:00.000",
     "end": "2023-02-28T23:59:59.999"
    },
@@ -320,7 +320,7 @@
     "ref": "2023-02-28T13:30:15.250",
     "preset": "LAST_MONTH",
     "locale": "pt-BR",
-    "label": "Mes passado",
+    "label": "Mês passado",
     "start": "2023-01-01T00:00:00.000",
     "end": "2023-01-31T23:59:59.999"
    },
@@ -352,7 +352,7 @@
     "ref": "2023-02-28T13:30:15.250",
     "preset": "NEXT_WEEK",
     "locale": "pt-BR",
-    "label": "Proxima semana",
+    "label": "Próxima semana",
     "start": "2023-03-06T00:00:00.000",
     "end": "2023-03-12T23:59:59.999"
    },
@@ -360,7 +360,7 @@
     "ref": "2023-02-28T13:30:15.250",
     "preset": "NEXT_QUINZENA",
     "locale": "pt-BR",
-    "label": "Proxima quinzena",
+    "label": "Próxima quinzena",
     "start": "2023-03-01T00:00:00.000",
     "end": "2023-03-15T23:59:59.999"
    },
@@ -368,7 +368,7 @@
     "ref": "2023-02-28T13:30:15.250",
     "preset": "NEXT_MONTH",
     "locale": "pt-BR",
-    "label": "Proximo mes",
+    "label": "Próximo mês",
     "start": "2023-03-01T00:00:00.000",
     "end": "2023-03-31T23:59:59.999"
    },
@@ -376,7 +376,7 @@
     "ref": "2023-02-28T13:30:15.250",
     "preset": "NEXT_QUARTER",
     "locale": "pt-BR",
-    "label": "Proximo trimestre",
+    "label": "Próximo trimestre",
     "start": "2023-04-01T00:00:00.000",
     "end": "2023-06-30T23:59:59.999"
    },
@@ -384,7 +384,7 @@
     "ref": "2023-02-28T13:30:15.250",
     "preset": "NEXT_SEMESTER",
     "locale": "pt-BR",
-    "label": "Proximo semestre",
+    "label": "Próximo semestre",
     "start": "2023-07-01T00:00:00.000",
     "end": "2023-12-31T23:59:59.999"
    },
@@ -392,7 +392,7 @@
     "ref": "2023-02-28T13:30:15.250",
     "preset": "NEXT_YEAR",
     "locale": "pt-BR",
-    "label": "Proximo ano",
+    "label": "Próximo ano",
     "start": "2024-01-01T00:00:00.000",
     "end": "2024-12-31T23:59:59.999"
    },
@@ -408,7 +408,7 @@
     "ref": "2024-01-01T13:30:15.250",
     "preset": "CUSTOM",
     "locale": "pt-BR",
-    "label": "Periodo",
+    "label": "Período",
     "start": null,
     "end": null
    },
@@ -432,7 +432,7 @@
     "ref": "2024-01-01T13:30:15.250",
     "preset": "TOMORROW",
     "locale": "pt-BR",
-    "label": "Amanha",
+    "label": "Amanhã",
     "start": "2024-01-02T00:00:00.000",
     "end": "2024-01-02T23:59:59.999"
    },
@@ -456,7 +456,7 @@
     "ref": "2024-01-01T13:30:15.250",
     "preset": "THIS_MONTH",
     "locale": "pt-BR",
-    "label": "Este mes",
+    "label": "Este mês",
     "start": "2024-01-01T00:00:00.000",
     "end": "2024-01-31T23:59:59.999"
    },
@@ -504,7 +504,7 @@
     "ref": "2024-01-01T13:30:15.250",
     "preset": "LAST_MONTH",
     "locale": "pt-BR",
-    "label": "Mes passado",
+    "label": "Mês passado",
     "start": "2023-12-01T00:00:00.000",
     "end": "2023-12-31T23:59:59.999"
    },
@@ -536,7 +536,7 @@
     "ref": "2024-01-01T13:30:15.250",
     "preset": "NEXT_WEEK",
     "locale": "pt-BR",
-    "label": "Proxima semana",
+    "label": "Próxima semana",
     "start": "2024-01-08T00:00:00.000",
     "end": "2024-01-14T23:59:59.999"
    },
@@ -544,7 +544,7 @@
     "ref": "2024-01-01T13:30:15.250",
     "preset": "NEXT_QUINZENA",
     "locale": "pt-BR",
-    "label": "Proxima quinzena",
+    "label": "Próxima quinzena",
     "start": "2024-01-16T00:00:00.000",
     "end": "2024-01-31T23:59:59.999"
    },
@@ -552,7 +552,7 @@
     "ref": "2024-01-01T13:30:15.250",
     "preset": "NEXT_MONTH",
     "locale": "pt-BR",
-    "label": "Proximo mes",
+    "label": "Próximo mês",
     "start": "2024-02-01T00:00:00.000",
     "end": "2024-02-29T23:59:59.999"
    },
@@ -560,7 +560,7 @@
     "ref": "2024-01-01T13:30:15.250",
     "preset": "NEXT_QUARTER",
     "locale": "pt-BR",
-    "label": "Proximo trimestre",
+    "label": "Próximo trimestre",
     "start": "2024-04-01T00:00:00.000",
     "end": "2024-06-30T23:59:59.999"
    },
@@ -568,7 +568,7 @@
     "ref": "2024-01-01T13:30:15.250",
     "preset": "NEXT_SEMESTER",
     "locale": "pt-BR",
-    "label": "Proximo semestre",
+    "label": "Próximo semestre",
     "start": "2024-07-01T00:00:00.000",
     "end": "2024-12-31T23:59:59.999"
    },
@@ -576,7 +576,7 @@
     "ref": "2024-01-01T13:30:15.250",
     "preset": "NEXT_YEAR",
     "locale": "pt-BR",
-    "label": "Proximo ano",
+    "label": "Próximo ano",
     "start": "2025-01-01T00:00:00.000",
     "end": "2025-12-31T23:59:59.999"
    },
@@ -592,7 +592,7 @@
     "ref": "2024-12-31T13:30:15.250",
     "preset": "CUSTOM",
     "locale": "pt-BR",
-    "label": "Periodo",
+    "label": "Período",
     "start": null,
     "end": null
    },
@@ -616,7 +616,7 @@
     "ref": "2024-12-31T13:30:15.250",
     "preset": "TOMORROW",
     "locale": "pt-BR",
-    "label": "Amanha",
+    "label": "Amanhã",
     "start": "2025-01-01T00:00:00.000",
     "end": "2025-01-01T23:59:59.999"
    },
@@ -640,7 +640,7 @@
     "ref": "2024-12-31T13:30:15.250",
     "preset": "THIS_MONTH",
     "locale": "pt-BR",
-    "label": "Este mes",
+    "label": "Este mês",
     "start": "2024-12-01T00:00:00.000",
     "end": "2024-12-31T23:59:59.999"
    },
@@ -688,7 +688,7 @@
     "ref": "2024-12-31T13:30:15.250",
     "preset": "LAST_MONTH",
     "locale": "pt-BR",
-    "label": "Mes passado",
+    "label": "Mês passado",
     "start": "2024-11-01T00:00:00.000",
     "end": "2024-11-30T23:59:59.999"
    },
@@ -720,7 +720,7 @@
     "ref": "2024-12-31T13:30:15.250",
     "preset": "NEXT_WEEK",
     "locale": "pt-BR",
-    "label": "Proxima semana",
+    "label": "Próxima semana",
     "start": "2025-01-06T00:00:00.000",
     "end": "2025-01-12T23:59:59.999"
    },
@@ -728,7 +728,7 @@
     "ref": "2024-12-31T13:30:15.250",
     "preset": "NEXT_QUINZENA",
     "locale": "pt-BR",
-    "label": "Proxima quinzena",
+    "label": "Próxima quinzena",
     "start": "2025-01-01T00:00:00.000",
     "end": "2025-01-15T23:59:59.999"
    },
@@ -736,7 +736,7 @@
     "ref": "2024-12-31T13:30:15.250",
     "preset": "NEXT_MONTH",
     "locale": "pt-BR",
-    "label": "Proximo mes",
+    "label": "Próximo mês",
     "start": "2025-01-01T00:00:00.000",
     "end": "2025-01-31T23:59:59.999"
    },
@@ -744,7 +744,7 @@
     "ref": "2024-12-31T13:30:15.250",
     "preset": "NEXT_QUARTER",
     "locale": "pt-BR",
-    "label": "Proximo trimestre",
+    "label": "Próximo trimestre",
     "start": "2025-01-01T00:00:00.000",
     "end": "2025-03-31T23:59:59.999"
    },
@@ -752,7 +752,7 @@
     "ref": "2024-12-31T13:30:15.250",
     "preset": "NEXT_SEMESTER",
     "locale": "pt-BR",
-    "label": "Proximo semestre",
+    "label": "Próximo semestre",
     "start": "2025-01-01T00:00:00.000",
     "end": "2025-06-30T23:59:59.999"
    },
@@ -760,7 +760,7 @@
     "ref": "2024-12-31T13:30:15.250",
     "preset": "NEXT_YEAR",
     "locale": "pt-BR",
-    "label": "Proximo ano",
+    "label": "Próximo ano",
     "start": "2025-01-01T00:00:00.000",
     "end": "2025-12-31T23:59:59.999"
    },
@@ -776,7 +776,7 @@
     "ref": "2024-06-15T13:30:15.250",
     "preset": "CUSTOM",
     "locale": "pt-BR",
-    "label": "Periodo",
+    "label": "Período",
     "start": null,
     "end": null
    },
@@ -800,7 +800,7 @@
     "ref": "2024-06-15T13:30:15.250",
     "preset": "TOMORROW",
     "locale": "pt-BR",
-    "label": "Amanha",
+    "label": "Amanhã",
     "start": "2024-06-16T00:00:00.000",
     "end": "2024-06-16T23:59:59.999"
    },
@@ -824,7 +824,7 @@
     "ref": "2024-06-15T13:30:15.250",
     "preset": "THIS_MONTH",
     "locale": "pt-BR",
-    "label": "Este mes",
+    "label": "Este mês",
     "start": "2024-06-01T00:00:00.000",
     "end": "2024-06-30T23:59:59.999"
    },
@@ -872,7 +872,7 @@
     "ref": "2024-06-15T13:30:15.250",
     "preset": "LAST_MONTH",
     "locale": "pt-BR",
-    "label": "Mes passado",
+    "label": "Mês passado",
     "start": "2024-05-01T00:00:00.000",
     "end": "2024-05-31T23:59:59.999"
    },
@@ -904,7 +904,7 @@
     "ref": "2024-06-15T13:30:15.250",
     "preset": "NEXT_WEEK",
     "locale": "pt-BR",
-    "label": "Proxima semana",
+    "label": "Próxima semana",
     "start": "2024-06-17T00:00:00.000",
     "end": "2024-06-23T23:59:59.999"
    },
@@ -912,7 +912,7 @@
     "ref": "2024-06-15T13:30:15.250",
     "preset": "NEXT_QUINZENA",
     "locale": "pt-BR",
-    "label": "Proxima quinzena",
+    "label": "Próxima quinzena",
     "start": "2024-06-16T00:00:00.000",
     "end": "2024-06-30T23:59:59.999"
    },
@@ -920,7 +920,7 @@
     "ref": "2024-06-15T13:30:15.250",
     "preset": "NEXT_MONTH",
     "locale": "pt-BR",
-    "label": "Proximo mes",
+    "label": "Próximo mês",
     "start": "2024-07-01T00:00:00.000",
     "end": "2024-07-31T23:59:59.999"
    },
@@ -928,7 +928,7 @@
     "ref": "2024-06-15T13:30:15.250",
     "preset": "NEXT_QUARTER",
     "locale": "pt-BR",
-    "label": "Proximo trimestre",
+    "label": "Próximo trimestre",
     "start": "2024-07-01T00:00:00.000",
     "end": "2024-09-30T23:59:59.999"
    },
@@ -936,7 +936,7 @@
     "ref": "2024-06-15T13:30:15.250",
     "preset": "NEXT_SEMESTER",
     "locale": "pt-BR",
-    "label": "Proximo semestre",
+    "label": "Próximo semestre",
     "start": "2024-07-01T00:00:00.000",
     "end": "2024-12-31T23:59:59.999"
    },
@@ -944,7 +944,7 @@
     "ref": "2024-06-15T13:30:15.250",
     "preset": "NEXT_YEAR",
     "locale": "pt-BR",
-    "label": "Proximo ano",
+    "label": "Próximo ano",
     "start": "2025-01-01T00:00:00.000",
     "end": "2025-12-31T23:59:59.999"
    },
@@ -960,7 +960,7 @@
     "ref": "2024-06-16T13:30:15.250",
     "preset": "CUSTOM",
     "locale": "pt-BR",
-    "label": "Periodo",
+    "label": "Período",
     "start": null,
     "end": null
    },
@@ -984,7 +984,7 @@
     "ref": "2024-06-16T13:30:15.250",
     "preset": "TOMORROW",
     "locale": "pt-BR",
-    "label": "Amanha",
+    "label": "Amanhã",
     "start": "2024-06-17T00:00:00.000",
     "end": "2024-06-17T23:59:59.999"
    },
@@ -1008,7 +1008,7 @@
     "ref": "2024-06-16T13:30:15.250",
     "preset": "THIS_MONTH",
     "locale": "pt-BR",
-    "label": "Este mes",
+    "label": "Este mês",
     "start": "2024-06-01T00:00:00.000",
     "end": "2024-06-30T23:59:59.999"
    },
@@ -1056,7 +1056,7 @@
     "ref": "2024-06-16T13:30:15.250",
     "preset": "LAST_MONTH",
     "locale": "pt-BR",
-    "label": "Mes passado",
+    "label": "Mês passado",
     "start": "2024-05-01T00:00:00.000",
     "end": "2024-05-31T23:59:59.999"
    },
@@ -1088,7 +1088,7 @@
     "ref": "2024-06-16T13:30:15.250",
     "preset": "NEXT_WEEK",
     "locale": "pt-BR",
-    "label": "Proxima semana",
+    "label": "Próxima semana",
     "start": "2024-06-17T00:00:00.000",
     "end": "2024-06-23T23:59:59.999"
    },
@@ -1096,7 +1096,7 @@
     "ref": "2024-06-16T13:30:15.250",
     "preset": "NEXT_QUINZENA",
     "locale": "pt-BR",
-    "label": "Proxima quinzena",
+    "label": "Próxima quinzena",
     "start": "2024-07-01T00:00:00.000",
     "end": "2024-07-15T23:59:59.999"
    },
@@ -1104,7 +1104,7 @@
     "ref": "2024-06-16T13:30:15.250",
     "preset": "NEXT_MONTH",
     "locale": "pt-BR",
-    "label": "Proximo mes",
+    "label": "Próximo mês",
     "start": "2024-07-01T00:00:00.000",
     "end": "2024-07-31T23:59:59.999"
    },
@@ -1112,7 +1112,7 @@
     "ref": "2024-06-16T13:30:15.250",
     "preset": "NEXT_QUARTER",
     "locale": "pt-BR",
-    "label": "Proximo trimestre",
+    "label": "Próximo trimestre",
     "start": "2024-07-01T00:00:00.000",
     "end": "2024-09-30T23:59:59.999"
    },
@@ -1120,7 +1120,7 @@
     "ref": "2024-06-16T13:30:15.250",
     "preset": "NEXT_SEMESTER",
     "locale": "pt-BR",
-    "label": "Proximo semestre",
+    "label": "Próximo semestre",
     "start": "2024-07-01T00:00:00.000",
     "end": "2024-12-31T23:59:59.999"
    },
@@ -1128,7 +1128,7 @@
     "ref": "2024-06-16T13:30:15.250",
     "preset": "NEXT_YEAR",
     "locale": "pt-BR",
-    "label": "Proximo ano",
+    "label": "Próximo ano",
     "start": "2025-01-01T00:00:00.000",
     "end": "2025-12-31T23:59:59.999"
    },
@@ -1144,7 +1144,7 @@
     "ref": "2024-03-31T13:30:15.250",
     "preset": "CUSTOM",
     "locale": "pt-BR",
-    "label": "Periodo",
+    "label": "Período",
     "start": null,
     "end": null
    },
@@ -1168,7 +1168,7 @@
     "ref": "2024-03-31T13:30:15.250",
     "preset": "TOMORROW",
     "locale": "pt-BR",
-    "label": "Amanha",
+    "label": "Amanhã",
     "start": "2024-04-01T00:00:00.000",
     "end": "2024-04-01T23:59:59.999"
    },
@@ -1192,7 +1192,7 @@
     "ref": "2024-03-31T13:30:15.250",
     "preset": "THIS_MONTH",
     "locale": "pt-BR",
-    "label": "Este mes",
+    "label": "Este mês",
     "start": "2024-03-01T00:00:00.000",
     "end": "2024-03-31T23:59:59.999"
    },
@@ -1240,7 +1240,7 @@
     "ref": "2024-03-31T13:30:15.250",
     "preset": "LAST_MONTH",
     "locale": "pt-BR",
-    "label": "Mes passado",
+    "label": "Mês passado",
     "start": "2024-02-01T00:00:00.000",
     "end": "2024-02-29T23:59:59.999"
    },
@@ -1272,7 +1272,7 @@
     "ref": "2024-03-31T13:30:15.250",
     "preset": "NEXT_WEEK",
     "locale": "pt-BR",
-    "label": "Proxima semana",
+    "label": "Próxima semana",
     "start": "2024-04-01T00:00:00.000",
     "end": "2024-04-07T23:59:59.999"
    },
@@ -1280,7 +1280,7 @@
     "ref": "2024-03-31T13:30:15.250",
     "preset": "NEXT_QUINZENA",
     "locale": "pt-BR",
-    "label": "Proxima quinzena",
+    "label": "Próxima quinzena",
     "start": "2024-04-01T00:00:00.000",
     "end": "2024-04-15T23:59:59.999"
    },
@@ -1288,7 +1288,7 @@
     "ref": "2024-03-31T13:30:15.250",
     "preset": "NEXT_MONTH",
     "locale": "pt-BR",
-    "label": "Proximo mes",
+    "label": "Próximo mês",
     "start": "2024-04-01T00:00:00.000",
     "end": "2024-04-30T23:59:59.999"
    },
@@ -1296,7 +1296,7 @@
     "ref": "2024-03-31T13:30:15.250",
     "preset": "NEXT_QUARTER",
     "locale": "pt-BR",
-    "label": "Proximo trimestre",
+    "label": "Próximo trimestre",
     "start": "2024-04-01T00:00:00.000",
     "end": "2024-06-30T23:59:59.999"
    },
@@ -1304,7 +1304,7 @@
     "ref": "2024-03-31T13:30:15.250",
     "preset": "NEXT_SEMESTER",
     "locale": "pt-BR",
-    "label": "Proximo semestre",
+    "label": "Próximo semestre",
     "start": "2024-07-01T00:00:00.000",
     "end": "2024-12-31T23:59:59.999"
    },
@@ -1312,7 +1312,7 @@
     "ref": "2024-03-31T13:30:15.250",
     "preset": "NEXT_YEAR",
     "locale": "pt-BR",
-    "label": "Proximo ano",
+    "label": "Próximo ano",
     "start": "2025-01-01T00:00:00.000",
     "end": "2025-12-31T23:59:59.999"
    },
@@ -1328,7 +1328,7 @@
     "ref": "2023-12-15T13:30:15.250",
     "preset": "CUSTOM",
     "locale": "pt-BR",
-    "label": "Periodo",
+    "label": "Período",
     "start": null,
     "end": null
    },
@@ -1352,7 +1352,7 @@
     "ref": "2023-12-15T13:30:15.250",
     "preset": "TOMORROW",
     "locale": "pt-BR",
-    "label": "Amanha",
+    "label": "Amanhã",
     "start": "2023-12-16T00:00:00.000",
     "end": "2023-12-16T23:59:59.999"
    },
@@ -1376,7 +1376,7 @@
     "ref": "2023-12-15T13:30:15.250",
     "preset": "THIS_MONTH",
     "locale": "pt-BR",
-    "label": "Este mes",
+    "label": "Este mês",
     "start": "2023-12-01T00:00:00.000",
     "end": "2023-12-31T23:59:59.999"
    },
@@ -1424,7 +1424,7 @@
     "ref": "2023-12-15T13:30:15.250",
     "preset": "LAST_MONTH",
     "locale": "pt-BR",
-    "label": "Mes passado",
+    "label": "Mês passado",
     "start": "2023-11-01T00:00:00.000",
     "end": "2023-11-30T23:59:59.999"
    },
@@ -1456,7 +1456,7 @@
     "ref": "2023-12-15T13:30:15.250",
     "preset": "NEXT_WEEK",
     "locale": "pt-BR",
-    "label": "Proxima semana",
+    "label": "Próxima semana",
     "start": "2023-12-18T00:00:00.000",
     "end": "2023-12-24T23:59:59.999"
    },
@@ -1464,7 +1464,7 @@
     "ref": "2023-12-15T13:30:15.250",
     "preset": "NEXT_QUINZENA",
     "locale": "pt-BR",
-    "label": "Proxima quinzena",
+    "label": "Próxima quinzena",
     "start": "2023-12-16T00:00:00.000",
     "end": "2023-12-31T23:59:59.999"
    },
@@ -1472,7 +1472,7 @@
     "ref": "2023-12-15T13:30:15.250",
     "preset": "NEXT_MONTH",
     "locale": "pt-BR",
-    "label": "Proximo mes",
+    "label": "Próximo mês",
     "start": "2024-01-01T00:00:00.000",
     "end": "2024-01-31T23:59:59.999"
    },
@@ -1480,7 +1480,7 @@
     "ref": "2023-12-15T13:30:15.250",
     "preset": "NEXT_QUARTER",
     "locale": "pt-BR",
-    "label": "Proximo trimestre",
+    "label": "Próximo trimestre",
     "start": "2024-01-01T00:00:00.000",
     "end": "2024-03-31T23:59:59.999"
    },
@@ -1488,7 +1488,7 @@
     "ref": "2023-12-15T13:30:15.250",
     "preset": "NEXT_SEMESTER",
     "locale": "pt-BR",
-    "label": "Proximo semestre",
+    "label": "Próximo semestre",
     "start": "2024-01-01T00:00:00.000",
     "end": "2024-06-30T23:59:59.999"
    },
@@ -1496,7 +1496,7 @@
     "ref": "2023-12-15T13:30:15.250",
     "preset": "NEXT_YEAR",
     "locale": "pt-BR",
-    "label": "Proximo ano",
+    "label": "Próximo ano",
     "start": "2024-01-01T00:00:00.000",
     "end": "2024-12-31T23:59:59.999"
    },
@@ -1512,7 +1512,7 @@
     "ref": "2024-07-01T13:30:15.250",
     "preset": "CUSTOM",
     "locale": "pt-BR",
-    "label": "Periodo",
+    "label": "Período",
     "start": null,
     "end": null
    },
@@ -1536,7 +1536,7 @@
     "ref": "2024-07-01T13:30:15.250",
     "preset": "TOMORROW",
     "locale": "pt-BR",
-    "label": "Amanha",
+    "label": "Amanhã",
     "start": "2024-07-02T00:00:00.000",
     "end": "2024-07-02T23:59:59.999"
    },
@@ -1560,7 +1560,7 @@
     "ref": "2024-07-01T13:30:15.250",
     "preset": "THIS_MONTH",
     "locale": "pt-BR",
-    "label": "Este mes",
+    "label": "Este mês",
     "start": "2024-07-01T00:00:00.000",
     "end": "2024-07-31T23:59:59.999"
    },
@@ -1608,7 +1608,7 @@
     "ref": "2024-07-01T13:30:15.250",
     "preset": "LAST_MONTH",
     "locale": "pt-BR",
-    "label": "Mes passado",
+    "label": "Mês passado",
     "start": "2024-06-01T00:00:00.000",
     "end": "2024-06-30T23:59:59.999"
    },
@@ -1640,7 +1640,7 @@
     "ref": "2024-07-01T13:30:15.250",
     "preset": "NEXT_WEEK",
     "locale": "pt-BR",
-    "label": "Proxima semana",
+    "label": "Próxima semana",
     "start": "2024-07-08T00:00:00.000",
     "end": "2024-07-14T23:59:59.999"
    },
@@ -1648,7 +1648,7 @@
     "ref": "2024-07-01T13:30:15.250",
     "preset": "NEXT_QUINZENA",
     "locale": "pt-BR",
-    "label": "Proxima quinzena",
+    "label": "Próxima quinzena",
     "start": "2024-07-16T00:00:00.000",
     "end": "2024-07-31T23:59:59.999"
    },
@@ -1656,7 +1656,7 @@
     "ref": "2024-07-01T13:30:15.250",
     "preset": "NEXT_MONTH",
     "locale": "pt-BR",
-    "label": "Proximo mes",
+    "label": "Próximo mês",
     "start": "2024-08-01T00:00:00.000",
     "end": "2024-08-31T23:59:59.999"
    },
@@ -1664,7 +1664,7 @@
     "ref": "2024-07-01T13:30:15.250",
     "preset": "NEXT_QUARTER",
     "locale": "pt-BR",
-    "label": "Proximo trimestre",
+    "label": "Próximo trimestre",
     "start": "2024-10-01T00:00:00.000",
     "end": "2024-12-31T23:59:59.999"
    },
@@ -1672,7 +1672,7 @@
     "ref": "2024-07-01T13:30:15.250",
     "preset": "NEXT_SEMESTER",
     "locale": "pt-BR",
-    "label": "Proximo semestre",
+    "label": "Próximo semestre",
     "start": "2025-01-01T00:00:00.000",
     "end": "2025-06-30T23:59:59.999"
    },
@@ -1680,7 +1680,7 @@
     "ref": "2024-07-01T13:30:15.250",
     "preset": "NEXT_YEAR",
     "locale": "pt-BR",
-    "label": "Proximo ano",
+    "label": "Próximo ano",
     "start": "2025-01-01T00:00:00.000",
     "end": "2025-12-31T23:59:59.999"
    },
@@ -1696,7 +1696,7 @@
     "ref": "2024-05-31T13:30:15.250",
     "preset": "CUSTOM",
     "locale": "pt-BR",
-    "label": "Periodo",
+    "label": "Período",
     "start": null,
     "end": null
    },
@@ -1720,7 +1720,7 @@
     "ref": "2024-05-31T13:30:15.250",
     "preset": "TOMORROW",
     "locale": "pt-BR",
-    "label": "Amanha",
+    "label": "Amanhã",
     "start": "2024-06-01T00:00:00.000",
     "end": "2024-06-01T23:59:59.999"
    },
@@ -1744,7 +1744,7 @@
     "ref": "2024-05-31T13:30:15.250",
     "preset": "THIS_MONTH",
     "locale": "pt-BR",
-    "label": "Este mes",
+    "label": "Este mês",
     "start": "2024-05-01T00:00:00.000",
     "end": "2024-05-31T23:59:59.999"
    },
@@ -1792,7 +1792,7 @@
     "ref": "2024-05-31T13:30:15.250",
     "preset": "LAST_MONTH",
     "locale": "pt-BR",
-    "label": "Mes passado",
+    "label": "Mês passado",
     "start": "2024-04-01T00:00:00.000",
     "end": "2024-04-30T23:59:59.999"
    },
@@ -1824,7 +1824,7 @@
     "ref": "2024-05-31T13:30:15.250",
     "preset": "NEXT_WEEK",
     "locale": "pt-BR",
-    "label": "Proxima semana",
+    "label": "Próxima semana",
     "start": "2024-06-03T00:00:00.000",
     "end": "2024-06-09T23:59:59.999"
    },
@@ -1832,7 +1832,7 @@
     "ref": "2024-05-31T13:30:15.250",
     "preset": "NEXT_QUINZENA",
     "locale": "pt-BR",
-    "label": "Proxima quinzena",
+    "label": "Próxima quinzena",
     "start": "2024-06-01T00:00:00.000",
     "end": "2024-06-15T23:59:59.999"
    },
@@ -1840,7 +1840,7 @@
     "ref": "2024-05-31T13:30:15.250",
     "preset": "NEXT_MONTH",
     "locale": "pt-BR",
-    "label": "Proximo mes",
+    "label": "Próximo mês",
     "start": "2024-06-01T00:00:00.000",
     "end": "2024-06-30T23:59:59.999"
    },
@@ -1848,7 +1848,7 @@
     "ref": "2024-05-31T13:30:15.250",
     "preset": "NEXT_QUARTER",
     "locale": "pt-BR",
-    "label": "Proximo trimestre",
+    "label": "Próximo trimestre",
     "start": "2024-07-01T00:00:00.000",
     "end": "2024-09-30T23:59:59.999"
    },
@@ -1856,7 +1856,7 @@
     "ref": "2024-05-31T13:30:15.250",
     "preset": "NEXT_SEMESTER",
     "locale": "pt-BR",
-    "label": "Proximo semestre",
+    "label": "Próximo semestre",
     "start": "2024-07-01T00:00:00.000",
     "end": "2024-12-31T23:59:59.999"
    },
@@ -1864,7 +1864,7 @@
     "ref": "2024-05-31T13:30:15.250",
     "preset": "NEXT_YEAR",
     "locale": "pt-BR",
-    "label": "Proximo ano",
+    "label": "Próximo ano",
     "start": "2025-01-01T00:00:00.000",
     "end": "2025-12-31T23:59:59.999"
    },
@@ -1880,7 +1880,7 @@
     "ref": "2024-08-31T13:30:15.250",
     "preset": "CUSTOM",
     "locale": "pt-BR",
-    "label": "Periodo",
+    "label": "Período",
     "start": null,
     "end": null
    },
@@ -1904,7 +1904,7 @@
     "ref": "2024-08-31T13:30:15.250",
     "preset": "TOMORROW",
     "locale": "pt-BR",
-    "label": "Amanha",
+    "label": "Amanhã",
     "start": "2024-09-01T00:00:00.000",
     "end": "2024-09-01T23:59:59.999"
    },
@@ -1928,7 +1928,7 @@
     "ref": "2024-08-31T13:30:15.250",
     "preset": "THIS_MONTH",
     "locale": "pt-BR",
-    "label": "Este mes",
+    "label": "Este mês",
     "start": "2024-08-01T00:00:00.000",
     "end": "2024-08-31T23:59:59.999"
    },
@@ -1976,7 +1976,7 @@
     "ref": "2024-08-31T13:30:15.250",
     "preset": "LAST_MONTH",
     "locale": "pt-BR",
-    "label": "Mes passado",
+    "label": "Mês passado",
     "start": "2024-07-01T00:00:00.000",
     "end": "2024-07-31T23:59:59.999"
    },
@@ -2008,7 +2008,7 @@
     "ref": "2024-08-31T13:30:15.250",
     "preset": "NEXT_WEEK",
     "locale": "pt-BR",
-    "label": "Proxima semana",
+    "label": "Próxima semana",
     "start": "2024-09-02T00:00:00.000",
     "end": "2024-09-08T23:59:59.999"
    },
@@ -2016,7 +2016,7 @@
     "ref": "2024-08-31T13:30:15.250",
     "preset": "NEXT_QUINZENA",
     "locale": "pt-BR",
-    "label": "Proxima quinzena",
+    "label": "Próxima quinzena",
     "start": "2024-09-01T00:00:00.000",
     "end": "2024-09-15T23:59:59.999"
    },
@@ -2024,7 +2024,7 @@
     "ref": "2024-08-31T13:30:15.250",
     "preset": "NEXT_MONTH",
     "locale": "pt-BR",
-    "label": "Proximo mes",
+    "label": "Próximo mês",
     "start": "2024-09-01T00:00:00.000",
     "end": "2024-09-30T23:59:59.999"
    },
@@ -2032,7 +2032,7 @@
     "ref": "2024-08-31T13:30:15.250",
     "preset": "NEXT_QUARTER",
     "locale": "pt-BR",
-    "label": "Proximo trimestre",
+    "label": "Próximo trimestre",
     "start": "2024-10-01T00:00:00.000",
     "end": "2024-12-31T23:59:59.999"
    },
@@ -2040,7 +2040,7 @@
     "ref": "2024-08-31T13:30:15.250",
     "preset": "NEXT_SEMESTER",
     "locale": "pt-BR",
-    "label": "Proximo semestre",
+    "label": "Próximo semestre",
     "start": "2025-01-01T00:00:00.000",
     "end": "2025-06-30T23:59:59.999"
    },
@@ -2048,7 +2048,7 @@
     "ref": "2024-08-31T13:30:15.250",
     "preset": "NEXT_YEAR",
     "locale": "pt-BR",
-    "label": "Proximo ano",
+    "label": "Próximo ano",
     "start": "2025-01-01T00:00:00.000",
     "end": "2025-12-31T23:59:59.999"
    },
@@ -2064,7 +2064,7 @@
     "ref": "2025-01-15T13:30:15.250",
     "preset": "CUSTOM",
     "locale": "pt-BR",
-    "label": "Periodo",
+    "label": "Período",
     "start": null,
     "end": null
    },
@@ -2088,7 +2088,7 @@
     "ref": "2025-01-15T13:30:15.250",
     "preset": "TOMORROW",
     "locale": "pt-BR",
-    "label": "Amanha",
+    "label": "Amanhã",
     "start": "2025-01-16T00:00:00.000",
     "end": "2025-01-16T23:59:59.999"
    },
@@ -2112,7 +2112,7 @@
     "ref": "2025-01-15T13:30:15.250",
     "preset": "THIS_MONTH",
     "locale": "pt-BR",
-    "label": "Este mes",
+    "label": "Este mês",
     "start": "2025-01-01T00:00:00.000",
     "end": "2025-01-31T23:59:59.999"
    },
@@ -2160,7 +2160,7 @@
     "ref": "2025-01-15T13:30:15.250",
     "preset": "LAST_MONTH",
     "locale": "pt-BR",
-    "label": "Mes passado",
+    "label": "Mês passado",
     "start": "2024-12-01T00:00:00.000",
     "end": "2024-12-31T23:59:59.999"
    },
@@ -2192,7 +2192,7 @@
     "ref": "2025-01-15T13:30:15.250",
     "preset": "NEXT_WEEK",
     "locale": "pt-BR",
-    "label": "Proxima semana",
+    "label": "Próxima semana",
     "start": "2025-01-20T00:00:00.000",
     "end": "2025-01-26T23:59:59.999"
    },
@@ -2200,7 +2200,7 @@
     "ref": "2025-01-15T13:30:15.250",
     "preset": "NEXT_QUINZENA",
     "locale": "pt-BR",
-    "label": "Proxima quinzena",
+    "label": "Próxima quinzena",
     "start": "2025-01-16T00:00:00.000",
     "end": "2025-01-31T23:59:59.999"
    },
@@ -2208,7 +2208,7 @@
     "ref": "2025-01-15T13:30:15.250",
     "preset": "NEXT_MONTH",
     "locale": "pt-BR",
-    "label": "Proximo mes",
+    "label": "Próximo mês",
     "start": "2025-02-01T00:00:00.000",
     "end": "2025-02-28T23:59:59.999"
    },
@@ -2216,7 +2216,7 @@
     "ref": "2025-01-15T13:30:15.250",
     "preset": "NEXT_QUARTER",
     "locale": "pt-BR",
-    "label": "Proximo trimestre",
+    "label": "Próximo trimestre",
     "start": "2025-04-01T00:00:00.000",
     "end": "2025-06-30T23:59:59.999"
    },
@@ -2224,7 +2224,7 @@
     "ref": "2025-01-15T13:30:15.250",
     "preset": "NEXT_SEMESTER",
     "locale": "pt-BR",
-    "label": "Proximo semestre",
+    "label": "Próximo semestre",
     "start": "2025-07-01T00:00:00.000",
     "end": "2025-12-31T23:59:59.999"
    },
@@ -2232,7 +2232,7 @@
     "ref": "2025-01-15T13:30:15.250",
     "preset": "NEXT_YEAR",
     "locale": "pt-BR",
-    "label": "Proximo ano",
+    "label": "Próximo ano",
     "start": "2026-01-01T00:00:00.000",
     "end": "2026-12-31T23:59:59.999"
    },
@@ -2248,7 +2248,7 @@
     "ref": "2024-12-16T13:30:15.250",
     "preset": "CUSTOM",
     "locale": "pt-BR",
-    "label": "Periodo",
+    "label": "Período",
     "start": null,
     "end": null
    },
@@ -2272,7 +2272,7 @@
     "ref": "2024-12-16T13:30:15.250",
     "preset": "TOMORROW",
     "locale": "pt-BR",
-    "label": "Amanha",
+    "label": "Amanhã",
     "start": "2024-12-17T00:00:00.000",
     "end": "2024-12-17T23:59:59.999"
    },
@@ -2296,7 +2296,7 @@
     "ref": "2024-12-16T13:30:15.250",
     "preset": "THIS_MONTH",
     "locale": "pt-BR",
-    "label": "Este mes",
+    "label": "Este mês",
     "start": "2024-12-01T00:00:00.000",
     "end": "2024-12-31T23:59:59.999"
    },
@@ -2344,7 +2344,7 @@
     "ref": "2024-12-16T13:30:15.250",
     "preset": "LAST_MONTH",
     "locale": "pt-BR",
-    "label": "Mes passado",
+    "label": "Mês passado",
     "start": "2024-11-01T00:00:00.000",
     "end": "2024-11-30T23:59:59.999"
    },
@@ -2376,7 +2376,7 @@
     "ref": "2024-12-16T13:30:15.250",
     "preset": "NEXT_WEEK",
     "locale": "pt-BR",
-    "label": "Proxima semana",
+    "label": "Próxima semana",
     "start": "2024-12-23T00:00:00.000",
     "end": "2024-12-29T23:59:59.999"
    },
@@ -2384,7 +2384,7 @@
     "ref": "2024-12-16T13:30:15.250",
     "preset": "NEXT_QUINZENA",
     "locale": "pt-BR",
-    "label": "Proxima quinzena",
+    "label": "Próxima quinzena",
     "start": "2025-01-01T00:00:00.000",
     "end": "2025-01-15T23:59:59.999"
    },
@@ -2392,7 +2392,7 @@
     "ref": "2024-12-16T13:30:15.250",
     "preset": "NEXT_MONTH",
     "locale": "pt-BR",
-    "label": "Proximo mes",
+    "label": "Próximo mês",
     "start": "2025-01-01T00:00:00.000",
     "end": "2025-01-31T23:59:59.999"
    },
@@ -2400,7 +2400,7 @@
     "ref": "2024-12-16T13:30:15.250",
     "preset": "NEXT_QUARTER",
     "locale": "pt-BR",
-    "label": "Proximo trimestre",
+    "label": "Próximo trimestre",
     "start": "2025-01-01T00:00:00.000",
     "end": "2025-03-31T23:59:59.999"
    },
@@ -2408,7 +2408,7 @@
     "ref": "2024-12-16T13:30:15.250",
     "preset": "NEXT_SEMESTER",
     "locale": "pt-BR",
-    "label": "Proximo semestre",
+    "label": "Próximo semestre",
     "start": "2025-01-01T00:00:00.000",
     "end": "2025-06-30T23:59:59.999"
    },
@@ -2416,7 +2416,7 @@
     "ref": "2024-12-16T13:30:15.250",
     "preset": "NEXT_YEAR",
     "locale": "pt-BR",
-    "label": "Proximo ano",
+    "label": "Próximo ano",
     "start": "2025-01-01T00:00:00.000",
     "end": "2025-12-31T23:59:59.999"
    },
@@ -2432,7 +2432,7 @@
     "ref": "2024-01-16T13:30:15.250",
     "preset": "CUSTOM",
     "locale": "pt-BR",
-    "label": "Periodo",
+    "label": "Período",
     "start": null,
     "end": null
    },
@@ -2456,7 +2456,7 @@
     "ref": "2024-01-16T13:30:15.250",
     "preset": "TOMORROW",
     "locale": "pt-BR",
-    "label": "Amanha",
+    "label": "Amanhã",
     "start": "2024-01-17T00:00:00.000",
     "end": "2024-01-17T23:59:59.999"
    },
@@ -2480,7 +2480,7 @@
     "ref": "2024-01-16T13:30:15.250",
     "preset": "THIS_MONTH",
     "locale": "pt-BR",
-    "label": "Este mes",
+    "label": "Este mês",
     "start": "2024-01-01T00:00:00.000",
     "end": "2024-01-31T23:59:59.999"
    },
@@ -2528,7 +2528,7 @@
     "ref": "2024-01-16T13:30:15.250",
     "preset": "LAST_MONTH",
     "locale": "pt-BR",
-    "label": "Mes passado",
+    "label": "Mês passado",
     "start": "2023-12-01T00:00:00.000",
     "end": "2023-12-31T23:59:59.999"
    },
@@ -2560,7 +2560,7 @@
     "ref": "2024-01-16T13:30:15.250",
     "preset": "NEXT_WEEK",
     "locale": "pt-BR",
-    "label": "Proxima semana",
+    "label": "Próxima semana",
     "start": "2024-01-22T00:00:00.000",
     "end": "2024-01-28T23:59:59.999"
    },
@@ -2568,7 +2568,7 @@
     "ref": "2024-01-16T13:30:15.250",
     "preset": "NEXT_QUINZENA",
     "locale": "pt-BR",
-    "label": "Proxima quinzena",
+    "label": "Próxima quinzena",
     "start": "2024-02-01T00:00:00.000",
     "end": "2024-02-15T23:59:59.999"
    },
@@ -2576,7 +2576,7 @@
     "ref": "2024-01-16T13:30:15.250",
     "preset": "NEXT_MONTH",
     "locale": "pt-BR",
-    "label": "Proximo mes",
+    "label": "Próximo mês",
     "start": "2024-02-01T00:00:00.000",
     "end": "2024-02-29T23:59:59.999"
    },
@@ -2584,7 +2584,7 @@
     "ref": "2024-01-16T13:30:15.250",
     "preset": "NEXT_QUARTER",
     "locale": "pt-BR",
-    "label": "Proximo trimestre",
+    "label": "Próximo trimestre",
     "start": "2024-04-01T00:00:00.000",
     "end": "2024-06-30T23:59:59.999"
    },
@@ -2592,7 +2592,7 @@
     "ref": "2024-01-16T13:30:15.250",
     "preset": "NEXT_SEMESTER",
     "locale": "pt-BR",
-    "label": "Proximo semestre",
+    "label": "Próximo semestre",
     "start": "2024-07-01T00:00:00.000",
     "end": "2024-12-31T23:59:59.999"
    },
@@ -2600,7 +2600,7 @@
     "ref": "2024-01-16T13:30:15.250",
     "preset": "NEXT_YEAR",
     "locale": "pt-BR",
-    "label": "Proximo ano",
+    "label": "Próximo ano",
     "start": "2025-01-01T00:00:00.000",
     "end": "2025-12-31T23:59:59.999"
    },
@@ -2616,7 +2616,7 @@
     "ref": "2024-09-01T13:30:15.250",
     "preset": "CUSTOM",
     "locale": "pt-BR",
-    "label": "Periodo",
+    "label": "Período",
     "start": null,
     "end": null
    },
@@ -2640,7 +2640,7 @@
     "ref": "2024-09-01T13:30:15.250",
     "preset": "TOMORROW",
     "locale": "pt-BR",
-    "label": "Amanha",
+    "label": "Amanhã",
     "start": "2024-09-02T00:00:00.000",
     "end": "2024-09-02T23:59:59.999"
    },
@@ -2664,7 +2664,7 @@
     "ref": "2024-09-01T13:30:15.250",
     "preset": "THIS_MONTH",
     "locale": "pt-BR",
-    "label": "Este mes",
+    "label": "Este mês",
     "start": "2024-09-01T00:00:00.000",
     "end": "2024-09-30T23:59:59.999"
    },
@@ -2712,7 +2712,7 @@
     "ref": "2024-09-01T13:30:15.250",
     "preset": "LAST_MONTH",
     "locale": "pt-BR",
-    "label": "Mes passado",
+    "label": "Mês passado",
     "start": "2024-08-01T00:00:00.000",
     "end": "2024-08-31T23:59:59.999"
    },
@@ -2744,7 +2744,7 @@
     "ref": "2024-09-01T13:30:15.250",
     "preset": "NEXT_WEEK",
     "locale": "pt-BR",
-    "label": "Proxima semana",
+    "label": "Próxima semana",
     "start": "2024-09-02T00:00:00.000",
     "end": "2024-09-08T23:59:59.999"
    },
@@ -2752,7 +2752,7 @@
     "ref": "2024-09-01T13:30:15.250",
     "preset": "NEXT_QUINZENA",
     "locale": "pt-BR",
-    "label": "Proxima quinzena",
+    "label": "Próxima quinzena",
     "start": "2024-09-16T00:00:00.000",
     "end": "2024-09-30T23:59:59.999"
    },
@@ -2760,7 +2760,7 @@
     "ref": "2024-09-01T13:30:15.250",
     "preset": "NEXT_MONTH",
     "locale": "pt-BR",
-    "label": "Proximo mes",
+    "label": "Próximo mês",
     "start": "2024-10-01T00:00:00.000",
     "end": "2024-10-31T23:59:59.999"
    },
@@ -2768,7 +2768,7 @@
     "ref": "2024-09-01T13:30:15.250",
     "preset": "NEXT_QUARTER",
     "locale": "pt-BR",
-    "label": "Proximo trimestre",
+    "label": "Próximo trimestre",
     "start": "2024-10-01T00:00:00.000",
     "end": "2024-12-31T23:59:59.999"
    },
@@ -2776,7 +2776,7 @@
     "ref": "2024-09-01T13:30:15.250",
     "preset": "NEXT_SEMESTER",
     "locale": "pt-BR",
-    "label": "Proximo semestre",
+    "label": "Próximo semestre",
     "start": "2025-01-01T00:00:00.000",
     "end": "2025-06-30T23:59:59.999"
    },
@@ -2784,7 +2784,7 @@
     "ref": "2024-09-01T13:30:15.250",
     "preset": "NEXT_YEAR",
     "locale": "pt-BR",
-    "label": "Proximo ano",
+    "label": "Próximo ano",
     "start": "2025-01-01T00:00:00.000",
     "end": "2025-12-31T23:59:59.999"
    },
@@ -2800,7 +2800,7 @@
     "ref": "2024-09-02T13:30:15.250",
     "preset": "CUSTOM",
     "locale": "pt-BR",
-    "label": "Periodo",
+    "label": "Período",
     "start": null,
     "end": null
    },
@@ -2824,7 +2824,7 @@
     "ref": "2024-09-02T13:30:15.250",
     "preset": "TOMORROW",
     "locale": "pt-BR",
-    "label": "Amanha",
+    "label": "Amanhã",
     "start": "2024-09-03T00:00:00.000",
     "end": "2024-09-03T23:59:59.999"
    },
@@ -2848,7 +2848,7 @@
     "ref": "2024-09-02T13:30:15.250",
     "preset": "THIS_MONTH",
     "locale": "pt-BR",
-    "label": "Este mes",
+    "label": "Este mês",
     "start": "2024-09-01T00:00:00.000",
     "end": "2024-09-30T23:59:59.999"
    },
@@ -2896,7 +2896,7 @@
     "ref": "2024-09-02T13:30:15.250",
     "preset": "LAST_MONTH",
     "locale": "pt-BR",
-    "label": "Mes passado",
+    "label": "Mês passado",
     "start": "2024-08-01T00:00:00.000",
     "end": "2024-08-31T23:59:59.999"
    },
@@ -2928,7 +2928,7 @@
     "ref": "2024-09-02T13:30:15.250",
     "preset": "NEXT_WEEK",
     "locale": "pt-BR",
-    "label": "Proxima semana",
+    "label": "Próxima semana",
     "start": "2024-09-09T00:00:00.000",
     "end": "2024-09-15T23:59:59.999"
    },
@@ -2936,7 +2936,7 @@
     "ref": "2024-09-02T13:30:15.250",
     "preset": "NEXT_QUINZENA",
     "locale": "pt-BR",
-    "label": "Proxima quinzena",
+    "label": "Próxima quinzena",
     "start": "2024-09-16T00:00:00.000",
     "end": "2024-09-30T23:59:59.999"
    },
@@ -2944,7 +2944,7 @@
     "ref": "2024-09-02T13:30:15.250",
     "preset": "NEXT_MONTH",
     "locale": "pt-BR",
-    "label": "Proximo mes",
+    "label": "Próximo mês",
     "start": "2024-10-01T00:00:00.000",
     "end": "2024-10-31T23:59:59.999"
    },
@@ -2952,7 +2952,7 @@
     "ref": "2024-09-02T13:30:15.250",
     "preset": "NEXT_QUARTER",
     "locale": "pt-BR",
-    "label": "Proximo trimestre",
+    "label": "Próximo trimestre",
     "start": "2024-10-01T00:00:00.000",
     "end": "2024-12-31T23:59:59.999"
    },
@@ -2960,7 +2960,7 @@
     "ref": "2024-09-02T13:30:15.250",
     "preset": "NEXT_SEMESTER",
     "locale": "pt-BR",
-    "label": "Proximo semestre",
+    "label": "Próximo semestre",
     "start": "2025-01-01T00:00:00.000",
     "end": "2025-06-30T23:59:59.999"
    },
@@ -2968,7 +2968,7 @@
     "ref": "2024-09-02T13:30:15.250",
     "preset": "NEXT_YEAR",
     "locale": "pt-BR",
-    "label": "Proximo ano",
+    "label": "Próximo ano",
     "start": "2025-01-01T00:00:00.000",
     "end": "2025-12-31T23:59:59.999"
    },
@@ -2984,7 +2984,7 @@
     "ref": "2024-09-08T13:30:15.250",
     "preset": "CUSTOM",
     "locale": "pt-BR",
-    "label": "Periodo",
+    "label": "Período",
     "start": null,
     "end": null
    },
@@ -3008,7 +3008,7 @@
     "ref": "2024-09-08T13:30:15.250",
     "preset": "TOMORROW",
     "locale": "pt-BR",
-    "label": "Amanha",
+    "label": "Amanhã",
     "start": "2024-09-09T00:00:00.000",
     "end": "2024-09-09T23:59:59.999"
    },
@@ -3032,7 +3032,7 @@
     "ref": "2024-09-08T13:30:15.250",
     "preset": "THIS_MONTH",
     "locale": "pt-BR",
-    "label": "Este mes",
+    "label": "Este mês",
     "start": "2024-09-01T00:00:00.000",
     "end": "2024-09-30T23:59:59.999"
    },
@@ -3080,7 +3080,7 @@
     "ref": "2024-09-08T13:30:15.250",
     "preset": "LAST_MONTH",
     "locale": "pt-BR",
-    "label": "Mes passado",
+    "label": "Mês passado",
     "start": "2024-08-01T00:00:00.000",
     "end": "2024-08-31T23:59:59.999"
    },
@@ -3112,7 +3112,7 @@
     "ref": "2024-09-08T13:30:15.250",
     "preset": "NEXT_WEEK",
     "locale": "pt-BR",
-    "label": "Proxima semana",
+    "label": "Próxima semana",
     "start": "2024-09-09T00:00:00.000",
     "end": "2024-09-15T23:59:59.999"
    },
@@ -3120,7 +3120,7 @@
     "ref": "2024-09-08T13:30:15.250",
     "preset": "NEXT_QUINZENA",
     "locale": "pt-BR",
-    "label": "Proxima quinzena",
+    "label": "Próxima quinzena",
     "start": "2024-09-16T00:00:00.000",
     "end": "2024-09-30T23:59:59.999"
    },
@@ -3128,7 +3128,7 @@
     "ref": "2024-09-08T13:30:15.250",
     "preset": "NEXT_MONTH",
     "locale": "pt-BR",
-    "label": "Proximo mes",
+    "label": "Próximo mês",
     "start": "2024-10-01T00:00:00.000",
     "end": "2024-10-31T23:59:59.999"
    },
@@ -3136,7 +3136,7 @@
     "ref": "2024-09-08T13:30:15.250",
     "preset": "NEXT_QUARTER",
     "locale": "pt-BR",
-    "label": "Proximo trimestre",
+    "label": "Próximo trimestre",
     "start": "2024-10-01T00:00:00.000",
     "end": "2024-12-31T23:59:59.999"
    },
@@ -3144,7 +3144,7 @@
     "ref": "2024-09-08T13:30:15.250",
     "preset": "NEXT_SEMESTER",
     "locale": "pt-BR",
-    "label": "Proximo semestre",
+    "label": "Próximo semestre",
     "start": "2025-01-01T00:00:00.000",
     "end": "2025-06-30T23:59:59.999"
    },
@@ -3152,7 +3152,7 @@
     "ref": "2024-09-08T13:30:15.250",
     "preset": "NEXT_YEAR",
     "locale": "pt-BR",
-    "label": "Proximo ano",
+    "label": "Próximo ano",
     "start": "2025-01-01T00:00:00.000",
     "end": "2025-12-31T23:59:59.999"
    },
@@ -3168,7 +3168,7 @@
     "ref": "2021-03-01T13:30:15.250",
     "preset": "CUSTOM",
     "locale": "pt-BR",
-    "label": "Periodo",
+    "label": "Período",
     "start": null,
     "end": null
    },
@@ -3192,7 +3192,7 @@
     "ref": "2021-03-01T13:30:15.250",
     "preset": "TOMORROW",
     "locale": "pt-BR",
-    "label": "Amanha",
+    "label": "Amanhã",
     "start": "2021-03-02T00:00:00.000",
     "end": "2021-03-02T23:59:59.999"
    },
@@ -3216,7 +3216,7 @@
     "ref": "2021-03-01T13:30:15.250",
     "preset": "THIS_MONTH",
     "locale": "pt-BR",
-    "label": "Este mes",
+    "label": "Este mês",
     "start": "2021-03-01T00:00:00.000",
     "end": "2021-03-31T23:59:59.999"
    },
@@ -3264,7 +3264,7 @@
     "ref": "2021-03-01T13:30:15.250",
     "preset": "LAST_MONTH",
     "locale": "pt-BR",
-    "label": "Mes passado",
+    "label": "Mês passado",
     "start": "2021-02-01T00:00:00.000",
     "end": "2021-02-28T23:59:59.999"
    },
@@ -3296,7 +3296,7 @@
     "ref": "2021-03-01T13:30:15.250",
     "preset": "NEXT_WEEK",
     "locale": "pt-BR",
-    "label": "Proxima semana",
+    "label": "Próxima semana",
     "start": "2021-03-08T00:00:00.000",
     "end": "2021-03-14T23:59:59.999"
    },
@@ -3304,7 +3304,7 @@
     "ref": "2021-03-01T13:30:15.250",
     "preset": "NEXT_QUINZENA",
     "locale": "pt-BR",
-    "label": "Proxima quinzena",
+    "label": "Próxima quinzena",
     "start": "2021-03-16T00:00:00.000",
     "end": "2021-03-31T23:59:59.999"
    },
@@ -3312,7 +3312,7 @@
     "ref": "2021-03-01T13:30:15.250",
     "preset": "NEXT_MONTH",
     "locale": "pt-BR",
-    "label": "Proximo mes",
+    "label": "Próximo mês",
     "start": "2021-04-01T00:00:00.000",
     "end": "2021-04-30T23:59:59.999"
    },
@@ -3320,7 +3320,7 @@
     "ref": "2021-03-01T13:30:15.250",
     "preset": "NEXT_QUARTER",
     "locale": "pt-BR",
-    "label": "Proximo trimestre",
+    "label": "Próximo trimestre",
     "start": "2021-04-01T00:00:00.000",
     "end": "2021-06-30T23:59:59.999"
    },
@@ -3328,7 +3328,7 @@
     "ref": "2021-03-01T13:30:15.250",
     "preset": "NEXT_SEMESTER",
     "locale": "pt-BR",
-    "label": "Proximo semestre",
+    "label": "Próximo semestre",
     "start": "2021-07-01T00:00:00.000",
     "end": "2021-12-31T23:59:59.999"
    },
@@ -3336,7 +3336,7 @@
     "ref": "2021-03-01T13:30:15.250",
     "preset": "NEXT_YEAR",
     "locale": "pt-BR",
-    "label": "Proximo ano",
+    "label": "Próximo ano",
     "start": "2022-01-01T00:00:00.000",
     "end": "2022-12-31T23:59:59.999"
    },
@@ -3352,7 +3352,7 @@
     "ref": "2100-02-28T13:30:15.250",
     "preset": "CUSTOM",
     "locale": "pt-BR",
-    "label": "Periodo",
+    "label": "Período",
     "start": null,
     "end": null
    },
@@ -3376,7 +3376,7 @@
     "ref": "2100-02-28T13:30:15.250",
     "preset": "TOMORROW",
     "locale": "pt-BR",
-    "label": "Amanha",
+    "label": "Amanhã",
     "start": "2100-03-01T00:00:00.000",
     "end": "2100-03-01T23:59:59.999"
    },
@@ -3400,7 +3400,7 @@
     "ref": "2100-02-28T13:30:15.250",
     "preset": "THIS_MONTH",
     "locale": "pt-BR",
-    "label": "Este mes",
+    "label": "Este mês",
     "start": "2100-02-01T00:00:00.000",
     "end": "2100-02-28T23:59:59.999"
    },
@@ -3448,7 +3448,7 @@
     "ref": "2100-02-28T13:30:15.250",
     "preset": "LAST_MONTH",
     "locale": "pt-BR",
-    "label": "Mes passado",
+    "label": "Mês passado",
     "start": "2100-01-01T00:00:00.000",
     "end": "2100-01-31T23:59:59.999"
    },
@@ -3480,7 +3480,7 @@
     "ref": "2100-02-28T13:30:15.250",
     "preset": "NEXT_WEEK",
     "locale": "pt-BR",
-    "label": "Proxima semana",
+    "label": "Próxima semana",
     "start": "2100-03-01T00:00:00.000",
     "end": "2100-03-07T23:59:59.999"
    },
@@ -3488,7 +3488,7 @@
     "ref": "2100-02-28T13:30:15.250",
     "preset": "NEXT_QUINZENA",
     "locale": "pt-BR",
-    "label": "Proxima quinzena",
+    "label": "Próxima quinzena",
     "start": "2100-03-01T00:00:00.000",
     "end": "2100-03-15T23:59:59.999"
    },
@@ -3496,7 +3496,7 @@
     "ref": "2100-02-28T13:30:15.250",
     "preset": "NEXT_MONTH",
     "locale": "pt-BR",
-    "label": "Proximo mes",
+    "label": "Próximo mês",
     "start": "2100-03-01T00:00:00.000",
     "end": "2100-03-31T23:59:59.999"
    },
@@ -3504,7 +3504,7 @@
     "ref": "2100-02-28T13:30:15.250",
     "preset": "NEXT_QUARTER",
     "locale": "pt-BR",
-    "label": "Proximo trimestre",
+    "label": "Próximo trimestre",
     "start": "2100-04-01T00:00:00.000",
     "end": "2100-06-30T23:59:59.999"
    },
@@ -3512,7 +3512,7 @@
     "ref": "2100-02-28T13:30:15.250",
     "preset": "NEXT_SEMESTER",
     "locale": "pt-BR",
-    "label": "Proximo semestre",
+    "label": "Próximo semestre",
     "start": "2100-07-01T00:00:00.000",
     "end": "2100-12-31T23:59:59.999"
    },
@@ -3520,7 +3520,7 @@
     "ref": "2100-02-28T13:30:15.250",
     "preset": "NEXT_YEAR",
     "locale": "pt-BR",
-    "label": "Proximo ano",
+    "label": "Próximo ano",
     "start": "2101-01-01T00:00:00.000",
     "end": "2101-12-31T23:59:59.999"
    },
@@ -3536,7 +3536,7 @@
     "ref": "2000-02-29T13:30:15.250",
     "preset": "CUSTOM",
     "locale": "pt-BR",
-    "label": "Periodo",
+    "label": "Período",
     "start": null,
     "end": null
    },
@@ -3560,7 +3560,7 @@
     "ref": "2000-02-29T13:30:15.250",
     "preset": "TOMORROW",
     "locale": "pt-BR",
-    "label": "Amanha",
+    "label": "Amanhã",
     "start": "2000-03-01T00:00:00.000",
     "end": "2000-03-01T23:59:59.999"
    },
@@ -3584,7 +3584,7 @@
     "ref": "2000-02-29T13:30:15.250",
     "preset": "THIS_MONTH",
     "locale": "pt-BR",
-    "label": "Este mes",
+    "label": "Este mês",
     "start": "2000-02-01T00:00:00.000",
     "end": "2000-02-29T23:59:59.999"
    },
@@ -3632,7 +3632,7 @@
     "ref": "2000-02-29T13:30:15.250",
     "preset": "LAST_MONTH",
     "locale": "pt-BR",
-    "label": "Mes passado",
+    "label": "Mês passado",
     "start": "2000-01-01T00:00:00.000",
     "end": "2000-01-31T23:59:59.999"
    },
@@ -3664,7 +3664,7 @@
     "ref": "2000-02-29T13:30:15.250",
     "preset": "NEXT_WEEK",
     "locale": "pt-BR",
-    "label": "Proxima semana",
+    "label": "Próxima semana",
     "start": "2000-03-06T00:00:00.000",
     "end": "2000-03-12T23:59:59.999"
    },
@@ -3672,7 +3672,7 @@
     "ref": "2000-02-29T13:30:15.250",
     "preset": "NEXT_QUINZENA",
     "locale": "pt-BR",
-    "label": "Proxima quinzena",
+    "label": "Próxima quinzena",
     "start": "2000-03-01T00:00:00.000",
     "end": "2000-03-15T23:59:59.999"
    },
@@ -3680,7 +3680,7 @@
     "ref": "2000-02-29T13:30:15.250",
     "preset": "NEXT_MONTH",
     "locale": "pt-BR",
-    "label": "Proximo mes",
+    "label": "Próximo mês",
     "start": "2000-03-01T00:00:00.000",
     "end": "2000-03-31T23:59:59.999"
    },
@@ -3688,7 +3688,7 @@
     "ref": "2000-02-29T13:30:15.250",
     "preset": "NEXT_QUARTER",
     "locale": "pt-BR",
-    "label": "Proximo trimestre",
+    "label": "Próximo trimestre",
     "start": "2000-04-01T00:00:00.000",
     "end": "2000-06-30T23:59:59.999"
    },
@@ -3696,7 +3696,7 @@
     "ref": "2000-02-29T13:30:15.250",
     "preset": "NEXT_SEMESTER",
     "locale": "pt-BR",
-    "label": "Proximo semestre",
+    "label": "Próximo semestre",
     "start": "2000-07-01T00:00:00.000",
     "end": "2000-12-31T23:59:59.999"
    },
@@ -3704,7 +3704,7 @@
     "ref": "2000-02-29T13:30:15.250",
     "preset": "NEXT_YEAR",
     "locale": "pt-BR",
-    "label": "Proximo ano",
+    "label": "Próximo ano",
     "start": "2001-01-01T00:00:00.000",
     "end": "2001-12-31T23:59:59.999"
    },
@@ -3720,7 +3720,7 @@
     "ref": "2026-10-24T13:30:15.250",
     "preset": "CUSTOM",
     "locale": "pt-BR",
-    "label": "Periodo",
+    "label": "Período",
     "start": null,
     "end": null
    },
@@ -3744,7 +3744,7 @@
     "ref": "2026-10-24T13:30:15.250",
     "preset": "TOMORROW",
     "locale": "pt-BR",
-    "label": "Amanha",
+    "label": "Amanhã",
     "start": "2026-10-25T00:00:00.000",
     "end": "2026-10-25T23:59:59.999"
    },
@@ -3768,7 +3768,7 @@
     "ref": "2026-10-24T13:30:15.250",
     "preset": "THIS_MONTH",
     "locale": "pt-BR",
-    "label": "Este mes",
+    "label": "Este mês",
     "start": "2026-10-01T00:00:00.000",
     "end": "2026-10-31T23:59:59.999"
    },
@@ -3816,7 +3816,7 @@
     "ref": "2026-10-24T13:30:15.250",
     "preset": "LAST_MONTH",
     "locale": "pt-BR",
-    "label": "Mes passado",
+    "label": "Mês passado",
     "start": "2026-09-01T00:00:00.000",
     "end": "2026-09-30T23:59:59.999"
    },
@@ -3848,7 +3848,7 @@
     "ref": "2026-10-24T13:30:15.250",
     "preset": "NEXT_WEEK",
     "locale": "pt-BR",
-    "label": "Proxima semana",
+    "label": "Próxima semana",
     "start": "2026-10-26T00:00:00.000",
     "end": "2026-11-01T23:59:59.999"
    },
@@ -3856,7 +3856,7 @@
     "ref": "2026-10-24T13:30:15.250",
     "preset": "NEXT_QUINZENA",
     "locale": "pt-BR",
-    "label": "Proxima quinzena",
+    "label": "Próxima quinzena",
     "start": "2026-11-01T00:00:00.000",
     "end": "2026-11-15T23:59:59.999"
    },
@@ -3864,7 +3864,7 @@
     "ref": "2026-10-24T13:30:15.250",
     "preset": "NEXT_MONTH",
     "locale": "pt-BR",
-    "label": "Proximo mes",
+    "label": "Próximo mês",
     "start": "2026-11-01T00:00:00.000",
     "end": "2026-11-30T23:59:59.999"
    },
@@ -3872,7 +3872,7 @@
     "ref": "2026-10-24T13:30:15.250",
     "preset": "NEXT_QUARTER",
     "locale": "pt-BR",
-    "label": "Proximo trimestre",
+    "label": "Próximo trimestre",
     "start": "2027-01-01T00:00:00.000",
     "end": "2027-03-31T23:59:59.999"
    },
@@ -3880,7 +3880,7 @@
     "ref": "2026-10-24T13:30:15.250",
     "preset": "NEXT_SEMESTER",
     "locale": "pt-BR",
-    "label": "Proximo semestre",
+    "label": "Próximo semestre",
     "start": "2027-01-01T00:00:00.000",
     "end": "2027-06-30T23:59:59.999"
    },
@@ -3888,7 +3888,7 @@
     "ref": "2026-10-24T13:30:15.250",
     "preset": "NEXT_YEAR",
     "locale": "pt-BR",
-    "label": "Proximo ano",
+    "label": "Próximo ano",
     "start": "2027-01-01T00:00:00.000",
     "end": "2027-12-31T23:59:59.999"
    },
@@ -3904,7 +3904,7 @@
     "ref": "2024-10-31T13:30:15.250",
     "preset": "CUSTOM",
     "locale": "pt-BR",
-    "label": "Periodo",
+    "label": "Período",
     "start": null,
     "end": null
    },
@@ -3928,7 +3928,7 @@
     "ref": "2024-10-31T13:30:15.250",
     "preset": "TOMORROW",
     "locale": "pt-BR",
-    "label": "Amanha",
+    "label": "Amanhã",
     "start": "2024-11-01T00:00:00.000",
     "end": "2024-11-01T23:59:59.999"
    },
@@ -3952,7 +3952,7 @@
     "ref": "2024-10-31T13:30:15.250",
     "preset": "THIS_MONTH",
     "locale": "pt-BR",
-    "label": "Este mes",
+    "label": "Este mês",
     "start": "2024-10-01T00:00:00.000",
     "end": "2024-10-31T23:59:59.999"
    },
@@ -4000,7 +4000,7 @@
     "ref": "2024-10-31T13:30:15.250",
     "preset": "LAST_MONTH",
     "locale": "pt-BR",
-    "label": "Mes passado",
+    "label": "Mês passado",
     "start": "2024-09-01T00:00:00.000",
     "end": "2024-09-30T23:59:59.999"
    },
@@ -4032,7 +4032,7 @@
     "ref": "2024-10-31T13:30:15.250",
     "preset": "NEXT_WEEK",
     "locale": "pt-BR",
-    "label": "Proxima semana",
+    "label": "Próxima semana",
     "start": "2024-11-04T00:00:00.000",
     "end": "2024-11-10T23:59:59.999"
    },
@@ -4040,7 +4040,7 @@
     "ref": "2024-10-31T13:30:15.250",
     "preset": "NEXT_QUINZENA",
     "locale": "pt-BR",
-    "label": "Proxima quinzena",
+    "label": "Próxima quinzena",
     "start": "2024-11-01T00:00:00.000",
     "end": "2024-11-15T23:59:59.999"
    },
@@ -4048,7 +4048,7 @@
     "ref": "2024-10-31T13:30:15.250",
     "preset": "NEXT_MONTH",
     "locale": "pt-BR",
-    "label": "Proximo mes",
+    "label": "Próximo mês",
     "start": "2024-11-01T00:00:00.000",
     "end": "2024-11-30T23:59:59.999"
    },
@@ -4056,7 +4056,7 @@
     "ref": "2024-10-31T13:30:15.250",
     "preset": "NEXT_QUARTER",
     "locale": "pt-BR",
-    "label": "Proximo trimestre",
+    "label": "Próximo trimestre",
     "start": "2025-01-01T00:00:00.000",
     "end": "2025-03-31T23:59:59.999"
    },
@@ -4064,7 +4064,7 @@
     "ref": "2024-10-31T13:30:15.250",
     "preset": "NEXT_SEMESTER",
     "locale": "pt-BR",
-    "label": "Proximo semestre",
+    "label": "Próximo semestre",
     "start": "2025-01-01T00:00:00.000",
     "end": "2025-06-30T23:59:59.999"
    },
@@ -4072,7 +4072,7 @@
     "ref": "2024-10-31T13:30:15.250",
     "preset": "NEXT_YEAR",
     "locale": "pt-BR",
-    "label": "Proximo ano",
+    "label": "Próximo ano",
     "start": "2025-01-01T00:00:00.000",
     "end": "2025-12-31T23:59:59.999"
    }
@@ -4111,7 +4111,7 @@
    {
     "preset": "CUSTOM",
     "locale": "pt-BR",
-    "label": "Periodo"
+    "label": "Período"
    },
    {
     "preset": "CUSTOM",
@@ -4121,22 +4121,22 @@
    {
     "preset": "CUSTOM",
     "locale": "es",
-    "label": "Periodo"
+    "label": "Período"
    },
    {
     "preset": "CUSTOM",
     "locale": "pt-PT",
-    "label": "Periodo"
+    "label": "Período"
    },
    {
     "preset": "CUSTOM",
     "locale": "fr",
-    "label": "Periode"
+    "label": "Période"
    },
    {
     "preset": "CUSTOM",
     "locale": "xx-YY",
-    "label": "Periodo"
+    "label": "Período"
    },
    {
     "preset": "TODAY",
@@ -4201,7 +4201,7 @@
    {
     "preset": "TOMORROW",
     "locale": "pt-BR",
-    "label": "Amanha"
+    "label": "Amanhã"
    },
    {
     "preset": "TOMORROW",
@@ -4211,12 +4211,12 @@
    {
     "preset": "TOMORROW",
     "locale": "es",
-    "label": "Manana"
+    "label": "Mañana"
    },
    {
     "preset": "TOMORROW",
     "locale": "pt-PT",
-    "label": "Amanha"
+    "label": "Amanhã"
    },
    {
     "preset": "TOMORROW",
@@ -4226,7 +4226,7 @@
    {
     "preset": "TOMORROW",
     "locale": "xx-YY",
-    "label": "Amanha"
+    "label": "Amanhã"
    },
    {
     "preset": "THIS_WEEK",
@@ -4291,7 +4291,7 @@
    {
     "preset": "THIS_MONTH",
     "locale": "pt-BR",
-    "label": "Este mes"
+    "label": "Este mês"
    },
    {
     "preset": "THIS_MONTH",
@@ -4306,7 +4306,7 @@
    {
     "preset": "THIS_MONTH",
     "locale": "pt-PT",
-    "label": "Este mes"
+    "label": "Este mês"
    },
    {
     "preset": "THIS_MONTH",
@@ -4316,7 +4316,7 @@
    {
     "preset": "THIS_MONTH",
     "locale": "xx-YY",
-    "label": "Este mes"
+    "label": "Este mês"
    },
    {
     "preset": "THIS_QUARTER",
@@ -4391,7 +4391,7 @@
    {
     "preset": "THIS_YEAR",
     "locale": "es",
-    "label": "Este ano"
+    "label": "Este año"
    },
    {
     "preset": "THIS_YEAR",
@@ -4401,7 +4401,7 @@
    {
     "preset": "THIS_YEAR",
     "locale": "fr",
-    "label": "Cette annee"
+    "label": "Cette année"
    },
    {
     "preset": "THIS_YEAR",
@@ -4431,7 +4431,7 @@
    {
     "preset": "LAST_WEEK",
     "locale": "fr",
-    "label": "Semaine derniere"
+    "label": "Semaine dernière"
    },
    {
     "preset": "LAST_WEEK",
@@ -4461,7 +4461,7 @@
    {
     "preset": "LAST_QUINZENA",
     "locale": "fr",
-    "label": "Quinzaine derniere"
+    "label": "Quinzaine dernière"
    },
    {
     "preset": "LAST_QUINZENA",
@@ -4471,7 +4471,7 @@
    {
     "preset": "LAST_MONTH",
     "locale": "pt-BR",
-    "label": "Mes passado"
+    "label": "Mês passado"
    },
    {
     "preset": "LAST_MONTH",
@@ -4486,7 +4486,7 @@
    {
     "preset": "LAST_MONTH",
     "locale": "pt-PT",
-    "label": "Mes passado"
+    "label": "Mês passado"
    },
    {
     "preset": "LAST_MONTH",
@@ -4496,7 +4496,7 @@
    {
     "preset": "LAST_MONTH",
     "locale": "xx-YY",
-    "label": "Mes passado"
+    "label": "Mês passado"
    },
    {
     "preset": "LAST_QUARTER",
@@ -4571,7 +4571,7 @@
    {
     "preset": "LAST_YEAR",
     "locale": "es",
-    "label": "Ano pasado"
+    "label": "Año pasado"
    },
    {
     "preset": "LAST_YEAR",
@@ -4581,7 +4581,7 @@
    {
     "preset": "LAST_YEAR",
     "locale": "fr",
-    "label": "Annee derniere"
+    "label": "Année dernière"
    },
    {
     "preset": "LAST_YEAR",
@@ -4591,7 +4591,7 @@
    {
     "preset": "NEXT_WEEK",
     "locale": "pt-BR",
-    "label": "Proxima semana"
+    "label": "Próxima semana"
    },
    {
     "preset": "NEXT_WEEK",
@@ -4601,12 +4601,12 @@
    {
     "preset": "NEXT_WEEK",
     "locale": "es",
-    "label": "Proxima semana"
+    "label": "Próxima semana"
    },
    {
     "preset": "NEXT_WEEK",
     "locale": "pt-PT",
-    "label": "Proxima semana"
+    "label": "Próxima semana"
    },
    {
     "preset": "NEXT_WEEK",
@@ -4616,12 +4616,12 @@
    {
     "preset": "NEXT_WEEK",
     "locale": "xx-YY",
-    "label": "Proxima semana"
+    "label": "Próxima semana"
    },
    {
     "preset": "NEXT_QUINZENA",
     "locale": "pt-BR",
-    "label": "Proxima quinzena"
+    "label": "Próxima quinzena"
    },
    {
     "preset": "NEXT_QUINZENA",
@@ -4631,12 +4631,12 @@
    {
     "preset": "NEXT_QUINZENA",
     "locale": "es",
-    "label": "Proxima quincena"
+    "label": "Próxima quincena"
    },
    {
     "preset": "NEXT_QUINZENA",
     "locale": "pt-PT",
-    "label": "Proxima quinzena"
+    "label": "Próxima quinzena"
    },
    {
     "preset": "NEXT_QUINZENA",
@@ -4646,12 +4646,12 @@
    {
     "preset": "NEXT_QUINZENA",
     "locale": "xx-YY",
-    "label": "Proxima quinzena"
+    "label": "Próxima quinzena"
    },
    {
     "preset": "NEXT_MONTH",
     "locale": "pt-BR",
-    "label": "Proximo mes"
+    "label": "Próximo mês"
    },
    {
     "preset": "NEXT_MONTH",
@@ -4661,12 +4661,12 @@
    {
     "preset": "NEXT_MONTH",
     "locale": "es",
-    "label": "Proximo mes"
+    "label": "Próximo mes"
    },
    {
     "preset": "NEXT_MONTH",
     "locale": "pt-PT",
-    "label": "Proximo mes"
+    "label": "Próximo mês"
    },
    {
     "preset": "NEXT_MONTH",
@@ -4676,12 +4676,12 @@
    {
     "preset": "NEXT_MONTH",
     "locale": "xx-YY",
-    "label": "Proximo mes"
+    "label": "Próximo mês"
    },
    {
     "preset": "NEXT_QUARTER",
     "locale": "pt-BR",
-    "label": "Proximo trimestre"
+    "label": "Próximo trimestre"
    },
    {
     "preset": "NEXT_QUARTER",
@@ -4691,12 +4691,12 @@
    {
     "preset": "NEXT_QUARTER",
     "locale": "es",
-    "label": "Proximo trimestre"
+    "label": "Próximo trimestre"
    },
    {
     "preset": "NEXT_QUARTER",
     "locale": "pt-PT",
-    "label": "Proximo trimestre"
+    "label": "Próximo trimestre"
    },
    {
     "preset": "NEXT_QUARTER",
@@ -4706,12 +4706,12 @@
    {
     "preset": "NEXT_QUARTER",
     "locale": "xx-YY",
-    "label": "Proximo trimestre"
+    "label": "Próximo trimestre"
    },
    {
     "preset": "NEXT_SEMESTER",
     "locale": "pt-BR",
-    "label": "Proximo semestre"
+    "label": "Próximo semestre"
    },
    {
     "preset": "NEXT_SEMESTER",
@@ -4721,12 +4721,12 @@
    {
     "preset": "NEXT_SEMESTER",
     "locale": "es",
-    "label": "Proximo semestre"
+    "label": "Próximo semestre"
    },
    {
     "preset": "NEXT_SEMESTER",
     "locale": "pt-PT",
-    "label": "Proximo semestre"
+    "label": "Próximo semestre"
    },
    {
     "preset": "NEXT_SEMESTER",
@@ -4736,12 +4736,12 @@
    {
     "preset": "NEXT_SEMESTER",
     "locale": "xx-YY",
-    "label": "Proximo semestre"
+    "label": "Próximo semestre"
    },
    {
     "preset": "NEXT_YEAR",
     "locale": "pt-BR",
-    "label": "Proximo ano"
+    "label": "Próximo ano"
    },
    {
     "preset": "NEXT_YEAR",
@@ -4751,22 +4751,22 @@
    {
     "preset": "NEXT_YEAR",
     "locale": "es",
-    "label": "Proximo ano"
+    "label": "Próximo año"
    },
    {
     "preset": "NEXT_YEAR",
     "locale": "pt-PT",
-    "label": "Proximo ano"
+    "label": "Próximo ano"
    },
    {
     "preset": "NEXT_YEAR",
     "locale": "fr",
-    "label": "Annee prochaine"
+    "label": "Année prochaine"
    },
    {
     "preset": "NEXT_YEAR",
     "locale": "xx-YY",
-    "label": "Proximo ano"
+    "label": "Próximo ano"
    }
   ],
   "localeOpt": [
@@ -4803,7 +4803,7 @@
    {
     "preset": "THIS_MONTH",
     "locale": "pt-BR",
-    "label": "Este mes"
+    "label": "Este mês"
    },
    {
     "preset": "THIS_MONTH",
@@ -4818,7 +4818,7 @@
    {
     "preset": "THIS_MONTH",
     "locale": "pt-PT",
-    "label": "Este mes"
+    "label": "Este mês"
    },
    {
     "preset": "THIS_MONTH",
@@ -4828,7 +4828,7 @@
    {
     "preset": "THIS_MONTH",
     "locale": "xx-YY",
-    "label": "Este mes"
+    "label": "Este mês"
    },
    {
     "preset": "ALL",
@@ -4863,7 +4863,7 @@
    {
     "preset": "CUSTOM",
     "locale": "pt-BR",
-    "label": "Periodo"
+    "label": "Período"
    },
    {
     "preset": "CUSTOM",
@@ -4873,22 +4873,22 @@
    {
     "preset": "CUSTOM",
     "locale": "es",
-    "label": "Periodo"
+    "label": "Período"
    },
    {
     "preset": "CUSTOM",
     "locale": "pt-PT",
-    "label": "Periodo"
+    "label": "Período"
    },
    {
     "preset": "CUSTOM",
     "locale": "fr",
-    "label": "Periode"
+    "label": "Période"
    },
    {
     "preset": "CUSTOM",
     "locale": "xx-YY",
-    "label": "Periodo"
+    "label": "Período"
    },
    {
     "preset": "LAST_QUINZENA",
@@ -4913,7 +4913,7 @@
    {
     "preset": "LAST_QUINZENA",
     "locale": "fr",
-    "label": "Quinzaine derniere"
+    "label": "Quinzaine dernière"
    },
    {
     "preset": "LAST_QUINZENA",
@@ -5292,7 +5292,7 @@
      },
      {
       "id": "CUSTOM",
-      "label": "Periodo",
+      "label": "Período",
       "group": ""
      },
      {
@@ -5312,7 +5312,7 @@
      },
      {
       "id": "THIS_MONTH",
-      "label": "Este mes",
+      "label": "Este mês",
       "group": "Atuais"
      },
      {
@@ -5337,37 +5337,37 @@
      },
      {
       "id": "TOMORROW",
-      "label": "Amanha",
+      "label": "Amanhã",
       "group": "Futuros"
      },
      {
       "id": "NEXT_WEEK",
-      "label": "Proxima semana",
+      "label": "Próxima semana",
       "group": "Futuros"
      },
      {
       "id": "NEXT_QUINZENA",
-      "label": "Proxima quinzena",
+      "label": "Próxima quinzena",
       "group": "Futuros"
      },
      {
       "id": "NEXT_MONTH",
-      "label": "Proximo mes",
+      "label": "Próximo mês",
       "group": "Futuros"
      },
      {
       "id": "NEXT_QUARTER",
-      "label": "Proximo trimestre",
+      "label": "Próximo trimestre",
       "group": "Futuros"
      },
      {
       "id": "NEXT_SEMESTER",
-      "label": "Proximo semestre",
+      "label": "Próximo semestre",
       "group": "Futuros"
      },
      {
       "id": "NEXT_YEAR",
-      "label": "Proximo ano",
+      "label": "Próximo ano",
       "group": "Futuros"
      },
      {
@@ -5382,7 +5382,7 @@
      },
      {
       "id": "LAST_MONTH",
-      "label": "Mes passado",
+      "label": "Mês passado",
       "group": "Passados"
      },
      {
@@ -5546,12 +5546,12 @@
      },
      {
       "id": "CUSTOM",
-      "label": "Periodo",
+      "label": "Período",
       "group": ""
      },
      {
       "id": "THIS_YEAR",
-      "label": "Este ano",
+      "label": "Este año",
       "group": "Actuales"
      },
      {
@@ -5591,37 +5591,37 @@
      },
      {
       "id": "TOMORROW",
-      "label": "Manana",
+      "label": "Mañana",
       "group": "Futuros"
      },
      {
       "id": "NEXT_WEEK",
-      "label": "Proxima semana",
+      "label": "Próxima semana",
       "group": "Futuros"
      },
      {
       "id": "NEXT_QUINZENA",
-      "label": "Proxima quincena",
+      "label": "Próxima quincena",
       "group": "Futuros"
      },
      {
       "id": "NEXT_MONTH",
-      "label": "Proximo mes",
+      "label": "Próximo mes",
       "group": "Futuros"
      },
      {
       "id": "NEXT_QUARTER",
-      "label": "Proximo trimestre",
+      "label": "Próximo trimestre",
       "group": "Futuros"
      },
      {
       "id": "NEXT_SEMESTER",
-      "label": "Proximo semestre",
+      "label": "Próximo semestre",
       "group": "Futuros"
      },
      {
       "id": "NEXT_YEAR",
-      "label": "Proximo ano",
+      "label": "Próximo año",
       "group": "Futuros"
      },
      {
@@ -5651,7 +5651,7 @@
      },
      {
       "id": "LAST_YEAR",
-      "label": "Ano pasado",
+      "label": "Año pasado",
       "group": "Pasados"
      }
     ]
@@ -5673,7 +5673,7 @@
      },
      {
       "id": "CUSTOM",
-      "label": "Periodo",
+      "label": "Período",
       "group": ""
      },
      {
@@ -5693,7 +5693,7 @@
      },
      {
       "id": "THIS_MONTH",
-      "label": "Este mes",
+      "label": "Este mês",
       "group": "Atuais"
      },
      {
@@ -5718,37 +5718,37 @@
      },
      {
       "id": "TOMORROW",
-      "label": "Amanha",
+      "label": "Amanhã",
       "group": "Futuros"
      },
      {
       "id": "NEXT_WEEK",
-      "label": "Proxima semana",
+      "label": "Próxima semana",
       "group": "Futuros"
      },
      {
       "id": "NEXT_QUINZENA",
-      "label": "Proxima quinzena",
+      "label": "Próxima quinzena",
       "group": "Futuros"
      },
      {
       "id": "NEXT_MONTH",
-      "label": "Proximo mes",
+      "label": "Próximo mês",
       "group": "Futuros"
      },
      {
       "id": "NEXT_QUARTER",
-      "label": "Proximo trimestre",
+      "label": "Próximo trimestre",
       "group": "Futuros"
      },
      {
       "id": "NEXT_SEMESTER",
-      "label": "Proximo semestre",
+      "label": "Próximo semestre",
       "group": "Futuros"
      },
      {
       "id": "NEXT_YEAR",
-      "label": "Proximo ano",
+      "label": "Próximo ano",
       "group": "Futuros"
      },
      {
@@ -5763,7 +5763,7 @@
      },
      {
       "id": "LAST_MONTH",
-      "label": "Mes passado",
+      "label": "Mês passado",
       "group": "Passados"
      },
      {
@@ -5800,12 +5800,12 @@
      },
      {
       "id": "CUSTOM",
-      "label": "Periode",
+      "label": "Période",
       "group": ""
      },
      {
       "id": "THIS_YEAR",
-      "label": "Cette annee",
+      "label": "Cette année",
       "group": "Actuels"
      },
      {
@@ -5875,38 +5875,38 @@
      },
      {
       "id": "NEXT_YEAR",
-      "label": "Annee prochaine",
+      "label": "Année prochaine",
       "group": "Futurs"
      },
      {
       "id": "LAST_WEEK",
-      "label": "Semaine derniere",
-      "group": "Passes"
+      "label": "Semaine dernière",
+      "group": "Passés"
      },
      {
       "id": "LAST_QUINZENA",
-      "label": "Quinzaine derniere",
-      "group": "Passes"
+      "label": "Quinzaine dernière",
+      "group": "Passés"
      },
      {
       "id": "LAST_MONTH",
       "label": "Mois dernier",
-      "group": "Passes"
+      "group": "Passés"
      },
      {
       "id": "LAST_QUARTER",
       "label": "Trimestre dernier",
-      "group": "Passes"
+      "group": "Passés"
      },
      {
       "id": "LAST_SEMESTER",
       "label": "Semestre dernier",
-      "group": "Passes"
+      "group": "Passés"
      },
      {
       "id": "LAST_YEAR",
-      "label": "Annee derniere",
-      "group": "Passes"
+      "label": "Année dernière",
+      "group": "Passés"
      }
     ]
    },
@@ -5927,7 +5927,7 @@
      },
      {
       "id": "CUSTOM",
-      "label": "Periodo",
+      "label": "Período",
       "group": ""
      },
      {
@@ -5947,7 +5947,7 @@
      },
      {
       "id": "THIS_MONTH",
-      "label": "Este mes",
+      "label": "Este mês",
       "group": "Atuais"
      },
      {
@@ -5972,37 +5972,37 @@
      },
      {
       "id": "TOMORROW",
-      "label": "Amanha",
+      "label": "Amanhã",
       "group": "Futuros"
      },
      {
       "id": "NEXT_WEEK",
-      "label": "Proxima semana",
+      "label": "Próxima semana",
       "group": "Futuros"
      },
      {
       "id": "NEXT_QUINZENA",
-      "label": "Proxima quinzena",
+      "label": "Próxima quinzena",
       "group": "Futuros"
      },
      {
       "id": "NEXT_MONTH",
-      "label": "Proximo mes",
+      "label": "Próximo mês",
       "group": "Futuros"
      },
      {
       "id": "NEXT_QUARTER",
-      "label": "Proximo trimestre",
+      "label": "Próximo trimestre",
       "group": "Futuros"
      },
      {
       "id": "NEXT_SEMESTER",
-      "label": "Proximo semestre",
+      "label": "Próximo semestre",
       "group": "Futuros"
      },
      {
       "id": "NEXT_YEAR",
-      "label": "Proximo ano",
+      "label": "Próximo ano",
       "group": "Futuros"
      },
      {
@@ -6017,7 +6017,7 @@
      },
      {
       "id": "LAST_MONTH",
-      "label": "Mes passado",
+      "label": "Mês passado",
       "group": "Passados"
      },
      {
@@ -6189,7 +6189,7 @@
     "options": [
      {
       "id": "CUSTOM",
-      "label": "Periodo",
+      "label": "Período",
       "group": ""
      }
     ]
@@ -6215,7 +6215,7 @@
     "options": [
      {
       "id": "CUSTOM",
-      "label": "Periodo",
+      "label": "Período",
       "group": ""
      }
     ]
@@ -6228,7 +6228,7 @@
     "options": [
      {
       "id": "CUSTOM",
-      "label": "Periodo",
+      "label": "Período",
       "group": ""
      }
     ]
@@ -6241,7 +6241,7 @@
     "options": [
      {
       "id": "CUSTOM",
-      "label": "Periode",
+      "label": "Période",
       "group": ""
      }
     ]
@@ -6254,7 +6254,7 @@
     "options": [
      {
       "id": "CUSTOM",
-      "label": "Periodo",
+      "label": "Período",
       "group": ""
      }
     ]
@@ -6282,7 +6282,7 @@
      },
      {
       "id": "THIS_MONTH",
-      "label": "Este mes",
+      "label": "Este mês",
       "group": "Atuais"
      },
      {
@@ -6363,7 +6363,7 @@
     "options": [
      {
       "id": "THIS_YEAR",
-      "label": "Este ano",
+      "label": "Este año",
       "group": "Actuales"
      },
      {
@@ -6426,7 +6426,7 @@
      },
      {
       "id": "THIS_MONTH",
-      "label": "Este mes",
+      "label": "Este mês",
       "group": "Atuais"
      },
      {
@@ -6459,7 +6459,7 @@
     "options": [
      {
       "id": "THIS_YEAR",
-      "label": "Cette annee",
+      "label": "Cette année",
       "group": "Actuels"
      },
      {
@@ -6522,7 +6522,7 @@
      },
      {
       "id": "THIS_MONTH",
-      "label": "Este mes",
+      "label": "Este mês",
       "group": "Atuais"
      },
      {
@@ -6555,37 +6555,37 @@
     "options": [
      {
       "id": "TOMORROW",
-      "label": "Amanha",
+      "label": "Amanhã",
       "group": "Futuros"
      },
      {
       "id": "NEXT_WEEK",
-      "label": "Proxima semana",
+      "label": "Próxima semana",
       "group": "Futuros"
      },
      {
       "id": "NEXT_QUINZENA",
-      "label": "Proxima quinzena",
+      "label": "Próxima quinzena",
       "group": "Futuros"
      },
      {
       "id": "NEXT_MONTH",
-      "label": "Proximo mes",
+      "label": "Próximo mês",
       "group": "Futuros"
      },
      {
       "id": "NEXT_QUARTER",
-      "label": "Proximo trimestre",
+      "label": "Próximo trimestre",
       "group": "Futuros"
      },
      {
       "id": "NEXT_SEMESTER",
-      "label": "Proximo semestre",
+      "label": "Próximo semestre",
       "group": "Futuros"
      },
      {
       "id": "NEXT_YEAR",
-      "label": "Proximo ano",
+      "label": "Próximo ano",
       "group": "Futuros"
      }
     ]
@@ -6641,37 +6641,37 @@
     "options": [
      {
       "id": "TOMORROW",
-      "label": "Manana",
+      "label": "Mañana",
       "group": "Futuros"
      },
      {
       "id": "NEXT_WEEK",
-      "label": "Proxima semana",
+      "label": "Próxima semana",
       "group": "Futuros"
      },
      {
       "id": "NEXT_QUINZENA",
-      "label": "Proxima quincena",
+      "label": "Próxima quincena",
       "group": "Futuros"
      },
      {
       "id": "NEXT_MONTH",
-      "label": "Proximo mes",
+      "label": "Próximo mes",
       "group": "Futuros"
      },
      {
       "id": "NEXT_QUARTER",
-      "label": "Proximo trimestre",
+      "label": "Próximo trimestre",
       "group": "Futuros"
      },
      {
       "id": "NEXT_SEMESTER",
-      "label": "Proximo semestre",
+      "label": "Próximo semestre",
       "group": "Futuros"
      },
      {
       "id": "NEXT_YEAR",
-      "label": "Proximo ano",
+      "label": "Próximo año",
       "group": "Futuros"
      }
     ]
@@ -6684,37 +6684,37 @@
     "options": [
      {
       "id": "TOMORROW",
-      "label": "Amanha",
+      "label": "Amanhã",
       "group": "Futuros"
      },
      {
       "id": "NEXT_WEEK",
-      "label": "Proxima semana",
+      "label": "Próxima semana",
       "group": "Futuros"
      },
      {
       "id": "NEXT_QUINZENA",
-      "label": "Proxima quinzena",
+      "label": "Próxima quinzena",
       "group": "Futuros"
      },
      {
       "id": "NEXT_MONTH",
-      "label": "Proximo mes",
+      "label": "Próximo mês",
       "group": "Futuros"
      },
      {
       "id": "NEXT_QUARTER",
-      "label": "Proximo trimestre",
+      "label": "Próximo trimestre",
       "group": "Futuros"
      },
      {
       "id": "NEXT_SEMESTER",
-      "label": "Proximo semestre",
+      "label": "Próximo semestre",
       "group": "Futuros"
      },
      {
       "id": "NEXT_YEAR",
-      "label": "Proximo ano",
+      "label": "Próximo ano",
       "group": "Futuros"
      }
     ]
@@ -6757,7 +6757,7 @@
      },
      {
       "id": "NEXT_YEAR",
-      "label": "Annee prochaine",
+      "label": "Année prochaine",
       "group": "Futurs"
      }
     ]
@@ -6770,37 +6770,37 @@
     "options": [
      {
       "id": "TOMORROW",
-      "label": "Amanha",
+      "label": "Amanhã",
       "group": "Futuros"
      },
      {
       "id": "NEXT_WEEK",
-      "label": "Proxima semana",
+      "label": "Próxima semana",
       "group": "Futuros"
      },
      {
       "id": "NEXT_QUINZENA",
-      "label": "Proxima quinzena",
+      "label": "Próxima quinzena",
       "group": "Futuros"
      },
      {
       "id": "NEXT_MONTH",
-      "label": "Proximo mes",
+      "label": "Próximo mês",
       "group": "Futuros"
      },
      {
       "id": "NEXT_QUARTER",
-      "label": "Proximo trimestre",
+      "label": "Próximo trimestre",
       "group": "Futuros"
      },
      {
       "id": "NEXT_SEMESTER",
-      "label": "Proximo semestre",
+      "label": "Próximo semestre",
       "group": "Futuros"
      },
      {
       "id": "NEXT_YEAR",
-      "label": "Proximo ano",
+      "label": "Próximo ano",
       "group": "Futuros"
      }
     ]
@@ -6823,7 +6823,7 @@
      },
      {
       "id": "LAST_MONTH",
-      "label": "Mes passado",
+      "label": "Mês passado",
       "group": "Passados"
      },
      {
@@ -6914,7 +6914,7 @@
      },
      {
       "id": "LAST_YEAR",
-      "label": "Ano pasado",
+      "label": "Año pasado",
       "group": "Pasados"
      }
     ]
@@ -6937,7 +6937,7 @@
      },
      {
       "id": "LAST_MONTH",
-      "label": "Mes passado",
+      "label": "Mês passado",
       "group": "Passados"
      },
      {
@@ -6965,33 +6965,33 @@
     "options": [
      {
       "id": "LAST_WEEK",
-      "label": "Semaine derniere",
-      "group": "Passes"
+      "label": "Semaine dernière",
+      "group": "Passés"
      },
      {
       "id": "LAST_QUINZENA",
-      "label": "Quinzaine derniere",
-      "group": "Passes"
+      "label": "Quinzaine dernière",
+      "group": "Passés"
      },
      {
       "id": "LAST_MONTH",
       "label": "Mois dernier",
-      "group": "Passes"
+      "group": "Passés"
      },
      {
       "id": "LAST_QUARTER",
       "label": "Trimestre dernier",
-      "group": "Passes"
+      "group": "Passés"
      },
      {
       "id": "LAST_SEMESTER",
       "label": "Semestre dernier",
-      "group": "Passes"
+      "group": "Passés"
      },
      {
       "id": "LAST_YEAR",
-      "label": "Annee derniere",
-      "group": "Passes"
+      "label": "Année dernière",
+      "group": "Passés"
      }
     ]
    },
@@ -7013,7 +7013,7 @@
      },
      {
       "id": "LAST_MONTH",
-      "label": "Mes passado",
+      "label": "Mês passado",
       "group": "Passados"
      },
      {
@@ -7057,7 +7057,7 @@
      },
      {
       "id": "THIS_MONTH",
-      "label": "Este mes",
+      "label": "Este mês",
       "group": "Atuais"
      },
      {
@@ -7092,7 +7092,7 @@
      },
      {
       "id": "LAST_MONTH",
-      "label": "Mes passado",
+      "label": "Mês passado",
       "group": "Passados"
      },
      {
@@ -7200,7 +7200,7 @@
     "options": [
      {
       "id": "THIS_YEAR",
-      "label": "Este ano",
+      "label": "Este año",
       "group": "Actuales"
      },
      {
@@ -7265,7 +7265,7 @@
      },
      {
       "id": "LAST_YEAR",
-      "label": "Ano pasado",
+      "label": "Año pasado",
       "group": "Pasados"
      }
     ]
@@ -7294,7 +7294,7 @@
      },
      {
       "id": "THIS_MONTH",
-      "label": "Este mes",
+      "label": "Este mês",
       "group": "Atuais"
      },
      {
@@ -7329,7 +7329,7 @@
      },
      {
       "id": "LAST_MONTH",
-      "label": "Mes passado",
+      "label": "Mês passado",
       "group": "Passados"
      },
      {
@@ -7358,7 +7358,7 @@
     "options": [
      {
       "id": "THIS_YEAR",
-      "label": "Cette annee",
+      "label": "Cette année",
       "group": "Actuels"
      },
      {
@@ -7398,33 +7398,33 @@
      },
      {
       "id": "LAST_WEEK",
-      "label": "Semaine derniere",
-      "group": "Passes"
+      "label": "Semaine dernière",
+      "group": "Passés"
      },
      {
       "id": "LAST_QUINZENA",
-      "label": "Quinzaine derniere",
-      "group": "Passes"
+      "label": "Quinzaine dernière",
+      "group": "Passés"
      },
      {
       "id": "LAST_MONTH",
       "label": "Mois dernier",
-      "group": "Passes"
+      "group": "Passés"
      },
      {
       "id": "LAST_QUARTER",
       "label": "Trimestre dernier",
-      "group": "Passes"
+      "group": "Passés"
      },
      {
       "id": "LAST_SEMESTER",
       "label": "Semestre dernier",
-      "group": "Passes"
+      "group": "Passés"
      },
      {
       "id": "LAST_YEAR",
-      "label": "Annee derniere",
-      "group": "Passes"
+      "label": "Année dernière",
+      "group": "Passés"
      }
     ]
    },
@@ -7452,7 +7452,7 @@
      },
      {
       "id": "THIS_MONTH",
-      "label": "Este mes",
+      "label": "Este mês",
       "group": "Atuais"
      },
      {
@@ -7487,7 +7487,7 @@
      },
      {
       "id": "LAST_MONTH",
-      "label": "Mes passado",
+      "label": "Mês passado",
       "group": "Passados"
      },
      {
@@ -7522,42 +7522,42 @@
      },
      {
       "id": "CUSTOM",
-      "label": "Periodo",
+      "label": "Período",
       "group": ""
      },
      {
       "id": "TOMORROW",
-      "label": "Amanha",
+      "label": "Amanhã",
       "group": "Futuros"
      },
      {
       "id": "NEXT_WEEK",
-      "label": "Proxima semana",
+      "label": "Próxima semana",
       "group": "Futuros"
      },
      {
       "id": "NEXT_QUINZENA",
-      "label": "Proxima quinzena",
+      "label": "Próxima quinzena",
       "group": "Futuros"
      },
      {
       "id": "NEXT_MONTH",
-      "label": "Proximo mes",
+      "label": "Próximo mês",
       "group": "Futuros"
      },
      {
       "id": "NEXT_QUARTER",
-      "label": "Proximo trimestre",
+      "label": "Próximo trimestre",
       "group": "Futuros"
      },
      {
       "id": "NEXT_SEMESTER",
-      "label": "Proximo semestre",
+      "label": "Próximo semestre",
       "group": "Futuros"
      },
      {
       "id": "NEXT_YEAR",
-      "label": "Proximo ano",
+      "label": "Próximo ano",
       "group": "Futuros"
      }
     ]
@@ -7632,42 +7632,42 @@
      },
      {
       "id": "CUSTOM",
-      "label": "Periodo",
+      "label": "Período",
       "group": ""
      },
      {
       "id": "TOMORROW",
-      "label": "Manana",
+      "label": "Mañana",
       "group": "Futuros"
      },
      {
       "id": "NEXT_WEEK",
-      "label": "Proxima semana",
+      "label": "Próxima semana",
       "group": "Futuros"
      },
      {
       "id": "NEXT_QUINZENA",
-      "label": "Proxima quincena",
+      "label": "Próxima quincena",
       "group": "Futuros"
      },
      {
       "id": "NEXT_MONTH",
-      "label": "Proximo mes",
+      "label": "Próximo mes",
       "group": "Futuros"
      },
      {
       "id": "NEXT_QUARTER",
-      "label": "Proximo trimestre",
+      "label": "Próximo trimestre",
       "group": "Futuros"
      },
      {
       "id": "NEXT_SEMESTER",
-      "label": "Proximo semestre",
+      "label": "Próximo semestre",
       "group": "Futuros"
      },
      {
       "id": "NEXT_YEAR",
-      "label": "Proximo ano",
+      "label": "Próximo año",
       "group": "Futuros"
      }
     ]
@@ -7687,42 +7687,42 @@
      },
      {
       "id": "CUSTOM",
-      "label": "Periodo",
+      "label": "Período",
       "group": ""
      },
      {
       "id": "TOMORROW",
-      "label": "Amanha",
+      "label": "Amanhã",
       "group": "Futuros"
      },
      {
       "id": "NEXT_WEEK",
-      "label": "Proxima semana",
+      "label": "Próxima semana",
       "group": "Futuros"
      },
      {
       "id": "NEXT_QUINZENA",
-      "label": "Proxima quinzena",
+      "label": "Próxima quinzena",
       "group": "Futuros"
      },
      {
       "id": "NEXT_MONTH",
-      "label": "Proximo mes",
+      "label": "Próximo mês",
       "group": "Futuros"
      },
      {
       "id": "NEXT_QUARTER",
-      "label": "Proximo trimestre",
+      "label": "Próximo trimestre",
       "group": "Futuros"
      },
      {
       "id": "NEXT_SEMESTER",
-      "label": "Proximo semestre",
+      "label": "Próximo semestre",
       "group": "Futuros"
      },
      {
       "id": "NEXT_YEAR",
-      "label": "Proximo ano",
+      "label": "Próximo ano",
       "group": "Futuros"
      }
     ]
@@ -7742,7 +7742,7 @@
      },
      {
       "id": "CUSTOM",
-      "label": "Periode",
+      "label": "Période",
       "group": ""
      },
      {
@@ -7777,7 +7777,7 @@
      },
      {
       "id": "NEXT_YEAR",
-      "label": "Annee prochaine",
+      "label": "Année prochaine",
       "group": "Futurs"
      }
     ]
@@ -7797,42 +7797,42 @@
      },
      {
       "id": "CUSTOM",
-      "label": "Periodo",
+      "label": "Período",
       "group": ""
      },
      {
       "id": "TOMORROW",
-      "label": "Amanha",
+      "label": "Amanhã",
       "group": "Futuros"
      },
      {
       "id": "NEXT_WEEK",
-      "label": "Proxima semana",
+      "label": "Próxima semana",
       "group": "Futuros"
      },
      {
       "id": "NEXT_QUINZENA",
-      "label": "Proxima quinzena",
+      "label": "Próxima quinzena",
       "group": "Futuros"
      },
      {
       "id": "NEXT_MONTH",
-      "label": "Proximo mes",
+      "label": "Próximo mês",
       "group": "Futuros"
      },
      {
       "id": "NEXT_QUARTER",
-      "label": "Proximo trimestre",
+      "label": "Próximo trimestre",
       "group": "Futuros"
      },
      {
       "id": "NEXT_SEMESTER",
-      "label": "Proximo semestre",
+      "label": "Próximo semestre",
       "group": "Futuros"
      },
      {
       "id": "NEXT_YEAR",
-      "label": "Proximo ano",
+      "label": "Próximo ano",
       "group": "Futuros"
      }
     ]
@@ -7861,7 +7861,7 @@
    },
    {
     "id": "THIS_MONTH",
-    "label": "Este mes",
+    "label": "Este mês",
     "group": "Atuais"
    },
    {

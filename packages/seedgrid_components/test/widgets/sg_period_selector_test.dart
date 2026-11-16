@@ -64,10 +64,10 @@ void main() {
         await pick(t, PeriodPreset.thisMonth);
         expect(got.length, 1);
         expect(got.single.preset, PeriodPreset.thisMonth);
-        expect(got.single.label, 'Este mes');
+        expect(got.single.label, 'Este mês');
         expect(iso(got.single.startDate), '2024-06-01T00:00:00.000');
         expect(iso(got.single.endDate), '2024-06-30T23:59:59.999');
-        expect(text(t, 'sg-period-selector'), 'Este mes');
+        expect(text(t, 'sg-period-selector'), 'Este mês');
       },
     );
 
@@ -225,7 +225,7 @@ void main() {
         ),
       );
       await frames(t);
-      expect(text(t, 'sg-period-selector'), 'Mes passado');
+      expect(text(t, 'sg-period-selector'), 'Mês passado');
       expect(n, 0);
     });
 
@@ -303,7 +303,7 @@ void main() {
         expect(field('sg-period-selector-custom-start'), findsOneWidget);
         expect(field('sg-period-selector-custom-end'), findsOneWidget);
         expect(got.single.preset, PeriodPreset.custom);
-        expect(got.single.label, 'Periodo');
+        expect(got.single.label, 'Período');
         expect(got.single.startDate, isNull);
         expect(got.single.endDate, isNull);
       },
@@ -430,7 +430,7 @@ void main() {
         expect(text(t, 'sg-period-selector'), 'Esta semana');
         await form.setValue('periodo', 'NEXT_YEAR');
         await frames(t);
-        expect(text(t, 'sg-period-selector'), 'Proximo ano');
+        expect(text(t, 'sg-period-selector'), 'Próximo ano');
       },
     );
 

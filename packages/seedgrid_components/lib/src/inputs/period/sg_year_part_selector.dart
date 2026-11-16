@@ -12,16 +12,16 @@ import 'year_part.dart';
 const Map<String, String> _yearLabel = {
   'pt-BR': 'Ano',
   'en-US': 'Year',
-  'es': 'Ano',
+  'es': 'Año',
   'pt-PT': 'Ano',
-  'fr': 'Annee',
+  'fr': 'Année',
 };
 const Map<String, String> _kindLabel = {
   'pt-BR': 'Recorte',
   'en-US': 'Breakdown',
   'es': 'Recorte',
   'pt-PT': 'Recorte',
-  'fr': 'Decoupage',
+  'fr': 'Découpage',
 };
 const Map<String, String> _partLabel = {
   'pt-BR': 'Fatia',

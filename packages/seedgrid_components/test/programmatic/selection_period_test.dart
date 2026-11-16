@@ -34,7 +34,7 @@ void main() {
   group('SgPeriodSelector', () {
     testWidgets('a: value inicial e sem value', (t) async {
       await _mount(t, const SgPeriodSelector(value: PeriodPreset.lastMonth));
-      expect(_text(t, pid), 'Mes passado');
+      expect(_text(t, pid), 'Mês passado');
       await _mount(t, const SgPeriodSelector(id: 'outro'));
       expect(_text(t, 'outro'), '');
     });

@@ -416,7 +416,7 @@ void main() {
         ),
       );
       await frames(t);
-      expect(find.text('Annee'), findsOneWidget);
+      expect(find.text('Année'), findsOneWidget);
       expect(find.text('Partie'), findsOneWidget);
       expect(text(t, 'part'), 'Trimestre 3 (T3)');
     });
