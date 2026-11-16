@@ -99,72 +99,87 @@ SgCalendar(
   static const String sgCalendarLocaleMeses = r'''
 ListenableBuilder(
   listenable: Listenable.merge([_locale, _inicioSemana, _meses]),
-  builder: (context, _) => Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Wrap(
-        spacing: 8,
-        runSpacing: 8,
-        children: [
-          for (final l in const ['pt-BR', 'en-US', 'es'])
-            SgButton(
-              label: Text(l),
-              appearance: _locale.value == l
-                  ? SgAppearance.solid
-                  : SgAppearance.outline,
-              onClick: () => _locale.value = l,
-            ),
-          SgButton(
-            label: Text(context.tx('Domingo primeiro')),
-            appearance: _inicioSemana.value == 0
-                ? SgAppearance.solid
-                : SgAppearance.outline,
-            onClick: () => _inicioSemana.value = 0,
-          ),
-          SgButton(
-            label: Text(context.tx('Segunda primeiro')),
-            appearance: _inicioSemana.value == 1
-                ? SgAppearance.solid
-                : SgAppearance.outline,
-            onClick: () => _inicioSemana.value = 1,
-          ),
-        ],
-      ),
-      const SizedBox(height: 8),
-      Wrap(
-        spacing: 8,
-        runSpacing: 8,
-        children: [
-          for (final n in const [1, 3, 6, 12])
-            SgButton(
-              label: Text(
-                '$n ${(n == 1 ? context.tx('mês') : context.tx('meses'))}',
+  builder: (context, _) {
+    final idioma = useComponentsI18n(context).locale;
+    final locale = _localeBase == idioma && _locale.value != null
+        ? _locale.value!
+        : idioma;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          children: [
+            for (final l in const [
+              'pt-BR',
+              'pt-PT',
+              'en-US',
+              'es',
+              'fr',
+            ])
+              SgButton(
+                label: Text(l),
+                appearance: locale == l
+                    ? SgAppearance.solid
+                    : SgAppearance.outline,
+                onClick: () {
+                  _localeBase = idioma;
+                  _locale.value = l;
+                },
               ),
-              appearance: _meses.value == n
+            SgButton(
+              label: Text(context.tx('Domingo primeiro')),
+              appearance: _inicioSemana.value == 0
                   ? SgAppearance.solid
                   : SgAppearance.outline,
-              onClick: () => _meses.value = n,
+              onClick: () => _inicioSemana.value = 0,
             ),
-        ],
-      ),
-      const SizedBox(height: 8),
-      SgCalendar(
-        locale: _locale.value,
-        weekStartsOn: _inicioSemana.value,
-        numberOfMonths: _meses.value,
-        monthsPerLine: 3,
-        defaultValue: '2026-03-10',
-        defaultViewDate: '2026-03-01',
-        cardTitle: Text(
-          context.tx('Calendário i18n + vários meses'),
+            SgButton(
+              label: Text(context.tx('Segunda primeiro')),
+              appearance: _inicioSemana.value == 1
+                  ? SgAppearance.solid
+                  : SgAppearance.outline,
+              onClick: () => _inicioSemana.value = 1,
+            ),
+          ],
         ),
-        cardProps: const SgCalendarCardProps(
-          id: 'showcase-calendar-i18n',
-          dragPersistKey: 'showcase-calendar-i18n',
+        const SizedBox(height: 8),
+        Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          children: [
+            for (final n in const [1, 3, 6, 12])
+              SgButton(
+                label: Text(
+                  '$n ${(n == 1 ? context.tx('mês') : context.tx('meses'))}',
+                ),
+                appearance: _meses.value == n
+                    ? SgAppearance.solid
+                    : SgAppearance.outline,
+                onClick: () => _meses.value = n,
+              ),
+          ],
         ),
-      ),
-    ],
-  ),
+        const SizedBox(height: 8),
+        SgCalendar(
+          locale: locale,
+          weekStartsOn: _inicioSemana.value,
+          numberOfMonths: _meses.value,
+          monthsPerLine: 3,
+          defaultValue: '2026-03-10',
+          defaultViewDate: '2026-03-01',
+          cardTitle: Text(
+            context.tx('Calendário i18n + vários meses'),
+          ),
+          cardProps: const SgCalendarCardProps(
+            id: 'showcase-calendar-i18n',
+            dragPersistKey: 'showcase-calendar-i18n',
+          ),
+        ),
+      ],
+    );
+  },
 )
 ''';
 
