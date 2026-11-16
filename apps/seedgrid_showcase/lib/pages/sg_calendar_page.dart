@@ -48,7 +48,7 @@ class _SgCalendarPageState extends State<SgCalendarPage> {
         preview:
             // #region sg-calendar-mes-atual
             SgCalendar(
-              locale: 'pt-BR',
+              locale: useComponentsI18n(context).locale,
               defaultValue: '2026-03-10',
               defaultViewDate: '2026-03-01',
               cardTitle: Text(context.tx('Calendário base')),
@@ -77,7 +77,7 @@ class _SgCalendarPageState extends State<SgCalendarPage> {
                       SgCalendar(
                         value: selecionado,
                         onValueChange: (data) => _selecionado.value = data,
-                        locale: 'pt-BR',
+                        locale: useComponentsI18n(context).locale,
                         minDate: DateTime(2026, 3, 5),
                         maxDate: DateTime(2026, 3, 25),
                         isDateDisabled: (data) =>
@@ -185,7 +185,8 @@ class _SgCalendarPageState extends State<SgCalendarPage> {
             'Com enabled: false os dias e os botões de mês e de hoje ficam desabilitados; a data e o mês atuais continuam legíveis.',
         preview:
             // #region sg-calendar-enabled
-            const SgCalendar(
+            SgCalendar(
+              locale: useComponentsI18n(context).locale,
               defaultValue: '2026-11-10',
               defaultViewDate: '2026-11-01',
               enabled: false,
@@ -199,7 +200,10 @@ class _SgCalendarPageState extends State<SgCalendarPage> {
             'Calendário mensal em pt-BR, com o dia de hoje marcado e o atalho para voltar a ele.',
         preview:
             // #region sg-calendar-basico
-            SgCalendar(onValueChange: (data) => debugPrint('Escolheu $data')),
+            SgCalendar(
+              locale: useComponentsI18n(context).locale,
+              onValueChange: (data) => debugPrint('Escolheu $data'),
+            ),
         // #endregion
         code: SgCalendarPageSnippets.sgCalendarBasico,
       ),
@@ -225,6 +229,7 @@ class _SgCalendarPageState extends State<SgCalendarPage> {
         preview:
             // #region sg-calendar-limites
             SgCalendar(
+              locale: useComponentsI18n(context).locale,
               defaultValue: '2026-03-16',
               minDate: '2026-03-10',
               maxDate: '2026-03-27',
@@ -241,7 +246,8 @@ class _SgCalendarPageState extends State<SgCalendarPage> {
             'numberOfMonths mostra de 1 a 12 meses; monthsPerLine define quantos por linha; showAdjacentMonths: false esconde os dias dos meses vizinhos.',
         preview:
             // #region sg-calendar-meses
-            const SgCalendar(
+            SgCalendar(
+              locale: useComponentsI18n(context).locale,
               numberOfMonths: 3,
               monthsPerLine: 2,
               showAdjacentMonths: false,
@@ -262,6 +268,7 @@ class _SgCalendarPageState extends State<SgCalendarPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SgCalendar(
+                    locale: useComponentsI18n(context).locale,
                     value: _escolhida.value,
                     viewDate: _mes.value,
                     onValueChange: (data) => _escolhida.value = data,
@@ -287,17 +294,20 @@ class _SgCalendarPageState extends State<SgCalendarPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SgCalendar(
+                  locale: useComponentsI18n(context).locale,
                   cardTitle: Text(context.tx('Automático')),
                   cardProps: const SgCalendarCardProps(id: 'arraste-auto'),
                 ),
                 const SizedBox(height: 16),
                 SgCalendar(
+                  locale: useComponentsI18n(context).locale,
                   cardTitle: Text(context.tx('Sempre arrasta')),
                   draggable: true,
                   cardProps: const SgCalendarCardProps(id: 'arraste-sempre'),
                 ),
                 const SizedBox(height: 16),
                 SgCalendar(
+                  locale: useComponentsI18n(context).locale,
                   cardTitle: Text(context.tx('Nunca arrasta')),
                   draggable: false,
                   cardProps: const SgCalendarCardProps(id: 'arraste-nunca'),

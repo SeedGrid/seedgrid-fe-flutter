@@ -9,17 +9,20 @@ Column(
   crossAxisAlignment: CrossAxisAlignment.start,
   children: [
     SgCalendar(
+      locale: useComponentsI18n(context).locale,
       cardTitle: Text(context.tx('Automático')),
       cardProps: const SgCalendarCardProps(id: 'arraste-auto'),
     ),
     const SizedBox(height: 16),
     SgCalendar(
+      locale: useComponentsI18n(context).locale,
       cardTitle: Text(context.tx('Sempre arrasta')),
       draggable: true,
       cardProps: const SgCalendarCardProps(id: 'arraste-sempre'),
     ),
     const SizedBox(height: 16),
     SgCalendar(
+      locale: useComponentsI18n(context).locale,
       cardTitle: Text(context.tx('Nunca arrasta')),
       draggable: false,
       cardProps: const SgCalendarCardProps(id: 'arraste-nunca'),
@@ -30,7 +33,10 @@ Column(
 
   /// Region `sg-calendar-basico`.
   static const String sgCalendarBasico = r'''
-SgCalendar(onValueChange: (data) => debugPrint('Escolheu $data'))
+SgCalendar(
+  locale: useComponentsI18n(context).locale,
+  onValueChange: (data) => debugPrint('Escolheu $data'),
+)
 ''';
 
   /// Region `sg-calendar-controlado`.
@@ -41,6 +47,7 @@ ListenableBuilder(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       SgCalendar(
+        locale: useComponentsI18n(context).locale,
         value: _escolhida.value,
         viewDate: _mes.value,
         onValueChange: (data) => _escolhida.value = data,
@@ -57,7 +64,8 @@ ListenableBuilder(
 
   /// Region `sg-calendar-enabled`.
   static const String sgCalendarEnabled = r'''
-const SgCalendar(
+SgCalendar(
+  locale: useComponentsI18n(context).locale,
   defaultValue: '2026-11-10',
   defaultViewDate: '2026-11-01',
   enabled: false,
@@ -77,6 +85,7 @@ const SgCalendar(
   /// Region `sg-calendar-limites`.
   static const String sgCalendarLimites = r'''
 SgCalendar(
+  locale: useComponentsI18n(context).locale,
   defaultValue: '2026-03-16',
   minDate: '2026-03-10',
   maxDate: '2026-03-27',
@@ -162,7 +171,7 @@ ListenableBuilder(
   /// Region `sg-calendar-mes-atual`.
   static const String sgCalendarMesAtual = r'''
 SgCalendar(
-  locale: 'pt-BR',
+  locale: useComponentsI18n(context).locale,
   defaultValue: '2026-03-10',
   defaultViewDate: '2026-03-01',
   cardTitle: Text(context.tx('Calendário base')),
@@ -175,7 +184,8 @@ SgCalendar(
 
   /// Region `sg-calendar-meses`.
   static const String sgCalendarMeses = r'''
-const SgCalendar(
+SgCalendar(
+  locale: useComponentsI18n(context).locale,
   numberOfMonths: 3,
   monthsPerLine: 2,
   showAdjacentMonths: false,
@@ -196,7 +206,7 @@ Column(
           SgCalendar(
             value: selecionado,
             onValueChange: (data) => _selecionado.value = data,
-            locale: 'pt-BR',
+            locale: useComponentsI18n(context).locale,
             minDate: DateTime(2026, 3, 5),
             maxDate: DateTime(2026, 3, 25),
             isDateDisabled: (data) =>
