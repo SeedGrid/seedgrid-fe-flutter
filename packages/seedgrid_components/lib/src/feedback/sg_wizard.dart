@@ -363,8 +363,8 @@ class _StepperBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = sgThemeOf(context);
     final i18n = useComponentsI18n(context);
-    final primary = tokenChain(theme, ['--primary']);
-    final onPrimary = tokenChain(theme, ['--primary-foreground']);
+    final primary = tokenChain(theme, ['--primary-fill', '--primary']);
+    final onPrimary = tokenChain(theme, ['--primary-fill-foreground', '--primary-foreground']);
     final border = tokenChain(theme, ['--border']);
     final muted = tokenChain(theme, ['--muted-foreground']);
     final surface = theme.surface;

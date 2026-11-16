@@ -374,7 +374,7 @@ class _SgPageControlState extends State<SgPageControl> {
       final isActive = r.id == activeId;
       final disabled = !r.page.enabled;
       final Color fg = isActive
-          ? (pills ? p.primaryForeground : p.primary)
+          ? (pills ? p.primaryFillForeground : p.primary)
           : p.mutedForeground;
       final deco = pills
           ? BoxDecoration(

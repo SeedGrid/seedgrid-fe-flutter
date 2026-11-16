@@ -314,7 +314,7 @@ class _SgPopupState extends State<SgPopup> {
     final hasActions = w.actions != null && w.actions!.isNotEmpty;
 
     Color? sevBg(SgPopupSeverity s) => switch (s) {
-      SgPopupSeverity.primary => tokenChain(theme, ['--primary']),
+      SgPopupSeverity.primary => tokenChain(theme, ['--primary-fill', '--primary']),
       SgPopupSeverity.secondary => tokenChain(theme, ['--secondary']),
       SgPopupSeverity.success => const Color(0xFF059669),
       SgPopupSeverity.info => const Color(0xFF0284C7),
@@ -324,7 +324,7 @@ class _SgPopupState extends State<SgPopup> {
       SgPopupSeverity.plain => muted,
     };
     Color sevFg(SgPopupSeverity s) => switch (s) {
-      SgPopupSeverity.primary => tokenChain(theme, ['--primary-foreground']),
+      SgPopupSeverity.primary => tokenChain(theme, ['--primary-fill-foreground', '--primary-foreground']),
       SgPopupSeverity.secondary => tokenChain(theme, [
         '--secondary-foreground',
       ]),
@@ -426,7 +426,7 @@ class _SgPopupState extends State<SgPopup> {
                 children: [
                   if (w.title != null)
                     Container(
-                      color: tokenChain(theme, ['--primary']),
+                      color: tokenChain(theme, ['--primary-fill', '--primary']),
                       padding: const EdgeInsets.symmetric(
                         horizontal: 12,
                         vertical: 8,
@@ -436,7 +436,7 @@ class _SgPopupState extends State<SgPopup> {
                         style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w500,
-                          color: tokenChain(theme, ['--primary-foreground']),
+                          color: tokenChain(theme, ['--primary-fill-foreground', '--primary-foreground']),
                         ),
                       ),
                     ),

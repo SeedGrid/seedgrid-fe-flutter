@@ -16,6 +16,12 @@ class ContainerPalette {
       mutedForeground = t.color('--muted-foreground'),
       primary = t.color('--primary'),
       primaryForeground = t.color('--primary-foreground'),
+      primaryFill = t.vars.containsKey('--primary-fill')
+          ? t.color('--primary-fill')
+          : t.color('--primary'),
+      primaryFillForeground = t.vars.containsKey('--primary-fill-foreground')
+          ? t.color('--primary-fill-foreground')
+          : t.color('--primary-foreground'),
       popover = t.color('--popover'),
       popoverForeground = t.color('--popover-foreground'),
       ring = t.color('--ring');
@@ -27,6 +33,8 @@ class ContainerPalette {
       mutedForeground,
       primary,
       primaryForeground,
+      primaryFill,
+      primaryFillForeground,
       popover,
       popoverForeground,
       ring;

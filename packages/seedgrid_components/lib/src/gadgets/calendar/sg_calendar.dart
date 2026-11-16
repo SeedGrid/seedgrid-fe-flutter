@@ -597,10 +597,10 @@ class _DayCellState extends State<_DayCell> {
     final p = widget.palette;
     final w = widget;
     final bg = w.selected
-        ? p.primary
+        ? p.primaryFill
         : (_hover && !w.disabled ? p.muted : Colors.transparent);
     final fg = w.selected
-        ? p.primaryForeground
+        ? p.primaryFillForeground
         : (w.inMonth ? p.foreground : p.mutedForeground);
     Widget circle = Container(
       width: 40,

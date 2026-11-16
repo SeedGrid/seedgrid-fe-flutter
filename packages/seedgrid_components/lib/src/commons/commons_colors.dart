@@ -96,9 +96,9 @@ SeverityColors severityColors(SgTheme t, String severity) {
       );
     case 'danger':
       return SeverityColors(
-        bg: c(['--destructive']),
-        fg: c(['--destructive-foreground']),
-        border: c(['--destructive']),
+        bg: c(['--destructive-fill', '--destructive']),
+        fg: c(['--destructive-fill-foreground', '--destructive-foreground']),
+        border: c(['--destructive-fill', '--destructive']),
         ring: ring,
       );
     case 'info':
@@ -119,9 +119,9 @@ SeverityColors severityColors(SgTheme t, String severity) {
     case 'custom':
     default:
       return SeverityColors(
-        bg: c(['--primary']),
-        fg: c(['--primary-foreground']),
-        border: c(['--primary']),
+        bg: c(['--primary-fill', '--primary']),
+        fg: c(['--primary-fill-foreground', '--primary-foreground']),
+        border: c(['--primary-fill', '--primary']),
         ring: ring,
       );
   }

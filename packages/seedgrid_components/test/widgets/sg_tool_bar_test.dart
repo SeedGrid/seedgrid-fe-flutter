@@ -200,8 +200,8 @@ void main() {
         );
         final bg = bgOf(s, t);
         final name = switch (s) {
-          SgToolbarIconButtonSeverity.primary => '--primary',
-          SgToolbarIconButtonSeverity.danger => '--destructive',
+          SgToolbarIconButtonSeverity.primary => '--primary-fill',
+          SgToolbarIconButtonSeverity.danger => '--destructive-fill',
           SgToolbarIconButtonSeverity.plain => '--muted',
           // Severidades com cor propria vem dos tokens do SgButton (P140).
           SgToolbarIconButtonSeverity.secondary => '--sg-btn-secondary-bg',

@@ -215,6 +215,14 @@ ThemeVars generateThemeVars(SeedThemeInput input, Brightness resolvedMode) {
     vars['--sg-$fname-fill'] = toRgbVarValue(shades.normal);
     vars['--sg-$fname-fill-hover'] = toRgbVarValue(shades.hover);
     vars['--sg-$fname-fill-active'] = toRgbVarValue(shades.active);
+    // Aliases legados (hsl) do PREENCHIMENTO (`--primary`/`--destructive` seguem a escala ajustada e servem de texto).
+    if (fname == 'primary' || fname == 'error') {
+      final legacy = fname == 'primary' ? 'primary' : 'destructive';
+      vars['--$legacy-fill'] = _toHslVarValue(shades.normal);
+      vars['--$legacy-fill-foreground'] = _toHslVarValue(
+        pickOnColor(shades.normal),
+      );
+    }
   }
 
   vars['--sg-primary-hover'] =

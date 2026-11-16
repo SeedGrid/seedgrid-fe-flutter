@@ -252,7 +252,9 @@ class _SgToggleSwitchState extends State<SgToggleSwitch>
       _internalError,
     );
     final hasError = message != null;
-    final primary = th.color('--primary');
+    final primary = th.vars.containsKey('--primary-fill')
+        ? th.color('--primary-fill')
+        : th.color('--primary');
     final destructive = th.color('--destructive');
 
     final Color trackBg = checked

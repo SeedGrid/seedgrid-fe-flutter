@@ -838,7 +838,7 @@ void main() {
               )
               .first,
         );
-        expect(bar.color, _theme.color('--primary'));
+        expect(bar.color, _theme.color('--primary-fill'));
         final style = t
             .widget<RichText>(
               find
@@ -852,7 +852,7 @@ void main() {
             .style!;
         expect(style.fontSize, 12);
         expect(style.fontWeight, FontWeight.w500);
-        expect(style.color, _theme.color('--primary-foreground'));
+        expect(style.color, _theme.color('--primary-fill-foreground'));
       },
     );
 

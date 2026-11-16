@@ -1100,10 +1100,14 @@ class _ResetDialog extends StatelessWidget {
     final mutedFg = theme.vars.containsKey('--muted-foreground')
         ? theme.color('--muted-foreground')
         : theme.muted;
-    final primary = theme.vars.containsKey('--primary')
+    final primary = theme.vars.containsKey('--primary-fill')
+        ? theme.color('--primary-fill')
+        : theme.vars.containsKey('--primary')
         ? theme.color('--primary')
         : theme.primary500;
-    final primaryFg = theme.vars.containsKey('--primary-foreground')
+    final primaryFg = theme.vars.containsKey('--primary-fill-foreground')
+        ? theme.color('--primary-fill-foreground')
+        : theme.vars.containsKey('--primary-foreground')
         ? theme.color('--primary-foreground')
         : theme.onPrimary;
     Widget button({

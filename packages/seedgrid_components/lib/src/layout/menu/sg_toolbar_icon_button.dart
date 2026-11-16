@@ -75,8 +75,12 @@ class SgToolbarScope extends InheritedWidget {
   Color bg, fg;
   switch (severity) {
     case SgToolbarIconButtonSeverity.primary:
-      bg = c('--primary');
-      fg = c('--primary-foreground');
+      bg = theme.vars.containsKey('--primary-fill')
+          ? c('--primary-fill')
+          : c('--primary');
+      fg = theme.vars.containsKey('--primary-fill-foreground')
+          ? c('--primary-fill-foreground')
+          : c('--primary-foreground');
     case SgToolbarIconButtonSeverity.secondary:
     case SgToolbarIconButtonSeverity.info:
     case SgToolbarIconButtonSeverity.help:
@@ -88,8 +92,12 @@ class SgToolbarScope extends InheritedWidget {
       bg = c('--accent');
       fg = c('--accent-foreground');
     case SgToolbarIconButtonSeverity.danger:
-      bg = c('--destructive');
-      fg = c('--destructive-foreground');
+      bg = theme.vars.containsKey('--destructive-fill')
+          ? c('--destructive-fill')
+          : c('--destructive');
+      fg = theme.vars.containsKey('--destructive-fill-foreground')
+          ? c('--destructive-fill-foreground')
+          : c('--destructive-foreground');
     case SgToolbarIconButtonSeverity.plain:
       bg = c('--muted');
       fg = c('--muted-foreground');
