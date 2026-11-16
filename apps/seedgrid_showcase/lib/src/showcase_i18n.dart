@@ -94,6 +94,8 @@ const Map<String, Map<String, String>> kShowcaseMessages = {
     'editorToLight': 'Mudar para claro',
     'editorCustomColor': 'Cor personalizada',
     'editorInvalidHex': 'Cor hexadecimal inválida',
+    'editorLowContrast':
+        'Contraste baixo no tema claro: a borda e o rótulo dos campos ficam pouco visíveis. Escolha outra cor.',
     'editorPresets': 'Cores predefinidas',
     'editorTokenPreview': 'Prévia de tokens',
     'editorPalette': 'Paleta de cores',
@@ -182,6 +184,8 @@ const Map<String, Map<String, String>> kShowcaseMessages = {
     'editorToLight': 'Switch to light',
     'editorCustomColor': 'Custom color',
     'editorInvalidHex': 'Invalid hex color',
+    'editorLowContrast':
+        'Low contrast on the light theme: field borders and labels will be hard to see. Pick another color.',
     'editorPresets': 'Preset colors',
     'editorTokenPreview': 'Token preview',
     'editorPalette': 'Color palette',
@@ -270,6 +274,8 @@ const Map<String, Map<String, String>> kShowcaseMessages = {
     'editorToLight': 'Mudar para claro',
     'editorCustomColor': 'Cor personalizada',
     'editorInvalidHex': 'Cor hexadecimal inválida',
+    'editorLowContrast':
+        'Contraste baixo no tema claro: a borda e o rótulo dos campos ficam pouco visíveis. Escolha outra cor.',
     'editorPresets': 'Cores predefinidas',
     'editorTokenPreview': 'Pré-visualização de tokens',
     'editorPalette': 'Paleta de cores',
@@ -358,6 +364,8 @@ const Map<String, Map<String, String>> kShowcaseMessages = {
     'editorToLight': 'Cambiar a claro',
     'editorCustomColor': 'Color personalizado',
     'editorInvalidHex': 'Color hexadecimal inválido',
+    'editorLowContrast':
+        'Contraste bajo en el tema claro: el borde y la etiqueta de los campos se verán poco. Elija otro color.',
     'editorPresets': 'Colores predefinidos',
     'editorTokenPreview': 'Vista previa de tokens',
     'editorPalette': 'Paleta de colores',
@@ -446,6 +454,8 @@ const Map<String, Map<String, String>> kShowcaseMessages = {
     'editorToLight': 'Passer en clair',
     'editorCustomColor': 'Couleur personnalisée',
     'editorInvalidHex': 'Couleur hexadécimale invalide',
+    'editorLowContrast':
+        'Contraste faible sur le thème clair : la bordure et le libellé des champs seront peu visibles. Choisissez une autre couleur.',
     'editorPresets': 'Couleurs prédéfinies',
     'editorTokenPreview': 'Aperçu des tokens',
     'editorPalette': 'Palette de couleurs',

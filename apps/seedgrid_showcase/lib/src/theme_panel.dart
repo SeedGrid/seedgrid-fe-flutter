@@ -22,7 +22,8 @@ import 'package:seedgrid_theme/seedgrid_theme.dart';
 import 'showcase_i18n.dart';
 import 'theme_tokens_view.dart';
 
-/// Cores semente; o nome vem do i18n (`color.<hex>`).
+/// Cores semente; o nome vem do i18n (`color.<hex>`). Sem Amarelo: a cor pura dele fica abaixo de 2:1 contra o fundo
+/// claro (quem quiser amarelo usa a cor livre, que mostra o aviso de contraste baixo).
 const List<String> kSeedPresets = [
   '#16803D',
   '#0EA5E9',
@@ -30,7 +31,6 @@ const List<String> kSeedPresets = [
   '#EC4899',
   '#F97316',
   '#EF4444',
-  '#F59E0B',
   '#10B981',
 ];
 
@@ -252,6 +252,15 @@ class _ShowcaseThemeEditorState extends State<ShowcaseThemeEditor> {
               ),
             ],
           ),
+          if (customValid && isLowContrastOnLight(_hexCtl.text.toUpperCase()))
+            Padding(
+              padding: const EdgeInsets.only(top: 8),
+              child: Text(
+                context.tr('editorLowContrast'),
+                key: const ValueKey('tema-editor-contraste-baixo'),
+                style: text.bodySmall,
+              ),
+            ),
           const SizedBox(height: 16),
           Text(context.tr('editorPresets'), style: text.labelLarge),
           const SizedBox(height: 8),

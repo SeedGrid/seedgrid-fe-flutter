@@ -58,56 +58,21 @@ ThemeVars generateThemeVars(SeedThemeInput input, Brightness resolvedMode) {
   final neutralMutedSurfaceHex = light
       ? shiftHue(seed, 0, 14, 90)
       : shiftHue(seed, 0, 14, 18);
-  // Fundos contra os quais o texto fino (degraus 400 a 900) precisa de >= 4,5:1
-  final against = <String>[neutralBgHex, neutralSurfaceHex];
-
-  final primary = buildScaleFromHex(
-    primaryBase,
-    resolvedMode,
-    boostS: 4,
-    against: against,
-  );
-  final secondary = buildScaleFromHex(
-    secondaryBase,
-    resolvedMode,
-    boostS: 2,
-    against: against,
-  );
-  final tertiary = buildScaleFromHex(
-    tertiaryBase,
-    resolvedMode,
-    boostS: 0,
-    against: against,
-  );
-  final warning = buildScaleFromHex(
-    warningBase,
-    resolvedMode,
-    boostS: 4,
-    against: against,
-  );
-  final error = buildScaleFromHex(
-    errorBase,
-    resolvedMode,
-    boostS: 4,
-    against: against,
-  );
-  final info = buildScaleFromHex(
-    infoBase,
-    resolvedMode,
-    boostS: 2,
-    against: against,
-  );
-  final success = buildScaleFromHex(
-    successBase,
-    resolvedMode,
-    boostS: 2,
-    against: against,
-  );
+  final primary = buildScaleFromHex(primaryBase, resolvedMode, boostS: 4);
+  final secondary = buildScaleFromHex(secondaryBase, resolvedMode, boostS: 2);
+  final tertiary = buildScaleFromHex(tertiaryBase, resolvedMode, boostS: 0);
+  final warning = buildScaleFromHex(warningBase, resolvedMode, boostS: 4);
+  final error = buildScaleFromHex(errorBase, resolvedMode, boostS: 4);
+  final info = buildScaleFromHex(infoBase, resolvedMode, boostS: 2);
+  final success = buildScaleFromHex(successBase, resolvedMode, boostS: 2);
 
   final borderHex = light
       ? shiftHue(seed, 0, 18, 84)
       : shiftHue(seed, 0, 18, 26);
-  final ringHex = primary[400] ?? primaryBase;
+  // Borda de foco, anel e rotulo flutuante dos campos: no CLARO usam a PROPRIA SEMENTE (cor pura), sem correcao automatica
+  // (o seletor so avisa quando o contraste fica abaixo de 2:1); no ESCURO seguem a escala nominal.
+  final fieldHex = light ? primaryBase : (primary[500] ?? primaryBase);
+  final ringHex = light ? primaryBase : (primary[400] ?? primaryBase);
   final textHex = light ? '#0B0B0C' : '#F6F6F7';
   final mutedTextHex = light ? '#4B4B51' : '#B6B6BD';
   final disabledHex = light ? '#E7E7EA' : '#2A2A2F';
@@ -153,8 +118,8 @@ ThemeVars generateThemeVars(SeedThemeInput input, Brightness resolvedMode) {
     '--card-foreground': _toHslVarValue(textHex),
     '--popover': _toHslVarValue(neutralSurfaceHex),
     '--popover-foreground': _toHslVarValue(textHex),
-    '--primary': _toHslVarValue(primaryHex500),
-    '--primary-foreground': _toHslVarValue(onPrimaryHex),
+    '--primary': _toHslVarValue(fieldHex),
+    '--primary-foreground': _toHslVarValue(pickOnColor(fieldHex)),
     '--secondary': _toHslVarValue(neutralMutedSurfaceHex),
     '--secondary-foreground': _toHslVarValue(textHex),
     '--muted': _toHslVarValue(neutralMutedSurfaceHex),
