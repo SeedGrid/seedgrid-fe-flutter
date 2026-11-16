@@ -77,8 +77,8 @@
     "React-only: atributo accept do seletor do navegador (derivado de mediaType/accept); no Flutter o seletor de arquivos do sistema e a prop picker (extra do Flutter)": "Não existe no Flutter: o seletor de arquivos do sistema é aberto pelo componente (tipos de mediaType e accept); use a prop picker para trocar a origem dos arquivos."
   },
   "descricoes": {
-    "Campo numerico com suporte a valores inteiros e decimais, validacao de limites e integracao com react-hook-form.": "Campo numerico com suporte a valores inteiros e decimais, validacao de limites e integracao com formulario (SgFormController).",
-    "Campo textual de uso geral com suporte a react-hook-form, validacao, contador de caracteres e prefixo/sufixo.": "Campo textual de uso geral com suporte a formulario (SgFormController), validacao, contador de caracteres e prefixo/sufixo.",
-    "Integracao react-hook-form (opcional).": "Integracao opcional com formulario (SgFormController)."
+    "Campo numérico com suporte a valores inteiros e decimais, validação de limites e integração com react-hook-form.": "Campo numérico com suporte a valores inteiros e decimais, validação de limites e integração com formulário (SgFormController).",
+    "Campo textual de uso geral com suporte a react-hook-form, validação, contador de caracteres e prefixo/sufixo.": "Campo textual de uso geral com suporte a formulário (SgFormController), validação, contador de caracteres e prefixo/sufixo.",
+    "Integração react-hook-form (opcional).": "Integração opcional com formulário (SgFormController)."
   }
 }

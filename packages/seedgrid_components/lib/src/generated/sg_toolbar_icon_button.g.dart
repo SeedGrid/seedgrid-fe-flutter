@@ -9,25 +9,25 @@ import 'package:flutter/widgets.dart';
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgToolbarIconButton` no React — Botao compacto para toolbars com icone, label opcional, hint, loading e severidade visual.
+/// Props públicas de `SgToolbarIconButton` no React — Botão compacto para toolbars com ícone, label opcional, hint, loading e severidade visual.
 /// O widget deve declarar `implements SgToolbarIconButtonProps`.
 abstract interface class SgToolbarIconButtonProps {
-  /// Desabilita interacao. Padrão: `true`.
+  /// Desabilita interação. Padrão: `true`.
   bool? get enabled;
   bool? get hideLabel;
   /// Texto auxiliar usado como dica contextual.
   String? get hint;
-  /// Icone principal exibido no botao.
+  /// Ícone principal exibido no botão.
   Widget? get icon;
-  /// Rotulo textual da acao.
+  /// Rótulo textual da ação.
   String? get label;
   /// Indica processamento em andamento. Padrão: `false`.
   bool? get loading;
   /// Callback executado ao clicar no item. Tipo TS: `(() =&gt; void | Promise&lt;void&gt;)` (sem tradução exata; ver excecoes.json).
   Function? get onClick;
-  /// Tom visual do botao de toolbar. Padrão: `plain`.
+  /// Tom visual do botão de toolbar. Padrão: `plain`.
   SgToolbarIconButtonSeverity? get severity;
-  /// Exibe o rotulo junto do icone quando suportado pela toolbar. Padrão: `false`.
+  /// Exibe o rótulo junto do ícone quando suportado pela toolbar. Padrão: `false`.
   bool? get showLabel;
 }
 
@@ -40,7 +40,7 @@ const List<SgPropSpec> sgToolbarIconButtonPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'true',
-    description: 'Desabilita interacao.',
+    description: 'Desabilita interação.',
   ),
   SgPropSpec(
     name: 'hideLabel',
@@ -63,7 +63,7 @@ const List<SgPropSpec> sgToolbarIconButtonPropSpecs = <SgPropSpec>[
     type: 'Widget?',
     tsType: 'React.ReactNode',
     required: false,
-    description: 'Icone principal exibido no botao.',
+    description: 'Ícone principal exibido no botão.',
   ),
   SgPropSpec(
     name: 'label',
@@ -71,7 +71,7 @@ const List<SgPropSpec> sgToolbarIconButtonPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Rotulo textual da acao.',
+    description: 'Rótulo textual da ação.',
   ),
   SgPropSpec(
     name: 'loading',
@@ -98,7 +98,7 @@ const List<SgPropSpec> sgToolbarIconButtonPropSpecs = <SgPropSpec>[
     tsType: 'SgToolBarSeverity',
     required: false,
     defaultValue: 'plain',
-    description: 'Tom visual do botao de toolbar.',
+    description: 'Tom visual do botão de toolbar.',
     values: <String>['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'help', 'plain'],
   ),
   SgPropSpec(
@@ -108,6 +108,6 @@ const List<SgPropSpec> sgToolbarIconButtonPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description: 'Exibe o rotulo junto do icone quando suportado pela toolbar.',
+    description: 'Exibe o rótulo junto do ícone quando suportado pela toolbar.',
   ),
 ];

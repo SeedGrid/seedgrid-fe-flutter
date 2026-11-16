@@ -9,7 +9,7 @@ import 'package:flutter/widgets.dart';
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgInputCurrency` no React — Campo monetario com formatacao de moeda, simbolo e validacao para precos, valores financeiros e totais.
+/// Props públicas de `SgInputCurrency` no React — Campo monetário com formatação de moeda, símbolo e validação para preços, valores financeiros e totais.
 /// O widget deve declarar `implements SgInputCurrencyProps`.
 abstract interface class SgInputCurrencyProps {
   bool? get allowNegative;
@@ -18,13 +18,13 @@ abstract interface class SgInputCurrencyProps {
   bool? get clearButton;
   /// Tipo TS: `any` (sem tradução exata; ver excecoes.json).
   Object? get control;
-  /// Codigo ou configuracao de moeda usada na formatacao.
+  /// Código ou configuração de moeda usada na formatação.
   String? get currency;
   SgInputCurrencyCurrencyDisplay? get currencyDisplay;
   String? get currencySymbolOverride;
   SgInputCurrencyCurrencySymbolPlacement? get currencySymbolPlacement;
   num? get decimals;
-  /// Se true, campo vazio vale null; se false (padrao), vale 0. Padrão: `false`.
+  /// Se true, campo vazio vale null; se false (padrão), vale 0. Padrão: `false`.
   bool? get emptyValueIsNull;
   bool? get enabled;
   String? get error;
@@ -32,11 +32,11 @@ abstract interface class SgInputCurrencyProps {
   String? get hintText;
   /// Tipo TS: `React.ReactNode[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get iconButtons;
-  /// Identificador unico do campo monetario.
+  /// Identificador único do campo monetário.
   String get id;
   /// Tipo TS: `(React.InputHTMLAttributes&lt;HTMLInputElement&gt; & { ref?: React.Ref&lt;HTMLInputElement&gt;; })` (sem tradução exata; ver excecoes.json).
   Object? get inputProps;
-  /// Rotulo principal exibido ao usuario.
+  /// Rótulo principal exibido ao usuário.
   String? get label;
   String? get labelText;
   String? get locale;
@@ -44,9 +44,9 @@ abstract interface class SgInputCurrencyProps {
   String? get maxValueMessage;
   num? get minValue;
   String? get minValueMessage;
-  /// Nome do campo para formularios.
+  /// Nome do campo para formulários.
   String? get name;
-  /// Callback com o valor monetario como number (null somente com emptyValueIsNull). Tipo TS: `((value: number) =&gt; void)` (sem tradução exata; ver excecoes.json).
+  /// Callback com o valor monetário como number (null somente com emptyValueIsNull). Tipo TS: `((value: number) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onChange;
   /// Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onClear;
@@ -60,7 +60,7 @@ abstract interface class SgInputCurrencyProps {
   Widget? get prefixIcon;
   String? get prefixText;
   bool? get readOnly;
-  /// Marca o campo como obrigatorio. Padrão: `false`.
+  /// Marca o campo como obrigatório. Padrão: `false`.
   bool? get required;
   String? get requiredMessage;
   bool? get showCurrencySymbol;
@@ -115,7 +115,7 @@ const List<SgPropSpec> sgInputCurrencyPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Codigo ou configuracao de moeda usada na formatacao.',
+    description: 'Código ou configuração de moeda usada na formatação.',
   ),
   SgPropSpec(
     name: 'currencyDisplay',
@@ -154,7 +154,7 @@ const List<SgPropSpec> sgInputCurrencyPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description: 'Se true, campo vazio vale null; se false (padrao), vale 0.',
+    description: 'Se true, campo vazio vale null; se false (padrão), vale 0.',
   ),
   SgPropSpec(
     name: 'enabled',
@@ -198,7 +198,7 @@ const List<SgPropSpec> sgInputCurrencyPropSpecs = <SgPropSpec>[
     type: 'String',
     tsType: 'string',
     required: true,
-    description: 'Identificador unico do campo monetario.',
+    description: 'Identificador único do campo monetário.',
   ),
   SgPropSpec(
     name: 'inputProps',
@@ -214,7 +214,7 @@ const List<SgPropSpec> sgInputCurrencyPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Rotulo principal exibido ao usuario.',
+    description: 'Rótulo principal exibido ao usuário.',
   ),
   SgPropSpec(
     name: 'labelText',
@@ -264,7 +264,7 @@ const List<SgPropSpec> sgInputCurrencyPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Nome do campo para formularios.',
+    description: 'Nome do campo para formulários.',
   ),
   SgPropSpec(
     name: 'onChange',
@@ -272,7 +272,7 @@ const List<SgPropSpec> sgInputCurrencyPropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '((value: number) => void)',
     required: false,
-    description: 'Callback com o valor monetario como number (null somente com emptyValueIsNull).',
+    description: 'Callback com o valor monetário como number (null somente com emptyValueIsNull).',
     exact: false,
   ),
   SgPropSpec(
@@ -342,7 +342,7 @@ const List<SgPropSpec> sgInputCurrencyPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description: 'Marca o campo como obrigatorio.',
+    description: 'Marca o campo como obrigatório.',
   ),
   SgPropSpec(
     name: 'requiredMessage',

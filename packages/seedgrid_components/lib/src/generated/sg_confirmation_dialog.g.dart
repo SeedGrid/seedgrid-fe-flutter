@@ -9,14 +9,14 @@ import 'package:flutter/widgets.dart';
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgConfirmationDialog` no React — Dialog especializado em confirmacao de acoes sensiveis, com mensagem, severidade e botoes de confirmar e cancelar.
+/// Props públicas de `SgConfirmationDialog` no React — Dialog especializado em confirmação de ações sensíveis, com mensagem, severidade e botões de confirmar e cancelar.
 /// O widget deve declarar `implements SgConfirmationDialogProps`.
 abstract interface class SgConfirmationDialogProps {
   SgDialogAnimation? get animation;
   String? get ariaLabel;
   num? get autoCloseMs;
   String? get bodyClassName;
-  /// Configuracao visual e comportamental do botao de cancelamento. Tipo TS: `SgConfirmationDialogButtonConfig` (sem tradução exata; ver excecoes.json).
+  /// Configuração visual e comportamental do botão de cancelamento. Tipo TS: `SgConfirmationDialogButtonConfig` (sem tradução exata; ver excecoes.json).
   Object? get cancelButton;
   /// Padrão: `false`.
   bool? get closeable;
@@ -26,7 +26,7 @@ abstract interface class SgConfirmationDialogProps {
   bool? get closeOnConfirm;
   bool? get closeOnEsc;
   bool? get closeOnOverlayClick;
-  /// Configuracao visual e comportamental do botao de confirmacao. Tipo TS: `SgConfirmationDialogButtonConfig` (sem tradução exata; ver excecoes.json).
+  /// Configuração visual e comportamental do botão de confirmação. Tipo TS: `SgConfirmationDialogButtonConfig` (sem tradução exata; ver excecoes.json).
   Object? get confirmButton;
   String? get contentClassName;
   /// Tipo TS: `Property.BackgroundColor` (sem tradução exata; ver excecoes.json).
@@ -44,21 +44,21 @@ abstract interface class SgConfirmationDialogProps {
   Object? get initialFocusRef;
   Widget? get leading;
   bool? get lockBodyScroll;
-  /// Mensagem principal explicando o risco ou decisao. Aceita `String` ou `Widget` (React: `ReactNode`).
+  /// Mensagem principal explicando o risco ou decisão. Aceita `String` ou `Widget` (React: `ReactNode`).
   Object? get message;
-  /// Callback disparado quando o usuario cancela a acao. Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
+  /// Callback disparado quando o usuário cancela a ação. Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onCancel;
   /// Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onClose;
-  /// Callback disparado quando o usuario confirma a acao. Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
+  /// Callback disparado quando o usuário confirma a ação. Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onConfirm;
   /// Tipo TS: `((open: boolean) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onOpenChange;
-  /// Controla a abertura do dialog de confirmacao.
+  /// Controla a abertura do dialog de confirmação.
   bool? get open;
   String? get overlayClassName;
   bool? get restoreFocus;
-  /// Tom semantico da confirmacao. Padrão: `warning`.
+  /// Tom semântico da confirmação. Padrão: `warning`.
   SgDialogSeverity? get severity;
   /// Padrão: `false`.
   bool? get showSeverityAccent;
@@ -66,7 +66,7 @@ abstract interface class SgConfirmationDialogProps {
   SgDialogSize? get size;
   /// Aceita `String` ou `Widget` (React: `ReactNode`).
   Object? get subtitle;
-  /// Titulo principal da confirmacao. Aceita `String` ou `Widget` (React: `ReactNode`).
+  /// Título principal da confirmação. Aceita `String` ou `Widget` (React: `ReactNode`).
   Object? get title;
   Widget? get trailing;
   num? get transitionMs;
@@ -109,7 +109,7 @@ const List<SgPropSpec> sgConfirmationDialogPropSpecs = <SgPropSpec>[
     type: 'Object?',
     tsType: 'SgConfirmationDialogButtonConfig',
     required: false,
-    description: 'Configuracao visual e comportamental do botao de cancelamento.',
+    description: 'Configuração visual e comportamental do botão de cancelamento.',
     exact: false,
   ),
   SgPropSpec(
@@ -156,7 +156,7 @@ const List<SgPropSpec> sgConfirmationDialogPropSpecs = <SgPropSpec>[
     type: 'Object?',
     tsType: 'SgConfirmationDialogButtonConfig',
     required: false,
-    description: 'Configuracao visual e comportamental do botao de confirmacao.',
+    description: 'Configuração visual e comportamental do botão de confirmação.',
     exact: false,
   ),
   SgPropSpec(
@@ -248,7 +248,7 @@ const List<SgPropSpec> sgConfirmationDialogPropSpecs = <SgPropSpec>[
     type: 'Object?',
     tsType: 'React.ReactNode',
     required: false,
-    description: 'Mensagem principal explicando o risco ou decisao.',
+    description: 'Mensagem principal explicando o risco ou decisão.',
   ),
   SgPropSpec(
     name: 'onCancel',
@@ -256,7 +256,7 @@ const List<SgPropSpec> sgConfirmationDialogPropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '(() => void)',
     required: false,
-    description: 'Callback disparado quando o usuario cancela a acao.',
+    description: 'Callback disparado quando o usuário cancela a ação.',
     exact: false,
   ),
   SgPropSpec(
@@ -273,7 +273,7 @@ const List<SgPropSpec> sgConfirmationDialogPropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '(() => void)',
     required: false,
-    description: 'Callback disparado quando o usuario confirma a acao.',
+    description: 'Callback disparado quando o usuário confirma a ação.',
     exact: false,
   ),
   SgPropSpec(
@@ -290,7 +290,7 @@ const List<SgPropSpec> sgConfirmationDialogPropSpecs = <SgPropSpec>[
     type: 'bool?',
     tsType: 'boolean',
     required: false,
-    description: 'Controla a abertura do dialog de confirmacao.',
+    description: 'Controla a abertura do dialog de confirmação.',
   ),
   SgPropSpec(
     name: 'overlayClassName',
@@ -313,7 +313,7 @@ const List<SgPropSpec> sgConfirmationDialogPropSpecs = <SgPropSpec>[
     tsType: 'SgDialogSeverity',
     required: false,
     defaultValue: 'warning',
-    description: 'Tom semantico da confirmacao.',
+    description: 'Tom semântico da confirmação.',
     values: <String>['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'help', 'plain'],
   ),
   SgPropSpec(
@@ -346,7 +346,7 @@ const List<SgPropSpec> sgConfirmationDialogPropSpecs = <SgPropSpec>[
     type: 'Object?',
     tsType: 'React.ReactNode',
     required: false,
-    description: 'Titulo principal da confirmacao.',
+    description: 'Título principal da confirmação.',
   ),
   SgPropSpec(
     name: 'trailing',

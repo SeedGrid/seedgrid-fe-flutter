@@ -6,16 +6,16 @@
 
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgClockThemePicker` no React — Seletor visual de temas de relogio com preview embutido, filtro de temas e integracao com o resolver de temas do clock.
+/// Props públicas de `SgClockThemePicker` no React — Seletor visual de temas de relógio com preview embutido, filtro de temas e integração com o resolver de temas do clock.
 /// O widget deve declarar `implements SgClockThemePickerProps`.
 abstract interface class SgClockThemePickerProps {
   /// Abre a lista inicialmente no primeiro render. Padrão: `false`.
   bool? get defaultOpen;
-  /// Tema usado quando o valor atual nao pode ser resolvido. Padrão: `classic`.
+  /// Tema usado quando o valor atual não pode ser resolvido. Padrão: `classic`.
   String? get fallbackThemeId;
-  /// Filtro adicional sobre a lista de temas disponiveis. Tipo TS: `((theme: SgClockTheme) =&gt; boolean)` (sem tradução exata; ver excecoes.json).
+  /// Filtro adicional sobre a lista de temas disponíveis. Tipo TS: `((theme: SgClockTheme) =&gt; boolean)` (sem tradução exata; ver excecoes.json).
   Function? get filter;
-  /// Rotulo opcional exibido acima do seletor.
+  /// Rótulo opcional exibido acima do seletor.
   String? get label;
   /// Callback disparado quando um novo tema e escolhido. Tipo TS: `(id: string) =&gt; void` (sem tradução exata; ver excecoes.json).
   Function get onChange;
@@ -47,7 +47,7 @@ const List<SgPropSpec> sgClockThemePickerPropSpecs = <SgPropSpec>[
     tsType: 'string',
     required: false,
     defaultValue: 'classic',
-    description: 'Tema usado quando o valor atual nao pode ser resolvido.',
+    description: 'Tema usado quando o valor atual não pode ser resolvido.',
   ),
   SgPropSpec(
     name: 'filter',
@@ -55,7 +55,7 @@ const List<SgPropSpec> sgClockThemePickerPropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '((theme: SgClockTheme) => boolean)',
     required: false,
-    description: 'Filtro adicional sobre a lista de temas disponiveis.',
+    description: 'Filtro adicional sobre a lista de temas disponíveis.',
     exact: false,
   ),
   SgPropSpec(
@@ -64,7 +64,7 @@ const List<SgPropSpec> sgClockThemePickerPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Rotulo opcional exibido acima do seletor.',
+    description: 'Rótulo opcional exibido acima do seletor.',
   ),
   SgPropSpec(
     name: 'onChange',

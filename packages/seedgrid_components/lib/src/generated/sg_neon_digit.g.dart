@@ -6,7 +6,7 @@
 
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgNeonDigit` no React — Digito com visual neon para relogios, contadores e displays que exigem alto contraste e identidade luminosa.
+/// Props públicas de `SgNeonDigit` no React — Digito com visual neon para relógios, contadores e displays que exigem alto contraste e identidade luminosa.
 /// O widget deve declarar `implements SgNeonDigitProps`.
 abstract interface class SgNeonDigitProps {
   /// Enables fade-out/fade-in animation when value changes. Padrão: `true`.

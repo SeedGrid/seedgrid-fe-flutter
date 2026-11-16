@@ -6,24 +6,24 @@
 
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgMultiSelectChips` no React — Variante do multi-select onde os itens selecionados viram chips removiveis no trigger; o dropdown com checkboxes e a busca sao iguais ao SgMultiSelect.
+/// Props públicas de `SgMultiSelectChips` no React — Variante do multi-select onde os itens selecionados viram chips removíveis no trigger; o dropdown com checkboxes e a busca são iguais ao SgMultiSelect.
 /// O widget deve declarar `implements SgMultiSelectChipsProps`.
 abstract interface class SgMultiSelectChipsProps {
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get borderRadius;
-  /// Exibe botao para limpar toda a selecao. Padrão: `false`.
+  /// Exibe botão para limpar toda a seleção. Padrão: `false`.
   bool? get clearable;
   /// Tipo TS: `any` (sem tradução exata; ver excecoes.json).
   Object? get control;
   String? get emptyText;
   bool? get enabled;
   String? get error;
-  /// Identificador unico do campo.
+  /// Identificador único do campo.
   String get id;
-  /// Rotulo exibido ao usuario.
+  /// Rótulo exibido ao usuário.
   String? get label;
   String? get labelText;
-  /// Limite maximo de itens selecionaveis.
+  /// Limite máximo de itens selecionáveis.
   num? get maxSelected;
   String? get name;
   /// Callback com o array atualizado de valores. Tipo TS: `((value: SgMultiSelectOptionValue[]) =&gt; void)` (sem tradução exata; ver excecoes.json).
@@ -32,11 +32,11 @@ abstract interface class SgMultiSelectChipsProps {
   Function? get onEnter;
   /// Disparado ao sair do campo. Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onExit;
-  /// Lista de opcoes disponiveis. `label` aparece na lista; `chipLabel` (opcional) e' o texto curto do item ja' selecionado (o chip), ex.: label "3 - Filial Centro" e chipLabel "3". Tipo TS: `SgMultiSelectOption[]` (sem tradução exata; ver excecoes.json).
+  /// Lista de opções disponíveis. `label` aparece na lista; `chipLabel` (opcional) e' o texto curto do item ja' selecionado (o chip), ex.: label "3 - Filial Centro" e chipLabel "3". Tipo TS: `SgMultiSelectOption[]` (sem tradução exata; ver excecoes.json).
   List<Object?> get options;
   /// Texto exibido quando nada esta selecionado.
   String? get placeholder;
-  /// Marca o campo como obrigatorio. Padrão: `false`.
+  /// Marca o campo como obrigatório. Padrão: `false`.
   bool? get required;
   /// Exibe campo de busca no topo do dropdown. Padrão: `false`.
   bool? get searchable;
@@ -64,7 +64,7 @@ const List<SgPropSpec> sgMultiSelectChipsPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description: 'Exibe botao para limpar toda a selecao.',
+    description: 'Exibe botão para limpar toda a seleção.',
   ),
   SgPropSpec(
     name: 'control',
@@ -101,7 +101,7 @@ const List<SgPropSpec> sgMultiSelectChipsPropSpecs = <SgPropSpec>[
     type: 'String',
     tsType: 'string',
     required: true,
-    description: 'Identificador unico do campo.',
+    description: 'Identificador único do campo.',
   ),
   SgPropSpec(
     name: 'label',
@@ -109,7 +109,7 @@ const List<SgPropSpec> sgMultiSelectChipsPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Rotulo exibido ao usuario.',
+    description: 'Rótulo exibido ao usuário.',
   ),
   SgPropSpec(
     name: 'labelText',
@@ -124,7 +124,7 @@ const List<SgPropSpec> sgMultiSelectChipsPropSpecs = <SgPropSpec>[
     type: 'num?',
     tsType: 'number',
     required: false,
-    description: 'Limite maximo de itens selecionaveis.',
+    description: 'Limite máximo de itens selecionáveis.',
   ),
   SgPropSpec(
     name: 'name',
@@ -166,7 +166,7 @@ const List<SgPropSpec> sgMultiSelectChipsPropSpecs = <SgPropSpec>[
     type: 'List<Object?>',
     tsType: 'SgMultiSelectOption[]',
     required: true,
-    description: 'Lista de opcoes disponiveis. `label` aparece na lista; `chipLabel` (opcional) e\' o texto curto do item ja\' selecionado (o chip), ex.: label "3 - Filial Centro" e chipLabel "3".',
+    description: 'Lista de opções disponíveis. `label` aparece na lista; `chipLabel` (opcional) e\' o texto curto do item ja\' selecionado (o chip), ex.: label "3 - Filial Centro" e chipLabel "3".',
     exact: false,
   ),
   SgPropSpec(
@@ -184,7 +184,7 @@ const List<SgPropSpec> sgMultiSelectChipsPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description: 'Marca o campo como obrigatorio.',
+    description: 'Marca o campo como obrigatório.',
   ),
   SgPropSpec(
     name: 'searchable',

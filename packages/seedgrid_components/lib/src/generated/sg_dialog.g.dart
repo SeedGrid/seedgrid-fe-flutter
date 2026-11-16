@@ -9,7 +9,7 @@ import 'package:flutter/widgets.dart';
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgDialog` no React — Overlay modal para apresentar conteudo focado, confirmacoes e fluxos curtos com controle de abertura, fechamento e severidade visual.
+/// Props públicas de `SgDialog` no React — Overlay modal para apresentar conteúdo focado, confirmações e fluxos curtos com controle de abertura, fechamento e severidade visual.
 /// O widget deve declarar `implements SgDialogProps`.
 abstract interface class SgDialogProps {
   /// Padrão: `zoom`.
@@ -17,13 +17,13 @@ abstract interface class SgDialogProps {
   String? get ariaLabel;
   num? get autoCloseMs;
   String? get bodyClassName;
-  /// Conteudo principal do corpo do dialog. No React e `children`.
+  /// Conteúdo principal do corpo do dialog. No React e `children`.
   Widget? get child;
   /// Padrão: `true`.
   bool? get closeable;
   /// Padrão: `true`.
   bool? get closeOnEsc;
-  /// Fecha o dialog ao clicar fora do conteudo. Padrão: `true`.
+  /// Fecha o dialog ao clicar fora do conteúdo. Padrão: `true`.
   bool? get closeOnOverlayClick;
   String? get contentClassName;
   /// Tipo TS: `Property.BackgroundColor` (sem tradução exata; ver excecoes.json).
@@ -49,7 +49,7 @@ abstract interface class SgDialogProps {
   String? get overlayClassName;
   /// Padrão: `true`.
   bool? get restoreFocus;
-  /// Tom semantico do cabecalho e acentos visuais. Padrão: `plain`.
+  /// Tom semântico do cabeçalho e acentos visuais. Padrão: `plain`.
   SgDialogSeverity? get severity;
   /// Tipo TS: `Property.BoxShadow` (sem tradução exata; ver excecoes.json).
   Object? get shadow;
@@ -57,9 +57,9 @@ abstract interface class SgDialogProps {
   bool? get showTopAccent;
   /// Escala do container modal. Padrão: `md`.
   SgDialogSize? get size;
-  /// Subtitulo complementar do dialog. Aceita `String` ou `Widget` (React: `ReactNode`).
+  /// Subtítulo complementar do dialog. Aceita `String` ou `Widget` (React: `ReactNode`).
   Object? get subtitle;
-  /// Titulo principal do dialog. Aceita `String` ou `Widget` (React: `ReactNode`).
+  /// Título principal do dialog. Aceita `String` ou `Widget` (React: `ReactNode`).
   Object? get title;
   Widget? get trailing;
   /// Padrão: `160`.
@@ -104,7 +104,7 @@ const List<SgPropSpec> sgDialogPropSpecs = <SgPropSpec>[
     type: 'Widget?',
     tsType: 'React.ReactNode',
     required: false,
-    description: 'Conteudo principal do corpo do dialog.',
+    description: 'Conteúdo principal do corpo do dialog.',
   ),
   SgPropSpec(
     name: 'closeable',
@@ -129,7 +129,7 @@ const List<SgPropSpec> sgDialogPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'true',
-    description: 'Fecha o dialog ao clicar fora do conteudo.',
+    description: 'Fecha o dialog ao clicar fora do conteúdo.',
   ),
   SgPropSpec(
     name: 'contentClassName',
@@ -253,7 +253,7 @@ const List<SgPropSpec> sgDialogPropSpecs = <SgPropSpec>[
     tsType: 'SgDialogSeverity',
     required: false,
     defaultValue: 'plain',
-    description: 'Tom semantico do cabecalho e acentos visuais.',
+    description: 'Tom semântico do cabeçalho e acentos visuais.',
     values: <String>['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'help', 'plain'],
   ),
   SgPropSpec(
@@ -288,7 +288,7 @@ const List<SgPropSpec> sgDialogPropSpecs = <SgPropSpec>[
     type: 'Object?',
     tsType: 'React.ReactNode',
     required: false,
-    description: 'Subtitulo complementar do dialog.',
+    description: 'Subtítulo complementar do dialog.',
   ),
   SgPropSpec(
     name: 'title',
@@ -296,7 +296,7 @@ const List<SgPropSpec> sgDialogPropSpecs = <SgPropSpec>[
     type: 'Object?',
     tsType: 'React.ReactNode',
     required: false,
-    description: 'Titulo principal do dialog.',
+    description: 'Título principal do dialog.',
   ),
   SgPropSpec(
     name: 'trailing',

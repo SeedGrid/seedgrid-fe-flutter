@@ -8,22 +8,22 @@ import 'package:flutter/widgets.dart';
 
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgRealtimeProvider` no React — Avisos em tempo real para o usuario logado pelo SeedGrid Pulse: pede o token de conexao ao backend (que o emite para o usuario da sessao), conecta direto no Pulse, reconecta sozinho, para quando a credencial e revogada e expoe o status para a tela decidir entre aviso e polling de reserva.
+/// Props públicas de `SgRealtimeProvider` no React — Avisos em tempo real para o usuário logado pelo SeedGrid Pulse: pede o token de conexão ao backend (que o emite para o usuário da sessão), conecta direto no Pulse, reconecta sozinho, para quando a credencial e revogada e expõe o status para a tela decidir entre aviso e polling de reserva.
 /// O widget deve declarar `implements SgRealtimeProviderProps`.
 abstract interface class SgRealtimeProviderProps {
-  /// Channels que a aplicacao quer ouvir (ex.: ["backup"]). Tipo TS: `string[]` (sem tradução exata; ver excecoes.json).
+  /// Channels que a aplicação quer ouvir (ex.: ["backup"]). Tipo TS: `string[]` (sem tradução exata; ver excecoes.json).
   List<Object?> get channels;
-  /// Arvore que ouve os avisos com useSgRealtimeEvent. No React e `children`.
+  /// Árvore que ouve os avisos com useSgRealtimeEvent. No React e `children`.
   Widget get child;
   /// Opções avançadas do cliente do Pulse (reconexão, `webSocketImpl` em testes...). Tipo TS: `Omit&lt;ConnectInput, "getToken" | "accountKey" | "baseUrl"&gt;` (sem tradução exata; ver excecoes.json).
   Object? get connectOptions;
-  /// Liga/desliga (ex.: false enquanto nao ha usuario logado). Padrão: `true`.
+  /// Liga/desliga (ex.: false enquanto não há usuário logado). Padrão: `true`.
   bool? get enabled;
   /// Substitui o pedido de token inteiro (apps sem BFF, testes). Tipo TS: `(() =&gt; Promise&lt;SgRealtimeConnectResponse&gt;)` (sem tradução exata; ver excecoes.json).
   Function? get fetchToken;
   /// Endereço do Pulse, usado quando o token não traz `connectUrl` (Pulse sem endereço público).
   String? get pulseUrl;
-  /// Rota que entrega o token de conexao do usuario logado (a BFF, na mesma origem). Padrão: `/api/realtime/connect`.
+  /// Rota que entrega o token de conexão do usuário logado (a BFF, na mesma origem). Padrão: `/api/realtime/connect`.
   String? get tokenEndpoint;
   /// Opções do `fetch` do token (ex.: `headers: { Authorization: ... }` quando não há cookie). Tipo TS: `RequestInit` (sem tradução exata; ver excecoes.json).
   Object? get tokenRequestInit;
@@ -37,7 +37,7 @@ const List<SgPropSpec> sgRealtimeProviderPropSpecs = <SgPropSpec>[
     type: 'List<Object?>',
     tsType: 'string[]',
     required: true,
-    description: 'Channels que a aplicacao quer ouvir (ex.: ["backup"]).',
+    description: 'Channels que a aplicação quer ouvir (ex.: ["backup"]).',
     exact: false,
   ),
   SgPropSpec(
@@ -46,7 +46,7 @@ const List<SgPropSpec> sgRealtimeProviderPropSpecs = <SgPropSpec>[
     type: 'Widget',
     tsType: 'React.ReactNode',
     required: true,
-    description: 'Arvore que ouve os avisos com useSgRealtimeEvent.',
+    description: 'Árvore que ouve os avisos com useSgRealtimeEvent.',
   ),
   SgPropSpec(
     name: 'connectOptions',
@@ -64,7 +64,7 @@ const List<SgPropSpec> sgRealtimeProviderPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'true',
-    description: 'Liga/desliga (ex.: false enquanto nao ha usuario logado).',
+    description: 'Liga/desliga (ex.: false enquanto não há usuário logado).',
   ),
   SgPropSpec(
     name: 'fetchToken',
@@ -90,7 +90,7 @@ const List<SgPropSpec> sgRealtimeProviderPropSpecs = <SgPropSpec>[
     tsType: 'string',
     required: false,
     defaultValue: '/api/realtime/connect',
-    description: 'Rota que entrega o token de conexao do usuario logado (a BFF, na mesma origem).',
+    description: 'Rota que entrega o token de conexão do usuário logado (a BFF, na mesma origem).',
   ),
   SgPropSpec(
     name: 'tokenRequestInit',

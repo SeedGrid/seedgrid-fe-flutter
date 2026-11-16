@@ -10,7 +10,7 @@ import '../props/sg_prop_spec.dart';
 /// Props públicas de `SgSkeleton` no React — Placeholder visual para estados de carregamento, simulando texto, blocos e avatares antes da chegada dos dados reais.
 /// O widget deve declarar `implements SgSkeletonProps`.
 abstract interface class SgSkeletonProps {
-  /// Animacao aplicada ao placeholder. Padrão: `wave`.
+  /// Animação aplicada ao placeholder. Padrão: `wave`.
   SgSkeletonAnimation? get animation;
   /// Raio de borda customizado. Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get borderRadius;
@@ -18,7 +18,7 @@ abstract interface class SgSkeletonProps {
   Object? get height;
   /// Forma visual base do placeholder. Padrão: `text`.
   SgSkeletonShape? get shape;
-  /// Tamanho unico para placeholders quadrados ou circulares. Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
+  /// Tamanho único para placeholders quadrados ou circulares. Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get size;
   /// Largura do placeholder. Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get width;
@@ -33,7 +33,7 @@ const List<SgPropSpec> sgSkeletonPropSpecs = <SgPropSpec>[
     tsType: 'SgSkeletonAnimation',
     required: false,
     defaultValue: 'wave',
-    description: 'Animacao aplicada ao placeholder.',
+    description: 'Animação aplicada ao placeholder.',
     values: <String>['none', 'pulse', 'wave'],
   ),
   SgPropSpec(
@@ -70,7 +70,7 @@ const List<SgPropSpec> sgSkeletonPropSpecs = <SgPropSpec>[
     type: 'Object?',
     tsType: 'string | number',
     required: false,
-    description: 'Tamanho unico para placeholders quadrados ou circulares.',
+    description: 'Tamanho único para placeholders quadrados ou circulares.',
     exact: false,
   ),
   SgPropSpec(

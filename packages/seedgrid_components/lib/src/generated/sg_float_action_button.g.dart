@@ -9,12 +9,12 @@ import 'package:flutter/widgets.dart';
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgFloatActionButton` no React — Botao de acao flutuante para tarefas de alto destaque, com suporte a hint, posicao fixa e expansao de acoes secundarias.
+/// Props públicas de `SgFloatActionButton` no React — Botão de ação flutuante para tarefas de alto destaque, com suporte a hint, posição fixa e expansão de ações secundárias.
 /// O widget deve declarar `implements SgFloatActionButtonProps`.
 abstract interface class SgFloatActionButtonProps {
   /// Padrão: `false`.
   bool? get absolute;
-  /// Acoes secundarias exibidas a partir do botao flutuante. Tipo TS: `SgFABAction[]` (sem tradução exata; ver excecoes.json).
+  /// Ações secundárias exibidas a partir do botão flutuante. Tipo TS: `SgFABAction[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get actions;
   Widget? get activeIcon;
   /// Padrão: `scale`.
@@ -30,30 +30,30 @@ abstract interface class SgFloatActionButtonProps {
   String? get dragId;
   /// Padrão: `md`.
   SgFloatActionButtonElevation? get elevation;
-  /// Desabilita a acao principal e as acoes derivadas. Padrão: `true`.
+  /// Desabilita a ação principal e as ações derivadas. Padrão: `true`.
   bool? get enabled;
   /// Padrão: `false`.
   bool? get enableDragDrop;
   SgFloatActionButtonFloatActionButtonStyle? get floatActionButtonStyle;
   /// Padrão: `down`.
   SgFloatActionButtonHideDirection? get hideDirection;
-  /// Rotulo textual complementar exibido como hint.
+  /// Rótulo textual complementar exibido como hint.
   String? get hint;
   /// Padrão: `300`.
   num? get hintDelay;
   SgFloatActionButtonHintPosition? get hintPosition;
-  /// Icone principal exibido no FAB.
+  /// Ícone principal exibido no FAB.
   Widget? get icon;
   /// Exibe estado de carregamento no FAB. Padrão: `false`.
   bool? get loading;
   /// Tipo TS: `{ x?: number; y?: number; }` (sem tradução exata; ver excecoes.json).
   Object? get offset;
-  /// Callback da acao principal do FAB. Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
+  /// Callback da ação principal do FAB. Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onClick;
-  /// Posicao do FAB na area visivel. Padrão: `bottom-right`.
+  /// Posição do FAB na área visível. Padrão: `bottom-right`.
   SgFloatActionButtonPosition? get position;
   num? get radius;
-  /// Peso visual da acao flutuante. Padrão: `primary`.
+  /// Peso visual da ação flutuante. Padrão: `primary`.
   SgFloatActionButtonSeverity? get severity;
   /// Padrão: `circle`.
   SgFloatActionButtonShape? get shape;
@@ -83,7 +83,7 @@ const List<SgPropSpec> sgFloatActionButtonPropSpecs = <SgPropSpec>[
     type: 'List<Object?>?',
     tsType: 'SgFABAction[]',
     required: false,
-    description: 'Acoes secundarias exibidas a partir do botao flutuante.',
+    description: 'Ações secundárias exibidas a partir do botão flutuante.',
     exact: false,
   ),
   SgPropSpec(
@@ -165,7 +165,7 @@ const List<SgPropSpec> sgFloatActionButtonPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'true',
-    description: 'Desabilita a acao principal e as acoes derivadas.',
+    description: 'Desabilita a ação principal e as ações derivadas.',
   ),
   SgPropSpec(
     name: 'enableDragDrop',
@@ -198,7 +198,7 @@ const List<SgPropSpec> sgFloatActionButtonPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Rotulo textual complementar exibido como hint.',
+    description: 'Rótulo textual complementar exibido como hint.',
   ),
   SgPropSpec(
     name: 'hintDelay',
@@ -222,7 +222,7 @@ const List<SgPropSpec> sgFloatActionButtonPropSpecs = <SgPropSpec>[
     type: 'Widget?',
     tsType: 'React.ReactNode',
     required: false,
-    description: 'Icone principal exibido no FAB.',
+    description: 'Ícone principal exibido no FAB.',
   ),
   SgPropSpec(
     name: 'loading',
@@ -247,7 +247,7 @@ const List<SgPropSpec> sgFloatActionButtonPropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '(() => void)',
     required: false,
-    description: 'Callback da acao principal do FAB.',
+    description: 'Callback da ação principal do FAB.',
     exact: false,
   ),
   SgPropSpec(
@@ -257,7 +257,7 @@ const List<SgPropSpec> sgFloatActionButtonPropSpecs = <SgPropSpec>[
     tsType: 'FABPosition',
     required: false,
     defaultValue: 'bottom-right',
-    description: 'Posicao do FAB na area visivel.',
+    description: 'Posição do FAB na área visível.',
     values: <String>['left-top', 'left-center', 'left-bottom', 'center-top', 'center-bottom', 'right-top', 'right-center', 'right-bottom'],
   ),
   SgPropSpec(
@@ -274,7 +274,7 @@ const List<SgPropSpec> sgFloatActionButtonPropSpecs = <SgPropSpec>[
     tsType: 'FABSeverity',
     required: false,
     defaultValue: 'primary',
-    description: 'Peso visual da acao flutuante.',
+    description: 'Peso visual da ação flutuante.',
     values: <String>['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'help', 'plain'],
   ),
   SgPropSpec(

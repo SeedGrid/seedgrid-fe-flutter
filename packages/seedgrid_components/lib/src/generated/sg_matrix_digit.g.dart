@@ -6,7 +6,7 @@
 
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgMatrixDigit` no React — Digito em estilo matriz para displays compactos de numeros e caracteres com estetica de painel digital.
+/// Props públicas de `SgMatrixDigit` no React — Digito em estilo matriz para displays compactos de números e caracteres com estética de painel digital.
 /// O widget deve declarar `implements SgMatrixDigitProps`.
 abstract interface class SgMatrixDigitProps {
   /// Cor do fundo do display. Padrão: `#0b1220`.

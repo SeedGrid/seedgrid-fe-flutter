@@ -8,10 +8,10 @@ import 'package:flutter/widgets.dart';
 
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgComponentsI18nProvider` no React — Provider de internacionalizacao para os componentes SeedGrid, com locale, mensagens embutidas e sobrescrita pontual por subtree.
+/// Props públicas de `SgComponentsI18nProvider` no React — Provider de internacionalização para os componentes SeedGrid, com locale, mensagens embutidas e sobrescrita pontual por subtree.
 /// O widget deve declarar `implements SgComponentsI18nProviderProps`.
 abstract interface class SgComponentsI18nProviderProps {
-  /// Arvore de componentes que consome o contexto de i18n. No React e `children`.
+  /// Árvore de componentes que consome o contexto de i18n. No React e `children`.
   Widget get child;
   /// Locale aplicado aos componentes dentro do provider. Padrão: `en-US`. Tipo TS: `SgComponentsLocale` (sem tradução exata; ver excecoes.json).
   Object? get locale;
@@ -27,7 +27,7 @@ const List<SgPropSpec> sgComponentsI18nProviderPropSpecs = <SgPropSpec>[
     type: 'Widget',
     tsType: 'React.ReactNode',
     required: true,
-    description: 'Arvore de componentes que consome o contexto de i18n.',
+    description: 'Árvore de componentes que consome o contexto de i18n.',
   ),
   SgPropSpec(
     name: 'locale',

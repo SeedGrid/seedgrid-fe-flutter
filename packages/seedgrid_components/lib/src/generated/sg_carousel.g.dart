@@ -7,10 +7,10 @@
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgCarousel` no React — Componente de navegacao sequencial para colecoes visuais com autoplay, navegadores e indicadores.
+/// Props públicas de `SgCarousel` no React — Componente de navegação sequencial para coleções visuais com autoplay, navegadores e indicadores.
 /// O widget deve declarar `implements SgCarouselProps`.
 abstract interface class SgCarouselProps {
-  /// Ativa reproducao automatica do carousel. Padrão: `false`.
+  /// Ativa reprodução automática do carousel. Padrão: `false`.
   bool? get autoPlay;
   /// Auto play interval in milliseconds Padrão: `3000`.
   num? get autoPlayInterval;
@@ -26,17 +26,17 @@ abstract interface class SgCarouselProps {
   String? get id;
   /// Custom class name for items Padrão: ``.
   String? get itemClassName;
-  /// Colecao de slides renderizados. Tipo TS: `React.ReactNode[]` (sem tradução exata; ver excecoes.json).
+  /// Coleção de slides renderizados. Tipo TS: `React.ReactNode[]` (sem tradução exata; ver excecoes.json).
   List<Object?> get items;
-  /// Quantidade de itens avancados por interacao. Padrão: `1`.
+  /// Quantidade de itens avançados por interação. Padrão: `1`.
   num? get numScroll;
-  /// Quantidade de itens visiveis simultaneamente. Padrão: `1`.
+  /// Quantidade de itens visíveis simultaneamente. Padrão: `1`.
   num? get numVisible;
   /// Callback when active index changes Tipo TS: `((index: number) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onIndexChange;
-  /// Orientacao do fluxo do carousel. Padrão: `horizontal`.
+  /// Orientação do fluxo do carousel. Padrão: `horizontal`.
   SgCarouselOrientation? get orientation;
-  /// Exibe indicadores de pagina. Padrão: `true`.
+  /// Exibe indicadores de página. Padrão: `true`.
   bool? get showIndicators;
   /// Show navigation buttons Padrão: `true`.
   bool? get showNavigators;
@@ -53,7 +53,7 @@ const List<SgPropSpec> sgCarouselPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description: 'Ativa reproducao automatica do carousel.',
+    description: 'Ativa reprodução automática do carousel.',
   ),
   SgPropSpec(
     name: 'autoPlayInterval',
@@ -123,7 +123,7 @@ const List<SgPropSpec> sgCarouselPropSpecs = <SgPropSpec>[
     type: 'List<Object?>',
     tsType: 'React.ReactNode[]',
     required: true,
-    description: 'Colecao de slides renderizados.',
+    description: 'Coleção de slides renderizados.',
     exact: false,
   ),
   SgPropSpec(
@@ -133,7 +133,7 @@ const List<SgPropSpec> sgCarouselPropSpecs = <SgPropSpec>[
     tsType: 'number',
     required: false,
     defaultValue: '1',
-    description: 'Quantidade de itens avancados por interacao.',
+    description: 'Quantidade de itens avançados por interação.',
   ),
   SgPropSpec(
     name: 'numVisible',
@@ -142,7 +142,7 @@ const List<SgPropSpec> sgCarouselPropSpecs = <SgPropSpec>[
     tsType: 'number',
     required: false,
     defaultValue: '1',
-    description: 'Quantidade de itens visiveis simultaneamente.',
+    description: 'Quantidade de itens visíveis simultaneamente.',
   ),
   SgPropSpec(
     name: 'onIndexChange',
@@ -160,7 +160,7 @@ const List<SgPropSpec> sgCarouselPropSpecs = <SgPropSpec>[
     tsType: 'SgCarouselOrientation',
     required: false,
     defaultValue: 'horizontal',
-    description: 'Orientacao do fluxo do carousel.',
+    description: 'Orientação do fluxo do carousel.',
     values: <String>['vertical', 'horizontal'],
   ),
   SgPropSpec(
@@ -170,7 +170,7 @@ const List<SgPropSpec> sgCarouselPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'true',
-    description: 'Exibe indicadores de pagina.',
+    description: 'Exibe indicadores de página.',
   ),
   SgPropSpec(
     name: 'showNavigators',

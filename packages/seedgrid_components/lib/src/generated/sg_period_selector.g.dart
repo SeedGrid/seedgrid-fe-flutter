@@ -7,21 +7,21 @@
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgPeriodSelector` no React — Seletor de periodos pre-definidos (Este mes, Ultimo trimestre, etc.) que resolve a regra temporal para um intervalo real de datas.
+/// Props públicas de `SgPeriodSelector` no React — Seletor de períodos pré-definidos (Este mês, Último trimestre, etc.) que resolve a regra temporal para um intervalo real de datas.
 /// O widget deve declarar `implements SgPeriodSelectorProps`.
 abstract interface class SgPeriodSelectorProps {
-  /// Habilita a opcao Periodo (intervalo customizado). Padrão: `true`.
+  /// Habilita a opção Período (intervalo customizado). Padrão: `true`.
   bool? get allowCustomPeriod;
-  /// Integracao react-hook-form (opcional). Tipo TS: `Control&lt;FieldValues&gt;` (sem tradução exata; ver excecoes.json).
+  /// Integração react-hook-form (opcional). Tipo TS: `Control&lt;FieldValues&gt;` (sem tradução exata; ver excecoes.json).
   Object? get control;
   /// Padrão: `true`.
   bool? get enabled;
   String? get error;
-  /// Identificador unico do campo. Padrão: `sg-period-selector`.
+  /// Identificador único do campo. Padrão: `sg-period-selector`.
   String? get id;
-  /// Rotulo exibido ao usuario.
+  /// Rótulo exibido ao usuário.
   String? get label;
-  /// Locale usado nos labels e formatacao. Padrão: `pt-BR`.
+  /// Locale usado nos labels e formatação. Padrão: `pt-BR`.
   String? get locale;
   /// Limite superior aplicado como clamp no intervalo. Tipo TS: `Date` (sem tradução exata; ver excecoes.json).
   Object? get maxDate;
@@ -30,15 +30,15 @@ abstract interface class SgPeriodSelectorProps {
   String? get name;
   /// Callback com o preset e intervalo resolvido. Tipo TS: `((period: ResolvedPeriod) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onChange;
-  /// Habilita a opcao Todos (sem limites de data). Padrão: `true`.
+  /// Habilita a opção Todos (sem limites de data). Padrão: `true`.
   bool? get permitAll;
-  /// Habilita o grupo de periodos atuais. Padrão: `true`.
+  /// Habilita o grupo de períodos atuais. Padrão: `true`.
   bool? get permitCurrent;
-  /// Habilita o grupo de periodos futuros. Padrão: `true`.
+  /// Habilita o grupo de períodos futuros. Padrão: `true`.
   bool? get permitFuture;
-  /// Habilita o grupo de periodos passados. Padrão: `true`.
+  /// Habilita o grupo de períodos passados. Padrão: `true`.
   bool? get permitPast;
-  /// Data de referencia para resolver os presets (default: agora). Util em testes. Tipo TS: `Date` (sem tradução exata; ver excecoes.json).
+  /// Data de referência para resolver os presets (default: agora). Útil em testes. Tipo TS: `Date` (sem tradução exata; ver excecoes.json).
   Object? get referenceDate;
   bool? get required;
   /// Preset selecionado (modo controlado).
@@ -54,7 +54,7 @@ const List<SgPropSpec> sgPeriodSelectorPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'true',
-    description: 'Habilita a opcao Periodo (intervalo customizado).',
+    description: 'Habilita a opção Período (intervalo customizado).',
   ),
   SgPropSpec(
     name: 'control',
@@ -62,7 +62,7 @@ const List<SgPropSpec> sgPeriodSelectorPropSpecs = <SgPropSpec>[
     type: 'Object?',
     tsType: 'Control<FieldValues>',
     required: false,
-    description: 'Integracao react-hook-form (opcional).',
+    description: 'Integração react-hook-form (opcional).',
     exact: false,
   ),
   SgPropSpec(
@@ -87,7 +87,7 @@ const List<SgPropSpec> sgPeriodSelectorPropSpecs = <SgPropSpec>[
     tsType: 'string',
     required: false,
     defaultValue: 'sg-period-selector',
-    description: 'Identificador unico do campo.',
+    description: 'Identificador único do campo.',
   ),
   SgPropSpec(
     name: 'label',
@@ -95,7 +95,7 @@ const List<SgPropSpec> sgPeriodSelectorPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Rotulo exibido ao usuario.',
+    description: 'Rótulo exibido ao usuário.',
   ),
   SgPropSpec(
     name: 'locale',
@@ -104,7 +104,7 @@ const List<SgPropSpec> sgPeriodSelectorPropSpecs = <SgPropSpec>[
     tsType: 'string',
     required: false,
     defaultValue: 'pt-BR',
-    description: 'Locale usado nos labels e formatacao.',
+    description: 'Locale usado nos labels e formatação.',
   ),
   SgPropSpec(
     name: 'maxDate',
@@ -147,7 +147,7 @@ const List<SgPropSpec> sgPeriodSelectorPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'true',
-    description: 'Habilita a opcao Todos (sem limites de data).',
+    description: 'Habilita a opção Todos (sem limites de data).',
   ),
   SgPropSpec(
     name: 'permitCurrent',
@@ -156,7 +156,7 @@ const List<SgPropSpec> sgPeriodSelectorPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'true',
-    description: 'Habilita o grupo de periodos atuais.',
+    description: 'Habilita o grupo de períodos atuais.',
   ),
   SgPropSpec(
     name: 'permitFuture',
@@ -165,7 +165,7 @@ const List<SgPropSpec> sgPeriodSelectorPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'true',
-    description: 'Habilita o grupo de periodos futuros.',
+    description: 'Habilita o grupo de períodos futuros.',
   ),
   SgPropSpec(
     name: 'permitPast',
@@ -174,7 +174,7 @@ const List<SgPropSpec> sgPeriodSelectorPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'true',
-    description: 'Habilita o grupo de periodos passados.',
+    description: 'Habilita o grupo de períodos passados.',
   ),
   SgPropSpec(
     name: 'referenceDate',
@@ -182,7 +182,7 @@ const List<SgPropSpec> sgPeriodSelectorPropSpecs = <SgPropSpec>[
     type: 'Object?',
     tsType: 'Date',
     required: false,
-    description: 'Data de referencia para resolver os presets (default: agora). Util em testes.',
+    description: 'Data de referência para resolver os presets (default: agora). Útil em testes.',
     exact: false,
   ),
   SgPropSpec(

@@ -9,7 +9,7 @@ import 'package:flutter/widgets.dart';
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgBreadcrumb` no React — Navegacao hierarquica compacta para indicar caminho atual e permitir retorno a niveis anteriores.
+/// Props públicas de `SgBreadcrumb` no React — Navegação hierarquica compacta para indicar caminho atual e permitir retorno a níveis anteriores.
 /// O widget deve declarar `implements SgBreadcrumbProps`.
 abstract interface class SgBreadcrumbProps {
   String? get ariaLabel;
@@ -18,18 +18,18 @@ abstract interface class SgBreadcrumbProps {
   /// Padrão: `Home`.
   Widget? get homeLabel;
   String? get itemClassName;
-  /// Lista ordenada de niveis do caminho de navegacao. Tipo TS: `SgBreadcrumbItem[]` (sem tradução exata; ver excecoes.json).
+  /// Lista ordenada de níveis do caminho de navegação. Tipo TS: `SgBreadcrumbItem[]` (sem tradução exata; ver excecoes.json).
   List<Object?> get items;
-  /// Quantidade maxima de itens visiveis antes do colapso.
+  /// Quantidade máxima de itens visíveis antes do colapso.
   num? get maxItems;
   /// Callback disparado ao navegar por um item. Tipo TS: `((item: SgBreadcrumbItem, index: number) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onNavigate;
-  /// Comportamento quando o caminho excede o espaco disponivel. Padrão: `collapse`.
+  /// Comportamento quando o caminho excede o espaço disponível. Padrão: `collapse`.
   SgBreadcrumbOverflowBehavior? get overflowBehavior;
   String? get overflowLabel;
-  /// Separador visual entre os niveis. Padrão: `chevron`. Tipo TS: `string | number | bigint | boolean | React.ReactElement&lt;unknown, string | React.JSXElementConstructor&lt;any&gt;&gt; | Iterable&lt;React.ReactNode&gt; | React.ReactPortal | Promise&lt;AwaitedReactNode&gt;` (sem tradução exata; ver excecoes.json).
+  /// Separador visual entre os níveis. Padrão: `chevron`. Tipo TS: `string | number | bigint | boolean | React.ReactElement&lt;unknown, string | React.JSXElementConstructor&lt;any&gt;&gt; | Iterable&lt;React.ReactNode&gt; | React.ReactPortal | Promise&lt;AwaitedReactNode&gt;` (sem tradução exata; ver excecoes.json).
   Object? get separator;
-  /// Adiciona um item inicial com icone de home. Padrão: `false`.
+  /// Adiciona um item inicial com ícone de home. Padrão: `false`.
   bool? get showHomeIcon;
   /// Padrão: `md`.
   SgBreadcrumbSize? get size;
@@ -75,7 +75,7 @@ const List<SgPropSpec> sgBreadcrumbPropSpecs = <SgPropSpec>[
     type: 'List<Object?>',
     tsType: 'SgBreadcrumbItem[]',
     required: true,
-    description: 'Lista ordenada de niveis do caminho de navegacao.',
+    description: 'Lista ordenada de níveis do caminho de navegação.',
     exact: false,
   ),
   SgPropSpec(
@@ -84,7 +84,7 @@ const List<SgPropSpec> sgBreadcrumbPropSpecs = <SgPropSpec>[
     type: 'num?',
     tsType: 'number',
     required: false,
-    description: 'Quantidade maxima de itens visiveis antes do colapso.',
+    description: 'Quantidade máxima de itens visíveis antes do colapso.',
   ),
   SgPropSpec(
     name: 'onNavigate',
@@ -102,7 +102,7 @@ const List<SgPropSpec> sgBreadcrumbPropSpecs = <SgPropSpec>[
     tsType: '"collapse" | "scroll"',
     required: false,
     defaultValue: 'collapse',
-    description: 'Comportamento quando o caminho excede o espaco disponivel.',
+    description: 'Comportamento quando o caminho excede o espaço disponível.',
     values: <String>['collapse', 'scroll'],
   ),
   SgPropSpec(
@@ -119,7 +119,7 @@ const List<SgPropSpec> sgBreadcrumbPropSpecs = <SgPropSpec>[
     tsType: 'string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<AwaitedReactNode>',
     required: false,
     defaultValue: 'chevron',
-    description: 'Separador visual entre os niveis.',
+    description: 'Separador visual entre os níveis.',
     exact: false,
   ),
   SgPropSpec(
@@ -129,7 +129,7 @@ const List<SgPropSpec> sgBreadcrumbPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description: 'Adiciona um item inicial com icone de home.',
+    description: 'Adiciona um item inicial com ícone de home.',
   ),
   SgPropSpec(
     name: 'size',

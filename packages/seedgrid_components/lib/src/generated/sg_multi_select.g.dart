@@ -9,12 +9,12 @@ import 'package:flutter/widgets.dart';
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgMultiSelect` no React — Campo de selecao multipla no estilo select: trigger com chevron que vira check ao abrir e dropdown com checkboxes que mantem a lista aberta.
+/// Props públicas de `SgMultiSelect` no React — Campo de seleção múltipla no estilo select: trigger com chevron que vira check ao abrir e dropdown com checkboxes que mantém a lista aberta.
 /// O widget deve declarar `implements SgMultiSelectProps`.
 abstract interface class SgMultiSelectProps {
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get borderRadius;
-  /// Exibe botao para limpar toda a selecao. Padrão: `false`.
+  /// Exibe botão para limpar toda a seleção. Padrão: `false`.
   bool? get clearable;
   /// Tipo TS: `any` (sem tradução exata; ver excecoes.json).
   Object? get control;
@@ -24,9 +24,9 @@ abstract interface class SgMultiSelectProps {
   String? get error;
   bool? get filled;
   String? get hintText;
-  /// Identificador unico do campo.
+  /// Identificador único do campo.
   String get id;
-  /// Rotulo exibido ao usuario.
+  /// Rótulo exibido ao usuário.
   String? get label;
   SgMultiSelectLabelAlign? get labelAlign;
   SgMultiSelectLabelPosition? get labelPosition;
@@ -34,7 +34,7 @@ abstract interface class SgMultiSelectProps {
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get labelWidth;
   String? get maxLengthMessage;
-  /// Limite maximo de itens selecionaveis.
+  /// Limite máximo de itens selecionáveis.
   num? get maxSelected;
   String? get minLengthMessage;
   num? get minNumberOfWords;
@@ -50,20 +50,20 @@ abstract interface class SgMultiSelectProps {
   Function? get onExit;
   /// Tipo TS: `((message: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onValidation;
-  /// Lista de opcoes disponiveis. `label` aparece na lista; `chipLabel` (opcional) e' o texto curto do item ja' selecionado (o resumo do campo), ex.: label "3 - Filial Centro" e chipLabel "3". Tipo TS: `SgMultiSelectOption[]` (sem tradução exata; ver excecoes.json).
+  /// Lista de opções disponíveis. `label` aparece na lista; `chipLabel` (opcional) e' o texto curto do item ja' selecionado (o resumo do campo), ex.: label "3 - Filial Centro" e chipLabel "3". Tipo TS: `SgMultiSelectOption[]` (sem tradução exata; ver excecoes.json).
   List<Object?> get options;
   /// Texto exibido quando nada esta selecionado.
   String? get placeholder;
   Widget? get prefixIcon;
   String? get prefixText;
-  /// Marca o campo como obrigatorio. Padrão: `false`.
+  /// Marca o campo como obrigatório. Padrão: `false`.
   bool? get required;
   String? get requiredMessage;
   /// Exibe campo de busca no topo do dropdown. Padrão: `false`.
   bool? get searchable;
   String? get searchPlaceholder;
   String? get suffixText;
-  /// Quantidade de rotulos antes de mostrar 'N selecionadas'. Padrão: `2`.
+  /// Quantidade de rótulos antes de mostrar 'N selecionadas'. Padrão: `2`.
   num? get summaryThreshold;
   SgMultiSelectTextInputType? get textInputType;
   bool? get validateOnBlur;
@@ -93,7 +93,7 @@ const List<SgPropSpec> sgMultiSelectPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description: 'Exibe botao para limpar toda a selecao.',
+    description: 'Exibe botão para limpar toda a seleção.',
   ),
   SgPropSpec(
     name: 'control',
@@ -152,7 +152,7 @@ const List<SgPropSpec> sgMultiSelectPropSpecs = <SgPropSpec>[
     type: 'String',
     tsType: 'string',
     required: true,
-    description: 'Identificador unico do campo.',
+    description: 'Identificador único do campo.',
   ),
   SgPropSpec(
     name: 'label',
@@ -160,7 +160,7 @@ const List<SgPropSpec> sgMultiSelectPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Rotulo exibido ao usuario.',
+    description: 'Rótulo exibido ao usuário.',
   ),
   SgPropSpec(
     name: 'labelAlign',
@@ -206,7 +206,7 @@ const List<SgPropSpec> sgMultiSelectPropSpecs = <SgPropSpec>[
     type: 'num?',
     tsType: 'number',
     required: false,
-    description: 'Limite maximo de itens selecionaveis.',
+    description: 'Limite máximo de itens selecionáveis.',
   ),
   SgPropSpec(
     name: 'minLengthMessage',
@@ -285,7 +285,7 @@ const List<SgPropSpec> sgMultiSelectPropSpecs = <SgPropSpec>[
     type: 'List<Object?>',
     tsType: 'SgMultiSelectOption[]',
     required: true,
-    description: 'Lista de opcoes disponiveis. `label` aparece na lista; `chipLabel` (opcional) e\' o texto curto do item ja\' selecionado (o resumo do campo), ex.: label "3 - Filial Centro" e chipLabel "3".',
+    description: 'Lista de opções disponíveis. `label` aparece na lista; `chipLabel` (opcional) e\' o texto curto do item ja\' selecionado (o resumo do campo), ex.: label "3 - Filial Centro" e chipLabel "3".',
     exact: false,
   ),
   SgPropSpec(
@@ -317,7 +317,7 @@ const List<SgPropSpec> sgMultiSelectPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description: 'Marca o campo como obrigatorio.',
+    description: 'Marca o campo como obrigatório.',
   ),
   SgPropSpec(
     name: 'requiredMessage',
@@ -356,7 +356,7 @@ const List<SgPropSpec> sgMultiSelectPropSpecs = <SgPropSpec>[
     tsType: 'number',
     required: false,
     defaultValue: '2',
-    description: 'Quantidade de rotulos antes de mostrar \'N selecionadas\'.',
+    description: 'Quantidade de rótulos antes de mostrar \'N selecionadas\'.',
   ),
   SgPropSpec(
     name: 'textInputType',

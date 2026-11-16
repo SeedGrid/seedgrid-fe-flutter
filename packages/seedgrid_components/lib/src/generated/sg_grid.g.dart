@@ -9,7 +9,7 @@ import 'package:flutter/widgets.dart';
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgGrid` no React — Primitive de layout em grade responsiva para distribuicao de cards, blocos e formularios em colunas e linhas.
+/// Props públicas de `SgGrid` no React — Primitive de layout em grade responsiva para distribuição de cards, blocos e formulários em colunas e linhas.
 /// O widget deve declarar `implements SgGridProps`.
 abstract interface class SgGridProps {
   SgGridAlign? get align;
@@ -19,14 +19,14 @@ abstract interface class SgGridProps {
   Object? get columns;
   /// Ativa preenchimento denso do fluxo de grade. Padrão: `false`.
   bool? get dense;
-  /// Espacamento entre os itens da grade. Padrão: `0`. Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
+  /// Espaçamento entre os itens da grade. Padrão: `0`. Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get gap;
   SgGridJustify? get justify;
-  /// Largura minima dos itens em modo auto-fit. Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
+  /// Largura mínima dos itens em modo auto-fit. Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get minItemWidth;
-  /// Espacamento interno do container grid. Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
+  /// Espaçamento interno do container grid. Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get padding;
-  /// Altura automatica das linhas da grade. Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
+  /// Altura automática das linhas da grade. Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get rowHeight;
 }
 
@@ -73,7 +73,7 @@ const List<SgPropSpec> sgGridPropSpecs = <SgPropSpec>[
     tsType: 'string | number',
     required: false,
     defaultValue: '0',
-    description: 'Espacamento entre os itens da grade.',
+    description: 'Espaçamento entre os itens da grade.',
     exact: false,
   ),
   SgPropSpec(
@@ -90,7 +90,7 @@ const List<SgPropSpec> sgGridPropSpecs = <SgPropSpec>[
     type: 'Object?',
     tsType: 'string | number',
     required: false,
-    description: 'Largura minima dos itens em modo auto-fit.',
+    description: 'Largura mínima dos itens em modo auto-fit.',
     exact: false,
   ),
   SgPropSpec(
@@ -99,7 +99,7 @@ const List<SgPropSpec> sgGridPropSpecs = <SgPropSpec>[
     type: 'Object?',
     tsType: 'string | number',
     required: false,
-    description: 'Espacamento interno do container grid.',
+    description: 'Espaçamento interno do container grid.',
     exact: false,
   ),
   SgPropSpec(
@@ -108,7 +108,7 @@ const List<SgPropSpec> sgGridPropSpecs = <SgPropSpec>[
     type: 'Object?',
     tsType: 'string | number',
     required: false,
-    description: 'Altura automatica das linhas da grade.',
+    description: 'Altura automática das linhas da grade.',
     exact: false,
   ),
 ];

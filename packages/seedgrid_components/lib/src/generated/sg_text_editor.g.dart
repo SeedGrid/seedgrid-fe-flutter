@@ -6,7 +6,7 @@
 
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgTextEditor` no React — Editor de texto rico para conteudo formatado, comentarios elaborados e edicao textual com recursos visuais.
+/// Props públicas de `SgTextEditor` no React — Editor de texto rico para conteúdo formatado, comentários elaborados e edição textual com recursos visuais.
 /// O widget deve declarar `implements SgTextEditorProps`.
 abstract interface class SgTextEditorProps {
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
@@ -23,7 +23,7 @@ abstract interface class SgTextEditorProps {
   String? get fileName;
   /// Altura do editor. Padrão: `320`.
   num? get height;
-  /// Identificador unico do editor.
+  /// Identificador único do editor.
   String get id;
   String? get name;
   /// Tipo TS: `((htmlBody: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
@@ -32,7 +32,7 @@ abstract interface class SgTextEditorProps {
   Function? get onCssTextChange;
   /// Tipo TS: `((meta: SgTextEditorSaveMeta) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onLoad;
-  /// Callback de persistencia do conteudo. Tipo TS: `((file: File, meta: SgTextEditorSaveMeta) =&gt; void)` (sem tradução exata; ver excecoes.json).
+  /// Callback de persistência do conteúdo. Tipo TS: `((file: File, meta: SgTextEditorSaveMeta) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onSave;
   /// Texto de ajuda inicial.
   String? get placeholder;
@@ -118,7 +118,7 @@ const List<SgPropSpec> sgTextEditorPropSpecs = <SgPropSpec>[
     type: 'String',
     tsType: 'string',
     required: true,
-    description: 'Identificador unico do editor.',
+    description: 'Identificador único do editor.',
   ),
   SgPropSpec(
     name: 'name',
@@ -157,7 +157,7 @@ const List<SgPropSpec> sgTextEditorPropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '((file: File, meta: SgTextEditorSaveMeta) => void)',
     required: false,
-    description: 'Callback de persistencia do conteudo.',
+    description: 'Callback de persistência do conteúdo.',
     exact: false,
   ),
   SgPropSpec(

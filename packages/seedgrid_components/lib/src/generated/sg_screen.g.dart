@@ -8,18 +8,18 @@ import 'package:flutter/widgets.dart';
 
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgScreen` no React — Container estrutural de alto nivel para composicao de telas com area client, fullscreen opcional e suporte a docking.
+/// Props públicas de `SgScreen` no React — Container estrutural de alto nível para composição de telas com área client, fullscreen opcional e suporte a docking.
 /// O widget deve declarar `implements SgScreenProps`.
 abstract interface class SgScreenProps {
-  /// Conteudo estrutural da tela, normalmente com panels dockados. No React e `children`.
+  /// Conteúdo estrutural da tela, normalmente com panels dockados. No React e `children`.
   Widget? get child;
   /// Define se a tela ocupa toda a viewport. Padrão: `true`.
   bool? get fullscreen;
-  /// Altura explicita quando a tela nao for fullscreen. Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
+  /// Altura explicita quando a tela não for fullscreen. Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get height;
-  /// Espacamento interno aplicado ao root da tela. Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
+  /// Espaçamento interno aplicado ao root da tela. Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get padding;
-  /// Largura explicita quando a tela nao for fullscreen. Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
+  /// Largura explicita quando a tela não for fullscreen. Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get width;
 }
 
@@ -31,7 +31,7 @@ const List<SgPropSpec> sgScreenPropSpecs = <SgPropSpec>[
     type: 'Widget?',
     tsType: 'React.ReactNode',
     required: false,
-    description: 'Conteudo estrutural da tela, normalmente com panels dockados.',
+    description: 'Conteúdo estrutural da tela, normalmente com panels dockados.',
   ),
   SgPropSpec(
     name: 'fullscreen',
@@ -48,7 +48,7 @@ const List<SgPropSpec> sgScreenPropSpecs = <SgPropSpec>[
     type: 'Object?',
     tsType: 'string | number',
     required: false,
-    description: 'Altura explicita quando a tela nao for fullscreen.',
+    description: 'Altura explicita quando a tela não for fullscreen.',
     exact: false,
   ),
   SgPropSpec(
@@ -57,7 +57,7 @@ const List<SgPropSpec> sgScreenPropSpecs = <SgPropSpec>[
     type: 'Object?',
     tsType: 'string | number',
     required: false,
-    description: 'Espacamento interno aplicado ao root da tela.',
+    description: 'Espaçamento interno aplicado ao root da tela.',
     exact: false,
   ),
   SgPropSpec(
@@ -66,7 +66,7 @@ const List<SgPropSpec> sgScreenPropSpecs = <SgPropSpec>[
     type: 'Object?',
     tsType: 'string | number',
     required: false,
-    description: 'Largura explicita quando a tela nao for fullscreen.',
+    description: 'Largura explicita quando a tela não for fullscreen.',
     exact: false,
   ),
 ];

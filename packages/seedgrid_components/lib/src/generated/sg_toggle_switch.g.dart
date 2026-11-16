@@ -8,7 +8,7 @@ import 'package:flutter/widgets.dart';
 
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgToggleSwitch` no React — Interruptor booleano para ativar ou desativar estados, flags e configuracoes simples.
+/// Props públicas de `SgToggleSwitch` no React — Interruptor booleano para ativar ou desativar estados, flags e configurações simples.
 /// O widget deve declarar `implements SgToggleSwitchProps`.
 abstract interface class SgToggleSwitchProps {
   /// Valor booleano atual.
@@ -19,20 +19,20 @@ abstract interface class SgToggleSwitchProps {
   String? get description;
   bool? get enabled;
   String? get error;
-  /// Identificador unico do componente.
+  /// Identificador único do componente.
   String get id;
   /// Tipo TS: `(React.InputHTMLAttributes&lt;HTMLInputElement&gt; & { ref?: React.Ref&lt;HTMLInputElement&gt;; })` (sem tradução exata; ver excecoes.json).
   Object? get inputProps;
-  /// Rotulo exibido ao usuario.
+  /// Rótulo exibido ao usuário.
   String? get label;
   String? get name;
   Widget? get offIcon;
-  /// Callback de mudanca. Tipo TS: `((checked: boolean) =&gt; void)` (sem tradução exata; ver excecoes.json).
+  /// Callback de mudança. Tipo TS: `((checked: boolean) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onChange;
   Widget? get onIcon;
   /// Tipo TS: `((message: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onValidation;
-  /// Permite visualizacao sem alteracao. Padrão: `false`.
+  /// Permite visualização sem alteração. Padrão: `false`.
   bool? get readOnly;
   bool? get required;
   String? get requiredMessage;
@@ -98,7 +98,7 @@ const List<SgPropSpec> sgToggleSwitchPropSpecs = <SgPropSpec>[
     type: 'String',
     tsType: 'string',
     required: true,
-    description: 'Identificador unico do componente.',
+    description: 'Identificador único do componente.',
   ),
   SgPropSpec(
     name: 'inputProps',
@@ -114,7 +114,7 @@ const List<SgPropSpec> sgToggleSwitchPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Rotulo exibido ao usuario.',
+    description: 'Rótulo exibido ao usuário.',
   ),
   SgPropSpec(
     name: 'name',
@@ -136,7 +136,7 @@ const List<SgPropSpec> sgToggleSwitchPropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '((checked: boolean) => void)',
     required: false,
-    description: 'Callback de mudanca.',
+    description: 'Callback de mudança.',
     exact: false,
   ),
   SgPropSpec(
@@ -161,7 +161,7 @@ const List<SgPropSpec> sgToggleSwitchPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description: 'Permite visualizacao sem alteracao.',
+    description: 'Permite visualização sem alteração.',
   ),
   SgPropSpec(
     name: 'required',

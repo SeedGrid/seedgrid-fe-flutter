@@ -9,7 +9,7 @@ import 'package:flutter/widgets.dart';
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgInputTextArea` no React — Campo textual multi-linha para descricoes, observacoes e conteudos longos com suporte a contagem e validacao.
+/// Props públicas de `SgInputTextArea` no React — Campo textual multi-linha para descrições, observações e conteúdos longos com suporte a contagem e validação.
 /// O widget deve declarar `implements SgInputTextAreaProps`.
 abstract interface class SgInputTextAreaProps {
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
@@ -24,27 +24,27 @@ abstract interface class SgInputTextAreaProps {
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get height;
   String? get hintText;
-  /// Identificador unico do campo multi-linha.
+  /// Identificador único do campo multi-linha.
   String get id;
-  /// Rotulo principal exibido ao usuario.
+  /// Rótulo principal exibido ao usuário.
   String? get label;
   SgInputTextAreaLabelAlign? get labelAlign;
   SgInputTextAreaLabelPosition? get labelPosition;
   String? get labelText;
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get labelWidth;
-  /// Limite maximo de caracteres.
+  /// Limite máximo de caracteres.
   num? get maxLength;
   String? get maxLengthMessage;
   num? get maxLines;
-  /// Limite minimo de caracteres.
+  /// Limite mínimo de caracteres.
   num? get minLength;
   String? get minLengthMessage;
   num? get minLines;
   String? get minLinesMessage;
   num? get minNumberOfWords;
   String? get minNumberOfWordsMessage;
-  /// Nome do campo para formularios.
+  /// Nome do campo para formulários.
   String? get name;
   /// Callback com o texto multi-linha atual. Tipo TS: `((value: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onChange;
@@ -57,7 +57,7 @@ abstract interface class SgInputTextAreaProps {
   /// Tipo TS: `((message: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onValidation;
   Widget? get prefixIcon;
-  /// Marca o campo como obrigatorio. Padrão: `false`.
+  /// Marca o campo como obrigatório. Padrão: `false`.
   bool? get required;
   String? get requiredMessage;
   bool? get showCharCounter;
@@ -146,7 +146,7 @@ const List<SgPropSpec> sgInputTextAreaPropSpecs = <SgPropSpec>[
     type: 'String',
     tsType: 'string',
     required: true,
-    description: 'Identificador unico do campo multi-linha.',
+    description: 'Identificador único do campo multi-linha.',
   ),
   SgPropSpec(
     name: 'label',
@@ -154,7 +154,7 @@ const List<SgPropSpec> sgInputTextAreaPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Rotulo principal exibido ao usuario.',
+    description: 'Rótulo principal exibido ao usuário.',
   ),
   SgPropSpec(
     name: 'labelAlign',
@@ -193,7 +193,7 @@ const List<SgPropSpec> sgInputTextAreaPropSpecs = <SgPropSpec>[
     type: 'num?',
     tsType: 'number',
     required: false,
-    description: 'Limite maximo de caracteres.',
+    description: 'Limite máximo de caracteres.',
   ),
   SgPropSpec(
     name: 'maxLengthMessage',
@@ -215,7 +215,7 @@ const List<SgPropSpec> sgInputTextAreaPropSpecs = <SgPropSpec>[
     type: 'num?',
     tsType: 'number',
     required: false,
-    description: 'Limite minimo de caracteres.',
+    description: 'Limite mínimo de caracteres.',
   ),
   SgPropSpec(
     name: 'minLengthMessage',
@@ -258,7 +258,7 @@ const List<SgPropSpec> sgInputTextAreaPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Nome do campo para formularios.',
+    description: 'Nome do campo para formulários.',
   ),
   SgPropSpec(
     name: 'onChange',
@@ -315,7 +315,7 @@ const List<SgPropSpec> sgInputTextAreaPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description: 'Marca o campo como obrigatorio.',
+    description: 'Marca o campo como obrigatório.',
   ),
   SgPropSpec(
     name: 'requiredMessage',

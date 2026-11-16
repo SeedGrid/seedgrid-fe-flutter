@@ -8,25 +8,25 @@ import 'package:flutter/widgets.dart';
 
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgPageControlPage` no React — Declaracao de uma pagina individual dentro de um SgPageControl, com titulo, hint, icone e conteudo associado.
+/// Props públicas de `SgPageControlPage` no React — Declaração de uma página individual dentro de um SgPageControl, com título, hint, ícone e conteúdo associado.
 /// O widget deve declarar `implements SgPageControlPageProps`.
 abstract interface class SgPageControlPageProps {
-  /// Conteudo exibido no painel desta pagina. No React e `children`.
+  /// Conteúdo exibido no painel desta página. No React e `children`.
   Widget get child;
-  /// Desabilita a selecao da pagina. Padrão: `true`.
+  /// Desabilita a seleção da página. Padrão: `true`.
   bool? get enabled;
-  /// Oculta a pagina sem remove-la da estrutura. Padrão: `false`.
+  /// Oculta a página sem remove-la da estrutura. Padrão: `false`.
   bool? get hidden;
-  /// Descricao curta associada a aba.
+  /// Descrição curta associada a aba.
   String? get hint;
-  /// Icone opcional da aba.
+  /// Ícone opcional da aba.
   Widget? get icon;
-  /// Identificador estavel da pagina.
+  /// Identificador estável da página.
   String? get id;
   /// Padrão: `false`.
   bool? get keepMounted;
   String? get tabClassName;
-  /// Titulo exibido na aba da pagina.
+  /// Título exibido na aba da página.
   Widget get title;
 }
 
@@ -38,7 +38,7 @@ const List<SgPropSpec> sgPageControlPagePropSpecs = <SgPropSpec>[
     type: 'Widget',
     tsType: 'React.ReactNode',
     required: true,
-    description: 'Conteudo exibido no painel desta pagina.',
+    description: 'Conteúdo exibido no painel desta página.',
   ),
   SgPropSpec(
     name: 'enabled',
@@ -47,7 +47,7 @@ const List<SgPropSpec> sgPageControlPagePropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'true',
-    description: 'Desabilita a selecao da pagina.',
+    description: 'Desabilita a seleção da página.',
   ),
   SgPropSpec(
     name: 'hidden',
@@ -56,7 +56,7 @@ const List<SgPropSpec> sgPageControlPagePropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description: 'Oculta a pagina sem remove-la da estrutura.',
+    description: 'Oculta a página sem remove-la da estrutura.',
   ),
   SgPropSpec(
     name: 'hint',
@@ -64,7 +64,7 @@ const List<SgPropSpec> sgPageControlPagePropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Descricao curta associada a aba.',
+    description: 'Descrição curta associada a aba.',
   ),
   SgPropSpec(
     name: 'icon',
@@ -72,7 +72,7 @@ const List<SgPropSpec> sgPageControlPagePropSpecs = <SgPropSpec>[
     type: 'Widget?',
     tsType: 'React.ReactNode',
     required: false,
-    description: 'Icone opcional da aba.',
+    description: 'Ícone opcional da aba.',
   ),
   SgPropSpec(
     name: 'id',
@@ -80,7 +80,7 @@ const List<SgPropSpec> sgPageControlPagePropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Identificador estavel da pagina.',
+    description: 'Identificador estável da página.',
   ),
   SgPropSpec(
     name: 'keepMounted',
@@ -103,6 +103,6 @@ const List<SgPropSpec> sgPageControlPagePropSpecs = <SgPropSpec>[
     type: 'Widget',
     tsType: 'React.ReactNode',
     required: true,
-    description: 'Titulo exibido na aba da pagina.',
+    description: 'Título exibido na aba da página.',
   ),
 ];

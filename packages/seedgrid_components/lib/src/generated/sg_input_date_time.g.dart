@@ -9,7 +9,7 @@ import 'package:flutter/widgets.dart';
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgInputDateTime` no React — Campo de data e hora que entrega e recebe instantes ISO 8601 em UTC, exibindo a hora no fuso escolhido, com limites, passo de minutos e validacao.
+/// Props públicas de `SgInputDateTime` no React — Campo de data e hora que entrega e recebe instantes ISO 8601 em UTC, exibindo a hora no fuso escolhido, com limites, passo de minutos e validação.
 /// O widget deve declarar `implements SgInputDateTimeProps`.
 abstract interface class SgInputDateTimeProps {
   bool? get alwaysFloat;
@@ -18,7 +18,7 @@ abstract interface class SgInputDateTimeProps {
   bool? get clearButton;
   /// Tipo TS: `any` (sem tradução exata; ver excecoes.json).
   Object? get control;
-  /// Instante inicial (nao controlado). Tipo TS: `string | Date` (sem tradução exata; ver excecoes.json).
+  /// Instante inicial (não controlado). Tipo TS: `string | Date` (sem tradução exata; ver excecoes.json).
   Object? get defaultValue;
   SgInputDateTimeElevation? get elevation;
   bool? get enabled;
@@ -27,11 +27,11 @@ abstract interface class SgInputDateTimeProps {
   String? get hintText;
   /// Tipo TS: `React.ReactNode[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get iconButtons;
-  /// Identificador unico do campo.
+  /// Identificador único do campo.
   String get id;
   /// Tipo TS: `(React.InputHTMLAttributes&lt;HTMLInputElement&gt; & { ref?: React.Ref&lt;HTMLInputElement&gt;; })` (sem tradução exata; ver excecoes.json).
   Object? get inputProps;
-  /// Rotulo principal exibido ao usuario.
+  /// Rótulo principal exibido ao usuário.
   String? get label;
   SgInputDateTimeLabelAlign? get labelAlign;
   SgInputDateTimeLabelPosition? get labelPosition;
@@ -50,15 +50,15 @@ abstract interface class SgInputDateTimeProps {
   String? get minNumberOfWordsMessage;
   /// Passo dos minutos (5, 10, 15, 30).
   num? get minuteStep;
-  /// Nome do campo para formularios.
+  /// Nome do campo para formulários.
   String? get name;
   /// Valor no formato de valueMode (ou null) e texto local do campo. Tipo TS: `((value: string, local: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onChange;
   /// Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onClear;
-  /// Disparado ao receber foco — padrao seedgrid. Tipo TS: `((() =&gt; void) & (() =&gt; void))` (sem tradução exata; ver excecoes.json).
+  /// Disparado ao receber foco — padrão seedgrid. Tipo TS: `((() =&gt; void) & (() =&gt; void))` (sem tradução exata; ver excecoes.json).
   Function? get onEnter;
-  /// Disparado ao perder o foco (apos validacao) — padrao seedgrid. Tipo TS: `((() =&gt; void) & (() =&gt; void))` (sem tradução exata; ver excecoes.json).
+  /// Disparado ao perder o foco (após validação) — padrão seedgrid. Tipo TS: `((() =&gt; void) & (() =&gt; void))` (sem tradução exata; ver excecoes.json).
   Function? get onExit;
   /// Tipo TS: `((message: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onValidation;
@@ -66,7 +66,7 @@ abstract interface class SgInputDateTimeProps {
   Widget? get prefixIcon;
   String? get prefixText;
   bool? get readOnly;
-  /// Marca o campo como obrigatorio. Padrão: `false`.
+  /// Marca o campo como obrigatório. Padrão: `false`.
   bool? get required;
   String? get requiredMessage;
   bool? get showCharCounter;
@@ -76,7 +76,7 @@ abstract interface class SgInputDateTimeProps {
   SgInputDateTimeTextInputType? get textInputType;
   /// Fuso do campo: local, UTC, deslocamento (+03:00) ou nome IANA. Padrão: `local`.
   String? get timeZone;
-  /// Formato do valor que sai (onChange e formulario) e que o formulario aceita: local (2026-01-15T10:30), utc (2026-01-15T13:30:00Z) ou offset (2026-01-15T10:30:00-03:00). Padrão: `local`.
+  /// Formato do valor que sai (onChange e formulário) e que o formulário aceita: local (2026-01-15T10:30), utc (2026-01-15T13:30:00Z) ou offset (2026-01-15T10:30:00-03:00). Padrão: `local`.
   SgInputDateTimeValueMode? get valueMode;
   bool? get validateOnBlur;
   /// Tipo TS: `((value: string) =&gt; string)` (sem tradução exata; ver excecoes.json).
@@ -126,7 +126,7 @@ const List<SgPropSpec> sgInputDateTimePropSpecs = <SgPropSpec>[
     type: 'Object?',
     tsType: 'string | Date',
     required: false,
-    description: 'Instante inicial (nao controlado).',
+    description: 'Instante inicial (não controlado).',
     exact: false,
   ),
   SgPropSpec(
@@ -179,7 +179,7 @@ const List<SgPropSpec> sgInputDateTimePropSpecs = <SgPropSpec>[
     type: 'String',
     tsType: 'string',
     required: true,
-    description: 'Identificador unico do campo.',
+    description: 'Identificador único do campo.',
   ),
   SgPropSpec(
     name: 'inputProps',
@@ -195,7 +195,7 @@ const List<SgPropSpec> sgInputDateTimePropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Rotulo principal exibido ao usuario.',
+    description: 'Rótulo principal exibido ao usuário.',
   ),
   SgPropSpec(
     name: 'labelAlign',
@@ -302,7 +302,7 @@ const List<SgPropSpec> sgInputDateTimePropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Nome do campo para formularios.',
+    description: 'Nome do campo para formulários.',
   ),
   SgPropSpec(
     name: 'onChange',
@@ -327,7 +327,7 @@ const List<SgPropSpec> sgInputDateTimePropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '((() => void) & (() => void))',
     required: false,
-    description: 'Disparado ao receber foco — padrao seedgrid.',
+    description: 'Disparado ao receber foco — padrão seedgrid.',
     exact: false,
   ),
   SgPropSpec(
@@ -336,7 +336,7 @@ const List<SgPropSpec> sgInputDateTimePropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '((() => void) & (() => void))',
     required: false,
-    description: 'Disparado ao perder o foco (apos validacao) — padrao seedgrid.',
+    description: 'Disparado ao perder o foco (após validação) — padrão seedgrid.',
     exact: false,
   ),
   SgPropSpec(
@@ -382,7 +382,7 @@ const List<SgPropSpec> sgInputDateTimePropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description: 'Marca o campo como obrigatorio.',
+    description: 'Marca o campo como obrigatório.',
   ),
   SgPropSpec(
     name: 'requiredMessage',
@@ -438,7 +438,7 @@ const List<SgPropSpec> sgInputDateTimePropSpecs = <SgPropSpec>[
     tsType: '"local" | "utc" | "offset"',
     required: false,
     defaultValue: 'local',
-    description: 'Formato do valor que sai (onChange e formulario) e que o formulario aceita: local (2026-01-15T10:30), utc (2026-01-15T13:30:00Z) ou offset (2026-01-15T10:30:00-03:00).',
+    description: 'Formato do valor que sai (onChange e formulário) e que o formulário aceita: local (2026-01-15T10:30), utc (2026-01-15T13:30:00Z) ou offset (2026-01-15T10:30:00-03:00).',
     values: <String>['local', 'utc', 'offset'],
   ),
   SgPropSpec(

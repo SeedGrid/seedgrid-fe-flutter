@@ -6,26 +6,26 @@
 
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgSlider` no React — Controle deslizante para ajuste numerico continuo dentro de um intervalo definido.
+/// Props públicas de `SgSlider` no React — Controle deslizante para ajuste numérico continuo dentro de um intervalo definido.
 /// O widget deve declarar `implements SgSliderProps`.
 abstract interface class SgSliderProps {
   String? get ariaLabel;
   /// Tipo TS: `any` (sem tradução exata; ver excecoes.json).
   Object? get control;
   num? get defaultValue;
-  /// Desabilita interacao. Padrão: `true`.
+  /// Desabilita interação. Padrão: `true`.
   bool? get enabled;
   String? get error;
-  /// Identificador unico do componente.
+  /// Identificador único do componente.
   String get id;
   /// Tipo TS: `SliderInputProps` (sem tradução exata; ver excecoes.json).
   Object? get inputProps;
-  /// Valor maximo do intervalo.
+  /// Valor máximo do intervalo.
   num get maxValue;
-  /// Valor minimo do intervalo.
+  /// Valor mínimo do intervalo.
   num get minValue;
   String? get name;
-  /// Callback de mudanca. Tipo TS: `((value: number) =&gt; void)` (sem tradução exata; ver excecoes.json).
+  /// Callback de mudança. Tipo TS: `((value: number) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onChange;
   /// Passo entre valores. Padrão: `1`.
   num? get step;
@@ -66,7 +66,7 @@ const List<SgPropSpec> sgSliderPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'true',
-    description: 'Desabilita interacao.',
+    description: 'Desabilita interação.',
   ),
   SgPropSpec(
     name: 'error',
@@ -81,7 +81,7 @@ const List<SgPropSpec> sgSliderPropSpecs = <SgPropSpec>[
     type: 'String',
     tsType: 'string',
     required: true,
-    description: 'Identificador unico do componente.',
+    description: 'Identificador único do componente.',
   ),
   SgPropSpec(
     name: 'inputProps',
@@ -97,7 +97,7 @@ const List<SgPropSpec> sgSliderPropSpecs = <SgPropSpec>[
     type: 'num',
     tsType: 'number',
     required: true,
-    description: 'Valor maximo do intervalo.',
+    description: 'Valor máximo do intervalo.',
   ),
   SgPropSpec(
     name: 'minValue',
@@ -105,7 +105,7 @@ const List<SgPropSpec> sgSliderPropSpecs = <SgPropSpec>[
     type: 'num',
     tsType: 'number',
     required: true,
-    description: 'Valor minimo do intervalo.',
+    description: 'Valor mínimo do intervalo.',
   ),
   SgPropSpec(
     name: 'name',
@@ -120,7 +120,7 @@ const List<SgPropSpec> sgSliderPropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '((value: number) => void)',
     required: false,
-    description: 'Callback de mudanca.',
+    description: 'Callback de mudança.',
     exact: false,
   ),
   SgPropSpec(

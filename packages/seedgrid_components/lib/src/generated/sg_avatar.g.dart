@@ -9,7 +9,7 @@ import 'package:flutter/widgets.dart';
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgAvatar` no React — Representacao visual compacta de pessoa, usuario ou entidade por imagem, iniciais, icone ou fallback.
+/// Props públicas de `SgAvatar` no React — Representação visual compacta de pessoa, usuário ou entidade por imagem, iniciais, ícone ou fallback.
 /// O widget deve declarar `implements SgAvatarProps`.
 abstract interface class SgAvatarProps {
   /// Texto alternativo da imagem do avatar.
@@ -22,15 +22,15 @@ abstract interface class SgAvatarProps {
   Object? get customColors;
   /// Padrão: `true`.
   bool? get enabled;
-  /// Conteudo de fallback quando nao ha imagem.
+  /// Conteúdo de fallback quando não há imagem.
   Widget? get fallback;
   Widget? get icon;
   String? get imageClassName;
-  /// Conteudo textual usado como iniciais ou identificacao visual.
+  /// Conteúdo textual usado como iniciais ou identificação visual.
   Widget? get label;
   /// Tipo TS: `((event: React.SyntheticEvent&lt;HTMLImageElement, Event&gt;) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onImageError;
-  /// Tom visual do avatar quando nao ha imagem. Padrão: `primary`.
+  /// Tom visual do avatar quando não há imagem. Padrão: `primary`.
   SgAvatarSeverity? get severity;
   /// Forma visual do avatar. Padrão: `circle`.
   SgAvatarShape? get shape;
@@ -87,7 +87,7 @@ const List<SgPropSpec> sgAvatarPropSpecs = <SgPropSpec>[
     type: 'Widget?',
     tsType: 'React.ReactNode',
     required: false,
-    description: 'Conteudo de fallback quando nao ha imagem.',
+    description: 'Conteúdo de fallback quando não há imagem.',
   ),
   SgPropSpec(
     name: 'icon',
@@ -109,7 +109,7 @@ const List<SgPropSpec> sgAvatarPropSpecs = <SgPropSpec>[
     type: 'Widget?',
     tsType: 'React.ReactNode',
     required: false,
-    description: 'Conteudo textual usado como iniciais ou identificacao visual.',
+    description: 'Conteúdo textual usado como iniciais ou identificação visual.',
   ),
   SgPropSpec(
     name: 'onImageError',
@@ -126,7 +126,7 @@ const List<SgPropSpec> sgAvatarPropSpecs = <SgPropSpec>[
     tsType: 'SgAvatarSeverity',
     required: false,
     defaultValue: 'primary',
-    description: 'Tom visual do avatar quando nao ha imagem.',
+    description: 'Tom visual do avatar quando não há imagem.',
     values: <String>['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'neutral', 'custom'],
   ),
   SgPropSpec(

@@ -7,7 +7,7 @@
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgLinearGauge` no React — Gauge linear para exibicao de medicao, faixas de valor, ponteiros adicionais e ajuste arrastavel em eixos horizontal ou vertical.
+/// Props públicas de `SgLinearGauge` no React — Gauge linear para exibição de medição, faixas de valor, ponteiros adicionais e ajuste arrastável em eixos horizontal ou vertical.
 /// O widget deve declarar `implements SgLinearGaugeProps`.
 abstract interface class SgLinearGaugeProps {
   /// Padrão: `true`.
@@ -35,9 +35,9 @@ abstract interface class SgLinearGaugeProps {
   Function? get labelFormatter;
   /// Padrão: `5`.
   num? get majorTickCount;
-  /// Valor maximo da escala. Padrão: `100`.
+  /// Valor máximo da escala. Padrão: `100`.
   num? get max;
-  /// Valor minimo da escala. Padrão: `0`.
+  /// Valor mínimo da escala. Padrão: `0`.
   num? get min;
   /// Padrão: `1`.
   num? get minorTicksPerInterval;
@@ -45,7 +45,7 @@ abstract interface class SgLinearGaugeProps {
   Function? get onPointerValueChange;
   /// Callback do ponteiro principal. Tipo TS: `((value: number) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onValueChange;
-  /// Orientacao do gauge. Padrão: `horizontal`.
+  /// Orientação do gauge. Padrão: `horizontal`.
   SgLinearGaugeOrientation? get orientation;
   /// Ponteiros adicionais renderizados sobre o eixo. Padrão: ``. Tipo TS: `SgLinearGaugePointer[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get pointers;
@@ -59,7 +59,7 @@ abstract interface class SgLinearGaugeProps {
   num? get primaryPointerSize;
   /// Faixas coloridas aplicadas sobre a escala. Padrão: ``. Tipo TS: `SgLinearGaugeRange[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get ranges;
-  /// Exibe rotulos da escala. Padrão: `true`.
+  /// Exibe rótulos da escala. Padrão: `true`.
   bool? get showLabels;
   /// Padrão: `true`.
   bool? get showPrimaryPointer;
@@ -183,7 +183,7 @@ const List<SgPropSpec> sgLinearGaugePropSpecs = <SgPropSpec>[
     tsType: 'number',
     required: false,
     defaultValue: '100',
-    description: 'Valor maximo da escala.',
+    description: 'Valor máximo da escala.',
   ),
   SgPropSpec(
     name: 'min',
@@ -192,7 +192,7 @@ const List<SgPropSpec> sgLinearGaugePropSpecs = <SgPropSpec>[
     tsType: 'number',
     required: false,
     defaultValue: '0',
-    description: 'Valor minimo da escala.',
+    description: 'Valor mínimo da escala.',
   ),
   SgPropSpec(
     name: 'minorTicksPerInterval',
@@ -226,7 +226,7 @@ const List<SgPropSpec> sgLinearGaugePropSpecs = <SgPropSpec>[
     tsType: '"vertical" | "horizontal"',
     required: false,
     defaultValue: 'horizontal',
-    description: 'Orientacao do gauge.',
+    description: 'Orientação do gauge.',
     values: <String>['vertical', 'horizontal'],
   ),
   SgPropSpec(
@@ -290,7 +290,7 @@ const List<SgPropSpec> sgLinearGaugePropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'true',
-    description: 'Exibe rotulos da escala.',
+    description: 'Exibe rótulos da escala.',
   ),
   SgPropSpec(
     name: 'showPrimaryPointer',

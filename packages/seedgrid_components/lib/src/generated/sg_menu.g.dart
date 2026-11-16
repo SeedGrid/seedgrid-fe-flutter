@@ -9,7 +9,7 @@ import 'package:flutter/widgets.dart';
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgMenu` no React — Componente de navegacao estruturada com suporte a sidebar, drawer, menu inline e variantes hierarquicas ou mega menu.
+/// Props públicas de `SgMenu` no React — Componente de navegação estruturada com suporte a sidebar, drawer, menu inline e variantes hierarquicas ou mega menu.
 /// O widget deve declarar `implements SgMenuProps`.
 abstract interface class SgMenuProps {
   String? get ariaLabel;
@@ -49,7 +49,7 @@ abstract interface class SgMenuProps {
   num? get indent;
   /// Padrão: `true`.
   bool? get keyboardNavigation;
-  /// Arvore de itens e subitens do menu. Tipo TS: `SgMenuNode[]` (sem tradução exata; ver excecoes.json).
+  /// Árvore de itens e subitens do menu. Tipo TS: `SgMenuNode[]` (sem tradução exata; ver excecoes.json).
   List<Object?> get menu;
   /// Modo estrutural do menu. Padrão: `sidebar`.
   SgMenuMenuStyle? get menuStyle;
@@ -65,7 +65,7 @@ abstract interface class SgMenuProps {
   Function? get onExpandedIdsChange;
   /// Tipo TS: `((node: SgMenuNode) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onItemClick;
-  /// Callback disparado na navegacao por um item. Tipo TS: `((node: SgMenuNode) =&gt; void)` (sem tradução exata; ver excecoes.json).
+  /// Callback disparado na navegação por um item. Tipo TS: `((node: SgMenuNode) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onNavigate;
   /// Tipo TS: `((value: boolean) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onOpenChange;
@@ -81,15 +81,15 @@ abstract interface class SgMenuProps {
   bool? get pinned;
   /// Padrão: `left`.
   SgMenuPosition? get position;
-  /// Configuracao opcional de busca integrada. Tipo TS: `{ enabled: boolean; placeholder?: string; }` (sem tradução exata; ver excecoes.json).
+  /// Configuração opcional de busca integrada. Tipo TS: `{ enabled: boolean; placeholder?: string; }` (sem tradução exata; ver excecoes.json).
   Object? get search;
-  /// Selecao ativa por id ou url. Tipo TS: `SgMenuSelection` (sem tradução exata; ver excecoes.json).
+  /// Seleção ativa por id ou url. Tipo TS: `SgMenuSelection` (sem tradução exata; ver excecoes.json).
   Object? get selection;
   /// Padrão: `false`.
   bool? get showCollapseButton;
   /// Padrão: `false`.
   bool? get showPinButton;
-  /// Bloco de usuario exibido no menu. Tipo TS: `SgMenuUser` (sem tradução exata; ver excecoes.json).
+  /// Bloco de usuário exibido no menu. Tipo TS: `SgMenuUser` (sem tradução exata; ver excecoes.json).
   Object? get user;
   /// Tipo TS: `SgMenuNode[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get userMenu;
@@ -276,7 +276,7 @@ const List<SgPropSpec> sgMenuPropSpecs = <SgPropSpec>[
     type: 'List<Object?>',
     tsType: 'SgMenuNode[]',
     required: true,
-    description: 'Arvore de itens e subitens do menu.',
+    description: 'Árvore de itens e subitens do menu.',
     exact: false,
   ),
   SgPropSpec(
@@ -346,7 +346,7 @@ const List<SgPropSpec> sgMenuPropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '((node: SgMenuNode) => void)',
     required: false,
-    description: 'Callback disparado na navegacao por um item.',
+    description: 'Callback disparado na navegação por um item.',
     exact: false,
   ),
   SgPropSpec(
@@ -425,7 +425,7 @@ const List<SgPropSpec> sgMenuPropSpecs = <SgPropSpec>[
     type: 'Object?',
     tsType: '{ enabled: boolean; placeholder?: string; }',
     required: false,
-    description: 'Configuracao opcional de busca integrada.',
+    description: 'Configuração opcional de busca integrada.',
     exact: false,
   ),
   SgPropSpec(
@@ -434,7 +434,7 @@ const List<SgPropSpec> sgMenuPropSpecs = <SgPropSpec>[
     type: 'Object?',
     tsType: 'SgMenuSelection',
     required: false,
-    description: 'Selecao ativa por id ou url.',
+    description: 'Seleção ativa por id ou url.',
     exact: false,
   ),
   SgPropSpec(
@@ -459,7 +459,7 @@ const List<SgPropSpec> sgMenuPropSpecs = <SgPropSpec>[
     type: 'Object?',
     tsType: 'SgMenuUser',
     required: false,
-    description: 'Bloco de usuario exibido no menu.',
+    description: 'Bloco de usuário exibido no menu.',
     exact: false,
   ),
   SgPropSpec(

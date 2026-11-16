@@ -9,7 +9,7 @@ import 'package:flutter/widgets.dart';
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgCard` no React — Container visual para destacar conteudo em blocos com cabecalho, descricao, acoes, rodape e estados colapsaveis.
+/// Props públicas de `SgCard` no React — Container visual para destacar conteúdo em blocos com cabeçalho, descrição, ações, rodapé e estados colapsáveis.
 /// O widget deve declarar `implements SgCardProps`.
 abstract interface class SgCardProps {
   Widget? get actions;
@@ -17,24 +17,24 @@ abstract interface class SgCardProps {
   String? get bgColorFooter;
   String? get bgColorTitle;
   String? get bodyClassName;
-  /// Estilo visual da superficie do card. Padrão: `default`.
+  /// Estilo visual da superfície do card. Padrão: `default`.
   SgCardCardStyle? get cardStyle;
-  /// Conteudo principal exibido dentro do card. No React e `children`.
+  /// Conteúdo principal exibido dentro do card. No React e `children`.
   Widget? get child;
-  /// Transforma o card em superficie clicavel. Padrão: `false`.
+  /// Transforma o card em superfície clicável. Padrão: `false`.
   bool? get clickable;
   Widget? get collapseIcon;
   /// Padrão: `18`.
   num? get collapseIconSize;
   /// Padrão: `left`.
   SgCardCollapseToggleAlign? get collapseToggleAlign;
-  /// Permite recolher e expandir o conteudo do card. Padrão: `false`.
+  /// Permite recolher e expandir o conteúdo do card. Padrão: `false`.
   bool? get collapsible;
   /// Padrão: `true`.
   bool? get defaultOpen;
   /// Tipo TS: `SgCardPosition` (sem tradução exata; ver excecoes.json).
   Object? get defaultPosition;
-  /// Descricao ou subtitulo complementar do cabecalho. Aceita `String` ou `Widget` (React: `ReactNode`).
+  /// Descrição ou subtítulo complementar do cabeçalho. Aceita `String` ou `Widget` (React: `ReactNode`).
   Object? get description;
   /// Padrão: `false`.
   bool? get draggable;
@@ -53,9 +53,9 @@ abstract interface class SgCardProps {
   /// Tipo TS: `((position: SgCardPosition) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onPositionChange;
   bool? get open;
-  /// Escala geral de espacos e dimensoes do card. Padrão: `md`.
+  /// Escala geral de espaços e dimensões do card. Padrão: `md`.
   SgCardSize? get size;
-  /// Titulo principal do card. Aceita `String` ou `Widget` (React: `ReactNode`).
+  /// Título principal do card. Aceita `String` ou `Widget` (React: `ReactNode`).
   Object? get title;
   /// Padrão: `true`.
   bool? get toggleOnHeaderClick;
@@ -107,7 +107,7 @@ const List<SgPropSpec> sgCardPropSpecs = <SgPropSpec>[
     tsType: 'SgCardVariant',
     required: false,
     defaultValue: 'default',
-    description: 'Estilo visual da superficie do card.',
+    description: 'Estilo visual da superfície do card.',
     values: <String>['default', 'outlined', 'flat', 'elevated'],
   ),
   SgPropSpec(
@@ -116,7 +116,7 @@ const List<SgPropSpec> sgCardPropSpecs = <SgPropSpec>[
     type: 'Widget?',
     tsType: 'React.ReactNode',
     required: false,
-    description: 'Conteudo principal exibido dentro do card.',
+    description: 'Conteúdo principal exibido dentro do card.',
   ),
   SgPropSpec(
     name: 'clickable',
@@ -125,7 +125,7 @@ const List<SgPropSpec> sgCardPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description: 'Transforma o card em superficie clicavel.',
+    description: 'Transforma o card em superfície clicável.',
   ),
   SgPropSpec(
     name: 'collapseIcon',
@@ -158,7 +158,7 @@ const List<SgPropSpec> sgCardPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description: 'Permite recolher e expandir o conteudo do card.',
+    description: 'Permite recolher e expandir o conteúdo do card.',
   ),
   SgPropSpec(
     name: 'defaultOpen',
@@ -182,7 +182,7 @@ const List<SgPropSpec> sgCardPropSpecs = <SgPropSpec>[
     type: 'Object?',
     tsType: 'React.ReactNode',
     required: false,
-    description: 'Descricao ou subtitulo complementar do cabecalho.',
+    description: 'Descrição ou subtítulo complementar do cabeçalho.',
   ),
   SgPropSpec(
     name: 'draggable',
@@ -281,7 +281,7 @@ const List<SgPropSpec> sgCardPropSpecs = <SgPropSpec>[
     tsType: 'SgCardSize',
     required: false,
     defaultValue: 'md',
-    description: 'Escala geral de espacos e dimensoes do card.',
+    description: 'Escala geral de espaços e dimensões do card.',
     values: <String>['sm', 'md', 'lg'],
   ),
   SgPropSpec(
@@ -290,7 +290,7 @@ const List<SgPropSpec> sgCardPropSpecs = <SgPropSpec>[
     type: 'Object?',
     tsType: 'React.ReactNode',
     required: false,
-    description: 'Titulo principal do card.',
+    description: 'Título principal do card.',
   ),
   SgPropSpec(
     name: 'toggleOnHeaderClick',

@@ -7,7 +7,7 @@
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgPickList` no React — Lista dual para mover itens entre origem e destino com filtros e selecao.
+/// Props públicas de `SgPickList` no React — Lista dual para mover itens entre origem e destino com filtros e seleção.
 /// O widget deve declarar `implements SgPickListProps`.
 abstract interface class SgPickListProps {
   /// Tipo TS: `any` (sem tradução exata; ver excecoes.json).
@@ -15,14 +15,14 @@ abstract interface class SgPickListProps {
   /// Padrão: `true`.
   bool? get draggable;
   String? get emptyMessage;
-  /// Desabilita interacao. Padrão: `true`.
+  /// Desabilita interação. Padrão: `true`.
   bool? get enabled;
   String? get error;
   /// Padrão: `contains`.
   SgPickListFilterMatchMode? get filterMatchMode;
   /// Padrão: `{}`. Tipo TS: `(Omit&lt;Partial&lt;SgGroupBoxProps&gt;, "title" | "children"&gt; & { title?: string; })` (sem tradução exata; ver excecoes.json).
   Object? get groupBoxProps;
-  /// Identificador unico do componente.
+  /// Identificador único do componente.
   String? get id;
   /// Padrão: ``.
   String? get itemClassName;
@@ -39,7 +39,7 @@ abstract interface class SgPickListProps {
   Function? get onTargetSelectionChange;
   /// Padrão: `false`.
   bool? get readOnly;
-  /// Modo de selecao nas listas. Padrão: `multiple`.
+  /// Modo de seleção nas listas. Padrão: `multiple`.
   SgPickListSelectionMode? get selectionMode;
   /// Padrão: `true`.
   bool? get showSourceControls;
@@ -100,7 +100,7 @@ const List<SgPropSpec> sgPickListPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'true',
-    description: 'Desabilita interacao.',
+    description: 'Desabilita interação.',
   ),
   SgPropSpec(
     name: 'error',
@@ -133,7 +133,7 @@ const List<SgPropSpec> sgPickListPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Identificador unico do componente.',
+    description: 'Identificador único do componente.',
   ),
   SgPropSpec(
     name: 'itemClassName',
@@ -206,7 +206,7 @@ const List<SgPropSpec> sgPickListPropSpecs = <SgPropSpec>[
     tsType: 'SgPickListSelectionMode',
     required: false,
     defaultValue: 'multiple',
-    description: 'Modo de selecao nas listas.',
+    description: 'Modo de seleção nas listas.',
     values: <String>['multiple', 'single'],
   ),
   SgPropSpec(

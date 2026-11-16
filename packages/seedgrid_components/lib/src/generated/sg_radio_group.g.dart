@@ -7,7 +7,7 @@
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgRadioGroup` no React — Grupo de radios para escolha unica com orientacao e estilo visual configuravel.
+/// Props públicas de `SgRadioGroup` no React — Grupo de rádios para escolha única com orientação e estilo visual configurável.
 /// O widget deve declarar `implements SgRadioGroupProps`.
 abstract interface class SgRadioGroupProps {
   /// Tipo TS: `any` (sem tradução exata; ver excecoes.json).
@@ -21,21 +21,21 @@ abstract interface class SgRadioGroupProps {
   bool? get iconOnly;
   String? get id;
   String? get name;
-  /// Callback de mudanca. Tipo TS: `((value: string | number) =&gt; void)` (sem tradução exata; ver excecoes.json).
+  /// Callback de mudança. Tipo TS: `((value: string | number) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onChange;
   /// Padrão: ``.
   String? get optionClassName;
-  /// Orientacao visual do grupo. Padrão: `vertical`.
+  /// Orientação visual do grupo. Padrão: `vertical`.
   SgRadioGroupOrientation? get orientation;
-  /// Impede alteracoes no valor. Padrão: `false`.
+  /// Impede alterações no valor. Padrão: `false`.
   bool? get readOnly;
-  /// Marca o grupo como obrigatorio. Padrão: `false`.
+  /// Marca o grupo como obrigatório. Padrão: `false`.
   bool? get required;
-  /// Estilo visual de selecao. Padrão: `radio`.
+  /// Estilo visual de seleção. Padrão: `radio`.
   SgRadioGroupSelectionStyle? get selectionStyle;
-  /// Opcoes disponiveis. Tipo TS: `SgRadioGroupOption[]` (sem tradução exata; ver excecoes.json).
+  /// Opções disponíveis. Tipo TS: `SgRadioGroupOption[]` (sem tradução exata; ver excecoes.json).
   List<Object?> get source;
-  /// Titulo do grupo.
+  /// Título do grupo.
   String? get title;
   /// Valor selecionado. Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get value;
@@ -103,7 +103,7 @@ const List<SgPropSpec> sgRadioGroupPropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '((value: string | number) => void)',
     required: false,
-    description: 'Callback de mudanca.',
+    description: 'Callback de mudança.',
     exact: false,
   ),
   SgPropSpec(
@@ -121,7 +121,7 @@ const List<SgPropSpec> sgRadioGroupPropSpecs = <SgPropSpec>[
     tsType: 'SgRadioGroupOrientation',
     required: false,
     defaultValue: 'vertical',
-    description: 'Orientacao visual do grupo.',
+    description: 'Orientação visual do grupo.',
     values: <String>['vertical', 'horizontal'],
   ),
   SgPropSpec(
@@ -131,7 +131,7 @@ const List<SgPropSpec> sgRadioGroupPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description: 'Impede alteracoes no valor.',
+    description: 'Impede alterações no valor.',
   ),
   SgPropSpec(
     name: 'required',
@@ -140,7 +140,7 @@ const List<SgPropSpec> sgRadioGroupPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description: 'Marca o grupo como obrigatorio.',
+    description: 'Marca o grupo como obrigatório.',
   ),
   SgPropSpec(
     name: 'selectionStyle',
@@ -149,7 +149,7 @@ const List<SgPropSpec> sgRadioGroupPropSpecs = <SgPropSpec>[
     tsType: 'SgRadioGroupSelectionStyle',
     required: false,
     defaultValue: 'radio',
-    description: 'Estilo visual de selecao.',
+    description: 'Estilo visual de seleção.',
     values: <String>['radio', 'highlight'],
   ),
   SgPropSpec(
@@ -158,7 +158,7 @@ const List<SgPropSpec> sgRadioGroupPropSpecs = <SgPropSpec>[
     type: 'List<Object?>',
     tsType: 'SgRadioGroupOption[]',
     required: true,
-    description: 'Opcoes disponiveis.',
+    description: 'Opções disponíveis.',
     exact: false,
   ),
   SgPropSpec(
@@ -167,7 +167,7 @@ const List<SgPropSpec> sgRadioGroupPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Titulo do grupo.',
+    description: 'Título do grupo.',
   ),
   SgPropSpec(
     name: 'value',

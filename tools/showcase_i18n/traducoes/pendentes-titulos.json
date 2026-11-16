@@ -811,7 +811,7 @@
  ],
  "Anima \"LUCIANO\" até \"MARTA\". Posições extras preenchidas com espaço à direita (alignTo=\"left\").": [
   "Animates \"LUCIANO\" into \"MARTA\". Extra positions are padded on the right (alignTo=\"left\").",
-  "Anima \"LUCIANO\" para \"MARTA\". Posicoes extra preenchidas com espaco a direita (alignTo=\"left\").",
+  "Anima \"LUCIANO\" para \"MARTA\". Posições extra preenchidas com espaço a direita (alignTo=\"left\").",
   "Anima \"LUCIANO\" hasta \"MARTA\". Las posiciones extra se completan a la derecha (alignTo=\"left\").",
   "Anime \"LUCIANO\" vers \"MARTA\". Les positions supplémentaires sont complétées a droite (alignTo=\"left\")."
  ],
@@ -823,7 +823,7 @@
  ],
  "Anima \"42\" até \"1337\". Espaços são inseridos à esquerda (alignTo=\"right\") e os dígitos animam da direita para a esquerda.": [
   "Animates \"42\" into \"1337\". Padding is applied on the left (alignTo=\"right\") and digits animate from right to left.",
-  "Anima \"42\" para \"1337\". Espacos sao inseridos a esquerda (alignTo=\"right\") e os digitos animam da direita para a esquerda.",
+  "Anima \"42\" para \"1337\". Espaços são inseridos a esquerda (alignTo=\"right\") e os dígitos animam da direita para a esquerda.",
   "Anima \"42\" hasta \"1337\". Los espacios se insertan a la izquierda (alignTo=\"right\") y los dígitos animan de derecha a izquierda.",
   "Anime \"42\" vers \"1337\". Le remplissage est applique à gauche (alignTo=\"right\") et les chiffres s'animent de droite à gauche."
  ],
@@ -835,7 +835,7 @@
  ],
  "Animação de nomes usando SgFlipDigit (flip card).": [
   "Name animation using SgFlipDigit (flip card).",
-  "Animacao de nomes usando SgFlipDigit (flip card).",
+  "Animação de nomes usando SgFlipDigit (flip card).",
   "Animación de nombres usando SgFlipDigit (flip card).",
   "Animation de nom avec SgFlipDigit (carte a bascule)."
  ],
@@ -883,7 +883,7 @@
  ],
  "Cada caractere usa SgMatrixDigit: renderizado em pontos de LED 5x7. Ideal para placares e painéis digitais.": [
   "Each character uses SgMatrixDigit with a 5x7 LED matrix rendering. Great for dashboards and digital panels.",
-  "Cada caractere usa SgMatrixDigit: renderizado em pontos de LED 5x7. Ideal para placares e paineis digitais.",
+  "Cada caractere usa SgMatrixDigit: renderizado em pontos de LED 5x7. Ideal para placares e painéis digitais.",
   "Cada carácter usa SgMatrixDigit: renderizado en puntos LED 5x7. Ideal para paneles digitales.",
   "Chaque caractère utilise SgMatrixDigit avec un rendu en matrice de LED 5x7. Ideal pour les tableaux de bord et les panneaux numériques."
  ],
@@ -895,7 +895,7 @@
  ],
  "Com autoStart=true, a animação é iniciada automaticamente sempre que targetString mudar. Funciona com todos os estilos.": [
   "With autoStart=true, animation starts automatically whenever targetString changes. Works with all styles.",
-  "Com autoStart=true, a animacao inicia automaticamente sempre que targetString muda. Funciona com todos os estilos.",
+  "Com autoStart=true, a animação inicia automaticamente sempre que targetString muda. Funciona com todos os estilos.",
   "Con autoStart=true, la animación se inicia automáticamente cuando cambia targetString. Funciona con todos los estilos.",
   "Avec autoStart=true, l'animation démarre automatiquement dès que targetString change. Fonctionne avec tous les styles."
  ],
@@ -907,7 +907,7 @@
  ],
  "Comparação de velocity=10, 50 e 90 na mesma animação.": [
   "Comparison of velocity=10, 50, and 90 using the same animation.",
-  "Comparacao de velocity=10, 50 e 90 na mesma animacao.",
+  "Comparação de velocity=10, 50 e 90 na mesma animação.",
   "Comparación de velocity=10, 50 y 90 en la misma animación.",
   "Comparaison de velocity=10, 50 et 90 avec la même animation."
  ],
@@ -2071,7 +2071,7 @@
  ],
  "O wizard valida automaticamente os inputs da página antes de avançar. Por padrão, as etapas anteriores e o próximo passo imediato também podem ser clicados no stepper, com a mesma validação do botão Continuar.": [
   "The wizard validates inputs before advancing. By default, previous steps and the immediate next step are also clickable in the stepper, reusing the same validation as the Continue button.",
-  "O wizard valida automaticamente os inputs da pagina antes de avancar. Por omissao, etapas anteriores e o proximo passo imediato tambem podem ser clicados no stepper usando a mesma validacao do botao Continuar.",
+  "O wizard valida automaticamente os inputs da página antes de avançar. Por omissão, etapas anteriores e o próximo passo imediato também podem ser clicados no stepper usando a mesma validação do botão Continuar.",
   "El wizard valida los inputs antes de avanzar. Por defecto, los pasos anteriores y el siguiente paso inmediato también se pueden pulsar en el stepper reutilizando la misma validación que el botón Continuar.",
   "L'assistant valide les champs avant d'avancer. Par défaut, les etapes précédentes et l'étape suivante immédiate sont aussi cliquables dans le stepper, en reutilisant la même validation que le bouton Continuer."
  ],
@@ -2083,7 +2083,7 @@
  ],
  "Use stepNavigation para limitar o clique nas etapas. O padrão é previous-and-next; neste exemplo apenas as etapas anteriores aceitam clique.": [
   "Use stepNavigation to limit clickable steps. The default is previous-and-next; this example only allows clicking previous steps.",
-  "Use stepNavigation para limitar o clique nas etapas. O valor por omissao e previous-and-next; neste exemplo apenas as etapas anteriores aceitam clique.",
+  "Use stepNavigation para limitar o clique nas etapas. O valor por omissão e previous-and-next; neste exemplo apenas as etapas anteriores aceitam clique.",
   "Usa stepNavigation para limitar los pasos clicables. El valor por defecto es previous-and-next; en este ejemplo solo se pueden pulsar los pasos anteriores.",
   "Utilisez stepNavigation pour limiter les etapes cliquables. Le défaut est précédent-et-suivant ; cet exemple n'autorise que le clic sur les etapes précédentes."
  ],
@@ -2119,7 +2119,7 @@
  ],
  "Personalize os textos dos botões.": [
   "Customize button labels.",
-  "Personalize os textos dos botoes.",
+  "Personalize os textos dos botões.",
   "Personaliza los textos de los botones.",
   "Personnalisez les libellés des boutons."
  ],
@@ -2131,7 +2131,7 @@
  ],
  "Validação assíncrona antes de avançar (ex.: consultar uma API).": [
   "Async validation before moving forward (e.g. API call).",
-  "Validacao assincrona antes de avancar (ex: consultar API).",
+  "Validação assincrona antes de avançar (ex: consultar API).",
   "Validación asíncrona antes de avanzar (por ejemplo, consultar API).",
   "Validation asynchrone avant d'avancer (par ex. appel API)."
  ],
@@ -2143,7 +2143,7 @@
  ],
  "Validação customizada por etapa, além da validação automática dos inputs.": [
   "Custom validation per step, in addition to automatic input validation.",
-  "Validacao customizada por step, alem da validacao automatica dos inputs.",
+  "Validação customizada por step, além da validação automática dos inputs.",
   "Validación personalizada por step, además de la validación automática de inputs.",
   "Validation personnalisée par étape, en plus de la validation automatique des champs."
  ],
@@ -2179,7 +2179,7 @@
  ],
  "Os três controles: ano, recorte e fatia. Não há onChange na montagem: o intervalo resolvido aparece quando você mexe em algum deles.": [
   "The three controls: year, breakdown and part. There is no onChange on mount — the resolved interval shows up once you touch any of them.",
-  "Os tres controlos: ano, recorte e fatia. Nao ha' onChange na montagem — o intervalo resolvido aparece quando mexe em algum deles.",
+  "Os três controlos: ano, recorte e fatia. Não há onChange na montagem — o intervalo resolvido aparece quando mexe em algum deles.",
   "Los tres controles: año, recorte y parte. No hay onChange al montar — el intervalo resuelto aparece cuando tocas alguno de ellos.",
   "Les trois contrôles : année, découpage et partie. Pas de onChange au montage — l'intervalle résolu apparaît dès que vous touchez l'un d'eux."
  ],
@@ -2191,7 +2191,7 @@
  ],
  "Com allowedKinds de um item só, o combo de recorte some: sobram ano e fatia, que é o que um fechamento semestral realmente pergunta.": [
   "With a single-item allowedKinds the breakdown combo disappears: year and part remain, which is what a half-year close actually asks for.",
-  "Com allowedKinds de um unico item o combo de recorte desaparece: ficam ano e fatia, que e' o que um fecho semestral realmente pergunta.",
+  "Com allowedKinds de um único item o combo de recorte desaparece: ficam ano e fatia, que e' o que um fecho semestral realmente pergunta.",
   "Con allowedKinds de un solo elemento el combo de recorte desaparece: quedan año y parte, que es lo que pregunta un cierre semestral.",
   "Avec un allowedKinds a un seul élément le combo de découpage disparaît : restent année et partie, ce que demande vraiment une cloture semestrielle."
  ],
@@ -2203,13 +2203,13 @@
  ],
  "minYear e maxYear estreitam a lista de anos. O padrão vai do ano corrente - 30 ao ano corrente + 10; ano sem movimento não deveria ser oferecido.": [
   "minYear and maxYear narrow the year list. The default spans current year - 30 to current year + 10; a year with no data should not be offered.",
-  "minYear e maxYear estreitam a lista de anos. O padrao vai do ano corrente - 30 ao ano corrente + 10; ano sem movimento nao deveria ser oferecido.",
+  "minYear e maxYear estreitam a lista de anos. O padrão vai do ano corrente - 30 ao ano corrente + 10; ano sem movimento não deveria ser oferecido.",
   "minYear y maxYear estrechan la lista de años. El valor por defecto va del año actual - 30 al año actual + 10; un año sin movimiento no debería ofrecerse.",
   "minYear et maxYear resserrent la liste des années. Par défaut elle va de l'année courante - 30 a l'année courante + 10 ; une année sans mouvement ne devrait pas être proposée."
  ],
  "Desabilitado e obrigatório valem para os três controles de uma vez.": [
   "Disabled and required apply to all three controls at once.",
-  "Desativado e obrigatorio aplicam-se aos tres controlos de uma vez.",
+  "Desativado e obrigatório aplicam-se aos três controlos de uma vez.",
   "Deshabilitado y obligatorio se aplican a los tres controles a la vez.",
   "Désactivé et obligatoire s'appliquent aux trois contrôles à la fois."
  ],
@@ -2221,7 +2221,7 @@
  ],
  "A sigla entre parênteses acompanha o idioma e NÃO é a inicial do nome traduzido: Q1..Q4 em pt-BR e en-US, T1..T4 em es, fr e pt-PT; semestre é S no português e H (Half-year) no inglês; bimestre não tem sigla consagrada e sai sem parênteses.": [
   "The abbreviation in parentheses follows the language and is NOT the initial of the translated name: Q1..Q4 in pt-BR and en-US, T1..T4 in es, fr and pt-PT; half-year is S in Portuguese and H in English; bimester has no established abbreviation and comes without parentheses.",
-  "A sigla entre parenteses acompanha o idioma e NAO e' a inicial do nome traduzido: Q1..Q4 em pt-BR e en-US, T1..T4 em es, fr e pt-PT; semestre e' S no portugues e H (Half-year) no ingles; bimestre nao tem sigla consagrada e sai sem parenteses.",
+  "A sigla entre parenteses acompanha o idioma e NÃO e' a inicial do nome traduzido: Q1..Q4 em pt-BR e en-US, T1..T4 em es, fr e pt-PT; semestre e' S no português e H (Half-year) no inglês; bimestre não tem sigla consagrada e sai sem parenteses.",
   "La sigla entre parentesis sigue al idioma y NO es la inicial del nombre traducido: Q1..Q4 en pt-BR y en-US, T1..T4 en es, fr y pt-PT; semestre es S en portugués y H (Half-year) en inglés; bimestre no tiene sigla consagrada y sale sin parentesis.",
   "L'abreviation entre parentheses suit la langue et n'est PAS l'initiale du nom traduit : Q1..Q4 en pt-BR et en-US, T1..T4 en es, fr et pt-PT ; le semestre est S en portugais et H (Half-year) en anglais ; le bimestre n'a pas d'abreviation consacrée et sort sans parentheses."
  ],
@@ -2605,7 +2605,7 @@
  ],
  "mobilePageControl=\"select\" — abas viram um select no celular": [
   "mobilePageControl=\"select\" — tabs become a select on mobile",
-  "mobilePageControl=\"select\" — separadores viram um select no telemovel",
+  "mobilePageControl=\"select\" — separadores viram um select no telemóvel",
   "mobilePageControl=\"select\" — las pestañas se vuelven un select en móvil",
   "mobilePageControl=\"select\" — les onglets deviennent un select sur mobile"
  ],
@@ -3589,7 +3589,7 @@
  ],
  "Use quando o usuário precisa tomar uma decisão.": [
   "Use when the user must decide explicitly.",
-  "Use quando o usuário precisa tomar uma decisão.",
+  "Use quando o utilizador precisa tomar uma decisão.",
   "Usa cuando el usuario debe decidir explícitamente.",
   "A utiliser quand l'utilisateur doit décider explicitement."
  ],
@@ -3851,7 +3851,7 @@
   "Rechazar",
   "Rejeter"
  ],
- "Negar a acao": [
+ "Negar a ação": [
   "Deny the action",
   "Negar a acao",
   "Negar la acción",
@@ -4087,7 +4087,7 @@
  ],
  "Fechamento automático": [
   "Auto close",
-  "Fecho automatico",
+  "Fecho automático",
   "Cierre automático",
   "Fermeture automatique"
  ],
@@ -4177,7 +4177,7 @@
  ],
  "Placeholder de card": [
   "Card placeholder",
-  "Placeholder de cartao",
+  "Placeholder de cartão",
   "Placeholder de tarjeta",
   "Espace reserve de carte"
  ],
@@ -6497,7 +6497,7 @@
   "Recibir novedades",
   "Recevoir les nouveautés"
  ],
- "Move para um menu '...' os botoes que nao cabem na largura disponivel; abaixo de 600px abre como painel inferior.": [
+ "Move para um menu '...' os botões que não cabem na largura disponível; abaixo de 600px abre como painel inferior.": [
   "Moves the buttons that do not fit the available width into a '...' menu; below 600px it opens as a bottom panel.",
   "Move para um menu '...' os botões que não cabem na largura disponível; abaixo de 600px abre como painel inferior.",
   "Mueve a un menú '...' los botones que no caben en el ancho disponible; por debajo de 600px se abre como panel inferior.",
@@ -6617,7 +6617,7 @@
   "Con digitalStyle custom, digitBuilder recibe las partes del reloj y devuelve el dibujo de cada dígito; sin él, el reloj usa el estilo default.",
   "Avec digitalStyle custom, digitBuilder reçoit les parties de l'horloge et renvoie le dessin de chaque chiffre ; sans lui, l'horloge revient au style default."
  ],
- "Desenha o relogio digital quando digitalStyle e custom; sem ele, usa o estilo default.": [
+ "Desenha o relógio digital quando digitalStyle e custom; sem ele, usa o estilo default.": [
   "Draws the digital clock when digitalStyle is custom; without it, the default style is used.",
   "Desenha o relógio digital quando digitalStyle é custom; sem ele, usa o estilo default.",
   "Dibuja el reloj digital cuando digitalStyle es custom; sin él, usa el estilo default.",

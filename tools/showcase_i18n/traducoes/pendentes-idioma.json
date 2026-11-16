@@ -13,7 +13,7 @@
  ],
  "Os textos internos vêm do dicionário components.inputs.camera.*. Envolva o componente em SgComponentsI18nProvider (ou chame setComponentsI18n) para trocar o idioma e use messages para substituir uma chave.": [
   "Built-in texts come from the components.inputs.camera.* dictionary. Wrap the component in SgComponentsI18nProvider (or call setComponentsI18n) to change the language, and use messages to override a key.",
-  "Os textos internos vêm do dicionário components.inputs.camera.*. Envolva o componente em SgComponentsI18nProvider (ou chame setComponentsI18n) para mudar o idioma e use messages para substituir uma chave.",
+  "Os textos internos vêm do dicionário components.inputs.câmera.*. Envolva o componente em SgComponentsI18nProvider (ou chame setComponentsI18n) para mudar o idioma e use messages para substituir uma chave.",
   "Los textos internos vienen del diccionario components.inputs.camera.*. Envuelve el componente en SgComponentsI18nProvider (o llama a setComponentsI18n) para cambiar el idioma y usa messages para reemplazar una clave.",
   "Les textes internes proviennent du dictionnaire components.inputs.camera.*. Enveloppez le composant dans SgComponentsI18nProvider (ou appelez setComponentsI18n) pour changer la langue, et utilisez messages pour remplacer une clé."
  ],
@@ -35,19 +35,19 @@
   "Idioma y textos (i18n)",
   "Langue et textes (i18n)"
  ],
- "Titulo do painel de colunas. Vence o dicionario (components.datatable.columns).": [
+ "Título do painel de colunas. Vence o dicionario (components.datatable.columns).": [
   "Title of the columns panel. Wins over the dictionary (components.datatable.columns).",
   "Título do painel de colunas. Prevalece sobre o dicionário (components.datatable.columns).",
   "Título del panel de columnas. Prevalece sobre el diccionario (components.datatable.columns).",
   "Titre du panneau des colonnes. L'emporte sur le dictionnaire (components.datatable.columns)."
  ],
- "Definicao das colunas da tabela. column.filterPlaceholder vence o dicionario (components.datatable.columnFilterPlaceholder).": [
+ "Definição das colunas da tabela. column.filterPlaceholder vence o dicionario (components.datatable.columnFilterPlaceholder).": [
   "Table column definitions. column.filterPlaceholder wins over the dictionary (components.datatable.columnFilterPlaceholder).",
   "Definição das colunas da tabela. column.filterPlaceholder prevalece sobre o dicionário (components.datatable.columnFilterPlaceholder).",
   "Definición de las columnas de la tabla. column.filterPlaceholder prevalece sobre el diccionario (components.datatable.columnFilterPlaceholder).",
   "Définition des colonnes du tableau. column.filterPlaceholder l'emporte sur le dictionnaire (components.datatable.columnFilterPlaceholder)."
  ],
- "Mensagem exibida quando nao ha registros. Vence o dicionario (components.datatable.empty).": [
+ "Mensagem exibida quando não há registros. Vence o dicionario (components.datatable.empty).": [
   "Message shown when there are no records. Wins over the dictionary (components.datatable.empty).",
   "Mensagem apresentada quando não há registos. Prevalece sobre o dicionário (components.datatable.empty).",
   "Mensaje mostrado cuando no hay registros. Prevalece sobre el diccionario (components.datatable.empty).",

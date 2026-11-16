@@ -9,10 +9,10 @@ import 'package:flutter/widgets.dart';
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgPopup` no React — Overlay contextual ancorado a um elemento para exibir acoes, detalhes curtos ou conteudo complementar sem abrir um modal completo.
+/// Props públicas de `SgPopup` no React — Overlay contextual ancorado a um elemento para exibir ações, detalhes curtos ou conteúdo complementar sem abrir um modal completo.
 /// O widget deve declarar `implements SgPopupProps`.
 abstract interface class SgPopupProps {
-  /// Lista de acoes contextuais renderizadas no popup. Tipo TS: `SgPopupAction[]` (sem tradução exata; ver excecoes.json).
+  /// Lista de ações contextuais renderizadas no popup. Tipo TS: `SgPopupAction[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get actions;
   /// Padrão: `start`.
   SgPopupAlign? get align;
@@ -22,7 +22,7 @@ abstract interface class SgPopupProps {
   Widget? get child;
   /// Padrão: `true`.
   bool? get closeOnEscape;
-  /// Fecha o popup quando o usuario clica fora dele. Padrão: `true`.
+  /// Fecha o popup quando o usuário clica fora dele. Padrão: `true`.
   bool? get closeOnOutsideClick;
   /// Padrão: `false`.
   bool? get defaultOpen;
@@ -40,13 +40,13 @@ abstract interface class SgPopupProps {
   bool? get open;
   /// Padrão: `8`.
   num? get padding;
-  /// Posicionamento principal do popup em relacao a ancora. Padrão: `auto`.
+  /// Posicionamento principal do popup em relação a ancora. Padrão: `auto`.
   SgPopupPlacement? get placement;
   /// Padrão: `right`.
   SgPopupPreferPlacement? get preferPlacement;
-  /// Subtitulo opcional do popup.
+  /// Subtítulo opcional do popup.
   String? get subtitle;
-  /// Titulo opcional do popup.
+  /// Título opcional do popup.
   String? get title;
   /// Padrão: `60`.
   num? get zIndex;
@@ -60,7 +60,7 @@ const List<SgPropSpec> sgPopupPropSpecs = <SgPropSpec>[
     type: 'List<Object?>?',
     tsType: 'SgPopupAction[]',
     required: false,
-    description: 'Lista de acoes contextuais renderizadas no popup.',
+    description: 'Lista de ações contextuais renderizadas no popup.',
     exact: false,
   ),
   SgPropSpec(
@@ -103,7 +103,7 @@ const List<SgPropSpec> sgPopupPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'true',
-    description: 'Fecha o popup quando o usuario clica fora dele.',
+    description: 'Fecha o popup quando o usuário clica fora dele.',
   ),
   SgPropSpec(
     name: 'defaultOpen',
@@ -178,7 +178,7 @@ const List<SgPropSpec> sgPopupPropSpecs = <SgPropSpec>[
     tsType: 'SgPopupPlacement',
     required: false,
     defaultValue: 'auto',
-    description: 'Posicionamento principal do popup em relacao a ancora.',
+    description: 'Posicionamento principal do popup em relação a ancora.',
     values: <String>['top', 'left', 'right', 'bottom', 'auto'],
   ),
   SgPropSpec(
@@ -196,7 +196,7 @@ const List<SgPropSpec> sgPopupPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Subtitulo opcional do popup.',
+    description: 'Subtítulo opcional do popup.',
   ),
   SgPropSpec(
     name: 'title',
@@ -204,7 +204,7 @@ const List<SgPropSpec> sgPopupPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Titulo opcional do popup.',
+    description: 'Título opcional do popup.',
   ),
   SgPropSpec(
     name: 'zIndex',

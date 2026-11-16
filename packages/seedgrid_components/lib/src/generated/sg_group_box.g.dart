@@ -8,14 +8,14 @@ import 'package:flutter/widgets.dart';
 
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgGroupBox` no React — Container simples com titulo visual para agrupar campos e conteudos relacionados em uma secao delimitada.
+/// Props públicas de `SgGroupBox` no React — Container simples com título visual para agrupar campos e conteúdos relacionados em uma seção delimitada.
 /// O widget deve declarar `implements SgGroupBoxProps`.
 abstract interface class SgGroupBoxProps {
-  /// Conteudo agrupado dentro do fieldset. No React e `children`.
+  /// Conteúdo agrupado dentro do fieldset. No React e `children`.
   Widget get child;
   /// Altura do bloco de agrupamento. Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get height;
-  /// Titulo exibido no topo da secao agrupada.
+  /// Título exibido no topo da seção agrupada.
   String get title;
   /// Largura do bloco de agrupamento. Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get width;
@@ -29,7 +29,7 @@ const List<SgPropSpec> sgGroupBoxPropSpecs = <SgPropSpec>[
     type: 'Widget',
     tsType: 'React.ReactNode',
     required: true,
-    description: 'Conteudo agrupado dentro do fieldset.',
+    description: 'Conteúdo agrupado dentro do fieldset.',
   ),
   SgPropSpec(
     name: 'height',
@@ -46,7 +46,7 @@ const List<SgPropSpec> sgGroupBoxPropSpecs = <SgPropSpec>[
     type: 'String',
     tsType: 'string',
     required: true,
-    description: 'Titulo exibido no topo da secao agrupada.',
+    description: 'Título exibido no topo da seção agrupada.',
   ),
   SgPropSpec(
     name: 'width',

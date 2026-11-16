@@ -9,7 +9,7 @@ import 'package:flutter/widgets.dart';
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgCombobox` no React — Campo de escolha assistida que combina digitacao e selecao de item com suporte a fonte local ou remota.
+/// Props públicas de `SgCombobox` no React — Campo de escolha assistida que combina digitação e seleção de item com suporte a fonte local ou remota.
 /// O widget deve declarar `implements SgComboboxProps`.
 abstract interface class SgComboboxProps {
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
@@ -25,13 +25,13 @@ abstract interface class SgComboboxProps {
   bool? get grouped;
   bool? get groupped;
   String? get hintText;
-  /// Identificador unico do campo.
+  /// Identificador único do campo.
   String get id;
   /// Tipo TS: `(React.InputHTMLAttributes&lt;HTMLInputElement&gt; & { ref?: React.Ref&lt;HTMLInputElement&gt;; })` (sem tradução exata; ver excecoes.json).
   Object? get inputProps;
   /// Tipo TS: `((item: SgAutocompleteItem) =&gt; React.ReactNode)` (sem tradução exata; ver excecoes.json).
   Function? get itemTooltip;
-  /// Rotulo exibido ao usuario.
+  /// Rótulo exibido ao usuário.
   String? get label;
   SgComboboxLabelAlign? get labelAlign;
   SgComboboxLabelPosition? get labelPosition;
@@ -59,7 +59,7 @@ abstract interface class SgComboboxProps {
   Function? get onSelect;
   /// Tipo TS: `((message: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onValidation;
-  /// Callback de mudanca de valor. Tipo TS: `((value: ComboboxValue) =&gt; void)` (sem tradução exata; ver excecoes.json).
+  /// Callback de mudança de valor. Tipo TS: `((value: ComboboxValue) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onValueChange;
   /// Abre lista ao focar. Padrão: `false`.
   bool? get openOnFocus;
@@ -174,7 +174,7 @@ const List<SgPropSpec> sgComboboxPropSpecs = <SgPropSpec>[
     type: 'String',
     tsType: 'string',
     required: true,
-    description: 'Identificador unico do campo.',
+    description: 'Identificador único do campo.',
   ),
   SgPropSpec(
     name: 'inputProps',
@@ -198,7 +198,7 @@ const List<SgPropSpec> sgComboboxPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Rotulo exibido ao usuario.',
+    description: 'Rótulo exibido ao usuário.',
   ),
   SgPropSpec(
     name: 'labelAlign',
@@ -343,7 +343,7 @@ const List<SgPropSpec> sgComboboxPropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '((value: ComboboxValue) => void)',
     required: false,
-    description: 'Callback de mudanca de valor.',
+    description: 'Callback de mudança de valor.',
     exact: false,
   ),
   SgPropSpec(

@@ -9,7 +9,7 @@ import 'package:flutter/widgets.dart';
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgSplitButton` no React — Botao de acao com trigger principal e menu secundario acoplado para variacoes contextuais da mesma tarefa.
+/// Props públicas de `SgSplitButton` no React — Botão de ação com trigger principal e menu secundário acoplado para variações contextuais da mesma tarefa.
 /// O widget deve declarar `implements SgSplitButtonProps`.
 abstract interface class SgSplitButtonProps {
   /// Variante visual base do split button. Padrão: `solid`.
@@ -18,19 +18,19 @@ abstract interface class SgSplitButtonProps {
   Object? get customColors;
   /// Padrão: `none`.
   SgElevation? get elevation;
-  /// Desabilita a acao principal e o menu secundario. Padrão: `true`.
+  /// Desabilita a ação principal e o menu secundário. Padrão: `true`.
   bool? get enabled;
-  /// Lista de acoes secundarias exibidas no menu dropdown. Tipo TS: `SgSplitButtonItem[]` (sem tradução exata; ver excecoes.json).
+  /// Lista de ações secundárias exibidas no menu dropdown. Tipo TS: `SgSplitButtonItem[]` (sem tradução exata; ver excecoes.json).
   List<Object?> get items;
-  /// Conteudo textual principal da acao.
+  /// Conteúdo textual principal da ação.
   String? get label;
-  /// Icone exibido junto do label principal.
+  /// Ícone exibido junto do label principal.
   Widget? get leftIcon;
-  /// Exibe estado de carregamento na acao principal. Padrão: `false`.
+  /// Exibe estado de carregamento na ação principal. Padrão: `false`.
   bool? get loading;
-  /// Callback disparado na acao principal. Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
+  /// Callback disparado na ação principal. Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onClick;
-  /// Peso visual e semantico da acao principal. Padrão: `primary`.
+  /// Peso visual e semântico da ação principal. Padrão: `primary`.
   SgSeverity? get severity;
   /// Padrão: `default`.
   SgSplitButtonShape? get shape;
@@ -74,7 +74,7 @@ const List<SgPropSpec> sgSplitButtonPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'true',
-    description: 'Desabilita a acao principal e o menu secundario.',
+    description: 'Desabilita a ação principal e o menu secundário.',
   ),
   SgPropSpec(
     name: 'items',
@@ -82,7 +82,7 @@ const List<SgPropSpec> sgSplitButtonPropSpecs = <SgPropSpec>[
     type: 'List<Object?>',
     tsType: 'SgSplitButtonItem[]',
     required: true,
-    description: 'Lista de acoes secundarias exibidas no menu dropdown.',
+    description: 'Lista de ações secundárias exibidas no menu dropdown.',
     exact: false,
   ),
   SgPropSpec(
@@ -91,7 +91,7 @@ const List<SgPropSpec> sgSplitButtonPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Conteudo textual principal da acao.',
+    description: 'Conteúdo textual principal da ação.',
   ),
   SgPropSpec(
     name: 'leftIcon',
@@ -99,7 +99,7 @@ const List<SgPropSpec> sgSplitButtonPropSpecs = <SgPropSpec>[
     type: 'Widget?',
     tsType: 'React.ReactNode',
     required: false,
-    description: 'Icone exibido junto do label principal.',
+    description: 'Ícone exibido junto do label principal.',
   ),
   SgPropSpec(
     name: 'loading',
@@ -108,7 +108,7 @@ const List<SgPropSpec> sgSplitButtonPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description: 'Exibe estado de carregamento na acao principal.',
+    description: 'Exibe estado de carregamento na ação principal.',
   ),
   SgPropSpec(
     name: 'onClick',
@@ -116,7 +116,7 @@ const List<SgPropSpec> sgSplitButtonPropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '(() => void)',
     required: false,
-    description: 'Callback disparado na acao principal.',
+    description: 'Callback disparado na ação principal.',
     exact: false,
   ),
   SgPropSpec(
@@ -126,7 +126,7 @@ const List<SgPropSpec> sgSplitButtonPropSpecs = <SgPropSpec>[
     tsType: 'Severity',
     required: false,
     defaultValue: 'primary',
-    description: 'Peso visual e semantico da acao principal.',
+    description: 'Peso visual e semântico da ação principal.',
     values: <String>['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'help'],
   ),
   SgPropSpec(

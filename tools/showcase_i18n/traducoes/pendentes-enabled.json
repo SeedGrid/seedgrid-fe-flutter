@@ -65,19 +65,19 @@
   "Con enabled: false la ordenación, la selección de filas, los filtros y el gestor de columnas quedan bloqueados; la paginación y el desplazamiento siguen funcionando.",
   "Avec enabled: false le tri, la sélection des lignes, les filtres et le gestionnaire de colonnes sont bloqués ; la pagination et le défilement continuent de fonctionner."
  ],
- "Quando false, os dias, os botoes de mes anterior/proximo e o atalho hoje ficam desabilitados (nao focaveis); a data e o mes atuais continuam legiveis.": [
+ "Quando false, os dias, os botões de mês anterior/próximo e o atalho hoje ficam desabilitados (não focáveis); a data e o mês atuais continuam legíveis.": [
   "When false, the days, the previous/next month buttons and the today shortcut are disabled (not focusable); the current date and month stay readable.",
   "Quando false, os dias, os botões de mês anterior/seguinte e o atalho hoje ficam desativados (não focáveis); a data e o mês atuais continuam legíveis.",
   "Cuando es false, los días, los botones de mes anterior/siguiente y el atajo de hoy quedan deshabilitados (no enfocables); la fecha y el mes actuales siguen legibles.",
   "Quand false, les jours, les boutons de mois précédent/suivant et le raccourci aujourd'hui sont désactivés (non focalisables) ; la date et le mois actuels restent lisibles."
  ],
- "Quando false, bloqueia as acoes que mudam estado: ordenacao, selecao de linhas, filtros (global e por coluna), limpar filtros e gerenciador de colunas. Paginacao, rolagem e carga de mais linhas continuam funcionando. Aparencia de desabilitado e aria-disabled.": [
+ "Quando false, bloqueia as ações que mudam estado: ordenação, seleção de linhas, filtros (global e por coluna), limpar filtros e gerenciador de colunas. Paginação, rolagem e carga de mais linhas continuam funcionando. Aparência de desabilitado e aria-disabled.": [
   "When false, blocks the actions that change state: sorting, row selection, filters (global and per column), clear filters and the column manager. Pagination, scrolling and loading more rows keep working. Disabled appearance and aria-disabled.",
   "Quando false, bloqueia as ações que mudam o estado: ordenação, seleção de linhas, filtros (global e por coluna), limpar filtros e gestor de colunas. A paginação, o deslocamento e o carregamento de mais linhas continuam a funcionar. Aspeto de desativado e aria-disabled.",
   "Cuando es false, bloquea las acciones que cambian el estado: ordenación, selección de filas, filtros (global y por columna), limpiar filtros y gestor de columnas. La paginación, el desplazamiento y la carga de más filas siguen funcionando. Apariencia de deshabilitado y aria-disabled.",
   "Quand false, bloque les actions qui modifient l'état : tri, sélection des lignes, filtres (global et par colonne), effacer les filtres et gestionnaire de colonnes. La pagination, le défilement et le chargement de lignes supplémentaires continuent de fonctionner. Apparence désactivée et aria-disabled."
  ],
- "Quando false, o wizard inteiro fica desabilitado: Anterior, Proximo, Concluir e os passos do stepper deixam de responder; a etapa atual segue visivel. Diferente de nextDisabled, que so bloqueia o avanco.": [
+ "Quando false, o wizard inteiro fica desabilitado: Anterior, Próximo, Concluir e os passos do stepper deixam de responder; a etapa atual segue visível. Diferente de nextDisabled, que só bloqueia o avanço.": [
   "When false, the whole wizard is disabled: Previous, Next, Finish and the stepper steps stop responding; the current step stays visible. Unlike nextDisabled, which only blocks advancing.",
   "Quando false, o wizard inteiro fica desativado: Anterior, Seguinte, Concluir e os passos do stepper deixam de responder; o passo atual continua visível. Ao contrário de nextDisabled, que só bloqueia o avanço.",
   "Cuando es false, todo el asistente queda deshabilitado: Anterior, Siguiente, Finalizar y los pasos del stepper dejan de responder; el paso actual sigue visible. A diferencia de nextDisabled, que solo bloquea el avance.",

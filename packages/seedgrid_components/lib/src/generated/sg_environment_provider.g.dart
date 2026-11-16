@@ -8,10 +8,10 @@ import 'package:flutter/widgets.dart';
 
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgEnvironmentProvider` no React — Provider de ambiente para namespace, escopo e estrategia de persistencia usados pelos componentes SeedGrid.
+/// Props públicas de `SgEnvironmentProvider` no React — Provider de ambiente para namespace, escopo e estratégia de persistência usados pelos componentes SeedGrid.
 /// O widget deve declarar `implements SgEnvironmentProviderProps`.
 abstract interface class SgEnvironmentProviderProps {
-  /// Arvore que consome o contexto de ambiente. No React e `children`.
+  /// Árvore que consome o contexto de ambiente. No React e `children`.
   Widget get child;
   /// Tipo TS: `Partial&lt;SgEnvironmentValue&gt;` (sem tradução exata; ver excecoes.json).
   Object? get value;
@@ -25,7 +25,7 @@ const List<SgPropSpec> sgEnvironmentProviderPropSpecs = <SgPropSpec>[
     type: 'Widget',
     tsType: 'React.ReactNode',
     required: true,
-    description: 'Arvore que consome o contexto de ambiente.',
+    description: 'Árvore que consome o contexto de ambiente.',
   ),
   SgPropSpec(
     name: 'value',

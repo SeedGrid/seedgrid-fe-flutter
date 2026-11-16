@@ -9,7 +9,7 @@ import 'package:flutter/widgets.dart';
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgInputPassword` no React — Campo especializado para senha com validacoes de politica, alternancia de visibilidade e indicacao de forca.
+/// Props públicas de `SgInputPassword` no React — Campo especializado para senha com validações de política, alternância de visibilidade e indicação de forca.
 /// O widget deve declarar `implements SgInputPasswordProps`.
 abstract interface class SgInputPasswordProps {
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
@@ -22,7 +22,7 @@ abstract interface class SgInputPasswordProps {
   String? get commonPasswordMessage;
   /// Tipo TS: `any` (sem tradução exata; ver excecoes.json).
   Object? get control;
-  /// Exibe um botao para gerar automaticamente uma senha forte aleatoria (respeita as regras de politica). Padrão: `false`.
+  /// Exibe um botão para gerar automaticamente uma senha forte aleatória (respeita as regras de política). Padrão: `false`.
   bool? get createNewPasswordButton;
   SgInputPasswordElevation? get elevation;
   bool? get enabled;
@@ -33,11 +33,11 @@ abstract interface class SgInputPasswordProps {
   String? get hintText;
   /// Tipo TS: `React.ReactNode[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get iconButtons;
-  /// Identificador unico do campo.
+  /// Identificador único do campo.
   String get id;
   /// Tipo TS: `(React.InputHTMLAttributes&lt;HTMLInputElement&gt; & { ref?: React.Ref&lt;HTMLInputElement&gt;; })` (sem tradução exata; ver excecoes.json).
   Object? get inputProps;
-  /// Rotulo exibido ao usuario.
+  /// Rótulo exibido ao usuário.
   String? get label;
   SgInputPasswordLabelAlign? get labelAlign;
   SgInputPasswordLabelPosition? get labelPosition;
@@ -52,11 +52,11 @@ abstract interface class SgInputPasswordProps {
   String? get minLengthMessage;
   num? get minNumberOfWords;
   String? get minNumberOfWordsMessage;
-  /// Tamanho minimo esperado da senha. Padrão: `8`.
+  /// Tamanho mínimo esperado da senha. Padrão: `8`.
   num? get minSize;
-  /// Nome do campo em formularios.
+  /// Nome do campo em formulários.
   String? get name;
-  /// Comprimento da senha gerada pelo `createNewPasswordButton`. Default: `minSize`.  NAO derive isto de `maxLength`: `maxLength` existe para nao truncar o que o usuario digita (frase-senha), e costuma ser folgado (128, 512). Usar o teto como alvo fazia o botao gerar uma senha de 128 caracteres.
+  /// Comprimento da senha gerada pelo `createNewPasswordButton`. Default: `minSize`.  NÃO derive isto de `maxLength`: `maxLength` existe para não truncar o que o usuário digita (frase-senha), e costuma ser folgado (128, 512). Usar o teto como alvo fazia o botão gerar uma senha de 128 caracteres.
   num? get newPasswordLength;
   /// Padrão: `true`.
   bool? get numberRequired;
@@ -64,11 +64,11 @@ abstract interface class SgInputPasswordProps {
   Function? get onChange;
   /// Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onClear;
-  /// Disparado ao receber foco — padrao seedgrid. Tipo TS: `((() =&gt; void) & (() =&gt; void))` (sem tradução exata; ver excecoes.json).
+  /// Disparado ao receber foco — padrão seedgrid. Tipo TS: `((() =&gt; void) & (() =&gt; void))` (sem tradução exata; ver excecoes.json).
   Function? get onEnter;
-  /// Disparado ao perder o foco (apos validacao) — padrao seedgrid. Tipo TS: `((() =&gt; void) & (() =&gt; void))` (sem tradução exata; ver excecoes.json).
+  /// Disparado ao perder o foco (após validação) — padrão seedgrid. Tipo TS: `((() =&gt; void) & (() =&gt; void))` (sem tradução exata; ver excecoes.json).
   Function? get onExit;
-  /// Callback para estado de validacao. Tipo TS: `(((message: string) =&gt; void) & ((message: string) =&gt; void))` (sem tradução exata; ver excecoes.json).
+  /// Callback para estado de validação. Tipo TS: `(((message: string) =&gt; void) & ((message: string) =&gt; void))` (sem tradução exata; ver excecoes.json).
   Function? get onValidation;
   String? get placeholder;
   Widget? get prefixIcon;
@@ -80,7 +80,7 @@ abstract interface class SgInputPasswordProps {
   /// Padrão: `true`.
   bool? get prohibitsSequentialDescCharacters;
   bool? get readOnly;
-  /// Marca o campo como obrigatorio. Padrão: `false`.
+  /// Marca o campo como obrigatório. Padrão: `false`.
   bool? get required;
   String? get requiredMessage;
   bool? get showCharCounter;
@@ -156,7 +156,7 @@ const List<SgPropSpec> sgInputPasswordPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description: 'Exibe um botao para gerar automaticamente uma senha forte aleatoria (respeita as regras de politica).',
+    description: 'Exibe um botão para gerar automaticamente uma senha forte aleatória (respeita as regras de política).',
   ),
   SgPropSpec(
     name: 'elevation',
@@ -217,7 +217,7 @@ const List<SgPropSpec> sgInputPasswordPropSpecs = <SgPropSpec>[
     type: 'String',
     tsType: 'string',
     required: true,
-    description: 'Identificador unico do campo.',
+    description: 'Identificador único do campo.',
   ),
   SgPropSpec(
     name: 'inputProps',
@@ -233,7 +233,7 @@ const List<SgPropSpec> sgInputPasswordPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Rotulo exibido ao usuario.',
+    description: 'Rótulo exibido ao usuário.',
   ),
   SgPropSpec(
     name: 'labelAlign',
@@ -323,7 +323,7 @@ const List<SgPropSpec> sgInputPasswordPropSpecs = <SgPropSpec>[
     tsType: 'number',
     required: false,
     defaultValue: '8',
-    description: 'Tamanho minimo esperado da senha.',
+    description: 'Tamanho mínimo esperado da senha.',
   ),
   SgPropSpec(
     name: 'name',
@@ -331,7 +331,7 @@ const List<SgPropSpec> sgInputPasswordPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Nome do campo em formularios.',
+    description: 'Nome do campo em formulários.',
   ),
   SgPropSpec(
     name: 'newPasswordLength',
@@ -339,7 +339,7 @@ const List<SgPropSpec> sgInputPasswordPropSpecs = <SgPropSpec>[
     type: 'num?',
     tsType: 'number',
     required: false,
-    description: 'Comprimento da senha gerada pelo `createNewPasswordButton`. Default: `minSize`.  NAO derive isto de `maxLength`: `maxLength` existe para nao truncar o que o usuario digita (frase-senha), e costuma ser folgado (128, 512). Usar o teto como alvo fazia o botao gerar uma senha de 128 caracteres.',
+    description: 'Comprimento da senha gerada pelo `createNewPasswordButton`. Default: `minSize`.  NÃO derive isto de `maxLength`: `maxLength` existe para não truncar o que o usuário digita (frase-senha), e costuma ser folgado (128, 512). Usar o teto como alvo fazia o botão gerar uma senha de 128 caracteres.',
   ),
   SgPropSpec(
     name: 'numberRequired',
@@ -371,7 +371,7 @@ const List<SgPropSpec> sgInputPasswordPropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '((() => void) & (() => void))',
     required: false,
-    description: 'Disparado ao receber foco — padrao seedgrid.',
+    description: 'Disparado ao receber foco — padrão seedgrid.',
     exact: false,
   ),
   SgPropSpec(
@@ -380,7 +380,7 @@ const List<SgPropSpec> sgInputPasswordPropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '((() => void) & (() => void))',
     required: false,
-    description: 'Disparado ao perder o foco (apos validacao) — padrao seedgrid.',
+    description: 'Disparado ao perder o foco (após validação) — padrão seedgrid.',
     exact: false,
   ),
   SgPropSpec(
@@ -389,7 +389,7 @@ const List<SgPropSpec> sgInputPasswordPropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '(((message: string) => void) & ((message: string) => void))',
     required: false,
-    description: 'Callback para estado de validacao.',
+    description: 'Callback para estado de validação.',
     exact: false,
   ),
   SgPropSpec(
@@ -451,7 +451,7 @@ const List<SgPropSpec> sgInputPasswordPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description: 'Marca o campo como obrigatorio.',
+    description: 'Marca o campo como obrigatório.',
   ),
   SgPropSpec(
     name: 'requiredMessage',

@@ -6,7 +6,7 @@
 
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgSegmentDigit` no React — Digito em estilo segmentado para relogios, paines industriais e displays numericos classicos.
+/// Props públicas de `SgSegmentDigit` no React — Digito em estilo segmentado para relógios, paines industriais e displays numéricos clássicos.
 /// O widget deve declarar `implements SgSegmentDigitProps`.
 abstract interface class SgSegmentDigitProps {
   /// Cor dos segmentos ativos.

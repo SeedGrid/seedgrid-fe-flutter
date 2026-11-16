@@ -9,25 +9,25 @@ import 'package:flutter/widgets.dart';
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgPageControl` no React — Controle de paginas em abas para alternar entre paineis de conteudo relacionados em uma mesma area da tela.
+/// Props públicas de `SgPageControl` no React — Controle de páginas em abas para alternar entre painéis de conteúdo relacionados em uma mesma área da tela.
 /// O widget deve declarar `implements SgPageControlProps`.
 abstract interface class SgPageControlProps {
-  /// Indice ativo em modo controlado.
+  /// Índice ativo em modo controlado.
   num? get activeIndex;
-  /// Id da pagina ativa em modo controlado.
+  /// Id da página ativa em modo controlado.
   String? get activePageId;
   String? get ariaLabel;
-  /// Paginas filhas definidas por SgPageControlPage. No React e `children`.
+  /// Páginas filhas definidas por SgPageControlPage. No React e `children`.
   Widget get child;
   /// Padrão: `0`.
   num? get defaultActiveIndex;
   String? get defaultActivePageId;
   Widget? get emptyMessage;
-  /// Distribui as abas em larguras iguais a partir do tablet; no celular elas mantem a largura natural e a lista rola. Padrão: `false`.
+  /// Distribui as abas em larguras iguais a partir do tablet; no celular elas mantém a largura natural e a lista rola. Padrão: `false`.
   bool? get fullWidthTabs;
   /// Tipo TS: `string[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get hiddenPageIds;
-  /// Mantem paineis inativos montados no DOM. Padrão: `false`.
+  /// Mantém painéis inativos montados no DOM. Padrão: `false`.
   bool? get keepMounted;
   /// Padrão: `true`.
   bool? get keyboardNavigation;
@@ -35,7 +35,7 @@ abstract interface class SgPageControlProps {
   SgPageControlMobilePageControl? get mobilePageControl;
   /// Tipo TS: `((index: number, context: { pageId: string; page: SgPageControlPageProps; }) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onActiveIndexChange;
-  /// Callback disparado quando a pagina ativa muda. Tipo TS: `((pageId: string, context: { index: number; page: SgPageControlPageProps; }) =&gt; void)` (sem tradução exata; ver excecoes.json).
+  /// Callback disparado quando a página ativa muda. Tipo TS: `((pageId: string, context: { index: number; page: SgPageControlPageProps; }) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onActivePageIdChange;
   /// Estilo visual da lista de abas. Padrão: `underline`.
   SgPageControlPageControlStyle? get pageControlStyle;
@@ -54,7 +54,7 @@ const List<SgPropSpec> sgPageControlPropSpecs = <SgPropSpec>[
     type: 'num?',
     tsType: 'number',
     required: false,
-    description: 'Indice ativo em modo controlado.',
+    description: 'Índice ativo em modo controlado.',
   ),
   SgPropSpec(
     name: 'activePageId',
@@ -62,7 +62,7 @@ const List<SgPropSpec> sgPageControlPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Id da pagina ativa em modo controlado.',
+    description: 'Id da página ativa em modo controlado.',
   ),
   SgPropSpec(
     name: 'ariaLabel',
@@ -77,7 +77,7 @@ const List<SgPropSpec> sgPageControlPropSpecs = <SgPropSpec>[
     type: 'Widget',
     tsType: 'React.ReactNode',
     required: true,
-    description: 'Paginas filhas definidas por SgPageControlPage.',
+    description: 'Páginas filhas definidas por SgPageControlPage.',
   ),
   SgPropSpec(
     name: 'defaultActiveIndex',
@@ -108,7 +108,7 @@ const List<SgPropSpec> sgPageControlPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description: 'Distribui as abas em larguras iguais a partir do tablet; no celular elas mantem a largura natural e a lista rola.',
+    description: 'Distribui as abas em larguras iguais a partir do tablet; no celular elas mantém a largura natural e a lista rola.',
   ),
   SgPropSpec(
     name: 'hiddenPageIds',
@@ -125,7 +125,7 @@ const List<SgPropSpec> sgPageControlPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description: 'Mantem paineis inativos montados no DOM.',
+    description: 'Mantém painéis inativos montados no DOM.',
   ),
   SgPropSpec(
     name: 'keyboardNavigation',
@@ -159,7 +159,7 @@ const List<SgPropSpec> sgPageControlPropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '((pageId: string, context: { index: number; page: SgPageControlPageProps; }) => void)',
     required: false,
-    description: 'Callback disparado quando a pagina ativa muda.',
+    description: 'Callback disparado quando a página ativa muda.',
     exact: false,
   ),
   SgPropSpec(

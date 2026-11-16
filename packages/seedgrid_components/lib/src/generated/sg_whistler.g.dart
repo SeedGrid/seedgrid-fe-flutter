@@ -6,16 +6,16 @@
 
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgWhistler` no React — Renderizador de avisos persistentes ou semi-persistentes em pilha, com cores por severidade, acao opcional e controle de maximo visivel. Cede a vez quando um SgWhistleHost esta presente.
+/// Props públicas de `SgWhistler` no React — Renderizador de avisos persistentes ou semi-persistentes em pilha, com cores por severidade, ação opcional e controle de máximo visível. Cede a vez quando um SgWhistleHost esta presente.
 /// O widget deve declarar `implements SgWhistlerProps`.
 abstract interface class SgWhistlerProps {
   /// Tipo TS: `Partial&lt;Record&lt;SgWhistleSeverity, SgWhistleColors&gt;&gt;` (sem tradução exata; ver excecoes.json).
   Object? get customColors;
-  /// Duracao padrao dos whistles em milissegundos (mesmo default do SgToaster). Cada whistle sobrescreve com options.duration, que tem prioridade; use 0 (ou negativo) para que nada suma sozinho. Whistle 'loading' nunca expira. Padrão: `4000`.
+  /// Duração padrão dos whistles em milissegundos (mesmo default do SgToaster). Cada whistle sobrescreve com options.duration, que tem prioridade; use 0 (ou negativo) para que nada suma sozinho. Whistle 'loading' nunca expira. Padrão: `4000`.
   num? get duration;
-  /// Espacamento entre os avisos renderizados. Padrão: `12`.
+  /// Espaçamento entre os avisos renderizados. Padrão: `12`.
   num? get gap;
-  /// Quantidade maxima de whistle items visiveis. Padrão: `4`.
+  /// Quantidade máxima de whistle items visíveis. Padrão: `4`.
   num? get max;
   /// Inverte a ordem visual para mostrar os mais novos primeiro. Padrão: `false`.
   bool? get newestOnTop;
@@ -40,7 +40,7 @@ const List<SgPropSpec> sgWhistlerPropSpecs = <SgPropSpec>[
     tsType: 'number',
     required: false,
     defaultValue: '4000',
-    description: 'Duracao padrao dos whistles em milissegundos (mesmo default do SgToaster). Cada whistle sobrescreve com options.duration, que tem prioridade; use 0 (ou negativo) para que nada suma sozinho. Whistle \'loading\' nunca expira.',
+    description: 'Duração padrão dos whistles em milissegundos (mesmo default do SgToaster). Cada whistle sobrescreve com options.duration, que tem prioridade; use 0 (ou negativo) para que nada suma sozinho. Whistle \'loading\' nunca expira.',
   ),
   SgPropSpec(
     name: 'gap',
@@ -49,7 +49,7 @@ const List<SgPropSpec> sgWhistlerPropSpecs = <SgPropSpec>[
     tsType: 'number',
     required: false,
     defaultValue: '12',
-    description: 'Espacamento entre os avisos renderizados.',
+    description: 'Espaçamento entre os avisos renderizados.',
   ),
   SgPropSpec(
     name: 'max',
@@ -58,7 +58,7 @@ const List<SgPropSpec> sgWhistlerPropSpecs = <SgPropSpec>[
     tsType: 'number',
     required: false,
     defaultValue: '4',
-    description: 'Quantidade maxima de whistle items visiveis.',
+    description: 'Quantidade máxima de whistle items visíveis.',
   ),
   SgPropSpec(
     name: 'newestOnTop',

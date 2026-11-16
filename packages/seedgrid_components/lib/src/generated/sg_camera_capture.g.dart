@@ -7,30 +7,30 @@
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgCameraCapture` no React — Pre-visualizacao da camera com guia de enquadramento (oval ou retangulo), alternancia entre frontal e traseira e captura que devolve a imagem ao pai. Mostra os estados sem permissao e sem camera. Nao envia nada ao servidor.
+/// Props públicas de `SgCameraCapture` no React — Pré-visualização da câmera com guia de enquadramento (oval ou retângulo), alternância entre frontal e traseira e captura que devolve a imagem ao pai. Mostra os estados sem permissão e sem câmera. Não envia nada ao servidor.
 /// O widget deve declarar `implements SgCameraCaptureProps`.
 abstract interface class SgCameraCaptureProps {
-  /// Mostra o botao de alternar entre frontal e traseira. Padrão: `true`.
+  /// Mostra o botão de alternar entre frontal e traseira. Padrão: `true`.
   bool? get allowSwitch;
-  /// Nao abre a camera nem permite capturar. Padrão: `true`.
+  /// Não abre a câmera nem permite capturar. Padrão: `true`.
   bool? get enabled;
-  /// Camera inicial: frontal (user) ou traseira (environment). Padrão: `user`.
+  /// Câmera inicial: frontal (user) ou traseira (environment). Padrão: `user`.
   SgCameraCaptureFacing? get facing;
-  /// Guia de enquadramento sobre a pre-visualizacao. Padrão: `none`.
+  /// Guia de enquadramento sobre a pré-visualização. Padrão: `none`.
   SgCameraCaptureGuide? get guide;
   String? get hintText;
-  /// Identificador unico do componente.
+  /// Identificador único do componente.
   String get id;
-  /// Rotulo exibido acima da pre-visualizacao.
+  /// Rótulo exibido acima da pré-visualização.
   String? get label;
   String? get labelText;
   /// Imagem JPEG capturada. Tipo TS: `((image: Blob) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onCapture;
-  /// Camera indisponivel (permission, noCamera, failed). Tipo TS: `((code: CameraErrorCode, message: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
+  /// Câmera indisponível (permission, noCamera, failed). Tipo TS: `((code: CameraErrorCode, message: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onError;
-  /// Altura da pre-visualizacao em px. Padrão: `320`.
+  /// Altura da pré-visualização em px. Padrão: `320`.
   num? get previewHeight;
-  /// Resolucao pedida (640x480, 1280x720, 1920x1080). Padrão: `medium`.
+  /// Resolução pedida (640x480, 1280x720, 1920x1080). Padrão: `medium`.
   SgCameraCaptureResolution? get resolution;
 }
 
@@ -43,7 +43,7 @@ const List<SgPropSpec> sgCameraCapturePropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'true',
-    description: 'Mostra o botao de alternar entre frontal e traseira.',
+    description: 'Mostra o botão de alternar entre frontal e traseira.',
   ),
   SgPropSpec(
     name: 'enabled',
@@ -52,7 +52,7 @@ const List<SgPropSpec> sgCameraCapturePropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'true',
-    description: 'Nao abre a camera nem permite capturar.',
+    description: 'Não abre a câmera nem permite capturar.',
   ),
   SgPropSpec(
     name: 'facing',
@@ -61,7 +61,7 @@ const List<SgPropSpec> sgCameraCapturePropSpecs = <SgPropSpec>[
     tsType: 'CameraFacing',
     required: false,
     defaultValue: 'user',
-    description: 'Camera inicial: frontal (user) ou traseira (environment).',
+    description: 'Câmera inicial: frontal (user) ou traseira (environment).',
     values: <String>['user', 'environment'],
   ),
   SgPropSpec(
@@ -71,7 +71,7 @@ const List<SgPropSpec> sgCameraCapturePropSpecs = <SgPropSpec>[
     tsType: 'CameraGuide',
     required: false,
     defaultValue: 'none',
-    description: 'Guia de enquadramento sobre a pre-visualizacao.',
+    description: 'Guia de enquadramento sobre a pré-visualização.',
     values: <String>['none', 'oval', 'rect'],
   ),
   SgPropSpec(
@@ -87,7 +87,7 @@ const List<SgPropSpec> sgCameraCapturePropSpecs = <SgPropSpec>[
     type: 'String',
     tsType: 'string',
     required: true,
-    description: 'Identificador unico do componente.',
+    description: 'Identificador único do componente.',
   ),
   SgPropSpec(
     name: 'label',
@@ -95,7 +95,7 @@ const List<SgPropSpec> sgCameraCapturePropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Rotulo exibido acima da pre-visualizacao.',
+    description: 'Rótulo exibido acima da pré-visualização.',
   ),
   SgPropSpec(
     name: 'labelText',
@@ -119,7 +119,7 @@ const List<SgPropSpec> sgCameraCapturePropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '((code: CameraErrorCode, message: string) => void)',
     required: false,
-    description: 'Camera indisponivel (permission, noCamera, failed).',
+    description: 'Câmera indisponível (permission, noCamera, failed).',
     exact: false,
   ),
   SgPropSpec(
@@ -129,7 +129,7 @@ const List<SgPropSpec> sgCameraCapturePropSpecs = <SgPropSpec>[
     tsType: 'number',
     required: false,
     defaultValue: '320',
-    description: 'Altura da pre-visualizacao em px.',
+    description: 'Altura da pré-visualização em px.',
   ),
   SgPropSpec(
     name: 'resolution',
@@ -138,7 +138,7 @@ const List<SgPropSpec> sgCameraCapturePropSpecs = <SgPropSpec>[
     tsType: 'CameraResolution',
     required: false,
     defaultValue: 'medium',
-    description: 'Resolucao pedida (640x480, 1280x720, 1920x1080).',
+    description: 'Resolução pedida (640x480, 1280x720, 1920x1080).',
     values: <String>['low', 'medium', 'high'],
   ),
 ];

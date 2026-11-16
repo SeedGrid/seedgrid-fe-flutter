@@ -9,12 +9,12 @@ import 'package:flutter/widgets.dart';
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgInputEmail` no React — Campo especializado para email com validacao de formato, bloqueio opcional de dominios temporarios e integracao com formularios.
+/// Props públicas de `SgInputEmail` no React — Campo especializado para email com validação de formato, bloqueio opcional de domínios temporários e integração com formulários.
 /// O widget deve declarar `implements SgInputEmailProps`.
 abstract interface class SgInputEmailProps {
-  /// Lista customizada de dominios bloqueados. Tipo TS: `string[]` (sem tradução exata; ver excecoes.json).
+  /// Lista customizada de domínios bloqueados. Tipo TS: `string[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get blockedEmailDomains;
-  /// Bloqueia dominios temporarios conhecidos. Padrão: `true`.
+  /// Bloqueia domínios temporários conhecidos. Padrão: `true`.
   bool? get blockFakeMail;
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get borderRadius;
@@ -28,13 +28,13 @@ abstract interface class SgInputEmailProps {
   String? get hintText;
   /// Tipo TS: `React.ReactNode[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get iconButtons;
-  /// Identificador unico do campo.
+  /// Identificador único do campo.
   String get id;
   /// Tipo TS: `(React.InputHTMLAttributes&lt;HTMLInputElement&gt; & { ref?: React.Ref&lt;HTMLInputElement&gt;; })` (sem tradução exata; ver excecoes.json).
   Object? get inputProps;
-  /// Mensagem para email invalido.
+  /// Mensagem para email inválido.
   String? get invalidMessage;
-  /// Rotulo exibido ao usuario.
+  /// Rótulo exibido ao usuário.
   String? get label;
   SgInputEmailLabelAlign? get labelAlign;
   SgInputEmailLabelPosition? get labelPosition;
@@ -47,7 +47,7 @@ abstract interface class SgInputEmailProps {
   String? get minLengthMessage;
   num? get minNumberOfWords;
   String? get minNumberOfWordsMessage;
-  /// Nome do campo em formularios.
+  /// Nome do campo em formulários.
   String? get name;
   /// Tipo TS: `((value: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onChange;
@@ -55,21 +55,21 @@ abstract interface class SgInputEmailProps {
   Function? get onClear;
   /// Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onEnter;
-  /// Disparado quando o campo perde o foco (apos a validacao) — padrao seedgrid. Tipo TS: `((() =&gt; void) & (() =&gt; void))` (sem tradução exata; ver excecoes.json).
+  /// Disparado quando o campo perde o foco (após a validação) — padrão seedgrid. Tipo TS: `((() =&gt; void) & (() =&gt; void))` (sem tradução exata; ver excecoes.json).
   Function? get onExit;
-  /// Callback para estado de validacao. Tipo TS: `(((message: string) =&gt; void) & ((message: string) =&gt; void))` (sem tradução exata; ver excecoes.json).
+  /// Callback para estado de validação. Tipo TS: `(((message: string) =&gt; void) & ((message: string) =&gt; void))` (sem tradução exata; ver excecoes.json).
   Function? get onValidation;
   String? get placeholder;
   Widget? get prefixIcon;
   String? get prefixText;
   bool? get readOnly;
-  /// Marca o campo como obrigatorio. Padrão: `false`.
+  /// Marca o campo como obrigatório. Padrão: `false`.
   bool? get required;
   String? get requiredMessage;
   bool? get showCharCounter;
   String? get suffixText;
   SgInputEmailTextInputType? get textInputType;
-  /// Executa validacao no blur. Padrão: `true`.
+  /// Executa validação no blur. Padrão: `true`.
   bool? get validateOnBlur;
   /// Tipo TS: `(((value: string) =&gt; string) & ((value: string) =&gt; string))` (sem tradução exata; ver excecoes.json).
   Function? get validation;
@@ -86,7 +86,7 @@ const List<SgPropSpec> sgInputEmailPropSpecs = <SgPropSpec>[
     type: 'List<Object?>?',
     tsType: 'string[]',
     required: false,
-    description: 'Lista customizada de dominios bloqueados.',
+    description: 'Lista customizada de domínios bloqueados.',
     exact: false,
   ),
   SgPropSpec(
@@ -96,7 +96,7 @@ const List<SgPropSpec> sgInputEmailPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'true',
-    description: 'Bloqueia dominios temporarios conhecidos.',
+    description: 'Bloqueia domínios temporários conhecidos.',
   ),
   SgPropSpec(
     name: 'borderRadius',
@@ -171,7 +171,7 @@ const List<SgPropSpec> sgInputEmailPropSpecs = <SgPropSpec>[
     type: 'String',
     tsType: 'string',
     required: true,
-    description: 'Identificador unico do campo.',
+    description: 'Identificador único do campo.',
   ),
   SgPropSpec(
     name: 'inputProps',
@@ -187,7 +187,7 @@ const List<SgPropSpec> sgInputEmailPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Mensagem para email invalido.',
+    description: 'Mensagem para email inválido.',
   ),
   SgPropSpec(
     name: 'label',
@@ -195,7 +195,7 @@ const List<SgPropSpec> sgInputEmailPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Rotulo exibido ao usuario.',
+    description: 'Rótulo exibido ao usuário.',
   ),
   SgPropSpec(
     name: 'labelAlign',
@@ -276,7 +276,7 @@ const List<SgPropSpec> sgInputEmailPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Nome do campo em formularios.',
+    description: 'Nome do campo em formulários.',
   ),
   SgPropSpec(
     name: 'onChange',
@@ -308,7 +308,7 @@ const List<SgPropSpec> sgInputEmailPropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '((() => void) & (() => void))',
     required: false,
-    description: 'Disparado quando o campo perde o foco (apos a validacao) — padrao seedgrid.',
+    description: 'Disparado quando o campo perde o foco (após a validação) — padrão seedgrid.',
     exact: false,
   ),
   SgPropSpec(
@@ -317,7 +317,7 @@ const List<SgPropSpec> sgInputEmailPropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '(((message: string) => void) & ((message: string) => void))',
     required: false,
-    description: 'Callback para estado de validacao.',
+    description: 'Callback para estado de validação.',
     exact: false,
   ),
   SgPropSpec(
@@ -355,7 +355,7 @@ const List<SgPropSpec> sgInputEmailPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description: 'Marca o campo como obrigatorio.',
+    description: 'Marca o campo como obrigatório.',
   ),
   SgPropSpec(
     name: 'requiredMessage',
@@ -393,7 +393,7 @@ const List<SgPropSpec> sgInputEmailPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'true',
-    description: 'Executa validacao no blur.',
+    description: 'Executa validação no blur.',
   ),
   SgPropSpec(
     name: 'validation',

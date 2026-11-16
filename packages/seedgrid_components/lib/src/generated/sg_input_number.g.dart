@@ -9,7 +9,7 @@ import 'package:flutter/widgets.dart';
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgInputNumber` no React — Campo numerico com suporte a valores inteiros e decimais, validacao de limites e integracao com react-hook-form.
+/// Props públicas de `SgInputNumber` no React — Campo numérico com suporte a valores inteiros e decimais, validação de limites e integração com react-hook-form.
 /// O widget deve declarar `implements SgInputNumberProps`.
 abstract interface class SgInputNumberProps {
   bool? get allowNegative;
@@ -21,7 +21,7 @@ abstract interface class SgInputNumberProps {
   /// Quantidade de casas decimais permitidas.
   num? get decimals;
   SgInputNumberElevation? get elevation;
-  /// Se true, campo vazio vale null; se false (padrao), vale 0. Padrão: `false`.
+  /// Se true, campo vazio vale null; se false (padrão), vale 0. Padrão: `false`.
   bool? get emptyValueIsNull;
   bool? get enabled;
   String? get error;
@@ -29,11 +29,11 @@ abstract interface class SgInputNumberProps {
   String? get hintText;
   /// Tipo TS: `React.ReactNode[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get iconButtons;
-  /// Identificador unico do campo numerico.
+  /// Identificador único do campo numérico.
   String get id;
   /// Tipo TS: `(React.InputHTMLAttributes&lt;HTMLInputElement&gt; & { ref?: React.Ref&lt;HTMLInputElement&gt;; })` (sem tradução exata; ver excecoes.json).
   Object? get inputProps;
-  /// Rotulo principal exibido ao usuario.
+  /// Rótulo principal exibido ao usuário.
   String? get label;
   SgInputNumberLabelAlign? get labelAlign;
   SgInputNumberLabelPosition? get labelPosition;
@@ -44,9 +44,9 @@ abstract interface class SgInputNumberProps {
   String? get maxValueMessage;
   num? get minValue;
   String? get minValueMessage;
-  /// Nome do campo para formularios.
+  /// Nome do campo para formulários.
   String? get name;
-  /// Callback com o valor numerico atual (number; null somente com emptyValueIsNull). Tipo TS: `((value: number) =&gt; void)` (sem tradução exata; ver excecoes.json).
+  /// Callback com o valor numérico atual (number; null somente com emptyValueIsNull). Tipo TS: `((value: number) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onChange;
   /// Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onClear;
@@ -59,9 +59,9 @@ abstract interface class SgInputNumberProps {
   String? get placeholder;
   Widget? get prefixIcon;
   String? get prefixText;
-  /// Impede edicao mantendo leitura e foco. Padrão: `false`.
+  /// Impede edição mantendo leitura e foco. Padrão: `false`.
   bool? get readOnly;
-  /// Marca o campo como obrigatorio. Padrão: `false`.
+  /// Marca o campo como obrigatório. Padrão: `false`.
   bool? get required;
   String? get requiredMessage;
   String? get suffixText;
@@ -131,7 +131,7 @@ const List<SgPropSpec> sgInputNumberPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description: 'Se true, campo vazio vale null; se false (padrao), vale 0.',
+    description: 'Se true, campo vazio vale null; se false (padrão), vale 0.',
   ),
   SgPropSpec(
     name: 'enabled',
@@ -175,7 +175,7 @@ const List<SgPropSpec> sgInputNumberPropSpecs = <SgPropSpec>[
     type: 'String',
     tsType: 'string',
     required: true,
-    description: 'Identificador unico do campo numerico.',
+    description: 'Identificador único do campo numérico.',
   ),
   SgPropSpec(
     name: 'inputProps',
@@ -191,7 +191,7 @@ const List<SgPropSpec> sgInputNumberPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Rotulo principal exibido ao usuario.',
+    description: 'Rótulo principal exibido ao usuário.',
   ),
   SgPropSpec(
     name: 'labelAlign',
@@ -258,7 +258,7 @@ const List<SgPropSpec> sgInputNumberPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Nome do campo para formularios.',
+    description: 'Nome do campo para formulários.',
   ),
   SgPropSpec(
     name: 'onChange',
@@ -266,7 +266,7 @@ const List<SgPropSpec> sgInputNumberPropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '((value: number) => void)',
     required: false,
-    description: 'Callback com o valor numerico atual (number; null somente com emptyValueIsNull).',
+    description: 'Callback com o valor numérico atual (number; null somente com emptyValueIsNull).',
     exact: false,
   ),
   SgPropSpec(
@@ -329,7 +329,7 @@ const List<SgPropSpec> sgInputNumberPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description: 'Impede edicao mantendo leitura e foco.',
+    description: 'Impede edição mantendo leitura e foco.',
   ),
   SgPropSpec(
     name: 'required',
@@ -338,7 +338,7 @@ const List<SgPropSpec> sgInputNumberPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description: 'Marca o campo como obrigatorio.',
+    description: 'Marca o campo como obrigatório.',
   ),
   SgPropSpec(
     name: 'requiredMessage',

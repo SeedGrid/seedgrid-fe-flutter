@@ -7,21 +7,21 @@
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgToastHost` no React — Ponto explicito de montagem para notificacoes toast, usado quando a aplicacao precisa controlar a localizacao ativa do host.
+/// Props públicas de `SgToastHost` no React — Ponto explicito de montagem para notificações toast, usado quando a aplicação precisa controlar a localização ativa do host.
 /// O widget deve declarar `implements SgToastHostProps`.
 abstract interface class SgToastHostProps {
   bool? get closeButton;
   /// Tipo TS: `Partial&lt;Record&lt;SgToastType, SgToasterTypeColors&gt;&gt;` (sem tradução exata; ver excecoes.json).
   Object? get customColors;
-  /// Duracao padrao aplicada aos toasts deste host. Padrão: `4000`.
+  /// Duração padrão aplicada aos toasts deste host. Padrão: `4000`.
   num? get duration;
-  /// Posicao dos toasts renderizados por este host. Padrão: `top-right`.
+  /// Posição dos toasts renderizados por este host. Padrão: `top-right`.
   SgToasterPosition? get position;
   bool? get richColors;
   /// Arredonda os cantos de cada toast (rounded-md). Desligue para cantos retos.
   bool? get rounded;
   num? get transparency;
-  /// Quantidade maxima de toasts visiveis. Padrão: `6`.
+  /// Quantidade máxima de toasts visíveis. Padrão: `6`.
   num? get visibleToasts;
 }
 
@@ -49,7 +49,7 @@ const List<SgPropSpec> sgToastHostPropSpecs = <SgPropSpec>[
     tsType: 'number',
     required: false,
     defaultValue: '4000',
-    description: 'Duracao padrao aplicada aos toasts deste host.',
+    description: 'Duração padrão aplicada aos toasts deste host.',
   ),
   SgPropSpec(
     name: 'position',
@@ -58,7 +58,7 @@ const List<SgPropSpec> sgToastHostPropSpecs = <SgPropSpec>[
     tsType: 'SgToasterPosition',
     required: false,
     defaultValue: 'top-right',
-    description: 'Posicao dos toasts renderizados por este host.',
+    description: 'Posição dos toasts renderizados por este host.',
     values: <String>['top-left', 'top-right', 'bottom-left', 'bottom-right', 'top-center', 'bottom-center'],
   ),
   SgPropSpec(
@@ -90,6 +90,6 @@ const List<SgPropSpec> sgToastHostPropSpecs = <SgPropSpec>[
     tsType: 'number',
     required: false,
     defaultValue: '6',
-    description: 'Quantidade maxima de toasts visiveis.',
+    description: 'Quantidade máxima de toasts visíveis.',
   ),
 ];

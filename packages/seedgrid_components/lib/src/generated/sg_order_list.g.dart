@@ -7,7 +7,7 @@
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgOrderList` no React — Lista ordenavel para reordenacao manual de itens com selecao e controles de movimento.
+/// Props públicas de `SgOrderList` no React — Lista ordenável para reordenação manual de itens com seleção e controles de movimento.
 /// O widget deve declarar `implements SgOrderListProps`.
 abstract interface class SgOrderListProps {
   /// Tipo TS: `any` (sem tradução exata; ver excecoes.json).
@@ -17,7 +17,7 @@ abstract interface class SgOrderListProps {
   /// Permite arrastar itens. Padrão: `false`.
   bool? get draggable;
   String? get emptyMessage;
-  /// Desabilita interacao. Padrão: `true`.
+  /// Desabilita interação. Padrão: `true`.
   bool? get enabled;
   String? get error;
   /// Padrão: `{}`. Tipo TS: `(Omit&lt;Partial&lt;SgGroupBoxProps&gt;, "title" | "children"&gt; & { title?: string; })` (sem tradução exata; ver excecoes.json).
@@ -38,13 +38,13 @@ abstract interface class SgOrderListProps {
   bool? get readOnly;
   /// Tipo TS: `(string | number)[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get selectedValues;
-  /// Modo de selecao. Padrão: `single`.
+  /// Modo de seleção. Padrão: `single`.
   SgOrderListSelectionMode? get selectionMode;
-  /// Exibe botoes de ordenacao. Padrão: `true`.
+  /// Exibe botões de ordenação. Padrão: `true`.
   bool? get showControls;
   /// Itens de origem. Tipo TS: `SgOrderListItem[]` (sem tradução exata; ver excecoes.json).
   List<Object?> get source;
-  /// Titulo do grupo.
+  /// Título do grupo.
   String? get title;
   /// Itens na ordem atual. Tipo TS: `SgOrderListItem[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get value;
@@ -92,7 +92,7 @@ const List<SgPropSpec> sgOrderListPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'true',
-    description: 'Desabilita interacao.',
+    description: 'Desabilita interação.',
   ),
   SgPropSpec(
     name: 'error',
@@ -188,7 +188,7 @@ const List<SgPropSpec> sgOrderListPropSpecs = <SgPropSpec>[
     tsType: 'SgOrderListSelectionMode',
     required: false,
     defaultValue: 'single',
-    description: 'Modo de selecao.',
+    description: 'Modo de seleção.',
     values: <String>['multiple', 'single'],
   ),
   SgPropSpec(
@@ -198,7 +198,7 @@ const List<SgPropSpec> sgOrderListPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'true',
-    description: 'Exibe botoes de ordenacao.',
+    description: 'Exibe botões de ordenação.',
   ),
   SgPropSpec(
     name: 'source',
@@ -215,7 +215,7 @@ const List<SgPropSpec> sgOrderListPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Titulo do grupo.',
+    description: 'Título do grupo.',
   ),
   SgPropSpec(
     name: 'value',

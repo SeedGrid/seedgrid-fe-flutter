@@ -9,14 +9,14 @@ import 'package:flutter/widgets.dart';
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgRadialGauge` no React — Gauge radial com ponteiros, faixas, anotacoes e controle de angulos para cenarios de speedometer, dial e medicao circular.
+/// Props públicas de `SgRadialGauge` no React — Gauge radial com ponteiros, faixas, anotações e controle de ângulos para cenários de speedometer, dial e medição circular.
 /// O widget deve declarar `implements SgRadialGaugeProps`.
 abstract interface class SgRadialGaugeProps {
   /// Padrão: `true`.
   bool? get animate;
   /// Padrão: `350`.
   num? get animationDuration;
-  /// Anotacoes posicionadas por valor ou angulo. Padrão: ``. Tipo TS: `SgRadialGaugeAnnotation[]` (sem tradução exata; ver excecoes.json).
+  /// Anotações posicionadas por valor ou ângulo. Padrão: ``. Tipo TS: `SgRadialGaugeAnnotation[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get annotations;
   String? get ariaLabel;
   /// Padrão: `hsl(var(--border))`.
@@ -26,7 +26,7 @@ abstract interface class SgRadialGaugeProps {
   Widget? get centerContent;
   /// Padrão: `min`.
   num? get defaultValue;
-  /// Angulo final do arco. Padrão: `45`.
+  /// Ângulo final do arco. Padrão: `45`.
   num? get endAngle;
   /// Padrão: `300`.
   num? get height;
@@ -36,9 +36,9 @@ abstract interface class SgRadialGaugeProps {
   Function? get labelFormatter;
   /// Padrão: `5`.
   num? get majorTickCount;
-  /// Valor maximo da escala. Padrão: `100`.
+  /// Valor máximo da escala. Padrão: `100`.
   num? get max;
-  /// Valor minimo da escala. Padrão: `0`.
+  /// Valor mínimo da escala. Padrão: `0`.
   num? get min;
   /// Padrão: `1`.
   num? get minorTicksPerInterval;
@@ -72,7 +72,7 @@ abstract interface class SgRadialGaugeProps {
   bool? get showPrimaryPointer;
   /// Padrão: `true`.
   bool? get showTicks;
-  /// Angulo inicial do arco. Padrão: `135`.
+  /// Ângulo inicial do arco. Padrão: `135`.
   num? get startAngle;
   /// Valor do ponteiro principal.
   num? get value;
@@ -105,7 +105,7 @@ const List<SgPropSpec> sgRadialGaugePropSpecs = <SgPropSpec>[
     tsType: 'SgRadialGaugeAnnotation[]',
     required: false,
     defaultValue: '',
-    description: 'Anotacoes posicionadas por valor ou angulo.',
+    description: 'Anotações posicionadas por valor ou ângulo.',
     exact: false,
   ),
   SgPropSpec(
@@ -153,7 +153,7 @@ const List<SgPropSpec> sgRadialGaugePropSpecs = <SgPropSpec>[
     tsType: 'number',
     required: false,
     defaultValue: '45',
-    description: 'Angulo final do arco.',
+    description: 'Ângulo final do arco.',
   ),
   SgPropSpec(
     name: 'height',
@@ -194,7 +194,7 @@ const List<SgPropSpec> sgRadialGaugePropSpecs = <SgPropSpec>[
     tsType: 'number',
     required: false,
     defaultValue: '100',
-    description: 'Valor maximo da escala.',
+    description: 'Valor máximo da escala.',
   ),
   SgPropSpec(
     name: 'min',
@@ -203,7 +203,7 @@ const List<SgPropSpec> sgRadialGaugePropSpecs = <SgPropSpec>[
     tsType: 'number',
     required: false,
     defaultValue: '0',
-    description: 'Valor minimo da escala.',
+    description: 'Valor mínimo da escala.',
   ),
   SgPropSpec(
     name: 'minorTicksPerInterval',
@@ -354,7 +354,7 @@ const List<SgPropSpec> sgRadialGaugePropSpecs = <SgPropSpec>[
     tsType: 'number',
     required: false,
     defaultValue: '135',
-    description: 'Angulo inicial do arco.',
+    description: 'Ângulo inicial do arco.',
   ),
   SgPropSpec(
     name: 'value',

@@ -9,7 +9,7 @@ import 'package:flutter/widgets.dart';
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgInputCPFCNPJ` no React — Campo hibrido para CPF ou CNPJ com mascara e validacao automatica conforme o documento informado. Contrato de valor: o valor do formulario (onChange avulso, control e register) e SEMPRE mascarado, digitado ou setado por codigo (defaultValues, setValue, reset, value); a entrada aceita valor cru ou mascarado; valor maior que a mascara e cortado; para guardar so digitos use value.replace(/\D/g, "").
+/// Props públicas de `SgInputCPFCNPJ` no React — Campo híbrido para CPF ou CNPJ com máscara e validação automática conforme o documento informado. Contrato de valor: o valor do formulário (onChange avulso, control e register) e SEMPRE mascarado, digitado ou setado por código (defaultValues, setValue, reset, value); a entrada aceita valor cru ou mascarado; valor maior que a máscara e cortado; para guardar só dígitos use value.replace(/\D/g, "").
 /// O widget deve declarar `implements SgInputCPFCNPJProps`.
 abstract interface class SgInputCPFCNPJProps {
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
@@ -24,20 +24,20 @@ abstract interface class SgInputCPFCNPJProps {
   String? get hintText;
   /// Tipo TS: `React.ReactNode[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get iconButtons;
-  /// Identificador unico do campo.
+  /// Identificador único do campo.
   String get id;
   /// Tipo TS: `(React.InputHTMLAttributes&lt;HTMLInputElement&gt; & { ref?: React.Ref&lt;HTMLInputElement&gt;; })` (sem tradução exata; ver excecoes.json).
   Object? get inputProps;
-  /// Mensagem para documento invalido.
+  /// Mensagem para documento inválido.
   String? get invalidMessage;
-  /// Rotulo exibido ao usuario.
+  /// Rótulo exibido ao usuário.
   String? get label;
   SgInputCPFCNPJLabelAlign? get labelAlign;
   SgInputCPFCNPJLabelPosition? get labelPosition;
   String? get labelText;
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get labelWidth;
-  /// Mensagem para comprimento invalido.
+  /// Mensagem para comprimento inválido.
   String? get lengthMessage;
   num? get maxLength;
   String? get maxLengthMessage;
@@ -45,31 +45,31 @@ abstract interface class SgInputCPFCNPJProps {
   String? get minLengthMessage;
   num? get minNumberOfWords;
   String? get minNumberOfWordsMessage;
-  /// Nome do campo em formularios.
+  /// Nome do campo em formulários.
   String? get name;
   /// Tipo TS: `((value: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onChange;
   /// Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onClear;
-  /// Disparado ao receber foco — padrao seedgrid. Tipo TS: `((() =&gt; void) & (() =&gt; void))` (sem tradução exata; ver excecoes.json).
+  /// Disparado ao receber foco — padrão seedgrid. Tipo TS: `((() =&gt; void) & (() =&gt; void))` (sem tradução exata; ver excecoes.json).
   Function? get onEnter;
-  /// Disparado ao perder o foco (apos validacao) — padrao seedgrid. Tipo TS: `((() =&gt; void) & (() =&gt; void))` (sem tradução exata; ver excecoes.json).
+  /// Disparado ao perder o foco (após validação) — padrão seedgrid. Tipo TS: `((() =&gt; void) & (() =&gt; void))` (sem tradução exata; ver excecoes.json).
   Function? get onExit;
   /// Chamado quando a consulta falha. Tipo TS: `((error: unknown) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onPublicaCnpjError;
   /// Recebe o resultado da consulta. Tipo TS: `((data: unknown) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onPublicaCnpjResult;
-  /// Callback para estado de validacao. Tipo TS: `(((message: string) =&gt; void) & ((message: string) =&gt; void))` (sem tradução exata; ver excecoes.json).
+  /// Callback para estado de validação. Tipo TS: `(((message: string) =&gt; void) & ((message: string) =&gt; void))` (sem tradução exata; ver excecoes.json).
   Function? get onValidation;
   String? get placeholder;
   Widget? get prefixIcon;
   String? get prefixText;
-  /// Mensagem quando a base publica nao encontra o CNPJ.
+  /// Mensagem quando a base publica não encontra o CNPJ.
   String? get publicaCnpjErrorMessage;
-  /// Consulta injetavel (padrao publica.cnpj.ws). Tipo TS: `((cnpj: string) =&gt; Promise&lt;unknown&gt;)` (sem tradução exata; ver excecoes.json).
+  /// Consulta injetável (padrão publica.cnpj.ws). Tipo TS: `((cnpj: string) =&gt; Promise&lt;unknown&gt;)` (sem tradução exata; ver excecoes.json).
   Function? get publicaCnpjFetch;
   bool? get readOnly;
-  /// Marca o campo como obrigatorio. Padrão: `false`.
+  /// Marca o campo como obrigatório. Padrão: `false`.
   bool? get required;
   String? get requiredMessage;
   bool? get showCharCounter;
@@ -77,11 +77,11 @@ abstract interface class SgInputCPFCNPJProps {
   SgInputCPFCNPJTextInputType? get textInputType;
   /// Tipo TS: `React.HTMLInputTypeAttribute` (sem tradução exata; ver excecoes.json).
   Object? get type;
-  /// Executa validacao no blur. Padrão: `true`.
+  /// Executa validação no blur. Padrão: `true`.
   bool? get validateOnBlur;
-  /// Confirma na base publica que o CNPJ numerico existe. Padrão: `false`.
+  /// Confirma na base publica que o CNPJ numérico existe. Padrão: `false`.
   bool? get validateWithPublicaCnpj;
-  /// Validacao customizada adicional. Tipo TS: `(((value: string) =&gt; string) & ((value: string) =&gt; string))` (sem tradução exata; ver excecoes.json).
+  /// Validação customizada adicional. Tipo TS: `(((value: string) =&gt; string) & ((value: string) =&gt; string))` (sem tradução exata; ver excecoes.json).
   Function? get validation;
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get width;
@@ -163,7 +163,7 @@ const List<SgPropSpec> sgInputCPFCNPJPropSpecs = <SgPropSpec>[
     type: 'String',
     tsType: 'string',
     required: true,
-    description: 'Identificador unico do campo.',
+    description: 'Identificador único do campo.',
   ),
   SgPropSpec(
     name: 'inputProps',
@@ -179,7 +179,7 @@ const List<SgPropSpec> sgInputCPFCNPJPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Mensagem para documento invalido.',
+    description: 'Mensagem para documento inválido.',
   ),
   SgPropSpec(
     name: 'label',
@@ -187,7 +187,7 @@ const List<SgPropSpec> sgInputCPFCNPJPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Rotulo exibido ao usuario.',
+    description: 'Rótulo exibido ao usuário.',
   ),
   SgPropSpec(
     name: 'labelAlign',
@@ -226,7 +226,7 @@ const List<SgPropSpec> sgInputCPFCNPJPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Mensagem para comprimento invalido.',
+    description: 'Mensagem para comprimento inválido.',
   ),
   SgPropSpec(
     name: 'maxLength',
@@ -276,7 +276,7 @@ const List<SgPropSpec> sgInputCPFCNPJPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Nome do campo em formularios.',
+    description: 'Nome do campo em formulários.',
   ),
   SgPropSpec(
     name: 'onChange',
@@ -300,7 +300,7 @@ const List<SgPropSpec> sgInputCPFCNPJPropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '((() => void) & (() => void))',
     required: false,
-    description: 'Disparado ao receber foco — padrao seedgrid.',
+    description: 'Disparado ao receber foco — padrão seedgrid.',
     exact: false,
   ),
   SgPropSpec(
@@ -309,7 +309,7 @@ const List<SgPropSpec> sgInputCPFCNPJPropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '((() => void) & (() => void))',
     required: false,
-    description: 'Disparado ao perder o foco (apos validacao) — padrao seedgrid.',
+    description: 'Disparado ao perder o foco (após validação) — padrão seedgrid.',
     exact: false,
   ),
   SgPropSpec(
@@ -336,7 +336,7 @@ const List<SgPropSpec> sgInputCPFCNPJPropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '(((message: string) => void) & ((message: string) => void))',
     required: false,
-    description: 'Callback para estado de validacao.',
+    description: 'Callback para estado de validação.',
     exact: false,
   ),
   SgPropSpec(
@@ -366,7 +366,7 @@ const List<SgPropSpec> sgInputCPFCNPJPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Mensagem quando a base publica nao encontra o CNPJ.',
+    description: 'Mensagem quando a base publica não encontra o CNPJ.',
   ),
   SgPropSpec(
     name: 'publicaCnpjFetch',
@@ -374,7 +374,7 @@ const List<SgPropSpec> sgInputCPFCNPJPropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '((cnpj: string) => Promise<unknown>)',
     required: false,
-    description: 'Consulta injetavel (padrao publica.cnpj.ws).',
+    description: 'Consulta injetável (padrão publica.cnpj.ws).',
     exact: false,
   ),
   SgPropSpec(
@@ -391,7 +391,7 @@ const List<SgPropSpec> sgInputCPFCNPJPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description: 'Marca o campo como obrigatorio.',
+    description: 'Marca o campo como obrigatório.',
   ),
   SgPropSpec(
     name: 'requiredMessage',
@@ -437,7 +437,7 @@ const List<SgPropSpec> sgInputCPFCNPJPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'true',
-    description: 'Executa validacao no blur.',
+    description: 'Executa validação no blur.',
   ),
   SgPropSpec(
     name: 'validateWithPublicaCnpj',
@@ -446,7 +446,7 @@ const List<SgPropSpec> sgInputCPFCNPJPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description: 'Confirma na base publica que o CNPJ numerico existe.',
+    description: 'Confirma na base publica que o CNPJ numérico existe.',
   ),
   SgPropSpec(
     name: 'validation',
@@ -454,7 +454,7 @@ const List<SgPropSpec> sgInputCPFCNPJPropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '(((value: string) => string) & ((value: string) => string))',
     required: false,
-    description: 'Validacao customizada adicional.',
+    description: 'Validação customizada adicional.',
     exact: false,
   ),
   SgPropSpec(

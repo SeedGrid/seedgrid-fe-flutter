@@ -6,7 +6,7 @@
 
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgInputOTP` no React — Campo OTP multi-slot para codigos de verificacao com suporte a mascara, colagem, eventos de conclusao e acesso por ref.
+/// Props públicas de `SgInputOTP` no React — Campo OTP multi-slot para códigos de verificação com suporte a máscara, colagem, eventos de conclusão e acesso por ref.
 /// O widget deve declarar `implements SgInputOTPProps`.
 abstract interface class SgInputOTPProps {
   /// Tipo TS: `any` (sem tradução exata; ver excecoes.json).
@@ -17,38 +17,38 @@ abstract interface class SgInputOTPProps {
   String? get error;
   String? get groupClassName;
   String? get hintText;
-  /// Identificador unico do componente.
+  /// Identificador único do componente.
   String get id;
   /// Tipo TS: `(Omit&lt;React.InputHTMLAttributes&lt;HTMLInputElement&gt;, "defaultValue" | "value"&gt; & { ref?: React.Ref&lt;HTMLInputElement&gt;; })` (sem tradução exata; ver excecoes.json).
   Object? get inputProps;
-  /// Rotulo exibido ao usuario.
+  /// Rótulo exibido ao usuário.
   String? get label;
-  /// Mascara de slots para o codigo. Padrão: `999999`.
+  /// Máscara de slots para o código. Padrão: `999999`.
   String? get mask;
-  /// Nome do campo em formularios.
+  /// Nome do campo em formulários.
   String? get name;
   /// Tipo TS: `((maskedValue: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onChange;
   /// Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onClear;
-  /// Callback disparado ao completar o codigo. Tipo TS: `((value: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
+  /// Callback disparado ao completar o código. Tipo TS: `((value: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onComplete;
   /// Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onEnter;
   /// Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onExit;
-  /// Callback com o valor bruto do codigo. Tipo TS: `((rawValue: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
+  /// Callback com o valor bruto do código. Tipo TS: `((rawValue: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onRawChange;
-  /// Callback para estado de validacao. Tipo TS: `((message: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
+  /// Callback para estado de validação. Tipo TS: `((message: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onValidation;
   /// Padrão: `false`.
   bool? get readOnly;
-  /// Marca o campo como obrigatorio. Padrão: `false`.
+  /// Marca o campo como obrigatório. Padrão: `false`.
   bool? get required;
   String? get requiredMessage;
   String? get separatorClassName;
   String? get slotClassName;
-  /// Executa validacao no blur. Padrão: `true`.
+  /// Executa validação no blur. Padrão: `true`.
   bool? get validateOnBlur;
   /// Tipo TS: `((rawValue: string, maskedValue: string) =&gt; string)` (sem tradução exata; ver excecoes.json).
   Function? get validation;
@@ -109,7 +109,7 @@ const List<SgPropSpec> sgInputOTPPropSpecs = <SgPropSpec>[
     type: 'String',
     tsType: 'string',
     required: true,
-    description: 'Identificador unico do componente.',
+    description: 'Identificador único do componente.',
   ),
   SgPropSpec(
     name: 'inputProps',
@@ -125,7 +125,7 @@ const List<SgPropSpec> sgInputOTPPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Rotulo exibido ao usuario.',
+    description: 'Rótulo exibido ao usuário.',
   ),
   SgPropSpec(
     name: 'mask',
@@ -134,7 +134,7 @@ const List<SgPropSpec> sgInputOTPPropSpecs = <SgPropSpec>[
     tsType: 'string',
     required: false,
     defaultValue: '999999',
-    description: 'Mascara de slots para o codigo.',
+    description: 'Máscara de slots para o código.',
   ),
   SgPropSpec(
     name: 'name',
@@ -142,7 +142,7 @@ const List<SgPropSpec> sgInputOTPPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Nome do campo em formularios.',
+    description: 'Nome do campo em formulários.',
   ),
   SgPropSpec(
     name: 'onChange',
@@ -166,7 +166,7 @@ const List<SgPropSpec> sgInputOTPPropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '((value: string) => void)',
     required: false,
-    description: 'Callback disparado ao completar o codigo.',
+    description: 'Callback disparado ao completar o código.',
     exact: false,
   ),
   SgPropSpec(
@@ -191,7 +191,7 @@ const List<SgPropSpec> sgInputOTPPropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '((rawValue: string) => void)',
     required: false,
-    description: 'Callback com o valor bruto do codigo.',
+    description: 'Callback com o valor bruto do código.',
     exact: false,
   ),
   SgPropSpec(
@@ -200,7 +200,7 @@ const List<SgPropSpec> sgInputOTPPropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '((message: string) => void)',
     required: false,
-    description: 'Callback para estado de validacao.',
+    description: 'Callback para estado de validação.',
     exact: false,
   ),
   SgPropSpec(
@@ -218,7 +218,7 @@ const List<SgPropSpec> sgInputOTPPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description: 'Marca o campo como obrigatorio.',
+    description: 'Marca o campo como obrigatório.',
   ),
   SgPropSpec(
     name: 'requiredMessage',
@@ -248,7 +248,7 @@ const List<SgPropSpec> sgInputOTPPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'true',
-    description: 'Executa validacao no blur.',
+    description: 'Executa validação no blur.',
   ),
   SgPropSpec(
     name: 'validation',

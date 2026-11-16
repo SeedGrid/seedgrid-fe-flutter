@@ -7,16 +7,16 @@
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgToaster` no React — Host visual de notificacoes toast globais, com controle de posicao, duracao, quantidade visivel e estilos ricos.
+/// Props públicas de `SgToaster` no React — Host visual de notificações toast globais, com controle de posição, duração, quantidade visível e estilos ricos.
 /// O widget deve declarar `implements SgToasterProps`.
 abstract interface class SgToasterProps {
-  /// Exibe botao de fechar em cada toast. Padrão: `true`.
+  /// Exibe botão de fechar em cada toast. Padrão: `true`.
   bool? get closeButton;
   /// Tipo TS: `Partial&lt;Record&lt;SgToastType, SgToasterTypeColors&gt;&gt;` (sem tradução exata; ver excecoes.json).
   Object? get customColors;
-  /// Duracao padrao dos toasts em milissegundos. Padrão: `4000`.
+  /// Duração padrão dos toasts em milissegundos. Padrão: `4000`.
   num? get duration;
-  /// Posicao global do stack de toasts. Padrão: `top-right`.
+  /// Posição global do stack de toasts. Padrão: `top-right`.
   SgToasterPosition? get position;
   /// Ativa paleta visual rica por tipo de toast. Padrão: `true`.
   bool? get richColors;
@@ -24,7 +24,7 @@ abstract interface class SgToasterProps {
   bool? get rounded;
   /// Padrão: `0`.
   num? get transparency;
-  /// Quantidade maxima de toasts visiveis simultaneamente. Padrão: `6`.
+  /// Quantidade máxima de toasts visíveis simultaneamente. Padrão: `6`.
   num? get visibleToasts;
 }
 
@@ -37,7 +37,7 @@ const List<SgPropSpec> sgToasterPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'true',
-    description: 'Exibe botao de fechar em cada toast.',
+    description: 'Exibe botão de fechar em cada toast.',
   ),
   SgPropSpec(
     name: 'customColors',
@@ -54,7 +54,7 @@ const List<SgPropSpec> sgToasterPropSpecs = <SgPropSpec>[
     tsType: 'number',
     required: false,
     defaultValue: '4000',
-    description: 'Duracao padrao dos toasts em milissegundos.',
+    description: 'Duração padrão dos toasts em milissegundos.',
   ),
   SgPropSpec(
     name: 'position',
@@ -63,7 +63,7 @@ const List<SgPropSpec> sgToasterPropSpecs = <SgPropSpec>[
     tsType: 'SgToasterPosition',
     required: false,
     defaultValue: 'top-right',
-    description: 'Posicao global do stack de toasts.',
+    description: 'Posição global do stack de toasts.',
     values: <String>['top-left', 'top-right', 'bottom-left', 'bottom-right', 'top-center', 'bottom-center'],
   ),
   SgPropSpec(
@@ -99,6 +99,6 @@ const List<SgPropSpec> sgToasterPropSpecs = <SgPropSpec>[
     tsType: 'number',
     required: false,
     defaultValue: '6',
-    description: 'Quantidade maxima de toasts visiveis simultaneamente.',
+    description: 'Quantidade máxima de toasts visíveis simultaneamente.',
   ),
 ];

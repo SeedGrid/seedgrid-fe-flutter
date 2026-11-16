@@ -9,7 +9,7 @@ import 'package:flutter/widgets.dart';
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgExpandablePanel` no React — Painel expansivel inline ou overlay, com direcao, tamanho, backdrop e comportamento de foco configuraveis.
+/// Props públicas de `SgExpandablePanel` no React — Painel expansível inline ou overlay, com direção, tamanho, backdrop e comportamento de foco configuráveis.
 /// O widget deve declarar `implements SgExpandablePanelProps`.
 abstract interface class SgExpandablePanelProps {
   /// Tipo TS: `SgExpandablePanelAnimation` (sem tradução exata; ver excecoes.json).
@@ -18,7 +18,7 @@ abstract interface class SgExpandablePanelProps {
   String? get bodyClassName;
   /// Padrão: `true`.
   bool? get border;
-  /// Conteudo principal do painel. No React e `children`.
+  /// Conteúdo principal do painel. No React e `children`.
   Widget get child;
   /// Padrão: `true`.
   bool? get closeOnEsc;
@@ -28,14 +28,14 @@ abstract interface class SgExpandablePanelProps {
   bool? get defaultOpen;
   /// Padrão: `md`.
   SgExpandablePanelElevation? get elevation;
-  /// Direcao para a qual o painel se expande.
+  /// Direção para a qual o painel se expande.
   SgExpandablePanelExpandTo get expandTo;
   Widget? get footer;
   String? get footerClassName;
   Widget? get handle;
   Widget? get header;
   String? get headerClassName;
-  /// Modo de renderizacao do painel. Padrão: `inline`.
+  /// Modo de renderização do painel. Padrão: `inline`.
   SgExpandablePanelMode? get mode;
   /// Callback disparado ao abrir ou fechar o painel. Tipo TS: `((open: boolean) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onOpenChange;
@@ -53,7 +53,7 @@ abstract interface class SgExpandablePanelProps {
   SgExpandablePanelRounded? get rounded;
   /// Padrão: `true`.
   bool? get showBackdrop;
-  /// Configuracao de tamanho minimo, maximo e padrao. Tipo TS: `SgExpandablePanelSize` (sem tradução exata; ver excecoes.json).
+  /// Configuração de tamanho mínimo, máximo e padrão. Tipo TS: `SgExpandablePanelSize` (sem tradução exata; ver excecoes.json).
   Object? get size;
   bool? get trapFocus;
 }
@@ -96,7 +96,7 @@ const List<SgPropSpec> sgExpandablePanelPropSpecs = <SgPropSpec>[
     type: 'Widget',
     tsType: 'React.ReactNode',
     required: true,
-    description: 'Conteudo principal do painel.',
+    description: 'Conteúdo principal do painel.',
   ),
   SgPropSpec(
     name: 'closeOnEsc',
@@ -143,7 +143,7 @@ const List<SgPropSpec> sgExpandablePanelPropSpecs = <SgPropSpec>[
     type: 'SgExpandablePanelExpandTo',
     tsType: 'SgExpandablePanelDirection',
     required: true,
-    description: 'Direcao para a qual o painel se expande.',
+    description: 'Direção para a qual o painel se expande.',
     values: <String>['top', 'left', 'right', 'bottom'],
   ),
   SgPropSpec(
@@ -188,7 +188,7 @@ const List<SgPropSpec> sgExpandablePanelPropSpecs = <SgPropSpec>[
     tsType: 'SgExpandablePanelMode',
     required: false,
     defaultValue: 'inline',
-    description: 'Modo de renderizacao do painel.',
+    description: 'Modo de renderização do painel.',
     values: <String>['inline', 'overlay'],
   ),
   SgPropSpec(
@@ -272,7 +272,7 @@ const List<SgPropSpec> sgExpandablePanelPropSpecs = <SgPropSpec>[
     type: 'Object?',
     tsType: 'SgExpandablePanelSize',
     required: false,
-    description: 'Configuracao de tamanho minimo, maximo e padrao.',
+    description: 'Configuração de tamanho mínimo, máximo e padrão.',
     exact: false,
   ),
   SgPropSpec(

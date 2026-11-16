@@ -9,7 +9,7 @@ import 'package:flutter/widgets.dart';
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgInputTextSearch` no React — Campo de busca que embrulha o SgInputText com debounce sem dependencia externa: onChange imediato e onSearchChange disparado apos o debounce com o termo normalizado (trim + gate por minChars).
+/// Props públicas de `SgInputTextSearch` no React — Campo de busca que embrulha o SgInputText com debounce sem dependência externa: onChange imediato e onSearchChange disparado após o debounce com o termo normalizado (trim + gate por minChars).
 /// O widget deve declarar `implements SgInputTextSearchProps`.
 abstract interface class SgInputTextSearchProps {
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
@@ -26,11 +26,11 @@ abstract interface class SgInputTextSearchProps {
   String? get hintText;
   /// Tipo TS: `React.ReactNode[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get iconButtons;
-  /// Identificador unico do campo.
+  /// Identificador único do campo.
   String get id;
   /// Tipo TS: `(React.InputHTMLAttributes&lt;HTMLInputElement&gt; & { ref?: React.Ref&lt;HTMLInputElement&gt;; })` (sem tradução exata; ver excecoes.json).
   Object? get inputProps;
-  /// Rotulo exibido ao usuario.
+  /// Rótulo exibido ao usuário.
   String? get label;
   SgInputTextSearchLabelAlign? get labelAlign;
   SgInputTextSearchLabelPosition? get labelPosition;
@@ -39,14 +39,14 @@ abstract interface class SgInputTextSearchProps {
   Object? get labelWidth;
   num? get maxLength;
   String? get maxLengthMessage;
-  /// Minimo de caracteres (apos trim) para disparar onSearchChange; 0 caracteres tambem dispara (limpar busca). Padrão: `3`.
+  /// Mínimo de caracteres (após trim) para disparar onSearchChange; 0 caracteres também dispara (limpar busca). Padrão: `3`.
   num? get minChars;
   num? get minLength;
   String? get minLengthMessage;
   num? get minNumberOfWords;
   String? get minNumberOfWordsMessage;
   String? get name;
-  /// Disparado imediatamente a cada digitacao, com o valor cru. Tipo TS: `((value: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
+  /// Disparado imediatamente a cada digitação, com o valor cru. Tipo TS: `((value: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onChange;
   /// Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onClear;
@@ -54,7 +54,7 @@ abstract interface class SgInputTextSearchProps {
   Function? get onEnter;
   /// Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onExit;
-  /// Disparado apos o debounce, com o termo normalizado. Tipo TS: `(value: string) =&gt; void` (sem tradução exata; ver excecoes.json).
+  /// Disparado após o debounce, com o termo normalizado. Tipo TS: `(value: string) =&gt; void` (sem tradução exata; ver excecoes.json).
   Function get onSearchChange;
   /// Tipo TS: `((message: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onValidation;
@@ -162,7 +162,7 @@ const List<SgPropSpec> sgInputTextSearchPropSpecs = <SgPropSpec>[
     type: 'String',
     tsType: 'string',
     required: true,
-    description: 'Identificador unico do campo.',
+    description: 'Identificador único do campo.',
   ),
   SgPropSpec(
     name: 'inputProps',
@@ -178,7 +178,7 @@ const List<SgPropSpec> sgInputTextSearchPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Rotulo exibido ao usuario.',
+    description: 'Rótulo exibido ao usuário.',
   ),
   SgPropSpec(
     name: 'labelAlign',
@@ -232,7 +232,7 @@ const List<SgPropSpec> sgInputTextSearchPropSpecs = <SgPropSpec>[
     tsType: 'number',
     required: false,
     defaultValue: '3',
-    description: 'Minimo de caracteres (apos trim) para disparar onSearchChange; 0 caracteres tambem dispara (limpar busca).',
+    description: 'Mínimo de caracteres (após trim) para disparar onSearchChange; 0 caracteres também dispara (limpar busca).',
   ),
   SgPropSpec(
     name: 'minLength',
@@ -275,7 +275,7 @@ const List<SgPropSpec> sgInputTextSearchPropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '((value: string) => void)',
     required: false,
-    description: 'Disparado imediatamente a cada digitacao, com o valor cru.',
+    description: 'Disparado imediatamente a cada digitação, com o valor cru.',
     exact: false,
   ),
   SgPropSpec(
@@ -308,7 +308,7 @@ const List<SgPropSpec> sgInputTextSearchPropSpecs = <SgPropSpec>[
     type: 'Function',
     tsType: '(value: string) => void',
     required: true,
-    description: 'Disparado apos o debounce, com o termo normalizado.',
+    description: 'Disparado após o debounce, com o termo normalizado.',
     exact: false,
   ),
   SgPropSpec(

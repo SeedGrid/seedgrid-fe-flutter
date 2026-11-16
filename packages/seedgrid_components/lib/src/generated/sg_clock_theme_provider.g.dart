@@ -8,10 +8,10 @@ import 'package:flutter/widgets.dart';
 
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgClockThemeProvider` no React — Provider de resolucao de temas de relogio, com suporte a fallback, temas locais e integracao com o registro global.
+/// Props públicas de `SgClockThemeProvider` no React — Provider de resolução de temas de relógio, com suporte a fallback, temas locais e integração com o registro global.
 /// O widget deve declarar `implements SgClockThemeProviderProps`.
 abstract interface class SgClockThemeProviderProps {
-  /// Arvore que vai consumir o resolver de temas. No React e `children`.
+  /// Árvore que vai consumir o resolver de temas. No React e `children`.
   Widget get child;
   /// Tipo TS: `SgClockThemeProviderValue` (sem tradução exata; ver excecoes.json).
   Object? get value;
@@ -25,7 +25,7 @@ const List<SgPropSpec> sgClockThemeProviderPropSpecs = <SgPropSpec>[
     type: 'Widget',
     tsType: 'React.ReactNode',
     required: true,
-    description: 'Arvore que vai consumir o resolver de temas.',
+    description: 'Árvore que vai consumir o resolver de temas.',
   ),
   SgPropSpec(
     name: 'value',

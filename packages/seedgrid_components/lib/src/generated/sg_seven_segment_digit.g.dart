@@ -7,7 +7,7 @@
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgSevenSegmentDigit` no React — Digito de sete segmentos para displays classicos de relogio, paineis eletronicos e contadores numericos.
+/// Props públicas de `SgSevenSegmentDigit` no React — Digito de sete segmentos para displays clássicos de relógio, painéis eletrônicos e contadores numéricos.
 /// O widget deve declarar `implements SgSevenSegmentDigitProps`.
 abstract interface class SgSevenSegmentDigitProps {
   /// Cor do fundo do display.

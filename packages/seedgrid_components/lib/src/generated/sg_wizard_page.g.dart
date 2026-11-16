@@ -8,14 +8,14 @@ import 'package:flutter/widgets.dart';
 
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgWizardPage` no React — Pagina individual dentro de um wizard, com titulo, icone e conteudo associado a uma etapa.
+/// Props públicas de `SgWizardPage` no React — Página individual dentro de um wizard, com título, ícone e conteúdo associado a uma etapa.
 /// O widget deve declarar `implements SgWizardPageProps`.
 abstract interface class SgWizardPageProps {
-  /// Conteudo da etapa. No React e `children`.
+  /// Conteúdo da etapa. No React e `children`.
   Widget get child;
-  /// Icone opcional exibido quando o wizard usa stepper por icones.
+  /// Ícone opcional exibido quando o wizard usa stepper por ícones.
   Widget? get icon;
-  /// Titulo exibido no stepper do wizard.
+  /// Título exibido no stepper do wizard.
   String? get title;
 }
 
@@ -27,7 +27,7 @@ const List<SgPropSpec> sgWizardPagePropSpecs = <SgPropSpec>[
     type: 'Widget',
     tsType: 'React.ReactNode',
     required: true,
-    description: 'Conteudo da etapa.',
+    description: 'Conteúdo da etapa.',
   ),
   SgPropSpec(
     name: 'icon',
@@ -35,7 +35,7 @@ const List<SgPropSpec> sgWizardPagePropSpecs = <SgPropSpec>[
     type: 'Widget?',
     tsType: 'React.ReactNode',
     required: false,
-    description: 'Icone opcional exibido quando o wizard usa stepper por icones.',
+    description: 'Ícone opcional exibido quando o wizard usa stepper por ícones.',
   ),
   SgPropSpec(
     name: 'title',
@@ -43,6 +43,6 @@ const List<SgPropSpec> sgWizardPagePropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Titulo exibido no stepper do wizard.',
+    description: 'Título exibido no stepper do wizard.',
   ),
 ];

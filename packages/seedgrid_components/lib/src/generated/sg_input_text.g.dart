@@ -9,7 +9,7 @@ import 'package:flutter/widgets.dart';
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgInputText` no React — Campo textual de uso geral com suporte a react-hook-form, validacao, contador de caracteres e prefixo/sufixo.
+/// Props públicas de `SgInputText` no React — Campo textual de uso geral com suporte a react-hook-form, validação, contador de caracteres e prefixo/sufixo.
 /// O widget deve declarar `implements SgInputTextProps`.
 abstract interface class SgInputTextProps {
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
@@ -24,26 +24,26 @@ abstract interface class SgInputTextProps {
   String? get hintText;
   /// Tipo TS: `React.ReactNode[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get iconButtons;
-  /// Identificador unico do campo.
+  /// Identificador único do campo.
   String get id;
   /// Tipo TS: `(React.InputHTMLAttributes&lt;HTMLInputElement&gt; & { ref?: React.Ref&lt;HTMLInputElement&gt;; })` (sem tradução exata; ver excecoes.json).
   Object? get inputProps;
-  /// Rotulo principal exibido ao usuario.
+  /// Rótulo principal exibido ao usuário.
   String? get label;
   SgInputTextLabelAlign? get labelAlign;
   SgInputTextLabelPosition? get labelPosition;
   String? get labelText;
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get labelWidth;
-  /// Limite maximo de caracteres.
+  /// Limite máximo de caracteres.
   num? get maxLength;
   String? get maxLengthMessage;
-  /// Limite minimo de caracteres.
+  /// Limite mínimo de caracteres.
   num? get minLength;
   String? get minLengthMessage;
   num? get minNumberOfWords;
   String? get minNumberOfWordsMessage;
-  /// Nome do campo para formularios.
+  /// Nome do campo para formulários.
   String? get name;
   /// Callback com o valor textual atual. Tipo TS: `((value: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onChange;
@@ -59,9 +59,9 @@ abstract interface class SgInputTextProps {
   String? get placeholder;
   Widget? get prefixIcon;
   String? get prefixText;
-  /// Impede edicao mantendo foco e leitura. Padrão: `false`.
+  /// Impede edição mantendo foco e leitura. Padrão: `false`.
   bool? get readOnly;
-  /// Marca o campo como obrigatorio. Padrão: `false`.
+  /// Marca o campo como obrigatório. Padrão: `false`.
   bool? get required;
   String? get requiredMessage;
   bool? get showCharCounter;
@@ -152,7 +152,7 @@ const List<SgPropSpec> sgInputTextPropSpecs = <SgPropSpec>[
     type: 'String',
     tsType: 'string',
     required: true,
-    description: 'Identificador unico do campo.',
+    description: 'Identificador único do campo.',
   ),
   SgPropSpec(
     name: 'inputProps',
@@ -168,7 +168,7 @@ const List<SgPropSpec> sgInputTextPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Rotulo principal exibido ao usuario.',
+    description: 'Rótulo principal exibido ao usuário.',
   ),
   SgPropSpec(
     name: 'labelAlign',
@@ -207,7 +207,7 @@ const List<SgPropSpec> sgInputTextPropSpecs = <SgPropSpec>[
     type: 'num?',
     tsType: 'number',
     required: false,
-    description: 'Limite maximo de caracteres.',
+    description: 'Limite máximo de caracteres.',
   ),
   SgPropSpec(
     name: 'maxLengthMessage',
@@ -222,7 +222,7 @@ const List<SgPropSpec> sgInputTextPropSpecs = <SgPropSpec>[
     type: 'num?',
     tsType: 'number',
     required: false,
-    description: 'Limite minimo de caracteres.',
+    description: 'Limite mínimo de caracteres.',
   ),
   SgPropSpec(
     name: 'minLengthMessage',
@@ -251,7 +251,7 @@ const List<SgPropSpec> sgInputTextPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Nome do campo para formularios.',
+    description: 'Nome do campo para formulários.',
   ),
   SgPropSpec(
     name: 'onChange',
@@ -323,7 +323,7 @@ const List<SgPropSpec> sgInputTextPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description: 'Impede edicao mantendo foco e leitura.',
+    description: 'Impede edição mantendo foco e leitura.',
   ),
   SgPropSpec(
     name: 'required',
@@ -332,7 +332,7 @@ const List<SgPropSpec> sgInputTextPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description: 'Marca o campo como obrigatorio.',
+    description: 'Marca o campo como obrigatório.',
   ),
   SgPropSpec(
     name: 'requiredMessage',

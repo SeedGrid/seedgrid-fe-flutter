@@ -6,12 +6,12 @@
 
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgClockThemePreview` no React — Preview visual compacto de um tema de relogio, renderizado em SVG para comparacao rapida de estilos.
+/// Props públicas de `SgClockThemePreview` no React — Preview visual compacto de um tema de relógio, renderizado em SVG para comparação rápida de estilos.
 /// O widget deve declarar `implements SgClockThemePreviewProps`.
 abstract interface class SgClockThemePreviewProps {
-  /// Dimensao do preview quadrado em pixels. Padrão: `64`.
+  /// Dimensão do preview quadrado em pixels. Padrão: `64`.
   num? get size;
-  /// Tema visual usado na renderizacao do preview. Tipo TS: `SgClockTheme` (sem tradução exata; ver excecoes.json).
+  /// Tema visual usado na renderização do preview. Tipo TS: `SgClockTheme` (sem tradução exata; ver excecoes.json).
   Object get theme;
 }
 
@@ -24,7 +24,7 @@ const List<SgPropSpec> sgClockThemePreviewPropSpecs = <SgPropSpec>[
     tsType: 'number',
     required: false,
     defaultValue: '64',
-    description: 'Dimensao do preview quadrado em pixels.',
+    description: 'Dimensão do preview quadrado em pixels.',
   ),
   SgPropSpec(
     name: 'theme',
@@ -32,7 +32,7 @@ const List<SgPropSpec> sgClockThemePreviewPropSpecs = <SgPropSpec>[
     type: 'Object',
     tsType: 'SgClockTheme',
     required: true,
-    description: 'Tema visual usado na renderizacao do preview.',
+    description: 'Tema visual usado na renderização do preview.',
     exact: false,
   ),
 ];

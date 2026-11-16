@@ -6,16 +6,16 @@
 
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgWhistleHost` no React — Marca o local onde os whistles aparecem. Suporta varios hosts simultaneos (ex.: topo e rodape) via registry: apenas o ultimo montado fica ativo, e o SgWhistler solto cede a vez quando qualquer host esta presente.
+/// Props públicas de `SgWhistleHost` no React — Marca o local onde os whistles aparecem. Suporta vários hosts simultâneos (ex.: topo e rodapé) via registry: apenas o último montado fica ativo, e o SgWhistler solto cede a vez quando qualquer host esta presente.
 /// O widget deve declarar `implements SgWhistleHostProps`.
 abstract interface class SgWhistleHostProps {
   /// Tipo TS: `Partial&lt;Record&lt;SgWhistleSeverity, SgWhistleColors&gt;&gt;` (sem tradução exata; ver excecoes.json).
   Object? get customColors;
-  /// Duracao padrao aplicada aos whistles deste host, em milissegundos (mesmo default do SgToastHost). Cada whistle sobrescreve com options.duration, que tem prioridade; use 0 (ou negativo) para que nada suma sozinho. Whistle 'loading' nunca expira. Com varios hosts montados, vale o do host ATIVO (o ultimo montado). Padrão: `4000`.
+  /// Duração padrão aplicada aos whistles deste host, em milissegundos (mesmo default do SgToastHost). Cada whistle sobrescreve com options.duration, que tem prioridade; use 0 (ou negativo) para que nada suma sozinho. Whistle 'loading' nunca expira. Com vários hosts montados, vale o do host ATIVO (o último montado). Padrão: `4000`.
   num? get duration;
-  /// Espacamento entre os avisos renderizados. Padrão: `12`.
+  /// Espaçamento entre os avisos renderizados. Padrão: `12`.
   num? get gap;
-  /// Quantidade maxima de whistle items visiveis neste host. Padrão: `4`.
+  /// Quantidade máxima de whistle items visíveis neste host. Padrão: `4`.
   num? get max;
   /// Inverte a ordem visual para mostrar os mais novos primeiro. Padrão: `false`.
   bool? get newestOnTop;
@@ -40,7 +40,7 @@ const List<SgPropSpec> sgWhistleHostPropSpecs = <SgPropSpec>[
     tsType: 'number',
     required: false,
     defaultValue: '4000',
-    description: 'Duracao padrao aplicada aos whistles deste host, em milissegundos (mesmo default do SgToastHost). Cada whistle sobrescreve com options.duration, que tem prioridade; use 0 (ou negativo) para que nada suma sozinho. Whistle \'loading\' nunca expira. Com varios hosts montados, vale o do host ATIVO (o ultimo montado).',
+    description: 'Duração padrão aplicada aos whistles deste host, em milissegundos (mesmo default do SgToastHost). Cada whistle sobrescreve com options.duration, que tem prioridade; use 0 (ou negativo) para que nada suma sozinho. Whistle \'loading\' nunca expira. Com vários hosts montados, vale o do host ATIVO (o último montado).',
   ),
   SgPropSpec(
     name: 'gap',
@@ -49,7 +49,7 @@ const List<SgPropSpec> sgWhistleHostPropSpecs = <SgPropSpec>[
     tsType: 'number',
     required: false,
     defaultValue: '12',
-    description: 'Espacamento entre os avisos renderizados.',
+    description: 'Espaçamento entre os avisos renderizados.',
   ),
   SgPropSpec(
     name: 'max',
@@ -58,7 +58,7 @@ const List<SgPropSpec> sgWhistleHostPropSpecs = <SgPropSpec>[
     tsType: 'number',
     required: false,
     defaultValue: '4',
-    description: 'Quantidade maxima de whistle items visiveis neste host.',
+    description: 'Quantidade máxima de whistle items visíveis neste host.',
   ),
   SgPropSpec(
     name: 'newestOnTop',

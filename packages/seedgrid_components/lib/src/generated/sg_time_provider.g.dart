@@ -8,10 +8,10 @@ import 'package:flutter/widgets.dart';
 
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgTimeProvider` no React — Provider de tempo sincronizado com o servidor, usado para clocks e gadgets temporais com atualizacao em tick controlado.
+/// Props públicas de `SgTimeProvider` no React — Provider de tempo sincronizado com o servidor, usado para clocks e gadgets temporais com atualização em tick controlado.
 /// O widget deve declarar `implements SgTimeProviderProps`.
 abstract interface class SgTimeProviderProps {
-  /// Arvore que vai consumir tempo sincronizado via useSgTime. No React e `children`.
+  /// Árvore que vai consumir tempo sincronizado via useSgTime. No React e `children`.
   Widget get child;
   /// Timestamp inicial do servidor em formato ISO 8601.
   String get initialServerTime;
@@ -25,7 +25,7 @@ const List<SgPropSpec> sgTimeProviderPropSpecs = <SgPropSpec>[
     type: 'Widget',
     tsType: 'React.ReactNode',
     required: true,
-    description: 'Arvore que vai consumir tempo sincronizado via useSgTime.',
+    description: 'Árvore que vai consumir tempo sincronizado via useSgTime.',
   ),
   SgPropSpec(
     name: 'initialServerTime',

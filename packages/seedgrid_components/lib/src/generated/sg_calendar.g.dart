@@ -9,7 +9,7 @@ import 'package:flutter/widgets.dart';
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgCalendar` no React — Calendario mensal em formato de gadget com suporte a locale, multi-mes, regras de selecao e card configuravel.
+/// Props públicas de `SgCalendar` no React — Calendário mensal em formato de gadget com suporte a locale, multi-mês, regras de seleção e card configurável.
 /// O widget deve declarar `implements SgCalendarProps`.
 abstract interface class SgCalendarProps {
   /// Tipo TS: `Omit&lt;SgCardProps, "title" | "children"&gt;` (sem tradução exata; ver excecoes.json).
@@ -19,23 +19,23 @@ abstract interface class SgCalendarProps {
   Object? get defaultValue;
   /// Tipo TS: `string | Date` (sem tradução exata; ver excecoes.json).
   Object? get defaultViewDate;
-  /// Arrasto do card: undefined = automatico (arrasta em largura &gt;= 640px), true = sempre, false = nunca. Tem prioridade sobre `cardProps.draggable`.
+  /// Arrasto do card: undefined = automático (arrasta em largura &gt;= 640px), true = sempre, false = nunca. Tem prioridade sobre `cardProps.draggable`.
   bool? get draggable;
-  /// Quando false, os dias, os botoes de mes anterior/proximo e o atalho hoje ficam desabilitados (nao focaveis); a data e o mes atuais continuam legiveis. Padrão: `true`.
+  /// Quando false, os dias, os botões de mês anterior/próximo e o atalho hoje ficam desabilitados (não focáveis); a data e o mês atuais continuam legíveis. Padrão: `true`.
   bool? get enabled;
   /// Tipo TS: `((date: Date) =&gt; boolean)` (sem tradução exata; ver excecoes.json).
   Function? get isDateDisabled;
-  /// Locale usado para formatacao de mes e dias. Padrão: `pt-BR`.
+  /// Locale usado para formatação de mês e dias. Padrão: `pt-BR`.
   String? get locale;
-  /// Limite maximo de selecao. Tipo TS: `string | Date` (sem tradução exata; ver excecoes.json).
+  /// Limite máximo de seleção. Tipo TS: `string | Date` (sem tradução exata; ver excecoes.json).
   Object? get maxDate;
-  /// Limite minimo de selecao. Tipo TS: `string | Date` (sem tradução exata; ver excecoes.json).
+  /// Limite mínimo de seleção. Tipo TS: `string | Date` (sem tradução exata; ver excecoes.json).
   Object? get minDate;
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get monthMinWidth;
   /// Padrão: `3`.
   num? get monthsPerLine;
-  /// Quantidade de meses visiveis ao mesmo tempo. Padrão: `1`.
+  /// Quantidade de meses visíveis ao mesmo tempo. Padrão: `1`.
   num? get numberOfMonths;
   /// Callback disparado ao selecionar uma data. Tipo TS: `((date: Date) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onValueChange;
@@ -47,7 +47,7 @@ abstract interface class SgCalendarProps {
   bool? get showTodayShortcut;
   /// Data selecionada de forma controlada. Tipo TS: `string | Date` (sem tradução exata; ver excecoes.json).
   Object? get value;
-  /// Mes visivel de forma controlada. Tipo TS: `string | Date` (sem tradução exata; ver excecoes.json).
+  /// Mês visível de forma controlada. Tipo TS: `string | Date` (sem tradução exata; ver excecoes.json).
   Object? get viewDate;
   /// Padrão: `narrow`.
   SgCalendarWeekdayFormat? get weekdayFormat;
@@ -94,7 +94,7 @@ const List<SgPropSpec> sgCalendarPropSpecs = <SgPropSpec>[
     type: 'bool?',
     tsType: 'boolean',
     required: false,
-    description: 'Arrasto do card: undefined = automatico (arrasta em largura >= 640px), true = sempre, false = nunca. Tem prioridade sobre `cardProps.draggable`.',
+    description: 'Arrasto do card: undefined = automático (arrasta em largura >= 640px), true = sempre, false = nunca. Tem prioridade sobre `cardProps.draggable`.',
   ),
   SgPropSpec(
     name: 'enabled',
@@ -103,7 +103,7 @@ const List<SgPropSpec> sgCalendarPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'true',
-    description: 'Quando false, os dias, os botoes de mes anterior/proximo e o atalho hoje ficam desabilitados (nao focaveis); a data e o mes atuais continuam legiveis.',
+    description: 'Quando false, os dias, os botões de mês anterior/próximo e o atalho hoje ficam desabilitados (não focáveis); a data e o mês atuais continuam legíveis.',
   ),
   SgPropSpec(
     name: 'isDateDisabled',
@@ -120,7 +120,7 @@ const List<SgPropSpec> sgCalendarPropSpecs = <SgPropSpec>[
     tsType: 'string',
     required: false,
     defaultValue: 'pt-BR',
-    description: 'Locale usado para formatacao de mes e dias.',
+    description: 'Locale usado para formatação de mês e dias.',
   ),
   SgPropSpec(
     name: 'maxDate',
@@ -128,7 +128,7 @@ const List<SgPropSpec> sgCalendarPropSpecs = <SgPropSpec>[
     type: 'Object?',
     tsType: 'string | Date',
     required: false,
-    description: 'Limite maximo de selecao.',
+    description: 'Limite máximo de seleção.',
     exact: false,
   ),
   SgPropSpec(
@@ -137,7 +137,7 @@ const List<SgPropSpec> sgCalendarPropSpecs = <SgPropSpec>[
     type: 'Object?',
     tsType: 'string | Date',
     required: false,
-    description: 'Limite minimo de selecao.',
+    description: 'Limite mínimo de seleção.',
     exact: false,
   ),
   SgPropSpec(
@@ -163,7 +163,7 @@ const List<SgPropSpec> sgCalendarPropSpecs = <SgPropSpec>[
     tsType: 'number',
     required: false,
     defaultValue: '1',
-    description: 'Quantidade de meses visiveis ao mesmo tempo.',
+    description: 'Quantidade de meses visíveis ao mesmo tempo.',
   ),
   SgPropSpec(
     name: 'onValueChange',
@@ -213,7 +213,7 @@ const List<SgPropSpec> sgCalendarPropSpecs = <SgPropSpec>[
     type: 'Object?',
     tsType: 'string | Date',
     required: false,
-    description: 'Mes visivel de forma controlada.',
+    description: 'Mês visível de forma controlada.',
     exact: false,
   ),
   SgPropSpec(

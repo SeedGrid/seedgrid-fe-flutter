@@ -41,61 +41,61 @@
   "Evento de Pulse que dispara la lectura.",
   "Événement Pulse qui déclenche la lecture."
  ],
- "Substitui o fetch (apps sem BFF, testes, demonstracao).": [
+ "Substitui o fetch (apps sem BFF, testes, demonstração).": [
   "Replaces fetch (apps without a BFF, tests, demos).",
   "Substitui o fetch (apps sem BFF, testes, demonstração).",
   "Sustituye el fetch (apps sin BFF, pruebas, demostración).",
   "Remplace le fetch (applis sans BFF, tests, démonstration)."
  ],
- "Maximo de notificacoes na lista; as mais antigas saem.": [
+ "Máximo de notificações na lista; as mais antigas saem.": [
   "Maximum notifications in the list; the oldest drop out.",
   "Máximo de notificações na lista; as mais antigas saem.",
   "Máximo de notificaciones en la lista; las más antiguas salen.",
   "Maximum de notifications dans la liste ; les plus anciennes sortent."
  ],
- "Chegou uma notificacao nova (aviso do Pulse).": [
+ "Chegou uma notificação nova (aviso do Pulse).": [
   "A new notification arrived (Pulse notice).",
   "Chegou uma notificação nova (aviso do Pulse).",
   "Llegó una notificación nueva (aviso de Pulse).",
   "Une nouvelle notification est arrivée (avis Pulse)."
  ],
- "O usuario excluiu uma notificacao.": [
+ "O usuário excluiu uma notificação.": [
   "The user deleted a notification.",
   "O utilizador eliminou uma notificação.",
   "El usuario eliminó una notificación.",
   "L'utilisateur a supprimé une notification."
  ],
- "O usuario abriu uma notificacao (depois do onOpen do tipo).": [
+ "O usuário abriu uma notificação (depois do onOpen do tipo).": [
   "The user opened a notification (after the type's onOpen).",
   "O utilizador abriu uma notificação (depois do onOpen do tipo).",
   "El usuario abrió una notificación (después del onOpen del tipo).",
   "L'utilisateur a ouvert une notification (après le onOpen du type)."
  ],
- "O polling consultou a API: contador, instante da ultima consulta e motivo (disabled ou unavailable).": [
+ "O polling consultou a API: contador, instante da última consulta e motivo (disabled ou unavailable).": [
   "The polling queried the API: counter, time of the last query and reason (disabled or unavailable).",
   "O polling consultou a API: contador, instante da última consulta e motivo (disabled ou unavailable).",
   "El polling consultó la API: contador, instante de la última consulta y motivo (disabled o unavailable).",
   "Le polling a interrogé l'API : compteur, instant de la dernière requête et motif (disabled ou unavailable)."
  ],
- "Intervalo do polling de reserva (so com o Pulse desligado ou fora do ar), preso entre 30 e 60 s, com jitter e backoff em erro.": [
+ "Intervalo do polling de reserva (só com o Pulse desligado ou fora do ar), preso entre 30 e 60 s, com jitter e backoff em erro.": [
   "Fallback polling interval (only with Pulse off or down), clamped between 30 and 60 s, with jitter and backoff on error.",
   "Intervalo do polling de reserva (só com o Pulse desligado ou fora do ar), preso entre 30 e 60 s, com jitter e backoff em erro.",
   "Intervalo del polling de respaldo (solo con Pulse apagado o caído), limitado entre 30 y 60 s, con jitter y backoff en error.",
   "Intervalle du polling de secours (seulement Pulse éteint ou hors service), borné entre 30 et 60 s, avec jitter et backoff en cas d'erreur."
  ],
- "Opcoes do fetch (ex.: headers com Authorization quando nao ha cookie).": [
+ "Opções do fetch (ex.: headers com Authorization quando não há cookie).": [
   "Fetch options (e.g. headers with Authorization when there is no cookie).",
   "Opções do fetch (ex.: headers com Authorization quando não há cookie).",
   "Opciones del fetch (p. ej.: headers con Authorization cuando no hay cookie).",
   "Options du fetch (ex. : headers avec Authorization quand il n'y a pas de cookie)."
  ],
- "Rota que entrega o token do Pulse; usada quando nao ha SgRealtimeProvider acima.": [
+ "Rota que entrega o token do Pulse; usada quando não há SgRealtimeProvider acima.": [
   "Route that delivers the Pulse token; used when there is no SgRealtimeProvider above.",
   "Rota que entrega o token do Pulse; usada quando não há SgRealtimeProvider acima.",
   "Ruta que entrega el token de Pulse; se usa cuando no hay SgRealtimeProvider arriba.",
   "Route qui fournit le jeton Pulse ; utilisée quand il n'y a pas de SgRealtimeProvider au-dessus."
  ],
- "Tipo da notificacao -> icone e acao ao abrir (onOpen). O sino nao conhece o negocio.": [
+ "Tipo da notificação -> ícone e ação ao abrir (onOpen). O sino não conhece o negócio.": [
   "Notification type -> icon and open action (onOpen). The bell knows nothing about the business.",
   "Tipo da notificação -> ícone e ação ao abrir (onOpen). O sino não conhece o negócio.",
   "Tipo de notificación -> icono y acción al abrir (onOpen). La campana no conoce el negocio.",

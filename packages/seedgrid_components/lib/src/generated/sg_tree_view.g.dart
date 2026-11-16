@@ -7,16 +7,16 @@
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgTreeView` no React — Navegacao hierarquica para estruturas em arvore com expansao, selecao, busca, checkboxes e suporte a dados aninhados.
+/// Props públicas de `SgTreeView` no React — Navegação hierarquica para estruturas em árvore com expansão, seleção, busca, checkboxes e suporte a dados aninhados.
 /// O widget deve declarar `implements SgTreeViewProps`.
 abstract interface class SgTreeViewProps {
   /// Padrão: `toggle`.
   SgTreeViewBranchLabelBehavior? get branchLabelBehavior;
   /// Padrão: `false`.
   bool? get checkable;
-  /// Cabecalho da coluna do checkbox principal -- so' e' desenhado quando `tracks` tambem esta' presente (e' o cabecalho de colunas como um todo que fica ambiguo com 2+ controles por linha, nao o checkbox sozinho).
+  /// Cabeçalho da coluna do checkbox principal -- só' e' desenhado quando `tracks` também esta' presente (e' o cabeçalho de colunas como um todo que fica ambíguo com 2+ controles por linha, não o checkbox sozinho).
   String? get checkableLabel;
-  /// Nos marcados em cenarios de checkbox tree. Tipo TS: `string[]` (sem tradução exata; ver excecoes.json).
+  /// Nos marcados em cenários de checkbox tree. Tipo TS: `string[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get checkedIds;
   /// Padrão: `live`.
   SgTreeViewCheckMode? get checkMode;
@@ -40,7 +40,7 @@ abstract interface class SgTreeViewProps {
   SgTreeViewIconTone? get iconTone;
   /// Padrão: `max-h-[60vh]`.
   String? get maxHeightClassName;
-  /// Lista hierarquica de nos exibidos pela arvore. Tipo TS: `SgTreeNode[]` (sem tradução exata; ver excecoes.json).
+  /// Lista hierarquica de nos exibidos pela árvore. Tipo TS: `SgTreeNode[]` (sem tradução exata; ver excecoes.json).
   List<Object?> get nodes;
   /// Tipo TS: `((ids: string[]) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onCheckedChange;
@@ -58,11 +58,11 @@ abstract interface class SgTreeViewProps {
   bool? get searchable;
   String? get searchPlaceholder;
   String? get searchValue;
-  /// Escala visual da arvore e dos itens. Padrão: `md`.
+  /// Escala visual da árvore e dos itens. Padrão: `md`.
   SgTreeViewSize? get size;
   /// Padrão: `default`.
   SgTreeViewTone? get tone;
-  /// Trilhas de selecao extras, uma por coluna de controle na linha -- ver SgTreeTrack. Tipo TS: `SgTreeTrack[]` (sem tradução exata; ver excecoes.json).
+  /// Trilhas de seleção extras, uma por coluna de controle na linha -- ver SgTreeTrack. Tipo TS: `SgTreeTrack[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get tracks;
 }
 
@@ -91,7 +91,7 @@ const List<SgPropSpec> sgTreeViewPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Cabecalho da coluna do checkbox principal -- so\' e\' desenhado quando `tracks` tambem esta\' presente (e\' o cabecalho de colunas como um todo que fica ambiguo com 2+ controles por linha, nao o checkbox sozinho).',
+    description: 'Cabeçalho da coluna do checkbox principal -- só\' e\' desenhado quando `tracks` também esta\' presente (e\' o cabeçalho de colunas como um todo que fica ambíguo com 2+ controles por linha, não o checkbox sozinho).',
   ),
   SgPropSpec(
     name: 'checkedIds',
@@ -99,7 +99,7 @@ const List<SgPropSpec> sgTreeViewPropSpecs = <SgPropSpec>[
     type: 'List<Object?>?',
     tsType: 'string[]',
     required: false,
-    description: 'Nos marcados em cenarios de checkbox tree.',
+    description: 'Nos marcados em cenários de checkbox tree.',
     exact: false,
   ),
   SgPropSpec(
@@ -206,7 +206,7 @@ const List<SgPropSpec> sgTreeViewPropSpecs = <SgPropSpec>[
     type: 'List<Object?>',
     tsType: 'SgTreeNode[]',
     required: true,
-    description: 'Lista hierarquica de nos exibidos pela arvore.',
+    description: 'Lista hierarquica de nos exibidos pela árvore.',
     exact: false,
   ),
   SgPropSpec(
@@ -287,7 +287,7 @@ const List<SgPropSpec> sgTreeViewPropSpecs = <SgPropSpec>[
     tsType: 'SgSize',
     required: false,
     defaultValue: 'md',
-    description: 'Escala visual da arvore e dos itens.',
+    description: 'Escala visual da árvore e dos itens.',
     values: <String>['sm', 'md', 'lg'],
   ),
   SgPropSpec(
@@ -305,7 +305,7 @@ const List<SgPropSpec> sgTreeViewPropSpecs = <SgPropSpec>[
     type: 'List<Object?>?',
     tsType: 'SgTreeTrack[]',
     required: false,
-    description: 'Trilhas de selecao extras, uma por coluna de controle na linha -- ver SgTreeTrack.',
+    description: 'Trilhas de seleção extras, uma por coluna de controle na linha -- ver SgTreeTrack.',
     exact: false,
   ),
 ];

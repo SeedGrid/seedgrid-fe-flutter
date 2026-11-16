@@ -9,22 +9,22 @@ import 'package:flutter/widgets.dart';
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgStack` no React — Primitive de layout flexivel para empilhar elementos em linha ou coluna com controle de gap, alinhamento e wrap.
+/// Props públicas de `SgStack` no React — Primitive de layout flexível para empilhar elementos em linha ou coluna com controle de gap, alinhamento e wrap.
 /// O widget deve declarar `implements SgStackProps`.
 abstract interface class SgStackProps {
   /// Alinhamento dos itens no eixo cruzado. Padrão: `stretch`.
   SgStackAlign? get align;
   /// Itens renderizados dentro do stack. No React e `children`.
   Widget? get child;
-  /// Direcao principal do empilhamento. Padrão: `column`.
+  /// Direção principal do empilhamento. Padrão: `column`.
   SgStackDirection? get direction;
-  /// Espacamento entre os itens. Padrão: `0`. Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
+  /// Espaçamento entre os itens. Padrão: `0`. Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get gap;
-  /// Permite que o stack cresca ocupando espaco disponivel. Padrão: `false`.
+  /// Permite que o stack cresça ocupando espaço disponível. Padrão: `false`.
   bool? get grow;
-  /// Distribuicao dos itens no eixo principal. Padrão: `start`.
+  /// Distribuição dos itens no eixo principal. Padrão: `start`.
   SgStackJustify? get justify;
-  /// Permite quebra de linha quando necessario. Padrão: `false`.
+  /// Permite quebra de linha quando necessário. Padrão: `false`.
   bool? get wrap;
 }
 
@@ -55,7 +55,7 @@ const List<SgPropSpec> sgStackPropSpecs = <SgPropSpec>[
     tsType: '"row" | "column"',
     required: false,
     defaultValue: 'column',
-    description: 'Direcao principal do empilhamento.',
+    description: 'Direção principal do empilhamento.',
     values: <String>['row', 'column'],
   ),
   SgPropSpec(
@@ -65,7 +65,7 @@ const List<SgPropSpec> sgStackPropSpecs = <SgPropSpec>[
     tsType: 'string | number',
     required: false,
     defaultValue: '0',
-    description: 'Espacamento entre os itens.',
+    description: 'Espaçamento entre os itens.',
     exact: false,
   ),
   SgPropSpec(
@@ -75,7 +75,7 @@ const List<SgPropSpec> sgStackPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description: 'Permite que o stack cresca ocupando espaco disponivel.',
+    description: 'Permite que o stack cresça ocupando espaço disponível.',
   ),
   SgPropSpec(
     name: 'justify',
@@ -84,7 +84,7 @@ const List<SgPropSpec> sgStackPropSpecs = <SgPropSpec>[
     tsType: '"start" | "center" | "end" | "between" | "around" | "evenly"',
     required: false,
     defaultValue: 'start',
-    description: 'Distribuicao dos itens no eixo principal.',
+    description: 'Distribuição dos itens no eixo principal.',
     values: <String>['start', 'center', 'end', 'between', 'around', 'evenly'],
   ),
   SgPropSpec(
@@ -94,6 +94,6 @@ const List<SgPropSpec> sgStackPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description: 'Permite quebra de linha quando necessario.',
+    description: 'Permite quebra de linha quando necessário.',
   ),
 ];

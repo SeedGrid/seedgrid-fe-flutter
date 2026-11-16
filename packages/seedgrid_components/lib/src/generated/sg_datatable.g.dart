@@ -7,19 +7,19 @@
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgDatatable` no React — Tabela de dados interativa com colunas configuraveis, paginacao, ordenacao, filtro, selecao e persistencia de layout de colunas. Em celular vira lista de cartoes automaticamente (mobileMode omitido = automatico).
+/// Props públicas de `SgDatatable` no React — Tabela de dados interativa com colunas configuráveis, paginação, ordenação, filtro, seleção e persistência de layout de colunas. Em celular vira lista de cartões automaticamente (mobileMode omitido = automático).
 /// O widget deve declarar `implements SgDatatableProps`.
 abstract interface class SgDatatableProps {
-  /// Titulo do painel de colunas. Vence o dicionario (components.datatable.columns). Padrão: `(dicionario)`.
+  /// Título do painel de colunas. Vence o dicionario (components.datatable.columns). Padrão: `(dicionario)`.
   String? get columnManagerLabel;
   /// Padrão: `320`. Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get columnManagerMaxHeight;
-  /// Definicao das colunas da tabela. column.filterPlaceholder vence o dicionario (components.datatable.columnFilterPlaceholder). Tipo TS: `SgDatatableColumn&lt;T&gt;[]` (sem tradução exata; ver excecoes.json).
+  /// Definição das colunas da tabela. column.filterPlaceholder vence o dicionario (components.datatable.columnFilterPlaceholder). Tipo TS: `SgDatatableColumn&lt;T&gt;[]` (sem tradução exata; ver excecoes.json).
   List<Object?> get columns;
   String? get dataKey;
-  /// Mensagem exibida quando nao ha registros. Vence o dicionario (components.datatable.empty). Padrão: `(dicionario)`.
+  /// Mensagem exibida quando não há registros. Vence o dicionario (components.datatable.empty). Padrão: `(dicionario)`.
   String? get emptyMessage;
-  /// Quando false, bloqueia as acoes que mudam estado: ordenacao, selecao de linhas, filtros (global e por coluna), limpar filtros e gerenciador de colunas. Paginacao, rolagem e carga de mais linhas continuam funcionando. Aparencia de desabilitado e aria-disabled. Padrão: `true`.
+  /// Quando false, bloqueia as ações que mudam estado: ordenação, seleção de linhas, filtros (global e por coluna), limpar filtros e gerenciador de colunas. Paginação, rolagem e carga de mais linhas continuam funcionando. Aparência de desabilitado e aria-disabled. Padrão: `true`.
   bool? get enabled;
   /// Tipo TS: `Record&lt;string, string&gt;` (sem tradução exata; ver excecoes.json).
   Object? get filters;
@@ -31,41 +31,41 @@ abstract interface class SgDatatableProps {
   Object? get groupBoxProps;
   /// Padrão: `true`.
   bool? get hoverableRows;
-  /// Identificador da tabela usado para DOM e persistencia do layout de colunas.
+  /// Identificador da tabela usado para DOM e persistência do layout de colunas.
   String? get id;
-  /// Rolagem infinita: sem paginador, ao chegar perto do fim da lista avanca a pagina (rows) e acrescenta os proximos registros, com indicador de carregando e de fim da lista. Padrao ligado quando a lista e exibida como cartoes (abaixo de 600 px no modo automatico) e desligado na tabela. Exige paginator. Com lazy, o pai acrescenta a proxima pagina a value (first/rows/page vem em onPage/onLoadMore). Padrão: `(true nos cartoes, false na tabela)`.
+  /// Rolagem infinita: sem paginador, ao chegar perto do fim da lista avança a página (rows) e acrescenta os próximos registros, com indicador de carregando e de fim da lista. Padrão ligado quando a lista e exibida como cartões (abaixo de 600 px no modo automático) e desligado na tabela. Exige paginator. Com lazy, o pai acrescenta a próxima página a value (first/rows/page vem em onPage/onLoadMore). Padrão: `(true nos cartoes, false na tabela)`.
   bool? get infiniteScroll;
   /// Padrão: `false`.
   bool? get lazy;
   /// Indica estado de carregamento. Padrão: `false`.
   bool? get loading;
-  /// Comportamento em tela estreita. Omitido (padrao): cartoes quando o container fica abaixo de 600 px, tabela acima; cards: forca cartoes em qualquer largura; scroll: forca a tabela com rolagem horizontal. Nos cartoes mantem ordenacao, selecao, acoes, rodape e paginacao. Padrão: `(omitido = automatico)`.
+  /// Comportamento em tela estreita. Omitido (padrão): cartões quando o container fica abaixo de 600 px, tabela acima; cards: forca cartões em qualquer largura; scroll: forca a tabela com rolagem horizontal. Nos cartões mantém ordenação, seleção, ações, rodapé e paginação. Padrão: `(omitido = automatico)`.
   SgDatatableMobileMode? get mobileMode;
   /// Tipo TS: `((event: SgDatatableFilterEvent) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onFilter;
   /// Tipo TS: `((value: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onGlobalFilterChange;
-  /// Chamado (alem de onPage) quando a rolagem infinita pede a proxima pagina. Tipo TS: `((event: SgDatatablePageEvent) =&gt; void)` (sem tradução exata; ver excecoes.json).
+  /// Chamado (além de onPage) quando a rolagem infinita pede a próxima página. Tipo TS: `((event: SgDatatablePageEvent) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onLoadMore;
-  /// Callback de paginacao. Tipo TS: `((event: SgDatatablePageEvent) =&gt; void)` (sem tradução exata; ver excecoes.json).
+  /// Callback de paginação. Tipo TS: `((event: SgDatatablePageEvent) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onPage;
   /// Tipo TS: `((selection: SgDatatableSelection&lt;T&gt;) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onSelectionChange;
-  /// Callback de ordenacao. Tipo TS: `((event: SgDatatableSortEvent) =&gt; void)` (sem tradução exata; ver excecoes.json).
+  /// Callback de ordenação. Tipo TS: `((event: SgDatatableSortEvent) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onSort;
-  /// Ativa paginacao. Padrão: `false`.
+  /// Ativa paginação. Padrão: `false`.
   bool? get paginator;
   /// Padrão: `true`.
   bool? get removableSort;
   /// Tipo TS: `string | ((rowData: T, rowIndex: number) =&gt; string)` (sem tradução exata; ver excecoes.json).
   Object? get rowClassName;
-  /// Linhas por pagina quando a paginacao esta ativa (os dados vao em value). Padrão: `10`.
+  /// Linhas por página quando a paginação esta ativa (os dados vão em value). Padrão: `10`.
   num? get rows;
   /// Tipo TS: `number[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get rowsPerPageOptions;
   /// Tipo TS: `SgDatatableSelection&lt;T&gt;` (sem tradução exata; ver excecoes.json).
   Object? get selection;
-  /// Modo de selecao de linhas.
+  /// Modo de seleção de linhas.
   SgDatatableSelectionMode? get selectionMode;
   /// Padrão: `false`.
   bool? get showClearFiltersButton;
@@ -99,7 +99,7 @@ const List<SgPropSpec> sgDatatablePropSpecs = <SgPropSpec>[
     tsType: 'string',
     required: false,
     defaultValue: '(dicionario)',
-    description: 'Titulo do painel de colunas. Vence o dicionario (components.datatable.columns).',
+    description: 'Título do painel de colunas. Vence o dicionario (components.datatable.columns).',
   ),
   SgPropSpec(
     name: 'columnManagerMaxHeight',
@@ -116,7 +116,7 @@ const List<SgPropSpec> sgDatatablePropSpecs = <SgPropSpec>[
     type: 'List<Object?>',
     tsType: 'SgDatatableColumn<T>[]',
     required: true,
-    description: 'Definicao das colunas da tabela. column.filterPlaceholder vence o dicionario (components.datatable.columnFilterPlaceholder).',
+    description: 'Definição das colunas da tabela. column.filterPlaceholder vence o dicionario (components.datatable.columnFilterPlaceholder).',
     exact: false,
   ),
   SgPropSpec(
@@ -133,7 +133,7 @@ const List<SgPropSpec> sgDatatablePropSpecs = <SgPropSpec>[
     tsType: 'string',
     required: false,
     defaultValue: '(dicionario)',
-    description: 'Mensagem exibida quando nao ha registros. Vence o dicionario (components.datatable.empty).',
+    description: 'Mensagem exibida quando não há registros. Vence o dicionario (components.datatable.empty).',
   ),
   SgPropSpec(
     name: 'enabled',
@@ -142,7 +142,7 @@ const List<SgPropSpec> sgDatatablePropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'true',
-    description: 'Quando false, bloqueia as acoes que mudam estado: ordenacao, selecao de linhas, filtros (global e por coluna), limpar filtros e gerenciador de colunas. Paginacao, rolagem e carga de mais linhas continuam funcionando. Aparencia de desabilitado e aria-disabled.',
+    description: 'Quando false, bloqueia as ações que mudam estado: ordenação, seleção de linhas, filtros (global e por coluna), limpar filtros e gerenciador de colunas. Paginação, rolagem e carga de mais linhas continuam funcionando. Aparência de desabilitado e aria-disabled.',
   ),
   SgPropSpec(
     name: 'filters',
@@ -198,7 +198,7 @@ const List<SgPropSpec> sgDatatablePropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Identificador da tabela usado para DOM e persistencia do layout de colunas.',
+    description: 'Identificador da tabela usado para DOM e persistência do layout de colunas.',
   ),
   SgPropSpec(
     name: 'infiniteScroll',
@@ -207,7 +207,7 @@ const List<SgPropSpec> sgDatatablePropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: '(true nos cartoes, false na tabela)',
-    description: 'Rolagem infinita: sem paginador, ao chegar perto do fim da lista avanca a pagina (rows) e acrescenta os proximos registros, com indicador de carregando e de fim da lista. Padrao ligado quando a lista e exibida como cartoes (abaixo de 600 px no modo automatico) e desligado na tabela. Exige paginator. Com lazy, o pai acrescenta a proxima pagina a value (first/rows/page vem em onPage/onLoadMore).',
+    description: 'Rolagem infinita: sem paginador, ao chegar perto do fim da lista avança a página (rows) e acrescenta os próximos registros, com indicador de carregando e de fim da lista. Padrão ligado quando a lista e exibida como cartões (abaixo de 600 px no modo automático) e desligado na tabela. Exige paginator. Com lazy, o pai acrescenta a próxima página a value (first/rows/page vem em onPage/onLoadMore).',
   ),
   SgPropSpec(
     name: 'lazy',
@@ -233,7 +233,7 @@ const List<SgPropSpec> sgDatatablePropSpecs = <SgPropSpec>[
     tsType: 'SgDatatableMobileMode',
     required: false,
     defaultValue: '(omitido = automatico)',
-    description: 'Comportamento em tela estreita. Omitido (padrao): cartoes quando o container fica abaixo de 600 px, tabela acima; cards: forca cartoes em qualquer largura; scroll: forca a tabela com rolagem horizontal. Nos cartoes mantem ordenacao, selecao, acoes, rodape e paginacao.',
+    description: 'Comportamento em tela estreita. Omitido (padrão): cartões quando o container fica abaixo de 600 px, tabela acima; cards: forca cartões em qualquer largura; scroll: forca a tabela com rolagem horizontal. Nos cartões mantém ordenação, seleção, ações, rodapé e paginação.',
     values: <String>['scroll', 'cards'],
   ),
   SgPropSpec(
@@ -258,7 +258,7 @@ const List<SgPropSpec> sgDatatablePropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '((event: SgDatatablePageEvent) => void)',
     required: false,
-    description: 'Chamado (alem de onPage) quando a rolagem infinita pede a proxima pagina.',
+    description: 'Chamado (além de onPage) quando a rolagem infinita pede a próxima página.',
     exact: false,
   ),
   SgPropSpec(
@@ -267,7 +267,7 @@ const List<SgPropSpec> sgDatatablePropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '((event: SgDatatablePageEvent) => void)',
     required: false,
-    description: 'Callback de paginacao.',
+    description: 'Callback de paginação.',
     exact: false,
   ),
   SgPropSpec(
@@ -284,7 +284,7 @@ const List<SgPropSpec> sgDatatablePropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '((event: SgDatatableSortEvent) => void)',
     required: false,
-    description: 'Callback de ordenacao.',
+    description: 'Callback de ordenação.',
     exact: false,
   ),
   SgPropSpec(
@@ -294,7 +294,7 @@ const List<SgPropSpec> sgDatatablePropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description: 'Ativa paginacao.',
+    description: 'Ativa paginação.',
   ),
   SgPropSpec(
     name: 'removableSort',
@@ -319,7 +319,7 @@ const List<SgPropSpec> sgDatatablePropSpecs = <SgPropSpec>[
     tsType: 'number',
     required: false,
     defaultValue: '10',
-    description: 'Linhas por pagina quando a paginacao esta ativa (os dados vao em value).',
+    description: 'Linhas por página quando a paginação esta ativa (os dados vão em value).',
   ),
   SgPropSpec(
     name: 'rowsPerPageOptions',
@@ -343,7 +343,7 @@ const List<SgPropSpec> sgDatatablePropSpecs = <SgPropSpec>[
     type: 'SgDatatableSelectionMode?',
     tsType: 'SgDatatableSelectionMode',
     required: false,
-    description: 'Modo de selecao de linhas.',
+    description: 'Modo de seleção de linhas.',
     values: <String>['multiple', 'single'],
   ),
   SgPropSpec(

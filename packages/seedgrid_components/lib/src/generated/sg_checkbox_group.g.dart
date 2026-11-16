@@ -9,7 +9,7 @@ import 'package:flutter/widgets.dart';
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgCheckboxGroup` no React — Grupo de checkboxes para multisselecao com orientacao, estilo de selecao e suporte opcional a marcar todos.
+/// Props públicas de `SgCheckboxGroup` no React — Grupo de checkboxes para multisselecao com orientação, estilo de seleção e suporte opcional a marcar todos.
 /// O widget deve declarar `implements SgCheckboxGroupProps`.
 abstract interface class SgCheckboxGroupProps {
   Widget? get checkAllIcon;
@@ -25,23 +25,23 @@ abstract interface class SgCheckboxGroupProps {
   bool? get iconOnly;
   String? get id;
   String? get name;
-  /// Callback de mudanca. Tipo TS: `((value: (string | number)[]) =&gt; void)` (sem tradução exata; ver excecoes.json).
+  /// Callback de mudança. Tipo TS: `((value: (string | number)[]) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onChange;
   /// Padrão: ``.
   String? get optionClassName;
-  /// Orientacao visual do grupo. Padrão: `vertical`.
+  /// Orientação visual do grupo. Padrão: `vertical`.
   SgCheckboxGroupOrientation? get orientation;
   /// Padrão: `false`.
   bool? get readOnly;
-  /// Marca o grupo como obrigatorio. Padrão: `false`.
+  /// Marca o grupo como obrigatório. Padrão: `false`.
   bool? get required;
-  /// Estilo visual de selecao. Padrão: `checkbox`.
+  /// Estilo visual de seleção. Padrão: `checkbox`.
   SgCheckboxGroupSelectionStyle? get selectionStyle;
-  /// Exibe acao de marcar todos. Padrão: `false`.
+  /// Exibe ação de marcar todos. Padrão: `false`.
   bool? get showCheckAll;
-  /// Opcoes disponiveis. Tipo TS: `SgCheckboxGroupOption[]` (sem tradução exata; ver excecoes.json).
+  /// Opções disponíveis. Tipo TS: `SgCheckboxGroupOption[]` (sem tradução exata; ver excecoes.json).
   List<Object?> get source;
-  /// Titulo do grupo.
+  /// Título do grupo.
   String? get title;
   /// Valores selecionados. Tipo TS: `(string | number)[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get value;
@@ -123,7 +123,7 @@ const List<SgPropSpec> sgCheckboxGroupPropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '((value: (string | number)[]) => void)',
     required: false,
-    description: 'Callback de mudanca.',
+    description: 'Callback de mudança.',
     exact: false,
   ),
   SgPropSpec(
@@ -141,7 +141,7 @@ const List<SgPropSpec> sgCheckboxGroupPropSpecs = <SgPropSpec>[
     tsType: 'SgCheckboxGroupOrientation',
     required: false,
     defaultValue: 'vertical',
-    description: 'Orientacao visual do grupo.',
+    description: 'Orientação visual do grupo.',
     values: <String>['vertical', 'horizontal'],
   ),
   SgPropSpec(
@@ -159,7 +159,7 @@ const List<SgPropSpec> sgCheckboxGroupPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description: 'Marca o grupo como obrigatorio.',
+    description: 'Marca o grupo como obrigatório.',
   ),
   SgPropSpec(
     name: 'selectionStyle',
@@ -168,7 +168,7 @@ const List<SgPropSpec> sgCheckboxGroupPropSpecs = <SgPropSpec>[
     tsType: 'SgCheckboxGroupSelectionStyle',
     required: false,
     defaultValue: 'checkbox',
-    description: 'Estilo visual de selecao.',
+    description: 'Estilo visual de seleção.',
     values: <String>['checkbox', 'highlight'],
   ),
   SgPropSpec(
@@ -178,7 +178,7 @@ const List<SgPropSpec> sgCheckboxGroupPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description: 'Exibe acao de marcar todos.',
+    description: 'Exibe ação de marcar todos.',
   ),
   SgPropSpec(
     name: 'source',
@@ -186,7 +186,7 @@ const List<SgPropSpec> sgCheckboxGroupPropSpecs = <SgPropSpec>[
     type: 'List<Object?>',
     tsType: 'SgCheckboxGroupOption[]',
     required: true,
-    description: 'Opcoes disponiveis.',
+    description: 'Opções disponíveis.',
     exact: false,
   ),
   SgPropSpec(
@@ -195,7 +195,7 @@ const List<SgPropSpec> sgCheckboxGroupPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Titulo do grupo.',
+    description: 'Título do grupo.',
   ),
   SgPropSpec(
     name: 'value',

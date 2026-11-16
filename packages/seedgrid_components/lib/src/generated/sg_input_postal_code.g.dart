@@ -9,7 +9,7 @@ import 'package:flutter/widgets.dart';
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgInputPostalCode` no React — Campo especializado para CEP e codigos postais com suporte a multiplos paises, mascaras e consulta opcional ao ViaCEP. Contrato de valor: o valor do formulario (onChange avulso, control e register) e SEMPRE mascarado, digitado ou setado por codigo (defaultValues, setValue, reset, value); a entrada aceita valor cru ou mascarado; valor maior que a mascara e cortado; para guardar so digitos use value.replace(/\D/g, "").
+/// Props públicas de `SgInputPostalCode` no React — Campo especializado para CEP e códigos postais com suporte a múltiplos países, máscaras e consulta opcional ao ViaCEP. Contrato de valor: o valor do formulário (onChange avulso, control e register) e SEMPRE mascarado, digitado ou setado por código (defaultValues, setValue, reset, value); a entrada aceita valor cru ou mascarado; valor maior que a máscara e cortado; para guardar só dígitos use value.replace(/\D/g, "").
 /// O widget deve declarar `implements SgInputPostalCodeProps`.
 abstract interface class SgInputPostalCodeProps {
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
@@ -17,7 +17,7 @@ abstract interface class SgInputPostalCodeProps {
   bool? get clearButton;
   /// Tipo TS: `any` (sem tradução exata; ver excecoes.json).
   Object? get control;
-  /// Pais usado para mascara e validacao. Padrão: `BR`.
+  /// Pais usado para máscara e validação. Padrão: `BR`.
   SgInputPostalCodeCountry? get country;
   SgInputPostalCodeElevation? get elevation;
   bool? get enabled;
@@ -26,20 +26,20 @@ abstract interface class SgInputPostalCodeProps {
   String? get hintText;
   /// Tipo TS: `React.ReactNode[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get iconButtons;
-  /// Identificador unico do campo.
+  /// Identificador único do campo.
   String get id;
   /// Tipo TS: `(React.InputHTMLAttributes&lt;HTMLInputElement&gt; & { ref?: React.Ref&lt;HTMLInputElement&gt;; })` (sem tradução exata; ver excecoes.json).
   Object? get inputProps;
-  /// Mensagem para codigo invalido.
+  /// Mensagem para código inválido.
   String? get invalidMessage;
-  /// Rotulo exibido ao usuario.
+  /// Rótulo exibido ao usuário.
   String? get label;
   SgInputPostalCodeLabelAlign? get labelAlign;
   SgInputPostalCodeLabelPosition? get labelPosition;
   String? get labelText;
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get labelWidth;
-  /// Mensagem para tamanho invalido.
+  /// Mensagem para tamanho inválido.
   String? get lengthMessage;
   num? get maxLength;
   String? get maxLengthMessage;
@@ -47,15 +47,15 @@ abstract interface class SgInputPostalCodeProps {
   String? get minLengthMessage;
   num? get minNumberOfWords;
   String? get minNumberOfWordsMessage;
-  /// Nome do campo em formularios.
+  /// Nome do campo em formulários.
   String? get name;
   /// Tipo TS: `((value: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onChange;
   /// Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onClear;
-  /// Disparado ao receber foco — padrao seedgrid. Tipo TS: `((() =&gt; void) & (() =&gt; void))` (sem tradução exata; ver excecoes.json).
+  /// Disparado ao receber foco — padrão seedgrid. Tipo TS: `((() =&gt; void) & (() =&gt; void))` (sem tradução exata; ver excecoes.json).
   Function? get onEnter;
-  /// Disparado ao perder o foco (apos validacao) — padrao seedgrid. Tipo TS: `((() =&gt; void) & (() =&gt; void))` (sem tradução exata; ver excecoes.json).
+  /// Disparado ao perder o foco (após validação) — padrão seedgrid. Tipo TS: `((() =&gt; void) & (() =&gt; void))` (sem tradução exata; ver excecoes.json).
   Function? get onExit;
   /// Tipo TS: `(((message: string) =&gt; void) & ((message: string) =&gt; void))` (sem tradução exata; ver excecoes.json).
   Function? get onValidation;
@@ -67,7 +67,7 @@ abstract interface class SgInputPostalCodeProps {
   Widget? get prefixIcon;
   String? get prefixText;
   bool? get readOnly;
-  /// Marca o campo como obrigatorio. Padrão: `false`.
+  /// Marca o campo como obrigatório. Padrão: `false`.
   bool? get required;
   String? get requiredMessage;
   bool? get showCharCounter;
@@ -120,7 +120,7 @@ const List<SgPropSpec> sgInputPostalCodePropSpecs = <SgPropSpec>[
     tsType: 'PostalCodeCountry',
     required: false,
     defaultValue: 'BR',
-    description: 'Pais usado para mascara e validacao.',
+    description: 'Pais usado para máscara e validação.',
     values: <String>['BR', 'PT', 'US', 'ES', 'UY', 'AR', 'PY'],
   ),
   SgPropSpec(
@@ -173,7 +173,7 @@ const List<SgPropSpec> sgInputPostalCodePropSpecs = <SgPropSpec>[
     type: 'String',
     tsType: 'string',
     required: true,
-    description: 'Identificador unico do campo.',
+    description: 'Identificador único do campo.',
   ),
   SgPropSpec(
     name: 'inputProps',
@@ -189,7 +189,7 @@ const List<SgPropSpec> sgInputPostalCodePropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Mensagem para codigo invalido.',
+    description: 'Mensagem para código inválido.',
   ),
   SgPropSpec(
     name: 'label',
@@ -197,7 +197,7 @@ const List<SgPropSpec> sgInputPostalCodePropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Rotulo exibido ao usuario.',
+    description: 'Rótulo exibido ao usuário.',
   ),
   SgPropSpec(
     name: 'labelAlign',
@@ -236,7 +236,7 @@ const List<SgPropSpec> sgInputPostalCodePropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Mensagem para tamanho invalido.',
+    description: 'Mensagem para tamanho inválido.',
   ),
   SgPropSpec(
     name: 'maxLength',
@@ -286,7 +286,7 @@ const List<SgPropSpec> sgInputPostalCodePropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Nome do campo em formularios.',
+    description: 'Nome do campo em formulários.',
   ),
   SgPropSpec(
     name: 'onChange',
@@ -310,7 +310,7 @@ const List<SgPropSpec> sgInputPostalCodePropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '((() => void) & (() => void))',
     required: false,
-    description: 'Disparado ao receber foco — padrao seedgrid.',
+    description: 'Disparado ao receber foco — padrão seedgrid.',
     exact: false,
   ),
   SgPropSpec(
@@ -319,7 +319,7 @@ const List<SgPropSpec> sgInputPostalCodePropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '((() => void) & (() => void))',
     required: false,
-    description: 'Disparado ao perder o foco (apos validacao) — padrao seedgrid.',
+    description: 'Disparado ao perder o foco (após validação) — padrão seedgrid.',
     exact: false,
   ),
   SgPropSpec(
@@ -382,7 +382,7 @@ const List<SgPropSpec> sgInputPostalCodePropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description: 'Marca o campo como obrigatorio.',
+    description: 'Marca o campo como obrigatório.',
   ),
   SgPropSpec(
     name: 'requiredMessage',

@@ -9,10 +9,10 @@ import 'package:flutter/widgets.dart';
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgDockZone` no React — Regiao nomeada dentro de um dock layout usada para alojar toolbars e conteudo por zona.
+/// Props públicas de `SgDockZone` no React — Região nomeada dentro de um dock layout usada para alojar toolbars e conteúdo por zona.
 /// O widget deve declarar `implements SgDockZoneProps`.
 abstract interface class SgDockZoneProps {
-  /// Conteudo renderizado dentro da zona. No React e `children`.
+  /// Conteúdo renderizado dentro da zona. No React e `children`.
   Widget? get child;
   /// Identificador da zona dentro do dock layout.
   SgDockZoneId get zone;
@@ -26,7 +26,7 @@ const List<SgPropSpec> sgDockZonePropSpecs = <SgPropSpec>[
     type: 'Widget?',
     tsType: 'React.ReactNode',
     required: false,
-    description: 'Conteudo renderizado dentro da zona.',
+    description: 'Conteúdo renderizado dentro da zona.',
   ),
   SgPropSpec(
     name: 'zone',

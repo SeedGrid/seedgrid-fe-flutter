@@ -7,14 +7,14 @@
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgDiscardDigit` no React — Digito animado com transicao de descarte para representar mudanca de valores em displays compactos.
+/// Props públicas de `SgDiscardDigit` no React — Digito animado com transição de descarte para representar mudança de valores em displays compactos.
 /// O widget deve declarar `implements SgDiscardDigitProps`.
 abstract interface class SgDiscardDigitProps {
-  /// Ativa animacao de descarte quando o valor muda. Padrão: `true`.
+  /// Ativa animação de descarte quando o valor muda. Padrão: `true`.
   bool? get animateOnChange;
   /// Cor do fundo do card. Padrão: `#f8fafc`.
   String? get backgroundColor;
-  /// Estrategia de animacao para mudancas por prop `value`. Padrão: `discard`.
+  /// Estratégia de animação para mudanças por prop `value`. Padrão: `discard`.
   SgDiscardDigitChangeAnimationMode? get changeAnimationMode;
   /// Cor do caractere. Padrão: `#0f172a`.
   String? get color;
@@ -24,11 +24,11 @@ abstract interface class SgDiscardDigitProps {
   num? get fontSize;
   /// Peso da fonte. Padrão: `700`. Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get fontWeight;
-  /// Quantidade de folhas visiveis na pilha (min 2, max 30). Ignorado se totalNumberPages for definido. Padrão: `20`.
+  /// Quantidade de folhas visíveis na pilha (min 2, max 30). Ignorado se totalNumberPages for definido. Padrão: `20`.
   num? get stackDepth;
-  /// Total de paginas do monte. Quando definido, a pilha visual encolhe a cada increasePage().
+  /// Total de páginas do monte. Quando definido, a pilha visual encolhe a cada increasePage().
   num? get totalNumberPages;
-  /// Duracao total da animacao em ms. Padrão: `640`.
+  /// Duração total da animação em ms. Padrão: `640`.
   num? get transitionMs;
   /// Caractere exibido no display.
   String get value;
@@ -43,7 +43,7 @@ const List<SgPropSpec> sgDiscardDigitPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'true',
-    description: 'Ativa animacao de descarte quando o valor muda.',
+    description: 'Ativa animação de descarte quando o valor muda.',
   ),
   SgPropSpec(
     name: 'backgroundColor',
@@ -61,7 +61,7 @@ const List<SgPropSpec> sgDiscardDigitPropSpecs = <SgPropSpec>[
     tsType: '"discard" | "incoming"',
     required: false,
     defaultValue: 'discard',
-    description: 'Estrategia de animacao para mudancas por prop `value`.',
+    description: 'Estratégia de animação para mudanças por prop `value`.',
     values: <String>['discard', 'incoming'],
   ),
   SgPropSpec(
@@ -107,7 +107,7 @@ const List<SgPropSpec> sgDiscardDigitPropSpecs = <SgPropSpec>[
     tsType: 'number',
     required: false,
     defaultValue: '20',
-    description: 'Quantidade de folhas visiveis na pilha (min 2, max 30). Ignorado se totalNumberPages for definido.',
+    description: 'Quantidade de folhas visíveis na pilha (min 2, max 30). Ignorado se totalNumberPages for definido.',
   ),
   SgPropSpec(
     name: 'totalNumberPages',
@@ -115,7 +115,7 @@ const List<SgPropSpec> sgDiscardDigitPropSpecs = <SgPropSpec>[
     type: 'num?',
     tsType: 'number',
     required: false,
-    description: 'Total de paginas do monte. Quando definido, a pilha visual encolhe a cada increasePage().',
+    description: 'Total de páginas do monte. Quando definido, a pilha visual encolhe a cada increasePage().',
   ),
   SgPropSpec(
     name: 'transitionMs',
@@ -124,7 +124,7 @@ const List<SgPropSpec> sgDiscardDigitPropSpecs = <SgPropSpec>[
     tsType: 'number',
     required: false,
     defaultValue: '640',
-    description: 'Duracao total da animacao em ms.',
+    description: 'Duração total da animação em ms.',
   ),
   SgPropSpec(
     name: 'value',

@@ -9,7 +9,7 @@ import 'package:flutter/widgets.dart';
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgInputBirthDate` no React — Campo especializado para data de nascimento com validacao de idade minima e maxima sobre a base de SgInputDate.
+/// Props públicas de `SgInputBirthDate` no React — Campo especializado para data de nascimento com validação de idade mínima e máxima sobre a base de SgInputDate.
 /// O widget deve declarar `implements SgInputBirthDateProps`.
 abstract interface class SgInputBirthDateProps {
   bool? get alwaysFloat;
@@ -25,48 +25,48 @@ abstract interface class SgInputBirthDateProps {
   String? get hintText;
   /// Tipo TS: `React.ReactNode[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get iconButtons;
-  /// Identificador unico do campo.
+  /// Identificador único do campo.
   String get id;
   /// Tipo TS: `(React.InputHTMLAttributes&lt;HTMLInputElement&gt; & { ref?: React.Ref&lt;HTMLInputElement&gt;; })` (sem tradução exata; ver excecoes.json).
   Object? get inputProps;
-  /// Rotulo exibido ao usuario.
+  /// Rótulo exibido ao usuário.
   String? get label;
   SgInputBirthDateLabelAlign? get labelAlign;
   SgInputBirthDateLabelPosition? get labelPosition;
   String? get labelText;
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get labelWidth;
-  /// Idade maxima permitida.
+  /// Idade máxima permitida.
   num? get maxAge;
-  /// Data maxima permitida. Tipo TS: `string | Date` (sem tradução exata; ver excecoes.json).
+  /// Data máxima permitida. Tipo TS: `string | Date` (sem tradução exata; ver excecoes.json).
   Object? get maxDate;
   num? get maxLength;
   String? get maxLengthMessage;
-  /// Idade minima permitida.
+  /// Idade mínima permitida.
   num? get minAge;
-  /// Data minima permitida. Tipo TS: `string | Date` (sem tradução exata; ver excecoes.json).
+  /// Data mínima permitida. Tipo TS: `string | Date` (sem tradução exata; ver excecoes.json).
   Object? get minDate;
   num? get minLength;
   String? get minLengthMessage;
   num? get minNumberOfWords;
   String? get minNumberOfWordsMessage;
-  /// Nome do campo em formularios.
+  /// Nome do campo em formulários.
   String? get name;
   /// Tipo TS: `((value: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onChange;
   /// Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onClear;
-  /// Disparado ao receber foco — padrao seedgrid. Tipo TS: `((() =&gt; void) & (() =&gt; void) & (() =&gt; void))` (sem tradução exata; ver excecoes.json).
+  /// Disparado ao receber foco — padrão seedgrid. Tipo TS: `((() =&gt; void) & (() =&gt; void) & (() =&gt; void))` (sem tradução exata; ver excecoes.json).
   Function? get onEnter;
-  /// Disparado ao perder o foco (apos validacao) — padrao seedgrid. Tipo TS: `((() =&gt; void) & (() =&gt; void) & (() =&gt; void))` (sem tradução exata; ver excecoes.json).
+  /// Disparado ao perder o foco (após validação) — padrão seedgrid. Tipo TS: `((() =&gt; void) & (() =&gt; void) & (() =&gt; void))` (sem tradução exata; ver excecoes.json).
   Function? get onExit;
-  /// Callback para estado de validacao. Tipo TS: `(((message: string) =&gt; void) & ((message: string) =&gt; void))` (sem tradução exata; ver excecoes.json).
+  /// Callback para estado de validação. Tipo TS: `(((message: string) =&gt; void) & ((message: string) =&gt; void))` (sem tradução exata; ver excecoes.json).
   Function? get onValidation;
   String? get placeholder;
   Widget? get prefixIcon;
   String? get prefixText;
   bool? get readOnly;
-  /// Marca o campo como obrigatorio. Padrão: `false`.
+  /// Marca o campo como obrigatório. Padrão: `false`.
   bool? get required;
   String? get requiredMessage;
   bool? get showCharCounter;
@@ -162,7 +162,7 @@ const List<SgPropSpec> sgInputBirthDatePropSpecs = <SgPropSpec>[
     type: 'String',
     tsType: 'string',
     required: true,
-    description: 'Identificador unico do campo.',
+    description: 'Identificador único do campo.',
   ),
   SgPropSpec(
     name: 'inputProps',
@@ -178,7 +178,7 @@ const List<SgPropSpec> sgInputBirthDatePropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Rotulo exibido ao usuario.',
+    description: 'Rótulo exibido ao usuário.',
   ),
   SgPropSpec(
     name: 'labelAlign',
@@ -217,7 +217,7 @@ const List<SgPropSpec> sgInputBirthDatePropSpecs = <SgPropSpec>[
     type: 'num?',
     tsType: 'number',
     required: false,
-    description: 'Idade maxima permitida.',
+    description: 'Idade máxima permitida.',
   ),
   SgPropSpec(
     name: 'maxDate',
@@ -225,7 +225,7 @@ const List<SgPropSpec> sgInputBirthDatePropSpecs = <SgPropSpec>[
     type: 'Object?',
     tsType: 'string | Date',
     required: false,
-    description: 'Data maxima permitida.',
+    description: 'Data máxima permitida.',
     exact: false,
   ),
   SgPropSpec(
@@ -248,7 +248,7 @@ const List<SgPropSpec> sgInputBirthDatePropSpecs = <SgPropSpec>[
     type: 'num?',
     tsType: 'number',
     required: false,
-    description: 'Idade minima permitida.',
+    description: 'Idade mínima permitida.',
   ),
   SgPropSpec(
     name: 'minDate',
@@ -256,7 +256,7 @@ const List<SgPropSpec> sgInputBirthDatePropSpecs = <SgPropSpec>[
     type: 'Object?',
     tsType: 'string | Date',
     required: false,
-    description: 'Data minima permitida.',
+    description: 'Data mínima permitida.',
     exact: false,
   ),
   SgPropSpec(
@@ -293,7 +293,7 @@ const List<SgPropSpec> sgInputBirthDatePropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Nome do campo em formularios.',
+    description: 'Nome do campo em formulários.',
   ),
   SgPropSpec(
     name: 'onChange',
@@ -317,7 +317,7 @@ const List<SgPropSpec> sgInputBirthDatePropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '((() => void) & (() => void) & (() => void))',
     required: false,
-    description: 'Disparado ao receber foco — padrao seedgrid.',
+    description: 'Disparado ao receber foco — padrão seedgrid.',
     exact: false,
   ),
   SgPropSpec(
@@ -326,7 +326,7 @@ const List<SgPropSpec> sgInputBirthDatePropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '((() => void) & (() => void) & (() => void))',
     required: false,
-    description: 'Disparado ao perder o foco (apos validacao) — padrao seedgrid.',
+    description: 'Disparado ao perder o foco (após validação) — padrão seedgrid.',
     exact: false,
   ),
   SgPropSpec(
@@ -335,7 +335,7 @@ const List<SgPropSpec> sgInputBirthDatePropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '(((message: string) => void) & ((message: string) => void))',
     required: false,
-    description: 'Callback para estado de validacao.',
+    description: 'Callback para estado de validação.',
     exact: false,
   ),
   SgPropSpec(
@@ -373,7 +373,7 @@ const List<SgPropSpec> sgInputBirthDatePropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description: 'Marca o campo como obrigatorio.',
+    description: 'Marca o campo como obrigatório.',
   ),
   SgPropSpec(
     name: 'requiredMessage',

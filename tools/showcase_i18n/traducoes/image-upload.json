@@ -59,7 +59,7 @@
   "Tipos aceptados (image/*, image/png, .png), separados por coma.",
   "Types acceptés (image/*, image/png, .png), séparés par des virgules."
  ],
- "Proporcao largura/altura exigida (1 = quadrada).": [
+ "Proporção largura/altura exigida (1 = quadrada).": [
   "Required width/height ratio (1 = square).",
   "Proporção largura/altura exigida (1 = quadrada).",
   "Proporción ancho/alto exigida (1 = cuadrada).",
@@ -71,31 +71,31 @@
   "Tamaño máximo en bytes.",
   "Taille maximale en octets."
  ],
- "Largura minima em px.": [
+ "Largura mínima em px.": [
   "Minimum width in px.",
   "Largura mínima em px.",
   "Ancho mínimo en px.",
   "Largeur minimale en px."
  ],
- "Altura minima em px.": [
+ "Altura mínima em px.": [
   "Minimum height in px.",
   "Altura mínima em px.",
   "Alto mínimo en px.",
   "Hauteur minimale en px."
  ],
- "Desabilita a escolha e a remocao.": [
+ "Desabilita a escolha e a remoção.": [
   "Disables choosing and removing.",
   "Desativa a escolha e a remoção.",
   "Deshabilita elegir y quitar.",
   "Désactive le choix et la suppression."
  ],
- "Rotulo exibido acima da area.": [
+ "Rótulo exibido acima da área.": [
   "Label shown above the area.",
   "Rótulo exibido acima da área.",
   "Etiqueta mostrada sobre el área.",
   "Libellé affiché au-dessus de la zone."
  ],
- "Nome do campo para formularios.": [
+ "Nome do campo para formulários.": [
   "Field name for forms.",
   "Nome do campo para formulários.",
   "Nombre del campo para formularios.",
@@ -161,25 +161,25 @@
   "Elige una o varias imágenes, muestra las miniaturas y valida tipo, tamaño, dimensión y proporción. Composición de SgFileUpload. No envía nada: entrega los archivos al padre.",
   "Choisit une ou plusieurs images, affiche les miniatures et valide type, taille, dimension et proportion. Composition de SgFileUpload. Il n'envoie rien : il remet les fichiers au parent."
  ],
- "Quantas imagens o campo guarda. Com 1, escolher outra substitui; maior que 1 liga a selecao multipla e a grade de miniaturas.": [
+ "Quantas imagens o campo guarda. Com 1, escolher outra substitui; maior que 1 liga a seleção múltipla e a grade de miniaturas.": [
   "How many images the field holds. With 1, picking another replaces it; above 1 turns on multiple selection and the thumbnail grid.",
   "Quantas imagens o campo guarda. Com 1, escolher outra substitui; maior que 1 liga a seleção múltipla e a grelha de miniaturas.",
   "Cuántas imágenes guarda el campo. Con 1, elegir otra la reemplaza; mayor que 1 activa la selección múltiple y la cuadrícula de miniaturas.",
   "Combien d'images le champ contient. Avec 1, en choisir une autre remplace ; au-dessus de 1, active la sélection multiple et la grille de miniatures."
  ],
- "Lista de imagens validas apos escolher ou remover.": [
+ "Lista de imagens válidas após escolher ou remover.": [
   "List of valid images after picking or removing.",
   "Lista de imagens válidas após escolher ou remover.",
   "Lista de imágenes válidas tras elegir o quitar.",
   "Liste des images valides après sélection ou suppression."
  ],
- "Imagem recusada (type, size, total, count, dimension, aspect). As demais seguem validas.": [
+ "Imagem recusada (type, size, total, count, dimension, aspect). As demais seguem válidas.": [
   "Rejected image (type, size, total, count, dimension, aspect). The others stay valid.",
   "Imagem recusada (type, size, total, count, dimension, aspect). As restantes continuam válidas.",
   "Imagen rechazada (type, size, total, count, dimensión, aspect). Las demás siguen siendo válidas.",
   "Image refusée (type, size, total, count, dimension, aspect). Les autres restent valides."
  ],
- "Imagens controladas (sempre lista; uma imagem = lista de uma). Uma imagem ja salva entra como { name, url }.": [
+ "Imagens controladas (sempre lista; uma imagem = lista de uma). Uma imagem já salva entra como { name, url }.": [
   "Controlled images (always a list; one image = a list of one). An already saved image goes in as { name, url }.",
   "Imagens controladas (sempre lista; uma imagem = lista de uma). Uma imagem já guardada entra como { name, url }.",
   "Imágenes controladas (siempre lista; una imagen = lista de una). Una imagen ya guardada entra como { name, url }.",

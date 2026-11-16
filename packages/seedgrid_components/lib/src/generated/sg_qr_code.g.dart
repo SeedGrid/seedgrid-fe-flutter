@@ -9,7 +9,7 @@ import 'package:flutter/widgets.dart';
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgQRCode` no React — Gerador visual de QR Code com configuracao de valor, logo central, tamanho, margem e cores.
+/// Props públicas de `SgQRCode` no React — Gerador visual de QR Code com configuração de valor, logo central, tamanho, margem e cores.
 /// O widget deve declarar `implements SgQRCodeProps`.
 abstract interface class SgQRCodeProps {
   /// Cor de fundo do QR Code. Padrão: `#FFFFFF`.

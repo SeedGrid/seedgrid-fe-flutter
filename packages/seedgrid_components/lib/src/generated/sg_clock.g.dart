@@ -9,22 +9,22 @@ import 'package:flutter/widgets.dart';
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgClock` no React — Relogio analogico ou digital com multiplos estilos visuais, timezone, formato 12h/24h e temas.
+/// Props públicas de `SgClock` no React — Relógio analógico ou digital com múltiplos estilos visuais, timezone, formato 12h/24h e temas.
 /// O widget deve declarar `implements SgClockProps`.
 abstract interface class SgClockProps {
   /// Tipo TS: `Omit&lt;SgCardProps, "title" | "children"&gt;` (sem tradução exata; ver excecoes.json).
   Object? get cardProps;
   Widget? get cardTitle;
   Widget? get centerOverlay;
-  /// Modo principal de exibicao do relogio. Padrão: `digital`.
+  /// Modo principal de exibição do relógio. Padrão: `digital`.
   SgClockClockStyle? get clockStyle;
-  /// Desenha o relogio digital quando digitalStyle e custom; sem ele, usa o estilo default. Tipo TS: `SgClockDigitBuilder` (sem tradução exata; ver excecoes.json).
+  /// Desenha o relógio digital quando digitalStyle e custom; sem ele, usa o estilo default. Tipo TS: `SgClockDigitBuilder` (sem tradução exata; ver excecoes.json).
   Function? get digitBuilder;
-  /// Arrasto do card: undefined = automatico (arrasta em largura &gt;= 640px), true = sempre, false = nunca. Tem prioridade sobre `cardProps.draggable`.
+  /// Arrasto do card: undefined = automático (arrasta em largura &gt;= 640px), true = sempre, false = nunca. Tem prioridade sobre `cardProps.draggable`.
   bool? get draggable;
-  /// Estilo visual do relogio digital. Padrão: `default`.
+  /// Estilo visual do relógio digital. Padrão: `default`.
   SgClockDigitalStyle? get digitalStyle;
-  /// Formato horario do relogio. Padrão: `24h`.
+  /// Formato horário do relógio. Padrão: `24h`.
   SgClockFormat? get format;
   String? get initialServerTime;
   /// Padrão: `pt-BR`.
@@ -33,11 +33,11 @@ abstract interface class SgClockProps {
   SgClockSecondHandMode? get secondHandMode;
   /// Exibe ou oculta os segundos. Padrão: `true`.
   bool? get showSeconds;
-  /// Escala visual do relogio. Padrão: `md`. Tipo TS: `number | "sm" | "md" | "lg"` (sem tradução exata; ver excecoes.json).
+  /// Escala visual do relógio. Padrão: `md`. Tipo TS: `number | "sm" | "md" | "lg"` (sem tradução exata; ver excecoes.json).
   Object? get size;
   /// Tipo TS: `SgClockTheme` (sem tradução exata; ver excecoes.json).
   Object? get theme;
-  /// Tema visual aplicado ao relogio. Padrão: `classic`.
+  /// Tema visual aplicado ao relógio. Padrão: `classic`.
   String? get themeId;
   /// Timezone usada no calculo da hora exibida.
   String? get timezone;
@@ -74,7 +74,7 @@ const List<SgPropSpec> sgClockPropSpecs = <SgPropSpec>[
     tsType: '"digital" | "analog"',
     required: false,
     defaultValue: 'digital',
-    description: 'Modo principal de exibicao do relogio.',
+    description: 'Modo principal de exibição do relógio.',
     values: <String>['digital', 'analog'],
   ),
   SgPropSpec(
@@ -83,7 +83,7 @@ const List<SgPropSpec> sgClockPropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: 'SgClockDigitBuilder',
     required: false,
-    description: 'Desenha o relogio digital quando digitalStyle e custom; sem ele, usa o estilo default.',
+    description: 'Desenha o relógio digital quando digitalStyle e custom; sem ele, usa o estilo default.',
     exact: false,
   ),
   SgPropSpec(
@@ -92,7 +92,7 @@ const List<SgPropSpec> sgClockPropSpecs = <SgPropSpec>[
     type: 'bool?',
     tsType: 'boolean',
     required: false,
-    description: 'Arrasto do card: undefined = automatico (arrasta em largura >= 640px), true = sempre, false = nunca. Tem prioridade sobre `cardProps.draggable`.',
+    description: 'Arrasto do card: undefined = automático (arrasta em largura >= 640px), true = sempre, false = nunca. Tem prioridade sobre `cardProps.draggable`.',
   ),
   SgPropSpec(
     name: 'digitalStyle',
@@ -101,7 +101,7 @@ const List<SgPropSpec> sgClockPropSpecs = <SgPropSpec>[
     tsType: 'SgClockDigitalStyle',
     required: false,
     defaultValue: 'default',
-    description: 'Estilo visual do relogio digital.',
+    description: 'Estilo visual do relógio digital.',
     values: <String>['default', 'segment', 'sevenSegment', 'roller3d', 'flip', 'fade', 'matrix', 'neon', 'discard', 'custom'],
   ),
   SgPropSpec(
@@ -111,7 +111,7 @@ const List<SgPropSpec> sgClockPropSpecs = <SgPropSpec>[
     tsType: '"12h" | "24h"',
     required: false,
     defaultValue: '24h',
-    description: 'Formato horario do relogio.',
+    description: 'Formato horário do relógio.',
     values: <String>['12h', '24h'],
   ),
   SgPropSpec(
@@ -154,7 +154,7 @@ const List<SgPropSpec> sgClockPropSpecs = <SgPropSpec>[
     tsType: 'number | "sm" | "md" | "lg"',
     required: false,
     defaultValue: 'md',
-    description: 'Escala visual do relogio.',
+    description: 'Escala visual do relógio.',
     exact: false,
   ),
   SgPropSpec(
@@ -172,7 +172,7 @@ const List<SgPropSpec> sgClockPropSpecs = <SgPropSpec>[
     tsType: 'string',
     required: false,
     defaultValue: 'classic',
-    description: 'Tema visual aplicado ao relogio.',
+    description: 'Tema visual aplicado ao relógio.',
   ),
   SgPropSpec(
     name: 'timezone',

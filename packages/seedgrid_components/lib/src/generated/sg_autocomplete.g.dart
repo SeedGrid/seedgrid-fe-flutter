@@ -9,7 +9,7 @@ import 'package:flutter/widgets.dart';
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgAutocomplete` no React — Campo de busca assistida com sugestoes, fonte assincrona, cache e selecao de item a partir de texto digitado.
+/// Props públicas de `SgAutocomplete` no React — Campo de busca assistida com sugestões, fonte assincrona, cache e seleção de item a partir de texto digitado.
 /// O widget deve declarar `implements SgAutocompleteProps`.
 abstract interface class SgAutocompleteProps {
   /// Permite valor fora da lista. Padrão: `false`.
@@ -38,13 +38,13 @@ abstract interface class SgAutocompleteProps {
   String? get hintText;
   /// Tipo TS: `React.ReactNode[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get iconButtons;
-  /// Identificador unico do campo.
+  /// Identificador único do campo.
   String get id;
   /// Tipo TS: `(React.InputHTMLAttributes&lt;HTMLInputElement&gt; & { ref?: React.Ref&lt;HTMLInputElement&gt;; })` (sem tradução exata; ver excecoes.json).
   Object? get inputProps;
   /// Tipo TS: `((item: SgAutocompleteItem) =&gt; React.ReactNode)` (sem tradução exata; ver excecoes.json).
   Function? get itemTooltip;
-  /// Rotulo exibido ao usuario.
+  /// Rótulo exibido ao usuário.
   String? get label;
   SgAutocompleteLabelAlign? get labelAlign;
   SgAutocompleteLabelPosition? get labelPosition;
@@ -59,7 +59,7 @@ abstract interface class SgAutocompleteProps {
   /// Limite de resultados exibidos. Padrão: `50`.
   num? get maxResult;
   num? get minLength;
-  /// Quantidade minima de caracteres para buscar. Padrão: `2`.
+  /// Quantidade mínima de caracteres para buscar. Padrão: `2`.
   num? get minLengthForSearch;
   String? get minLengthMessage;
   num? get minNumberOfWords;
@@ -81,7 +81,7 @@ abstract interface class SgAutocompleteProps {
   Function? get onSelect;
   /// Tipo TS: `((message: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onValidation;
-  /// Abre a lista ao focar; com um item ja selecionado abre a lista completa. Padrão: `false`.
+  /// Abre a lista ao focar; com um item já selecionado abre a lista completa. Padrão: `false`.
   bool? get openOnFocus;
   String? get placeholder;
   String? get placeholderEmpty;
@@ -101,7 +101,7 @@ abstract interface class SgAutocompleteProps {
   bool? get required;
   String? get requiredMessage;
   bool? get showCharCounter;
-  /// Exibe o botao que abre/fecha a lista. Abre a lista completa quando o texto e uma selecao; preserva o filtro quando o usuario digitou. Padrão: `false`.
+  /// Exibe o botão que abre/fecha a lista. Abre a lista completa quando o texto e uma seleção; preserva o filtro quando o usuário digitou. Padrão: `false`.
   bool? get showDropDownButton;
   /// Fonte de resultados para busca. Tipo TS: `SgAutocompleteSource&lt;T&gt;` (sem tradução exata; ver excecoes.json).
   Function get source;
@@ -257,7 +257,7 @@ const List<SgPropSpec> sgAutocompletePropSpecs = <SgPropSpec>[
     type: 'String',
     tsType: 'string',
     required: true,
-    description: 'Identificador unico do campo.',
+    description: 'Identificador único do campo.',
   ),
   SgPropSpec(
     name: 'inputProps',
@@ -281,7 +281,7 @@ const List<SgPropSpec> sgAutocompletePropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Rotulo exibido ao usuario.',
+    description: 'Rótulo exibido ao usuário.',
   ),
   SgPropSpec(
     name: 'labelAlign',
@@ -366,7 +366,7 @@ const List<SgPropSpec> sgAutocompletePropSpecs = <SgPropSpec>[
     tsType: 'number',
     required: false,
     defaultValue: '2',
-    description: 'Quantidade minima de caracteres para buscar.',
+    description: 'Quantidade mínima de caracteres para buscar.',
   ),
   SgPropSpec(
     name: 'minLengthMessage',
@@ -468,7 +468,7 @@ const List<SgPropSpec> sgAutocompletePropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description: 'Abre a lista ao focar; com um item ja selecionado abre a lista completa.',
+    description: 'Abre a lista ao focar; com um item já selecionado abre a lista completa.',
   ),
   SgPropSpec(
     name: 'placeholder',
@@ -573,7 +573,7 @@ const List<SgPropSpec> sgAutocompletePropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description: 'Exibe o botao que abre/fecha a lista. Abre a lista completa quando o texto e uma selecao; preserva o filtro quando o usuario digitou.',
+    description: 'Exibe o botão que abre/fecha a lista. Abre a lista completa quando o texto e uma seleção; preserva o filtro quando o usuário digitou.',
   ),
   SgPropSpec(
     name: 'source',

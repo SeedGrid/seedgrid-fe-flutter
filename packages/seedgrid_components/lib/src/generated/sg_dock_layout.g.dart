@@ -8,14 +8,14 @@ import 'package:flutter/widgets.dart';
 
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgDockLayout` no React — Layout estrutural com zonas de dock e persistencia de estado para barras e paines arrastaveis.
+/// Props públicas de `SgDockLayout` no React — Layout estrutural com zonas de dock e persistência de estado para barras e paines arrastáveis.
 /// O widget deve declarar `implements SgDockLayoutProps`.
 abstract interface class SgDockLayoutProps {
-  /// Zonas, toolbars e conteudo estrutural do layout. No React e `children`.
+  /// Zonas, toolbars e conteúdo estrutural do layout. No React e `children`.
   Widget get child;
   /// Estado inicial das toolbars e zonas do layout. Tipo TS: `SgDockLayoutState` (sem tradução exata; ver excecoes.json).
   Object? get defaultState;
-  /// Identificador do layout usado para persistencia e coordenacao interna.
+  /// Identificador do layout usado para persistência e coordenação interna.
   String get id;
 }
 
@@ -27,7 +27,7 @@ const List<SgPropSpec> sgDockLayoutPropSpecs = <SgPropSpec>[
     type: 'Widget',
     tsType: 'React.ReactNode',
     required: true,
-    description: 'Zonas, toolbars e conteudo estrutural do layout.',
+    description: 'Zonas, toolbars e conteúdo estrutural do layout.',
   ),
   SgPropSpec(
     name: 'defaultState',
@@ -44,6 +44,6 @@ const List<SgPropSpec> sgDockLayoutPropSpecs = <SgPropSpec>[
     type: 'String',
     tsType: 'string',
     required: true,
-    description: 'Identificador do layout usado para persistencia e coordenacao interna.',
+    description: 'Identificador do layout usado para persistência e coordenação interna.',
   ),
 ];

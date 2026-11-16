@@ -9,7 +9,7 @@ import 'package:flutter/widgets.dart';
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgInputDate` no React — Campo de data com validacao de intervalo e suporte a selecao temporal para eventos, prazos e datas de referencia.
+/// Props públicas de `SgInputDate` no React — Campo de data com validação de intervalo e suporte a seleção temporal para eventos, prazos e datas de referência.
 /// O widget deve declarar `implements SgInputDateProps`.
 abstract interface class SgInputDateProps {
   bool? get alwaysFloat;
@@ -25,36 +25,36 @@ abstract interface class SgInputDateProps {
   String? get hintText;
   /// Tipo TS: `React.ReactNode[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get iconButtons;
-  /// Identificador unico do campo de data.
+  /// Identificador único do campo de data.
   String get id;
   /// Tipo TS: `(React.InputHTMLAttributes&lt;HTMLInputElement&gt; & { ref?: React.Ref&lt;HTMLInputElement&gt;; })` (sem tradução exata; ver excecoes.json).
   Object? get inputProps;
-  /// Rotulo principal exibido ao usuario.
+  /// Rótulo principal exibido ao usuário.
   String? get label;
   SgInputDateLabelAlign? get labelAlign;
   SgInputDateLabelPosition? get labelPosition;
   String? get labelText;
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get labelWidth;
-  /// Data maxima permitida. Tipo TS: `string | Date` (sem tradução exata; ver excecoes.json).
+  /// Data máxima permitida. Tipo TS: `string | Date` (sem tradução exata; ver excecoes.json).
   Object? get maxDate;
   num? get maxLength;
   String? get maxLengthMessage;
-  /// Data minima permitida. Tipo TS: `string | Date` (sem tradução exata; ver excecoes.json).
+  /// Data mínima permitida. Tipo TS: `string | Date` (sem tradução exata; ver excecoes.json).
   Object? get minDate;
   num? get minLength;
   String? get minLengthMessage;
   num? get minNumberOfWords;
   String? get minNumberOfWordsMessage;
-  /// Nome do campo para formularios.
+  /// Nome do campo para formulários.
   String? get name;
   /// Callback com a data selecionada ou digitada. Tipo TS: `((value: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onChange;
   /// Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onClear;
-  /// Disparado ao receber foco — padrao seedgrid. Tipo TS: `((() =&gt; void) & (() =&gt; void))` (sem tradução exata; ver excecoes.json).
+  /// Disparado ao receber foco — padrão seedgrid. Tipo TS: `((() =&gt; void) & (() =&gt; void))` (sem tradução exata; ver excecoes.json).
   Function? get onEnter;
-  /// Disparado ao perder o foco (apos validacao) — padrao seedgrid. Tipo TS: `((() =&gt; void) & (() =&gt; void))` (sem tradução exata; ver excecoes.json).
+  /// Disparado ao perder o foco (após validação) — padrão seedgrid. Tipo TS: `((() =&gt; void) & (() =&gt; void))` (sem tradução exata; ver excecoes.json).
   Function? get onExit;
   /// Tipo TS: `((message: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onValidation;
@@ -62,9 +62,9 @@ abstract interface class SgInputDateProps {
   String? get placeholder;
   Widget? get prefixIcon;
   String? get prefixText;
-  /// Impede edicao mantendo leitura e foco. Padrão: `false`.
+  /// Impede edição mantendo leitura e foco. Padrão: `false`.
   bool? get readOnly;
-  /// Marca o campo como obrigatorio. Padrão: `false`.
+  /// Marca o campo como obrigatório. Padrão: `false`.
   bool? get required;
   String? get requiredMessage;
   bool? get showCharCounter;
@@ -160,7 +160,7 @@ const List<SgPropSpec> sgInputDatePropSpecs = <SgPropSpec>[
     type: 'String',
     tsType: 'string',
     required: true,
-    description: 'Identificador unico do campo de data.',
+    description: 'Identificador único do campo de data.',
   ),
   SgPropSpec(
     name: 'inputProps',
@@ -176,7 +176,7 @@ const List<SgPropSpec> sgInputDatePropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Rotulo principal exibido ao usuario.',
+    description: 'Rótulo principal exibido ao usuário.',
   ),
   SgPropSpec(
     name: 'labelAlign',
@@ -215,7 +215,7 @@ const List<SgPropSpec> sgInputDatePropSpecs = <SgPropSpec>[
     type: 'Object?',
     tsType: 'string | Date',
     required: false,
-    description: 'Data maxima permitida.',
+    description: 'Data máxima permitida.',
     exact: false,
   ),
   SgPropSpec(
@@ -238,7 +238,7 @@ const List<SgPropSpec> sgInputDatePropSpecs = <SgPropSpec>[
     type: 'Object?',
     tsType: 'string | Date',
     required: false,
-    description: 'Data minima permitida.',
+    description: 'Data mínima permitida.',
     exact: false,
   ),
   SgPropSpec(
@@ -275,7 +275,7 @@ const List<SgPropSpec> sgInputDatePropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Nome do campo para formularios.',
+    description: 'Nome do campo para formulários.',
   ),
   SgPropSpec(
     name: 'onChange',
@@ -300,7 +300,7 @@ const List<SgPropSpec> sgInputDatePropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '((() => void) & (() => void))',
     required: false,
-    description: 'Disparado ao receber foco — padrao seedgrid.',
+    description: 'Disparado ao receber foco — padrão seedgrid.',
     exact: false,
   ),
   SgPropSpec(
@@ -309,7 +309,7 @@ const List<SgPropSpec> sgInputDatePropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '((() => void) & (() => void))',
     required: false,
-    description: 'Disparado ao perder o foco (apos validacao) — padrao seedgrid.',
+    description: 'Disparado ao perder o foco (após validação) — padrão seedgrid.',
     exact: false,
   ),
   SgPropSpec(
@@ -349,7 +349,7 @@ const List<SgPropSpec> sgInputDatePropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description: 'Impede edicao mantendo leitura e foco.',
+    description: 'Impede edição mantendo leitura e foco.',
   ),
   SgPropSpec(
     name: 'required',
@@ -358,7 +358,7 @@ const List<SgPropSpec> sgInputDatePropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description: 'Marca o campo como obrigatorio.',
+    description: 'Marca o campo como obrigatório.',
   ),
   SgPropSpec(
     name: 'requiredMessage',

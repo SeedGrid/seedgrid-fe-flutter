@@ -8,10 +8,10 @@ import 'package:flutter/widgets.dart';
 
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgDockScreen` no React — Componente de conveniencia que combina SgScreen e SgDockLayout em uma unica raiz estrutural.
+/// Props públicas de `SgDockScreen` no React — Componente de conveniencia que combina SgScreen e SgDockLayout em uma única raiz estrutural.
 /// O widget deve declarar `implements SgDockScreenProps`.
 abstract interface class SgDockScreenProps {
-  /// Zonas e conteudo estrutural do dock screen. No React e `children`.
+  /// Zonas e conteúdo estrutural do dock screen. No React e `children`.
   Widget? get child;
   /// Estado inicial das toolbars e zonas internas. Tipo TS: `SgDockLayoutState` (sem tradução exata; ver excecoes.json).
   Object? get defaultState;
@@ -39,7 +39,7 @@ const List<SgPropSpec> sgDockScreenPropSpecs = <SgPropSpec>[
     type: 'Widget?',
     tsType: 'React.ReactNode',
     required: false,
-    description: 'Zonas e conteudo estrutural do dock screen.',
+    description: 'Zonas e conteúdo estrutural do dock screen.',
   ),
   SgPropSpec(
     name: 'defaultState',

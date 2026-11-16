@@ -9,24 +9,24 @@ import 'package:flutter/widgets.dart';
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgWizard` no React — Fluxo multi-etapas com stepper, validacao por etapa, navegacao controlada e finalizacao assincrona.
+/// Props públicas de `SgWizard` no React — Fluxo multi-etapas com stepper, validação por etapa, navegação controlada e finalização assincrona.
 /// O widget deve declarar `implements SgWizardProps`.
 abstract interface class SgWizardProps {
-  /// Paginas do wizard renderizadas em ordem. No React e `children`.
+  /// Páginas do wizard renderizadas em ordem. No React e `children`.
   Widget get child;
-  /// Quando false, o wizard inteiro fica desabilitado: Anterior, Proximo, Concluir e os passos do stepper deixam de responder; a etapa atual segue visivel. Diferente de nextDisabled, que so bloqueia o avanco. Padrão: `true`.
+  /// Quando false, o wizard inteiro fica desabilitado: Anterior, Próximo, Concluir e os passos do stepper deixam de responder; a etapa atual segue visível. Diferente de nextDisabled, que só bloqueia o avanço. Padrão: `true`.
   bool? get enabled;
-  /// Indice inicial da etapa ativa. Padrão: `0`.
+  /// Índice inicial da etapa ativa. Padrão: `0`.
   num? get initialStep;
   /// Tipo TS: `Partial&lt;SgWizardLabels&gt;` (sem tradução exata; ver excecoes.json).
   Object? get labels;
-  /// Desabilita o avanco de forma declarativa: o botao Proximo fica desabilitado e o stepper para de oferecer as etapas seguintes. Use quando o bloqueio JA e conhecido (ex.: uma checagem assincrona ja resolveu que a etapa nao pode avancar) — onBeforeNext/validateStep so agem no clique e deixam o botao com aparencia de clicavel. Nao afeta o botao da ultima etapa; para isso use onBeforeFinish. Padrão: `false`.
+  /// Desabilita o avanço de forma declarativa: o botão Próximo fica desabilitado e o stepper para de oferecer as etapas seguintes. Use quando o bloqueio JÁ e conhecido (ex.: uma checagem assincrona já resolveu que a etapa não pode avançar) — onBeforeNext/validateStep só agem no clique e deixam o botão com aparência de clicável. Não afeta o botão da última etapa; para isso use onBeforeFinish. Padrão: `false`.
   bool? get nextDisabled;
-  /// Roda ao clicar em concluir; devolver false impede a finalizacao. Tipo TS: `((index: number) =&gt; boolean | Promise&lt;boolean&gt;)` (sem tradução exata; ver excecoes.json).
+  /// Roda ao clicar em concluir; devolver false impede a finalização. Tipo TS: `((index: number) =&gt; boolean | Promise&lt;boolean&gt;)` (sem tradução exata; ver excecoes.json).
   Function? get onBeforeFinish;
-  /// Roda ao clicar em Proximo; devolver false (ou uma Promise&lt;false&gt;) impede o avanco. Enquanto e aguardado, o botao fica desabilitado. Tipo TS: `((index: number) =&gt; boolean | Promise&lt;boolean&gt;)` (sem tradução exata; ver excecoes.json).
+  /// Roda ao clicar em Próximo; devolver false (ou uma Promise&lt;false&gt;) impede o avanço. Enquanto e aguardado, o botão fica desabilitado. Tipo TS: `((index: number) =&gt; boolean | Promise&lt;boolean&gt;)` (sem tradução exata; ver excecoes.json).
   Function? get onBeforeNext;
-  /// Acao executada ao concluir o wizard. Tipo TS: `() =&gt; void | Promise&lt;void&gt;` (sem tradução exata; ver excecoes.json).
+  /// Ação executada ao concluir o wizard. Tipo TS: `() =&gt; void | Promise&lt;void&gt;` (sem tradução exata; ver excecoes.json).
   Function get onFinish;
   /// Callback disparado ao trocar de etapa. Tipo TS: `((index: number) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onStepChange;
@@ -34,7 +34,7 @@ abstract interface class SgWizardProps {
   SgWizardStepNavigation? get stepNavigation;
   /// Modo visual do stepper. Padrão: `none`.
   SgWizardStepper? get stepper;
-  /// Valida a etapa atual antes de avancar. Tipo TS: `((index: number) =&gt; boolean | Promise&lt;boolean&gt;)` (sem tradução exata; ver excecoes.json).
+  /// Valida a etapa atual antes de avançar. Tipo TS: `((index: number) =&gt; boolean | Promise&lt;boolean&gt;)` (sem tradução exata; ver excecoes.json).
   Function? get validateStep;
 }
 
@@ -46,7 +46,7 @@ const List<SgPropSpec> sgWizardPropSpecs = <SgPropSpec>[
     type: 'Widget',
     tsType: 'React.ReactNode',
     required: true,
-    description: 'Paginas do wizard renderizadas em ordem.',
+    description: 'Páginas do wizard renderizadas em ordem.',
   ),
   SgPropSpec(
     name: 'enabled',
@@ -55,7 +55,7 @@ const List<SgPropSpec> sgWizardPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'true',
-    description: 'Quando false, o wizard inteiro fica desabilitado: Anterior, Proximo, Concluir e os passos do stepper deixam de responder; a etapa atual segue visivel. Diferente de nextDisabled, que so bloqueia o avanco.',
+    description: 'Quando false, o wizard inteiro fica desabilitado: Anterior, Próximo, Concluir e os passos do stepper deixam de responder; a etapa atual segue visível. Diferente de nextDisabled, que só bloqueia o avanço.',
   ),
   SgPropSpec(
     name: 'initialStep',
@@ -64,7 +64,7 @@ const List<SgPropSpec> sgWizardPropSpecs = <SgPropSpec>[
     tsType: 'number',
     required: false,
     defaultValue: '0',
-    description: 'Indice inicial da etapa ativa.',
+    description: 'Índice inicial da etapa ativa.',
   ),
   SgPropSpec(
     name: 'labels',
@@ -81,7 +81,7 @@ const List<SgPropSpec> sgWizardPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description: 'Desabilita o avanco de forma declarativa: o botao Proximo fica desabilitado e o stepper para de oferecer as etapas seguintes. Use quando o bloqueio JA e conhecido (ex.: uma checagem assincrona ja resolveu que a etapa nao pode avancar) — onBeforeNext/validateStep so agem no clique e deixam o botao com aparencia de clicavel. Nao afeta o botao da ultima etapa; para isso use onBeforeFinish.',
+    description: 'Desabilita o avanço de forma declarativa: o botão Próximo fica desabilitado e o stepper para de oferecer as etapas seguintes. Use quando o bloqueio JÁ e conhecido (ex.: uma checagem assincrona já resolveu que a etapa não pode avançar) — onBeforeNext/validateStep só agem no clique e deixam o botão com aparência de clicável. Não afeta o botão da última etapa; para isso use onBeforeFinish.',
   ),
   SgPropSpec(
     name: 'onBeforeFinish',
@@ -89,7 +89,7 @@ const List<SgPropSpec> sgWizardPropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '((index: number) => boolean | Promise<boolean>)',
     required: false,
-    description: 'Roda ao clicar em concluir; devolver false impede a finalizacao.',
+    description: 'Roda ao clicar em concluir; devolver false impede a finalização.',
     exact: false,
   ),
   SgPropSpec(
@@ -98,7 +98,7 @@ const List<SgPropSpec> sgWizardPropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '((index: number) => boolean | Promise<boolean>)',
     required: false,
-    description: 'Roda ao clicar em Proximo; devolver false (ou uma Promise<false>) impede o avanco. Enquanto e aguardado, o botao fica desabilitado.',
+    description: 'Roda ao clicar em Próximo; devolver false (ou uma Promise<false>) impede o avanço. Enquanto e aguardado, o botão fica desabilitado.',
     exact: false,
   ),
   SgPropSpec(
@@ -107,7 +107,7 @@ const List<SgPropSpec> sgWizardPropSpecs = <SgPropSpec>[
     type: 'Function',
     tsType: '() => void | Promise<void>',
     required: true,
-    description: 'Acao executada ao concluir o wizard.',
+    description: 'Ação executada ao concluir o wizard.',
     exact: false,
   ),
   SgPropSpec(
@@ -145,7 +145,7 @@ const List<SgPropSpec> sgWizardPropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '((index: number) => boolean | Promise<boolean>)',
     required: false,
-    description: 'Valida a etapa atual antes de avancar.',
+    description: 'Valida a etapa atual antes de avançar.',
     exact: false,
   ),
 ];

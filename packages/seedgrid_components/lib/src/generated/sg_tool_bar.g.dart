@@ -9,14 +9,14 @@ import 'package:flutter/widgets.dart';
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgToolBar` no React — Barra de ferramentas para agrupar acoes frequentes com suporte a orientacao, colapso, arraste e encaixe em zonas de layout.
+/// Props públicas de `SgToolBar` no React — Barra de ferramentas para agrupar ações frequentes com suporte a orientação, colapso, arraste e encaixe em zonas de layout.
 /// O widget deve declarar `implements SgToolBarProps`.
 abstract interface class SgToolBarProps {
   String? get bgColor;
   String? get bgColorTitle;
-  /// Quantidade de botoes distribuidos por direcao.
+  /// Quantidade de botões distribuídos por direção.
   num? get buttonsPerDirection;
-  /// Botoes e elementos de acao da toolbar. No React e `children`.
+  /// Botões e elementos de ação da toolbar. No React e `children`.
   Widget? get child;
   bool? get collapsed;
   /// Permite recolher a toolbar. Padrão: `true`.
@@ -31,17 +31,17 @@ abstract interface class SgToolBarProps {
   bool? get draggable;
   /// Padrão: `false`.
   bool? get freeDrag;
-  /// Identificador estavel da toolbar.
+  /// Identificador estável da toolbar.
   String get id;
   /// Tipo TS: `((collapsed: boolean) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onCollapsedChange;
-  /// Direcao e orientacao da toolbar.
+  /// Direção e orientação da toolbar.
   SgToolBarOrientationDirection? get orientationDirection;
-  /// Move para um menu '...' os botoes que nao cabem na largura disponivel; abaixo de 600px abre como painel inferior. Padrão: `false`.
+  /// Move para um menu '...' os botões que não cabem na largura disponível; abaixo de 600px abre como painel inferior. Padrão: `false`.
   bool? get overflow;
   /// Tipo TS: `SgToolBarSize` (sem tradução exata; ver excecoes.json).
   Object? get size;
-  /// Titulo opcional exibido na barra.
+  /// Título opcional exibido na barra.
   Widget? get title;
 }
 
@@ -67,7 +67,7 @@ const List<SgPropSpec> sgToolBarPropSpecs = <SgPropSpec>[
     type: 'num?',
     tsType: 'number',
     required: false,
-    description: 'Quantidade de botoes distribuidos por direcao.',
+    description: 'Quantidade de botões distribuídos por direção.',
   ),
   SgPropSpec(
     name: 'child',
@@ -75,7 +75,7 @@ const List<SgPropSpec> sgToolBarPropSpecs = <SgPropSpec>[
     type: 'Widget?',
     tsType: 'React.ReactNode',
     required: false,
-    description: 'Botoes e elementos de acao da toolbar.',
+    description: 'Botões e elementos de ação da toolbar.',
   ),
   SgPropSpec(
     name: 'collapsed',
@@ -142,7 +142,7 @@ const List<SgPropSpec> sgToolBarPropSpecs = <SgPropSpec>[
     type: 'String',
     tsType: 'string',
     required: true,
-    description: 'Identificador estavel da toolbar.',
+    description: 'Identificador estável da toolbar.',
   ),
   SgPropSpec(
     name: 'onCollapsedChange',
@@ -158,7 +158,7 @@ const List<SgPropSpec> sgToolBarPropSpecs = <SgPropSpec>[
     type: 'SgToolBarOrientationDirection?',
     tsType: 'SgToolBarOrientationDirection',
     required: false,
-    description: 'Direcao e orientacao da toolbar.',
+    description: 'Direção e orientação da toolbar.',
     values: <String>['horizontal-left', 'horizontal-right', 'vertical-up', 'vertical-down'],
   ),
   SgPropSpec(
@@ -168,7 +168,7 @@ const List<SgPropSpec> sgToolBarPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description: 'Move para um menu \'...\' os botoes que nao cabem na largura disponivel; abaixo de 600px abre como painel inferior.',
+    description: 'Move para um menu \'...\' os botões que não cabem na largura disponível; abaixo de 600px abre como painel inferior.',
   ),
   SgPropSpec(
     name: 'size',
@@ -184,6 +184,6 @@ const List<SgPropSpec> sgToolBarPropSpecs = <SgPropSpec>[
     type: 'Widget?',
     tsType: 'React.ReactNode',
     required: false,
-    description: 'Titulo opcional exibido na barra.',
+    description: 'Título opcional exibido na barra.',
   ),
 ];

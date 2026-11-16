@@ -9,7 +9,7 @@ import 'package:flutter/widgets.dart';
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgRating` no React — Controle de avaliacao ordinal para notas, estrelas e feedback rapido do usuario.
+/// Props públicas de `SgRating` no React — Controle de avaliacao ordinal para notas, estrelas e feedback rápido do usuário.
 /// O widget deve declarar `implements SgRatingProps`.
 abstract interface class SgRatingProps {
   /// Enable half stars Padrão: `false`.
@@ -24,23 +24,23 @@ abstract interface class SgRatingProps {
   Object? get control;
   /// Color for empty stars Padrão: `hsl(var(--muted-foreground))`.
   String? get emptyColor;
-  /// Desabilita interacao. Padrão: `true`.
+  /// Desabilita interação. Padrão: `true`.
   bool? get enabled;
   String? get error;
-  /// Identificador unico do componente.
+  /// Identificador único do componente.
   String? get id;
-  /// Rotulo do campo.
+  /// Rótulo do campo.
   String? get label;
   String? get name;
   /// Custom icon for empty state
   Widget? get offIcon;
-  /// Callback de mudanca. Tipo TS: `((value: number) =&gt; void)` (sem tradução exata; ver excecoes.json).
+  /// Callback de mudança. Tipo TS: `((value: number) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onChange;
   /// Callback when hovering over stars Tipo TS: `((value: number) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onHover;
   /// Custom icon for filled state
   Widget? get onIcon;
-  /// Impede alteracao da nota. Padrão: `false`.
+  /// Impede alteração da nota. Padrão: `false`.
   bool? get readOnly;
   /// Required field Padrão: `false`.
   bool? get required;
@@ -117,7 +117,7 @@ const List<SgPropSpec> sgRatingPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'true',
-    description: 'Desabilita interacao.',
+    description: 'Desabilita interação.',
   ),
   SgPropSpec(
     name: 'error',
@@ -132,7 +132,7 @@ const List<SgPropSpec> sgRatingPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Identificador unico do componente.',
+    description: 'Identificador único do componente.',
   ),
   SgPropSpec(
     name: 'label',
@@ -140,7 +140,7 @@ const List<SgPropSpec> sgRatingPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Rotulo do campo.',
+    description: 'Rótulo do campo.',
   ),
   SgPropSpec(
     name: 'name',
@@ -163,7 +163,7 @@ const List<SgPropSpec> sgRatingPropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '((value: number) => void)',
     required: false,
-    description: 'Callback de mudanca.',
+    description: 'Callback de mudança.',
     exact: false,
   ),
   SgPropSpec(
@@ -190,7 +190,7 @@ const List<SgPropSpec> sgRatingPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description: 'Impede alteracao da nota.',
+    description: 'Impede alteração da nota.',
   ),
   SgPropSpec(
     name: 'required',

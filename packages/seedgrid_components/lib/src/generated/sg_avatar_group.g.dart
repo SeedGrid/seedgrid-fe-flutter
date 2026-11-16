@@ -9,20 +9,20 @@ import 'package:flutter/widgets.dart';
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgAvatarGroup` no React — Agrupamento visual de avatares com sobreposicao, limite de itens e contador de participantes restantes.
+/// Props públicas de `SgAvatarGroup` no React — Agrupamento visual de avatares com sobreposição, limite de itens e contador de participantes restantes.
 /// O widget deve declarar `implements SgAvatarGroupProps`.
 abstract interface class SgAvatarGroupProps {
   /// Padrão: `true`.
   bool? get bordered;
   /// Lista de avatares exibidos no agrupamento. No React e `children`.
   Widget get child;
-  /// Quantidade maxima de avatares visiveis antes do contador de overflow.
+  /// Quantidade máxima de avatares visíveis antes do contador de overflow.
   num? get max;
   /// Tipo TS: `((remaining: number) =&gt; React.ReactNode)` (sem tradução exata; ver excecoes.json).
   Function? get moreLabel;
   /// Padrão: `neutral`.
   SgAvatarSeverity? get moreSeverity;
-  /// Nivel de sobreposicao entre os avatares. Padrão: `md`.
+  /// Nível de sobreposição entre os avatares. Padrão: `md`.
   SgAvatarGroupOverlap? get overlap;
   /// Forma visual aplicada ao grupo de avatares. Padrão: `circle`.
   SgAvatarShape? get shape;
@@ -56,7 +56,7 @@ const List<SgPropSpec> sgAvatarGroupPropSpecs = <SgPropSpec>[
     type: 'num?',
     tsType: 'number',
     required: false,
-    description: 'Quantidade maxima de avatares visiveis antes do contador de overflow.',
+    description: 'Quantidade máxima de avatares visíveis antes do contador de overflow.',
   ),
   SgPropSpec(
     name: 'moreLabel',
@@ -82,7 +82,7 @@ const List<SgPropSpec> sgAvatarGroupPropSpecs = <SgPropSpec>[
     tsType: 'SgAvatarGroupOverlap',
     required: false,
     defaultValue: 'md',
-    description: 'Nivel de sobreposicao entre os avatares.',
+    description: 'Nível de sobreposição entre os avatares.',
     values: <String>['none', 'sm', 'md', 'lg'],
   ),
   SgPropSpec(

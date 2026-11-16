@@ -9,14 +9,14 @@ import 'package:flutter/widgets.dart';
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgBadgeOverlay` no React — Wrapper para sobrepor badges e indicadores compactos sobre avatares, icones e outros elementos visuais.
+/// Props públicas de `SgBadgeOverlay` no React — Wrapper para sobrepor badges e indicadores compactos sobre avatares, ícones e outros elementos visuais.
 /// O widget deve declarar `implements SgBadgeOverlayProps`.
 abstract interface class SgBadgeOverlayProps {
-  /// Conteudo do indicador exibido sobre o elemento base.
+  /// Conteúdo do indicador exibido sobre o elemento base.
   Widget get badge;
-  /// Elemento base que recebera o badge sobreposto. No React e `children`.
+  /// Elemento base que receberá o badge sobreposto. No React e `children`.
   Widget get child;
-  /// Posicao do badge sobreposto. Padrão: `top-right`.
+  /// Posição do badge sobreposto. Padrão: `top-right`.
   SgBadgeOverlayPlacement? get placement;
 }
 
@@ -28,7 +28,7 @@ const List<SgPropSpec> sgBadgeOverlayPropSpecs = <SgPropSpec>[
     type: 'Widget',
     tsType: 'React.ReactNode',
     required: true,
-    description: 'Conteudo do indicador exibido sobre o elemento base.',
+    description: 'Conteúdo do indicador exibido sobre o elemento base.',
   ),
   SgPropSpec(
     name: 'child',
@@ -36,7 +36,7 @@ const List<SgPropSpec> sgBadgeOverlayPropSpecs = <SgPropSpec>[
     type: 'Widget',
     tsType: 'React.ReactNode',
     required: true,
-    description: 'Elemento base que recebera o badge sobreposto.',
+    description: 'Elemento base que receberá o badge sobreposto.',
   ),
   SgPropSpec(
     name: 'placement',
@@ -45,7 +45,7 @@ const List<SgPropSpec> sgBadgeOverlayPropSpecs = <SgPropSpec>[
     tsType: 'SgBadgeOverlayPlacement',
     required: false,
     defaultValue: 'top-right',
-    description: 'Posicao do badge sobreposto.',
+    description: 'Posição do badge sobreposto.',
     values: <String>['top', 'left', 'top-left', 'top-right', 'bottom-left', 'bottom-right', 'right', 'bottom'],
   ),
 ];

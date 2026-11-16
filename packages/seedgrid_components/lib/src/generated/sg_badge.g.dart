@@ -9,7 +9,7 @@ import 'package:flutter/widgets.dart';
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgBadge` no React — Indicador compacto para status, contagens, rotulos curtos e destaque visual de pequenos estados.
+/// Props públicas de `SgBadge` no React — Indicador compacto para status, contagens, rótulos curtos e destaque visual de pequenos estados.
 /// O widget deve declarar `implements SgBadgeProps`.
 abstract interface class SgBadgeProps {
   /// No React e `aria-label` (Semantics no Flutter).
@@ -35,20 +35,20 @@ abstract interface class SgBadgeProps {
   Object? get partsClassName;
   /// Padrão: `false`.
   bool? get pulse;
-  /// Permite remover o badge com um botao interno. Padrão: `false`.
+  /// Permite remover o badge com um botão interno. Padrão: `false`.
   bool? get removable;
   String? get removeAriaLabel;
   Widget? get rightIcon;
   /// Padrão: `true`.
   bool? get rounded;
-  /// Tom semantico do indicador. Padrão: `primary`.
+  /// Tom semântico do indicador. Padrão: `primary`.
   SgBadgeSeverity? get severity;
   /// Padrão: `true`.
   bool? get showZero;
   /// Escala visual do badge. Padrão: `md`.
   SgBadgeSize? get size;
   String? get title;
-  /// Conteudo principal exibido dentro do badge.
+  /// Conteúdo principal exibido dentro do badge.
   Widget? get value;
 }
 
@@ -166,7 +166,7 @@ const List<SgPropSpec> sgBadgePropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description: 'Permite remover o badge com um botao interno.',
+    description: 'Permite remover o badge com um botão interno.',
   ),
   SgPropSpec(
     name: 'removeAriaLabel',
@@ -197,7 +197,7 @@ const List<SgPropSpec> sgBadgePropSpecs = <SgPropSpec>[
     tsType: 'SgBadgeSeverity',
     required: false,
     defaultValue: 'primary',
-    description: 'Tom semantico do indicador.',
+    description: 'Tom semântico do indicador.',
     values: <String>['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'neutral', 'custom'],
   ),
   SgPropSpec(
@@ -231,6 +231,6 @@ const List<SgPropSpec> sgBadgePropSpecs = <SgPropSpec>[
     type: 'Widget?',
     tsType: 'React.ReactNode',
     required: false,
-    description: 'Conteudo principal exibido dentro do badge.',
+    description: 'Conteúdo principal exibido dentro do badge.',
   ),
 ];

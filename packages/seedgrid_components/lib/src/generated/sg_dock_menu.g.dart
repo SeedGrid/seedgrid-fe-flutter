@@ -7,7 +7,7 @@
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgDockMenu` no React — Menu de acoes ou navegacao com estilo dock, suporte a badges, magnify, posicoes ancoradas e persistencia de arraste.
+/// Props públicas de `SgDockMenu` no React — Menu de ações ou navegação com estilo dock, suporte a badges, magnify, posições ancoradas e persistência de arraste.
 /// O widget deve declarar `implements SgDockMenuProps`.
 abstract interface class SgDockMenuProps {
   /// Background color Padrão: `rgb(var(--sg-surface, 248 250 252) / 0.9)`.
@@ -20,23 +20,23 @@ abstract interface class SgDockMenuProps {
   SgDockMenuElevation? get elevation;
   /// Permite reposicionamento manual do dock. Padrão: `false`.
   bool? get enableDragDrop;
-  /// Espacamento entre os itens do dock. Padrão: `16`.
+  /// Espaçamento entre os itens do dock. Padrão: `16`.
   num? get gap;
   /// Unique identifier for the dock
   String? get id;
   /// Custom class name for items Padrão: ``.
   String? get itemClassName;
-  /// Itens exibidos no dock com icone, label, badge e acao. Tipo TS: `SgDockMenuItem[]` (sem tradução exata; ver excecoes.json).
+  /// Itens exibidos no dock com ícone, label, badge e ação. Tipo TS: `SgDockMenuItem[]` (sem tradução exata; ver excecoes.json).
   List<Object?> get items;
-  /// Tamanho visual padrao dos itens do dock. Padrão: `48`.
+  /// Tamanho visual padrão dos itens do dock. Padrão: `48`.
   num? get itemSize;
-  /// Ativa efeito de ampliacao ao passar o mouse. Padrão: `true`.
+  /// Ativa efeito de ampliação ao passar o mouse. Padrão: `true`.
   bool? get magnify;
   /// Magnification scale Padrão: `1.5`.
   num? get magnifyScale;
   /// Offset from the edge Tipo TS: `{ x?: number; y?: number; }` (sem tradução exata; ver excecoes.json).
   Object? get offset;
-  /// Posicionamento principal do dock na area alvo. Padrão: `center-bottom`.
+  /// Posicionamento principal do dock na área alvo. Padrão: `center-bottom`.
   SgDockMenuPosition? get position;
   /// Exibe labels contextuais dos itens. Padrão: `true`.
   bool? get showLabels;
@@ -98,7 +98,7 @@ const List<SgPropSpec> sgDockMenuPropSpecs = <SgPropSpec>[
     tsType: 'number',
     required: false,
     defaultValue: '16',
-    description: 'Espacamento entre os itens do dock.',
+    description: 'Espaçamento entre os itens do dock.',
   ),
   SgPropSpec(
     name: 'id',
@@ -123,7 +123,7 @@ const List<SgPropSpec> sgDockMenuPropSpecs = <SgPropSpec>[
     type: 'List<Object?>',
     tsType: 'SgDockMenuItem[]',
     required: true,
-    description: 'Itens exibidos no dock com icone, label, badge e acao.',
+    description: 'Itens exibidos no dock com ícone, label, badge e ação.',
     exact: false,
   ),
   SgPropSpec(
@@ -133,7 +133,7 @@ const List<SgPropSpec> sgDockMenuPropSpecs = <SgPropSpec>[
     tsType: 'number',
     required: false,
     defaultValue: '48',
-    description: 'Tamanho visual padrao dos itens do dock.',
+    description: 'Tamanho visual padrão dos itens do dock.',
   ),
   SgPropSpec(
     name: 'magnify',
@@ -142,7 +142,7 @@ const List<SgPropSpec> sgDockMenuPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'true',
-    description: 'Ativa efeito de ampliacao ao passar o mouse.',
+    description: 'Ativa efeito de ampliação ao passar o mouse.',
   ),
   SgPropSpec(
     name: 'magnifyScale',
@@ -169,7 +169,7 @@ const List<SgPropSpec> sgDockMenuPropSpecs = <SgPropSpec>[
     tsType: 'SgDockMenuPosition',
     required: false,
     defaultValue: 'center-bottom',
-    description: 'Posicionamento principal do dock na area alvo.',
+    description: 'Posicionamento principal do dock na área alvo.',
     values: <String>['left-top', 'left-center', 'left-bottom', 'center-top', 'center-bottom', 'right-top', 'right-center', 'right-bottom'],
   ),
   SgPropSpec(

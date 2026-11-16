@@ -6,7 +6,7 @@
 
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgFadeDigit` no React — Digito animado com transicao de fade para exibicao de numeros e caracteres em relogios e contadores luminosos.
+/// Props públicas de `SgFadeDigit` no React — Digito animado com transição de fade para exibição de números e caracteres em relógios e contadores luminosos.
 /// O widget deve declarar `implements SgFadeDigitProps`.
 abstract interface class SgFadeDigitProps {
   /// Cor de fundo do card. Padrão: `#333232`.

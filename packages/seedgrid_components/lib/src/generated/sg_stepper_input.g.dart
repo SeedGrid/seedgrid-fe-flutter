@@ -6,28 +6,28 @@
 
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgStepperInput` no React — Campo numerico com botoes de incremento e decremento para ajuste discreto de quantidade.
+/// Props públicas de `SgStepperInput` no React — Campo numérico com botões de incremento e decremento para ajuste discreto de quantidade.
 /// O widget deve declarar `implements SgStepperInputProps`.
 abstract interface class SgStepperInputProps {
   String? get ariaLabel;
   /// Tipo TS: `any` (sem tradução exata; ver excecoes.json).
   Object? get control;
   num? get defaultValue;
-  /// Desabilita interacao. Padrão: `true`.
+  /// Desabilita interação. Padrão: `true`.
   bool? get enabled;
   String? get error;
-  /// Identificador unico do componente.
+  /// Identificador único do componente.
   String get id;
   /// Tipo TS: `StepperInputProps` (sem tradução exata; ver excecoes.json).
   Object? get inputProps;
-  /// Valor maximo permitido.
+  /// Valor máximo permitido.
   num get maxValue;
-  /// Valor minimo permitido.
+  /// Valor mínimo permitido.
   num get minValue;
   String? get name;
-  /// Callback de mudanca. Tipo TS: `((value: number) =&gt; void)` (sem tradução exata; ver excecoes.json).
+  /// Callback de mudança. Tipo TS: `((value: number) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onChange;
-  /// Permite visualizacao sem edicao direta. Padrão: `false`.
+  /// Permite visualização sem edição direta. Padrão: `false`.
   bool? get readOnly;
   /// Incremento e decremento aplicados. Padrão: `1`.
   num? get step;
@@ -68,7 +68,7 @@ const List<SgPropSpec> sgStepperInputPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'true',
-    description: 'Desabilita interacao.',
+    description: 'Desabilita interação.',
   ),
   SgPropSpec(
     name: 'error',
@@ -83,7 +83,7 @@ const List<SgPropSpec> sgStepperInputPropSpecs = <SgPropSpec>[
     type: 'String',
     tsType: 'string',
     required: true,
-    description: 'Identificador unico do componente.',
+    description: 'Identificador único do componente.',
   ),
   SgPropSpec(
     name: 'inputProps',
@@ -99,7 +99,7 @@ const List<SgPropSpec> sgStepperInputPropSpecs = <SgPropSpec>[
     type: 'num',
     tsType: 'number',
     required: true,
-    description: 'Valor maximo permitido.',
+    description: 'Valor máximo permitido.',
   ),
   SgPropSpec(
     name: 'minValue',
@@ -107,7 +107,7 @@ const List<SgPropSpec> sgStepperInputPropSpecs = <SgPropSpec>[
     type: 'num',
     tsType: 'number',
     required: true,
-    description: 'Valor minimo permitido.',
+    description: 'Valor mínimo permitido.',
   ),
   SgPropSpec(
     name: 'name',
@@ -122,7 +122,7 @@ const List<SgPropSpec> sgStepperInputPropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '((value: number) => void)',
     required: false,
-    description: 'Callback de mudanca.',
+    description: 'Callback de mudança.',
     exact: false,
   ),
   SgPropSpec(
@@ -132,7 +132,7 @@ const List<SgPropSpec> sgStepperInputPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description: 'Permite visualizacao sem edicao direta.',
+    description: 'Permite visualização sem edição direta.',
   ),
   SgPropSpec(
     name: 'step',

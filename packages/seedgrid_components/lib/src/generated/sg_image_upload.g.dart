@@ -6,52 +6,52 @@
 
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgImageUpload` no React — Seleciona uma ou varias imagens (clique ou arrastar e soltar), valida tipo (pelo conteudo), tamanho, dimensao minima e proporcao, mostra as miniaturas e permite remover. Composicao do SgFileUpload. Nao envia nada ao servidor: entrega os arquivos ao pai.
+/// Props públicas de `SgImageUpload` no React — Seleciona uma ou várias imagens (clique ou arrastar e soltar), valida tipo (pelo conteúdo), tamanho, dimensão mínima e proporção, mostra as miniaturas e permite remover. Composição do SgFileUpload. Não envia nada ao servidor: entrega os arquivos ao pai.
 /// O widget deve declarar `implements SgImageUploadProps`.
 abstract interface class SgImageUploadProps {
-  /// Restringe os formatos de imagem em texto livre (.png, image/jpeg), separados por virgula.
+  /// Restringe os formatos de imagem em texto livre (.png, image/jpeg), separados por vírgula.
   String? get accept;
-  /// Proporcao largura/altura exigida (1 = quadrada).
+  /// Proporção largura/altura exigida (1 = quadrada).
   num? get aspect;
   /// Tipo TS: `any` (sem tradução exata; ver excecoes.json).
   Object? get control;
-  /// Arquivos iniciais (campo nao controlado). Tipo TS: `SgFileValue[]` (sem tradução exata; ver excecoes.json).
+  /// Arquivos iniciais (campo não controlado). Tipo TS: `SgFileValue[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get defaultValue;
-  /// Desabilita a escolha e a remocao. Padrão: `true`.
+  /// Desabilita a escolha e a remoção. Padrão: `true`.
   bool? get enabled;
   String? get error;
   String? get hintText;
-  /// Identificador unico do campo.
+  /// Identificador único do campo.
   String get id;
-  /// Rotulo exibido acima da area.
+  /// Rótulo exibido acima da área.
   String? get label;
   String? get labelText;
-  /// Quantas imagens o campo guarda. Com 1, escolher outra substitui; maior que 1 liga a selecao multipla e a grade de miniaturas. Padrão: `1`.
+  /// Quantas imagens o campo guarda. Com 1, escolher outra substitui; maior que 1 liga a seleção múltipla e a grade de miniaturas. Padrão: `1`.
   num? get maxFiles;
-  /// Tamanho maximo de cada imagem: bytes (numero) ou texto com unidade ("500KB", "2MB"). Tipo TS: `SizeLimit` (sem tradução exata; ver excecoes.json).
+  /// Tamanho máximo de cada imagem: bytes (número) ou texto com unidade ("500KB", "2MB"). Tipo TS: `SizeLimit` (sem tradução exata; ver excecoes.json).
   Object? get maxSizePerFile;
-  /// Tamanho maximo da soma das imagens: bytes (numero) ou texto com unidade. Tipo TS: `SizeLimit` (sem tradução exata; ver excecoes.json).
+  /// Tamanho máximo da soma das imagens: bytes (número) ou texto com unidade. Tipo TS: `SizeLimit` (sem tradução exata; ver excecoes.json).
   Object? get maxSizeTotal;
-  /// Altura minima em px.
+  /// Altura mínima em px.
   num? get minHeight;
-  /// Largura minima em px.
+  /// Largura mínima em px.
   num? get minWidth;
-  /// Nome do campo para formularios.
+  /// Nome do campo para formulários.
   String? get name;
-  /// Lista de imagens validas apos escolher ou remover. Tipo TS: `((files: SgFileValue[]) =&gt; void)` (sem tradução exata; ver excecoes.json).
+  /// Lista de imagens válidas após escolher ou remover. Tipo TS: `((files: SgFileValue[]) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onChange;
   /// Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onEnter;
-  /// Imagem recusada (type, size, total, count, dimension, aspect). As demais seguem validas. Tipo TS: `((code: FileErrorCode, message: string, fileName: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
+  /// Imagem recusada (type, size, total, count, dimension, aspect). As demais seguem válidas. Tipo TS: `((code: FileErrorCode, message: string, fileName: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onError;
   /// Tipo TS: `(() =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onExit;
-  /// Altura da miniatura em px (padrao 160; na grade, no maximo 120). Padrão: `160`.
+  /// Altura da miniatura em px (padrão 160; na grade, no máximo 120). Padrão: `160`.
   num? get previewHeight;
   bool? get readOnly;
   bool? get required;
   String? get requiredMessage;
-  /// Imagens controladas (sempre lista; uma imagem = lista de uma). Uma imagem ja salva entra como { name, url }. Tipo TS: `SgFileValue[]` (sem tradução exata; ver excecoes.json).
+  /// Imagens controladas (sempre lista; uma imagem = lista de uma). Uma imagem já salva entra como { name, url }. Tipo TS: `SgFileValue[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get value;
 }
 
@@ -63,7 +63,7 @@ const List<SgPropSpec> sgImageUploadPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Restringe os formatos de imagem em texto livre (.png, image/jpeg), separados por virgula.',
+    description: 'Restringe os formatos de imagem em texto livre (.png, image/jpeg), separados por vírgula.',
   ),
   SgPropSpec(
     name: 'aspect',
@@ -71,7 +71,7 @@ const List<SgPropSpec> sgImageUploadPropSpecs = <SgPropSpec>[
     type: 'num?',
     tsType: 'number',
     required: false,
-    description: 'Proporcao largura/altura exigida (1 = quadrada).',
+    description: 'Proporção largura/altura exigida (1 = quadrada).',
   ),
   SgPropSpec(
     name: 'control',
@@ -87,7 +87,7 @@ const List<SgPropSpec> sgImageUploadPropSpecs = <SgPropSpec>[
     type: 'List<Object?>?',
     tsType: 'SgFileValue[]',
     required: false,
-    description: 'Arquivos iniciais (campo nao controlado).',
+    description: 'Arquivos iniciais (campo não controlado).',
     exact: false,
   ),
   SgPropSpec(
@@ -97,7 +97,7 @@ const List<SgPropSpec> sgImageUploadPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'true',
-    description: 'Desabilita a escolha e a remocao.',
+    description: 'Desabilita a escolha e a remoção.',
   ),
   SgPropSpec(
     name: 'error',
@@ -119,7 +119,7 @@ const List<SgPropSpec> sgImageUploadPropSpecs = <SgPropSpec>[
     type: 'String',
     tsType: 'string',
     required: true,
-    description: 'Identificador unico do campo.',
+    description: 'Identificador único do campo.',
   ),
   SgPropSpec(
     name: 'label',
@@ -127,7 +127,7 @@ const List<SgPropSpec> sgImageUploadPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Rotulo exibido acima da area.',
+    description: 'Rótulo exibido acima da área.',
   ),
   SgPropSpec(
     name: 'labelText',
@@ -143,7 +143,7 @@ const List<SgPropSpec> sgImageUploadPropSpecs = <SgPropSpec>[
     tsType: 'number',
     required: false,
     defaultValue: '1',
-    description: 'Quantas imagens o campo guarda. Com 1, escolher outra substitui; maior que 1 liga a selecao multipla e a grade de miniaturas.',
+    description: 'Quantas imagens o campo guarda. Com 1, escolher outra substitui; maior que 1 liga a seleção múltipla e a grade de miniaturas.',
   ),
   SgPropSpec(
     name: 'maxSizePerFile',
@@ -151,7 +151,7 @@ const List<SgPropSpec> sgImageUploadPropSpecs = <SgPropSpec>[
     type: 'Object?',
     tsType: 'SizeLimit',
     required: false,
-    description: 'Tamanho maximo de cada imagem: bytes (numero) ou texto com unidade ("500KB", "2MB").',
+    description: 'Tamanho máximo de cada imagem: bytes (número) ou texto com unidade ("500KB", "2MB").',
     exact: false,
   ),
   SgPropSpec(
@@ -160,7 +160,7 @@ const List<SgPropSpec> sgImageUploadPropSpecs = <SgPropSpec>[
     type: 'Object?',
     tsType: 'SizeLimit',
     required: false,
-    description: 'Tamanho maximo da soma das imagens: bytes (numero) ou texto com unidade.',
+    description: 'Tamanho máximo da soma das imagens: bytes (número) ou texto com unidade.',
     exact: false,
   ),
   SgPropSpec(
@@ -169,7 +169,7 @@ const List<SgPropSpec> sgImageUploadPropSpecs = <SgPropSpec>[
     type: 'num?',
     tsType: 'number',
     required: false,
-    description: 'Altura minima em px.',
+    description: 'Altura mínima em px.',
   ),
   SgPropSpec(
     name: 'minWidth',
@@ -177,7 +177,7 @@ const List<SgPropSpec> sgImageUploadPropSpecs = <SgPropSpec>[
     type: 'num?',
     tsType: 'number',
     required: false,
-    description: 'Largura minima em px.',
+    description: 'Largura mínima em px.',
   ),
   SgPropSpec(
     name: 'name',
@@ -185,7 +185,7 @@ const List<SgPropSpec> sgImageUploadPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Nome do campo para formularios.',
+    description: 'Nome do campo para formulários.',
   ),
   SgPropSpec(
     name: 'onChange',
@@ -193,7 +193,7 @@ const List<SgPropSpec> sgImageUploadPropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '((files: SgFileValue[]) => void)',
     required: false,
-    description: 'Lista de imagens validas apos escolher ou remover.',
+    description: 'Lista de imagens válidas após escolher ou remover.',
     exact: false,
   ),
   SgPropSpec(
@@ -210,7 +210,7 @@ const List<SgPropSpec> sgImageUploadPropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '((code: FileErrorCode, message: string, fileName: string) => void)',
     required: false,
-    description: 'Imagem recusada (type, size, total, count, dimension, aspect). As demais seguem validas.',
+    description: 'Imagem recusada (type, size, total, count, dimension, aspect). As demais seguem válidas.',
     exact: false,
   ),
   SgPropSpec(
@@ -228,7 +228,7 @@ const List<SgPropSpec> sgImageUploadPropSpecs = <SgPropSpec>[
     tsType: 'number',
     required: false,
     defaultValue: '160',
-    description: 'Altura da miniatura em px (padrao 160; na grade, no maximo 120).',
+    description: 'Altura da miniatura em px (padrão 160; na grade, no máximo 120).',
   ),
   SgPropSpec(
     name: 'readOnly',
@@ -257,7 +257,7 @@ const List<SgPropSpec> sgImageUploadPropSpecs = <SgPropSpec>[
     type: 'List<Object?>?',
     tsType: 'SgFileValue[]',
     required: false,
-    description: 'Imagens controladas (sempre lista; uma imagem = lista de uma). Uma imagem ja salva entra como { name, url }.',
+    description: 'Imagens controladas (sempre lista; uma imagem = lista de uma). Uma imagem já salva entra como { name, url }.',
     exact: false,
   ),
 ];

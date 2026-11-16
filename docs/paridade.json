@@ -95,7 +95,7 @@
    "status": "portado",
    "motivo": "33 locales com dados gerados do Intl (pt, en, es, fr, de, it, nl, ja, zh, ko, ru, pl, sv, tr, da, nb, fi, cs, hu, uk, el e variantes regionais); locale sem dados cai no idioma e depois em en-US; cardProps vira SgCalendarCardProps (subconjunto do SgCard); datas em texto so ISO 8601; prop extra today para fixar o hoje; defaultValue acrescentado a mao ate o gerador passar a manter props redeclaradas (ja mantem); icones SVG viraram CustomPaint; golden com fonte de teste",
    "onde": "packages/seedgrid_components/lib/src/gadgets/calendar/sg_calendar.dart",
-   "props": 20,
+   "props": 21,
    "propsOmitidas": 0,
    "propsGenericas": 12
   },
@@ -145,7 +145,7 @@
    "status": "portado",
    "motivo": "tema por URL/SVG livre fora por decisao do dono (ADR 51/D8: SgClockUrlThemeUnsupportedError); fuso padrao = o da maquina, e 464 nomes IANA numa tabela propria gerada do Intl (clock_tz_data.g.dart; regerar quando um pais mudar a regra de horario de verao ou antes de 2045); periodos do dia gerados para 33 locales; cardProps vira SgClockCardProps; os 8 estilos digitais usam os widgets de digitos; golden com a fonte de teste do Flutter",
    "onde": "packages/seedgrid_components/lib/src/gadgets/clock/sg_clock.dart",
-   "props": 17,
+   "props": 18,
    "propsOmitidas": 2,
    "propsGenericas": 4
   },
