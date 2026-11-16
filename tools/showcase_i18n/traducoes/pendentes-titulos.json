@@ -15,7 +15,7 @@
   "Auto increment",
   "Incremento automático",
   "Auto incremento",
-  "Auto increment"
+  "Auto-incrément"
  ],
  "Marcar todos (showCheckAll)": [
   "Check All (showCheckAll)",
@@ -824,7 +824,7 @@
  "Anima \"42\" até \"1337\". Espaços são inseridos à esquerda (alignTo=\"right\") e os dígitos animam da direita para a esquerda.": [
   "Animates \"42\" into \"1337\". Padding is applied on the left (alignTo=\"right\") and digits animate from right to left.",
   "Anima \"42\" para \"1337\". Espacos sao inseridos a esquerda (alignTo=\"right\") e os digitos animam da direita para a esquerda.",
-  "Anima \"42\" hasta \"1337\". Los espacios se insertan a la izquierda (alignTo=\"right\") y los digitos animan de derecha a izquierda.",
+  "Anima \"42\" hasta \"1337\". Los espacios se insertan a la izquierda (alignTo=\"right\") y los dígitos animan de derecha a izquierda.",
   "Anime \"42\" vers \"1337\". Le remplissage est applique à gauche (alignTo=\"right\") et les chiffres s'animent de droite à gauche."
  ],
  "Estilo Flip": [
@@ -848,7 +848,7 @@
  "Cada caractere usa SgNeonDigit com efeito de brilho neon. Use color e backgroundColor para personalizar.": [
   "Each character uses SgNeonDigit with a neon glow effect. Use color and backgroundColor for customization.",
   "Cada caractere usa SgNeonDigit com efeito de brilho neon. Use color e backgroundColor para personalizar.",
-  "Cada caracter usa SgNeonDigit con efecto de brillo neon. Usa color y backgroundColor para personalizar.",
+  "Cada carácter usa SgNeonDigit con efecto de brillo neon. Usa color y backgroundColor para personalizar.",
   "Chaque caractère utilise SgNeonDigit avec un effet de lueur neon. Utilisez color et backgroundColor pour la personnalisation."
  ],
  "Estilo Fade": [
@@ -860,7 +860,7 @@
  "Cada caractere usa SgFadeDigit: apaga o dígito atual e acende o novo (efeito bulbo/display).": [
   "Each character uses SgFadeDigit: the current value fades out and the next one fades in.",
   "Cada caractere usa SgFadeDigit: apaga o digito atual e acende o novo (efeito de display).",
-  "Cada caracter usa SgFadeDigit: apaga el valor actual y enciende el siguiente.",
+  "Cada carácter usa SgFadeDigit: apaga el valor actual y enciende el siguiente.",
   "Chaque caractère utilise SgFadeDigit : la valeur courante disparaît en fondu et la suivante apparaît en fondu."
  ],
  "Estilo Discard": [
@@ -872,7 +872,7 @@
  "Cada caractere usa SgDiscardDigit: a folha com o valor antigo é descartada voando para fora.": [
   "Each character uses SgDiscardDigit: the previous value is discarded with an outgoing motion.",
   "Cada caractere usa SgDiscardDigit: a folha com o valor antigo e descartada para fora.",
-  "Cada caracter usa SgDiscardDigit: la hoja con el valor anterior se descarta hacia fuera.",
+  "Cada carácter usa SgDiscardDigit: la hoja con el valor anterior se descarta hacia fuera.",
   "Chaque caractère utilise SgDiscardDigit : la valeur précédente est écartée par un mouvement sortant."
  ],
  "Estilo Matrix": [
@@ -884,7 +884,7 @@
  "Cada caractere usa SgMatrixDigit: renderizado em pontos de LED 5x7. Ideal para placares e painéis digitais.": [
   "Each character uses SgMatrixDigit with a 5x7 LED matrix rendering. Great for dashboards and digital panels.",
   "Cada caractere usa SgMatrixDigit: renderizado em pontos de LED 5x7. Ideal para placares e paineis digitais.",
-  "Cada caracter usa SgMatrixDigit: renderizado en puntos LED 5x7. Ideal para paneles digitales.",
+  "Cada carácter usa SgMatrixDigit: renderizado en puntos LED 5x7. Ideal para paneles digitales.",
   "Chaque caractère utilise SgMatrixDigit avec un rendu en matrice de LED 5x7. Ideal pour les tableaux de bord et les panneaux numériques."
  ],
  "autoStart - animação automática": [
@@ -2144,7 +2144,7 @@
  "Validação customizada por etapa, além da validação automática dos inputs.": [
   "Custom validation per step, in addition to automatic input validation.",
   "Validacao customizada por step, alem da validacao automatica dos inputs.",
-  "Validación personalizada por step, ademas de la validación automática de inputs.",
+  "Validación personalizada por step, además de la validación automática de inputs.",
   "Validation personnalisée par étape, en plus de la validation automatique des champs."
  ],
  "Avanço bloqueado (nextDisabled)": [
@@ -2180,7 +2180,7 @@
  "Os três controles: ano, recorte e fatia. Não há onChange na montagem: o intervalo resolvido aparece quando você mexe em algum deles.": [
   "The three controls: year, breakdown and part. There is no onChange on mount — the resolved interval shows up once you touch any of them.",
   "Os tres controlos: ano, recorte e fatia. Nao ha' onChange na montagem — o intervalo resolvido aparece quando mexe em algum deles.",
-  "Los tres controles: ano, recorte y parte. No hay onChange al montar — el intervalo resuelto aparece cuando tocas alguno de ellos.",
+  "Los tres controles: año, recorte y parte. No hay onChange al montar — el intervalo resuelto aparece cuando tocas alguno de ellos.",
   "Les trois contrôles : année, découpage et partie. Pas de onChange au montage — l'intervalle résolu apparaît dès que vous touchez l'un d'eux."
  ],
  "Só semestre": [
@@ -2192,19 +2192,19 @@
  "Com allowedKinds de um item só, o combo de recorte some: sobram ano e fatia, que é o que um fechamento semestral realmente pergunta.": [
   "With a single-item allowedKinds the breakdown combo disappears: year and part remain, which is what a half-year close actually asks for.",
   "Com allowedKinds de um unico item o combo de recorte desaparece: ficam ano e fatia, que e' o que um fecho semestral realmente pergunta.",
-  "Con allowedKinds de un solo elemento el combo de recorte desaparece: quedan ano y parte, que es lo que pregunta un cierre semestral.",
+  "Con allowedKinds de un solo elemento el combo de recorte desaparece: quedan año y parte, que es lo que pregunta un cierre semestral.",
   "Avec un allowedKinds a un seul élément le combo de découpage disparaît : restent année et partie, ce que demande vraiment une cloture semestrielle."
  ],
  "Faixa de anos": [
   "Year range",
   "Intervalo de anos",
-  "Rango de anos",
+  "Rango de años",
   "Plage d'années"
  ],
  "minYear e maxYear estreitam a lista de anos. O padrão vai do ano corrente - 30 ao ano corrente + 10; ano sem movimento não deveria ser oferecido.": [
   "minYear and maxYear narrow the year list. The default spans current year - 30 to current year + 10; a year with no data should not be offered.",
   "minYear e maxYear estreitam a lista de anos. O padrao vai do ano corrente - 30 ao ano corrente + 10; ano sem movimento nao deveria ser oferecido.",
-  "minYear y maxYear estrechan la lista de anos. El valor por defecto va del ano actual - 30 al ano actual + 10; un ano sin movimiento no debería ofrecerse.",
+  "minYear y maxYear estrechan la lista de años. El valor por defecto va del año actual - 30 al año actual + 10; un año sin movimiento no debería ofrecerse.",
   "minYear et maxYear resserrent la liste des années. Par défaut elle va de l'année courante - 30 a l'année courante + 10 ; une année sans mouvement ne devrait pas être proposée."
  ],
  "Desabilitado e obrigatório valem para os três controles de uma vez.": [
@@ -2816,7 +2816,7 @@
  "Flags padrão: grupos atuais e passados, mais período customizado.": [
   "Default flags: current and past groups, plus custom period.",
   "Flags padrão: grupos atuais e passados, mais período personalizado.",
-  "Flags por defecto: grupos actuales y pasados, mas período personalizado.",
+  "Flags por defecto: grupos actuales y pasados, más período personalizado.",
   "Options par défaut: groupes actuels et passés, plus période personnalisée."
  ],
  "Todos os grupos": [
@@ -3098,7 +3098,7 @@
  "Dispara com 1 caractere, mas com um debounce mais longo.": [
   "Fires with a single character, but with a longer debounce.",
   "Dispara com 1 caractere, mas com um debounce mais longo.",
-  "Dispara con un solo caracter, pero con un debounce mas largo.",
+  "Dispara con un solo carácter, pero con un debounce más largo.",
   "Se déclenche des un seul caractère, mais avec un debounce plus long."
  ],
  "Valor imediato (onChange)": [
@@ -3614,7 +3614,7 @@
  "Apenas uma informação rápida.": [
   "Just a quick piece of information.",
   "Apenas uma informação rápida.",
-  "Solo una información rapida.",
+  "Solo una información rápida.",
   "Juste une information rapide."
  ],
  "Abrir popup custom": [
@@ -3951,7 +3951,7 @@
   "Half star + tooltip",
   "Meia estrela + tooltip",
   "Media estrella + tooltip",
-  "Demi-etoile + tooltip"
+  "Demi-étoile + tooltip"
  ],
  "Permite clicar nas metades e exibir valor no hover.": [
   "Allows half-click selection and hover value tooltip.",
@@ -4922,7 +4922,7 @@
  "Use action para CTA rápida e custom para renderização livre.": [
   "Use action for quick CTA and custom for free-form render.",
   "Use action para CTA rápida e custom para renderização livre.",
-  "Use action para CTA rapida y custom para renderización libre.",
+  "Use action para CTA rápida y custom para renderización libre.",
   "Utilisez action pour un CTA rapide et custom pour un rendu libre."
  ],
  "Transparência": [

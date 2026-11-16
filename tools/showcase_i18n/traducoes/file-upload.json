@@ -135,7 +135,7 @@
   "mediaType accepts groups (image, video, audio) and formats (pdf, xls, xlsx...). The type is checked against the file content, not just the extension.",
   "mediaType aceita grupos (image, video, audio) e formatos (pdf, xls, xlsx...). O tipo é conferido pelo conteúdo do ficheiro, não só pela extensão.",
   "mediaType acepta grupos (image, video, audio) y formatos (pdf, xls, xlsx...). El tipo se comprueba por el contenido del archivo, no solo por la extensión.",
-  "mediaType accepte des groupes (image, video, audio) et des formats (pdf, xls, xlsx...). Le type est vérifié d'après le contenu du fichier, pas seulement l'extension."
+  "mediaType accepte des groupes (image, vidéo, audio) et des formats (pdf, xls, xlsx...). Le type est vérifié d'après le contenu du fichier, pas seulement l'extension."
  ],
  "Limites de tamanho": [
   "Size limits",
