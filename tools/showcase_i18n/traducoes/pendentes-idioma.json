@@ -35,28 +35,682 @@
   "Idioma y textos (i18n)",
   "Langue et textes (i18n)"
  ],
- "Título do painel de colunas. Vence o dicionario (components.datatable.columns).": [
+ "Título do painel de colunas. Vence o dicionário (components.datatable.columns).": [
   "Title of the columns panel. Wins over the dictionary (components.datatable.columns).",
   "Título do painel de colunas. Prevalece sobre o dicionário (components.datatable.columns).",
   "Título del panel de columnas. Prevalece sobre el diccionario (components.datatable.columns).",
   "Titre du panneau des colonnes. L'emporte sur le dictionnaire (components.datatable.columns)."
  ],
- "Definição das colunas da tabela. column.filterPlaceholder vence o dicionario (components.datatable.columnFilterPlaceholder).": [
+ "Definição das colunas da tabela. column.filterPlaceholder vence o dicionário (components.datatable.columnFilterPlaceholder).": [
   "Table column definitions. column.filterPlaceholder wins over the dictionary (components.datatable.columnFilterPlaceholder).",
   "Definição das colunas da tabela. column.filterPlaceholder prevalece sobre o dicionário (components.datatable.columnFilterPlaceholder).",
   "Definición de las columnas de la tabla. column.filterPlaceholder prevalece sobre el diccionario (components.datatable.columnFilterPlaceholder).",
   "Définition des colonnes du tableau. column.filterPlaceholder l'emporte sur le dictionnaire (components.datatable.columnFilterPlaceholder)."
  ],
- "Mensagem exibida quando não há registros. Vence o dicionario (components.datatable.empty).": [
+ "Mensagem exibida quando não há registros. Vence o dicionário (components.datatable.empty).": [
   "Message shown when there are no records. Wins over the dictionary (components.datatable.empty).",
   "Mensagem apresentada quando não há registos. Prevalece sobre o dicionário (components.datatable.empty).",
   "Mensaje mostrado cuando no hay registros. Prevalece sobre el diccionario (components.datatable.empty).",
   "Message affiché lorsqu'il n'y a aucun enregistrement. L'emporte sur le dictionnaire (components.datatable.empty)."
  ],
- "Placeholder da busca global. Vence o dicionario (components.datatable.globalFilterPlaceholder).": [
+ "Placeholder da busca global. Vence o dicionário (components.datatable.globalFilterPlaceholder).": [
   "Global search placeholder. Wins over the dictionary (components.datatable.globalFilterPlaceholder).",
   "Placeholder da pesquisa global. Prevalece sobre o dicionário (components.datatable.globalFilterPlaceholder).",
   "Placeholder de la búsqueda global. Prevalece sobre el diccionario (components.datatable.globalFilterPlaceholder).",
   "Placeholder de la recherche globale. L'emporte sur le dictionnaire (components.datatable.globalFilterPlaceholder)."
+ ],
+ "(dicionário)": [
+  "(dictionary)",
+  "(dicionário)",
+  "(diccionario)",
+  "(dictionnaire)"
+ ],
+ "(omitido = automático)": [
+  "(omitted = automatic)",
+  "(omitido = automático)",
+  "(omitido = automático)",
+  "(omis = automatique)"
+ ],
+ "(true nos cartões, false na tabela)": [
+  "(true on cards, false on the table)",
+  "(true nos cartões, false na tabela)",
+  "(true en las tarjetas, false en la tabla)",
+  "(true sur les cartes, false sur le tableau)"
+ ],
+ "Arrasto do card: undefined = automático (arrasta em largura >= 640px), true = sempre, false = nunca. Tem prioridade sobre `cardProps.draggable`.": [
+  "Card drag: undefined = automatic (drags at width >= 640px), true = always, false = never. Takes priority over `cardProps.draggable`.",
+  "Arrastamento do cartão: undefined = automático (arrasta com largura >= 640px), true = sempre, false = nunca. Tem prioridade sobre `cardProps.draggable`.",
+  "Arrastre de la tarjeta: undefined = automático (arrastra con ancho >= 640px), true = siempre, false = nunca. Tiene prioridad sobre `cardProps.draggable`.",
+  "Glissement de la carte : undefined = automatique (glisse à partir de 640 px de largeur), true = toujours, false = jamais. A priorité sur `cardProps.draggable`."
+ ],
+ "Auto play interval in milliseconds": [
+  "Auto play interval in milliseconds",
+  "Intervalo de reprodução automática em milissegundos",
+  "Intervalo de reproducción automática en milisegundos",
+  "Intervalle de lecture automatique en millisecondes"
+ ],
+ "Custom class name for container": [
+  "Custom class name for container",
+  "Nome de classe personalizado para o contentor",
+  "Nombre de clase personalizado para el contenedor",
+  "Nom de classe personnalisé pour le conteneur"
+ ],
+ "Custom render for navigation buttons": [
+  "Custom render for navigation buttons",
+  "Renderização personalizada dos botões de navegação",
+  "Renderizado personalizado de los botones de navegación",
+  "Rendu personnalisé des boutons de navigation"
+ ],
+ "Gap between items in pixels": [
+  "Gap between items in pixels",
+  "Espaço entre os itens em pixels",
+  "Espacio entre los elementos en píxeles",
+  "Espace entre les éléments en pixels"
+ ],
+ "Height of the carousel container": [
+  "Height of the carousel container",
+  "Altura do contentor do carrossel",
+  "Altura del contenedor del carrusel",
+  "Hauteur du conteneur du carrousel"
+ ],
+ "Unique identifier for the carousel": [
+  "Unique identifier for the carousel",
+  "Identificador único do carrossel",
+  "Identificador único del carrusel",
+  "Identifiant unique du carrousel"
+ ],
+ "Custom class name for items": [
+  "Custom class name for items",
+  "Nome de classe personalizado para os itens",
+  "Nombre de clase personalizado para los elementos",
+  "Nom de classe personnalisé pour les éléments"
+ ],
+ "Callback when active index changes": [
+  "Callback when active index changes",
+  "Chamado quando o índice ativo muda",
+  "Se llama cuando cambia el índice activo",
+  "Appelé lorsque l'index actif change"
+ ],
+ "Show navigation buttons": [
+  "Show navigation buttons",
+  "Mostra os botões de navegação",
+  "Muestra los botones de navegación",
+  "Affiche les boutons de navigation"
+ ],
+ "Custom inline style for container": [
+  "Custom inline style for container",
+  "Estilo inline personalizado para o contentor",
+  "Estilo en línea personalizado para el contenedor",
+  "Style en ligne personnalisé pour le conteneur"
+ ],
+ "Width of the carousel container": [
+  "Width of the carousel container",
+  "Largura do contentor do carrossel",
+  "Ancho del contenedor del carrusel",
+  "Largeur du conteneur du carrousel"
+ ],
+ "Ativa animação de descarte quando o valor muda.": [
+  "Enables the discard animation when the value changes.",
+  "Ativa a animação de descarte quando o valor muda.",
+  "Activa la animación de descarte cuando cambia el valor.",
+  "Active l'animation de défausse lorsque la valeur change."
+ ],
+ "Estratégia de animação para mudanças por prop `value`.": [
+  "Animation strategy for changes through the `value` prop.",
+  "Estratégia de animação para alterações pela prop `value`.",
+  "Estrategia de animación para los cambios mediante la prop `value`.",
+  "Stratégie d'animation pour les changements via la prop `value`."
+ ],
+ "Fonte (font-family) usada no texto.": [
+  "Font (font-family) used for the text.",
+  "Tipo de letra (font-family) usado no texto.",
+  "Fuente (font-family) usada en el texto.",
+  "Police (font-family) utilisée pour le texte."
+ ],
+ "Peso da fonte.": [
+  "Font weight.",
+  "Peso do tipo de letra.",
+  "Grosor de la fuente.",
+  "Graisse de la police."
+ ],
+ "Quantidade de folhas visíveis na pilha (min 2, max 30). Ignorado se totalNumberPages for definido.": [
+  "Number of visible sheets in the stack (min 2, max 30). Ignored if totalNumberPages is set.",
+  "Quantidade de folhas visíveis na pilha (mín. 2, máx. 30). Ignorado se totalNumberPages for definido.",
+  "Cantidad de hojas visibles en la pila (mín. 2, máx. 30). Se ignora si se define totalNumberPages.",
+  "Nombre de feuilles visibles dans la pile (min 2, max 30). Ignoré si totalNumberPages est défini."
+ ],
+ "Estilo inline adicional.": [
+  "Additional inline style.",
+  "Estilo inline adicional.",
+  "Estilo en línea adicional.",
+  "Style en ligne supplémentaire."
+ ],
+ "Total de páginas do monte. Quando definido, a pilha visual encolhe a cada increasePage().": [
+  "Total pages in the pile. When set, the visual stack shrinks with each increasePage().",
+  "Total de páginas do monte. Quando definido, a pilha visual diminui a cada increasePage().",
+  "Total de páginas del montón. Cuando se define, la pila visual se reduce con cada increasePage().",
+  "Total de pages du tas. Lorsqu'il est défini, la pile visuelle rétrécit à chaque increasePage()."
+ ],
+ "Duração total da animação em ms.": [
+  "Total animation duration in ms.",
+  "Duração total da animação em ms.",
+  "Duración total de la animación en ms.",
+  "Durée totale de l'animation en ms."
+ ],
+ "Background color": [
+  "Background color",
+  "Cor de fundo",
+  "Color de fondo",
+  "Couleur d'arrière-plan"
+ ],
+ "Border radius": [
+  "Border radius",
+  "Raio da borda",
+  "Radio del borde",
+  "Rayon de la bordure"
+ ],
+ "ID for persisting drag position": [
+  "ID for persisting drag position",
+  "ID para guardar a posição de arrasto",
+  "ID para guardar la posición de arrastre",
+  "ID pour conserver la position de glissement"
+ ],
+ "Shadow elevation": [
+  "Shadow elevation",
+  "Elevação da sombra",
+  "Elevación de la sombra",
+  "Élévation de l'ombre"
+ ],
+ "Unique identifier for the dock": [
+  "Unique identifier for the dock",
+  "Identificador único do dock",
+  "Identificador único del dock",
+  "Identifiant unique du dock"
+ ],
+ "Magnification scale": [
+  "Magnification scale",
+  "Escala de ampliação",
+  "Escala de ampliación",
+  "Échelle d'agrandissement"
+ ],
+ "Offset from the edge": [
+  "Offset from the edge",
+  "Distância à margem",
+  "Distancia al borde",
+  "Distance par rapport au bord"
+ ],
+ "Custom style": [
+  "Custom style",
+  "Estilo personalizado",
+  "Estilo personalizado",
+  "Style personnalisé"
+ ],
+ "CSS font-family for the digit.": [
+  "CSS font-family for the digit.",
+  "Font-family CSS do dígito.",
+  "Font-family CSS del dígito.",
+  "Font-family CSS du chiffre."
+ ],
+ "Chaves de i18n do texto da área vazia (um arquivo / vários).": [
+  "i18n keys for the empty area text (one file / several).",
+  "Chaves de i18n do texto da área vazia (um ficheiro / vários).",
+  "Claves de i18n del texto del área vacía (un archivo / varios).",
+  "Clés i18n du texte de la zone vide (un fichier / plusieurs)."
+ ],
+ "Regra extra, assíncrona, por arquivo (depois da conferência de tipo). É como o SgImageUpload confere dimensão.": [
+  "Extra rule, asynchronous, per file (after the type check). It is also how SgImageUpload checks dimensions.",
+  "Regra extra, assíncrona, por ficheiro (depois da verificação do tipo). É também como o SgImageUpload verifica as dimensões.",
+  "Regla extra, asíncrona, por archivo (después de la comprobación del tipo). Es también como SgImageUpload comprueba las dimensiones.",
+  "Règle supplémentaire, asynchrone, par fichier (après la vérification du type). C'est aussi ainsi que SgImageUpload vérifie les dimensions."
+ ],
+ "Prefixo do `data-sg` dos elementos internos (`sg-file`, `sg-image`).": [
+  "Prefix of the `data-sg` attribute of the internal elements (`sg-file`, `sg-image`).",
+  "Prefixo do `data-sg` dos elementos internos (`sg-file`, `sg-image`).",
+  "Prefijo del `data-sg` de los elementos internos (`sg-file`, `sg-image`).",
+  "Préfixe du `data-sg` des éléments internes (`sg-file`, `sg-image`)."
+ ],
+ "Valor do atributo `accept` do seletor do navegador (padrão: derivado de mediaType/accept).": [
+  "Value of the `accept` attribute of the browser picker (default: derived from mediaType/accept).",
+  "Valor do atributo `accept` do seletor do navegador (padrão: derivado de mediaType/accept).",
+  "Valor del atributo `accept` del selector del navegador (por defecto: derivado de mediaType/accept).",
+  "Valeur de l'attribut `accept` du sélecteur du navigateur (par défaut : dérivée de mediaType/accept)."
+ ],
+ "Miniatura de cada arquivo (sem ela, a lista usa o ícone do tipo).": [
+  "Thumbnail of each file (without it, the list uses the type icon).",
+  "Miniatura de cada ficheiro (sem ela, a lista usa o ícone do tipo).",
+  "Miniatura de cada archivo (sin ella, la lista usa el icono del tipo).",
+  "Miniature de chaque fichier (sans elle, la liste utilise l'icône du type)."
+ ],
+ "Lado da miniatura em px (padrão 96).": [
+  "Thumbnail side in px (default 96).",
+  "Lado da miniatura em px (padrão 96).",
+  "Lado de la miniatura en px (por defecto 96).",
+  "Côté de la miniature en px (par défaut 96)."
+ ],
+ "Texto dos tipos aceitos na mensagem de tipo recusado (padrão: mediaType/accept).": [
+  "Text of the accepted types in the rejected-type message (default: mediaType/accept).",
+  "Texto dos tipos aceites na mensagem de tipo recusado (padrão: mediaType/accept).",
+  "Texto de los tipos aceptados en el mensaje de tipo rechazado (por defecto: mediaType/accept).",
+  "Texte des types acceptés dans le message de type refusé (par défaut : mediaType/accept)."
+ ],
+ "Altura da miniatura em px (padrão 160; na grade, no máximo 120).": [
+  "Thumbnail height in px (default 160; in the grid, at most 120).",
+  "Altura da miniatura em px (padrão 160; na grelha, no máximo 120).",
+  "Altura de la miniatura en px (por defecto 160; en la cuadrícula, como máximo 120).",
+  "Hauteur de la miniature en px (par défaut 160 ; dans la grille, 120 au maximum)."
+ ],
+ "Disparado ao receber foco — padrão seedgrid.": [
+  "Fired when focus is received — seedgrid default.",
+  "Disparado ao receber o foco — padrão seedgrid.",
+  "Se dispara al recibir el foco — valor por defecto de seedgrid.",
+  "Déclenché à la réception du focus — comportement seedgrid par défaut."
+ ],
+ "Disparado ao perder o foco (após validação) — padrão seedgrid.": [
+  "Fired when focus is lost (after validation) — seedgrid default.",
+  "Disparado ao perder o foco (após a validação) — padrão seedgrid.",
+  "Se dispara al perder el foco (tras la validación) — valor por defecto de seedgrid.",
+  "Déclenché à la perte du focus (après validation) — comportement seedgrid par défaut."
+ ],
+ "Disparado quando o campo perde o foco (após a validação) — padrão seedgrid.": [
+  "Fired when the field loses focus (after validation) — seedgrid default.",
+  "Disparado quando o campo perde o foco (após a validação) — padrão seedgrid.",
+  "Se dispara cuando el campo pierde el foco (tras la validación) — valor por defecto de seedgrid.",
+  "Déclenché lorsque le champ perd le focus (après validation) — comportement seedgrid par défaut."
+ ],
+ "Exibe um botão para gerar automaticamente uma senha forte aleatória (respeita as regras de política).": [
+  "Shows a button that automatically generates a random strong password (respects the policy rules).",
+  "Mostra um botão para gerar automaticamente uma palavra-passe forte aleatória (respeita as regras da política).",
+  "Muestra un botón para generar automáticamente una contraseña fuerte aleatoria (respeta las reglas de la política).",
+  "Affiche un bouton qui génère automatiquement un mot de passe fort aléatoire (respecte les règles de la politique)."
+ ],
+ "Comprimento da senha gerada pelo `createNewPasswordButton`. Default: `minSize`.  NÃO derive isto de `maxLength`: `maxLength` existe para não truncar o que o usuário digita (frase-senha), e costuma ser folgado (128, 512). Usar o teto como alvo fazia o botão gerar uma senha de 128 caracteres.": [
+  "Length of the password generated by `createNewPasswordButton`. Default: `minSize`.  Do NOT derive this from `maxLength`: `maxLength` exists so what the user types is not truncated (passphrase) and is usually generous (128, 512). Using the ceiling as the target made the button generate a 128-character password.",
+  "Comprimento da palavra-passe gerada pelo `createNewPasswordButton`. Predefinição: `minSize`.  NÃO derive isto de `maxLength`: `maxLength` existe para não truncar o que o utilizador escreve (frase-passe) e costuma ser folgado (128, 512). Usar o teto como alvo fazia o botão gerar uma palavra-passe de 128 caracteres.",
+  "Longitud de la contraseña generada por `createNewPasswordButton`. Por defecto: `minSize`.  NO lo derive de `maxLength`: `maxLength` existe para no truncar lo que el usuario escribe (frase de contraseña) y suele ser holgado (128, 512). Usar el techo como objetivo hacía que el botón generara una contraseña de 128 caracteres.",
+  "Longueur du mot de passe généré par `createNewPasswordButton`. Par défaut : `minSize`.  NE la dérivez PAS de `maxLength` : `maxLength` existe pour ne pas tronquer ce que l'utilisateur saisit (phrase secrète) et il est généralement large (128, 512). Utiliser ce plafond comme cible faisait générer un mot de passe de 128 caractères par le bouton."
+ ],
+ "Gap between characters in pixels.": [
+  "Gap between characters in pixels.",
+  "Espaço entre os caracteres em pixels.",
+  "Espacio entre los caracteres en píxeles.",
+  "Espace entre les caractères en pixels."
+ ],
+ "Dot size in pixels.": [
+  "Dot size in pixels.",
+  "Tamanho do ponto em pixels.",
+  "Tamaño del punto en píxeles.",
+  "Taille du point en pixels."
+ ],
+ "Gap between dots in pixels.": [
+  "Gap between dots in pixels.",
+  "Espaço entre os pontos em pixels.",
+  "Espacio entre los puntos en píxeles.",
+  "Espace entre les points en pixels."
+ ],
+ "Add a subtle glow around active dots.": [
+  "Add a subtle glow around active dots.",
+  "Adiciona um brilho subtil em redor dos pontos ativos.",
+  "Añade un brillo sutil alrededor de los puntos activos.",
+  "Ajoute une lueur subtile autour des points actifs."
+ ],
+ "Color of inactive dots.": [
+  "Color of inactive dots.",
+  "Cor dos pontos inativos.",
+  "Color de los puntos inactivos.",
+  "Couleur des points inactifs."
+ ],
+ "Internal padding in pixels.": [
+  "Internal padding in pixels.",
+  "Espaçamento interno em pixels.",
+  "Relleno interno en píxeles.",
+  "Marge interne en pixels."
+ ],
+ "Border radius of the matrix container in pixels.": [
+  "Border radius of the matrix container in pixels.",
+  "Raio da borda do contentor da matriz em pixels.",
+  "Radio del borde del contenedor de la matriz en píxeles.",
+  "Rayon de la bordure du conteneur de la matrice en pixels."
+ ],
+ "Additional CSS style for the outer wrapper.": [
+  "Additional CSS style for the outer wrapper.",
+  "Estilo CSS adicional do invólucro exterior.",
+  "Estilo CSS adicional del contenedor exterior.",
+  "Style CSS supplémentaire de l'enveloppe externe."
+ ],
+ "Enables fade-out/fade-in animation when value changes.": [
+  "Enables fade-out/fade-in animation when value changes.",
+  "Ativa a animação de desvanecimento quando o valor muda.",
+  "Activa la animación de desvanecimiento cuando cambia el valor.",
+  "Active l'animation de fondu lorsque la valeur change."
+ ],
+ "Font family alias (same effect as fontFamily).": [
+  "Font family alias (same effect as fontFamily).",
+  "Alias da família de tipo de letra (mesmo efeito de fontFamily).",
+  "Alias de la familia de fuente (mismo efecto que fontFamily).",
+  "Alias de la famille de police (même effet que fontFamily)."
+ ],
+ "Custom font family.": [
+  "Custom font family.",
+  "Família de tipo de letra personalizada.",
+  "Familia de fuente personalizada.",
+  "Famille de police personnalisée."
+ ],
+ "Font weight of the text.": [
+  "Font weight of the text.",
+  "Peso do tipo de letra do texto.",
+  "Grosor de la fuente del texto.",
+  "Graisse de la police du texte."
+ ],
+ "Letter spacing in pixels.": [
+  "Letter spacing in pixels.",
+  "Espaçamento entre letras em pixels.",
+  "Espaciado entre letras en píxeles.",
+  "Espacement des lettres en pixels."
+ ],
+ "Border radius in pixels.": [
+  "Border radius in pixels.",
+  "Raio da borda em pixels.",
+  "Radio del borde en píxeles.",
+  "Rayon de la bordure en pixels."
+ ],
+ "Glow/shadow color around the text.": [
+  "Glow/shadow color around the text.",
+  "Cor do brilho/sombra em redor do texto.",
+  "Color del brillo/sombra alrededor del texto.",
+  "Couleur de la lueur/ombre autour du texte."
+ ],
+ "Extra intensity factor for the glow effect.": [
+  "Extra intensity factor for the glow effect.",
+  "Fator de intensidade extra do efeito de brilho.",
+  "Factor de intensidad extra del efecto de brillo.",
+  "Facteur d'intensité supplémentaire de l'effet de lueur."
+ ],
+ "Additional style on container.": [
+  "Additional style on container.",
+  "Estilo adicional no contentor.",
+  "Estilo adicional en el contenedor.",
+  "Style supplémentaire sur le conteneur."
+ ],
+ "Total animation time in milliseconds when value changes.": [
+  "Total animation time in milliseconds when value changes.",
+  "Tempo total da animação em milissegundos quando o valor muda.",
+  "Tiempo total de la animación en milisegundos cuando cambia el valor.",
+  "Durée totale de l'animation en millisecondes lorsque la valeur change."
+ ],
+ "Integração react-hook-form (opcional).": [
+  "react-hook-form integration (optional).",
+  "Integração com o react-hook-form (opcional).",
+  "Integración con react-hook-form (opcional).",
+  "Intégration avec react-hook-form (facultatif)."
+ ],
+ "Data de referência para resolver os presets (default: agora). Útil em testes.": [
+  "Reference date used to resolve the presets (default: now). Useful in tests.",
+  "Data de referência para resolver as predefinições (padrão: agora). Útil em testes.",
+  "Fecha de referencia para resolver los presets (por defecto: ahora). Útil en pruebas.",
+  "Date de référence pour résoudre les préréglages (par défaut : maintenant). Utile dans les tests."
+ ],
+ "Enable half stars": [
+  "Enable half stars",
+  "Ativa meias estrelas",
+  "Activa medias estrellas",
+  "Active les demi-étoiles"
+ ],
+ "Show cancel button": [
+  "Show cancel button",
+  "Mostra o botão de cancelar",
+  "Muestra el botón de cancelar",
+  "Affiche le bouton d'annulation"
+ ],
+ "Custom icon for cancel button": [
+  "Custom icon for cancel button",
+  "Ícone personalizado para o botão de cancelar",
+  "Icono personalizado para el botón de cancelar",
+  "Icône personnalisée pour le bouton d'annulation"
+ ],
+ "Custom class name": [
+  "Custom class name",
+  "Nome de classe personalizado",
+  "Nombre de clase personalizado",
+  "Nom de classe personnalisé"
+ ],
+ "Color for filled stars": [
+  "Color for filled stars",
+  "Cor das estrelas preenchidas",
+  "Color de las estrellas rellenas",
+  "Couleur des étoiles remplies"
+ ],
+ "Color for empty stars": [
+  "Color for empty stars",
+  "Cor das estrelas vazias",
+  "Color de las estrellas vacías",
+  "Couleur des étoiles vides"
+ ],
+ "Custom icon for empty state": [
+  "Custom icon for empty state",
+  "Ícone personalizado para o estado vazio",
+  "Icono personalizado para el estado vacío",
+  "Icône personnalisée pour l'état vide"
+ ],
+ "Callback when hovering over stars": [
+  "Callback when hovering over stars",
+  "Chamado ao passar o rato sobre as estrelas",
+  "Se llama al pasar el cursor sobre las estrellas",
+  "Appelé au survol des étoiles"
+ ],
+ "Custom icon for filled state": [
+  "Custom icon for filled state",
+  "Ícone personalizado para o estado preenchido",
+  "Icono personalizado para el estado relleno",
+  "Icône personnalisée pour l'état rempli"
+ ],
+ "Required field": [
+  "Required field",
+  "Campo obrigatório",
+  "Campo obligatorio",
+  "Champ obligatoire"
+ ],
+ "Required message": [
+  "Required message",
+  "Mensagem de obrigatório",
+  "Mensaje de obligatorio",
+  "Message d'obligation"
+ ],
+ "Show tooltips with value": [
+  "Show tooltips with value",
+  "Mostra tooltips com o valor",
+  "Muestra tooltips con el valor",
+  "Affiche des infobulles avec la valeur"
+ ],
+ "Number of stars": [
+  "Number of stars",
+  "Número de estrelas",
+  "Número de estrellas",
+  "Nombre d'étoiles"
+ ],
+ "Custom inline style": [
+  "Custom inline style",
+  "Estilo inline personalizado",
+  "Estilo en línea personalizado",
+  "Style en ligne personnalisé"
+ ],
+ "Opções avançadas do cliente do Pulse (reconexão, `webSocketImpl` em testes...).": [
+  "Advanced Pulse client options (reconnection, `webSocketImpl` in tests...).",
+  "Opções avançadas do cliente do Pulse (religação, `webSocketImpl` em testes...).",
+  "Opciones avanzadas del cliente de Pulse (reconexión, `webSocketImpl` en pruebas...).",
+  "Options avancées du client Pulse (reconnexion, `webSocketImpl` dans les tests...)."
+ ],
+ "Substitui o pedido de token inteiro (apps sem BFF, testes).": [
+  "Replaces the whole token request (apps without a BFF, tests).",
+  "Substitui o pedido de token inteiro (apps sem BFF, testes).",
+  "Sustituye la solicitud de token completa (apps sin BFF, pruebas).",
+  "Remplace entièrement la requête de jeton (applications sans BFF, tests)."
+ ],
+ "Endereço do Pulse, usado quando o token não traz `connectUrl` (Pulse sem endereço público).": [
+  "Pulse address, used when the token carries no `connectUrl` (Pulse without a public address).",
+  "Endereço do Pulse, usado quando o token não traz `connectUrl` (Pulse sem endereço público).",
+  "Dirección de Pulse, usada cuando el token no trae `connectUrl` (Pulse sin dirección pública).",
+  "Adresse de Pulse, utilisée lorsque le jeton ne contient pas `connectUrl` (Pulse sans adresse publique)."
+ ],
+ "Opções do `fetch` do token (ex.: `headers: { Authorization: ... }` quando não há cookie).": [
+  "Options of the token `fetch` (e.g. `headers: { Authorization: ... }` when there is no cookie).",
+  "Opções do `fetch` do token (ex.: `headers: { Authorization: ... }` quando não há cookie).",
+  "Opciones del `fetch` del token (p. ej.: `headers: { Authorization: ... }` cuando no hay cookie).",
+  "Options du `fetch` du jeton (ex. : `headers: { Authorization: ... }` lorsqu'il n'y a pas de cookie)."
+ ],
+ "Ordered list of all possible values this roller can show. The drum scrolls to the position of `value` in this list.": [
+  "Ordered list of all possible values this roller can show. The drum scrolls to the position of `value` in this list.",
+  "Lista ordenada de todos os valores possíveis que este seletor rotativo pode mostrar. O tambor desloca-se para a posição de `value` nesta lista.",
+  "Lista ordenada de todos los valores posibles que puede mostrar este selector rotativo. El tambor se desplaza a la posición de `value` en esta lista.",
+  "Liste ordonnée de toutes les valeurs possibles que ce sélecteur rotatif peut afficher. Le tambour défile jusqu'à la position de `value` dans cette liste."
+ ],
+ "Transition duration in milliseconds": [
+  "Transition duration in milliseconds",
+  "Duração da transição em milissegundos",
+  "Duración de la transición en milisegundos",
+  "Durée de la transition en millisecondes"
+ ],
+ "Display height in pixels.": [
+  "Display height in pixels.",
+  "Altura de exibição em pixels.",
+  "Altura de visualización en píxeles.",
+  "Hauteur d'affichage en pixels."
+ ],
+ "Additional inline styles on outer wrapper.": [
+  "Additional inline styles on outer wrapper.",
+  "Estilos inline adicionais no invólucro exterior.",
+  "Estilos en línea adicionales en el contenedor exterior.",
+  "Styles en ligne supplémentaires sur l'enveloppe externe."
+ ],
+ "Enables glow effect on active segments.": [
+  "Enables glow effect on active segments.",
+  "Ativa o efeito de brilho nos segmentos ativos.",
+  "Activa el efecto de brillo en los segmentos activos.",
+  "Active l'effet de lueur sur les segments actifs."
+ ],
+ "Color of inactive segments.": [
+  "Color of inactive segments.",
+  "Cor dos segmentos inativos.",
+  "Color de los segmentos inactivos.",
+  "Couleur des segments inactifs."
+ ],
+ "Internal panel padding in pixels.": [
+  "Internal panel padding in pixels.",
+  "Espaçamento interno do painel em pixels.",
+  "Relleno interno del panel en píxeles.",
+  "Marge interne du panneau en pixels."
+ ],
+ "Preset visual palette for active, inactive and background colors.": [
+  "Preset visual palette for active, inactive and background colors.",
+  "Paleta visual predefinida para as cores ativa, inativa e de fundo.",
+  "Paleta visual predefinida para los colores activo, inactivo y de fondo.",
+  "Palette visuelle prédéfinie pour les couleurs active, inactive et d'arrière-plan."
+ ],
+ "Border radius of the panel in pixels.": [
+  "Border radius of the panel in pixels.",
+  "Raio da borda do painel em pixels.",
+  "Radio del borde del panel en píxeles.",
+  "Rayon de la bordure du panneau en pixels."
+ ],
+ "Component height in pixels.": [
+  "Component height in pixels.",
+  "Altura do componente em pixels.",
+  "Altura del componente en píxeles.",
+  "Hauteur du composant en pixels."
+ ],
+ "Applies a subtle skew to mimic classic LED displays.": [
+  "Applies a subtle skew to mimic classic LED displays.",
+  "Aplica uma inclinação subtil para imitar os visores LED clássicos.",
+  "Aplica una inclinación sutil para imitar las pantallas LED clásicas.",
+  "Applique une légère inclinaison pour imiter les afficheurs LED classiques."
+ ],
+ "Segment thickness in pixels.": [
+  "Segment thickness in pixels.",
+  "Espessura do segmento em pixels.",
+  "Grosor del segmento en píxeles.",
+  "Épaisseur du segment en pixels."
+ ],
+ "Segment transition duration in milliseconds.": [
+  "Segment transition duration in milliseconds.",
+  "Duração da transição dos segmentos em milissegundos.",
+  "Duración de la transición de los segmentos en milisegundos.",
+  "Durée de la transition des segments en millisecondes."
+ ],
+ "Component width in pixels. By default, derived from `size`.": [
+  "Component width in pixels. By default, derived from `size`.",
+  "Largura do componente em pixels. Por omissão, derivada de `size`.",
+  "Ancho del componente en píxeles. Por defecto, derivado de `size`.",
+  "Largeur du composant en pixels. Par défaut, dérivée de `size`."
+ ],
+ "Se true, inicia a animação automaticamente quando o componente monta e sempre que targetString mudar.": [
+  "If true, starts the animation automatically when the component mounts and whenever targetString changes.",
+  "Se true, inicia a animação automaticamente quando o componente é montado e sempre que targetString mudar.",
+  "Si es true, inicia la animación automáticamente cuando el componente se monta y siempre que cambie targetString.",
+  "Si true, lance l'animation automatiquement au montage du composant et à chaque changement de targetString."
+ ],
+ "Cor de fundo — aplicada nos estilos \"neon\", \"fade\", \"discard\" e \"matrix\".": [
+  "Background color — applied to the \"neon\", \"fade\", \"discard\" and \"matrix\" styles.",
+  "Cor de fundo — aplicada nos estilos \"neon\", \"fade\", \"discard\" e \"matrix\".",
+  "Color de fondo — aplicado en los estilos \"neon\", \"fade\", \"discard\" y \"matrix\".",
+  "Couleur d'arrière-plan — appliquée aux styles \"neon\", \"fade\", \"discard\" et \"matrix\"."
+ ],
+ "Conjunto de caracteres válidos para o SgRoller3DDigit. Deve conter todos os caracteres que podem aparecer em sourceString, targetString e emptyChar. Ignorado quando style != \"roller3d\".": [
+  "Set of valid characters for SgRoller3DDigit. It must contain every character that can appear in sourceString, targetString and emptyChar. Ignored when style != \"roller3d\".",
+  "Conjunto de carateres válidos para o SgRoller3DDigit. Deve conter todos os carateres que podem aparecer em sourceString, targetString e emptyChar. Ignorado quando style != \"roller3d\".",
+  "Conjunto de caracteres válidos para SgRoller3DDigit. Debe contener todos los caracteres que pueden aparecer en sourceString, targetString y emptyChar. Se ignora cuando style != \"roller3d\".",
+  "Ensemble des caractères valides pour SgRoller3DDigit. Il doit contenir tous les caractères pouvant apparaître dans sourceString, targetString et emptyChar. Ignoré lorsque style != \"roller3d\"."
+ ],
+ "Classes CSS adicionais no container externo": [
+  "Classes CSS adicionais no container externo",
+  "Classes CSS adicionais no contentor externo",
+  "Clases CSS adicionales en el contenedor externo",
+  "Classes CSS supplémentaires sur le conteneur externe"
+ ],
+ "Cor principal do texto/ponto — aplicada nos estilos \"neon\", \"fade\", \"discard\" e \"matrix\".": [
+  "Main color of the text/dot — applied to the \"neon\", \"fade\", \"discard\" and \"matrix\" styles.",
+  "Cor principal do texto/ponto — aplicada nos estilos \"neon\", \"fade\", \"discard\" e \"matrix\".",
+  "Color principal del texto/punto — aplicado en los estilos \"neon\", \"fade\", \"discard\" y \"matrix\".",
+  "Couleur principale du texte/point — appliquée aux styles \"neon\", \"fade\", \"discard\" et \"matrix\"."
+ ],
+ "Caractere utilizado para preencher as posições extras quando sourceString e targetString possuem comprimentos diferentes.": [
+  "Character used to fill the extra positions when sourceString and targetString have different lengths.",
+  "Carater utilizado para preencher as posições extra quando sourceString e targetString têm comprimentos diferentes.",
+  "Carácter utilizado para rellenar las posiciones extra cuando sourceString y targetString tienen longitudes diferentes.",
+  "Caractère utilisé pour remplir les positions supplémentaires lorsque sourceString et targetString ont des longueurs différentes."
+ ],
+ "Velocidade de 1 (muito lento) a 100 (muito rápido). Controla o intervalo de tempo entre a troca de cada caractere.": [
+  "Speed from 1 (very slow) to 100 (very fast). Controls the time interval between the swap of each character.",
+  "Velocidade de 1 (muito lento) a 100 (muito rápido). Controla o intervalo de tempo entre a troca de cada carater.",
+  "Velocidad de 1 (muy lento) a 100 (muy rápido). Controla el intervalo de tiempo entre el cambio de cada carácter.",
+  "Vitesse de 1 (très lent) à 100 (très rapide). Contrôle l'intervalle de temps entre le changement de chaque caractère."
+ ],
+ "Arredonda os cantos de cada toast (rounded-md). Desligue para cantos retos.": [
+  "Rounds the corners of each toast (rounded-md). Turn off for square corners.",
+  "Arredonda os cantos de cada toast (rounded-md). Desligue para cantos retos.",
+  "Redondea las esquinas de cada toast (rounded-md). Desactívelo para esquinas rectas.",
+  "Arrondit les coins de chaque toast (rounded-md). Désactivez pour des coins droits."
+ ],
+ "Cabeçalho da coluna do checkbox principal -- só é desenhado quando `tracks` também está presente (é o cabeçalho de colunas como um todo que fica ambíguo com 2+ controles por linha, não o checkbox sozinho).": [
+  "Header of the main checkbox column — only drawn when `tracks` is also present (it is the column header as a whole that becomes ambiguous with 2+ controls per row, not the checkbox alone).",
+  "Cabeçalho da coluna da caixa de seleção principal -- só é desenhado quando `tracks` também está presente (é o cabeçalho de colunas como um todo que fica ambíguo com 2+ controlos por linha, não a caixa de seleção sozinha).",
+  "Encabezado de la columna del checkbox principal -- solo se dibuja cuando `tracks` también está presente (es el encabezado de columnas en su conjunto el que se vuelve ambiguo con 2+ controles por fila, no el checkbox solo).",
+  "En-tête de la colonne de la case à cocher principale -- dessiné uniquement lorsque `tracks` est aussi présent (c'est l'en-tête de colonnes dans son ensemble qui devient ambigu avec 2+ contrôles par ligne, pas la case seule)."
+ ],
+ "Trilhas de seleção extras, uma por coluna de controle na linha -- ver SgTreeTrack.": [
+  "Extra selection tracks, one per control column in the row -- see SgTreeTrack.",
+  "Trilhos de seleção extra, um por coluna de controlo na linha -- ver SgTreeTrack.",
+  "Pistas de selección extra, una por columna de control en la fila -- ver SgTreeTrack.",
+  "Pistes de sélection supplémentaires, une par colonne de contrôle dans la ligne -- voir SgTreeTrack."
+ ],
+ "nenhuma mudança ainda": [
+  "no changes yet",
+  "ainda sem alterações",
+  "ningún cambio todavía",
+  "aucun changement pour l'instant"
+ ],
+ "{tipo}: origem {origem}, destino {destino}": [
+  "{tipo}: source {origem}, target {destino}",
+  "{tipo}: origem {origem}, destino {destino}",
+  "{tipo}: origen {origem}, destino {destino}",
+  "{tipo} : source {origem}, cible {destino}"
  ]
 }

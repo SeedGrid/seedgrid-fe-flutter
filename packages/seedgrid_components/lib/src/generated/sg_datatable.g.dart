@@ -10,14 +10,14 @@ import '../props/sg_prop_spec.dart';
 /// Props públicas de `SgDatatable` no React — Tabela de dados interativa com colunas configuráveis, paginação, ordenação, filtro, seleção e persistência de layout de colunas. Em celular vira lista de cartões automaticamente (mobileMode omitido = automático).
 /// O widget deve declarar `implements SgDatatableProps`.
 abstract interface class SgDatatableProps {
-  /// Título do painel de colunas. Vence o dicionario (components.datatable.columns). Padrão: `(dicionario)`.
+  /// Título do painel de colunas. Vence o dicionário (components.datatable.columns). Padrão: `(dicionário)`.
   String? get columnManagerLabel;
   /// Padrão: `320`. Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get columnManagerMaxHeight;
-  /// Definição das colunas da tabela. column.filterPlaceholder vence o dicionario (components.datatable.columnFilterPlaceholder). Tipo TS: `SgDatatableColumn&lt;T&gt;[]` (sem tradução exata; ver excecoes.json).
+  /// Definição das colunas da tabela. column.filterPlaceholder vence o dicionário (components.datatable.columnFilterPlaceholder). Tipo TS: `SgDatatableColumn&lt;T&gt;[]` (sem tradução exata; ver excecoes.json).
   List<Object?> get columns;
   String? get dataKey;
-  /// Mensagem exibida quando não há registros. Vence o dicionario (components.datatable.empty). Padrão: `(dicionario)`.
+  /// Mensagem exibida quando não há registros. Vence o dicionário (components.datatable.empty). Padrão: `(dicionário)`.
   String? get emptyMessage;
   /// Quando false, bloqueia as ações que mudam estado: ordenação, seleção de linhas, filtros (global e por coluna), limpar filtros e gerenciador de colunas. Paginação, rolagem e carga de mais linhas continuam funcionando. Aparência de desabilitado e aria-disabled. Padrão: `true`.
   bool? get enabled;
@@ -25,7 +25,7 @@ abstract interface class SgDatatableProps {
   Object? get filters;
   num? get first;
   String? get globalFilter;
-  /// Placeholder da busca global. Vence o dicionario (components.datatable.globalFilterPlaceholder). Padrão: `(dicionario)`.
+  /// Placeholder da busca global. Vence o dicionário (components.datatable.globalFilterPlaceholder). Padrão: `(dicionário)`.
   String? get globalFilterPlaceholder;
   /// Padrão: `{}`. Tipo TS: `(Omit&lt;Partial&lt;SgGroupBoxProps&gt;, "title" | "children"&gt; & { title?: string; })` (sem tradução exata; ver excecoes.json).
   Object? get groupBoxProps;
@@ -33,13 +33,13 @@ abstract interface class SgDatatableProps {
   bool? get hoverableRows;
   /// Identificador da tabela usado para DOM e persistência do layout de colunas.
   String? get id;
-  /// Rolagem infinita: sem paginador, ao chegar perto do fim da lista avança a página (rows) e acrescenta os próximos registros, com indicador de carregando e de fim da lista. Padrão ligado quando a lista e exibida como cartões (abaixo de 600 px no modo automático) e desligado na tabela. Exige paginator. Com lazy, o pai acrescenta a próxima página a value (first/rows/page vem em onPage/onLoadMore). Padrão: `(true nos cartoes, false na tabela)`.
+  /// Rolagem infinita: sem paginador, ao chegar perto do fim da lista avança a página (rows) e acrescenta os próximos registros, com indicador de carregando e de fim da lista. Padrão ligado quando a lista e exibida como cartões (abaixo de 600 px no modo automático) e desligado na tabela. Exige paginator. Com lazy, o pai acrescenta a próxima página a value (first/rows/page vem em onPage/onLoadMore). Padrão: `(true nos cartões, false na tabela)`.
   bool? get infiniteScroll;
   /// Padrão: `false`.
   bool? get lazy;
   /// Indica estado de carregamento. Padrão: `false`.
   bool? get loading;
-  /// Comportamento em tela estreita. Omitido (padrão): cartões quando o container fica abaixo de 600 px, tabela acima; cards: forca cartões em qualquer largura; scroll: forca a tabela com rolagem horizontal. Nos cartões mantém ordenação, seleção, ações, rodapé e paginação. Padrão: `(omitido = automatico)`.
+  /// Comportamento em tela estreita. Omitido (padrão): cartões quando o container fica abaixo de 600 px, tabela acima; cards: força cartões em qualquer largura; scroll: força a tabela com rolagem horizontal. Nos cartões mantém ordenação, seleção, ações, rodapé e paginação. Padrão: `(omitido = automático)`.
   SgDatatableMobileMode? get mobileMode;
   /// Tipo TS: `((event: SgDatatableFilterEvent) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onFilter;
@@ -98,8 +98,8 @@ const List<SgPropSpec> sgDatatablePropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    defaultValue: '(dicionario)',
-    description: 'Título do painel de colunas. Vence o dicionario (components.datatable.columns).',
+    defaultValue: '(dicionário)',
+    description: 'Título do painel de colunas. Vence o dicionário (components.datatable.columns).',
   ),
   SgPropSpec(
     name: 'columnManagerMaxHeight',
@@ -116,7 +116,7 @@ const List<SgPropSpec> sgDatatablePropSpecs = <SgPropSpec>[
     type: 'List<Object?>',
     tsType: 'SgDatatableColumn<T>[]',
     required: true,
-    description: 'Definição das colunas da tabela. column.filterPlaceholder vence o dicionario (components.datatable.columnFilterPlaceholder).',
+    description: 'Definição das colunas da tabela. column.filterPlaceholder vence o dicionário (components.datatable.columnFilterPlaceholder).',
     exact: false,
   ),
   SgPropSpec(
@@ -132,8 +132,8 @@ const List<SgPropSpec> sgDatatablePropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    defaultValue: '(dicionario)',
-    description: 'Mensagem exibida quando não há registros. Vence o dicionario (components.datatable.empty).',
+    defaultValue: '(dicionário)',
+    description: 'Mensagem exibida quando não há registros. Vence o dicionário (components.datatable.empty).',
   ),
   SgPropSpec(
     name: 'enabled',
@@ -172,8 +172,8 @@ const List<SgPropSpec> sgDatatablePropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    defaultValue: '(dicionario)',
-    description: 'Placeholder da busca global. Vence o dicionario (components.datatable.globalFilterPlaceholder).',
+    defaultValue: '(dicionário)',
+    description: 'Placeholder da busca global. Vence o dicionário (components.datatable.globalFilterPlaceholder).',
   ),
   SgPropSpec(
     name: 'groupBoxProps',
@@ -206,7 +206,7 @@ const List<SgPropSpec> sgDatatablePropSpecs = <SgPropSpec>[
     type: 'bool?',
     tsType: 'boolean',
     required: false,
-    defaultValue: '(true nos cartoes, false na tabela)',
+    defaultValue: '(true nos cartões, false na tabela)',
     description: 'Rolagem infinita: sem paginador, ao chegar perto do fim da lista avança a página (rows) e acrescenta os próximos registros, com indicador de carregando e de fim da lista. Padrão ligado quando a lista e exibida como cartões (abaixo de 600 px no modo automático) e desligado na tabela. Exige paginator. Com lazy, o pai acrescenta a próxima página a value (first/rows/page vem em onPage/onLoadMore).',
   ),
   SgPropSpec(
@@ -232,8 +232,8 @@ const List<SgPropSpec> sgDatatablePropSpecs = <SgPropSpec>[
     type: 'SgDatatableMobileMode?',
     tsType: 'SgDatatableMobileMode',
     required: false,
-    defaultValue: '(omitido = automatico)',
-    description: 'Comportamento em tela estreita. Omitido (padrão): cartões quando o container fica abaixo de 600 px, tabela acima; cards: forca cartões em qualquer largura; scroll: forca a tabela com rolagem horizontal. Nos cartões mantém ordenação, seleção, ações, rodapé e paginação.',
+    defaultValue: '(omitido = automático)',
+    description: 'Comportamento em tela estreita. Omitido (padrão): cartões quando o container fica abaixo de 600 px, tabela acima; cards: força cartões em qualquer largura; scroll: força a tabela com rolagem horizontal. Nos cartões mantém ordenação, seleção, ações, rodapé e paginação.',
     values: <String>['scroll', 'cards'],
   ),
   SgPropSpec(

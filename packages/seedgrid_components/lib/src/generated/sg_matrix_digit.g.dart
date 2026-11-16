@@ -13,7 +13,7 @@ abstract interface class SgMatrixDigitProps {
   String? get backgroundColor;
   /// Gap between characters in pixels. Padrão: `7`.
   num? get charGap;
-  /// Cor principal do digito. Padrão: `#22d3ee`.
+  /// Cor principal do dígito. Padrão: `#22d3ee`.
   String? get color;
   /// Dot size in pixels. Padrão: `9`.
   num? get dotSize;
@@ -58,7 +58,7 @@ const List<SgPropSpec> sgMatrixDigitPropSpecs = <SgPropSpec>[
     tsType: 'string',
     required: false,
     defaultValue: '#22d3ee',
-    description: 'Cor principal do digito.',
+    description: 'Cor principal do dígito.',
   ),
   SgPropSpec(
     name: 'dotSize',

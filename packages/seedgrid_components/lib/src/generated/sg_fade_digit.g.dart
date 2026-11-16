@@ -15,7 +15,7 @@ abstract interface class SgFadeDigitProps {
   String? get color;
   /// CSS font-family for the digit.
   String? get font;
-  /// Escala visual do digito. Padrão: `72`.
+  /// Escala visual do dígito. Padrão: `72`.
   num? get fontSize;
   /// Caractere exibido no card.
   String get value;
@@ -56,7 +56,7 @@ const List<SgPropSpec> sgFadeDigitPropSpecs = <SgPropSpec>[
     tsType: 'number',
     required: false,
     defaultValue: '72',
-    description: 'Escala visual do digito.',
+    description: 'Escala visual do dígito.',
   ),
   SgPropSpec(
     name: 'value',

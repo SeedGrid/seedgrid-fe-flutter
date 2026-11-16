@@ -220,7 +220,7 @@
         "displayName": "SgAutocomplete",
         "category": "input",
         "subcategory": "",
-        "description": "Campo de busca assistida com sugestões, fonte assincrona, cache e seleção de item a partir de texto digitado.",
+        "description": "Campo de busca assistida com sugestões, fonte assíncrona, cache e seleção de item a partir de texto digitado.",
         "tags": [],
         "props": [
           {
@@ -3326,7 +3326,7 @@
             "name": "placeholder",
             "type": "String?",
             "required": false,
-            "description": "Texto exibido quando nenhum tema valido esta resolvido."
+            "description": "Texto exibido quando nenhum tema válido está resolvido."
           },
           {
             "name": "previewSize",
@@ -4341,8 +4341,8 @@
             "name": "columnManagerLabel",
             "type": "String?",
             "required": false,
-            "default": "(dicionario)",
-            "description": "Título do painel de colunas. Vence o dicionario (components.datatable.columns)."
+            "default": "(dicionário)",
+            "description": "Título do painel de colunas. Vence o dicionário (components.datatable.columns)."
           },
           {
             "name": "columnManagerMaxHeight",
@@ -4355,7 +4355,7 @@
             "name": "columns",
             "type": "List<Object?>",
             "required": true,
-            "description": "Definição das colunas da tabela. column.filterPlaceholder vence o dicionario (components.datatable.columnFilterPlaceholder).",
+            "description": "Definição das colunas da tabela. column.filterPlaceholder vence o dicionário (components.datatable.columnFilterPlaceholder).",
             "typeExact": false
           },
           {
@@ -4367,8 +4367,8 @@
             "name": "emptyMessage",
             "type": "String?",
             "required": false,
-            "default": "(dicionario)",
-            "description": "Mensagem exibida quando não há registros. Vence o dicionario (components.datatable.empty)."
+            "default": "(dicionário)",
+            "description": "Mensagem exibida quando não há registros. Vence o dicionário (components.datatable.empty)."
           },
           {
             "name": "enabled",
@@ -4397,8 +4397,8 @@
             "name": "globalFilterPlaceholder",
             "type": "String?",
             "required": false,
-            "default": "(dicionario)",
-            "description": "Placeholder da busca global. Vence o dicionario (components.datatable.globalFilterPlaceholder)."
+            "default": "(dicionário)",
+            "description": "Placeholder da busca global. Vence o dicionário (components.datatable.globalFilterPlaceholder)."
           },
           {
             "name": "groupBoxProps",
@@ -4423,7 +4423,7 @@
             "name": "infiniteScroll",
             "type": "bool?",
             "required": false,
-            "default": "(true nos cartoes, false na tabela)",
+            "default": "(true nos cartões, false na tabela)",
             "description": "Rolagem infinita: sem paginador, ao chegar perto do fim da lista avança a página (rows) e acrescenta os próximos registros, com indicador de carregando e de fim da lista. Padrão ligado quando a lista e exibida como cartões (abaixo de 600 px no modo automático) e desligado na tabela. Exige paginator. Com lazy, o pai acrescenta a próxima página a value (first/rows/page vem em onPage/onLoadMore)."
           },
           {
@@ -4443,8 +4443,8 @@
             "name": "mobileMode",
             "type": "SgDatatableMobileMode?",
             "required": false,
-            "default": "(omitido = automatico)",
-            "description": "Comportamento em tela estreita. Omitido (padrão): cartões quando o container fica abaixo de 600 px, tabela acima; cards: forca cartões em qualquer largura; scroll: forca a tabela com rolagem horizontal. Nos cartões mantém ordenação, seleção, ações, rodapé e paginação.",
+            "default": "(omitido = automático)",
+            "description": "Comportamento em tela estreita. Omitido (padrão): cartões quando o container fica abaixo de 600 px, tabela acima; cards: força cartões em qualquer largura; scroll: força a tabela com rolagem horizontal. Nos cartões mantém ordenação, seleção, ações, rodapé e paginação.",
             "values": [
               "scroll",
               "cards"
@@ -5056,7 +5056,7 @@
             "type": "num?",
             "required": false,
             "default": "72",
-            "description": "Escala visual do digito."
+            "description": "Escala visual do dígito."
           },
           {
             "name": "fontWeight",
@@ -6047,7 +6047,7 @@
             "type": "num?",
             "required": false,
             "default": "72",
-            "description": "Escala visual do digito."
+            "description": "Escala visual do dígito."
           },
           {
             "name": "value",
@@ -6194,7 +6194,7 @@
             "name": "extraCheck",
             "type": "Function?",
             "required": false,
-            "description": "Regra extra, assincrona, por arquivo (depois da conferencia de tipo). E como o SgImageUpload confere dimensão.",
+            "description": "Regra extra, assíncrona, por arquivo (depois da conferência de tipo). É como o SgImageUpload confere dimensão.",
             "typeExact": false
           },
           {
@@ -6424,7 +6424,7 @@
             "type": "num?",
             "required": false,
             "default": "70",
-            "description": "Tamanho da fonte do digito."
+            "description": "Tamanho da fonte do dígito."
           },
           {
             "name": "height",
@@ -11334,7 +11334,7 @@
         "displayName": "SgInputPassword",
         "category": "input",
         "subcategory": "",
-        "description": "Campo especializado para senha com validações de política, alternância de visibilidade e indicação de forca.",
+        "description": "Campo especializado para senha com validações de política, alternância de visibilidade e indicação de força.",
         "tags": [],
         "props": [
           {
@@ -11626,7 +11626,7 @@
             "type": "bool?",
             "required": false,
             "default": "true",
-            "description": "Exibe barra de forca da senha."
+            "description": "Exibe barra de força da senha."
           },
           {
             "name": "specialCharacterRequired",
@@ -14121,7 +14121,7 @@
             "type": "String?",
             "required": false,
             "default": "#22d3ee",
-            "description": "Cor principal do digito."
+            "description": "Cor principal do dígito."
           },
           {
             "name": "dotSize",
@@ -14868,7 +14868,7 @@
             "name": "options",
             "type": "List<Object?>",
             "required": true,
-            "description": "Lista de opções disponíveis. `label` aparece na lista; `chipLabel` (opcional) e' o texto curto do item ja' selecionado (o resumo do campo), ex.: label \"3 - Filial Centro\" e chipLabel \"3\".",
+            "description": "Lista de opções disponíveis. `label` aparece na lista; `chipLabel` (opcional) é o texto curto do item já selecionado (o resumo do campo), ex.: label \"3 - Filial Centro\" e chipLabel \"3\".",
             "typeExact": false
           },
           {
@@ -15159,7 +15159,7 @@
             "name": "options",
             "type": "List<Object?>",
             "required": true,
-            "description": "Lista de opções disponíveis. `label` aparece na lista; `chipLabel` (opcional) e' o texto curto do item ja' selecionado (o chip), ex.: label \"3 - Filial Centro\" e chipLabel \"3\".",
+            "description": "Lista de opções disponíveis. `label` aparece na lista; `chipLabel` (opcional) é o texto curto do item já selecionado (o chip), ex.: label \"3 - Filial Centro\" e chipLabel \"3\".",
             "typeExact": false
           },
           {
@@ -15329,7 +15329,7 @@
             "type": "num?",
             "required": false,
             "default": "72",
-            "description": "Escala visual do digito."
+            "description": "Escala visual do dígito."
           },
           {
             "name": "fontWeight",
@@ -16836,7 +16836,7 @@
             "title": "Básico",
             "file": "apps/seedgrid_showcase/lib/pages/sg_pick_list_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgPickList(\n      id: 'pick-basic',\n      title: context.tx('Frutas'),\n      source: _frutas,\n      target: const [],\n      onChange: (e) =>\n          _ultimo.value =\n              '${e.type.value}: origem ${e.source.length}, destino ${e.target.length}',\n    ),\n    ValueListenableBuilder<String>(\n      valueListenable: _ultimo,\n      builder: (context, ultimo, _) =>\n          Text('${context.tx('Estado atual')}: $ultimo'),\n    ),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgPickList(\n      id: 'pick-basic',\n      title: context.tx('Frutas'),\n      source: _frutas,\n      target: const [],\n      onChange: (e) =>\n          _ultimo.value = context.txf(\n            '{tipo}: origem {origem}, destino {destino}',\n            {\n              'tipo': e.type.value,\n              'origem': e.source.length,\n              'destino': e.target.length,\n            },\n          ),\n    ),\n    ValueListenableBuilder<String>(\n      valueListenable: _ultimo,\n      builder: (context, ultimo, _) =>\n          Text(\n            '${context.tx('Estado atual')}: ${ultimo.isEmpty ? context.tx('nenhuma mudança ainda') : ultimo}',\n          ),\n    ),\n  ],\n)"
           },
           {
             "id": "sg-pick-list-controller",
@@ -16864,7 +16864,7 @@
             "title": "Filtro por início e seleção única",
             "file": "apps/seedgrid_showcase/lib/pages/sg_pick_list_page.dart",
             "kind": "dart",
-            "code": "SgPickList(\n  id: 'pick-starts-with',\n  title: context.tx('Cidades'),\n  source: const [\n    SgPickListItem(label: 'Berlin', value: 'berlin'),\n    SgPickListItem(label: 'Boston', value: 'boston'),\n    SgPickListItem(label: 'Lisbon', value: 'lisbon'),\n    SgPickListItem(label: 'Madrid', value: 'madrid'),\n    SgPickListItem(label: 'Sao Paulo', value: 'sao-paulo'),\n  ],\n  target: const [],\n  showSourceFilter: true,\n  showTargetFilter: true,\n  filterMatchMode: SgPickListFilterMatchMode.startsWith,\n  selectionMode: SgPickListSelectionMode.single,\n)"
+            "code": "SgPickList(\n  id: 'pick-starts-with',\n  title: context.tx('Cidades'),\n  source: const [\n    SgPickListItem(label: 'Berlin', value: 'berlin'),\n    SgPickListItem(label: 'Boston', value: 'boston'),\n    SgPickListItem(label: 'Lisbon', value: 'lisbon'),\n    SgPickListItem(label: 'Madrid', value: 'madrid'),\n    SgPickListItem(label: 'São Paulo', value: 'sao-paulo'),\n  ],\n  target: const [],\n  showSourceFilter: true,\n  showTargetFilter: true,\n  filterMatchMode: SgPickListFilterMatchMode.startsWith,\n  selectionMode: SgPickListSelectionMode.single,\n)"
           },
           {
             "id": "sg-pick-list-reordenacao",
@@ -18256,7 +18256,7 @@
             "type": "num?",
             "required": false,
             "default": "72",
-            "description": "Tamanho da fonte do digito."
+            "description": "Tamanho da fonte do dígito."
           },
           {
             "name": "items",
@@ -20855,7 +20855,7 @@
             "name": "checkableLabel",
             "type": "String?",
             "required": false,
-            "description": "Cabeçalho da coluna do checkbox principal -- só' e' desenhado quando `tracks` também esta' presente (e' o cabeçalho de colunas como um todo que fica ambíguo com 2+ controles por linha, não o checkbox sozinho)."
+            "description": "Cabeçalho da coluna do checkbox principal -- só é desenhado quando `tracks` também está presente (é o cabeçalho de colunas como um todo que fica ambíguo com 2+ controles por linha, não o checkbox sozinho)."
           },
           {
             "name": "checkedIds",
@@ -21406,7 +21406,7 @@
         "displayName": "SgWizard",
         "category": "navigation",
         "subcategory": "",
-        "description": "Fluxo multi-etapas com stepper, validação por etapa, navegação controlada e finalização assincrona.",
+        "description": "Fluxo multi-etapas com stepper, validação por etapa, navegação controlada e finalização assíncrona.",
         "tags": [],
         "props": [
           {
@@ -21440,7 +21440,7 @@
             "type": "bool?",
             "required": false,
             "default": "false",
-            "description": "Desabilita o avanço de forma declarativa: o botão Próximo fica desabilitado e o stepper para de oferecer as etapas seguintes. Use quando o bloqueio JÁ e conhecido (ex.: uma checagem assincrona já resolveu que a etapa não pode avançar) — onBeforeNext/validateStep só agem no clique e deixam o botão com aparência de clicável. Não afeta o botão da última etapa; para isso use onBeforeFinish."
+            "description": "Desabilita o avanço de forma declarativa: o botão Próximo fica desabilitado e o stepper para de oferecer as etapas seguintes. Use quando o bloqueio JÁ é conhecido (ex.: uma checagem assíncrona já resolveu que a etapa não pode avançar) — onBeforeNext/validateStep só agem no clique e deixam o botão com aparência de clicável. Não afeta o botão da última etapa; para isso use onBeforeFinish."
           },
           {
             "name": "onBeforeFinish",
@@ -21668,7 +21668,7 @@
         "displayName": "SgYearPartSelector",
         "category": "input",
         "subcategory": "",
-        "description": "Seletor de recorte de ano: o usuário escolhe ANO + RECORTE (semestre, trimestre ou bimestre) + FATIA, e o componente resolve para um intervalo real e fechado de datas. E' o irmão ABSOLUTO do SgPeriodSelector: aquele resolve presets RELATIVOS a hoje (\"este semestre\"), este resolve um recorte fixo de um ano civil informado (\"o 1o semestre DE 2024\"), que não muda de significado com a passagem do tempo.",
+        "description": "Seletor de recorte de ano: o usuário escolhe ANO + RECORTE (semestre, trimestre ou bimestre) + FATIA, e o componente resolve para um intervalo real e fechado de datas. É o irmão ABSOLUTO do SgPeriodSelector: aquele resolve presets RELATIVOS a hoje (\"este semestre\"), este resolve um recorte fixo de um ano civil informado (\"o 1o semestre DE 2024\"), que não muda de significado com a passagem do tempo.",
         "tags": [],
         "props": [
           {
@@ -21676,7 +21676,7 @@
             "type": "List<Object?>?",
             "required": false,
             "default": "SEMESTER,QUARTER,BIMESTER",
-            "description": "Recortes oferecidos no combo. Reduza a lista quando o domínio só' aceita um deles (fechamento trimestral, por exemplo); com um único item o combo de recorte deixa de fazer sentido na tela.",
+            "description": "Recortes oferecidos no combo. Reduza a lista quando o domínio só aceita um deles (fechamento trimestral, por exemplo); com um único item o combo de recorte deixa de fazer sentido na tela.",
             "typeExact": false
           },
           {
@@ -21691,7 +21691,7 @@
             "type": "String?",
             "required": false,
             "default": "sg-year-part-selector",
-            "description": "Prefixo dos ids dos três controles internos (ano, recorte, fatia). Não e' o id de um campo único: o componente monta três."
+            "description": "Prefixo dos ids dos três controles internos (ano, recorte, fatia). Não é o id de um campo único: o componente monta três."
           },
           {
             "name": "label",
@@ -21704,7 +21704,7 @@
             "type": "String?",
             "required": false,
             "default": "pt-BR",
-            "description": "Locale dos rótulos de recorte e fatia. A sigla entre parenteses acompanha o idioma: Q1..Q4 em pt-BR e en-US, T1..T4 em es, fr e pt-PT; bimestre não tem sigla e sai sem parenteses."
+            "description": "Locale dos rótulos de recorte e fatia. A sigla entre parênteses acompanha o idioma: Q1..Q4 em pt-BR e en-US, T1..T4 em es, fr e pt-PT; bimestre não tem sigla e sai sem parênteses."
           },
           {
             "name": "maxYear",

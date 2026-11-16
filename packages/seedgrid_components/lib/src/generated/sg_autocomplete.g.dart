@@ -9,7 +9,7 @@ import 'package:flutter/widgets.dart';
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgAutocomplete` no React — Campo de busca assistida com sugestões, fonte assincrona, cache e seleção de item a partir de texto digitado.
+/// Props públicas de `SgAutocomplete` no React — Campo de busca assistida com sugestões, fonte assíncrona, cache e seleção de item a partir de texto digitado.
 /// O widget deve declarar `implements SgAutocompleteProps`.
 abstract interface class SgAutocompleteProps {
   /// Permite valor fora da lista. Padrão: `false`.

@@ -9,7 +9,7 @@ import 'package:flutter/widgets.dart';
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgWizard` no React — Fluxo multi-etapas com stepper, validação por etapa, navegação controlada e finalização assincrona.
+/// Props públicas de `SgWizard` no React — Fluxo multi-etapas com stepper, validação por etapa, navegação controlada e finalização assíncrona.
 /// O widget deve declarar `implements SgWizardProps`.
 abstract interface class SgWizardProps {
   /// Páginas do wizard renderizadas em ordem. No React e `children`.
@@ -20,7 +20,7 @@ abstract interface class SgWizardProps {
   num? get initialStep;
   /// Tipo TS: `Partial&lt;SgWizardLabels&gt;` (sem tradução exata; ver excecoes.json).
   Object? get labels;
-  /// Desabilita o avanço de forma declarativa: o botão Próximo fica desabilitado e o stepper para de oferecer as etapas seguintes. Use quando o bloqueio JÁ e conhecido (ex.: uma checagem assincrona já resolveu que a etapa não pode avançar) — onBeforeNext/validateStep só agem no clique e deixam o botão com aparência de clicável. Não afeta o botão da última etapa; para isso use onBeforeFinish. Padrão: `false`.
+  /// Desabilita o avanço de forma declarativa: o botão Próximo fica desabilitado e o stepper para de oferecer as etapas seguintes. Use quando o bloqueio JÁ é conhecido (ex.: uma checagem assíncrona já resolveu que a etapa não pode avançar) — onBeforeNext/validateStep só agem no clique e deixam o botão com aparência de clicável. Não afeta o botão da última etapa; para isso use onBeforeFinish. Padrão: `false`.
   bool? get nextDisabled;
   /// Roda ao clicar em concluir; devolver false impede a finalização. Tipo TS: `((index: number) =&gt; boolean | Promise&lt;boolean&gt;)` (sem tradução exata; ver excecoes.json).
   Function? get onBeforeFinish;
@@ -81,7 +81,7 @@ const List<SgPropSpec> sgWizardPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
-    description: 'Desabilita o avanço de forma declarativa: o botão Próximo fica desabilitado e o stepper para de oferecer as etapas seguintes. Use quando o bloqueio JÁ e conhecido (ex.: uma checagem assincrona já resolveu que a etapa não pode avançar) — onBeforeNext/validateStep só agem no clique e deixam o botão com aparência de clicável. Não afeta o botão da última etapa; para isso use onBeforeFinish.',
+    description: 'Desabilita o avanço de forma declarativa: o botão Próximo fica desabilitado e o stepper para de oferecer as etapas seguintes. Use quando o bloqueio JÁ é conhecido (ex.: uma checagem assíncrona já resolveu que a etapa não pode avançar) — onBeforeNext/validateStep só agem no clique e deixam o botão com aparência de clicável. Não afeta o botão da última etapa; para isso use onBeforeFinish.',
   ),
   SgPropSpec(
     name: 'onBeforeFinish',

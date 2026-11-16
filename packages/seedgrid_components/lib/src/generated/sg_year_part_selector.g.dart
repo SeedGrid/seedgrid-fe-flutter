@@ -6,18 +6,18 @@
 
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgYearPartSelector` no React — Seletor de recorte de ano: o usuário escolhe ANO + RECORTE (semestre, trimestre ou bimestre) + FATIA, e o componente resolve para um intervalo real e fechado de datas. E' o irmão ABSOLUTO do SgPeriodSelector: aquele resolve presets RELATIVOS a hoje ("este semestre"), este resolve um recorte fixo de um ano civil informado ("o 1o semestre DE 2024"), que não muda de significado com a passagem do tempo.
+/// Props públicas de `SgYearPartSelector` no React — Seletor de recorte de ano: o usuário escolhe ANO + RECORTE (semestre, trimestre ou bimestre) + FATIA, e o componente resolve para um intervalo real e fechado de datas. É o irmão ABSOLUTO do SgPeriodSelector: aquele resolve presets RELATIVOS a hoje ("este semestre"), este resolve um recorte fixo de um ano civil informado ("o 1o semestre DE 2024"), que não muda de significado com a passagem do tempo.
 /// O widget deve declarar `implements SgYearPartSelectorProps`.
 abstract interface class SgYearPartSelectorProps {
-  /// Recortes oferecidos no combo. Reduza a lista quando o domínio só' aceita um deles (fechamento trimestral, por exemplo); com um único item o combo de recorte deixa de fazer sentido na tela. Padrão: `SEMESTER,QUARTER,BIMESTER`. Tipo TS: `YearPartKind[]` (sem tradução exata; ver excecoes.json).
+  /// Recortes oferecidos no combo. Reduza a lista quando o domínio só aceita um deles (fechamento trimestral, por exemplo); com um único item o combo de recorte deixa de fazer sentido na tela. Padrão: `SEMESTER,QUARTER,BIMESTER`. Tipo TS: `YearPartKind[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get allowedKinds;
   /// Desabilita os três combos (ano, recorte e fatia). Padrão: `true`.
   bool? get enabled;
-  /// Prefixo dos ids dos três controles internos (ano, recorte, fatia). Não e' o id de um campo único: o componente monta três. Padrão: `sg-year-part-selector`.
+  /// Prefixo dos ids dos três controles internos (ano, recorte, fatia). Não é o id de um campo único: o componente monta três. Padrão: `sg-year-part-selector`.
   String? get id;
   /// Rótulo exibido ao usuário.
   String? get label;
-  /// Locale dos rótulos de recorte e fatia. A sigla entre parenteses acompanha o idioma: Q1..Q4 em pt-BR e en-US, T1..T4 em es, fr e pt-PT; bimestre não tem sigla e sai sem parenteses. Padrão: `pt-BR`.
+  /// Locale dos rótulos de recorte e fatia. A sigla entre parênteses acompanha o idioma: Q1..Q4 em pt-BR e en-US, T1..T4 em es, fr e pt-PT; bimestre não tem sigla e sai sem parênteses. Padrão: `pt-BR`.
   String? get locale;
   /// Último ano oferecido na lista de anos. Padrão: `ano corrente + 10`.
   num? get maxYear;
@@ -40,7 +40,7 @@ const List<SgPropSpec> sgYearPartSelectorPropSpecs = <SgPropSpec>[
     tsType: 'YearPartKind[]',
     required: false,
     defaultValue: 'SEMESTER,QUARTER,BIMESTER',
-    description: 'Recortes oferecidos no combo. Reduza a lista quando o domínio só\' aceita um deles (fechamento trimestral, por exemplo); com um único item o combo de recorte deixa de fazer sentido na tela.',
+    description: 'Recortes oferecidos no combo. Reduza a lista quando o domínio só aceita um deles (fechamento trimestral, por exemplo); com um único item o combo de recorte deixa de fazer sentido na tela.',
     exact: false,
   ),
   SgPropSpec(
@@ -59,7 +59,7 @@ const List<SgPropSpec> sgYearPartSelectorPropSpecs = <SgPropSpec>[
     tsType: 'string',
     required: false,
     defaultValue: 'sg-year-part-selector',
-    description: 'Prefixo dos ids dos três controles internos (ano, recorte, fatia). Não e\' o id de um campo único: o componente monta três.',
+    description: 'Prefixo dos ids dos três controles internos (ano, recorte, fatia). Não é o id de um campo único: o componente monta três.',
   ),
   SgPropSpec(
     name: 'label',
@@ -76,7 +76,7 @@ const List<SgPropSpec> sgYearPartSelectorPropSpecs = <SgPropSpec>[
     tsType: 'string',
     required: false,
     defaultValue: 'pt-BR',
-    description: 'Locale dos rótulos de recorte e fatia. A sigla entre parenteses acompanha o idioma: Q1..Q4 em pt-BR e en-US, T1..T4 em es, fr e pt-PT; bimestre não tem sigla e sai sem parenteses.',
+    description: 'Locale dos rótulos de recorte e fatia. A sigla entre parênteses acompanha o idioma: Q1..Q4 em pt-BR e en-US, T1..T4 em es, fr e pt-PT; bimestre não tem sigla e sai sem parênteses.',
   ),
   SgPropSpec(
     name: 'maxYear',

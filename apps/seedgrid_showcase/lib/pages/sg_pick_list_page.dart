@@ -24,9 +24,8 @@ class SgPickListPage extends StatefulWidget {
 }
 
 class _SgPickListPageState extends State<SgPickListPage> {
-  final ValueNotifier<String> _ultimo = ValueNotifier<String>(
-    'nenhuma mudança ainda',
-  );
+  // Vazio = ainda sem mudança (o texto é traduzido na exibição).
+  final ValueNotifier<String> _ultimo = ValueNotifier<String>('');
   final SgPickListController _controller = SgPickListController();
   final SgFormController _form = SgFormController();
   final ValueNotifier<String> _enviado = ValueNotifier<String>('');
@@ -56,14 +55,18 @@ class _SgPickListPageState extends State<SgPickListPage> {
                   title: context.tx('Frutas'),
                   source: _frutas,
                   target: const [],
-                  onChange: (e) =>
-                      _ultimo.value =
-                          '${e.type.value}: origem ${e.source.length}, destino ${e.target.length}',
+                  onChange: (e) => _ultimo.value = context
+                      .txf('{tipo}: origem {origem}, destino {destino}', {
+                        'tipo': e.type.value,
+                        'origem': e.source.length,
+                        'destino': e.target.length,
+                      }),
                 ),
                 ValueListenableBuilder<String>(
                   valueListenable: _ultimo,
-                  builder: (context, ultimo, _) =>
-                      Text('${context.tx('Estado atual')}: $ultimo'),
+                  builder: (context, ultimo, _) => Text(
+                    '${context.tx('Estado atual')}: ${ultimo.isEmpty ? context.tx('nenhuma mudança ainda') : ultimo}',
+                  ),
                 ),
               ],
             ),
@@ -307,7 +310,9 @@ class _SgPickListPageState extends State<SgPickListPage> {
                   valueListenable: _enviado,
                   builder: (context, enviado, _) => enviado.isEmpty
                       ? const SizedBox()
-                      : Text(context.txf('Enviado: {valor}', {'valor': enviado})),
+                      : Text(
+                          context.txf('Enviado: {valor}', {'valor': enviado}),
+                        ),
                 ),
               ],
             ),
@@ -328,7 +333,7 @@ class _SgPickListPageState extends State<SgPickListPage> {
                 SgPickListItem(label: 'Boston', value: 'boston'),
                 SgPickListItem(label: 'Lisbon', value: 'lisbon'),
                 SgPickListItem(label: 'Madrid', value: 'madrid'),
-                SgPickListItem(label: 'Sao Paulo', value: 'sao-paulo'),
+                SgPickListItem(label: 'São Paulo', value: 'sao-paulo'),
               ],
               target: const [],
               showSourceFilter: true,

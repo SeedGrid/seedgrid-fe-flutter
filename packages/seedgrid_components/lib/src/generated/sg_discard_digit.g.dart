@@ -20,7 +20,7 @@ abstract interface class SgDiscardDigitProps {
   String? get color;
   /// Fonte (font-family) usada no texto.
   String? get font;
-  /// Escala visual do digito. Padrão: `72`.
+  /// Escala visual do dígito. Padrão: `72`.
   num? get fontSize;
   /// Peso da fonte. Padrão: `700`. Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get fontWeight;
@@ -88,7 +88,7 @@ const List<SgPropSpec> sgDiscardDigitPropSpecs = <SgPropSpec>[
     tsType: 'number',
     required: false,
     defaultValue: '72',
-    description: 'Escala visual do digito.',
+    description: 'Escala visual do dígito.',
   ),
   SgPropSpec(
     name: 'fontWeight',

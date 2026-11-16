@@ -240,7 +240,7 @@ class _SgComponentsI18nProviderPageState
           required: false,
           defaultValue: '"en-US"',
           description:
-              'Codigo do locale (ex: "pt-BR", "pt-PT", "en-US", "es", "fr"). Afeta os textos internos dos componentes SeedGrid.',
+              'Código do locale (ex: "pt-BR", "pt-PT", "en-US", "es", "fr"). Afeta os textos internos dos componentes SeedGrid.',
           exact: false,
         ),
         SgPropSpec(
@@ -262,7 +262,7 @@ class _SgComponentsI18nProviderPageState
           required: true,
           defaultValue: '-',
           description:
-              'Arvore que vai consumir o locale via useComponentsI18n.',
+              'Árvore que vai consumir o locale via useComponentsI18n.',
         ),
       ],
       playground: SgPlayground(

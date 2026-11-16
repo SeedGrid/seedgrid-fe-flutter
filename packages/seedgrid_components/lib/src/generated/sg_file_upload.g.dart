@@ -21,7 +21,7 @@ abstract interface class SgFileUploadProps {
   /// Desabilita a escolha e a remoção. Padrão: `true`.
   bool? get enabled;
   String? get error;
-  /// Regra extra, assincrona, por arquivo (depois da conferencia de tipo). E como o SgImageUpload confere dimensão. Tipo TS: `((file: File, info: { mime: string; }) =&gt; Promise&lt;SgFileRejection&gt;)` (sem tradução exata; ver excecoes.json).
+  /// Regra extra, assíncrona, por arquivo (depois da conferência de tipo). É como o SgImageUpload confere dimensão. Tipo TS: `((file: File, info: { mime: string; }) =&gt; Promise&lt;SgFileRejection&gt;)` (sem tradução exata; ver excecoes.json).
   Function? get extraCheck;
   String? get hintText;
   /// Identificador único do campo.
@@ -126,7 +126,7 @@ const List<SgPropSpec> sgFileUploadPropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '((file: File, info: { mime: string; }) => Promise<SgFileRejection>)',
     required: false,
-    description: 'Regra extra, assincrona, por arquivo (depois da conferencia de tipo). E como o SgImageUpload confere dimensão.',
+    description: 'Regra extra, assíncrona, por arquivo (depois da conferência de tipo). É como o SgImageUpload confere dimensão.',
     exact: false,
   ),
   SgPropSpec(

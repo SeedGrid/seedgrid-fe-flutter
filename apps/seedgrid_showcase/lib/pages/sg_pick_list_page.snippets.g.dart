@@ -13,14 +13,18 @@ Column(
       title: context.tx('Frutas'),
       source: _frutas,
       target: const [],
-      onChange: (e) =>
-          _ultimo.value =
-              '${e.type.value}: origem ${e.source.length}, destino ${e.target.length}',
+      onChange: (e) => _ultimo.value = context
+          .txf('{tipo}: origem {origem}, destino {destino}', {
+            'tipo': e.type.value,
+            'origem': e.source.length,
+            'destino': e.target.length,
+          }),
     ),
     ValueListenableBuilder<String>(
       valueListenable: _ultimo,
-      builder: (context, ultimo, _) =>
-          Text('${context.tx('Estado atual')}: $ultimo'),
+      builder: (context, ultimo, _) => Text(
+        '${context.tx('Estado atual')}: ${ultimo.isEmpty ? context.tx('nenhuma mudança ainda') : ultimo}',
+      ),
     ),
   ],
 )
@@ -115,7 +119,9 @@ Column(
       valueListenable: _enviado,
       builder: (context, enviado, _) => enviado.isEmpty
           ? const SizedBox()
-          : Text(context.txf('Enviado: {valor}', {'valor': enviado})),
+          : Text(
+              context.txf('Enviado: {valor}', {'valor': enviado}),
+            ),
     ),
   ],
 )
@@ -131,7 +137,7 @@ SgPickList(
     SgPickListItem(label: 'Boston', value: 'boston'),
     SgPickListItem(label: 'Lisbon', value: 'lisbon'),
     SgPickListItem(label: 'Madrid', value: 'madrid'),
-    SgPickListItem(label: 'Sao Paulo', value: 'sao-paulo'),
+    SgPickListItem(label: 'São Paulo', value: 'sao-paulo'),
   ],
   target: const [],
   showSourceFilter: true,

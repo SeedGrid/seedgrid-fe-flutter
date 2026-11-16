@@ -618,6 +618,12 @@ String _padrao(BuildContext context, String? valor) {
       return context.tx('ano corrente + 10');
     case 'ano corrente - 30':
       return context.tx('ano corrente - 30');
+    case '(dicionário)':
+      return context.tx('(dicionário)');
+    case '(omitido = automático)':
+      return context.tx('(omitido = automático)');
+    case '(true nos cartões, false na tabela)':
+      return context.tx('(true nos cartões, false na tabela)');
     default:
       return valor ?? '-';
   }

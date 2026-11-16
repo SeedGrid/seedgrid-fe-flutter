@@ -9,7 +9,7 @@ import '../props/sg_prop_spec.dart';
 /// Props públicas de `SgRoller3DDigit` no React — Digito animado com efeito roller 3D para mostrar caracteres únicos em relógios, marcadores e displays visuais.
 /// O widget deve declarar `implements SgRoller3DDigitProps`.
 abstract interface class SgRoller3DDigitProps {
-  /// Tamanho da fonte do digito. Padrão: `72`.
+  /// Tamanho da fonte do dígito. Padrão: `72`.
   num? get fontSize;
   /// Ordered list of all possible values this roller can show. The drum scrolls to the position of `value` in this list. Padrão: `DEFAULT_ITEMS`. Tipo TS: `string[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get items;
@@ -28,7 +28,7 @@ const List<SgPropSpec> sgRoller3DDigitPropSpecs = <SgPropSpec>[
     tsType: 'number',
     required: false,
     defaultValue: '72',
-    description: 'Tamanho da fonte do digito.',
+    description: 'Tamanho da fonte do dígito.',
   ),
   SgPropSpec(
     name: 'items',

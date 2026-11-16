@@ -23,7 +23,7 @@
 "CEP comercial": ["Business postal code","Código postal comercial","Código postal comercial","Code postal professionnel"],
 "Resultado": ["Result","Resultado","Resultado","Résultat"],
 "Com eventos": ["With events","Com eventos","Con eventos","Avec événements"],
-"Código postal com label e hint (padrão: Brasil).": ["Postal code with label and hint (default: Brazil).","Código postal com label e hint (padrao: Brasil).","Código postal con label y hint (por defecto: Brasil).","Code postal avec libellé et indice (par défaut : Brésil)."],
+"Código postal com label e hint (padrão: Brasil).": ["Postal code with label and hint (default: Brazil).","Código postal com label e hint (padrão: Brasil).","Código postal con label y hint (por defecto: Brasil).","Code postal avec libellé et indice (par défaut : Brésil)."],
 "Países": ["Countries","Países","Países","Pays"],
 "Cada país tem máscara, tamanho e validação específicos.": ["Each country has its own mask, length, and validation.","Cada pais tem máscara, tamanho e validação especificos.","Cada país tiene su propia máscara, longitud y validación.","Chaque pays a son propre masque, sa longueur et sa validation."],
 "Controlado (setValue)": ["Controlled (setValue)","Controlado (setValue)","Controlado (setValue)","Controle (setValue)"],

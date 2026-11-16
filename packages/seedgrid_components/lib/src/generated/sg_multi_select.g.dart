@@ -50,7 +50,7 @@ abstract interface class SgMultiSelectProps {
   Function? get onExit;
   /// Tipo TS: `((message: string) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onValidation;
-  /// Lista de opções disponíveis. `label` aparece na lista; `chipLabel` (opcional) e' o texto curto do item ja' selecionado (o resumo do campo), ex.: label "3 - Filial Centro" e chipLabel "3". Tipo TS: `SgMultiSelectOption[]` (sem tradução exata; ver excecoes.json).
+  /// Lista de opções disponíveis. `label` aparece na lista; `chipLabel` (opcional) é o texto curto do item já selecionado (o resumo do campo), ex.: label "3 - Filial Centro" e chipLabel "3". Tipo TS: `SgMultiSelectOption[]` (sem tradução exata; ver excecoes.json).
   List<Object?> get options;
   /// Texto exibido quando nada esta selecionado.
   String? get placeholder;
@@ -285,7 +285,7 @@ const List<SgPropSpec> sgMultiSelectPropSpecs = <SgPropSpec>[
     type: 'List<Object?>',
     tsType: 'SgMultiSelectOption[]',
     required: true,
-    description: 'Lista de opções disponíveis. `label` aparece na lista; `chipLabel` (opcional) e\' o texto curto do item ja\' selecionado (o resumo do campo), ex.: label "3 - Filial Centro" e chipLabel "3".',
+    description: 'Lista de opções disponíveis. `label` aparece na lista; `chipLabel` (opcional) é o texto curto do item já selecionado (o resumo do campo), ex.: label "3 - Filial Centro" e chipLabel "3".',
     exact: false,
   ),
   SgPropSpec(

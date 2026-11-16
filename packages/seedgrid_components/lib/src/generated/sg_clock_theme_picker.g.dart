@@ -19,7 +19,7 @@ abstract interface class SgClockThemePickerProps {
   String? get label;
   /// Callback disparado quando um novo tema e escolhido. Tipo TS: `(id: string) =&gt; void` (sem tradução exata; ver excecoes.json).
   Function get onChange;
-  /// Texto exibido quando nenhum tema valido esta resolvido.
+  /// Texto exibido quando nenhum tema válido está resolvido.
   String? get placeholder;
   /// Tamanho do preview visual de cada tema. Padrão: `56`.
   num? get previewSize;
@@ -81,7 +81,7 @@ const List<SgPropSpec> sgClockThemePickerPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Texto exibido quando nenhum tema valido esta resolvido.',
+    description: 'Texto exibido quando nenhum tema válido está resolvido.',
   ),
   SgPropSpec(
     name: 'previewSize',

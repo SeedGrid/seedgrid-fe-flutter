@@ -9,7 +9,7 @@ import '../props/sg_prop_spec.dart';
 /// Props públicas de `SgFlipDigit` no React — Digito animado estilo flip para exibir números ou caracteres únicos em relógios, contadores e paines visuais.
 /// O widget deve declarar `implements SgFlipDigitProps`.
 abstract interface class SgFlipDigitProps {
-  /// Tamanho da fonte do digito. Padrão: `70`.
+  /// Tamanho da fonte do dígito. Padrão: `70`.
   num? get fontSize;
   /// Altura visual do card. Padrão: `120`.
   num? get height;
@@ -28,7 +28,7 @@ const List<SgPropSpec> sgFlipDigitPropSpecs = <SgPropSpec>[
     tsType: 'number',
     required: false,
     defaultValue: '70',
-    description: 'Tamanho da fonte do digito.',
+    description: 'Tamanho da fonte do dígito.',
   ),
   SgPropSpec(
     name: 'height',

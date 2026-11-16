@@ -9,7 +9,7 @@ import 'package:flutter/widgets.dart';
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgInputPassword` no React — Campo especializado para senha com validações de política, alternância de visibilidade e indicação de forca.
+/// Props públicas de `SgInputPassword` no React — Campo especializado para senha com validações de política, alternância de visibilidade e indicação de força.
 /// O widget deve declarar `implements SgInputPasswordProps`.
 abstract interface class SgInputPasswordProps {
   /// Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
@@ -84,7 +84,7 @@ abstract interface class SgInputPasswordProps {
   bool? get required;
   String? get requiredMessage;
   bool? get showCharCounter;
-  /// Exibe barra de forca da senha. Padrão: `true`.
+  /// Exibe barra de força da senha. Padrão: `true`.
   bool? get showStrengthBar;
   /// Padrão: `true`.
   bool? get specialCharacterRequired;
@@ -474,7 +474,7 @@ const List<SgPropSpec> sgInputPasswordPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'true',
-    description: 'Exibe barra de forca da senha.',
+    description: 'Exibe barra de força da senha.',
   ),
   SgPropSpec(
     name: 'specialCharacterRequired',

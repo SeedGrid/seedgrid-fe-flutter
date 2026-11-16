@@ -859,7 +859,7 @@
  ],
  "Cada caractere usa SgFadeDigit: apaga o dígito atual e acende o novo (efeito bulbo/display).": [
   "Each character uses SgFadeDigit: the current value fades out and the next one fades in.",
-  "Cada caractere usa SgFadeDigit: apaga o digito atual e acende o novo (efeito de display).",
+  "Cada caractere usa SgFadeDigit: apaga o dígito atual e acende o novo (efeito de display).",
   "Cada carácter usa SgFadeDigit: apaga el valor actual y enciende el siguiente.",
   "Chaque caractère utilise SgFadeDigit : la valeur courante disparaît en fondu et la suivante apparaît en fondu."
  ],
@@ -2131,7 +2131,7 @@
  ],
  "Validação assíncrona antes de avançar (ex.: consultar uma API).": [
   "Async validation before moving forward (e.g. API call).",
-  "Validação assincrona antes de avançar (ex: consultar API).",
+  "Validação assíncrona antes de avançar (ex: consultar API).",
   "Validación asíncrona antes de avanzar (por ejemplo, consultar API).",
   "Validation asynchrone avant d'avancer (par ex. appel API)."
  ],
@@ -2191,7 +2191,7 @@
  ],
  "Com allowedKinds de um item só, o combo de recorte some: sobram ano e fatia, que é o que um fechamento semestral realmente pergunta.": [
   "With a single-item allowedKinds the breakdown combo disappears: year and part remain, which is what a half-year close actually asks for.",
-  "Com allowedKinds de um único item o combo de recorte desaparece: ficam ano e fatia, que e' o que um fecho semestral realmente pergunta.",
+  "Com allowedKinds de um único item o combo de recorte desaparece: ficam ano e fatia, que é o que um fecho semestral realmente pergunta.",
   "Con allowedKinds de un solo elemento el combo de recorte desaparece: quedan año y parte, que es lo que pregunta un cierre semestral.",
   "Avec un allowedKinds a un seul élément le combo de découpage disparaît : restent année et partie, ce que demande vraiment une cloture semestrielle."
  ],
@@ -2221,8 +2221,8 @@
  ],
  "A sigla entre parênteses acompanha o idioma e NÃO é a inicial do nome traduzido: Q1..Q4 em pt-BR e en-US, T1..T4 em es, fr e pt-PT; semestre é S no português e H (Half-year) no inglês; bimestre não tem sigla consagrada e sai sem parênteses.": [
   "The abbreviation in parentheses follows the language and is NOT the initial of the translated name: Q1..Q4 in pt-BR and en-US, T1..T4 in es, fr and pt-PT; half-year is S in Portuguese and H in English; bimester has no established abbreviation and comes without parentheses.",
-  "A sigla entre parenteses acompanha o idioma e NÃO e' a inicial do nome traduzido: Q1..Q4 em pt-BR e en-US, T1..T4 em es, fr e pt-PT; semestre e' S no português e H (Half-year) no inglês; bimestre não tem sigla consagrada e sai sem parenteses.",
-  "La sigla entre parentesis sigue al idioma y NO es la inicial del nombre traducido: Q1..Q4 en pt-BR y en-US, T1..T4 en es, fr y pt-PT; semestre es S en portugués y H (Half-year) en inglés; bimestre no tiene sigla consagrada y sale sin parentesis.",
+  "A sigla entre parênteses acompanha o idioma e NÃO é a inicial do nome traduzido: Q1..Q4 em pt-BR e en-US, T1..T4 em es, fr e pt-PT; semestre é S no português e H (Half-year) no inglês; bimestre não tem sigla consagrada e sai sem parênteses.",
+  "La sigla entre paréntesis sigue al idioma y NO es la inicial del nombre traducido: Q1..Q4 en pt-BR y en-US, T1..T4 en es, fr y pt-PT; semestre es S en portugués y H (Half-year) en inglés; bimestre no tiene sigla consagrada y sale sin paréntesis.",
   "L'abreviation entre parentheses suit la langue et n'est PAS l'initiale du nom traduit : Q1..Q4 en pt-BR et en-US, T1..T4 en es, fr et pt-PT ; le semestre est S en portugais et H (Half-year) en anglais ; le bimestre n'a pas d'abreviation consacrée et sort sans parentheses."
  ],
  "O valor é controlado pela prop value; os botões alteram o número de fora do campo.": [
@@ -6809,7 +6809,7 @@
   "{label}: {inicio} a {fim}",
   "{label} : {inicio} au {fim}"
  ],
- "Codigo do locale (ex: \"pt-BR\", \"pt-PT\", \"en-US\", \"es\", \"fr\"). Afeta os textos internos dos componentes SeedGrid.": [
+ "Código do locale (ex: \"pt-BR\", \"pt-PT\", \"en-US\", \"es\", \"fr\"). Afeta os textos internos dos componentes SeedGrid.": [
   "Locale code (e.g. \"pt-BR\", \"pt-PT\", \"en-US\", \"es\", \"fr\"). Affects the internal texts of SeedGrid components.",
   "Código do locale (ex.: \"pt-BR\", \"pt-PT\", \"en-US\", \"es\", \"fr\"). Afeta os textos internos dos componentes SeedGrid.",
   "Código de locale (ej.: \"pt-BR\", \"pt-PT\", \"en-US\", \"es\", \"fr\"). Afecta los textos internos de los componentes SeedGrid.",
@@ -6821,7 +6821,7 @@
   "Mapa de claves a textos. Puede ser el objeto completo de un locale o solo las claves que desea sobrescribir.",
   "Table de clés vers textes. Peut être l'objet complet d'une locale ou seulement les clés à remplacer."
  ],
- "Arvore que vai consumir o locale via useComponentsI18n.": [
+ "Árvore que vai consumir o locale via useComponentsI18n.": [
   "Tree that will consume the locale via useComponentsI18n.",
   "Árvore que vai consumir o locale via useComponentsI18n.",
   "Árbol que consumirá el locale mediante useComponentsI18n.",

@@ -19,7 +19,7 @@ abstract interface class SgNeonDigitProps {
   String? get font;
   /// Custom font family.
   String? get fontFamily;
-  /// Escala visual do digito. Padrão: `72`.
+  /// Escala visual do dígito. Padrão: `72`.
   num? get fontSize;
   /// Font weight of the text. Padrão: `600`. Tipo TS: `string | number` (sem tradução exata; ver excecoes.json).
   Object? get fontWeight;
@@ -91,7 +91,7 @@ const List<SgPropSpec> sgNeonDigitPropSpecs = <SgPropSpec>[
     tsType: 'number',
     required: false,
     defaultValue: '72',
-    description: 'Escala visual do digito.',
+    description: 'Escala visual do dígito.',
   ),
   SgPropSpec(
     name: 'fontWeight',

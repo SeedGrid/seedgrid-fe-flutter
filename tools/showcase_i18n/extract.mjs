@@ -101,7 +101,11 @@ export function allTexts() {
   // Descricoes de props do contrato do React (tabela de props de todas as paginas).
   const spec = JSON.parse(fs.readFileSync(path.join(root, "tools/gen_props/props-spec.json"), "utf8"));
   for (const c of Object.values(spec.components)) {
-    for (const p of c.props) if (p.description && !map.has(p.description)) map.set(p.description, "props-spec.json");
+    for (const p of c.props) {
+      // Mesmo texto que o emit grava em `description:` (description, senao doc, com quebras de linha viradas em espaco).
+      const d = (p.description ?? p.doc ?? "").replace(/\r?\n/g, " ");
+      if (d && !map.has(d)) map.set(d, "props-spec.json");
+    }
   }
   for (const f of fs.readdirSync(pagesDir).filter((x) => x.endsWith("_page.dart")).sort()) {
     for (const { texto, onde } of pageTexts(path.join(pagesDir, f))) if (!map.has(texto)) map.set(texto, onde);

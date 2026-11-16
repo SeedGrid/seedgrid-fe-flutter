@@ -14,7 +14,7 @@ abstract interface class SgTreeViewProps {
   SgTreeViewBranchLabelBehavior? get branchLabelBehavior;
   /// Padrão: `false`.
   bool? get checkable;
-  /// Cabeçalho da coluna do checkbox principal -- só' e' desenhado quando `tracks` também esta' presente (e' o cabeçalho de colunas como um todo que fica ambíguo com 2+ controles por linha, não o checkbox sozinho).
+  /// Cabeçalho da coluna do checkbox principal -- só é desenhado quando `tracks` também está presente (é o cabeçalho de colunas como um todo que fica ambíguo com 2+ controles por linha, não o checkbox sozinho).
   String? get checkableLabel;
   /// Nos marcados em cenários de checkbox tree. Tipo TS: `string[]` (sem tradução exata; ver excecoes.json).
   List<Object?>? get checkedIds;
@@ -91,7 +91,7 @@ const List<SgPropSpec> sgTreeViewPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
-    description: 'Cabeçalho da coluna do checkbox principal -- só\' e\' desenhado quando `tracks` também esta\' presente (e\' o cabeçalho de colunas como um todo que fica ambíguo com 2+ controles por linha, não o checkbox sozinho).',
+    description: 'Cabeçalho da coluna do checkbox principal -- só é desenhado quando `tracks` também está presente (é o cabeçalho de colunas como um todo que fica ambíguo com 2+ controles por linha, não o checkbox sozinho).',
   ),
   SgPropSpec(
     name: 'checkedIds',
