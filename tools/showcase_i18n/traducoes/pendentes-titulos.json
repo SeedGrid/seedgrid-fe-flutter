@@ -33,7 +33,7 @@
   "Custom colors",
   "Cores personalizadas",
   "Colores personalizados",
-  "Couleurs personnalisees"
+  "Couleurs personnalisées"
  ],
  "Ciano": [
   "Cyan",
@@ -189,7 +189,7 @@
   "Sequential sheets",
   "Folhas sequenciais",
   "Hojas secuenciales",
-  "Feuilles sequentielles"
+  "Feuilles séquentielles"
  ],
  "Variações de papel": [
   "Paper variants",
@@ -212,8 +212,8 @@
  "Paginação imperativa (ref)": [
   "Imperative pagination (ref)",
   "Paginação imperativa (ref)",
-  "Paginacion imperativa (ref)",
-  "Pagination imperative (ref)"
+  "Paginación imperativa (ref)",
+  "Pagination impérative (ref)"
  ],
  "Adicionar folha": [
   "Add sheet",
@@ -315,19 +315,19 @@
   "Hexadecimal (0-9 A-F)",
   "Hexadecimal (0-9 A-F)",
   "Hexadecimal (0-9 A-F)",
-  "Hexadecimal (0-9 A-F)"
+  "Hexadécimal (0-9 A-F)"
  ],
  "Temas de cor": [
   "Color themes",
   "Temas de cor",
   "Temas de color",
-  "Themes de couleur"
+  "Thèmes de couleur"
  ],
  "Tamanho e espessura": [
   "Size and thickness",
   "Tamanho e espessura",
-  "Tamano y espesor",
-  "Taille et epaisseur"
+  "Tamaño y espesor",
+  "Taille et épaisseur"
  ],
  "Próximo caractere": [
   "Next character",
@@ -368,14 +368,14 @@
  "Básico (mês atual)": [
   "Basic (current month)",
   "Básico (mês atual)",
-  "Basico (mes actual)",
+  "Básico (mes actual)",
   "Basique (mois courant)"
  ],
  "Selecionado controlado + limite de datas": [
   "Controlled selection + date range",
   "Selecionado controlado + limite de datas",
-  "Seleccion controlada + rango de fechas",
-  "Selection controlee + plage de dates"
+  "Selección controlada + rango de fechas",
+  "Sélection contrôlée + plage de dates"
  ],
  "Locale + múltiplos meses": [
   "Locale + multi-month",
@@ -2961,7 +2961,7 @@
   "Current state",
   "Estado atual",
   "Estado actual",
-  "Etat actuel"
+  "État actuel"
  ],
  "Disponíveis": [
   "Available",
