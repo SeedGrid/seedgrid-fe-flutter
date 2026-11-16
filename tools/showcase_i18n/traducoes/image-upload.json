@@ -110,7 +110,7 @@
  "Arquivo recusado (type, size, dimension, aspect).": [
   "Rejected file (type, size, dimension, aspect).",
   "Ficheiro recusado (type, size, dimension, aspect).",
-  "Archivo rechazado (type, size, dimension, aspect).",
+  "Archivo rechazado (type, size, dimensión, aspect).",
   "Fichier refusé (type, size, dimension, aspect)."
  ],
  "Imagem controlada: arquivo escolhido ou URL de uma imagem ja salva.": [
@@ -176,7 +176,7 @@
  "Imagem recusada (type, size, total, count, dimension, aspect). As demais seguem validas.": [
   "Rejected image (type, size, total, count, dimension, aspect). The others stay valid.",
   "Imagem recusada (type, size, total, count, dimension, aspect). As restantes continuam válidas.",
-  "Imagen rechazada (type, size, total, count, dimension, aspect). Las demás siguen siendo válidas.",
+  "Imagen rechazada (type, size, total, count, dimensión, aspect). Las demás siguen siendo válidas.",
   "Image refusée (type, size, total, count, dimension, aspect). Les autres restent valides."
  ],
  "Imagens controladas (sempre lista; uma imagem = lista de uma). Uma imagem ja salva entra como { name, url }.": [

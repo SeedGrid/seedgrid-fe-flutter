@@ -38,7 +38,7 @@
  "Arquivo recusado (type, size, total, count, dimension, aspect): codigo, mensagem ja traduzida e nome do arquivo. Os demais arquivos escolhidos seguem validos.": [
   "Rejected file (type, size, total, count, dimension, aspect): code, already translated message and file name. The other chosen files stay valid.",
   "Ficheiro recusado (type, size, total, count, dimension, aspect): código, mensagem já traduzida e nome do ficheiro. Os restantes ficheiros escolhidos continuam válidos.",
-  "Archivo rechazado (type, size, total, count, dimension, aspect): código, mensaje ya traducido y nombre del archivo. Los demás archivos elegidos siguen siendo válidos.",
+  "Archivo rechazado (type, size, total, count, dimensión, aspect): código, mensaje ya traducido y nombre del archivo. Los demás archivos elegidos siguen siendo válidos.",
   "Fichier refusé (type, size, total, count, dimension, aspect) : code, message déjà traduit et nom du fichier. Les autres fichiers choisis restent valides."
  ],
  "Altura da miniatura em px (padrao 160).": [
