@@ -461,17 +461,25 @@ class _SgCalendarState extends State<SgCalendar> {
       );
     }
     // Se o pai for mais estreito que o conteudo, a grade rola na horizontal (overflow-auto do React).
-    final grid = SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: SizedBox(
-        width: gridWidth,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: rows,
-        ),
+    final gridContent = SizedBox(
+      width: gridWidth,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: rows,
       ),
     );
+    // Um mes so: em telas estreitas encolhe para caber (celulas fluidas no React), sem cortar a 7a coluna.
+    final grid = columns == 1
+        ? FittedBox(
+            fit: BoxFit.scaleDown,
+            alignment: Alignment.topLeft,
+            child: gridContent,
+          )
+        : SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: gridContent,
+          );
 
     final body = Column(
       mainAxisSize: MainAxisSize.min,
