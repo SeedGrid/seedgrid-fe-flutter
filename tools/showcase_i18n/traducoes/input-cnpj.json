@@ -12,7 +12,7 @@
 "CNPJ inválido.": ["Invalid CNPJ.","CNPJ inválido.","CNPJ inválido.","CNPJ invalide."],
 "CNPJ não pode iniciar com 00.": ["CNPJ cannot start with 00.","CNPJ não pode iniciar com 00.","El CNPJ no puede comenzar con 00.","Le CNPJ ne peut pas commencer par 00."],
 "CNPJ com label e hint.": ["CNPJ with label and hint.","CNPJ com label e hint.","CNPJ con label y hint.","CNPJ avec libellé et indice."],
-"Exemplo com letras (A-Z) no corpo e DVs numéricos.": ["Example with letters (A-Z) in the body and numeric check digits.","Exemplo com letras (A-Z) no corpo e DVs numéricos.","Ejemplo con letras (A-Z) en el cuerpo y DV numéricos.","Exemple avec lettres (A-Z) dans le corps et chiffres de controle numériques."],
+"Exemplo com letras (A-Z) no corpo e DVs numéricos.": ["Example with letters (A-Z) in the body and numeric check digits.","Exemplo com letras (A-Z) no corpo e DVs numéricos.","Ejemplo con letras (A-Z) en el cuerpo y DV numéricos.","Exemple avec lettres (A-Z) dans le corps et chiffres de contrôle numériques."],
 "Exemplos válidos (alfanumérico)": ["Valid examples (alphanumeric)","Exemplos válidos (alfanumerico)","Ejemplos válidos (alfanumérico)","Exemples valides (alphanumériques)"],
 "Lista de CNPJs alfanuméricos válidos.": ["List of valid alphanumeric CNPJs.","Lista de CNPJs alfanuméricos válidos.","Lista de CNPJs alfanuméricos válidos.","Liste de CNPJ alphanumériques valides."],
 "Validação Pública CNPJ": ["Publica CNPJ validation","Validação Publica CNPJ","Validación Pública CNPJ","Validation Publica CNPJ"],
