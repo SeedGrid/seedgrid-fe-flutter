@@ -36,6 +36,7 @@ class SgMultiSelectChips extends StatefulWidget
     this.borderRadius,
     this.enabled,
     this.required,
+    this.requiredMessage,
     this.control,
     this.name,
     this.error,
@@ -87,9 +88,14 @@ class SgMultiSelectChips extends StatefulWidget
 
   bool get _disabled => !(enabled ?? true);
 
-  /// So mostra o `*` no rotulo; nao valida (no React tambem nao: use `rules`).
+  /// Marca o `*` no rotulo e exige ao menos um item: sem selecao mostra a mensagem de obrigatorio
+  /// (texto padrao do idioma ou [requiredMessage]), dentro e fora de formulario.
   @override
   final bool? required;
+
+  /// Mensagem para ausencia de valor; sem ela vale o texto padrao do idioma.
+  @override
+  final String? requiredMessage;
   @override
   final SgFormController? control;
   @override
@@ -116,7 +122,8 @@ class _SgMultiSelectChipsState extends State<SgMultiSelectChips>
   @override
   String? get bindingRequired => requiredMessageFor(
     widget.required,
-    t(useComponentsI18n(context), 'components.inputs.required'),
+    widget.requiredMessage ??
+        t(useComponentsI18n(context), 'components.inputs.required'),
   );
 
   @override
@@ -129,6 +136,9 @@ class _SgMultiSelectChipsState extends State<SgMultiSelectChips>
 
   bool _hadFocus = false;
 
+  /// `required` fora de formulario: ao sair do campo sem selecao, mostra a mensagem de obrigatorio.
+  String? _requiredError;
+
   void _onFocus() {
     final has = _focus.hasFocus;
     if (has == _hadFocus) return;
@@ -136,6 +146,13 @@ class _SgMultiSelectChipsState extends State<SgMultiSelectChips>
     if (has) {
       widget.onEnter?.call();
     } else if (!sgMultiSelectFocusMovesToList(context, _ms)) {
+      if (widget.required == true && !isBound && _ms.resolvedValue.isEmpty) {
+        setState(
+          () => _requiredError =
+              widget.requiredMessage ??
+              t(useComponentsI18n(context), 'components.inputs.required'),
+        );
+      }
       widget.onExit?.call();
     }
   }
@@ -191,7 +208,11 @@ class _SgMultiSelectChipsState extends State<SgMultiSelectChips>
     final placeholder =
         w.placeholder ?? t(i18n, 'components.inputs.select.placeholder');
     final resolvedLabel = w.labelText ?? w.label ?? '';
-    final error = resolveFieldError(w.error, boundErrorMessage);
+    final error =
+        resolveFieldError(w.error, boundErrorMessage) ??
+        (((isBound ? boundValue : w.value) ?? _ms.resolvedValue).isEmpty
+            ? _requiredError
+            : null);
     final hasError = error != null;
     final radius = sgPixels(w.borderRadius) ?? 6;
     _ms.update(

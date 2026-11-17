@@ -38,6 +38,8 @@ abstract interface class SgMultiSelectChipsProps {
   String? get placeholder;
   /// Marca o campo como obrigatório. Padrão: `false`.
   bool? get required;
+  /// Mensagem para ausência de valor.
+  String? get requiredMessage;
   /// Exibe campo de busca no topo do dropdown. Padrão: `false`.
   bool? get searchable;
   String? get searchPlaceholder;
@@ -185,6 +187,14 @@ const List<SgPropSpec> sgMultiSelectChipsPropSpecs = <SgPropSpec>[
     required: false,
     defaultValue: 'false',
     description: 'Marca o campo como obrigatório.',
+  ),
+  SgPropSpec(
+    name: 'requiredMessage',
+    reactName: 'requiredMessage',
+    type: 'String?',
+    tsType: 'string',
+    required: false,
+    description: 'Mensagem para ausência de valor.',
   ),
   SgPropSpec(
     name: 'searchable',

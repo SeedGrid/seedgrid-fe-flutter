@@ -884,6 +884,39 @@ void main() {
       },
     );
 
+    testWidgets(
+      'required fora de formulario mostra a mensagem ao sair sem selecao (padrao e requiredMessage)',
+      (t) async {
+        size(t, 1280);
+        await t.pumpWidget(
+          host(
+            const Column(
+              children: [
+                // O outro campo fica ACIMA: a lista aberta cobre o que esta abaixo do campo.
+                SgInputText(id: 'z'),
+                SgMultiSelectChips(id: 'c', options: _opts, required: true),
+                SgMultiSelectChips(
+                  id: 'd',
+                  options: _opts,
+                  required: true,
+                  requiredMessage: 'Escolha ao menos uma',
+                ),
+              ],
+            ),
+          ),
+        );
+        expect(find.text('Required field.'), findsNothing);
+        await openList(t, 'c');
+        await t.tap(field('z'));
+        await t.pumpAndSettle();
+        expect(find.text('Required field.'), findsOneWidget);
+        await openList(t, 'd');
+        await t.tap(field('z'));
+        await t.pumpAndSettle();
+        expect(find.text('Escolha ao menos uma'), findsOneWidget);
+      },
+    );
+
     testWidgets('error do componente vence o do formulario', (t) async {
       size(t, 1280);
       final form = SgFormController();

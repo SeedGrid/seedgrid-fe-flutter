@@ -388,7 +388,7 @@ class _SgMultiSelectChipsPageState extends State<SgMultiSelectChipsPage> {
       ShowcaseExample(
         title: 'Erro e formulário',
         description:
-            'required só acrescenta o asterisco ao rótulo; com name + control o campo guarda a lista de valores marcados.',
+            'required marca o campo como obrigatório (asterisco no rótulo e mensagem se ficar vazio); com name + control o campo guarda a lista de valores marcados.',
         preview:
             // #region sg-multi-select-chips-formulario
             SizedBox(
@@ -428,6 +428,47 @@ class _SgMultiSelectChipsPageState extends State<SgMultiSelectChipsPage> {
             ),
         // #endregion
         code: SgMultiSelectChipsPageSnippets.sgMultiSelectChipsFormulario,
+      ),
+      ShowcaseExample(
+        title: 'Campo obrigatório e mensagem própria',
+        description:
+            'required exige ao menos um chip: ao sair do campo vazio aparece a mensagem de obrigatório, no idioma da página. requiredMessage troca o texto.',
+        preview:
+            // #region sg-multi-select-chips-obrigatorio
+            SizedBox(
+              width: 384,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SgMultiSelectChips(
+                    id: 'msc-required',
+                    labelText: context.tx('Empresas'),
+                    required: true,
+                    options: [
+                      SgMultiSelectOption(label: 'Empresa 1', value: 'e1'),
+                      SgMultiSelectOption(label: 'Empresa 2', value: 'e2'),
+                      SgMultiSelectOption(label: 'Empresa 3', value: 'e3'),
+                    ],
+                  ),
+                  const SizedBox(height: 16),
+                  SgMultiSelectChips(
+                    id: 'msc-required-message',
+                    labelText: context.tx('Empresas'),
+                    required: true,
+                    requiredMessage: context.tx(
+                      'Escolha ao menos uma empresa.',
+                    ),
+                    options: [
+                      SgMultiSelectOption(label: 'Empresa 1', value: 'e1'),
+                      SgMultiSelectOption(label: 'Empresa 2', value: 'e2'),
+                      SgMultiSelectOption(label: 'Empresa 3', value: 'e3'),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+        // #endregion
+        code: SgMultiSelectChipsPageSnippets.sgMultiSelectChipsObrigatorio,
       ),
     ];
 

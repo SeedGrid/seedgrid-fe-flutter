@@ -58,6 +58,7 @@ abstract interface class SgMultiSelectProps {
   String? get prefixText;
   /// Marca o campo como obrigatório. Padrão: `false`.
   bool? get required;
+  /// Mensagem para ausência de valor.
   String? get requiredMessage;
   /// Exibe campo de busca no topo do dropdown. Padrão: `false`.
   bool? get searchable;
@@ -325,6 +326,7 @@ const List<SgPropSpec> sgMultiSelectPropSpecs = <SgPropSpec>[
     type: 'String?',
     tsType: 'string',
     required: false,
+    description: 'Mensagem para ausência de valor.',
   ),
   SgPropSpec(
     name: 'searchable',

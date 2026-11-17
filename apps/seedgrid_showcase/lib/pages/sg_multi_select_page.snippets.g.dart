@@ -348,6 +348,42 @@ SizedBox(
 )
 ''';
 
+  /// Region `sg-multi-select-obrigatorio`.
+  static const String sgMultiSelectObrigatorio = r'''
+SizedBox(
+  width: 384,
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      SgMultiSelect(
+        id: 'ms-required',
+        labelText: context.tx('Empresas'),
+        required: true,
+        options: [
+          SgMultiSelectOption(label: 'Empresa 1', value: 'e1'),
+          SgMultiSelectOption(label: 'Empresa 2', value: 'e2'),
+          SgMultiSelectOption(label: 'Empresa 3', value: 'e3'),
+        ],
+      ),
+      const SizedBox(height: 16),
+      SgMultiSelect(
+        id: 'ms-required-message',
+        labelText: context.tx('Empresas'),
+        required: true,
+        requiredMessage: context.tx(
+          'Escolha ao menos uma empresa.',
+        ),
+        options: [
+          SgMultiSelectOption(label: 'Empresa 1', value: 'e1'),
+          SgMultiSelectOption(label: 'Empresa 2', value: 'e2'),
+          SgMultiSelectOption(label: 'Empresa 3', value: 'e3'),
+        ],
+      ),
+    ],
+  ),
+)
+''';
+
   /// Region `sg-multi-select-opcao-desabilitada`.
   static const String sgMultiSelectOpcaoDesabilitada = r'''
 SizedBox(

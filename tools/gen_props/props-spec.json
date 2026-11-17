@@ -12663,7 +12663,9 @@
      "name": "requiredMessage",
      "optional": true,
      "ts": "string | undefined",
-     "alias": null
+     "alias": null,
+     "description": "Mensagem para ausência de valor.",
+     "semanticRole": "validation"
     },
     {
      "name": "rules",
@@ -12903,6 +12905,14 @@
      "alias": null,
      "description": "Marca o campo como obrigatório.",
      "default": false,
+     "semanticRole": "validation"
+    },
+    {
+     "name": "requiredMessage",
+     "optional": true,
+     "ts": "string | undefined",
+     "alias": null,
+     "description": "Mensagem para ausência de valor.",
      "semanticRole": "validation"
     },
     {

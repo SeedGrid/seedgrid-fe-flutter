@@ -14897,7 +14897,8 @@
           {
             "name": "requiredMessage",
             "type": "String?",
-            "required": false
+            "required": false,
+            "description": "Mensagem para ausência de valor."
           },
           {
             "name": "searchable",
@@ -15017,6 +15018,13 @@
             "file": "apps/seedgrid_showcase/lib/pages/sg_multi_select_page.dart",
             "kind": "dart",
             "code": "SizedBox(\n  width: 384,\n  child: ListenableBuilder(\n    listenable: _limitadas,\n    builder: (context, _) => Column(\n      crossAxisAlignment: CrossAxisAlignment.start,\n      children: [\n        SgMultiSelect(\n          id: 'ms-capped',\n          labelText: context.tx('Empresas (máx. 2)'),\n          placeholder: context.tx('Selecione até 2 empresas'),\n          clearable: true,\n          maxSelected: 2,\n          options: [\n            SgMultiSelectOption(label: 'Empresa 1', value: 'e1'),\n            SgMultiSelectOption(label: 'Empresa 2', value: 'e2'),\n            SgMultiSelectOption(label: 'Empresa 3', value: 'e3'),\n            SgMultiSelectOption(label: 'Empresa 4', value: 'e4'),\n            SgMultiSelectOption(label: 'Empresa 5', value: 'e5'),\n            SgMultiSelectOption(label: 'Empresa 6', value: 'e6'),\n          ],\n          value: _limitadas.value,\n          onChange: (v) => _limitadas.value = v,\n        ),\n        const SizedBox(height: 8),\n        SgButton(\n          size: SgSize.sm,\n          appearance: SgAppearance.outline,\n          label: Text(context.tx('Limpar')),\n          onClick: () => _limitadas.value = const [],\n        ),\n        const SizedBox(height: 8),\n        Text(\n          '${context.tx('Selecionadas')}: ${_limitadas.value.isEmpty ? context.tx('(nenhuma)') : _limitadas.value.join(', ')}',\n        ),\n      ],\n    ),\n  ),\n)"
+          },
+          {
+            "id": "sg-multi-select-obrigatorio",
+            "title": "Campo obrigatório e mensagem própria",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_multi_select_page.dart",
+            "kind": "dart",
+            "code": "SizedBox(\n  width: 384,\n  child: Column(\n    crossAxisAlignment: CrossAxisAlignment.start,\n    children: [\n      SgMultiSelect(\n        id: 'ms-required',\n        labelText: context.tx('Empresas'),\n        required: true,\n        options: [\n          SgMultiSelectOption(label: 'Empresa 1', value: 'e1'),\n          SgMultiSelectOption(label: 'Empresa 2', value: 'e2'),\n          SgMultiSelectOption(label: 'Empresa 3', value: 'e3'),\n        ],\n      ),\n      const SizedBox(height: 16),\n      SgMultiSelect(\n        id: 'ms-required-message',\n        labelText: context.tx('Empresas'),\n        required: true,\n        requiredMessage: context.tx(\n          'Escolha ao menos uma empresa.',\n        ),\n        options: [\n          SgMultiSelectOption(label: 'Empresa 1', value: 'e1'),\n          SgMultiSelectOption(label: 'Empresa 2', value: 'e2'),\n          SgMultiSelectOption(label: 'Empresa 3', value: 'e3'),\n        ],\n      ),\n    ],\n  ),\n)"
           },
           {
             "id": "sg-multi-select-opcao-desabilitada",
@@ -15176,6 +15184,12 @@
             "description": "Marca o campo como obrigatório."
           },
           {
+            "name": "requiredMessage",
+            "type": "String?",
+            "required": false,
+            "description": "Mensagem para ausência de valor."
+          },
+          {
             "name": "searchable",
             "type": "bool?",
             "required": false,
@@ -15250,6 +15264,13 @@
             "file": "apps/seedgrid_showcase/lib/pages/sg_multi_select_chips_page.dart",
             "kind": "dart",
             "code": "SizedBox(\n  width: 384,\n  child: ListenableBuilder(\n    listenable: _limitadas,\n    builder: (context, _) => Column(\n      crossAxisAlignment: CrossAxisAlignment.start,\n      children: [\n        SgMultiSelectChips(\n          id: 'msc-capped',\n          labelText: context.tx('Empresas (máx. 3)'),\n          placeholder: context.tx('Selecione até 3 empresas'),\n          clearable: true,\n          maxSelected: 3,\n          options: [\n            SgMultiSelectOption(label: 'Empresa 1', value: 'e1'),\n            SgMultiSelectOption(label: 'Empresa 2', value: 'e2'),\n            SgMultiSelectOption(label: 'Empresa 3', value: 'e3'),\n            SgMultiSelectOption(label: 'Empresa 4', value: 'e4'),\n            SgMultiSelectOption(label: 'Empresa 5', value: 'e5'),\n            SgMultiSelectOption(label: 'Empresa 6', value: 'e6'),\n          ],\n          value: _limitadas.value,\n          onChange: (v) => _limitadas.value = v,\n        ),\n        const SizedBox(height: 8),\n        SgButton(\n          size: SgSize.sm,\n          appearance: SgAppearance.outline,\n          label: Text(context.tx('Limpar')),\n          onClick: () => _limitadas.value = const [],\n        ),\n        const SizedBox(height: 8),\n        Text(\n          '${context.tx('Selecionadas')}: ${_limitadas.value.isEmpty ? context.tx('(nenhuma)') : _limitadas.value.join(', ')}',\n        ),\n      ],\n    ),\n  ),\n)"
+          },
+          {
+            "id": "sg-multi-select-chips-obrigatorio",
+            "title": "Campo obrigatório e mensagem própria",
+            "file": "apps/seedgrid_showcase/lib/pages/sg_multi_select_chips_page.dart",
+            "kind": "dart",
+            "code": "SizedBox(\n  width: 384,\n  child: Column(\n    crossAxisAlignment: CrossAxisAlignment.start,\n    children: [\n      SgMultiSelectChips(\n        id: 'msc-required',\n        labelText: context.tx('Empresas'),\n        required: true,\n        options: [\n          SgMultiSelectOption(label: 'Empresa 1', value: 'e1'),\n          SgMultiSelectOption(label: 'Empresa 2', value: 'e2'),\n          SgMultiSelectOption(label: 'Empresa 3', value: 'e3'),\n        ],\n      ),\n      const SizedBox(height: 16),\n      SgMultiSelectChips(\n        id: 'msc-required-message',\n        labelText: context.tx('Empresas'),\n        required: true,\n        requiredMessage: context.tx(\n          'Escolha ao menos uma empresa.',\n        ),\n        options: [\n          SgMultiSelectOption(label: 'Empresa 1', value: 'e1'),\n          SgMultiSelectOption(label: 'Empresa 2', value: 'e2'),\n          SgMultiSelectOption(label: 'Empresa 3', value: 'e3'),\n        ],\n      ),\n    ],\n  ),\n)"
           }
         ],
         "parity": {

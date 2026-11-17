@@ -1,0 +1,32 @@
+{
+  "Campo obrigatório e mensagem própria": [
+    "Required field and custom message",
+    "Campo obrigatório e mensagem própria",
+    "Campo obligatorio y mensaje propio",
+    "Champ obligatoire et message personnalisé"
+  ],
+  "required exige ao menos um item: ao sair do campo vazio aparece a mensagem de obrigatório, no idioma da página. requiredMessage troca o texto.": [
+    "required demands at least one item: leaving the field empty shows the required message, in the page language. requiredMessage replaces the text.",
+    "required exige pelo menos um item: ao sair do campo vazio aparece a mensagem de obrigatório, no idioma da página. requiredMessage troca o texto.",
+    "required exige al menos un elemento: al salir del campo vacío aparece el mensaje de obligatorio, en el idioma de la página. requiredMessage cambia el texto.",
+    "required exige au moins un élément : quitter le champ vide affiche le message d'obligation, dans la langue de la page. requiredMessage remplace le texte."
+  ],
+  "required exige ao menos um chip: ao sair do campo vazio aparece a mensagem de obrigatório, no idioma da página. requiredMessage troca o texto.": [
+    "required demands at least one chip: leaving the field empty shows the required message, in the page language. requiredMessage replaces the text.",
+    "required exige pelo menos um chip: ao sair do campo vazio aparece a mensagem de obrigatório, no idioma da página. requiredMessage troca o texto.",
+    "required exige al menos un chip: al salir del campo vacío aparece el mensaje de obligatorio, en el idioma de la página. requiredMessage cambia el texto.",
+    "required exige au moins une puce : quitter le champ vide affiche le message d'obligation, dans la langue de la page. requiredMessage remplace le texte."
+  ],
+  "Escolha ao menos uma empresa.": [
+    "Choose at least one company.",
+    "Escolha pelo menos uma empresa.",
+    "Elija al menos una empresa.",
+    "Choisissez au moins une entreprise."
+  ],
+  "required marca o campo como obrigatório (asterisco no rótulo e mensagem se ficar vazio); com name + control o campo guarda a lista de valores marcados.": [
+    "required marks the field as required (asterisk on the label and a message if left empty); with name + control the field stores the list of checked values.",
+    "required marca o campo como obrigatório (asterisco no rótulo e mensagem se ficar vazio); com name + control o campo guarda a lista de valores marcados.",
+    "required marca el campo como obligatorio (asterisco en la etiqueta y mensaje si queda vacío); con name + control el campo guarda la lista de valores marcados.",
+    "required marque le champ comme obligatoire (astérisque sur le libellé et message s'il reste vide) ; avec name + control le champ garde la liste des valeurs cochées."
+  ]
+}

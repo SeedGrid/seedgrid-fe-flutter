@@ -351,4 +351,40 @@ SizedBox(
   ),
 )
 ''';
+
+  /// Region `sg-multi-select-chips-obrigatorio`.
+  static const String sgMultiSelectChipsObrigatorio = r'''
+SizedBox(
+  width: 384,
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      SgMultiSelectChips(
+        id: 'msc-required',
+        labelText: context.tx('Empresas'),
+        required: true,
+        options: [
+          SgMultiSelectOption(label: 'Empresa 1', value: 'e1'),
+          SgMultiSelectOption(label: 'Empresa 2', value: 'e2'),
+          SgMultiSelectOption(label: 'Empresa 3', value: 'e3'),
+        ],
+      ),
+      const SizedBox(height: 16),
+      SgMultiSelectChips(
+        id: 'msc-required-message',
+        labelText: context.tx('Empresas'),
+        required: true,
+        requiredMessage: context.tx(
+          'Escolha ao menos uma empresa.',
+        ),
+        options: [
+          SgMultiSelectOption(label: 'Empresa 1', value: 'e1'),
+          SgMultiSelectOption(label: 'Empresa 2', value: 'e2'),
+          SgMultiSelectOption(label: 'Empresa 3', value: 'e3'),
+        ],
+      ),
+    ],
+  ),
+)
+''';
 }
