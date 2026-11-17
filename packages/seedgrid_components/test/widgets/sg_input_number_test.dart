@@ -40,6 +40,32 @@ void main() {
     setComponentsI18n(const SgComponentsI18nInput(locale: 'pt-BR'));
   });
 
+  group('SgInputNumber: mensagem padrao de minValue/maxValue', () {
+    for (final (loc, sep) in [('pt-BR', ','), ('en-US', '.')]) {
+      testWidgets('$loc usa "$sep" no limite decimal', (t) async {
+        setComponentsI18n(SgComponentsI18nInput(locale: loc));
+        addTearDown(
+          () => setComponentsI18n(const SgComponentsI18nInput(locale: 'pt-BR')),
+        );
+        await t.pumpWidget(
+          host(
+            Column(
+              children: [
+                const SgInputNumber(id: 'n', minValue: 0.01, maxValue: 9.5),
+                const SgInputNumber(id: 'z'),
+              ],
+            ),
+          ),
+        );
+        await t.tap(field());
+        await t.pump();
+        await t.tap(field('z'));
+        await t.pump();
+        expect(find.textContaining('0${sep}01'), findsOneWidget);
+      });
+    }
+  });
+
   group('SgInputNumber: tudo selecionado (Ctrl+A)', () {
     testWidgets('digitar um digito substitui o valor; Backspace apaga tudo', (
       t,

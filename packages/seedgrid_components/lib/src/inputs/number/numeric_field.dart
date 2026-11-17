@@ -327,11 +327,11 @@ class NumericFieldState extends State<NumericField>
     }
     if (c.minValue != null && number < c.minValue!) {
       return c.minValueMessage ??
-          t(i18n, 'components.inputs.number.min', {'min': _num(c.minValue!)});
+          t(i18n, 'components.inputs.number.min', {'min': _num(c.minValue!, c.decimalSep)});
     }
     if (c.maxValue != null && number > c.maxValue!) {
       return c.maxValueMessage ??
-          t(i18n, 'components.inputs.number.max', {'max': _num(c.maxValue!)});
+          t(i18n, 'components.inputs.number.max', {'max': _num(c.maxValue!, c.decimalSep)});
     }
     if (c.validation != null) {
       return c.validation!(number);
@@ -347,9 +347,10 @@ class NumericFieldState extends State<NumericField>
     return _messageFor(_parse(value));
   }
 
-  /// Como o JS imprime o numero em `{min}`: inteiro sem ".0".
-  static String _num(num n) =>
-      n == n.truncateToDouble() ? n.toInt().toString() : n.toString();
+  /// Como o JS imprime o numero em `{min}` (inteiro sem ".0"), com o separador decimal do idioma.
+  static String _num(num n, String decimalSep) =>
+      (n == n.truncateToDouble() ? n.toInt().toString() : n.toString())
+          .replaceAll('.', decimalSep);
 
   // ---------------------------------------------------------------- edicao
 
