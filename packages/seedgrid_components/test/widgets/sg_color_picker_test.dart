@@ -39,15 +39,14 @@ Widget opener(
   Builder(
     builder: (context) => SgButton(
       label: 'abrir',
-      onClick: () async {
-        onResult(
-          await showSgColorPicker(
-            context,
-            id: 'dlg',
-            initialValue: initial,
-            presets: presets,
-          ),
-        );
+      // onClick sincrono: um Future devolvido poria o botao em loading (spinner) enquanto o dialogo esta aberto.
+      onClick: () {
+        showSgColorPicker(
+          context,
+          id: 'dlg',
+          initialValue: initial,
+          presets: presets,
+        ).then(onResult);
       },
     ),
   ),
@@ -425,11 +424,13 @@ void main() {
             Builder(
               builder: (context) => SgButton(
                 label: 'abrir',
-                onClick: () => showSgColorPicker(
-                  context,
-                  id: 'dlg',
-                  mode: SgColorPickerMode.sliders,
-                ),
+                onClick: () {
+                  showSgColorPicker(
+                    context,
+                    id: 'dlg',
+                    mode: SgColorPickerMode.sliders,
+                  );
+                },
               ),
             ),
           ),
@@ -495,14 +496,16 @@ void main() {
           Builder(
             builder: (context) => SgButton(
               label: 'abrir',
-              onClick: () => showSgColorPicker(
-                context,
-                id: 'dlg',
-                title: 'Minha cor',
-                okLabel: 'Aplicar',
-                cancelLabel: 'Fechar',
-                showHex: false,
-              ),
+              onClick: () {
+                showSgColorPicker(
+                  context,
+                  id: 'dlg',
+                  title: 'Minha cor',
+                  okLabel: 'Aplicar',
+                  cancelLabel: 'Fechar',
+                  showHex: false,
+                );
+              },
             ),
           ),
         ),
