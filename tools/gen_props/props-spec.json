@@ -4417,7 +4417,7 @@
      "ts": "number | undefined",
      "alias": null,
      "doc": "Z-index",
-     "description": "Camada visual usada quando o dock esta sobreposto.",
+     "description": "Camada visual usada quando o dock está sobreposto.",
      "default": 50,
      "semanticRole": "behavior"
     }

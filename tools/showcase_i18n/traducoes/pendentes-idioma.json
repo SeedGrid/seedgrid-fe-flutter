@@ -712,5 +712,11 @@
   "{tipo}: origem {origem}, destino {destino}",
   "{tipo}: origen {origem}, destino {destino}",
   "{tipo} : source {origem}, cible {destino}"
+ ],
+ "Uso real (não executa na demo)": [
+  "Real usage (does not run in the demo)",
+  "Utilização real (não executa na demonstração)",
+  "Uso real (no se ejecuta en la demo)",
+  "Utilisation réelle (non exécutée dans la démo)"
  ]
 }

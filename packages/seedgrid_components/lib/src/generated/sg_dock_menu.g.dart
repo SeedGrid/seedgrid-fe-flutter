@@ -40,7 +40,7 @@ abstract interface class SgDockMenuProps {
   SgDockMenuPosition? get position;
   /// Exibe labels contextuais dos itens. Padrão: `true`.
   bool? get showLabels;
-  /// Camada visual usada quando o dock esta sobreposto. Padrão: `50`.
+  /// Camada visual usada quando o dock está sobreposto. Padrão: `50`.
   num? get zIndex;
 }
 
@@ -188,6 +188,6 @@ const List<SgPropSpec> sgDockMenuPropSpecs = <SgPropSpec>[
     tsType: 'number',
     required: false,
     defaultValue: '50',
-    description: 'Camada visual usada quando o dock esta sobreposto.',
+    description: 'Camada visual usada quando o dock está sobreposto.',
   ),
 ];

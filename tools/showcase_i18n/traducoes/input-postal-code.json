@@ -25,7 +25,7 @@
 "Com eventos": ["With events","Com eventos","Con eventos","Avec événements"],
 "Código postal com label e hint (padrão: Brasil).": ["Postal code with label and hint (default: Brazil).","Código postal com label e hint (padrão: Brasil).","Código postal con label y hint (por defecto: Brasil).","Code postal avec libellé et indice (par défaut : Brésil)."],
 "Países": ["Countries","Países","Países","Pays"],
-"Cada país tem máscara, tamanho e validação específicos.": ["Each country has its own mask, length, and validation.","Cada pais tem máscara, tamanho e validação especificos.","Cada país tiene su propia máscara, longitud y validación.","Chaque pays a son propre masque, sa longueur et sa validation."],
+"Cada país tem máscara, tamanho e validação específicos.": ["Each country has its own mask, length, and validation.","Cada pais tem máscara, tamanho e validação específicos.","Cada país tiene su propia máscara, longitud y validación.","Chaque pays a son propre masque, sa longueur et sa validation."],
 "Controlado (setValue)": ["Controlled (setValue)","Controlado (setValue)","Controlado (setValue)","Controle (setValue)"],
 "Validação ViaCEP (somente BR)": ["ViaCEP validation (BR only)","Validação ViaCEP (somente BR)","Validación ViaCEP (solo BR)","Validation ViaCEP (BR uniquement)"],
 "Consulta ViaCEP para verificar se o CEP existe. Disponível apenas para country=\"BR\".": ["Calls ViaCEP to check if the CEP exists. Only available for country=\"BR\".","Consulta ViaCEP para verificar se o CEP existe. Disponível apenas para country=\"BR\".","Consulta ViaCEP para verificar si el CEP existe. Solo disponible para country=\"BR\".","Appelle ViaCEP pour vérifier si le CEP existe. Disponible uniquement pour country=\"BR\"."],

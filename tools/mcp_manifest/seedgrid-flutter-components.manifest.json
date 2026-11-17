@@ -5401,7 +5401,7 @@
             "type": "num?",
             "required": false,
             "default": "50",
-            "description": "Camada visual usada quando o dock esta sobreposto."
+            "description": "Camada visual usada quando o dock está sobreposto."
           }
         ],
         "examples": [
@@ -16836,7 +16836,7 @@
             "title": "Básico",
             "file": "apps/seedgrid_showcase/lib/pages/sg_pick_list_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgPickList(\n      id: 'pick-basic',\n      title: context.tx('Frutas'),\n      source: _frutas,\n      target: const [],\n      onChange: (e) =>\n          _ultimo.value = context.txf(\n            '{tipo}: origem {origem}, destino {destino}',\n            {\n              'tipo': e.type.value,\n              'origem': e.source.length,\n              'destino': e.target.length,\n            },\n          ),\n    ),\n    ValueListenableBuilder<String>(\n      valueListenable: _ultimo,\n      builder: (context, ultimo, _) =>\n          Text(\n            '${context.tx('Estado atual')}: ${ultimo.isEmpty ? context.tx('nenhuma mudança ainda') : ultimo}',\n          ),\n    ),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgPickList(\n      id: 'pick-basic',\n      title: context.tx('Frutas'),\n      source: _frutas,\n      target: const [],\n      onChange: (e) => _ultimo.value = context\n          .txf('{tipo}: origem {origem}, destino {destino}', {\n            'tipo': e.type.value,\n            'origem': e.source.length,\n            'destino': e.target.length,\n          }),\n    ),\n    ValueListenableBuilder<String>(\n      valueListenable: _ultimo,\n      builder: (context, ultimo, _) => Text(\n        '${context.tx('Estado atual')}: ${ultimo.isEmpty ? context.tx('nenhuma mudança ainda') : ultimo}',\n      ),\n    ),\n  ],\n)"
           },
           {
             "id": "sg-pick-list-controller",
@@ -16857,7 +16857,7 @@
             "title": "Dentro de um formulário",
             "file": "apps/seedgrid_showcase/lib/pages/sg_pick_list_page.dart",
             "kind": "dart",
-            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgPickList(\n      id: 'equipe',\n      name: 'equipe',\n      control: _form,\n      title: context.tx('Equipe'),\n      source: [\n        SgPickListItem(label: context.tx('Ana'), value: 'ana'),\n        SgPickListItem(label: context.tx('Bruno'), value: 'bruno'),\n        SgPickListItem(label: context.tx('Carla'), value: 'carla'),\n      ],\n      target: const [],\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _form.handleSubmit((values) {\n        final v = values['equipe'] as SgPickListValue?;\n        _enviado.value =\n            v?.target.map((e) => e.label).join(', ') ?? '';\n      }),\n    ),\n    ValueListenableBuilder<String>(\n      valueListenable: _enviado,\n      builder: (context, enviado, _) => enviado.isEmpty\n          ? const SizedBox()\n          : Text(context.txf('Enviado: {valor}', {'valor': enviado})),\n    ),\n  ],\n)"
+            "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: [\n    SgPickList(\n      id: 'equipe',\n      name: 'equipe',\n      control: _form,\n      title: context.tx('Equipe'),\n      source: [\n        SgPickListItem(label: context.tx('Ana'), value: 'ana'),\n        SgPickListItem(label: context.tx('Bruno'), value: 'bruno'),\n        SgPickListItem(label: context.tx('Carla'), value: 'carla'),\n      ],\n      target: const [],\n    ),\n    const SizedBox(height: 12),\n    SgButton(\n      label: Text(context.tx('Enviar')),\n      onClick: () => _form.handleSubmit((values) {\n        final v = values['equipe'] as SgPickListValue?;\n        _enviado.value =\n            v?.target.map((e) => e.label).join(', ') ?? '';\n      }),\n    ),\n    ValueListenableBuilder<String>(\n      valueListenable: _enviado,\n      builder: (context, enviado, _) => enviado.isEmpty\n          ? const SizedBox()\n          : Text(\n              context.txf('Enviado: {valor}', {'valor': enviado}),\n            ),\n    ),\n  ],\n)"
           },
           {
             "id": "sg-pick-list-inicio-unica",

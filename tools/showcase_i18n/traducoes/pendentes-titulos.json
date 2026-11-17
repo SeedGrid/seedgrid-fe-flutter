@@ -1083,7 +1083,7 @@
   "Controlled state",
   "Controlado por estado",
   "Controlado por estado",
-  "État controle"
+  "État contrôlé"
  ],
  "Itens personalizados + fundo do cabeçalho": [
   "Custom items + header background",
@@ -1773,7 +1773,7 @@
   "Controlled by value",
   "Controlado por value",
   "Controlado por value",
-  "Controle par value"
+  "Contrôlé par value"
  ],
  "Fonte assíncrona + render personalizado": [
   "Async source + custom render",
@@ -3285,7 +3285,7 @@
   "Click the field to open. Each selected item becomes a chip with a remove button.",
   "Clique no campo para abrir. Cada item selecionado vira um chip com botão de remover.",
   "Haz clic en el campo para abrir. Cada item seleccionado se vuelve un chip con botón de quitar.",
-  "Cliquez sur le champ pour ouvrir. Chaque élément selectionne devient un chip avec un bouton de suppression."
+  "Cliquez sur le champ pour ouvrir. Chaque élément sélectionné devient un chip avec un bouton de suppression."
  ],
  "Com enabled=false o campo não abre, nem remove chips.": [
   "With enabled={false} the field neither opens nor removes chips.",
@@ -3974,14 +3974,14 @@
  "Tamanhos e quantidade de estrelas": [
   "Sizes and number of stars",
   "Tamanhos e quantidade de estrelas",
-  "Tamanhos y cantidad de estrellas",
-  "Tailles et nombre d'etoiles"
+  "Tamaños y cantidad de estrellas",
+  "Tailles et nombre d'étoiles"
  ],
  "Controle de size e stars.": [
   "Control of size and stars.",
   "Controle de size e stars.",
   "Control de size y stars.",
-  "Controle de la taille et des etoiles."
+  "Contrôle de la taille et des étoiles."
  ],
  "Cores e ícones customizados": [
   "Colors and custom icons",
@@ -4874,7 +4874,7 @@
  "Neste showcase, o SgToaster já está montado no layout. Em um app real, monte-o uma vez na raiz.": [
   "In this showcase, SgToaster is already mounted in layout. In a real app, mount it once at root.",
   "Neste showcase, o SgToaster já está montado no layout. Em um app real, monte-o uma vez na raiz.",
-  "En este showcase, SgToaster ya esta montado en el layout. En una app real, montelo una vez en la raíz.",
+  "En este showcase, SgToaster ya está montado en el layout. En una app real, móntelo una vez en la raíz.",
   "Dans cette vitrine, SgToaster est déjà monte dans la mise en page. Dans une vraie application, montez-le une fois a la racine."
  ],
  "Tipos de toast": [
@@ -5000,7 +5000,7 @@
  "Neste showcase, o SgToastHost já está montado na página. Em um app real, monte-o uma vez na raiz.": [
   "In this showcase, SgToastHost is already mounted in the page. In a real app, mount it once at root.",
   "Neste showcase, o SgToastHost já está montado na página. Em um app real, monte-o uma vez na raiz.",
-  "En este showcase, SgToastHost ya esta montado en la página. En una app real, montelo una vez en la raíz.",
+  "En este showcase, SgToastHost ya está montado en la página. En una app real, móntelo una vez en la raíz.",
   "Dans cette vitrine, SgToastHost est déjà monte dans la page. Dans une vraie application, montez-le une fois a la racine."
  ],
  "Iniciar loading": [
@@ -5667,13 +5667,13 @@
   "Edit selected record",
   "Editar registo selecionado",
   "Editar registro seleccionado",
-  "Modifier l'enregistrement selectionne"
+  "Modifier l'enregistrement sélectionné"
  ],
  "Excluir registro selecionado": [
   "Delete selected record",
   "Eliminar registo selecionado",
   "Eliminar registro seleccionado",
-  "Supprimer l'enregistrement selectionne"
+  "Supprimer l'enregistrement sélectionné"
  ],
  "Filtrar resultados": [
   "Filter results",
