@@ -102,7 +102,7 @@ void main() {
         setComponentsI18n(const SgComponentsI18nInput(locale: 'pt-BR'));
         await t.pumpWidget(host(const SgOrderList(source: [])));
         expect(find.byTooltip('Mover para o topo'), findsOneWidget);
-        expect(find.text('Nenhum item disponivel.'), findsOneWidget);
+        expect(find.text('Nenhum item disponível.'), findsOneWidget);
         expect(find.text('Top'), findsOneWidget);
       },
     );

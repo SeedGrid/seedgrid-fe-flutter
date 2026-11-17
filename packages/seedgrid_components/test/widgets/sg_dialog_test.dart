@@ -1174,7 +1174,7 @@ void main() {
           host(const SgDialog(defaultOpen: true, child: Text('c'))),
         );
         await settle(t);
-        expect(find.bySemanticsLabel('Dialogo'), findsWidgets);
+        expect(find.bySemanticsLabel('Diálogo'), findsWidgets);
         handle.dispose();
       },
     );

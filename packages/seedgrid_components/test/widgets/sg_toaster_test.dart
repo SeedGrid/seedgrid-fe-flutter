@@ -271,7 +271,7 @@ void main() {
       toast('msg');
       await t.pump();
       expect(
-        find.bySemanticsLabel(RegExp('Fechar notificacao')),
+        find.bySemanticsLabel(RegExp('Fechar notificação')),
         findsOneWidget,
       );
       semantics.dispose();

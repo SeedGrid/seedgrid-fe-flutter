@@ -105,7 +105,7 @@ void main() {
         'ORIGEM',
       );
       expect(find.byTooltip('Mover selecionado para destino'), findsOneWidget);
-      expect(find.text('Nenhum item disponivel.'), findsOneWidget);
+      expect(find.text('Nenhum item disponível.'), findsOneWidget);
     });
 
     testWidgets(
