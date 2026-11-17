@@ -1149,7 +1149,7 @@
   "Basic",
   "Básico",
   "Básico",
-  "Basic"
+  "Basique"
  ],
  "Conteúdo personalizado": [
   "Custom Content",
@@ -2547,7 +2547,7 @@
   "External Control",
   "Controlo Externo",
   "Control Externo",
-  "Controle externe"
+  "Contrôle externe"
  ],
  "Use activePageId + onActivePageIdChange para setar a aba ativa.": [
   "Use activePageId + onActivePageIdChange to set the active tab.",
@@ -3219,7 +3219,7 @@
   "Each option may have a `chipLabel`: the closed field summarizes the selection with the short text (e.g. \"1, 3\") while the list keeps the full `label`.",
   "Cada opção pode ter chipLabel: o campo fechado resume a seleção com o texto curto (ex.: \"1, 3\") e a lista continua com o label completo.",
   "Cada opción puede tener `chipLabel`: el campo cerrado resume la selección con el texto corto (p. ej. \"1, 3\") y la lista mantiene el `label` completo.",
-  "Chaque option peut avoir un `chipLabel` : le champ ferme resume la selection avec le texte court (ex. \"1, 3\") et la liste garde le `label` complet."
+  "Chaque option peut avoir un `chipLabel` : le champ fermé résume la sélection avec le texte court (ex. \"1, 3\") et la liste garde le `label` complet."
  ],
  "Empresas": [
   "Companies",
@@ -4113,7 +4113,7 @@
   "Controlled Inline + Resize",
   "Inline Controlado + Resize",
   "Inline Controlado + Resize",
-  "Inline controle + redimensionnement"
+  "Inline contrôlé + redimensionnement"
  ],
  "Demonstra open/onOpenChange, size, resizable e onSizeChange.": [
   "Demonstrates open/onOpenChange, size, resizable and onSizeChange.",
@@ -4305,7 +4305,7 @@
   "External Control",
   "Controlo Externo",
   "Control Externo",
-  "Controle externe"
+  "Contrôle externe"
  ],
  "Somente leitura e desabilitado": [
   "Read-Only and Disabled",
@@ -5493,7 +5493,7 @@
   "Row selection (single and multiple)",
   "Seleção de linhas (single e multiple)",
   "Selección de filas (single y multiple)",
-  "Selection de lignes (simple et multiple)"
+  "Sélection de lignes (simple et multiple)"
  ],
  "selectionMode single ou multiple, com dataKey e onSelectionChange; a seleção é entregue ao pai.": [
   "selectionMode single or multiple, with dataKey and onSelectionChange; the selection is handed to the parent.",
@@ -5529,7 +5529,7 @@
   "External page and sort control",
   "Controle externo de página e ordenação",
   "Control externo de página y ordenación",
-  "Controle externe de page et de tri"
+  "Contrôle externe de page et de tri"
  ],
  "A página e a ordenação são controladas por fora do componente, sem depender só da interação do usuário.": [
   "Page and sorting are controlled from outside the component, not only by user interaction.",
@@ -5541,7 +5541,7 @@
   "Server-side paginator (lazy)",
   "Server-side paginator (lazy)",
   "Server-side paginator (lazy)",
-  "Paginateur cote serveur (lazy)"
+  "Paginateur côté serveur (lazy)"
  ],
  "Loading e estado vazio": [
   "Loading and empty state",
