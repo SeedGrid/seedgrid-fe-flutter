@@ -105,6 +105,16 @@ void main() {
     await t.tap(find.byKey(const ValueKey('tema-editor-aplicar')));
     await settle(t);
     expect(_seed(t), '#7C3AED');
+
+    // sem o `#` tambem vale (igual ao editor do React)
+    await t.tap(find.byKey(const ValueKey('abrir-tema')));
+    await settle(t);
+    await t.enterText(find.byKey(const ValueKey('tema-editor-cor-livre')), 'ec4899');
+    await settle(t);
+    await _scrollTo(t, find.byKey(const ValueKey('tema-editor-aplicar')));
+    await t.tap(find.byKey(const ValueKey('tema-editor-aplicar')));
+    await settle(t);
+    expect(_seed(t), '#EC4899');
   });
 
   testWidgets('tocar na amostra abre o seletor de cor; OK usa a cor, Cancelar descarta', (t) async {

@@ -122,7 +122,10 @@ class _CustomSeedField extends StatelessWidget {
   }
 }
 
-final RegExp _hexRe = RegExp(r'^#[0-9a-fA-F]{6}$');
+// Aceita com ou sem `#` (igual ao editor do React).
+final RegExp _hexRe = RegExp(r'^#?[0-9a-fA-F]{6}$');
+
+String _withHash(String v) => (v.startsWith('#') ? v : '#$v').toUpperCase();
 
 /// Editor de tema (conteudo do bottom sheet do botao de tema). Nada muda no app ate clicar em Aplicar.
 class ShowcaseThemeEditor extends StatefulWidget {
@@ -211,17 +214,13 @@ class _ShowcaseThemeEditorState extends State<ShowcaseThemeEditor> {
                   key: const ValueKey('tema-editor-amostra'),
                   borderRadius: BorderRadius.circular(draft.radius),
                   onTap: () => _openColorPicker(
-                    customValid
-                        ? _hex(_hexCtl.text.toUpperCase())
-                        : _hex(_seed),
+                    customValid ? _hex(_withHash(_hexCtl.text)) : _hex(_seed),
                   ),
                   child: Container(
                     width: 48,
                     height: 48,
                     decoration: BoxDecoration(
-                      color: customValid
-                          ? _hex(_hexCtl.text.toUpperCase())
-                          : null,
+                      color: customValid ? _hex(_withHash(_hexCtl.text)) : null,
                       borderRadius: BorderRadius.circular(draft.radius),
                       border: Border.all(color: Theme.of(context).dividerColor),
                     ),
@@ -246,13 +245,13 @@ class _ShowcaseThemeEditorState extends State<ShowcaseThemeEditor> {
                     LengthLimitingTextInputFormatter(7),
                   ],
                   onChanged: (v) => setState(() {
-                    if (_hexRe.hasMatch(v)) _seed = v.toUpperCase();
+                    if (_hexRe.hasMatch(v)) _seed = _withHash(v);
                   }),
                 ),
               ),
             ],
           ),
-          if (customValid && isLowContrastOnLight(_hexCtl.text.toUpperCase()))
+          if (customValid && isLowContrastOnLight(_withHash(_hexCtl.text)))
             Padding(
               padding: const EdgeInsets.only(top: 8),
               child: Text(
@@ -275,12 +274,12 @@ class _ShowcaseThemeEditorState extends State<ShowcaseThemeEditor> {
                   _SeedTile(
                     key: const ValueKey('tema-editor-cor-custom'),
                     width: w,
-                    color: customValid
-                        ? _hex(_hexCtl.text.toUpperCase())
-                        : null,
+                    color: customValid ? _hex(_withHash(_hexCtl.text)) : null,
                     label: context.tr('editorCustom'),
                     selected: false,
-                    onTap: customValid ? () => _pick(_hexCtl.text) : null,
+                    onTap: customValid
+                        ? () => _pick(_withHash(_hexCtl.text))
+                        : null,
                   ),
                   for (final hex in kSeedPresets)
                     _SeedTile(
