@@ -69,6 +69,11 @@ export function pageTexts(file) {
     const lit = readLiterals(t, m.index + m[0].length);
     if (lit && !lit.dynamic && lit.value.trim()) out.push({ texto: lit.value, onde: path.basename(file) });
   }
+  // Titulo do bloco "Uso real" (registro `realUse: (title: '...', code: ...)`), traduzido por context.tx no shell.
+  for (const m of t.matchAll(/realUse:\s*\(\s*title:\s*/g)) {
+    const lit = readLiterals(t, m.index + m[0].length);
+    if (lit && !lit.dynamic && lit.value.trim()) out.push({ texto: lit.value, onde: path.basename(file) });
+  }
   for (const m of t.matchAll(/ShowcaseExample\(/g)) {
     const stop = t.indexOf("preview:", m.index);
     grab(m.index + m[0].length, stop < 0 ? t.length : stop, ["title", "description"]);
