@@ -16,6 +16,7 @@
 
 ### Novo
 
+* Selo e avatar `danger` (tema): o texto sobre o vermelho de erro é branco com contraste ≥ 4,5:1 (o vermelho escurece só o necessário); o número do selo do `SgNotificationBell` deixa de sair preto.
 * Tema (`seedgrid_theme`): a cor de destaque tem contraste mínimo de 4,5:1 garantido (mesma fórmula do React): texto sobre fundo, texto do contorno, anel de foco; fundo cheio de botão na cor pura da semente.
 * Showcase: aviso para girar o aparelho com o celular deitado.
 * `SgColorPicker` (somente Flutter, sem equivalente no React): seletor de cor com área em gradiente (saturação e brilho) e barra de matiz, ou três barras (`mode: SgColorPickerMode.sliders`), campo hex, cores predefinidas e `showSgColorPicker`.

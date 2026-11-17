@@ -347,4 +347,57 @@ void main() {
       }
     });
   });
+
+  // P168.F1.T8: o vermelho de erro leva texto BRANCO (selo, avatar e botao "danger" leem --destructive/--destructive-foreground).
+  // Escurece so o necessario para o branco passar em 4,5:1, nos dois modos, com o vermelho padrao e com vermelhos customizados.
+  group('P168.F1.T8: vermelho de erro com texto branco', () {
+    const reds = <String?>[
+      null,
+      '#F33C2B',
+      '#FF0000',
+      '#FF6B6B',
+      '#B91C1C',
+      '#FCA5A5',
+      '#7F1D1D',
+    ];
+    String hsl(String v) {
+      final m = RegExp(r'(-?[\d.]+) ([\d.]+)% ([\d.]+)%').firstMatch(v)!;
+      return hslToHex(
+        double.parse(m.group(1)!),
+        double.parse(m.group(2)!),
+        double.parse(m.group(3)!),
+      );
+    }
+
+    for (final entry in _seeds.entries) {
+      for (final mode in [Brightness.light, Brightness.dark]) {
+        test('${entry.key} (${mode.name})', () {
+          for (final red in reds) {
+            final vars = generateThemeVars(
+              SeedThemeInput(seed: entry.value, error: red),
+              mode,
+            );
+            final bg = hsl(vars['--destructive']!);
+            final fg = hsl(vars['--destructive-foreground']!);
+            final why = 'erro=${red ?? "padrao"}: $bg com $fg';
+            expect(fg.toUpperCase(), '#FFFFFF', reason: why);
+            expect(
+              contrastRatio(bg, '#FFFFFF'),
+              greaterThanOrEqualTo(minContrastRatio - 0.05),
+              reason: why,
+            );
+            final c = hexToRgb(bg);
+            final h = rgbToHsl(c.r, c.g, c.b);
+            final lighter = hslToHex(h.h, h.s, clamp(h.l + 2, 0, 100));
+            expect(
+              h.l >= 99 ||
+                  contrastRatio(lighter, '#FFFFFF') < minContrastRatio + 0.35,
+              isTrue,
+              reason: '$why: escureceu alem do necessario',
+            );
+          }
+        });
+      }
+    }
+  });
 }

@@ -63,6 +63,8 @@ ThemeVars generateThemeVars(SeedThemeInput input, Brightness resolvedMode) {
   final tertiary = buildScaleFromHex(tertiaryBase, resolvedMode, boostS: 0);
   final warning = buildScaleFromHex(warningBase, resolvedMode, boostS: 4);
   final error = buildScaleFromHex(errorBase, resolvedMode, boostS: 4);
+  // Vermelho de erro com texto BRANCO (selo, botao e avatar "danger"): escurece so o necessario para o branco passar em 4,5:1.
+  error[500] = darkenForWhiteText(error[500] ?? errorBase);
   final info = buildScaleFromHex(infoBase, resolvedMode, boostS: 2);
   final success = buildScaleFromHex(successBase, resolvedMode, boostS: 2);
 

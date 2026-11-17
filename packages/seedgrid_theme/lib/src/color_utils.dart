@@ -172,6 +172,25 @@ String adjustBgForOnColor(String bgHex) {
   return bgHex;
 }
 
+/// Maximo de passos de 1% de luminosidade HSL que [darkenForWhiteText] aplica.
+const int maxWhiteTextSteps = 25;
+
+/// Fundo para texto BRANCO: se o branco ja alcanca [minContrastRatio] sobre [bgHex], devolve o proprio fundo; senao
+/// escurece (passos de 1% de luminosidade HSL, mesmo matiz e saturacao) so o necessario para o branco passar. Usado no
+/// vermelho de erro (selo, botao e avatar "danger" com texto branco). Sem alcancar em [maxWhiteTextSteps], devolve o
+/// mais escuro testado.
+String darkenForWhiteText(String bgHex) {
+  if (contrastRatio(bgHex, '#FFFFFF') >= minContrastRatio) return bgHex;
+  final c = hexToRgb(bgHex);
+  final hsl = rgbToHsl(c.r, c.g, c.b);
+  var out = bgHex;
+  for (var step = 1; step <= maxWhiteTextSteps; step++) {
+    out = hslToHex(hsl.h, hsl.s, clamp(hsl.l - step, 0, 100));
+    if (contrastRatio(out, '#FFFFFF') >= minContrastRatio) return out;
+  }
+  return out;
+}
+
 /// `"r g b"`: o formato das variaveis `--sg-*` (no React, `rgb(var(--x) / alpha)`).
 /// Quanto o preenchimento do botao cheio escurece (pontos de luminosidade HSL) no hover e no active do tema claro.
 const double fillHoverStep = 6;
