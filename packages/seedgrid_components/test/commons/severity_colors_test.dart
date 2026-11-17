@@ -98,4 +98,22 @@ void main() {
       }
     });
   }
+
+  // P168.F1.T8: o selo/avatar `danger` leva texto BRANCO com >= 4,5:1 e o MESMO vermelho do React
+  // (claro #E7200D, escuro #E62514, escurecidos so o necessario para o branco passar).
+  group('P168.F1.T8: danger com texto branco (mesmo vermelho do React)', () {
+    const esperado = {
+      Brightness.light: 0xFFE7200D,
+      Brightness.dark: 0xFFE62514,
+    };
+    for (final b in Brightness.values) {
+      test('danger (${b.name})', () {
+        final t = SgTheme.fromInput(defaultSeedTheme, b);
+        final c = severityColors(t, 'danger');
+        expect(c.fg.toARGB32(), 0xFFFFFFFF);
+        expect(_contrast(c.bg, c.fg), greaterThanOrEqualTo(4.5));
+        expect(c.bg.toARGB32(), esperado[b]);
+      });
+    }
+  });
 }

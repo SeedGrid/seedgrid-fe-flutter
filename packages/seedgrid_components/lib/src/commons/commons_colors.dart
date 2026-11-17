@@ -96,9 +96,10 @@ SeverityColors severityColors(SgTheme t, String severity) {
       );
     case 'danger':
       return SeverityColors(
-        bg: c(['--destructive-fill', '--destructive']),
-        fg: c(['--destructive-fill-foreground', '--destructive-foreground']),
-        border: c(['--destructive-fill', '--destructive']),
+        // Como no React: o vermelho de erro (--destructive, escurecido so o necessario para o texto BRANCO 4,5:1).
+        bg: c(['--destructive', '--destructive-fill']),
+        fg: c(['--destructive-foreground', '--destructive-fill-foreground']),
+        border: c(['--destructive', '--destructive-fill']),
         ring: ring,
       );
     case 'info':
