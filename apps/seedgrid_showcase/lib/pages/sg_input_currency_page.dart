@@ -90,9 +90,9 @@ class _SgInputCurrencyPageState extends State<SgInputCurrencyPage> {
         code: SgInputCurrencyPageSnippets.sgInputCurrencyBasico,
       ),
       ShowcaseExample(
-        title: 'Obrigatório',
+        title: 'Valor mínimo no lugar de obrigatório',
         description:
-            'Valida ao perder o foco (validateOnBlur=true por padrão).',
+            'Não há required: o zero conta como preenchido. Para exigir um valor, use minValue; minValueMessage troca o texto do erro. Valida ao perder o foco.',
         preview:
             // #region sg-input-currency-obrigatorio
             Column(
@@ -102,8 +102,8 @@ class _SgInputCurrencyPageState extends State<SgInputCurrencyPage> {
                   child: SgInputCurrency(
                     id: 'demo-required',
                     currency: 'BRL',
-                    labelText: context.tx('Campo obrigatório'),
-                    required: true,
+                    labelText: context.tx('Maior que zero'),
+                    minValue: 0.01,
                   ),
                 ),
                 const SizedBox(height: 12),
@@ -113,8 +113,10 @@ class _SgInputCurrencyPageState extends State<SgInputCurrencyPage> {
                     id: 'demo-required-custom',
                     currency: 'BRL',
                     labelText: context.tx('Mensagem customizada'),
-                    required: true,
-                    requiredMessage: context.tx('Informe um valor.'),
+                    minValue: 0.01,
+                    minValueMessage: context.tx(
+                      'Informe um valor maior que zero.',
+                    ),
                   ),
                 ),
               ],
@@ -509,7 +511,6 @@ class _SgInputCurrencyPageState extends State<SgInputCurrencyPage> {
                     id: 'demo-events',
                     currency: 'BRL',
                     labelText: context.tx('Digite e observe o log'),
-                    required: true,
                     onChange: (v) => _log('onChange: $v'),
                     onEnter: () => _log('onEnter (focus)'),
                     onExit: () => _log('onExit (blur)'),
@@ -568,7 +569,6 @@ class _SgInputCurrencyPageState extends State<SgInputCurrencyPage> {
       'allowNegative',
       'enabled',
       'readOnly',
-      'required',
       'filled',
       'withBorder',
       'clearButton',
@@ -626,7 +626,6 @@ class _SgInputCurrencyPageState extends State<SgInputCurrencyPage> {
           allowNegative: v['allowNegative'] as bool?,
           enabled: v['enabled'] as bool?,
           readOnly: v['readOnly'] as bool?,
-          required: v['required'] as bool?,
           filled: v['filled'] as bool?,
           withBorder: v['withBorder'] as bool?,
           clearButton: v['clearButton'] as bool?,

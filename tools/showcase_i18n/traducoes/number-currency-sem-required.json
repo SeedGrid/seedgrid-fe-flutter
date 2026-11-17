@@ -1,0 +1,26 @@
+{
+  "Valor mínimo no lugar de obrigatório": [
+    "Minimum value instead of required",
+    "Valor mínimo no lugar de obrigatório",
+    "Valor mínimo en lugar de obligatorio",
+    "Valeur minimale à la place de obligatoire"
+  ],
+  "Não há required: o zero conta como preenchido. Para exigir um valor, use minValue; minValueMessage troca o texto do erro. Valida ao perder o foco.": [
+    "There is no required: zero counts as filled in. To demand a value, use minValue; minValueMessage replaces the error text. Validates on blur.",
+    "Não existe required: o zero conta como preenchido. Para exigir um valor, use minValue; minValueMessage troca o texto do erro. Valida ao perder o foco.",
+    "No existe required: el cero cuenta como completado. Para exigir un valor, use minValue; minValueMessage cambia el texto del error. Valida al perder el foco.",
+    "Il n'y a pas de required : zéro compte comme rempli. Pour exiger une valeur, utilisez minValue ; minValueMessage remplace le texte de l'erreur. Valide à la perte du focus."
+  ],
+  "Maior que zero": [
+    "Greater than zero",
+    "Maior que zero",
+    "Mayor que cero",
+    "Supérieur à zéro"
+  ],
+  "Informe um valor maior que zero.": [
+    "Enter a value greater than zero.",
+    "Indique um valor maior que zero.",
+    "Indique un valor mayor que cero.",
+    "Saisissez une valeur supérieure à zéro."
+  ]
+}

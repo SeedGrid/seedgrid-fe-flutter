@@ -47,8 +47,6 @@ class SgInputNumber extends StatelessWidget implements SgInputNumberProps {
     this.prefixIcon,
     this.prefixText,
     this.readOnly,
-    this.required,
-    this.requiredMessage,
     this.suffixText,
     this.textInputType,
     this.type,
@@ -153,10 +151,6 @@ class SgInputNumber extends StatelessWidget implements SgInputNumberProps {
   @override
   final bool? readOnly;
   @override
-  final bool? required;
-  @override
-  final String? requiredMessage;
-  @override
   final String? suffixText;
 
   /// Padrao `decimal` (teclado numerico com virgula).
@@ -214,8 +208,6 @@ class SgInputNumber extends StatelessWidget implements SgInputNumberProps {
         readOnly: readOnly,
         withBorder: withBorder,
         borderRadius: borderRadius,
-        required: required,
-        requiredMessage: requiredMessage,
         name: name,
         control: control,
         error: error,

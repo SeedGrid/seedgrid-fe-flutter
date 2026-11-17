@@ -32,6 +32,22 @@ void main() {
     setComponentsI18n(const SgComponentsI18nInput(locale: 'pt-BR'));
   });
 
+  group('SgInputCurrency: tudo selecionado (Ctrl+A)', () {
+    testWidgets('digitar um digito substitui o valor; Backspace apaga tudo', (
+      t,
+    ) async {
+      await t.pumpWidget(host(const SgInputCurrency(id: 'c')));
+      await type(t, '123');
+      expect(shown(t), isNot(contains('9')));
+      // Com tudo selecionado o teclado entrega o texto inteiro trocado pela tecla.
+      await t.enterText(field(), '9');
+      expect(shown(t).replaceAll(RegExp(r'[^0-9]'), ''), '900');
+      await type(t, '5');
+      await t.enterText(field(), '');
+      expect(shown(t).replaceAll(RegExp(r'[^0-9]'), ''), '000');
+    });
+  });
+
   group('moeda, simbolo e posicao', () {
     testWidgets('padrao: BRL em pt-BR = prefixo R\$, 2 casas, agrupamento', (
       t,
@@ -364,11 +380,10 @@ void main() {
       },
     );
 
-    testWidgets('label e labelText; required com asterisco', (t) async {
-      await t.pumpWidget(
-        host(const SgInputCurrency(id: 'c', label: 'Valor', required: true)),
-      );
-      expect(find.text('Valor *'), findsOneWidget);
+    testWidgets('label e labelText; sem asterisco', (t) async {
+      await t.pumpWidget(host(const SgInputCurrency(id: 'c', label: 'Valor')));
+      expect(find.text('Valor'), findsOneWidget);
+      expect(find.text('Valor *'), findsNothing);
       await t.pumpWidget(
         host(const SgInputCurrency(id: 'c', label: 'A', labelText: 'B')),
       );
@@ -399,7 +414,7 @@ void main() {
 
   group('validacao', () {
     testWidgets(
-      'required (zero = vazio), minValue, maxValue, validation, onValidation, mensagens',
+      'minValue (vale para o zero), maxValue, validation, onValidation, mensagens',
       (t) async {
         final msgs = <String?>[];
         await t.pumpWidget(
@@ -408,7 +423,8 @@ void main() {
               children: [
                 SgInputCurrency(
                   id: 'a',
-                  required: true,
+                  minValue: 0.01,
+                  minValueMessage: 'Informe um valor',
                   onValidation: msgs.add,
                 ),
                 const SgInputCurrency(
@@ -420,7 +436,6 @@ void main() {
                 SgInputCurrency(
                   id: 'e',
                   validation: (v) => v == 1 ? null : 'so 1',
-                  requiredMessage: 'x',
                 ),
                 const SgInputCurrency(id: 'z'),
               ],
@@ -431,8 +446,8 @@ void main() {
         await t.pump();
         await t.tap(field('z'));
         await t.pump();
-        expect(find.text('Campo obrigatório.'), findsOneWidget);
-        expect(msgs.last, 'Campo obrigatório.');
+        expect(find.text('Informe um valor'), findsOneWidget);
+        expect(msgs.last, 'Informe um valor');
         await type(t, '3', 'b');
         await t.tap(field('z'));
         await t.pump();
@@ -481,8 +496,6 @@ void main() {
               id: 'c',
               name: 'preco',
               control: form,
-              required: true,
-              requiredMessage: 'Informe o preco',
               validation: (v) => (v ?? 0) > 0 ? null : 'maior que zero',
             ),
           ),
@@ -500,8 +513,8 @@ void main() {
         await form.handleSubmit((v) => sent = v, (e) => invalid = e);
         await t.pump();
         expect(sent, isNull);
-        expect(invalid!['preco']!.message, 'Informe o preco');
-        expect(find.text('Informe o preco'), findsOneWidget);
+        expect(invalid!['preco']!.message, 'maior que zero');
+        expect(find.text('maior que zero'), findsOneWidget);
       },
     );
   });

@@ -17,11 +17,20 @@ typedef _Build =
     });
 
 class _Case {
-  const _Case(this.label, this.build, this.invalid, this.valid);
+  const _Case(
+    this.label,
+    this.build,
+    this.invalid,
+    this.valid, {
+    this.hasRequired = true,
+  });
   final String label;
   final _Build build;
   final String invalid;
   final String valid;
+
+  /// SgInputNumber/SgInputCurrency nao tem `required` (o minValue trata o limite).
+  final bool hasRequired;
 }
 
 String _id(String name) => name;
@@ -146,11 +155,13 @@ final _cases = <_Case>[
       name: name,
       control: form,
       enabled: !(disabled),
-      required: required,
+      // Vazio de verdade (null) nao dispara o limite; com o padrao o vazio e zero e zero < 10.
+      emptyValueIsNull: true,
       minValue: 10,
     ),
     '5',
     '15',
+    hasRequired: false,
   ),
   _Case(
     'SgInputText (minLength)',
@@ -259,6 +270,7 @@ void main() {
         expect(await form.trigger(), isTrue);
         expect(form.errorOf('f'), isNull);
 
+        if (!c.hasRequired) return;
         final form2 = SgFormController();
         await _mount(t, c.build(form2, required: true));
         expect(await form2.trigger(), isFalse);

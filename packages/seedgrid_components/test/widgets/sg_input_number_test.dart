@@ -40,6 +40,22 @@ void main() {
     setComponentsI18n(const SgComponentsI18nInput(locale: 'pt-BR'));
   });
 
+  group('SgInputNumber: tudo selecionado (Ctrl+A)', () {
+    testWidgets('digitar um digito substitui o valor; Backspace apaga tudo', (
+      t,
+    ) async {
+      await t.pumpWidget(host(const SgInputNumber(id: 'n')));
+      await type(t, '123');
+      expect(shown(t), isNot(contains('9')));
+      // Com tudo selecionado o teclado entrega o texto inteiro trocado pela tecla.
+      await t.enterText(field(), '9');
+      expect(shown(t).replaceAll(RegExp(r'[^0-9]'), ''), '900');
+      await type(t, '5');
+      await t.enterText(field(), '');
+      expect(shown(t).replaceAll(RegExp(r'[^0-9]'), ''), '000');
+    });
+  });
+
   group('estado numerico (funcoes puras portadas do React)', () {
     test(
       'normalizeState: ultimo separador vale, lixo some, decimais cortados',
@@ -433,11 +449,10 @@ void main() {
       }
     });
 
-    testWidgets('required mostra asterisco no rotulo', (t) async {
-      await t.pumpWidget(
-        host(const SgInputNumber(id: 'n', labelText: 'Qtd', required: true)),
-      );
-      expect(find.text('Qtd *'), findsOneWidget);
+    testWidgets('sem required: o rotulo nao ganha asterisco', (t) async {
+      await t.pumpWidget(host(const SgInputNumber(id: 'n', labelText: 'Qtd')));
+      expect(find.text('Qtd'), findsOneWidget);
+      expect(find.text('Qtd *'), findsNothing);
     });
 
     testWidgets('prefixText e suffixText aparecem', (t) async {
@@ -672,37 +687,7 @@ void main() {
 
   group('SgInputNumber: validacao', () {
     testWidgets(
-      'required: zero vale como vazio; mensagem padrao do i18n e mensagem propria',
-      (t) async {
-        final msgs = <String?>[];
-        await t.pumpWidget(
-          host(
-            Column(
-              children: [
-                SgInputNumber(id: 'n', required: true, onValidation: msgs.add),
-                const SgInputNumber(
-                  id: 'z',
-                  required: true,
-                  requiredMessage: 'Informe a quantidade',
-                ),
-              ],
-            ),
-          ),
-        );
-        await t.tap(field());
-        await t.pump();
-        await t.tap(field('z'));
-        await t.pump();
-        expect(find.text('Campo obrigatório.'), findsOneWidget);
-        expect(msgs, ['Campo obrigatório.']);
-        await t.tap(field());
-        await t.pump();
-        expect(find.text('Informe a quantidade'), findsOneWidget);
-      },
-    );
-
-    testWidgets(
-      'required com emptyValueIsNull: vazio falha, preenchido passa',
+      'minValue vale para o zero (no lugar de required): mensagem propria e onValidation',
       (t) async {
         final msgs = <String?>[];
         await t.pumpWidget(
@@ -711,7 +696,35 @@ void main() {
               children: [
                 SgInputNumber(
                   id: 'n',
-                  required: true,
+                  minValue: 0.01,
+                  minValueMessage: 'Informe a quantidade',
+                  onValidation: msgs.add,
+                ),
+                const SgInputNumber(id: 'z'),
+              ],
+            ),
+          ),
+        );
+        await t.tap(field());
+        await t.pump();
+        await t.tap(field('z'));
+        await t.pump();
+        expect(find.text('Informe a quantidade'), findsOneWidget);
+        expect(msgs, ['Informe a quantidade']);
+      },
+    );
+
+    testWidgets(
+      'emptyValueIsNull: vazio de verdade nao dispara minValue; preenchido abaixo do minimo falha',
+      (t) async {
+        final msgs = <String?>[];
+        await t.pumpWidget(
+          host(
+            Column(
+              children: [
+                SgInputNumber(
+                  id: 'n',
+                  minValue: 10,
                   emptyValueIsNull: true,
                   onValidation: msgs.add,
                 ),
@@ -724,11 +737,11 @@ void main() {
         await t.pump();
         await t.tap(field('z'));
         await t.pump();
-        expect(msgs.last, 'Campo obrigatório.');
+        expect(msgs.last, isNull);
         await type(t, '5');
         await t.tap(field('z'));
         await t.pump();
-        expect(msgs.last, isNull);
+        expect(msgs.last, isNotNull);
       },
     );
 
@@ -884,39 +897,36 @@ void main() {
       expect(form.isDirty, isTrue);
     });
 
-    testWidgets(
-      'required + rules: handleSubmit mostra erro e revalida ao digitar',
-      (t) async {
-        final form = SgFormController();
-        await t.pumpWidget(
-          host(
-            Column(
-              children: [
-                SgInputNumber(
-                  id: 'n',
-                  name: 'qtd',
-                  control: form,
-                  emptyValueIsNull: true,
-                  required: true,
-                  requiredMessage: 'Informe a quantidade',
-                  validation: (v) => (v ?? 0) >= 10 ? null : 'minimo 10',
-                ),
-                const SgInputNumber(id: 'z'),
-              ],
-            ),
+    testWidgets('validation: handleSubmit mostra erro e revalida ao digitar', (
+      t,
+    ) async {
+      final form = SgFormController();
+      await t.pumpWidget(
+        host(
+          Column(
+            children: [
+              SgInputNumber(
+                id: 'n',
+                name: 'qtd',
+                control: form,
+                emptyValueIsNull: true,
+                validation: (v) => (v ?? 0) >= 10 ? null : 'minimo 10',
+              ),
+              const SgInputNumber(id: 'z'),
+            ],
           ),
-        );
-        await form.handleSubmit((_) {});
-        await t.pump();
-        expect(find.text('Informe a quantidade'), findsOneWidget);
-        await type(t, '5');
-        await t.pumpAndSettle();
-        expect(find.text('minimo 10'), findsOneWidget);
-        await type(t, '0');
-        await t.pumpAndSettle();
-        expect(find.text('minimo 10'), findsNothing);
-      },
-    );
+        ),
+      );
+      await form.handleSubmit((_) {});
+      await t.pump();
+      expect(find.text('minimo 10'), findsOneWidget);
+      await type(t, '5');
+      await t.pumpAndSettle();
+      expect(find.text('minimo 10'), findsOneWidget);
+      await type(t, '0');
+      await t.pumpAndSettle();
+      expect(find.text('minimo 10'), findsNothing);
+    });
 
     testWidgets('usa o SgForm mais proximo quando nao ha control', (t) async {
       Map<String, Object?>? sent;
@@ -1029,7 +1039,6 @@ void main() {
                 suffixText: '/dia',
                 filled: true,
                 initialValue: '5',
-                required: true,
               ),
             ],
           ),

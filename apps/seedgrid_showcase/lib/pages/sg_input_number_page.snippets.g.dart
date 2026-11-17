@@ -297,7 +297,6 @@ SizedBox(
       SgInputNumber(
         id: 'demo-events',
         labelText: context.tx('Digite e observe o log'),
-        required: true,
         decimals: 2,
         onChange: (v) => _log('onChange: $v'),
         onEnter: () => _log('onEnter (focus)'),
@@ -378,8 +377,8 @@ Column(
       width: 320,
       child: SgInputNumber(
         id: 'demo-required',
-        labelText: context.tx('Campo obrigatório'),
-        required: true,
+        labelText: context.tx('Maior que zero'),
+        minValue: 0.01,
         decimals: 2,
       ),
     ),
@@ -389,8 +388,10 @@ Column(
       child: SgInputNumber(
         id: 'demo-required-custom',
         labelText: context.tx('Mensagem customizada'),
-        required: true,
-        requiredMessage: context.tx('Informe um valor.'),
+        minValue: 0.01,
+        minValueMessage: context.tx(
+          'Informe um valor maior que zero.',
+        ),
         decimals: 2,
       ),
     ),

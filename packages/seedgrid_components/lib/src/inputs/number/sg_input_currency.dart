@@ -58,8 +58,6 @@ class SgInputCurrency extends StatelessWidget implements SgInputCurrencyProps {
     this.prefixIcon,
     this.prefixText,
     this.readOnly,
-    this.required,
-    this.requiredMessage,
     this.showCurrencySymbol,
     this.suffixText,
     this.textInputType,
@@ -165,10 +163,6 @@ class SgInputCurrency extends StatelessWidget implements SgInputCurrencyProps {
   final String? prefixText;
   @override
   final bool? readOnly;
-  @override
-  final bool? required;
-  @override
-  final String? requiredMessage;
 
   /// Padrao `true`.
   @override
@@ -251,8 +245,6 @@ class SgInputCurrency extends StatelessWidget implements SgInputCurrencyProps {
         readOnly: readOnly,
         withBorder: withBorder,
         borderRadius: borderRadius,
-        required: required,
-        requiredMessage: requiredMessage,
         name: name,
         control: control,
         error: error,

@@ -60,9 +60,6 @@ abstract interface class SgInputCurrencyProps {
   Widget? get prefixIcon;
   String? get prefixText;
   bool? get readOnly;
-  /// Marca o campo como obrigatório. Padrão: `false`.
-  bool? get required;
-  String? get requiredMessage;
   bool? get showCurrencySymbol;
   String? get suffixText;
   SgInputCurrencyTextInputType? get textInputType;
@@ -333,22 +330,6 @@ const List<SgPropSpec> sgInputCurrencyPropSpecs = <SgPropSpec>[
     reactName: 'readOnly',
     type: 'bool?',
     tsType: 'boolean',
-    required: false,
-  ),
-  SgPropSpec(
-    name: 'required',
-    reactName: 'required',
-    type: 'bool?',
-    tsType: 'boolean',
-    required: false,
-    defaultValue: 'false',
-    description: 'Marca o campo como obrigatório.',
-  ),
-  SgPropSpec(
-    name: 'requiredMessage',
-    reactName: 'requiredMessage',
-    type: 'String?',
-    tsType: 'string',
     required: false,
   ),
   SgPropSpec(

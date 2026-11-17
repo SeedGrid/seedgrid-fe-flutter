@@ -7651,21 +7651,6 @@
      "fn": true
     },
     {
-     "name": "required",
-     "optional": true,
-     "ts": "boolean | undefined",
-     "alias": null,
-     "description": "Marca o campo como obrigatório.",
-     "default": false,
-     "semanticRole": "validation"
-    },
-    {
-     "name": "requiredMessage",
-     "optional": true,
-     "ts": "string | undefined",
-     "alias": null
-    },
-    {
      "name": "rules",
      "optional": true,
      "ts": "RegisterOptions<any> | undefined",
@@ -9110,21 +9095,6 @@
      "ts": "UseFormRegister<any> | undefined",
      "alias": null,
      "fn": true
-    },
-    {
-     "name": "required",
-     "optional": true,
-     "ts": "boolean | undefined",
-     "alias": null,
-     "description": "Marca o campo como obrigatório.",
-     "default": false,
-     "semanticRole": "validation"
-    },
-    {
-     "name": "requiredMessage",
-     "optional": true,
-     "ts": "string | undefined",
-     "alias": null
     },
     {
      "name": "rules",

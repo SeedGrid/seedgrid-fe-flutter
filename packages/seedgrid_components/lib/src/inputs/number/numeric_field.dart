@@ -44,8 +44,6 @@ class NumericFieldConfig {
     this.readOnly,
     this.withBorder,
     this.borderRadius,
-    this.required,
-    this.requiredMessage,
     this.name,
     this.control,
     this.error,
@@ -89,8 +87,6 @@ class NumericFieldConfig {
   final bool? readOnly;
   final bool? withBorder;
   final Object? borderRadius;
-  final bool? required;
-  final String? requiredMessage;
   final String? name;
   final SgFormController? control;
   final String? error;
@@ -202,7 +198,8 @@ class NumericFieldState extends State<NumericField>
     final text = v.abs().toString();
     final sign = v < 0 ? '-' : '';
     final e = text.indexOf('e');
-    if (e < 0) return '$sign${text.endsWith('.0') ? text.substring(0, text.length - 2) : text}';
+    if (e < 0)
+      return '$sign${text.endsWith('.0') ? text.substring(0, text.length - 2) : text}';
     final mantissa = text.substring(0, e).replaceAll('.', '');
     final exp = int.parse(text.substring(e + 1));
     final pad = exp + 1 - mantissa.length;
@@ -213,7 +210,10 @@ class NumericFieldState extends State<NumericField>
     // Como o String(n) do JS: 10.0 vira "10" (nao "10.0", que o campo leria como casas decimais).
     final s = raw == null
         ? ''
-        : (raw is double && raw.isFinite && raw == raw.truncateToDouble() && raw.abs() < 1e21
+        : (raw is double &&
+                  raw.isFinite &&
+                  raw == raw.truncateToDouble() &&
+                  raw.abs() < 1e21
               ? _integralToString(raw)
               : '$raw');
     if (s.isEmpty && c.emptyIsNull) return null;
@@ -232,7 +232,6 @@ class NumericFieldState extends State<NumericField>
 
   void _register() {
     if (!_bound) return;
-    final i18n = useComponentsI18n(context);
     if (_registeredName != null && _registeredName != c.name) {
       _form!.unregisterValidator(_registeredName!, _formValidate);
     }
@@ -240,10 +239,6 @@ class NumericFieldState extends State<NumericField>
     _form!.registerField(
       c.name!,
       validator: _formValidate,
-      required: requiredMessageFor(
-        c.required,
-        c.requiredMessage ?? t(i18n, 'components.inputs.required'),
-      ),
       initialValue: _numberOrNull(c.initialValue),
     );
   }
@@ -323,10 +318,7 @@ class NumericFieldState extends State<NumericField>
     final i18n = useComponentsI18n(context);
     final number = stateToNumber(s, c.decimals);
     final isZero = isZeroState(s, c.decimals);
-    if (s == null || number == null || (!c.emptyIsNull && isZero)) {
-      if (c.required ?? false) {
-        return c.requiredMessage ?? t(i18n, 'components.inputs.required');
-      }
+    if (s == null || number == null) {
       // Vazio chega como 0 (padrao) ou null (emptyValueIsNull) na validation.
       if (c.validation != null) {
         return c.validation!(c.emptyIsNull ? null : (number ?? 0));
@@ -541,13 +533,7 @@ class NumericFieldState extends State<NumericField>
         isFocused: _focus.hasFocus,
         isEmpty: empty,
         decoration: InputDecoration(
-          labelText: float
-              ? (labelStr.isEmpty
-                    ? null
-                    : (c.required ?? false)
-                    ? '$labelStr *'
-                    : labelStr)
-              : null,
+          labelText: float ? (labelStr.isEmpty ? null : labelStr) : null,
           isDense: true,
           contentPadding: const EdgeInsets.symmetric(
             horizontal: 12,
@@ -596,16 +582,7 @@ class NumericFieldState extends State<NumericField>
       color: hasError ? t.error600 : t.text.withValues(alpha: 0.7),
     );
     final externalLabel = Text.rich(
-      TextSpan(
-        text: labelStr,
-        children: [
-          if (c.required ?? false)
-            TextSpan(
-              text: ' *',
-              style: TextStyle(color: t.error600),
-            ),
-        ],
-      ),
+      TextSpan(text: labelStr),
       textAlign: switch (c.labelAlign) {
         'center' => TextAlign.center,
         'end' => TextAlign.end,
@@ -716,16 +693,37 @@ class _NumberFormatter extends TextInputFormatter {
       next = normalizeState(inserted, c.decimals, c.allowNegative);
     } else {
       final key = inserted.isEmpty ? 'Backspace' : inserted;
-      final r = applyKey(
-        owner._state,
-        key,
-        decimals: c.decimals,
-        allowNegative: c.allowNegative,
-        emptyIsZero: !c.emptyIsNull,
-        decimalSep: c.decimalSep,
-      );
-      if (!r.changed) return _atEnd(o);
-      next = r.state;
+      // Tudo selecionado (Ctrl+A) e uma tecla: substitui o valor inteiro, como num campo de texto.
+      final all = o.isNotEmpty && p == 0 && s == 0 && removed == o.length;
+      if (all) {
+        if (inserted.isEmpty) {
+          next = c.emptyIsNull ? null : SgNumberState.zero;
+        } else if (RegExp(r'^[0-9\-_.,]$').hasMatch(key) ||
+            key == c.decimalSep) {
+          final r = applyKey(
+            SgNumberState.zero,
+            key,
+            decimals: c.decimals,
+            allowNegative: c.allowNegative,
+            emptyIsZero: !c.emptyIsNull,
+            decimalSep: c.decimalSep,
+          );
+          next = r.changed ? r.state : SgNumberState.zero;
+        } else {
+          return _atEnd(o);
+        }
+      } else {
+        final r = applyKey(
+          owner._state,
+          key,
+          decimals: c.decimals,
+          allowNegative: c.allowNegative,
+          emptyIsZero: !c.emptyIsNull,
+          decimalSep: c.decimalSep,
+        );
+        if (!r.changed) return _atEnd(o);
+        next = r.state;
+      }
     }
     owner._commit(next);
     return _atEnd(owner.display);

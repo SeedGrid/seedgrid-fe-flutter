@@ -9256,18 +9256,6 @@
             "required": false
           },
           {
-            "name": "required",
-            "type": "bool?",
-            "required": false,
-            "default": "false",
-            "description": "Marca o campo como obrigatório."
-          },
-          {
-            "name": "requiredMessage",
-            "type": "String?",
-            "required": false
-          },
-          {
             "name": "showCurrencySymbol",
             "type": "bool?",
             "required": false
@@ -9353,7 +9341,7 @@
             "title": "Eventos",
             "file": "apps/seedgrid_showcase/lib/pages/sg_input_currency_page.dart",
             "kind": "dart",
-            "code": "SizedBox(\n  width: 320,\n  child: Column(\n    crossAxisAlignment: CrossAxisAlignment.start,\n    children: [\n      SgInputCurrency(\n        id: 'demo-events',\n        currency: 'BRL',\n        labelText: context.tx('Digite e observe o log'),\n        required: true,\n        onChange: (v) => _log('onChange: $v'),\n        onEnter: () => _log('onEnter (focus)'),\n        onExit: () => _log('onExit (blur)'),\n        onClear: () => _log('onClear'),\n        onValidation: (msg) =>\n            _log('onValidation: ${msg ?? context.tx('válido')}'),\n      ),\n      const SizedBox(height: 12),\n      ValueListenableBuilder<List<String>>(\n        valueListenable: _eventLog,\n        builder: (context, entries, _) => ShowcaseLogBox(\n          entries: entries,\n          hint: context.tx('Interaja com o input...'),\n          height: 160,\n        ),\n      ),\n    ],\n  ),\n)"
+            "code": "SizedBox(\n  width: 320,\n  child: Column(\n    crossAxisAlignment: CrossAxisAlignment.start,\n    children: [\n      SgInputCurrency(\n        id: 'demo-events',\n        currency: 'BRL',\n        labelText: context.tx('Digite e observe o log'),\n        onChange: (v) => _log('onChange: $v'),\n        onEnter: () => _log('onEnter (focus)'),\n        onExit: () => _log('onExit (blur)'),\n        onClear: () => _log('onClear'),\n        onValidation: (msg) =>\n            _log('onValidation: ${msg ?? context.tx('válido')}'),\n      ),\n      const SizedBox(height: 12),\n      ValueListenableBuilder<List<String>>(\n        valueListenable: _eventLog,\n        builder: (context, entries, _) => ShowcaseLogBox(\n          entries: entries,\n          hint: context.tx('Interaja com o input...'),\n          height: 160,\n        ),\n      ),\n    ],\n  ),\n)"
           },
           {
             "id": "sg-input-currency-largura",
@@ -9378,10 +9366,10 @@
           },
           {
             "id": "sg-input-currency-obrigatorio",
-            "title": "Obrigatório",
+            "title": "Valor mínimo no lugar de obrigatório",
             "file": "apps/seedgrid_showcase/lib/pages/sg_input_currency_page.dart",
             "kind": "dart",
-            "code": "Column(\n  children: [\n    SizedBox(\n      width: 320,\n      child: SgInputCurrency(\n        id: 'demo-required',\n        currency: 'BRL',\n        labelText: context.tx('Campo obrigatório'),\n        required: true,\n      ),\n    ),\n    const SizedBox(height: 12),\n    SizedBox(\n      width: 320,\n      child: SgInputCurrency(\n        id: 'demo-required-custom',\n        currency: 'BRL',\n        labelText: context.tx('Mensagem customizada'),\n        required: true,\n        requiredMessage: context.tx('Informe um valor.'),\n      ),\n    ),\n  ],\n)"
+            "code": "Column(\n  children: [\n    SizedBox(\n      width: 320,\n      child: SgInputCurrency(\n        id: 'demo-required',\n        currency: 'BRL',\n        labelText: context.tx('Maior que zero'),\n        minValue: 0.01,\n      ),\n    ),\n    const SizedBox(height: 12),\n    SizedBox(\n      width: 320,\n      child: SgInputCurrency(\n        id: 'demo-required-custom',\n        currency: 'BRL',\n        labelText: context.tx('Mensagem customizada'),\n        minValue: 0.01,\n        minValueMessage: context.tx(\n          'Informe um valor maior que zero.',\n        ),\n      ),\n    ),\n  ],\n)"
           },
           {
             "id": "sg-input-currency-sem-decimais",
@@ -10870,18 +10858,6 @@
             "description": "Impede edição mantendo leitura e foco."
           },
           {
-            "name": "required",
-            "type": "bool?",
-            "required": false,
-            "default": "false",
-            "description": "Marca o campo como obrigatório."
-          },
-          {
-            "name": "requiredMessage",
-            "type": "String?",
-            "required": false
-          },
-          {
             "name": "suffixText",
             "type": "String?",
             "required": false
@@ -10971,7 +10947,7 @@
             "title": "Eventos",
             "file": "apps/seedgrid_showcase/lib/pages/sg_input_number_page.dart",
             "kind": "dart",
-            "code": "SizedBox(\n  width: 320,\n  child: Column(\n    crossAxisAlignment: CrossAxisAlignment.start,\n    children: [\n      SgInputNumber(\n        id: 'demo-events',\n        labelText: context.tx('Digite e observe o log'),\n        required: true,\n        decimals: 2,\n        onChange: (v) => _log('onChange: $v'),\n        onEnter: () => _log('onEnter (focus)'),\n        onExit: () => _log('onExit (blur)'),\n        onClear: () => _log('onClear'),\n        onValidation: (msg) =>\n            _log('onValidation: ${msg ?? context.tx('válido')}'),\n      ),\n      const SizedBox(height: 12),\n      ValueListenableBuilder<List<String>>(\n        valueListenable: _eventLog,\n        builder: (context, entries, _) => ShowcaseLogBox(\n          entries: entries,\n          hint: context.tx('Interaja com o input...'),\n          height: 160,\n        ),\n      ),\n    ],\n  ),\n)"
+            "code": "SizedBox(\n  width: 320,\n  child: Column(\n    crossAxisAlignment: CrossAxisAlignment.start,\n    children: [\n      SgInputNumber(\n        id: 'demo-events',\n        labelText: context.tx('Digite e observe o log'),\n        decimals: 2,\n        onChange: (v) => _log('onChange: $v'),\n        onEnter: () => _log('onEnter (focus)'),\n        onExit: () => _log('onExit (blur)'),\n        onClear: () => _log('onClear'),\n        onValidation: (msg) =>\n            _log('onValidation: ${msg ?? context.tx('válido')}'),\n      ),\n      const SizedBox(height: 12),\n      ValueListenableBuilder<List<String>>(\n        valueListenable: _eventLog,\n        builder: (context, entries, _) => ShowcaseLogBox(\n          entries: entries,\n          hint: context.tx('Interaja com o input...'),\n          height: 160,\n        ),\n      ),\n    ],\n  ),\n)"
           },
           {
             "id": "sg-input-number-icone",
@@ -10996,10 +10972,10 @@
           },
           {
             "id": "sg-input-number-obrigatorio",
-            "title": "Obrigatório",
+            "title": "Valor mínimo no lugar de obrigatório",
             "file": "apps/seedgrid_showcase/lib/pages/sg_input_number_page.dart",
             "kind": "dart",
-            "code": "Column(\n  children: [\n    SizedBox(\n      width: 320,\n      child: SgInputNumber(\n        id: 'demo-required',\n        labelText: context.tx('Campo obrigatório'),\n        required: true,\n        decimals: 2,\n      ),\n    ),\n    const SizedBox(height: 12),\n    SizedBox(\n      width: 320,\n      child: SgInputNumber(\n        id: 'demo-required-custom',\n        labelText: context.tx('Mensagem customizada'),\n        required: true,\n        requiredMessage: context.tx('Informe um valor.'),\n        decimals: 2,\n      ),\n    ),\n  ],\n)"
+            "code": "Column(\n  children: [\n    SizedBox(\n      width: 320,\n      child: SgInputNumber(\n        id: 'demo-required',\n        labelText: context.tx('Maior que zero'),\n        minValue: 0.01,\n        decimals: 2,\n      ),\n    ),\n    const SizedBox(height: 12),\n    SizedBox(\n      width: 320,\n      child: SgInputNumber(\n        id: 'demo-required-custom',\n        labelText: context.tx('Mensagem customizada'),\n        minValue: 0.01,\n        minValueMessage: context.tx(\n          'Informe um valor maior que zero.',\n        ),\n        decimals: 2,\n      ),\n    ),\n  ],\n)"
           },
           {
             "id": "sg-input-number-rotulo",

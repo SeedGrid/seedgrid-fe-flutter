@@ -61,9 +61,6 @@ abstract interface class SgInputNumberProps {
   String? get prefixText;
   /// Impede edição mantendo leitura e foco. Padrão: `false`.
   bool? get readOnly;
-  /// Marca o campo como obrigatório. Padrão: `false`.
-  bool? get required;
-  String? get requiredMessage;
   String? get suffixText;
   SgInputNumberTextInputType? get textInputType;
   /// Tipo TS: `React.HTMLInputTypeAttribute` (sem tradução exata; ver excecoes.json).
@@ -330,22 +327,6 @@ const List<SgPropSpec> sgInputNumberPropSpecs = <SgPropSpec>[
     required: false,
     defaultValue: 'false',
     description: 'Impede edição mantendo leitura e foco.',
-  ),
-  SgPropSpec(
-    name: 'required',
-    reactName: 'required',
-    type: 'bool?',
-    tsType: 'boolean',
-    required: false,
-    defaultValue: 'false',
-    description: 'Marca o campo como obrigatório.',
-  ),
-  SgPropSpec(
-    name: 'requiredMessage',
-    reactName: 'requiredMessage',
-    type: 'String?',
-    tsType: 'string',
-    required: false,
   ),
   SgPropSpec(
     name: 'suffixText',

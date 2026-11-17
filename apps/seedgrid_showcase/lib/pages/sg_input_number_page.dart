@@ -121,9 +121,9 @@ class _SgInputNumberPageState extends State<SgInputNumberPage> {
         code: SgInputNumberPageSnippets.sgInputNumberBasico,
       ),
       ShowcaseExample(
-        title: 'Obrigatório',
+        title: 'Valor mínimo no lugar de obrigatório',
         description:
-            'Valida ao perder o foco (validateOnBlur=true por padrão).',
+            'Não há required: o zero conta como preenchido. Para exigir um valor, use minValue; minValueMessage troca o texto do erro. Valida ao perder o foco.',
         preview:
             // #region sg-input-number-obrigatorio
             Column(
@@ -132,8 +132,8 @@ class _SgInputNumberPageState extends State<SgInputNumberPage> {
                   width: 320,
                   child: SgInputNumber(
                     id: 'demo-required',
-                    labelText: context.tx('Campo obrigatório'),
-                    required: true,
+                    labelText: context.tx('Maior que zero'),
+                    minValue: 0.01,
                     decimals: 2,
                   ),
                 ),
@@ -143,8 +143,10 @@ class _SgInputNumberPageState extends State<SgInputNumberPage> {
                   child: SgInputNumber(
                     id: 'demo-required-custom',
                     labelText: context.tx('Mensagem customizada'),
-                    required: true,
-                    requiredMessage: context.tx('Informe um valor.'),
+                    minValue: 0.01,
+                    minValueMessage: context.tx(
+                      'Informe um valor maior que zero.',
+                    ),
                     decimals: 2,
                   ),
                 ),
@@ -548,7 +550,6 @@ class _SgInputNumberPageState extends State<SgInputNumberPage> {
                   SgInputNumber(
                     id: 'demo-events',
                     labelText: context.tx('Digite e observe o log'),
-                    required: true,
                     decimals: 2,
                     onChange: (v) => _log('onChange: $v'),
                     onEnter: () => _log('onEnter (focus)'),
@@ -742,7 +743,6 @@ class _SgInputNumberPageState extends State<SgInputNumberPage> {
       'allowNegative',
       'enabled',
       'readOnly',
-      'required',
       'filled',
       'withBorder',
       'clearButton',
@@ -795,7 +795,6 @@ class _SgInputNumberPageState extends State<SgInputNumberPage> {
           allowNegative: v['allowNegative'] as bool?,
           enabled: v['enabled'] as bool?,
           readOnly: v['readOnly'] as bool?,
-          required: v['required'] as bool?,
           filled: v['filled'] as bool?,
           withBorder: v['withBorder'] as bool?,
           clearButton: v['clearButton'] as bool?,

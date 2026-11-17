@@ -415,7 +415,7 @@
    "status": "portado",
    "motivo": "sem Intl no Dart: simbolo, posicao e separadores vem de tabela gerada do Node (30 locales latinos; 162 moedas; fora da tabela so as escritas com digitos nao latinos ou agrupamento fora de 3 em 3), locale sem dados cai no idioma e depois em en-US; o React trata tecla e o Flutter recebe diferenca de texto (formatter converte); goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50); validadores do componente rodam no submit (decisao do dono)",
    "onde": "packages/seedgrid_components/lib/src/inputs/number/sg_input_currency.dart",
-   "props": 49,
+   "props": 47,
    "propsOmitidas": 4,
    "propsGenericas": 12
   },
@@ -455,7 +455,7 @@
    "status": "portado",
    "motivo": "sem Intl no Dart: simbolo, posicao e separadores vem de tabela gerada do Node (30 locales latinos; 162 moedas; fora da tabela so as escritas com digitos nao latinos ou agrupamento fora de 3 em 3), locale sem dados cai no idioma e depois em en-US; o React trata tecla e o Flutter recebe diferenca de texto (formatter converte); goldens com a fonte de teste do Flutter (sem comparacao visual de texto com o React); nao testado em IME nem em dispositivo; inputProps/className do React nao existem (ADR 50); validadores do componente rodam no submit (decisao do dono)",
    "onde": "packages/seedgrid_components/lib/src/inputs/number/sg_input_number.dart",
-   "props": 46,
+   "props": 44,
    "propsOmitidas": 4,
    "propsGenericas": 13
   },

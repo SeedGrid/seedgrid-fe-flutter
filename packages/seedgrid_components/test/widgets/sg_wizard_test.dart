@@ -779,7 +779,7 @@ void main() {
 
     for (final (nome, campo) in <(String, Widget)>[
       ('SgInputTextArea', const SgInputTextArea(id: 'a', required: true)),
-      ('SgInputNumber', const SgInputNumber(id: 'b', required: true)),
+      ('SgInputNumber', const SgInputNumber(id: 'b', minValue: 1)),
       ('SgToggleSwitch', const SgToggleSwitch(id: 'c', required: true)),
       ('SgInputEmail', const SgInputEmail(id: 'd', required: true)),
     ]) {
