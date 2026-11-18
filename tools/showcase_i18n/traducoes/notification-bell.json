@@ -17,12 +17,6 @@
   "types vincula cada tipo de notificación a un icono y a la acción de abrir (por ejemplo, descargar el informe). Los callbacks avisan lo que hizo el usuario.",
   "types associe chaque type de notification à une icône et à l'action d'ouverture (par exemple, télécharger le rapport). Les callbacks signalent ce que l'utilisateur a fait."
  ],
- "Extra do Flutter: cria o cliente do Pulse quando o sino abre a própria conexão (o SDK ainda não é dependência do pacote).": [
-  "Flutter extra: creates the Pulse client when the bell opens its own connection (the SDK is not yet a dependency of the package).",
-  "Extra do Flutter: cria o cliente do Pulse quando o sino abre a própria ligação (o SDK ainda não é dependência do pacote).",
-  "Extra de Flutter: crea el cliente de Pulse cuando la campana abre su propia conexión (el SDK aún no es dependencia del paquete).",
-  "Extra de Flutter : crée le client Pulse quand la cloche ouvre sa propre connexion (le SDK n'est pas encore une dépendance du paquet)."
- ],
  "Sino de notificações do usuário logado: contador de não lidas, lista, marcar como lida, excluir e limpar. Conecta-se sozinho ao Pulse e, com ele desligado, faz polling de reserva. Sem regra de negócio: cada tipo tem seu ícone e sua ação.": [
   "Notification bell for the signed-in user: unread counter, list, mark as read, delete and clear. It connects to Pulse by itself and, with Pulse off, falls back to polling. No business rules: each type has its own icon and action.",
   "Sino de notificações do utilizador autenticado: contador de não lidas, lista, marcar como lida, eliminar e limpar. Liga-se sozinho ao Pulse e, com ele desligado, faz polling de reserva. Sem regra de negócio: cada tipo tem o seu ícone e a sua ação.",

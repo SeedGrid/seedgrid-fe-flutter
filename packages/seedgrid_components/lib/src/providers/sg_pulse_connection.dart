@@ -1,8 +1,8 @@
 // Ponto de injecao do cliente do SeedGrid Pulse. No React o SgRealtimeProvider cria um
 // `PulseSubscriberClient` (@seedgrid/pulse-subscriber-react 3.0.0); aqui o provider fala com esta
-// interface. O SDK Flutter do Pulse (`seedgrid_pulse_subscriber` 2.0.0) tem a mesma superficie
-// (getToken, subscribe, states, messages, 4403 terminal) e liga por um adaptador de ~40 linhas, que
-// fica em PULSE_ADAPTER.md (nao e dependencia deste pacote: o SDK ainda nao esta no pub.dev).
+// interface. O SDK Flutter do Pulse (`seedgrid_pulse_subscriber` 2.0.0, dependencia git do pubspec) tem a
+// mesma superficie (getToken, subscribe, states, messages, 4403 terminal) e entra por `SgPulseSdkConnection`
+// (sg_pulse_sdk_connection.dart), o cliente padrao dos widgets; esta interface serve a testes e simulacao.
 import 'dart:async';
 
 /// Estados do cliente, com os mesmos nomes do `ConnectionState` do SDK.
@@ -51,7 +51,7 @@ class SgPulseMessage {
 
 typedef SgPulseTokenGetter = Future<SgPulseToken> Function();
 
-/// Cliente do Pulse. Implemente com o SDK real (ver PULSE_ADAPTER.md) ou use [SgSimulatedPulseConnection].
+/// Cliente do Pulse. O padrao dos widgets e [SgPulseSdkConnection] (SDK real); implemente outro ou use [SgSimulatedPulseConnection].
 abstract class SgPulseConnection {
   /// Mudancas de estado (broadcast).
   Stream<SgPulseState> get states;

@@ -227,16 +227,6 @@ void main() {
       expect(h.conn.connectCalls, 0);
     });
 
-    testWidgets('sem connectionFactory nao ha como conectar => unavailable', (
-      t,
-    ) async {
-      final h = Harness();
-      await t.pumpWidget(h.app(useFactory: false));
-      await settle(t);
-      expect(find.text('status:unavailable'), findsOneWidget);
-      expect(h.tokenCalls, 1);
-    });
-
     testWidgets(
       'falha do connect => estado vem do cliente (error => unavailable)',
       (t) async {

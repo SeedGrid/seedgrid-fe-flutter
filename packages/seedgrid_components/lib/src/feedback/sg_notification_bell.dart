@@ -4,9 +4,9 @@
 // limpar. Autonomo: sem SgRealtimeProvider acima que assine `user-notifications`, abre o proprio. Sem regra de
 // negocio: o que cada `type` mostra e faz vem de `types`.
 //
-// Diferencas deliberadas: (1) o cliente do Pulse entra por `connectionFactory` (extra do Flutter; ver
-// sg_pulse_connection.dart), porque o SDK `seedgrid_pulse_subscriber` ainda nao e dependencia deste pacote; sem
-// ele o status fica `unavailable` e o sino usa o polling de reserva; (2) `apiUrl` e `tokenEndpoint` precisam ser
+// Diferencas deliberadas: (1) o sino cria sozinho o cliente do SDK `seedgrid_pulse_subscriber` (como o React);
+// `connectionFactory` e um extra OPCIONAL do Flutter (testes, simulacao; ver sg_pulse_connection.dart); com o
+// realtime fora do ar o sino usa o polling de reserva; (2) `apiUrl` e `tokenEndpoint` precisam ser
 // URLs absolutas (no Flutter nao existe "mesma origem"); (3) o painel abre como popover (largo) ou como folha que
 // sobe de baixo (celular); (4) `requestInit` e [SgTokenRequestInit] (cabecalhos e corpo).
 import 'dart:async';
@@ -122,7 +122,8 @@ class SgNotificationBell extends StatelessWidget
   @override
   final void Function(SgPollingStats stats)? onPollingTick;
 
-  /// Extra do Flutter: cria o cliente do Pulse (ver [SgPulseConnection]) quando o sino abre a propria conexao.
+  /// Extra do Flutter, opcional: cria o cliente do Pulse (ver [SgPulseConnection]) no lugar do SDK (testes, simulacao).
+  /// Sem ele o sino abre a conexao com o SDK `seedgrid_pulse_subscriber`, como o React.
   final SgPulseConnection Function()? connectionFactory;
 
   Future<SgRealtimeConnectResponse> _tokenViaFetcher() async {

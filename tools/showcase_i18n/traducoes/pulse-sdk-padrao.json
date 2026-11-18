@@ -1,0 +1,14 @@
+{
+ "Extra opcional do Flutter: troca o cliente do Pulse (testes, simulação). Sem ele o sino conecta pelo SDK seedgrid_pulse_subscriber, como o React.": [
+  "Optional Flutter extra: replaces the Pulse client (tests, simulation). Without it the bell connects through the seedgrid_pulse_subscriber SDK, like React.",
+  "Extra opcional do Flutter: substitui o cliente do Pulse (testes, simulação). Sem ele o sino liga-se pelo SDK seedgrid_pulse_subscriber, como o React.",
+  "Extra opcional de Flutter: reemplaza el cliente de Pulse (pruebas, simulación). Sin él la campana se conecta con el SDK seedgrid_pulse_subscriber, como React.",
+  "Extra facultatif de Flutter : remplace le client Pulse (tests, simulation). Sans lui la cloche se connecte via le SDK seedgrid_pulse_subscriber, comme React."
+ ],
+ "Extra opcional do Flutter: troca o cliente do Pulse (testes, simulação). Sem ele o provider cria o cliente do SDK seedgrid_pulse_subscriber, como o React.": [
+  "Optional Flutter extra: replaces the Pulse client (tests, simulation). Without it the provider creates the seedgrid_pulse_subscriber SDK client, like React.",
+  "Extra opcional do Flutter: substitui o cliente do Pulse (testes, simulação). Sem ele o provider cria o cliente do SDK seedgrid_pulse_subscriber, como o React.",
+  "Extra opcional de Flutter: reemplaza el cliente de Pulse (pruebas, simulación). Sin él el provider crea el cliente del SDK seedgrid_pulse_subscriber, como React.",
+  "Extra facultatif de Flutter : remplace le client Pulse (tests, simulation). Sans lui le provider crée le client du SDK seedgrid_pulse_subscriber, comme React."
+ ]
+}

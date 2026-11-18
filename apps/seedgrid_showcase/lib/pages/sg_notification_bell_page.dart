@@ -13,7 +13,6 @@ const String _realUse = '''SgNotificationBell(
   apiUrl: 'https://api.meuapp.com/user-notifications',
   tokenEndpoint: 'https://api.meuapp.com/realtime/connect',
   requestInit: SgTokenRequestInit(headers: {'Authorization': 'Bearer \$token'}),
-  connectionFactory: () => PulseAdapter(), // cliente do Pulse (ver PULSE_ADAPTER.md)
   types: {
     'report.ready': SgNotificationTypeConfig(
       icon: Icon(Icons.description_outlined),
@@ -184,7 +183,7 @@ class _SgNotificationBellPageState extends State<SgNotificationBellPage> {
           tsType: '-',
           required: false,
           description:
-              'Extra do Flutter: cria o cliente do Pulse quando o sino abre a própria conexão (o SDK ainda não é dependência do pacote).',
+              'Extra opcional do Flutter: troca o cliente do Pulse (testes, simulação). Sem ele o sino conecta pelo SDK seedgrid_pulse_subscriber, como o React.',
           exact: false,
         ),
       ],

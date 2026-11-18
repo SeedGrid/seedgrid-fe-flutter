@@ -427,6 +427,13 @@ const List<ShowcaseCredit> kShowcaseCredits = [
     'SgFileUpload, SgImageUpload (drag and drop)',
   ),
   ShowcaseCredit(
+    'seedgrid_pulse_subscriber',
+    '2.0.0',
+    'Apache-2.0',
+    'https://github.com/SeedGrid/seedgrid-pulse-sdk',
+    'SgRealtimeProvider, SgNotificationBell',
+  ),
+  ShowcaseCredit(
     'camera',
     '0.12.0+2',
     'BSD-3-Clause',

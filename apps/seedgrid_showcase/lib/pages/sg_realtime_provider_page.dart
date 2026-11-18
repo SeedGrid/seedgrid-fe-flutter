@@ -319,7 +319,7 @@ class _SgRealtimeProviderPageState extends State<SgRealtimeProviderPage> {
           tsType: 'PulseSubscriberClient',
           required: false,
           description:
-              'Cria o cliente do Pulse (o React o cria por dentro). Veja PULSE_ADAPTER.md para ligar ao SDK real.',
+              'Extra opcional do Flutter: troca o cliente do Pulse (testes, simulação). Sem ele o provider cria o cliente do SDK seedgrid_pulse_subscriber, como o React.',
         ),
         const SgPropSpec(
           name: 'tokenFetcher',
@@ -380,7 +380,7 @@ class _SgRealtimeProviderPageState extends State<SgRealtimeProviderPage> {
           if (v['enabled'] == false) args.add('enabled: false');
           args.addAll([
             'fetchToken: seuBackend.pedirToken',
-            'connectionFactory: () => PulseSdkConnection()',
+            'connectionFactory: SgSimulatedPulseConnection.new',
             'child: ...',
           ]);
           return 'SgRealtimeProvider(\n  ${args.join(',\n  ')},\n)';

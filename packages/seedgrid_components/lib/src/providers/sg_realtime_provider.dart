@@ -1,8 +1,8 @@
 // Porte de SgRealtimeProvider e dos hooks useSgRealtimeEvent e useSgRealtimeStatus
 // (React: src/realtime/SgRealtimeProvider.tsx).
 //
-// Diferencas deliberadas: (1) o cliente do Pulse entra por `connectionFactory` (ver
-// sg_pulse_connection.dart); sem ele nao ha como conectar e o status fica `unavailable`;
+// Diferencas deliberadas: (1) o provider cria sozinho o cliente do SDK `seedgrid_pulse_subscriber` (como o React);
+// `connectionFactory` e um extra OPCIONAL do Flutter (testes, simulacao, outro cliente; ver sg_pulse_connection.dart);
 // (2) `tokenEndpoint` precisa ser uma URL absoluta (no Flutter nao existe "mesma origem"); (3) hooks
 // viram [SgRealtimeEventListener] (widget) e [listenSgRealtimeEvent] (funcao com `cancel`).
 import 'dart:async';
@@ -12,6 +12,7 @@ import 'package:flutter/widgets.dart';
 import '../generated/sg_realtime_provider.g.dart';
 import 'sg_fetch.dart';
 import 'sg_pulse_connection.dart';
+import 'sg_pulse_sdk_connection.dart';
 
 /// Estado do realtime, do ponto de vista da tela:
 /// - `disabled`: o backend respondeu `{enabled:false}` (ou o provider esta desligado): use o polling.
@@ -216,7 +217,8 @@ class SgRealtimeProvider extends StatefulWidget
   @override
   final Object? connectOptions;
 
-  /// Cria o cliente do Pulse (ver [SgPulseConnection]). Chamado a cada (re)conexao do provider.
+  /// Extra do Flutter, opcional: cria o cliente do Pulse (ver [SgPulseConnection]) no lugar do SDK (testes, simulacao).
+  /// Sem ele o provider cria [SgPulseSdkConnection], como o React cria o `PulseSubscriberClient`. Chamado a cada conexao.
   final SgPulseConnection Function()? connectionFactory;
 
   /// `fetch` injetavel do pedido de token padrao (testes).
@@ -283,35 +285,33 @@ class _SgRealtimeProviderState extends State<SgRealtimeProvider> {
 
   Future<void> _connect(int run, bool Function() cancelled) async {
     _status = SgRealtimeStatus.connecting;
-    final connection = widget.connectionFactory?.call();
+    final connection = (widget.connectionFactory ?? SgPulseSdkConnection.new)();
     _connection = connection;
-    if (connection != null) {
-      _subs
-        ..add(
-          connection.states.listen((s) {
-            if (!cancelled()) _setStatus(_mapState(s));
-          }),
-        )
-        ..add(
-          connection.messages.listen((m) {
-            if (cancelled()) return;
-            final event = SgRealtimeEvent(
-              channel: m.channel,
-              event: m.event,
-              data: m.data,
-              messageId: m.messageId,
-              publishedAt: m.publishedAt,
-            );
-            for (final l in List.of(_listeners)) {
-              try {
-                l(event);
-              } catch (_) {
-                // Um handler com defeito nao derruba os outros.
-              }
+    _subs
+      ..add(
+        connection.states.listen((s) {
+          if (!cancelled()) _setStatus(_mapState(s));
+        }),
+      )
+      ..add(
+        connection.messages.listen((m) {
+          if (cancelled()) return;
+          final event = SgRealtimeEvent(
+            channel: m.channel,
+            event: m.event,
+            data: m.data,
+            messageId: m.messageId,
+            publishedAt: m.publishedAt,
+          );
+          for (final l in List.of(_listeners)) {
+            try {
+              l(event);
+            } catch (_) {
+              // Um handler com defeito nao derruba os outros.
             }
-          }),
-        );
-    }
+          }
+        }),
+      );
     if (mounted) setState(() {});
 
     // Falha temporaria (503, 429, rede) nao e definitiva: fica unavailable (a tela usa o polling) e tenta de novo
@@ -337,11 +337,6 @@ class _SgRealtimeProviderState extends State<SgRealtimeProvider> {
     if (cancelled()) return;
     if (!first.enabled || first.token == null || first.token!.isEmpty) {
       _setStatus(SgRealtimeStatus.disabled);
-      return;
-    }
-    if (connection == null) {
-      // Sem cliente do Pulse nao ha o que conectar.
-      _setStatus(SgRealtimeStatus.unavailable);
       return;
     }
 

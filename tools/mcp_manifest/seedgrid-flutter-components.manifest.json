@@ -15625,7 +15625,7 @@
         ],
         "parity": {
           "status": "parcial",
-          "reason": "O contrato e a lógica são os mesmos (P129); aqui o Pulse entra pela fábrica de conexão connectionFactory (o SDK do Pulse ainda não é dependência do pacote), apiUrl e tokenEndpoint precisam ser absolutos, o painel abre ao lado do sino conforme placement (auto, top, right, bottom, left, sempre dentro da janela) ou, abaixo de 600 px, como folha de baixo."
+          "reason": "O contrato e a lógica são os mesmos (P129); o sino cria sozinho o cliente do SDK do Pulse (connectionFactory é extra opcional, para testes e simulação); apiUrl e tokenEndpoint precisam ser absolutos (exceção de plataforma: não há origem de página), o painel abre ao lado do sino conforme placement (auto, top, right, bottom, left, sempre dentro da janela) ou, abaixo de 600 px, como folha de baixo."
         },
         "omittedProps": [
           {
@@ -18228,7 +18228,7 @@
         ],
         "parity": {
           "status": "portado",
-          "reason": "O cliente entra por connectionFactory (SgPulseConnection injetável; sem ele o status fica unavailable; o adaptador do SDK Pulse está em lib/src/providers/PULSE_ADAPTER.md e não é ligado por dependência até seedgrid_pulse_subscriber ser publicado no pub.dev); tokenEndpoint precisa de URL absoluta; children é child; os hooks são widget e função. Verificado ao vivo contra o Pulse real em 2026-10-27 (conexão, recebimento da própria mensagem, não recebimento da de outro usuário e reconexão com mensagem pendente); o modo processed, que exige ack, não foi exercitado."
+          "reason": "O provider cria sozinho o cliente do SDK seedgrid_pulse_subscriber (dependência git com tag fixa até o pacote ir ao pub.dev); connectionFactory é extra opcional do Flutter (SgPulseConnection injetável, para testes e simulação); tokenEndpoint precisa de URL absoluta (exceção de plataforma: não há origem de página); children é child; os hooks são widget e função. Verificado ao vivo contra o Pulse real em 2026-10-27 (conexão, recebimento da própria mensagem, não recebimento da de outro usuário e reconexão com mensagem pendente); o modo processed, que exige ack, não foi exercitado."
         },
         "omittedProps": []
       }

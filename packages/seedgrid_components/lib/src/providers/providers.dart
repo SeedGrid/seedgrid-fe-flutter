@@ -6,4 +6,5 @@ export 'persistent_state.dart';
 export 'sg_environment_provider.dart';
 export 'sg_fetch.dart';
 export 'sg_pulse_connection.dart';
+export 'sg_pulse_sdk_connection.dart';
 export 'sg_realtime_provider.dart';

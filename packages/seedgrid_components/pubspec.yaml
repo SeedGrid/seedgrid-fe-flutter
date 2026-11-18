@@ -21,6 +21,13 @@ dependencies:
   desktop_drop: ^0.7.0
   camera: ^0.12.0+2
   web: ^1.1.0
+  # SDK do SeedGrid Pulse (cliente do SgRealtimeProvider e do SgNotificationBell). Por git, com tag fixa, ate os componentes
+  # serem bem testados e o pacote ir ao pub.dev (publish_to: none permite dependencia git).
+  seedgrid_pulse_subscriber:
+    git:
+      url: https://github.com/SeedGrid/seedgrid-pulse-sdk.git
+      path: components/subscribers/seedgrid-pulse-subscriber-flutter
+      ref: flutter-subscriber-v2.0.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -16,6 +16,7 @@
 
 ### Novo
 
+* `SgRealtimeProvider` e `SgNotificationBell` criam sozinhos o cliente do SDK `seedgrid_pulse_subscriber` (`SgPulseSdkConnection`), como o React. O SDK entra por dependência git com tag fixa (`flutter-subscriber-v2.0.0`) até ir ao pub.dev. `connectionFactory` passa a ser um extra opcional (testes, simulação); sem ele o widget não fica mais `unavailable` por falta de cliente. `apiUrl` e `tokenEndpoint` absolutos seguem como exceção de plataforma.
 * Botão `danger` (tema escuro) e botão/selo/avatar `info`: texto branco com contraste ≥ 4,5:1 nos dois temas; alerta e link não mudam.
 * Selo e avatar `danger` (tema): o texto sobre o vermelho de erro é branco com contraste ≥ 4,5:1 (o vermelho escurece só o necessário); o número do selo do `SgNotificationBell` deixa de sair preto.
 * Tema (`seedgrid_theme`): a cor de destaque tem contraste mínimo de 4,5:1 garantido (mesma fórmula do React): texto sobre fundo, texto do contorno, anel de foco; fundo cheio de botão na cor pura da semente.
