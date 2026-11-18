@@ -173,7 +173,7 @@ String adjustBgForOnColor(String bgHex) {
 }
 
 /// Maximo de passos de 1% de luminosidade HSL que [darkenForWhiteText] aplica.
-const int maxWhiteTextSteps = 25;
+const int maxWhiteTextSteps = 45;
 
 /// Fundo para texto BRANCO: se o branco ja alcanca [minContrastRatio] sobre [bgHex], devolve o proprio fundo; senao
 /// escurece (passos de 1% de luminosidade HSL, mesmo matiz e saturacao) so o necessario para o branco passar. Usado no

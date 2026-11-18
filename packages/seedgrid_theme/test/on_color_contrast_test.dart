@@ -400,4 +400,67 @@ void main() {
       }
     }
   });
+
+  // P168.F1.T9: botao "danger" e cor "info" com texto BRANCO >= 4,5:1 nos dois modos, em todos os estados.
+  group('P168.F1.T9: botao danger/info e on-info com texto branco', () {
+    const infos = <String?>[
+      null,
+      '#2563EB',
+      '#0EA5E9',
+      '#38BDF8',
+      '#1D4ED8',
+      '#60A5FA',
+      '#7DD3FC',
+    ];
+    const reds = <String?>[null, '#F33C2B', '#FF6B6B', '#B91C1C'];
+    for (final entry in _seeds.entries) {
+      for (final mode in [Brightness.light, Brightness.dark]) {
+        test('${entry.key} (${mode.name})', () {
+          for (final info in infos) {
+            for (final red in reds) {
+              final base = generateThemeVars(
+                SeedThemeInput(seed: entry.value, info: info, error: red),
+                mode,
+              );
+              final comp = generateComponentTokens(base);
+              for (final token in ['danger', 'info']) {
+                final bgs = <String>[];
+                for (final st in ['', 'hover-', 'active-']) {
+                  final bg = _hex(
+                    comp['--sg-btn-$token-${st}bg']!.replaceAll(
+                      RegExp(r'[^\d ]'),
+                      ' ',
+                    ).trim().replaceAll(RegExp(r'\s+'), ' '),
+                  );
+                  final fg = _hex(
+                    comp['--sg-btn-$token-${st}fg']!.replaceAll(
+                      RegExp(r'[^\d ]'),
+                      ' ',
+                    ).trim().replaceAll(RegExp(r'\s+'), ' '),
+                  );
+                  bgs.add(bg);
+                  final why =
+                      '$token $st info=${info ?? "padrao"} erro=${red ?? "padrao"}: $bg com $fg';
+                  expect(fg.toUpperCase(), '#FFFFFF', reason: why);
+                  expect(
+                    contrastRatio(bg, fg),
+                    greaterThanOrEqualTo(minContrastRatio - 0.05),
+                    reason: why,
+                  );
+                }
+                expect(bgs[0], isNot(bgs[2]), reason: '$token active difere');
+              }
+              final i500 = _hex(base['--sg-info-500']!);
+              expect(_hex(base['--sg-on-info']!).toUpperCase(), '#FFFFFF');
+              expect(
+                contrastRatio(i500, '#FFFFFF'),
+                greaterThanOrEqualTo(minContrastRatio - 0.05),
+                reason: 'info-500 $i500',
+              );
+            }
+          }
+        });
+      }
+    }
+  });
 }

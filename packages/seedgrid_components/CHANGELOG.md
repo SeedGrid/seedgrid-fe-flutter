@@ -16,6 +16,7 @@
 
 ### Novo
 
+* Botão `danger` (tema escuro) e botão/selo/avatar `info`: texto branco com contraste ≥ 4,5:1 nos dois temas; alerta e link não mudam.
 * Selo e avatar `danger` (tema): o texto sobre o vermelho de erro é branco com contraste ≥ 4,5:1 (o vermelho escurece só o necessário); o número do selo do `SgNotificationBell` deixa de sair preto.
 * Tema (`seedgrid_theme`): a cor de destaque tem contraste mínimo de 4,5:1 garantido (mesma fórmula do React): texto sobre fundo, texto do contorno, anel de foco; fundo cheio de botão na cor pura da semente.
 * Showcase: aviso para girar o aparelho com o celular deitado.
