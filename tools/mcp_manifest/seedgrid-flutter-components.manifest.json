@@ -15624,8 +15624,8 @@
           }
         ],
         "parity": {
-          "status": "parcial",
-          "reason": "O contrato e a lógica são os mesmos (P129); o sino cria sozinho o cliente do SDK do Pulse (connectionFactory é extra opcional, para testes e simulação); apiUrl e tokenEndpoint precisam ser absolutos (exceção de plataforma: não há origem de página), o painel abre ao lado do sino conforme placement (auto, top, right, bottom, left, sempre dentro da janela) ou, abaixo de 600 px, como folha de baixo."
+          "status": "portado",
+          "reason": "O contrato e a lógica são os mesmos (P129); o sino cria sozinho o cliente do SDK do Pulse (connectionFactory é extra opcional, para testes e simulação); apiUrl e tokenEndpoint precisam ser absolutos (exceção de plataforma: não há origem de página), o painel abre ao lado do sino conforme placement (auto, top, right, bottom, left, sempre dentro da janela) ou, abaixo de 600 px, como folha de baixo; o toque do tipo e o onOpen de SgNotificationTypeConfig; não há props de estilo livre (decisão de arquitetura). São exceções de plataforma."
         },
         "omittedProps": [
           {
