@@ -5,7 +5,8 @@ import 'dart:convert';
 import 'package:seedgrid_components/seedgrid_components.dart';
 
 class DemoNotificationsApi {
-  DemoNotificationsApi({bool seed = true}) {
+  /// [actionable]: o "backend" marca relatorio e backup como abriveis (o convite continua so informativo).
+  DemoNotificationsApi({bool seed = true, bool actionable = false}) {
     if (seed) {
       _items = [
         _make(
@@ -15,6 +16,7 @@ class DemoNotificationsApi {
           'O relatório de outubro terminou de gerar.',
           2,
           false,
+          actionable,
         ),
         _make(
           'demo-2',
@@ -23,6 +25,7 @@ class DemoNotificationsApi {
           'O backup diário terminou sem erros.',
           18,
           false,
+          actionable,
         ),
         _make(
           'demo-3',
@@ -45,12 +48,14 @@ class DemoNotificationsApi {
     String title,
     String message,
     int minutesAgo,
-    bool read,
-  ) => SgNotification(
+    bool read, [
+    bool actionable = false,
+  ]) => SgNotification(
     publicId: id,
     type: type,
     title: title,
     message: message,
+    actionable: actionable,
     read: read,
     createdAt: DateTime.now()
         .subtract(Duration(minutes: minutesAgo))
@@ -59,10 +64,15 @@ class DemoNotificationsApi {
   );
 
   /// Cria uma notificacao nova (como se o backend a tivesse gravado) e devolve o publicId.
-  String notify(String type, String title, String message) {
+  String notify(
+    String type,
+    String title,
+    String message, [
+    bool actionable = false,
+  ]) {
     _counter++;
     final id = 'demo-new-$_counter';
-    _items = [_make(id, type, title, message, 0, false), ..._items];
+    _items = [_make(id, type, title, message, 0, false, actionable), ..._items];
     return id;
   }
 

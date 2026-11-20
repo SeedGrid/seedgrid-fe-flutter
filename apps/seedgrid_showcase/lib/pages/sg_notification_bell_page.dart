@@ -16,11 +16,20 @@ const String _realUse = '''SgNotificationBell(
   types: {
     'report.ready': SgNotificationTypeConfig(
       icon: Icon(Icons.description_outlined),
-      onOpen: (n) => baixarRelatorio(n.payload?['reportExecutionId']),
     ),
   },
   onNotification: (n) => print(n.title),
-)''';
+)
+
+// No módulo dono do tipo (uma vez, ex.: no início do app): o sino não conhece tipo nenhum.
+// O item só é clicável se o backend marcar actionable=true E houver ação registrada.
+registerNotificationAction(
+  'backup.finished',
+  SgNotificationAction(
+    label: 'Baixar',
+    run: (n) => baixarBackup(n.payload?['exportPublicId']),
+  ),
+);''';
 
 Future<SgRealtimeConnectResponse> _demoToken() async =>
     const SgRealtimeConnectResponse(
@@ -39,7 +48,8 @@ class SgNotificationBellPage extends StatefulWidget {
 
 class _SgNotificationBellPageState extends State<SgNotificationBellPage> {
   final DemoNotificationsApi _basico = DemoNotificationsApi();
-  final DemoNotificationsApi _tipos = DemoNotificationsApi();
+  // O "backend" marca relatório e backup como abríveis (actionable); o convite continua só informativo.
+  final DemoNotificationsApi _tipos = DemoNotificationsApi(actionable: true);
   final DemoNotificationsApi _interruptor = DemoNotificationsApi();
   final DemoNotificationsApi _semInterruptor = DemoNotificationsApi();
   final SgSimulatedPulseConnection _pulse = SgSimulatedPulseConnection();
@@ -100,7 +110,7 @@ class _SgNotificationBellPageState extends State<SgNotificationBellPage> {
       ShowcaseExample(
         title: 'Tipos com ícone e ação',
         description:
-            'types liga cada tipo de notificação a um ícone e à ação de abrir (por exemplo, baixar o relatório). Os callbacks avisam o que o usuário fez.',
+            'Cada tipo ganha um ícone (types) e uma ação ao abrir (actions nesta instância; no app, cada módulo registra com registerNotificationAction). O item só é clicável quando o backend marca actionable=true E existe ação registrada (aqui, relatório e backup); o convite é só informativo e o toque apenas marca como lida. onOpen fica como válvula de escape.',
         preview:
             // #region sg-notification-bell-tipos
             Wrap(
@@ -111,18 +121,25 @@ class _SgNotificationBellPageState extends State<SgNotificationBellPage> {
                 SgNotificationBell(
                   apiUrl: 'https://demo.local/user-notifications',
                   fetcher: _tipos.fetch,
-                  types: {
+                  types: const {
                     'report.ready': SgNotificationTypeConfig(
-                      icon: const Icon(Icons.description_outlined),
-                      onOpen: (n) => _evento.value = context.txf(
+                      icon: Icon(Icons.description_outlined),
+                    ),
+                    'backup.finished': SgNotificationTypeConfig(
+                      icon: Icon(Icons.check_circle_outline),
+                    ),
+                  },
+                  actions: {
+                    'report.ready': SgNotificationAction(
+                      label: context.tx('Baixar'),
+                      run: (n) => _evento.value = context.txf(
                         'baixar relatório {id}',
                         {'id': n.publicId},
                       ),
                     ),
-                    'backup.finished': SgNotificationTypeConfig(
-                      icon: const Icon(Icons.check_circle_outline),
-                      onOpen: (n) =>
-                          _evento.value = 'baixar backup ${n.publicId}',
+                    'backup.finished': SgNotificationAction(
+                      label: context.tx('Baixar'),
+                      run: (n) => _evento.value = 'baixar backup ${n.publicId}',
                     ),
                   },
                   onNotificationDelete: (n) =>

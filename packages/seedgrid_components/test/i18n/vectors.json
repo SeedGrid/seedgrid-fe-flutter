@@ -1,11 +1,11 @@
 {
  "versaoReact": "2026.7.1",
  "contagem": {
-  "pt-BR": 287,
-  "pt-PT": 287,
-  "en-US": 287,
-  "es": 287,
-  "fr": 287
+  "pt-BR": 289,
+  "pt-PT": 289,
+  "en-US": 289,
+  "es": 289,
+  "fr": 289
  },
  "locales": {
   "pt-BR": {
@@ -103,6 +103,8 @@
     "components.notifications.bell.days": "há {n} d",
     "components.notifications.bell.announce": "Nova notificação: {title}",
     "components.notifications.bell.actionFailed": "Não foi possível concluir a ação. Tente de novo.",
+    "components.notifications.bell.openFailed": "Não foi possível abrir «{title}»: {reason}",
+    "components.notifications.bell.openFailedNoReason": "Não foi possível abrir «{title}». Tente de novo.",
     "components.inputs.imageupload.dropMany": "Arraste imagens aqui ou clique para escolher (até {max})",
     "components.notifications.bell.unreadOnly": "Não lidas",
     "components.notifications.bell.caughtUp": "Tudo em dia",
@@ -904,6 +906,8 @@
     "components.notifications.bell.days": "há {n} d",
     "components.notifications.bell.announce": "Nova notificação: {title}",
     "components.notifications.bell.actionFailed": "Não foi possível concluir a ação. Tente de novo.",
+    "components.notifications.bell.openFailed": "Não foi possível abrir «{title}»: {reason}",
+    "components.notifications.bell.openFailedNoReason": "Não foi possível abrir «{title}». Tente de novo.",
     "components.inputs.imageupload.dropMany": "Arraste imagens aqui ou clique para escolher (até {max})",
     "components.notifications.bell.unreadOnly": "Não lidas",
     "components.notifications.bell.caughtUp": "Tudo em dia",
@@ -1705,6 +1709,8 @@
     "components.notifications.bell.days": "{n} d ago",
     "components.notifications.bell.announce": "New notification: {title}",
     "components.notifications.bell.actionFailed": "Could not complete the action. Try again.",
+    "components.notifications.bell.openFailed": "Could not open «{title}»: {reason}",
+    "components.notifications.bell.openFailedNoReason": "Could not open «{title}». Try again.",
     "components.inputs.imageupload.dropMany": "Drag images here or click to choose (up to {max})",
     "components.notifications.bell.unreadOnly": "Unread only",
     "components.notifications.bell.caughtUp": "All caught up",
@@ -2506,6 +2512,8 @@
     "components.notifications.bell.days": "hace {n} d",
     "components.notifications.bell.announce": "Nueva notificación: {title}",
     "components.notifications.bell.actionFailed": "No se pudo completar la acción. Inténtelo de nuevo.",
+    "components.notifications.bell.openFailed": "No se pudo abrir «{title}»: {reason}",
+    "components.notifications.bell.openFailedNoReason": "No se pudo abrir «{title}». Inténtelo de nuevo.",
     "components.inputs.imageupload.dropMany": "Arrastra imágenes aquí o haz clic para elegir (hasta {max})",
     "components.notifications.bell.unreadOnly": "No leídas",
     "components.notifications.bell.caughtUp": "Todo al día",
@@ -3307,6 +3315,8 @@
     "components.notifications.bell.days": "il y a {n} j",
     "components.notifications.bell.announce": "Nouvelle notification : {title}",
     "components.notifications.bell.actionFailed": "Impossible de terminer l'action. Réessayez.",
+    "components.notifications.bell.openFailed": "Impossible d'ouvrir «{title}» : {reason}",
+    "components.notifications.bell.openFailedNoReason": "Impossible d'ouvrir «{title}». Réessayez.",
     "components.inputs.imageupload.dropMany": "Faites glisser des images ici ou cliquez pour choisir (jusqu'à {max})",
     "components.notifications.bell.unreadOnly": "Non lues",
     "components.notifications.bell.caughtUp": "Tout est à jour",

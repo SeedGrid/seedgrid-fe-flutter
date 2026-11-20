@@ -1404,7 +1404,7 @@
      "ts": "((event: React.MouseEvent<HTMLButtonElement>) => unknown) | undefined",
      "alias": null,
      "fn": true,
-     "doc": "Clique do botão. Pode ser síncrono ou assíncrono (`(event) => unknown`).\r\n\r\n- Síncrono (abrir modal, alternar painel): funciona como sempre, nada muda.\r\n- Se DEVOLVER uma Promise (`async () => { await salvar(); }` ou `() => salvar()`), o botão entra em loading\r\n  sozinho (spinner, desabilitado, aria-busy), ignora cliques até terminar (inclusive cliques seguidos antes do\r\n  re-render) e volta ao normal ao terminar ou falhar. Protege contra duplo clique e reenvio e ajuda na\r\n  idempotência da ação na tela (não substitui a chave de idempotência no servidor).\r\n- Cuidado: precisa DEVOLVER a Promise. `onClick={() => { salvar(); }}` (chaves sem return) NÃO protege.\r\n- Erro: o botão não engole o erro (sai do loading e relança como rejeição não tratada). Trate com try/catch\r\n  dentro do onClick e avise o usuário (ex.: `sgWhistle.error`).\r\n- Use async só quando a ação puder demorar ou falhar (salvar, enviar, pagar); ações instantâneas ficam síncronas.\r\n- A prop `loading` manual continua valendo e vence (loading efetivo = `loading` || Promise pendente).\r\n\r\nO retorno é `unknown` só para não quebrar handlers existentes de corpo-expressão (`() => lista.push(x)`).",
+     "doc": "Clique do botão. Pode ser síncrono ou assíncrono (`(event) => unknown`).\n\n- Síncrono (abrir modal, alternar painel): funciona como sempre, nada muda.\n- Se DEVOLVER uma Promise (`async () => { await salvar(); }` ou `() => salvar()`), o botão entra em loading\n  sozinho (spinner, desabilitado, aria-busy), ignora cliques até terminar (inclusive cliques seguidos antes do\n  re-render) e volta ao normal ao terminar ou falhar. Protege contra duplo clique e reenvio e ajuda na\n  idempotência da ação na tela (não substitui a chave de idempotência no servidor).\n- Cuidado: precisa DEVOLVER a Promise. `onClick={() => { salvar(); }}` (chaves sem return) NÃO protege.\n- Erro: o botão não engole o erro (sai do loading e relança como rejeição não tratada). Trate com try/catch\n  dentro do onClick e avise o usuário (ex.: `sgWhistle.error`).\n- Use async só quando a ação puder demorar ou falhar (salvar, enviar, pagar); ações instantâneas ficam síncronas.\n- A prop `loading` manual continua valendo e vence (loading efetivo = `loading` || Promise pendente).\n\nO retorno é `unknown` só para não quebrar handlers existentes de corpo-expressão (`() => lista.push(x)`).",
      "description": "Clique do botão; pode ser síncrono ou assíncrono. Síncrono (abrir modal, alternar): nada muda. Se DEVOLVER uma Promise/Future, como async () => { await salvar(); } ou () => salvar(), o botão entra em loading sozinho (spinner, desabilitado, aria-busy na web), ignora cliques até terminar (inclusive cliques seguidos antes de a tela atualizar) e volta ao normal ao terminar ou falhar. Protege contra duplo clique e reenvio e ajuda na idempotência da ação na tela (não substitui a chave de idempotência no servidor). Cuidado: a função precisa devolver a operação; com chaves e sem return (ou sem async), como () => { salvar(); } ou () { salvar(); }, não protege; já async () {...} sempre devolve. O erro não é engolido: o botão sai do loading e relança como rejeição não tratada; trate com try/catch dentro do onClick e avise o usuário (sgWhistle.error). Use async só quando a ação puder demorar ou falhar (salvar, enviar, pagar).",
      "semanticRole": "event"
     },
@@ -11960,7 +11960,7 @@
      "optional": false,
      "ts": "string",
      "alias": null,
-     "doc": "Text to render using matrix dots.\r\nSupports letters, numbers and common symbols.",
+     "doc": "Text to render using matrix dots.\nSupports letters, numbers and common symbols.",
      "description": "Caractere exibido na matriz.",
      "semanticRole": "value"
     }
@@ -13078,8 +13078,17 @@
    "kind": "component",
    "file": "notifications/SgNotificationBell.tsx",
    "category": "feedback",
-   "description": "Sino de notificações do usuário logado: contador de não lidas, lista de até 100 notificações com título, texto, data e estado lida/não lida, marcar como lida, excluir, marcar todas e limpar. Autônomo: conecta-se sozinho ao Pulse (token vindo do backend, sem apikey no front) e reaproveita o SgRealtimeProvider se houver; com o Pulse desligado faz polling de reserva. Sem regra de negócio: cada tipo de notificação tem ícone e ação ao abrir.",
+   "description": "Sino de notificações do usuário logado: contador de não lidas, lista de até 100 notificações com título, texto, data e estado lida/não lida, marcar como lida, excluir, marcar todas e limpar. Autônomo: conecta-se sozinho ao Pulse (token vindo do backend, sem apikey no front) e reaproveita o SgRealtimeProvider se houver; com o Pulse desligado faz polling de reserva. Sem regra de negócio: cada módulo registra a ação dos tipos que emite (registerNotificationAction); a notificação só é clicável quando o backend marca actionable=true e há ação registrada, senão é informativa e o clique apenas marca como lida.",
    "props": [
+    {
+     "name": "actions",
+     "optional": true,
+     "ts": "Record<string, SgNotificationAction> | undefined",
+     "alias": null,
+     "doc": "Ações por tipo só para esta instância (P186). Têm prioridade sobre as registradas por `registerNotificationAction`,\r\nque é o caminho normal: cada módulo registra os tipos que emite.",
+     "description": "Ações por tipo só desta instância (tipo -> { label, icon, run }); têm prioridade sobre as registradas com registerNotificationAction, que é o caminho normal. Item abrível só com actionable=true e ação registrada.",
+     "semanticRole": "behavior"
+    },
     {
      "name": "apiUrl",
      "optional": true,
@@ -13162,8 +13171,8 @@
      "ts": "((notification: SgNotification) => void) | undefined",
      "alias": null,
      "fn": true,
-     "doc": "O usuário abriu uma notificação (depois do `onOpen` do tipo).",
-     "description": "O usuário abriu uma notificação (depois do onOpen do tipo).",
+     "doc": "Válvula de escape: o usuário abriu uma notificação (depois da ação do tipo, quando houver). O caminho normal é o registro de ações.",
+     "description": "Válvula de escape: o usuário abriu uma notificação (depois da ação do tipo, quando houver).",
      "semanticRole": "event"
     },
     {
@@ -13238,7 +13247,7 @@
      "ts": "Record<string, SgNotificationTypeConfig> | undefined",
      "alias": null,
      "doc": "Tipo -> ícone e ação ao abrir. O sino não conhece o negócio: relatório e só um tipo.",
-     "description": "Tipo da notificação -> ícone e ação ao abrir (onOpen). O sino não conhece o negócio.",
+     "description": "Tipo da notificação -> ícone (e onOpen por tipo). O sino não conhece o negócio.",
      "semanticRole": "data"
     }
    ]
@@ -15462,7 +15471,7 @@
      "optional": true,
      "ts": "string | undefined",
      "alias": null,
-     "doc": "Rota que entrega o token de conexão do usuário logado. Default: `/api/realtime/connect` (a BFF, na\r\nmesma origem — o navegador manda o cookie da sessão).",
+     "doc": "Rota que entrega o token de conexão do usuário logado. Default: `/api/realtime/connect` (a BFF, na\nmesma origem — o navegador manda o cookie da sessão).",
      "description": "Rota que entrega o token de conexão do usuário logado (a BFF, na mesma origem).",
      "default": "/api/realtime/connect",
      "semanticRole": "behavior"

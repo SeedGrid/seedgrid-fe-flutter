@@ -23,6 +23,7 @@ num? number(Object? v) => switch (v) {
 };
 
 void main() {
+  main_p186();
   final doc =
       jsonDecode(
             File(
@@ -279,5 +280,56 @@ void main() {
         expect(isValidInstant(c['iso'] as String), c['out'], reason: '$c');
       }
     });
+  });
+}
+
+// P186 - modo de abertura (informativa x abrivel) e mensagem de erro da acao.
+void main_p186() {
+  SgNotification mk({bool? actionable}) => SgNotification(
+    publicId: 'a',
+    type: 't',
+    title: 'T',
+    read: false,
+    createdAt: '2026-01-01T00:00:00Z',
+    actionable: actionable,
+  );
+
+  test('P186 openMode: abrivel so com actionable=true E acao registrada', () {
+    expect(openMode(mk(actionable: true), true), SgNotificationOpenMode.action);
+    expect(
+      openMode(mk(actionable: true), false),
+      SgNotificationOpenMode.misconfigured,
+    );
+    expect(openMode(mk(actionable: false), true), SgNotificationOpenMode.info);
+    expect(openMode(mk(), true), SgNotificationOpenMode.info);
+  });
+
+  test(
+    'P186 actionable vem do JSON so se for booleano; toJson omite quando nulo',
+    () {
+      expect(
+        SgNotification.fromJson({
+          'publicId': 'a',
+          'actionable': true,
+        }).actionable,
+        isTrue,
+      );
+      expect(
+        SgNotification.fromJson({
+          'publicId': 'a',
+          'actionable': 'true',
+        }).actionable,
+        isNull,
+      );
+      expect(mk().toJson().containsKey('actionable'), isFalse);
+      expect(mk(actionable: true).toJson()['actionable'], isTrue);
+    },
+  );
+
+  test('P186 actionErrorMessage: texto do erro, de string, ou vazio', () {
+    expect(actionErrorMessage(Exception('  falhou  ')), 'falhou');
+    expect(actionErrorMessage('oops'), 'oops');
+    expect(actionErrorMessage(42), '');
+    expect(actionErrorMessage(Exception('')), '');
   });
 }

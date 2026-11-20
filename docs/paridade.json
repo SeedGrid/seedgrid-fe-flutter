@@ -595,9 +595,9 @@
    "status": "portado",
    "motivo": "mesmo contrato e mesmos vetores de logica (P129); o sino cria sozinho o cliente do SDK de Pulse, como o React (connectionFactory e extra opcional, para testes e simulacao); apiUrl e tokenEndpoint precisam ser absolutos (excecao de plataforma: nao ha origem de pagina), o painel abre ao lado do sino conforme placement (auto, top, right, bottom, left; mesma regra do React e sempre dentro da janela) e como folha de baixo abaixo de 600 px, o toque do tipo e onOpen de SgNotificationTypeConfig, e nao ha className/style (ADR 50); as quatro diferencas sao excecoes de plataforma",
    "onde": "packages/seedgrid_components/lib/src/feedback/sg_notification_bell.dart",
-   "props": 16,
+   "props": 17,
    "propsOmitidas": 1,
-   "propsGenericas": 7
+   "propsGenericas": 8
   },
   {
    "componente": "SgOrderList",

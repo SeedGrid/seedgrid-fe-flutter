@@ -69,18 +69,25 @@ Wrap(
     SgNotificationBell(
       apiUrl: 'https://demo.local/user-notifications',
       fetcher: _tipos.fetch,
-      types: {
+      types: const {
         'report.ready': SgNotificationTypeConfig(
-          icon: const Icon(Icons.description_outlined),
-          onOpen: (n) => _evento.value = context.txf(
+          icon: Icon(Icons.description_outlined),
+        ),
+        'backup.finished': SgNotificationTypeConfig(
+          icon: Icon(Icons.check_circle_outline),
+        ),
+      },
+      actions: {
+        'report.ready': SgNotificationAction(
+          label: context.tx('Baixar'),
+          run: (n) => _evento.value = context.txf(
             'baixar relatório {id}',
             {'id': n.publicId},
           ),
         ),
-        'backup.finished': SgNotificationTypeConfig(
-          icon: const Icon(Icons.check_circle_outline),
-          onOpen: (n) =>
-              _evento.value = 'baixar backup ${n.publicId}',
+        'backup.finished': SgNotificationAction(
+          label: context.tx('Baixar'),
+          run: (n) => _evento.value = 'baixar backup ${n.publicId}',
         ),
       },
       onNotificationDelete: (n) =>

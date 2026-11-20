@@ -23,8 +23,10 @@ import '../inputs/choice/sg_toggle_switch.dart';
 import '../providers/sg_fetch.dart';
 import '../providers/sg_pulse_connection.dart';
 import '../providers/sg_realtime_provider.dart';
+import 'sg_notification_actions.dart';
 import 'sg_notification_bell_logic.dart';
 
+export 'sg_notification_actions.dart';
 export 'sg_notification_bell_logic.dart'
     show SgNotification, SgPollingReason, SgPollingStats;
 
@@ -47,6 +49,7 @@ class SgNotificationBell extends StatelessWidget
     this.requestInit,
     this.fetcher,
     this.types,
+    this.actions,
     this.eventPattern = sgDefaultEventPattern,
     this.pollIntervalMs,
     this.maxVisible,
@@ -76,9 +79,14 @@ class SgNotificationBell extends StatelessWidget
   @override
   final SgFetcher? fetcher;
 
-  /// Tipo -> icone e acao ao abrir.
+  /// Tipo -> icone (e `onOpen` por tipo).
   @override
   final Map<String, SgNotificationTypeConfig>? types;
+
+  /// Acoes por tipo so desta instancia (P186); tem prioridade sobre as registradas com
+  /// [registerNotificationAction], que e o caminho normal: cada modulo registra os tipos que emite.
+  @override
+  final Map<String, SgNotificationAction>? actions;
 
   /// Evento do Pulse que dispara a leitura.
   @override
@@ -114,7 +122,8 @@ class SgNotificationBell extends StatelessWidget
   @override
   final void Function(SgNotification notification)? onNotificationDelete;
 
-  /// O usuario abriu uma notificacao (depois do `onOpen` do tipo).
+  /// Valvula de escape: o usuario abriu uma notificacao (depois da acao do tipo, quando houver). O caminho normal e o
+  /// registro de acoes.
   @override
   final void Function(SgNotification notification)? onOpen;
 
@@ -192,6 +201,10 @@ class _SgBellState extends State<_SgBell>
   bool _loaded = false;
   bool _failed = false;
   bool _actionFailed = false;
+
+  /// Mensagem do erro lancado pela acao de um item abrivel (P186); null quando nao ha.
+  String? _openError;
+  final Set<String> _warnedTypes = {};
   late bool _unreadOnly = initialUnreadOnly(
     c.showUnreadToggle,
     c.defaultUnreadOnly,
@@ -225,7 +238,34 @@ class _SgBellState extends State<_SgBell>
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
+    notificationActionsListenable.addListener(_onActionsChanged);
     unawaited(_load());
+  }
+
+  // Um modulo registrou (ou removeu) uma acao depois que o sino ja estava na tela: reconstroi os itens.
+  void _onActionsChanged() {
+    if (mounted) setState(() {});
+  }
+
+  /// Acao do tipo: a da instancia (`actions`) vence a registrada globalmente.
+  SgNotificationAction? _actionFor(String type) =>
+      c.actions?[type] ?? getNotificationAction(type);
+
+  /// `actionable` sem acao registrada e erro de configuracao do host: o item fica informativo e o dev e avisado
+  /// (1 vez por tipo).
+  void _warnMisconfigured() {
+    for (final n in _items) {
+      if (_warnedTypes.contains(n.type)) continue;
+      if (openMode(n, _actionFor(n.type) != null) ==
+          SgNotificationOpenMode.misconfigured) {
+        _warnedTypes.add(n.type);
+        debugPrint(
+          '[SgNotificationBell] A notificacao do tipo "${n.type}" veio com actionable=true, mas nenhuma acao esta '
+          'registrada para ele. Chame registerNotificationAction(tipo, SgNotificationAction(run: ...)) no modulo dono '
+          'do tipo. O item fica informativo.',
+        );
+      }
+    }
   }
 
   @override
@@ -248,6 +288,7 @@ class _SgBellState extends State<_SgBell>
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
+    notificationActionsListenable.removeListener(_onActionsChanged);
     _pollTimer?.cancel();
     _ring.dispose();
     super.dispose();
@@ -357,6 +398,7 @@ class _SgBellState extends State<_SgBell>
         _failed = false;
         _loaded = true;
       });
+      _warnMisconfigured();
       if (opts.announceNew && wasLoaded && fresh.isNotEmpty) {
         _ringBell();
         setState(() {
@@ -468,20 +510,45 @@ class _SgBellState extends State<_SgBell>
 
   String _nowIso() => DateTime.now().toUtc().toIso8601String();
 
-  Future<void> _openItem(SgNotification n) => _act(() async {
-    if (!n.read) {
-      await _request('/${Uri.encodeComponent(n.publicId)}/read', 'POST');
-      if (mounted) {
-        setState(() {
-          _items = afterOpen(_items, n.publicId, _unreadOnly, _nowIso());
-          _decUnread();
-        });
+  Future<void> _openItem(SgNotification n) async {
+    final action = _actionFor(n.type);
+    final mode = openMode(n, action != null);
+    if (mounted && _openError != null) setState(() => _openError = null);
+    // Marca como lida primeiro: a acao pode sair da tela (download, navegacao). Se ler falhar, a acao ainda roda.
+    await _act(() async {
+      if (!n.read) {
+        await _request('/${Uri.encodeComponent(n.publicId)}/read', 'POST');
+        if (mounted) {
+          setState(() {
+            _items = afterOpen(_items, n.publicId, _unreadOnly, _nowIso());
+            _decUnread();
+          });
+        }
+      }
+    }, n);
+    if (mode == SgNotificationOpenMode.action) {
+      try {
+        await action!.run(n);
+      } catch (error) {
+        // O painel fica aberto com a mensagem do erro: o usuario ve por que nao abriu.
+        if (!mounted) return;
+        final i18n = useComponentsI18n(context);
+        final reason = actionErrorMessage(error);
+        setState(
+          () => _openError = reason.isNotEmpty
+              ? t(i18n, '$_i18n.openFailed', {
+                  'title': n.title,
+                  'reason': reason,
+                })
+              : t(i18n, '$_i18n.openFailedNoReason', {'title': n.title}),
+        );
+        return;
       }
     }
     if (mounted) _portal.hide();
     c.types?[n.type]?.onOpen?.call(n);
     c.onOpen?.call(n);
-  }, n);
+  }
 
   Future<void> _deleteItem(SgNotification n) => _act(() async {
     await _request('/${Uri.encodeComponent(n.publicId)}', 'DELETE');
@@ -773,6 +840,24 @@ class _Panel extends StatelessWidget {
                   children: [
                     _header(context, i18n, count),
                     if (state.c.showUnreadToggle ?? true) _toggle(i18n),
+                    if (state._openError != null)
+                      Semantics(
+                        liveRegion: true,
+                        child: Container(
+                          key: const ValueKey('sg-notification-open-failed'),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 16,
+                            vertical: 8,
+                          ),
+                          color: theme.colorScheme.errorContainer,
+                          child: Text(
+                            state._openError!,
+                            style: TextStyle(
+                              color: theme.colorScheme.onErrorContainer,
+                            ),
+                          ),
+                        ),
+                      ),
                     if (state._actionFailed)
                       Semantics(
                         liveRegion: true,
@@ -964,6 +1049,9 @@ class _Panel extends StatelessWidget {
     final icon =
         state.c.types?[n.type]?.icon ??
         const Icon(Icons.notifications_none, size: 18);
+    final action = state._actionFor(n.type);
+    final openable =
+        openMode(n, action != null) == SgNotificationOpenMode.action;
     return Container(
       key: ValueKey('sg-notification-item-${n.publicId}'),
       color: n.read
@@ -989,6 +1077,10 @@ class _Panel extends StatelessWidget {
           Expanded(
             child: InkWell(
               key: ValueKey('sg-notification-open-${n.publicId}'),
+              // Informativa: o toque so marca como lida (sem seta). Abrivel: executa a acao do tipo.
+              mouseCursor: openable
+                  ? SystemMouseCursors.click
+                  : SystemMouseCursors.basic,
               onTap: () => unawaited(state._openItem(n)),
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 12),
@@ -1006,11 +1098,50 @@ class _Panel extends StatelessWidget {
                     if (n.message != null && n.message!.isNotEmpty)
                       Text(n.message!, style: theme.textTheme.bodySmall),
                     const SizedBox(height: 4),
-                    Text(
-                      state._ageText(n, i18n),
-                      style: theme.textTheme.labelSmall?.copyWith(
-                        color: theme.colorScheme.onSurfaceVariant,
-                      ),
+                    Row(
+                      children: [
+                        Text(
+                          state._ageText(n, i18n),
+                          style: theme.textTheme.labelSmall?.copyWith(
+                            color: theme.colorScheme.onSurfaceVariant,
+                          ),
+                        ),
+                        if (openable) ...[
+                          const SizedBox(width: 8),
+                          Flexible(
+                            child: Row(
+                              key: ValueKey(
+                                'sg-notification-actionable-${n.publicId}',
+                              ),
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                if (action!.label != null)
+                                  Flexible(
+                                    child: Text(
+                                      action.label!,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: theme.textTheme.labelSmall
+                                          ?.copyWith(
+                                            color: theme.colorScheme.primary,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                    ),
+                                  ),
+                                IconTheme(
+                                  data: IconThemeData(
+                                    size: 14,
+                                    color: theme.colorScheme.primary,
+                                  ),
+                                  child:
+                                      action.icon ??
+                                      const Icon(Icons.chevron_right),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ],
                     ),
                   ],
                 ),

@@ -1,5 +1,9 @@
 ## Não lançado — 2026-11-17
 
+### Adicionado
+
+* `SgNotificationBell`: ação ao abrir por tipo (P186, paridade com o React). `registerNotificationAction(tipo, SgNotificationAction(label, icon, run))` (devolve a função que desfaz), `unregisterNotificationAction` e `getNotificationAction`; `SgNotification.actionable` (o backend declara que a notificação ainda é abrível); o item só é clicável com `actionable=true` e ação registrada, senão é informativo (o toque só marca como lida) e o sino avisa no console quando falta a ação; prop `actions` por instância (vence o registro); erro do `run` mantém o painel aberto com mensagem legível; `onOpen` vira válvula de escape.
+
 ### Alterado
 
 * **BREAKING** — `SgInputNumber` e `SgInputCurrency` perderam `required` e `requiredMessage` (tipos, asterisco no rótulo e validação). Para exigir um valor, use `minValue` e `minValueMessage`.

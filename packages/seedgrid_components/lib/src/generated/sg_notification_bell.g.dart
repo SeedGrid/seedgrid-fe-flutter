@@ -7,9 +7,11 @@
 import 'enums.g.dart';
 import '../props/sg_prop_spec.dart';
 
-/// Props públicas de `SgNotificationBell` no React — Sino de notificações do usuário logado: contador de não lidas, lista de até 100 notificações com título, texto, data e estado lida/não lida, marcar como lida, excluir, marcar todas e limpar. Autônomo: conecta-se sozinho ao Pulse (token vindo do backend, sem apikey no front) e reaproveita o SgRealtimeProvider se houver; com o Pulse desligado faz polling de reserva. Sem regra de negócio: cada tipo de notificação tem ícone e ação ao abrir.
+/// Props públicas de `SgNotificationBell` no React — Sino de notificações do usuário logado: contador de não lidas, lista de até 100 notificações com título, texto, data e estado lida/não lida, marcar como lida, excluir, marcar todas e limpar. Autônomo: conecta-se sozinho ao Pulse (token vindo do backend, sem apikey no front) e reaproveita o SgRealtimeProvider se houver; com o Pulse desligado faz polling de reserva. Sem regra de negócio: cada módulo registra a ação dos tipos que emite (registerNotificationAction); a notificação só é clicável quando o backend marca actionable=true e há ação registrada, senão é informativa e o clique apenas marca como lida.
 /// O widget deve declarar `implements SgNotificationBellProps`.
 abstract interface class SgNotificationBellProps {
+  /// Ações por tipo só desta instância (tipo -&gt; { label, icon, run }); têm prioridade sobre as registradas com registerNotificationAction, que é o caminho normal. Item abrível só com actionable=true e ação registrada. Tipo TS: `Record&lt;string, SgNotificationAction&gt;` (sem tradução exata; ver excecoes.json).
+  Object? get actions;
   /// Base das rotas da extension user-notifications (BFF, mesma origem). Padrão: `/api/user-notifications`.
   String? get apiUrl;
   /// O painel abre em Não lidas (ainda não clicadas); ignorada com showUnreadToggle=false e não persiste entre recargas. Padrão: `true`.
@@ -24,7 +26,7 @@ abstract interface class SgNotificationBellProps {
   Function? get onNotification;
   /// O usuário excluiu uma notificação. Tipo TS: `((notification: SgNotification) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onNotificationDelete;
-  /// O usuário abriu uma notificação (depois do onOpen do tipo). Tipo TS: `((notification: SgNotification) =&gt; void)` (sem tradução exata; ver excecoes.json).
+  /// Válvula de escape: o usuário abriu uma notificação (depois da ação do tipo, quando houver). Tipo TS: `((notification: SgNotification) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onOpen;
   /// O polling consultou a API: contador, instante da última consulta e motivo (disabled ou unavailable). Tipo TS: `((stats: SgPollingStats) =&gt; void)` (sem tradução exata; ver excecoes.json).
   Function? get onPollingTick;
@@ -38,12 +40,21 @@ abstract interface class SgNotificationBellProps {
   bool? get showUnreadToggle;
   /// Rota que entrega o token do Pulse; usada quando não há SgRealtimeProvider acima. Padrão: `/api/realtime/connect`.
   String? get tokenEndpoint;
-  /// Tipo da notificação -&gt; ícone e ação ao abrir (onOpen). O sino não conhece o negócio. Tipo TS: `Record&lt;string, SgNotificationTypeConfig&gt;` (sem tradução exata; ver excecoes.json).
+  /// Tipo da notificação -&gt; ícone (e onOpen por tipo). O sino não conhece o negócio. Tipo TS: `Record&lt;string, SgNotificationTypeConfig&gt;` (sem tradução exata; ver excecoes.json).
   Object? get types;
 }
 
 /// Especificação das props de `SgNotificationBell` (tabela de props e playground do showcase).
 const List<SgPropSpec> sgNotificationBellPropSpecs = <SgPropSpec>[
+  SgPropSpec(
+    name: 'actions',
+    reactName: 'actions',
+    type: 'Object?',
+    tsType: 'Record<string, SgNotificationAction>',
+    required: false,
+    description: 'Ações por tipo só desta instância (tipo -> { label, icon, run }); têm prioridade sobre as registradas com registerNotificationAction, que é o caminho normal. Item abrível só com actionable=true e ação registrada.',
+    exact: false,
+  ),
   SgPropSpec(
     name: 'apiUrl',
     reactName: 'apiUrl',
@@ -113,7 +124,7 @@ const List<SgPropSpec> sgNotificationBellPropSpecs = <SgPropSpec>[
     type: 'Function?',
     tsType: '((notification: SgNotification) => void)',
     required: false,
-    description: 'O usuário abriu uma notificação (depois do onOpen do tipo).',
+    description: 'Válvula de escape: o usuário abriu uma notificação (depois da ação do tipo, quando houver).',
     exact: false,
   ),
   SgPropSpec(
@@ -177,7 +188,7 @@ const List<SgPropSpec> sgNotificationBellPropSpecs = <SgPropSpec>[
     type: 'Object?',
     tsType: 'Record<string, SgNotificationTypeConfig>',
     required: false,
-    description: 'Tipo da notificação -> ícone e ação ao abrir (onOpen). O sino não conhece o negócio.',
+    description: 'Tipo da notificação -> ícone (e onOpen por tipo). O sino não conhece o negócio.',
     exact: false,
   ),
 ];

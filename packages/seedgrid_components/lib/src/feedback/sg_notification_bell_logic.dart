@@ -22,6 +22,7 @@ class SgNotification {
     required this.createdAt,
     this.message,
     this.payload,
+    this.actionable,
     this.readAt,
     this.expiresAt,
   });
@@ -32,6 +33,7 @@ class SgNotification {
     title: (json['title'] as String?) ?? '',
     message: json['message'] as String?,
     payload: (json['payload'] as Map?)?.cast<String, Object?>(),
+    actionable: json['actionable'] is bool ? json['actionable'] as bool : null,
     read: json['read'] == true,
     readAt: json['readAt'] as String?,
     createdAt: (json['createdAt'] as String?) ?? '',
@@ -45,6 +47,10 @@ class SgNotification {
   final String title;
   final String? message;
   final Map<String, Object?>? payload;
+
+  /// O backend declara que ESTA notificacao ainda e abrivel (ex.: o export do backup ainda existe). Opcional:
+  /// ausente ou `false` = informativa. Sem URL nem tipo de acao: o "como" abrir vem do registro do front (P186).
+  final bool? actionable;
   final bool read;
   final String? readAt;
 
@@ -58,6 +64,7 @@ class SgNotification {
     title: title,
     message: message,
     payload: payload,
+    actionable: actionable,
     read: read ?? this.read,
     readAt: readAt ?? this.readAt,
     createdAt: createdAt,
@@ -70,6 +77,7 @@ class SgNotification {
     'title': title,
     'message': message,
     'payload': payload,
+    if (actionable != null) 'actionable': actionable,
     'read': read,
     'readAt': readAt,
     'createdAt': createdAt,
@@ -460,4 +468,31 @@ SgPanelPosition panelPosition({
   top = _clampNum(top, padding, viewportHeight - height - padding);
   left = _clampNum(left, padding, viewportWidth - width - padding);
   return SgPanelPosition(top.round(), left.round(), side, height.round());
+}
+
+/// Como o item se comporta ao abrir (P186.D3).
+enum SgNotificationOpenMode { action, info, misconfigured }
+
+/// Abrivel so com `actionable == true` E acao registrada para o tipo. `actionable` sem acao registrada e erro de
+/// configuracao do host (`misconfigured`): o item fica informativo e o sino avisa o dev no console. Sem
+/// `actionable` (ou `false`) e informativa, mesmo com acao registrada para o tipo.
+SgNotificationOpenMode openMode(SgNotification notification, bool hasAction) {
+  if (notification.actionable != true) return SgNotificationOpenMode.info;
+  return hasAction
+      ? SgNotificationOpenMode.action
+      : SgNotificationOpenMode.misconfigured;
+}
+
+/// Mensagem legivel de um erro lancado por `run` (vazia se o erro nao tiver texto).
+String actionErrorMessage(Object? error) {
+  if (error is String) return error.trim();
+  if (error == null) return '';
+  if (error is Exception || error is Error) {
+    final text = error.toString().replaceFirst(
+      RegExp(r'^(Exception|Error): ?'),
+      '',
+    );
+    return text.trim();
+  }
+  return '';
 }

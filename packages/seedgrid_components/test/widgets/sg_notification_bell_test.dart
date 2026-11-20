@@ -12,9 +12,11 @@ SgNotification note(
   DateTime at, {
   bool read = false,
   String type = 'report.ready',
+  bool? actionable,
 }) => SgNotification(
   publicId: id,
   type: type,
+  actionable: actionable,
   title: 'Titulo $id',
   message: 'Mensagem $id',
   read: read,
@@ -117,6 +119,7 @@ String bellLabel(WidgetTester t) {
 SgNotificationBell makeBell(
   FakeApi api, {
   Map<String, SgNotificationTypeConfig>? types,
+  Map<String, SgNotificationAction>? actions,
   void Function(SgNotification)? onOpen,
   void Function(SgNotification)? onDelete,
   void Function(SgNotification)? onNotification,
@@ -129,6 +132,7 @@ SgNotificationBell makeBell(
   tokenEndpoint: 'https://api.test/realtime/connect',
   fetcher: api.fetch,
   types: types,
+  actions: actions,
   onOpen: onOpen,
   onNotificationDelete: onDelete,
   onNotification: onNotification,
@@ -543,4 +547,210 @@ void main() {
       expect(find.text('Titulo b'), findsOneWidget);
     },
   );
+
+  // P186 - acao ao abrir por tipo: registro por modulo, informativa x abrivel, erro legivel, valvula de escape.
+  group('acao ao abrir por tipo (P186)', () {
+    tearDown(() {
+      unregisterNotificationAction('backup.finished');
+      unregisterNotificationAction('backup.failed');
+    });
+
+    Finder actionableMark(String id) =>
+        find.byKey(ValueKey('sg-notification-actionable-$id'));
+
+    testWidgets(
+      'registrada e actionable=true: executa a acao com a notificacao, marca como lida e fecha',
+      (t) async {
+        final ran = <String>[];
+        registerNotificationAction(
+          'backup.finished',
+          SgNotificationAction(
+            label: 'Baixar',
+            run: (n) => ran.add(n.publicId),
+          ),
+        );
+        final api = FakeApi([
+          note('a', ago(1), type: 'backup.finished', actionable: true),
+        ]);
+        await t.pumpWidget(host(makeBell(api)));
+        await settle(t);
+        await t.tap(bell());
+        await settle(t);
+        expect(actionableMark('a'), findsOneWidget);
+        expect(find.text('Baixar'), findsOneWidget);
+        await t.tap(find.byKey(const ValueKey('sg-notification-open-a')));
+        await settle(t);
+        expect(ran, ['a']);
+        expect(api.calls, contains('POST $base/a/read'));
+        expect(find.text('Titulo a'), findsNothing);
+      },
+    );
+
+    testWidgets(
+      'sem o campo actionable (ou false) e informativa mesmo com acao registrada: toque so marca como lida',
+      (t) async {
+        final ran = <String>[];
+        registerNotificationAction(
+          'backup.finished',
+          SgNotificationAction(run: (n) => ran.add(n.publicId)),
+        );
+        final api = FakeApi([
+          note('a', ago(1), type: 'backup.finished'),
+          note('b', ago(2), type: 'backup.finished', actionable: false),
+        ]);
+        await t.pumpWidget(host(makeBell(api)));
+        await settle(t);
+        await t.tap(bell());
+        await settle(t);
+        expect(actionableMark('a'), findsNothing);
+        expect(actionableMark('b'), findsNothing);
+        await t.tap(find.byKey(const ValueKey('sg-notification-open-a')));
+        await settle(t);
+        expect(ran, isEmpty);
+        expect(api.calls, contains('POST $base/a/read'));
+        expect(find.text('Titulo a'), findsNothing);
+      },
+    );
+
+    testWidgets(
+      'actionable=true sem acao registrada fica informativa e avisa no console (uma vez por tipo)',
+      (t) async {
+        final logs = <String?>[];
+        final old = debugPrint;
+        debugPrint = (String? message, {int? wrapWidth}) => logs.add(message);
+        final api = FakeApi([
+          note('a', ago(1), type: 'backup.finished', actionable: true),
+          note('b', ago(2), type: 'backup.finished', actionable: true),
+        ]);
+        await t.pumpWidget(host(makeBell(api)));
+        await settle(t);
+        await t.tap(bell());
+        await settle(t);
+        expect(actionableMark('a'), findsNothing);
+        await t.tap(find.byKey(const ValueKey('sg-notification-open-a')));
+        await settle(t);
+        expect(api.calls, contains('POST $base/a/read'));
+        final mine = logs
+            .where(
+              (l) =>
+                  l!.contains('backup.finished') &&
+                  l.contains('registerNotificationAction'),
+            )
+            .length;
+        debugPrint = old;
+        expect(mine, 1);
+      },
+    );
+
+    testWidgets(
+      'erro lancado pela acao mostra a mensagem legivel, mantem o painel aberto e a notificacao lida',
+      (t) async {
+        registerNotificationAction(
+          'backup.finished',
+          SgNotificationAction(
+            run: (n) => throw Exception('O backup expirou. Gere um novo.'),
+          ),
+        );
+        final api = FakeApi([
+          note('a', ago(1), type: 'backup.finished', actionable: true),
+        ]);
+        await t.pumpWidget(host(makeBell(api)));
+        await settle(t);
+        await t.tap(bell());
+        await settle(t);
+        await t.tap(find.byKey(const ValueKey('sg-notification-open-a')));
+        await settle(t);
+        final alert = find.byKey(const ValueKey('sg-notification-open-failed'));
+        expect(alert, findsOneWidget);
+        expect(
+          find.descendant(
+            of: alert,
+            matching: find.textContaining('O backup expirou. Gere um novo.'),
+          ),
+          findsOneWidget,
+        );
+        expect(find.text('Titulo a'), findsOneWidget, reason: 'painel aberto');
+        expect(api.calls, contains('POST $base/a/read'));
+      },
+    );
+
+    testWidgets(
+      'erro sem texto usa a mensagem padrao; acao assincrona que falha tambem e tratada',
+      (t) async {
+        registerNotificationAction(
+          'backup.finished',
+          SgNotificationAction(run: (n) async => throw Exception('')),
+        );
+        final api = FakeApi([
+          note('a', ago(1), type: 'backup.finished', actionable: true),
+        ]);
+        await t.pumpWidget(host(makeBell(api)));
+        await settle(t);
+        await t.tap(bell());
+        await settle(t);
+        await t.tap(find.byKey(const ValueKey('sg-notification-open-a')));
+        await settle(t);
+        expect(
+          find.descendant(
+            of: find.byKey(const ValueKey('sg-notification-open-failed')),
+            matching: find.textContaining('Não foi possível abrir'),
+          ),
+          findsOneWidget,
+        );
+      },
+    );
+
+    testWidgets(
+      'a acao da instancia (actions) vence a registrada; onOpen continua como valvula de escape',
+      (t) async {
+        final ran = <String>[];
+        registerNotificationAction(
+          'backup.finished',
+          SgNotificationAction(run: (n) => ran.add('registro')),
+        );
+        final api = FakeApi([
+          note('a', ago(1), type: 'backup.finished', actionable: true),
+        ]);
+        await t.pumpWidget(
+          host(
+            makeBell(
+              api,
+              actions: {
+                'backup.finished': SgNotificationAction(
+                  run: (n) => ran.add('instancia'),
+                ),
+              },
+              onOpen: (n) => ran.add('onOpen'),
+            ),
+          ),
+        );
+        await settle(t);
+        await t.tap(bell());
+        await settle(t);
+        await t.tap(find.byKey(const ValueKey('sg-notification-open-a')));
+        await settle(t);
+        expect(ran, ['instancia', 'onOpen']);
+      },
+    );
+
+    testWidgets(
+      'modulo que registra depois do sino montar torna o item abrivel',
+      (t) async {
+        final api = FakeApi([
+          note('a', ago(1), type: 'backup.finished', actionable: true),
+        ]);
+        await t.pumpWidget(host(makeBell(api)));
+        await settle(t);
+        await t.tap(bell());
+        await settle(t);
+        expect(actionableMark('a'), findsNothing);
+        registerNotificationAction(
+          'backup.finished',
+          SgNotificationAction(run: (n) {}),
+        );
+        await settle(t);
+        expect(actionableMark('a'), findsOneWidget);
+      },
+    );
+  });
 }

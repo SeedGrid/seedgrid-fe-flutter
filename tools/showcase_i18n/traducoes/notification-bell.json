@@ -142,5 +142,35 @@
   "De que lado do sino o painel abre (como o placement do SgPopup); auto escolhe o lado em que cabe.",
   "De qué lado de la campana se abre el panel (como el placement de SgPopup); auto elige el lado en que cabe.",
   "De quel côté de la cloche le panneau s'ouvre (comme le placement de SgPopup) ; auto choisit le côté où il tient."
+ ],
+ "Ações por tipo só desta instância (tipo -> { label, icon, run }); têm prioridade sobre as registradas com registerNotificationAction, que é o caminho normal. Item abrível só com actionable=true e ação registrada.": [
+  "Per-instance actions by type (type -> { label, icon, run }); they win over the ones registered with registerNotificationAction, which is the normal way. An item is openable only with actionable=true and a registered action.",
+  "Ações por tipo só desta instância (tipo -> { label, icon, run }); têm prioridade sobre as registadas com registerNotificationAction, que é o caminho normal. Item abrível só com actionable=true e ação registada.",
+  "Acciones por tipo solo de esta instancia (tipo -> { label, icon, run }); tienen prioridad sobre las registradas con registerNotificationAction, que es lo normal. Elemento abrible solo con actionable=true y acción registrada.",
+  "Actions par type propres à cette instance (type -> { label, icon, run }) ; elles priment sur celles enregistrées avec registerNotificationAction, le chemin normal. Élément ouvrable seulement avec actionable=true et une action enregistrée."
+ ],
+ "Válvula de escape: o usuário abriu uma notificação (depois da ação do tipo, quando houver).": [
+  "Escape hatch: the user opened a notification (after the type's action, when there is one).",
+  "Válvula de escape: o utilizador abriu uma notificação (depois da ação do tipo, quando houver).",
+  "Válvula de escape: el usuario abrió una notificación (después de la acción del tipo, si la hay).",
+  "Soupape de secours : l'utilisateur a ouvert une notification (après l'action du type, s'il y en a une)."
+ ],
+ "Tipo da notificação -> ícone (e onOpen por tipo). O sino não conhece o negócio.": [
+  "Notification type -> icon (and per-type onOpen). The bell knows no business rules.",
+  "Tipo da notificação -> ícone (e onOpen por tipo). O sino não conhece o negócio.",
+  "Tipo de notificación -> icono (y onOpen por tipo). La campana no conoce el negocio.",
+  "Type de notification -> icône (et onOpen par type). La cloche ne connaît pas le métier."
+ ],
+ "Baixar": [
+  "Download",
+  "Transferir",
+  "Descargar",
+  "Télécharger"
+ ],
+ "Cada tipo ganha um ícone (types) e uma ação ao abrir (actions nesta instância; no app, cada módulo registra com registerNotificationAction). O item só é clicável quando o backend marca actionable=true E existe ação registrada (aqui, relatório e backup); o convite é só informativo e o toque apenas marca como lida. onOpen fica como válvula de escape.": [
+  "Each type gets an icon (types) and an open action (actions on this instance; in the app, each module registers with registerNotificationAction). An item is clickable only when the backend marks actionable=true AND an action is registered (here, report and backup); the invite is informative and tapping only marks it as read. onOpen stays as an escape hatch.",
+  "Cada tipo ganha um ícone (types) e uma ação ao abrir (actions nesta instância; na app, cada módulo regista com registerNotificationAction). O item só é clicável quando o backend marca actionable=true E existe ação registada (aqui, relatório e cópia de segurança); o convite é só informativo e o toque apenas o marca como lido. onOpen fica como válvula de escape.",
+  "Cada tipo recibe un icono (types) y una acción al abrir (actions en esta instancia; en la app, cada módulo registra con registerNotificationAction). El elemento solo es clicable cuando el backend marca actionable=true Y hay una acción registrada (aquí, informe y copia de seguridad); la invitación es solo informativa y el toque únicamente la marca como leída. onOpen queda como válvula de escape.",
+  "Chaque type reçoit une icône (types) et une action à l'ouverture (actions sur cette instance ; dans l'app, chaque module enregistre avec registerNotificationAction). L'élément n'est cliquable que si le backend marque actionable=true ET qu'une action est enregistrée (ici, rapport et sauvegarde) ; l'invitation est informative et le toucher la marque seulement comme lue. onOpen reste une soupape de secours."
  ]
 }

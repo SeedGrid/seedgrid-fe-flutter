@@ -15477,9 +15477,16 @@
         "displayName": "SgNotificationBell",
         "category": "feedback",
         "subcategory": "",
-        "description": "Sino de notificações do usuário logado: contador de não lidas, lista de até 100 notificações com título, texto, data e estado lida/não lida, marcar como lida, excluir, marcar todas e limpar. Autônomo: conecta-se sozinho ao Pulse (token vindo do backend, sem apikey no front) e reaproveita o SgRealtimeProvider se houver; com o Pulse desligado faz polling de reserva. Sem regra de negócio: cada tipo de notificação tem ícone e ação ao abrir.",
+        "description": "Sino de notificações do usuário logado: contador de não lidas, lista de até 100 notificações com título, texto, data e estado lida/não lida, marcar como lida, excluir, marcar todas e limpar. Autônomo: conecta-se sozinho ao Pulse (token vindo do backend, sem apikey no front) e reaproveita o SgRealtimeProvider se houver; com o Pulse desligado faz polling de reserva. Sem regra de negócio: cada módulo registra a ação dos tipos que emite (registerNotificationAction); a notificação só é clicável quando o backend marca actionable=true e há ação registrada, senão é informativa e o clique apenas marca como lida.",
         "tags": [],
         "props": [
+          {
+            "name": "actions",
+            "type": "Object?",
+            "required": false,
+            "description": "Ações por tipo só desta instância (tipo -> { label, icon, run }); têm prioridade sobre as registradas com registerNotificationAction, que é o caminho normal. Item abrível só com actionable=true e ação registrada.",
+            "typeExact": false
+          },
           {
             "name": "apiUrl",
             "type": "String?",
@@ -15533,7 +15540,7 @@
             "name": "onOpen",
             "type": "Function?",
             "required": false,
-            "description": "O usuário abriu uma notificação (depois do onOpen do tipo).",
+            "description": "Válvula de escape: o usuário abriu uma notificação (depois da ação do tipo, quando houver).",
             "typeExact": false
           },
           {
@@ -15589,7 +15596,7 @@
             "name": "types",
             "type": "Object?",
             "required": false,
-            "description": "Tipo da notificação -> ícone e ação ao abrir (onOpen). O sino não conhece o negócio.",
+            "description": "Tipo da notificação -> ícone (e onOpen por tipo). O sino não conhece o negócio.",
             "typeExact": false
           }
         ],
@@ -15620,7 +15627,7 @@
             "title": "Tipos com ícone e ação",
             "file": "apps/seedgrid_showcase/lib/pages/sg_notification_bell_page.dart",
             "kind": "dart",
-            "code": "Wrap(\n  spacing: 12,\n  runSpacing: 8,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgNotificationBell(\n      apiUrl: 'https://demo.local/user-notifications',\n      fetcher: _tipos.fetch,\n      types: {\n        'report.ready': SgNotificationTypeConfig(\n          icon: const Icon(Icons.description_outlined),\n          onOpen: (n) => _evento.value = context.txf(\n            'baixar relatório {id}',\n            {'id': n.publicId},\n          ),\n        ),\n        'backup.finished': SgNotificationTypeConfig(\n          icon: const Icon(Icons.check_circle_outline),\n          onOpen: (n) =>\n              _evento.value = 'baixar backup ${n.publicId}',\n        ),\n      },\n      onNotificationDelete: (n) =>\n          _evento.value = 'excluiu: ${n.title}',\n    ),\n    ValueListenableBuilder<String>(\n      valueListenable: _evento,\n      builder: (context, evento, _) =>\n          Text('Último evento: $evento'),\n    ),\n  ],\n)"
+            "code": "Wrap(\n  spacing: 12,\n  runSpacing: 8,\n  crossAxisAlignment: WrapCrossAlignment.center,\n  children: [\n    SgNotificationBell(\n      apiUrl: 'https://demo.local/user-notifications',\n      fetcher: _tipos.fetch,\n      types: const {\n        'report.ready': SgNotificationTypeConfig(\n          icon: Icon(Icons.description_outlined),\n        ),\n        'backup.finished': SgNotificationTypeConfig(\n          icon: Icon(Icons.check_circle_outline),\n        ),\n      },\n      actions: {\n        'report.ready': SgNotificationAction(\n          label: context.tx('Baixar'),\n          run: (n) => _evento.value = context.txf(\n            'baixar relatório {id}',\n            {'id': n.publicId},\n          ),\n        ),\n        'backup.finished': SgNotificationAction(\n          label: context.tx('Baixar'),\n          run: (n) => _evento.value = 'baixar backup ${n.publicId}',\n        ),\n      },\n      onNotificationDelete: (n) =>\n          _evento.value = 'excluiu: ${n.title}',\n    ),\n    ValueListenableBuilder<String>(\n      valueListenable: _evento,\n      builder: (context, evento, _) =>\n          Text('Último evento: $evento'),\n    ),\n  ],\n)"
           }
         ],
         "parity": {
