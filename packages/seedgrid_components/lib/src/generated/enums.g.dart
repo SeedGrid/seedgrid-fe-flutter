@@ -579,8 +579,9 @@ enum SgClockClockStyle {
   }
 }
 
-/// Valores aceitos pelo React: `default`, `segment`, `sevenSegment`, `roller3d`, `flip`, `fade`, `matrix`, `neon`, `discard`, `custom`.
+/// Valores aceitos pelo React: `custom`, `default`, `segment`, `sevenSegment`, `roller3d`, `flip`, `fade`, `matrix`, `neon`, `discard`.
 enum SgClockDigitalStyle {
+  custom('custom'),
   defaultValue('default'),
   segment('segment'),
   sevenSegment('sevenSegment'),
@@ -589,8 +590,7 @@ enum SgClockDigitalStyle {
   fade('fade'),
   matrix('matrix'),
   neon('neon'),
-  discard('discard'),
-  custom('custom');
+  discard('discard');
 
   const SgClockDigitalStyle(this.value);
 
@@ -1905,11 +1905,11 @@ enum SgInputDateTimeTextInputType {
   }
 }
 
-/// Valores aceitos pelo React: `local`, `utc`, `offset`.
+/// Valores aceitos pelo React: `offset`, `local`, `utc`.
 enum SgInputDateTimeValueMode {
+  offset('offset'),
   local('local'),
-  utc('utc'),
-  offset('offset');
+  utc('utc');
 
   const SgInputDateTimeValueMode(this.value);
 

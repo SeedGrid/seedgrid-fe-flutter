@@ -18,12 +18,12 @@ abstract interface class SgClockProps {
   Widget? get centerOverlay;
   /// Modo principal de exibição do relógio. Padrão: `digital`.
   SgClockClockStyle? get clockStyle;
+  /// Estilo visual do relógio digital. Padrão: `default`.
+  SgClockDigitalStyle? get digitalStyle;
   /// Desenha o relógio digital quando digitalStyle e custom; sem ele, usa o estilo default. Tipo TS: `SgClockDigitBuilder` (sem tradução exata; ver excecoes.json).
   Function? get digitBuilder;
   /// Arrasto do card: undefined = automático (arrasta em largura &gt;= 640px), true = sempre, false = nunca. Tem prioridade sobre `cardProps.draggable`.
   bool? get draggable;
-  /// Estilo visual do relógio digital. Padrão: `default`.
-  SgClockDigitalStyle? get digitalStyle;
   /// Formato horário do relógio. Padrão: `24h`.
   SgClockFormat? get format;
   String? get initialServerTime;
@@ -78,6 +78,16 @@ const List<SgPropSpec> sgClockPropSpecs = <SgPropSpec>[
     values: <String>['digital', 'analog'],
   ),
   SgPropSpec(
+    name: 'digitalStyle',
+    reactName: 'digitalStyle',
+    type: 'SgClockDigitalStyle?',
+    tsType: 'SgClockDigitalStyle',
+    required: false,
+    defaultValue: 'default',
+    description: 'Estilo visual do relógio digital.',
+    values: <String>['custom', 'default', 'segment', 'sevenSegment', 'roller3d', 'flip', 'fade', 'matrix', 'neon', 'discard'],
+  ),
+  SgPropSpec(
     name: 'digitBuilder',
     reactName: 'digitBuilder',
     type: 'Function?',
@@ -93,16 +103,6 @@ const List<SgPropSpec> sgClockPropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     description: 'Arrasto do card: undefined = automático (arrasta em largura >= 640px), true = sempre, false = nunca. Tem prioridade sobre `cardProps.draggable`.',
-  ),
-  SgPropSpec(
-    name: 'digitalStyle',
-    reactName: 'digitalStyle',
-    type: 'SgClockDigitalStyle?',
-    tsType: 'SgClockDigitalStyle',
-    required: false,
-    defaultValue: 'default',
-    description: 'Estilo visual do relógio digital.',
-    values: <String>['default', 'segment', 'sevenSegment', 'roller3d', 'flip', 'fade', 'matrix', 'neon', 'discard', 'custom'],
   ),
   SgPropSpec(
     name: 'format',

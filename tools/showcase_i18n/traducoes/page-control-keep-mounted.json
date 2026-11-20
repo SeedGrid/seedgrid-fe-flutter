@@ -1,0 +1,8 @@
+{
+ "Mantém esta página montada (oculta) quando inativa. Sem valor, vale o `keepMounted` do SgPageControl.": [
+  "Keeps this page mounted (hidden) when inactive. Without a value, the SgPageControl `keepMounted` applies.",
+  "Mantém esta página montada (oculta) quando inativa. Sem valor, vale o `keepMounted` do SgPageControl.",
+  "Mantiene esta página montada (oculta) cuando está inactiva. Sin valor, vale el `keepMounted` de SgPageControl.",
+  "Garde cette page montée (masquée) quand elle est inactive. Sans valeur, `keepMounted` de SgPageControl s'applique."
+ ]
+}

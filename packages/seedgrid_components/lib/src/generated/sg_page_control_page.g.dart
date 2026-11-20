@@ -23,7 +23,7 @@ abstract interface class SgPageControlPageProps {
   Widget? get icon;
   /// Identificador estável da página.
   String? get id;
-  /// Padrão: `false`.
+  /// Mantém esta página montada (oculta) quando inativa. Sem valor, vale o `keepMounted` do SgPageControl. Padrão: `false`.
   bool? get keepMounted;
   String? get tabClassName;
   /// Título exibido na aba da página.
@@ -89,6 +89,7 @@ const List<SgPropSpec> sgPageControlPagePropSpecs = <SgPropSpec>[
     tsType: 'boolean',
     required: false,
     defaultValue: 'false',
+    description: 'Mantém esta página montada (oculta) quando inativa. Sem valor, vale o `keepMounted` do SgPageControl.',
   ),
   SgPropSpec(
     name: 'tabClassName',

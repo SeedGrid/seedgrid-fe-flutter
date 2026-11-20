@@ -1245,7 +1245,7 @@
    "componente": "SgButton",
    "prop": "onClick",
    "motivo": "funcao",
-   "ts": "((event: MouseEvent<HTMLButtonElement, MouseEvent>) => unknown)"
+   "ts": "((event: React.MouseEvent<HTMLButtonElement>) => unknown)"
   },
   {
    "componente": "SgCalendar",
